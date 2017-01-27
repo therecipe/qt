@@ -43,6 +43,9 @@ func CppInputParametersForSlotArguments(function *parser.Function, parameter *pa
 	switch {
 	case strings.Contains(parameter.Value, "*"):
 		{
+			if parser.IsPackedList(parameter.Value) || parser.IsPackedMap(parameter.Value) {
+				return fmt.Sprintf("%v", parser.CleanValue(parameter.Value))
+			}
 			return fmt.Sprintf("%v*", parser.CleanValue(parameter.Value))
 		}
 

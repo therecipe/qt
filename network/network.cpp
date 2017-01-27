@@ -31,6 +31,7 @@
 #include <QLocalSocket>
 #include <QMetaMethod>
 #include <QMetaObject>
+#include <QMultiMap>
 #include <QNetworkAccessManager>
 #include <QNetworkAddressEntry>
 #include <QNetworkCacheMetaData>
@@ -146,6 +147,81 @@ void QAbstractNetworkCache_DestroyQAbstractNetworkCache(void* ptr)
 void QAbstractNetworkCache_DestroyQAbstractNetworkCacheDefault(void* ptr)
 {
 
+}
+
+void* QAbstractNetworkCache___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAbstractNetworkCache___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractNetworkCache___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QAbstractNetworkCache___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAbstractNetworkCache___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAbstractNetworkCache___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAbstractNetworkCache___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractNetworkCache___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractNetworkCache___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractNetworkCache___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractNetworkCache___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractNetworkCache___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractNetworkCache___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractNetworkCache___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractNetworkCache___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QAbstractNetworkCache_TimerEvent(void* ptr, void* event)
@@ -715,6 +791,81 @@ void QAbstractSocket_DestroyQAbstractSocketDefault(void* ptr)
 
 }
 
+void* QAbstractSocket___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAbstractSocket___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractSocket___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QAbstractSocket___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAbstractSocket___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAbstractSocket___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAbstractSocket___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractSocket___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractSocket___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractSocket___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractSocket___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractSocket___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractSocket___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractSocket___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractSocket___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 char QAbstractSocket_Open(void* ptr, long long mode)
 {
 	return static_cast<QAbstractSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
@@ -1183,39 +1334,184 @@ void QDnsLookup_DestroyQDnsLookup(void* ptr)
 	static_cast<QDnsLookup*>(ptr)->~QDnsLookup();
 }
 
-void* QDnsLookup_canonicalNameRecords_atList(void* ptr, int i)
+void* QDnsLookup___canonicalNameRecords_atList(void* ptr, int i)
 {
 	return new QDnsDomainNameRecord(static_cast<QList<QDnsDomainNameRecord>*>(ptr)->at(i));
 }
 
-void* QDnsLookup_hostAddressRecords_atList(void* ptr, int i)
+void QDnsLookup___canonicalNameRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QDnsDomainNameRecord>*>(ptr)->append(*static_cast<QDnsDomainNameRecord*>(i));
+}
+
+void* QDnsLookup___canonicalNameRecords_newList(void* ptr)
+{
+	return new QList<QDnsDomainNameRecord>;
+}
+
+void* QDnsLookup___hostAddressRecords_atList(void* ptr, int i)
 {
 	return new QDnsHostAddressRecord(static_cast<QList<QDnsHostAddressRecord>*>(ptr)->at(i));
 }
 
-void* QDnsLookup_mailExchangeRecords_atList(void* ptr, int i)
+void QDnsLookup___hostAddressRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QDnsHostAddressRecord>*>(ptr)->append(*static_cast<QDnsHostAddressRecord*>(i));
+}
+
+void* QDnsLookup___hostAddressRecords_newList(void* ptr)
+{
+	return new QList<QDnsHostAddressRecord>;
+}
+
+void* QDnsLookup___mailExchangeRecords_atList(void* ptr, int i)
 {
 	return new QDnsMailExchangeRecord(static_cast<QList<QDnsMailExchangeRecord>*>(ptr)->at(i));
 }
 
-void* QDnsLookup_nameServerRecords_atList(void* ptr, int i)
+void QDnsLookup___mailExchangeRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QDnsMailExchangeRecord>*>(ptr)->append(*static_cast<QDnsMailExchangeRecord*>(i));
+}
+
+void* QDnsLookup___mailExchangeRecords_newList(void* ptr)
+{
+	return new QList<QDnsMailExchangeRecord>;
+}
+
+void* QDnsLookup___nameServerRecords_atList(void* ptr, int i)
 {
 	return new QDnsDomainNameRecord(static_cast<QList<QDnsDomainNameRecord>*>(ptr)->at(i));
 }
 
-void* QDnsLookup_pointerRecords_atList(void* ptr, int i)
+void QDnsLookup___nameServerRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QDnsDomainNameRecord>*>(ptr)->append(*static_cast<QDnsDomainNameRecord*>(i));
+}
+
+void* QDnsLookup___nameServerRecords_newList(void* ptr)
+{
+	return new QList<QDnsDomainNameRecord>;
+}
+
+void* QDnsLookup___pointerRecords_atList(void* ptr, int i)
 {
 	return new QDnsDomainNameRecord(static_cast<QList<QDnsDomainNameRecord>*>(ptr)->at(i));
 }
 
-void* QDnsLookup_serviceRecords_atList(void* ptr, int i)
+void QDnsLookup___pointerRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QDnsDomainNameRecord>*>(ptr)->append(*static_cast<QDnsDomainNameRecord*>(i));
+}
+
+void* QDnsLookup___pointerRecords_newList(void* ptr)
+{
+	return new QList<QDnsDomainNameRecord>;
+}
+
+void* QDnsLookup___serviceRecords_atList(void* ptr, int i)
 {
 	return new QDnsServiceRecord(static_cast<QList<QDnsServiceRecord>*>(ptr)->at(i));
 }
 
-void* QDnsLookup_textRecords_atList(void* ptr, int i)
+void QDnsLookup___serviceRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QDnsServiceRecord>*>(ptr)->append(*static_cast<QDnsServiceRecord*>(i));
+}
+
+void* QDnsLookup___serviceRecords_newList(void* ptr)
+{
+	return new QList<QDnsServiceRecord>;
+}
+
+void* QDnsLookup___textRecords_atList(void* ptr, int i)
 {
 	return new QDnsTextRecord(static_cast<QList<QDnsTextRecord>*>(ptr)->at(i));
+}
+
+void QDnsLookup___textRecords_setList(void* ptr, void* i)
+{
+	static_cast<QList<QDnsTextRecord>*>(ptr)->append(*static_cast<QDnsTextRecord*>(i));
+}
+
+void* QDnsLookup___textRecords_newList(void* ptr)
+{
+	return new QList<QDnsTextRecord>;
+}
+
+void* QDnsLookup___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QDnsLookup___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QDnsLookup___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QDnsLookup___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QDnsLookup___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QDnsLookup___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QDnsLookup___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QDnsLookup___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QDnsLookup___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QDnsLookup___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QDnsLookup___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QDnsLookup___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QDnsLookup___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QDnsLookup___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QDnsLookup___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QDnsLookup_TimerEvent(void* ptr, void* event)
@@ -1433,9 +1729,19 @@ void QDnsTextRecord_DestroyQDnsTextRecord(void* ptr)
 	static_cast<QDnsTextRecord*>(ptr)->~QDnsTextRecord();
 }
 
-void* QDnsTextRecord_values_atList(void* ptr, int i)
+void* QDnsTextRecord___values_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QDnsTextRecord___values_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QDnsTextRecord___values_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 void* QHostAddress_NewQHostAddress()
@@ -1613,6 +1919,11 @@ int QHostInfo_LookupId(void* ptr)
 	return static_cast<QHostInfo*>(ptr)->lookupId();
 }
 
+void QHostInfo_SetAddresses(void* ptr, void* addresses)
+{
+	static_cast<QHostInfo*>(ptr)->setAddresses(*static_cast<QList<QHostAddress>*>(addresses));
+}
+
 void QHostInfo_SetError(void* ptr, long long error)
 {
 	static_cast<QHostInfo*>(ptr)->setError(static_cast<QHostInfo::HostInfoError>(error));
@@ -1643,9 +1954,34 @@ struct QtNetwork_PackedString QHostInfo_QHostInfo_LocalDomainName()
 	return ({ QByteArray t5517d9 = QHostInfo::localDomainName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t5517d9.prepend("WHITESPACE").constData()+10), t5517d9.size()-10 }; });
 }
 
-void* QHostInfo_addresses_atList(void* ptr, int i)
+void* QHostInfo___addresses_atList(void* ptr, int i)
 {
 	return new QHostAddress(static_cast<QList<QHostAddress>*>(ptr)->at(i));
+}
+
+void QHostInfo___addresses_setList(void* ptr, void* i)
+{
+	static_cast<QList<QHostAddress>*>(ptr)->append(*static_cast<QHostAddress*>(i));
+}
+
+void* QHostInfo___addresses_newList(void* ptr)
+{
+	return new QList<QHostAddress>;
+}
+
+void* QHostInfo___setAddresses_addresses_atList(void* ptr, int i)
+{
+	return new QHostAddress(static_cast<QList<QHostAddress>*>(ptr)->at(i));
+}
+
+void QHostInfo___setAddresses_addresses_setList(void* ptr, void* i)
+{
+	static_cast<QList<QHostAddress>*>(ptr)->append(*static_cast<QHostAddress*>(i));
+}
+
+void* QHostInfo___setAddresses_addresses_newList(void* ptr)
+{
+	return new QList<QHostAddress>;
 }
 
 void* QHttpMultiPart_NewQHttpMultiPart2(long long contentType, void* parent)
@@ -1681,6 +2017,81 @@ void QHttpMultiPart_SetContentType(void* ptr, long long contentType)
 void QHttpMultiPart_DestroyQHttpMultiPart(void* ptr)
 {
 	static_cast<QHttpMultiPart*>(ptr)->~QHttpMultiPart();
+}
+
+void* QHttpMultiPart___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QHttpMultiPart___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHttpMultiPart___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QHttpMultiPart___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QHttpMultiPart___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QHttpMultiPart___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QHttpMultiPart___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHttpMultiPart___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHttpMultiPart___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHttpMultiPart___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHttpMultiPart___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHttpMultiPart___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHttpMultiPart___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHttpMultiPart___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHttpMultiPart___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QHttpMultiPart_TimerEvent(void* ptr, void* event)
@@ -1950,6 +2361,81 @@ char QLocalServer_WaitForNewConnection(void* ptr, int msec, char timedOut)
 void QLocalServer_DestroyQLocalServer(void* ptr)
 {
 	static_cast<QLocalServer*>(ptr)->~QLocalServer();
+}
+
+void* QLocalServer___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QLocalServer___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalServer___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QLocalServer___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QLocalServer___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QLocalServer___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QLocalServer___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLocalServer___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalServer___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QLocalServer___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLocalServer___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalServer___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QLocalServer___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLocalServer___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalServer___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QLocalServer_TimerEvent(void* ptr, void* event)
@@ -2322,6 +2808,81 @@ long long QLocalSocket_WriteDataDefault(void* ptr, char* data, long long c)
 	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::writeData(const_cast<const char*>(data), c);
 }
 
+void* QLocalSocket___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QLocalSocket___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalSocket___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QLocalSocket___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QLocalSocket___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QLocalSocket___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QLocalSocket___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLocalSocket___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalSocket___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QLocalSocket___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLocalSocket___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalSocket___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QLocalSocket___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLocalSocket___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLocalSocket___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 char QLocalSocket_AtEnd(void* ptr)
 {
 	return static_cast<QLocalSocket*>(ptr)->atEnd();
@@ -2483,6 +3044,7 @@ public:
 	void Signal_NetworkAccessibleChanged(QNetworkAccessManager::NetworkAccessibility accessible) { callbackQNetworkAccessManager_NetworkAccessibleChanged(this, accessible); };
 	void Signal_PreSharedKeyAuthenticationRequired(QNetworkReply * reply, QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired(this, reply, authenticator); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQNetworkAccessManager_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
+	void Signal_SslErrors(QNetworkReply * reply, const QList<QSslError> & errors) { callbackQNetworkAccessManager_SslErrors(this, reply, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	QStringList supportedSchemesImplementation() const { return QString(callbackQNetworkAccessManager_SupportedSchemesImplementation(const_cast<MyQNetworkAccessManager*>(this))).split("|", QString::SkipEmptyParts); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkAccessManager_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQNetworkAccessManager_ChildEvent(this, event); };
@@ -2730,6 +3292,21 @@ void QNetworkAccessManager_SetProxyFactory(void* ptr, void* factory)
 	static_cast<QNetworkAccessManager*>(ptr)->setProxyFactory(static_cast<QNetworkProxyFactory*>(factory));
 }
 
+void QNetworkAccessManager_ConnectSslErrors(void* ptr)
+{
+	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&QNetworkAccessManager::sslErrors), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&MyQNetworkAccessManager::Signal_SslErrors));
+}
+
+void QNetworkAccessManager_DisconnectSslErrors(void* ptr)
+{
+	QObject::disconnect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&QNetworkAccessManager::sslErrors), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&MyQNetworkAccessManager::Signal_SslErrors));
+}
+
+void QNetworkAccessManager_SslErrors(void* ptr, void* reply, void* errors)
+{
+	static_cast<QNetworkAccessManager*>(ptr)->sslErrors(static_cast<QNetworkReply*>(reply), *static_cast<QList<QSslError>*>(errors));
+}
+
 struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemes(void* ptr)
 {
 	return ({ QByteArray tda9ca8 = static_cast<QNetworkAccessManager*>(ptr)->supportedSchemes().join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(tda9ca8.prepend("WHITESPACE").constData()+10), tda9ca8.size()-10 }; });
@@ -2750,6 +3327,96 @@ struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemesImplementati
 void QNetworkAccessManager_DestroyQNetworkAccessManager(void* ptr)
 {
 	static_cast<QNetworkAccessManager*>(ptr)->~QNetworkAccessManager();
+}
+
+void* QNetworkAccessManager___sslErrors_errors_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___sslErrors_errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QNetworkAccessManager___sslErrors_errors_newList(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QNetworkAccessManager___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkAccessManager___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QNetworkAccessManager___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkAccessManager___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QNetworkAccessManager___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkAccessManager___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkAccessManager___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkAccessManager___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkAccessManager___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkAccessManager___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QNetworkAccessManager_TimerEvent(void* ptr, void* event)
@@ -3042,9 +3709,19 @@ void QNetworkConfiguration_DestroyQNetworkConfiguration(void* ptr)
 	static_cast<QNetworkConfiguration*>(ptr)->~QNetworkConfiguration();
 }
 
-void* QNetworkConfiguration_children_atList(void* ptr, int i)
+void* QNetworkConfiguration___children_atList(void* ptr, int i)
 {
 	return new QNetworkConfiguration(static_cast<QList<QNetworkConfiguration>*>(ptr)->at(i));
+}
+
+void QNetworkConfiguration___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkConfiguration>*>(ptr)->append(*static_cast<QNetworkConfiguration*>(i));
+}
+
+void* QNetworkConfiguration___children_newList(void* ptr)
+{
+	return new QList<QNetworkConfiguration>;
 }
 
 class MyQNetworkConfigurationManager: public QNetworkConfigurationManager
@@ -3194,9 +3871,94 @@ void QNetworkConfigurationManager_DestroyQNetworkConfigurationManagerDefault(voi
 
 }
 
-void* QNetworkConfigurationManager_allConfigurations_atList(void* ptr, int i)
+void* QNetworkConfigurationManager___allConfigurations_atList(void* ptr, int i)
 {
 	return new QNetworkConfiguration(static_cast<QList<QNetworkConfiguration>*>(ptr)->at(i));
+}
+
+void QNetworkConfigurationManager___allConfigurations_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkConfiguration>*>(ptr)->append(*static_cast<QNetworkConfiguration*>(i));
+}
+
+void* QNetworkConfigurationManager___allConfigurations_newList(void* ptr)
+{
+	return new QList<QNetworkConfiguration>;
+}
+
+void* QNetworkConfigurationManager___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QNetworkConfigurationManager___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkConfigurationManager___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QNetworkConfigurationManager___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkConfigurationManager___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkConfigurationManager___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QNetworkConfigurationManager___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkConfigurationManager___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkConfigurationManager___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkConfigurationManager___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkConfigurationManager___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkConfigurationManager___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkConfigurationManager___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkConfigurationManager___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkConfigurationManager___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QNetworkConfigurationManager_TimerEvent(void* ptr, void* event)
@@ -3404,17 +4166,29 @@ void QNetworkCookie_DestroyQNetworkCookie(void* ptr)
 	static_cast<QNetworkCookie*>(ptr)->~QNetworkCookie();
 }
 
-void* QNetworkCookie_parseCookies_atList(void* ptr, int i)
+void* QNetworkCookie___parseCookies_atList(void* ptr, int i)
 {
 	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
+}
+
+void QNetworkCookie___parseCookies_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkCookie>*>(ptr)->append(*static_cast<QNetworkCookie*>(i));
+}
+
+void* QNetworkCookie___parseCookies_newList(void* ptr)
+{
+	return new QList<QNetworkCookie>;
 }
 
 class MyQNetworkCookieJar: public QNetworkCookieJar
 {
 public:
 	MyQNetworkCookieJar(QObject *parent) : QNetworkCookieJar(parent) {};
+	QList<QNetworkCookie> cookiesForUrl(const QUrl & url) const { return *static_cast<QList<QNetworkCookie>*>(callbackQNetworkCookieJar_CookiesForUrl(const_cast<MyQNetworkCookieJar*>(this), const_cast<QUrl*>(&url))); };
 	bool deleteCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_DeleteCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	bool insertCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_InsertCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
+	bool setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, const QUrl & url) { return callbackQNetworkCookieJar_SetCookiesFromUrl(this, ({ QList<QNetworkCookie>* tmpValue = const_cast<QList<QNetworkCookie>*>(&cookieList); QtNetwork_PackedList { tmpValue, tmpValue->size() }; }), const_cast<QUrl*>(&url)) != 0; };
 	bool updateCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_UpdateCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	bool validateCookie(const QNetworkCookie & cookie, const QUrl & url) const { return callbackQNetworkCookieJar_ValidateCookie(const_cast<MyQNetworkCookieJar*>(this), const_cast<QNetworkCookie*>(&cookie), const_cast<QUrl*>(&url)) != 0; };
 	 ~MyQNetworkCookieJar() { callbackQNetworkCookieJar_DestroyQNetworkCookieJar(this); };
@@ -3444,6 +4218,11 @@ struct QtNetwork_PackedList QNetworkCookieJar_CookiesForUrl(void* ptr, void* url
 	return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(static_cast<QNetworkCookieJar*>(ptr)->cookiesForUrl(*static_cast<QUrl*>(url))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+struct QtNetwork_PackedList QNetworkCookieJar_CookiesForUrlDefault(void* ptr, void* url)
+{
+	return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::cookiesForUrl(*static_cast<QUrl*>(url))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QNetworkCookieJar_DeleteCookie(void* ptr, void* cookie)
 {
 	return static_cast<QNetworkCookieJar*>(ptr)->deleteCookie(*static_cast<QNetworkCookie*>(cookie));
@@ -3462,6 +4241,21 @@ char QNetworkCookieJar_InsertCookie(void* ptr, void* cookie)
 char QNetworkCookieJar_InsertCookieDefault(void* ptr, void* cookie)
 {
 	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::insertCookie(*static_cast<QNetworkCookie*>(cookie));
+}
+
+void QNetworkCookieJar_SetAllCookies(void* ptr, void* cookieList)
+{
+	static_cast<QNetworkCookieJar*>(ptr)->setAllCookies(*static_cast<QList<QNetworkCookie>*>(cookieList));
+}
+
+char QNetworkCookieJar_SetCookiesFromUrl(void* ptr, void* cookieList, void* url)
+{
+	return static_cast<QNetworkCookieJar*>(ptr)->setCookiesFromUrl(*static_cast<QList<QNetworkCookie>*>(cookieList), *static_cast<QUrl*>(url));
+}
+
+char QNetworkCookieJar_SetCookiesFromUrlDefault(void* ptr, void* cookieList, void* url)
+{
+	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::setCookiesFromUrl(*static_cast<QList<QNetworkCookie>*>(cookieList), *static_cast<QUrl*>(url));
 }
 
 char QNetworkCookieJar_UpdateCookie(void* ptr, void* cookie)
@@ -3494,14 +4288,139 @@ void QNetworkCookieJar_DestroyQNetworkCookieJarDefault(void* ptr)
 
 }
 
-void* QNetworkCookieJar_allCookies_atList(void* ptr, int i)
+void* QNetworkCookieJar___allCookies_atList(void* ptr, int i)
 {
 	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
 }
 
-void* QNetworkCookieJar_cookiesForUrl_atList(void* ptr, int i)
+void QNetworkCookieJar___allCookies_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkCookie>*>(ptr)->append(*static_cast<QNetworkCookie*>(i));
+}
+
+void* QNetworkCookieJar___allCookies_newList(void* ptr)
+{
+	return new QList<QNetworkCookie>;
+}
+
+void* QNetworkCookieJar___cookiesForUrl_atList(void* ptr, int i)
 {
 	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___cookiesForUrl_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkCookie>*>(ptr)->append(*static_cast<QNetworkCookie*>(i));
+}
+
+void* QNetworkCookieJar___cookiesForUrl_newList(void* ptr)
+{
+	return new QList<QNetworkCookie>;
+}
+
+void* QNetworkCookieJar___setAllCookies_cookieList_atList(void* ptr, int i)
+{
+	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___setAllCookies_cookieList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkCookie>*>(ptr)->append(*static_cast<QNetworkCookie*>(i));
+}
+
+void* QNetworkCookieJar___setAllCookies_cookieList_newList(void* ptr)
+{
+	return new QList<QNetworkCookie>;
+}
+
+void* QNetworkCookieJar___setCookiesFromUrl_cookieList_atList(void* ptr, int i)
+{
+	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___setCookiesFromUrl_cookieList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkCookie>*>(ptr)->append(*static_cast<QNetworkCookie*>(i));
+}
+
+void* QNetworkCookieJar___setCookiesFromUrl_cookieList_newList(void* ptr)
+{
+	return new QList<QNetworkCookie>;
+}
+
+void* QNetworkCookieJar___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkCookieJar___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QNetworkCookieJar___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkCookieJar___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QNetworkCookieJar___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkCookieJar___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkCookieJar___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkCookieJar___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkCookieJar___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkCookieJar___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkCookieJar___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QNetworkCookieJar_TimerEvent(void* ptr, void* event)
@@ -3743,6 +4662,81 @@ void QNetworkDiskCache_DestroyQNetworkDiskCache(void* ptr)
 	static_cast<QNetworkDiskCache*>(ptr)->~QNetworkDiskCache();
 }
 
+void* QNetworkDiskCache___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QNetworkDiskCache___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkDiskCache___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QNetworkDiskCache___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkDiskCache___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkDiskCache___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QNetworkDiskCache___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkDiskCache___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkDiskCache___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkDiskCache___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkDiskCache___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkDiskCache___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkDiskCache___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkDiskCache___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkDiskCache___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QNetworkDiskCache_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QNetworkDiskCache*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -3918,19 +4912,49 @@ void QNetworkInterface_DestroyQNetworkInterface(void* ptr)
 	static_cast<QNetworkInterface*>(ptr)->~QNetworkInterface();
 }
 
-void* QNetworkInterface_addressEntries_atList(void* ptr, int i)
+void* QNetworkInterface___addressEntries_atList(void* ptr, int i)
 {
 	return new QNetworkAddressEntry(static_cast<QList<QNetworkAddressEntry>*>(ptr)->at(i));
 }
 
-void* QNetworkInterface_allAddresses_atList(void* ptr, int i)
+void QNetworkInterface___addressEntries_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkAddressEntry>*>(ptr)->append(*static_cast<QNetworkAddressEntry*>(i));
+}
+
+void* QNetworkInterface___addressEntries_newList(void* ptr)
+{
+	return new QList<QNetworkAddressEntry>;
+}
+
+void* QNetworkInterface___allAddresses_atList(void* ptr, int i)
 {
 	return new QHostAddress(static_cast<QList<QHostAddress>*>(ptr)->at(i));
 }
 
-void* QNetworkInterface_allInterfaces_atList(void* ptr, int i)
+void QNetworkInterface___allAddresses_setList(void* ptr, void* i)
+{
+	static_cast<QList<QHostAddress>*>(ptr)->append(*static_cast<QHostAddress*>(i));
+}
+
+void* QNetworkInterface___allAddresses_newList(void* ptr)
+{
+	return new QList<QHostAddress>;
+}
+
+void* QNetworkInterface___allInterfaces_atList(void* ptr, int i)
 {
 	return new QNetworkInterface(static_cast<QList<QNetworkInterface>*>(ptr)->at(i));
+}
+
+void QNetworkInterface___allInterfaces_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkInterface>*>(ptr)->append(*static_cast<QNetworkInterface*>(i));
+}
+
+void* QNetworkInterface___allInterfaces_newList(void* ptr)
+{
+	return new QList<QNetworkInterface>;
 }
 
 void* QNetworkProxy_NewQNetworkProxy()
@@ -4068,17 +5092,33 @@ void QNetworkProxy_DestroyQNetworkProxy(void* ptr)
 	static_cast<QNetworkProxy*>(ptr)->~QNetworkProxy();
 }
 
-void* QNetworkProxy_rawHeaderList_atList(void* ptr, int i)
+void* QNetworkProxy___rawHeaderList_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkProxy___rawHeaderList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkProxy___rawHeaderList_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 class MyQNetworkProxyFactory: public QNetworkProxyFactory
 {
 public:
-	
+	MyQNetworkProxyFactory() : QNetworkProxyFactory() {};
+	QList<QNetworkProxy> queryProxy(const QNetworkProxyQuery & query) { return *static_cast<QList<QNetworkProxy>*>(callbackQNetworkProxyFactory_QueryProxy(this, const_cast<QNetworkProxyQuery*>(&query))); };
 	 ~MyQNetworkProxyFactory() { callbackQNetworkProxyFactory_DestroyQNetworkProxyFactory(this); };
 };
+
+void* QNetworkProxyFactory_NewQNetworkProxyFactory()
+{
+	return new MyQNetworkProxyFactory();
+}
 
 struct QtNetwork_PackedList QNetworkProxyFactory_QNetworkProxyFactory_ProxyForQuery(void* query)
 {
@@ -4115,19 +5155,49 @@ struct QtNetwork_PackedList QNetworkProxyFactory_QNetworkProxyFactory_SystemProx
 	return ({ QList<QNetworkProxy>* tmpValue = new QList<QNetworkProxy>(QNetworkProxyFactory::systemProxyForQuery(*static_cast<QNetworkProxyQuery*>(query))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QNetworkProxyFactory_proxyForQuery_atList(void* ptr, int i)
+void* QNetworkProxyFactory___proxyForQuery_atList(void* ptr, int i)
 {
 	return new QNetworkProxy(static_cast<QList<QNetworkProxy>*>(ptr)->at(i));
 }
 
-void* QNetworkProxyFactory_queryProxy_atList(void* ptr, int i)
+void QNetworkProxyFactory___proxyForQuery_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkProxy>*>(ptr)->append(*static_cast<QNetworkProxy*>(i));
+}
+
+void* QNetworkProxyFactory___proxyForQuery_newList(void* ptr)
+{
+	return new QList<QNetworkProxy>;
+}
+
+void* QNetworkProxyFactory___queryProxy_atList(void* ptr, int i)
 {
 	return new QNetworkProxy(static_cast<QList<QNetworkProxy>*>(ptr)->at(i));
 }
 
-void* QNetworkProxyFactory_systemProxyForQuery_atList(void* ptr, int i)
+void QNetworkProxyFactory___queryProxy_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkProxy>*>(ptr)->append(*static_cast<QNetworkProxy*>(i));
+}
+
+void* QNetworkProxyFactory___queryProxy_newList(void* ptr)
+{
+	return new QList<QNetworkProxy>;
+}
+
+void* QNetworkProxyFactory___systemProxyForQuery_atList(void* ptr, int i)
 {
 	return new QNetworkProxy(static_cast<QList<QNetworkProxy>*>(ptr)->at(i));
+}
+
+void QNetworkProxyFactory___systemProxyForQuery_setList(void* ptr, void* i)
+{
+	static_cast<QList<QNetworkProxy>*>(ptr)->append(*static_cast<QNetworkProxy*>(i));
+}
+
+void* QNetworkProxyFactory___systemProxyForQuery_newList(void* ptr)
+{
+	return new QList<QNetworkProxy>;
 }
 
 void* QNetworkProxyQuery_NewQNetworkProxyQuery()
@@ -4254,6 +5324,7 @@ class MyQNetworkReply: public QNetworkReply
 {
 public:
 	MyQNetworkReply(QObject *parent) : QNetworkReply(parent) {};
+	void ignoreSslErrorsImplementation(const QList<QSslError> & errors) { callbackQNetworkReply_IgnoreSslErrorsImplementation(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void setSslConfigurationImplementation(const QSslConfiguration & configuration) { callbackQNetworkReply_SetSslConfigurationImplementation(this, const_cast<QSslConfiguration*>(&configuration)); };
 	void sslConfigurationImplementation(QSslConfiguration & configuration) const { callbackQNetworkReply_SslConfigurationImplementation(const_cast<MyQNetworkReply*>(this), static_cast<QSslConfiguration*>(&configuration)); };
 	void abort() { callbackQNetworkReply_Abort(this); };
@@ -4267,6 +5338,7 @@ public:
 	void Signal_PreSharedKeyAuthenticationRequired(QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkReply_PreSharedKeyAuthenticationRequired(this, authenticator); };
 	void Signal_Redirected(const QUrl & url) { callbackQNetworkReply_Redirected(this, const_cast<QUrl*>(&url)); };
 	void setReadBufferSize(qint64 size) { callbackQNetworkReply_SetReadBufferSize(this, size); };
+	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQNetworkReply_SslErrors(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_UploadProgress(qint64 bytesSent, qint64 bytesTotal) { callbackQNetworkReply_UploadProgress(this, bytesSent, bytesTotal); };
 	bool atEnd() const { return callbackQNetworkReply_AtEnd(const_cast<MyQNetworkReply*>(this)) != 0; };
 	qint64 bytesAvailable() const { return callbackQNetworkReply_BytesAvailable(const_cast<MyQNetworkReply*>(this)); };
@@ -4293,6 +5365,16 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNetworkReply_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkReply_MetaObject(const_cast<MyQNetworkReply*>(this))); };
 };
+
+void QNetworkReply_IgnoreSslErrorsImplementation(void* ptr, void* errors)
+{
+	static_cast<QNetworkReply*>(ptr)->ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(errors));
+}
+
+void QNetworkReply_IgnoreSslErrorsImplementationDefault(void* ptr, void* errors)
+{
+	static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(errors));
+}
 
 void QNetworkReply_SetSslConfigurationImplementation(void* ptr, void* configuration)
 {
@@ -4422,6 +5504,11 @@ void QNetworkReply_IgnoreSslErrors(void* ptr)
 void QNetworkReply_IgnoreSslErrorsDefault(void* ptr)
 {
 	static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrors();
+}
+
+void QNetworkReply_IgnoreSslErrors2(void* ptr, void* errors)
+{
+	static_cast<QNetworkReply*>(ptr)->ignoreSslErrors(*static_cast<QList<QSslError>*>(errors));
 }
 
 char QNetworkReply_IsFinished(void* ptr)
@@ -4569,6 +5656,21 @@ void* QNetworkReply_SslConfiguration(void* ptr)
 	return new QSslConfiguration(static_cast<QNetworkReply*>(ptr)->sslConfiguration());
 }
 
+void QNetworkReply_ConnectSslErrors(void* ptr)
+{
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(const QList<QSslError> &)>(&QNetworkReply::sslErrors), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(const QList<QSslError> &)>(&MyQNetworkReply::Signal_SslErrors));
+}
+
+void QNetworkReply_DisconnectSslErrors(void* ptr)
+{
+	QObject::disconnect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(const QList<QSslError> &)>(&QNetworkReply::sslErrors), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(const QList<QSslError> &)>(&MyQNetworkReply::Signal_SslErrors));
+}
+
+void QNetworkReply_SslErrors(void* ptr, void* errors)
+{
+	static_cast<QNetworkReply*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(errors));
+}
+
 void QNetworkReply_ConnectUploadProgress(void* ptr)
 {
 	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::uploadProgress), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(qint64, qint64)>(&MyQNetworkReply::Signal_UploadProgress));
@@ -4594,9 +5696,139 @@ void QNetworkReply_DestroyQNetworkReply(void* ptr)
 	static_cast<QNetworkReply*>(ptr)->~QNetworkReply();
 }
 
-void* QNetworkReply_rawHeaderList_atList(void* ptr, int i)
+void* QNetworkReply___ignoreSslErrorsImplementation_errors_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QNetworkReply___ignoreSslErrorsImplementation_errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QNetworkReply___ignoreSslErrorsImplementation_errors_newList(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QNetworkReply___ignoreSslErrors_errors_atList2(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QNetworkReply___ignoreSslErrors_errors_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QNetworkReply___ignoreSslErrors_errors_newList2(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QNetworkReply___rawHeaderList_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkReply___rawHeaderList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkReply___rawHeaderList_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QNetworkReply___sslErrors_errors_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QNetworkReply___sslErrors_errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QNetworkReply___sslErrors_errors_newList(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QNetworkReply___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QNetworkReply___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkReply___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QNetworkReply___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkReply___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkReply___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QNetworkReply___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkReply___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkReply___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkReply___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkReply___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkReply___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkReply___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkReply___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkReply___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 char QNetworkReply_AtEnd(void* ptr)
@@ -4939,9 +6171,19 @@ void QNetworkRequest_DestroyQNetworkRequest(void* ptr)
 	static_cast<QNetworkRequest*>(ptr)->~QNetworkRequest();
 }
 
-void* QNetworkRequest_rawHeaderList_atList(void* ptr, int i)
+void* QNetworkRequest___rawHeaderList_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkRequest___rawHeaderList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkRequest___rawHeaderList_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 class MyQNetworkSession: public QNetworkSession
@@ -5229,6 +6471,81 @@ void QNetworkSession_DestroyQNetworkSessionDefault(void* ptr)
 
 }
 
+void* QNetworkSession___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QNetworkSession___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkSession___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QNetworkSession___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QNetworkSession___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QNetworkSession___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QNetworkSession___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkSession___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkSession___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkSession___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkSession___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkSession___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QNetworkSession___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QNetworkSession___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QNetworkSession___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QNetworkSession_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QNetworkSession*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -5399,6 +6716,11 @@ struct QtNetwork_PackedList QSslCertificate_QSslCertificate_FromPath(char* path,
 	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(QSslCertificate::fromPath(QString(path), static_cast<QSsl::EncodingFormat>(format), static_cast<QRegExp::PatternSyntax>(syntax))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+char QSslCertificate_QSslCertificate_ImportPkcs12(void* device, void* key, void* certificate, void* caCertificates, void* passPhrase)
+{
+	return QSslCertificate::importPkcs12(static_cast<QIODevice*>(device), static_cast<QSslKey*>(key), static_cast<QSslCertificate*>(certificate), static_cast<QList<QSslCertificate>*>(caCertificates), *static_cast<QByteArray*>(passPhrase));
+}
+
 char QSslCertificate_IsBlacklisted(void* ptr)
 {
 	return static_cast<QSslCertificate*>(ptr)->isBlacklisted();
@@ -5407,6 +6729,11 @@ char QSslCertificate_IsBlacklisted(void* ptr)
 void QSslCertificate_Swap(void* ptr, void* other)
 {
 	static_cast<QSslCertificate*>(ptr)->swap(*static_cast<QSslCertificate*>(other));
+}
+
+struct QtNetwork_PackedList QSslCertificate_QSslCertificate_Verify(void* certificateChain, char* hostName)
+{
+	return ({ QList<QSslError>* tmpValue = new QList<QSslError>(QSslCertificate::verify(*static_cast<QList<QSslCertificate>*>(certificateChain), QString(hostName))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QSslCertificate_DestroyQSslCertificate(void* ptr)
@@ -5464,6 +6791,11 @@ void* QSslCertificate_SerialNumber(void* ptr)
 	return new QByteArray(static_cast<QSslCertificate*>(ptr)->serialNumber());
 }
 
+struct QtNetwork_PackedList QSslCertificate_SubjectAlternativeNames(void* ptr)
+{
+	return ({ QMultiMap<QSsl::AlternativeNameEntryType, QString>* tmpValue = new QMultiMap<QSsl::AlternativeNameEntryType, QString>(static_cast<QSslCertificate*>(ptr)->subjectAlternativeNames()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtNetwork_PackedString QSslCertificate_SubjectInfo(void* ptr, long long subject)
 {
 	return ({ QByteArray tee2197 = static_cast<QSslCertificate*>(ptr)->subjectInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(tee2197.prepend("WHITESPACE").constData()+10), tee2197.size()-10 }; });
@@ -5499,34 +6831,174 @@ void* QSslCertificate_Version(void* ptr)
 	return new QByteArray(static_cast<QSslCertificate*>(ptr)->version());
 }
 
-void* QSslCertificate_fromData_atList(void* ptr, int i)
+void* QSslCertificate___fromData_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslCertificate_fromDevice_atList(void* ptr, int i)
+void QSslCertificate___fromData_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslCertificate___fromData_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslCertificate___fromDevice_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslCertificate_fromPath_atList(void* ptr, int i)
+void QSslCertificate___fromDevice_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslCertificate___fromDevice_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslCertificate___fromPath_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslCertificate_extensions_atList(void* ptr, int i)
+void QSslCertificate___fromPath_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslCertificate___fromPath_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslCertificate___importPkcs12_caCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslCertificate___importPkcs12_caCertificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslCertificate___importPkcs12_caCertificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslCertificate___verify_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QSslCertificate___verify_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QSslCertificate___verify_newList(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QSslCertificate___verify_certificateChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslCertificate___verify_certificateChain_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslCertificate___verify_certificateChain_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslCertificate___extensions_atList(void* ptr, int i)
 {
 	return new QSslCertificateExtension(static_cast<QList<QSslCertificateExtension>*>(ptr)->at(i));
 }
 
-void* QSslCertificate_issuerInfoAttributes_atList(void* ptr, int i)
+void QSslCertificate___extensions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificateExtension>*>(ptr)->append(*static_cast<QSslCertificateExtension*>(i));
+}
+
+void* QSslCertificate___extensions_newList(void* ptr)
+{
+	return new QList<QSslCertificateExtension>;
+}
+
+void* QSslCertificate___issuerInfoAttributes_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
-void* QSslCertificate_subjectInfoAttributes_atList(void* ptr, int i)
+void QSslCertificate___issuerInfoAttributes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSslCertificate___issuerInfoAttributes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+struct QtNetwork_PackedString QSslCertificate___subjectAlternativeNames_atList(void* ptr, long long i)
+{
+	return ({ QByteArray t974d11 = static_cast<QMultiMap<QSsl::AlternativeNameEntryType, QString>*>(ptr)->value(static_cast<QSsl::AlternativeNameEntryType>(i)).toUtf8(); QtNetwork_PackedString { const_cast<char*>(t974d11.prepend("WHITESPACE").constData()+10), t974d11.size()-10 }; });
+}
+
+void QSslCertificate___subjectAlternativeNames_setList(void* ptr, long long key, char* i)
+{
+	static_cast<QMultiMap<QSsl::AlternativeNameEntryType, QString>*>(ptr)->insert(static_cast<QSsl::AlternativeNameEntryType>(key), QString(i));
+}
+
+void* QSslCertificate___subjectAlternativeNames_newList(void* ptr)
+{
+	return new QMultiMap<QSsl::AlternativeNameEntryType, QString>;
+}
+
+struct QtNetwork_PackedList QSslCertificate___subjectAlternativeNames_keyList(void* ptr)
+{
+	return ({ QList<QSsl::AlternativeNameEntryType>* tmpValue = new QList<QSsl::AlternativeNameEntryType>(static_cast<QMultiMap<QSsl::AlternativeNameEntryType, QString>*>(ptr)->keys()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSslCertificate___subjectInfoAttributes_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSslCertificate___subjectInfoAttributes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSslCertificate___subjectInfoAttributes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+long long QSslCertificate_____subjectAlternativeNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<QSsl::AlternativeNameEntryType>*>(ptr)->at(i);
+}
+
+void QSslCertificate_____subjectAlternativeNames_keyList_setList(void* ptr, long long i)
+{
+	static_cast<QList<QSsl::AlternativeNameEntryType>*>(ptr)->append(static_cast<QSsl::AlternativeNameEntryType>(i));
+}
+
+void* QSslCertificate_____subjectAlternativeNames_keyList_newList(void* ptr)
+{
+	return new QList<QSsl::AlternativeNameEntryType>;
 }
 
 void* QSslCertificateExtension_NewQSslCertificateExtension()
@@ -5759,14 +7231,39 @@ int QSslConfiguration_SessionTicketLifeTimeHint(void* ptr)
 	return static_cast<QSslConfiguration*>(ptr)->sessionTicketLifeTimeHint();
 }
 
+void QSslConfiguration_SetAllowedNextProtocols(void* ptr, void* protocols)
+{
+	static_cast<QSslConfiguration*>(ptr)->setAllowedNextProtocols(*static_cast<QList<QByteArray>*>(protocols));
+}
+
+void QSslConfiguration_SetCaCertificates(void* ptr, void* certificates)
+{
+	static_cast<QSslConfiguration*>(ptr)->setCaCertificates(*static_cast<QList<QSslCertificate>*>(certificates));
+}
+
+void QSslConfiguration_SetCiphers(void* ptr, void* ciphers)
+{
+	static_cast<QSslConfiguration*>(ptr)->setCiphers(*static_cast<QList<QSslCipher>*>(ciphers));
+}
+
 void QSslConfiguration_QSslConfiguration_SetDefaultConfiguration(void* configuration)
 {
 	QSslConfiguration::setDefaultConfiguration(*static_cast<QSslConfiguration*>(configuration));
 }
 
+void QSslConfiguration_SetEllipticCurves(void* ptr, void* curves)
+{
+	static_cast<QSslConfiguration*>(ptr)->setEllipticCurves(*static_cast<QVector<QSslEllipticCurve>*>(curves));
+}
+
 void QSslConfiguration_SetLocalCertificate(void* ptr, void* certificate)
 {
 	static_cast<QSslConfiguration*>(ptr)->setLocalCertificate(*static_cast<QSslCertificate*>(certificate));
+}
+
+void QSslConfiguration_SetLocalCertificateChain(void* ptr, void* localChain)
+{
+	static_cast<QSslConfiguration*>(ptr)->setLocalCertificateChain(*static_cast<QList<QSslCertificate>*>(localChain));
 }
 
 void QSslConfiguration_SetPeerVerifyDepth(void* ptr, int depth)
@@ -5824,49 +7321,214 @@ void QSslConfiguration_DestroyQSslConfiguration(void* ptr)
 	static_cast<QSslConfiguration*>(ptr)->~QSslConfiguration();
 }
 
-void* QSslConfiguration_allowedNextProtocols_atList(void* ptr, int i)
+void* QSslConfiguration___allowedNextProtocols_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_caCertificates_atList(void* ptr, int i)
+void QSslConfiguration___allowedNextProtocols_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSslConfiguration___allowedNextProtocols_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSslConfiguration___caCertificates_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_ciphers_atList(void* ptr, int i)
+void QSslConfiguration___caCertificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslConfiguration___caCertificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslConfiguration___ciphers_atList(void* ptr, int i)
 {
 	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_ellipticCurves_atList(void* ptr, int i)
+void QSslConfiguration___ciphers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
+}
+
+void* QSslConfiguration___ciphers_newList(void* ptr)
+{
+	return new QList<QSslCipher>;
+}
+
+void* QSslConfiguration___ellipticCurves_atList(void* ptr, int i)
 {
 	return new QSslEllipticCurve(static_cast<QVector<QSslEllipticCurve>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_localCertificateChain_atList(void* ptr, int i)
+void QSslConfiguration___ellipticCurves_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QSslEllipticCurve>*>(ptr)->append(*static_cast<QSslEllipticCurve*>(i));
+}
+
+void* QSslConfiguration___ellipticCurves_newList(void* ptr)
+{
+	return new QVector<QSslEllipticCurve>;
+}
+
+void* QSslConfiguration___localCertificateChain_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_peerCertificateChain_atList(void* ptr, int i)
+void QSslConfiguration___localCertificateChain_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslConfiguration___localCertificateChain_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslConfiguration___peerCertificateChain_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_supportedCiphers_atList(void* ptr, int i)
+void QSslConfiguration___peerCertificateChain_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslConfiguration___peerCertificateChain_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslConfiguration___setAllowedNextProtocols_protocols_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSslConfiguration___setAllowedNextProtocols_protocols_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSslConfiguration___setAllowedNextProtocols_protocols_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSslConfiguration___setCaCertificates_certificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslConfiguration___setCaCertificates_certificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslConfiguration___setCaCertificates_certificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslConfiguration___setCiphers_ciphers_atList(void* ptr, int i)
 {
 	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_supportedEllipticCurves_atList(void* ptr, int i)
+void QSslConfiguration___setCiphers_ciphers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
+}
+
+void* QSslConfiguration___setCiphers_ciphers_newList(void* ptr)
+{
+	return new QList<QSslCipher>;
+}
+
+void* QSslConfiguration___setEllipticCurves_curves_atList(void* ptr, int i)
 {
 	return new QSslEllipticCurve(static_cast<QVector<QSslEllipticCurve>*>(ptr)->at(i));
 }
 
-void* QSslConfiguration_systemCaCertificates_atList(void* ptr, int i)
+void QSslConfiguration___setEllipticCurves_curves_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QSslEllipticCurve>*>(ptr)->append(*static_cast<QSslEllipticCurve*>(i));
+}
+
+void* QSslConfiguration___setEllipticCurves_curves_newList(void* ptr)
+{
+	return new QVector<QSslEllipticCurve>;
+}
+
+void* QSslConfiguration___setLocalCertificateChain_localChain_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslConfiguration___setLocalCertificateChain_localChain_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslConfiguration___setLocalCertificateChain_localChain_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslConfiguration___supportedCiphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
+void QSslConfiguration___supportedCiphers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
+}
+
+void* QSslConfiguration___supportedCiphers_newList(void* ptr)
+{
+	return new QList<QSslCipher>;
+}
+
+void* QSslConfiguration___supportedEllipticCurves_atList(void* ptr, int i)
+{
+	return new QSslEllipticCurve(static_cast<QVector<QSslEllipticCurve>*>(ptr)->at(i));
+}
+
+void QSslConfiguration___supportedEllipticCurves_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QSslEllipticCurve>*>(ptr)->append(*static_cast<QSslEllipticCurve*>(i));
+}
+
+void* QSslConfiguration___supportedEllipticCurves_newList(void* ptr)
+{
+	return new QVector<QSslEllipticCurve>;
+}
+
+void* QSslConfiguration___systemCaCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslConfiguration___systemCaCertificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslConfiguration___systemCaCertificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
 }
 
 void* QSslEllipticCurve_NewQSslEllipticCurve()
@@ -6089,6 +7751,7 @@ public:
 	void setReadBufferSize(qint64 size) { callbackQSslSocket_SetReadBufferSize(this, size); };
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQSslSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQSslSocket_SocketOption(this, option)); };
+	void Signal_SslErrors2(const QList<QSslError> & errors) { callbackQSslSocket_SslErrors2(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void startClientEncryption() { callbackQSslSocket_StartClientEncryption(this); };
 	void startServerEncryption() { callbackQSslSocket_StartServerEncryption(this); };
 	bool waitForBytesWritten(int msecs) { return callbackQSslSocket_WaitForBytesWritten(this, msecs) != 0; };
@@ -6137,6 +7800,11 @@ char QSslSocket_AddCaCertificates(void* ptr, char* path, long long format, long 
 	return static_cast<QSslSocket*>(ptr)->addCaCertificates(QString(path), static_cast<QSsl::EncodingFormat>(format), static_cast<QRegExp::PatternSyntax>(syntax));
 }
 
+void QSslSocket_AddCaCertificates2(void* ptr, void* certificates)
+{
+	static_cast<QSslSocket*>(ptr)->addCaCertificates(*static_cast<QList<QSslCertificate>*>(certificates));
+}
+
 void QSslSocket_QSslSocket_AddDefaultCaCertificate(void* certificate)
 {
 	QSslSocket::addDefaultCaCertificate(*static_cast<QSslCertificate*>(certificate));
@@ -6145,6 +7813,11 @@ void QSslSocket_QSslSocket_AddDefaultCaCertificate(void* certificate)
 char QSslSocket_QSslSocket_AddDefaultCaCertificates(char* path, long long encoding, long long syntax)
 {
 	return QSslSocket::addDefaultCaCertificates(QString(path), static_cast<QSsl::EncodingFormat>(encoding), static_cast<QRegExp::PatternSyntax>(syntax));
+}
+
+void QSslSocket_QSslSocket_AddDefaultCaCertificates2(void* certificates)
+{
+	QSslSocket::addDefaultCaCertificates(*static_cast<QList<QSslCertificate>*>(certificates));
 }
 
 char QSslSocket_AtEnd(void* ptr)
@@ -6260,6 +7933,11 @@ void QSslSocket_IgnoreSslErrors(void* ptr)
 void QSslSocket_IgnoreSslErrorsDefault(void* ptr)
 {
 	static_cast<QSslSocket*>(ptr)->QSslSocket::ignoreSslErrors();
+}
+
+void QSslSocket_IgnoreSslErrors2(void* ptr, void* errors)
+{
+	static_cast<QSslSocket*>(ptr)->ignoreSslErrors(*static_cast<QList<QSslError>*>(errors));
 }
 
 char QSslSocket_IsEncrypted(void* ptr)
@@ -6402,6 +8080,11 @@ void QSslSocket_SetLocalCertificate2(void* ptr, char* path, long long format)
 	static_cast<QSslSocket*>(ptr)->setLocalCertificate(QString(path), static_cast<QSsl::EncodingFormat>(format));
 }
 
+void QSslSocket_SetLocalCertificateChain(void* ptr, void* localChain)
+{
+	static_cast<QSslSocket*>(ptr)->setLocalCertificateChain(*static_cast<QList<QSslCertificate>*>(localChain));
+}
+
 void QSslSocket_SetPeerVerifyDepth(void* ptr, int depth)
 {
 	static_cast<QSslSocket*>(ptr)->setPeerVerifyDepth(depth);
@@ -6470,6 +8153,21 @@ void* QSslSocket_SocketOptionDefault(void* ptr, long long option)
 void* QSslSocket_SslConfiguration(void* ptr)
 {
 	return new QSslConfiguration(static_cast<QSslSocket*>(ptr)->sslConfiguration());
+}
+
+void QSslSocket_ConnectSslErrors2(void* ptr)
+{
+	QObject::connect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(const QList<QSslError> &)>(&QSslSocket::sslErrors), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(const QList<QSslError> &)>(&MyQSslSocket::Signal_SslErrors2));
+}
+
+void QSslSocket_DisconnectSslErrors2(void* ptr)
+{
+	QObject::disconnect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(const QList<QSslError> &)>(&QSslSocket::sslErrors), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(const QList<QSslError> &)>(&MyQSslSocket::Signal_SslErrors2));
+}
+
+void QSslSocket_SslErrors2(void* ptr, void* errors)
+{
+	static_cast<QSslSocket*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(errors));
 }
 
 struct QtNetwork_PackedList QSslSocket_SslErrors(void* ptr)
@@ -6582,49 +8280,349 @@ void QSslSocket_DestroyQSslSocket(void* ptr)
 	static_cast<QSslSocket*>(ptr)->~QSslSocket();
 }
 
-void* QSslSocket_caCertificates_atList(void* ptr, int i)
+void* QSslSocket___addCaCertificates_certificates_atList2(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslSocket_ciphers_atList(void* ptr, int i)
+void QSslSocket___addCaCertificates_certificates_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___addCaCertificates_certificates_newList2(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___addDefaultCaCertificates_certificates_atList2(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___addDefaultCaCertificates_certificates_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___addDefaultCaCertificates_certificates_newList2(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___caCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___caCertificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___caCertificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___ciphers_atList(void* ptr, int i)
 {
 	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
 }
 
-void* QSslSocket_defaultCaCertificates_atList(void* ptr, int i)
+void QSslSocket___ciphers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
+}
+
+void* QSslSocket___ciphers_newList(void* ptr)
+{
+	return new QList<QSslCipher>;
+}
+
+void* QSslSocket___defaultCaCertificates_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
-void* QSslSocket_defaultCiphers_atList(void* ptr, int i)
+void QSslSocket___defaultCaCertificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___defaultCaCertificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___defaultCiphers_atList(void* ptr, int i)
 {
 	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
 }
 
-void* QSslSocket_localCertificateChain_atList(void* ptr, int i)
+void QSslSocket___defaultCiphers_setList(void* ptr, void* i)
 {
-	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
 }
 
-void* QSslSocket_peerCertificateChain_atList(void* ptr, int i)
+void* QSslSocket___defaultCiphers_newList(void* ptr)
 {
-	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+	return new QList<QSslCipher>;
 }
 
-void* QSslSocket_sslErrors_atList(void* ptr, int i)
+void* QSslSocket___ignoreSslErrors_errors_atList2(void* ptr, int i)
 {
 	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
 }
 
-void* QSslSocket_supportedCiphers_atList(void* ptr, int i)
+void QSslSocket___ignoreSslErrors_errors_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QSslSocket___ignoreSslErrors_errors_newList2(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QSslSocket___localCertificateChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___localCertificateChain_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___localCertificateChain_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___peerCertificateChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___peerCertificateChain_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___peerCertificateChain_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___setCaCertificates_certificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___setCaCertificates_certificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___setCaCertificates_certificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___setCiphers_ciphers_atList(void* ptr, int i)
 {
 	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
 }
 
-void* QSslSocket_systemCaCertificates_atList(void* ptr, int i)
+void QSslSocket___setCiphers_ciphers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
+}
+
+void* QSslSocket___setCiphers_ciphers_newList(void* ptr)
+{
+	return new QList<QSslCipher>;
+}
+
+void* QSslSocket___setDefaultCaCertificates_certificates_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___setDefaultCaCertificates_certificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___setDefaultCaCertificates_certificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___setDefaultCiphers_ciphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
+void QSslSocket___setDefaultCiphers_ciphers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
+}
+
+void* QSslSocket___setDefaultCiphers_ciphers_newList(void* ptr)
+{
+	return new QList<QSslCipher>;
+}
+
+void* QSslSocket___setLocalCertificateChain_localChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___setLocalCertificateChain_localChain_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___setLocalCertificateChain_localChain_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___sslErrors_errors_atList2(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QSslSocket___sslErrors_errors_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QSslSocket___sslErrors_errors_newList2(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QSslSocket___sslErrors_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QSslSocket___sslErrors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QSslSocket___sslErrors_newList(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QSslSocket___supportedCiphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
+void QSslSocket___supportedCiphers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCipher>*>(ptr)->append(*static_cast<QSslCipher*>(i));
+}
+
+void* QSslSocket___supportedCiphers_newList(void* ptr)
+{
+	return new QList<QSslCipher>;
+}
+
+void* QSslSocket___systemCaCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void QSslSocket___systemCaCertificates_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslCertificate>*>(ptr)->append(*static_cast<QSslCertificate*>(i));
+}
+
+void* QSslSocket___systemCaCertificates_newList(void* ptr)
+{
+	return new QList<QSslCertificate>;
+}
+
+void* QSslSocket___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSslSocket___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSslSocket___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSslSocket___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSslSocket___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSslSocket___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSslSocket___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSslSocket___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSslSocket___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSslSocket___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSslSocket___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSslSocket___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSslSocket___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSslSocket___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSslSocket___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QSslSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)
@@ -6977,6 +8975,81 @@ void QTcpServer_DestroyQTcpServerDefault(void* ptr)
 
 }
 
+void* QTcpServer___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QTcpServer___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpServer___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QTcpServer___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTcpServer___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTcpServer___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTcpServer___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTcpServer___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpServer___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTcpServer___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTcpServer___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpServer___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTcpServer___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTcpServer___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpServer___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QTcpServer_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QTcpServer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -7121,6 +9194,81 @@ void QTcpSocket_DestroyQTcpSocket(void* ptr)
 void QTcpSocket_DestroyQTcpSocketDefault(void* ptr)
 {
 
+}
+
+void* QTcpSocket___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QTcpSocket___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpSocket___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QTcpSocket___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTcpSocket___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTcpSocket___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTcpSocket___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTcpSocket___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpSocket___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTcpSocket___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTcpSocket___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpSocket___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTcpSocket___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTcpSocket___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTcpSocket___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 char QTcpSocket_AtEnd(void* ptr)
@@ -7572,6 +9720,81 @@ void QUdpSocket_DestroyQUdpSocket(void* ptr)
 void QUdpSocket_DestroyQUdpSocketDefault(void* ptr)
 {
 
+}
+
+void* QUdpSocket___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QUdpSocket___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUdpSocket___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QUdpSocket___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QUdpSocket___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QUdpSocket___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QUdpSocket___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QUdpSocket___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUdpSocket___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QUdpSocket___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QUdpSocket___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUdpSocket___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QUdpSocket___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QUdpSocket___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUdpSocket___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 char QUdpSocket_AtEnd(void* ptr)

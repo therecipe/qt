@@ -1314,17 +1314,30 @@ func (ptr *QAbstractBarSeries) Append(set QBarSet_ITF) bool {
 	return false
 }
 
+func (ptr *QAbstractBarSeries) Append2(sets []*QBarSet) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractBarSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQAbstractBarSeriesFromPointer(NewQAbstractBarSeriesFromPointer(unsafe.Pointer(uintptr(1))).__append_sets_newList2())
+			for _, v := range sets {
+				tmpList.__append_sets_setList2(v)
+			}
+			return tmpList.Pointer()
+		}()) != 0
+	}
+	return false
+}
+
 func (ptr *QAbstractBarSeries) BarSets() []*QBarSet {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QBarSet {
 			var out = make([]*QBarSet, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractBarSeriesFromPointer(l.data).barSets_atList(i)
+				out[i] = NewQAbstractBarSeriesFromPointer(l.data).__barSets_atList(i)
 			}
 			return out
 		}(C.QAbstractBarSeries_BarSets(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QBarSet, 0)
 }
 
 func (ptr *QAbstractBarSeries) BarWidth() float64 {
@@ -1332,6 +1345,86 @@ func (ptr *QAbstractBarSeries) BarWidth() float64 {
 		return float64(C.QAbstractBarSeries_BarWidth(ptr.Pointer()))
 	}
 	return 0
+}
+
+//export callbackQAbstractBarSeries_BarsetsAdded
+func callbackQAbstractBarSeries_BarsetsAdded(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractBarSeries::barsetsAdded"); signal != nil {
+		signal.(func([]*QBarSet))(func(l C.struct_QtCharts_PackedList) []*QBarSet {
+			var out = make([]*QBarSet, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractBarSeriesFromPointer(l.data).__barsetsAdded_sets_atList(i)
+			}
+			return out
+		}(sets))
+	}
+
+}
+
+func (ptr *QAbstractBarSeries) ConnectBarsetsAdded(f func(sets []*QBarSet)) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries_ConnectBarsetsAdded(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractBarSeries::barsetsAdded", f)
+	}
+}
+
+func (ptr *QAbstractBarSeries) DisconnectBarsetsAdded() {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries_DisconnectBarsetsAdded(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractBarSeries::barsetsAdded")
+	}
+}
+
+func (ptr *QAbstractBarSeries) BarsetsAdded(sets []*QBarSet) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries_BarsetsAdded(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQAbstractBarSeriesFromPointer(NewQAbstractBarSeriesFromPointer(unsafe.Pointer(uintptr(1))).__barsetsAdded_sets_newList())
+			for _, v := range sets {
+				tmpList.__barsetsAdded_sets_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+//export callbackQAbstractBarSeries_BarsetsRemoved
+func callbackQAbstractBarSeries_BarsetsRemoved(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractBarSeries::barsetsRemoved"); signal != nil {
+		signal.(func([]*QBarSet))(func(l C.struct_QtCharts_PackedList) []*QBarSet {
+			var out = make([]*QBarSet, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractBarSeriesFromPointer(l.data).__barsetsRemoved_sets_atList(i)
+			}
+			return out
+		}(sets))
+	}
+
+}
+
+func (ptr *QAbstractBarSeries) ConnectBarsetsRemoved(f func(sets []*QBarSet)) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries_ConnectBarsetsRemoved(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractBarSeries::barsetsRemoved", f)
+	}
+}
+
+func (ptr *QAbstractBarSeries) DisconnectBarsetsRemoved() {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries_DisconnectBarsetsRemoved(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractBarSeries::barsetsRemoved")
+	}
+}
+
+func (ptr *QAbstractBarSeries) BarsetsRemoved(sets []*QBarSet) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries_BarsetsRemoved(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQAbstractBarSeriesFromPointer(NewQAbstractBarSeriesFromPointer(unsafe.Pointer(uintptr(1))).__barsetsRemoved_sets_newList())
+			for _, v := range sets {
+				tmpList.__barsetsRemoved_sets_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
 }
 
 func (ptr *QAbstractBarSeries) Clear() {
@@ -1708,9 +1801,82 @@ func (ptr *QAbstractBarSeries) DestroyQAbstractBarSeriesDefault() {
 	}
 }
 
-func (ptr *QAbstractBarSeries) barSets_atList(i int) *QBarSet {
+func (ptr *QAbstractBarSeries) __append_sets_atList2(i int) *QBarSet {
 	if ptr.Pointer() != nil {
-		return NewQBarSetFromPointer(C.QAbstractBarSeries_barSets_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQBarSetFromPointer(C.QAbstractBarSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAbstractBarSeries) __append_sets_setList2(i QBarSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries___append_sets_setList2(ptr.Pointer(), PointerFromQBarSet(i))
+	}
+}
+
+func (ptr *QAbstractBarSeries) __append_sets_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractBarSeries___append_sets_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractBarSeries) __barSets_atList(i int) *QBarSet {
+	if ptr.Pointer() != nil {
+		return NewQBarSetFromPointer(C.QAbstractBarSeries___barSets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAbstractBarSeries) __barSets_setList(i QBarSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries___barSets_setList(ptr.Pointer(), PointerFromQBarSet(i))
+	}
+}
+
+func (ptr *QAbstractBarSeries) __barSets_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractBarSeries___barSets_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractBarSeries) __barsetsAdded_sets_atList(i int) *QBarSet {
+	if ptr.Pointer() != nil {
+		return NewQBarSetFromPointer(C.QAbstractBarSeries___barsetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAbstractBarSeries) __barsetsAdded_sets_setList(i QBarSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries___barsetsAdded_sets_setList(ptr.Pointer(), PointerFromQBarSet(i))
+	}
+}
+
+func (ptr *QAbstractBarSeries) __barsetsAdded_sets_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractBarSeries___barsetsAdded_sets_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_atList(i int) *QBarSet {
+	if ptr.Pointer() != nil {
+		return NewQBarSetFromPointer(C.QAbstractBarSeries___barsetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_setList(i QBarSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractBarSeries___barsetsRemoved_sets_setList(ptr.Pointer(), PointerFromQBarSet(i))
+	}
+}
+
+func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractBarSeries___barsetsRemoved_sets_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -1838,12 +2004,12 @@ func (ptr *QAbstractSeries) AttachedAxes() []*QAbstractAxis {
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractAxis {
 			var out = make([]*QAbstractAxis, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractSeriesFromPointer(l.data).attachedAxes_atList(i)
+				out[i] = NewQAbstractSeriesFromPointer(l.data).__attachedAxes_atList(i)
 			}
 			return out
 		}(C.QAbstractSeries_AttachedAxes(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QAbstractAxis, 0)
 }
 
 func (ptr *QAbstractSeries) Chart() *QChart {
@@ -2022,9 +2188,22 @@ func (ptr *QAbstractSeries) DestroyQAbstractSeries() {
 	}
 }
 
-func (ptr *QAbstractSeries) attachedAxes_atList(i int) *QAbstractAxis {
+func (ptr *QAbstractSeries) __attachedAxes_atList(i int) *QAbstractAxis {
 	if ptr.Pointer() != nil {
-		return NewQAbstractAxisFromPointer(C.QAbstractSeries_attachedAxes_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQAbstractAxisFromPointer(C.QAbstractSeries___attachedAxes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAbstractSeries) __attachedAxes_setList(i QAbstractAxis_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractSeries___attachedAxes_setList(ptr.Pointer(), PointerFromQAbstractAxis(i))
+	}
+}
+
+func (ptr *QAbstractSeries) __attachedAxes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractSeries___attachedAxes_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -3332,6 +3511,18 @@ func NewQBarSet(label string, parent core.QObject_ITF) *QBarSet {
 	return NewQBarSetFromPointer(C.QBarSet_NewQBarSet(labelC, core.PointerFromQObject(parent)))
 }
 
+func (ptr *QBarSet) Append2(values []float64) {
+	if ptr.Pointer() != nil {
+		C.QBarSet_Append2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQBarSetFromPointer(NewQBarSetFromPointer(unsafe.Pointer(uintptr(1))).__append_values_newList2())
+			for _, v := range values {
+				tmpList.__append_values_setList2(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QBarSet) Append(value float64) {
 	if ptr.Pointer() != nil {
 		C.QBarSet_Append(ptr.Pointer(), C.double(value))
@@ -3984,6 +4175,26 @@ func (ptr *QBarSet) DestroyQBarSetDefault() {
 	}
 }
 
+func (ptr *QBarSet) __append_values_atList2(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QBarSet___append_values_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QBarSet) __append_values_setList2(i float64) {
+	if ptr.Pointer() != nil {
+		C.QBarSet___append_values_setList2(ptr.Pointer(), C.double(i))
+	}
+}
+
+func (ptr *QBarSet) __append_values_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QBarSet___append_values_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QBoxPlotLegendMarker struct {
 	ptr unsafe.Pointer
 }
@@ -4239,6 +4450,19 @@ func (ptr *QBoxPlotSeries) Append(set QBoxSet_ITF) bool {
 	return false
 }
 
+func (ptr *QBoxPlotSeries) Append2(sets []*QBoxSet) bool {
+	if ptr.Pointer() != nil {
+		return C.QBoxPlotSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQBoxPlotSeriesFromPointer(NewQBoxPlotSeriesFromPointer(unsafe.Pointer(uintptr(1))).__append_sets_newList2())
+			for _, v := range sets {
+				tmpList.__append_sets_setList2(v)
+			}
+			return tmpList.Pointer()
+		}()) != 0
+	}
+	return false
+}
+
 //export callbackQBoxPlotSeries_BoxOutlineVisibilityChanged
 func callbackQBoxPlotSeries_BoxOutlineVisibilityChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBoxPlotSeries::boxOutlineVisibilityChanged"); signal != nil {
@@ -4272,12 +4496,12 @@ func (ptr *QBoxPlotSeries) BoxSets() []*QBoxSet {
 		return func(l C.struct_QtCharts_PackedList) []*QBoxSet {
 			var out = make([]*QBoxSet, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQBoxPlotSeriesFromPointer(l.data).boxSets_atList(i)
+				out[i] = NewQBoxPlotSeriesFromPointer(l.data).__boxSets_atList(i)
 			}
 			return out
 		}(C.QBoxPlotSeries_BoxSets(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QBoxSet, 0)
 }
 
 //export callbackQBoxPlotSeries_BoxWidthChanged
@@ -4305,6 +4529,86 @@ func (ptr *QBoxPlotSeries) DisconnectBoxWidthChanged() {
 func (ptr *QBoxPlotSeries) BoxWidthChanged() {
 	if ptr.Pointer() != nil {
 		C.QBoxPlotSeries_BoxWidthChanged(ptr.Pointer())
+	}
+}
+
+//export callbackQBoxPlotSeries_BoxsetsAdded
+func callbackQBoxPlotSeries_BoxsetsAdded(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBoxPlotSeries::boxsetsAdded"); signal != nil {
+		signal.(func([]*QBoxSet))(func(l C.struct_QtCharts_PackedList) []*QBoxSet {
+			var out = make([]*QBoxSet, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQBoxPlotSeriesFromPointer(l.data).__boxsetsAdded_sets_atList(i)
+			}
+			return out
+		}(sets))
+	}
+
+}
+
+func (ptr *QBoxPlotSeries) ConnectBoxsetsAdded(f func(sets []*QBoxSet)) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries_ConnectBoxsetsAdded(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QBoxPlotSeries::boxsetsAdded", f)
+	}
+}
+
+func (ptr *QBoxPlotSeries) DisconnectBoxsetsAdded() {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries_DisconnectBoxsetsAdded(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBoxPlotSeries::boxsetsAdded")
+	}
+}
+
+func (ptr *QBoxPlotSeries) BoxsetsAdded(sets []*QBoxSet) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries_BoxsetsAdded(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQBoxPlotSeriesFromPointer(NewQBoxPlotSeriesFromPointer(unsafe.Pointer(uintptr(1))).__boxsetsAdded_sets_newList())
+			for _, v := range sets {
+				tmpList.__boxsetsAdded_sets_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+//export callbackQBoxPlotSeries_BoxsetsRemoved
+func callbackQBoxPlotSeries_BoxsetsRemoved(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBoxPlotSeries::boxsetsRemoved"); signal != nil {
+		signal.(func([]*QBoxSet))(func(l C.struct_QtCharts_PackedList) []*QBoxSet {
+			var out = make([]*QBoxSet, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQBoxPlotSeriesFromPointer(l.data).__boxsetsRemoved_sets_atList(i)
+			}
+			return out
+		}(sets))
+	}
+
+}
+
+func (ptr *QBoxPlotSeries) ConnectBoxsetsRemoved(f func(sets []*QBoxSet)) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries_ConnectBoxsetsRemoved(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QBoxPlotSeries::boxsetsRemoved", f)
+	}
+}
+
+func (ptr *QBoxPlotSeries) DisconnectBoxsetsRemoved() {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries_DisconnectBoxsetsRemoved(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBoxPlotSeries::boxsetsRemoved")
+	}
+}
+
+func (ptr *QBoxPlotSeries) BoxsetsRemoved(sets []*QBoxSet) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries_BoxsetsRemoved(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQBoxPlotSeriesFromPointer(NewQBoxPlotSeriesFromPointer(unsafe.Pointer(uintptr(1))).__boxsetsRemoved_sets_newList())
+			for _, v := range sets {
+				tmpList.__boxsetsRemoved_sets_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
 	}
 }
 
@@ -4574,9 +4878,82 @@ func (ptr *QBoxPlotSeries) DestroyQBoxPlotSeries() {
 	}
 }
 
-func (ptr *QBoxPlotSeries) boxSets_atList(i int) *QBoxSet {
+func (ptr *QBoxPlotSeries) __append_sets_atList2(i int) *QBoxSet {
 	if ptr.Pointer() != nil {
-		return NewQBoxSetFromPointer(C.QBoxPlotSeries_boxSets_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQBoxSetFromPointer(C.QBoxPlotSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QBoxPlotSeries) __append_sets_setList2(i QBoxSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries___append_sets_setList2(ptr.Pointer(), PointerFromQBoxSet(i))
+	}
+}
+
+func (ptr *QBoxPlotSeries) __append_sets_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QBoxPlotSeries___append_sets_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QBoxPlotSeries) __boxSets_atList(i int) *QBoxSet {
+	if ptr.Pointer() != nil {
+		return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxSets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QBoxPlotSeries) __boxSets_setList(i QBoxSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries___boxSets_setList(ptr.Pointer(), PointerFromQBoxSet(i))
+	}
+}
+
+func (ptr *QBoxPlotSeries) __boxSets_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QBoxPlotSeries___boxSets_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_atList(i int) *QBoxSet {
+	if ptr.Pointer() != nil {
+		return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxsetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_setList(i QBoxSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries___boxsetsAdded_sets_setList(ptr.Pointer(), PointerFromQBoxSet(i))
+	}
+}
+
+func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QBoxPlotSeries___boxsetsAdded_sets_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_atList(i int) *QBoxSet {
+	if ptr.Pointer() != nil {
+		return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxsetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_setList(i QBoxSet_ITF) {
+	if ptr.Pointer() != nil {
+		C.QBoxPlotSeries___boxsetsRemoved_sets_setList(ptr.Pointer(), PointerFromQBoxSet(i))
+	}
+}
+
+func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QBoxPlotSeries___boxsetsRemoved_sets_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -4641,6 +5018,18 @@ func NewQBoxSet2(le float64, lq float64, m float64, uq float64, ue float64, labe
 	var labelC = C.CString(label)
 	defer C.free(unsafe.Pointer(labelC))
 	return NewQBoxSetFromPointer(C.QBoxSet_NewQBoxSet2(C.double(le), C.double(lq), C.double(m), C.double(uq), C.double(ue), labelC, core.PointerFromQObject(parent)))
+}
+
+func (ptr *QBoxSet) Append2(values []float64) {
+	if ptr.Pointer() != nil {
+		C.QBoxSet_Append2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQBoxSetFromPointer(NewQBoxSetFromPointer(unsafe.Pointer(uintptr(1))).__append_values_newList2())
+			for _, v := range values {
+				tmpList.__append_values_setList2(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
 }
 
 func (ptr *QBoxSet) Append(value float64) {
@@ -5037,6 +5426,26 @@ func (ptr *QBoxSet) DestroyQBoxSetDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QBoxSet) __append_values_atList2(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QBoxSet___append_values_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QBoxSet) __append_values_setList2(i float64) {
+	if ptr.Pointer() != nil {
+		C.QBoxSet___append_values_setList2(ptr.Pointer(), C.double(i))
+	}
+}
+
+func (ptr *QBoxSet) __append_values_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QBoxSet___append_values_newList2(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QCategoryAxis struct {
@@ -5506,12 +5915,12 @@ func (ptr *QChart) Axes(orientation core.Qt__Orientation, series QAbstractSeries
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractAxis {
 			var out = make([]*QAbstractAxis, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQChartFromPointer(l.data).axes_atList(i)
+				out[i] = NewQChartFromPointer(l.data).__axes_atList(i)
 			}
 			return out
 		}(C.QChart_Axes(ptr.Pointer(), C.longlong(orientation), PointerFromQAbstractSeries(series)))
 	}
-	return nil
+	return make([]*QAbstractAxis, 0)
 }
 
 func (ptr *QChart) AxisX(series QAbstractSeries_ITF) *QAbstractAxis {
@@ -5659,12 +6068,12 @@ func (ptr *QChart) Series() []*QAbstractSeries {
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractSeries {
 			var out = make([]*QAbstractSeries, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQChartFromPointer(l.data).series_atList(i)
+				out[i] = NewQChartFromPointer(l.data).__series_atList(i)
 			}
 			return out
 		}(C.QChart_Series(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QAbstractSeries, 0)
 }
 
 func (ptr *QChart) SetAxisX(axis QAbstractAxis_ITF, series QAbstractSeries_ITF) {
@@ -5771,16 +6180,42 @@ func (ptr *QChart) DestroyQChart() {
 	}
 }
 
-func (ptr *QChart) axes_atList(i int) *QAbstractAxis {
+func (ptr *QChart) __axes_atList(i int) *QAbstractAxis {
 	if ptr.Pointer() != nil {
-		return NewQAbstractAxisFromPointer(C.QChart_axes_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQAbstractAxisFromPointer(C.QChart___axes_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *QChart) series_atList(i int) *QAbstractSeries {
+func (ptr *QChart) __axes_setList(i QAbstractAxis_ITF) {
 	if ptr.Pointer() != nil {
-		return NewQAbstractSeriesFromPointer(C.QChart_series_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QChart___axes_setList(ptr.Pointer(), PointerFromQAbstractAxis(i))
+	}
+}
+
+func (ptr *QChart) __axes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QChart___axes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QChart) __series_atList(i int) *QAbstractSeries {
+	if ptr.Pointer() != nil {
+		return NewQAbstractSeriesFromPointer(C.QChart___series_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QChart) __series_setList(i QAbstractSeries_ITF) {
+	if ptr.Pointer() != nil {
+		C.QChart___series_setList(ptr.Pointer(), PointerFromQAbstractSeries(i))
+	}
+}
+
+func (ptr *QChart) __series_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QChart___series_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -7584,12 +8019,12 @@ func (ptr *QLegend) Markers(series QAbstractSeries_ITF) []*QLegendMarker {
 		return func(l C.struct_QtCharts_PackedList) []*QLegendMarker {
 			var out = make([]*QLegendMarker, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQLegendFromPointer(l.data).markers_atList(i)
+				out[i] = NewQLegendFromPointer(l.data).__markers_atList(i)
 			}
 			return out
 		}(C.QLegend_Markers(ptr.Pointer(), PointerFromQAbstractSeries(series)))
 	}
-	return nil
+	return make([]*QLegendMarker, 0)
 }
 
 func (ptr *QLegend) IsAttachedToChart() bool {
@@ -7746,9 +8181,22 @@ func (ptr *QLegend) DestroyQLegend() {
 	}
 }
 
-func (ptr *QLegend) markers_atList(i int) *QLegendMarker {
+func (ptr *QLegend) __markers_atList(i int) *QLegendMarker {
 	if ptr.Pointer() != nil {
-		return NewQLegendMarkerFromPointer(C.QLegend_markers_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQLegendMarkerFromPointer(C.QLegend___markers_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QLegend) __markers_setList(i QLegendMarker_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLegend___markers_setList(ptr.Pointer(), PointerFromQLegendMarker(i))
+	}
+}
+
+func (ptr *QLegend) __markers_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QLegend___markers_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -8865,6 +9313,46 @@ func NewQPieSeries(parent core.QObject_ITF) *QPieSeries {
 	return NewQPieSeriesFromPointer(C.QPieSeries_NewQPieSeries(core.PointerFromQObject(parent)))
 }
 
+//export callbackQPieSeries_Added
+func callbackQPieSeries_Added(ptr unsafe.Pointer, slices C.struct_QtCharts_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPieSeries::added"); signal != nil {
+		signal.(func([]*QPieSlice))(func(l C.struct_QtCharts_PackedList) []*QPieSlice {
+			var out = make([]*QPieSlice, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPieSeriesFromPointer(l.data).__added_slices_atList(i)
+			}
+			return out
+		}(slices))
+	}
+
+}
+
+func (ptr *QPieSeries) ConnectAdded(f func(slices []*QPieSlice)) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries_ConnectAdded(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPieSeries::added", f)
+	}
+}
+
+func (ptr *QPieSeries) DisconnectAdded() {
+	if ptr.Pointer() != nil {
+		C.QPieSeries_DisconnectAdded(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPieSeries::added")
+	}
+}
+
+func (ptr *QPieSeries) Added(slices []*QPieSlice) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries_Added(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPieSeriesFromPointer(NewQPieSeriesFromPointer(unsafe.Pointer(uintptr(1))).__added_slices_newList())
+			for _, v := range slices {
+				tmpList.__added_slices_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QPieSeries) Append3(label string, value float64) *QPieSlice {
 	if ptr.Pointer() != nil {
 		var labelC = C.CString(label)
@@ -8872,6 +9360,19 @@ func (ptr *QPieSeries) Append3(label string, value float64) *QPieSlice {
 		return NewQPieSliceFromPointer(C.QPieSeries_Append3(ptr.Pointer(), labelC, C.double(value)))
 	}
 	return nil
+}
+
+func (ptr *QPieSeries) Append2(slices []*QPieSlice) bool {
+	if ptr.Pointer() != nil {
+		return C.QPieSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPieSeriesFromPointer(NewQPieSeriesFromPointer(unsafe.Pointer(uintptr(1))).__append_slices_newList2())
+			for _, v := range slices {
+				tmpList.__append_slices_setList2(v)
+			}
+			return tmpList.Pointer()
+		}()) != 0
+	}
+	return false
 }
 
 func (ptr *QPieSeries) Append(slice QPieSlice_ITF) bool {
@@ -9090,6 +9591,46 @@ func (ptr *QPieSeries) Remove(slice QPieSlice_ITF) bool {
 	return false
 }
 
+//export callbackQPieSeries_Removed
+func callbackQPieSeries_Removed(ptr unsafe.Pointer, slices C.struct_QtCharts_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPieSeries::removed"); signal != nil {
+		signal.(func([]*QPieSlice))(func(l C.struct_QtCharts_PackedList) []*QPieSlice {
+			var out = make([]*QPieSlice, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPieSeriesFromPointer(l.data).__removed_slices_atList(i)
+			}
+			return out
+		}(slices))
+	}
+
+}
+
+func (ptr *QPieSeries) ConnectRemoved(f func(slices []*QPieSlice)) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries_ConnectRemoved(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPieSeries::removed", f)
+	}
+}
+
+func (ptr *QPieSeries) DisconnectRemoved() {
+	if ptr.Pointer() != nil {
+		C.QPieSeries_DisconnectRemoved(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPieSeries::removed")
+	}
+}
+
+func (ptr *QPieSeries) Removed(slices []*QPieSlice) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries_Removed(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPieSeriesFromPointer(NewQPieSeriesFromPointer(unsafe.Pointer(uintptr(1))).__removed_slices_newList())
+			for _, v := range slices {
+				tmpList.__removed_slices_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QPieSeries) SetLabelsPosition(position QPieSlice__LabelPosition) {
 	if ptr.Pointer() != nil {
 		C.QPieSeries_SetLabelsPosition(ptr.Pointer(), C.longlong(position))
@@ -9113,12 +9654,12 @@ func (ptr *QPieSeries) Slices() []*QPieSlice {
 		return func(l C.struct_QtCharts_PackedList) []*QPieSlice {
 			var out = make([]*QPieSlice, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPieSeriesFromPointer(l.data).slices_atList(i)
+				out[i] = NewQPieSeriesFromPointer(l.data).__slices_atList(i)
 			}
 			return out
 		}(C.QPieSeries_Slices(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QPieSlice, 0)
 }
 
 func (ptr *QPieSeries) Sum() float64 {
@@ -9239,9 +9780,82 @@ func (ptr *QPieSeries) DestroyQPieSeriesDefault() {
 	}
 }
 
-func (ptr *QPieSeries) slices_atList(i int) *QPieSlice {
+func (ptr *QPieSeries) __added_slices_atList(i int) *QPieSlice {
 	if ptr.Pointer() != nil {
-		return NewQPieSliceFromPointer(C.QPieSeries_slices_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQPieSliceFromPointer(C.QPieSeries___added_slices_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QPieSeries) __added_slices_setList(i QPieSlice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries___added_slices_setList(ptr.Pointer(), PointerFromQPieSlice(i))
+	}
+}
+
+func (ptr *QPieSeries) __added_slices_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPieSeries___added_slices_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPieSeries) __append_slices_atList2(i int) *QPieSlice {
+	if ptr.Pointer() != nil {
+		return NewQPieSliceFromPointer(C.QPieSeries___append_slices_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QPieSeries) __append_slices_setList2(i QPieSlice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries___append_slices_setList2(ptr.Pointer(), PointerFromQPieSlice(i))
+	}
+}
+
+func (ptr *QPieSeries) __append_slices_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPieSeries___append_slices_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPieSeries) __removed_slices_atList(i int) *QPieSlice {
+	if ptr.Pointer() != nil {
+		return NewQPieSliceFromPointer(C.QPieSeries___removed_slices_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QPieSeries) __removed_slices_setList(i QPieSlice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries___removed_slices_setList(ptr.Pointer(), PointerFromQPieSlice(i))
+	}
+}
+
+func (ptr *QPieSeries) __removed_slices_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPieSeries___removed_slices_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPieSeries) __slices_atList(i int) *QPieSlice {
+	if ptr.Pointer() != nil {
+		return NewQPieSliceFromPointer(C.QPieSeries___slices_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QPieSeries) __slices_setList(i QPieSlice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPieSeries___slices_setList(ptr.Pointer(), PointerFromQPieSlice(i))
+	}
+}
+
+func (ptr *QPieSeries) __slices_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPieSeries___slices_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -10179,12 +10793,12 @@ func (ptr *QPolarChart) Axes(polarOrientation QPolarChart__PolarOrientation, ser
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractAxis {
 			var out = make([]*QAbstractAxis, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPolarChartFromPointer(l.data).axes_atList(i)
+				out[i] = NewQPolarChartFromPointer(l.data).__axes_atList(i)
 			}
 			return out
 		}(C.QPolarChart_Axes(ptr.Pointer(), C.longlong(polarOrientation), PointerFromQAbstractSeries(series)))
 	}
-	return nil
+	return make([]*QAbstractAxis, 0)
 }
 
 func QPolarChart_AxisPolarOrientation(axis QAbstractAxis_ITF) QPolarChart__PolarOrientation {
@@ -10202,9 +10816,22 @@ func (ptr *QPolarChart) DestroyQPolarChart() {
 	}
 }
 
-func (ptr *QPolarChart) axes_atList(i int) *QAbstractAxis {
+func (ptr *QPolarChart) __axes_atList(i int) *QAbstractAxis {
 	if ptr.Pointer() != nil {
-		return NewQAbstractAxisFromPointer(C.QPolarChart_axes_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQAbstractAxisFromPointer(C.QPolarChart___axes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QPolarChart) __axes_setList(i QAbstractAxis_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPolarChart___axes_setList(ptr.Pointer(), PointerFromQAbstractAxis(i))
+	}
+}
+
+func (ptr *QPolarChart) __axes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPolarChart___axes_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -12642,6 +13269,18 @@ func (ptr *QXYSeries) SetPointsVisible(visible bool) {
 	}
 }
 
+func (ptr *QXYSeries) Append3(points []*core.QPointF) {
+	if ptr.Pointer() != nil {
+		C.QXYSeries_Append3(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQXYSeriesFromPointer(NewQXYSeriesFromPointer(unsafe.Pointer(uintptr(1))).__append_points_newList3())
+			for _, v := range points {
+				tmpList.__append_points_setList3(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QXYSeries) Append2(point core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
 		C.QXYSeries_Append2(ptr.Pointer(), core.PointerFromQPointF(point))
@@ -13051,12 +13690,12 @@ func (ptr *QXYSeries) Points() []*core.QPointF {
 		return func(l C.struct_QtCharts_PackedList) []*core.QPointF {
 			var out = make([]*core.QPointF, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQXYSeriesFromPointer(l.data).points_atList(i)
+				out[i] = NewQXYSeriesFromPointer(l.data).__points_atList(i)
 			}
 			return out
 		}(C.QXYSeries_Points(ptr.Pointer()))
 	}
-	return nil
+	return make([]*core.QPointF, 0)
 }
 
 //export callbackQXYSeries_PointsRemoved
@@ -13120,12 +13759,12 @@ func (ptr *QXYSeries) PointsVector() []*core.QPointF {
 		return func(l C.struct_QtCharts_PackedList) []*core.QPointF {
 			var out = make([]*core.QPointF, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQXYSeriesFromPointer(l.data).pointsVector_atList(i)
+				out[i] = NewQXYSeriesFromPointer(l.data).__pointsVector_atList(i)
 			}
 			return out
 		}(C.QXYSeries_PointsVector(ptr.Pointer()))
 	}
-	return nil
+	return make([]*core.QPointF, 0)
 }
 
 //export callbackQXYSeries_Pressed
@@ -13205,6 +13844,30 @@ func (ptr *QXYSeries) Remove(x float64, y float64) {
 func (ptr *QXYSeries) RemovePoints(index int, count int) {
 	if ptr.Pointer() != nil {
 		C.QXYSeries_RemovePoints(ptr.Pointer(), C.int(int32(index)), C.int(int32(count)))
+	}
+}
+
+func (ptr *QXYSeries) Replace5(points []*core.QPointF) {
+	if ptr.Pointer() != nil {
+		C.QXYSeries_Replace5(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQXYSeriesFromPointer(NewQXYSeriesFromPointer(unsafe.Pointer(uintptr(1))).__replace_points_newList5())
+			for _, v := range points {
+				tmpList.__replace_points_setList5(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QXYSeries) Replace6(points []*core.QPointF) {
+	if ptr.Pointer() != nil {
+		C.QXYSeries_Replace6(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQXYSeriesFromPointer(NewQXYSeriesFromPointer(unsafe.Pointer(uintptr(1))).__replace_points_newList6())
+			for _, v := range points {
+				tmpList.__replace_points_setList6(v)
+			}
+			return tmpList.Pointer()
+		}())
 	}
 }
 
@@ -13310,20 +13973,112 @@ func (ptr *QXYSeries) DestroyQXYSeries() {
 	}
 }
 
-func (ptr *QXYSeries) points_atList(i int) *core.QPointF {
+func (ptr *QXYSeries) __append_points_atList3(i int) *core.QPointF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries_points_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___append_points_atList3(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QXYSeries) pointsVector_atList(i int) *core.QPointF {
+func (ptr *QXYSeries) __append_points_setList3(i core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries_pointsVector_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QXYSeries___append_points_setList3(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
+}
+
+func (ptr *QXYSeries) __append_points_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QXYSeries___append_points_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __points_atList(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___points_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __points_setList(i core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QXYSeries___points_setList(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
+}
+
+func (ptr *QXYSeries) __points_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QXYSeries___points_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __pointsVector_atList(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___pointsVector_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __pointsVector_setList(i core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QXYSeries___pointsVector_setList(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
+}
+
+func (ptr *QXYSeries) __pointsVector_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QXYSeries___pointsVector_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __replace_points_atList5(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___replace_points_atList5(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __replace_points_setList5(i core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QXYSeries___replace_points_setList5(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
+}
+
+func (ptr *QXYSeries) __replace_points_newList5() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QXYSeries___replace_points_newList5(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __replace_points_atList6(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___replace_points_atList6(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXYSeries) __replace_points_setList6(i core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QXYSeries___replace_points_setList6(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
+}
+
+func (ptr *QXYSeries) __replace_points_newList6() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QXYSeries___replace_points_newList6(ptr.Pointer()))
 	}
 	return nil
 }

@@ -14,6 +14,7 @@
 #include <QChildEvent>
 #include <QEvent>
 #include <QIODevice>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNetworkAccessManager>
@@ -64,6 +65,81 @@ void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr)
 void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr)
 {
 
+}
+
+void* QAbstractMessageHandler___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAbstractMessageHandler___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractMessageHandler___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QAbstractMessageHandler___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAbstractMessageHandler___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAbstractMessageHandler___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAbstractMessageHandler___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractMessageHandler___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractMessageHandler___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractMessageHandler___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractMessageHandler___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractMessageHandler___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractMessageHandler___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractMessageHandler___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractMessageHandler___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QAbstractMessageHandler_TimerEvent(void* ptr, void* event)
@@ -193,6 +269,81 @@ void QAbstractUriResolver_DestroyQAbstractUriResolverDefault(void* ptr)
 
 }
 
+void* QAbstractUriResolver___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAbstractUriResolver___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractUriResolver___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QAbstractUriResolver___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAbstractUriResolver___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAbstractUriResolver___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAbstractUriResolver___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractUriResolver___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractUriResolver___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractUriResolver___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractUriResolver___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractUriResolver___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QAbstractUriResolver___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractUriResolver___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QAbstractUriResolver___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QAbstractUriResolver_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QAbstractUriResolver*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -286,26 +437,20 @@ void* QAbstractUriResolver_MetaObjectDefault(void* ptr)
 class MyQAbstractXmlNodeModel: public QAbstractXmlNodeModel
 {
 public:
-	
 	QUrl baseUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_BaseUri(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex & ni1, const QXmlNodeModelIndex & ni2) const { return static_cast<QXmlNodeModelIndex::DocumentOrder>(callbackQAbstractXmlNodeModel_CompareOrder(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&ni1), const_cast<QXmlNodeModelIndex*>(&ni2))); };
 	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_DocumentUri(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_ElementById(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlName*>(&id))); };
 	QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex & ni) const { return static_cast<QXmlNodeModelIndex::NodeKind>(callbackQAbstractXmlNodeModel_Kind(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&ni))); };
-	
+	QVector<QXmlName> namespaceBindings(const QXmlNodeModelIndex & n) const { return *static_cast<QVector<QXmlName>*>(callbackQAbstractXmlNodeModel_NamespaceBindings(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QXmlName name(const QXmlNodeModelIndex & ni) const { return *static_cast<QXmlName*>(callbackQAbstractXmlNodeModel_Name(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&ni))); };
 	QXmlNodeModelIndex nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis axis, const QXmlNodeModelIndex & origin) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_NextFromSimpleAxis(const_cast<MyQAbstractXmlNodeModel*>(this), axis, const_cast<QXmlNodeModelIndex*>(&origin))); };
-	
+	QVector<QXmlNodeModelIndex> nodesByIdref(const QXmlName & idref) const { return *static_cast<QVector<QXmlNodeModelIndex>*>(callbackQAbstractXmlNodeModel_NodesByIdref(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlName*>(&idref))); };
 	QXmlNodeModelIndex root(const QXmlNodeModelIndex & n) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_Root(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QString stringValue(const QXmlNodeModelIndex & n) const { return QString(callbackQAbstractXmlNodeModel_StringValue(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQAbstractXmlNodeModel_TypedValue(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
 	 ~MyQAbstractXmlNodeModel() { callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(this); };
 };
-
-struct QtXmlPatterns_PackedList QAbstractXmlNodeModel_Attributes(void* ptr, void* element)
-{
-	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QAbstractXmlNodeModel*>(ptr)->attributes(*static_cast<QXmlNodeModelIndex*>(element))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
-}
 
 void* QAbstractXmlNodeModel_BaseUri(void* ptr, void* n)
 {
@@ -397,19 +542,34 @@ void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(void* ptr)
 
 }
 
-void* QAbstractXmlNodeModel_attributes_atList(void* ptr, int i)
-{
-	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
-}
-
-void* QAbstractXmlNodeModel_namespaceBindings_atList(void* ptr, int i)
+void* QAbstractXmlNodeModel___namespaceBindings_atList(void* ptr, int i)
 {
 	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
 }
 
-void* QAbstractXmlNodeModel_nodesByIdref_atList(void* ptr, int i)
+void QAbstractXmlNodeModel___namespaceBindings_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QXmlName>*>(ptr)->append(*static_cast<QXmlName*>(i));
+}
+
+void* QAbstractXmlNodeModel___namespaceBindings_newList(void* ptr)
+{
+	return new QVector<QXmlName>;
+}
+
+void* QAbstractXmlNodeModel___nodesByIdref_atList(void* ptr, int i)
 {
 	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
+}
+
+void QAbstractXmlNodeModel___nodesByIdref_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->append(*static_cast<QXmlNodeModelIndex*>(i));
+}
+
+void* QAbstractXmlNodeModel___nodesByIdref_newList(void* ptr)
+{
+	return new QVector<QXmlNodeModelIndex>;
 }
 
 class MyQAbstractXmlReceiver: public QAbstractXmlReceiver
@@ -511,11 +671,10 @@ class MyQSimpleXmlNodeModel: public QSimpleXmlNodeModel
 public:
 	QUrl baseUri(const QXmlNodeModelIndex & node) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_BaseUri(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
 	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_ElementById(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlName*>(&id))); };
-	
-	
+	QVector<QXmlName> namespaceBindings(const QXmlNodeModelIndex & node) const { return *static_cast<QVector<QXmlName>*>(callbackQSimpleXmlNodeModel_NamespaceBindings(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
+	QVector<QXmlNodeModelIndex> nodesByIdref(const QXmlName & idref) const { return *static_cast<QVector<QXmlNodeModelIndex>*>(callbackQSimpleXmlNodeModel_NodesByIdref(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlName*>(&idref))); };
 	QString stringValue(const QXmlNodeModelIndex & node) const { return QString(callbackQSimpleXmlNodeModel_StringValue(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
 	 ~MyQSimpleXmlNodeModel() { callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(this); };
-	
 	QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex & ni1, const QXmlNodeModelIndex & ni2) const { return static_cast<QXmlNodeModelIndex::DocumentOrder>(callbackQSimpleXmlNodeModel_CompareOrder(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&ni1), const_cast<QXmlNodeModelIndex*>(&ni2))); };
 	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_DocumentUri(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex & ni) const { return static_cast<QXmlNodeModelIndex::NodeKind>(callbackQSimpleXmlNodeModel_Kind(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&ni))); };
@@ -590,19 +749,34 @@ void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(void* ptr)
 
 }
 
-void* QSimpleXmlNodeModel_namespaceBindings_atList(void* ptr, int i)
+void* QSimpleXmlNodeModel___namespaceBindings_atList(void* ptr, int i)
 {
 	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
 }
 
-void* QSimpleXmlNodeModel_nodesByIdref_atList(void* ptr, int i)
+void QSimpleXmlNodeModel___namespaceBindings_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QXmlName>*>(ptr)->append(*static_cast<QXmlName*>(i));
+}
+
+void* QSimpleXmlNodeModel___namespaceBindings_newList(void* ptr)
+{
+	return new QVector<QXmlName>;
+}
+
+void* QSimpleXmlNodeModel___nodesByIdref_atList(void* ptr, int i)
 {
 	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
 }
 
-struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_Attributes(void* ptr, void* element)
+void QSimpleXmlNodeModel___nodesByIdref_setList(void* ptr, void* i)
 {
-	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->attributes(*static_cast<QXmlNodeModelIndex*>(element))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+	static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->append(*static_cast<QXmlNodeModelIndex*>(i));
+}
+
+void* QSimpleXmlNodeModel___nodesByIdref_newList(void* ptr)
+{
+	return new QVector<QXmlNodeModelIndex>;
 }
 
 long long QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2)
@@ -993,9 +1167,19 @@ void* QXmlNodeModelIndex_Model(void* ptr)
 	return const_cast<QAbstractXmlNodeModel*>(static_cast<QXmlNodeModelIndex*>(ptr)->model());
 }
 
-void* QXmlNodeModelIndex_namespaceBindings_atList(void* ptr, int i)
+void* QXmlNodeModelIndex___namespaceBindings_atList(void* ptr, int i)
 {
 	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
+}
+
+void QXmlNodeModelIndex___namespaceBindings_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QXmlName>*>(ptr)->append(*static_cast<QXmlName*>(i));
+}
+
+void* QXmlNodeModelIndex___namespaceBindings_newList(void* ptr)
+{
+	return new QVector<QXmlName>;
 }
 
 void* QXmlQuery_NewQXmlQuery()

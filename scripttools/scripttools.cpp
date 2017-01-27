@@ -6,8 +6,10 @@
 #include "scripttools.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -123,6 +125,81 @@ void* QScriptEngineDebugger_Widget(void* ptr, long long widget)
 void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr)
 {
 	static_cast<QScriptEngineDebugger*>(ptr)->~QScriptEngineDebugger();
+}
+
+void* QScriptEngineDebugger___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QScriptEngineDebugger___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScriptEngineDebugger___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QScriptEngineDebugger___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QScriptEngineDebugger___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QScriptEngineDebugger___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QScriptEngineDebugger___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScriptEngineDebugger___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScriptEngineDebugger___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScriptEngineDebugger___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScriptEngineDebugger___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScriptEngineDebugger___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScriptEngineDebugger___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScriptEngineDebugger___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScriptEngineDebugger___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QScriptEngineDebugger_TimerEvent(void* ptr, void* event)

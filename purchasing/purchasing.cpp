@@ -14,6 +14,7 @@
 #include <QInAppProduct>
 #include <QInAppStore>
 #include <QInAppTransaction>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -65,6 +66,81 @@ struct QtPurchasing_PackedString QInAppProduct_Title(void* ptr)
 void QInAppProduct_Purchase(void* ptr)
 {
 	static_cast<QInAppProduct*>(ptr)->purchase();
+}
+
+void* QInAppProduct___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QInAppProduct___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppProduct___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QInAppProduct___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QInAppProduct___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QInAppProduct___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QInAppProduct___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppProduct___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppProduct___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QInAppProduct___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppProduct___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppProduct___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QInAppProduct___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppProduct___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppProduct___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QInAppProduct_TimerEvent(void* ptr, void* event)
@@ -250,6 +326,81 @@ void QInAppStore_DestroyQInAppStore(void* ptr)
 	static_cast<QInAppStore*>(ptr)->~QInAppStore();
 }
 
+void* QInAppStore___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QInAppStore___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppStore___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QInAppStore___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QInAppStore___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QInAppStore___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QInAppStore___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppStore___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppStore___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QInAppStore___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppStore___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppStore___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QInAppStore___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppStore___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppStore___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QInAppStore_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QInAppStore*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -423,6 +574,81 @@ struct QtPurchasing_PackedString QInAppTransaction_PlatformProperty(void* ptr, c
 struct QtPurchasing_PackedString QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName)
 {
 	return ({ QByteArray tce28f9 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tce28f9.prepend("WHITESPACE").constData()+10), tce28f9.size()-10 }; });
+}
+
+void* QInAppTransaction___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QInAppTransaction___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppTransaction___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QInAppTransaction___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QInAppTransaction___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QInAppTransaction___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QInAppTransaction___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppTransaction___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppTransaction___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QInAppTransaction___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppTransaction___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppTransaction___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QInAppTransaction___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QInAppTransaction___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QInAppTransaction___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QInAppTransaction_TimerEvent(void* ptr, void* event)

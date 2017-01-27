@@ -92,6 +92,7 @@ func Deploy(s *State) {
 			} else {
 
 				//rcc
+				utils.Log.Debug("qtrcc - start")
 				var qtrcc_cwd string = appPath
 				if env_cwd := os.Getenv("QTRCC_CWD"); env_cwd != "" {
 					qtrcc_cwd = env_cwd
@@ -101,14 +102,18 @@ func Deploy(s *State) {
 					qtrcc_output = &env_output_dir
 				}
 				rcc.Rcc(qtrcc_cwd, qtrcc_output)
+				utils.Log.Debug("qtrcc - done")
 
 				//moc
+				utils.Log.Debug("qtmoc - start")
 				moc.MocTree(appPath)
 
 				parser.State.Moc = false
 				parser.State.Module = ""
+				utils.Log.Debug("qtmoc - done")
 
 				//minimal
+				utils.Log.Debug("qtminimal - start")
 				minimal.Minimal(appPath, buildTarget)
 
 				parser.State.Minimal = false
@@ -120,12 +125,17 @@ func Deploy(s *State) {
 						f.Export = false
 					}
 				}
+				utils.Log.Debug("qtminimal - done")
 
+				utils.Log.Debug("build - start")
 				build()
+				utils.Log.Debug("build - done")
 
+				utils.Log.Debug("deploy - start")
 				predeploy()
 				deployInternal()
 				pastdeploy()
+				utils.Log.Debug("deploy - done")
 
 				cleanup()
 			}

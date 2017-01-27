@@ -12,6 +12,7 @@
 #include <QChildEvent>
 #include <QEvent>
 #include <QHostAddress>
+#include <QList>
 #include <QMaskGenerator>
 #include <QMetaMethod>
 #include <QMetaObject>
@@ -70,6 +71,81 @@ void QMaskGenerator_DestroyQMaskGenerator(void* ptr)
 void QMaskGenerator_DestroyQMaskGeneratorDefault(void* ptr)
 {
 
+}
+
+void* QMaskGenerator___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QMaskGenerator___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMaskGenerator___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QMaskGenerator___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QMaskGenerator___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QMaskGenerator___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QMaskGenerator___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMaskGenerator___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMaskGenerator___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QMaskGenerator___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMaskGenerator___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMaskGenerator___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QMaskGenerator___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMaskGenerator___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMaskGenerator___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QMaskGenerator_TimerEvent(void* ptr, void* event)
@@ -181,6 +257,7 @@ public:
 	void Signal_Pong(quint64 elapsedTime, const QByteArray & payload) { callbackQWebSocket_Pong(this, elapsedTime, const_cast<QByteArray*>(&payload)); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQWebSocket_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
 	void Signal_ReadChannelFinished() { callbackQWebSocket_ReadChannelFinished(this); };
+	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQWebSocket_SslErrors(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtWebSockets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocket_StateChanged(this, state); };
 	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { QByteArray t39d88b = frame.toUtf8(); QtWebSockets_PackedString framePacked = { const_cast<char*>(t39d88b.prepend("WHITESPACE").constData()+10), t39d88b.size()-10 };callbackQWebSocket_TextFrameReceived(this, framePacked, isLastFrame); };
 	void Signal_TextMessageReceived(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWebSockets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQWebSocket_TextMessageReceived(this, messagePacked); };
@@ -354,6 +431,11 @@ void QWebSocket_IgnoreSslErrors(void* ptr)
 void QWebSocket_IgnoreSslErrorsDefault(void* ptr)
 {
 	static_cast<QWebSocket*>(ptr)->QWebSocket::ignoreSslErrors();
+}
+
+void QWebSocket_IgnoreSslErrors2(void* ptr, void* errors)
+{
+	static_cast<QWebSocket*>(ptr)->ignoreSslErrors(*static_cast<QList<QSslError>*>(errors));
 }
 
 char QWebSocket_IsValid(void* ptr)
@@ -546,6 +628,21 @@ void* QWebSocket_SslConfiguration(void* ptr)
 	return new QSslConfiguration(static_cast<QWebSocket*>(ptr)->sslConfiguration());
 }
 
+void QWebSocket_ConnectSslErrors(void* ptr)
+{
+	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QList<QSslError> &)>(&QWebSocket::sslErrors), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QList<QSslError> &)>(&MyQWebSocket::Signal_SslErrors));
+}
+
+void QWebSocket_DisconnectSslErrors(void* ptr)
+{
+	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QList<QSslError> &)>(&QWebSocket::sslErrors), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QList<QSslError> &)>(&MyQWebSocket::Signal_SslErrors));
+}
+
+void QWebSocket_SslErrors(void* ptr, void* errors)
+{
+	static_cast<QWebSocket*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(errors));
+}
+
 long long QWebSocket_State(void* ptr)
 {
 	return static_cast<QWebSocket*>(ptr)->state();
@@ -609,6 +706,111 @@ void QWebSocket_DestroyQWebSocket(void* ptr)
 void QWebSocket_DestroyQWebSocketDefault(void* ptr)
 {
 
+}
+
+void* QWebSocket___ignoreSslErrors_errors_atList2(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QWebSocket___ignoreSslErrors_errors_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QWebSocket___ignoreSslErrors_errors_newList2(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QWebSocket___sslErrors_errors_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QWebSocket___sslErrors_errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QWebSocket___sslErrors_errors_newList(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+void* QWebSocket___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebSocket___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocket___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebSocket___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebSocket___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebSocket___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebSocket___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebSocket___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocket___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebSocket___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebSocket___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocket___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebSocket___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebSocket___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocket___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebSocket_TimerEvent(void* ptr, void* event)
@@ -752,6 +954,7 @@ public:
 	void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator) { callbackQWebSocketServer_OriginAuthenticationRequired(this, authenticator); };
 	void Signal_PeerVerifyError(const QSslError & error) { callbackQWebSocketServer_PeerVerifyError(this, const_cast<QSslError*>(&error)); };
 	void Signal_ServerError(QWebSocketProtocol::CloseCode closeCode) { callbackQWebSocketServer_ServerError(this, closeCode); };
+	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQWebSocketServer_SslErrors(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtWebSockets_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQWebSocketServer() { callbackQWebSocketServer_DestroyQWebSocketServer(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebSocketServer_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebSocketServer_ChildEvent(this, event); };
@@ -979,6 +1182,26 @@ void* QWebSocketServer_SslConfiguration(void* ptr)
 	return new QSslConfiguration(static_cast<QWebSocketServer*>(ptr)->sslConfiguration());
 }
 
+void QWebSocketServer_ConnectSslErrors(void* ptr)
+{
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(const QList<QSslError> &)>(&QWebSocketServer::sslErrors), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(const QList<QSslError> &)>(&MyQWebSocketServer::Signal_SslErrors));
+}
+
+void QWebSocketServer_DisconnectSslErrors(void* ptr)
+{
+	QObject::disconnect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(const QList<QSslError> &)>(&QWebSocketServer::sslErrors), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(const QList<QSslError> &)>(&MyQWebSocketServer::Signal_SslErrors));
+}
+
+void QWebSocketServer_SslErrors(void* ptr, void* errors)
+{
+	static_cast<QWebSocketServer*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(errors));
+}
+
+struct QtWebSockets_PackedList QWebSocketServer_SupportedVersions(void* ptr)
+{
+	return ({ QList<QWebSocketProtocol::Version>* tmpValue = new QList<QWebSocketProtocol::Version>(static_cast<QWebSocketServer*>(ptr)->supportedVersions()); QtWebSockets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QWebSocketServer_DestroyQWebSocketServer(void* ptr)
 {
 	static_cast<QWebSocketServer*>(ptr)->~QWebSocketServer();
@@ -987,6 +1210,111 @@ void QWebSocketServer_DestroyQWebSocketServer(void* ptr)
 void QWebSocketServer_DestroyQWebSocketServerDefault(void* ptr)
 {
 
+}
+
+void* QWebSocketServer___sslErrors_errors_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void QWebSocketServer___sslErrors_errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSslError>*>(ptr)->append(*static_cast<QSslError*>(i));
+}
+
+void* QWebSocketServer___sslErrors_errors_newList(void* ptr)
+{
+	return new QList<QSslError>;
+}
+
+long long QWebSocketServer___supportedVersions_atList(void* ptr, int i)
+{
+	return static_cast<QList<QWebSocketProtocol::Version>*>(ptr)->at(i);
+}
+
+void QWebSocketServer___supportedVersions_setList(void* ptr, long long i)
+{
+	static_cast<QList<QWebSocketProtocol::Version>*>(ptr)->append(static_cast<QWebSocketProtocol::Version>(i));
+}
+
+void* QWebSocketServer___supportedVersions_newList(void* ptr)
+{
+	return new QList<QWebSocketProtocol::Version>;
+}
+
+void* QWebSocketServer___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebSocketServer___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocketServer___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebSocketServer___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebSocketServer___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebSocketServer___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebSocketServer___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebSocketServer___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocketServer___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebSocketServer___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebSocketServer___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocketServer___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebSocketServer___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebSocketServer___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebSocketServer___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebSocketServer_TimerEvent(void* ptr, void* event)

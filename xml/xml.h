@@ -89,7 +89,6 @@ struct QtXml_PackedString QDomElement_Attribute(void* ptr, char* name, char* def
 struct QtXml_PackedString QDomElement_AttributeNS(void* ptr, char* nsURI, char* localName, char* defValue);
 void* QDomElement_AttributeNode(void* ptr, char* name);
 void* QDomElement_AttributeNodeNS(void* ptr, char* nsURI, char* localName);
-void* QDomElement_Attributes(void* ptr);
 void* QDomElement_ElementsByTagName(void* ptr, char* tagname);
 void* QDomElement_ElementsByTagNameNS(void* ptr, char* nsURI, char* localName);
 char QDomElement_HasAttribute(void* ptr, char* name);
@@ -152,7 +151,6 @@ void QDomNamedNodeMap_DestroyQDomNamedNodeMap(void* ptr);
 void* QDomNode_NewQDomNode();
 void* QDomNode_NewQDomNode2(void* n);
 void* QDomNode_AppendChild(void* ptr, void* newChild);
-void* QDomNode_Attributes(void* ptr);
 void* QDomNode_ChildNodes(void* ptr);
 void QDomNode_Clear(void* ptr);
 void* QDomNode_CloneNode(void* ptr, char deep);

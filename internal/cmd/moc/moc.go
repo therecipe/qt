@@ -355,6 +355,8 @@ func (m *appMoc) generate() error {
 		//return errors.New("failed to find at least one valid moc struct")
 	}
 
+	utils.Log.Debug("deducing go types to c++ types - start")
+
 	for _, c := range m.module.Namespace.Classes {
 		for _, f := range c.Functions {
 			if !f.NoMocDeduce {
@@ -364,10 +366,17 @@ func (m *appMoc) generate() error {
 				f.Output = getCppTypeFromGoType(f, f.Output)
 			}
 		}
+		utils.Log.Debug("deducing go types to c++ types - funcs done")
 		for _, p := range c.Properties {
 			p.Output = getCppTypeFromGoType(nil, p.Output)
 		}
+		utils.Log.Debug("deducing go types to c++ types - props done")
+
+		//TODO: needed because only now the values are decuded to c++ types
+		c.FixGenericHelper()
 	}
+
+	utils.Log.Debug("deducing go types to c++ types - done")
 
 	//copy constructor and destructor
 	for _ = range m.module.Namespace.Classes {
@@ -470,6 +479,18 @@ func getParameters(tag string) []*parser.Parameter {
 func getCppTypeFromGoType(f *parser.Function, t string) string {
 	//TODO: var tOld = t
 	t = strings.TrimPrefix(t, "*")
+
+	if strings.HasPrefix(t, "[]") && t != "[]string" {
+		return fmt.Sprintf("QList<%v>", getCppTypeFromGoType(f, strings.TrimPrefix(t, "[]")))
+	}
+
+	if strings.HasPrefix(t, "map[") {
+		var head = fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
+		return fmt.Sprintf("QHash<%v, %v>",
+			getCppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0]),
+			getCppTypeFromGoType(f, strings.TrimPrefix(t, head)),
+		)
+	}
 
 	if t == "error" && f != nil {
 		f.AsError = true

@@ -1,7 +1,6 @@
 package minimal
 
 import (
-	"fmt"
 	goparser "go/parser"
 	"go/token"
 	"io/ioutil"
@@ -205,11 +204,31 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 
 			if parser.IsPackedList(f.Output) {
 				for _, f := range class.Functions {
-					if f.Name == fmt.Sprintf("%v_atList", function.Name) {
-						exportFunction(class, f)
+					if strings.Contains(f.Name, function.Name) &&
+						(strings.HasSuffix(f.Name, "_atList") ||
+							strings.HasSuffix(f.Name, "_setList") ||
+							strings.HasSuffix(f.Name, "_newList") ||
+							strings.HasSuffix(f.Name, "_keyList")) {
+						f.Export = true
 					}
 				}
 			}
+
+			for _, p := range f.Parameters {
+				if parser.IsPackedList(parser.CleanValue(p.Value)) {
+					for _, f := range class.Functions {
+						if strings.Contains(f.Name, function.Name) &&
+							(strings.HasSuffix(f.Name, "_atList") ||
+								strings.HasSuffix(f.Name, "_setList") ||
+								strings.HasSuffix(f.Name, "_newList") ||
+								strings.HasSuffix(f.Name, "_keyList")) {
+							f.Export = true
+						}
+					}
+				}
+			}
+
+			//TODO: packed input
 		}
 	}
 }

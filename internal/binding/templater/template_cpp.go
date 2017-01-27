@@ -7,9 +7,12 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func CppTemplate(module string) []byte {
+	utils.Log.WithField("0_module", module).Debug("generating cpp")
+
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 

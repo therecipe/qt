@@ -28,14 +28,21 @@
 class MyQMacPasteboardMime: public QMacPasteboardMime
 {
 public:
+	MyQMacPasteboardMime(char t) : QMacPasteboardMime(t) {};
 	bool canConvert(const QString & mime, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return callbackQMacPasteboardMime_CanConvert(this, mimePacked, flavPacked) != 0; };
-	
+	QList<QByteArray> convertFromMime(const QString & mime, QVariant data, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return *static_cast<QList<QByteArray>*>(callbackQMacPasteboardMime_ConvertFromMime(this, mimePacked, new QVariant(data), flavPacked)); };
+	QVariant convertToMime(const QString & mime, QList<QByteArray> data, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return *static_cast<QVariant*>(callbackQMacPasteboardMime_ConvertToMime(this, mimePacked, ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(data); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; }), flavPacked)); };
 	QString convertorName() { return QString(callbackQMacPasteboardMime_ConvertorName(this)); };
 	int count(QMimeData * mimeData) { return callbackQMacPasteboardMime_Count(this, mimeData); };
 	QString flavorFor(const QString & mime) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };return QString(callbackQMacPasteboardMime_FlavorFor(this, mimePacked)); };
 	QString mimeFor(QString flav) { QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return QString(callbackQMacPasteboardMime_MimeFor(this, flavPacked)); };
 	 ~MyQMacPasteboardMime() { callbackQMacPasteboardMime_DestroyQMacPasteboardMime(this); };
 };
+
+void* QMacPasteboardMime_NewQMacPasteboardMime(char* t)
+{
+	return new MyQMacPasteboardMime(*t);
+}
 
 char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
 {
@@ -45,6 +52,11 @@ char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
 struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, char* mime, void* data, char* flav)
 {
 	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QMacPasteboardMime*>(ptr)->convertFromMime(QString(mime), *static_cast<QVariant*>(data), QString(flav))); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QMacPasteboardMime_ConvertToMime(void* ptr, char* mime, void* data, char* flav)
+{
+	return new QVariant(static_cast<QMacPasteboardMime*>(ptr)->convertToMime(QString(mime), *static_cast<QList<QByteArray>*>(data), QString(flav)));
 }
 
 struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr)
@@ -88,9 +100,34 @@ void QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(void* ptr)
 #endif
 }
 
-void* QMacPasteboardMime_convertFromMime_atList(void* ptr, int i)
+void* QMacPasteboardMime___convertFromMime_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QMacPasteboardMime___convertFromMime_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QMacPasteboardMime___convertFromMime_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QMacPasteboardMime___convertToMime_data_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QMacPasteboardMime___convertToMime_data_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QMacPasteboardMime___convertToMime_data_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 void* QMacToolBar_NewQMacToolBar(void* parent)
@@ -138,19 +175,154 @@ struct QtMacExtras_PackedList QMacToolBar_Items(void* ptr)
 	return ({ QList<QMacToolBarItem *>* tmpValue = new QList<QMacToolBarItem *>(static_cast<QMacToolBar*>(ptr)->items()); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+void QMacToolBar_SetAllowedItems(void* ptr, void* allowedItems)
+{
+	static_cast<QMacToolBar*>(ptr)->setAllowedItems(*static_cast<QList<QMacToolBarItem *>*>(allowedItems));
+}
+
+void QMacToolBar_SetItems(void* ptr, void* items)
+{
+	static_cast<QMacToolBar*>(ptr)->setItems(*static_cast<QList<QMacToolBarItem *>*>(items));
+}
+
 void QMacToolBar_DestroyQMacToolBar(void* ptr)
 {
 	static_cast<QMacToolBar*>(ptr)->~QMacToolBar();
 }
 
-void* QMacToolBar_allowedItems_atList(void* ptr, int i)
+void* QMacToolBar___allowedItems_atList(void* ptr, int i)
 {
 	return const_cast<QMacToolBarItem*>(static_cast<QList<QMacToolBarItem *>*>(ptr)->at(i));
 }
 
-void* QMacToolBar_items_atList(void* ptr, int i)
+void QMacToolBar___allowedItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QMacToolBarItem *>*>(ptr)->append(static_cast<QMacToolBarItem*>(i));
+}
+
+void* QMacToolBar___allowedItems_newList(void* ptr)
+{
+	return new QList<QMacToolBarItem *>;
+}
+
+void* QMacToolBar___items_atList(void* ptr, int i)
 {
 	return const_cast<QMacToolBarItem*>(static_cast<QList<QMacToolBarItem *>*>(ptr)->at(i));
+}
+
+void QMacToolBar___items_setList(void* ptr, void* i)
+{
+	static_cast<QList<QMacToolBarItem *>*>(ptr)->append(static_cast<QMacToolBarItem*>(i));
+}
+
+void* QMacToolBar___items_newList(void* ptr)
+{
+	return new QList<QMacToolBarItem *>;
+}
+
+void* QMacToolBar___setAllowedItems_allowedItems_atList(void* ptr, int i)
+{
+	return const_cast<QMacToolBarItem*>(static_cast<QList<QMacToolBarItem *>*>(ptr)->at(i));
+}
+
+void QMacToolBar___setAllowedItems_allowedItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QMacToolBarItem *>*>(ptr)->append(static_cast<QMacToolBarItem*>(i));
+}
+
+void* QMacToolBar___setAllowedItems_allowedItems_newList(void* ptr)
+{
+	return new QList<QMacToolBarItem *>;
+}
+
+void* QMacToolBar___setItems_items_atList(void* ptr, int i)
+{
+	return const_cast<QMacToolBarItem*>(static_cast<QList<QMacToolBarItem *>*>(ptr)->at(i));
+}
+
+void QMacToolBar___setItems_items_setList(void* ptr, void* i)
+{
+	static_cast<QList<QMacToolBarItem *>*>(ptr)->append(static_cast<QMacToolBarItem*>(i));
+}
+
+void* QMacToolBar___setItems_items_newList(void* ptr)
+{
+	return new QList<QMacToolBarItem *>;
+}
+
+void* QMacToolBar___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QMacToolBar___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBar___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QMacToolBar___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QMacToolBar___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QMacToolBar___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QMacToolBar___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMacToolBar___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBar___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QMacToolBar___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMacToolBar___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBar___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QMacToolBar___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMacToolBar___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBar___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QMacToolBar_TimerEvent(void* ptr, void* event)
@@ -354,6 +526,81 @@ long long QMacToolBarItem_StandardItem(void* ptr)
 struct QtMacExtras_PackedString QMacToolBarItem_Text(void* ptr)
 {
 	return ({ QByteArray t8c9d50 = static_cast<QMacToolBarItem*>(ptr)->text().toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t8c9d50.prepend("WHITESPACE").constData()+10), t8c9d50.size()-10 }; });
+}
+
+void* QMacToolBarItem___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QMacToolBarItem___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBarItem___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QMacToolBarItem___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QMacToolBarItem___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QMacToolBarItem___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QMacToolBarItem___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMacToolBarItem___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBarItem___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QMacToolBarItem___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMacToolBarItem___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBarItem___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QMacToolBarItem___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QMacToolBarItem___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QMacToolBarItem___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QMacToolBarItem_TimerEvent(void* ptr, void* event)

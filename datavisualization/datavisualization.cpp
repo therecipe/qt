@@ -416,14 +416,34 @@ void Q3DBars_DestroyQ3DBarsDefault(void* ptr)
 
 }
 
-void* Q3DBars_axes_atList(void* ptr, int i)
+void* Q3DBars___axes_atList(void* ptr, int i)
 {
 	return const_cast<QAbstract3DAxis*>(static_cast<QList<QAbstract3DAxis *>*>(ptr)->at(i));
 }
 
-void* Q3DBars_seriesList_atList(void* ptr, int i)
+void Q3DBars___axes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAbstract3DAxis *>*>(ptr)->append(static_cast<QAbstract3DAxis*>(i));
+}
+
+void* Q3DBars___axes_newList(void* ptr)
+{
+	return new QList<QAbstract3DAxis *>;
+}
+
+void* Q3DBars___seriesList_atList(void* ptr, int i)
 {
 	return const_cast<QBar3DSeries*>(static_cast<QList<QBar3DSeries *>*>(ptr)->at(i));
+}
+
+void Q3DBars___seriesList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBar3DSeries *>*>(ptr)->append(static_cast<QBar3DSeries*>(i));
+}
+
+void* Q3DBars___seriesList_newList(void* ptr)
+{
+	return new QList<QBar3DSeries *>;
 }
 
 class MyQ3DCamera: public Q3DCamera
@@ -1115,14 +1135,34 @@ void Q3DScatter_DestroyQ3DScatterDefault(void* ptr)
 
 }
 
-void* Q3DScatter_axes_atList(void* ptr, int i)
+void* Q3DScatter___axes_atList(void* ptr, int i)
 {
 	return const_cast<QValue3DAxis*>(static_cast<QList<QValue3DAxis *>*>(ptr)->at(i));
 }
 
-void* Q3DScatter_seriesList_atList(void* ptr, int i)
+void Q3DScatter___axes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QValue3DAxis *>*>(ptr)->append(static_cast<QValue3DAxis*>(i));
+}
+
+void* Q3DScatter___axes_newList(void* ptr)
+{
+	return new QList<QValue3DAxis *>;
+}
+
+void* Q3DScatter___seriesList_atList(void* ptr, int i)
 {
 	return const_cast<QScatter3DSeries*>(static_cast<QList<QScatter3DSeries *>*>(ptr)->at(i));
+}
+
+void Q3DScatter___seriesList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QScatter3DSeries *>*>(ptr)->append(static_cast<QScatter3DSeries*>(i));
+}
+
+void* Q3DScatter___seriesList_newList(void* ptr)
+{
+	return new QList<QScatter3DSeries *>;
 }
 
 class MyQ3DScene: public Q3DScene
@@ -1594,14 +1634,34 @@ void Q3DSurface_DestroyQ3DSurfaceDefault(void* ptr)
 
 }
 
-void* Q3DSurface_axes_atList(void* ptr, int i)
+void* Q3DSurface___axes_atList(void* ptr, int i)
 {
 	return const_cast<QValue3DAxis*>(static_cast<QList<QValue3DAxis *>*>(ptr)->at(i));
 }
 
-void* Q3DSurface_seriesList_atList(void* ptr, int i)
+void Q3DSurface___axes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QValue3DAxis *>*>(ptr)->append(static_cast<QValue3DAxis*>(i));
+}
+
+void* Q3DSurface___axes_newList(void* ptr)
+{
+	return new QList<QValue3DAxis *>;
+}
+
+void* Q3DSurface___seriesList_atList(void* ptr, int i)
 {
 	return const_cast<QSurface3DSeries*>(static_cast<QList<QSurface3DSeries *>*>(ptr)->at(i));
+}
+
+void Q3DSurface___seriesList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSurface3DSeries *>*>(ptr)->append(static_cast<QSurface3DSeries*>(i));
+}
+
+void* Q3DSurface___seriesList_newList(void* ptr)
+{
+	return new QList<QSurface3DSeries *>;
 }
 
 class MyQ3DTheme: public Q3DTheme
@@ -1612,6 +1672,8 @@ public:
 	void Signal_AmbientLightStrengthChanged(float strength) { callbackQ3DTheme_AmbientLightStrengthChanged(this, strength); };
 	void Signal_BackgroundColorChanged(const QColor & color) { callbackQ3DTheme_BackgroundColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BackgroundEnabledChanged(bool enabled) { callbackQ3DTheme_BackgroundEnabledChanged(this, enabled); };
+	void Signal_BaseColorsChanged(const QList<QColor> & colors) { callbackQ3DTheme_BaseColorsChanged(this, ({ QList<QColor>* tmpValue = const_cast<QList<QColor>*>(&colors); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BaseGradientsChanged(const QList<QLinearGradient> & gradients) { callbackQ3DTheme_BaseGradientsChanged(this, ({ QList<QLinearGradient>* tmpValue = const_cast<QList<QLinearGradient>*>(&gradients); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_ColorStyleChanged(Q3DTheme::ColorStyle style) { callbackQ3DTheme_ColorStyleChanged(this, style); };
 	void Signal_FontChanged(const QFont & font) { callbackQ3DTheme_FontChanged(this, const_cast<QFont*>(&font)); };
 	void Signal_GridEnabledChanged(bool enabled) { callbackQ3DTheme_GridEnabledChanged(this, enabled); };
@@ -1735,6 +1797,16 @@ void Q3DTheme_SetBackgroundColor(void* ptr, void* color)
 void Q3DTheme_SetBackgroundEnabled(void* ptr, char enabled)
 {
 	static_cast<Q3DTheme*>(ptr)->setBackgroundEnabled(enabled != 0);
+}
+
+void Q3DTheme_SetBaseColors(void* ptr, void* colors)
+{
+	static_cast<Q3DTheme*>(ptr)->setBaseColors(*static_cast<QList<QColor>*>(colors));
+}
+
+void Q3DTheme_SetBaseGradients(void* ptr, void* gradients)
+{
+	static_cast<Q3DTheme*>(ptr)->setBaseGradients(*static_cast<QList<QLinearGradient>*>(gradients));
 }
 
 void Q3DTheme_SetColorStyle(void* ptr, long long style)
@@ -1895,6 +1967,36 @@ void Q3DTheme_DisconnectBackgroundEnabledChanged(void* ptr)
 void Q3DTheme_BackgroundEnabledChanged(void* ptr, char enabled)
 {
 	static_cast<Q3DTheme*>(ptr)->backgroundEnabledChanged(enabled != 0);
+}
+
+void Q3DTheme_ConnectBaseColorsChanged(void* ptr)
+{
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QColor> &)>(&Q3DTheme::baseColorsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QColor> &)>(&MyQ3DTheme::Signal_BaseColorsChanged));
+}
+
+void Q3DTheme_DisconnectBaseColorsChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QColor> &)>(&Q3DTheme::baseColorsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QColor> &)>(&MyQ3DTheme::Signal_BaseColorsChanged));
+}
+
+void Q3DTheme_BaseColorsChanged(void* ptr, void* colors)
+{
+	static_cast<Q3DTheme*>(ptr)->baseColorsChanged(*static_cast<QList<QColor>*>(colors));
+}
+
+void Q3DTheme_ConnectBaseGradientsChanged(void* ptr)
+{
+	QObject::connect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QLinearGradient> &)>(&Q3DTheme::baseGradientsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QLinearGradient> &)>(&MyQ3DTheme::Signal_BaseGradientsChanged));
+}
+
+void Q3DTheme_DisconnectBaseGradientsChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<Q3DTheme*>(ptr), static_cast<void (Q3DTheme::*)(const QList<QLinearGradient> &)>(&Q3DTheme::baseGradientsChanged), static_cast<MyQ3DTheme*>(ptr), static_cast<void (MyQ3DTheme::*)(const QList<QLinearGradient> &)>(&MyQ3DTheme::Signal_BaseGradientsChanged));
+}
+
+void Q3DTheme_BaseGradientsChanged(void* ptr, void* gradients)
+{
+	static_cast<Q3DTheme*>(ptr)->baseGradientsChanged(*static_cast<QList<QLinearGradient>*>(gradients));
 }
 
 void Q3DTheme_ConnectColorStyleChanged(void* ptr)
@@ -2162,14 +2264,94 @@ void Q3DTheme_DestroyQ3DThemeDefault(void* ptr)
 
 }
 
-void* Q3DTheme_baseColors_atList(void* ptr, int i)
+void* Q3DTheme___baseColors_atList(void* ptr, int i)
 {
 	return new QColor(static_cast<QList<QColor>*>(ptr)->at(i));
 }
 
-void* Q3DTheme_baseGradients_atList(void* ptr, int i)
+void Q3DTheme___baseColors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QColor>*>(ptr)->append(*static_cast<QColor*>(i));
+}
+
+void* Q3DTheme___baseColors_newList(void* ptr)
+{
+	return new QList<QColor>;
+}
+
+void* Q3DTheme___baseGradients_atList(void* ptr, int i)
 {
 	return new QLinearGradient(static_cast<QList<QLinearGradient>*>(ptr)->at(i));
+}
+
+void Q3DTheme___baseGradients_setList(void* ptr, void* i)
+{
+	static_cast<QList<QLinearGradient>*>(ptr)->append(*static_cast<QLinearGradient*>(i));
+}
+
+void* Q3DTheme___baseGradients_newList(void* ptr)
+{
+	return new QList<QLinearGradient>;
+}
+
+void* Q3DTheme___setBaseColors_colors_atList(void* ptr, int i)
+{
+	return new QColor(static_cast<QList<QColor>*>(ptr)->at(i));
+}
+
+void Q3DTheme___setBaseColors_colors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QColor>*>(ptr)->append(*static_cast<QColor*>(i));
+}
+
+void* Q3DTheme___setBaseColors_colors_newList(void* ptr)
+{
+	return new QList<QColor>;
+}
+
+void* Q3DTheme___setBaseGradients_gradients_atList(void* ptr, int i)
+{
+	return new QLinearGradient(static_cast<QList<QLinearGradient>*>(ptr)->at(i));
+}
+
+void Q3DTheme___setBaseGradients_gradients_setList(void* ptr, void* i)
+{
+	static_cast<QList<QLinearGradient>*>(ptr)->append(*static_cast<QLinearGradient*>(i));
+}
+
+void* Q3DTheme___setBaseGradients_gradients_newList(void* ptr)
+{
+	return new QList<QLinearGradient>;
+}
+
+void* Q3DTheme___baseColorsChanged_colors_atList(void* ptr, int i)
+{
+	return new QColor(static_cast<QList<QColor>*>(ptr)->at(i));
+}
+
+void Q3DTheme___baseColorsChanged_colors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QColor>*>(ptr)->append(*static_cast<QColor*>(i));
+}
+
+void* Q3DTheme___baseColorsChanged_colors_newList(void* ptr)
+{
+	return new QList<QColor>;
+}
+
+void* Q3DTheme___baseGradientsChanged_gradients_atList(void* ptr, int i)
+{
+	return new QLinearGradient(static_cast<QList<QLinearGradient>*>(ptr)->at(i));
+}
+
+void Q3DTheme___baseGradientsChanged_gradients_setList(void* ptr, void* i)
+{
+	static_cast<QList<QLinearGradient>*>(ptr)->append(*static_cast<QLinearGradient*>(i));
+}
+
+void* Q3DTheme___baseGradientsChanged_gradients_newList(void* ptr)
+{
+	return new QList<QLinearGradient>;
 }
 
 class MyQAbstract3DAxis: public QAbstract3DAxis
@@ -3023,19 +3205,49 @@ void QAbstract3DGraph_DestroyQAbstract3DGraphDefault(void* ptr)
 
 }
 
-void* QAbstract3DGraph_customItems_atList(void* ptr, int i)
+void* QAbstract3DGraph___customItems_atList(void* ptr, int i)
 {
 	return const_cast<QCustom3DItem*>(static_cast<QList<QCustom3DItem *>*>(ptr)->at(i));
 }
 
-void* QAbstract3DGraph_inputHandlers_atList(void* ptr, int i)
+void QAbstract3DGraph___customItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QCustom3DItem *>*>(ptr)->append(static_cast<QCustom3DItem*>(i));
+}
+
+void* QAbstract3DGraph___customItems_newList(void* ptr)
+{
+	return new QList<QCustom3DItem *>;
+}
+
+void* QAbstract3DGraph___inputHandlers_atList(void* ptr, int i)
 {
 	return const_cast<QAbstract3DInputHandler*>(static_cast<QList<QAbstract3DInputHandler *>*>(ptr)->at(i));
 }
 
-void* QAbstract3DGraph_themes_atList(void* ptr, int i)
+void QAbstract3DGraph___inputHandlers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAbstract3DInputHandler *>*>(ptr)->append(static_cast<QAbstract3DInputHandler*>(i));
+}
+
+void* QAbstract3DGraph___inputHandlers_newList(void* ptr)
+{
+	return new QList<QAbstract3DInputHandler *>;
+}
+
+void* QAbstract3DGraph___themes_atList(void* ptr, int i)
 {
 	return const_cast<Q3DTheme*>(static_cast<QList<Q3DTheme *>*>(ptr)->at(i));
+}
+
+void QAbstract3DGraph___themes_setList(void* ptr, void* i)
+{
+	static_cast<QList<Q3DTheme *>*>(ptr)->append(static_cast<Q3DTheme*>(i));
+}
+
+void* QAbstract3DGraph___themes_newList(void* ptr)
+{
+	return new QList<Q3DTheme *>;
 }
 
 class MyQAbstract3DInputHandler: public QAbstract3DInputHandler
@@ -4616,8 +4828,6 @@ public:
 	MyQCustom3DVolume(QObject *parent) : QCustom3DVolume(parent) {};
 	void Signal_AlphaMultiplierChanged(float mult) { callbackQCustom3DVolume_AlphaMultiplierChanged(this, mult); };
 	void Signal_ColorTableChanged() { callbackQCustom3DVolume_ColorTableChanged(this); };
-	void Signal_DrawSliceFramesChanged(bool enabled) { callbackQCustom3DVolume_DrawSliceFramesChanged(this, enabled); };
-	void Signal_DrawSlicesChanged(bool enabled) { callbackQCustom3DVolume_DrawSlicesChanged(this, enabled); };
 	void Signal_PreserveOpacityChanged(bool enabled) { callbackQCustom3DVolume_PreserveOpacityChanged(this, enabled); };
 	void Signal_SliceFrameColorChanged(const QColor & color) { callbackQCustom3DVolume_SliceFrameColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_SliceFrameGapsChanged(const QVector3D & values) { callbackQCustom3DVolume_SliceFrameGapsChanged(this, const_cast<QVector3D*>(&values)); };
@@ -4637,16 +4847,6 @@ public:
 float QCustom3DVolume_AlphaMultiplier(void* ptr)
 {
 	return static_cast<QCustom3DVolume*>(ptr)->alphaMultiplier();
-}
-
-char QCustom3DVolume_DrawSliceFrames(void* ptr)
-{
-	return static_cast<QCustom3DVolume*>(ptr)->drawSliceFrames();
-}
-
-char QCustom3DVolume_DrawSlices(void* ptr)
-{
-	return static_cast<QCustom3DVolume*>(ptr)->drawSlices();
 }
 
 char QCustom3DVolume_PreserveOpacity(void* ptr)
@@ -4819,36 +5019,6 @@ void QCustom3DVolume_ColorTableChanged(void* ptr)
 	static_cast<QCustom3DVolume*>(ptr)->colorTableChanged();
 }
 
-void QCustom3DVolume_ConnectDrawSliceFramesChanged(void* ptr)
-{
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSliceFramesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSliceFramesChanged));
-}
-
-void QCustom3DVolume_DisconnectDrawSliceFramesChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSliceFramesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSliceFramesChanged));
-}
-
-void QCustom3DVolume_DrawSliceFramesChanged(void* ptr, char enabled)
-{
-	static_cast<QCustom3DVolume*>(ptr)->drawSliceFramesChanged(enabled != 0);
-}
-
-void QCustom3DVolume_ConnectDrawSlicesChanged(void* ptr)
-{
-	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSlicesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSlicesChanged));
-}
-
-void QCustom3DVolume_DisconnectDrawSlicesChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSlicesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSlicesChanged));
-}
-
-void QCustom3DVolume_DrawSlicesChanged(void* ptr, char enabled)
-{
-	static_cast<QCustom3DVolume*>(ptr)->drawSlicesChanged(enabled != 0);
-}
-
 void QCustom3DVolume_ConnectPreserveOpacityChanged(void* ptr)
 {
 	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::preserveOpacityChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_PreserveOpacityChanged));
@@ -4999,11 +5169,6 @@ void QCustom3DVolume_SliceIndexZChanged(void* ptr, int value)
 	static_cast<QCustom3DVolume*>(ptr)->sliceIndexZChanged(value);
 }
 
-int QCustom3DVolume_TextureDataWidth(void* ptr)
-{
-	return static_cast<QCustom3DVolume*>(ptr)->textureDataWidth();
-}
-
 void QCustom3DVolume_ConnectTextureDepthChanged(void* ptr)
 {
 	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(int)>(&QCustom3DVolume::textureDepthChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(int)>(&MyQCustom3DVolume::Signal_TextureDepthChanged));
@@ -5092,6 +5257,21 @@ void QCustom3DVolume_DestroyQCustom3DVolume(void* ptr)
 void QCustom3DVolume_DestroyQCustom3DVolumeDefault(void* ptr)
 {
 
+}
+
+void* QCustom3DVolume___colorTable_newList(void* ptr)
+{
+	return new QVector<QRgb>;
+}
+
+void* QCustom3DVolume___setColorTable_colors_newList(void* ptr)
+{
+	return new QVector<QRgb>;
+}
+
+void* QCustom3DVolume___QCustom3DVolume_colorTable_newList2(void* ptr)
+{
+	return new QVector<QRgb>;
 }
 
 class MyQHeightMapSurfaceDataProxy: public QHeightMapSurfaceDataProxy
@@ -7345,7 +7525,6 @@ public:
 	MyQSurface3DSeries(QObject *parent) : QSurface3DSeries(parent) {};
 	MyQSurface3DSeries(QSurfaceDataProxy *dataProxy, QObject *parent) : QSurface3DSeries(dataProxy, parent) {};
 	void Signal_DataProxyChanged(QSurfaceDataProxy * proxy) { callbackQSurface3DSeries_DataProxyChanged(this, proxy); };
-	void Signal_DrawModeChanged(QSurface3DSeries::DrawFlags mode) { callbackQSurface3DSeries_DrawModeChanged(this, mode); };
 	void Signal_FlatShadingEnabledChanged(bool enable) { callbackQSurface3DSeries_FlatShadingEnabledChanged(this, enable); };
 	void Signal_FlatShadingSupportedChanged(bool enable) { callbackQSurface3DSeries_FlatShadingSupportedChanged(this, enable); };
 	void Signal_SelectedPointChanged(const QPoint & position) { callbackQSurface3DSeries_SelectedPointChanged(this, const_cast<QPoint*>(&position)); };
@@ -7357,11 +7536,6 @@ public:
 void* QSurface3DSeries_DataProxy(void* ptr)
 {
 	return static_cast<QSurface3DSeries*>(ptr)->dataProxy();
-}
-
-long long QSurface3DSeries_DrawMode(void* ptr)
-{
-	return static_cast<QSurface3DSeries*>(ptr)->drawMode();
 }
 
 char QSurface3DSeries_IsFlatShadingEnabled(void* ptr)
@@ -7442,21 +7616,6 @@ void QSurface3DSeries_DisconnectDataProxyChanged(void* ptr)
 void QSurface3DSeries_DataProxyChanged(void* ptr, void* proxy)
 {
 	static_cast<QSurface3DSeries*>(ptr)->dataProxyChanged(static_cast<QSurfaceDataProxy*>(proxy));
-}
-
-void QSurface3DSeries_ConnectDrawModeChanged(void* ptr)
-{
-	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&QSurface3DSeries::drawModeChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&MyQSurface3DSeries::Signal_DrawModeChanged));
-}
-
-void QSurface3DSeries_DisconnectDrawModeChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&QSurface3DSeries::drawModeChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&MyQSurface3DSeries::Signal_DrawModeChanged));
-}
-
-void QSurface3DSeries_DrawModeChanged(void* ptr, long long mode)
-{
-	static_cast<QSurface3DSeries*>(ptr)->drawModeChanged(static_cast<QSurface3DSeries::DrawFlag>(mode));
 }
 
 void QSurface3DSeries_ConnectFlatShadingEnabledChanged(void* ptr)
@@ -8043,6 +8202,16 @@ void* QValue3DAxisFormatter_CreateNewInstanceDefault(void* ptr)
 	return static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::createNewInstance();
 }
 
+struct QtDataVisualization_PackedList QValue3DAxisFormatter_GridPositions(void* ptr)
+{
+	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->gridPositions()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtDataVisualization_PackedList QValue3DAxisFormatter_LabelPositions(void* ptr)
+{
+	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->labelPositions()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_LabelStrings(void* ptr)
 {
 	return ({ QByteArray td5e8ca = static_cast<QValue3DAxisFormatter*>(ptr)->labelStrings().join("|").toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td5e8ca.prepend("WHITESPACE").constData()+10), td5e8ca.size()-10 }; });
@@ -8113,6 +8282,11 @@ struct QtDataVisualization_PackedString QValue3DAxisFormatter_StringForValueDefa
 	return ({ QByteArray td4f76c = static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::stringForValue(value, QString(format)).toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td4f76c.prepend("WHITESPACE").constData()+10), td4f76c.size()-10 }; });
 }
 
+struct QtDataVisualization_PackedList QValue3DAxisFormatter_SubGridPositions(void* ptr)
+{
+	return ({ QVector<float>* tmpValue = new QVector<float>(static_cast<QValue3DAxisFormatter*>(ptr)->subGridPositions()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 float QValue3DAxisFormatter_ValueAt(void* ptr, float position)
 {
 	return static_cast<QValue3DAxisFormatter*>(ptr)->valueAt(position);
@@ -8131,5 +8305,50 @@ void QValue3DAxisFormatter_DestroyQValue3DAxisFormatter(void* ptr)
 void QValue3DAxisFormatter_DestroyQValue3DAxisFormatterDefault(void* ptr)
 {
 
+}
+
+float QValue3DAxisFormatter___gridPositions_atList(void* ptr, int i)
+{
+	return static_cast<QVector<float>*>(ptr)->at(i);
+}
+
+void QValue3DAxisFormatter___gridPositions_setList(void* ptr, float i)
+{
+	static_cast<QVector<float>*>(ptr)->append(i);
+}
+
+void* QValue3DAxisFormatter___gridPositions_newList(void* ptr)
+{
+	return new QVector<float>;
+}
+
+float QValue3DAxisFormatter___labelPositions_atList(void* ptr, int i)
+{
+	return static_cast<QVector<float>*>(ptr)->at(i);
+}
+
+void QValue3DAxisFormatter___labelPositions_setList(void* ptr, float i)
+{
+	static_cast<QVector<float>*>(ptr)->append(i);
+}
+
+void* QValue3DAxisFormatter___labelPositions_newList(void* ptr)
+{
+	return new QVector<float>;
+}
+
+float QValue3DAxisFormatter___subGridPositions_atList(void* ptr, int i)
+{
+	return static_cast<QVector<float>*>(ptr)->at(i);
+}
+
+void QValue3DAxisFormatter___subGridPositions_setList(void* ptr, float i)
+{
+	static_cast<QVector<float>*>(ptr)->append(i);
+}
+
+void* QValue3DAxisFormatter___subGridPositions_newList(void* ptr)
+{
+	return new QVector<float>;
 }
 

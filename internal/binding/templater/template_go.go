@@ -11,6 +11,8 @@ import (
 )
 
 func GoTemplate(module string, stub bool) []byte {
+	utils.Log.WithField("0_module", module).Debug("generating go")
+
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 

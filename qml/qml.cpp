@@ -120,6 +120,81 @@ void QJSEngine_DestroyQJSEngineDefault(void* ptr)
 
 }
 
+void* QJSEngine___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QJSEngine___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QJSEngine___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QJSEngine___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QJSEngine___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QJSEngine___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QJSEngine___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QJSEngine___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QJSEngine___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QJSEngine___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QJSEngine___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QJSEngine___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QJSEngine___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QJSEngine___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QJSEngine___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QJSEngine_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QJSEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -544,9 +619,124 @@ void QQmlApplicationEngine_DestroyQQmlApplicationEngine(void* ptr)
 	static_cast<QQmlApplicationEngine*>(ptr)->~QQmlApplicationEngine();
 }
 
-void* QQmlApplicationEngine_rootObjects_atList(void* ptr, int i)
+void* QQmlApplicationEngine___rootObjects_atList(void* ptr, int i)
 {
 	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___rootObjects_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlApplicationEngine___rootObjects_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlApplicationEngine___importPlugin_errors_atList(void* ptr, int i)
+{
+	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___importPlugin_errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QQmlError>*>(ptr)->append(*static_cast<QQmlError*>(i));
+}
+
+void* QQmlApplicationEngine___importPlugin_errors_newList(void* ptr)
+{
+	return new QList<QQmlError>;
+}
+
+void* QQmlApplicationEngine___warnings_warnings_atList(void* ptr, int i)
+{
+	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___warnings_warnings_setList(void* ptr, void* i)
+{
+	static_cast<QList<QQmlError>*>(ptr)->append(*static_cast<QQmlError*>(i));
+}
+
+void* QQmlApplicationEngine___warnings_warnings_newList(void* ptr)
+{
+	return new QList<QQmlError>;
+}
+
+void* QQmlApplicationEngine___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlApplicationEngine___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlApplicationEngine___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlApplicationEngine___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlApplicationEngine___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlApplicationEngine___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlApplicationEngine___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlApplicationEngine___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlApplicationEngine___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlApplicationEngine___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 char QQmlApplicationEngine_Event(void* ptr, void* e)
@@ -842,9 +1032,94 @@ void QQmlComponent_DestroyQQmlComponentDefault(void* ptr)
 
 }
 
-void* QQmlComponent_errors_atList(void* ptr, int i)
+void* QQmlComponent___errors_atList(void* ptr, int i)
 {
 	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
+}
+
+void QQmlComponent___errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QQmlError>*>(ptr)->append(*static_cast<QQmlError*>(i));
+}
+
+void* QQmlComponent___errors_newList(void* ptr)
+{
+	return new QList<QQmlError>;
+}
+
+void* QQmlComponent___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlComponent___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlComponent___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlComponent___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlComponent___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlComponent___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlComponent___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlComponent___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlComponent___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlComponent___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlComponent___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlComponent___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlComponent___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlComponent___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlComponent___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QQmlComponent_TimerEvent(void* ptr, void* event)
@@ -1034,6 +1309,81 @@ void QQmlContext_DestroyQQmlContextDefault(void* ptr)
 
 }
 
+void* QQmlContext___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlContext___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlContext___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlContext___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlContext___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlContext___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlContext___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlContext___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlContext___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlContext___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlContext___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlContext___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlContext___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlContext___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlContext___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QQmlContext_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQmlContext*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1130,6 +1480,7 @@ public:
 	MyQQmlEngine(QObject *parent) : QQmlEngine(parent) {};
 	bool event(QEvent * e) { return callbackQQmlEngine_Event(this, e) != 0; };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
+	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = const_cast<QList<QQmlError>*>(&warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQQmlEngine() { callbackQQmlEngine_DestroyQQmlEngine(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlEngine_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQmlEngine_ChildEvent(this, event); };
@@ -1204,6 +1555,11 @@ void* QQmlEngine_ImageProvider(void* ptr, char* providerId)
 struct QtQml_PackedString QQmlEngine_ImportPathList(void* ptr)
 {
 	return ({ QByteArray t32e5da = static_cast<QQmlEngine*>(ptr)->importPathList().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t32e5da.prepend("WHITESPACE").constData()+10), t32e5da.size()-10 }; });
+}
+
+char QQmlEngine_ImportPlugin(void* ptr, char* filePath, char* uri, void* errors)
+{
+	return static_cast<QQmlEngine*>(ptr)->importPlugin(QString(filePath), QString(uri), static_cast<QList<QQmlError>*>(errors));
 }
 
 void* QQmlEngine_IncubationController(void* ptr)
@@ -1306,6 +1662,21 @@ void QQmlEngine_TrimComponentCache(void* ptr)
 	static_cast<QQmlEngine*>(ptr)->trimComponentCache();
 }
 
+void QQmlEngine_ConnectWarnings(void* ptr)
+{
+	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)(const QList<QQmlError> &)>(&QQmlEngine::warnings), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)(const QList<QQmlError> &)>(&MyQQmlEngine::Signal_Warnings));
+}
+
+void QQmlEngine_DisconnectWarnings(void* ptr)
+{
+	QObject::disconnect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)(const QList<QQmlError> &)>(&QQmlEngine::warnings), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)(const QList<QQmlError> &)>(&MyQQmlEngine::Signal_Warnings));
+}
+
+void QQmlEngine_Warnings(void* ptr, void* warnings)
+{
+	static_cast<QQmlEngine*>(ptr)->warnings(*static_cast<QList<QQmlError>*>(warnings));
+}
+
 void QQmlEngine_DestroyQQmlEngine(void* ptr)
 {
 	static_cast<QQmlEngine*>(ptr)->~QQmlEngine();
@@ -1319,6 +1690,111 @@ void QQmlEngine_DestroyQQmlEngineDefault(void* ptr)
 int QQmlEngine_QQmlEngine_QmlRegisterSingletonType(void* url, char* uri, int versionMajor, int versionMinor, char* qmlName)
 {
 	return qmlRegisterSingletonType(*static_cast<QUrl*>(url), const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
+}
+
+void* QQmlEngine___importPlugin_errors_atList(void* ptr, int i)
+{
+	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
+}
+
+void QQmlEngine___importPlugin_errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QQmlError>*>(ptr)->append(*static_cast<QQmlError*>(i));
+}
+
+void* QQmlEngine___importPlugin_errors_newList(void* ptr)
+{
+	return new QList<QQmlError>;
+}
+
+void* QQmlEngine___warnings_warnings_atList(void* ptr, int i)
+{
+	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
+}
+
+void QQmlEngine___warnings_warnings_setList(void* ptr, void* i)
+{
+	static_cast<QList<QQmlError>*>(ptr)->append(*static_cast<QQmlError*>(i));
+}
+
+void* QQmlEngine___warnings_warnings_newList(void* ptr)
+{
+	return new QList<QQmlError>;
+}
+
+void* QQmlEngine___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlEngine___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlEngine___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlEngine___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlEngine___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlEngine___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlEngine___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlEngine___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlEngine___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlEngine___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlEngine___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlEngine___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlEngine___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlEngine___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlEngine___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QQmlEngine_TimerEvent(void* ptr, void* event)
@@ -1605,6 +2081,81 @@ void QQmlExpression_DestroyQQmlExpressionDefault(void* ptr)
 
 }
 
+void* QQmlExpression___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlExpression___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExpression___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlExpression___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlExpression___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlExpression___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlExpression___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlExpression___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExpression___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlExpression___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlExpression___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExpression___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlExpression___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlExpression___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExpression___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QQmlExpression_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQmlExpression*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1737,6 +2288,81 @@ void QQmlExtensionPlugin_RegisterTypes(void* ptr, char* uri)
 	static_cast<QQmlExtensionPlugin*>(ptr)->registerTypes(const_cast<const char*>(uri));
 }
 
+void* QQmlExtensionPlugin___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlExtensionPlugin___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExtensionPlugin___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlExtensionPlugin___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlExtensionPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlExtensionPlugin___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlExtensionPlugin___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlExtensionPlugin___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExtensionPlugin___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlExtensionPlugin___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlExtensionPlugin___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExtensionPlugin___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlExtensionPlugin___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlExtensionPlugin___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlExtensionPlugin___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QQmlExtensionPlugin_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQmlExtensionPlugin*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1860,6 +2486,81 @@ void QQmlFileSelector_SetSelector(void* ptr, void* selector)
 void QQmlFileSelector_DestroyQQmlFileSelector(void* ptr)
 {
 	static_cast<QQmlFileSelector*>(ptr)->~QQmlFileSelector();
+}
+
+void* QQmlFileSelector___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlFileSelector___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlFileSelector___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlFileSelector___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlFileSelector___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlFileSelector___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlFileSelector___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlFileSelector___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlFileSelector___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlFileSelector___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlFileSelector___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlFileSelector___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlFileSelector___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlFileSelector___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlFileSelector___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QQmlFileSelector_TimerEvent(void* ptr, void* event)
@@ -2089,9 +2790,19 @@ void QQmlIncubator_StatusChangedDefault(void* ptr, long long status)
 	static_cast<QQmlIncubator*>(ptr)->QQmlIncubator::statusChanged(static_cast<QQmlIncubator::Status>(status));
 }
 
-void* QQmlIncubator_errors_atList(void* ptr, int i)
+void* QQmlIncubator___errors_atList(void* ptr, int i)
 {
 	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
+}
+
+void QQmlIncubator___errors_setList(void* ptr, void* i)
+{
+	static_cast<QList<QQmlError>*>(ptr)->append(*static_cast<QQmlError*>(i));
+}
+
+void* QQmlIncubator___errors_newList(void* ptr)
+{
+	return new QList<QQmlError>;
 }
 
 void* QQmlListReference_NewQQmlListReference()
@@ -2485,6 +3196,81 @@ void QQmlPropertyMap_DestroyQQmlPropertyMap(void* ptr)
 void QQmlPropertyMap_DestroyQQmlPropertyMapDefault(void* ptr)
 {
 
+}
+
+void* QQmlPropertyMap___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlPropertyMap___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlPropertyMap___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQmlPropertyMap___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQmlPropertyMap___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQmlPropertyMap___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQmlPropertyMap___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlPropertyMap___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlPropertyMap___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlPropertyMap___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlPropertyMap___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlPropertyMap___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQmlPropertyMap___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQmlPropertyMap___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlPropertyMap___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QQmlPropertyMap_TimerEvent(void* ptr, void* event)

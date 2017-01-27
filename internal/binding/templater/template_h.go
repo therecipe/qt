@@ -6,9 +6,12 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func HTemplate(m string) []byte {
+	utils.Log.WithField("0_module", m).Debug("generating h")
+
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 

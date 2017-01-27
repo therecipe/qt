@@ -423,6 +423,35 @@ const (
 	QGeoAreaMonitorSource__NoError                  QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(3)
 )
 
+func NewQGeoAreaMonitorSource(parent core.QObject_ITF) *QGeoAreaMonitorSource {
+	var tmpValue = NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_NewQGeoAreaMonitorSource(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackQGeoAreaMonitorSource_ActiveMonitors
+func callbackQGeoAreaMonitorSource_ActiveMonitors(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoAreaMonitorSource::activeMonitors"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQGeoAreaMonitorSourceFromPointer(NewQGeoAreaMonitorSourceFromPointer(unsafe.Pointer(uintptr(1))).__activeMonitors_newList())
+			for _, v := range signal.(func() []*QGeoAreaMonitorInfo)() {
+				tmpList.__activeMonitors_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQGeoAreaMonitorSourceFromPointer(NewQGeoAreaMonitorSourceFromPointer(unsafe.Pointer(uintptr(1))).__activeMonitors_newList())
+		for _, v := range make([]*QGeoAreaMonitorInfo, 0) {
+			tmpList.__activeMonitors_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
 func (ptr *QGeoAreaMonitorSource) ConnectActiveMonitors(f func() []*QGeoAreaMonitorInfo) {
 	if ptr.Pointer() != nil {
 
@@ -442,12 +471,33 @@ func (ptr *QGeoAreaMonitorSource) ActiveMonitors() []*QGeoAreaMonitorInfo {
 		return func(l C.struct_QtPositioning_PackedList) []*QGeoAreaMonitorInfo {
 			var out = make([]*QGeoAreaMonitorInfo, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQGeoAreaMonitorSourceFromPointer(l.data).activeMonitors_atList(i)
+				out[i] = NewQGeoAreaMonitorSourceFromPointer(l.data).__activeMonitors_atList(i)
 			}
 			return out
 		}(C.QGeoAreaMonitorSource_ActiveMonitors(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QGeoAreaMonitorInfo, 0)
+}
+
+//export callbackQGeoAreaMonitorSource_ActiveMonitors2
+func callbackQGeoAreaMonitorSource_ActiveMonitors2(ptr unsafe.Pointer, lookupArea unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoAreaMonitorSource::activeMonitors2"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQGeoAreaMonitorSourceFromPointer(NewQGeoAreaMonitorSourceFromPointer(unsafe.Pointer(uintptr(1))).__activeMonitors_newList2())
+			for _, v := range signal.(func(*QGeoShape) []*QGeoAreaMonitorInfo)(NewQGeoShapeFromPointer(lookupArea)) {
+				tmpList.__activeMonitors_setList2(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQGeoAreaMonitorSourceFromPointer(NewQGeoAreaMonitorSourceFromPointer(unsafe.Pointer(uintptr(1))).__activeMonitors_newList2())
+		for _, v := range make([]*QGeoAreaMonitorInfo, 0) {
+			tmpList.__activeMonitors_setList2(v)
+		}
+		return tmpList.Pointer()
+	}()
 }
 
 func (ptr *QGeoAreaMonitorSource) ConnectActiveMonitors2(f func(lookupArea *QGeoShape) []*QGeoAreaMonitorInfo) {
@@ -469,12 +519,12 @@ func (ptr *QGeoAreaMonitorSource) ActiveMonitors2(lookupArea QGeoShape_ITF) []*Q
 		return func(l C.struct_QtPositioning_PackedList) []*QGeoAreaMonitorInfo {
 			var out = make([]*QGeoAreaMonitorInfo, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQGeoAreaMonitorSourceFromPointer(l.data).activeMonitors_atList(i)
+				out[i] = NewQGeoAreaMonitorSourceFromPointer(l.data).__activeMonitors_atList2(i)
 			}
 			return out
 		}(C.QGeoAreaMonitorSource_ActiveMonitors2(ptr.Pointer(), PointerFromQGeoShape(lookupArea)))
 	}
-	return nil
+	return make([]*QGeoAreaMonitorInfo, 0)
 }
 
 //export callbackQGeoAreaMonitorSource_AreaEntered
@@ -911,11 +961,164 @@ func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSourceDefault() {
 	}
 }
 
-func (ptr *QGeoAreaMonitorSource) activeMonitors_atList(i int) *QGeoAreaMonitorInfo {
+func (ptr *QGeoAreaMonitorSource) __activeMonitors_atList(i int) *QGeoAreaMonitorInfo {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorSource_activeMonitors_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorSource___activeMonitors_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __activeMonitors_setList(i QGeoAreaMonitorInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource___activeMonitors_setList(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) __activeMonitors_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorSource___activeMonitors_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __activeMonitors_atList2(i int) *QGeoAreaMonitorInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorSource___activeMonitors_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __activeMonitors_setList2(i QGeoAreaMonitorInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource___activeMonitors_setList2(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) __activeMonitors_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorSource___activeMonitors_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoAreaMonitorSource___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorSource___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QGeoAreaMonitorSource___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorSource___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoAreaMonitorSource___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorSource___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoAreaMonitorSource___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorSource___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoAreaMonitorSource___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorSource___findChildren_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -2249,6 +2452,124 @@ func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSourceDefault() {
 	}
 }
 
+func (ptr *QGeoPositionInfoSource) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoPositionInfoSource___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoPositionInfoSource___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QGeoPositionInfoSource___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoPositionInfoSource___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoPositionInfoSource___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoPositionInfoSource___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoPositionInfoSource___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoPositionInfoSource___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoPositionInfoSource___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoPositionInfoSource___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGeoPositionInfoSource_TimerEvent
 func callbackQGeoPositionInfoSource_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoPositionInfoSource::timerEvent"); signal != nil {
@@ -2618,7 +2939,7 @@ func callbackQGeoPositionInfoSourceFactory_AreaMonitor(ptr unsafe.Pointer, paren
 		return PointerFromQGeoAreaMonitorSource(signal.(func(*core.QObject) *QGeoAreaMonitorSource)(core.NewQObjectFromPointer(parent)))
 	}
 
-	return PointerFromQGeoAreaMonitorSource(nil)
+	return PointerFromQGeoAreaMonitorSource(NewQGeoAreaMonitorSource(nil))
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) ConnectAreaMonitor(f func(parent *core.QObject) *QGeoAreaMonitorSource) {
@@ -2821,6 +3142,18 @@ func NewQGeoRectangle6(other QGeoShape_ITF) *QGeoRectangle {
 	return tmpValue
 }
 
+func NewQGeoRectangle4(coordinates []*QGeoCoordinate) *QGeoRectangle {
+	var tmpValue = NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle4(func() unsafe.Pointer {
+		var tmpList = NewQGeoRectangleFromPointer(NewQGeoRectangleFromPointer(unsafe.Pointer(uintptr(1))).__QGeoRectangle_coordinates_newList4())
+		for _, v := range coordinates {
+			tmpList.__QGeoRectangle_coordinates_setList4(v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
+	return tmpValue
+}
+
 func (ptr *QGeoRectangle) BottomLeft() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoRectangle_BottomLeft(ptr.Pointer()))
@@ -2972,6 +3305,28 @@ func (ptr *QGeoRectangle) DestroyQGeoRectangle() {
 		C.QGeoRectangle_DestroyQGeoRectangle(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGeoRectangle) __QGeoRectangle_coordinates_atList4(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoRectangle___QGeoRectangle_coordinates_atList4(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoRectangle) __QGeoRectangle_coordinates_setList4(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoRectangle___QGeoRectangle_coordinates_setList4(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoRectangle) __QGeoRectangle_coordinates_newList4() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoRectangle___QGeoRectangle_coordinates_newList4(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QGeoSatelliteInfo struct {
@@ -3403,6 +3758,86 @@ func (ptr *QGeoSatelliteInfoSource) RequestUpdate(timeout int) {
 	}
 }
 
+//export callbackQGeoSatelliteInfoSource_SatellitesInUseUpdated
+func callbackQGeoSatelliteInfoSource_SatellitesInUseUpdated(ptr unsafe.Pointer, satellites C.struct_QtPositioning_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoSatelliteInfoSource::satellitesInUseUpdated"); signal != nil {
+		signal.(func([]*QGeoSatelliteInfo))(func(l C.struct_QtPositioning_PackedList) []*QGeoSatelliteInfo {
+			var out = make([]*QGeoSatelliteInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoSatelliteInfoSourceFromPointer(l.data).__satellitesInUseUpdated_satellites_atList(i)
+			}
+			return out
+		}(satellites))
+	}
+
+}
+
+func (ptr *QGeoSatelliteInfoSource) ConnectSatellitesInUseUpdated(f func(satellites []*QGeoSatelliteInfo)) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_ConnectSatellitesInUseUpdated(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoSatelliteInfoSource::satellitesInUseUpdated", f)
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) DisconnectSatellitesInUseUpdated() {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_DisconnectSatellitesInUseUpdated(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoSatelliteInfoSource::satellitesInUseUpdated")
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) SatellitesInUseUpdated(satellites []*QGeoSatelliteInfo) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_SatellitesInUseUpdated(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQGeoSatelliteInfoSourceFromPointer(NewQGeoSatelliteInfoSourceFromPointer(unsafe.Pointer(uintptr(1))).__satellitesInUseUpdated_satellites_newList())
+			for _, v := range satellites {
+				tmpList.__satellitesInUseUpdated_satellites_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+//export callbackQGeoSatelliteInfoSource_SatellitesInViewUpdated
+func callbackQGeoSatelliteInfoSource_SatellitesInViewUpdated(ptr unsafe.Pointer, satellites C.struct_QtPositioning_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoSatelliteInfoSource::satellitesInViewUpdated"); signal != nil {
+		signal.(func([]*QGeoSatelliteInfo))(func(l C.struct_QtPositioning_PackedList) []*QGeoSatelliteInfo {
+			var out = make([]*QGeoSatelliteInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoSatelliteInfoSourceFromPointer(l.data).__satellitesInViewUpdated_satellites_atList(i)
+			}
+			return out
+		}(satellites))
+	}
+
+}
+
+func (ptr *QGeoSatelliteInfoSource) ConnectSatellitesInViewUpdated(f func(satellites []*QGeoSatelliteInfo)) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_ConnectSatellitesInViewUpdated(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoSatelliteInfoSource::satellitesInViewUpdated", f)
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) DisconnectSatellitesInViewUpdated() {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_DisconnectSatellitesInViewUpdated(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoSatelliteInfoSource::satellitesInViewUpdated")
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) SatellitesInViewUpdated(satellites []*QGeoSatelliteInfo) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_SatellitesInViewUpdated(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQGeoSatelliteInfoSourceFromPointer(NewQGeoSatelliteInfoSourceFromPointer(unsafe.Pointer(uintptr(1))).__satellitesInViewUpdated_satellites_newList())
+			for _, v := range satellites {
+				tmpList.__satellitesInViewUpdated_satellites_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QGeoSatelliteInfoSource) SourceName() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QGeoSatelliteInfoSource_SourceName(ptr.Pointer()))
@@ -3503,6 +3938,168 @@ func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSourceDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __satellitesInUseUpdated_satellites_atList(i int) *QGeoSatelliteInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfoSource___satellitesInUseUpdated_satellites_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __satellitesInUseUpdated_satellites_setList(i QGeoSatelliteInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource___satellitesInUseUpdated_satellites_setList(ptr.Pointer(), PointerFromQGeoSatelliteInfo(i))
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __satellitesInUseUpdated_satellites_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoSatelliteInfoSource___satellitesInUseUpdated_satellites_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __satellitesInViewUpdated_satellites_atList(i int) *QGeoSatelliteInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfoSource___satellitesInViewUpdated_satellites_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __satellitesInViewUpdated_satellites_setList(i QGeoSatelliteInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource___satellitesInViewUpdated_satellites_setList(ptr.Pointer(), PointerFromQGeoSatelliteInfo(i))
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __satellitesInViewUpdated_satellites_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoSatelliteInfoSource___satellitesInViewUpdated_satellites_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoSatelliteInfoSource___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoSatelliteInfoSource___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QGeoSatelliteInfoSource___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoSatelliteInfoSource___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoSatelliteInfoSource___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoSatelliteInfoSource___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoSatelliteInfoSource___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoSatelliteInfoSource___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QGeoSatelliteInfoSource___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoSatelliteInfoSource___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGeoSatelliteInfoSource_TimerEvent
@@ -4379,6 +4976,124 @@ func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QNmeaPositionInfoSource) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QNmeaPositionInfoSource___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QNmeaPositionInfoSource___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNmeaPositionInfoSource___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QNmeaPositionInfoSource___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QNmeaPositionInfoSource___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QNmeaPositionInfoSource___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QNmeaPositionInfoSource___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QNmeaPositionInfoSource___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QNmeaPositionInfoSource___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QNmeaPositionInfoSource___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQNmeaPositionInfoSource_SetPreferredPositioningMethods

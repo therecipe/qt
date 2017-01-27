@@ -21,6 +21,8 @@ func (c *Class) fix() {
 
 	c.fixBases()
 
+	c.FixGenericHelper()
+
 	c.fixFunctions((*Function).fixGeneral_AfterClasses)
 }
 

@@ -555,6 +555,124 @@ func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme core.QByteArray_ITF) 
 	return nil
 }
 
+func (ptr *QQuickWebEngineProfile) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QQuickWebEngineProfile___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickWebEngineProfile___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QQuickWebEngineProfile) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QQuickWebEngineProfile___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QQuickWebEngineProfile___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickWebEngineProfile___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QQuickWebEngineProfile) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QQuickWebEngineProfile___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QQuickWebEngineProfile___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickWebEngineProfile___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QQuickWebEngineProfile___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QQuickWebEngineProfile___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickWebEngineProfile___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QQuickWebEngineProfile___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QQuickWebEngineProfile___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickWebEngineProfile___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QQuickWebEngineProfile) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QQuickWebEngineProfile___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickWebEngineProfile_TimerEvent
 func callbackQQuickWebEngineProfile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::timerEvent"); signal != nil {
@@ -1272,6 +1390,124 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
 	}
 }
 
+func (ptr *QWebEngineCookieStore) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineCookieStore___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineCookieStore___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineCookieStore) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineCookieStore___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEngineCookieStore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineCookieStore___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEngineCookieStore) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineCookieStore___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineCookieStore___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineCookieStore___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineCookieStore___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineCookieStore___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineCookieStore___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineCookieStore___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineCookieStore___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineCookieStore___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineCookieStore) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineCookieStore___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQWebEngineCookieStore_TimerEvent
 func callbackQWebEngineCookieStore_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::timerEvent"); signal != nil {
@@ -1900,6 +2136,124 @@ func (ptr *QWebEngineDownloadItem) Url() *core.QUrl {
 	return nil
 }
 
+func (ptr *QWebEngineDownloadItem) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineDownloadItem___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineDownloadItem___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEngineDownloadItem___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineDownloadItem___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineDownloadItem___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineDownloadItem___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineDownloadItem___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineDownloadItem___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineDownloadItem___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineDownloadItem___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQWebEngineDownloadItem_TimerEvent
 func callbackQWebEngineDownloadItem_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::timerEvent"); signal != nil {
@@ -2361,12 +2715,12 @@ func (ptr *QWebEngineHistory) BackItems(maxItems int) []*QWebEngineHistoryItem {
 		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
 			var out = make([]*QWebEngineHistoryItem, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQWebEngineHistoryFromPointer(l.data).backItems_atList(i)
+				out[i] = NewQWebEngineHistoryFromPointer(l.data).__backItems_atList(i)
 			}
 			return out
 		}(C.QWebEngineHistory_BackItems(ptr.Pointer(), C.int(int32(maxItems))))
 	}
-	return nil
+	return make([]*QWebEngineHistoryItem, 0)
 }
 
 func (ptr *QWebEngineHistory) CanGoBack() bool {
@@ -2432,12 +2786,12 @@ func (ptr *QWebEngineHistory) ForwardItems(maxItems int) []*QWebEngineHistoryIte
 		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
 			var out = make([]*QWebEngineHistoryItem, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQWebEngineHistoryFromPointer(l.data).forwardItems_atList(i)
+				out[i] = NewQWebEngineHistoryFromPointer(l.data).__forwardItems_atList(i)
 			}
 			return out
 		}(C.QWebEngineHistory_ForwardItems(ptr.Pointer(), C.int(int32(maxItems))))
 	}
-	return nil
+	return make([]*QWebEngineHistoryItem, 0)
 }
 
 func (ptr *QWebEngineHistory) GoToItem(item QWebEngineHistoryItem_ITF) {
@@ -2460,37 +2814,76 @@ func (ptr *QWebEngineHistory) Items() []*QWebEngineHistoryItem {
 		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
 			var out = make([]*QWebEngineHistoryItem, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQWebEngineHistoryFromPointer(l.data).items_atList(i)
+				out[i] = NewQWebEngineHistoryFromPointer(l.data).__items_atList(i)
 			}
 			return out
 		}(C.QWebEngineHistory_Items(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QWebEngineHistoryItem, 0)
 }
 
-func (ptr *QWebEngineHistory) backItems_atList(i int) *QWebEngineHistoryItem {
+func (ptr *QWebEngineHistory) __backItems_atList(i int) *QWebEngineHistoryItem {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_backItems_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory___backItems_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QWebEngineHistory) forwardItems_atList(i int) *QWebEngineHistoryItem {
+func (ptr *QWebEngineHistory) __backItems_setList(i QWebEngineHistoryItem_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_forwardItems_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QWebEngineHistory___backItems_setList(ptr.Pointer(), PointerFromQWebEngineHistoryItem(i))
+	}
+}
+
+func (ptr *QWebEngineHistory) __backItems_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineHistory___backItems_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineHistory) __forwardItems_atList(i int) *QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory___forwardItems_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QWebEngineHistory) items_atList(i int) *QWebEngineHistoryItem {
+func (ptr *QWebEngineHistory) __forwardItems_setList(i QWebEngineHistoryItem_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_items_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QWebEngineHistory___forwardItems_setList(ptr.Pointer(), PointerFromQWebEngineHistoryItem(i))
+	}
+}
+
+func (ptr *QWebEngineHistory) __forwardItems_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineHistory___forwardItems_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineHistory) __items_atList(i int) *QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory___items_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineHistory) __items_setList(i QWebEngineHistoryItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineHistory___items_setList(ptr.Pointer(), PointerFromQWebEngineHistoryItem(i))
+	}
+}
+
+func (ptr *QWebEngineHistory) __items_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineHistory___items_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -4047,6 +4440,124 @@ func (ptr *QWebEnginePage) WindowCloseRequested() {
 	}
 }
 
+func (ptr *QWebEnginePage) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEnginePage___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEnginePage) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEnginePage___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEnginePage___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEnginePage) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEnginePage___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEnginePage___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEnginePage) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEnginePage___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEnginePage___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEnginePage) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEnginePage___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEnginePage___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEnginePage) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEnginePage___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQWebEnginePage_TimerEvent
 func callbackQWebEnginePage_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::timerEvent"); signal != nil {
@@ -4439,6 +4950,18 @@ func (ptr *QWebEngineProfile) ClearHttpCache() {
 	}
 }
 
+func (ptr *QWebEngineProfile) ClearVisitedLinks(urls []*core.QUrl) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_ClearVisitedLinks(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQWebEngineProfileFromPointer(NewQWebEngineProfileFromPointer(unsafe.Pointer(uintptr(1))).__clearVisitedLinks_urls_newList())
+			for _, v := range urls {
+				tmpList.__clearVisitedLinks_urls_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QWebEngineProfile) CookieStore() *QWebEngineCookieStore {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineCookieStoreFromPointer(C.QWebEngineProfile_CookieStore(ptr.Pointer()))
@@ -4660,6 +5183,146 @@ func (ptr *QWebEngineProfile) VisitedLinksContainsUrl(url core.QUrl_ITF) bool {
 		return C.QWebEngineProfile_VisitedLinksContainsUrl(ptr.Pointer(), core.PointerFromQUrl(url)) != 0
 	}
 	return false
+}
+
+func (ptr *QWebEngineProfile) __clearVisitedLinks_urls_atList(i int) *core.QUrl {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineProfile___clearVisitedLinks_urls_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __clearVisitedLinks_urls_setList(i core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile___clearVisitedLinks_urls_setList(ptr.Pointer(), core.PointerFromQUrl(i))
+	}
+}
+
+func (ptr *QWebEngineProfile) __clearVisitedLinks_urls_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineProfile___clearVisitedLinks_urls_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineProfile___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineProfile) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineProfile___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEngineProfile___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEngineProfile) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineProfile___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineProfile___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineProfile) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineProfile___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineProfile___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineProfile) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineProfile___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineProfile___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineProfile) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineProfile___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineProfile_TimerEvent
@@ -5221,12 +5884,24 @@ func (ptr *QWebEngineScriptCollection) FindScripts(name string) []*QWebEngineScr
 		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineScript {
 			var out = make([]*QWebEngineScript, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQWebEngineScriptCollectionFromPointer(l.data).findScripts_atList(i)
+				out[i] = NewQWebEngineScriptCollectionFromPointer(l.data).__findScripts_atList(i)
 			}
 			return out
 		}(C.QWebEngineScriptCollection_FindScripts(ptr.Pointer(), nameC))
 	}
-	return nil
+	return make([]*QWebEngineScript, 0)
+}
+
+func (ptr *QWebEngineScriptCollection) Insert2(list []*QWebEngineScript) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineScriptCollection_Insert2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQWebEngineScriptCollectionFromPointer(NewQWebEngineScriptCollectionFromPointer(unsafe.Pointer(uintptr(1))).__insert_list_newList2())
+			for _, v := range list {
+				tmpList.__insert_list_setList2(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
 }
 
 func (ptr *QWebEngineScriptCollection) Insert(s QWebEngineScript_ITF) {
@@ -5261,12 +5936,12 @@ func (ptr *QWebEngineScriptCollection) ToList() []*QWebEngineScript {
 		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineScript {
 			var out = make([]*QWebEngineScript, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQWebEngineScriptCollectionFromPointer(l.data).toList_atList(i)
+				out[i] = NewQWebEngineScriptCollectionFromPointer(l.data).__toList_atList(i)
 			}
 			return out
 		}(C.QWebEngineScriptCollection_ToList(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QWebEngineScript, 0)
 }
 
 func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
@@ -5276,20 +5951,68 @@ func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
 	}
 }
 
-func (ptr *QWebEngineScriptCollection) findScripts_atList(i int) *QWebEngineScript {
+func (ptr *QWebEngineScriptCollection) __findScripts_atList(i int) *QWebEngineScript {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_findScripts_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection___findScripts_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QWebEngineScriptCollection) toList_atList(i int) *QWebEngineScript {
+func (ptr *QWebEngineScriptCollection) __findScripts_setList(i QWebEngineScript_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_toList_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QWebEngineScriptCollection___findScripts_setList(ptr.Pointer(), PointerFromQWebEngineScript(i))
+	}
+}
+
+func (ptr *QWebEngineScriptCollection) __findScripts_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineScriptCollection___findScripts_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineScriptCollection) __insert_list_atList2(i int) *QWebEngineScript {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection___insert_list_atList2(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineScriptCollection) __insert_list_setList2(i QWebEngineScript_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineScriptCollection___insert_list_setList2(ptr.Pointer(), PointerFromQWebEngineScript(i))
+	}
+}
+
+func (ptr *QWebEngineScriptCollection) __insert_list_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineScriptCollection___insert_list_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineScriptCollection) __toList_atList(i int) *QWebEngineScript {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection___toList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineScriptCollection) __toList_setList(i QWebEngineScript_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineScriptCollection___toList_setList(ptr.Pointer(), PointerFromQWebEngineScript(i))
+	}
+}
+
+func (ptr *QWebEngineScriptCollection) __toList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineScriptCollection___toList_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -5705,6 +6428,124 @@ func (ptr *QWebEngineUrlRequestInterceptor) InterceptRequest(info QWebEngineUrlR
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_InterceptRequest(ptr.Pointer(), PointerFromQWebEngineUrlRequestInfo(info))
 	}
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestInterceptor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestInterceptor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestInterceptor___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestInterceptor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestInterceptor___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestInterceptor___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestInterceptor___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestInterceptor___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestInterceptor___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestInterceptor___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestInterceptor___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestInterceptor___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestInterceptor___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestInterceptor___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestInterceptor___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineUrlRequestInterceptor_TimerEvent
@@ -6128,6 +6969,124 @@ func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
 	return nil
 }
 
+func (ptr *QWebEngineUrlRequestJob) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestJob___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestJob___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestJob) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestJob___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestJob___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestJob___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestJob) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestJob___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestJob___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestJob___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestJob___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestJob___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestJob___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestJob___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlRequestJob___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlRequestJob___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlRequestJob) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlRequestJob___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQWebEngineUrlRequestJob_TimerEvent
 func callbackQWebEngineUrlRequestJob_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::timerEvent"); signal != nil {
@@ -6533,6 +7492,124 @@ func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandler() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlSchemeHandler___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlSchemeHandler___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlSchemeHandler___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEngineUrlSchemeHandler___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlSchemeHandler___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlSchemeHandler___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlSchemeHandler___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlSchemeHandler___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlSchemeHandler___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlSchemeHandler___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlSchemeHandler___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlSchemeHandler___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineUrlSchemeHandler___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlSchemeHandler___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineUrlSchemeHandler___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineUrlSchemeHandler_TimerEvent
@@ -7850,6 +8927,196 @@ func (ptr *QWebEngineView) UrlChanged(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_UrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
+}
+
+func (ptr *QWebEngineView) __actions_atList(i int) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		var tmpValue = widgets.NewQActionFromPointer(C.QWebEngineView___actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __actions_setList(i widgets.QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
+	}
+}
+
+func (ptr *QWebEngineView) __actions_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___actions_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __addActions_actions_atList(i int) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		var tmpValue = widgets.NewQActionFromPointer(C.QWebEngineView___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __addActions_actions_setList(i widgets.QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
+	}
+}
+
+func (ptr *QWebEngineView) __addActions_actions_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___addActions_actions_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __insertActions_actions_atList(i int) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		var tmpValue = widgets.NewQActionFromPointer(C.QWebEngineView___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __insertActions_actions_setList(i widgets.QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
+	}
+}
+
+func (ptr *QWebEngineView) __insertActions_actions_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___insertActions_actions_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineView___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineView) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QWebEngineView___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QWebEngineView) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineView___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineView) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineView___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineView) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QWebEngineView___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QWebEngineView) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QWebEngineView___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineView_ActionEvent

@@ -152,6 +152,51 @@ struct QtSensors_PackedString QAccelerometer_QAccelerometer_Type()
 	return QtSensors_PackedString { const_cast<char*>(QAccelerometer::type), -1 };
 }
 
+void* QAccelerometer___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QAccelerometer___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QAccelerometer___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QAccelerometer___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAccelerometer___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAccelerometer___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAccelerometer___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAccelerometer___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAccelerometer___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
 char QAccelerometer_Start(void* ptr)
 {
 	bool returnArg;
@@ -413,6 +458,51 @@ void QAltimeter_DestroyQAltimeter(void* ptr)
 struct QtSensors_PackedString QAltimeter_QAltimeter_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QAltimeter::type), -1 };
+}
+
+void* QAltimeter___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QAltimeter___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QAltimeter___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QAltimeter___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAltimeter___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAltimeter___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAltimeter___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAltimeter___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAltimeter___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QAltimeter_Start(void* ptr)
@@ -792,6 +882,51 @@ struct QtSensors_PackedString QAmbientLightSensor_QAmbientLightSensor_Type()
 	return QtSensors_PackedString { const_cast<char*>(QAmbientLightSensor::type), -1 };
 }
 
+void* QAmbientLightSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QAmbientLightSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QAmbientLightSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QAmbientLightSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAmbientLightSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAmbientLightSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAmbientLightSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAmbientLightSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAmbientLightSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
 char QAmbientLightSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -1035,6 +1170,51 @@ struct QtSensors_PackedString QAmbientTemperatureSensor_QAmbientTemperatureSenso
 	return QtSensors_PackedString { const_cast<char*>(QAmbientTemperatureSensor::type), -1 };
 }
 
+void* QAmbientTemperatureSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QAmbientTemperatureSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QAmbientTemperatureSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QAmbientTemperatureSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAmbientTemperatureSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAmbientTemperatureSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QAmbientTemperatureSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAmbientTemperatureSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAmbientTemperatureSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
 char QAmbientTemperatureSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -1188,6 +1368,51 @@ void QCompass_DestroyQCompassDefault(void* ptr)
 struct QtSensors_PackedString QCompass_QCompass_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QCompass::type), -1 };
+}
+
+void* QCompass___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QCompass___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QCompass___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QCompass___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QCompass___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QCompass___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QCompass___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QCompass___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QCompass___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QCompass_Start(void* ptr)
@@ -1554,6 +1779,51 @@ struct QtSensors_PackedString QDistanceSensor_QDistanceSensor_Type()
 	return QtSensors_PackedString { const_cast<char*>(QDistanceSensor::type), -1 };
 }
 
+void* QDistanceSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QDistanceSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QDistanceSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QDistanceSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QDistanceSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QDistanceSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QDistanceSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QDistanceSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QDistanceSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
 char QDistanceSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -1707,6 +1977,51 @@ void QGyroscope_DestroyQGyroscopeDefault(void* ptr)
 struct QtSensors_PackedString QGyroscope_QGyroscope_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QGyroscope::type), -1 };
+}
+
+void* QGyroscope___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QGyroscope___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QGyroscope___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QGyroscope___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QGyroscope___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGyroscope___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QGyroscope___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QGyroscope___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGyroscope___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QGyroscope_Start(void* ptr)
@@ -2083,6 +2398,51 @@ struct QtSensors_PackedString QHolsterSensor_QHolsterSensor_Type()
 	return QtSensors_PackedString { const_cast<char*>(QHolsterSensor::type), -1 };
 }
 
+void* QHolsterSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QHolsterSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QHolsterSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QHolsterSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QHolsterSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QHolsterSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QHolsterSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QHolsterSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QHolsterSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
 char QHolsterSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -2347,6 +2707,51 @@ void QIRProximitySensor_DestroyQIRProximitySensorDefault(void* ptr)
 struct QtSensors_PackedString QIRProximitySensor_QIRProximitySensor_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QIRProximitySensor::type), -1 };
+}
+
+void* QIRProximitySensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QIRProximitySensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QIRProximitySensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QIRProximitySensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QIRProximitySensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QIRProximitySensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QIRProximitySensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QIRProximitySensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QIRProximitySensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QIRProximitySensor_Start(void* ptr)
@@ -2641,6 +3046,51 @@ struct QtSensors_PackedString QLightSensor_QLightSensor_Type()
 	return QtSensors_PackedString { const_cast<char*>(QLightSensor::type), -1 };
 }
 
+void* QLightSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QLightSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QLightSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QLightSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QLightSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QLightSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QLightSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QLightSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QLightSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
 char QLightSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -2820,6 +3270,51 @@ void QMagnetometer_DestroyQMagnetometerDefault(void* ptr)
 struct QtSensors_PackedString QMagnetometer_QMagnetometer_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QMagnetometer::type), -1 };
+}
+
+void* QMagnetometer___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QMagnetometer___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QMagnetometer___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QMagnetometer___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QMagnetometer___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QMagnetometer___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QMagnetometer___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QMagnetometer___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QMagnetometer___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QMagnetometer_Start(void* ptr)
@@ -3229,6 +3724,51 @@ struct QtSensors_PackedString QOrientationSensor_QOrientationSensor_Type()
 	return QtSensors_PackedString { const_cast<char*>(QOrientationSensor::type), -1 };
 }
 
+void* QOrientationSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QOrientationSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QOrientationSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QOrientationSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QOrientationSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QOrientationSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QOrientationSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QOrientationSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QOrientationSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
 char QOrientationSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -3480,6 +4020,51 @@ void QPressureSensor_DestroyQPressureSensor(void* ptr)
 struct QtSensors_PackedString QPressureSensor_QPressureSensor_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QPressureSensor::type), -1 };
+}
+
+void* QPressureSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QPressureSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QPressureSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QPressureSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QPressureSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QPressureSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QPressureSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QPressureSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QPressureSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QPressureSensor_Start(void* ptr)
@@ -3746,6 +4331,51 @@ void QProximitySensor_DestroyQProximitySensorDefault(void* ptr)
 struct QtSensors_PackedString QProximitySensor_QProximitySensor_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QProximitySensor::type), -1 };
+}
+
+void* QProximitySensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QProximitySensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QProximitySensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QProximitySensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QProximitySensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QProximitySensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QProximitySensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QProximitySensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QProximitySensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QProximitySensor_Start(void* ptr)
@@ -4048,6 +4678,51 @@ void QRotationSensor_DestroyQRotationSensorDefault(void* ptr)
 struct QtSensors_PackedString QRotationSensor_QRotationSensor_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QRotationSensor::type), -1 };
+}
+
+void* QRotationSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QRotationSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QRotationSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QRotationSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QRotationSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QRotationSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QRotationSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QRotationSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QRotationSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
 }
 
 char QRotationSensor_Start(void* ptr)
@@ -4631,19 +5306,124 @@ void QSensor_DestroyQSensorDefault(void* ptr)
 
 }
 
-void* QSensor_filters_atList(void* ptr, int i)
+void* QSensor___filters_atList(void* ptr, int i)
 {
 	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
 }
 
-void* QSensor_sensorTypes_atList(void* ptr, int i)
+void QSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QSensor___sensorTypes_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
-void* QSensor_sensorsForType_atList(void* ptr, int i)
+void QSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensor___sensorsForType_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensor___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSensor___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensor___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSensor___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSensor___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensor___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensor___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensor___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensor___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensor___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensor___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensor___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensor___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensor___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensor___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QSensor_TimerEvent(void* ptr, void* event)
@@ -4821,6 +5601,81 @@ void QSensorBackend_Start(void* ptr)
 void QSensorBackend_Stop(void* ptr)
 {
 	static_cast<QSensorBackend*>(ptr)->stop();
+}
+
+void* QSensorBackend___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSensorBackend___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorBackend___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSensorBackend___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSensorBackend___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensorBackend___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensorBackend___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorBackend___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorBackend___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorBackend___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorBackend___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorBackend___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorBackend___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorBackend___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorBackend___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QSensorBackend_TimerEvent(void* ptr, void* event)
@@ -5046,6 +5901,81 @@ void QSensorGesture_DestroyQSensorGesture(void* ptr)
 	static_cast<QSensorGesture*>(ptr)->~QSensorGesture();
 }
 
+void* QSensorGesture___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSensorGesture___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGesture___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSensorGesture___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSensorGesture___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensorGesture___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensorGesture___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGesture___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGesture___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorGesture___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGesture___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGesture___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorGesture___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGesture___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGesture___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QSensorGesture_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QSensorGesture*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -5197,6 +6127,81 @@ void QSensorGestureManager_DestroyQSensorGestureManager(void* ptr)
 	static_cast<QSensorGestureManager*>(ptr)->~QSensorGestureManager();
 }
 
+void* QSensorGestureManager___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSensorGestureManager___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureManager___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSensorGestureManager___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSensorGestureManager___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensorGestureManager___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensorGestureManager___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGestureManager___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureManager___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorGestureManager___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGestureManager___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureManager___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorGestureManager___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGestureManager___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureManager___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QSensorGestureManager_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QSensorGestureManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -5290,11 +6295,17 @@ void* QSensorGestureManager_MetaObjectDefault(void* ptr)
 class MyQSensorGesturePluginInterface: public QSensorGesturePluginInterface
 {
 public:
-	
+	MyQSensorGesturePluginInterface() : QSensorGesturePluginInterface() {};
+	QList<QSensorGestureRecognizer *> createRecognizers() { return *static_cast<QList<QSensorGestureRecognizer *>*>(callbackQSensorGesturePluginInterface_CreateRecognizers(this)); };
 	QString name() const { return QString(callbackQSensorGesturePluginInterface_Name(const_cast<MyQSensorGesturePluginInterface*>(this))); };
 	QStringList supportedIds() const { return QString(callbackQSensorGesturePluginInterface_SupportedIds(const_cast<MyQSensorGesturePluginInterface*>(this))).split("|", QString::SkipEmptyParts); };
 	 ~MyQSensorGesturePluginInterface() { callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(this); };
 };
+
+void* QSensorGesturePluginInterface_NewQSensorGesturePluginInterface()
+{
+	return new MyQSensorGesturePluginInterface();
+}
 
 struct QtSensors_PackedList QSensorGesturePluginInterface_CreateRecognizers(void* ptr)
 {
@@ -5321,9 +6332,19 @@ void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterfaceDefault(v
 
 }
 
-void* QSensorGesturePluginInterface_createRecognizers_atList(void* ptr, int i)
+void* QSensorGesturePluginInterface___createRecognizers_atList(void* ptr, int i)
 {
 	return const_cast<QSensorGestureRecognizer*>(static_cast<QList<QSensorGestureRecognizer *>*>(ptr)->at(i));
+}
+
+void QSensorGesturePluginInterface___createRecognizers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorGestureRecognizer *>*>(ptr)->append(static_cast<QSensorGestureRecognizer*>(i));
+}
+
+void* QSensorGesturePluginInterface___createRecognizers_newList(void* ptr)
+{
+	return new QList<QSensorGestureRecognizer *>;
 }
 
 class MyQSensorGestureRecognizer: public QSensorGestureRecognizer
@@ -5421,6 +6442,81 @@ void QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(void* ptr)
 void QSensorGestureRecognizer_DestroyQSensorGestureRecognizerDefault(void* ptr)
 {
 
+}
+
+void* QSensorGestureRecognizer___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSensorGestureRecognizer___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureRecognizer___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSensorGestureRecognizer___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSensorGestureRecognizer___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensorGestureRecognizer___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensorGestureRecognizer___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGestureRecognizer___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureRecognizer___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorGestureRecognizer___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGestureRecognizer___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureRecognizer___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorGestureRecognizer___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorGestureRecognizer___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorGestureRecognizer___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QSensorGestureRecognizer_TimerEvent(void* ptr, void* event)
@@ -5569,6 +6665,81 @@ int QSensorReading_ValueCount(void* ptr)
 	return static_cast<QSensorReading*>(ptr)->valueCount();
 }
 
+void* QSensorReading___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSensorReading___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorReading___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSensorReading___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSensorReading___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSensorReading___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSensorReading___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorReading___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorReading___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorReading___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorReading___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorReading___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSensorReading___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSensorReading___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSensorReading___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QSensorReading_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QSensorReading*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -5688,6 +6859,81 @@ void QTapReading_SetDoubleTap(void* ptr, char doubleTap)
 void QTapReading_SetTapDirection(void* ptr, long long tapDirection)
 {
 	static_cast<QTapReading*>(ptr)->setTapDirection(static_cast<QTapReading::TapDirection>(tapDirection));
+}
+
+void* QTapReading___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QTapReading___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapReading___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QTapReading___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTapReading___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTapReading___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTapReading___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTapReading___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapReading___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTapReading___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTapReading___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapReading___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTapReading___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTapReading___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapReading___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QTapReading_TimerEvent(void* ptr, void* event)
@@ -5849,6 +7095,126 @@ struct QtSensors_PackedString QTapSensor_QTapSensor_Type()
 	return QtSensors_PackedString { const_cast<char*>(QTapSensor::type), -1 };
 }
 
+void* QTapSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QTapSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QTapSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QTapSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTapSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTapSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTapSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTapSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTapSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTapSensor___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QTapSensor___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapSensor___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QTapSensor___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTapSensor___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTapSensor___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTapSensor___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTapSensor___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapSensor___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTapSensor___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTapSensor___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapSensor___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTapSensor___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTapSensor___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTapSensor___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 char QTapSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -5992,6 +7358,81 @@ void QTiltReading_SetYRotation(void* ptr, double y)
 	static_cast<QTiltReading*>(ptr)->setYRotation(y);
 }
 
+void* QTiltReading___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QTiltReading___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltReading___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QTiltReading___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTiltReading___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTiltReading___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTiltReading___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTiltReading___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltReading___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTiltReading___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTiltReading___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltReading___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTiltReading___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTiltReading___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltReading___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QTiltReading_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QTiltReading*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -6105,6 +7546,126 @@ void QTiltSensor_Calibrate(void* ptr)
 struct QtSensors_PackedString QTiltSensor_QTiltSensor_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QTiltSensor::type), -1 };
+}
+
+void* QTiltSensor___filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void QTiltSensor___filters_setList(void* ptr, void* i)
+{
+	static_cast<QList<QSensorFilter *>*>(ptr)->append(static_cast<QSensorFilter*>(i));
+}
+
+void* QTiltSensor___filters_newList(void* ptr)
+{
+	return new QList<QSensorFilter *>;
+}
+
+void* QTiltSensor___sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTiltSensor___sensorTypes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTiltSensor___sensorTypes_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTiltSensor___sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTiltSensor___sensorsForType_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTiltSensor___sensorsForType_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTiltSensor___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QTiltSensor___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltSensor___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QTiltSensor___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QTiltSensor___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QTiltSensor___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QTiltSensor___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTiltSensor___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltSensor___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTiltSensor___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTiltSensor___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltSensor___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QTiltSensor___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QTiltSensor___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QTiltSensor___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 char QTiltSensor_Start(void* ptr)

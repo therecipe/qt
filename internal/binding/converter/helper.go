@@ -64,6 +64,9 @@ func isClass(value string) bool {
 }
 
 func isEnum(class, value string) bool {
+	if strings.ContainsAny(value, "<>") {
+		return false
+	}
 	if strings.Contains(value, "::") {
 		return true
 	}

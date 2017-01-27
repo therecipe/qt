@@ -161,6 +161,22 @@ func GoInput(name, value string, f *parser.Function) string {
 			}
 			return fmt.Sprintf("PointerFrom%v(%v)", strings.Title(value), name)
 		}
+
+	case parser.IsPackedList(value):
+		{
+			if strings.ContainsAny(name, "*&()[]") {
+				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+			}
+			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+		}
+
+	case parser.IsPackedMap(value):
+		{
+			if strings.ContainsAny(name, "*&()[]") {
+				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+			}
+			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+		}
 	}
 
 	f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
@@ -337,6 +353,15 @@ func cppInput(name, value string, f *parser.Function) string {
 			}
 
 			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("static_cast<%v*>(%v)", value, name)
+			}
+
+			return fmt.Sprintf("*static_cast<%v*>(%v)", value, name)
+		}
+
+	case parser.IsPackedList(value) || parser.IsPackedMap(value):
+		{
+			if strings.HasSuffix(vOld, "*") {
 				return fmt.Sprintf("static_cast<%v*>(%v)", value, name)
 			}
 

@@ -11,15 +11,17 @@
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
+#include <QHash>
 #include <QHelpEvent>
+#include <QList>
+#include <QMap>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
 #include <QObject>
 #include <QPainter>
-#include <QPixmap>
-#include <QRect>
+#include <QPersistentModelIndex>
 #include <QSize>
 #include <QSqlDatabase>
 #include <QSqlDriver>
@@ -599,6 +601,81 @@ void QSqlDriver_DestroyQSqlDriver(void* ptr)
 	static_cast<QSqlDriver*>(ptr)->~QSqlDriver();
 }
 
+void* QSqlDriver___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSqlDriver___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriver___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSqlDriver___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSqlDriver___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSqlDriver___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSqlDriver___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlDriver___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriver___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlDriver___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlDriver___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriver___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlDriver___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlDriver___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriver___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QSqlDriver_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QSqlDriver*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -740,6 +817,81 @@ void* QSqlDriverPlugin_Create(void* ptr, char* key)
 void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr)
 {
 	static_cast<QSqlDriverPlugin*>(ptr)->~QSqlDriverPlugin();
+}
+
+void* QSqlDriverPlugin___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSqlDriverPlugin___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriverPlugin___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSqlDriverPlugin___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSqlDriverPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSqlDriverPlugin___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSqlDriverPlugin___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlDriverPlugin___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriverPlugin___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlDriverPlugin___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlDriverPlugin___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriverPlugin___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlDriverPlugin___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlDriverPlugin___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlDriverPlugin___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QSqlDriverPlugin_TimerEvent(void* ptr, void* event)
@@ -1102,6 +1254,11 @@ void* QSqlQuery_BoundValue2(void* ptr, int pos)
 	return new QVariant(static_cast<QSqlQuery*>(ptr)->boundValue(pos));
 }
 
+struct QtSql_PackedList QSqlQuery_BoundValues(void* ptr)
+{
+	return ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(static_cast<QSqlQuery*>(ptr)->boundValues()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QSqlQuery_Clear(void* ptr)
 {
 	static_cast<QSqlQuery*>(ptr)->clear();
@@ -1267,6 +1424,41 @@ void QSqlQuery_DestroyQSqlQuery(void* ptr)
 	static_cast<QSqlQuery*>(ptr)->~QSqlQuery();
 }
 
+void* QSqlQuery___boundValues_atList(void* ptr, char* i)
+{
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+}
+
+void QSqlQuery___boundValues_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+}
+
+void* QSqlQuery___boundValues_newList(void* ptr)
+{
+	return new QMap<QString, QVariant>;
+}
+
+struct QtSql_PackedList QSqlQuery___boundValues_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedString QSqlQuery_____boundValues_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtSql_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QSqlQuery_____boundValues_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QSqlQuery_____boundValues_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
+}
+
 class MyQSqlQueryModel: public QSqlQueryModel
 {
 public:
@@ -1292,6 +1484,9 @@ public:
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlQueryModel_CanDropMimeData(const_cast<MyQSqlQueryModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlQueryModel_HasChildren(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQSqlQueryModel_ItemData(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&index))); };
+	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQSqlQueryModel_Match(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
+	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQSqlQueryModel_MimeData(const_cast<MyQSqlQueryModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtSql_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQSqlQueryModel_MimeTypes(const_cast<MyQSqlQueryModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -1299,7 +1494,9 @@ public:
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQSqlQueryModel_ResetInternalData(this); };
 	void revert() { callbackQSqlQueryModel_Revert(this); };
+	QHash<int, QByteArray> roleNames() const { return *static_cast<QHash<int, QByteArray>*>(callbackQSqlQueryModel_RoleNames(const_cast<MyQSqlQueryModel*>(this))); };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQSqlQueryModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQSqlQueryModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtSql_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlQueryModel_Sort(this, column, order); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlQueryModel_Span(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQSqlQueryModel_Submit(this) != 0; };
@@ -1486,6 +1683,336 @@ void QSqlQueryModel_DestroyQSqlQueryModelDefault(void* ptr)
 
 }
 
+int QSqlQueryModel_____itemData_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlQueryModel_____itemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlQueryModel_____itemData_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlQueryModel_____roleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlQueryModel_____roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlQueryModel_____roleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlQueryModel_____setItemData_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlQueryModel_____setItemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlQueryModel_____setItemData_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+void* QSqlQueryModel___changePersistentIndexList_from_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___changePersistentIndexList_from_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlQueryModel___changePersistentIndexList_from_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlQueryModel___changePersistentIndexList_to_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___changePersistentIndexList_to_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlQueryModel___changePersistentIndexList_to_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+int QSqlQueryModel___dataChanged_roles_atList(void* ptr, int i)
+{
+	return static_cast<QVector<int>*>(ptr)->at(i);
+}
+
+void QSqlQueryModel___dataChanged_roles_setList(void* ptr, int i)
+{
+	static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* QSqlQueryModel___dataChanged_roles_newList(void* ptr)
+{
+	return new QVector<int>;
+}
+
+void* QSqlQueryModel___itemData_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+}
+
+void QSqlQueryModel___itemData_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QSqlQueryModel___itemData_newList(void* ptr)
+{
+	return new QMap<int, QVariant>;
+}
+
+struct QtSql_PackedList QSqlQueryModel___itemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlQueryModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QSqlQueryModel___layoutAboutToBeChanged_parents_newList(void* ptr)
+{
+	return new QList<QPersistentModelIndex>;
+}
+
+void* QSqlQueryModel___layoutChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___layoutChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QSqlQueryModel___layoutChanged_parents_newList(void* ptr)
+{
+	return new QList<QPersistentModelIndex>;
+}
+
+void* QSqlQueryModel___match_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___match_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlQueryModel___match_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlQueryModel___mimeData_indexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___mimeData_indexes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlQueryModel___mimeData_indexes_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlQueryModel___persistentIndexList_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___persistentIndexList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlQueryModel___persistentIndexList_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlQueryModel___roleNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QHash<int, QByteArray>*>(ptr)->value(i));
+}
+
+void QSqlQueryModel___roleNames_setList(void* ptr, int key, void* i)
+{
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* QSqlQueryModel___roleNames_newList(void* ptr)
+{
+	return new QHash<int, QByteArray>;
+}
+
+struct QtSql_PackedList QSqlQueryModel___roleNames_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlQueryModel___setItemData_roles_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+}
+
+void QSqlQueryModel___setItemData_roles_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QSqlQueryModel___setItemData_roles_newList(void* ptr)
+{
+	return new QMap<int, QVariant>;
+}
+
+struct QtSql_PackedList QSqlQueryModel___setItemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+int QSqlQueryModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlQueryModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlQueryModel_____doSetRoleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlQueryModel_____setRoleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlQueryModel_____setRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlQueryModel_____setRoleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+void* QSqlQueryModel___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlQueryModel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSqlQueryModel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSqlQueryModel___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSqlQueryModel___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlQueryModel___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlQueryModel___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlQueryModel___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlQueryModel___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlQueryModel___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlQueryModel___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void* QSqlQueryModel_Index(void* ptr, int row, int column, void* parent)
 {
 	return new QModelIndex(static_cast<QSqlQueryModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
@@ -1566,6 +2093,36 @@ char QSqlQueryModel_InsertRowsDefault(void* ptr, int row, int count, void* paren
 	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
+struct QtSql_PackedList QSqlQueryModel_ItemData(void* ptr, void* index)
+{
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QSqlQueryModel*>(ptr)->itemData(*static_cast<QModelIndex*>(index))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlQueryModel_ItemDataDefault(void* ptr, void* index)
+{
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::itemData(*static_cast<QModelIndex*>(index))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlQueryModel_Match(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSqlQueryModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlQueryModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlQueryModel_MimeData(void* ptr, void* indexes)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->mimeData(*static_cast<QList<QModelIndex>*>(indexes));
+}
+
+void* QSqlQueryModel_MimeDataDefault(void* ptr, void* indexes)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::mimeData(*static_cast<QList<QModelIndex>*>(indexes));
+}
+
 struct QtSql_PackedString QSqlQueryModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray t1df073 = static_cast<QSqlQueryModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t1df073.prepend("WHITESPACE").constData()+10), t1df073.size()-10 }; });
@@ -1631,6 +2188,16 @@ void QSqlQueryModel_RevertDefault(void* ptr)
 	static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::revert();
 }
 
+struct QtSql_PackedList QSqlQueryModel_RoleNames(void* ptr)
+{
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QSqlQueryModel*>(ptr)->roleNames()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlQueryModel_RoleNamesDefault(void* ptr)
+{
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::roleNames()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QSqlQueryModel_SetData(void* ptr, void* index, void* value, int role)
 {
 	return static_cast<QSqlQueryModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
@@ -1639,6 +2206,16 @@ char QSqlQueryModel_SetData(void* ptr, void* index, void* value, int role)
 char QSqlQueryModel_SetDataDefault(void* ptr, void* index, void* value, int role)
 {
 	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
+}
+
+char QSqlQueryModel_SetItemData(void* ptr, void* index, void* roles)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
+}
+
+char QSqlQueryModel_SetItemDataDefault(void* ptr, void* index, void* roles)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 }
 
 void QSqlQueryModel_Sort(void* ptr, int column, long long order)
@@ -1965,10 +2542,6 @@ public:
 	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackQSqlRelationalDelegate_CreateEditor(const_cast<MyQSqlRelationalDelegate*>(this), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
 	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetModelData(const_cast<MyQSqlRelationalDelegate*>(this), editor, model, const_cast<QModelIndex*>(&index)); };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQSqlRelationalDelegate_EventFilter(this, editor, event) != 0; };
-	void drawCheck(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, Qt::CheckState state) const { callbackQSqlRelationalDelegate_DrawCheck(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), state); };
-	void drawDecoration(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QPixmap & pixmap) const { callbackQSqlRelationalDelegate_DrawDecoration(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), const_cast<QPixmap*>(&pixmap)); };
-	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtSql_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSqlRelationalDelegate_DrawDisplay(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), textPacked); };
-	void drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const { callbackQSqlRelationalDelegate_DrawFocus(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect)); };
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQSqlRelationalDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQSqlRelationalDelegate_Paint(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetEditorData(const_cast<MyQSqlRelationalDelegate*>(this), editor, const_cast<QModelIndex*>(&index)); };
@@ -2016,6 +2589,81 @@ void QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(void* ptr)
 	static_cast<QSqlRelationalDelegate*>(ptr)->~QSqlRelationalDelegate();
 }
 
+void* QSqlRelationalDelegate___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSqlRelationalDelegate___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalDelegate___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSqlRelationalDelegate___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSqlRelationalDelegate___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSqlRelationalDelegate___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSqlRelationalDelegate___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlRelationalDelegate___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalDelegate___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlRelationalDelegate___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlRelationalDelegate___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalDelegate___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlRelationalDelegate___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlRelationalDelegate___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalDelegate___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 char QSqlRelationalDelegate_EventFilter(void* ptr, void* editor, void* event)
 {
 	return static_cast<QSqlRelationalDelegate*>(ptr)->eventFilter(static_cast<QObject*>(editor), static_cast<QEvent*>(event));
@@ -2024,46 +2672,6 @@ char QSqlRelationalDelegate_EventFilter(void* ptr, void* editor, void* event)
 char QSqlRelationalDelegate_EventFilterDefault(void* ptr, void* editor, void* event)
 {
 	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::eventFilter(static_cast<QObject*>(editor), static_cast<QEvent*>(event));
-}
-
-void QSqlRelationalDelegate_DrawCheck(void* ptr, void* painter, void* option, void* rect, long long state)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
-}
-
-void QSqlRelationalDelegate_DrawCheckDefault(void* ptr, void* painter, void* option, void* rect, long long state)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
-}
-
-void QSqlRelationalDelegate_DrawDecoration(void* ptr, void* painter, void* option, void* rect, void* pixmap)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
-}
-
-void QSqlRelationalDelegate_DrawDecorationDefault(void* ptr, void* painter, void* option, void* rect, void* pixmap)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
-}
-
-void QSqlRelationalDelegate_DrawDisplay(void* ptr, void* painter, void* option, void* rect, char* text)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
-}
-
-void QSqlRelationalDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, char* text)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
-}
-
-void QSqlRelationalDelegate_DrawFocus(void* ptr, void* painter, void* option, void* rect)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
-}
-
-void QSqlRelationalDelegate_DrawFocusDefault(void* ptr, void* painter, void* option, void* rect)
-{
-	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
 }
 
 char QSqlRelationalDelegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index)
@@ -2262,11 +2870,16 @@ public:
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Buddy(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_CanDropMimeData(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_HasChildren(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
+	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQSqlRelationalTableModel_ItemData(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
+	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQSqlRelationalTableModel_Match(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
+	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQSqlRelationalTableModel_MimeData(const_cast<MyQSqlRelationalTableModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtSql_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQSqlRelationalTableModel_MimeTypes(const_cast<MyQSqlRelationalTableModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Parent(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	void resetInternalData() { callbackQSqlRelationalTableModel_ResetInternalData(this); };
+	QHash<int, QByteArray> roleNames() const { return *static_cast<QHash<int, QByteArray>*>(callbackQSqlRelationalTableModel_RoleNames(const_cast<MyQSqlRelationalTableModel*>(this))); };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQSqlRelationalTableModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtSql_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlRelationalTableModel_Span(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlRelationalTableModel_SupportedDragActions(const_cast<MyQSqlRelationalTableModel*>(this))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlRelationalTableModel_SupportedDropActions(const_cast<MyQSqlRelationalTableModel*>(this))); };
@@ -2434,6 +3047,336 @@ void QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(void* ptr)
 void QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(void* ptr)
 {
 
+}
+
+int QSqlRelationalTableModel_____itemData_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlRelationalTableModel_____itemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlRelationalTableModel_____itemData_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlRelationalTableModel_____roleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlRelationalTableModel_____roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlRelationalTableModel_____roleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlRelationalTableModel_____setItemData_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlRelationalTableModel_____setItemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlRelationalTableModel_____setItemData_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+void* QSqlRelationalTableModel___changePersistentIndexList_from_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___changePersistentIndexList_from_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlRelationalTableModel___changePersistentIndexList_from_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlRelationalTableModel___changePersistentIndexList_to_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___changePersistentIndexList_to_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlRelationalTableModel___changePersistentIndexList_to_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+int QSqlRelationalTableModel___dataChanged_roles_atList(void* ptr, int i)
+{
+	return static_cast<QVector<int>*>(ptr)->at(i);
+}
+
+void QSqlRelationalTableModel___dataChanged_roles_setList(void* ptr, int i)
+{
+	static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* QSqlRelationalTableModel___dataChanged_roles_newList(void* ptr)
+{
+	return new QVector<int>;
+}
+
+void* QSqlRelationalTableModel___itemData_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+}
+
+void QSqlRelationalTableModel___itemData_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QSqlRelationalTableModel___itemData_newList(void* ptr)
+{
+	return new QMap<int, QVariant>;
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel___itemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlRelationalTableModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QSqlRelationalTableModel___layoutAboutToBeChanged_parents_newList(void* ptr)
+{
+	return new QList<QPersistentModelIndex>;
+}
+
+void* QSqlRelationalTableModel___layoutChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___layoutChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QSqlRelationalTableModel___layoutChanged_parents_newList(void* ptr)
+{
+	return new QList<QPersistentModelIndex>;
+}
+
+void* QSqlRelationalTableModel___match_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___match_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlRelationalTableModel___match_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlRelationalTableModel___mimeData_indexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___mimeData_indexes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlRelationalTableModel___mimeData_indexes_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlRelationalTableModel___persistentIndexList_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___persistentIndexList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlRelationalTableModel___persistentIndexList_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlRelationalTableModel___roleNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QHash<int, QByteArray>*>(ptr)->value(i));
+}
+
+void QSqlRelationalTableModel___roleNames_setList(void* ptr, int key, void* i)
+{
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* QSqlRelationalTableModel___roleNames_newList(void* ptr)
+{
+	return new QHash<int, QByteArray>;
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel___roleNames_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlRelationalTableModel___setItemData_roles_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+}
+
+void QSqlRelationalTableModel___setItemData_roles_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QSqlRelationalTableModel___setItemData_roles_newList(void* ptr)
+{
+	return new QMap<int, QVariant>;
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel___setItemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+int QSqlRelationalTableModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlRelationalTableModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlRelationalTableModel_____doSetRoleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlRelationalTableModel_____setRoleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlRelationalTableModel_____setRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlRelationalTableModel_____setRoleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+void* QSqlRelationalTableModel___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalTableModel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSqlRelationalTableModel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSqlRelationalTableModel___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSqlRelationalTableModel___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalTableModel___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlRelationalTableModel___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalTableModel___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlRelationalTableModel___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlRelationalTableModel___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlRelationalTableModel___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 char QSqlRelationalTableModel_DeleteRowFromTable(void* ptr, int row)
@@ -2722,6 +3665,36 @@ char QSqlRelationalTableModel_HasChildrenDefault(void* ptr, void* parent)
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
+struct QtSql_PackedList QSqlRelationalTableModel_ItemData(void* ptr, void* index)
+{
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QSqlRelationalTableModel*>(ptr)->itemData(*static_cast<QModelIndex*>(index))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel_ItemDataDefault(void* ptr, void* index)
+{
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::itemData(*static_cast<QModelIndex*>(index))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel_Match(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSqlRelationalTableModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlRelationalTableModel_MimeData(void* ptr, void* indexes)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->mimeData(*static_cast<QList<QModelIndex>*>(indexes));
+}
+
+void* QSqlRelationalTableModel_MimeDataDefault(void* ptr, void* indexes)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::mimeData(*static_cast<QList<QModelIndex>*>(indexes));
+}
+
 struct QtSql_PackedString QSqlRelationalTableModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray te5a031 = static_cast<QSqlRelationalTableModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(te5a031.prepend("WHITESPACE").constData()+10), te5a031.size()-10 }; });
@@ -2765,6 +3738,26 @@ void QSqlRelationalTableModel_ResetInternalData(void* ptr)
 void QSqlRelationalTableModel_ResetInternalDataDefault(void* ptr)
 {
 	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::resetInternalData();
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel_RoleNames(void* ptr)
+{
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QSqlRelationalTableModel*>(ptr)->roleNames()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlRelationalTableModel_RoleNamesDefault(void* ptr)
+{
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::roleNames()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QSqlRelationalTableModel_SetItemData(void* ptr, void* index, void* roles)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
+}
+
+char QSqlRelationalTableModel_SetItemDataDefault(void* ptr, void* index, void* roles)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 }
 
 void* QSqlRelationalTableModel_Span(void* ptr, void* index)
@@ -3238,9 +4231,19 @@ void QSqlResult_DestroyQSqlResultDefault(void* ptr)
 
 }
 
-void* QSqlResult_boundValues_atList(void* ptr, int i)
+void* QSqlResult___boundValues_atList(void* ptr, int i)
 {
 	return new QVariant(static_cast<QVector<QVariant>*>(ptr)->at(i));
+}
+
+void QSqlResult___boundValues_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QVariant>*>(ptr)->append(*static_cast<QVariant*>(i));
+}
+
+void* QSqlResult___boundValues_newList(void* ptr)
+{
+	return new QVector<QVariant>;
 }
 
 class MyQSqlTableModel: public QSqlTableModel
@@ -3291,11 +4294,16 @@ public:
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Buddy(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlTableModel_CanDropMimeData(const_cast<MyQSqlTableModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlTableModel_HasChildren(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
+	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQSqlTableModel_ItemData(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
+	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQSqlTableModel_Match(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
+	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQSqlTableModel_MimeData(const_cast<MyQSqlTableModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtSql_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQSqlTableModel_MimeTypes(const_cast<MyQSqlTableModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Parent(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	void resetInternalData() { callbackQSqlTableModel_ResetInternalData(this); };
+	QHash<int, QByteArray> roleNames() const { return *static_cast<QHash<int, QByteArray>*>(callbackQSqlTableModel_RoleNames(const_cast<MyQSqlTableModel*>(this))); };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQSqlTableModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtSql_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlTableModel_Span(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlTableModel_SupportedDragActions(const_cast<MyQSqlTableModel*>(this))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlTableModel_SupportedDropActions(const_cast<MyQSqlTableModel*>(this))); };
@@ -3738,6 +4746,336 @@ void QSqlTableModel_DestroyQSqlTableModelDefault(void* ptr)
 
 }
 
+int QSqlTableModel_____itemData_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlTableModel_____itemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlTableModel_____itemData_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlTableModel_____roleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlTableModel_____roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlTableModel_____roleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlTableModel_____setItemData_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlTableModel_____setItemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlTableModel_____setItemData_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+void* QSqlTableModel___changePersistentIndexList_from_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___changePersistentIndexList_from_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlTableModel___changePersistentIndexList_from_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlTableModel___changePersistentIndexList_to_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___changePersistentIndexList_to_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlTableModel___changePersistentIndexList_to_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+int QSqlTableModel___dataChanged_roles_atList(void* ptr, int i)
+{
+	return static_cast<QVector<int>*>(ptr)->at(i);
+}
+
+void QSqlTableModel___dataChanged_roles_setList(void* ptr, int i)
+{
+	static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* QSqlTableModel___dataChanged_roles_newList(void* ptr)
+{
+	return new QVector<int>;
+}
+
+void* QSqlTableModel___itemData_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+}
+
+void QSqlTableModel___itemData_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QSqlTableModel___itemData_newList(void* ptr)
+{
+	return new QMap<int, QVariant>;
+}
+
+struct QtSql_PackedList QSqlTableModel___itemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlTableModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QSqlTableModel___layoutAboutToBeChanged_parents_newList(void* ptr)
+{
+	return new QList<QPersistentModelIndex>;
+}
+
+void* QSqlTableModel___layoutChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___layoutChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QSqlTableModel___layoutChanged_parents_newList(void* ptr)
+{
+	return new QList<QPersistentModelIndex>;
+}
+
+void* QSqlTableModel___match_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___match_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlTableModel___match_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlTableModel___mimeData_indexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___mimeData_indexes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlTableModel___mimeData_indexes_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlTableModel___persistentIndexList_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___persistentIndexList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QSqlTableModel___persistentIndexList_newList(void* ptr)
+{
+	return new QList<QModelIndex>;
+}
+
+void* QSqlTableModel___roleNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QHash<int, QByteArray>*>(ptr)->value(i));
+}
+
+void QSqlTableModel___roleNames_setList(void* ptr, int key, void* i)
+{
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* QSqlTableModel___roleNames_newList(void* ptr)
+{
+	return new QHash<int, QByteArray>;
+}
+
+struct QtSql_PackedList QSqlTableModel___roleNames_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlTableModel___setItemData_roles_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+}
+
+void QSqlTableModel___setItemData_roles_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QSqlTableModel___setItemData_roles_newList(void* ptr)
+{
+	return new QMap<int, QVariant>;
+}
+
+struct QtSql_PackedList QSqlTableModel___setItemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+int QSqlTableModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlTableModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlTableModel_____doSetRoleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+int QSqlTableModel_____setRoleNames_keyList_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QSqlTableModel_____setRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QSqlTableModel_____setRoleNames_keyList_newList(void* ptr)
+{
+	return new QList<int>;
+}
+
+void* QSqlTableModel___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlTableModel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSqlTableModel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSqlTableModel___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSqlTableModel___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlTableModel___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlTableModel___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlTableModel___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSqlTableModel___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSqlTableModel___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSqlTableModel___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 char QSqlTableModel_CanFetchMore(void* ptr, void* parent)
 {
 	return static_cast<QSqlTableModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
@@ -3858,6 +5196,36 @@ char QSqlTableModel_HasChildrenDefault(void* ptr, void* parent)
 	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
+struct QtSql_PackedList QSqlTableModel_ItemData(void* ptr, void* index)
+{
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QSqlTableModel*>(ptr)->itemData(*static_cast<QModelIndex*>(index))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlTableModel_ItemDataDefault(void* ptr, void* index)
+{
+	return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::itemData(*static_cast<QModelIndex*>(index))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlTableModel_Match(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSqlTableModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlTableModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QSqlTableModel_MimeData(void* ptr, void* indexes)
+{
+	return static_cast<QSqlTableModel*>(ptr)->mimeData(*static_cast<QList<QModelIndex>*>(indexes));
+}
+
+void* QSqlTableModel_MimeDataDefault(void* ptr, void* indexes)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::mimeData(*static_cast<QList<QModelIndex>*>(indexes));
+}
+
 struct QtSql_PackedString QSqlTableModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray tabeef0 = static_cast<QSqlTableModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(tabeef0.prepend("WHITESPACE").constData()+10), tabeef0.size()-10 }; });
@@ -3901,6 +5269,26 @@ void QSqlTableModel_ResetInternalData(void* ptr)
 void QSqlTableModel_ResetInternalDataDefault(void* ptr)
 {
 	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::resetInternalData();
+}
+
+struct QtSql_PackedList QSqlTableModel_RoleNames(void* ptr)
+{
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QSqlTableModel*>(ptr)->roleNames()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSql_PackedList QSqlTableModel_RoleNamesDefault(void* ptr)
+{
+	return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::roleNames()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QSqlTableModel_SetItemData(void* ptr, void* index, void* roles)
+{
+	return static_cast<QSqlTableModel*>(ptr)->setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
+}
+
+char QSqlTableModel_SetItemDataDefault(void* ptr, void* index, void* roles)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 }
 
 void* QSqlTableModel_Span(void* ptr, void* index)

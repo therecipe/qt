@@ -27,11 +27,13 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsSceneWheelEvent>
 #include <QGraphicsSvgItem>
+#include <QGraphicsTransform>
 #include <QHideEvent>
 #include <QIODevice>
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>
@@ -182,6 +184,141 @@ int QGraphicsSvgItem_Type(void* ptr)
 int QGraphicsSvgItem_TypeDefault(void* ptr)
 {
 	return static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::type();
+}
+
+void* QGraphicsSvgItem___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGraphicsSvgItem___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QGraphicsSvgItem___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGraphicsSvgItem___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QGraphicsSvgItem___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGraphicsSvgItem___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGraphicsSvgItem___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGraphicsSvgItem___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGraphicsSvgItem___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGraphicsSvgItem___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGraphicsSvgItem___childItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___childItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QGraphicsSvgItem___childItems_newList(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QGraphicsSvgItem___collidingItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___collidingItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QGraphicsSvgItem___collidingItems_newList(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QGraphicsSvgItem___setTransformations_transformations_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsTransform*>(static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___setTransformations_transformations_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
+}
+
+void* QGraphicsSvgItem___setTransformations_transformations_newList(void* ptr)
+{
+	return new QList<QGraphicsTransform *>;
+}
+
+void* QGraphicsSvgItem___transformations_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsTransform*>(static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i));
+}
+
+void QGraphicsSvgItem___transformations_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
+}
+
+void* QGraphicsSvgItem___transformations_newList(void* ptr)
+{
+	return new QList<QGraphicsTransform *>;
 }
 
 char QGraphicsSvgItem_Event(void* ptr, void* ev)
@@ -878,6 +1015,81 @@ void QSvgRenderer_DestroyQSvgRenderer(void* ptr)
 	static_cast<QSvgRenderer*>(ptr)->~QSvgRenderer();
 }
 
+void* QSvgRenderer___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSvgRenderer___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgRenderer___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSvgRenderer___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSvgRenderer___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSvgRenderer___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSvgRenderer___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSvgRenderer___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgRenderer___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSvgRenderer___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSvgRenderer___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgRenderer___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSvgRenderer___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSvgRenderer___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgRenderer___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QSvgRenderer_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QSvgRenderer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1099,6 +1311,126 @@ void* QSvgWidget_SizeHintDefault(void* ptr)
 void QSvgWidget_DestroyQSvgWidget(void* ptr)
 {
 	static_cast<QSvgWidget*>(ptr)->~QSvgWidget();
+}
+
+void* QSvgWidget___actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QSvgWidget___actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QSvgWidget___actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QSvgWidget___addActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QSvgWidget___addActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QSvgWidget___addActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QSvgWidget___insertActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QSvgWidget___insertActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QSvgWidget___insertActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QSvgWidget___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QSvgWidget___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgWidget___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QSvgWidget___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QSvgWidget___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QSvgWidget___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QSvgWidget___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSvgWidget___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgWidget___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSvgWidget___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSvgWidget___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgWidget___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QSvgWidget___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QSvgWidget___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QSvgWidget___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QSvgWidget_ActionEvent(void* ptr, void* event)

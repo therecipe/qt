@@ -6,9 +6,12 @@
 #include "webchannel.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
+#include <QHash>
 #include <QJsonObject>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -97,9 +100,164 @@ void QWebChannel_RegisterObject(void* ptr, char* id, void* object)
 	static_cast<QWebChannel*>(ptr)->registerObject(QString(id), static_cast<QObject*>(object));
 }
 
+void QWebChannel_RegisterObjects(void* ptr, void* objects)
+{
+	static_cast<QWebChannel*>(ptr)->registerObjects(*static_cast<QHash<QString, QObject *>*>(objects));
+}
+
+struct QtWebChannel_PackedList QWebChannel_RegisteredObjects(void* ptr)
+{
+	return ({ QHash<QString, QObject *>* tmpValue = new QHash<QString, QObject *>(static_cast<QWebChannel*>(ptr)->registeredObjects()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QWebChannel_DestroyQWebChannel(void* ptr)
 {
 	static_cast<QWebChannel*>(ptr)->~QWebChannel();
+}
+
+void* QWebChannel___registerObjects_objects_atList(void* ptr, char* i)
+{
+	return const_cast<QObject*>(static_cast<QHash<QString, QObject *>*>(ptr)->value(QString(i)));
+}
+
+void QWebChannel___registerObjects_objects_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QHash<QString, QObject *>*>(ptr)->insert(QString(key), static_cast<QObject*>(i));
+}
+
+void* QWebChannel___registerObjects_objects_newList(void* ptr)
+{
+	return new QHash<QString, QObject *>;
+}
+
+struct QtWebChannel_PackedList QWebChannel___registerObjects_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QWebChannel___registeredObjects_atList(void* ptr, char* i)
+{
+	return const_cast<QObject*>(static_cast<QHash<QString, QObject *>*>(ptr)->value(QString(i)));
+}
+
+void QWebChannel___registeredObjects_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QHash<QString, QObject *>*>(ptr)->insert(QString(key), static_cast<QObject*>(i));
+}
+
+void* QWebChannel___registeredObjects_newList(void* ptr)
+{
+	return new QHash<QString, QObject *>;
+}
+
+struct QtWebChannel_PackedList QWebChannel___registeredObjects_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWebChannel_PackedString QWebChannel_____registerObjects_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QWebChannel_____registerObjects_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QWebChannel_____registerObjects_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
+}
+
+struct QtWebChannel_PackedString QWebChannel_____registeredObjects_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QWebChannel_____registeredObjects_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QWebChannel_____registeredObjects_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
+}
+
+void* QWebChannel___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebChannel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebChannel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebChannel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebChannel___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebChannel___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebChannel___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannel___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebChannel___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebChannel___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannel___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebChannel___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebChannel___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannel___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebChannel_TimerEvent(void* ptr, void* event)
@@ -243,6 +401,81 @@ void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(void* ptr)
 void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(void* ptr)
 {
 
+}
+
+void* QWebChannelAbstractTransport___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebChannelAbstractTransport___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannelAbstractTransport___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebChannelAbstractTransport___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebChannelAbstractTransport___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebChannelAbstractTransport___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebChannelAbstractTransport___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebChannelAbstractTransport___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannelAbstractTransport___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebChannelAbstractTransport___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebChannelAbstractTransport___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannelAbstractTransport___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebChannelAbstractTransport___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebChannelAbstractTransport___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannelAbstractTransport___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebChannelAbstractTransport_TimerEvent(void* ptr, void* event)

@@ -170,14 +170,31 @@ func goType(f *parser.Function, value string) string {
 
 	case parser.IsPackedList(value):
 		{
-			value = parser.UnpackedList(value)
-			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
-				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; exists {
-					return "[]unsafe.Pointer"
+			return fmt.Sprintf("[]%v%v", func() string {
+				if isClass(parser.UnpackedList(value)) && parser.UnpackedList(value) != "QString" && parser.UnpackedList(value) != "QStringList" {
+					return "*"
 				}
-				return fmt.Sprintf("[]*%v.%v", m, value)
-			}
-			return fmt.Sprintf("[]*%v", value)
+				return ""
+			}(), goType(f, parser.UnpackedListDirty(value)))
+		}
+
+	case parser.IsPackedMap(value):
+		{
+			var key, value = parser.UnpackedMapDirty(value)
+			return fmt.Sprintf("map[%v%v]%v%v",
+				func() string {
+					if isClass(parser.CleanValue(key)) && parser.CleanValue(key) != "QString" && parser.CleanValue(key) != "QStringList" {
+						return "*"
+					}
+					return ""
+				}(), goType(f, key),
+
+				func() string {
+					if isClass(parser.CleanValue(value)) && parser.CleanValue(value) != "QString" && parser.CleanValue(value) != "QStringList" {
+						return "*"
+					}
+					return ""
+				}(), goType(f, value))
 		}
 	}
 
@@ -194,6 +211,9 @@ func cgoTypeOutput(f *parser.Function, value string) string {
 
 	default:
 		{
+			if parser.IsPackedList(parser.CleanValue(value)) || parser.IsPackedMap(parser.CleanValue(value)) {
+				return "unsafe.Pointer"
+			}
 			return cgoType(f, value)
 		}
 	}
@@ -291,6 +311,11 @@ func cgoType(f *parser.Function, value string) string {
 		{
 			return "unsafe.Pointer"
 		}
+
+	case parser.IsPackedList(value) || parser.IsPackedMap(value):
+		{
+			return fmt.Sprintf("C.struct_%v_PackedList", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
+		}
 	}
 
 	f.Access = fmt.Sprintf("unsupported_cgoType(%v)", value)
@@ -306,6 +331,9 @@ func cppTypeInput(f *parser.Function, value string) string {
 
 	default:
 		{
+			if parser.IsPackedList(parser.CleanValue(value)) || parser.IsPackedMap(parser.CleanValue(value)) {
+				return "void*"
+			}
 			return cppType(f, value)
 		}
 	}
@@ -445,7 +473,7 @@ func cppType(f *parser.Function, value string) string {
 			return "void*"
 		}
 
-	case parser.IsPackedList(value):
+	case parser.IsPackedList(value) || parser.IsPackedMap(value):
 		{
 			return fmt.Sprintf("struct %v_PackedList", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 		}

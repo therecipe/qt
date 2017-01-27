@@ -9,8 +9,10 @@ import (
 
 func GenModule(m string) {
 	if !parser.ShouldBuild(m) {
+		utils.Log.WithField("0_module", m).Debug("skip generation")
 		return
 	}
+	utils.Log.WithField("0_module", m).Debug("generating")
 
 	//prepare state
 	parser.State.Module = m

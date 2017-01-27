@@ -426,11 +426,6 @@ void* QDomElement_AttributeNodeNS(void* ptr, char* nsURI, char* localName)
 	return new QDomAttr(static_cast<QDomElement*>(ptr)->attributeNodeNS(QString(nsURI), QString(localName)));
 }
 
-void* QDomElement_Attributes(void* ptr)
-{
-	return new QDomNamedNodeMap(static_cast<QDomElement*>(ptr)->attributes());
-}
-
 void* QDomElement_ElementsByTagName(void* ptr, char* tagname)
 {
 	return new QDomNodeList(static_cast<QDomElement*>(ptr)->elementsByTagName(QString(tagname)));
@@ -739,11 +734,6 @@ void* QDomNode_NewQDomNode2(void* n)
 void* QDomNode_AppendChild(void* ptr, void* newChild)
 {
 	return new QDomNode(static_cast<QDomNode*>(ptr)->appendChild(*static_cast<QDomNode*>(newChild)));
-}
-
-void* QDomNode_Attributes(void* ptr)
-{
-	return new QDomNamedNodeMap(static_cast<QDomNode*>(ptr)->attributes());
 }
 
 void* QDomNode_ChildNodes(void* ptr)

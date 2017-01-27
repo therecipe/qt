@@ -14,6 +14,7 @@
 #include <QEvent>
 #include <QIODevice>
 #include <QLayout>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -152,6 +153,81 @@ void QUiLoader_DestroyQUiLoader(void* ptr)
 void QUiLoader_DestroyQUiLoaderDefault(void* ptr)
 {
 
+}
+
+void* QUiLoader___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QUiLoader___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUiLoader___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QUiLoader___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QUiLoader___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QUiLoader___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QUiLoader___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QUiLoader___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUiLoader___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QUiLoader___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QUiLoader___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUiLoader___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QUiLoader___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QUiLoader___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QUiLoader___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QUiLoader_TimerEvent(void* ptr, void* event)

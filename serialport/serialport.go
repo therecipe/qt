@@ -1112,6 +1112,124 @@ func (ptr *QSerialPort) DestroyQSerialPortDefault() {
 	}
 }
 
+func (ptr *QSerialPort) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSerialPort___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSerialPort) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSerialPort___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSerialPort___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSerialPort___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSerialPort) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSerialPort___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSerialPort___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSerialPort) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSerialPort___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSerialPort___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSerialPort) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSerialPort___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSerialPort___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSerialPort) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSerialPort___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSerialPort_Pos
 func callbackQSerialPort_Pos(ptr unsafe.Pointer) C.longlong {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSerialPort::pos"); signal != nil {
@@ -1622,6 +1740,26 @@ func NewQSerialPortInfoFromPointer(ptr unsafe.Pointer) *QSerialPortInfo {
 	n.SetPointer(ptr)
 	return n
 }
+func QSerialPortInfo_StandardBaudRates() []int {
+	return func(l C.struct_QtSerialPort_PackedList) []int {
+		var out = make([]int, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSerialPortInfoFromPointer(l.data).__standardBaudRates_atList(i)
+		}
+		return out
+	}(C.QSerialPortInfo_QSerialPortInfo_StandardBaudRates())
+}
+
+func (ptr *QSerialPortInfo) StandardBaudRates() []int {
+	return func(l C.struct_QtSerialPort_PackedList) []int {
+		var out = make([]int, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSerialPortInfoFromPointer(l.data).__standardBaudRates_atList(i)
+		}
+		return out
+	}(C.QSerialPortInfo_QSerialPortInfo_StandardBaudRates())
+}
+
 func (ptr *QSerialPortInfo) Swap(other QSerialPortInfo_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSerialPortInfo_Swap(ptr.Pointer(), PointerFromQSerialPortInfo(other))
@@ -1735,7 +1873,7 @@ func QSerialPortInfo_AvailablePorts() []*QSerialPortInfo {
 	return func(l C.struct_QtSerialPort_PackedList) []*QSerialPortInfo {
 		var out = make([]*QSerialPortInfo, int(l.len))
 		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSerialPortInfoFromPointer(l.data).availablePorts_atList(i)
+			out[i] = NewQSerialPortInfoFromPointer(l.data).__availablePorts_atList(i)
 		}
 		return out
 	}(C.QSerialPortInfo_QSerialPortInfo_AvailablePorts())
@@ -1745,7 +1883,7 @@ func (ptr *QSerialPortInfo) AvailablePorts() []*QSerialPortInfo {
 	return func(l C.struct_QtSerialPort_PackedList) []*QSerialPortInfo {
 		var out = make([]*QSerialPortInfo, int(l.len))
 		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSerialPortInfoFromPointer(l.data).availablePorts_atList(i)
+			out[i] = NewQSerialPortInfoFromPointer(l.data).__availablePorts_atList(i)
 		}
 		return out
 	}(C.QSerialPortInfo_QSerialPortInfo_AvailablePorts())
@@ -1758,11 +1896,44 @@ func (ptr *QSerialPortInfo) IsBusy() bool {
 	return false
 }
 
-func (ptr *QSerialPortInfo) availablePorts_atList(i int) *QSerialPortInfo {
+func (ptr *QSerialPortInfo) __standardBaudRates_atList(i int) int {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_availablePorts_atList(ptr.Pointer(), C.int(int32(i))))
+		return int(int32(C.QSerialPortInfo___standardBaudRates_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QSerialPortInfo) __standardBaudRates_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QSerialPortInfo___standardBaudRates_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QSerialPortInfo) __standardBaudRates_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSerialPortInfo___standardBaudRates_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSerialPortInfo) __availablePorts_atList(i int) *QSerialPortInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo___availablePorts_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSerialPortInfo) __availablePorts_setList(i QSerialPortInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSerialPortInfo___availablePorts_setList(ptr.Pointer(), PointerFromQSerialPortInfo(i))
+	}
+}
+
+func (ptr *QSerialPortInfo) __availablePorts_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSerialPortInfo___availablePorts_newList(ptr.Pointer()))
 	}
 	return nil
 }

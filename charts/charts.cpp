@@ -822,6 +822,8 @@ void QAbstractAxis_DestroyQAbstractAxis(void* ptr)
 class MyQAbstractBarSeries: public QAbstractBarSeries
 {
 public:
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
 	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
 	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
@@ -870,6 +872,11 @@ char QAbstractBarSeries_Append(void* ptr, void* set)
 	return static_cast<QAbstractBarSeries*>(ptr)->append(static_cast<QBarSet*>(set));
 }
 
+char QAbstractBarSeries_Append2(void* ptr, void* sets)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->append(*static_cast<QList<QBarSet *>*>(sets));
+}
+
 struct QtCharts_PackedList QAbstractBarSeries_BarSets(void* ptr)
 {
 	return ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(static_cast<QAbstractBarSeries*>(ptr)->barSets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
@@ -878,6 +885,36 @@ struct QtCharts_PackedList QAbstractBarSeries_BarSets(void* ptr)
 double QAbstractBarSeries_BarWidth(void* ptr)
 {
 	return static_cast<QAbstractBarSeries*>(ptr)->barWidth();
+}
+
+void QAbstractBarSeries_ConnectBarsetsAdded(void* ptr)
+{
+	QObject::connect(static_cast<QAbstractBarSeries*>(ptr), static_cast<void (QAbstractBarSeries::*)(QList<QBarSet *>)>(&QAbstractBarSeries::barsetsAdded), static_cast<MyQAbstractBarSeries*>(ptr), static_cast<void (MyQAbstractBarSeries::*)(QList<QBarSet *>)>(&MyQAbstractBarSeries::Signal_BarsetsAdded));
+}
+
+void QAbstractBarSeries_DisconnectBarsetsAdded(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractBarSeries*>(ptr), static_cast<void (QAbstractBarSeries::*)(QList<QBarSet *>)>(&QAbstractBarSeries::barsetsAdded), static_cast<MyQAbstractBarSeries*>(ptr), static_cast<void (MyQAbstractBarSeries::*)(QList<QBarSet *>)>(&MyQAbstractBarSeries::Signal_BarsetsAdded));
+}
+
+void QAbstractBarSeries_BarsetsAdded(void* ptr, void* sets)
+{
+	static_cast<QAbstractBarSeries*>(ptr)->barsetsAdded(*static_cast<QList<QBarSet *>*>(sets));
+}
+
+void QAbstractBarSeries_ConnectBarsetsRemoved(void* ptr)
+{
+	QObject::connect(static_cast<QAbstractBarSeries*>(ptr), static_cast<void (QAbstractBarSeries::*)(QList<QBarSet *>)>(&QAbstractBarSeries::barsetsRemoved), static_cast<MyQAbstractBarSeries*>(ptr), static_cast<void (MyQAbstractBarSeries::*)(QList<QBarSet *>)>(&MyQAbstractBarSeries::Signal_BarsetsRemoved));
+}
+
+void QAbstractBarSeries_DisconnectBarsetsRemoved(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractBarSeries*>(ptr), static_cast<void (QAbstractBarSeries::*)(QList<QBarSet *>)>(&QAbstractBarSeries::barsetsRemoved), static_cast<MyQAbstractBarSeries*>(ptr), static_cast<void (MyQAbstractBarSeries::*)(QList<QBarSet *>)>(&MyQAbstractBarSeries::Signal_BarsetsRemoved));
+}
+
+void QAbstractBarSeries_BarsetsRemoved(void* ptr, void* sets)
+{
+	static_cast<QAbstractBarSeries*>(ptr)->barsetsRemoved(*static_cast<QList<QBarSet *>*>(sets));
 }
 
 void QAbstractBarSeries_Clear(void* ptr)
@@ -1080,9 +1117,64 @@ void QAbstractBarSeries_DestroyQAbstractBarSeriesDefault(void* ptr)
 
 }
 
-void* QAbstractBarSeries_barSets_atList(void* ptr, int i)
+void* QAbstractBarSeries___append_sets_atList2(void* ptr, int i)
 {
 	return const_cast<QBarSet*>(static_cast<QList<QBarSet *>*>(ptr)->at(i));
+}
+
+void QAbstractBarSeries___append_sets_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QBarSet *>*>(ptr)->append(static_cast<QBarSet*>(i));
+}
+
+void* QAbstractBarSeries___append_sets_newList2(void* ptr)
+{
+	return new QList<QBarSet *>;
+}
+
+void* QAbstractBarSeries___barSets_atList(void* ptr, int i)
+{
+	return const_cast<QBarSet*>(static_cast<QList<QBarSet *>*>(ptr)->at(i));
+}
+
+void QAbstractBarSeries___barSets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBarSet *>*>(ptr)->append(static_cast<QBarSet*>(i));
+}
+
+void* QAbstractBarSeries___barSets_newList(void* ptr)
+{
+	return new QList<QBarSet *>;
+}
+
+void* QAbstractBarSeries___barsetsAdded_sets_atList(void* ptr, int i)
+{
+	return const_cast<QBarSet*>(static_cast<QList<QBarSet *>*>(ptr)->at(i));
+}
+
+void QAbstractBarSeries___barsetsAdded_sets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBarSet *>*>(ptr)->append(static_cast<QBarSet*>(i));
+}
+
+void* QAbstractBarSeries___barsetsAdded_sets_newList(void* ptr)
+{
+	return new QList<QBarSet *>;
+}
+
+void* QAbstractBarSeries___barsetsRemoved_sets_atList(void* ptr, int i)
+{
+	return const_cast<QBarSet*>(static_cast<QList<QBarSet *>*>(ptr)->at(i));
+}
+
+void QAbstractBarSeries___barsetsRemoved_sets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBarSet *>*>(ptr)->append(static_cast<QBarSet*>(i));
+}
+
+void* QAbstractBarSeries___barsetsRemoved_sets_newList(void* ptr)
+{
+	return new QList<QBarSet *>;
 }
 
 class MyQAbstractSeries: public QAbstractSeries
@@ -1235,9 +1327,19 @@ void QAbstractSeries_DestroyQAbstractSeries(void* ptr)
 	static_cast<QAbstractSeries*>(ptr)->~QAbstractSeries();
 }
 
-void* QAbstractSeries_attachedAxes_atList(void* ptr, int i)
+void* QAbstractSeries___attachedAxes_atList(void* ptr, int i)
 {
 	return const_cast<QAbstractAxis*>(static_cast<QList<QAbstractAxis *>*>(ptr)->at(i));
+}
+
+void QAbstractSeries___attachedAxes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAbstractAxis *>*>(ptr)->append(static_cast<QAbstractAxis*>(i));
+}
+
+void* QAbstractSeries___attachedAxes_newList(void* ptr)
+{
+	return new QList<QAbstractAxis *>;
 }
 
 class MyQAreaLegendMarker: public QAreaLegendMarker
@@ -1886,6 +1988,11 @@ void* QBarSet_NewQBarSet(char* label, void* parent)
 	return new MyQBarSet(QString(label), static_cast<QObject*>(parent));
 }
 
+void QBarSet_Append2(void* ptr, void* values)
+{
+	static_cast<QBarSet*>(ptr)->append(*static_cast<QList<qreal>*>(values));
+}
+
 void QBarSet_Append(void* ptr, double value)
 {
 	static_cast<QBarSet*>(ptr)->append(value);
@@ -2251,6 +2358,21 @@ void QBarSet_DestroyQBarSetDefault(void* ptr)
 
 }
 
+double QBarSet___append_values_atList2(void* ptr, int i)
+{
+	return static_cast<QList<qreal>*>(ptr)->at(i);
+}
+
+void QBarSet___append_values_setList2(void* ptr, double i)
+{
+	static_cast<QList<qreal>*>(ptr)->append(i);
+}
+
+void* QBarSet___append_values_newList2(void* ptr)
+{
+	return new QList<qreal>;
+}
+
 class MyQBoxPlotLegendMarker: public QBoxPlotLegendMarker
 {
 public:
@@ -2285,6 +2407,8 @@ public:
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBoxPlotSeries_Type(const_cast<MyQBoxPlotSeries*>(this))); };
 	void Signal_BoxOutlineVisibilityChanged() { callbackQBoxPlotSeries_BoxOutlineVisibilityChanged(this); };
 	void Signal_BoxWidthChanged() { callbackQBoxPlotSeries_BoxWidthChanged(this); };
+	void Signal_BoxsetsAdded(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsAdded(this, ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BoxsetsRemoved(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsRemoved(this, ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_BrushChanged() { callbackQBoxPlotSeries_BrushChanged(this); };
 	void Signal_Clicked(QBoxSet * boxset) { callbackQBoxPlotSeries_Clicked(this, boxset); };
 	void Signal_CountChanged() { callbackQBoxPlotSeries_CountChanged(this); };
@@ -2355,6 +2479,11 @@ char QBoxPlotSeries_Append(void* ptr, void* set)
 	return static_cast<QBoxPlotSeries*>(ptr)->append(static_cast<QBoxSet*>(set));
 }
 
+char QBoxPlotSeries_Append2(void* ptr, void* sets)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->append(*static_cast<QList<QBoxSet *>*>(sets));
+}
+
 void QBoxPlotSeries_ConnectBoxOutlineVisibilityChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBoxPlotSeries*>(ptr), static_cast<void (QBoxPlotSeries::*)()>(&QBoxPlotSeries::boxOutlineVisibilityChanged), static_cast<MyQBoxPlotSeries*>(ptr), static_cast<void (MyQBoxPlotSeries::*)()>(&MyQBoxPlotSeries::Signal_BoxOutlineVisibilityChanged));
@@ -2388,6 +2517,36 @@ void QBoxPlotSeries_DisconnectBoxWidthChanged(void* ptr)
 void QBoxPlotSeries_BoxWidthChanged(void* ptr)
 {
 	static_cast<QBoxPlotSeries*>(ptr)->boxWidthChanged();
+}
+
+void QBoxPlotSeries_ConnectBoxsetsAdded(void* ptr)
+{
+	QObject::connect(static_cast<QBoxPlotSeries*>(ptr), static_cast<void (QBoxPlotSeries::*)(QList<QBoxSet *>)>(&QBoxPlotSeries::boxsetsAdded), static_cast<MyQBoxPlotSeries*>(ptr), static_cast<void (MyQBoxPlotSeries::*)(QList<QBoxSet *>)>(&MyQBoxPlotSeries::Signal_BoxsetsAdded));
+}
+
+void QBoxPlotSeries_DisconnectBoxsetsAdded(void* ptr)
+{
+	QObject::disconnect(static_cast<QBoxPlotSeries*>(ptr), static_cast<void (QBoxPlotSeries::*)(QList<QBoxSet *>)>(&QBoxPlotSeries::boxsetsAdded), static_cast<MyQBoxPlotSeries*>(ptr), static_cast<void (MyQBoxPlotSeries::*)(QList<QBoxSet *>)>(&MyQBoxPlotSeries::Signal_BoxsetsAdded));
+}
+
+void QBoxPlotSeries_BoxsetsAdded(void* ptr, void* sets)
+{
+	static_cast<QBoxPlotSeries*>(ptr)->boxsetsAdded(*static_cast<QList<QBoxSet *>*>(sets));
+}
+
+void QBoxPlotSeries_ConnectBoxsetsRemoved(void* ptr)
+{
+	QObject::connect(static_cast<QBoxPlotSeries*>(ptr), static_cast<void (QBoxPlotSeries::*)(QList<QBoxSet *>)>(&QBoxPlotSeries::boxsetsRemoved), static_cast<MyQBoxPlotSeries*>(ptr), static_cast<void (MyQBoxPlotSeries::*)(QList<QBoxSet *>)>(&MyQBoxPlotSeries::Signal_BoxsetsRemoved));
+}
+
+void QBoxPlotSeries_DisconnectBoxsetsRemoved(void* ptr)
+{
+	QObject::disconnect(static_cast<QBoxPlotSeries*>(ptr), static_cast<void (QBoxPlotSeries::*)(QList<QBoxSet *>)>(&QBoxPlotSeries::boxsetsRemoved), static_cast<MyQBoxPlotSeries*>(ptr), static_cast<void (MyQBoxPlotSeries::*)(QList<QBoxSet *>)>(&MyQBoxPlotSeries::Signal_BoxsetsRemoved));
+}
+
+void QBoxPlotSeries_BoxsetsRemoved(void* ptr, void* sets)
+{
+	static_cast<QBoxPlotSeries*>(ptr)->boxsetsRemoved(*static_cast<QList<QBoxSet *>*>(sets));
 }
 
 void QBoxPlotSeries_ConnectBrushChanged(void* ptr)
@@ -2540,9 +2699,64 @@ void QBoxPlotSeries_DestroyQBoxPlotSeries(void* ptr)
 	static_cast<QBoxPlotSeries*>(ptr)->~QBoxPlotSeries();
 }
 
-void* QBoxPlotSeries_boxSets_atList(void* ptr, int i)
+void* QBoxPlotSeries___append_sets_atList2(void* ptr, int i)
 {
 	return const_cast<QBoxSet*>(static_cast<QList<QBoxSet *>*>(ptr)->at(i));
+}
+
+void QBoxPlotSeries___append_sets_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QBoxSet *>*>(ptr)->append(static_cast<QBoxSet*>(i));
+}
+
+void* QBoxPlotSeries___append_sets_newList2(void* ptr)
+{
+	return new QList<QBoxSet *>;
+}
+
+void* QBoxPlotSeries___boxSets_atList(void* ptr, int i)
+{
+	return const_cast<QBoxSet*>(static_cast<QList<QBoxSet *>*>(ptr)->at(i));
+}
+
+void QBoxPlotSeries___boxSets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBoxSet *>*>(ptr)->append(static_cast<QBoxSet*>(i));
+}
+
+void* QBoxPlotSeries___boxSets_newList(void* ptr)
+{
+	return new QList<QBoxSet *>;
+}
+
+void* QBoxPlotSeries___boxsetsAdded_sets_atList(void* ptr, int i)
+{
+	return const_cast<QBoxSet*>(static_cast<QList<QBoxSet *>*>(ptr)->at(i));
+}
+
+void QBoxPlotSeries___boxsetsAdded_sets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBoxSet *>*>(ptr)->append(static_cast<QBoxSet*>(i));
+}
+
+void* QBoxPlotSeries___boxsetsAdded_sets_newList(void* ptr)
+{
+	return new QList<QBoxSet *>;
+}
+
+void* QBoxPlotSeries___boxsetsRemoved_sets_atList(void* ptr, int i)
+{
+	return const_cast<QBoxSet*>(static_cast<QList<QBoxSet *>*>(ptr)->at(i));
+}
+
+void QBoxPlotSeries___boxsetsRemoved_sets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBoxSet *>*>(ptr)->append(static_cast<QBoxSet*>(i));
+}
+
+void* QBoxPlotSeries___boxsetsRemoved_sets_newList(void* ptr)
+{
+	return new QList<QBoxSet *>;
 }
 
 class MyQBoxSet: public QBoxSet
@@ -2571,6 +2785,11 @@ void* QBoxSet_NewQBoxSet(char* label, void* parent)
 void* QBoxSet_NewQBoxSet2(double le, double lq, double m, double uq, double ue, char* label, void* parent)
 {
 	return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QObject*>(parent));
+}
+
+void QBoxSet_Append2(void* ptr, void* values)
+{
+	static_cast<QBoxSet*>(ptr)->append(*static_cast<QList<qreal>*>(values));
 }
 
 void QBoxSet_Append(void* ptr, double value)
@@ -2786,6 +3005,21 @@ void QBoxSet_DestroyQBoxSet(void* ptr)
 void QBoxSet_DestroyQBoxSetDefault(void* ptr)
 {
 
+}
+
+double QBoxSet___append_values_atList2(void* ptr, int i)
+{
+	return static_cast<QList<qreal>*>(ptr)->at(i);
+}
+
+void QBoxSet___append_values_setList2(void* ptr, double i)
+{
+	static_cast<QList<qreal>*>(ptr)->append(i);
+}
+
+void* QBoxSet___append_values_newList2(void* ptr)
+{
+	return new QList<qreal>;
 }
 
 class MyQCategoryAxis: public QCategoryAxis
@@ -3218,14 +3452,34 @@ void QChart_DestroyQChart(void* ptr)
 	static_cast<QChart*>(ptr)->~QChart();
 }
 
-void* QChart_axes_atList(void* ptr, int i)
+void* QChart___axes_atList(void* ptr, int i)
 {
 	return const_cast<QAbstractAxis*>(static_cast<QList<QAbstractAxis *>*>(ptr)->at(i));
 }
 
-void* QChart_series_atList(void* ptr, int i)
+void QChart___axes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAbstractAxis *>*>(ptr)->append(static_cast<QAbstractAxis*>(i));
+}
+
+void* QChart___axes_newList(void* ptr)
+{
+	return new QList<QAbstractAxis *>;
+}
+
+void* QChart___series_atList(void* ptr, int i)
 {
 	return const_cast<QAbstractSeries*>(static_cast<QList<QAbstractSeries *>*>(ptr)->at(i));
+}
+
+void QChart___series_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAbstractSeries *>*>(ptr)->append(static_cast<QAbstractSeries*>(i));
+}
+
+void* QChart___series_newList(void* ptr)
+{
+	return new QList<QAbstractSeries *>;
 }
 
 void* QChartView_NewQChartView2(void* chart, void* parent)
@@ -4258,9 +4512,19 @@ void QLegend_DestroyQLegend(void* ptr)
 	static_cast<QLegend*>(ptr)->~QLegend();
 }
 
-void* QLegend_markers_atList(void* ptr, int i)
+void* QLegend___markers_atList(void* ptr, int i)
 {
 	return const_cast<QLegendMarker*>(static_cast<QList<QLegendMarker *>*>(ptr)->at(i));
+}
+
+void QLegend___markers_setList(void* ptr, void* i)
+{
+	static_cast<QList<QLegendMarker *>*>(ptr)->append(static_cast<QLegendMarker*>(i));
+}
+
+void* QLegend___markers_newList(void* ptr)
+{
+	return new QList<QLegendMarker *>;
 }
 
 class MyQLegendMarker: public QLegendMarker
@@ -4710,12 +4974,14 @@ class MyQPieSeries: public QPieSeries
 {
 public:
 	MyQPieSeries(QObject *parent) : QPieSeries(parent) {};
+	void Signal_Added(QList<QPieSlice *> slices) { callbackQPieSeries_Added(this, ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_Clicked(QPieSlice * slice) { callbackQPieSeries_Clicked(this, slice); };
 	void Signal_CountChanged() { callbackQPieSeries_CountChanged(this); };
 	void Signal_DoubleClicked(QPieSlice * slice) { callbackQPieSeries_DoubleClicked(this, slice); };
 	void Signal_Hovered(QPieSlice * slice, bool state) { callbackQPieSeries_Hovered(this, slice, state); };
 	void Signal_Pressed(QPieSlice * slice) { callbackQPieSeries_Pressed(this, slice); };
 	void Signal_Released(QPieSlice * slice) { callbackQPieSeries_Released(this, slice); };
+	void Signal_Removed(QList<QPieSlice *> slices) { callbackQPieSeries_Removed(this, ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_SumChanged() { callbackQPieSeries_SumChanged(this); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPieSeries_Type(const_cast<MyQPieSeries*>(this))); };
 	 ~MyQPieSeries() { callbackQPieSeries_DestroyQPieSeries(this); };
@@ -4776,9 +5042,29 @@ void* QPieSeries_NewQPieSeries(void* parent)
 	return new MyQPieSeries(static_cast<QObject*>(parent));
 }
 
+void QPieSeries_ConnectAdded(void* ptr)
+{
+	QObject::connect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::added), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Added));
+}
+
+void QPieSeries_DisconnectAdded(void* ptr)
+{
+	QObject::disconnect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::added), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Added));
+}
+
+void QPieSeries_Added(void* ptr, void* slices)
+{
+	static_cast<QPieSeries*>(ptr)->added(*static_cast<QList<QPieSlice *>*>(slices));
+}
+
 void* QPieSeries_Append3(void* ptr, char* label, double value)
 {
 	return static_cast<QPieSeries*>(ptr)->append(QString(label), value);
+}
+
+char QPieSeries_Append2(void* ptr, void* slices)
+{
+	return static_cast<QPieSeries*>(ptr)->append(*static_cast<QList<QPieSlice *>*>(slices));
 }
 
 char QPieSeries_Append(void* ptr, void* slice)
@@ -4906,6 +5192,21 @@ char QPieSeries_Remove(void* ptr, void* slice)
 	return static_cast<QPieSeries*>(ptr)->remove(static_cast<QPieSlice*>(slice));
 }
 
+void QPieSeries_ConnectRemoved(void* ptr)
+{
+	QObject::connect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::removed), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Removed));
+}
+
+void QPieSeries_DisconnectRemoved(void* ptr)
+{
+	QObject::disconnect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::removed), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Removed));
+}
+
+void QPieSeries_Removed(void* ptr, void* slices)
+{
+	static_cast<QPieSeries*>(ptr)->removed(*static_cast<QList<QPieSlice *>*>(slices));
+}
+
 void QPieSeries_SetLabelsPosition(void* ptr, long long position)
 {
 	static_cast<QPieSeries*>(ptr)->setLabelsPosition(static_cast<QPieSlice::LabelPosition>(position));
@@ -4971,9 +5272,64 @@ void QPieSeries_DestroyQPieSeriesDefault(void* ptr)
 
 }
 
-void* QPieSeries_slices_atList(void* ptr, int i)
+void* QPieSeries___added_slices_atList(void* ptr, int i)
 {
 	return const_cast<QPieSlice*>(static_cast<QList<QPieSlice *>*>(ptr)->at(i));
+}
+
+void QPieSeries___added_slices_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPieSlice *>*>(ptr)->append(static_cast<QPieSlice*>(i));
+}
+
+void* QPieSeries___added_slices_newList(void* ptr)
+{
+	return new QList<QPieSlice *>;
+}
+
+void* QPieSeries___append_slices_atList2(void* ptr, int i)
+{
+	return const_cast<QPieSlice*>(static_cast<QList<QPieSlice *>*>(ptr)->at(i));
+}
+
+void QPieSeries___append_slices_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QPieSlice *>*>(ptr)->append(static_cast<QPieSlice*>(i));
+}
+
+void* QPieSeries___append_slices_newList2(void* ptr)
+{
+	return new QList<QPieSlice *>;
+}
+
+void* QPieSeries___removed_slices_atList(void* ptr, int i)
+{
+	return const_cast<QPieSlice*>(static_cast<QList<QPieSlice *>*>(ptr)->at(i));
+}
+
+void QPieSeries___removed_slices_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPieSlice *>*>(ptr)->append(static_cast<QPieSlice*>(i));
+}
+
+void* QPieSeries___removed_slices_newList(void* ptr)
+{
+	return new QList<QPieSlice *>;
+}
+
+void* QPieSeries___slices_atList(void* ptr, int i)
+{
+	return const_cast<QPieSlice*>(static_cast<QList<QPieSlice *>*>(ptr)->at(i));
+}
+
+void QPieSeries___slices_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPieSlice *>*>(ptr)->append(static_cast<QPieSlice*>(i));
+}
+
+void* QPieSeries___slices_newList(void* ptr)
+{
+	return new QList<QPieSlice *>;
 }
 
 class MyQPieSlice: public QPieSlice
@@ -5503,9 +5859,19 @@ void QPolarChart_DestroyQPolarChart(void* ptr)
 	static_cast<QPolarChart*>(ptr)->~QPolarChart();
 }
 
-void* QPolarChart_axes_atList(void* ptr, int i)
+void* QPolarChart___axes_atList(void* ptr, int i)
 {
 	return const_cast<QAbstractAxis*>(static_cast<QList<QAbstractAxis *>*>(ptr)->at(i));
+}
+
+void QPolarChart___axes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAbstractAxis *>*>(ptr)->append(static_cast<QAbstractAxis*>(i));
+}
+
+void* QPolarChart___axes_newList(void* ptr)
+{
+	return new QList<QAbstractAxis *>;
 }
 
 class MyQScatterSeries: public QScatterSeries
@@ -6721,6 +7087,11 @@ void QXYSeries_SetPointsVisible(void* ptr, char visible)
 	static_cast<QXYSeries*>(ptr)->setPointsVisible(visible != 0);
 }
 
+void QXYSeries_Append3(void* ptr, void* points)
+{
+	static_cast<QXYSeries*>(ptr)->append(*static_cast<QList<QPointF>*>(points));
+}
+
 void QXYSeries_Append2(void* ptr, void* point)
 {
 	static_cast<QXYSeries*>(ptr)->append(*static_cast<QPointF*>(point));
@@ -7036,6 +7407,16 @@ void QXYSeries_RemovePoints(void* ptr, int index, int count)
 	static_cast<QXYSeries*>(ptr)->removePoints(index, count);
 }
 
+void QXYSeries_Replace5(void* ptr, void* points)
+{
+	static_cast<QXYSeries*>(ptr)->replace(*static_cast<QList<QPointF>*>(points));
+}
+
+void QXYSeries_Replace6(void* ptr, void* points)
+{
+	static_cast<QXYSeries*>(ptr)->replace(*static_cast<QVector<QPointF>*>(points));
+}
+
 void QXYSeries_Replace2(void* ptr, void* oldPoint, void* newPoint)
 {
 	static_cast<QXYSeries*>(ptr)->replace(*static_cast<QPointF*>(oldPoint), *static_cast<QPointF*>(newPoint));
@@ -7081,13 +7462,78 @@ void QXYSeries_DestroyQXYSeries(void* ptr)
 	static_cast<QXYSeries*>(ptr)->~QXYSeries();
 }
 
-void* QXYSeries_points_atList(void* ptr, int i)
+void* QXYSeries___append_points_atList3(void* ptr, int i)
 {
 	return ({ QPointF tmpValue = static_cast<QList<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void* QXYSeries_pointsVector_atList(void* ptr, int i)
+void QXYSeries___append_points_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QXYSeries___append_points_newList3(void* ptr)
+{
+	return new QList<QPointF>;
+}
+
+void* QXYSeries___points_atList(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QList<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QXYSeries___points_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QXYSeries___points_newList(void* ptr)
+{
+	return new QList<QPointF>;
+}
+
+void* QXYSeries___pointsVector_atList(void* ptr, int i)
 {
 	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QXYSeries___pointsVector_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QXYSeries___pointsVector_newList(void* ptr)
+{
+	return new QVector<QPointF>;
+}
+
+void* QXYSeries___replace_points_atList5(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QList<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QXYSeries___replace_points_setList5(void* ptr, void* i)
+{
+	static_cast<QList<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QXYSeries___replace_points_newList5(void* ptr)
+{
+	return new QList<QPointF>;
+}
+
+void* QXYSeries___replace_points_atList6(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QXYSeries___replace_points_setList6(void* ptr, void* i)
+{
+	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QXYSeries___replace_points_newList6(void* ptr)
+{
+	return new QVector<QPointF>;
 }
 

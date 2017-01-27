@@ -165,6 +165,11 @@ void QGeoRoute_SetFirstRouteSegment(void* ptr, void* routeSegment)
 	static_cast<QGeoRoute*>(ptr)->setFirstRouteSegment(*static_cast<QGeoRouteSegment*>(routeSegment));
 }
 
+void QGeoRoute_SetPath(void* ptr, void* path)
+{
+	static_cast<QGeoRoute*>(ptr)->setPath(*static_cast<QList<QGeoCoordinate>*>(path));
+}
+
 void QGeoRoute_SetRequest(void* ptr, void* request)
 {
 	static_cast<QGeoRoute*>(ptr)->setRequest(*static_cast<QGeoRouteRequest*>(request));
@@ -200,9 +205,34 @@ void QGeoRoute_DestroyQGeoRoute(void* ptr)
 	static_cast<QGeoRoute*>(ptr)->~QGeoRoute();
 }
 
-void* QGeoRoute_path_atList(void* ptr, int i)
+void* QGeoRoute___path_atList(void* ptr, int i)
 {
 	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoRoute___path_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoRoute___path_newList(void* ptr)
+{
+	return new QList<QGeoCoordinate>;
+}
+
+void* QGeoRoute___setPath_path_atList(void* ptr, int i)
+{
+	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoRoute___setPath_path_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoRoute___setPath_path_newList(void* ptr)
+{
+	return new QList<QGeoCoordinate>;
 }
 
 class MyQGeoRouteReply: public QGeoRouteReply
@@ -243,6 +273,11 @@ void QGeoRouteReply_Abort(void* ptr)
 void QGeoRouteReply_AbortDefault(void* ptr)
 {
 	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::abort();
+}
+
+void QGeoRouteReply_AddRoutes(void* ptr, void* routes)
+{
+	static_cast<QGeoRouteReply*>(ptr)->addRoutes(*static_cast<QList<QGeoRoute>*>(routes));
 }
 
 void QGeoRouteReply_ConnectError2(void* ptr)
@@ -310,6 +345,11 @@ void QGeoRouteReply_SetFinished(void* ptr, char finished)
 	static_cast<QGeoRouteReply*>(ptr)->setFinished(finished != 0);
 }
 
+void QGeoRouteReply_SetRoutes(void* ptr, void* routes)
+{
+	static_cast<QGeoRouteReply*>(ptr)->setRoutes(*static_cast<QList<QGeoRoute>*>(routes));
+}
+
 void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr)
 {
 	static_cast<QGeoRouteReply*>(ptr)->~QGeoRouteReply();
@@ -320,9 +360,124 @@ void QGeoRouteReply_DestroyQGeoRouteReplyDefault(void* ptr)
 
 }
 
-void* QGeoRouteReply_routes_atList(void* ptr, int i)
+void* QGeoRouteReply___addRoutes_routes_atList(void* ptr, int i)
 {
 	return new QGeoRoute(static_cast<QList<QGeoRoute>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___addRoutes_routes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoRoute>*>(ptr)->append(*static_cast<QGeoRoute*>(i));
+}
+
+void* QGeoRouteReply___addRoutes_routes_newList(void* ptr)
+{
+	return new QList<QGeoRoute>;
+}
+
+void* QGeoRouteReply___routes_atList(void* ptr, int i)
+{
+	return new QGeoRoute(static_cast<QList<QGeoRoute>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___routes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoRoute>*>(ptr)->append(*static_cast<QGeoRoute*>(i));
+}
+
+void* QGeoRouteReply___routes_newList(void* ptr)
+{
+	return new QList<QGeoRoute>;
+}
+
+void* QGeoRouteReply___setRoutes_routes_atList(void* ptr, int i)
+{
+	return new QGeoRoute(static_cast<QList<QGeoRoute>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___setRoutes_routes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoRoute>*>(ptr)->append(*static_cast<QGeoRoute*>(i));
+}
+
+void* QGeoRouteReply___setRoutes_routes_newList(void* ptr)
+{
+	return new QList<QGeoRoute>;
+}
+
+void* QGeoRouteReply___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRouteReply___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QGeoRouteReply___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGeoRouteReply___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QGeoRouteReply___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRouteReply___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoRouteReply___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRouteReply___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoRouteReply___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRouteReply___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRouteReply___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QGeoRouteReply_TimerEvent(void* ptr, void* event)
@@ -425,6 +580,11 @@ void* QGeoRouteRequest_NewQGeoRouteRequest3(void* other)
 	return new QGeoRouteRequest(*static_cast<QGeoRouteRequest*>(other));
 }
 
+void* QGeoRouteRequest_NewQGeoRouteRequest(void* waypoints)
+{
+	return new QGeoRouteRequest(*static_cast<QList<QGeoCoordinate>*>(waypoints));
+}
+
 struct QtLocation_PackedList QGeoRouteRequest_ExcludeAreas(void* ptr)
 {
 	return ({ QList<QGeoRectangle>* tmpValue = new QList<QGeoRectangle>(static_cast<QGeoRouteRequest*>(ptr)->excludeAreas()); QtLocation_PackedList { tmpValue, tmpValue->size() }; });
@@ -453,6 +613,11 @@ long long QGeoRouteRequest_RouteOptimization(void* ptr)
 long long QGeoRouteRequest_SegmentDetail(void* ptr)
 {
 	return static_cast<QGeoRouteRequest*>(ptr)->segmentDetail();
+}
+
+void QGeoRouteRequest_SetExcludeAreas(void* ptr, void* areas)
+{
+	static_cast<QGeoRouteRequest*>(ptr)->setExcludeAreas(*static_cast<QList<QGeoRectangle>*>(areas));
 }
 
 void QGeoRouteRequest_SetFeatureWeight(void* ptr, long long featureType, long long featureWeight)
@@ -485,6 +650,11 @@ void QGeoRouteRequest_SetTravelModes(void* ptr, long long travelModes)
 	static_cast<QGeoRouteRequest*>(ptr)->setTravelModes(static_cast<QGeoRouteRequest::TravelMode>(travelModes));
 }
 
+void QGeoRouteRequest_SetWaypoints(void* ptr, void* waypoints)
+{
+	static_cast<QGeoRouteRequest*>(ptr)->setWaypoints(*static_cast<QList<QGeoCoordinate>*>(waypoints));
+}
+
 long long QGeoRouteRequest_TravelModes(void* ptr)
 {
 	return static_cast<QGeoRouteRequest*>(ptr)->travelModes();
@@ -500,14 +670,79 @@ void QGeoRouteRequest_DestroyQGeoRouteRequest(void* ptr)
 	static_cast<QGeoRouteRequest*>(ptr)->~QGeoRouteRequest();
 }
 
-void* QGeoRouteRequest_excludeAreas_atList(void* ptr, int i)
+void* QGeoRouteRequest___QGeoRouteRequest_waypoints_atList(void* ptr, int i)
+{
+	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoRouteRequest___QGeoRouteRequest_waypoints_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoRouteRequest___QGeoRouteRequest_waypoints_newList(void* ptr)
+{
+	return new QList<QGeoCoordinate>;
+}
+
+void* QGeoRouteRequest___excludeAreas_atList(void* ptr, int i)
 {
 	return new QGeoRectangle(static_cast<QList<QGeoRectangle>*>(ptr)->at(i));
 }
 
-void* QGeoRouteRequest_waypoints_atList(void* ptr, int i)
+void QGeoRouteRequest___excludeAreas_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoRectangle>*>(ptr)->append(*static_cast<QGeoRectangle*>(i));
+}
+
+void* QGeoRouteRequest___excludeAreas_newList(void* ptr)
+{
+	return new QList<QGeoRectangle>;
+}
+
+void* QGeoRouteRequest___setExcludeAreas_areas_atList(void* ptr, int i)
+{
+	return new QGeoRectangle(static_cast<QList<QGeoRectangle>*>(ptr)->at(i));
+}
+
+void QGeoRouteRequest___setExcludeAreas_areas_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoRectangle>*>(ptr)->append(*static_cast<QGeoRectangle*>(i));
+}
+
+void* QGeoRouteRequest___setExcludeAreas_areas_newList(void* ptr)
+{
+	return new QList<QGeoRectangle>;
+}
+
+void* QGeoRouteRequest___setWaypoints_waypoints_atList(void* ptr, int i)
 {
 	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoRouteRequest___setWaypoints_waypoints_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoRouteRequest___setWaypoints_waypoints_newList(void* ptr)
+{
+	return new QList<QGeoCoordinate>;
+}
+
+void* QGeoRouteRequest___waypoints_atList(void* ptr, int i)
+{
+	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoRouteRequest___waypoints_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoRouteRequest___waypoints_newList(void* ptr)
+{
+	return new QList<QGeoCoordinate>;
 }
 
 void* QGeoRouteSegment_NewQGeoRouteSegment()
@@ -560,6 +795,11 @@ void QGeoRouteSegment_SetNextRouteSegment(void* ptr, void* routeSegment)
 	static_cast<QGeoRouteSegment*>(ptr)->setNextRouteSegment(*static_cast<QGeoRouteSegment*>(routeSegment));
 }
 
+void QGeoRouteSegment_SetPath(void* ptr, void* path)
+{
+	static_cast<QGeoRouteSegment*>(ptr)->setPath(*static_cast<QList<QGeoCoordinate>*>(path));
+}
+
 void QGeoRouteSegment_SetTravelTime(void* ptr, int secs)
 {
 	static_cast<QGeoRouteSegment*>(ptr)->setTravelTime(secs);
@@ -575,9 +815,34 @@ void QGeoRouteSegment_DestroyQGeoRouteSegment(void* ptr)
 	static_cast<QGeoRouteSegment*>(ptr)->~QGeoRouteSegment();
 }
 
-void* QGeoRouteSegment_path_atList(void* ptr, int i)
+void* QGeoRouteSegment___path_atList(void* ptr, int i)
 {
 	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoRouteSegment___path_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoRouteSegment___path_newList(void* ptr)
+{
+	return new QList<QGeoCoordinate>;
+}
+
+void* QGeoRouteSegment___setPath_path_atList(void* ptr, int i)
+{
+	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoRouteSegment___setPath_path_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoRouteSegment___setPath_path_newList(void* ptr)
+{
+	return new QList<QGeoCoordinate>;
 }
 
 class MyQGeoRoutingManager: public QGeoRoutingManager
@@ -699,6 +964,81 @@ void* QGeoRoutingManager_UpdateRoute(void* ptr, void* route, void* position)
 void QGeoRoutingManager_DestroyQGeoRoutingManager(void* ptr)
 {
 	static_cast<QGeoRoutingManager*>(ptr)->~QGeoRoutingManager();
+}
+
+void* QGeoRoutingManager___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManager___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManager___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QGeoRoutingManager___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManager___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGeoRoutingManager___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QGeoRoutingManager___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManager___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManager___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoRoutingManager___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManager___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManager___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoRoutingManager___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManager___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManager___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QGeoRoutingManager_TimerEvent(void* ptr, void* event)
@@ -953,6 +1293,81 @@ void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(void* ptr)
 void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngineDefault(void* ptr)
 {
 
+}
+
+void* QGeoRoutingManagerEngine___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManagerEngine___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManagerEngine___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QGeoRoutingManagerEngine___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManagerEngine___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGeoRoutingManagerEngine___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QGeoRoutingManagerEngine___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManagerEngine___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManagerEngine___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoRoutingManagerEngine___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManagerEngine___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManagerEngine___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoRoutingManagerEngine___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoRoutingManagerEngine___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoRoutingManagerEngine___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QGeoRoutingManagerEngine_TimerEvent(void* ptr, void* event)
@@ -1248,6 +1663,81 @@ void QGeoServiceProvider_SetLocale(void* ptr, void* locale)
 void QGeoServiceProvider_DestroyQGeoServiceProvider(void* ptr)
 {
 	static_cast<QGeoServiceProvider*>(ptr)->~QGeoServiceProvider();
+}
+
+void* QGeoServiceProvider___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QGeoServiceProvider___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoServiceProvider___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QGeoServiceProvider___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QGeoServiceProvider___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGeoServiceProvider___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QGeoServiceProvider___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoServiceProvider___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoServiceProvider___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoServiceProvider___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoServiceProvider___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoServiceProvider___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QGeoServiceProvider___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QGeoServiceProvider___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QGeoServiceProvider___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QGeoServiceProvider_TimerEvent(void* ptr, void* event)

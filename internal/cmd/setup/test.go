@@ -16,7 +16,7 @@ var exampleApps = []struct {
 	{path: []string{"widgets", "line_edits"}},
 	{path: []string{"widgets", "video_player"}},
 	{path: []string{"widgets", "graphicsscene"}},
-	{path: []string{"widgets", "dropsite"}},
+	//{path: []string{"widgets", "dropsite"}},
 	//{path: []string{"widgets", "table"}},
 	{path: []string{"widgets", "treeview", "treeview_dual"}},
 	{path: []string{"widgets", "treeview", "treeview_filelist"}},

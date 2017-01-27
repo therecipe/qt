@@ -1017,15 +1017,6 @@ func (ptr *QDomElement) AttributeNodeNS(nsURI string, localName string) *QDomAtt
 	return nil
 }
 
-func (ptr *QDomElement) Attributes() *QDomNamedNodeMap {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNamedNodeMapFromPointer(C.QDomElement_Attributes(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDomNamedNodeMap).DestroyQDomNamedNodeMap)
-		return tmpValue
-	}
-	return nil
-}
-
 func (ptr *QDomElement) ElementsByTagName(tagname string) *QDomNodeList {
 	if ptr.Pointer() != nil {
 		var tagnameC = C.CString(tagname)
@@ -1796,15 +1787,6 @@ func (ptr *QDomNode) AppendChild(newChild QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_AppendChild(ptr.Pointer(), PointerFromQDomNode(newChild)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QDomNode) Attributes() *QDomNamedNodeMap {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNamedNodeMapFromPointer(C.QDomNode_Attributes(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QDomNamedNodeMap).DestroyQDomNamedNodeMap)
 		return tmpValue
 	}
 	return nil

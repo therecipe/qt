@@ -40,16 +40,51 @@ const (
 
 func IsPackedList(v string) bool {
 	return (strings.HasPrefix(v, "QList<") ||
+		//TODO: QLinkedList
 		strings.HasPrefix(v, "QVector<") ||
 		strings.HasPrefix(v, "QStack<") ||
 		strings.HasPrefix(v, "QQueue<")) &&
+		//TODO: QSet
 
-		strings.Count(v, "<") == 1 &&
-		!strings.Contains(v, ":") &&
-		State.ClassMap[UnpackedList(v)] != nil
+		strings.Count(v, "<") == 1 //TODO:
+}
+
+func UnpackedList(v string) string {
+	return CleanValue(UnpackedListDirty(v))
+}
+
+func UnpackedListDirty(v string) string {
+	return strings.Split(strings.Split(v, "<")[1], ">")[0]
+}
+
+func IsPackedMap(v string) bool {
+	return (strings.HasPrefix(v, "QMap<") ||
+		strings.HasPrefix(v, "QMultiMap<") ||
+		strings.HasPrefix(v, "QHash<") ||
+		strings.HasPrefix(v, "QMultiHash<")) &&
+
+		strings.Count(v, "<") == 1 //TODO:
+}
+
+func UnpackedMap(v string) (string, string) {
+	var splitted = strings.Split(UnpackedList(v), ",")
+	return splitted[0], splitted[1]
+}
+
+func UnpackedMapDirty(v string) (string, string) {
+	var splitted = strings.Split(UnpackedListDirty(v), ",")
+	return splitted[0], splitted[1]
 }
 
 func CleanValue(v string) string {
+	if IsPackedList(cleanValueUnsafe(v)) || IsPackedMap(cleanValueUnsafe(v)) {
+		var inside = strings.Split(strings.Split(v, "<")[1], ">")[0]
+		return strings.Replace(cleanValueUnsafe(v), strings.Split(strings.Split(cleanValueUnsafe(v), "<")[1], ">")[0], inside, -1)
+	}
+	return cleanValueUnsafe(v)
+}
+
+func cleanValueUnsafe(v string) string {
 	for _, b := range []string{"*", "const", "&amp", "&", ";"} {
 		v = strings.Replace(v, b, "", -1)
 	}
@@ -84,10 +119,6 @@ func CleanName(name, value string) string {
 	}
 
 	return name
-}
-
-func UnpackedList(v string) string {
-	return CleanValue(strings.Split(strings.Split(v, "<")[1], ">")[0])
 }
 
 var LibDeps = map[string][]string{

@@ -208,12 +208,12 @@ func (ptr *Q3DBars) Axes() []*QAbstract3DAxis {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QAbstract3DAxis {
 			var out = make([]*QAbstract3DAxis, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DBarsFromPointer(l.data).axes_atList(i)
+				out[i] = NewQ3DBarsFromPointer(l.data).__axes_atList(i)
 			}
 			return out
 		}(C.Q3DBars_Axes(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QAbstract3DAxis, 0)
 }
 
 //export callbackQ3DBars_BarSpacingChanged
@@ -491,12 +491,12 @@ func (ptr *Q3DBars) SeriesList() []*QBar3DSeries {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QBar3DSeries {
 			var out = make([]*QBar3DSeries, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DBarsFromPointer(l.data).seriesList_atList(i)
+				out[i] = NewQ3DBarsFromPointer(l.data).__seriesList_atList(i)
 			}
 			return out
 		}(C.Q3DBars_SeriesList(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QBar3DSeries, 0)
 }
 
 //export callbackQ3DBars_ValueAxisChanged
@@ -566,16 +566,42 @@ func (ptr *Q3DBars) DestroyQ3DBarsDefault() {
 	}
 }
 
-func (ptr *Q3DBars) axes_atList(i int) *QAbstract3DAxis {
+func (ptr *Q3DBars) __axes_atList(i int) *QAbstract3DAxis {
 	if ptr.Pointer() != nil {
-		return NewQAbstract3DAxisFromPointer(C.Q3DBars_axes_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQAbstract3DAxisFromPointer(C.Q3DBars___axes_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *Q3DBars) seriesList_atList(i int) *QBar3DSeries {
+func (ptr *Q3DBars) __axes_setList(i QAbstract3DAxis_ITF) {
 	if ptr.Pointer() != nil {
-		return NewQBar3DSeriesFromPointer(C.Q3DBars_seriesList_atList(ptr.Pointer(), C.int(int32(i))))
+		C.Q3DBars___axes_setList(ptr.Pointer(), PointerFromQAbstract3DAxis(i))
+	}
+}
+
+func (ptr *Q3DBars) __axes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DBars___axes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DBars) __seriesList_atList(i int) *QBar3DSeries {
+	if ptr.Pointer() != nil {
+		return NewQBar3DSeriesFromPointer(C.Q3DBars___seriesList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *Q3DBars) __seriesList_setList(i QBar3DSeries_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DBars___seriesList_setList(ptr.Pointer(), PointerFromQBar3DSeries(i))
+	}
+}
+
+func (ptr *Q3DBars) __seriesList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DBars___seriesList_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -1844,12 +1870,12 @@ func (ptr *Q3DScatter) Axes() []*QValue3DAxis {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QValue3DAxis {
 			var out = make([]*QValue3DAxis, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DScatterFromPointer(l.data).axes_atList(i)
+				out[i] = NewQ3DScatterFromPointer(l.data).__axes_atList(i)
 			}
 			return out
 		}(C.Q3DScatter_Axes(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QValue3DAxis, 0)
 }
 
 //export callbackQ3DScatter_AxisXChanged
@@ -1988,12 +2014,12 @@ func (ptr *Q3DScatter) SeriesList() []*QScatter3DSeries {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QScatter3DSeries {
 			var out = make([]*QScatter3DSeries, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DScatterFromPointer(l.data).seriesList_atList(i)
+				out[i] = NewQ3DScatterFromPointer(l.data).__seriesList_atList(i)
 			}
 			return out
 		}(C.Q3DScatter_SeriesList(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QScatter3DSeries, 0)
 }
 
 //export callbackQ3DScatter_DestroyQ3DScatter
@@ -2035,16 +2061,42 @@ func (ptr *Q3DScatter) DestroyQ3DScatterDefault() {
 	}
 }
 
-func (ptr *Q3DScatter) axes_atList(i int) *QValue3DAxis {
+func (ptr *Q3DScatter) __axes_atList(i int) *QValue3DAxis {
 	if ptr.Pointer() != nil {
-		return NewQValue3DAxisFromPointer(C.Q3DScatter_axes_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQValue3DAxisFromPointer(C.Q3DScatter___axes_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *Q3DScatter) seriesList_atList(i int) *QScatter3DSeries {
+func (ptr *Q3DScatter) __axes_setList(i QValue3DAxis_ITF) {
 	if ptr.Pointer() != nil {
-		return NewQScatter3DSeriesFromPointer(C.Q3DScatter_seriesList_atList(ptr.Pointer(), C.int(int32(i))))
+		C.Q3DScatter___axes_setList(ptr.Pointer(), PointerFromQValue3DAxis(i))
+	}
+}
+
+func (ptr *Q3DScatter) __axes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DScatter___axes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DScatter) __seriesList_atList(i int) *QScatter3DSeries {
+	if ptr.Pointer() != nil {
+		return NewQScatter3DSeriesFromPointer(C.Q3DScatter___seriesList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *Q3DScatter) __seriesList_setList(i QScatter3DSeries_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DScatter___seriesList_setList(ptr.Pointer(), PointerFromQScatter3DSeries(i))
+	}
+}
+
+func (ptr *Q3DScatter) __seriesList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DScatter___seriesList_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -2665,12 +2717,12 @@ func (ptr *Q3DSurface) Axes() []*QValue3DAxis {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QValue3DAxis {
 			var out = make([]*QValue3DAxis, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DSurfaceFromPointer(l.data).axes_atList(i)
+				out[i] = NewQ3DSurfaceFromPointer(l.data).__axes_atList(i)
 			}
 			return out
 		}(C.Q3DSurface_Axes(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QValue3DAxis, 0)
 }
 
 func (ptr *Q3DSurface) AxisX() *QValue3DAxis {
@@ -2851,12 +2903,12 @@ func (ptr *Q3DSurface) SeriesList() []*QSurface3DSeries {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QSurface3DSeries {
 			var out = make([]*QSurface3DSeries, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DSurfaceFromPointer(l.data).seriesList_atList(i)
+				out[i] = NewQ3DSurfaceFromPointer(l.data).__seriesList_atList(i)
 			}
 			return out
 		}(C.Q3DSurface_SeriesList(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QSurface3DSeries, 0)
 }
 
 //export callbackQ3DSurface_DestroyQ3DSurface
@@ -2898,16 +2950,42 @@ func (ptr *Q3DSurface) DestroyQ3DSurfaceDefault() {
 	}
 }
 
-func (ptr *Q3DSurface) axes_atList(i int) *QValue3DAxis {
+func (ptr *Q3DSurface) __axes_atList(i int) *QValue3DAxis {
 	if ptr.Pointer() != nil {
-		return NewQValue3DAxisFromPointer(C.Q3DSurface_axes_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQValue3DAxisFromPointer(C.Q3DSurface___axes_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *Q3DSurface) seriesList_atList(i int) *QSurface3DSeries {
+func (ptr *Q3DSurface) __axes_setList(i QValue3DAxis_ITF) {
 	if ptr.Pointer() != nil {
-		return NewQSurface3DSeriesFromPointer(C.Q3DSurface_seriesList_atList(ptr.Pointer(), C.int(int32(i))))
+		C.Q3DSurface___axes_setList(ptr.Pointer(), PointerFromQValue3DAxis(i))
+	}
+}
+
+func (ptr *Q3DSurface) __axes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DSurface___axes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DSurface) __seriesList_atList(i int) *QSurface3DSeries {
+	if ptr.Pointer() != nil {
+		return NewQSurface3DSeriesFromPointer(C.Q3DSurface___seriesList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *Q3DSurface) __seriesList_setList(i QSurface3DSeries_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DSurface___seriesList_setList(ptr.Pointer(), PointerFromQSurface3DSeries(i))
+	}
+}
+
+func (ptr *Q3DSurface) __seriesList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DSurface___seriesList_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -2997,12 +3075,12 @@ func (ptr *Q3DTheme) BaseColors() []*gui.QColor {
 		return func(l C.struct_QtDataVisualization_PackedList) []*gui.QColor {
 			var out = make([]*gui.QColor, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DThemeFromPointer(l.data).baseColors_atList(i)
+				out[i] = NewQ3DThemeFromPointer(l.data).__baseColors_atList(i)
 			}
 			return out
 		}(C.Q3DTheme_BaseColors(ptr.Pointer()))
 	}
-	return nil
+	return make([]*gui.QColor, 0)
 }
 
 func (ptr *Q3DTheme) BaseGradients() []*gui.QLinearGradient {
@@ -3010,12 +3088,12 @@ func (ptr *Q3DTheme) BaseGradients() []*gui.QLinearGradient {
 		return func(l C.struct_QtDataVisualization_PackedList) []*gui.QLinearGradient {
 			var out = make([]*gui.QLinearGradient, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DThemeFromPointer(l.data).baseGradients_atList(i)
+				out[i] = NewQ3DThemeFromPointer(l.data).__baseGradients_atList(i)
 			}
 			return out
 		}(C.Q3DTheme_BaseGradients(ptr.Pointer()))
 	}
-	return nil
+	return make([]*gui.QLinearGradient, 0)
 }
 
 func (ptr *Q3DTheme) ColorStyle() Q3DTheme__ColorStyle {
@@ -3145,6 +3223,30 @@ func (ptr *Q3DTheme) SetBackgroundColor(color gui.QColor_ITF) {
 func (ptr *Q3DTheme) SetBackgroundEnabled(enabled bool) {
 	if ptr.Pointer() != nil {
 		C.Q3DTheme_SetBackgroundEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
+func (ptr *Q3DTheme) SetBaseColors(colors []*gui.QColor) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_SetBaseColors(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(unsafe.Pointer(uintptr(1))).__setBaseColors_colors_newList())
+			for _, v := range colors {
+				tmpList.__setBaseColors_colors_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *Q3DTheme) SetBaseGradients(gradients []*gui.QLinearGradient) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_SetBaseGradients(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(unsafe.Pointer(uintptr(1))).__setBaseGradients_gradients_newList())
+			for _, v := range gradients {
+				tmpList.__setBaseGradients_gradients_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
 	}
 }
 
@@ -3373,6 +3475,86 @@ func (ptr *Q3DTheme) DisconnectBackgroundEnabledChanged() {
 func (ptr *Q3DTheme) BackgroundEnabledChanged(enabled bool) {
 	if ptr.Pointer() != nil {
 		C.Q3DTheme_BackgroundEnabledChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
+//export callbackQ3DTheme_BaseColorsChanged
+func callbackQ3DTheme_BaseColorsChanged(ptr unsafe.Pointer, colors C.struct_QtDataVisualization_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "Q3DTheme::baseColorsChanged"); signal != nil {
+		signal.(func([]*gui.QColor))(func(l C.struct_QtDataVisualization_PackedList) []*gui.QColor {
+			var out = make([]*gui.QColor, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQ3DThemeFromPointer(l.data).__baseColorsChanged_colors_atList(i)
+			}
+			return out
+		}(colors))
+	}
+
+}
+
+func (ptr *Q3DTheme) ConnectBaseColorsChanged(f func(colors []*gui.QColor)) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_ConnectBaseColorsChanged(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "Q3DTheme::baseColorsChanged", f)
+	}
+}
+
+func (ptr *Q3DTheme) DisconnectBaseColorsChanged() {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_DisconnectBaseColorsChanged(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "Q3DTheme::baseColorsChanged")
+	}
+}
+
+func (ptr *Q3DTheme) BaseColorsChanged(colors []*gui.QColor) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_BaseColorsChanged(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(unsafe.Pointer(uintptr(1))).__baseColorsChanged_colors_newList())
+			for _, v := range colors {
+				tmpList.__baseColorsChanged_colors_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+//export callbackQ3DTheme_BaseGradientsChanged
+func callbackQ3DTheme_BaseGradientsChanged(ptr unsafe.Pointer, gradients C.struct_QtDataVisualization_PackedList) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "Q3DTheme::baseGradientsChanged"); signal != nil {
+		signal.(func([]*gui.QLinearGradient))(func(l C.struct_QtDataVisualization_PackedList) []*gui.QLinearGradient {
+			var out = make([]*gui.QLinearGradient, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQ3DThemeFromPointer(l.data).__baseGradientsChanged_gradients_atList(i)
+			}
+			return out
+		}(gradients))
+	}
+
+}
+
+func (ptr *Q3DTheme) ConnectBaseGradientsChanged(f func(gradients []*gui.QLinearGradient)) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_ConnectBaseGradientsChanged(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "Q3DTheme::baseGradientsChanged", f)
+	}
+}
+
+func (ptr *Q3DTheme) DisconnectBaseGradientsChanged() {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_DisconnectBaseGradientsChanged(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "Q3DTheme::baseGradientsChanged")
+	}
+}
+
+func (ptr *Q3DTheme) BaseGradientsChanged(gradients []*gui.QLinearGradient) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme_BaseGradientsChanged(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(unsafe.Pointer(uintptr(1))).__baseGradientsChanged_gradients_newList())
+			for _, v := range gradients {
+				tmpList.__baseGradientsChanged_gradients_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
 	}
 }
 
@@ -3891,20 +4073,134 @@ func (ptr *Q3DTheme) DestroyQ3DThemeDefault() {
 	}
 }
 
-func (ptr *Q3DTheme) baseColors_atList(i int) *gui.QColor {
+func (ptr *Q3DTheme) __baseColors_atList(i int) *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_baseColors_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme___baseColors_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *Q3DTheme) baseGradients_atList(i int) *gui.QLinearGradient {
+func (ptr *Q3DTheme) __baseColors_setList(i gui.QColor_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme_baseGradients_atList(ptr.Pointer(), C.int(int32(i))))
+		C.Q3DTheme___baseColors_setList(ptr.Pointer(), gui.PointerFromQColor(i))
+	}
+}
+
+func (ptr *Q3DTheme) __baseColors_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DTheme___baseColors_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __baseGradients_atList(i int) *gui.QLinearGradient {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme___baseGradients_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __baseGradients_setList(i gui.QLinearGradient_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme___baseGradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i))
+	}
+}
+
+func (ptr *Q3DTheme) __baseGradients_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DTheme___baseGradients_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __setBaseColors_colors_atList(i int) *gui.QColor {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme___setBaseColors_colors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __setBaseColors_colors_setList(i gui.QColor_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme___setBaseColors_colors_setList(ptr.Pointer(), gui.PointerFromQColor(i))
+	}
+}
+
+func (ptr *Q3DTheme) __setBaseColors_colors_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DTheme___setBaseColors_colors_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __setBaseGradients_gradients_atList(i int) *gui.QLinearGradient {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme___setBaseGradients_gradients_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __setBaseGradients_gradients_setList(i gui.QLinearGradient_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme___setBaseGradients_gradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i))
+	}
+}
+
+func (ptr *Q3DTheme) __setBaseGradients_gradients_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DTheme___setBaseGradients_gradients_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __baseColorsChanged_colors_atList(i int) *gui.QColor {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme___baseColorsChanged_colors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __baseColorsChanged_colors_setList(i gui.QColor_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme___baseColorsChanged_colors_setList(ptr.Pointer(), gui.PointerFromQColor(i))
+	}
+}
+
+func (ptr *Q3DTheme) __baseColorsChanged_colors_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DTheme___baseColorsChanged_colors_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __baseGradientsChanged_gradients_atList(i int) *gui.QLinearGradient {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme___baseGradientsChanged_gradients_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *Q3DTheme) __baseGradientsChanged_gradients_setList(i gui.QLinearGradient_ITF) {
+	if ptr.Pointer() != nil {
+		C.Q3DTheme___baseGradientsChanged_gradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i))
+	}
+}
+
+func (ptr *Q3DTheme) __baseGradientsChanged_gradients_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.Q3DTheme___baseGradientsChanged_gradients_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -4877,12 +5173,12 @@ func (ptr *QAbstract3DGraph) CustomItems() []*QCustom3DItem {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QCustom3DItem {
 			var out = make([]*QCustom3DItem, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstract3DGraphFromPointer(l.data).customItems_atList(i)
+				out[i] = NewQAbstract3DGraphFromPointer(l.data).__customItems_atList(i)
 			}
 			return out
 		}(C.QAbstract3DGraph_CustomItems(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QCustom3DItem, 0)
 }
 
 func (ptr *QAbstract3DGraph) HasContext() bool {
@@ -4925,12 +5221,12 @@ func (ptr *QAbstract3DGraph) InputHandlers() []*QAbstract3DInputHandler {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QAbstract3DInputHandler {
 			var out = make([]*QAbstract3DInputHandler, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstract3DGraphFromPointer(l.data).inputHandlers_atList(i)
+				out[i] = NewQAbstract3DGraphFromPointer(l.data).__inputHandlers_atList(i)
 			}
 			return out
 		}(C.QAbstract3DGraph_InputHandlers(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QAbstract3DInputHandler, 0)
 }
 
 //export callbackQAbstract3DGraph_LocaleChanged
@@ -5412,12 +5708,12 @@ func (ptr *QAbstract3DGraph) Themes() []*Q3DTheme {
 		return func(l C.struct_QtDataVisualization_PackedList) []*Q3DTheme {
 			var out = make([]*Q3DTheme, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstract3DGraphFromPointer(l.data).themes_atList(i)
+				out[i] = NewQAbstract3DGraphFromPointer(l.data).__themes_atList(i)
 			}
 			return out
 		}(C.QAbstract3DGraph_Themes(ptr.Pointer()))
 	}
-	return nil
+	return make([]*Q3DTheme, 0)
 }
 
 //export callbackQAbstract3DGraph_DestroyQAbstract3DGraph
@@ -5459,23 +5755,62 @@ func (ptr *QAbstract3DGraph) DestroyQAbstract3DGraphDefault() {
 	}
 }
 
-func (ptr *QAbstract3DGraph) customItems_atList(i int) *QCustom3DItem {
+func (ptr *QAbstract3DGraph) __customItems_atList(i int) *QCustom3DItem {
 	if ptr.Pointer() != nil {
-		return NewQCustom3DItemFromPointer(C.QAbstract3DGraph_customItems_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQCustom3DItemFromPointer(C.QAbstract3DGraph___customItems_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *QAbstract3DGraph) inputHandlers_atList(i int) *QAbstract3DInputHandler {
+func (ptr *QAbstract3DGraph) __customItems_setList(i QCustom3DItem_ITF) {
 	if ptr.Pointer() != nil {
-		return NewQAbstract3DInputHandlerFromPointer(C.QAbstract3DGraph_inputHandlers_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QAbstract3DGraph___customItems_setList(ptr.Pointer(), PointerFromQCustom3DItem(i))
+	}
+}
+
+func (ptr *QAbstract3DGraph) __customItems_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstract3DGraph___customItems_newList(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QAbstract3DGraph) themes_atList(i int) *Q3DTheme {
+func (ptr *QAbstract3DGraph) __inputHandlers_atList(i int) *QAbstract3DInputHandler {
 	if ptr.Pointer() != nil {
-		return NewQ3DThemeFromPointer(C.QAbstract3DGraph_themes_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQAbstract3DInputHandlerFromPointer(C.QAbstract3DGraph___inputHandlers_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAbstract3DGraph) __inputHandlers_setList(i QAbstract3DInputHandler_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstract3DGraph___inputHandlers_setList(ptr.Pointer(), PointerFromQAbstract3DInputHandler(i))
+	}
+}
+
+func (ptr *QAbstract3DGraph) __inputHandlers_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstract3DGraph___inputHandlers_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstract3DGraph) __themes_atList(i int) *Q3DTheme {
+	if ptr.Pointer() != nil {
+		return NewQ3DThemeFromPointer(C.QAbstract3DGraph___themes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAbstract3DGraph) __themes_setList(i Q3DTheme_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstract3DGraph___themes_setList(ptr.Pointer(), PointerFromQ3DTheme(i))
+	}
+}
+
+func (ptr *QAbstract3DGraph) __themes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstract3DGraph___themes_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -8615,20 +8950,6 @@ func (ptr *QCustom3DVolume) AlphaMultiplier() float32 {
 	return 0
 }
 
-func (ptr *QCustom3DVolume) DrawSliceFrames() bool {
-	if ptr.Pointer() != nil {
-		return C.QCustom3DVolume_DrawSliceFrames(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QCustom3DVolume) DrawSlices() bool {
-	if ptr.Pointer() != nil {
-		return C.QCustom3DVolume_DrawSlices(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 func (ptr *QCustom3DVolume) PreserveOpacity() bool {
 	if ptr.Pointer() != nil {
 		return C.QCustom3DVolume_PreserveOpacity(ptr.Pointer()) != 0
@@ -8868,62 +9189,6 @@ func (ptr *QCustom3DVolume) DisconnectColorTableChanged() {
 func (ptr *QCustom3DVolume) ColorTableChanged() {
 	if ptr.Pointer() != nil {
 		C.QCustom3DVolume_ColorTableChanged(ptr.Pointer())
-	}
-}
-
-//export callbackQCustom3DVolume_DrawSliceFramesChanged
-func callbackQCustom3DVolume_DrawSliceFramesChanged(ptr unsafe.Pointer, enabled C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCustom3DVolume::drawSliceFramesChanged"); signal != nil {
-		signal.(func(bool))(int8(enabled) != 0)
-	}
-
-}
-
-func (ptr *QCustom3DVolume) ConnectDrawSliceFramesChanged(f func(enabled bool)) {
-	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_ConnectDrawSliceFramesChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCustom3DVolume::drawSliceFramesChanged", f)
-	}
-}
-
-func (ptr *QCustom3DVolume) DisconnectDrawSliceFramesChanged() {
-	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_DisconnectDrawSliceFramesChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCustom3DVolume::drawSliceFramesChanged")
-	}
-}
-
-func (ptr *QCustom3DVolume) DrawSliceFramesChanged(enabled bool) {
-	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_DrawSliceFramesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
-	}
-}
-
-//export callbackQCustom3DVolume_DrawSlicesChanged
-func callbackQCustom3DVolume_DrawSlicesChanged(ptr unsafe.Pointer, enabled C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCustom3DVolume::drawSlicesChanged"); signal != nil {
-		signal.(func(bool))(int8(enabled) != 0)
-	}
-
-}
-
-func (ptr *QCustom3DVolume) ConnectDrawSlicesChanged(f func(enabled bool)) {
-	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_ConnectDrawSlicesChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCustom3DVolume::drawSlicesChanged", f)
-	}
-}
-
-func (ptr *QCustom3DVolume) DisconnectDrawSlicesChanged() {
-	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_DisconnectDrawSlicesChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCustom3DVolume::drawSlicesChanged")
-	}
-}
-
-func (ptr *QCustom3DVolume) DrawSlicesChanged(enabled bool) {
-	if ptr.Pointer() != nil {
-		C.QCustom3DVolume_DrawSlicesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
 	}
 }
 
@@ -9192,13 +9457,6 @@ func (ptr *QCustom3DVolume) SliceIndexZChanged(value int) {
 	}
 }
 
-func (ptr *QCustom3DVolume) TextureDataWidth() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QCustom3DVolume_TextureDataWidth(ptr.Pointer())))
-	}
-	return 0
-}
-
 //export callbackQCustom3DVolume_TextureDepthChanged
 func callbackQCustom3DVolume_TextureDepthChanged(ptr unsafe.Pointer, value C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCustom3DVolume::textureDepthChanged"); signal != nil {
@@ -9383,6 +9641,27 @@ func (ptr *QCustom3DVolume) DestroyQCustom3DVolumeDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QCustom3DVolume) __colorTable_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCustom3DVolume___colorTable_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCustom3DVolume) __setColorTable_colors_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCustom3DVolume___setColorTable_colors_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCustom3DVolume) __QCustom3DVolume_colorTable_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCustom3DVolume___QCustom3DVolume_colorTable_newList2(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QHeightMapSurfaceDataProxy struct {
@@ -13535,13 +13814,6 @@ func (ptr *QSurface3DSeries) DataProxy() *QSurfaceDataProxy {
 	return nil
 }
 
-func (ptr *QSurface3DSeries) DrawMode() QSurface3DSeries__DrawFlag {
-	if ptr.Pointer() != nil {
-		return QSurface3DSeries__DrawFlag(C.QSurface3DSeries_DrawMode(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QSurface3DSeries) IsFlatShadingEnabled() bool {
 	if ptr.Pointer() != nil {
 		return C.QSurface3DSeries_IsFlatShadingEnabled(ptr.Pointer()) != 0
@@ -13652,34 +13924,6 @@ func (ptr *QSurface3DSeries) DisconnectDataProxyChanged() {
 func (ptr *QSurface3DSeries) DataProxyChanged(proxy QSurfaceDataProxy_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSurface3DSeries_DataProxyChanged(ptr.Pointer(), PointerFromQSurfaceDataProxy(proxy))
-	}
-}
-
-//export callbackQSurface3DSeries_DrawModeChanged
-func callbackQSurface3DSeries_DrawModeChanged(ptr unsafe.Pointer, mode C.longlong) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSurface3DSeries::drawModeChanged"); signal != nil {
-		signal.(func(QSurface3DSeries__DrawFlag))(QSurface3DSeries__DrawFlag(mode))
-	}
-
-}
-
-func (ptr *QSurface3DSeries) ConnectDrawModeChanged(f func(mode QSurface3DSeries__DrawFlag)) {
-	if ptr.Pointer() != nil {
-		C.QSurface3DSeries_ConnectDrawModeChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSurface3DSeries::drawModeChanged", f)
-	}
-}
-
-func (ptr *QSurface3DSeries) DisconnectDrawModeChanged() {
-	if ptr.Pointer() != nil {
-		C.QSurface3DSeries_DisconnectDrawModeChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSurface3DSeries::drawModeChanged")
-	}
-}
-
-func (ptr *QSurface3DSeries) DrawModeChanged(mode QSurface3DSeries__DrawFlag) {
-	if ptr.Pointer() != nil {
-		C.QSurface3DSeries_DrawModeChanged(ptr.Pointer(), C.longlong(mode))
 	}
 }
 
@@ -14880,6 +15124,32 @@ func (ptr *QValue3DAxisFormatter) CreateNewInstanceDefault() *QValue3DAxisFormat
 	return nil
 }
 
+func (ptr *QValue3DAxisFormatter) GridPositions() []float32 {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDataVisualization_PackedList) []float32 {
+			var out = make([]float32, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQValue3DAxisFormatterFromPointer(l.data).__gridPositions_atList(i)
+			}
+			return out
+		}(C.QValue3DAxisFormatter_GridPositions(ptr.Pointer()))
+	}
+	return make([]float32, 0)
+}
+
+func (ptr *QValue3DAxisFormatter) LabelPositions() []float32 {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDataVisualization_PackedList) []float32 {
+			var out = make([]float32, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQValue3DAxisFormatterFromPointer(l.data).__labelPositions_atList(i)
+			}
+			return out
+		}(C.QValue3DAxisFormatter_LabelPositions(ptr.Pointer()))
+	}
+	return make([]float32, 0)
+}
+
 func (ptr *QValue3DAxisFormatter) LabelStrings() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QValue3DAxisFormatter_LabelStrings(ptr.Pointer())), "|")
@@ -15068,6 +15338,19 @@ func (ptr *QValue3DAxisFormatter) StringForValueDefault(value float64, format st
 	return ""
 }
 
+func (ptr *QValue3DAxisFormatter) SubGridPositions() []float32 {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDataVisualization_PackedList) []float32 {
+			var out = make([]float32, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQValue3DAxisFormatterFromPointer(l.data).__subGridPositions_atList(i)
+			}
+			return out
+		}(C.QValue3DAxisFormatter_SubGridPositions(ptr.Pointer()))
+	}
+	return make([]float32, 0)
+}
+
 //export callbackQValue3DAxisFormatter_ValueAt
 func callbackQValue3DAxisFormatter_ValueAt(ptr unsafe.Pointer, position C.float) C.float {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QValue3DAxisFormatter::valueAt"); signal != nil {
@@ -15142,4 +15425,64 @@ func (ptr *QValue3DAxisFormatter) DestroyQValue3DAxisFormatterDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QValue3DAxisFormatter) __gridPositions_atList(i int) float32 {
+	if ptr.Pointer() != nil {
+		return float32(C.QValue3DAxisFormatter___gridPositions_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QValue3DAxisFormatter) __gridPositions_setList(i float32) {
+	if ptr.Pointer() != nil {
+		C.QValue3DAxisFormatter___gridPositions_setList(ptr.Pointer(), C.float(i))
+	}
+}
+
+func (ptr *QValue3DAxisFormatter) __gridPositions_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QValue3DAxisFormatter___gridPositions_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QValue3DAxisFormatter) __labelPositions_atList(i int) float32 {
+	if ptr.Pointer() != nil {
+		return float32(C.QValue3DAxisFormatter___labelPositions_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QValue3DAxisFormatter) __labelPositions_setList(i float32) {
+	if ptr.Pointer() != nil {
+		C.QValue3DAxisFormatter___labelPositions_setList(ptr.Pointer(), C.float(i))
+	}
+}
+
+func (ptr *QValue3DAxisFormatter) __labelPositions_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QValue3DAxisFormatter___labelPositions_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QValue3DAxisFormatter) __subGridPositions_atList(i int) float32 {
+	if ptr.Pointer() != nil {
+		return float32(C.QValue3DAxisFormatter___subGridPositions_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QValue3DAxisFormatter) __subGridPositions_setList(i float32) {
+	if ptr.Pointer() != nil {
+		C.QValue3DAxisFormatter___subGridPositions_setList(ptr.Pointer(), C.float(i))
+	}
+}
+
+func (ptr *QValue3DAxisFormatter) __subGridPositions_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QValue3DAxisFormatter___subGridPositions_newList(ptr.Pointer()))
+	}
+	return nil
 }

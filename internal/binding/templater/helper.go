@@ -16,7 +16,7 @@ func hasUnimplementedPureVirtualFunctions(className string) bool {
 			f.Checked = true
 		}
 
-		if f.Virtual == parser.PURE && (!f.IsSupported() || parser.IsPackedList(f.Output)) {
+		if f.Virtual == parser.PURE && !f.IsSupported() {
 			return true
 		}
 	}

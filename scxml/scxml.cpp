@@ -11,6 +11,7 @@
 #include <QEvent>
 #include <QIODevice>
 #include <QJSEngine>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -253,6 +254,81 @@ void QScxmlDataModel_StateMachineChanged(void* ptr, void* stateMachine)
 	static_cast<QScxmlDataModel*>(ptr)->stateMachineChanged(static_cast<QScxmlStateMachine*>(stateMachine));
 }
 
+void* QScxmlDataModel___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QScxmlDataModel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlDataModel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QScxmlDataModel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QScxmlDataModel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QScxmlDataModel___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QScxmlDataModel___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlDataModel___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlDataModel___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlDataModel___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlDataModel___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlDataModel___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlDataModel___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlDataModel___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlDataModel___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QScxmlDataModel_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QScxmlDataModel*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -415,6 +491,81 @@ char QScxmlEcmaScriptDataModel_SetScxmlProperty(void* ptr, char* name, void* val
 char QScxmlEcmaScriptDataModel_SetScxmlPropertyDefault(void* ptr, char* name, void* value, char* context)
 {
 	return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+}
+
+void* QScxmlEcmaScriptDataModel___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QScxmlEcmaScriptDataModel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlEcmaScriptDataModel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QScxmlEcmaScriptDataModel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QScxmlEcmaScriptDataModel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QScxmlEcmaScriptDataModel___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QScxmlEcmaScriptDataModel___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlEcmaScriptDataModel___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlEcmaScriptDataModel___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlEcmaScriptDataModel___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlEcmaScriptDataModel___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlEcmaScriptDataModel___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlEcmaScriptDataModel___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlEcmaScriptDataModel___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlEcmaScriptDataModel___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QScxmlEcmaScriptDataModel_TimerEvent(void* ptr, void* event)
@@ -763,6 +914,81 @@ char QScxmlNullDataModel_SetScxmlPropertyDefault(void* ptr, char* name, void* va
 	return static_cast<QScxmlNullDataModel*>(ptr)->QScxmlNullDataModel::setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
 }
 
+void* QScxmlNullDataModel___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QScxmlNullDataModel___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlNullDataModel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QScxmlNullDataModel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QScxmlNullDataModel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QScxmlNullDataModel___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QScxmlNullDataModel___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlNullDataModel___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlNullDataModel___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlNullDataModel___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlNullDataModel___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlNullDataModel___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlNullDataModel___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlNullDataModel___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlNullDataModel___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QScxmlNullDataModel_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QScxmlNullDataModel*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -908,9 +1134,19 @@ void QScxmlParser_DestroyQScxmlParser(void* ptr)
 	static_cast<QScxmlParser*>(ptr)->~QScxmlParser();
 }
 
-void* QScxmlParser_errors_atList(void* ptr, int i)
+void* QScxmlParser___errors_atList(void* ptr, int i)
 {
 	return new QScxmlError(static_cast<QVector<QScxmlError>*>(ptr)->at(i));
+}
+
+void QScxmlParser___errors_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QScxmlError>*>(ptr)->append(*static_cast<QScxmlError*>(i));
+}
+
+void* QScxmlParser___errors_newList(void* ptr)
+{
+	return new QVector<QScxmlError>;
 }
 
 class MyQScxmlStateMachine: public QScxmlStateMachine
@@ -1210,9 +1446,94 @@ void QScxmlStateMachine_SubmitEvent3(void* ptr, char* eventName, void* data)
 	static_cast<QScxmlStateMachine*>(ptr)->submitEvent(QString(eventName), *static_cast<QVariant*>(data));
 }
 
-void* QScxmlStateMachine_parseErrors_atList(void* ptr, int i)
+void* QScxmlStateMachine___parseErrors_atList(void* ptr, int i)
 {
 	return new QScxmlError(static_cast<QVector<QScxmlError>*>(ptr)->at(i));
+}
+
+void QScxmlStateMachine___parseErrors_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QScxmlError>*>(ptr)->append(*static_cast<QScxmlError*>(i));
+}
+
+void* QScxmlStateMachine___parseErrors_newList(void* ptr)
+{
+	return new QVector<QScxmlError>;
+}
+
+void* QScxmlStateMachine___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QScxmlStateMachine___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlStateMachine___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QScxmlStateMachine___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QScxmlStateMachine___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QScxmlStateMachine___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QScxmlStateMachine___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlStateMachine___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlStateMachine___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlStateMachine___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlStateMachine___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlStateMachine___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QScxmlStateMachine___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QScxmlStateMachine___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QScxmlStateMachine___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QScxmlStateMachine_TimerEvent(void* ptr, void* event)

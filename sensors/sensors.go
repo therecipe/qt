@@ -248,6 +248,70 @@ func (ptr *QAccelerometer) Type() string {
 	return cGoUnpackString(C.QAccelerometer_QAccelerometer_Type())
 }
 
+func (ptr *QAccelerometer) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAccelerometer___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAccelerometer) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAccelerometer___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAccelerometer) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAccelerometer___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAccelerometer) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAccelerometer___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAccelerometer) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAccelerometer___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAccelerometer) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAccelerometer___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAccelerometer) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAccelerometer___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAccelerometer) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAccelerometer___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAccelerometer) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAccelerometer___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAccelerometer_Start
 func callbackQAccelerometer_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::start"); signal != nil {
@@ -1204,6 +1268,70 @@ func QAltimeter_Type() string {
 
 func (ptr *QAltimeter) Type() string {
 	return cGoUnpackString(C.QAltimeter_QAltimeter_Type())
+}
+
+func (ptr *QAltimeter) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAltimeter___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAltimeter) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAltimeter___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAltimeter) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAltimeter___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAltimeter) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAltimeter___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAltimeter) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAltimeter___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAltimeter) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAltimeter___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAltimeter) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAltimeter___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAltimeter) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAltimeter___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAltimeter) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAltimeter___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQAltimeter_Start
@@ -2644,6 +2772,70 @@ func (ptr *QAmbientLightSensor) Type() string {
 	return cGoUnpackString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
 }
 
+func (ptr *QAmbientLightSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAmbientLightSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAmbientLightSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientLightSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAmbientLightSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientLightSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAmbientLightSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAmbientLightSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAmbientLightSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientLightSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAmbientLightSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientLightSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAmbientLightSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAmbientLightSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAmbientLightSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientLightSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAmbientLightSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientLightSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAmbientLightSensor_Start
 func callbackQAmbientLightSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::start"); signal != nil {
@@ -3576,6 +3768,70 @@ func (ptr *QAmbientTemperatureSensor) Type() string {
 	return cGoUnpackString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
 }
 
+func (ptr *QAmbientTemperatureSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAmbientTemperatureSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAmbientTemperatureSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientTemperatureSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAmbientTemperatureSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAmbientTemperatureSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAmbientTemperatureSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientTemperatureSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAmbientTemperatureSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAmbientTemperatureSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAmbientTemperatureSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientTemperatureSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAmbientTemperatureSensor_Start
 func callbackQAmbientTemperatureSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureSensor::start"); signal != nil {
@@ -4075,6 +4331,70 @@ func QCompass_Type() string {
 
 func (ptr *QCompass) Type() string {
 	return cGoUnpackString(C.QCompass_QCompass_Type())
+}
+
+func (ptr *QCompass) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QCompass___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QCompass) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompass___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QCompass) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCompass___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCompass) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCompass___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCompass) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompass___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QCompass) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCompass___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCompass) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCompass___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCompass) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompass___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QCompass) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCompass___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQCompass_Start
@@ -5484,6 +5804,70 @@ func (ptr *QDistanceSensor) Type() string {
 	return cGoUnpackString(C.QDistanceSensor_QDistanceSensor_Type())
 }
 
+func (ptr *QDistanceSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QDistanceSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QDistanceSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDistanceSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QDistanceSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QDistanceSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDistanceSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QDistanceSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDistanceSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDistanceSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QDistanceSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QDistanceSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDistanceSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QDistanceSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDistanceSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDistanceSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QDistanceSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QDistanceSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDistanceSensor_Start
 func callbackQDistanceSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceSensor::start"); signal != nil {
@@ -5983,6 +6367,70 @@ func QGyroscope_Type() string {
 
 func (ptr *QGyroscope) Type() string {
 	return cGoUnpackString(C.QGyroscope_QGyroscope_Type())
+}
+
+func (ptr *QGyroscope) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QGyroscope___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QGyroscope) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGyroscope___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QGyroscope) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGyroscope___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGyroscope) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QGyroscope___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGyroscope) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGyroscope___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QGyroscope) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGyroscope___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGyroscope) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QGyroscope___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGyroscope) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGyroscope___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QGyroscope) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGyroscope___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGyroscope_Start
@@ -7405,6 +7853,70 @@ func (ptr *QHolsterSensor) Type() string {
 	return cGoUnpackString(C.QHolsterSensor_QHolsterSensor_Type())
 }
 
+func (ptr *QHolsterSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QHolsterSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QHolsterSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QHolsterSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QHolsterSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QHolsterSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QHolsterSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QHolsterSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QHolsterSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QHolsterSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QHolsterSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QHolsterSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QHolsterSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QHolsterSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QHolsterSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQHolsterSensor_Start
 func callbackQHolsterSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterSensor::start"); signal != nil {
@@ -8366,6 +8878,70 @@ func QIRProximitySensor_Type() string {
 
 func (ptr *QIRProximitySensor) Type() string {
 	return cGoUnpackString(C.QIRProximitySensor_QIRProximitySensor_Type())
+}
+
+func (ptr *QIRProximitySensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QIRProximitySensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QIRProximitySensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QIRProximitySensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QIRProximitySensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QIRProximitySensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QIRProximitySensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QIRProximitySensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QIRProximitySensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QIRProximitySensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QIRProximitySensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QIRProximitySensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QIRProximitySensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QIRProximitySensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QIRProximitySensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QIRProximitySensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QIRProximitySensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QIRProximitySensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQIRProximitySensor_Start
@@ -9372,6 +9948,70 @@ func (ptr *QLightSensor) Type() string {
 	return cGoUnpackString(C.QLightSensor_QLightSensor_Type())
 }
 
+func (ptr *QLightSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QLightSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLightSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QLightSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QLightSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QLightSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLightSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QLightSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QLightSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QLightSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLightSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QLightSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QLightSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQLightSensor_Start
 func callbackQLightSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::start"); signal != nil {
@@ -9912,6 +10552,70 @@ func QMagnetometer_Type() string {
 
 func (ptr *QMagnetometer) Type() string {
 	return cGoUnpackString(C.QMagnetometer_QMagnetometer_Type())
+}
+
+func (ptr *QMagnetometer) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QMagnetometer___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometer___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QMagnetometer) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QMagnetometer___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QMagnetometer___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometer___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QMagnetometer) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QMagnetometer___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QMagnetometer___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometer___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QMagnetometer) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QMagnetometer___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQMagnetometer_Start
@@ -11392,6 +12096,70 @@ func (ptr *QOrientationSensor) Type() string {
 	return cGoUnpackString(C.QOrientationSensor_QOrientationSensor_Type())
 }
 
+func (ptr *QOrientationSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QOrientationSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QOrientationSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QOrientationSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QOrientationSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QOrientationSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QOrientationSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QOrientationSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QOrientationSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QOrientationSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QOrientationSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QOrientationSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QOrientationSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QOrientationSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QOrientationSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QOrientationSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QOrientationSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QOrientationSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQOrientationSensor_Start
 func callbackQOrientationSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::start"); signal != nil {
@@ -12335,6 +13103,70 @@ func QPressureSensor_Type() string {
 
 func (ptr *QPressureSensor) Type() string {
 	return cGoUnpackString(C.QPressureSensor_QPressureSensor_Type())
+}
+
+func (ptr *QPressureSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QPressureSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QPressureSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPressureSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QPressureSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPressureSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPressureSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QPressureSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPressureSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPressureSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QPressureSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPressureSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPressureSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QPressureSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPressureSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPressureSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QPressureSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPressureSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQPressureSensor_Start
@@ -13298,6 +14130,70 @@ func QProximitySensor_Type() string {
 
 func (ptr *QProximitySensor) Type() string {
 	return cGoUnpackString(C.QProximitySensor_QProximitySensor_Type())
+}
+
+func (ptr *QProximitySensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QProximitySensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QProximitySensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProximitySensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QProximitySensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QProximitySensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QProximitySensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QProximitySensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QProximitySensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProximitySensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QProximitySensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QProximitySensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QProximitySensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QProximitySensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QProximitySensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProximitySensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QProximitySensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QProximitySensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQProximitySensor_Start
@@ -14318,6 +15214,70 @@ func (ptr *QRotationSensor) Type() string {
 	return cGoUnpackString(C.QRotationSensor_QRotationSensor_Type())
 }
 
+func (ptr *QRotationSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QRotationSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRotationSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QRotationSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QRotationSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QRotationSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRotationSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QRotationSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QRotationSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QRotationSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRotationSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QRotationSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QRotationSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQRotationSensor_Start
 func callbackQRotationSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::start"); signal != nil {
@@ -15252,12 +16212,12 @@ func (ptr *QSensor) Filters() []*QSensorFilter {
 		return func(l C.struct_QtSensors_PackedList) []*QSensorFilter {
 			var out = make([]*QSensorFilter, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSensorFromPointer(l.data).filters_atList(i)
+				out[i] = NewQSensorFromPointer(l.data).__filters_atList(i)
 			}
 			return out
 		}(C.QSensor_Filters(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QSensorFilter, 0)
 }
 
 func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
@@ -15361,7 +16321,7 @@ func QSensor_SensorTypes() []*core.QByteArray {
 	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
 		var out = make([]*core.QByteArray, int(l.len))
 		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).sensorTypes_atList(i)
+			out[i] = NewQSensorFromPointer(l.data).__sensorTypes_atList(i)
 		}
 		return out
 	}(C.QSensor_QSensor_SensorTypes())
@@ -15371,7 +16331,7 @@ func (ptr *QSensor) SensorTypes() []*core.QByteArray {
 	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
 		var out = make([]*core.QByteArray, int(l.len))
 		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).sensorTypes_atList(i)
+			out[i] = NewQSensorFromPointer(l.data).__sensorTypes_atList(i)
 		}
 		return out
 	}(C.QSensor_QSensor_SensorTypes())
@@ -15381,7 +16341,7 @@ func QSensor_SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
 	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
 		var out = make([]*core.QByteArray, int(l.len))
 		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).sensorsForType_atList(i)
+			out[i] = NewQSensorFromPointer(l.data).__sensorsForType_atList(i)
 		}
 		return out
 	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
@@ -15391,7 +16351,7 @@ func (ptr *QSensor) SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
 	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
 		var out = make([]*core.QByteArray, int(l.len))
 		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).sensorsForType_atList(i)
+			out[i] = NewQSensorFromPointer(l.data).__sensorsForType_atList(i)
 		}
 		return out
 	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
@@ -15588,27 +16548,184 @@ func (ptr *QSensor) DestroyQSensorDefault() {
 	}
 }
 
-func (ptr *QSensor) filters_atList(i int) *QSensorFilter {
+func (ptr *QSensor) __filters_atList(i int) *QSensorFilter {
 	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QSensor_filters_atList(ptr.Pointer(), C.int(int32(i))))
+		return NewQSensorFilterFromPointer(C.QSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *QSensor) sensorTypes_atList(i int) *core.QByteArray {
+func (ptr *QSensor) __filters_setList(i QSensorFilter_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QSensor) sensorsForType_atList(i int) *core.QByteArray {
+func (ptr *QSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensor) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensor) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensor) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensor___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensor) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensor) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensor___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensor) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensor) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensor___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensor) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___findChildren_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -16148,6 +17265,124 @@ func (ptr *QSensorBackend) Stop() {
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_Stop(ptr.Pointer())
 	}
+}
+
+func (ptr *QSensorBackend) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorBackend___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorBackend___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorBackend) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorBackend___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensorBackend___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorBackend___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensorBackend) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorBackend___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorBackend___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorBackend___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorBackend) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorBackend___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorBackend___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorBackend___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorBackend) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorBackend___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorBackend___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorBackend___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorBackend) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorBackend___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSensorBackend_TimerEvent
@@ -16879,6 +18114,124 @@ func (ptr *QSensorGesture) DestroyQSensorGesture() {
 	}
 }
 
+func (ptr *QSensorGesture) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGesture___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGesture) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGesture___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensorGesture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensorGesture) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGesture___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGesture___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGesture) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGesture___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGesture___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGesture) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGesture___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGesture___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGesture) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGesture___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSensorGesture_TimerEvent
 func callbackQSensorGesture_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::timerEvent"); signal != nil {
@@ -17329,6 +18682,124 @@ func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
 	}
 }
 
+func (ptr *QSensorGestureManager) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureManager___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureManager) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureManager___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensorGestureManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensorGestureManager) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureManager___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureManager) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureManager___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureManager) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureManager___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureManager) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureManager___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSensorGestureManager_TimerEvent
 func callbackQSensorGestureManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureManager::timerEvent"); signal != nil {
@@ -17691,6 +19162,31 @@ func NewQSensorGesturePluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorGes
 	n.SetPointer(ptr)
 	return n
 }
+func NewQSensorGesturePluginInterface() *QSensorGesturePluginInterface {
+	return NewQSensorGesturePluginInterfaceFromPointer(C.QSensorGesturePluginInterface_NewQSensorGesturePluginInterface())
+}
+
+//export callbackQSensorGesturePluginInterface_CreateRecognizers
+func callbackQSensorGesturePluginInterface_CreateRecognizers(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesturePluginInterface::createRecognizers"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQSensorGesturePluginInterfaceFromPointer(NewQSensorGesturePluginInterfaceFromPointer(unsafe.Pointer(uintptr(1))).__createRecognizers_newList())
+			for _, v := range signal.(func() []*QSensorGestureRecognizer)() {
+				tmpList.__createRecognizers_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQSensorGesturePluginInterfaceFromPointer(NewQSensorGesturePluginInterfaceFromPointer(unsafe.Pointer(uintptr(1))).__createRecognizers_newList())
+		for _, v := range make([]*QSensorGestureRecognizer, 0) {
+			tmpList.__createRecognizers_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
 func (ptr *QSensorGesturePluginInterface) ConnectCreateRecognizers(f func() []*QSensorGestureRecognizer) {
 	if ptr.Pointer() != nil {
 
@@ -17710,12 +19206,12 @@ func (ptr *QSensorGesturePluginInterface) CreateRecognizers() []*QSensorGestureR
 		return func(l C.struct_QtSensors_PackedList) []*QSensorGestureRecognizer {
 			var out = make([]*QSensorGestureRecognizer, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSensorGesturePluginInterfaceFromPointer(l.data).createRecognizers_atList(i)
+				out[i] = NewQSensorGesturePluginInterfaceFromPointer(l.data).__createRecognizers_atList(i)
 			}
 			return out
 		}(C.QSensorGesturePluginInterface_CreateRecognizers(ptr.Pointer()))
 	}
-	return nil
+	return make([]*QSensorGestureRecognizer, 0)
 }
 
 //export callbackQSensorGesturePluginInterface_Name
@@ -17817,13 +19313,26 @@ func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterfaceDe
 	}
 }
 
-func (ptr *QSensorGesturePluginInterface) createRecognizers_atList(i int) *QSensorGestureRecognizer {
+func (ptr *QSensorGesturePluginInterface) __createRecognizers_atList(i int) *QSensorGestureRecognizer {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGesturePluginInterface_createRecognizers_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGesturePluginInterface___createRecognizers_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGesturePluginInterface) __createRecognizers_setList(i QSensorGestureRecognizer_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGesturePluginInterface___createRecognizers_setList(ptr.Pointer(), PointerFromQSensorGestureRecognizer(i))
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) __createRecognizers_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGesturePluginInterface___createRecognizers_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -18114,6 +19623,124 @@ func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizerDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QSensorGestureRecognizer) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureRecognizer___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureRecognizer___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensorGestureRecognizer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureRecognizer___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureRecognizer___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureRecognizer___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureRecognizer___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureRecognizer___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureRecognizer___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureRecognizer___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQSensorGestureRecognizer_TimerEvent
@@ -18684,6 +20311,124 @@ func (ptr *QSensorReading) ValueCount() int {
 	return 0
 }
 
+func (ptr *QSensorReading) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorReading___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorReading) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorReading___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensorReading___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorReading___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QSensorReading) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorReading___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorReading___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorReading___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorReading) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorReading___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorReading___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorReading___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorReading) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorReading___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorReading___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorReading___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QSensorReading) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorReading___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSensorReading_TimerEvent
 func callbackQSensorReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorReading::timerEvent"); signal != nil {
@@ -19179,6 +20924,124 @@ func (ptr *QTapReading) SetTapDirection(tapDirection QTapReading__TapDirection) 
 	}
 }
 
+func (ptr *QTapReading) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapReading___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapReading) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapReading___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTapReading___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapReading___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTapReading) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapReading___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapReading___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapReading___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapReading) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapReading___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapReading___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapReading___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapReading) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapReading___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapReading___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapReading___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapReading) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapReading___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQTapReading_TimerEvent
 func callbackQTapReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapReading::timerEvent"); signal != nil {
@@ -19647,6 +21510,188 @@ func QTapSensor_Type() string {
 
 func (ptr *QTapSensor) Type() string {
 	return cGoUnpackString(C.QTapSensor_QTapSensor_Type())
+}
+
+func (ptr *QTapSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QTapSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QTapSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTapSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTapSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTapSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTapSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapSensor) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTapSensor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTapSensor) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapSensor___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapSensor) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapSensor___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapSensor) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapSensor___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapSensor) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQTapSensor_Start
@@ -20196,6 +22241,124 @@ func (ptr *QTiltReading) SetYRotation(y float64) {
 	}
 }
 
+func (ptr *QTiltReading) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltReading___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltReading) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltReading___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTiltReading___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltReading___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTiltReading) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltReading___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltReading___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltReading___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltReading) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltReading___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltReading___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltReading___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltReading) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltReading___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltReading___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltReading___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltReading) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltReading___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQTiltReading_TimerEvent
 func callbackQTiltReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltReading::timerEvent"); signal != nil {
@@ -20598,6 +22761,188 @@ func QTiltSensor_Type() string {
 
 func (ptr *QTiltSensor) Type() string {
 	return cGoUnpackString(C.QTiltSensor_QTiltSensor_Type())
+}
+
+func (ptr *QTiltSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QTiltSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QTiltSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___filters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTiltSensor___sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __sensorTypes_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___sensorTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTiltSensor) __sensorTypes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___sensorTypes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTiltSensor___sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___sensorsForType_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTiltSensor) __sensorsForType_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltSensor) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTiltSensor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QTiltSensor) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltSensor___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltSensor) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltSensor___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltSensor) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltSensor___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltSensor) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQTiltSensor_Start

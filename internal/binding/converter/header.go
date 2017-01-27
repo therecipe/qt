@@ -52,7 +52,8 @@ func GoHeaderName(f *parser.Function) string {
 			fmt.Fprintf(bb, "%v%v",
 
 				func() string {
-					if strings.HasSuffix(f.Name, "_atList") {
+					if strings.HasSuffix(f.Name, "_atList") || strings.HasSuffix(f.Name, "_setList") ||
+						strings.HasSuffix(f.Name, "_newList") || strings.HasSuffix(f.Name, "_keyList") {
 						return f.Name
 					}
 					return strings.Title(f.Name)
@@ -109,7 +110,7 @@ func GoHeaderOutput(f *parser.Function) string {
 
 	var o = goType(f, value)
 	if isClass(o) {
-		if !strings.HasPrefix(o, "[]") {
+		if !strings.HasPrefix(o, "[]") && !strings.HasPrefix(o, "map[") {
 			o = fmt.Sprintf("*%v", o)
 		}
 	}
@@ -167,7 +168,7 @@ func GoHeaderInput(f *parser.Function) string {
 	var tmp = make([]string, 0)
 	for _, p := range f.Parameters {
 		if v := goType(f, p.Value); v != "" {
-			if isClass(v) {
+			if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
 				if f.SignalMode == parser.CONNECT {
 					tmp = append(tmp, fmt.Sprintf("%v *%v", parser.CleanName(p.Name, p.Value), v))
 				} else {
@@ -186,7 +187,7 @@ func GoHeaderInput(f *parser.Function) string {
 	if f.SignalMode == parser.CONNECT {
 		fmt.Fprint(bb, ")")
 
-		if isClass(goType(f, f.Output)) {
+		if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
 			fmt.Fprintf(bb, " *%v", goType(f, f.Output))
 		} else {
 			fmt.Fprintf(bb, " %v", goType(f, f.Output))
@@ -196,6 +197,7 @@ func GoHeaderInput(f *parser.Function) string {
 	return bb.String()
 }
 
+//TODO: combine with above
 func GoHeaderInputSignalFunction(f *parser.Function) string {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
@@ -206,7 +208,7 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 
 	for _, p := range f.Parameters {
 		if v := goType(f, p.Value); v != "" {
-			if isClass(v) {
+			if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
 				tmp = append(tmp, fmt.Sprintf("*%v", v))
 			} else {
 				tmp = append(tmp, v)
@@ -222,7 +224,7 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	fmt.Fprint(bb, ")")
 
 	if f.SignalMode == parser.CALLBACK {
-		if isClass(goType(f, f.Output)) {
+		if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
 			fmt.Fprintf(bb, " *%v", goType(f, f.Output))
 		} else {
 			fmt.Fprintf(bb, " %v", goType(f, f.Output))

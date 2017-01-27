@@ -224,19 +224,150 @@ func (ptr *QCanBus) Plugins() []*core.QByteArray {
 		return func(l C.struct_QtSerialBus_PackedList) []*core.QByteArray {
 			var out = make([]*core.QByteArray, int(l.len))
 			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQCanBusFromPointer(l.data).plugins_atList(i)
+				out[i] = NewQCanBusFromPointer(l.data).__plugins_atList(i)
 			}
 			return out
 		}(C.QCanBus_Plugins(ptr.Pointer()))
 	}
+	return make([]*core.QByteArray, 0)
+}
+
+func (ptr *QCanBus) __plugins_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCanBus___plugins_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
 	return nil
 }
 
-func (ptr *QCanBus) plugins_atList(i int) *core.QByteArray {
+func (ptr *QCanBus) __plugins_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QCanBus_plugins_atList(ptr.Pointer(), C.int(int32(i))))
+		C.QCanBus___plugins_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QCanBus) __plugins_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBus___plugins_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBus___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBus___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBus) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBus___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCanBus___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBus___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QCanBus) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBus___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBus___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBus___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBus) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBus___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBus___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBus___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBus) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBus___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBus___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBus___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBus) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBus___findChildren_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -701,6 +832,19 @@ func (ptr *QCanBusDevice) Close() {
 	}
 }
 
+func (ptr *QCanBusDevice) ConfigurationKeys() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSerialBus_PackedList) []int {
+			var out = make([]int, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCanBusDeviceFromPointer(l.data).__configurationKeys_atList(i)
+			}
+			return out
+		}(C.QCanBusDevice_ConfigurationKeys(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
 func (ptr *QCanBusDevice) ConfigurationParameter(key int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QCanBusDevice_ConfigurationParameter(ptr.Pointer(), C.int(int32(key))))
@@ -726,6 +870,18 @@ func (ptr *QCanBusDevice) DisconnectDevice() {
 func (ptr *QCanBusDevice) EnqueueOutgoingFrame(newFrame QCanBusFrame_ITF) {
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_EnqueueOutgoingFrame(ptr.Pointer(), PointerFromQCanBusFrame(newFrame))
+	}
+}
+
+func (ptr *QCanBusDevice) EnqueueReceivedFrames(newFrames []*QCanBusFrame) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice_EnqueueReceivedFrames(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQCanBusDeviceFromPointer(NewQCanBusDeviceFromPointer(unsafe.Pointer(uintptr(1))).__enqueueReceivedFrames_newFrames_newList())
+			for _, v := range newFrames {
+				tmpList.__enqueueReceivedFrames_newFrames_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
 	}
 }
 
@@ -1006,6 +1162,157 @@ func (ptr *QCanBusDevice) WriteFrame(frame QCanBusFrame_ITF) bool {
 		return C.QCanBusDevice_WriteFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame)) != 0
 	}
 	return false
+}
+
+func (ptr *QCanBusDevice) __configurationKeys_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QCanBusDevice___configurationKeys_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QCanBusDevice) __configurationKeys_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice___configurationKeys_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QCanBusDevice) __configurationKeys_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBusDevice___configurationKeys_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __enqueueReceivedFrames_newFrames_setList(i QCanBusFrame_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice___enqueueReceivedFrames_newFrames_setList(ptr.Pointer(), PointerFromQCanBusFrame(i))
+	}
+}
+
+func (ptr *QCanBusDevice) __enqueueReceivedFrames_newFrames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBusDevice___enqueueReceivedFrames_newFrames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBusDevice___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBusDevice) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBusDevice___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCanBusDevice___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QCanBusDevice) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBusDevice___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBusDevice___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBusDevice) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBusDevice___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBusDevice___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBusDevice) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBusDevice___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QCanBusDevice___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBusDevice) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QCanBusDevice) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCanBusDevice___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQCanBusDevice_TimerEvent
@@ -2256,6 +2563,18 @@ func NewQModbusDataUnit2(ty QModbusDataUnit__RegisterType) *QModbusDataUnit {
 	return tmpValue
 }
 
+func NewQModbusDataUnit4(ty QModbusDataUnit__RegisterType, address int, data []uint16) *QModbusDataUnit {
+	var tmpValue = NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit4(C.longlong(ty), C.int(int32(address)), func() unsafe.Pointer {
+		var tmpList = NewQModbusDataUnitFromPointer(NewQModbusDataUnitFromPointer(unsafe.Pointer(uintptr(1))).__QModbusDataUnit_data_newList4())
+		for _, v := range data {
+			tmpList.__QModbusDataUnit_data_setList4(v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
+	return tmpValue
+}
+
 func NewQModbusDataUnit3(ty QModbusDataUnit__RegisterType, address int, size uint16) *QModbusDataUnit {
 	var tmpValue = NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit3(C.longlong(ty), C.int(int32(address)), C.ushort(size)))
 	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
@@ -2300,6 +2619,18 @@ func (ptr *QModbusDataUnit) SetValueCount(newCount uint) {
 	}
 }
 
+func (ptr *QModbusDataUnit) SetValues(values []uint16) {
+	if ptr.Pointer() != nil {
+		C.QModbusDataUnit_SetValues(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQModbusDataUnitFromPointer(NewQModbusDataUnitFromPointer(unsafe.Pointer(uintptr(1))).__setValues_values_newList())
+			for _, v := range values {
+				tmpList.__setValues_values_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QModbusDataUnit) StartAddress() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QModbusDataUnit_StartAddress(ptr.Pointer())))
@@ -2319,6 +2650,79 @@ func (ptr *QModbusDataUnit) ValueCount() uint {
 		return uint(uint32(C.QModbusDataUnit_ValueCount(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QModbusDataUnit) Values() []uint16 {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSerialBus_PackedList) []uint16 {
+			var out = make([]uint16, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQModbusDataUnitFromPointer(l.data).__values_atList(i)
+			}
+			return out
+		}(C.QModbusDataUnit_Values(ptr.Pointer()))
+	}
+	return make([]uint16, 0)
+}
+
+func (ptr *QModbusDataUnit) __QModbusDataUnit_data_atList4(i int) uint16 {
+	if ptr.Pointer() != nil {
+		return uint16(C.QModbusDataUnit___QModbusDataUnit_data_atList4(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QModbusDataUnit) __QModbusDataUnit_data_setList4(i uint16) {
+	if ptr.Pointer() != nil {
+		C.QModbusDataUnit___QModbusDataUnit_data_setList4(ptr.Pointer(), C.ushort(i))
+	}
+}
+
+func (ptr *QModbusDataUnit) __QModbusDataUnit_data_newList4() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDataUnit___QModbusDataUnit_data_newList4(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusDataUnit) __setValues_values_atList(i int) uint16 {
+	if ptr.Pointer() != nil {
+		return uint16(C.QModbusDataUnit___setValues_values_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QModbusDataUnit) __setValues_values_setList(i uint16) {
+	if ptr.Pointer() != nil {
+		C.QModbusDataUnit___setValues_values_setList(ptr.Pointer(), C.ushort(i))
+	}
+}
+
+func (ptr *QModbusDataUnit) __setValues_values_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDataUnit___setValues_values_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusDataUnit) __values_atList(i int) uint16 {
+	if ptr.Pointer() != nil {
+		return uint16(C.QModbusDataUnit___values_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QModbusDataUnit) __values_setList(i uint16) {
+	if ptr.Pointer() != nil {
+		C.QModbusDataUnit___values_setList(ptr.Pointer(), C.ushort(i))
+	}
+}
+
+func (ptr *QModbusDataUnit) __values_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDataUnit___values_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QModbusDevice struct {
@@ -2593,6 +2997,124 @@ func (ptr *QModbusDevice) DestroyQModbusDevice() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QModbusDevice) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusDevice___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusDevice___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusDevice) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDevice___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusDevice___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusDevice___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QModbusDevice) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDevice___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusDevice___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusDevice___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusDevice) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDevice___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusDevice___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusDevice___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusDevice) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDevice___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusDevice___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusDevice___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusDevice) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDevice___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQModbusDevice_TimerEvent
@@ -3052,6 +3574,19 @@ func (ptr *QModbusDeviceIdentification) IsValid() bool {
 	return false
 }
 
+func (ptr *QModbusDeviceIdentification) ObjectIds() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSerialBus_PackedList) []int {
+			var out = make([]int, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQModbusDeviceIdentificationFromPointer(l.data).__objectIds_atList(i)
+			}
+			return out
+		}(C.QModbusDeviceIdentification_ObjectIds(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
 func (ptr *QModbusDeviceIdentification) Remove(objectId uint) {
 	if ptr.Pointer() != nil {
 		C.QModbusDeviceIdentification_Remove(ptr.Pointer(), C.uint(uint32(objectId)))
@@ -3069,6 +3604,26 @@ func (ptr *QModbusDeviceIdentification) Value(objectId uint) *core.QByteArray {
 		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusDeviceIdentification_Value(ptr.Pointer(), C.uint(uint32(objectId))))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusDeviceIdentification) __objectIds_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QModbusDeviceIdentification___objectIds_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QModbusDeviceIdentification) __objectIds_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QModbusDeviceIdentification___objectIds_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QModbusDeviceIdentification) __objectIds_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusDeviceIdentification___objectIds_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -3171,6 +3726,30 @@ func (ptr *QModbusExceptionResponse) SetFunctionCodeDefault(c QModbusPdu__Functi
 	if ptr.Pointer() != nil {
 		C.QModbusExceptionResponse_SetFunctionCodeDefault(ptr.Pointer(), C.longlong(c))
 	}
+}
+
+func (ptr *QModbusExceptionResponse) __encode_vector_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusExceptionResponse___encode_vector_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusExceptionResponse) __encode_vector_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusExceptionResponse___encode_vector_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusExceptionResponse) __encode_vector_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusExceptionResponse___encode_vector_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QModbusPdu struct {
@@ -3400,6 +3979,30 @@ func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
 	}
 }
 
+func (ptr *QModbusPdu) __encode_vector_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusPdu___encode_vector_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusPdu) __encode_vector_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusPdu___encode_vector_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusPdu) __encode_vector_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusPdu___encode_vector_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QModbusReply struct {
 	core.QObject
 }
@@ -3571,6 +4174,124 @@ func (ptr *QModbusReply) Type() QModbusReply__ReplyType {
 		return QModbusReply__ReplyType(C.QModbusReply_Type(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QModbusReply) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusReply___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusReply___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusReply) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusReply___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusReply___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusReply___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QModbusReply) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusReply___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusReply___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusReply___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusReply) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusReply___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusReply___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusReply___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusReply) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusReply___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusReply___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusReply___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusReply) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusReply___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQModbusReply_TimerEvent
@@ -4196,6 +4917,124 @@ func (ptr *QModbusRtuSerialMaster) SetInterFrameDelay(microseconds int) {
 	}
 }
 
+func (ptr *QModbusRtuSerialMaster) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialMaster___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialMaster___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialMaster___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusRtuSerialMaster___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialMaster___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialMaster___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialMaster___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialMaster___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialMaster___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialMaster___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialMaster___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialMaster___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialMaster___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialMaster___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialMaster___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQModbusRtuSerialMaster_ProcessPrivateResponse
 func callbackQModbusRtuSerialMaster_ProcessPrivateResponse(ptr unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::processPrivateResponse"); signal != nil {
@@ -4705,6 +5544,124 @@ func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QModbusRtuSerialSlave) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialSlave___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialSlave___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialSlave___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusRtuSerialSlave___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialSlave___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialSlave___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialSlave___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialSlave___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialSlave___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialSlave___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialSlave___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialSlave___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusRtuSerialSlave___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialSlave___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusRtuSerialSlave___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQModbusRtuSerialSlave_ProcessPrivateRequest
@@ -5773,6 +6730,124 @@ func (ptr *QModbusServer) WriteDataDefault(newData QModbusDataUnit_ITF) bool {
 	return false
 }
 
+func (ptr *QModbusServer) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusServer___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusServer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusServer) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusServer___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusServer___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QModbusServer) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusServer___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusServer___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusServer___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusServer) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusServer___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusServer___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusServer___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusServer) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusServer___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusServer___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusServer) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusServer___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusServer) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusServer___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQModbusServer_Close
 func callbackQModbusServer_Close(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::close"); signal != nil {
@@ -6208,6 +7283,124 @@ func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QModbusTcpClient) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpClient___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpClient___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpClient) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpClient___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusTcpClient___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpClient___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QModbusTcpClient) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpClient___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpClient___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpClient___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpClient) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpClient___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpClient___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpClient___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpClient) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpClient___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpClient___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpClient) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpClient___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpClient) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpClient___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQModbusTcpClient_ProcessPrivateResponse
@@ -6719,6 +7912,124 @@ func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QModbusTcpServer) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpServer___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpServer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpServer) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpServer___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusTcpServer___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpServer___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QModbusTcpServer) __dynamicPropertyNames_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpServer___dynamicPropertyNames_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpServer___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpServer___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpServer) __findChildren_newList2() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpServer___findChildren_newList2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpServer___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpServer___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpServer) __findChildren_newList3() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpServer___findChildren_newList3(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QModbusTcpServer___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusTcpServer) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpServer___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QModbusTcpServer) __findChildren_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QModbusTcpServer___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQModbusTcpServer_ProcessPrivateRequest

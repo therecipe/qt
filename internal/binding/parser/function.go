@@ -37,6 +37,7 @@ type Function struct {
 	Synthetic       bool
 	Checked         bool
 	Exception       bool
+	IsMap           bool
 }
 
 type Parameter struct {
@@ -204,22 +205,24 @@ func (f *Function) IsSupported() bool {
 		}
 	}
 
-	if strings.ContainsAny(f.Signature, "<>") {
-		if IsPackedList(f.Output) {
-			for _, p := range f.Parameters {
-				if strings.ContainsAny(p.Value, "<>") {
-					if !strings.Contains(f.Access, "unsupported") {
-						f.Access = "unsupported_isBlockedFunction"
-					}
-					return false
-				}
-			}
-		} else {
-			if !strings.Contains(f.Access, "unsupported") {
-				f.Access = "unsupported_isBlockedFunction"
-			}
-			return false
-		}
+	//generic blocked
+	//TODO: also check _setList _atList _newList _keyList instead ?
+	var genName = strings.TrimPrefix(f.Name, "__")
+	if strings.HasPrefix(genName, "registeredTimers") || strings.HasPrefix(genName, "countriesForLanguage") ||
+		strings.HasPrefix(genName, "writingSystem") || strings.HasPrefix(genName, "textList") ||
+		strings.HasPrefix(genName, "attributes") || strings.HasPrefix(genName, "additionalFormats") ||
+		strings.HasPrefix(genName, "rawHeaderPairs") || strings.HasPrefix(genName, "draw") || strings.HasPrefix(genName, "tabs") ||
+		strings.HasPrefix(genName, "QInputMethodEvent_attributes") || strings.HasPrefix(genName, "selections") || strings.HasPrefix(genName, "setSelections") ||
+		strings.HasPrefix(genName, "formats") || strings.HasPrefix(genName, "setAdditionalFormats") || strings.HasPrefix(genName, "setFormats") ||
+		strings.HasPrefix(genName, "setTabs") || strings.HasPrefix(genName, "extraSelections") ||
+		strings.HasPrefix(genName, "setExtraSelections") || strings.HasPrefix(genName, "setButtonLayout") ||
+		strings.HasPrefix(genName, "setWhiteList") || strings.HasPrefix(genName, "whiteList") ||
+		strings.HasPrefix(genName, "supportedViewfinderFrameRateRanges") || strings.HasPrefix(genName, "hits") ||
+		strings.HasPrefix(genName, "featureTypes") || strings.HasPrefix(genName, "supportedPaperSources") ||
+		strings.HasPrefix(genName, "setTextureData") || strings.HasPrefix(genName, "textureData") ||
+		strings.HasPrefix(genName, "QCustom3DVolume_textureData") || strings.HasPrefix(genName, "createTextureData") ||
+		strings.Contains(genName, "alternateSubjectNames") {
+		return false
 	}
 
 	if State.Minimal {

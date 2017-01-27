@@ -364,7 +364,22 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 									return c.Fullname
 								}
 								if strings.HasSuffix(function.Name, "_atList") {
-									return fmt.Sprintf("%v<%v>", function.Container, strings.TrimPrefix(function.Output, "const "))
+									if function.IsMap {
+										return fmt.Sprintf("%v<%v,%v>", parser.CleanValue(function.Container), function.Parameters[0].Value, strings.TrimPrefix(function.Output, "const "))
+									}
+									return fmt.Sprintf("%v<%v>", parser.CleanValue(function.Container), strings.TrimPrefix(function.Output, "const "))
+								}
+								if strings.HasSuffix(function.Name, "_setList") {
+									if len(function.Parameters) == 2 {
+										return fmt.Sprintf("%v<%v,%v>", parser.CleanValue(function.Container), function.Parameters[0].Value, strings.TrimPrefix(function.Parameters[1].Value, "const "))
+									}
+									return fmt.Sprintf("%v<%v>", parser.CleanValue(function.Container), strings.TrimPrefix(function.Parameters[0].Value, "const "))
+								}
+								if strings.HasSuffix(function.Name, "_newList") {
+									//will be overriden
+								}
+								if strings.HasSuffix(function.Name, "_keyList") {
+									//will be overriden
 								}
 								return function.ClassName()
 							}(),

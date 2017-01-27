@@ -376,6 +376,81 @@ void* QQuickWebEngineProfile_UrlSchemeHandler(void* ptr, void* scheme)
 	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QQuickWebEngineProfile*>(ptr)->urlSchemeHandler(*static_cast<QByteArray*>(scheme)));
 }
 
+void* QQuickWebEngineProfile___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineProfile___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineProfile___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QQuickWebEngineProfile___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineProfile___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQuickWebEngineProfile___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QQuickWebEngineProfile___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineProfile___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineProfile___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQuickWebEngineProfile___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineProfile___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineProfile___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QQuickWebEngineProfile___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineProfile___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineProfile___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QQuickWebEngineProfile_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQuickWebEngineProfile*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -623,6 +698,81 @@ void QWebEngineCookieStore_DestroyQWebEngineCookieStoreDefault(void* ptr)
 
 }
 
+void* QWebEngineCookieStore___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEngineCookieStore___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineCookieStore___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEngineCookieStore___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineCookieStore___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineCookieStore___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEngineCookieStore___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineCookieStore___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineCookieStore___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineCookieStore___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineCookieStore___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineCookieStore___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineCookieStore___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineCookieStore___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineCookieStore___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QWebEngineCookieStore_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QWebEngineCookieStore*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -852,6 +1002,81 @@ void* QWebEngineDownloadItem_Url(void* ptr)
 	return new QUrl(static_cast<QWebEngineDownloadItem*>(ptr)->url());
 }
 
+void* QWebEngineDownloadItem___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEngineDownloadItem___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineDownloadItem___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEngineDownloadItem___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineDownloadItem___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineDownloadItem___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEngineDownloadItem___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineDownloadItem___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineDownloadItem___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineDownloadItem___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineDownloadItem___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineDownloadItem___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineDownloadItem___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineDownloadItem___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineDownloadItem___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QWebEngineDownloadItem_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QWebEngineDownloadItem*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1037,19 +1262,49 @@ struct QtWebEngine_PackedList QWebEngineHistory_Items(void* ptr)
 	return ({ QList<QWebEngineHistoryItem>* tmpValue = new QList<QWebEngineHistoryItem>(static_cast<QWebEngineHistory*>(ptr)->items()); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QWebEngineHistory_backItems_atList(void* ptr, int i)
+void* QWebEngineHistory___backItems_atList(void* ptr, int i)
 {
 	return new QWebEngineHistoryItem(static_cast<QList<QWebEngineHistoryItem>*>(ptr)->at(i));
 }
 
-void* QWebEngineHistory_forwardItems_atList(void* ptr, int i)
+void QWebEngineHistory___backItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QWebEngineHistoryItem>*>(ptr)->append(*static_cast<QWebEngineHistoryItem*>(i));
+}
+
+void* QWebEngineHistory___backItems_newList(void* ptr)
+{
+	return new QList<QWebEngineHistoryItem>;
+}
+
+void* QWebEngineHistory___forwardItems_atList(void* ptr, int i)
 {
 	return new QWebEngineHistoryItem(static_cast<QList<QWebEngineHistoryItem>*>(ptr)->at(i));
 }
 
-void* QWebEngineHistory_items_atList(void* ptr, int i)
+void QWebEngineHistory___forwardItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QWebEngineHistoryItem>*>(ptr)->append(*static_cast<QWebEngineHistoryItem*>(i));
+}
+
+void* QWebEngineHistory___forwardItems_newList(void* ptr)
+{
+	return new QList<QWebEngineHistoryItem>;
+}
+
+void* QWebEngineHistory___items_atList(void* ptr, int i)
 {
 	return new QWebEngineHistoryItem(static_cast<QList<QWebEngineHistoryItem>*>(ptr)->at(i));
+}
+
+void QWebEngineHistory___items_setList(void* ptr, void* i)
+{
+	static_cast<QList<QWebEngineHistoryItem>*>(ptr)->append(*static_cast<QWebEngineHistoryItem*>(i));
+}
+
+void* QWebEngineHistory___items_newList(void* ptr)
+{
+	return new QList<QWebEngineHistoryItem>;
 }
 
 void* QWebEngineHistoryItem_NewQWebEngineHistoryItem(void* other)
@@ -1737,6 +1992,81 @@ void QWebEnginePage_WindowCloseRequested(void* ptr)
 	static_cast<QWebEnginePage*>(ptr)->windowCloseRequested();
 }
 
+void* QWebEnginePage___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEnginePage___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEnginePage___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEnginePage___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEnginePage___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEnginePage___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEnginePage___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEnginePage___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEnginePage___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEnginePage___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEnginePage___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEnginePage___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEnginePage___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEnginePage___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEnginePage___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QWebEnginePage_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QWebEnginePage*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1857,6 +2187,11 @@ void QWebEngineProfile_ClearAllVisitedLinks(void* ptr)
 void QWebEngineProfile_ClearHttpCache(void* ptr)
 {
 	static_cast<QWebEngineProfile*>(ptr)->clearHttpCache();
+}
+
+void QWebEngineProfile_ClearVisitedLinks(void* ptr, void* urls)
+{
+	static_cast<QWebEngineProfile*>(ptr)->clearVisitedLinks(*static_cast<QList<QUrl>*>(urls));
 }
 
 void* QWebEngineProfile_CookieStore(void* ptr)
@@ -2002,6 +2337,96 @@ void* QWebEngineProfile_UrlSchemeHandler(void* ptr, void* scheme)
 char QWebEngineProfile_VisitedLinksContainsUrl(void* ptr, void* url)
 {
 	return static_cast<QWebEngineProfile*>(ptr)->visitedLinksContainsUrl(*static_cast<QUrl*>(url));
+}
+
+void* QWebEngineProfile___clearVisitedLinks_urls_atList(void* ptr, int i)
+{
+	return new QUrl(static_cast<QList<QUrl>*>(ptr)->at(i));
+}
+
+void QWebEngineProfile___clearVisitedLinks_urls_setList(void* ptr, void* i)
+{
+	static_cast<QList<QUrl>*>(ptr)->append(*static_cast<QUrl*>(i));
+}
+
+void* QWebEngineProfile___clearVisitedLinks_urls_newList(void* ptr)
+{
+	return new QList<QUrl>;
+}
+
+void* QWebEngineProfile___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEngineProfile___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineProfile___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEngineProfile___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineProfile___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineProfile___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEngineProfile___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineProfile___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineProfile___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineProfile___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineProfile___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineProfile___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineProfile___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineProfile___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineProfile___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebEngineProfile_TimerEvent(void* ptr, void* event)
@@ -2194,6 +2619,11 @@ struct QtWebEngine_PackedList QWebEngineScriptCollection_FindScripts(void* ptr, 
 	return ({ QList<QWebEngineScript>* tmpValue = new QList<QWebEngineScript>(static_cast<QWebEngineScriptCollection*>(ptr)->findScripts(QString(name))); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+void QWebEngineScriptCollection_Insert2(void* ptr, void* list)
+{
+	static_cast<QWebEngineScriptCollection*>(ptr)->insert(*static_cast<QList<QWebEngineScript>*>(list));
+}
+
 void QWebEngineScriptCollection_Insert(void* ptr, void* s)
 {
 	static_cast<QWebEngineScriptCollection*>(ptr)->insert(*static_cast<QWebEngineScript*>(s));
@@ -2224,14 +2654,49 @@ void QWebEngineScriptCollection_DestroyQWebEngineScriptCollection(void* ptr)
 	static_cast<QWebEngineScriptCollection*>(ptr)->~QWebEngineScriptCollection();
 }
 
-void* QWebEngineScriptCollection_findScripts_atList(void* ptr, int i)
+void* QWebEngineScriptCollection___findScripts_atList(void* ptr, int i)
 {
 	return new QWebEngineScript(static_cast<QList<QWebEngineScript>*>(ptr)->at(i));
 }
 
-void* QWebEngineScriptCollection_toList_atList(void* ptr, int i)
+void QWebEngineScriptCollection___findScripts_setList(void* ptr, void* i)
+{
+	static_cast<QList<QWebEngineScript>*>(ptr)->append(*static_cast<QWebEngineScript*>(i));
+}
+
+void* QWebEngineScriptCollection___findScripts_newList(void* ptr)
+{
+	return new QList<QWebEngineScript>;
+}
+
+void* QWebEngineScriptCollection___insert_list_atList2(void* ptr, int i)
 {
 	return new QWebEngineScript(static_cast<QList<QWebEngineScript>*>(ptr)->at(i));
+}
+
+void QWebEngineScriptCollection___insert_list_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QWebEngineScript>*>(ptr)->append(*static_cast<QWebEngineScript*>(i));
+}
+
+void* QWebEngineScriptCollection___insert_list_newList2(void* ptr)
+{
+	return new QList<QWebEngineScript>;
+}
+
+void* QWebEngineScriptCollection___toList_atList(void* ptr, int i)
+{
+	return new QWebEngineScript(static_cast<QList<QWebEngineScript>*>(ptr)->at(i));
+}
+
+void QWebEngineScriptCollection___toList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QWebEngineScript>*>(ptr)->append(*static_cast<QWebEngineScript*>(i));
+}
+
+void* QWebEngineScriptCollection___toList_newList(void* ptr)
+{
+	return new QList<QWebEngineScript>;
 }
 
 struct QtWebEngine_PackedString QWebEngineSettings_DefaultTextEncoding(void* ptr)
@@ -2365,6 +2830,81 @@ void QWebEngineUrlRequestInterceptor_InterceptRequest(void* ptr, void* info)
 	static_cast<QWebEngineUrlRequestInterceptor*>(ptr)->interceptRequest(*static_cast<QWebEngineUrlRequestInfo*>(info));
 }
 
+void* QWebEngineUrlRequestInterceptor___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestInterceptor___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestInterceptor___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEngineUrlRequestInterceptor___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestInterceptor___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineUrlRequestInterceptor___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEngineUrlRequestInterceptor___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestInterceptor___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestInterceptor___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineUrlRequestInterceptor___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestInterceptor___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestInterceptor___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineUrlRequestInterceptor___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestInterceptor___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestInterceptor___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
 void QWebEngineUrlRequestInterceptor_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QWebEngineUrlRequestInterceptor*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -2478,6 +3018,81 @@ void* QWebEngineUrlRequestJob_RequestMethod(void* ptr)
 void* QWebEngineUrlRequestJob_RequestUrl(void* ptr)
 {
 	return new QUrl(static_cast<QWebEngineUrlRequestJob*>(ptr)->requestUrl());
+}
+
+void* QWebEngineUrlRequestJob___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestJob___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestJob___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEngineUrlRequestJob___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestJob___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineUrlRequestJob___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEngineUrlRequestJob___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestJob___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestJob___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineUrlRequestJob___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestJob___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestJob___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineUrlRequestJob___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlRequestJob___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlRequestJob___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebEngineUrlRequestJob_TimerEvent(void* ptr, void* event)
@@ -2599,6 +3214,81 @@ void QWebEngineUrlSchemeHandler_RequestStarted(void* ptr, void* request)
 void QWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandler(void* ptr)
 {
 	static_cast<QWebEngineUrlSchemeHandler*>(ptr)->~QWebEngineUrlSchemeHandler();
+}
+
+void* QWebEngineUrlSchemeHandler___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlSchemeHandler___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlSchemeHandler___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEngineUrlSchemeHandler___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlSchemeHandler___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineUrlSchemeHandler___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEngineUrlSchemeHandler___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlSchemeHandler___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlSchemeHandler___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineUrlSchemeHandler___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlSchemeHandler___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlSchemeHandler___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineUrlSchemeHandler___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineUrlSchemeHandler___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineUrlSchemeHandler___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebEngineUrlSchemeHandler_TimerEvent(void* ptr, void* event)
@@ -3159,6 +3849,126 @@ void QWebEngineView_DisconnectUrlChanged(void* ptr)
 void QWebEngineView_UrlChanged(void* ptr, void* url)
 {
 	static_cast<QWebEngineView*>(ptr)->urlChanged(*static_cast<QUrl*>(url));
+}
+
+void* QWebEngineView___actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QWebEngineView___actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QWebEngineView___actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QWebEngineView___addActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QWebEngineView___addActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QWebEngineView___addActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QWebEngineView___insertActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QWebEngineView___insertActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QWebEngineView___insertActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QWebEngineView___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QWebEngineView___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineView___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QWebEngineView___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineView___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineView___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QWebEngineView___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineView___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineView___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineView___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineView___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineView___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QWebEngineView___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QWebEngineView___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebEngineView___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
 }
 
 void QWebEngineView_ActionEvent(void* ptr, void* event)
