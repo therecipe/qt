@@ -30,13 +30,13 @@ Rectangle
 				return
 			}
 
-			var result = JSON.parse(hc.sayHello("world"))
-			if (result.Error != undefined)
+			var result = hc.sayHello("world")
+			if (result.length == 2)
 			{
-				textView.text = "Failed to receive response for " + addr + "\nWith error message: " + result.Error + "\n"
+				textView.text = "Failed to receive response for " + addr + "\nWith error message: " + result[1] + "\n"
 				return
 			}
-			textView.text = "Received: \"" + result.Data + "\"\n"
+			textView.text = "Received: \"" + result[0] + "\"\n"
 
 			var exit = hc.shutdown()
 			if (exit.length > 0)

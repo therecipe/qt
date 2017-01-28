@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"os"
 
 	"github.com/therecipe/qt/core"
@@ -13,8 +12,8 @@ import (
 type HelloClientRPC struct {
 	core.QObject
 
-	_ func(string) string `slot:"sayHello"` //TODO: should be func(string) []*core.QVariant, once generic containers/lists are supported
-	_ func() error        `slot:"shutdown"`
+	_ func(string) []*core.QVariant `slot:"sayHello"`
+	_ func() error                  `slot:"shutdown"`
 }
 
 type HelloClientFactory struct {
@@ -42,15 +41,12 @@ func main() {
 			return nil
 		}
 
-		ret.ConnectSayHello(func(s string) string {
+		ret.ConnectSayHello(func(s string) []*core.QVariant {
 			var out, err = client.SayHello(s)
 			if err != nil {
-				var rs, _ = json.Marshal(struct{ Error string }{err.Error()})
-				return string(rs)
+				return []*core.QVariant{core.NewQVariant14(out), core.NewQVariant14(err.Error())}
 			}
-
-			var rs, _ = json.Marshal(struct{ Data string }{out})
-			return string(rs)
+			return []*core.QVariant{core.NewQVariant14(out)}
 		})
 
 		ret.ConnectShutdown(func() error {

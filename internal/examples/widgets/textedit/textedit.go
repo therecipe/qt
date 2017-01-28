@@ -302,11 +302,8 @@ func (t *TextEdit) setupTextActions() {
 	}
 	alignGroup.AddAction(t.actionAlignJustify)
 
-	//TODO: until generic container support
-	for _, action := range alignGroup.Actions() {
-		tb.QWidget.AddAction(action)
-		menu.QWidget.AddAction(action)
-	}
+	tb.AddActions(alignGroup.Actions())
+	menu.AddActions(alignGroup.Actions())
 
 	menu.AddSeparator()
 
@@ -345,12 +342,19 @@ func (t *TextEdit) setupTextActions() {
 	tb.AddWidget(t.comboSize)
 	t.comboSize.SetEditable(true)
 
-	var standardSizes = []int{6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26} //TODO: gui.QFontDatabase_StandardSizes()
+	var standardSizes = gui.QFontDatabase_StandardSizes()
 	for _, size := range standardSizes {
 		t.comboSize.AddItem(strconv.Itoa(size), core.NewQVariant())
 	}
 	t.comboSize.ConnectActivated2(t.textSize)
-	t.comboSize.SetCurrentIndex(len(standardSizes) - 1) //TODO: standardSizes.indexOf(QApplication::font().pointSize())
+	t.comboSize.SetCurrentIndex(func() int {
+		for index, size := range standardSizes {
+			if size == widgets.QApplication_Font().PointSize() {
+				return index
+			}
+		}
+		return standardSizes[len(standardSizes)-1]
+	}())
 }
 
 func (t *TextEdit) fontChanged(f *gui.QFont) {

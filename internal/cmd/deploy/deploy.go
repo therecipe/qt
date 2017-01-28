@@ -398,11 +398,11 @@ func build() {
 		}
 	}
 
-	var cmd = exec.Command("go", "build", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", outputFile+ending)
+	var cmd = exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", outputFile+ending)
 	cmd.Dir = appPath
 	cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagFlags, "\" \"")))
 	if buildTarget != "desktop" {
-		cmd.Args = append(cmd.Args, []string{"-installsuffix", strings.Replace(buildTarget, "-", "_", -1)}...)
+		cmd.Args = append(cmd.Args, []string{"-i", "-installsuffix", strings.Replace(buildTarget, "-", "_", -1)}...)
 		cmd.Args = append(cmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", env["GOOS"], env["GOARCH"], strings.Replace(buildTarget, "-", "_", -1)))}...)
 	}
 
@@ -427,11 +427,11 @@ func build() {
 
 	//armv7
 	if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
-		var cmdiOS = exec.Command("go", "build", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
+		var cmdiOS = exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
 		cmdiOS.Dir = appPath
 		cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagFlags, "\" \"")))
 		if buildTarget != "desktop" {
-			cmdiOS.Args = append(cmdiOS.Args, []string{"-installsuffix", strings.Replace(buildTarget, "-", "_", -1)}...)
+			cmdiOS.Args = append(cmdiOS.Args, []string{"-i", "-installsuffix", strings.Replace(buildTarget, "-", "_", -1)}...)
 			cmdiOS.Args = append(cmdiOS.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", env["GOOS"], env["GOARCH"], strings.Replace(buildTarget, "-", "_", -1)))}...)
 		}
 		cmdiOS.Args = append(cmdiOS.Args, "-buildmode", "c-archive")

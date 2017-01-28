@@ -3,7 +3,7 @@ import QtQuick 2.0
 ListView {
     id: listView
     model: PersonModel
-    delegate: TextInput {
+    delegate: Text {
         text: firstName + "  " + lastName
     }
 }
