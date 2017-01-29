@@ -2,6 +2,8 @@ package templater
 
 import (
 	"bytes"
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"sort"
 	"strings"
@@ -18,6 +20,33 @@ func CppTemplate(module string) []byte {
 
 	if !parser.State.Moc {
 		module = "Qt" + module
+	} else {
+		for _, c := range sortedClassNamesForModule(module) {
+			var class, e = parser.State.ClassMap[c]
+			if !e {
+				continue
+			}
+
+			var typeMap = make(map[string]string)
+			for _, f := range class.Functions {
+				if parser.IsPackedMap(f.Output) {
+					var tHash = sha1.New()
+					tHash.Write([]byte(f.Output))
+					typeMap[f.Output] = hex.EncodeToString(tHash.Sum(nil)[:3])
+				}
+				for _, p := range f.Parameters {
+					if parser.IsPackedMap(p.Value) {
+						var tHash = sha1.New()
+						tHash.Write([]byte(p.Value))
+						typeMap[p.Value] = hex.EncodeToString(tHash.Sum(nil)[:3])
+					}
+				}
+			}
+
+			for typ, hash := range typeMap {
+				fmt.Fprintf(bb, "typedef %v type%v;\n", typ, hash)
+			}
+		}
 	}
 
 	if module == "QtCharts" || module == "QtDataVisualization" {

@@ -500,6 +500,9 @@ func cppOutput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, -1 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
 			}
 
+			if strings.Contains(vOld, "const") {
+				return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(&pret%v))); %v_PackedString { t%v, -1 }; })", vOld, tHashName, name, tHashName, value, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
+			}
 			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, -1 }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
 		}
 

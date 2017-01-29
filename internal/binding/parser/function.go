@@ -38,6 +38,7 @@ type Function struct {
 	Checked         bool
 	Exception       bool
 	IsMap           bool
+	OgParameters    []Parameter
 }
 
 type Parameter struct {
@@ -221,7 +222,8 @@ func (f *Function) IsSupported() bool {
 		strings.HasPrefix(genName, "featureTypes") || strings.HasPrefix(genName, "supportedPaperSources") ||
 		strings.HasPrefix(genName, "setTextureData") || strings.HasPrefix(genName, "textureData") ||
 		strings.HasPrefix(genName, "QCustom3DVolume_textureData") || strings.HasPrefix(genName, "createTextureData") ||
-		strings.Contains(genName, "alternateSubjectNames") {
+		strings.Contains(genName, "alternateSubjectNames") || strings.HasPrefix(genName, "fromVariantMap") ||
+		strings.HasPrefix(genName, "QScxmlDataModel") {
 		return false
 	}
 

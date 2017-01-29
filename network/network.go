@@ -2780,6 +2780,19 @@ func (ptr *QAuthenticator) Option(opt string) *core.QVariant {
 	return nil
 }
 
+func (ptr *QAuthenticator) Options() map[string]*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNetwork_PackedList) map[string]*core.QVariant {
+			var out = make(map[string]*core.QVariant, int(l.len))
+			for _, i := range NewQAuthenticatorFromPointer(l.data).__options_keyList() {
+				out[i] = NewQAuthenticatorFromPointer(l.data).__options_atList(i)
+			}
+			return out
+		}(C.QAuthenticator_Options(ptr.Pointer()))
+	}
+	return make(map[string]*core.QVariant, 0)
+}
+
 func (ptr *QAuthenticator) Password() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QAuthenticator_Password(ptr.Pointer()))
@@ -2830,6 +2843,67 @@ func (ptr *QAuthenticator) DestroyQAuthenticator() {
 		C.QAuthenticator_DestroyQAuthenticator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QAuthenticator) __options_atList(i string) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QAuthenticator___options_atList(ptr.Pointer(), iC))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAuthenticator) __options_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QAuthenticator___options_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QAuthenticator) __options_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAuthenticator___options_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAuthenticator) __options_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNetwork_PackedList) []string {
+			var out = make([]string, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAuthenticatorFromPointer(l.data).____options_keyList_atList(i)
+			}
+			return out
+		}(C.QAuthenticator___options_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QAuthenticator) ____options_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAuthenticator_____options_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QAuthenticator) ____options_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		C.QAuthenticator_____options_keyList_setList(ptr.Pointer(), iC)
+	}
+}
+
+func (ptr *QAuthenticator) ____options_keyList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAuthenticator_____options_keyList_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QDnsDomainNameRecord struct {

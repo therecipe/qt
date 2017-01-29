@@ -940,7 +940,7 @@ public:
 	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQAbstractItemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtCore_PackedList { tmpValue, tmpValue->size() }; }), hint); };
 	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQAbstractItemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtCore_PackedList { tmpValue, tmpValue->size() }; }), hint); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQAbstractItemModel_Match(const_cast<MyQAbstractItemModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQAbstractItemModel_MimeData(const_cast<MyQAbstractItemModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQAbstractItemModel_MimeData(const_cast<MyQAbstractItemModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQAbstractItemModel_MimeTypes(const_cast<MyQAbstractItemModel*>(this))).split("|", QString::SkipEmptyParts); };
 	void Signal_ModelAboutToBeReset() { callbackQAbstractItemModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQAbstractItemModel_ModelReset(this); };
@@ -2146,7 +2146,7 @@ public:
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractListModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQAbstractListModel_ItemData(const_cast<MyQAbstractListModel*>(this), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQAbstractListModel_Match(const_cast<MyQAbstractListModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQAbstractListModel_MimeData(const_cast<MyQAbstractListModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQAbstractListModel_MimeData(const_cast<MyQAbstractListModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQAbstractListModel_MimeTypes(const_cast<MyQAbstractListModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -2984,7 +2984,7 @@ public:
 	QItemSelection mapSelectionFromSource(const QItemSelection & sourceSelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionFromSource(const_cast<MyQAbstractProxyModel*>(this), const_cast<QItemSelection*>(&sourceSelection))); };
 	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionToSource(const_cast<MyQAbstractProxyModel*>(this), const_cast<QItemSelection*>(&proxySelection))); };
 	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_MapToSource(const_cast<MyQAbstractProxyModel*>(this), const_cast<QModelIndex*>(&proxyIndex))); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQAbstractProxyModel_MimeData(const_cast<MyQAbstractProxyModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQAbstractProxyModel_MimeData(const_cast<MyQAbstractProxyModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQAbstractProxyModel_MimeTypes(const_cast<MyQAbstractProxyModel*>(this))).split("|", QString::SkipEmptyParts); };
 	void resetInternalData() { callbackQAbstractProxyModel_ResetInternalData(this); };
 	void revert() { callbackQAbstractProxyModel_Revert(this); };
@@ -4112,7 +4112,7 @@ public:
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQAbstractTableModel_ItemData(const_cast<MyQAbstractTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQAbstractTableModel_Match(const_cast<MyQAbstractTableModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQAbstractTableModel_MimeData(const_cast<MyQAbstractTableModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQAbstractTableModel_MimeData(const_cast<MyQAbstractTableModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQAbstractTableModel_MimeTypes(const_cast<MyQAbstractTableModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -12873,7 +12873,7 @@ public:
 	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQIdentityProxyModel_Flags(const_cast<MyQIdentityProxyModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQIdentityProxyModel_HasChildren(const_cast<MyQIdentityProxyModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
 	QMap<int, QVariant> itemData(const QModelIndex & proxyIndex) const { return *static_cast<QMap<int, QVariant>*>(callbackQIdentityProxyModel_ItemData(const_cast<MyQIdentityProxyModel*>(this), const_cast<QModelIndex*>(&proxyIndex))); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQIdentityProxyModel_MimeData(const_cast<MyQIdentityProxyModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQIdentityProxyModel_MimeData(const_cast<MyQIdentityProxyModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQIdentityProxyModel_MimeTypes(const_cast<MyQIdentityProxyModel*>(this))).split("|", QString::SkipEmptyParts); };
 	void resetInternalData() { callbackQIdentityProxyModel_ResetInternalData(this); };
 	void revert() { callbackQIdentityProxyModel_Revert(this); };
@@ -14833,6 +14833,11 @@ char QJsonObject_Empty(void* ptr)
 	return static_cast<QJsonObject*>(ptr)->empty();
 }
 
+void* QJsonObject_QJsonObject_FromVariantHash(void* hash)
+{
+	return new QJsonObject(QJsonObject::fromVariantHash(*static_cast<QHash<QString, QVariant>*>(hash)));
+}
+
 char QJsonObject_IsEmpty(void* ptr)
 {
 	return static_cast<QJsonObject*>(ptr)->isEmpty();
@@ -14863,6 +14868,16 @@ void* QJsonObject_Take(void* ptr, char* key)
 	return new QJsonValue(static_cast<QJsonObject*>(ptr)->take(QString(key)));
 }
 
+struct QtCore_PackedList QJsonObject_ToVariantHash(void* ptr)
+{
+	return ({ QHash<QString, QVariant>* tmpValue = new QHash<QString, QVariant>(static_cast<QJsonObject*>(ptr)->toVariantHash()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtCore_PackedList QJsonObject_ToVariantMap(void* ptr)
+{
+	return ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(static_cast<QJsonObject*>(ptr)->toVariantMap()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QJsonObject_Value2(void* ptr, void* key)
 {
 	return new QJsonValue(static_cast<QJsonObject*>(ptr)->value(*static_cast<QLatin1String*>(key)));
@@ -14876,6 +14891,126 @@ void* QJsonObject_Value(void* ptr, char* key)
 void QJsonObject_DestroyQJsonObject(void* ptr)
 {
 	static_cast<QJsonObject*>(ptr)->~QJsonObject();
+}
+
+void* QJsonObject___fromVariantHash_hash_atList(void* ptr, char* i)
+{
+	return new QVariant(static_cast<QHash<QString, QVariant>*>(ptr)->value(QString(i)));
+}
+
+void QJsonObject___fromVariantHash_hash_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QHash<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+}
+
+void* QJsonObject___fromVariantHash_hash_newList(void* ptr)
+{
+	return new QHash<QString, QVariant>;
+}
+
+struct QtCore_PackedList QJsonObject___fromVariantHash_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QJsonObject___toVariantHash_atList(void* ptr, char* i)
+{
+	return new QVariant(static_cast<QHash<QString, QVariant>*>(ptr)->value(QString(i)));
+}
+
+void QJsonObject___toVariantHash_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QHash<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+}
+
+void* QJsonObject___toVariantHash_newList(void* ptr)
+{
+	return new QHash<QString, QVariant>;
+}
+
+struct QtCore_PackedList QJsonObject___toVariantHash_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QJsonObject___toVariantMap_atList(void* ptr, char* i)
+{
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+}
+
+void QJsonObject___toVariantMap_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+}
+
+void* QJsonObject___toVariantMap_newList(void* ptr)
+{
+	return new QMap<QString, QVariant>;
+}
+
+struct QtCore_PackedList QJsonObject___toVariantMap_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtCore_PackedString QJsonObject_____fromVariantHash_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtCore_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QJsonObject_____fromVariantHash_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QJsonObject_____fromVariantHash_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
+}
+
+struct QtCore_PackedString QJsonObject_____fromVariantMap_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtCore_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QJsonObject_____fromVariantMap_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QJsonObject_____fromVariantMap_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
+}
+
+struct QtCore_PackedString QJsonObject_____toVariantHash_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtCore_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QJsonObject_____toVariantHash_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QJsonObject_____toVariantHash_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
+}
+
+struct QtCore_PackedString QJsonObject_____toVariantMap_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtCore_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QJsonObject_____toVariantMap_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QJsonObject_____toVariantMap_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
 }
 
 struct QtCore_PackedString QJsonParseError_ErrorString(void* ptr)
@@ -23498,7 +23633,7 @@ public:
 	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQSortFilterProxyModel_MapSelectionToSource(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QItemSelection*>(&proxySelection))); };
 	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_MapToSource(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QModelIndex*>(&proxyIndex))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQSortFilterProxyModel_Match(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQSortFilterProxyModel_MimeData(const_cast<MyQSortFilterProxyModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQSortFilterProxyModel_MimeData(const_cast<MyQSortFilterProxyModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQSortFilterProxyModel_MimeTypes(const_cast<MyQSortFilterProxyModel*>(this))).split("|", QString::SkipEmptyParts); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Parent(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QModelIndex*>(&child))); };
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -25483,7 +25618,7 @@ public:
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStringListModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQStringListModel_ItemData(const_cast<MyQStringListModel*>(this), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQStringListModel_Match(const_cast<MyQStringListModel*>(this), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQStringListModel_MimeData(const_cast<MyQStringListModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQStringListModel_MimeData(const_cast<MyQStringListModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtCore_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQStringListModel_MimeTypes(const_cast<MyQStringListModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };

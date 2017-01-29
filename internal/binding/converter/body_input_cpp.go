@@ -1,6 +1,8 @@
 package converter
 
 import (
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"strings"
 
@@ -19,24 +21,23 @@ func CppInputParameters(function *parser.Function) string {
 }
 
 func CppInputParametersForSlotInvoke(function *parser.Function) string {
+	if len(function.Parameters) == 0 {
+		return ""
+	}
 
 	var input = make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
 		input[i] = fmt.Sprintf("Q_ARG(%v, %v)", CppInputParametersForSlotArguments(function, parameter), cppInput(parameter.Name, parameter.Value, function))
+
+		if c, _ := function.Class(); c.Module == parser.MOC && parser.IsPackedMap(parameter.Value) {
+			var tHash = sha1.New()
+			tHash.Write([]byte(parameter.Value))
+			input[i] = strings.Replace(input[i], parser.CleanValue(parameter.Value), fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3])), -1)
+		}
 	}
 
-	return fmt.Sprintf("%v%v",
-
-		func() string {
-			if len(input) > 0 {
-				return ", "
-			}
-			return ""
-		}(),
-
-		strings.Join(input, ", "),
-	)
+	return fmt.Sprintf(", %v", strings.Join(input, ", "))
 }
 
 func CppInputParametersForSlotArguments(function *parser.Function, parameter *parser.Parameter) string {
@@ -87,7 +88,11 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 		if isEnum(function.ClassName(), parameter.Value) {
 			input[i] = fmt.Sprintf("%v %v", cppEnum(function, parameter.Value, true), parser.CleanName(parameter.Name, parameter.Value))
 		} else {
-			input[i] = fmt.Sprintf("%v %v", parameter.Value, parser.CleanName(parameter.Name, parameter.Value))
+			if parser.IsPackedList(parameter.Value) || parser.IsPackedMap(parameter.Value) {
+				input[i] = fmt.Sprintf("%v %v", function.OgParameters[i].Value, parser.CleanName(parameter.Name, parameter.Value))
+			} else {
+				input[i] = fmt.Sprintf("%v %v", parameter.Value, parser.CleanName(parameter.Name, parameter.Value))
+			}
 		}
 	}
 

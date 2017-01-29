@@ -2,6 +2,8 @@ package templater
 
 import (
 	"bytes"
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"strings"
 
@@ -298,6 +300,13 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 
 				func() string {
 					if converter.CppHeaderOutput(function) != parser.VOID {
+
+						if c, _ := function.Class(); c.Module == parser.MOC && parser.IsPackedMap(function.Output) {
+							var tHash = sha1.New()
+							tHash.Write([]byte(function.Output))
+							return fmt.Sprintf(", Q_RETURN_ARG(%v, returnArg)", strings.Replace(functionOutputType, parser.CleanValue(function.Output), fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3])), -1))
+						}
+
 						return fmt.Sprintf(", Q_RETURN_ARG(%v, returnArg)", functionOutputType)
 					}
 					return ""

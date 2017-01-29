@@ -21,6 +21,7 @@
 #include <QDnsServiceRecord>
 #include <QDnsTextRecord>
 #include <QEvent>
+#include <QHash>
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QHttpMultiPart>
@@ -1026,6 +1027,11 @@ void* QAuthenticator_Option(void* ptr, char* opt)
 	return new QVariant(static_cast<QAuthenticator*>(ptr)->option(QString(opt)));
 }
 
+struct QtNetwork_PackedList QAuthenticator_Options(void* ptr)
+{
+	return ({ QHash<QString, QVariant>* tmpValue = new QHash<QString, QVariant>(static_cast<QAuthenticator*>(ptr)->options()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtNetwork_PackedString QAuthenticator_Password(void* ptr)
 {
 	return ({ QByteArray t31072f = static_cast<QAuthenticator*>(ptr)->password().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t31072f.prepend("WHITESPACE").constData()+10), t31072f.size()-10 }; });
@@ -1059,6 +1065,41 @@ struct QtNetwork_PackedString QAuthenticator_User(void* ptr)
 void QAuthenticator_DestroyQAuthenticator(void* ptr)
 {
 	static_cast<QAuthenticator*>(ptr)->~QAuthenticator();
+}
+
+void* QAuthenticator___options_atList(void* ptr, char* i)
+{
+	return new QVariant(static_cast<QHash<QString, QVariant>*>(ptr)->value(QString(i)));
+}
+
+void QAuthenticator___options_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QHash<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+}
+
+void* QAuthenticator___options_newList(void* ptr)
+{
+	return new QHash<QString, QVariant>;
+}
+
+struct QtNetwork_PackedList QAuthenticator___options_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedString QAuthenticator_____options_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtNetwork_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QAuthenticator_____options_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QAuthenticator_____options_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
 }
 
 void* QDnsDomainNameRecord_NewQDnsDomainNameRecord()

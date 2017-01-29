@@ -19411,7 +19411,7 @@ public:
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModel_ItemChanged(this, item); };
 	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQStandardItemModel_ItemData(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&index))); };
-	QMimeData * mimeData(QList<QModelIndex> indexes) const { return static_cast<QMimeData*>(callbackQStandardItemModel_MimeData(const_cast<MyQStandardItemModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtGui_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQStandardItemModel_MimeData(const_cast<MyQStandardItemModel*>(this), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtGui_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QStringList mimeTypes() const { return QString(callbackQStandardItemModel_MimeTypes(const_cast<MyQStandardItemModel*>(this))).split("|", QString::SkipEmptyParts); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Parent(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&child))); };
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };

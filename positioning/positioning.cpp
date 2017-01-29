@@ -25,6 +25,7 @@
 #include <QGeoShape>
 #include <QIODevice>
 #include <QList>
+#include <QMap>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNmeaPositionInfoSource>
@@ -33,6 +34,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
+#include <QVariant>
 
 void* QGeoAddress_NewQGeoAddress()
 {
@@ -194,6 +196,11 @@ struct QtPositioning_PackedString QGeoAreaMonitorInfo_Name(void* ptr)
 	return ({ QByteArray ta2df77 = static_cast<QGeoAreaMonitorInfo*>(ptr)->name().toUtf8(); QtPositioning_PackedString { const_cast<char*>(ta2df77.prepend("WHITESPACE").constData()+10), ta2df77.size()-10 }; });
 }
 
+struct QtPositioning_PackedList QGeoAreaMonitorInfo_NotificationParameters(void* ptr)
+{
+	return ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(static_cast<QGeoAreaMonitorInfo*>(ptr)->notificationParameters()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QGeoAreaMonitorInfo_SetArea(void* ptr, void* newShape)
 {
 	static_cast<QGeoAreaMonitorInfo*>(ptr)->setArea(*static_cast<QGeoShape*>(newShape));
@@ -209,6 +216,11 @@ void QGeoAreaMonitorInfo_SetName(void* ptr, char* name)
 	static_cast<QGeoAreaMonitorInfo*>(ptr)->setName(QString(name));
 }
 
+void QGeoAreaMonitorInfo_SetNotificationParameters(void* ptr, void* parameters)
+{
+	static_cast<QGeoAreaMonitorInfo*>(ptr)->setNotificationParameters(*static_cast<QMap<QString, QVariant>*>(parameters));
+}
+
 void QGeoAreaMonitorInfo_SetPersistent(void* ptr, char isPersistent)
 {
 	static_cast<QGeoAreaMonitorInfo*>(ptr)->setPersistent(isPersistent != 0);
@@ -217,6 +229,76 @@ void QGeoAreaMonitorInfo_SetPersistent(void* ptr, char isPersistent)
 void QGeoAreaMonitorInfo_DestroyQGeoAreaMonitorInfo(void* ptr)
 {
 	static_cast<QGeoAreaMonitorInfo*>(ptr)->~QGeoAreaMonitorInfo();
+}
+
+void* QGeoAreaMonitorInfo___notificationParameters_atList(void* ptr, char* i)
+{
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+}
+
+void QGeoAreaMonitorInfo___notificationParameters_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+}
+
+void* QGeoAreaMonitorInfo___notificationParameters_newList(void* ptr)
+{
+	return new QMap<QString, QVariant>;
+}
+
+struct QtPositioning_PackedList QGeoAreaMonitorInfo___notificationParameters_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QGeoAreaMonitorInfo___setNotificationParameters_parameters_atList(void* ptr, char* i)
+{
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+}
+
+void QGeoAreaMonitorInfo___setNotificationParameters_parameters_setList(void* ptr, char* key, void* i)
+{
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+}
+
+void* QGeoAreaMonitorInfo___setNotificationParameters_parameters_newList(void* ptr)
+{
+	return new QMap<QString, QVariant>;
+}
+
+struct QtPositioning_PackedList QGeoAreaMonitorInfo___setNotificationParameters_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtPositioning_PackedString QGeoAreaMonitorInfo_____notificationParameters_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QGeoAreaMonitorInfo_____notificationParameters_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QGeoAreaMonitorInfo_____notificationParameters_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
+}
+
+struct QtPositioning_PackedString QGeoAreaMonitorInfo_____setNotificationParameters_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(void* ptr, char* i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString(i));
+}
+
+void* QGeoAreaMonitorInfo_____setNotificationParameters_keyList_newList(void* ptr)
+{
+	return new QList<QString>;
 }
 
 class MyQGeoAreaMonitorSource: public QGeoAreaMonitorSource

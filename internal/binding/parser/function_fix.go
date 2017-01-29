@@ -153,6 +153,16 @@ func (f *Function) fixGeneric() {
 func (f *Function) fixGenericOutput() {
 
 	switch CleanValue(f.Output) {
+	case "QVariantHash":
+		{
+			f.Output = "QHash<QString, QVariant>"
+		}
+
+	case "QVariantMap":
+		{
+			f.Output = "QMap<QString, QVariant>"
+		}
+
 	case "QJSValueList":
 		{
 			f.Output = "QList<QJSValue>"
@@ -218,8 +228,26 @@ func (f *Function) fixGenericOutput() {
 }
 
 func (f *Function) fixGenericInput() {
+	if len(f.OgParameters) == 0 {
+		for _, p := range f.Parameters {
+			if !strings.HasPrefix(p.Value, "[]") && !strings.HasPrefix(p.Value, "map[") {
+				f.OgParameters = append(f.OgParameters, *p)
+			}
+		}
+	}
+
 	for _, p := range f.Parameters {
 		switch CleanValue(p.Value) {
+		case "QVariantHash":
+			{
+				p.Value = "QHash<QString, QVariant>"
+			}
+
+		case "QVariantMap":
+			{
+				p.Value = "QMap<QString, QVariant>"
+			}
+
 		case "QJSValueList":
 			{
 				p.Value = "QList<QJSValue>"
@@ -366,7 +394,7 @@ func (c *Class) FixGenericHelper() {
 
 				if IsPackedMap(CleanValue(f.Output)) {
 					if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_keyList", f.Name), f.OverloadNumber) {
-						var keyType, _ = UnpackedMap(CleanValue(f.Output))
+						var keyType, _ = UnpackedMapDirty(CleanValue(f.Output))
 						c.Functions = append(c.Functions, &Function{
 							Name:           fmt.Sprintf("__%v_keyList", f.Name),
 							Fullname:       fmt.Sprintf("%v::__%v_keyList", c.Name, f.Name),
@@ -459,7 +487,7 @@ func (c *Class) FixGenericHelper() {
 
 					if IsPackedMap(CleanValue(p.Value)) {
 						if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_keyList", f.Name), f.OverloadNumber) {
-							var keyType, _ = UnpackedMap(CleanValue(p.Value))
+							var keyType, _ = UnpackedMapDirty(CleanValue(p.Value))
 							c.Functions = append(c.Functions, &Function{
 								Name:           fmt.Sprintf("__%v_keyList", f.Name),
 								Fullname:       fmt.Sprintf("%v::__%v_keyList", c.Name, f.Name),

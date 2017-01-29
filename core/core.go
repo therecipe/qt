@@ -37806,6 +37806,30 @@ func (ptr *QJsonObject) Empty() bool {
 	return false
 }
 
+func QJsonObject_FromVariantHash(hash map[string]*QVariant) *QJsonObject {
+	var tmpValue = NewQJsonObjectFromPointer(C.QJsonObject_QJsonObject_FromVariantHash(func() unsafe.Pointer {
+		var tmpList = NewQJsonObjectFromPointer(NewQJsonObjectFromPointer(unsafe.Pointer(uintptr(1))).__fromVariantHash_hash_newList())
+		for k, v := range hash {
+			tmpList.__fromVariantHash_hash_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+	return tmpValue
+}
+
+func (ptr *QJsonObject) FromVariantHash(hash map[string]*QVariant) *QJsonObject {
+	var tmpValue = NewQJsonObjectFromPointer(C.QJsonObject_QJsonObject_FromVariantHash(func() unsafe.Pointer {
+		var tmpList = NewQJsonObjectFromPointer(NewQJsonObjectFromPointer(unsafe.Pointer(uintptr(1))).__fromVariantHash_hash_newList())
+		for k, v := range hash {
+			tmpList.__fromVariantHash_hash_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+	return tmpValue
+}
+
 func (ptr *QJsonObject) IsEmpty() bool {
 	if ptr.Pointer() != nil {
 		return C.QJsonObject_IsEmpty(ptr.Pointer()) != 0
@@ -37853,6 +37877,32 @@ func (ptr *QJsonObject) Take(key string) *QJsonValue {
 	return nil
 }
 
+func (ptr *QJsonObject) ToVariantHash() map[string]*QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) map[string]*QVariant {
+			var out = make(map[string]*QVariant, int(l.len))
+			for _, i := range NewQJsonObjectFromPointer(l.data).__toVariantHash_keyList() {
+				out[i] = NewQJsonObjectFromPointer(l.data).__toVariantHash_atList(i)
+			}
+			return out
+		}(C.QJsonObject_ToVariantHash(ptr.Pointer()))
+	}
+	return make(map[string]*QVariant, 0)
+}
+
+func (ptr *QJsonObject) ToVariantMap() map[string]*QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) map[string]*QVariant {
+			var out = make(map[string]*QVariant, int(l.len))
+			for _, i := range NewQJsonObjectFromPointer(l.data).__toVariantMap_keyList() {
+				out[i] = NewQJsonObjectFromPointer(l.data).__toVariantMap_atList(i)
+			}
+			return out
+		}(C.QJsonObject_ToVariantMap(ptr.Pointer()))
+	}
+	return make(map[string]*QVariant, 0)
+}
+
 func (ptr *QJsonObject) Value2(key QLatin1String_ITF) *QJsonValue {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQJsonValueFromPointer(C.QJsonObject_Value2(ptr.Pointer(), PointerFromQLatin1String(key)))
@@ -37878,6 +37928,211 @@ func (ptr *QJsonObject) DestroyQJsonObject() {
 		C.QJsonObject_DestroyQJsonObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QJsonObject) __fromVariantHash_hash_atList(i string) *QVariant {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		var tmpValue = NewQVariantFromPointer(C.QJsonObject___fromVariantHash_hash_atList(ptr.Pointer(), iC))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) __fromVariantHash_hash_setList(key string, i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QJsonObject___fromVariantHash_hash_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QJsonObject) __fromVariantHash_hash_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJsonObject___fromVariantHash_hash_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) __fromVariantHash_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []string {
+			var out = make([]string, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQJsonObjectFromPointer(l.data).____fromVariantHash_keyList_atList(i)
+			}
+			return out
+		}(C.QJsonObject___fromVariantHash_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QJsonObject) __toVariantHash_atList(i string) *QVariant {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		var tmpValue = NewQVariantFromPointer(C.QJsonObject___toVariantHash_atList(ptr.Pointer(), iC))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) __toVariantHash_setList(key string, i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QJsonObject___toVariantHash_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QJsonObject) __toVariantHash_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJsonObject___toVariantHash_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) __toVariantHash_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []string {
+			var out = make([]string, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQJsonObjectFromPointer(l.data).____toVariantHash_keyList_atList(i)
+			}
+			return out
+		}(C.QJsonObject___toVariantHash_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QJsonObject) __toVariantMap_atList(i string) *QVariant {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		var tmpValue = NewQVariantFromPointer(C.QJsonObject___toVariantMap_atList(ptr.Pointer(), iC))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) __toVariantMap_setList(key string, i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QJsonObject___toVariantMap_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QJsonObject) __toVariantMap_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJsonObject___toVariantMap_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) __toVariantMap_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []string {
+			var out = make([]string, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQJsonObjectFromPointer(l.data).____toVariantMap_keyList_atList(i)
+			}
+			return out
+		}(C.QJsonObject___toVariantMap_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QJsonObject) ____fromVariantHash_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QJsonObject_____fromVariantHash_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QJsonObject) ____fromVariantHash_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		C.QJsonObject_____fromVariantHash_keyList_setList(ptr.Pointer(), iC)
+	}
+}
+
+func (ptr *QJsonObject) ____fromVariantHash_keyList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJsonObject_____fromVariantHash_keyList_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) ____fromVariantMap_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QJsonObject_____fromVariantMap_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QJsonObject) ____fromVariantMap_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		C.QJsonObject_____fromVariantMap_keyList_setList(ptr.Pointer(), iC)
+	}
+}
+
+func (ptr *QJsonObject) ____fromVariantMap_keyList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJsonObject_____fromVariantMap_keyList_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) ____toVariantHash_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QJsonObject_____toVariantHash_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QJsonObject) ____toVariantHash_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		C.QJsonObject_____toVariantHash_keyList_setList(ptr.Pointer(), iC)
+	}
+}
+
+func (ptr *QJsonObject) ____toVariantHash_keyList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJsonObject_____toVariantHash_keyList_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) ____toVariantMap_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QJsonObject_____toVariantMap_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QJsonObject) ____toVariantMap_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		C.QJsonObject_____toVariantMap_keyList_setList(ptr.Pointer(), iC)
+	}
+}
+
+func (ptr *QJsonObject) ____toVariantMap_keyList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJsonObject_____toVariantMap_keyList_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QJsonParseError struct {

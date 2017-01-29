@@ -331,6 +331,19 @@ func (ptr *QGeoAreaMonitorInfo) Name() string {
 	return ""
 }
 
+func (ptr *QGeoAreaMonitorInfo) NotificationParameters() map[string]*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) map[string]*core.QVariant {
+			var out = make(map[string]*core.QVariant, int(l.len))
+			for _, i := range NewQGeoAreaMonitorInfoFromPointer(l.data).__notificationParameters_keyList() {
+				out[i] = NewQGeoAreaMonitorInfoFromPointer(l.data).__notificationParameters_atList(i)
+			}
+			return out
+		}(C.QGeoAreaMonitorInfo_NotificationParameters(ptr.Pointer()))
+	}
+	return make(map[string]*core.QVariant, 0)
+}
+
 func (ptr *QGeoAreaMonitorInfo) SetArea(newShape QGeoShape_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorInfo_SetArea(ptr.Pointer(), PointerFromQGeoShape(newShape))
@@ -351,6 +364,18 @@ func (ptr *QGeoAreaMonitorInfo) SetName(name string) {
 	}
 }
 
+func (ptr *QGeoAreaMonitorInfo) SetNotificationParameters(parameters map[string]*core.QVariant) {
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorInfo_SetNotificationParameters(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQGeoAreaMonitorInfoFromPointer(NewQGeoAreaMonitorInfoFromPointer(unsafe.Pointer(uintptr(1))).__setNotificationParameters_parameters_newList())
+			for k, v := range parameters {
+				tmpList.__setNotificationParameters_parameters_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QGeoAreaMonitorInfo) SetPersistent(isPersistent bool) {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorInfo_SetPersistent(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPersistent))))
@@ -362,6 +387,128 @@ func (ptr *QGeoAreaMonitorInfo) DestroyQGeoAreaMonitorInfo() {
 		C.QGeoAreaMonitorInfo_DestroyQGeoAreaMonitorInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGeoAreaMonitorInfo) __notificationParameters_atList(i string) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___notificationParameters_atList(ptr.Pointer(), iC))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorInfo) __notificationParameters_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QGeoAreaMonitorInfo___notificationParameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorInfo) __notificationParameters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorInfo___notificationParameters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorInfo) __notificationParameters_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []string {
+			var out = make([]string, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoAreaMonitorInfoFromPointer(l.data).____notificationParameters_keyList_atList(i)
+			}
+			return out
+		}(C.QGeoAreaMonitorInfo___notificationParameters_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_atList(i string) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_atList(ptr.Pointer(), iC))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []string {
+			var out = make([]string, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoAreaMonitorInfoFromPointer(l.data).____setNotificationParameters_keyList_atList(i)
+			}
+			return out
+		}(C.QGeoAreaMonitorInfo___setNotificationParameters_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QGeoAreaMonitorInfo) ____notificationParameters_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QGeoAreaMonitorInfo_____notificationParameters_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QGeoAreaMonitorInfo) ____notificationParameters_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		C.QGeoAreaMonitorInfo_____notificationParameters_keyList_setList(ptr.Pointer(), iC)
+	}
+}
+
+func (ptr *QGeoAreaMonitorInfo) ____notificationParameters_keyList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorInfo_____notificationParameters_keyList_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
+		C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(ptr.Pointer(), iC)
+	}
+}
+
+func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QGeoAreaMonitorSource struct {

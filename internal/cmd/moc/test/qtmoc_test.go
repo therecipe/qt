@@ -45,9 +45,9 @@ type testStruct struct {
 	_ otherTestStruct  `property:"propReturnTest"`  // -> *T
 	_ *otherTestStruct `property:"propReturnTest2"` // -> *T
 
-	_ []bool `property:"propListBool"`
-	_ []int8 `property:"propListInt8"` //-> string
-	//_ []uint8   `property:"propListInt82"` //-> string
+	_ []bool             `property:"propListBool"`
+	_ []int8             `property:"propListInt8"`  //-> string
+	_ []uint8            `property:"propListInt82"` //-> string
 	_ []int16            `property:"propListInt16"`
 	_ []uint16           `property:"propListInt162"`
 	_ []int32            `property:"propListInt32"`  // -> int
@@ -70,9 +70,9 @@ type testStruct struct {
 	_ []otherTestStruct  `property:"propListReturnTest"`  // -> *T
 	_ []*otherTestStruct `property:"propListReturnTest2"` // -> *T
 
-	_ map[int]bool `property:"propMapBool"`
-	_ map[int]int8 `property:"propMapInt8"` //-> string
-	//_ []uint8   `property:"propMapInt82"` //-> string
+	_ map[int]bool             `property:"propMapBool"`
+	_ map[int]int8             `property:"propMapInt8"`  //-> string
+	_ map[int]uint8            `property:"propMapInt82"` //-> string
 	_ map[int]int16            `property:"propMapInt16"`
 	_ map[int]uint16           `property:"propMapInt162"`
 	_ map[int]int32            `property:"propMapInt32"`  // -> int
@@ -95,9 +95,9 @@ type testStruct struct {
 	_ map[int]otherTestStruct  `property:"propMapReturnTest"`  // -> *T
 	_ map[int]*otherTestStruct `property:"propMapReturnTest2"` // -> *T
 
-	_ map[bool]bool `property:"propMapKeyBool"`
-	_ map[int8]int8 `property:"propMapKeyInt8"` //-> string
-	//_ map[uint8]uint8   `property:"propMapKeyInt82"` //-> string
+	_ map[bool]bool       `property:"propMapKeyBool"`
+	_ map[int8]int8       `property:"propMapKeyInt8"`  //-> string
+	_ map[uint8]uint8     `property:"propMapKeyInt82"` //-> string
 	_ map[int16]int16     `property:"propMapKeyInt16"`
 	_ map[uint16]uint16   `property:"propMapKeyInt162"`
 	_ map[int32]int32     `property:"propMapKeyInt32"`  // -> int
@@ -109,16 +109,17 @@ type testStruct struct {
 	_ map[float32]float32 `property:"propMapKeyFloat"`
 	_ map[float64]float64 `property:"propMapKeyFloat2"`
 	_ map[string]string   `property:"propMapKeyString"`
-	//_ map[[]string][]string         `property:"propMapKeyString2"`
-	_ map[uintptr]uintptr `property:"propMapKeyPointer"`
-	//_ map[unsafe.Pointer]unsafe.Pointer     `property:"propMapKeyPointer2"`
-	//_ map[core.QVariant]core.QVariant       `property:"propMapKeyObject"`  // -> T (c++)
-	//_ map[*core.QObject]*core.QObject       `property:"propMapKeyObject2"` // -> *T
-	//_ map[*core.QVariant]*core.QVariant     `property:"propMapKeyObject3"` // -> *T //TODO:
-	//_ map[core.Qt__Key]core.Qt__Key         `property:"propMapKeyEnum"`
-	_ map[error]error `property:"propMapKeyError"`
-	//_ map[otherTestStruct]otherTestStruct   `property:"propMapKeyReturnTest"`  // -> *T
-	//_ map[*otherTestStruct]*otherTestStruct `property:"propMapKeyReturnTest2"` // -> *T
+	//is invalid in go _ map[[]string][]string             `property:"propMapKeyString2"`
+	_ map[uintptr]uintptr               `property:"propMapKeyPointer"`
+	_ map[unsafe.Pointer]unsafe.Pointer `property:"propMapKeyPointer2"`
+	//will probably never work _ map[core.QVariant]core.QVariant       `property:"propMapKeyObject"`  // -> T (c++)
+	_ map[*core.QObject]*core.QObject `property:"propMapKeyObject2"` // -> *T
+	//will work once * is recognized (TODO) _ map[*core.QVariant]*core.QVariant `property:"propMapKeyObject3"` // -> *T //TODO:
+	_ map[core.Qt__Key]core.Qt__Key `property:"propMapKeyEnum"`
+	_ map[error]error               `property:"propMapKeyError"`
+	//is invalid in go _ map[otherTestStruct]otherTestStruct   `property:"propMapKeyReturnTest"`  // -> *T
+	_ map[*otherTestStruct]otherTestStruct  `property:"propMapKeyReturnTest"`  // -> *T
+	_ map[*otherTestStruct]*otherTestStruct `property:"propMapKeyReturnTest2"` // -> *T
 
 	a, b bool
 	ab   func(bool) bool
@@ -146,8 +147,8 @@ type testStruct struct {
 	_ func(core.Qt__Key)                 `signal:"EnumSignalInput"`
 	_ func(error)                        `signal:"ErrorSignalInput"`
 
-	_ func([]bool, []bool) `signal:"BoolSignalListInput"`
-	//_ func([]int8, []uint8)              `signal:"Int8SignalListInput"` // -> string
+	_ func([]bool, []bool)                   `signal:"BoolSignalListInput"`
+	_ func([]int8, []uint8)                  `signal:"Int8SignalListInput"` // -> string
 	_ func([]int16, []uint16)                `signal:"Int16SignalListInput"`
 	_ func([]int32, []uint32)                `signal:"Int32SignalListInput"` // -> int
 	_ func([]int, []uint)                    `signal:"IntSignalListInput"`
@@ -159,18 +160,18 @@ type testStruct struct {
 	_ func([]core.Qt__Key)                   `signal:"EnumSignalListInput"`
 	_ func([]error)                          `signal:"ErrorSignalListInput"`
 
-	_ func(map[int]bool, map[int]bool) `signal:"BoolSignalMapInput"`
-	//_ func(map[int]int8, map[int]uint8)              `signal:"Int8SignalMapInput"` // -> string
-	_ func(map[int]int16, map[int]uint16)    `signal:"Int16SignalMapInput"`
-	_ func(map[int]int32, map[int]uint32)    `signal:"Int32SignalMapInput"` // -> int
-	_ func(map[int]int, map[int]uint)        `signal:"IntSignalMapInput"`
-	_ func(map[int]int64, map[int]uint64)    `signal:"Int64SignalMapInput"`
-	_ func(map[int]float32, map[int]float64) `signal:"FloatSignalMapInput"`
-	_ func(map[int]string, map[int]string)   `signal:"StringSignalMapInput"`
-	//_ func(map[int]uintptr, map[int]unsafe.Pointer)      `signal:"PointerSignalMapInput"`
-	//_ func(map[int]core.QVariant, map[int]*core.QObject) `signal:"ObjectSignalMapInput"` // -> T (c++) *T
-	_ func(map[int]core.Qt__Key) `signal:"EnumSignalMapInput"`
-	_ func(map[int]error)        `signal:"ErrorSignalMapInput"`
+	_ func(map[int]bool, map[int]bool)                   `signal:"BoolSignalMapInput"`
+	_ func(map[int]int8, map[int]uint8)                  `signal:"Int8SignalMapInput"` // -> string
+	_ func(map[int]int16, map[int]uint16)                `signal:"Int16SignalMapInput"`
+	_ func(map[int]int32, map[int]uint32)                `signal:"Int32SignalMapInput"` // -> int
+	_ func(map[int]int, map[int]uint)                    `signal:"IntSignalMapInput"`
+	_ func(map[int]int64, map[int]uint64)                `signal:"Int64SignalMapInput"`
+	_ func(map[int]float32, map[int]float64)             `signal:"FloatSignalMapInput"`
+	_ func(map[int]string, map[int]string)               `signal:"StringSignalMapInput"`
+	_ func(map[int]uintptr, map[int]unsafe.Pointer)      `signal:"PointerSignalMapInput"`
+	_ func(map[int]core.QVariant, map[int]*core.QObject) `signal:"ObjectSignalMapInput"` // -> T (c++) *T
+	_ func(map[int]core.Qt__Key)                         `signal:"EnumSignalMapInput"`
+	_ func(map[int]error)                                `signal:"ErrorSignalMapInput"`
 
 	_ func(bool, bool)                   `slot:"BoolSlotInput"`
 	_ func(int8, uint8)                  `slot:"Int8SlotInput"` // -> string
@@ -185,8 +186,8 @@ type testStruct struct {
 	_ func(core.Qt__Key)                 `slot:"EnumSlotInput"`
 	_ func(error)                        `slot:"ErrorSlotInput"`
 
-	_ func([]bool, []bool) `slot:"BoolSlotListInput"`
-	//_ func([]int8, []uint8)                  `slot:"Int8SlotListInput"` // -> string
+	_ func([]bool, []bool)                   `slot:"BoolSlotListInput"`
+	_ func([]int8, []uint8)                  `slot:"Int8SlotListInput"` // -> string
 	_ func([]int16, []uint16)                `slot:"Int16SlotListInput"`
 	_ func([]int32, []uint32)                `slot:"Int32SlotListInput"` // -> int
 	_ func([]int, []uint)                    `slot:"IntSlotListInput"`
@@ -198,18 +199,18 @@ type testStruct struct {
 	_ func([]core.Qt__Key)                   `slot:"EnumSlotListInput"`
 	_ func([]error)                          `slot:"ErrorSlotListInput"`
 
-	//_ func(map[int]bool, map[int]bool) `slot:"BoolSlotMapInput"`
-	//_ func(map[int]int8, map[int]uint8)                  `slot:"Int8SlotMapInput"` // -> string
-	//_ func(map[int]int16, map[int]uint16)    `slot:"Int16SlotMapInput"`
-	//_ func(map[int]int32, map[int]uint32)    `slot:"Int32SlotMapInput"` // -> int
-	//_ func(map[int]int, map[int]uint)        `slot:"IntSlotMapInput"`
-	//_ func(map[int]int64, map[int]uint64)    `slot:"Int64SlotMapInput"`
-	//_ func(map[int]float32, map[int]float64) `slot:"FloatSlotMapInput"`
-	//_ func(map[int]string, map[int]string)   `slot:"StringSlotMapInput"`
-	//_ func(map[int]uintptr, map[int]unsafe.Pointer)      `slot:"PointerSlotMapInput"`
-	//_ func(map[int]core.QVariant, map[int]*core.QObject) `slot:"ObjectSlotMapInput"` // -> T (c++) *T
-	//_ func(map[int]core.Qt__Key) `slot:"EnumSlotMapInput"`
-	//_ func(map[int]error)        `slot:"ErrorSlotMapInput"`
+	_ func(map[int]bool, map[int]bool)                   `slot:"BoolSlotMapInput"`
+	_ func(map[int]int8, map[int]uint8)                  `slot:"Int8SlotMapInput"` // -> string
+	_ func(map[int]int16, map[int]uint16)                `slot:"Int16SlotMapInput"`
+	_ func(map[int]int32, map[int]uint32)                `slot:"Int32SlotMapInput"` // -> int
+	_ func(map[int]int, map[int]uint)                    `slot:"IntSlotMapInput"`
+	_ func(map[int]int64, map[int]uint64)                `slot:"Int64SlotMapInput"`
+	_ func(map[int]float32, map[int]float64)             `slot:"FloatSlotMapInput"`
+	_ func(map[int]string, map[int]string)               `slot:"StringSlotMapInput"`
+	_ func(map[int]uintptr, map[int]unsafe.Pointer)      `slot:"PointerSlotMapInput"`
+	_ func(map[int]core.QVariant, map[int]*core.QObject) `slot:"ObjectSlotMapInput"` // -> T (c++) *T
+	_ func(map[int]core.Qt__Key)                         `slot:"EnumSlotMapInput"`
+	_ func(map[int]error)                                `slot:"ErrorSlotMapInput"`
 
 	_ func(bool) bool                     `slot:"BoolSlotOutput"`
 	_ func(bool) bool                     `slot:"BoolSlotOutput2"`
@@ -240,10 +241,10 @@ type testStruct struct {
 	_ func()                              `slot:"other"`
 	_ func() bool                         `slot:"other2"`
 
-	_ func([]bool) []bool `slot:"BoolSlotListOutput"`
-	_ func([]bool) []bool `slot:"BoolSlotListOutput2"`
-	_ func([]int8) []int8 `slot:"Int8SlotListOutput"` //-> string
-	//_ func([]uint8) []uint8                   `slot:"Int8SlotListOutput2"` //-> string
+	_ func([]bool) []bool                     `slot:"BoolSlotListOutput"`
+	_ func([]bool) []bool                     `slot:"BoolSlotListOutput2"`
+	_ func([]int8) []int8                     `slot:"Int8SlotListOutput"`  //-> string
+	_ func([]uint8) []uint8                   `slot:"Int8SlotListOutput2"` //-> string
 	_ func([]int16) []int16                   `slot:"Int16SlotListOutput"`
 	_ func([]uint16) []uint16                 `slot:"Int16SlotListOutput2"`
 	_ func([]int32) []int32                   `slot:"Int32SlotListOutput"`  // -> int
@@ -268,33 +269,33 @@ type testStruct struct {
 	_ func(a0, a1 []int) (a2 []int)           `slot:"returnListName2"`
 	_ func() []bool                           `slot:"otherList"`
 
-	//_ func(map[int]bool) map[int]bool `slot:"BoolSlotMapOutput"`
-	//_ func(map[int]bool) map[int]bool `slot:"BoolSlotMapOutput2"`
-	//_ func(map[int]int8) map[int]int8 `slot:"Int8SlotMapOutput"` //-> string
-	//_ func(map[int]uint8) map[int]uint8                   `slot:"Int8SlotMapOutput2"` //-> string
-	//_ func(map[int]int16) map[int]int16                   `slot:"Int16SlotMapOutput"`
-	//_ func(map[int]uint16) map[int]uint16                 `slot:"Int16SlotMapOutput2"`
-	//_ func(map[int]int32) map[int]int32                   `slot:"Int32SlotMapOutput"`  // -> int
-	//_ func(map[int]uint32) map[int]uint32                 `slot:"Int32SlotMapOutput2"` // -> int
-	//_ func(map[int]int) map[int]int                       `slot:"IntSlotMapOutput"`
-	//_ func(map[int]uint) map[int]uint                     `slot:"IntSlotMapOutput2"`
-	//_ func(map[int]int64) map[int]int64                   `slot:"Int64SlotMapOutput"`
-	//_ func(map[int]uint64) map[int]uint64                 `slot:"Int64SlotMapOutput2"`
-	//_ func(map[int]float32) map[int]float32               `slot:"FloatSlotMapOutput"`
-	//_ func(map[int]float64) map[int]float64               `slot:"FloatSlotMapOutput2"`
-	//_ func(map[int]string) map[int]string                 `slot:"StringSlotMapOutput"`
-	//_ func(map[int]string) map[int]string                 `slot:"StringSlotMapOutput2"`
-	//_ func(map[int]uintptr) map[int]uintptr               `slot:"PointerSlotMapOutput"`
-	//_ func(map[int]unsafe.Pointer) map[int]unsafe.Pointer `slot:"PointerSlotMapOutput2"`
-	//_ func(map[int]core.QVariant) map[int]core.QVariant   `slot:"ObjectSlotMapOutput"`  // -> T (c++)
-	//_ func(map[int]*core.QObject) map[int]*core.QObject   `slot:"ObjectSlotMapOutput2"` // -> *T
-	//_ func(map[int]core.Qt__Key) map[int]core.Qt__Key     `slot:"EnumSlotMapOutput"`
-	//_ func(map[int]error) map[int]error                   `slot:"ErrorSlotMapOutput"`
-	//_ func(map[int]testStruct) map[int]testStruct         `slot:"returnMapTest"`  // -> *T
-	//_ func(map[int]*testStruct) map[int]*testStruct       `slot:"returnMapTest2"` // -> *T
-	//_ func(a0 map[int]string) (a1 map[int]string)         `slot:"returnMapName"`
-	//_ func(a0, a1 map[int]int) (a2 map[int]int)           `slot:"returnMapName2"`
-	//_ func() map[int]bool                                 `slot:"otherMap"`
+	_ func(map[int]bool) map[int]bool                     `slot:"BoolSlotMapOutput"`
+	_ func(map[int]bool) map[int]bool                     `slot:"BoolSlotMapOutput2"`
+	_ func(map[int]int8) map[int]int8                     `slot:"Int8SlotMapOutput"`  //-> string
+	_ func(map[int]uint8) map[int]uint8                   `slot:"Int8SlotMapOutput2"` //-> string
+	_ func(map[int]int16) map[int]int16                   `slot:"Int16SlotMapOutput"`
+	_ func(map[int]uint16) map[int]uint16                 `slot:"Int16SlotMapOutput2"`
+	_ func(map[int]int32) map[int]int32                   `slot:"Int32SlotMapOutput"`  // -> int
+	_ func(map[int]uint32) map[int]uint32                 `slot:"Int32SlotMapOutput2"` // -> int
+	_ func(map[int]int) map[int]int                       `slot:"IntSlotMapOutput"`
+	_ func(map[int]uint) map[int]uint                     `slot:"IntSlotMapOutput2"`
+	_ func(map[int]int64) map[int]int64                   `slot:"Int64SlotMapOutput"`
+	_ func(map[int]uint64) map[int]uint64                 `slot:"Int64SlotMapOutput2"`
+	_ func(map[int]float32) map[int]float32               `slot:"FloatSlotMapOutput"`
+	_ func(map[int]float64) map[int]float64               `slot:"FloatSlotMapOutput2"`
+	_ func(map[int]string) map[int]string                 `slot:"StringSlotMapOutput"`
+	_ func(map[int]string) map[int]string                 `slot:"StringSlotMapOutput2"`
+	_ func(map[int]uintptr) map[int]uintptr               `slot:"PointerSlotMapOutput"`
+	_ func(map[int]unsafe.Pointer) map[int]unsafe.Pointer `slot:"PointerSlotMapOutput2"`
+	_ func(map[int]core.QVariant) map[int]core.QVariant   `slot:"ObjectSlotMapOutput"`  // -> T (c++)
+	_ func(map[int]*core.QObject) map[int]*core.QObject   `slot:"ObjectSlotMapOutput2"` // -> *T
+	_ func(map[int]core.Qt__Key) map[int]core.Qt__Key     `slot:"EnumSlotMapOutput"`
+	_ func(map[int]error) map[int]error                   `slot:"ErrorSlotMapOutput"`
+	_ func(map[int]testStruct) map[int]testStruct         `slot:"returnMapTest"`  // -> *T
+	_ func(map[int]*testStruct) map[int]*testStruct       `slot:"returnMapTest2"` // -> *T
+	_ func(a0 map[int]string) (a1 map[int]string)         `slot:"returnMapName"`
+	_ func(a0, a1 map[int]int) (a2 map[int]int)           `slot:"returnMapName2"`
+	_ func() map[int]bool                                 `slot:"otherMap"`
 }
 
 type subTestStruct struct {
