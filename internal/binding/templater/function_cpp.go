@@ -41,7 +41,15 @@ func cppFunctionCallbackWithGuards(function *parser.Function, output string) str
 func cppFunctionCallbackHeader(function *parser.Function) string {
 	return fmt.Sprintf("%v %v%v(%v)%v",
 
-		function.Output,
+		func() string {
+			var c, _ = function.Class()
+			if parser.IsPackedMap(function.Output) && c.Module == parser.MOC {
+				var tHash = sha1.New()
+				tHash.Write([]byte(function.Output))
+				return fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
+			}
+			return function.Output
+		}(),
 
 		func() string {
 			if function.Meta == parser.SIGNAL {
