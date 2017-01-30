@@ -42,3 +42,9 @@ identifier, icon, permissions, ...)
 
 For example: `android:icon="@drawable/icon"` attribute can be added to
 `application` in `AndroidManifest.xml` to use the `icon.png`.
+
+## Java native interface
+
+You can call android's java runtime directly from go. See [java native interface example](internal/examples/androidextras/jni)
+
+
