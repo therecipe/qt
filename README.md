@@ -260,6 +260,8 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 8. Deploy applications with `[GOPATH]/bin/qtdeploy build android path/to/your/project`
 
+9. [More info for permissions, app icon, java native interface etc](internal/docs/android.md)
+
 ## iOS
 
 1. Install the desktop version for [macOS](#macos)
