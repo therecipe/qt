@@ -45,6 +45,6 @@ For example: `android:icon="@drawable/icon"` attribute can be added to
 
 ## Java native interface
 
-You can call android's java runtime directly from go. See [java native interface example](internal/examples/androidextras/jni)
+You can call android's java runtime directly from go. See [java native interface example](../examples/androidextras/jni)
 
 
