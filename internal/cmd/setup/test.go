@@ -1,9 +1,11 @@
 package setup
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/cmd/deploy"
@@ -20,6 +22,23 @@ func test(buildTarget string) {
 
 		var cmd = exec.Command("go", "test", "-v", "-tags=minimal")
 		cmd.Dir = utils.GoQtPkgPath("internal", "cmd", "moc", "test")
+		if runtime.GOOS == "windows" {
+			for key, value := range map[string]string{
+				"PATH":   os.Getenv("PATH"),
+				"GOPATH": utils.MustGoPath(),
+				"GOROOT": runtime.GOROOT(),
+
+				"TMP":  os.Getenv("TMP"),
+				"TEMP": os.Getenv("TEMP"),
+
+				"GOOS":   runtime.GOOS,
+				"GOARCH": "386",
+
+				"CGO_ENABLED": "1",
+			} {
+				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+			}
+		}
 		utils.RunCmd(cmd, "run qtmoc")
 	}
 
