@@ -260,7 +260,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 	</details>
 
 	<details>
-	<summary>IOS</summary>
+	<summary>iOS</summary>
 
 	1. Install the desktop version for macOS
 
@@ -437,7 +437,6 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	17. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3) (use the *.sh file to start your application)
 	</details>
-
 
 * Docker
 
