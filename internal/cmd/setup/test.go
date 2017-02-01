@@ -1,6 +1,7 @@
 package setup
 
 import (
+	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -14,8 +15,8 @@ func test(buildTarget string) {
 	if utils.IsCI() {
 		utils.Log.Infof("running setup/test CI (~2min)")
 
-		utils.RunCmd(exec.Command("qtmoc", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtmoc")
-		utils.RunCmd(exec.Command("qtminimal", "desktop", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtminimal")
+		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "qtmoc"), utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtmoc")
+		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "qtminimal"), "desktop", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtminimal")
 
 		var cmd = exec.Command("go", "test", "-v", "-tags=minimal")
 		cmd.Dir = utils.GoQtPkgPath("internal", "cmd", "moc", "test")
