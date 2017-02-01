@@ -26,6 +26,7 @@ func main() {
 	// Main Window
 	var window = widgets.NewQMainWindow(nil, 0)
 	window.SetWindowTitle("Sprite Editor")
+	window.SetMinimumSize2(360, 520)
 
 	// Statusbar
 	statusbar = widgets.NewQStatusBar(window)
@@ -72,7 +73,7 @@ func main() {
 
 	// Run App
 	widgets.QApplication_SetStyle2("fusion")
-	window.ShowMaximized()
+	window.Show()
 	widgets.QApplication_Exec()
 }
 

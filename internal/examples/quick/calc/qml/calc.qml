@@ -45,8 +45,8 @@ import "content/calculator.js" as CalcEngine
 
 Rectangle {
     id: window
-    width: 320
-    height: 480
+    width: 360
+    height: 520
     focus: true
     color: "#272822"
 

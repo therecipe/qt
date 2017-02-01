@@ -156,6 +156,7 @@ func (m *appMoc) parseGo(path string) error {
 									}
 									return "void"
 								}(),
+								IsMocFunction: true,
 							}
 
 							if len(f.Parameters[0].Value) == 0 {

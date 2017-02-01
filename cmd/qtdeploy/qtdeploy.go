@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
-	"strings"
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/deploy"
@@ -76,7 +75,7 @@ func args() {
 		}
 	}
 
-	if strings.ToLower(os.Getenv("CI")) == "true" {
+	if utils.IsCI() {
 		buildMode = "build"
 	}
 

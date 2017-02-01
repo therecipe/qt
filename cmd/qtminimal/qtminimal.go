@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
@@ -42,7 +43,7 @@ func main() {
 	if !filepath.IsAbs(appPath) {
 		appPath, _ = utils.Abs(appPath)
 	}
-	if _, err := ioutil.ReadDir(appPath); err != nil {
+	if _, err := ioutil.ReadDir(appPath); err != nil || strings.ContainsAny(buildTarget, "./\\") {
 		utils.Log.Fatalln("usage:", "qtminimal", "[ desktop | android | ... ]", filepath.Join("path", "to", "project"))
 	}
 

@@ -43,7 +43,7 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 
 		func() string {
 			var c, _ = function.Class()
-			if parser.IsPackedMap(function.Output) && c.Module == parser.MOC {
+			if parser.IsPackedMap(function.Output) && c.Module == parser.MOC && function.IsMocFunction {
 				var tHash = sha1.New()
 				tHash.Write([]byte(function.Output))
 				return fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))

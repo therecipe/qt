@@ -39,6 +39,7 @@ type Function struct {
 	Exception       bool
 	IsMap           bool
 	OgParameters    []Parameter
+	IsMocFunction   bool
 }
 
 type Parameter struct {

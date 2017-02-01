@@ -582,3 +582,4 @@ func main() {
 * [gen2brain/url2img](https://github.com/gen2brain/url2img)
 * [joeblew99/qt-archi](https://github.com/joeblew99/qt-archi)
 * [jordanorelli/grpc-ui](https://github.com/jordanorelli/grpc-ui)
+* [Matt-Texier/local-mitigation-agent](https://github.com/Matt-Texier/local-mitigation-agent)

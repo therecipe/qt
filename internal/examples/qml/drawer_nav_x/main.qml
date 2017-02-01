@@ -21,6 +21,8 @@ ApplicationWindow {
     id: appWindow
     // visibile must set to true - default is false
     visible: true
+    minimumWidth: 360
+    minimumHeight: 520
     //
     property bool isLandscape: width > height
 

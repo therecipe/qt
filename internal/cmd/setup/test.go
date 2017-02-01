@@ -1,7 +1,7 @@
 package setup
 
 import (
-	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
@@ -9,70 +9,69 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var exampleApps = []struct {
-	path        []string
-	desktopOnly bool
-}{
-	{path: []string{"widgets", "line_edits"}},
-	{path: []string{"widgets", "video_player"}},
-	{path: []string{"widgets", "graphicsscene"}},
-	//{path: []string{"widgets", "dropsite"}},
-	//{path: []string{"widgets", "table"}},
-	{path: []string{"widgets", "treeview", "treeview_dual"}},
-	{path: []string{"widgets", "treeview", "treeview_filelist"}},
-	{path: []string{"widgets", "bridge2"}},
-	{path: []string{"widgets", "systray"}},
-	//{path: []string{"widgets", "renderer"}},
-	{path: []string{"widgets", "textedit"}},
-	{path: []string{"quick", "bridge"}},
-	{path: []string{"quick", "bridge2"}},
-	{path: []string{"quick", "calc"}},
-	{path: []string{"quick", "dialog"}},
-	{path: []string{"quick", "sailfish"}},
-	{path: []string{"quick", "translate"}},
-	{path: []string{"quick", "view"}},
-	{path: []string{"quick", "tableview"}},
-	{path: []string{"quick", "dynamic"}},
-	{path: []string{"qml", "application"}},
-	{path: []string{"qml", "material"}},
-	{path: []string{"qml", "prop"}},
-	{path: []string{"uitools", "calculator"}},
-}
-
 func test(buildTarget string) {
-	utils.Log.Infof("running setup/test %v (~10min)", buildTarget)
 
-	skipExample := func(example string) bool {
-		if (buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && (!strings.Contains(example, "quick") || (example == filepath.Join("quick", "dynamic") || example == filepath.Join("quick", "tableview") || example == filepath.Join("quick", "bridge") || example == filepath.Join("quick", "dialog"))) {
-			return true
-		} else if !(buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && example == filepath.Join("quick", "sailfish") {
-			return true
-		} else if buildTarget != "desktop" && example == filepath.Join("widgets", "textedit") {
-			return true
-		}
-		return false
+	if utils.IsCI() {
+		utils.Log.Infof("running setup/test CI (~2min)")
+
+		utils.RunCmd(exec.Command("qtmoc", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtmoc")
+		utils.RunCmd(exec.Command("qtminimal", "desktop", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtminimal")
+
+		var cmd = exec.Command("go", "test", "-v", "-tags=minimal")
+		cmd.Dir = utils.GoQtPkgPath("internal", "cmd", "moc", "test")
+		utils.RunCmd(cmd, "run qtmoc")
 	}
 
-	//TODO: cleanup
-	for _, app := range exampleApps {
-		var example = filepath.Join(app.path...)
+	var examples map[string][]string
+	if utils.IsCI() {
+		examples = map[string][]string{
+			"androidextras": []string{"jni"},
 
-		if skipExample(example) {
-			utils.Log.Infoln("skipping example", example)
-			continue
+			//"grpc": []string{"hello_world","hello_world2"},
+
+			"qml": []string{"application", "drawer_nav_x", "gallery", "material",
+				"prop", "prop2"},
+
+			"quick": []string{"bridge", "bridge2", "calc", "dialog", "dynamic",
+				"hotreload", "listview", "sailfish", "tableview", "translate", "view"},
+
+			"sql": []string{"querymodel"},
+
+			"uitools": []string{"calculator"},
+
+			"widgets": []string{"bridge2" /*"dropsite",*/, "graphicsscene", "line_edits", "pixel_editor",
+				/*"renderer",*/ "systray", "table", "textedit", filepath.Join("treeview", "treeview_dual"),
+				filepath.Join("treeview", "treeview_filelist"), "video_player"},
 		}
-		utils.Log.Infoln("testing", example)
+	} else {
+		examples = map[string][]string{
+			"qml": []string{"application", "drawer_nav_x", "gallery"},
 
-		deploy.Deploy(&deploy.State{
-			BuildMode: func() string {
-				if strings.ToLower(os.Getenv("CI")) == "true" {
-					return "build"
-				}
-				return "test"
-			}(),
-			BuildTarget: strings.TrimSuffix(buildTarget, "-docker"),
-			AppPath:     filepath.Join(utils.GoQtPkgPath("internal", "examples"), example),
-			BuildDocker: strings.HasSuffix(buildTarget, "-docker"),
-		})
+			"quick": []string{"calc"},
+
+			"sql": []string{"querymodel"},
+
+			"widgets": []string{"line_edits", "pixel_editor", "textedit", "video_player"},
+		}
+	}
+
+	utils.Log.Infof("running setup/test %v (~5min)", buildTarget)
+	for cat, list := range examples {
+		for _, example := range list {
+			var example = filepath.Join(cat, example)
+
+			if strings.HasPrefix(buildTarget, "sailfish") && strings.HasPrefix(example, "widgets") {
+				utils.Log.Infoln("skipping example", example)
+				continue
+			}
+			utils.Log.Infoln("testing", example)
+
+			deploy.Deploy(&deploy.State{
+				BuildMode:   "test",
+				BuildTarget: strings.TrimSuffix(buildTarget, "-docker"),
+				AppPath:     utils.GoQtPkgPath("internal", "examples", example),
+				BuildDocker: strings.HasSuffix(buildTarget, "-docker"),
+			})
+		}
 	}
 }

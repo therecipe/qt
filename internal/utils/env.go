@@ -155,3 +155,7 @@ func CheckBuildTarget(buildTarget string) {
 		}
 	}
 }
+
+func IsCI() bool {
+	return strings.ToLower(os.Getenv("CI")) == "true"
+}

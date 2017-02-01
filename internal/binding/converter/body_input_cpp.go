@@ -89,7 +89,7 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 			input[i] = fmt.Sprintf("%v %v", cppEnum(function, parameter.Value, true), parser.CleanName(parameter.Name, parameter.Value))
 		} else {
 			var c, _ = function.Class()
-			if parser.IsPackedMap(parameter.Value) && c.Module == parser.MOC {
+			if parser.IsPackedMap(parameter.Value) && c.Module == parser.MOC && function.IsMocFunction {
 				var tHash = sha1.New()
 				tHash.Write([]byte(parameter.Value))
 				input[i] = fmt.Sprintf("%v %v", fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3])), parser.CleanName(parameter.Name, parameter.Value))

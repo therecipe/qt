@@ -54,7 +54,7 @@ func install(buildTarget string) {
 		return
 	}
 
-	if strings.ToLower(os.Getenv("CI")) == "true" && !utils.QT_STUB() {
+	if utils.IsCI() && !utils.QT_STUB() {
 		utils.Log.Debug("running on CI without QT_STUB -> skipping installation of modules")
 		return
 	}
