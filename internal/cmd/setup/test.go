@@ -14,13 +14,14 @@ import (
 
 func test(buildTarget string) {
 
-	if utils.IsCI() {
+	//TODO: split qtmoc test for windows
+	if utils.IsCI() && runtime.GOOS != "windows" {
 		utils.Log.Infof("running setup/test CI (~2min)")
 
 		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtmoc")
 		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtminimal"), "desktop", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtminimal")
 
-		var cmd = exec.Command("go", "test", "-tags=minimal")
+		var cmd = exec.Command("go", "test", "-v", "-tags=minimal")
 		cmd.Dir = utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 		if runtime.GOOS == "windows" {
 			for key, value := range map[string]string{
@@ -50,7 +51,7 @@ func test(buildTarget string) {
 			//"grpc": []string{"hello_world","hello_world2"},
 
 			"qml": []string{"application", "drawer_nav_x", "gallery", "material",
-				"listview", "prop", "prop2"},
+				"prop", "prop2"},
 
 			"quick": []string{"bridge", "bridge2", "calc", "dialog", "dynamic",
 				"hotreload", "listview", "sailfish", "tableview", "translate", "view"},

@@ -43,6 +43,14 @@ func CppTemplate(module string) []byte {
 				}
 			}
 
+			for _, p := range class.Properties {
+				if parser.IsPackedMap(p.Output) {
+					var tHash = sha1.New()
+					tHash.Write([]byte(p.Output))
+					typeMap[p.Output] = hex.EncodeToString(tHash.Sum(nil)[:3])
+				}
+			}
+
 			for typ, hash := range typeMap {
 				fmt.Fprintf(bb, "typedef %v type%v;\n", typ, hash)
 			}
@@ -93,7 +101,15 @@ func CppTemplate(module string) []byte {
 							fmt.Fprintln(bb, "Q_OBJECT")
 
 							for _, p := range class.Properties {
-								fmt.Fprintf(bb, "Q_PROPERTY(%v %v READ %v WRITE set%v NOTIFY %vChanged)\n", p.Output, p.Name,
+
+								var ty = p.Output
+								if parser.IsPackedMap(p.Output) {
+									var tHash = sha1.New()
+									tHash.Write([]byte(p.Output))
+									ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
+								}
+
+								fmt.Fprintf(bb, "Q_PROPERTY(%v %v READ %v WRITE set%v NOTIFY %vChanged)\n", ty, p.Name,
 									func() string {
 										if p.Output == "bool" {
 											return "is" + strings.Title(p.Name)
@@ -187,13 +203,21 @@ func CppTemplate(module string) []byte {
 
 				if parser.State.Moc {
 					for _, p := range class.Properties {
-						fmt.Fprintf(bb, "\t%v %v() { return _%v; };\n", p.Output, func() string {
+
+						var ty = p.Output
+						if parser.IsPackedMap(p.Output) {
+							var tHash = sha1.New()
+							tHash.Write([]byte(p.Output))
+							ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
+						}
+
+						fmt.Fprintf(bb, "\t%v %v() { return _%v; };\n", ty, func() string {
 							if p.Output == "bool" {
 								return "is" + strings.Title(p.Name)
 							}
 							return p.Name
 						}(), p.Name)
-						fmt.Fprintf(bb, "\tvoid set%v(%v p) { if (p != _%v) { _%v = p; %vChanged(_%v); } };\n", strings.Title(p.Name), p.Output, p.Name, p.Name, p.Name, p.Name)
+						fmt.Fprintf(bb, "\tvoid set%v(%v p) { if (p != _%v) { _%v = p; %vChanged(_%v); } };\n", strings.Title(p.Name), ty, p.Name, p.Name, p.Name, p.Name)
 					}
 
 					fmt.Fprintln(bb, "signals:")
@@ -214,7 +238,14 @@ func CppTemplate(module string) []byte {
 
 					fmt.Fprintln(bb, "private:")
 					for _, p := range class.Properties {
-						fmt.Fprintf(bb, "\t%v _%v;\n", p.Output, p.Name)
+						var ty = p.Output
+						if parser.IsPackedMap(p.Output) {
+							var tHash = sha1.New()
+							tHash.Write([]byte(p.Output))
+							ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
+						}
+
+						fmt.Fprintf(bb, "\t%v _%v;\n", ty, p.Name)
 					}
 				}
 

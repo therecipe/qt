@@ -159,10 +159,12 @@ func Minimal(appPath, buildTarget string) {
 		for _, c := range parser.State.ClassMap {
 			switch c.Since {
 			case "5.3", "5.4", "5.5", "5.6", "5.7", "5.8":
-				delete(parser.State.ClassMap, c.Name)
+				if len(c.Functions) > 0 || len(c.Properties) > 0 || len(c.Variables) > 0 {
+					delete(parser.State.ClassMap, c.Name)
+				}
 			}
 
-			if !IsWhiteListedSailfishLib(c.Module) {
+			if !IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
 				delete(parser.State.ClassMap, c.Name)
 			}
 
