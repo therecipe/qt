@@ -20,7 +20,7 @@ func test(buildTarget string) {
 		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtmoc")
 		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtminimal"), "desktop", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtminimal")
 
-		var cmd = exec.Command("go", "test", "-tags=minimal")
+		var cmd = exec.Command("go", "test", "-tags=minimal", ">", "out.txt", "2>&1")
 		cmd.Dir = utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 		if runtime.GOOS == "windows" {
 			for key, value := range map[string]string{
