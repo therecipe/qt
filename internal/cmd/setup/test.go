@@ -20,7 +20,7 @@ func test(buildTarget string) {
 		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtmoc")
 		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtminimal"), "desktop", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtminimal")
 
-		var cmd = exec.Command("go", "test", "-v", "-tags=minimal")
+		var cmd = exec.Command("go", "test", "-tags=minimal")
 		cmd.Dir = utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 		if runtime.GOOS == "windows" {
 			for key, value := range map[string]string{
@@ -60,7 +60,7 @@ func test(buildTarget string) {
 			"uitools": []string{"calculator"},
 
 			"widgets": []string{"bridge2" /*"dropsite",*/, "graphicsscene", "line_edits", "pixel_editor",
-				/*"renderer",*/ "systray", "table", "textedit", filepath.Join("treeview", "treeview_dual"),
+				/*"renderer",*/ "systray" /*"table",*/, "textedit", filepath.Join("treeview", "treeview_dual"),
 				filepath.Join("treeview", "treeview_filelist"), "video_player"},
 		}
 	} else {
