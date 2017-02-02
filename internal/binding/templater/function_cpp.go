@@ -309,7 +309,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 				func() string {
 					if converter.CppHeaderOutput(function) != parser.VOID {
 
-						if c, _ := function.Class(); c.Module == parser.MOC && parser.IsPackedMap(function.Output) {
+						if c, _ := function.Class(); c.Module == parser.MOC && parser.IsPackedMap(function.Output) && function.IsMocFunction {
 							var tHash = sha1.New()
 							tHash.Write([]byte(function.Output))
 							return fmt.Sprintf(", Q_RETURN_ARG(%v, returnArg)", strings.Replace(functionOutputType, parser.CleanValue(function.Output), fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3])), -1))

@@ -30,7 +30,7 @@ func CppInputParametersForSlotInvoke(function *parser.Function) string {
 	for i, parameter := range function.Parameters {
 		input[i] = fmt.Sprintf("Q_ARG(%v, %v)", CppInputParametersForSlotArguments(function, parameter), cppInput(parameter.Name, parameter.Value, function))
 
-		if c, _ := function.Class(); c.Module == parser.MOC && parser.IsPackedMap(parameter.Value) {
+		if c, _ := function.Class(); c.Module == parser.MOC && parser.IsPackedMap(parameter.Value) && function.IsMocFunction {
 			var tHash = sha1.New()
 			tHash.Write([]byte(parameter.Value))
 			input[i] = strings.Replace(input[i], parser.CleanValue(parameter.Value), fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3])), -1)
