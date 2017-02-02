@@ -50,7 +50,7 @@ func test(buildTarget string) {
 			//"grpc": []string{"hello_world","hello_world2"},
 
 			"qml": []string{"application", "drawer_nav_x", "gallery", "material",
-				"prop", "prop2"},
+				"listview", "prop", "prop2"},
 
 			"quick": []string{"bridge", "bridge2", "calc", "dialog", "dynamic",
 				"hotreload", "listview", "sailfish", "tableview", "translate", "view"},
@@ -64,14 +64,20 @@ func test(buildTarget string) {
 				filepath.Join("treeview", "treeview_filelist"), "video_player"},
 		}
 	} else {
-		examples = map[string][]string{
-			"qml": []string{"application", "drawer_nav_x", "gallery"},
+		if strings.HasPrefix(buildTarget, "sailfish") {
+			examples = map[string][]string{
+				"quick": []string{"sailfish"},
+			}
+		} else {
+			examples = map[string][]string{
+				"qml": []string{"application", "drawer_nav_x", "gallery"},
 
-			"quick": []string{"calc"},
+				"quick": []string{"calc"},
 
-			"sql": []string{"querymodel"},
+				"sql": []string{"querymodel"},
 
-			"widgets": []string{"line_edits", "pixel_editor", "textedit", "video_player"},
+				"widgets": []string{"line_edits", "pixel_editor", "textedit", "video_player"},
+			}
 		}
 	}
 
@@ -80,10 +86,6 @@ func test(buildTarget string) {
 		for _, example := range list {
 			var example = filepath.Join(cat, example)
 
-			if strings.HasPrefix(buildTarget, "sailfish") && strings.HasPrefix(example, "widgets") {
-				utils.Log.Infoln("skipping example", example)
-				continue
-			}
 			utils.Log.Infoln("testing", example)
 
 			deploy.Deploy(&deploy.State{

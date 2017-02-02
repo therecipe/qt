@@ -25,22 +25,16 @@ func install(buildTarget string) {
 	var env, tagFlags = getEnvAndTagflags(buildTarget)
 
 	if buildTarget == "sailfish" {
-
 		env["GOARCH"] = "386"
 		delete(env, "GOARM")
 
 		var _, err = ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386"))
 		if err != nil {
-			var build = exec.Command(filepath.Join(runtime.GOROOT(), "src", func() string {
-				if runtime.GOOS == "windows" {
-					return "run.bat"
-				}
-				return "run.bash"
-			}()))
+			var build = exec.Command("go", "tool", "dist", "test", "-rebuild", "-run=no_tests")
 			for key, value := range env {
 				build.Env = append(build.Env, fmt.Sprintf("%v=%v", key, value))
 			}
-			build.Run()
+			utils.RunCmd(build, "failed to setup linux go tools for sailfish")
 		}
 	}
 

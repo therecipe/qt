@@ -152,11 +152,26 @@ func Minimal(appPath, buildTarget string) {
 	}
 
 	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" {
-		if _, ok := parser.State.ClassMap["QQuickWidget"]; ok {
-			parser.State.ClassMap["QQuickWidget"].Export = false
-		}
 		if _, ok := parser.State.ClassMap["TestCase"]; ok {
 			delete(parser.State.ClassMap, "TestCase")
+		}
+
+		for _, c := range parser.State.ClassMap {
+			switch c.Since {
+			case "5.3", "5.4", "5.5", "5.6", "5.7", "5.8":
+				delete(parser.State.ClassMap, c.Name)
+			}
+
+			if !IsWhiteListedSailfishLib(c.Module) {
+				delete(parser.State.ClassMap, c.Name)
+			}
+
+			for _, f := range c.Functions {
+				switch f.Since {
+				case "5.3", "5.4", "5.5", "5.6", "5.7", "5.8":
+					f.Export = false
+				}
+			}
 		}
 	}
 
@@ -269,4 +284,18 @@ func isBlacklisted(appPath, currentPath string) bool {
 	}
 
 	return false
+}
+
+func IsWhiteListedSailfishLib(name string) bool {
+	switch name {
+	case "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
+		{
+			return true
+		}
+
+	default:
+		{
+			return false
+		}
+	}
 }

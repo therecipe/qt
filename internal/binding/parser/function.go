@@ -23,6 +23,7 @@ type Function struct {
 	Signature       string       `xml:"signature,attr"`
 	Parameters      []*Parameter `xml:"parameter"`
 	Brief           string       `xml:"brief,attr"`
+	Since           string       `xml:"since,attr"`
 	SignalMode      string
 	TemplateModeJNI string
 	Default         bool

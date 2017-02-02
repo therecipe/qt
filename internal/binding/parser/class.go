@@ -20,6 +20,7 @@ type Class struct {
 	Variables  []*Variable `xml:"variable"`
 	Properties []*Variable `xml:"property"`
 	Classes    []*Class    `xml:"class"`
+	Since      string      `xml:"since,attr"`
 
 	DocModule string
 	Stub      bool
