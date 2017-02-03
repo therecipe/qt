@@ -65,7 +65,10 @@ func GoTemplate(module string, stub bool) []byte {
 						defer bb.Reset()
 
 						for _, parentClassName := range class.GetBases() {
-							var parentClass = parser.State.ClassMap[parentClassName]
+							var parentClass, ok = parser.State.ClassMap[parentClassName]
+							if !ok {
+								continue
+							}
 							if parentClass.Module == class.Module {
 								fmt.Fprintf(bb, "%v\n", parentClassName)
 							} else {
@@ -87,7 +90,10 @@ func GoTemplate(module string, stub bool) []byte {
 					defer bb.Reset()
 
 					for _, parentClassName := range class.GetBases() {
-						var parentClass = parser.State.ClassMap[parentClassName]
+						var parentClass, ok = parser.State.ClassMap[parentClassName]
+						if !ok {
+							continue
+						}
 						if parentClass.Module == class.Module {
 							fmt.Fprintf(bb, "%v_ITF\n", parentClassName)
 						} else {
