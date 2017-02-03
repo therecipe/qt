@@ -79,7 +79,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-		* https://golang.org/doc/install?download=go1.7.4.windows-amd64.msi
+		* https://golang.org/doc/install?download=go1.7.5.windows-amd64.msi
 
 	2. Install Qt 5.7.0 (with android support)
 
@@ -116,7 +116,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-		* https://golang.org/doc/install?download=go1.7.4.darwin-amd64.pkg
+		* https://golang.org/doc/install?download=go1.7.5.darwin-amd64.pkg
 
 	2. Install Qt 5.7.0 (with android/iOS support)
 
@@ -151,7 +151,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-		* https://golang.org/doc/install?download=go1.7.4.linux-amd64.tar.gz
+		* https://golang.org/doc/install?download=go1.7.5.linux-amd64.tar.gz
 
 	2. Install Qt 5.7.0 (with android support)
 
@@ -224,9 +224,9 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 	1. Install the desktop version for Windows, macOS or Linux
 
 	2. Unzip the Android SDK in `C:\android-sdk-windows\` or `$HOME/android-sdk-macosx/` or `$HOME/android-sdk-linux/`; you can also define a custom location with **ANDROID_SDK_DIR**
-		* https://dl.google.com/android/repository/tools_r25.2.4-windows.zip
-		* https://dl.google.com/android/repository/tools_r25.2.4-macosx.zip
-		* https://dl.google.com/android/repository/tools_r25.2.4-linux.zip
+		* https://dl.google.com/android/repository/tools_r25.2.5-windows.zip
+		* https://dl.google.com/android/repository/tools_r25.2.5-macosx.zip
+		* https://dl.google.com/android/repository/tools_r25.2.5-linux.zip
 
 	3. Install the SDK dependencies with `C:\android-sdk-windows\tools\android.bat` or `$HOME/android-sdk-{ macosx | linux }/tools/android`
 		* Tools
@@ -279,9 +279,9 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 	1. Install the desktop version for Windows, macOS or Linux
 
 	2. Install VirtualBox; you can also define a custom location with **VIRTUALBOX_DIR**
-		* http://download.virtualbox.org/virtualbox/5.1.10/VirtualBox-5.1.10-112026-Win.exe
-		* http://download.virtualbox.org/virtualbox/5.1.10/VirtualBox-5.1.10-112026-OSX.dmg
-		* http://download.virtualbox.org/virtualbox/5.1.10/VirtualBox-5.1.10-112026-Linux_amd64.run
+		* http://download.virtualbox.org/virtualbox/5.1.14/VirtualBox-5.1.14-112924-Win.exe
+		* http://download.virtualbox.org/virtualbox/5.1.14/VirtualBox-5.1.14-112924-OSX.dmg
+		* http://download.virtualbox.org/virtualbox/5.1.14/VirtualBox-5.1.14-112924-Linux_amd64.run
 
 	3. Install the Sailfish OS SDK; you can also define a custom location with **SAILFISH_DIR**
 		* https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-windows-offline.exe
