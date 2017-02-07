@@ -75,9 +75,7 @@ func test(buildTarget string) {
 
 				"quick": []string{"calc"},
 
-				"sql": []string{"querymodel"},
-
-				"widgets": []string{"line_edits", "pixel_editor", "textedit", "video_player"},
+				"widgets": []string{"line_edits", "pixel_editor", "textedit"},
 			}
 		}
 	}
@@ -85,6 +83,9 @@ func test(buildTarget string) {
 	utils.Log.Infof("running setup/test %v (~5min)", buildTarget)
 	for cat, list := range examples {
 		for _, example := range list {
+			if buildTarget != "desktop" && example == "textedit" {
+				continue
+			}
 			var example = filepath.Join(cat, example)
 
 			utils.Log.Infoln("testing", example)

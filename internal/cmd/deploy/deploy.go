@@ -13,6 +13,8 @@ import (
 	"strings"
 	"time"
 
+	"golang.org/x/crypto/ssh"
+
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/cmd"
@@ -20,7 +22,6 @@ import (
 	"github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/cmd/rcc"
 	"github.com/therecipe/qt/internal/utils"
-	"golang.org/x/crypto/ssh"
 )
 
 var (
@@ -691,6 +692,9 @@ func deployInternal() {
 						for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32"} {
 							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, buildTarget, runtime.GOOS))
 						}
+						for _, d := range []string{"libjasper-1", "libjpeg-9", "libmng-2", "libtiff-5", "libwebp-5", "liblcms2-2", "liblzma-5"} {
+							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, buildTarget, runtime.GOOS))
+						}
 
 						var gccDep string
 						if utils.QT_MXE_ARCH() == "386" {
@@ -725,7 +729,9 @@ func deployInternal() {
 								}
 							}
 						}
-						utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, "Qt5OpenGL.dll"), depPath), fmt.Sprintf("copy OpenGL for %v on %v", buildTarget, runtime.GOOS))
+						for _, d := range []string{"Qt5OpenGL", "Qt5Quick", "Qt5QuickControls2", "Qt5QuickTemplates2"} {
+							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, buildTarget, runtime.GOOS))
+						}
 					}
 				}
 
@@ -977,7 +983,12 @@ func run() {
 			utils.RunCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), fmt.Sprintf("launch app for %v on %v", buildTarget, runtime.GOOS))
 		}
 
-	case "desktop", "windows":
+	case "windows":
+		{
+			exec.Command("wine", filepath.Join(depPath, appName+ending)).Start()
+		}
+
+	case "desktop":
 		{
 			switch runtime.GOOS {
 			case "darwin":
@@ -987,11 +998,7 @@ func run() {
 
 			case "linux":
 				{
-					if buildTarget == "windows" {
-						exec.Command("wine", filepath.Join(depPath, appName+ending)).Start()
-					} else {
-						exec.Command(filepath.Join(depPath, fmt.Sprintf("%v.sh", appName))).Start()
-					}
+					exec.Command(filepath.Join(depPath, fmt.Sprintf("%v.sh", appName))).Start()
 				}
 
 			case "windows":
