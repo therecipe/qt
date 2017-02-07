@@ -166,7 +166,7 @@ var LibDeps = map[string][]string{
 
 	//"NetworkAuth":    {"Network", "Gui", "Core"},
 	"Speech":         {"Core"},
-	"QuickControls2": {"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network, Qml, Gui (needed for static linking ios)
+	"QuickControls2": {"Quick", "QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //Quick, QuickWidgets, Widgets, Network, Qml, Gui (needed for static linking ios)
 
 	"Sailfish": {"Core"},
 

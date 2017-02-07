@@ -662,12 +662,16 @@ func cgoIos(module, mocPath string) string {
 			fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
 		}
 
-	case "Qml", "WebChannel", "Quick":
+	case "Qml", "WebChannel", "Quick", "QuickControls2":
 		{
 			if module != "Quick" {
 				fmt.Fprint(bb, " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator")
 			}
 			fmt.Fprintf(bb, " -L%v/%v/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+
+			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick.2 -lqtquick2plugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Layouts -lqquicklayoutsplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Dialogs -ldialogplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Controls -lqtquickcontrolsplugin_iphonesimulator -L%v/%v/ios/qml/Qt/labs/folderlistmodel -lqmlfolderlistmodelplugin_iphonesimulator -L%v/%v/ios/qml/Qt/labs/settings -lqmlsettingsplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Dialogs/Private -ldialogsprivateplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Window.2 -lwindowplugin_iphonesimulator -L%v/%v/ios/qml/QtQml/Models.2 -lmodelsplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Extras -lqtquickextrasplugin_iphonesimulator -L%v/%v/ios/qml/QtGraphicalEffects/private -lqtgraphicaleffectsprivate_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Controls.2 -lqtquickcontrols2plugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Controls.2/Material -lqtquickcontrols2materialstyleplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Controls.2/Universal -lqtquickcontrols2universalstyleplugin_iphonesimulator -lQt5QuickControls2_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Templates.2 -lqtquicktemplates2plugin_iphonesimulator -lQt5QuickTemplates2_iphonesimulator -L%v/%v/ios/qml/QtGraphicalEffects -lqtgraphicaleffectsplugin_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 		}
 
 	case "Purchasing":

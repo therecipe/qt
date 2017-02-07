@@ -692,7 +692,7 @@ func deployInternal() {
 						for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32"} {
 							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, buildTarget, runtime.GOOS))
 						}
-						for _, d := range []string{"libjasper-1", "libjpeg-9", "libmng-2", "libtiff-5", "libwebp-5", "liblcms2-2", "liblzma-5"} {
+						for _, d := range []string{"libjasper-1", "libjpeg-9", "libmng-2", "libtiff-5", "libwebp-5", "liblcms2-2", "liblzma-5", "libwebpdemux-1"} {
 							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, buildTarget, runtime.GOOS))
 						}
 
@@ -810,8 +810,7 @@ func deployInternal() {
 					var deploy = exec.Command(fmt.Sprintf("%v/bin/macdeployqt", utils.QT_DARWIN_DIR()))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, fmt.Sprintf("%v.app/", appName)),
-						fmt.Sprintf("-qmldir=%v", appPath),
-						"-always-overwrite")
+						fmt.Sprintf("-qmldir=%v", appPath))
 					deploy.Dir = fmt.Sprintf("%v/bin/", utils.QT_DARWIN_DIR())
 					utils.RunCmd(deploy, fmt.Sprintf("deploy %v on %v", buildTarget, runtime.GOOS))
 				}
