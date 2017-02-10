@@ -17,10 +17,10 @@ RUN rm /usr/bin/gcc; sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
 RUN rm /usr/bin/g++; sudo ln -s /usr/bin/g++-5 /usr/bin/g++
 
 
-ENV QT qt-opensource-linux-x64-android-5.7.0.run
+ENV QT qt-opensource-linux-x64-android-5.8.0.run
 ENV QT_SCRIPT iscript.qs
 ENV QT_QPA_PLATFORM minimal
-RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/qt/5.7/5.7.0/$QT && chmod +x /tmp/$QT && curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT_SCRIPT https://raw.githubusercontent.com/therecipe/qt/master/internal/ci/iscript.qs && /tmp/$QT --script /tmp/$QT_SCRIPT && rm -f /tmp/$QT && rm -f /tmp/$QT_SCRIPT
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/qt/5.8/5.8.0/$QT && chmod +x /tmp/$QT && curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT_SCRIPT https://raw.githubusercontent.com/therecipe/qt/master/internal/ci/iscript.qs && /tmp/$QT --script /tmp/$QT_SCRIPT && rm -f /tmp/$QT && rm -f /tmp/$QT_SCRIPT
 
 
 ENV GO go1.7.5.linux-amd64.tar.gz
@@ -32,7 +32,7 @@ ENV GOPATH $HOME/work
 RUN go get -v github.com/therecipe/qt/cmd/...
 
 
-ENV QT_DIR /opt/Qt5.7.0
+ENV QT_DIR /opt/Qt5.8.0
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check
 RUN $GOPATH/bin/qtsetup generate

@@ -102,30 +102,6 @@ func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandlerDefault() {
 	}
 }
 
-func (ptr *QAbstractMessageHandler) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractMessageHandler___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractMessageHandler) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QAbstractMessageHandler) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAbstractMessageHandler___children_newList(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QAbstractMessageHandler) __dynamicPropertyNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQByteArrayFromPointer(C.QAbstractMessageHandler___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -220,39 +196,102 @@ func (ptr *QAbstractMessageHandler) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQAbstractMessageHandler_TimerEvent
-func callbackQAbstractMessageHandler_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractMessageHandler::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAbstractMessageHandlerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QAbstractMessageHandler) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractMessageHandler___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractMessageHandler) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractMessageHandler___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QAbstractMessageHandler) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAbstractMessageHandler) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractMessageHandler___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQAbstractMessageHandler_Event
+func callbackQAbstractMessageHandler_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractMessageHandler::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractMessageHandlerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAbstractMessageHandler) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::event", f)
 	}
 }
 
-func (ptr *QAbstractMessageHandler) DisconnectTimerEvent() {
+func (ptr *QAbstractMessageHandler) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::event")
 	}
 }
 
-func (ptr *QAbstractMessageHandler) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAbstractMessageHandler) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAbstractMessageHandler_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractMessageHandler) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractMessageHandler_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractMessageHandler_EventFilter
+func callbackQAbstractMessageHandler_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractMessageHandler::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractMessageHandlerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractMessageHandler) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::eventFilter", f)
 	}
 }
 
-func (ptr *QAbstractMessageHandler) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAbstractMessageHandler) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::eventFilter")
 	}
+}
+
+func (ptr *QAbstractMessageHandler) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractMessageHandler_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractMessageHandler) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractMessageHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQAbstractMessageHandler_ChildEvent
@@ -434,78 +473,39 @@ func (ptr *QAbstractMessageHandler) DisconnectNotifyDefault(sign core.QMetaMetho
 	}
 }
 
-//export callbackQAbstractMessageHandler_Event
-func callbackQAbstractMessageHandler_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractMessageHandler::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAbstractMessageHandler_TimerEvent
+func callbackQAbstractMessageHandler_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractMessageHandler::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAbstractMessageHandlerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractMessageHandlerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAbstractMessageHandler) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAbstractMessageHandler) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::timerEvent", f)
 	}
 }
 
-func (ptr *QAbstractMessageHandler) DisconnectEvent() {
+func (ptr *QAbstractMessageHandler) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::timerEvent")
 	}
 }
 
-func (ptr *QAbstractMessageHandler) Event(e core.QEvent_ITF) bool {
+func (ptr *QAbstractMessageHandler) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAbstractMessageHandler_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAbstractMessageHandler_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAbstractMessageHandler) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAbstractMessageHandler) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAbstractMessageHandler_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAbstractMessageHandler_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAbstractMessageHandler_EventFilter
-func callbackQAbstractMessageHandler_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractMessageHandler::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractMessageHandlerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAbstractMessageHandler) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::eventFilter", f)
-	}
-}
-
-func (ptr *QAbstractMessageHandler) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractMessageHandler::eventFilter")
-	}
-}
-
-func (ptr *QAbstractMessageHandler) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractMessageHandler_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractMessageHandler) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractMessageHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAbstractMessageHandler_MetaObject
@@ -591,38 +591,6 @@ func NewQAbstractUriResolver(parent core.QObject_ITF) *QAbstractUriResolver {
 	return tmpValue
 }
 
-//export callbackQAbstractUriResolver_Resolve
-func callbackQAbstractUriResolver_Resolve(ptr unsafe.Pointer, relative unsafe.Pointer, baseURI unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::resolve"); signal != nil {
-		return core.PointerFromQUrl(signal.(func(*core.QUrl, *core.QUrl) *core.QUrl)(core.NewQUrlFromPointer(relative), core.NewQUrlFromPointer(baseURI)))
-	}
-
-	return core.PointerFromQUrl(core.NewQUrl())
-}
-
-func (ptr *QAbstractUriResolver) ConnectResolve(f func(relative *core.QUrl, baseURI *core.QUrl) *core.QUrl) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::resolve", f)
-	}
-}
-
-func (ptr *QAbstractUriResolver) DisconnectResolve() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::resolve")
-	}
-}
-
-func (ptr *QAbstractUriResolver) Resolve(relative core.QUrl_ITF, baseURI core.QUrl_ITF) *core.QUrl {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QAbstractUriResolver_Resolve(ptr.Pointer(), core.PointerFromQUrl(relative), core.PointerFromQUrl(baseURI)))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQAbstractUriResolver_DestroyQAbstractUriResolver
 func callbackQAbstractUriResolver_DestroyQAbstractUriResolver(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::~QAbstractUriResolver"); signal != nil {
@@ -662,26 +630,34 @@ func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolverDefault() {
 	}
 }
 
-func (ptr *QAbstractUriResolver) __children_atList(i int) *core.QObject {
+//export callbackQAbstractUriResolver_Resolve
+func callbackQAbstractUriResolver_Resolve(ptr unsafe.Pointer, relative unsafe.Pointer, baseURI unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::resolve"); signal != nil {
+		return core.PointerFromQUrl(signal.(func(*core.QUrl, *core.QUrl) *core.QUrl)(core.NewQUrlFromPointer(relative), core.NewQUrlFromPointer(baseURI)))
+	}
+
+	return core.PointerFromQUrl(core.NewQUrl())
+}
+
+func (ptr *QAbstractUriResolver) ConnectResolve(f func(relative *core.QUrl, baseURI *core.QUrl) *core.QUrl) {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractUriResolver___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::resolve", f)
+	}
+}
+
+func (ptr *QAbstractUriResolver) DisconnectResolve() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::resolve")
+	}
+}
+
+func (ptr *QAbstractUriResolver) Resolve(relative core.QUrl_ITF, baseURI core.QUrl_ITF) *core.QUrl {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQUrlFromPointer(C.QAbstractUriResolver_Resolve(ptr.Pointer(), core.PointerFromQUrl(relative), core.PointerFromQUrl(baseURI)))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractUriResolver) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QAbstractUriResolver) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAbstractUriResolver___children_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -780,39 +756,102 @@ func (ptr *QAbstractUriResolver) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQAbstractUriResolver_TimerEvent
-func callbackQAbstractUriResolver_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAbstractUriResolverFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QAbstractUriResolver) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractUriResolver___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractUriResolver) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QAbstractUriResolver) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAbstractUriResolver) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractUriResolver___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQAbstractUriResolver_Event
+func callbackQAbstractUriResolver_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractUriResolverFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAbstractUriResolver) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::event", f)
 	}
 }
 
-func (ptr *QAbstractUriResolver) DisconnectTimerEvent() {
+func (ptr *QAbstractUriResolver) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::event")
 	}
 }
 
-func (ptr *QAbstractUriResolver) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAbstractUriResolver) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAbstractUriResolver_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractUriResolver) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractUriResolver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractUriResolver_EventFilter
+func callbackQAbstractUriResolver_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractUriResolverFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractUriResolver) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::eventFilter", f)
 	}
 }
 
-func (ptr *QAbstractUriResolver) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAbstractUriResolver) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::eventFilter")
 	}
+}
+
+func (ptr *QAbstractUriResolver) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractUriResolver_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractUriResolver) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractUriResolver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQAbstractUriResolver_ChildEvent
@@ -994,78 +1033,39 @@ func (ptr *QAbstractUriResolver) DisconnectNotifyDefault(sign core.QMetaMethod_I
 	}
 }
 
-//export callbackQAbstractUriResolver_Event
-func callbackQAbstractUriResolver_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAbstractUriResolver_TimerEvent
+func callbackQAbstractUriResolver_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAbstractUriResolverFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractUriResolverFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAbstractUriResolver) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAbstractUriResolver) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::timerEvent", f)
 	}
 }
 
-func (ptr *QAbstractUriResolver) DisconnectEvent() {
+func (ptr *QAbstractUriResolver) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::timerEvent")
 	}
 }
 
-func (ptr *QAbstractUriResolver) Event(e core.QEvent_ITF) bool {
+func (ptr *QAbstractUriResolver) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAbstractUriResolver_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAbstractUriResolver_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAbstractUriResolver) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAbstractUriResolver) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAbstractUriResolver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAbstractUriResolver_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAbstractUriResolver_EventFilter
-func callbackQAbstractUriResolver_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractUriResolver::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractUriResolverFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAbstractUriResolver) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::eventFilter", f)
-	}
-}
-
-func (ptr *QAbstractUriResolver) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::eventFilter")
-	}
-}
-
-func (ptr *QAbstractUriResolver) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractUriResolver_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractUriResolver) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractUriResolver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAbstractUriResolver_MetaObject
@@ -1155,6 +1155,84 @@ const (
 	QAbstractXmlNodeModel__NextSibling     QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(3)
 )
 
+//export callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel
+func callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::~QAbstractXmlNodeModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractXmlNodeModelFromPointer(ptr).DestroyQAbstractXmlNodeModelDefault()
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) ConnectDestroyQAbstractXmlNodeModel(f func()) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::~QAbstractXmlNodeModel", f)
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) DisconnectDestroyQAbstractXmlNodeModel() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::~QAbstractXmlNodeModel")
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModel() {
+	if ptr.Pointer() != nil {
+		C.QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModelDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) SourceLocation(index QXmlNodeModelIndex_ITF) *QSourceLocation {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSourceLocationFromPointer(C.QAbstractXmlNodeModel_SourceLocation(ptr.Pointer(), PointerFromQXmlNodeModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSourceLocation).DestroyQSourceLocation)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractXmlNodeModel_StringValue
+func callbackQAbstractXmlNodeModel_StringValue(ptr unsafe.Pointer, n unsafe.Pointer) *C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::stringValue"); signal != nil {
+		return C.CString(signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(n)))
+	}
+
+	return C.CString("")
+}
+
+func (ptr *QAbstractXmlNodeModel) ConnectStringValue(f func(n *QXmlNodeModelIndex) string) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::stringValue", f)
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) DisconnectStringValue() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::stringValue")
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) StringValue(n QXmlNodeModelIndex_ITF) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAbstractXmlNodeModel_StringValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+	}
+	return ""
+}
+
 //export callbackQAbstractXmlNodeModel_BaseUri
 func callbackQAbstractXmlNodeModel_BaseUri(ptr unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::baseUri"); signal != nil {
@@ -1182,63 +1260,6 @@ func (ptr *QAbstractXmlNodeModel) BaseUri(n QXmlNodeModelIndex_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QAbstractXmlNodeModel_BaseUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQAbstractXmlNodeModel_CompareOrder
-func callbackQAbstractXmlNodeModel_CompareOrder(ptr unsafe.Pointer, ni1 unsafe.Pointer, ni2 unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::compareOrder"); signal != nil {
-		return C.longlong(signal.(func(*QXmlNodeModelIndex, *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder)(NewQXmlNodeModelIndexFromPointer(ni1), NewQXmlNodeModelIndexFromPointer(ni2)))
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QAbstractXmlNodeModel) ConnectCompareOrder(f func(ni1 *QXmlNodeModelIndex, ni2 *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::compareOrder", f)
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DisconnectCompareOrder() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::compareOrder")
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) CompareOrder(ni1 QXmlNodeModelIndex_ITF, ni2 QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__DocumentOrder {
-	if ptr.Pointer() != nil {
-		return QXmlNodeModelIndex__DocumentOrder(C.QAbstractXmlNodeModel_CompareOrder(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni1), PointerFromQXmlNodeModelIndex(ni2)))
-	}
-	return 0
-}
-
-func (ptr *QAbstractXmlNodeModel) CreateIndex(data int64) *QXmlNodeModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex(ptr.Pointer(), C.longlong(data)))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractXmlNodeModel) CreateIndex3(data int64, additionalData int64) *QXmlNodeModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex3(ptr.Pointer(), C.longlong(data), C.longlong(additionalData)))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractXmlNodeModel) CreateIndex2(pointer unsafe.Pointer, additionalData int64) *QXmlNodeModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex2(ptr.Pointer(), pointer, C.longlong(additionalData)))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
 	return nil
@@ -1276,66 +1297,36 @@ func (ptr *QAbstractXmlNodeModel) DocumentUri(n QXmlNodeModelIndex_ITF) *core.QU
 	return nil
 }
 
-//export callbackQAbstractXmlNodeModel_ElementById
-func callbackQAbstractXmlNodeModel_ElementById(ptr unsafe.Pointer, id unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::elementById"); signal != nil {
-		return PointerFromQXmlNodeModelIndex(signal.(func(*QXmlName) *QXmlNodeModelIndex)(NewQXmlNameFromPointer(id)))
+//export callbackQAbstractXmlNodeModel_TypedValue
+func callbackQAbstractXmlNodeModel_TypedValue(ptr unsafe.Pointer, node unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::typedValue"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(*QXmlNodeModelIndex) *core.QVariant)(NewQXmlNodeModelIndexFromPointer(node)))
 	}
 
-	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
-func (ptr *QAbstractXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlNodeModelIndex) {
+func (ptr *QAbstractXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIndex) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::elementById", f)
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DisconnectElementById() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::elementById")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::typedValue", f)
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
+func (ptr *QAbstractXmlNodeModel) DisconnectTypedValue() {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::typedValue")
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QAbstractXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil
-}
-
-//export callbackQAbstractXmlNodeModel_Kind
-func callbackQAbstractXmlNodeModel_Kind(ptr unsafe.Pointer, ni unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::kind"); signal != nil {
-		return C.longlong(signal.(func(*QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind)(NewQXmlNodeModelIndexFromPointer(ni)))
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QAbstractXmlNodeModel) ConnectKind(f func(ni *QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::kind", f)
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DisconnectKind() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::kind")
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) Kind(ni QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__NodeKind {
-	if ptr.Pointer() != nil {
-		return QXmlNodeModelIndex__NodeKind(C.QAbstractXmlNodeModel_Kind(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
-	}
-	return 0
 }
 
 //export callbackQAbstractXmlNodeModel_NamespaceBindings
@@ -1386,70 +1377,6 @@ func (ptr *QAbstractXmlNodeModel) NamespaceBindings(n QXmlNodeModelIndex_ITF) []
 	return make([]*QXmlName, 0)
 }
 
-//export callbackQAbstractXmlNodeModel_Name
-func callbackQAbstractXmlNodeModel_Name(ptr unsafe.Pointer, ni unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::name"); signal != nil {
-		return PointerFromQXmlName(signal.(func(*QXmlNodeModelIndex) *QXmlName)(NewQXmlNodeModelIndexFromPointer(ni)))
-	}
-
-	return PointerFromQXmlName(NewQXmlName())
-}
-
-func (ptr *QAbstractXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QXmlName) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::name", f)
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DisconnectName() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::name")
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QAbstractXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
-		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQAbstractXmlNodeModel_NextFromSimpleAxis
-func callbackQAbstractXmlNodeModel_NextFromSimpleAxis(ptr unsafe.Pointer, axis C.longlong, origin unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::nextFromSimpleAxis"); signal != nil {
-		return PointerFromQXmlNodeModelIndex(signal.(func(QAbstractXmlNodeModel__SimpleAxis, *QXmlNodeModelIndex) *QXmlNodeModelIndex)(QAbstractXmlNodeModel__SimpleAxis(axis), NewQXmlNodeModelIndexFromPointer(origin)))
-	}
-
-	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
-}
-
-func (ptr *QAbstractXmlNodeModel) ConnectNextFromSimpleAxis(f func(axis QAbstractXmlNodeModel__SimpleAxis, origin *QXmlNodeModelIndex) *QXmlNodeModelIndex) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::nextFromSimpleAxis", f)
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DisconnectNextFromSimpleAxis() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::nextFromSimpleAxis")
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) NextFromSimpleAxis(axis QAbstractXmlNodeModel__SimpleAxis, origin QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_NextFromSimpleAxis(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQAbstractXmlNodeModel_NodesByIdref
 func callbackQAbstractXmlNodeModel_NodesByIdref(ptr unsafe.Pointer, idref unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::nodesByIdref"); signal != nil {
@@ -1498,6 +1425,129 @@ func (ptr *QAbstractXmlNodeModel) NodesByIdref(idref QXmlName_ITF) []*QXmlNodeMo
 	return make([]*QXmlNodeModelIndex, 0)
 }
 
+//export callbackQAbstractXmlNodeModel_Name
+func callbackQAbstractXmlNodeModel_Name(ptr unsafe.Pointer, ni unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::name"); signal != nil {
+		return PointerFromQXmlName(signal.(func(*QXmlNodeModelIndex) *QXmlName)(NewQXmlNodeModelIndexFromPointer(ni)))
+	}
+
+	return PointerFromQXmlName(NewQXmlName())
+}
+
+func (ptr *QAbstractXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QXmlName) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::name", f)
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) DisconnectName() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::name")
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNameFromPointer(C.QAbstractXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractXmlNodeModel) CreateIndex(data int64) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex(ptr.Pointer(), C.longlong(data)))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractXmlNodeModel) CreateIndex3(data int64, additionalData int64) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex3(ptr.Pointer(), C.longlong(data), C.longlong(additionalData)))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractXmlNodeModel) CreateIndex2(pointer unsafe.Pointer, additionalData int64) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex2(ptr.Pointer(), pointer, C.longlong(additionalData)))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractXmlNodeModel_ElementById
+func callbackQAbstractXmlNodeModel_ElementById(ptr unsafe.Pointer, id unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::elementById"); signal != nil {
+		return PointerFromQXmlNodeModelIndex(signal.(func(*QXmlName) *QXmlNodeModelIndex)(NewQXmlNameFromPointer(id)))
+	}
+
+	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
+}
+
+func (ptr *QAbstractXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlNodeModelIndex) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::elementById", f)
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) DisconnectElementById() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::elementById")
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractXmlNodeModel_NextFromSimpleAxis
+func callbackQAbstractXmlNodeModel_NextFromSimpleAxis(ptr unsafe.Pointer, axis C.longlong, origin unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::nextFromSimpleAxis"); signal != nil {
+		return PointerFromQXmlNodeModelIndex(signal.(func(QAbstractXmlNodeModel__SimpleAxis, *QXmlNodeModelIndex) *QXmlNodeModelIndex)(QAbstractXmlNodeModel__SimpleAxis(axis), NewQXmlNodeModelIndexFromPointer(origin)))
+	}
+
+	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
+}
+
+func (ptr *QAbstractXmlNodeModel) ConnectNextFromSimpleAxis(f func(axis QAbstractXmlNodeModel__SimpleAxis, origin *QXmlNodeModelIndex) *QXmlNodeModelIndex) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::nextFromSimpleAxis", f)
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) DisconnectNextFromSimpleAxis() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::nextFromSimpleAxis")
+	}
+}
+
+func (ptr *QAbstractXmlNodeModel) NextFromSimpleAxis(axis QAbstractXmlNodeModel__SimpleAxis, origin QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_NextFromSimpleAxis(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQAbstractXmlNodeModel_Root
 func callbackQAbstractXmlNodeModel_Root(ptr unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::root"); signal != nil {
@@ -1530,114 +1580,64 @@ func (ptr *QAbstractXmlNodeModel) Root(n QXmlNodeModelIndex_ITF) *QXmlNodeModelI
 	return nil
 }
 
-func (ptr *QAbstractXmlNodeModel) SourceLocation(index QXmlNodeModelIndex_ITF) *QSourceLocation {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQSourceLocationFromPointer(C.QAbstractXmlNodeModel_SourceLocation(ptr.Pointer(), PointerFromQXmlNodeModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QSourceLocation).DestroyQSourceLocation)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQAbstractXmlNodeModel_StringValue
-func callbackQAbstractXmlNodeModel_StringValue(ptr unsafe.Pointer, n unsafe.Pointer) *C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::stringValue"); signal != nil {
-		return C.CString(signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(n)))
+//export callbackQAbstractXmlNodeModel_CompareOrder
+func callbackQAbstractXmlNodeModel_CompareOrder(ptr unsafe.Pointer, ni1 unsafe.Pointer, ni2 unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::compareOrder"); signal != nil {
+		return C.longlong(signal.(func(*QXmlNodeModelIndex, *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder)(NewQXmlNodeModelIndexFromPointer(ni1), NewQXmlNodeModelIndexFromPointer(ni2)))
 	}
 
-	return C.CString("")
+	return C.longlong(0)
 }
 
-func (ptr *QAbstractXmlNodeModel) ConnectStringValue(f func(n *QXmlNodeModelIndex) string) {
+func (ptr *QAbstractXmlNodeModel) ConnectCompareOrder(f func(ni1 *QXmlNodeModelIndex, ni2 *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::stringValue", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::compareOrder", f)
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectStringValue() {
+func (ptr *QAbstractXmlNodeModel) DisconnectCompareOrder() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::stringValue")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::compareOrder")
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) StringValue(n QXmlNodeModelIndex_ITF) string {
+func (ptr *QAbstractXmlNodeModel) CompareOrder(ni1 QXmlNodeModelIndex_ITF, ni2 QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__DocumentOrder {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAbstractXmlNodeModel_StringValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		return QXmlNodeModelIndex__DocumentOrder(C.QAbstractXmlNodeModel_CompareOrder(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni1), PointerFromQXmlNodeModelIndex(ni2)))
 	}
-	return ""
+	return 0
 }
 
-//export callbackQAbstractXmlNodeModel_TypedValue
-func callbackQAbstractXmlNodeModel_TypedValue(ptr unsafe.Pointer, node unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::typedValue"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(*QXmlNodeModelIndex) *core.QVariant)(NewQXmlNodeModelIndexFromPointer(node)))
+//export callbackQAbstractXmlNodeModel_Kind
+func callbackQAbstractXmlNodeModel_Kind(ptr unsafe.Pointer, ni unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::kind"); signal != nil {
+		return C.longlong(signal.(func(*QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind)(NewQXmlNodeModelIndexFromPointer(ni)))
 	}
 
-	return core.PointerFromQVariant(core.NewQVariant())
+	return C.longlong(0)
 }
 
-func (ptr *QAbstractXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIndex) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::typedValue", f)
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DisconnectTypedValue() {
+func (ptr *QAbstractXmlNodeModel) ConnectKind(f func(ni *QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::typedValue")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::kind", f)
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QAbstractXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel
-func callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractXmlNodeModel::~QAbstractXmlNodeModel"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQAbstractXmlNodeModelFromPointer(ptr).DestroyQAbstractXmlNodeModelDefault()
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) ConnectDestroyQAbstractXmlNodeModel(f func()) {
+func (ptr *QAbstractXmlNodeModel) DisconnectKind() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::~QAbstractXmlNodeModel", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::kind")
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectDestroyQAbstractXmlNodeModel() {
+func (ptr *QAbstractXmlNodeModel) Kind(ni QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__NodeKind {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::~QAbstractXmlNodeModel")
+		return QXmlNodeModelIndex__NodeKind(C.QAbstractXmlNodeModel_Kind(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
 	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModel() {
-	if ptr.Pointer() != nil {
-		C.QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModelDefault() {
-	if ptr.Pointer() != nil {
-		C.QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
+	return 0
 }
 
 func (ptr *QAbstractXmlNodeModel) __namespaceBindings_atList(i int) *QXmlName {
@@ -2235,6 +2235,82 @@ func NewQSimpleXmlNodeModelFromPointer(ptr unsafe.Pointer) *QSimpleXmlNodeModel 
 	return n
 }
 
+//export callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel
+func callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::~QSimpleXmlNodeModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSimpleXmlNodeModelFromPointer(ptr).DestroyQSimpleXmlNodeModelDefault()
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) ConnectDestroyQSimpleXmlNodeModel(f func()) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::~QSimpleXmlNodeModel", f)
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) DisconnectDestroyQSimpleXmlNodeModel() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::~QSimpleXmlNodeModel")
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModel() {
+	if ptr.Pointer() != nil {
+		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModelDefault() {
+	if ptr.Pointer() != nil {
+		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+//export callbackQSimpleXmlNodeModel_StringValue
+func callbackQSimpleXmlNodeModel_StringValue(ptr unsafe.Pointer, node unsafe.Pointer) *C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::stringValue"); signal != nil {
+		return C.CString(signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(node)))
+	}
+
+	return C.CString(NewQSimpleXmlNodeModelFromPointer(ptr).StringValueDefault(NewQXmlNodeModelIndexFromPointer(node)))
+}
+
+func (ptr *QSimpleXmlNodeModel) ConnectStringValue(f func(node *QXmlNodeModelIndex) string) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::stringValue", f)
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) DisconnectStringValue() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::stringValue")
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) StringValue(node QXmlNodeModelIndex_ITF) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSimpleXmlNodeModel_StringValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+	}
+	return ""
+}
+
+func (ptr *QSimpleXmlNodeModel) StringValueDefault(node QXmlNodeModelIndex_ITF) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSimpleXmlNodeModel_StringValueDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+	}
+	return ""
+}
+
 //export callbackQSimpleXmlNodeModel_BaseUri
 func callbackQSimpleXmlNodeModel_BaseUri(ptr unsafe.Pointer, node unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::baseUri"); signal != nil {
@@ -2271,56 +2347,6 @@ func (ptr *QSimpleXmlNodeModel) BaseUriDefault(node QXmlNodeModelIndex_ITF) *cor
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_BaseUriDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQSimpleXmlNodeModel_ElementById
-func callbackQSimpleXmlNodeModel_ElementById(ptr unsafe.Pointer, id unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::elementById"); signal != nil {
-		return PointerFromQXmlNodeModelIndex(signal.(func(*QXmlName) *QXmlNodeModelIndex)(NewQXmlNameFromPointer(id)))
-	}
-
-	return PointerFromQXmlNodeModelIndex(NewQSimpleXmlNodeModelFromPointer(ptr).ElementByIdDefault(NewQXmlNameFromPointer(id)))
-}
-
-func (ptr *QSimpleXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlNodeModelIndex) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::elementById", f)
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) DisconnectElementById() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::elementById")
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSimpleXmlNodeModel) ElementByIdDefault(id QXmlName_ITF) *QXmlNodeModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementByIdDefault(ptr.Pointer(), PointerFromQXmlName(id)))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSimpleXmlNodeModel) NamePool() *QXmlNamePool {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QSimpleXmlNodeModel_NamePool(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 		return tmpValue
 	}
 	return nil
@@ -2448,80 +2474,54 @@ func (ptr *QSimpleXmlNodeModel) NodesByIdrefDefault(idref QXmlName_ITF) []*QXmlN
 	return make([]*QXmlNodeModelIndex, 0)
 }
 
-//export callbackQSimpleXmlNodeModel_StringValue
-func callbackQSimpleXmlNodeModel_StringValue(ptr unsafe.Pointer, node unsafe.Pointer) *C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::stringValue"); signal != nil {
-		return C.CString(signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(node)))
+func (ptr *QSimpleXmlNodeModel) NamePool() *QXmlNamePool {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNamePoolFromPointer(C.QSimpleXmlNodeModel_NamePool(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
+		return tmpValue
 	}
-
-	return C.CString(NewQSimpleXmlNodeModelFromPointer(ptr).StringValueDefault(NewQXmlNodeModelIndexFromPointer(node)))
+	return nil
 }
 
-func (ptr *QSimpleXmlNodeModel) ConnectStringValue(f func(node *QXmlNodeModelIndex) string) {
+//export callbackQSimpleXmlNodeModel_ElementById
+func callbackQSimpleXmlNodeModel_ElementById(ptr unsafe.Pointer, id unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::elementById"); signal != nil {
+		return PointerFromQXmlNodeModelIndex(signal.(func(*QXmlName) *QXmlNodeModelIndex)(NewQXmlNameFromPointer(id)))
+	}
+
+	return PointerFromQXmlNodeModelIndex(NewQSimpleXmlNodeModelFromPointer(ptr).ElementByIdDefault(NewQXmlNameFromPointer(id)))
+}
+
+func (ptr *QSimpleXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlNodeModelIndex) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::stringValue", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::elementById", f)
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectStringValue() {
+func (ptr *QSimpleXmlNodeModel) DisconnectElementById() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::stringValue")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::elementById")
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) StringValue(node QXmlNodeModelIndex_ITF) string {
+func (ptr *QSimpleXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSimpleXmlNodeModel_StringValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QSimpleXmlNodeModel) StringValueDefault(node QXmlNodeModelIndex_ITF) string {
+func (ptr *QSimpleXmlNodeModel) ElementByIdDefault(id QXmlName_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSimpleXmlNodeModel_StringValueDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementByIdDefault(ptr.Pointer(), PointerFromQXmlName(id)))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
 	}
-	return ""
-}
-
-//export callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel
-func callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::~QSimpleXmlNodeModel"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQSimpleXmlNodeModelFromPointer(ptr).DestroyQSimpleXmlNodeModelDefault()
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) ConnectDestroyQSimpleXmlNodeModel(f func()) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::~QSimpleXmlNodeModel", f)
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) DisconnectDestroyQSimpleXmlNodeModel() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::~QSimpleXmlNodeModel")
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModel() {
-	if ptr.Pointer() != nil {
-		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModelDefault() {
-	if ptr.Pointer() != nil {
-		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
+	return nil
 }
 
 func (ptr *QSimpleXmlNodeModel) __namespaceBindings_atList(i int) *QXmlName {
@@ -2568,36 +2568,6 @@ func (ptr *QSimpleXmlNodeModel) __nodesByIdref_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQSimpleXmlNodeModel_CompareOrder
-func callbackQSimpleXmlNodeModel_CompareOrder(ptr unsafe.Pointer, ni1 unsafe.Pointer, ni2 unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::compareOrder"); signal != nil {
-		return C.longlong(signal.(func(*QXmlNodeModelIndex, *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder)(NewQXmlNodeModelIndexFromPointer(ni1), NewQXmlNodeModelIndexFromPointer(ni2)))
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QSimpleXmlNodeModel) ConnectCompareOrder(f func(ni1 *QXmlNodeModelIndex, ni2 *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::compareOrder", f)
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) DisconnectCompareOrder() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::compareOrder")
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) CompareOrder(ni1 QXmlNodeModelIndex_ITF, ni2 QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__DocumentOrder {
-	if ptr.Pointer() != nil {
-		return QXmlNodeModelIndex__DocumentOrder(C.QSimpleXmlNodeModel_CompareOrder(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni1), PointerFromQXmlNodeModelIndex(ni2)))
-	}
-	return 0
-}
-
 //export callbackQSimpleXmlNodeModel_DocumentUri
 func callbackQSimpleXmlNodeModel_DocumentUri(ptr unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::documentUri"); signal != nil {
@@ -2630,34 +2600,36 @@ func (ptr *QSimpleXmlNodeModel) DocumentUri(n QXmlNodeModelIndex_ITF) *core.QUrl
 	return nil
 }
 
-//export callbackQSimpleXmlNodeModel_Kind
-func callbackQSimpleXmlNodeModel_Kind(ptr unsafe.Pointer, ni unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::kind"); signal != nil {
-		return C.longlong(signal.(func(*QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind)(NewQXmlNodeModelIndexFromPointer(ni)))
+//export callbackQSimpleXmlNodeModel_TypedValue
+func callbackQSimpleXmlNodeModel_TypedValue(ptr unsafe.Pointer, node unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::typedValue"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(*QXmlNodeModelIndex) *core.QVariant)(NewQXmlNodeModelIndexFromPointer(node)))
 	}
 
-	return C.longlong(0)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
-func (ptr *QSimpleXmlNodeModel) ConnectKind(f func(ni *QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind) {
+func (ptr *QSimpleXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIndex) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::kind", f)
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) DisconnectKind() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::kind")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::typedValue", f)
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) Kind(ni QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__NodeKind {
+func (ptr *QSimpleXmlNodeModel) DisconnectTypedValue() {
 	if ptr.Pointer() != nil {
-		return QXmlNodeModelIndex__NodeKind(C.QSimpleXmlNodeModel_Kind(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::typedValue")
 	}
-	return 0
+}
+
+func (ptr *QSimpleXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QSimpleXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQSimpleXmlNodeModel_Name
@@ -2756,36 +2728,64 @@ func (ptr *QSimpleXmlNodeModel) Root(n QXmlNodeModelIndex_ITF) *QXmlNodeModelInd
 	return nil
 }
 
-//export callbackQSimpleXmlNodeModel_TypedValue
-func callbackQSimpleXmlNodeModel_TypedValue(ptr unsafe.Pointer, node unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::typedValue"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(*QXmlNodeModelIndex) *core.QVariant)(NewQXmlNodeModelIndexFromPointer(node)))
+//export callbackQSimpleXmlNodeModel_CompareOrder
+func callbackQSimpleXmlNodeModel_CompareOrder(ptr unsafe.Pointer, ni1 unsafe.Pointer, ni2 unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::compareOrder"); signal != nil {
+		return C.longlong(signal.(func(*QXmlNodeModelIndex, *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder)(NewQXmlNodeModelIndexFromPointer(ni1), NewQXmlNodeModelIndexFromPointer(ni2)))
 	}
 
-	return core.PointerFromQVariant(core.NewQVariant())
+	return C.longlong(0)
 }
 
-func (ptr *QSimpleXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIndex) *core.QVariant) {
+func (ptr *QSimpleXmlNodeModel) ConnectCompareOrder(f func(ni1 *QXmlNodeModelIndex, ni2 *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::typedValue", f)
-	}
-}
-
-func (ptr *QSimpleXmlNodeModel) DisconnectTypedValue() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::typedValue")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::compareOrder", f)
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.QVariant {
+func (ptr *QSimpleXmlNodeModel) DisconnectCompareOrder() {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QSimpleXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::compareOrder")
 	}
-	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) CompareOrder(ni1 QXmlNodeModelIndex_ITF, ni2 QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__DocumentOrder {
+	if ptr.Pointer() != nil {
+		return QXmlNodeModelIndex__DocumentOrder(C.QSimpleXmlNodeModel_CompareOrder(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni1), PointerFromQXmlNodeModelIndex(ni2)))
+	}
+	return 0
+}
+
+//export callbackQSimpleXmlNodeModel_Kind
+func callbackQSimpleXmlNodeModel_Kind(ptr unsafe.Pointer, ni unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSimpleXmlNodeModel::kind"); signal != nil {
+		return C.longlong(signal.(func(*QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind)(NewQXmlNodeModelIndexFromPointer(ni)))
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QSimpleXmlNodeModel) ConnectKind(f func(ni *QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::kind", f)
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) DisconnectKind() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::kind")
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) Kind(ni QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__NodeKind {
+	if ptr.Pointer() != nil {
+		return QXmlNodeModelIndex__NodeKind(C.QSimpleXmlNodeModel_Kind(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+	}
+	return 0
 }
 
 type QSourceLocation struct {
@@ -2843,27 +2843,6 @@ func NewQSourceLocation3(u core.QUrl_ITF, l int, c int) *QSourceLocation {
 	return tmpValue
 }
 
-func (ptr *QSourceLocation) Column() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QSourceLocation_Column(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QSourceLocation) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return C.QSourceLocation_IsNull(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSourceLocation) Line() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QSourceLocation_Line(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QSourceLocation) SetColumn(newColumn int64) {
 	if ptr.Pointer() != nil {
 		C.QSourceLocation_SetColumn(ptr.Pointer(), C.longlong(newColumn))
@@ -2882,6 +2861,13 @@ func (ptr *QSourceLocation) SetUri(newUri core.QUrl_ITF) {
 	}
 }
 
+func (ptr *QSourceLocation) DestroyQSourceLocation() {
+	if ptr.Pointer() != nil {
+		C.QSourceLocation_DestroyQSourceLocation(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 func (ptr *QSourceLocation) Uri() *core.QUrl {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QSourceLocation_Uri(ptr.Pointer()))
@@ -2891,11 +2877,25 @@ func (ptr *QSourceLocation) Uri() *core.QUrl {
 	return nil
 }
 
-func (ptr *QSourceLocation) DestroyQSourceLocation() {
+func (ptr *QSourceLocation) IsNull() bool {
 	if ptr.Pointer() != nil {
-		C.QSourceLocation_DestroyQSourceLocation(ptr.Pointer())
-		ptr.SetPointer(nil)
+		return C.QSourceLocation_IsNull(ptr.Pointer()) != 0
 	}
+	return false
+}
+
+func (ptr *QSourceLocation) Column() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QSourceLocation_Column(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSourceLocation) Line() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QSourceLocation_Line(ptr.Pointer()))
+	}
+	return 0
 }
 
 type QXmlFormatter struct {
@@ -3198,13 +3198,6 @@ func (ptr *QXmlFormatter) EndOfSequenceDefault() {
 	}
 }
 
-func (ptr *QXmlFormatter) IndentationDepth() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QXmlFormatter_IndentationDepth(ptr.Pointer())))
-	}
-	return 0
-}
-
 //export callbackQXmlFormatter_ProcessingInstruction
 func callbackQXmlFormatter_ProcessingInstruction(ptr unsafe.Pointer, name unsafe.Pointer, value C.struct_QtXmlPatterns_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlFormatter::processingInstruction"); signal != nil {
@@ -3355,6 +3348,13 @@ func (ptr *QXmlFormatter) StartOfSequenceDefault() {
 	}
 }
 
+func (ptr *QXmlFormatter) IndentationDepth() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QXmlFormatter_IndentationDepth(ptr.Pointer())))
+	}
+	return 0
+}
+
 //export callbackQXmlFormatter_NamespaceBinding
 func callbackQXmlFormatter_NamespaceBinding(ptr unsafe.Pointer, nb unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlFormatter::namespaceBinding"); signal != nil {
@@ -3451,25 +3451,11 @@ func NewQXmlItem3(node QXmlNodeModelIndex_ITF) *QXmlItem {
 	return tmpValue
 }
 
-func (ptr *QXmlItem) IsAtomicValue() bool {
+func (ptr *QXmlItem) DestroyQXmlItem() {
 	if ptr.Pointer() != nil {
-		return C.QXmlItem_IsAtomicValue(ptr.Pointer()) != 0
+		C.QXmlItem_DestroyQXmlItem(ptr.Pointer())
+		ptr.SetPointer(nil)
 	}
-	return false
-}
-
-func (ptr *QXmlItem) IsNode() bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlItem_IsNode(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlItem) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlItem_IsNull(ptr.Pointer()) != 0
-	}
-	return false
 }
 
 func (ptr *QXmlItem) ToAtomicValue() *core.QVariant {
@@ -3490,11 +3476,25 @@ func (ptr *QXmlItem) ToNodeModelIndex() *QXmlNodeModelIndex {
 	return nil
 }
 
-func (ptr *QXmlItem) DestroyQXmlItem() {
+func (ptr *QXmlItem) IsAtomicValue() bool {
 	if ptr.Pointer() != nil {
-		C.QXmlItem_DestroyQXmlItem(ptr.Pointer())
-		ptr.SetPointer(nil)
+		return C.QXmlItem_IsAtomicValue(ptr.Pointer()) != 0
 	}
+	return false
+}
+
+func (ptr *QXmlItem) IsNode() bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlItem_IsNode(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlItem) IsNull() bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlItem_IsNull(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 type QXmlName struct {
@@ -3542,6 +3542,22 @@ func (ptr *QXmlName) DestroyQXmlName() {
 	}
 }
 
+func QXmlName_FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
+	var clarkNameC = C.CString(clarkName)
+	defer C.free(unsafe.Pointer(clarkNameC))
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
+	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+	return tmpValue
+}
+
+func (ptr *QXmlName) FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
+	var clarkNameC = C.CString(clarkName)
+	defer C.free(unsafe.Pointer(clarkNameC))
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
+	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+	return tmpValue
+}
+
 func NewQXmlName() *QXmlName {
 	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName())
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
@@ -3560,22 +3576,6 @@ func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI stri
 	return tmpValue
 }
 
-func QXmlName_FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
-	var clarkNameC = C.CString(clarkName)
-	defer C.free(unsafe.Pointer(clarkNameC))
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
-	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
-	return tmpValue
-}
-
-func (ptr *QXmlName) FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
-	var clarkNameC = C.CString(clarkName)
-	defer C.free(unsafe.Pointer(clarkNameC))
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
-	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
-	return tmpValue
-}
-
 func QXmlName_IsNCName(candidate string) bool {
 	var candidateC = C.CString(candidate)
 	defer C.free(unsafe.Pointer(candidateC))
@@ -3586,13 +3586,6 @@ func (ptr *QXmlName) IsNCName(candidate string) bool {
 	var candidateC = C.CString(candidate)
 	defer C.free(unsafe.Pointer(candidateC))
 	return C.QXmlName_QXmlName_IsNCName(candidateC) != 0
-}
-
-func (ptr *QXmlName) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlName_IsNull(ptr.Pointer()) != 0
-	}
-	return false
 }
 
 func (ptr *QXmlName) LocalName(namePool QXmlNamePool_ITF) string {
@@ -3621,6 +3614,13 @@ func (ptr *QXmlName) ToClarkName(namePool QXmlNamePool_ITF) string {
 		return cGoUnpackString(C.QXmlName_ToClarkName(ptr.Pointer(), PointerFromQXmlNamePool(namePool)))
 	}
 	return ""
+}
+
+func (ptr *QXmlName) IsNull() bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlName_IsNull(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 type QXmlNamePool struct {
@@ -3760,6 +3760,20 @@ func NewQXmlNodeModelIndex2(other QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	return tmpValue
 }
 
+func (ptr *QXmlNodeModelIndex) IsNull() bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlNodeModelIndex_IsNull(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlNodeModelIndex) Model() *QAbstractXmlNodeModel {
+	if ptr.Pointer() != nil {
+		return NewQAbstractXmlNodeModelFromPointer(C.QXmlNodeModelIndex_Model(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QXmlNodeModelIndex) AdditionalData() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QXmlNodeModelIndex_AdditionalData(ptr.Pointer()))
@@ -3777,20 +3791,6 @@ func (ptr *QXmlNodeModelIndex) Data() int64 {
 func (ptr *QXmlNodeModelIndex) InternalPointer() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QXmlNodeModelIndex_InternalPointer(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QXmlNodeModelIndex) IsNull() bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlNodeModelIndex_IsNull(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlNodeModelIndex) Model() *QAbstractXmlNodeModel {
-	if ptr.Pointer() != nil {
-		return NewQAbstractXmlNodeModelFromPointer(C.QXmlNodeModelIndex_Model(ptr.Pointer()))
 	}
 	return nil
 }
@@ -3891,6 +3891,29 @@ func NewQXmlQuery2(other QXmlQuery_ITF) *QXmlQuery {
 	return tmpValue
 }
 
+func (ptr *QXmlQuery) SetFocus3(document core.QIODevice_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlQuery_SetFocus3(ptr.Pointer(), core.PointerFromQIODevice(document)) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlQuery) SetFocus4(focus string) bool {
+	if ptr.Pointer() != nil {
+		var focusC = C.CString(focus)
+		defer C.free(unsafe.Pointer(focusC))
+		return C.QXmlQuery_SetFocus4(ptr.Pointer(), focusC) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlQuery) SetFocus2(documentURI core.QUrl_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlQuery_SetFocus2(ptr.Pointer(), core.PointerFromQUrl(documentURI)) != 0
+	}
+	return false
+}
+
 func (ptr *QXmlQuery) BindVariable4(localName string, device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
 		var localNameC = C.CString(localName)
@@ -3931,121 +3954,6 @@ func (ptr *QXmlQuery) BindVariable5(name QXmlName_ITF, query QXmlQuery_ITF) {
 	if ptr.Pointer() != nil {
 		C.QXmlQuery_BindVariable5(ptr.Pointer(), PointerFromQXmlName(name), PointerFromQXmlQuery(query))
 	}
-}
-
-func (ptr *QXmlQuery) EvaluateTo2(callback QAbstractXmlReceiver_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlQuery_EvaluateTo2(ptr.Pointer(), PointerFromQAbstractXmlReceiver(callback)) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlQuery) EvaluateTo4(target core.QIODevice_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlQuery_EvaluateTo4(ptr.Pointer(), core.PointerFromQIODevice(target)) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
-	if ptr.Pointer() != nil {
-		var outputC = C.CString(output)
-		defer C.free(unsafe.Pointer(outputC))
-		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), outputC) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlQuery) EvaluateTo3(target []string) bool {
-	if ptr.Pointer() != nil {
-		var targetC = C.CString(strings.Join(target, "|"))
-		defer C.free(unsafe.Pointer(targetC))
-		return C.QXmlQuery_EvaluateTo3(ptr.Pointer(), targetC) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlQuery) EvaluateTo(result QXmlResultItems_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXmlQuery_EvaluateTo(ptr.Pointer(), PointerFromQXmlResultItems(result))
-	}
-}
-
-func (ptr *QXmlQuery) InitialTemplateName() *QXmlName {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QXmlQuery_InitialTemplateName(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlQuery) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlQuery_IsValid(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlQuery) MessageHandler() *QAbstractMessageHandler {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlQuery_MessageHandler(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlQuery) NamePool() *QXmlNamePool {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlQuery_NamePool(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlQuery) NetworkAccessManager() *network.QNetworkAccessManager {
-	if ptr.Pointer() != nil {
-		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlQuery_NetworkAccessManager(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlQuery) QueryLanguage() QXmlQuery__QueryLanguage {
-	if ptr.Pointer() != nil {
-		return QXmlQuery__QueryLanguage(C.QXmlQuery_QueryLanguage(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QXmlQuery) SetFocus3(document core.QIODevice_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlQuery_SetFocus3(ptr.Pointer(), core.PointerFromQIODevice(document)) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlQuery) SetFocus4(focus string) bool {
-	if ptr.Pointer() != nil {
-		var focusC = C.CString(focus)
-		defer C.free(unsafe.Pointer(focusC))
-		return C.QXmlQuery_SetFocus4(ptr.Pointer(), focusC) != 0
-	}
-	return false
-}
-
-func (ptr *QXmlQuery) SetFocus2(documentURI core.QUrl_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlQuery_SetFocus2(ptr.Pointer(), core.PointerFromQUrl(documentURI)) != 0
-	}
-	return false
 }
 
 func (ptr *QXmlQuery) SetFocus(item QXmlItem_ITF) {
@@ -4106,6 +4014,99 @@ func (ptr *QXmlQuery) SetUriResolver(resolver QAbstractUriResolver_ITF) {
 	}
 }
 
+func (ptr *QXmlQuery) DestroyQXmlQuery() {
+	if ptr.Pointer() != nil {
+		C.QXmlQuery_DestroyQXmlQuery(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QXmlQuery) MessageHandler() *QAbstractMessageHandler {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlQuery_MessageHandler(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlQuery) NetworkAccessManager() *network.QNetworkAccessManager {
+	if ptr.Pointer() != nil {
+		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlQuery_NetworkAccessManager(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlQuery) InitialTemplateName() *QXmlName {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNameFromPointer(C.QXmlQuery_InitialTemplateName(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlQuery) NamePool() *QXmlNamePool {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlQuery_NamePool(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlQuery) QueryLanguage() QXmlQuery__QueryLanguage {
+	if ptr.Pointer() != nil {
+		return QXmlQuery__QueryLanguage(C.QXmlQuery_QueryLanguage(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QXmlQuery) EvaluateTo2(callback QAbstractXmlReceiver_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlQuery_EvaluateTo2(ptr.Pointer(), PointerFromQAbstractXmlReceiver(callback)) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlQuery) EvaluateTo4(target core.QIODevice_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlQuery_EvaluateTo4(ptr.Pointer(), core.PointerFromQIODevice(target)) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
+	if ptr.Pointer() != nil {
+		var outputC = C.CString(output)
+		defer C.free(unsafe.Pointer(outputC))
+		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), outputC) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlQuery) EvaluateTo3(target []string) bool {
+	if ptr.Pointer() != nil {
+		var targetC = C.CString(strings.Join(target, "|"))
+		defer C.free(unsafe.Pointer(targetC))
+		return C.QXmlQuery_EvaluateTo3(ptr.Pointer(), targetC) != 0
+	}
+	return false
+}
+
+func (ptr *QXmlQuery) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlQuery_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QXmlQuery) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlQuery_UriResolver(ptr.Pointer()))
@@ -4117,10 +4118,9 @@ func (ptr *QXmlQuery) UriResolver() *QAbstractUriResolver {
 	return nil
 }
 
-func (ptr *QXmlQuery) DestroyQXmlQuery() {
+func (ptr *QXmlQuery) EvaluateTo(result QXmlResultItems_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_DestroyQXmlQuery(ptr.Pointer())
-		ptr.SetPointer(nil)
+		C.QXmlQuery_EvaluateTo(ptr.Pointer(), PointerFromQXmlResultItems(result))
 	}
 }
 
@@ -4161,26 +4161,6 @@ func NewQXmlResultItemsFromPointer(ptr unsafe.Pointer) *QXmlResultItems {
 	n.SetPointer(ptr)
 	return n
 }
-func NewQXmlResultItems() *QXmlResultItems {
-	return NewQXmlResultItemsFromPointer(C.QXmlResultItems_NewQXmlResultItems())
-}
-
-func (ptr *QXmlResultItems) Current() *QXmlItem {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlItemFromPointer(C.QXmlResultItems_Current(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlResultItems) HasError() bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlResultItems_HasError(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 func (ptr *QXmlResultItems) Next() *QXmlItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQXmlItemFromPointer(C.QXmlResultItems_Next(ptr.Pointer()))
@@ -4188,6 +4168,10 @@ func (ptr *QXmlResultItems) Next() *QXmlItem {
 		return tmpValue
 	}
 	return nil
+}
+
+func NewQXmlResultItems() *QXmlResultItems {
+	return NewQXmlResultItemsFromPointer(C.QXmlResultItems_NewQXmlResultItems())
 }
 
 //export callbackQXmlResultItems_DestroyQXmlResultItems
@@ -4227,6 +4211,22 @@ func (ptr *QXmlResultItems) DestroyQXmlResultItemsDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QXmlResultItems) Current() *QXmlItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlItemFromPointer(C.QXmlResultItems_Current(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlResultItems) HasError() bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlResultItems_HasError(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 type QXmlSchema struct {
@@ -4278,22 +4278,6 @@ func NewQXmlSchema2(other QXmlSchema_ITF) *QXmlSchema {
 	return tmpValue
 }
 
-func (ptr *QXmlSchema) DocumentUri() *core.QUrl {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QXmlSchema_DocumentUri(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlSchema) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return C.QXmlSchema_IsValid(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 func (ptr *QXmlSchema) Load2(source core.QIODevice_ITF, documentUri core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QXmlSchema_Load2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri)) != 0
@@ -4315,37 +4299,6 @@ func (ptr *QXmlSchema) Load(source core.QUrl_ITF) bool {
 	return false
 }
 
-func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlSchema) NamePool() *QXmlNamePool {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlSchema_NamePool(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
-	if ptr.Pointer() != nil {
-		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchema_NetworkAccessManager(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func (ptr *QXmlSchema) SetMessageHandler(handler QAbstractMessageHandler_ITF) {
 	if ptr.Pointer() != nil {
 		C.QXmlSchema_SetMessageHandler(ptr.Pointer(), PointerFromQAbstractMessageHandler(handler))
@@ -4364,6 +4317,60 @@ func (ptr *QXmlSchema) SetUriResolver(resolver QAbstractUriResolver_ITF) {
 	}
 }
 
+func (ptr *QXmlSchema) DestroyQXmlSchema() {
+	if ptr.Pointer() != nil {
+		C.QXmlSchema_DestroyQXmlSchema(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
+	if ptr.Pointer() != nil {
+		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchema_NetworkAccessManager(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSchema) DocumentUri() *core.QUrl {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQUrlFromPointer(C.QXmlSchema_DocumentUri(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSchema) NamePool() *QXmlNamePool {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlSchema_NamePool(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSchema) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return C.QXmlSchema_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlSchema_UriResolver(ptr.Pointer()))
@@ -4373,13 +4380,6 @@ func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QXmlSchema) DestroyQXmlSchema() {
-	if ptr.Pointer() != nil {
-		C.QXmlSchema_DestroyQXmlSchema(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
 }
 
 type QXmlSchemaValidator struct {
@@ -4431,46 +4431,6 @@ func NewQXmlSchemaValidator2(schema QXmlSchema_ITF) *QXmlSchemaValidator {
 	return tmpValue
 }
 
-func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchemaValidator_MessageHandler(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlSchemaValidator) NamePool() *QXmlNamePool {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlSchemaValidator_NamePool(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessManager {
-	if ptr.Pointer() != nil {
-		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchemaValidator_NetworkAccessManager(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QXmlSchemaValidator) Schema() *QXmlSchema {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlSchemaFromPointer(C.QXmlSchemaValidator_Schema(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QXmlSchema).DestroyQXmlSchema)
-		return tmpValue
-	}
-	return nil
-}
-
 func (ptr *QXmlSchemaValidator) SetMessageHandler(handler QAbstractMessageHandler_ITF) {
 	if ptr.Pointer() != nil {
 		C.QXmlSchemaValidator_SetMessageHandler(ptr.Pointer(), PointerFromQAbstractMessageHandler(handler))
@@ -4495,12 +4455,48 @@ func (ptr *QXmlSchemaValidator) SetUriResolver(resolver QAbstractUriResolver_ITF
 	}
 }
 
-func (ptr *QXmlSchemaValidator) UriResolver() *QAbstractUriResolver {
+func (ptr *QXmlSchemaValidator) DestroyQXmlSchemaValidator() {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlSchemaValidator_UriResolver(ptr.Pointer()))
+		C.QXmlSchemaValidator_DestroyQXmlSchemaValidator(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchemaValidator_MessageHandler(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessManager {
+	if ptr.Pointer() != nil {
+		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchemaValidator_NetworkAccessManager(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSchemaValidator) NamePool() *QXmlNamePool {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlSchemaValidator_NamePool(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSchemaValidator) Schema() *QXmlSchema {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlSchemaFromPointer(C.QXmlSchemaValidator_Schema(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlSchema).DestroyQXmlSchema)
 		return tmpValue
 	}
 	return nil
@@ -4527,11 +4523,15 @@ func (ptr *QXmlSchemaValidator) Validate(source core.QUrl_ITF) bool {
 	return false
 }
 
-func (ptr *QXmlSchemaValidator) DestroyQXmlSchemaValidator() {
+func (ptr *QXmlSchemaValidator) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
-		C.QXmlSchemaValidator_DestroyQXmlSchemaValidator(ptr.Pointer())
-		ptr.SetPointer(nil)
+		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlSchemaValidator_UriResolver(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
+	return nil
 }
 
 type QXmlSerializer struct {
@@ -4799,13 +4799,6 @@ func (ptr *QXmlSerializer) EndElementDefault() {
 	}
 }
 
-func (ptr *QXmlSerializer) Codec() *core.QTextCodec {
-	if ptr.Pointer() != nil {
-		return core.NewQTextCodecFromPointer(C.QXmlSerializer_Codec(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackQXmlSerializer_EndOfSequence
 func callbackQXmlSerializer_EndOfSequence(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSerializer::endOfSequence"); signal != nil {
@@ -4874,17 +4867,6 @@ func (ptr *QXmlSerializer) NamespaceBindingDefault(nb QXmlName_ITF) {
 	if ptr.Pointer() != nil {
 		C.QXmlSerializer_NamespaceBindingDefault(ptr.Pointer(), PointerFromQXmlName(nb))
 	}
-}
-
-func (ptr *QXmlSerializer) OutputDevice() *core.QIODevice {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQIODeviceFromPointer(C.QXmlSerializer_OutputDevice(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
 }
 
 //export callbackQXmlSerializer_ProcessingInstruction
@@ -5035,4 +5017,22 @@ func (ptr *QXmlSerializer) StartOfSequenceDefault() {
 	if ptr.Pointer() != nil {
 		C.QXmlSerializer_StartOfSequenceDefault(ptr.Pointer())
 	}
+}
+
+func (ptr *QXmlSerializer) OutputDevice() *core.QIODevice {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQIODeviceFromPointer(C.QXmlSerializer_OutputDevice(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QXmlSerializer) Codec() *core.QTextCodec {
+	if ptr.Pointer() != nil {
+		return core.NewQTextCodecFromPointer(C.QXmlSerializer_Codec(ptr.Pointer()))
+	}
+	return nil
 }

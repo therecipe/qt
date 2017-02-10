@@ -64,7 +64,7 @@ func install(buildTarget string) {
 		if parser.ShouldBuild(module) {
 
 			if !(buildTarget == "android" && (module == "DBus" || module == "WebEngine" || module == "PrintSupport" || module == "Designer" || (strings.HasSuffix(module, "Extras") && module != "AndroidExtras"))) &&
-				!(strings.HasPrefix(buildTarget, "ios") && (module == "SerialPort" || module == "SerialBus" || module == "WebEngine" || module == "PrintSupport" || module == "Designer" || strings.HasSuffix(module, "Extras"))) && //TODO: support for PrintSupport
+				!(strings.HasPrefix(buildTarget, "ios") && (module == "DBus" || module == "SerialPort" || module == "SerialBus" || module == "WebEngine" || module == "PrintSupport" || module == "Designer" || strings.HasSuffix(module, "Extras"))) && //TODO: support for PrintSupport
 				!(strings.HasPrefix(buildTarget, "rpi") && (module == "WebEngine" || module == "Designer" || strings.HasSuffix(module, "Extras"))) { //TODO: support for WebEngine (rpi2 + rpi3)
 
 				utils.Log.Infof("installing%v qt/%v", func() string {
@@ -126,8 +126,8 @@ func getEnvAndTagflags(buildTarget string) (env map[string]string, tagFlags stri
 						"CGO_ENABLED":  "1",
 						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
 						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
-						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
+						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
+						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
 					}
 				}
 
@@ -148,8 +148,8 @@ func getEnvAndTagflags(buildTarget string) (env map[string]string, tagFlags stri
 						"CGO_ENABLED":  "1",
 						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
 						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
-						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
+						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
+						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
 					}
 				}
 			}

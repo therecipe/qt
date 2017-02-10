@@ -1,75 +1,18 @@
 package utils
 
 import (
-	//"encoding/json"
-	"encoding/xml"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
 )
 
-var (
-	QT_VERSION_CACHE string
-)
-
 func QT_VERSION() string {
-	if QT_VERSION_CACHE != "" {
-		return QT_VERSION_CACHE
-	}
-
 	if version := os.Getenv("QT_VERSION"); version != "" {
 		return version
 	}
 
-	const defaultVersion = "5.7.0"
-
-	//TODO: get version from tools instead ?
-	/*if UseHomeBrew() {
-		var (
-			cStruct = &struct {
-				Source struct {
-					Versions struct {
-						Stable string `json:"stable"`
-					} `json:"versions"`
-				} `json:"source"`
-			}{}
-			err = json.Unmarshal([]byte(LoadOptional(filepath.Join(QT_DARWIN_DIR(), "INSTALL_RECEIPT.json"))), cStruct)
-		)
-		if err == nil {
-			QT_VERSION_CACHE = cStruct.Source.Versions.Stable
-			return QT_VERSION_CACHE
-		}
-	} else {*/
-	dir := os.Getenv("QT_DIR")
-	if dir == "" {
-		return defaultVersion
-	}
-
-	componentsFilename := filepath.Join(filepath.Clean(dir), "components.xml")
-	fh, err := os.Open(componentsFilename)
-	if err != nil {
-		Log.WithError(err).Debugf("couldn't open %s", componentsFilename)
-		return defaultVersion
-	}
-	defer fh.Close()
-
-	cStruct := &struct {
-		ApplicationName string `xml:"ApplicationName"`
-	}{}
-
-	if err = xml.NewDecoder(fh).Decode(cStruct); err != nil {
-		Log.Warnf("Couldn't decode %s XML: %s", componentsFilename, err.Error())
-		return defaultVersion
-	}
-
-	words := strings.Split(cStruct.ApplicationName, " ")
-	if len(words) <= 1 {
-		Log.Warnf("Couldn't get valid application name '%s' in %s", cStruct.ApplicationName, componentsFilename)
-	}
-
-	QT_VERSION_CACHE = strings.TrimSpace(words[1])
-	return QT_VERSION_CACHE
+	return "5.8.0"
 }
 
 func QT_VERSION_MAJOR() string {

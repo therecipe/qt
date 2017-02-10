@@ -79,6 +79,18 @@ func (ptr *QQuickStyle) Path() string {
 	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
 }
 
+func QQuickStyle_SetFallbackStyle(style string) {
+	var styleC = C.CString(style)
+	defer C.free(unsafe.Pointer(styleC))
+	C.QQuickStyle_QQuickStyle_SetFallbackStyle(styleC)
+}
+
+func (ptr *QQuickStyle) SetFallbackStyle(style string) {
+	var styleC = C.CString(style)
+	defer C.free(unsafe.Pointer(styleC))
+	C.QQuickStyle_QQuickStyle_SetFallbackStyle(styleC)
+}
+
 func QQuickStyle_SetStyle(style string) {
 	var styleC = C.CString(style)
 	defer C.free(unsafe.Pointer(styleC))

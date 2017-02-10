@@ -110,6 +110,17 @@ const (
 	QScriptEngineDebugger__ErrorLogWidget    QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(8)
 )
 
+func (ptr *QScriptEngineDebugger) CreateStandardMenu(parent widgets.QWidget_ITF) *widgets.QMenu {
+	if ptr.Pointer() != nil {
+		var tmpValue = widgets.NewQMenuFromPointer(C.QScriptEngineDebugger_CreateStandardMenu(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func NewQScriptEngineDebugger(parent core.QObject_ITF) *QScriptEngineDebugger {
 	var tmpValue = NewQScriptEngineDebuggerFromPointer(C.QScriptEngineDebugger_NewQScriptEngineDebugger(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -118,9 +129,9 @@ func NewQScriptEngineDebugger(parent core.QObject_ITF) *QScriptEngineDebugger {
 	return tmpValue
 }
 
-func (ptr *QScriptEngineDebugger) Action(action QScriptEngineDebugger__DebuggerAction) *widgets.QAction {
+func (ptr *QScriptEngineDebugger) CreateStandardToolBar(parent widgets.QWidget_ITF) *widgets.QToolBar {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QScriptEngineDebugger_Action(ptr.Pointer(), C.longlong(action)))
+		var tmpValue = widgets.NewQToolBarFromPointer(C.QScriptEngineDebugger_CreateStandardToolBar(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -133,35 +144,6 @@ func (ptr *QScriptEngineDebugger) AttachTo(engine script.QScriptEngine_ITF) {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_AttachTo(ptr.Pointer(), script.PointerFromQScriptEngine(engine))
 	}
-}
-
-func (ptr *QScriptEngineDebugger) AutoShowStandardWindow() bool {
-	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_AutoShowStandardWindow(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QScriptEngineDebugger) CreateStandardMenu(parent widgets.QWidget_ITF) *widgets.QMenu {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQMenuFromPointer(C.QScriptEngineDebugger_CreateStandardMenu(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScriptEngineDebugger) CreateStandardToolBar(parent widgets.QWidget_ITF) *widgets.QToolBar {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQToolBarFromPointer(C.QScriptEngineDebugger_CreateStandardToolBar(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
 }
 
 func (ptr *QScriptEngineDebugger) Detach() {
@@ -232,6 +214,32 @@ func (ptr *QScriptEngineDebugger) SetAutoShowStandardWindow(autoShow bool) {
 	}
 }
 
+func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
+	if ptr.Pointer() != nil {
+		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScriptEngineDebugger) State() QScriptEngineDebugger__DebuggerState {
+	if ptr.Pointer() != nil {
+		return QScriptEngineDebugger__DebuggerState(C.QScriptEngineDebugger_State(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QScriptEngineDebugger) Action(action QScriptEngineDebugger__DebuggerAction) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		var tmpValue = widgets.NewQActionFromPointer(C.QScriptEngineDebugger_Action(ptr.Pointer(), C.longlong(action)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QScriptEngineDebugger) StandardWindow() *widgets.QMainWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQMainWindowFromPointer(C.QScriptEngineDebugger_StandardWindow(ptr.Pointer()))
@@ -241,13 +249,6 @@ func (ptr *QScriptEngineDebugger) StandardWindow() *widgets.QMainWindow {
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QScriptEngineDebugger) State() QScriptEngineDebugger__DebuggerState {
-	if ptr.Pointer() != nil {
-		return QScriptEngineDebugger__DebuggerState(C.QScriptEngineDebugger_State(ptr.Pointer()))
-	}
-	return 0
 }
 
 func (ptr *QScriptEngineDebugger) Widget(widget QScriptEngineDebugger__DebuggerWidget) *widgets.QWidget {
@@ -261,36 +262,11 @@ func (ptr *QScriptEngineDebugger) Widget(widget QScriptEngineDebugger__DebuggerW
 	return nil
 }
 
-func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
+func (ptr *QScriptEngineDebugger) AutoShowStandardWindow() bool {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
+		return C.QScriptEngineDebugger_AutoShowStandardWindow(ptr.Pointer()) != 0
 	}
-}
-
-func (ptr *QScriptEngineDebugger) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QScriptEngineDebugger___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QScriptEngineDebugger) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QScriptEngineDebugger) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QScriptEngineDebugger___children_newList(ptr.Pointer()))
-	}
-	return nil
+	return false
 }
 
 func (ptr *QScriptEngineDebugger) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -387,39 +363,102 @@ func (ptr *QScriptEngineDebugger) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQScriptEngineDebugger_TimerEvent
-func callbackQScriptEngineDebugger_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineDebugger::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQScriptEngineDebuggerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QScriptEngineDebugger) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QScriptEngineDebugger___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QScriptEngineDebugger) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScriptEngineDebugger___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QScriptEngineDebugger) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QScriptEngineDebugger) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QScriptEngineDebugger___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQScriptEngineDebugger_Event
+func callbackQScriptEngineDebugger_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineDebugger::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQScriptEngineDebuggerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QScriptEngineDebugger) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::event", f)
 	}
 }
 
-func (ptr *QScriptEngineDebugger) DisconnectTimerEvent() {
+func (ptr *QScriptEngineDebugger) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::event")
 	}
 }
 
-func (ptr *QScriptEngineDebugger) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QScriptEngineDebugger) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QScriptEngineDebugger_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QScriptEngineDebugger) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QScriptEngineDebugger_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQScriptEngineDebugger_EventFilter
+func callbackQScriptEngineDebugger_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineDebugger::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQScriptEngineDebuggerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QScriptEngineDebugger) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::eventFilter", f)
 	}
 }
 
-func (ptr *QScriptEngineDebugger) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QScriptEngineDebugger) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::eventFilter")
 	}
+}
+
+func (ptr *QScriptEngineDebugger) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QScriptEngineDebugger_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QScriptEngineDebugger) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QScriptEngineDebugger_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQScriptEngineDebugger_ChildEvent
@@ -601,78 +640,39 @@ func (ptr *QScriptEngineDebugger) DisconnectNotifyDefault(sign core.QMetaMethod_
 	}
 }
 
-//export callbackQScriptEngineDebugger_Event
-func callbackQScriptEngineDebugger_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineDebugger::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQScriptEngineDebugger_TimerEvent
+func callbackQScriptEngineDebugger_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineDebugger::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQScriptEngineDebuggerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScriptEngineDebuggerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QScriptEngineDebugger) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QScriptEngineDebugger) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::timerEvent", f)
 	}
 }
 
-func (ptr *QScriptEngineDebugger) DisconnectEvent() {
+func (ptr *QScriptEngineDebugger) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::timerEvent")
 	}
 }
 
-func (ptr *QScriptEngineDebugger) Event(e core.QEvent_ITF) bool {
+func (ptr *QScriptEngineDebugger) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QScriptEngineDebugger_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QScriptEngineDebugger) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QScriptEngineDebugger) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QScriptEngineDebugger_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQScriptEngineDebugger_EventFilter
-func callbackQScriptEngineDebugger_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineDebugger::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQScriptEngineDebuggerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QScriptEngineDebugger) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::eventFilter", f)
-	}
-}
-
-func (ptr *QScriptEngineDebugger) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineDebugger::eventFilter")
-	}
-}
-
-func (ptr *QScriptEngineDebugger) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QScriptEngineDebugger) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQScriptEngineDebugger_MetaObject

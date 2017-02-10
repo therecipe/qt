@@ -24,7 +24,7 @@ project_name
 │       └── drawable-mdpi
 │           └── icon.png
 ├── deploy
-│   └── android_minimal
+│   └── android
 │       └── build
 ├── project.go
 └── qml
@@ -33,11 +33,11 @@ project_name
 
 
 The content of the `android` folder will be copied into
-`deploy/android_minimal/build` before using `gradle` to bundle the binary inside
+`deploy/android/build` before using `gradle` to bundle the binary inside
 a `.apk`.
 
 You can use the `AndroidManifest.xml` found inside
-`deploy/android_minimal/build` as a template to build upon. (Set package
+`deploy/android/build` as a template to build upon. (Set package
 identifier, icon, permissions, ...)
 
 For example: `android:icon="@drawable/icon"` attribute can be added to

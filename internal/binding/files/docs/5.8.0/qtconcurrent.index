@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QDOCINDEX>
+<INDEX url="http://doc.qt.io/qt-5" title="Qt Concurrent Reference Documentation" version="5.8.0" project="QtConcurrent" indexTitle="Qt Concurrent">
+    <namespace threadsafety="unspecified" name="" status="active" access="public" module="qtconcurrent">
+        <page name="imagescaling" href="qtconcurrent-imagescaling-example.html" status="active" location="qtconcurrent-imagescaling.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/examples/qtconcurrent/imagescaling/doc/src/qtconcurrent-imagescaling.qdoc" lineno="28" subtype="example" title="Image Scaling Example" fulltitle="Image Scaling Example" subtitle="" module="QtConcurrent" groups="qtconcurrentexamples" brief="Demonstrates how to asynchronously scale images">
+            <page name="imagescaling/imagescaling.cpp" href="qtconcurrent-imagescaling-imagescaling-cpp.html" status="active" subtype="file" title="" fulltitle="imagescaling.cpp Example File" subtitle="imagescaling/imagescaling.cpp"/>
+            <page name="imagescaling/imagescaling.h" href="qtconcurrent-imagescaling-imagescaling-h.html" status="active" subtype="file" title="" fulltitle="imagescaling.h Example File" subtitle="imagescaling/imagescaling.h"/>
+            <page name="imagescaling/imagescaling.pro" href="qtconcurrent-imagescaling-imagescaling-pro.html" status="active" subtype="file" title="" fulltitle="imagescaling.pro Example File" subtitle="imagescaling/imagescaling.pro"/>
+            <page name="imagescaling/main.cpp" href="qtconcurrent-imagescaling-main-cpp.html" status="active" subtype="file" title="" fulltitle="main.cpp Example File" subtitle="imagescaling/main.cpp"/>
+        </page>
+        <page name="map" href="qtconcurrent-map-example.html" status="active" location="qtconcurrent-map.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/examples/qtconcurrent/map/doc/src/qtconcurrent-map.qdoc" lineno="28" subtype="example" title="Map Example" fulltitle="Map Example" subtitle="" module="QtConcurrent" groups="qtconcurrentexamples" brief="Demonstrates how to scale images synchronously">
+            <page name="map/main.cpp" href="qtconcurrent-map-main-cpp.html" status="active" subtype="file" title="" fulltitle="main.cpp Example File" subtitle="map/main.cpp"/>
+            <page name="map/map.pro" href="qtconcurrent-map-map-pro.html" status="active" subtype="file" title="" fulltitle="map.pro Example File" subtitle="map/map.pro"/>
+        </page>
+        <page name="qtconcurrent-index.html" href="qtconcurrent-index.html" status="active" location="qtconcurrent-index.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/doc/src/qtconcurrent-index.qdoc" lineno="28" subtype="page" title="Qt Concurrent" fulltitle="Qt Concurrent" subtitle="" module="QtConcurrent" brief="Qt Concurrent module contains functionality to support concurrent execution of program code">
+            <contents name="getting-started" title="Getting Started" level="1"/>
+        </page>
+        <page name="progressdialog" href="qtconcurrent-progressdialog-example.html" status="active" location="qtconcurrent-progressdialog.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/examples/qtconcurrent/progressdialog/doc/src/qtconcurrent-progressdialog.qdoc" lineno="28" subtype="example" title="QtConcurrent Progress Dialog Example" fulltitle="QtConcurrent Progress Dialog Example" subtitle="" module="QtConcurrent" groups="qtconcurrentexamples" brief="Demonstrates how to monitor the progress of the active processes">
+            <page name="progressdialog/main.cpp" href="qtconcurrent-progressdialog-main-cpp.html" status="active" subtype="file" title="" fulltitle="main.cpp Example File" subtitle="progressdialog/main.cpp"/>
+            <page name="progressdialog/progressdialog.pro" href="qtconcurrent-progressdialog-progressdialog-pro.html" status="active" subtype="file" title="" fulltitle="progressdialog.pro Example File" subtitle="progressdialog/progressdialog.pro"/>
+        </page>
+        <page name="wordcount" href="qtconcurrent-wordcount-example.html" status="active" location="qtconcurrent-wordcount.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/examples/qtconcurrent/wordcount/doc/src/qtconcurrent-wordcount.qdoc" lineno="28" subtype="example" title="QtConcurrent Word Count Example" fulltitle="QtConcurrent Word Count Example" subtitle="" module="QtConcurrent" groups="qtconcurrentexamples" brief="Demonstrates how to use the map-reduce algorithm">
+            <page name="wordcount/main.cpp" href="qtconcurrent-wordcount-main-cpp.html" status="active" subtype="file" title="" fulltitle="main.cpp Example File" subtitle="wordcount/main.cpp"/>
+            <page name="wordcount/wordcount.pro" href="qtconcurrent-wordcount-wordcount-pro.html" status="active" subtype="file" title="" fulltitle="wordcount.pro Example File" subtitle="wordcount/wordcount.pro"/>
+        </page>
+        <page name="runfunction" href="qtconcurrent-runfunction-example.html" status="active" location="qtconcurrent-runfunction.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/examples/qtconcurrent/runfunction/doc/src/qtconcurrent-runfunction.qdoc" lineno="28" subtype="example" title="Run Function Example" fulltitle="Run Function Example" subtitle="" module="QtConcurrent" groups="qtconcurrentexamples" brief="Demonstrates how to run standard functions concurrently">
+            <page name="runfunction/main.cpp" href="qtconcurrent-runfunction-main-cpp.html" status="active" subtype="file" title="" fulltitle="main.cpp Example File" subtitle="runfunction/main.cpp"/>
+            <page name="runfunction/runfunction.pro" href="qtconcurrent-runfunction-runfunction-pro.html" status="active" subtype="file" title="" fulltitle="runfunction.pro Example File" subtitle="runfunction/runfunction.pro"/>
+        </page>
+        <namespace threadsafety="unspecified" name="QtPrivate" href="qtprivate.html" status="internal" access="private" location="qtconcurrentcompilertest.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentcompilertest.h" lineno="49">
+            <class threadsafety="unspecified" name="HasResultType" fullname="QtPrivate::HasResultType" href="qtprivate-hasresulttype.html" status="active" access="public" location="qtconcurrentcompilertest.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentcompilertest.h" lineno="52">
+                <typedef threadsafety="unspecified" name="No" fullname="QtPrivate::HasResultType::No" href="qtprivate-hasresulttype.html#No-typedef" status="active" access="private" location="qtconcurrentcompilertest.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentcompilertest.h" lineno="54"/>
+                <typedef threadsafety="unspecified" name="Yes" fullname="QtPrivate::HasResultType::Yes" href="qtprivate-hasresulttype.html#Yes-typedef" status="active" access="private" location="qtconcurrentcompilertest.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentcompilertest.h" lineno="53"/>
+                <function threadsafety="unspecified" name="test" fullname="QtPrivate::HasResultType::test" href="qtprivate-hasresulttype.html#test-1" status="active" access="private" location="qtconcurrentcompilertest.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentcompilertest.h" lineno="56" virtual="non" meta="plain" const="false" static="true" overload="false" delete="false" default="false" final="false" type="No" signature="No test(double )">
+                    <parameter left="double" right="" name="" default=""/>
+                </function>
+                <function threadsafety="unspecified" name="test" fullname="QtPrivate::HasResultType::test" href="qtprivate-hasresulttype.html#test" status="active" access="private" location="qtconcurrentcompilertest.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentcompilertest.h" lineno="55" virtual="non" meta="plain" const="false" static="true" overload="false" delete="false" default="false" final="false" type="Yes" signature="Yes test(int , const U::result_type *)">
+                    <parameter left="int" right="" name="" default=""/>
+                    <parameter left="const U::result_type *" right="" name="" default="0"/>
+                </function>
+                <variable threadsafety="unspecified" name="Value" fullname="QtPrivate::HasResultType::Value" href="qtprivate-hasresulttype.html#Value-var" status="active" access="public" location="qtconcurrentcompilertest.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentcompilertest.h" lineno="58" type="const int" static="true"/>
+            </class>
+        </namespace>
+        <namespace threadsafety="unspecified" name="QtConcurrent" href="qtconcurrent.html" status="active" access="public" location="qtconcurrentexception.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentexception.h" lineno="52" since="4.4" module="QtConcurrent" groups="thread" brief="High-level APIs that make it possible to write multi-threaded programs without using low-level threading primitives">
+            <typedef threadsafety="unspecified" name="Exception" fullname="QtConcurrent::Exception" href="qtconcurrent-obsolete.html#Exception-typedef" status="obsolete" access="public" location="qtconcurrentexception.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentexception.h" lineno="57"/>
+            <typedef threadsafety="unspecified" name="UnhandledException" fullname="QtConcurrent::UnhandledException" href="qtconcurrent-obsolete.html#UnhandledException-typedef" status="obsolete" access="public" location="qtconcurrentexception.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentexception.h" lineno="58"/>
+            <function threadsafety="unspecified" name="filtered" fullname="QtConcurrent::filtered" href="qtconcurrent.html#filtered-1" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="62" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; filtered(ConstIterator begin, ConstIterator end, FilterFunction filterFunction)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="filtered" fullname="QtConcurrent::filtered" href="qtconcurrent.html#filtered" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="60" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; filtered(const Sequence &amp;sequence, FilterFunction filterFunction)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="filteredReduced" fullname="QtConcurrent::filteredReduced" href="qtconcurrent.html#filteredReduced-1" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="70" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; filteredReduced(ConstIterator begin, ConstIterator end, FilterFunction filterFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="filteredReduced" fullname="QtConcurrent::filteredReduced" href="qtconcurrent.html#filteredReduced" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="65" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; filteredReduced(const Sequence &amp;sequence, FilterFunction filterFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="mapped" fullname="QtConcurrent::mapped" href="qtconcurrent.html#mapped-1" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="65" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; mapped(ConstIterator begin, ConstIterator end, MapFunction function)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="mapped" fullname="QtConcurrent::mapped" href="qtconcurrent.html#mapped" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="63" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; mapped(const Sequence &amp;sequence, MapFunction function)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="mappedReduced" fullname="QtConcurrent::mappedReduced" href="qtconcurrent.html#mappedReduced-1" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="73" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; mappedReduced(ConstIterator begin, ConstIterator end, MapFunction mapFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="MapFunction" right="" name="mapFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="mappedReduced" fullname="QtConcurrent::mappedReduced" href="qtconcurrent.html#mappedReduced" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="68" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; mappedReduced(const Sequence &amp;sequence, MapFunction mapFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="MapFunction" right="" name="mapFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="run" fullname="QtConcurrent::run" href="qtconcurrent.html#run" status="active" access="public" location="qtconcurrentrun.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentrun.h" lineno="59" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; run(Function function, ... )">
+                <parameter left="Function" right="" name="function" default=""/>
+                <parameter left="..." right="" name="" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="run" fullname="QtConcurrent::run" href="qtconcurrent.html#run-1" status="active" access="public" location="qtconcurrentrun.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentrun.h" lineno="62" since="5.4" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;T&gt;" signature="QFuture&lt;T&gt; run(QThreadPool *pool, Function function, ... )">
+                <parameter left="QThreadPool *" right="" name="pool" default=""/>
+                <parameter left="Function" right="" name="function" default=""/>
+                <parameter left="..." right="" name="" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="filter" fullname="QtConcurrent::filter" href="qtconcurrent.html#filter" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="57" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;void&gt;" signature="QFuture&lt;void&gt; filter(Sequence &amp;sequence, FilterFunction filterFunction)">
+                <parameter left="Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="map" fullname="QtConcurrent::map" href="qtconcurrent.html#map-1" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="60" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;void&gt;" signature="QFuture&lt;void&gt; map(Iterator begin, Iterator end, MapFunction function)">
+                <parameter left="Iterator" right="" name="begin" default=""/>
+                <parameter left="Iterator" right="" name="end" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="map" fullname="QtConcurrent::map" href="qtconcurrent.html#map" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="59" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="QFuture&lt;void&gt;" signature="QFuture&lt;void&gt; map(Sequence &amp;sequence, MapFunction function)">
+                <parameter left="Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="blockingFiltered" fullname="QtConcurrent::blockingFiltered" href="qtconcurrent.html#blockingFiltered-1" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="81" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="Sequence" signature="Sequence blockingFiltered(ConstIterator begin, ConstIterator end, FilterFunction filterFunction)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="blockingFiltered" fullname="QtConcurrent::blockingFiltered" href="qtconcurrent.html#blockingFiltered" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="79" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="Sequence" signature="Sequence blockingFiltered(const Sequence &amp;sequence, FilterFunction filterFunction)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="blockingFilteredReduced" fullname="QtConcurrent::blockingFilteredReduced" href="qtconcurrent.html#blockingFilteredReduced-1" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="89" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="T" signature="T blockingFilteredReduced(ConstIterator begin, ConstIterator end, FilterFunction filterFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="blockingFilteredReduced" fullname="QtConcurrent::blockingFilteredReduced" href="qtconcurrent.html#blockingFilteredReduced" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="84" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="T" signature="T blockingFilteredReduced(const Sequence &amp;sequence, FilterFunction filterFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="blockingMapped" fullname="QtConcurrent::blockingMapped" href="qtconcurrent.html#blockingMapped-1" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="85" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="T" signature="T blockingMapped(ConstIterator begin, ConstIterator end, MapFunction function)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="blockingMapped" fullname="QtConcurrent::blockingMapped" href="qtconcurrent.html#blockingMapped" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="83" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="T" signature="T blockingMapped(const Sequence &amp;sequence, MapFunction function)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="blockingMappedReduced" fullname="QtConcurrent::blockingMappedReduced" href="qtconcurrent.html#blockingMappedReduced-1" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="93" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="T" signature="T blockingMappedReduced(ConstIterator begin, ConstIterator end, MapFunction mapFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="ConstIterator" right="" name="begin" default=""/>
+                <parameter left="ConstIterator" right="" name="end" default=""/>
+                <parameter left="MapFunction" right="" name="mapFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="blockingMappedReduced" fullname="QtConcurrent::blockingMappedReduced" href="qtconcurrent.html#blockingMappedReduced" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="88" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="T" signature="T blockingMappedReduced(const Sequence &amp;sequence, MapFunction mapFunction, ReduceFunction reduceFunction, QtConcurrent::ReduceOptions reduceOptions)">
+                <parameter left="const Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="MapFunction" right="" name="mapFunction" default=""/>
+                <parameter left="ReduceFunction" right="" name="reduceFunction" default=""/>
+                <parameter left="QtConcurrent::ReduceOptions" right="" name="reduceOptions" default="UnorderedReduce | SequentialReduce"/>
+            </function>
+            <function threadsafety="unspecified" name="blockingFilter" fullname="QtConcurrent::blockingFilter" href="qtconcurrent.html#blockingFilter" status="active" access="public" location="qtconcurrentfilter.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentfilter.h" lineno="76" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="void" signature="void blockingFilter(Sequence &amp;sequence, FilterFunction filterFunction)">
+                <parameter left="Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="FilterFunction" right="" name="filterFunction" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="blockingMap" fullname="QtConcurrent::blockingMap" href="qtconcurrent.html#blockingMap-1" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="80" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="void" signature="void blockingMap(Iterator begin, Iterator end, MapFunction function)">
+                <parameter left="Iterator" right="" name="begin" default=""/>
+                <parameter left="Iterator" right="" name="end" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="blockingMap" fullname="QtConcurrent::blockingMap" href="qtconcurrent.html#blockingMap" status="active" access="public" location="qtconcurrentmap.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentmap.h" lineno="79" virtual="non" meta="plain" const="false" static="false" overload="false" delete="false" default="false" final="false" type="void" signature="void blockingMap(Sequence &amp;sequence, MapFunction function)">
+                <parameter left="Sequence &amp;" right="" name="sequence" default=""/>
+                <parameter left="MapFunction" right="" name="function" default=""/>
+            </function>
+            <enum threadsafety="unspecified" name="ReduceOption" fullname="QtConcurrent::ReduceOption" href="qtconcurrent.html#ReduceOption-enum" status="active" access="public" location="qtconcurrentreducekernel.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentreducekernel.h" lineno="87" typedef="QtConcurrent::ReduceOptions">
+                <value name="UnorderedReduce" value="0x1"/>
+                <value name="OrderedReduce" value="0x2"/>
+                <value name="SequentialReduce" value="0x4"/>
+            </enum>
+            <typedef threadsafety="unspecified" name="ReduceOptions" fullname="QtConcurrent::ReduceOptions" href="qtconcurrent.html#ReduceOption-enum" status="active" access="public" location="qtconcurrentreducekernel.h" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/qtconcurrentreducekernel.h" lineno="93" enum="QtConcurrent::ReduceOption"/>
+        </namespace>
+        <page name="qtconcurrentfilter.html" href="qtconcurrentfilter.html" status="active" subtype="page" title="Concurrent Filter and Filter-Reduce" fulltitle="Concurrent Filter and Filter-Reduce" subtitle="" module="QtConcurrent" groups="thread">
+            <contents name="concurrent-filter" title="Concurrent Filter" level="1"/>
+            <contents name="concurrent-filter-reduce" title="Concurrent Filter-Reduce" level="1"/>
+            <contents name="additional-api-features" title="Additional API Features" level="1"/>
+            <contents name="using-iterators-instead-of-sequence" title="Using Iterators instead of Sequence" level="2"/>
+            <contents name="using-member-functions" title="Using Member Functions" level="2"/>
+            <contents name="using-function-objects" title="Using Function Objects" level="2"/>
+            <contents name="using-bound-function-arguments" title="Using Bound Function Arguments" level="2"/>
+        </page>
+        <page name="qtconcurrentmap.html" href="qtconcurrentmap.html" status="active" subtype="page" title="Concurrent Map and Map-Reduce" fulltitle="Concurrent Map and Map-Reduce" subtitle="" module="QtConcurrent" groups="thread">
+            <contents name="concurrent-map" title="Concurrent Map" level="1"/>
+            <contents name="concurrent-map-reduce" title="Concurrent Map-Reduce" level="1"/>
+            <contents name="additional-api-features" title="Additional API Features" level="1"/>
+            <contents name="using-iterators-instead-of-sequence" title="Using Iterators instead of Sequence" level="2"/>
+            <contents name="blocking-variants" title="Blocking Variants" level="2"/>
+            <contents name="using-member-functions" title="Using Member Functions" level="2"/>
+            <contents name="using-function-objects" title="Using Function Objects" level="2"/>
+            <contents name="using-bound-function-arguments" title="Using Bound Function Arguments" level="2"/>
+        </page>
+        <page name="qtconcurrentrun.html" href="qtconcurrentrun.html" status="active" subtype="page" title="Concurrent Run" fulltitle="Concurrent Run" subtitle="" module="QtConcurrent" groups="thread">
+            <contents name="running-a-function-in-a-separate-thread" title="Running a Function in a Separate Thread" level="1"/>
+            <contents name="passing-arguments-to-the-function" title="Passing Arguments to the Function" level="1"/>
+            <contents name="returning-values-from-the-function" title="Returning Values from the Function" level="1"/>
+            <contents name="additional-api-features" title="Additional API Features" level="1"/>
+            <contents name="using-member-functions" title="Using Member Functions" level="2"/>
+            <contents name="using-bound-function-arguments" title="Using Bound Function Arguments" level="2"/>
+        </page>
+        <group name="modules" href="modules.html" status="internal" seen="false" title="" members="QtConcurrent"/>
+        <group name="qtconcurrentexamples" href="qtconcurrentexamples.html" status="internal" seen="false" title="" members="imagescaling,map,progressdialog,runfunction,wordcount"/>
+        <group name="thread" href="thread.html" status="internal" seen="false" title="" members="qtconcurrentfilter.html,QtConcurrent,qtconcurrentmap.html,qtconcurrentrun.html"/>
+        <module name="QtConcurrent" href="qtconcurrent-module.html" status="active" location="qtconcurrent-module.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtbase/src/concurrent/doc/src/qtconcurrent-module.qdoc" lineno="28" seen="true" title="Qt Concurrent C++ Classes" module="QtConcurrent" groups="modules" members="QtConcurrent" brief="Qt Concurrent module contains functionality to support concurrent execution of program code"/>
+    </namespace>
+</INDEX>

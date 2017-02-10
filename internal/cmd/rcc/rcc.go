@@ -3,6 +3,7 @@ package rcc
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -11,7 +12,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Rcc(appPath string, output_dir *string) {
+func Rcc(appPath, buildTarget string, output_dir *string) {
 	if output_dir == nil {
 		var toutput_dir string
 		output_dir = &toutput_dir
@@ -48,7 +49,14 @@ func Rcc(appPath string, output_dir *string) {
 
 	case "linux":
 		{
-			if utils.UsePkgConfig() {
+			if buildTarget == "windows" || os.Getenv("QT_MXE_ARCH") != "" {
+				rccPath = filepath.Join("/usr/lib/mxe/usr/", func() string {
+					if utils.QT_MXE_ARCH() == "386" {
+						return "i686"
+					}
+					return "x86_64"
+				}()+"-w64-mingw32.shared/qt5/bin/rcc")
+			} else if utils.UsePkgConfig() {
 				rccPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), fmt.Sprintf("find rccPath with pkg-config on %v", runtime.GOOS))), "rcc")
 			} else {
 				rccPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "bin", "rcc")
@@ -112,16 +120,16 @@ func qmlHeader(appName string) string {
 
 
 #cgo +build ios,darwin,amd64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/${IPHONESIMULATOR_SDK_DIR} -mios-simulator-version-min=7.0 -arch x86_64
-#cgo +build ios,darwin,amd64 LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Core_iphonesimulator -lQt5Widgets_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
+#cgo +build ios,darwin,amd64 LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AudioToolbox -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework OpenGLES -framework CoreText -framework CoreGraphics -framework Security -framework SystemConfiguration -framework CoreBluetooth -lQt5FontDatabaseSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lqtfreetype -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqgif -lqicns -lqico -lqjpeg -lqmacjp2 -framework ImageIO -lqtga -lqtiff -lqwbmp -lqwebp -lqtlibpng -lqtharfbuzz -lm -lz -lqtpcre -lQt5Core -lQt5Widgets -lQt5Gui
 
 #cgo +build ios,darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/${IPHONESIMULATOR_SDK_DIR} -mios-simulator-version-min=7.0 -arch i386
-#cgo +build ios,darwin,386 LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Core_iphonesimulator -lQt5Widgets_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
+#cgo +build ios,darwin,386 LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AudioToolbox -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework OpenGLES -framework CoreText -framework CoreGraphics -framework Security -framework SystemConfiguration -framework CoreBluetooth -lQt5FontDatabaseSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lqtfreetype -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqgif -lqicns -lqico -lqjpeg -lqmacjp2 -framework ImageIO -lqtga -lqtiff -lqwbmp -lqwebp -lqtlibpng -lqtharfbuzz -lm -lz -lqtpcre -lQt5Core -lQt5Widgets -lQt5Gui
 
 #cgo +build ios,darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/${IPHONEOS_SDK_DIR} -miphoneos-version-min=7.0 -arch arm64
-#cgo +build ios,darwin,arm64 LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PlatformSupport
+#cgo +build ios,darwin,arm64 LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AudioToolbox -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework OpenGLES -framework CoreText -framework CoreGraphics -framework Security -framework SystemConfiguration -framework CoreBluetooth -lQt5FontDatabaseSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lqtfreetype -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqgif -lqicns -lqico -lqjpeg -lqmacjp2 -framework ImageIO -lqtga -lqtiff -lqwbmp -lqwebp -lqtlibpng -lqtharfbuzz -lm -lz -lqtpcre -lQt5Core -lQt5Widgets -lQt5Gui
 
 #cgo +build ios,darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/${IPHONEOS_SDK_DIR} -miphoneos-version-min=7.0 -arch armv7
-#cgo +build ios,darwin,arm LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PlatformSupport
+#cgo +build ios,darwin,arm LDFLAGS: -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AudioToolbox -framework AssetsLibrary -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework OpenGLES -framework CoreText -framework CoreGraphics -framework Security -framework SystemConfiguration -framework CoreBluetooth -lQt5FontDatabaseSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lqtfreetype -L${QT_DIR}/${QT_VERSION_MAJOR}/ios/plugins/imageformats -lqgif -lqicns -lqico -lqjpeg -lqmacjp2 -framework ImageIO -lqtga -lqtiff -lqwbmp -lqwebp -lqtlibpng -lqtharfbuzz -lm -lz -lqtpcre -lQt5Core -lQt5Widgets -lQt5Gui
 
 
 #cgo +build sailfish_emulator,linux,386 LDFLAGS: -Wl,-rpath,/usr/share/harbour-${APPNAME}/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core

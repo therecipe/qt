@@ -81,10 +81,10 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 		* https://golang.org/doc/install?download=go1.7.5.windows-amd64.msi
 
-	2. Install Qt 5.7.0 (with android support)
+	2. Install Qt 5.8.0 (with android support)
 
 		* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
-			* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
+			* https://download.qt.io/official_releases/qt/5.8/5.8.0/qt-opensource-windows-x86-android-5.8.0.exe
 
 		or (without android support)
 
@@ -96,7 +96,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	3. Add the directory that contains **gcc** and **g++** to your **PATH** (not needed with MSYS2)
 
-		* `C:\Qt\Qt5.7.0\Tools\mingw530_32\bin`
+		* `C:\Qt\Qt5.8.0\Tools\mingw530_32\bin`
 
 	4. Download the binding
 
@@ -118,11 +118,11 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 		* https://golang.org/doc/install?download=go1.7.5.darwin-amd64.pkg
 
-	2. Install Qt 5.7.0 (with android/iOS support)
+	2. Install Qt 5.8.0 (with android/iOS support)
 
 		* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
-			* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
-			* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
+			* without iOS https://download.qt.io/official_releases/qt/5.8/5.8.0/qt-opensource-mac-x64-android-5.8.0.dmg
+			* with iOS https://download.qt.io/official_releases/qt/5.8/5.8.0/qt-opensource-mac-x64-android-ios-5.8.0.dmg
 
 		or (without android/iOS support)
 
@@ -153,10 +153,10 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 		* https://golang.org/doc/install?download=go1.7.5.linux-amd64.tar.gz
 
-	2. Install Qt 5.7.0 (with android support)
+	2. Install Qt 5.8.0 (with android support)
 
 		* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
-			* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
+			* https://download.qt.io/official_releases/qt/5.8/5.8.0/qt-opensource-linux-x64-android-5.8.0.run
 
 		or (without android support)
 
@@ -276,7 +276,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 	<details>
 	<summary>Sailfish OS</summary>
 
-	1. Install the desktop version for Windows, macOS or Linux
+	1. Install the desktop version for Windows, macOS or Linux (**Qt <= 5.7.x required**)
 
 	2. Install VirtualBox; you can also define a custom location with **VIRTUALBOX_DIR**
 		* http://download.virtualbox.org/virtualbox/5.1.14/VirtualBox-5.1.14-112924-Win.exe
@@ -314,14 +314,14 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	3. Download and unpack the Qt source
 
-		* `cd $HOME/raspi && wget https://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.tar.gz`
-		* `tar -xzf qt-everywhere-opensource-src-5.7.0.tar.gz qt-everywhere-opensource-src-5.7.0`
+		* `cd $HOME/raspi && wget https://download.qt.io/official_releases/qt/5.8/5.8.0/single/qt-everywhere-opensource-src-5.8.0.tar.gz`
+		* `tar -xzf qt-everywhere-opensource-src-5.8.0.tar.gz qt-everywhere-opensource-src-5.8.0`
 
 	4. Patch Qt Source
 
-		* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0/qtbase && sed -i 's/c++1z/c++11/' ./mkspecs/devices/linux-rpi3-g++/qmake.conf`
+		* `cd $HOME/raspi/qt-everywhere-opensource-src-5.8.0/qtbase && sed -i 's/c++1z/c++11/' ./mkspecs/devices/linux-rpi3-g++/qmake.conf`
 
-		* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0/qtwayland && wget https://github.com/qtproject/qtwayland/commit/75294be3.patch && patch -p1 -i 75294be3.patch`
+		* `cd $HOME/raspi/qt-everywhere-opensource-src-5.8.0/qtwayland && wget https://github.com/qtproject/qtwayland/commit/75294be3.patch && patch -p1 -i 75294be3.patch`
 
 	5. Download the cross compiler; you can also define a custom location with **RPI_TOOLS_DIR** (but then you might need to manually change commands from here on during the setup)
 
@@ -395,18 +395,18 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	12. Build Qt (2 hours)
 
-		* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0`
+		* `cd $HOME/raspi/qt-everywhere-opensource-src-5.8.0`
 
 		* make sure `QT_DIR` points to your desktop installation of Qt; you may also want to tweak the configure command below, if you put the tools or the sysroot in an alternative location
 
 		* Raspberry Pi 1
-			* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.7/rpi1 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+			* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.8/rpi1 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 		* Raspberry Pi 2
-			* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.7/rpi2 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+			* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.8/rpi2 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 		* Raspberry Pi 3
-			* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.7/rpi3 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+			* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.8/rpi3 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 		* `make -k -i && sudo make -k -i install`
 
@@ -566,7 +566,7 @@ func main() {
 
 3. Open the terminal in `[GOPATH]/src` and run `[GOPATH]/bin/qtdeploy build desktop ./qtExample`
 
-4. You will find the application in `[GOPATH]/src/qtExample/deploy/[GOOS]_minimal/`
+4. You will find the application in `[GOPATH]/src/qtExample/deploy/[GOOS]/`
 
 5. Take a look at the [examples](https://github.com/therecipe/qt/tree/master/internal/examples)
 

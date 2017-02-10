@@ -119,17 +119,17 @@ func NewQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) *QAndroidJniEnviro
 	n.SetPointer(ptr)
 	return n
 }
-func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
-
-	return nil
-}
-
 func QAndroidJniEnvironment_JavaVM() unsafe.Pointer {
 
 	return nil
 }
 
 func (ptr *QAndroidJniEnvironment) JavaVM() unsafe.Pointer {
+
+	return nil
+}
+
+func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
 
 	return nil
 }
@@ -211,6 +211,186 @@ func NewQAndroidJniObjectFromPointer(ptr unsafe.Pointer) *QAndroidJniObject {
 	n.SetPointer(ptr)
 	return n
 }
+func QAndroidJniObject_CallStaticObjectMethod(className string, methodName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethodCaught(className string, methodName string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_CallStaticMethodString(className string, methodName string) string {
+
+	return ""
+}
+
+func QAndroidJniObject_CallStaticMethodStringCaught(className string, methodName string) (string, error) {
+
+	return "", nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethod2(className string, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethod2Caught(className string, methodName string, signature string, v ...interface{}) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_CallStaticMethodString2(className string, methodName string, signature string, v ...interface{}) string {
+
+	return ""
+}
+
+func QAndroidJniObject_CallStaticMethodString2Caught(className string, methodName string, signature string, v ...interface{}) (string, error) {
+
+	return "", nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethod3(clazz unsafe.Pointer, methodName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethod3Caught(clazz unsafe.Pointer, methodName string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_CallStaticMethodString3(clazz unsafe.Pointer, methodName string) string {
+
+	return ""
+}
+
+func QAndroidJniObject_CallStaticMethodString3Caught(clazz unsafe.Pointer, methodName string) (string, error) {
+
+	return "", nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethod4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethod4Caught(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_CallStaticMethodString4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) string {
+
+	return ""
+}
+
+func QAndroidJniObject_CallStaticMethodString4Caught(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) (string, error) {
+
+	return "", nil
+}
+
+func QAndroidJniObject_FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) FromString(stri string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_GetStaticObjectField(className string, fieldName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_GetStaticObjectFieldCaught(className string, fieldName string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_GetStaticFieldString(className string, fieldName string) string {
+
+	return ""
+}
+
+func QAndroidJniObject_GetStaticFieldStringCaught(className string, fieldName string) (string, error) {
+
+	return "", nil
+}
+
+func QAndroidJniObject_GetStaticObjectField2(className string, fieldName string, signature string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_GetStaticObjectField2Caught(className string, fieldName string, signature string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_GetStaticFieldString2(className string, fieldName string, signature string) string {
+
+	return ""
+}
+
+func QAndroidJniObject_GetStaticFieldString2Caught(className string, fieldName string, signature string) (string, error) {
+
+	return "", nil
+}
+
+func QAndroidJniObject_GetStaticObjectField3(clazz unsafe.Pointer, fieldName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_GetStaticObjectField3Caught(clazz unsafe.Pointer, fieldName string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_GetStaticFieldString3(clazz unsafe.Pointer, fieldName string) string {
+
+	return ""
+}
+
+func QAndroidJniObject_GetStaticFieldString3Caught(clazz unsafe.Pointer, fieldName string) (string, error) {
+
+	return "", nil
+}
+
+func QAndroidJniObject_GetStaticObjectField4(clazz unsafe.Pointer, fieldName string, signature string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_GetStaticObjectField4Caught(clazz unsafe.Pointer, fieldName string, signature string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func QAndroidJniObject_GetStaticFieldString4(clazz unsafe.Pointer, fieldName string, signature string) string {
+
+	return ""
+}
+
+func QAndroidJniObject_GetStaticFieldString4Caught(clazz unsafe.Pointer, fieldName string, signature string) (string, error) {
+
+	return "", nil
+}
+
 func NewQAndroidJniObject() *QAndroidJniObject {
 
 	return nil
@@ -239,104 +419,6 @@ func NewQAndroidJniObject5(clazz unsafe.Pointer, signature string, v ...interfac
 func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
 
 	return nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodInt(methodName string) int {
-
-	return 0
-}
-
-func (ptr *QAndroidJniObject) CallMethodIntCaught(methodName string) (int, error) {
-
-	return 0, nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodBoolean(methodName string) bool {
-
-	return false
-}
-
-func (ptr *QAndroidJniObject) CallMethodBooleanCaught(methodName string) (bool, error) {
-
-	return false, nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodVoid(methodName string) {
-
-}
-
-func (ptr *QAndroidJniObject) CallMethodVoidCaught(methodName string) error {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string, v ...interface{}) int {
-
-	return 0
-}
-
-func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, signature string, v ...interface{}) (int, error) {
-
-	return 0, nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature string, v ...interface{}) bool {
-
-	return false
-}
-
-func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, signature string, v ...interface{}) (bool, error) {
-
-	return false, nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature string, v ...interface{}) {
-
-}
-
-func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, signature string, v ...interface{}) error {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) CallObjectMethod(methodName string) *QAndroidJniObject {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) CallObjectMethodCaught(methodName string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodString(methodName string) string {
-
-	return ""
-}
-
-func (ptr *QAndroidJniObject) CallMethodStringCaught(methodName string) (string, error) {
-
-	return "", nil
-}
-
-func (ptr *QAndroidJniObject) CallObjectMethod2(methodName string, signature string, v ...interface{}) *QAndroidJniObject {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) CallObjectMethod2Caught(methodName string, signature string, v ...interface{}) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func (ptr *QAndroidJniObject) CallMethodString2(methodName string, signature string, v ...interface{}) string {
-
-	return ""
-}
-
-func (ptr *QAndroidJniObject) CallMethodString2Caught(methodName string, signature string, v ...interface{}) (string, error) {
-
-	return "", nil
 }
 
 func QAndroidJniObject_CallStaticMethodInt(className string, methodName string) int {
@@ -455,166 +537,6 @@ func QAndroidJniObject_CallStaticMethodVoid4Caught(clazz unsafe.Pointer, methodN
 	return nil
 }
 
-func QAndroidJniObject_CallStaticObjectMethod(className string, methodName string) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_CallStaticObjectMethodCaught(className string, methodName string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_CallStaticMethodString(className string, methodName string) string {
-
-	return ""
-}
-
-func QAndroidJniObject_CallStaticMethodStringCaught(className string, methodName string) (string, error) {
-
-	return "", nil
-}
-
-func QAndroidJniObject_CallStaticObjectMethod2(className string, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_CallStaticObjectMethod2Caught(className string, methodName string, signature string, v ...interface{}) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_CallStaticMethodString2(className string, methodName string, signature string, v ...interface{}) string {
-
-	return ""
-}
-
-func QAndroidJniObject_CallStaticMethodString2Caught(className string, methodName string, signature string, v ...interface{}) (string, error) {
-
-	return "", nil
-}
-
-func QAndroidJniObject_CallStaticObjectMethod3(clazz unsafe.Pointer, methodName string) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_CallStaticObjectMethod3Caught(clazz unsafe.Pointer, methodName string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_CallStaticMethodString3(clazz unsafe.Pointer, methodName string) string {
-
-	return ""
-}
-
-func QAndroidJniObject_CallStaticMethodString3Caught(clazz unsafe.Pointer, methodName string) (string, error) {
-
-	return "", nil
-}
-
-func QAndroidJniObject_CallStaticObjectMethod4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_CallStaticObjectMethod4Caught(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_CallStaticMethodString4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) string {
-
-	return ""
-}
-
-func QAndroidJniObject_CallStaticMethodString4Caught(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) (string, error) {
-
-	return "", nil
-}
-
-func QAndroidJniObject_FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) FromString(stri string) *QAndroidJniObject {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) GetFieldInt(fieldName string) int {
-
-	return 0
-}
-
-func (ptr *QAndroidJniObject) GetFieldIntCaught(fieldName string) (int, error) {
-
-	return 0, nil
-}
-
-func (ptr *QAndroidJniObject) GetFieldBoolean(fieldName string) bool {
-
-	return false
-}
-
-func (ptr *QAndroidJniObject) GetFieldBooleanCaught(fieldName string) (bool, error) {
-
-	return false, nil
-}
-
-func (ptr *QAndroidJniObject) GetObjectField(fieldName string) *QAndroidJniObject {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) GetObjectFieldCaught(fieldName string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func (ptr *QAndroidJniObject) GetFieldString(fieldName string) string {
-
-	return ""
-}
-
-func (ptr *QAndroidJniObject) GetFieldStringCaught(fieldName string) (string, error) {
-
-	return "", nil
-}
-
-func (ptr *QAndroidJniObject) GetObjectField2(fieldName string, signature string) *QAndroidJniObject {
-
-	return nil
-}
-
-func (ptr *QAndroidJniObject) GetObjectField2Caught(fieldName string, signature string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func (ptr *QAndroidJniObject) GetFieldString2(fieldName string, signature string) string {
-
-	return ""
-}
-
-func (ptr *QAndroidJniObject) GetFieldString2Caught(fieldName string, signature string) (string, error) {
-
-	return "", nil
-}
-
 func QAndroidJniObject_GetStaticFieldInt(className string, fieldName string) int {
 
 	return 0
@@ -655,86 +577,6 @@ func QAndroidJniObject_GetStaticFieldBoolean2Caught(clazz unsafe.Pointer, fieldN
 	return false, nil
 }
 
-func QAndroidJniObject_GetStaticObjectField(className string, fieldName string) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_GetStaticObjectFieldCaught(className string, fieldName string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_GetStaticFieldString(className string, fieldName string) string {
-
-	return ""
-}
-
-func QAndroidJniObject_GetStaticFieldStringCaught(className string, fieldName string) (string, error) {
-
-	return "", nil
-}
-
-func QAndroidJniObject_GetStaticObjectField2(className string, fieldName string, signature string) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_GetStaticObjectField2Caught(className string, fieldName string, signature string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_GetStaticFieldString2(className string, fieldName string, signature string) string {
-
-	return ""
-}
-
-func QAndroidJniObject_GetStaticFieldString2Caught(className string, fieldName string, signature string) (string, error) {
-
-	return "", nil
-}
-
-func QAndroidJniObject_GetStaticObjectField3(clazz unsafe.Pointer, fieldName string) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_GetStaticObjectField3Caught(clazz unsafe.Pointer, fieldName string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_GetStaticFieldString3(clazz unsafe.Pointer, fieldName string) string {
-
-	return ""
-}
-
-func QAndroidJniObject_GetStaticFieldString3Caught(clazz unsafe.Pointer, fieldName string) (string, error) {
-
-	return "", nil
-}
-
-func QAndroidJniObject_GetStaticObjectField4(clazz unsafe.Pointer, fieldName string, signature string) *QAndroidJniObject {
-
-	return nil
-}
-
-func QAndroidJniObject_GetStaticObjectField4Caught(clazz unsafe.Pointer, fieldName string, signature string) (*QAndroidJniObject, error) {
-
-	return nil, nil
-}
-
-func QAndroidJniObject_GetStaticFieldString4(clazz unsafe.Pointer, fieldName string, signature string) string {
-
-	return ""
-}
-
-func QAndroidJniObject_GetStaticFieldString4Caught(clazz unsafe.Pointer, fieldName string, signature string) (string, error) {
-
-	return "", nil
-}
-
 func QAndroidJniObject_IsClassAvailable(className string) bool {
 
 	return false
@@ -743,21 +585,6 @@ func QAndroidJniObject_IsClassAvailable(className string) bool {
 func (ptr *QAndroidJniObject) IsClassAvailable(className string) bool {
 
 	return false
-}
-
-func (ptr *QAndroidJniObject) IsValid() bool {
-
-	return false
-}
-
-func (ptr *QAndroidJniObject) ToString() string {
-
-	return ""
-}
-
-func (ptr *QAndroidJniObject) Object() unsafe.Pointer {
-
-	return nil
 }
 
 func (ptr *QAndroidJniObject) SetField(fieldName string, value interface{}) {
@@ -822,4 +649,177 @@ func (ptr *QAndroidJniObject) SetStaticField3(clazz unsafe.Pointer, fieldName st
 
 func (ptr *QAndroidJniObject) DestroyQAndroidJniObject() {
 
+}
+
+func (ptr *QAndroidJniObject) CallObjectMethod(methodName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) CallObjectMethodCaught(methodName string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func (ptr *QAndroidJniObject) CallMethodString(methodName string) string {
+
+	return ""
+}
+
+func (ptr *QAndroidJniObject) CallMethodStringCaught(methodName string) (string, error) {
+
+	return "", nil
+}
+
+func (ptr *QAndroidJniObject) CallObjectMethod2(methodName string, signature string, v ...interface{}) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) CallObjectMethod2Caught(methodName string, signature string, v ...interface{}) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func (ptr *QAndroidJniObject) CallMethodString2(methodName string, signature string, v ...interface{}) string {
+
+	return ""
+}
+
+func (ptr *QAndroidJniObject) CallMethodString2Caught(methodName string, signature string, v ...interface{}) (string, error) {
+
+	return "", nil
+}
+
+func (ptr *QAndroidJniObject) GetObjectField(fieldName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) GetObjectFieldCaught(fieldName string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func (ptr *QAndroidJniObject) GetFieldString(fieldName string) string {
+
+	return ""
+}
+
+func (ptr *QAndroidJniObject) GetFieldStringCaught(fieldName string) (string, error) {
+
+	return "", nil
+}
+
+func (ptr *QAndroidJniObject) GetObjectField2(fieldName string, signature string) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) GetObjectField2Caught(fieldName string, signature string) (*QAndroidJniObject, error) {
+
+	return nil, nil
+}
+
+func (ptr *QAndroidJniObject) GetFieldString2(fieldName string, signature string) string {
+
+	return ""
+}
+
+func (ptr *QAndroidJniObject) GetFieldString2Caught(fieldName string, signature string) (string, error) {
+
+	return "", nil
+}
+
+func (ptr *QAndroidJniObject) ToString() string {
+
+	return ""
+}
+
+func (ptr *QAndroidJniObject) CallMethodInt(methodName string) int {
+
+	return 0
+}
+
+func (ptr *QAndroidJniObject) CallMethodIntCaught(methodName string) (int, error) {
+
+	return 0, nil
+}
+
+func (ptr *QAndroidJniObject) CallMethodBoolean(methodName string) bool {
+
+	return false
+}
+
+func (ptr *QAndroidJniObject) CallMethodBooleanCaught(methodName string) (bool, error) {
+
+	return false, nil
+}
+
+func (ptr *QAndroidJniObject) CallMethodVoid(methodName string) {
+
+}
+
+func (ptr *QAndroidJniObject) CallMethodVoidCaught(methodName string) error {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string, v ...interface{}) int {
+
+	return 0
+}
+
+func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, signature string, v ...interface{}) (int, error) {
+
+	return 0, nil
+}
+
+func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature string, v ...interface{}) bool {
+
+	return false
+}
+
+func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, signature string, v ...interface{}) (bool, error) {
+
+	return false, nil
+}
+
+func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature string, v ...interface{}) {
+
+}
+
+func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, signature string, v ...interface{}) error {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) GetFieldInt(fieldName string) int {
+
+	return 0
+}
+
+func (ptr *QAndroidJniObject) GetFieldIntCaught(fieldName string) (int, error) {
+
+	return 0, nil
+}
+
+func (ptr *QAndroidJniObject) GetFieldBoolean(fieldName string) bool {
+
+	return false
+}
+
+func (ptr *QAndroidJniObject) GetFieldBooleanCaught(fieldName string) (bool, error) {
+
+	return false, nil
+}
+
+func (ptr *QAndroidJniObject) Object() unsafe.Pointer {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) IsValid() bool {
+
+	return false
 }

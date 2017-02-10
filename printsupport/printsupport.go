@@ -136,41 +136,6 @@ func (ptr *QAbstractPrintDialog) Exec() int {
 	return 0
 }
 
-func (ptr *QAbstractPrintDialog) FromPage() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractPrintDialog_FromPage(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QAbstractPrintDialog) MaxPage() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractPrintDialog_MaxPage(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QAbstractPrintDialog) MinPage() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractPrintDialog_MinPage(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QAbstractPrintDialog) PrintRange() QAbstractPrintDialog__PrintRange {
-	if ptr.Pointer() != nil {
-		return QAbstractPrintDialog__PrintRange(C.QAbstractPrintDialog_PrintRange(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QAbstractPrintDialog) Printer() *QPrinter {
-	if ptr.Pointer() != nil {
-		return NewQPrinterFromPointer(C.QAbstractPrintDialog_Printer(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QAbstractPrintDialog) SetFromTo(from int, to int) {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_SetFromTo(ptr.Pointer(), C.int(int32(from)), C.int(int32(to)))
@@ -201,6 +166,41 @@ func (ptr *QAbstractPrintDialog) SetPrintRange(ran QAbstractPrintDialog__PrintRa
 	}
 }
 
+func (ptr *QAbstractPrintDialog) PrintRange() QAbstractPrintDialog__PrintRange {
+	if ptr.Pointer() != nil {
+		return QAbstractPrintDialog__PrintRange(C.QAbstractPrintDialog_PrintRange(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAbstractPrintDialog) Printer() *QPrinter {
+	if ptr.Pointer() != nil {
+		return NewQPrinterFromPointer(C.QAbstractPrintDialog_Printer(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractPrintDialog) FromPage() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractPrintDialog_FromPage(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QAbstractPrintDialog) MaxPage() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractPrintDialog_MaxPage(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QAbstractPrintDialog) MinPage() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractPrintDialog_MinPage(ptr.Pointer())))
+	}
+	return 0
+}
+
 func (ptr *QAbstractPrintDialog) ToPage() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QAbstractPrintDialog_ToPage(ptr.Pointer())))
@@ -228,30 +228,6 @@ func (ptr *QAbstractPrintDialog) __setOptionTabs_tabs_setList(i widgets.QWidget_
 func (ptr *QAbstractPrintDialog) __setOptionTabs_tabs_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAbstractPrintDialog___setOptionTabs_tabs_newList(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QAbstractPrintDialog) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QAbstractPrintDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractPrintDialog) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) __actions_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAbstractPrintDialog___actions_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -304,9 +280,9 @@ func (ptr *QAbstractPrintDialog) __insertActions_actions_newList() unsafe.Pointe
 	return nil
 }
 
-func (ptr *QAbstractPrintDialog) __children_atList(i int) *core.QObject {
+func (ptr *QAbstractPrintDialog) __actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractPrintDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = widgets.NewQActionFromPointer(C.QAbstractPrintDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -315,15 +291,15 @@ func (ptr *QAbstractPrintDialog) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QAbstractPrintDialog) __children_setList(i core.QObject_ITF) {
+func (ptr *QAbstractPrintDialog) __actions_setList(i widgets.QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QAbstractPrintDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
 	}
 }
 
-func (ptr *QAbstractPrintDialog) __children_newList() unsafe.Pointer {
+func (ptr *QAbstractPrintDialog) __actions_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAbstractPrintDialog___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QAbstractPrintDialog___actions_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -418,6 +394,30 @@ func (ptr *QAbstractPrintDialog) __findChildren_setList(i core.QObject_ITF) {
 func (ptr *QAbstractPrintDialog) __findChildren_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAbstractPrintDialog___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractPrintDialog) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractPrintDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractPrintDialog) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAbstractPrintDialog___children_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -597,47 +597,6 @@ func (ptr *QAbstractPrintDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 	}
 }
 
-//export callbackQAbstractPrintDialog_MinimumSizeHint
-func callbackQAbstractPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::minimumSizeHint"); signal != nil {
-		return core.PointerFromQSize(signal.(func() *core.QSize)())
-	}
-
-	return core.PointerFromQSize(NewQAbstractPrintDialogFromPointer(ptr).MinimumSizeHintDefault())
-}
-
-func (ptr *QAbstractPrintDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::minimumSizeHint", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectMinimumSizeHint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::minimumSizeHint")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) MinimumSizeHint() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QAbstractPrintDialog_MinimumSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractPrintDialog) MinimumSizeHintDefault() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QAbstractPrintDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQAbstractPrintDialog_Open
 func callbackQAbstractPrintDialog_Open(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::open"); signal != nil {
@@ -813,6 +772,47 @@ func (ptr *QAbstractPrintDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 	}
 }
 
+//export callbackQAbstractPrintDialog_MinimumSizeHint
+func callbackQAbstractPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::minimumSizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func() *core.QSize)())
+	}
+
+	return core.PointerFromQSize(NewQAbstractPrintDialogFromPointer(ptr).MinimumSizeHintDefault())
+}
+
+func (ptr *QAbstractPrintDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::minimumSizeHint", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectMinimumSizeHint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::minimumSizeHint")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) MinimumSizeHint() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QAbstractPrintDialog_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractPrintDialog) MinimumSizeHintDefault() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QAbstractPrintDialog_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQAbstractPrintDialog_SizeHint
 func callbackQAbstractPrintDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::sizeHint"); signal != nil {
@@ -854,6 +854,154 @@ func (ptr *QAbstractPrintDialog) SizeHintDefault() *core.QSize {
 	return nil
 }
 
+//export callbackQAbstractPrintDialog_Close
+func callbackQAbstractPrintDialog_Close(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).CloseDefault())))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectClose(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::close", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::close")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) Close() bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractPrintDialog) CloseDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_CloseDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractPrintDialog_Event
+func callbackQAbstractPrintDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectEvent(f func(event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::event", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::event")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractPrintDialog) EventDefault(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractPrintDialog_FocusNextPrevChild
+func callbackQAbstractPrintDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusNextPrevChild", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectFocusNextPrevChild() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusNextPrevChild")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) FocusNextPrevChild(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractPrintDialog) FocusNextPrevChildDefault(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractPrintDialog_NativeEvent
+func callbackQAbstractPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::nativeEvent", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectNativeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::nativeEvent")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractPrintDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
 //export callbackQAbstractPrintDialog_ActionEvent
 func callbackQAbstractPrintDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::actionEvent"); signal != nil {
@@ -886,6 +1034,41 @@ func (ptr *QAbstractPrintDialog) ActionEvent(event gui.QActionEvent_ITF) {
 func (ptr *QAbstractPrintDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+//export callbackQAbstractPrintDialog_ChangeEvent
+func callbackQAbstractPrintDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::changeEvent", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectChangeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::changeEvent")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ChangeEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ChangeEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -1134,588 +1317,6 @@ func (ptr *QAbstractPrintDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF)
 	}
 }
 
-//export callbackQAbstractPrintDialog_HideEvent
-func callbackQAbstractPrintDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hideEvent", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectHideEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hideEvent")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) HideEvent(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) HideEventDefault(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-//export callbackQAbstractPrintDialog_LeaveEvent
-func callbackQAbstractPrintDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::leaveEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::leaveEvent", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectLeaveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::leaveEvent")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) LeaveEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) LeaveEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQAbstractPrintDialog_Metric
-func callbackQAbstractPrintDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::metric"); signal != nil {
-		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
-	}
-
-	return C.int(int32(NewQAbstractPrintDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::metric", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectMetric() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::metric")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractPrintDialog_Metric(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-func (ptr *QAbstractPrintDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractPrintDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-//export callbackQAbstractPrintDialog_MoveEvent
-func callbackQAbstractPrintDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::moveEvent"); signal != nil {
-		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::moveEvent", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectMoveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::moveEvent")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) MoveEvent(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-//export callbackQAbstractPrintDialog_PaintEngine
-func callbackQAbstractPrintDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
-	}
-
-	return gui.PointerFromQPaintEngine(NewQAbstractPrintDialogFromPointer(ptr).PaintEngineDefault())
-}
-
-func (ptr *QAbstractPrintDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEngine", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectPaintEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEngine")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) PaintEngine() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QAbstractPrintDialog_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QAbstractPrintDialog) PaintEngineDefault() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QAbstractPrintDialog_PaintEngineDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQAbstractPrintDialog_PaintEvent
-func callbackQAbstractPrintDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::paintEvent"); signal != nil {
-		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEvent", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectPaintEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEvent")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) PaintEvent(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-//export callbackQAbstractPrintDialog_SetEnabled
-func callbackQAbstractPrintDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setEnabled"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectSetEnabled(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setEnabled", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectSetEnabled() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setEnabled")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetEnabled(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetEnabledDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQAbstractPrintDialog_SetStyleSheet
-func callbackQAbstractPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(cGoUnpackString(styleSheet))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setStyleSheet", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectSetStyleSheet() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setStyleSheet")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetStyleSheet(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QAbstractPrintDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetStyleSheetDefault(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QAbstractPrintDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
-	}
-}
-
-//export callbackQAbstractPrintDialog_SetWindowModified
-func callbackQAbstractPrintDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setWindowModified"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectSetWindowModified(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowModified", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectSetWindowModified() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowModified")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetWindowModified(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetWindowModifiedDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQAbstractPrintDialog_SetWindowTitle
-func callbackQAbstractPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(cGoUnpackString(vqs))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectSetWindowTitle(f func(vqs string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowTitle", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectSetWindowTitle() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowTitle")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetWindowTitle(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QAbstractPrintDialog_SetWindowTitle(ptr.Pointer(), vqsC)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) SetWindowTitleDefault(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QAbstractPrintDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
-	}
-}
-
-//export callbackQAbstractPrintDialog_ChangeEvent
-func callbackQAbstractPrintDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::changeEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::changeEvent", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectChangeEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::changeEvent")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ChangeEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QAbstractPrintDialog) ChangeEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQAbstractPrintDialog_Close
-func callbackQAbstractPrintDialog_Close(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::close"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).CloseDefault())))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectClose(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::close", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectClose() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::close")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) Close() bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_Close(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractPrintDialog) CloseDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_CloseDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQAbstractPrintDialog_Event
-func callbackQAbstractPrintDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectEvent(f func(event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::event", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::event")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) Event(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractPrintDialog) EventDefault(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-//export callbackQAbstractPrintDialog_FocusNextPrevChild
-func callbackQAbstractPrintDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::focusNextPrevChild"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusNextPrevChild", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectFocusNextPrevChild() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusNextPrevChild")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) FocusNextPrevChild(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractPrintDialog) FocusNextPrevChildDefault(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-//export callbackQAbstractPrintDialog_HasHeightForWidth
-func callbackQAbstractPrintDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hasHeightForWidth"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).HasHeightForWidthDefault())))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectHasHeightForWidth(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hasHeightForWidth", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectHasHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hasHeightForWidth")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) HasHeightForWidth() bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_HasHeightForWidth(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractPrintDialog) HasHeightForWidthDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQAbstractPrintDialog_HeightForWidth
-func callbackQAbstractPrintDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::heightForWidth"); signal != nil {
-		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
-	}
-
-	return C.int(int32(NewQAbstractPrintDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectHeightForWidth(f func(w int) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::heightForWidth", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::heightForWidth")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) HeightForWidth(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractPrintDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
-func (ptr *QAbstractPrintDialog) HeightForWidthDefault(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractPrintDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
 //export callbackQAbstractPrintDialog_Hide
 func callbackQAbstractPrintDialog_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hide"); signal != nil {
@@ -1748,6 +1349,41 @@ func (ptr *QAbstractPrintDialog) Hide() {
 func (ptr *QAbstractPrintDialog) HideDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_HideDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractPrintDialog_HideEvent
+func callbackQAbstractPrintDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hideEvent", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectHideEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hideEvent")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) HideEvent(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) HideEventDefault(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
@@ -1786,47 +1422,6 @@ func (ptr *QAbstractPrintDialog) InputMethodEventDefault(event gui.QInputMethodE
 	}
 }
 
-//export callbackQAbstractPrintDialog_InputMethodQuery
-func callbackQAbstractPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::inputMethodQuery"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
-	}
-
-	return core.PointerFromQVariant(NewQAbstractPrintDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodQuery", f)
-	}
-}
-
-func (ptr *QAbstractPrintDialog) DisconnectInputMethodQuery() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodQuery")
-	}
-}
-
-func (ptr *QAbstractPrintDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QAbstractPrintDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractPrintDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QAbstractPrintDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQAbstractPrintDialog_KeyReleaseEvent
 func callbackQAbstractPrintDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::keyReleaseEvent"); signal != nil {
@@ -1859,6 +1454,41 @@ func (ptr *QAbstractPrintDialog) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
 func (ptr *QAbstractPrintDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+//export callbackQAbstractPrintDialog_LeaveEvent
+func callbackQAbstractPrintDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::leaveEvent", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectLeaveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::leaveEvent")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) LeaveEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) LeaveEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -2037,41 +1667,74 @@ func (ptr *QAbstractPrintDialog) MouseReleaseEventDefault(event gui.QMouseEvent_
 	}
 }
 
-//export callbackQAbstractPrintDialog_NativeEvent
-func callbackQAbstractPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::nativeEvent", f)
+//export callbackQAbstractPrintDialog_MoveEvent
+func callbackQAbstractPrintDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
 }
 
-func (ptr *QAbstractPrintDialog) DisconnectNativeEvent() {
+func (ptr *QAbstractPrintDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::nativeEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::moveEvent", f)
 	}
 }
 
-func (ptr *QAbstractPrintDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QAbstractPrintDialog) DisconnectMoveEvent() {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::moveEvent")
 	}
-	return false
 }
 
-func (ptr *QAbstractPrintDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QAbstractPrintDialog) MoveEvent(event gui.QMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+		C.QAbstractPrintDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
-	return false
+}
+
+func (ptr *QAbstractPrintDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+//export callbackQAbstractPrintDialog_PaintEvent
+func callbackQAbstractPrintDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEvent", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectPaintEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEvent")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) PaintEvent(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 //export callbackQAbstractPrintDialog_Raise
@@ -2179,6 +1842,41 @@ func (ptr *QAbstractPrintDialog) SetDisabledDefault(disable bool) {
 	}
 }
 
+//export callbackQAbstractPrintDialog_SetEnabled
+func callbackQAbstractPrintDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectSetEnabled(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setEnabled", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectSetEnabled() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setEnabled")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetEnabled(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetEnabledDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
 //export callbackQAbstractPrintDialog_SetFocus2
 func callbackQAbstractPrintDialog_SetFocus2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setFocus2"); signal != nil {
@@ -2246,6 +1944,119 @@ func (ptr *QAbstractPrintDialog) SetHidden(hidden bool) {
 func (ptr *QAbstractPrintDialog) SetHiddenDefault(hidden bool) {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
+	}
+}
+
+//export callbackQAbstractPrintDialog_SetStyleSheet
+func callbackQAbstractPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setStyleSheet"); signal != nil {
+		signal.(func(string))(cGoUnpackString(styleSheet))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setStyleSheet", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectSetStyleSheet() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setStyleSheet")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetStyleSheet(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QAbstractPrintDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetStyleSheetDefault(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QAbstractPrintDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+	}
+}
+
+//export callbackQAbstractPrintDialog_SetWindowModified
+func callbackQAbstractPrintDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectSetWindowModified(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowModified", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectSetWindowModified() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowModified")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetWindowModified(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetWindowModifiedDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+//export callbackQAbstractPrintDialog_SetWindowTitle
+func callbackQAbstractPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setWindowTitle"); signal != nil {
+		signal.(func(string))(cGoUnpackString(vqs))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
+	}
+}
+
+func (ptr *QAbstractPrintDialog) ConnectSetWindowTitle(f func(vqs string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowTitle", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectSetWindowTitle() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowTitle")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetWindowTitle(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QAbstractPrintDialog_SetWindowTitle(ptr.Pointer(), vqsC)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) SetWindowTitleDefault(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QAbstractPrintDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -2564,39 +2375,230 @@ func (ptr *QAbstractPrintDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 	}
 }
 
-//export callbackQAbstractPrintDialog_TimerEvent
-func callbackQAbstractPrintDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQAbstractPrintDialog_PaintEngine
+func callbackQAbstractPrintDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQAbstractPrintDialogFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QAbstractPrintDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEngine", f)
 	}
 }
 
-func (ptr *QAbstractPrintDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAbstractPrintDialog) DisconnectPaintEngine() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEngine")
 	}
 }
 
-func (ptr *QAbstractPrintDialog) DisconnectTimerEvent() {
+func (ptr *QAbstractPrintDialog) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QAbstractPrintDialog_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractPrintDialog) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QAbstractPrintDialog_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQAbstractPrintDialog_InputMethodQuery
+func callbackQAbstractPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::inputMethodQuery"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
+	}
+
+	return core.PointerFromQVariant(NewQAbstractPrintDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodQuery", f)
 	}
 }
 
-func (ptr *QAbstractPrintDialog) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAbstractPrintDialog) DisconnectInputMethodQuery() {
 	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodQuery")
 	}
 }
 
-func (ptr *QAbstractPrintDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAbstractPrintDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		C.QAbstractPrintDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		var tmpValue = core.NewQVariantFromPointer(C.QAbstractPrintDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
+	return nil
+}
+
+func (ptr *QAbstractPrintDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QAbstractPrintDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractPrintDialog_HasHeightForWidth
+func callbackQAbstractPrintDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).HasHeightForWidthDefault())))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectHasHeightForWidth(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hasHeightForWidth", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectHasHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hasHeightForWidth")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) HasHeightForWidth() bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_HasHeightForWidth(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractPrintDialog) HasHeightForWidthDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractPrintDialog_HeightForWidth
+func callbackQAbstractPrintDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
+	}
+
+	return C.int(int32(NewQAbstractPrintDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectHeightForWidth(f func(w int) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::heightForWidth", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::heightForWidth")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) HeightForWidth(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractPrintDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractPrintDialog) HeightForWidthDefault(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractPrintDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+//export callbackQAbstractPrintDialog_Metric
+func callbackQAbstractPrintDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
+	}
+
+	return C.int(int32(NewQAbstractPrintDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::metric", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::metric")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractPrintDialog_Metric(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractPrintDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractPrintDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+//export callbackQAbstractPrintDialog_EventFilter
+func callbackQAbstractPrintDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractPrintDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::eventFilter", f)
+	}
+}
+
+func (ptr *QAbstractPrintDialog) DisconnectEventFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::eventFilter")
+	}
+}
+
+func (ptr *QAbstractPrintDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractPrintDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractPrintDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQAbstractPrintDialog_ChildEvent
@@ -2778,41 +2780,39 @@ func (ptr *QAbstractPrintDialog) DisconnectNotifyDefault(sign core.QMetaMethod_I
 	}
 }
 
-//export callbackQAbstractPrintDialog_EventFilter
-func callbackQAbstractPrintDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAbstractPrintDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::eventFilter", f)
+//export callbackQAbstractPrintDialog_TimerEvent
+func callbackQAbstractPrintDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAbstractPrintDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *QAbstractPrintDialog) DisconnectEventFilter() {
+func (ptr *QAbstractPrintDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::eventFilter")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::timerEvent", f)
 	}
 }
 
-func (ptr *QAbstractPrintDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QAbstractPrintDialog) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::timerEvent")
 	}
-	return false
 }
 
-func (ptr *QAbstractPrintDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QAbstractPrintDialog) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		C.QAbstractPrintDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
+}
+
+func (ptr *QAbstractPrintDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractPrintDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 //export callbackQAbstractPrintDialog_MetaObject
@@ -2890,6 +2890,22 @@ func NewQPageSetupDialogFromPointer(ptr unsafe.Pointer) *QPageSetupDialog {
 	n.SetPointer(ptr)
 	return n
 }
+func NewQPageSetupDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QPageSetupDialog {
+	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func NewQPageSetupDialog2(parent widgets.QWidget_ITF) *QPageSetupDialog {
+	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog2(widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func (ptr *QPageSetupDialog) Printer() *QPrinter {
 	if ptr.Pointer() != nil {
 		return NewQPrinterFromPointer(C.QPageSetupDialog_Printer(ptr.Pointer()))
@@ -2897,12 +2913,41 @@ func (ptr *QPageSetupDialog) Printer() *QPrinter {
 	return nil
 }
 
-func (ptr *QPageSetupDialog) DestroyQPageSetupDialog() {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_DestroyQPageSetupDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
+//export callbackQPageSetupDialog_Exec
+func callbackQPageSetupDialog_Exec(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::exec"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
+
+	return C.int(int32(NewQPageSetupDialogFromPointer(ptr).ExecDefault()))
+}
+
+func (ptr *QPageSetupDialog) ConnectExec(f func() int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::exec", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectExec() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::exec")
+	}
+}
+
+func (ptr *QPageSetupDialog) Exec() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPageSetupDialog_Exec(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QPageSetupDialog) ExecDefault() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPageSetupDialog_ExecDefault(ptr.Pointer())))
+	}
+	return 0
 }
 
 //export callbackQPageSetupDialog_Done
@@ -2948,59 +2993,6 @@ func (ptr *QPageSetupDialog) Open(receiver core.QObject_ITF, member string) {
 	}
 }
 
-func NewQPageSetupDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QPageSetupDialog {
-	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func NewQPageSetupDialog2(parent widgets.QWidget_ITF) *QPageSetupDialog {
-	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog2(widgets.PointerFromQWidget(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-//export callbackQPageSetupDialog_Exec
-func callbackQPageSetupDialog_Exec(ptr unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::exec"); signal != nil {
-		return C.int(int32(signal.(func() int)()))
-	}
-
-	return C.int(int32(NewQPageSetupDialogFromPointer(ptr).ExecDefault()))
-}
-
-func (ptr *QPageSetupDialog) ConnectExec(f func() int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::exec", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectExec() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::exec")
-	}
-}
-
-func (ptr *QPageSetupDialog) Exec() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPageSetupDialog_Exec(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QPageSetupDialog) ExecDefault() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPageSetupDialog_ExecDefault(ptr.Pointer())))
-	}
-	return 0
-}
-
 //export callbackQPageSetupDialog_SetVisible
 func callbackQPageSetupDialog_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setVisible"); signal != nil {
@@ -3036,28 +3028,12 @@ func (ptr *QPageSetupDialog) SetVisibleDefault(visible bool) {
 	}
 }
 
-func (ptr *QPageSetupDialog) __actions_atList(i int) *widgets.QAction {
+func (ptr *QPageSetupDialog) DestroyQPageSetupDialog() {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QPageSetupDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		C.QPageSetupDialog_DestroyQPageSetupDialog(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
 	}
-	return nil
-}
-
-func (ptr *QPageSetupDialog) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
-}
-
-func (ptr *QPageSetupDialog) __actions_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPageSetupDialog___actions_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QPageSetupDialog) __addActions_actions_atList(i int) *widgets.QAction {
@@ -3108,9 +3084,9 @@ func (ptr *QPageSetupDialog) __insertActions_actions_newList() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QPageSetupDialog) __children_atList(i int) *core.QObject {
+func (ptr *QPageSetupDialog) __actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QPageSetupDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = widgets.NewQActionFromPointer(C.QPageSetupDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3119,15 +3095,15 @@ func (ptr *QPageSetupDialog) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QPageSetupDialog) __children_setList(i core.QObject_ITF) {
+func (ptr *QPageSetupDialog) __actions_setList(i widgets.QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPageSetupDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QPageSetupDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
 	}
 }
 
-func (ptr *QPageSetupDialog) __children_newList() unsafe.Pointer {
+func (ptr *QPageSetupDialog) __actions_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPageSetupDialog___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QPageSetupDialog___actions_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -3222,6 +3198,30 @@ func (ptr *QPageSetupDialog) __findChildren_setList(i core.QObject_ITF) {
 func (ptr *QPageSetupDialog) __findChildren_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QPageSetupDialog___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPageSetupDialog) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QPageSetupDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPageSetupDialog) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QPageSetupDialog) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPageSetupDialog___children_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -3366,47 +3366,6 @@ func (ptr *QPageSetupDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 	}
 }
 
-//export callbackQPageSetupDialog_MinimumSizeHint
-func callbackQPageSetupDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::minimumSizeHint"); signal != nil {
-		return core.PointerFromQSize(signal.(func() *core.QSize)())
-	}
-
-	return core.PointerFromQSize(NewQPageSetupDialogFromPointer(ptr).MinimumSizeHintDefault())
-}
-
-func (ptr *QPageSetupDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::minimumSizeHint", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectMinimumSizeHint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::minimumSizeHint")
-	}
-}
-
-func (ptr *QPageSetupDialog) MinimumSizeHint() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPageSetupDialog_MinimumSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPageSetupDialog) MinimumSizeHintDefault() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPageSetupDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQPageSetupDialog_Reject
 func callbackQPageSetupDialog_Reject(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::reject"); signal != nil {
@@ -3512,6 +3471,47 @@ func (ptr *QPageSetupDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 	}
 }
 
+//export callbackQPageSetupDialog_MinimumSizeHint
+func callbackQPageSetupDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::minimumSizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func() *core.QSize)())
+	}
+
+	return core.PointerFromQSize(NewQPageSetupDialogFromPointer(ptr).MinimumSizeHintDefault())
+}
+
+func (ptr *QPageSetupDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::minimumSizeHint", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectMinimumSizeHint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::minimumSizeHint")
+	}
+}
+
+func (ptr *QPageSetupDialog) MinimumSizeHint() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPageSetupDialog_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPageSetupDialog) MinimumSizeHintDefault() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPageSetupDialog_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQPageSetupDialog_SizeHint
 func callbackQPageSetupDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::sizeHint"); signal != nil {
@@ -3553,6 +3553,154 @@ func (ptr *QPageSetupDialog) SizeHintDefault() *core.QSize {
 	return nil
 }
 
+//export callbackQPageSetupDialog_Close
+func callbackQPageSetupDialog_Close(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).CloseDefault())))
+}
+
+func (ptr *QPageSetupDialog) ConnectClose(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::close", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::close")
+	}
+}
+
+func (ptr *QPageSetupDialog) Close() bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPageSetupDialog) CloseDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_CloseDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPageSetupDialog_Event
+func callbackQPageSetupDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPageSetupDialog) ConnectEvent(f func(event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::event", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::event")
+	}
+}
+
+func (ptr *QPageSetupDialog) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPageSetupDialog) EventDefault(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQPageSetupDialog_FocusNextPrevChild
+func callbackQPageSetupDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
+}
+
+func (ptr *QPageSetupDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusNextPrevChild", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectFocusNextPrevChild() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusNextPrevChild")
+	}
+}
+
+func (ptr *QPageSetupDialog) FocusNextPrevChild(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+func (ptr *QPageSetupDialog) FocusNextPrevChildDefault(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+//export callbackQPageSetupDialog_NativeEvent
+func callbackQPageSetupDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QPageSetupDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::nativeEvent", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectNativeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::nativeEvent")
+	}
+}
+
+func (ptr *QPageSetupDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
+func (ptr *QPageSetupDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
 //export callbackQPageSetupDialog_ActionEvent
 func callbackQPageSetupDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::actionEvent"); signal != nil {
@@ -3585,6 +3733,41 @@ func (ptr *QPageSetupDialog) ActionEvent(event gui.QActionEvent_ITF) {
 func (ptr *QPageSetupDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+//export callbackQPageSetupDialog_ChangeEvent
+func callbackQPageSetupDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::changeEvent", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectChangeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::changeEvent")
+	}
+}
+
+func (ptr *QPageSetupDialog) ChangeEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) ChangeEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -3833,588 +4016,6 @@ func (ptr *QPageSetupDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 	}
 }
 
-//export callbackQPageSetupDialog_HideEvent
-func callbackQPageSetupDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hideEvent", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectHideEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hideEvent")
-	}
-}
-
-func (ptr *QPageSetupDialog) HideEvent(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) HideEventDefault(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-//export callbackQPageSetupDialog_LeaveEvent
-func callbackQPageSetupDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::leaveEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::leaveEvent", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectLeaveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::leaveEvent")
-	}
-}
-
-func (ptr *QPageSetupDialog) LeaveEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) LeaveEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPageSetupDialog_Metric
-func callbackQPageSetupDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::metric"); signal != nil {
-		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
-	}
-
-	return C.int(int32(NewQPageSetupDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
-}
-
-func (ptr *QPageSetupDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::metric", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectMetric() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::metric")
-	}
-}
-
-func (ptr *QPageSetupDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPageSetupDialog_Metric(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-func (ptr *QPageSetupDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPageSetupDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-//export callbackQPageSetupDialog_MoveEvent
-func callbackQPageSetupDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::moveEvent"); signal != nil {
-		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::moveEvent", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectMoveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::moveEvent")
-	}
-}
-
-func (ptr *QPageSetupDialog) MoveEvent(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-//export callbackQPageSetupDialog_PaintEngine
-func callbackQPageSetupDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
-	}
-
-	return gui.PointerFromQPaintEngine(NewQPageSetupDialogFromPointer(ptr).PaintEngineDefault())
-}
-
-func (ptr *QPageSetupDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEngine", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectPaintEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEngine")
-	}
-}
-
-func (ptr *QPageSetupDialog) PaintEngine() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPageSetupDialog_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPageSetupDialog) PaintEngineDefault() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPageSetupDialog_PaintEngineDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQPageSetupDialog_PaintEvent
-func callbackQPageSetupDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::paintEvent"); signal != nil {
-		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEvent", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectPaintEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEvent")
-	}
-}
-
-func (ptr *QPageSetupDialog) PaintEvent(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-//export callbackQPageSetupDialog_SetEnabled
-func callbackQPageSetupDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setEnabled"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectSetEnabled(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setEnabled", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectSetEnabled() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setEnabled")
-	}
-}
-
-func (ptr *QPageSetupDialog) SetEnabled(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPageSetupDialog) SetEnabledDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPageSetupDialog_SetStyleSheet
-func callbackQPageSetupDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(cGoUnpackString(styleSheet))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setStyleSheet", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectSetStyleSheet() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setStyleSheet")
-	}
-}
-
-func (ptr *QPageSetupDialog) SetStyleSheet(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPageSetupDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
-	}
-}
-
-func (ptr *QPageSetupDialog) SetStyleSheetDefault(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPageSetupDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
-	}
-}
-
-//export callbackQPageSetupDialog_SetWindowModified
-func callbackQPageSetupDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setWindowModified"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectSetWindowModified(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowModified", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectSetWindowModified() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowModified")
-	}
-}
-
-func (ptr *QPageSetupDialog) SetWindowModified(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPageSetupDialog) SetWindowModifiedDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPageSetupDialog_SetWindowTitle
-func callbackQPageSetupDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(cGoUnpackString(vqs))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectSetWindowTitle(f func(vqs string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowTitle", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectSetWindowTitle() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowTitle")
-	}
-}
-
-func (ptr *QPageSetupDialog) SetWindowTitle(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPageSetupDialog_SetWindowTitle(ptr.Pointer(), vqsC)
-	}
-}
-
-func (ptr *QPageSetupDialog) SetWindowTitleDefault(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPageSetupDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
-	}
-}
-
-//export callbackQPageSetupDialog_ChangeEvent
-func callbackQPageSetupDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::changeEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::changeEvent", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectChangeEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::changeEvent")
-	}
-}
-
-func (ptr *QPageSetupDialog) ChangeEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPageSetupDialog) ChangeEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPageSetupDialog_Close
-func callbackQPageSetupDialog_Close(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::close"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).CloseDefault())))
-}
-
-func (ptr *QPageSetupDialog) ConnectClose(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::close", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectClose() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::close")
-	}
-}
-
-func (ptr *QPageSetupDialog) Close() bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_Close(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPageSetupDialog) CloseDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_CloseDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPageSetupDialog_Event
-func callbackQPageSetupDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPageSetupDialog) ConnectEvent(f func(event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::event", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::event")
-	}
-}
-
-func (ptr *QPageSetupDialog) Event(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QPageSetupDialog) EventDefault(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-//export callbackQPageSetupDialog_FocusNextPrevChild
-func callbackQPageSetupDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::focusNextPrevChild"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
-}
-
-func (ptr *QPageSetupDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusNextPrevChild", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectFocusNextPrevChild() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusNextPrevChild")
-	}
-}
-
-func (ptr *QPageSetupDialog) FocusNextPrevChild(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-func (ptr *QPageSetupDialog) FocusNextPrevChildDefault(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-//export callbackQPageSetupDialog_HasHeightForWidth
-func callbackQPageSetupDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hasHeightForWidth"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).HasHeightForWidthDefault())))
-}
-
-func (ptr *QPageSetupDialog) ConnectHasHeightForWidth(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hasHeightForWidth", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectHasHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hasHeightForWidth")
-	}
-}
-
-func (ptr *QPageSetupDialog) HasHeightForWidth() bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_HasHeightForWidth(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPageSetupDialog) HasHeightForWidthDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPageSetupDialog_HeightForWidth
-func callbackQPageSetupDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::heightForWidth"); signal != nil {
-		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
-	}
-
-	return C.int(int32(NewQPageSetupDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
-}
-
-func (ptr *QPageSetupDialog) ConnectHeightForWidth(f func(w int) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::heightForWidth", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::heightForWidth")
-	}
-}
-
-func (ptr *QPageSetupDialog) HeightForWidth(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPageSetupDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
-func (ptr *QPageSetupDialog) HeightForWidthDefault(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPageSetupDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
 //export callbackQPageSetupDialog_Hide
 func callbackQPageSetupDialog_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hide"); signal != nil {
@@ -4447,6 +4048,41 @@ func (ptr *QPageSetupDialog) Hide() {
 func (ptr *QPageSetupDialog) HideDefault() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_HideDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQPageSetupDialog_HideEvent
+func callbackQPageSetupDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hideEvent", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectHideEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hideEvent")
+	}
+}
+
+func (ptr *QPageSetupDialog) HideEvent(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) HideEventDefault(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
@@ -4485,47 +4121,6 @@ func (ptr *QPageSetupDialog) InputMethodEventDefault(event gui.QInputMethodEvent
 	}
 }
 
-//export callbackQPageSetupDialog_InputMethodQuery
-func callbackQPageSetupDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::inputMethodQuery"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
-	}
-
-	return core.PointerFromQVariant(NewQPageSetupDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
-}
-
-func (ptr *QPageSetupDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodQuery", f)
-	}
-}
-
-func (ptr *QPageSetupDialog) DisconnectInputMethodQuery() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodQuery")
-	}
-}
-
-func (ptr *QPageSetupDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPageSetupDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPageSetupDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPageSetupDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQPageSetupDialog_KeyReleaseEvent
 func callbackQPageSetupDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::keyReleaseEvent"); signal != nil {
@@ -4558,6 +4153,41 @@ func (ptr *QPageSetupDialog) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
 func (ptr *QPageSetupDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+//export callbackQPageSetupDialog_LeaveEvent
+func callbackQPageSetupDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::leaveEvent", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectLeaveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::leaveEvent")
+	}
+}
+
+func (ptr *QPageSetupDialog) LeaveEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) LeaveEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -4736,41 +4366,74 @@ func (ptr *QPageSetupDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF)
 	}
 }
 
-//export callbackQPageSetupDialog_NativeEvent
-func callbackQPageSetupDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QPageSetupDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::nativeEvent", f)
+//export callbackQPageSetupDialog_MoveEvent
+func callbackQPageSetupDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
 }
 
-func (ptr *QPageSetupDialog) DisconnectNativeEvent() {
+func (ptr *QPageSetupDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::nativeEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::moveEvent", f)
 	}
 }
 
-func (ptr *QPageSetupDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPageSetupDialog) DisconnectMoveEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::moveEvent")
 	}
-	return false
 }
 
-func (ptr *QPageSetupDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPageSetupDialog) MoveEvent(event gui.QMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+		C.QPageSetupDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPageSetupDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+//export callbackQPageSetupDialog_PaintEvent
+func callbackQPageSetupDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEvent", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectPaintEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEvent")
+	}
+}
+
+func (ptr *QPageSetupDialog) PaintEvent(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QPageSetupDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 //export callbackQPageSetupDialog_Raise
@@ -4878,6 +4541,41 @@ func (ptr *QPageSetupDialog) SetDisabledDefault(disable bool) {
 	}
 }
 
+//export callbackQPageSetupDialog_SetEnabled
+func callbackQPageSetupDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectSetEnabled(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setEnabled", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectSetEnabled() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setEnabled")
+	}
+}
+
+func (ptr *QPageSetupDialog) SetEnabled(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPageSetupDialog) SetEnabledDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
 //export callbackQPageSetupDialog_SetFocus2
 func callbackQPageSetupDialog_SetFocus2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setFocus2"); signal != nil {
@@ -4945,6 +4643,119 @@ func (ptr *QPageSetupDialog) SetHidden(hidden bool) {
 func (ptr *QPageSetupDialog) SetHiddenDefault(hidden bool) {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
+	}
+}
+
+//export callbackQPageSetupDialog_SetStyleSheet
+func callbackQPageSetupDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setStyleSheet"); signal != nil {
+		signal.(func(string))(cGoUnpackString(styleSheet))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setStyleSheet", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectSetStyleSheet() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setStyleSheet")
+	}
+}
+
+func (ptr *QPageSetupDialog) SetStyleSheet(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPageSetupDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
+	}
+}
+
+func (ptr *QPageSetupDialog) SetStyleSheetDefault(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPageSetupDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+	}
+}
+
+//export callbackQPageSetupDialog_SetWindowModified
+func callbackQPageSetupDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectSetWindowModified(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowModified", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectSetWindowModified() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowModified")
+	}
+}
+
+func (ptr *QPageSetupDialog) SetWindowModified(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPageSetupDialog) SetWindowModifiedDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+//export callbackQPageSetupDialog_SetWindowTitle
+func callbackQPageSetupDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setWindowTitle"); signal != nil {
+		signal.(func(string))(cGoUnpackString(vqs))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
+	}
+}
+
+func (ptr *QPageSetupDialog) ConnectSetWindowTitle(f func(vqs string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowTitle", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectSetWindowTitle() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowTitle")
+	}
+}
+
+func (ptr *QPageSetupDialog) SetWindowTitle(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPageSetupDialog_SetWindowTitle(ptr.Pointer(), vqsC)
+	}
+}
+
+func (ptr *QPageSetupDialog) SetWindowTitleDefault(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPageSetupDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -5263,39 +5074,230 @@ func (ptr *QPageSetupDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 	}
 }
 
-//export callbackQPageSetupDialog_TimerEvent
-func callbackQPageSetupDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQPageSetupDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQPageSetupDialog_PaintEngine
+func callbackQPageSetupDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQPageSetupDialogFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QPageSetupDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEngine", f)
 	}
 }
 
-func (ptr *QPageSetupDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QPageSetupDialog) DisconnectPaintEngine() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEngine")
 	}
 }
 
-func (ptr *QPageSetupDialog) DisconnectTimerEvent() {
+func (ptr *QPageSetupDialog) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPageSetupDialog_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPageSetupDialog) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPageSetupDialog_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQPageSetupDialog_InputMethodQuery
+func callbackQPageSetupDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::inputMethodQuery"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
+	}
+
+	return core.PointerFromQVariant(NewQPageSetupDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
+}
+
+func (ptr *QPageSetupDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodQuery", f)
 	}
 }
 
-func (ptr *QPageSetupDialog) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QPageSetupDialog) DisconnectInputMethodQuery() {
 	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodQuery")
 	}
 }
 
-func (ptr *QPageSetupDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QPageSetupDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		C.QPageSetupDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		var tmpValue = core.NewQVariantFromPointer(C.QPageSetupDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
+	return nil
+}
+
+func (ptr *QPageSetupDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QPageSetupDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPageSetupDialog_HasHeightForWidth
+func callbackQPageSetupDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).HasHeightForWidthDefault())))
+}
+
+func (ptr *QPageSetupDialog) ConnectHasHeightForWidth(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hasHeightForWidth", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectHasHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hasHeightForWidth")
+	}
+}
+
+func (ptr *QPageSetupDialog) HasHeightForWidth() bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_HasHeightForWidth(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPageSetupDialog) HasHeightForWidthDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPageSetupDialog_HeightForWidth
+func callbackQPageSetupDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
+	}
+
+	return C.int(int32(NewQPageSetupDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
+}
+
+func (ptr *QPageSetupDialog) ConnectHeightForWidth(f func(w int) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::heightForWidth", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::heightForWidth")
+	}
+}
+
+func (ptr *QPageSetupDialog) HeightForWidth(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPageSetupDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+func (ptr *QPageSetupDialog) HeightForWidthDefault(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPageSetupDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+//export callbackQPageSetupDialog_Metric
+func callbackQPageSetupDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
+	}
+
+	return C.int(int32(NewQPageSetupDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
+}
+
+func (ptr *QPageSetupDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::metric", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::metric")
+	}
+}
+
+func (ptr *QPageSetupDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPageSetupDialog_Metric(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+func (ptr *QPageSetupDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPageSetupDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+//export callbackQPageSetupDialog_EventFilter
+func callbackQPageSetupDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPageSetupDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::eventFilter", f)
+	}
+}
+
+func (ptr *QPageSetupDialog) DisconnectEventFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::eventFilter")
+	}
+}
+
+func (ptr *QPageSetupDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPageSetupDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageSetupDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQPageSetupDialog_ChildEvent
@@ -5477,41 +5479,39 @@ func (ptr *QPageSetupDialog) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
-//export callbackQPageSetupDialog_EventFilter
-func callbackQPageSetupDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPageSetupDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::eventFilter", f)
+//export callbackQPageSetupDialog_TimerEvent
+func callbackQPageSetupDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQPageSetupDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *QPageSetupDialog) DisconnectEventFilter() {
+func (ptr *QPageSetupDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::eventFilter")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::timerEvent", f)
 	}
 }
 
-func (ptr *QPageSetupDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPageSetupDialog) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::timerEvent")
 	}
-	return false
 }
 
-func (ptr *QPageSetupDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPageSetupDialog) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		C.QPageSetupDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPageSetupDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageSetupDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 //export callbackQPageSetupDialog_MetaObject
@@ -5702,45 +5702,11 @@ func NewQPrintDialogFromPointer(ptr unsafe.Pointer) *QPrintDialog {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QPrintDialog) Options() QAbstractPrintDialog__PrintDialogOption {
+func (ptr *QPrintDialog) Printer() *QPrinter {
 	if ptr.Pointer() != nil {
-		return QAbstractPrintDialog__PrintDialogOption(C.QPrintDialog_Options(ptr.Pointer()))
+		return NewQPrinterFromPointer(C.QPrintDialog_Printer(ptr.Pointer()))
 	}
-	return 0
-}
-
-func (ptr *QPrintDialog) SetOptions(options QAbstractPrintDialog__PrintDialogOption) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_SetOptions(ptr.Pointer(), C.longlong(options))
-	}
-}
-
-//export callbackQPrintDialog_Accepted
-func callbackQPrintDialog_Accepted(ptr unsafe.Pointer, printer unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::accepted"); signal != nil {
-		signal.(func(*QPrinter))(NewQPrinterFromPointer(printer))
-	}
-
-}
-
-func (ptr *QPrintDialog) ConnectAccepted(f func(printer *QPrinter)) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_ConnectAccepted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accepted", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectAccepted() {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_DisconnectAccepted(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accepted")
-	}
-}
-
-func (ptr *QPrintDialog) Accepted(printer QPrinter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_Accepted(ptr.Pointer(), PointerFromQPrinter(printer))
-	}
+	return nil
 }
 
 //export callbackQPrintDialog_Done
@@ -5776,34 +5742,6 @@ func (ptr *QPrintDialog) DoneDefault(result int) {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_DoneDefault(ptr.Pointer(), C.int(int32(result)))
 	}
-}
-
-func (ptr *QPrintDialog) Open(receiver core.QObject_ITF, member string) {
-	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
-		C.QPrintDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
-	}
-}
-
-func (ptr *QPrintDialog) Printer() *QPrinter {
-	if ptr.Pointer() != nil {
-		return NewQPrinterFromPointer(C.QPrintDialog_Printer(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPrintDialog) SetOption(option QAbstractPrintDialog__PrintDialogOption, on bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_SetOption(ptr.Pointer(), C.longlong(option), C.char(int8(qt.GoBoolToInt(on))))
-	}
-}
-
-func (ptr *QPrintDialog) TestOption(option QAbstractPrintDialog__PrintDialogOption) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_TestOption(ptr.Pointer(), C.longlong(option)) != 0
-	}
-	return false
 }
 
 func NewQPrintDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QPrintDialog {
@@ -5859,6 +5797,54 @@ func (ptr *QPrintDialog) ExecDefault() int {
 	return 0
 }
 
+//export callbackQPrintDialog_Accepted
+func callbackQPrintDialog_Accepted(ptr unsafe.Pointer, printer unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::accepted"); signal != nil {
+		signal.(func(*QPrinter))(NewQPrinterFromPointer(printer))
+	}
+
+}
+
+func (ptr *QPrintDialog) ConnectAccepted(f func(printer *QPrinter)) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_ConnectAccepted(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accepted", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectAccepted() {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_DisconnectAccepted(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accepted")
+	}
+}
+
+func (ptr *QPrintDialog) Accepted(printer QPrinter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_Accepted(ptr.Pointer(), PointerFromQPrinter(printer))
+	}
+}
+
+func (ptr *QPrintDialog) Open(receiver core.QObject_ITF, member string) {
+	if ptr.Pointer() != nil {
+		var memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+		C.QPrintDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
+	}
+}
+
+func (ptr *QPrintDialog) SetOption(option QAbstractPrintDialog__PrintDialogOption, on bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_SetOption(ptr.Pointer(), C.longlong(option), C.char(int8(qt.GoBoolToInt(on))))
+	}
+}
+
+func (ptr *QPrintDialog) SetOptions(options QAbstractPrintDialog__PrintDialogOption) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_SetOptions(ptr.Pointer(), C.longlong(options))
+	}
+}
+
 //export callbackQPrintDialog_SetVisible
 func callbackQPrintDialog_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setVisible"); signal != nil {
@@ -5902,6 +5888,20 @@ func (ptr *QPrintDialog) DestroyQPrintDialog() {
 	}
 }
 
+func (ptr *QPrintDialog) Options() QAbstractPrintDialog__PrintDialogOption {
+	if ptr.Pointer() != nil {
+		return QAbstractPrintDialog__PrintDialogOption(C.QPrintDialog_Options(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrintDialog) TestOption(option QAbstractPrintDialog__PrintDialogOption) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+	}
+	return false
+}
+
 func (ptr *QPrintDialog) __setOptionTabs_tabs_atList(i int) *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QPrintDialog___setOptionTabs_tabs_atList(ptr.Pointer(), C.int(int32(i))))
@@ -5922,30 +5922,6 @@ func (ptr *QPrintDialog) __setOptionTabs_tabs_setList(i widgets.QWidget_ITF) {
 func (ptr *QPrintDialog) __setOptionTabs_tabs_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QPrintDialog___setOptionTabs_tabs_newList(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPrintDialog) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QPrintDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintDialog) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
-}
-
-func (ptr *QPrintDialog) __actions_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPrintDialog___actions_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -5998,9 +5974,9 @@ func (ptr *QPrintDialog) __insertActions_actions_newList() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QPrintDialog) __children_atList(i int) *core.QObject {
+func (ptr *QPrintDialog) __actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QPrintDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = widgets.NewQActionFromPointer(C.QPrintDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6009,15 +5985,15 @@ func (ptr *QPrintDialog) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QPrintDialog) __children_setList(i core.QObject_ITF) {
+func (ptr *QPrintDialog) __actions_setList(i widgets.QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPrintDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QPrintDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
 	}
 }
 
-func (ptr *QPrintDialog) __children_newList() unsafe.Pointer {
+func (ptr *QPrintDialog) __actions_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPrintDialog___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QPrintDialog___actions_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -6112,6 +6088,30 @@ func (ptr *QPrintDialog) __findChildren_setList(i core.QObject_ITF) {
 func (ptr *QPrintDialog) __findChildren_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QPrintDialog___findChildren_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrintDialog) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QPrintDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrintDialog) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QPrintDialog) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPrintDialog___children_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -6256,47 +6256,6 @@ func (ptr *QPrintDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 	}
 }
 
-//export callbackQPrintDialog_MinimumSizeHint
-func callbackQPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::minimumSizeHint"); signal != nil {
-		return core.PointerFromQSize(signal.(func() *core.QSize)())
-	}
-
-	return core.PointerFromQSize(NewQPrintDialogFromPointer(ptr).MinimumSizeHintDefault())
-}
-
-func (ptr *QPrintDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::minimumSizeHint", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectMinimumSizeHint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::minimumSizeHint")
-	}
-}
-
-func (ptr *QPrintDialog) MinimumSizeHint() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintDialog_MinimumSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintDialog) MinimumSizeHintDefault() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQPrintDialog_Reject
 func callbackQPrintDialog_Reject(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::reject"); signal != nil {
@@ -6402,6 +6361,47 @@ func (ptr *QPrintDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 	}
 }
 
+//export callbackQPrintDialog_MinimumSizeHint
+func callbackQPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::minimumSizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func() *core.QSize)())
+	}
+
+	return core.PointerFromQSize(NewQPrintDialogFromPointer(ptr).MinimumSizeHintDefault())
+}
+
+func (ptr *QPrintDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::minimumSizeHint", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectMinimumSizeHint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::minimumSizeHint")
+	}
+}
+
+func (ptr *QPrintDialog) MinimumSizeHint() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintDialog_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrintDialog) MinimumSizeHintDefault() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintDialog_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQPrintDialog_SizeHint
 func callbackQPrintDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::sizeHint"); signal != nil {
@@ -6443,6 +6443,154 @@ func (ptr *QPrintDialog) SizeHintDefault() *core.QSize {
 	return nil
 }
 
+//export callbackQPrintDialog_Close
+func callbackQPrintDialog_Close(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).CloseDefault())))
+}
+
+func (ptr *QPrintDialog) ConnectClose(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::close", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::close")
+	}
+}
+
+func (ptr *QPrintDialog) Close() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintDialog) CloseDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_CloseDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPrintDialog_Event
+func callbackQPrintDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPrintDialog) ConnectEvent(f func(event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::event", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::event")
+	}
+}
+
+func (ptr *QPrintDialog) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintDialog) EventDefault(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQPrintDialog_FocusNextPrevChild
+func callbackQPrintDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
+}
+
+func (ptr *QPrintDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusNextPrevChild", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectFocusNextPrevChild() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusNextPrevChild")
+	}
+}
+
+func (ptr *QPrintDialog) FocusNextPrevChild(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintDialog) FocusNextPrevChildDefault(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+//export callbackQPrintDialog_NativeEvent
+func callbackQPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QPrintDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::nativeEvent", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectNativeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::nativeEvent")
+	}
+}
+
+func (ptr *QPrintDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
 //export callbackQPrintDialog_ActionEvent
 func callbackQPrintDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::actionEvent"); signal != nil {
@@ -6475,6 +6623,41 @@ func (ptr *QPrintDialog) ActionEvent(event gui.QActionEvent_ITF) {
 func (ptr *QPrintDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+//export callbackQPrintDialog_ChangeEvent
+func callbackQPrintDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPrintDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::changeEvent", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectChangeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::changeEvent")
+	}
+}
+
+func (ptr *QPrintDialog) ChangeEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPrintDialog) ChangeEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -6723,588 +6906,6 @@ func (ptr *QPrintDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 	}
 }
 
-//export callbackQPrintDialog_HideEvent
-func callbackQPrintDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-	} else {
-		NewQPrintDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hideEvent", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectHideEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hideEvent")
-	}
-}
-
-func (ptr *QPrintDialog) HideEvent(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-func (ptr *QPrintDialog) HideEventDefault(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-//export callbackQPrintDialog_LeaveEvent
-func callbackQPrintDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::leaveEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPrintDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::leaveEvent", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectLeaveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::leaveEvent")
-	}
-}
-
-func (ptr *QPrintDialog) LeaveEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPrintDialog) LeaveEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPrintDialog_Metric
-func callbackQPrintDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::metric"); signal != nil {
-		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
-	}
-
-	return C.int(int32(NewQPrintDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
-}
-
-func (ptr *QPrintDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::metric", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectMetric() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::metric")
-	}
-}
-
-func (ptr *QPrintDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintDialog_Metric(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-func (ptr *QPrintDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-//export callbackQPrintDialog_MoveEvent
-func callbackQPrintDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::moveEvent"); signal != nil {
-		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-	} else {
-		NewQPrintDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::moveEvent", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectMoveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::moveEvent")
-	}
-}
-
-func (ptr *QPrintDialog) MoveEvent(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-func (ptr *QPrintDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-//export callbackQPrintDialog_PaintEngine
-func callbackQPrintDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
-	}
-
-	return gui.PointerFromQPaintEngine(NewQPrintDialogFromPointer(ptr).PaintEngineDefault())
-}
-
-func (ptr *QPrintDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEngine", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectPaintEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEngine")
-	}
-}
-
-func (ptr *QPrintDialog) PaintEngine() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrintDialog_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPrintDialog) PaintEngineDefault() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrintDialog_PaintEngineDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQPrintDialog_PaintEvent
-func callbackQPrintDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::paintEvent"); signal != nil {
-		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-	} else {
-		NewQPrintDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEvent", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectPaintEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEvent")
-	}
-}
-
-func (ptr *QPrintDialog) PaintEvent(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-func (ptr *QPrintDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-//export callbackQPrintDialog_SetEnabled
-func callbackQPrintDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setEnabled"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPrintDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPrintDialog) ConnectSetEnabled(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setEnabled", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectSetEnabled() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setEnabled")
-	}
-}
-
-func (ptr *QPrintDialog) SetEnabled(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPrintDialog) SetEnabledDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPrintDialog_SetStyleSheet
-func callbackQPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(cGoUnpackString(styleSheet))
-	} else {
-		NewQPrintDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
-	}
-}
-
-func (ptr *QPrintDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setStyleSheet", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectSetStyleSheet() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setStyleSheet")
-	}
-}
-
-func (ptr *QPrintDialog) SetStyleSheet(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPrintDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
-	}
-}
-
-func (ptr *QPrintDialog) SetStyleSheetDefault(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPrintDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
-	}
-}
-
-//export callbackQPrintDialog_SetWindowModified
-func callbackQPrintDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setWindowModified"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPrintDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPrintDialog) ConnectSetWindowModified(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowModified", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectSetWindowModified() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowModified")
-	}
-}
-
-func (ptr *QPrintDialog) SetWindowModified(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPrintDialog) SetWindowModifiedDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPrintDialog_SetWindowTitle
-func callbackQPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(cGoUnpackString(vqs))
-	} else {
-		NewQPrintDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
-	}
-}
-
-func (ptr *QPrintDialog) ConnectSetWindowTitle(f func(vqs string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowTitle", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectSetWindowTitle() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowTitle")
-	}
-}
-
-func (ptr *QPrintDialog) SetWindowTitle(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPrintDialog_SetWindowTitle(ptr.Pointer(), vqsC)
-	}
-}
-
-func (ptr *QPrintDialog) SetWindowTitleDefault(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPrintDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
-	}
-}
-
-//export callbackQPrintDialog_ChangeEvent
-func callbackQPrintDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::changeEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPrintDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::changeEvent", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectChangeEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::changeEvent")
-	}
-}
-
-func (ptr *QPrintDialog) ChangeEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPrintDialog) ChangeEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPrintDialog_Close
-func callbackQPrintDialog_Close(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::close"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).CloseDefault())))
-}
-
-func (ptr *QPrintDialog) ConnectClose(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::close", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectClose() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::close")
-	}
-}
-
-func (ptr *QPrintDialog) Close() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_Close(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintDialog) CloseDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_CloseDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPrintDialog_Event
-func callbackQPrintDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPrintDialog) ConnectEvent(f func(event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::event", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::event")
-	}
-}
-
-func (ptr *QPrintDialog) Event(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintDialog) EventDefault(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-//export callbackQPrintDialog_FocusNextPrevChild
-func callbackQPrintDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::focusNextPrevChild"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
-}
-
-func (ptr *QPrintDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusNextPrevChild", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectFocusNextPrevChild() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusNextPrevChild")
-	}
-}
-
-func (ptr *QPrintDialog) FocusNextPrevChild(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintDialog) FocusNextPrevChildDefault(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-//export callbackQPrintDialog_HasHeightForWidth
-func callbackQPrintDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hasHeightForWidth"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).HasHeightForWidthDefault())))
-}
-
-func (ptr *QPrintDialog) ConnectHasHeightForWidth(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hasHeightForWidth", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectHasHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hasHeightForWidth")
-	}
-}
-
-func (ptr *QPrintDialog) HasHeightForWidth() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_HasHeightForWidth(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintDialog) HasHeightForWidthDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPrintDialog_HeightForWidth
-func callbackQPrintDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::heightForWidth"); signal != nil {
-		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
-	}
-
-	return C.int(int32(NewQPrintDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
-}
-
-func (ptr *QPrintDialog) ConnectHeightForWidth(f func(w int) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::heightForWidth", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::heightForWidth")
-	}
-}
-
-func (ptr *QPrintDialog) HeightForWidth(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
-func (ptr *QPrintDialog) HeightForWidthDefault(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
 //export callbackQPrintDialog_Hide
 func callbackQPrintDialog_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hide"); signal != nil {
@@ -7337,6 +6938,41 @@ func (ptr *QPrintDialog) Hide() {
 func (ptr *QPrintDialog) HideDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_HideDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQPrintDialog_HideEvent
+func callbackQPrintDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	} else {
+		NewQPrintDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hideEvent", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectHideEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hideEvent")
+	}
+}
+
+func (ptr *QPrintDialog) HideEvent(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QPrintDialog) HideEventDefault(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
@@ -7375,47 +7011,6 @@ func (ptr *QPrintDialog) InputMethodEventDefault(event gui.QInputMethodEvent_ITF
 	}
 }
 
-//export callbackQPrintDialog_InputMethodQuery
-func callbackQPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::inputMethodQuery"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
-	}
-
-	return core.PointerFromQVariant(NewQPrintDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
-}
-
-func (ptr *QPrintDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodQuery", f)
-	}
-}
-
-func (ptr *QPrintDialog) DisconnectInputMethodQuery() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodQuery")
-	}
-}
-
-func (ptr *QPrintDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPrintDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPrintDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQPrintDialog_KeyReleaseEvent
 func callbackQPrintDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::keyReleaseEvent"); signal != nil {
@@ -7448,6 +7043,41 @@ func (ptr *QPrintDialog) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
 func (ptr *QPrintDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+//export callbackQPrintDialog_LeaveEvent
+func callbackQPrintDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPrintDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::leaveEvent", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectLeaveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::leaveEvent")
+	}
+}
+
+func (ptr *QPrintDialog) LeaveEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPrintDialog) LeaveEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -7626,41 +7256,74 @@ func (ptr *QPrintDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 	}
 }
 
-//export callbackQPrintDialog_NativeEvent
-func callbackQPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QPrintDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::nativeEvent", f)
+//export callbackQPrintDialog_MoveEvent
+func callbackQPrintDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+	} else {
+		NewQPrintDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
 }
 
-func (ptr *QPrintDialog) DisconnectNativeEvent() {
+func (ptr *QPrintDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::nativeEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::moveEvent", f)
 	}
 }
 
-func (ptr *QPrintDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintDialog) DisconnectMoveEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPrintDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::moveEvent")
 	}
-	return false
 }
 
-func (ptr *QPrintDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintDialog) MoveEvent(event gui.QMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPrintDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+		C.QPrintDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPrintDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+//export callbackQPrintDialog_PaintEvent
+func callbackQPrintDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	} else {
+		NewQPrintDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEvent", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectPaintEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEvent")
+	}
+}
+
+func (ptr *QPrintDialog) PaintEvent(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QPrintDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 //export callbackQPrintDialog_Raise
@@ -7768,6 +7431,41 @@ func (ptr *QPrintDialog) SetDisabledDefault(disable bool) {
 	}
 }
 
+//export callbackQPrintDialog_SetEnabled
+func callbackQPrintDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPrintDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPrintDialog) ConnectSetEnabled(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setEnabled", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectSetEnabled() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setEnabled")
+	}
+}
+
+func (ptr *QPrintDialog) SetEnabled(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPrintDialog) SetEnabledDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
 //export callbackQPrintDialog_SetFocus2
 func callbackQPrintDialog_SetFocus2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setFocus2"); signal != nil {
@@ -7835,6 +7533,119 @@ func (ptr *QPrintDialog) SetHidden(hidden bool) {
 func (ptr *QPrintDialog) SetHiddenDefault(hidden bool) {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
+	}
+}
+
+//export callbackQPrintDialog_SetStyleSheet
+func callbackQPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setStyleSheet"); signal != nil {
+		signal.(func(string))(cGoUnpackString(styleSheet))
+	} else {
+		NewQPrintDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
+	}
+}
+
+func (ptr *QPrintDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setStyleSheet", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectSetStyleSheet() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setStyleSheet")
+	}
+}
+
+func (ptr *QPrintDialog) SetStyleSheet(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPrintDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
+	}
+}
+
+func (ptr *QPrintDialog) SetStyleSheetDefault(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPrintDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+	}
+}
+
+//export callbackQPrintDialog_SetWindowModified
+func callbackQPrintDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPrintDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPrintDialog) ConnectSetWindowModified(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowModified", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectSetWindowModified() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowModified")
+	}
+}
+
+func (ptr *QPrintDialog) SetWindowModified(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPrintDialog) SetWindowModifiedDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+//export callbackQPrintDialog_SetWindowTitle
+func callbackQPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setWindowTitle"); signal != nil {
+		signal.(func(string))(cGoUnpackString(vqs))
+	} else {
+		NewQPrintDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
+	}
+}
+
+func (ptr *QPrintDialog) ConnectSetWindowTitle(f func(vqs string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowTitle", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectSetWindowTitle() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowTitle")
+	}
+}
+
+func (ptr *QPrintDialog) SetWindowTitle(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPrintDialog_SetWindowTitle(ptr.Pointer(), vqsC)
+	}
+}
+
+func (ptr *QPrintDialog) SetWindowTitleDefault(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPrintDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -8153,39 +7964,230 @@ func (ptr *QPrintDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 	}
 }
 
-//export callbackQPrintDialog_TimerEvent
-func callbackQPrintDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQPrintDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQPrintDialog_PaintEngine
+func callbackQPrintDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQPrintDialogFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QPrintDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEngine", f)
 	}
 }
 
-func (ptr *QPrintDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QPrintDialog) DisconnectPaintEngine() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEngine")
 	}
 }
 
-func (ptr *QPrintDialog) DisconnectTimerEvent() {
+func (ptr *QPrintDialog) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrintDialog_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrintDialog) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrintDialog_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQPrintDialog_InputMethodQuery
+func callbackQPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::inputMethodQuery"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
+	}
+
+	return core.PointerFromQVariant(NewQPrintDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
+}
+
+func (ptr *QPrintDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodQuery", f)
 	}
 }
 
-func (ptr *QPrintDialog) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QPrintDialog) DisconnectInputMethodQuery() {
 	if ptr.Pointer() != nil {
-		C.QPrintDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodQuery")
 	}
 }
 
-func (ptr *QPrintDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QPrintDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		C.QPrintDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		var tmpValue = core.NewQVariantFromPointer(C.QPrintDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
+	return nil
+}
+
+func (ptr *QPrintDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QPrintDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPrintDialog_HasHeightForWidth
+func callbackQPrintDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).HasHeightForWidthDefault())))
+}
+
+func (ptr *QPrintDialog) ConnectHasHeightForWidth(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hasHeightForWidth", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectHasHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hasHeightForWidth")
+	}
+}
+
+func (ptr *QPrintDialog) HasHeightForWidth() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_HasHeightForWidth(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintDialog) HasHeightForWidthDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPrintDialog_HeightForWidth
+func callbackQPrintDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
+	}
+
+	return C.int(int32(NewQPrintDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
+}
+
+func (ptr *QPrintDialog) ConnectHeightForWidth(f func(w int) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::heightForWidth", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::heightForWidth")
+	}
+}
+
+func (ptr *QPrintDialog) HeightForWidth(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+func (ptr *QPrintDialog) HeightForWidthDefault(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+//export callbackQPrintDialog_Metric
+func callbackQPrintDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
+	}
+
+	return C.int(int32(NewQPrintDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
+}
+
+func (ptr *QPrintDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::metric", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::metric")
+	}
+}
+
+func (ptr *QPrintDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintDialog_Metric(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+func (ptr *QPrintDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+//export callbackQPrintDialog_EventFilter
+func callbackQPrintDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPrintDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::eventFilter", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectEventFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::eventFilter")
+	}
+}
+
+func (ptr *QPrintDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQPrintDialog_ChildEvent
@@ -8367,41 +8369,39 @@ func (ptr *QPrintDialog) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQPrintDialog_EventFilter
-func callbackQPrintDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPrintDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::eventFilter", f)
+//export callbackQPrintDialog_TimerEvent
+func callbackQPrintDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQPrintDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *QPrintDialog) DisconnectEventFilter() {
+func (ptr *QPrintDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::eventFilter")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::timerEvent", f)
 	}
 }
 
-func (ptr *QPrintDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPrintDialog) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPrintDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::timerEvent")
 	}
-	return false
 }
 
-func (ptr *QPrintDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPrintDialog) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPrintDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		C.QPrintDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPrintDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 //export callbackQPrintDialog_MetaObject
@@ -8548,36 +8548,6 @@ func (ptr *QPrintEngine) Abort() bool {
 	return false
 }
 
-//export callbackQPrintEngine_Metric
-func callbackQPrintEngine_Metric(ptr unsafe.Pointer, id C.longlong) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::metric"); signal != nil {
-		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(id))))
-	}
-
-	return C.int(int32(0))
-}
-
-func (ptr *QPrintEngine) ConnectMetric(f func(id gui.QPaintDevice__PaintDeviceMetric) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::metric", f)
-	}
-}
-
-func (ptr *QPrintEngine) DisconnectMetric() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::metric")
-	}
-}
-
-func (ptr *QPrintEngine) Metric(id gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintEngine_Metric(ptr.Pointer(), C.longlong(id))))
-	}
-	return 0
-}
-
 //export callbackQPrintEngine_NewPage
 func callbackQPrintEngine_NewPage(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::newPage"); signal != nil {
@@ -8606,68 +8576,6 @@ func (ptr *QPrintEngine) NewPage() bool {
 		return C.QPrintEngine_NewPage(ptr.Pointer()) != 0
 	}
 	return false
-}
-
-//export callbackQPrintEngine_PrinterState
-func callbackQPrintEngine_PrinterState(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::printerState"); signal != nil {
-		return C.longlong(signal.(func() QPrinter__PrinterState)())
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QPrintEngine) ConnectPrinterState(f func() QPrinter__PrinterState) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::printerState", f)
-	}
-}
-
-func (ptr *QPrintEngine) DisconnectPrinterState() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::printerState")
-	}
-}
-
-func (ptr *QPrintEngine) PrinterState() QPrinter__PrinterState {
-	if ptr.Pointer() != nil {
-		return QPrinter__PrinterState(C.QPrintEngine_PrinterState(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQPrintEngine_Property
-func callbackQPrintEngine_Property(ptr unsafe.Pointer, key C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::property"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(QPrintEngine__PrintEnginePropertyKey) *core.QVariant)(QPrintEngine__PrintEnginePropertyKey(key)))
-	}
-
-	return core.PointerFromQVariant(core.NewQVariant())
-}
-
-func (ptr *QPrintEngine) ConnectProperty(f func(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::property", f)
-	}
-}
-
-func (ptr *QPrintEngine) DisconnectProperty() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::property")
-	}
-}
-
-func (ptr *QPrintEngine) Property(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPrintEngine_Property(ptr.Pointer(), C.longlong(key)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
 }
 
 //export callbackQPrintEngine_SetProperty
@@ -8737,6 +8645,98 @@ func (ptr *QPrintEngine) DestroyQPrintEngineDefault() {
 	}
 }
 
+//export callbackQPrintEngine_PrinterState
+func callbackQPrintEngine_PrinterState(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::printerState"); signal != nil {
+		return C.longlong(signal.(func() QPrinter__PrinterState)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QPrintEngine) ConnectPrinterState(f func() QPrinter__PrinterState) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::printerState", f)
+	}
+}
+
+func (ptr *QPrintEngine) DisconnectPrinterState() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::printerState")
+	}
+}
+
+func (ptr *QPrintEngine) PrinterState() QPrinter__PrinterState {
+	if ptr.Pointer() != nil {
+		return QPrinter__PrinterState(C.QPrintEngine_PrinterState(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQPrintEngine_Property
+func callbackQPrintEngine_Property(ptr unsafe.Pointer, key C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::property"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(QPrintEngine__PrintEnginePropertyKey) *core.QVariant)(QPrintEngine__PrintEnginePropertyKey(key)))
+	}
+
+	return core.PointerFromQVariant(core.NewQVariant())
+}
+
+func (ptr *QPrintEngine) ConnectProperty(f func(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::property", f)
+	}
+}
+
+func (ptr *QPrintEngine) DisconnectProperty() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::property")
+	}
+}
+
+func (ptr *QPrintEngine) Property(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QPrintEngine_Property(ptr.Pointer(), C.longlong(key)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPrintEngine_Metric
+func callbackQPrintEngine_Metric(ptr unsafe.Pointer, id C.longlong) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(id))))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QPrintEngine) ConnectMetric(f func(id gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::metric", f)
+	}
+}
+
+func (ptr *QPrintEngine) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::metric")
+	}
+}
+
+func (ptr *QPrintEngine) Metric(id gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintEngine_Metric(ptr.Pointer(), C.longlong(id))))
+	}
+	return 0
+}
+
 type QPrintPreviewDialog struct {
 	widgets.QDialog
 }
@@ -8775,6 +8775,14 @@ func NewQPrintPreviewDialogFromPointer(ptr unsafe.Pointer) *QPrintPreviewDialog 
 	n.SetPointer(ptr)
 	return n
 }
+func NewQPrintPreviewDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewDialog {
+	var tmpValue = NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func NewQPrintPreviewDialog2(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewDialog {
 	var tmpValue = NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog2(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -8783,12 +8791,11 @@ func NewQPrintPreviewDialog2(parent widgets.QWidget_ITF, flags core.Qt__WindowTy
 	return tmpValue
 }
 
-func NewQPrintPreviewDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewDialog {
-	var tmpValue = NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QPrintPreviewDialog) Printer() *QPrinter {
+	if ptr.Pointer() != nil {
+		return NewQPrinterFromPointer(C.QPrintPreviewDialog_Printer(ptr.Pointer()))
 	}
-	return tmpValue
+	return nil
 }
 
 //export callbackQPrintPreviewDialog_Done
@@ -8862,13 +8869,6 @@ func (ptr *QPrintPreviewDialog) PaintRequested(printer QPrinter_ITF) {
 	}
 }
 
-func (ptr *QPrintPreviewDialog) Printer() *QPrinter {
-	if ptr.Pointer() != nil {
-		return NewQPrinterFromPointer(C.QPrintPreviewDialog_Printer(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackQPrintPreviewDialog_SetVisible
 func callbackQPrintPreviewDialog_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setVisible"); signal != nil {
@@ -8910,30 +8910,6 @@ func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialog() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
-}
-
-func (ptr *QPrintPreviewDialog) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QPrintPreviewDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewDialog) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) __actions_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPrintPreviewDialog___actions_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QPrintPreviewDialog) __addActions_actions_atList(i int) *widgets.QAction {
@@ -8984,9 +8960,9 @@ func (ptr *QPrintPreviewDialog) __insertActions_actions_newList() unsafe.Pointer
 	return nil
 }
 
-func (ptr *QPrintPreviewDialog) __children_atList(i int) *core.QObject {
+func (ptr *QPrintPreviewDialog) __actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QPrintPreviewDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = widgets.NewQActionFromPointer(C.QPrintPreviewDialog___actions_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8995,15 +8971,15 @@ func (ptr *QPrintPreviewDialog) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QPrintPreviewDialog) __children_setList(i core.QObject_ITF) {
+func (ptr *QPrintPreviewDialog) __actions_setList(i widgets.QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QPrintPreviewDialog___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
 	}
 }
 
-func (ptr *QPrintPreviewDialog) __children_newList() unsafe.Pointer {
+func (ptr *QPrintPreviewDialog) __actions_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPrintPreviewDialog___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QPrintPreviewDialog___actions_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -9100,6 +9076,67 @@ func (ptr *QPrintPreviewDialog) __findChildren_newList() unsafe.Pointer {
 		return unsafe.Pointer(C.QPrintPreviewDialog___findChildren_newList(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QPrintPreviewDialog) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QPrintPreviewDialog___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrintPreviewDialog) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPrintPreviewDialog___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewDialog_Exec
+func callbackQPrintPreviewDialog_Exec(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::exec"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(NewQPrintPreviewDialogFromPointer(ptr).ExecDefault()))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectExec(f func() int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::exec", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectExec() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::exec")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) Exec() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewDialog_Exec(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QPrintPreviewDialog) ExecDefault() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewDialog_ExecDefault(ptr.Pointer())))
+	}
+	return 0
 }
 
 //export callbackQPrintPreviewDialog_Accept
@@ -9207,43 +9244,6 @@ func (ptr *QPrintPreviewDialog) ContextMenuEventDefault(e gui.QContextMenuEvent_
 	}
 }
 
-//export callbackQPrintPreviewDialog_Exec
-func callbackQPrintPreviewDialog_Exec(ptr unsafe.Pointer) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::exec"); signal != nil {
-		return C.int(int32(signal.(func() int)()))
-	}
-
-	return C.int(int32(NewQPrintPreviewDialogFromPointer(ptr).ExecDefault()))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectExec(f func() int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::exec", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectExec() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::exec")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) Exec() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewDialog_Exec(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QPrintPreviewDialog) ExecDefault() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewDialog_ExecDefault(ptr.Pointer())))
-	}
-	return 0
-}
-
 //export callbackQPrintPreviewDialog_KeyPressEvent
 func callbackQPrintPreviewDialog_KeyPressEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::keyPressEvent"); signal != nil {
@@ -9277,47 +9277,6 @@ func (ptr *QPrintPreviewDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
 	}
-}
-
-//export callbackQPrintPreviewDialog_MinimumSizeHint
-func callbackQPrintPreviewDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::minimumSizeHint"); signal != nil {
-		return core.PointerFromQSize(signal.(func() *core.QSize)())
-	}
-
-	return core.PointerFromQSize(NewQPrintPreviewDialogFromPointer(ptr).MinimumSizeHintDefault())
-}
-
-func (ptr *QPrintPreviewDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::minimumSizeHint", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectMinimumSizeHint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::minimumSizeHint")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) MinimumSizeHint() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewDialog_MinimumSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewDialog) MinimumSizeHintDefault() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewDialog_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
 }
 
 //export callbackQPrintPreviewDialog_Reject
@@ -9425,6 +9384,47 @@ func (ptr *QPrintPreviewDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 	}
 }
 
+//export callbackQPrintPreviewDialog_MinimumSizeHint
+func callbackQPrintPreviewDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::minimumSizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func() *core.QSize)())
+	}
+
+	return core.PointerFromQSize(NewQPrintPreviewDialogFromPointer(ptr).MinimumSizeHintDefault())
+}
+
+func (ptr *QPrintPreviewDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::minimumSizeHint", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectMinimumSizeHint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::minimumSizeHint")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) MinimumSizeHint() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewDialog_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrintPreviewDialog) MinimumSizeHintDefault() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewDialog_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQPrintPreviewDialog_SizeHint
 func callbackQPrintPreviewDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::sizeHint"); signal != nil {
@@ -9466,6 +9466,154 @@ func (ptr *QPrintPreviewDialog) SizeHintDefault() *core.QSize {
 	return nil
 }
 
+//export callbackQPrintPreviewDialog_Close
+func callbackQPrintPreviewDialog_Close(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).CloseDefault())))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectClose(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::close", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::close")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) Close() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewDialog) CloseDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_CloseDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewDialog_Event
+func callbackQPrintPreviewDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectEvent(f func(event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::event", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::event")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewDialog) EventDefault(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewDialog_FocusNextPrevChild
+func callbackQPrintPreviewDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusNextPrevChild", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectFocusNextPrevChild() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusNextPrevChild")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) FocusNextPrevChild(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewDialog) FocusNextPrevChildDefault(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewDialog_NativeEvent
+func callbackQPrintPreviewDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::nativeEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectNativeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::nativeEvent")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
 //export callbackQPrintPreviewDialog_ActionEvent
 func callbackQPrintPreviewDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::actionEvent"); signal != nil {
@@ -9498,6 +9646,41 @@ func (ptr *QPrintPreviewDialog) ActionEvent(event gui.QActionEvent_ITF) {
 func (ptr *QPrintPreviewDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewDialog_ChangeEvent
+func callbackQPrintPreviewDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::changeEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectChangeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::changeEvent")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ChangeEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ChangeEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -9746,588 +9929,6 @@ func (ptr *QPrintPreviewDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) 
 	}
 }
 
-//export callbackQPrintPreviewDialog_HideEvent
-func callbackQPrintPreviewDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hideEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectHideEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hideEvent")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) HideEvent(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) HideEventDefault(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewDialog_LeaveEvent
-func callbackQPrintPreviewDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::leaveEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::leaveEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectLeaveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::leaveEvent")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) LeaveEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) LeaveEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewDialog_Metric
-func callbackQPrintPreviewDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::metric"); signal != nil {
-		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
-	}
-
-	return C.int(int32(NewQPrintPreviewDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::metric", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectMetric() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::metric")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewDialog_Metric(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-func (ptr *QPrintPreviewDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-//export callbackQPrintPreviewDialog_MoveEvent
-func callbackQPrintPreviewDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::moveEvent"); signal != nil {
-		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::moveEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectMoveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::moveEvent")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) MoveEvent(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewDialog_PaintEngine
-func callbackQPrintPreviewDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
-	}
-
-	return gui.PointerFromQPaintEngine(NewQPrintPreviewDialogFromPointer(ptr).PaintEngineDefault())
-}
-
-func (ptr *QPrintPreviewDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEngine", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectPaintEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEngine")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) PaintEngine() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewDialog_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewDialog) PaintEngineDefault() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewDialog_PaintEngineDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQPrintPreviewDialog_PaintEvent
-func callbackQPrintPreviewDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::paintEvent"); signal != nil {
-		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectPaintEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEvent")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) PaintEvent(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewDialog_SetEnabled
-func callbackQPrintPreviewDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setEnabled"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectSetEnabled(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setEnabled", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectSetEnabled() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setEnabled")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetEnabled(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetEnabledDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPrintPreviewDialog_SetStyleSheet
-func callbackQPrintPreviewDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(cGoUnpackString(styleSheet))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setStyleSheet", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectSetStyleSheet() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setStyleSheet")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetStyleSheet(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPrintPreviewDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetStyleSheetDefault(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPrintPreviewDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
-	}
-}
-
-//export callbackQPrintPreviewDialog_SetWindowModified
-func callbackQPrintPreviewDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setWindowModified"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectSetWindowModified(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowModified", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectSetWindowModified() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowModified")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetWindowModified(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetWindowModifiedDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPrintPreviewDialog_SetWindowTitle
-func callbackQPrintPreviewDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(cGoUnpackString(vqs))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectSetWindowTitle(f func(vqs string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowTitle", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectSetWindowTitle() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowTitle")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetWindowTitle(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPrintPreviewDialog_SetWindowTitle(ptr.Pointer(), vqsC)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) SetWindowTitleDefault(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPrintPreviewDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
-	}
-}
-
-//export callbackQPrintPreviewDialog_ChangeEvent
-func callbackQPrintPreviewDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::changeEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::changeEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectChangeEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::changeEvent")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ChangeEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewDialog) ChangeEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewDialog_Close
-func callbackQPrintPreviewDialog_Close(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::close"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).CloseDefault())))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectClose(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::close", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectClose() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::close")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) Close() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_Close(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewDialog) CloseDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_CloseDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewDialog_Event
-func callbackQPrintPreviewDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectEvent(f func(event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::event", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::event")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) Event(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewDialog) EventDefault(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewDialog_FocusNextPrevChild
-func callbackQPrintPreviewDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::focusNextPrevChild"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusNextPrevChild", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectFocusNextPrevChild() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusNextPrevChild")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) FocusNextPrevChild(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewDialog) FocusNextPrevChildDefault(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewDialog_HasHeightForWidth
-func callbackQPrintPreviewDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hasHeightForWidth"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).HasHeightForWidthDefault())))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectHasHeightForWidth(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hasHeightForWidth", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectHasHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hasHeightForWidth")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) HasHeightForWidth() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_HasHeightForWidth(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewDialog) HasHeightForWidthDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewDialog_HeightForWidth
-func callbackQPrintPreviewDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::heightForWidth"); signal != nil {
-		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
-	}
-
-	return C.int(int32(NewQPrintPreviewDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectHeightForWidth(f func(w int) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::heightForWidth", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::heightForWidth")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) HeightForWidth(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
-func (ptr *QPrintPreviewDialog) HeightForWidthDefault(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
 //export callbackQPrintPreviewDialog_Hide
 func callbackQPrintPreviewDialog_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hide"); signal != nil {
@@ -10360,6 +9961,41 @@ func (ptr *QPrintPreviewDialog) Hide() {
 func (ptr *QPrintPreviewDialog) HideDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_HideDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQPrintPreviewDialog_HideEvent
+func callbackQPrintPreviewDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hideEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectHideEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hideEvent")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) HideEvent(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) HideEventDefault(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
@@ -10398,47 +10034,6 @@ func (ptr *QPrintPreviewDialog) InputMethodEventDefault(event gui.QInputMethodEv
 	}
 }
 
-//export callbackQPrintPreviewDialog_InputMethodQuery
-func callbackQPrintPreviewDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::inputMethodQuery"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
-	}
-
-	return core.PointerFromQVariant(NewQPrintPreviewDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodQuery", f)
-	}
-}
-
-func (ptr *QPrintPreviewDialog) DisconnectInputMethodQuery() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodQuery")
-	}
-}
-
-func (ptr *QPrintPreviewDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
 //export callbackQPrintPreviewDialog_KeyReleaseEvent
 func callbackQPrintPreviewDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::keyReleaseEvent"); signal != nil {
@@ -10471,6 +10066,41 @@ func (ptr *QPrintPreviewDialog) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
 func (ptr *QPrintPreviewDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewDialog_LeaveEvent
+func callbackQPrintPreviewDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::leaveEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectLeaveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::leaveEvent")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) LeaveEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) LeaveEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -10649,41 +10279,74 @@ func (ptr *QPrintPreviewDialog) MouseReleaseEventDefault(event gui.QMouseEvent_I
 	}
 }
 
-//export callbackQPrintPreviewDialog_NativeEvent
-func callbackQPrintPreviewDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::nativeEvent", f)
+//export callbackQPrintPreviewDialog_MoveEvent
+func callbackQPrintPreviewDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
 }
 
-func (ptr *QPrintPreviewDialog) DisconnectNativeEvent() {
+func (ptr *QPrintPreviewDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::nativeEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::moveEvent", f)
 	}
 }
 
-func (ptr *QPrintPreviewDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewDialog) DisconnectMoveEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::moveEvent")
 	}
-	return false
 }
 
-func (ptr *QPrintPreviewDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewDialog) MoveEvent(event gui.QMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+		C.QPrintPreviewDialog_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPrintPreviewDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewDialog_PaintEvent
+func callbackQPrintPreviewDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectPaintEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEvent")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) PaintEvent(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 //export callbackQPrintPreviewDialog_Raise
@@ -10791,6 +10454,41 @@ func (ptr *QPrintPreviewDialog) SetDisabledDefault(disable bool) {
 	}
 }
 
+//export callbackQPrintPreviewDialog_SetEnabled
+func callbackQPrintPreviewDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectSetEnabled(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setEnabled", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectSetEnabled() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setEnabled")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetEnabled(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetEnabledDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
 //export callbackQPrintPreviewDialog_SetFocus2
 func callbackQPrintPreviewDialog_SetFocus2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setFocus2"); signal != nil {
@@ -10858,6 +10556,119 @@ func (ptr *QPrintPreviewDialog) SetHidden(hidden bool) {
 func (ptr *QPrintPreviewDialog) SetHiddenDefault(hidden bool) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
+	}
+}
+
+//export callbackQPrintPreviewDialog_SetStyleSheet
+func callbackQPrintPreviewDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setStyleSheet"); signal != nil {
+		signal.(func(string))(cGoUnpackString(styleSheet))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setStyleSheet", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectSetStyleSheet() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setStyleSheet")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetStyleSheet(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPrintPreviewDialog_SetStyleSheet(ptr.Pointer(), styleSheetC)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetStyleSheetDefault(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPrintPreviewDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+	}
+}
+
+//export callbackQPrintPreviewDialog_SetWindowModified
+func callbackQPrintPreviewDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectSetWindowModified(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowModified", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectSetWindowModified() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowModified")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetWindowModified(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetWindowModifiedDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+//export callbackQPrintPreviewDialog_SetWindowTitle
+func callbackQPrintPreviewDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setWindowTitle"); signal != nil {
+		signal.(func(string))(cGoUnpackString(vqs))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
+	}
+}
+
+func (ptr *QPrintPreviewDialog) ConnectSetWindowTitle(f func(vqs string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowTitle", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectSetWindowTitle() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowTitle")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetWindowTitle(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPrintPreviewDialog_SetWindowTitle(ptr.Pointer(), vqsC)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) SetWindowTitleDefault(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPrintPreviewDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -11176,39 +10987,230 @@ func (ptr *QPrintPreviewDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 	}
 }
 
-//export callbackQPrintPreviewDialog_TimerEvent
-func callbackQPrintPreviewDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQPrintPreviewDialog_PaintEngine
+func callbackQPrintPreviewDialog_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQPrintPreviewDialogFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QPrintPreviewDialog) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEngine", f)
 	}
 }
 
-func (ptr *QPrintPreviewDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QPrintPreviewDialog) DisconnectPaintEngine() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEngine")
 	}
 }
 
-func (ptr *QPrintPreviewDialog) DisconnectTimerEvent() {
+func (ptr *QPrintPreviewDialog) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewDialog_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrintPreviewDialog) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewDialog_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewDialog_InputMethodQuery
+func callbackQPrintPreviewDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::inputMethodQuery"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
+	}
+
+	return core.PointerFromQVariant(NewQPrintPreviewDialogFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodQuery", f)
 	}
 }
 
-func (ptr *QPrintPreviewDialog) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QPrintPreviewDialog) DisconnectInputMethodQuery() {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodQuery")
 	}
 }
 
-func (ptr *QPrintPreviewDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QPrintPreviewDialog) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewDialog_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
+	return nil
+}
+
+func (ptr *QPrintPreviewDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewDialog_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewDialog_HasHeightForWidth
+func callbackQPrintPreviewDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).HasHeightForWidthDefault())))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectHasHeightForWidth(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hasHeightForWidth", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectHasHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hasHeightForWidth")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) HasHeightForWidth() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_HasHeightForWidth(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewDialog) HasHeightForWidthDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewDialog_HeightForWidth
+func callbackQPrintPreviewDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
+	}
+
+	return C.int(int32(NewQPrintPreviewDialogFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectHeightForWidth(f func(w int) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::heightForWidth", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::heightForWidth")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) HeightForWidth(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewDialog_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+func (ptr *QPrintPreviewDialog) HeightForWidthDefault(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewDialog_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+//export callbackQPrintPreviewDialog_Metric
+func callbackQPrintPreviewDialog_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
+	}
+
+	return C.int(int32(NewQPrintPreviewDialogFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::metric", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::metric")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewDialog_Metric(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+func (ptr *QPrintPreviewDialog) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewDialog_MetricDefault(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+//export callbackQPrintPreviewDialog_EventFilter
+func callbackQPrintPreviewDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPrintPreviewDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::eventFilter", f)
+	}
+}
+
+func (ptr *QPrintPreviewDialog) DisconnectEventFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::eventFilter")
+	}
+}
+
+func (ptr *QPrintPreviewDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQPrintPreviewDialog_ChildEvent
@@ -11390,41 +11392,39 @@ func (ptr *QPrintPreviewDialog) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 	}
 }
 
-//export callbackQPrintPreviewDialog_EventFilter
-func callbackQPrintPreviewDialog_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPrintPreviewDialog) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::eventFilter", f)
+//export callbackQPrintPreviewDialog_TimerEvent
+func callbackQPrintPreviewDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQPrintPreviewDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *QPrintPreviewDialog) DisconnectEventFilter() {
+func (ptr *QPrintPreviewDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::eventFilter")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::timerEvent", f)
 	}
 }
 
-func (ptr *QPrintPreviewDialog) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPrintPreviewDialog) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::timerEvent")
 	}
-	return false
 }
 
-func (ptr *QPrintPreviewDialog) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPrintPreviewDialog) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		C.QPrintPreviewDialog_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPrintPreviewDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewDialog_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 //export callbackQPrintPreviewDialog_MetaObject
@@ -11539,13 +11539,6 @@ func NewQPrintPreviewWidget2(parent widgets.QWidget_ITF, flags core.Qt__WindowTy
 	return tmpValue
 }
 
-func (ptr *QPrintPreviewWidget) CurrentPage() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewWidget_CurrentPage(ptr.Pointer())))
-	}
-	return 0
-}
-
 //export callbackQPrintPreviewWidget_FitInView
 func callbackQPrintPreviewWidget_FitInView(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::fitInView"); signal != nil {
@@ -11614,20 +11607,6 @@ func (ptr *QPrintPreviewWidget) FitToWidthDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_FitToWidthDefault(ptr.Pointer())
 	}
-}
-
-func (ptr *QPrintPreviewWidget) Orientation() QPrinter__Orientation {
-	if ptr.Pointer() != nil {
-		return QPrinter__Orientation(C.QPrintPreviewWidget_Orientation(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrintPreviewWidget) PageCount() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewWidget_PageCount(ptr.Pointer())))
-	}
-	return 0
 }
 
 //export callbackQPrintPreviewWidget_PaintRequested
@@ -12141,20 +12120,6 @@ func (ptr *QPrintPreviewWidget) UpdatePreviewDefault() {
 	}
 }
 
-func (ptr *QPrintPreviewWidget) ViewMode() QPrintPreviewWidget__ViewMode {
-	if ptr.Pointer() != nil {
-		return QPrintPreviewWidget__ViewMode(C.QPrintPreviewWidget_ViewMode(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrintPreviewWidget) ZoomFactor() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QPrintPreviewWidget_ZoomFactor(ptr.Pointer()))
-	}
-	return 0
-}
-
 //export callbackQPrintPreviewWidget_ZoomIn
 func callbackQPrintPreviewWidget_ZoomIn(ptr unsafe.Pointer, factor C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::zoomIn"); signal != nil {
@@ -12188,13 +12153,6 @@ func (ptr *QPrintPreviewWidget) ZoomInDefault(factor float64) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_ZoomInDefault(ptr.Pointer(), C.double(factor))
 	}
-}
-
-func (ptr *QPrintPreviewWidget) ZoomMode() QPrintPreviewWidget__ZoomMode {
-	if ptr.Pointer() != nil {
-		return QPrintPreviewWidget__ZoomMode(C.QPrintPreviewWidget_ZoomMode(ptr.Pointer()))
-	}
-	return 0
 }
 
 //export callbackQPrintPreviewWidget_ZoomOut
@@ -12240,28 +12198,46 @@ func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidget() {
 	}
 }
 
-func (ptr *QPrintPreviewWidget) __actions_atList(i int) *widgets.QAction {
+func (ptr *QPrintPreviewWidget) Orientation() QPrinter__Orientation {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QPrintPreviewWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return QPrinter__Orientation(C.QPrintPreviewWidget_Orientation(ptr.Pointer()))
 	}
-	return nil
+	return 0
 }
 
-func (ptr *QPrintPreviewWidget) __actions_setList(i widgets.QAction_ITF) {
+func (ptr *QPrintPreviewWidget) ViewMode() QPrintPreviewWidget__ViewMode {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
+		return QPrintPreviewWidget__ViewMode(C.QPrintPreviewWidget_ViewMode(ptr.Pointer()))
 	}
+	return 0
 }
 
-func (ptr *QPrintPreviewWidget) __actions_newList() unsafe.Pointer {
+func (ptr *QPrintPreviewWidget) ZoomMode() QPrintPreviewWidget__ZoomMode {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPrintPreviewWidget___actions_newList(ptr.Pointer()))
+		return QPrintPreviewWidget__ZoomMode(C.QPrintPreviewWidget_ZoomMode(ptr.Pointer()))
 	}
-	return nil
+	return 0
+}
+
+func (ptr *QPrintPreviewWidget) CurrentPage() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewWidget_CurrentPage(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QPrintPreviewWidget) PageCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewWidget_PageCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QPrintPreviewWidget) ZoomFactor() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QPrintPreviewWidget_ZoomFactor(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QPrintPreviewWidget) __addActions_actions_atList(i int) *widgets.QAction {
@@ -12312,9 +12288,9 @@ func (ptr *QPrintPreviewWidget) __insertActions_actions_newList() unsafe.Pointer
 	return nil
 }
 
-func (ptr *QPrintPreviewWidget) __children_atList(i int) *core.QObject {
+func (ptr *QPrintPreviewWidget) __actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QPrintPreviewWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = widgets.NewQActionFromPointer(C.QPrintPreviewWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -12323,15 +12299,15 @@ func (ptr *QPrintPreviewWidget) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QPrintPreviewWidget) __children_setList(i core.QObject_ITF) {
+func (ptr *QPrintPreviewWidget) __actions_setList(i widgets.QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QPrintPreviewWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
 	}
 }
 
-func (ptr *QPrintPreviewWidget) __children_newList() unsafe.Pointer {
+func (ptr *QPrintPreviewWidget) __actions_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPrintPreviewWidget___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QPrintPreviewWidget___actions_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -12430,6 +12406,178 @@ func (ptr *QPrintPreviewWidget) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
+func (ptr *QPrintPreviewWidget) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QPrintPreviewWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrintPreviewWidget) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPrintPreviewWidget___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewWidget_Close
+func callbackQPrintPreviewWidget_Close(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).CloseDefault())))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectClose(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::close", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::close")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) Close() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewWidget) CloseDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_CloseDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewWidget_Event
+func callbackQPrintPreviewWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectEvent(f func(event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::event", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::event")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewWidget) EventDefault(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewWidget_FocusNextPrevChild
+func callbackQPrintPreviewWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusNextPrevChild", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectFocusNextPrevChild() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusNextPrevChild")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) FocusNextPrevChild(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewWidget) FocusNextPrevChildDefault(next bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewWidget_NativeEvent
+func callbackQPrintPreviewWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::nativeEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectNativeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::nativeEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+	}
+	return false
+}
+
 //export callbackQPrintPreviewWidget_ActionEvent
 func callbackQPrintPreviewWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::actionEvent"); signal != nil {
@@ -12462,6 +12610,111 @@ func (ptr *QPrintPreviewWidget) ActionEvent(event gui.QActionEvent_ITF) {
 func (ptr *QPrintPreviewWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewWidget_ChangeEvent
+func callbackQPrintPreviewWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::changeEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::changeEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectChangeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::changeEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ChangeEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ChangeEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewWidget_CloseEvent
+func callbackQPrintPreviewWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::closeEvent"); signal != nil {
+		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::closeEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectCloseEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::closeEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) CloseEvent(event gui.QCloseEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewWidget_ContextMenuEvent
+func callbackQPrintPreviewWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::contextMenuEvent"); signal != nil {
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::contextMenuEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectContextMenuEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::contextMenuEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
 	}
 }
 
@@ -12710,775 +12963,6 @@ func (ptr *QPrintPreviewWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) 
 	}
 }
 
-//export callbackQPrintPreviewWidget_HideEvent
-func callbackQPrintPreviewWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hideEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectHideEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hideEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) HideEvent(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) HideEventDefault(event gui.QHideEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_LeaveEvent
-func callbackQPrintPreviewWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::leaveEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::leaveEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectLeaveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::leaveEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) LeaveEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) LeaveEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_Metric
-func callbackQPrintPreviewWidget_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::metric"); signal != nil {
-		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
-	}
-
-	return C.int(int32(NewQPrintPreviewWidgetFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::metric", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectMetric() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::metric")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewWidget_Metric(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-func (ptr *QPrintPreviewWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewWidget_MetricDefault(ptr.Pointer(), C.longlong(m))))
-	}
-	return 0
-}
-
-//export callbackQPrintPreviewWidget_MinimumSizeHint
-func callbackQPrintPreviewWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::minimumSizeHint"); signal != nil {
-		return core.PointerFromQSize(signal.(func() *core.QSize)())
-	}
-
-	return core.PointerFromQSize(NewQPrintPreviewWidgetFromPointer(ptr).MinimumSizeHintDefault())
-}
-
-func (ptr *QPrintPreviewWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::minimumSizeHint", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectMinimumSizeHint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::minimumSizeHint")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) MinimumSizeHint() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_MinimumSizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewWidget) MinimumSizeHintDefault() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_MinimumSizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQPrintPreviewWidget_MoveEvent
-func callbackQPrintPreviewWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::moveEvent"); signal != nil {
-		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::moveEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectMoveEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::moveEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) MoveEvent(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_PaintEngine
-func callbackQPrintPreviewWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
-	}
-
-	return gui.PointerFromQPaintEngine(NewQPrintPreviewWidgetFromPointer(ptr).PaintEngineDefault())
-}
-
-func (ptr *QPrintPreviewWidget) ConnectPaintEngine(f func() *gui.QPaintEngine) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEngine", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectPaintEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEngine")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) PaintEngine() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewWidget_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewWidget) PaintEngineDefault() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewWidget_PaintEngineDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQPrintPreviewWidget_PaintEvent
-func callbackQPrintPreviewWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::paintEvent"); signal != nil {
-		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectPaintEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) PaintEvent(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_SetEnabled
-func callbackQPrintPreviewWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setEnabled"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectSetEnabled(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setEnabled", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectSetEnabled() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setEnabled")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetEnabled(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetEnabledDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPrintPreviewWidget_SetStyleSheet
-func callbackQPrintPreviewWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setStyleSheet"); signal != nil {
-		signal.(func(string))(cGoUnpackString(styleSheet))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setStyleSheet", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectSetStyleSheet() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setStyleSheet")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetStyleSheet(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPrintPreviewWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetStyleSheetDefault(styleSheet string) {
-	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
-		C.QPrintPreviewWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
-	}
-}
-
-//export callbackQPrintPreviewWidget_SetWindowModified
-func callbackQPrintPreviewWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setWindowModified"); signal != nil {
-		signal.(func(bool))(int8(vbo) != 0)
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectSetWindowModified(f func(vbo bool)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowModified", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectSetWindowModified() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowModified")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetWindowModified(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetWindowModifiedDefault(vbo bool) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
-	}
-}
-
-//export callbackQPrintPreviewWidget_SetWindowTitle
-func callbackQPrintPreviewWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setWindowTitle"); signal != nil {
-		signal.(func(string))(cGoUnpackString(vqs))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectSetWindowTitle(f func(vqs string)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowTitle", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectSetWindowTitle() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowTitle")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetWindowTitle(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPrintPreviewWidget_SetWindowTitle(ptr.Pointer(), vqsC)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SetWindowTitleDefault(vqs string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QPrintPreviewWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
-	}
-}
-
-//export callbackQPrintPreviewWidget_ShowEvent
-func callbackQPrintPreviewWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::showEvent"); signal != nil {
-		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectShowEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ShowEvent(event gui.QShowEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_SizeHint
-func callbackQPrintPreviewWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::sizeHint"); signal != nil {
-		return core.PointerFromQSize(signal.(func() *core.QSize)())
-	}
-
-	return core.PointerFromQSize(NewQPrintPreviewWidgetFromPointer(ptr).SizeHintDefault())
-}
-
-func (ptr *QPrintPreviewWidget) ConnectSizeHint(f func() *core.QSize) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::sizeHint", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectSizeHint() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::sizeHint")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) SizeHint() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_SizeHint(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewWidget) SizeHintDefault() *core.QSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_SizeHintDefault(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-		return tmpValue
-	}
-	return nil
-}
-
-//export callbackQPrintPreviewWidget_ChangeEvent
-func callbackQPrintPreviewWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::changeEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::changeEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectChangeEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::changeEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ChangeEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ChangeEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_Close
-func callbackQPrintPreviewWidget_Close(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::close"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).CloseDefault())))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectClose(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::close", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectClose() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::close")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) Close() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_Close(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewWidget) CloseDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_CloseDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewWidget_CloseEvent
-func callbackQPrintPreviewWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::closeEvent"); signal != nil {
-		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::closeEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectCloseEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::closeEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) CloseEvent(event gui.QCloseEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_ContextMenuEvent
-func callbackQPrintPreviewWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::contextMenuEvent"); signal != nil {
-		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::contextMenuEvent", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectContextMenuEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::contextMenuEvent")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
-	}
-}
-
-func (ptr *QPrintPreviewWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
-	}
-}
-
-//export callbackQPrintPreviewWidget_Event
-func callbackQPrintPreviewWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectEvent(f func(event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::event", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::event")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) Event(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewWidget) EventDefault(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewWidget_FocusNextPrevChild
-func callbackQPrintPreviewWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::focusNextPrevChild"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusNextPrevChild", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectFocusNextPrevChild() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusNextPrevChild")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) FocusNextPrevChild(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewWidget) FocusNextPrevChildDefault(next bool) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewWidget_HasHeightForWidth
-func callbackQPrintPreviewWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hasHeightForWidth"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).HasHeightForWidthDefault())))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectHasHeightForWidth(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hasHeightForWidth", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectHasHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hasHeightForWidth")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) HasHeightForWidth() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_HasHeightForWidth(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrintPreviewWidget) HasHeightForWidthDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQPrintPreviewWidget_HeightForWidth
-func callbackQPrintPreviewWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::heightForWidth"); signal != nil {
-		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
-	}
-
-	return C.int(int32(NewQPrintPreviewWidgetFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectHeightForWidth(f func(w int) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::heightForWidth", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectHeightForWidth() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::heightForWidth")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) HeightForWidth(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewWidget_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
-func (ptr *QPrintPreviewWidget) HeightForWidthDefault(w int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrintPreviewWidget_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
-	}
-	return 0
-}
-
 //export callbackQPrintPreviewWidget_Hide
 func callbackQPrintPreviewWidget_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hide"); signal != nil {
@@ -13511,6 +12995,41 @@ func (ptr *QPrintPreviewWidget) Hide() {
 func (ptr *QPrintPreviewWidget) HideDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_HideDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQPrintPreviewWidget_HideEvent
+func callbackQPrintPreviewWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hideEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectHideEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hideEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) HideEvent(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) HideEventDefault(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
@@ -13547,47 +13066,6 @@ func (ptr *QPrintPreviewWidget) InputMethodEventDefault(event gui.QInputMethodEv
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
-}
-
-//export callbackQPrintPreviewWidget_InputMethodQuery
-func callbackQPrintPreviewWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::inputMethodQuery"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
-	}
-
-	return core.PointerFromQVariant(NewQPrintPreviewWidgetFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodQuery", f)
-	}
-}
-
-func (ptr *QPrintPreviewWidget) DisconnectInputMethodQuery() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodQuery")
-	}
-}
-
-func (ptr *QPrintPreviewWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrintPreviewWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
 }
 
 //export callbackQPrintPreviewWidget_KeyPressEvent
@@ -13657,6 +13135,41 @@ func (ptr *QPrintPreviewWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
 func (ptr *QPrintPreviewWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewWidget_LeaveEvent
+func callbackQPrintPreviewWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::leaveEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::leaveEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectLeaveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::leaveEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) LeaveEvent(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) LeaveEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
@@ -13835,41 +13348,74 @@ func (ptr *QPrintPreviewWidget) MouseReleaseEventDefault(event gui.QMouseEvent_I
 	}
 }
 
-//export callbackQPrintPreviewWidget_NativeEvent
-func callbackQPrintPreviewWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::nativeEvent", f)
+//export callbackQPrintPreviewWidget_MoveEvent
+func callbackQPrintPreviewWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectNativeEvent() {
+func (ptr *QPrintPreviewWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::nativeEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::moveEvent", f)
 	}
 }
 
-func (ptr *QPrintPreviewWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewWidget) DisconnectMoveEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::moveEvent")
 	}
-	return false
 }
 
-func (ptr *QPrintPreviewWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewWidget) MoveEvent(event gui.QMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+		C.QPrintPreviewWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPrintPreviewWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+//export callbackQPrintPreviewWidget_PaintEvent
+func callbackQPrintPreviewWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectPaintEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) PaintEvent(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 //export callbackQPrintPreviewWidget_Raise
@@ -14012,6 +13558,41 @@ func (ptr *QPrintPreviewWidget) SetDisabledDefault(disable bool) {
 	}
 }
 
+//export callbackQPrintPreviewWidget_SetEnabled
+func callbackQPrintPreviewWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectSetEnabled(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setEnabled", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectSetEnabled() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setEnabled")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetEnabled(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetEnabledDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetFocus2
 func callbackQPrintPreviewWidget_SetFocus2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setFocus2"); signal != nil {
@@ -14082,6 +13663,119 @@ func (ptr *QPrintPreviewWidget) SetHiddenDefault(hidden bool) {
 	}
 }
 
+//export callbackQPrintPreviewWidget_SetStyleSheet
+func callbackQPrintPreviewWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setStyleSheet"); signal != nil {
+		signal.(func(string))(cGoUnpackString(styleSheet))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setStyleSheet", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectSetStyleSheet() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setStyleSheet")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetStyleSheet(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPrintPreviewWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetStyleSheetDefault(styleSheet string) {
+	if ptr.Pointer() != nil {
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QPrintPreviewWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+	}
+}
+
+//export callbackQPrintPreviewWidget_SetWindowModified
+func callbackQPrintPreviewWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectSetWindowModified(f func(vbo bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowModified", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectSetWindowModified() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowModified")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetWindowModified(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetWindowModifiedDefault(vbo bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
+	}
+}
+
+//export callbackQPrintPreviewWidget_SetWindowTitle
+func callbackQPrintPreviewWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setWindowTitle"); signal != nil {
+		signal.(func(string))(cGoUnpackString(vqs))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectSetWindowTitle(f func(vqs string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowTitle", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectSetWindowTitle() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowTitle")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetWindowTitle(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPrintPreviewWidget_SetWindowTitle(ptr.Pointer(), vqsC)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetWindowTitleDefault(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QPrintPreviewWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+	}
+}
+
 //export callbackQPrintPreviewWidget_Show
 func callbackQPrintPreviewWidget_Show(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::show"); signal != nil {
@@ -14114,6 +13808,41 @@ func (ptr *QPrintPreviewWidget) Show() {
 func (ptr *QPrintPreviewWidget) ShowDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQPrintPreviewWidget_ShowEvent
+func callbackQPrintPreviewWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showEvent", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectShowEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showEvent")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ShowEvent(event gui.QShowEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
 }
 
@@ -14397,39 +14126,312 @@ func (ptr *QPrintPreviewWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
 	}
 }
 
-//export callbackQPrintPreviewWidget_TimerEvent
-func callbackQPrintPreviewWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQPrintPreviewWidget_PaintEngine
+func callbackQPrintPreviewWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQPrintPreviewWidgetFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QPrintPreviewWidget) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEngine", f)
 	}
 }
 
-func (ptr *QPrintPreviewWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QPrintPreviewWidget) DisconnectPaintEngine() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEngine")
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectTimerEvent() {
+func (ptr *QPrintPreviewWidget) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewWidget_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrintPreviewWidget) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrintPreviewWidget_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewWidget_MinimumSizeHint
+func callbackQPrintPreviewWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::minimumSizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func() *core.QSize)())
+	}
+
+	return core.PointerFromQSize(NewQPrintPreviewWidgetFromPointer(ptr).MinimumSizeHintDefault())
+}
+
+func (ptr *QPrintPreviewWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::minimumSizeHint", f)
 	}
 }
 
-func (ptr *QPrintPreviewWidget) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QPrintPreviewWidget) DisconnectMinimumSizeHint() {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::minimumSizeHint")
 	}
 }
 
-func (ptr *QPrintPreviewWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QPrintPreviewWidget) MinimumSizeHint() *core.QSize {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
+	return nil
+}
+
+func (ptr *QPrintPreviewWidget) MinimumSizeHintDefault() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewWidget_SizeHint
+func callbackQPrintPreviewWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::sizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func() *core.QSize)())
+	}
+
+	return core.PointerFromQSize(NewQPrintPreviewWidgetFromPointer(ptr).SizeHintDefault())
+}
+
+func (ptr *QPrintPreviewWidget) ConnectSizeHint(f func() *core.QSize) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::sizeHint", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectSizeHint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::sizeHint")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SizeHint() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrintPreviewWidget) SizeHintDefault() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QPrintPreviewWidget_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewWidget_InputMethodQuery
+func callbackQPrintPreviewWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::inputMethodQuery"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
+	}
+
+	return core.PointerFromQVariant(NewQPrintPreviewWidgetFromPointer(ptr).InputMethodQueryDefault(core.Qt__InputMethodQuery(query)))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodQuery", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectInputMethodQuery() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodQuery")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrintPreviewWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QPrintPreviewWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPrintPreviewWidget_HasHeightForWidth
+func callbackQPrintPreviewWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).HasHeightForWidthDefault())))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectHasHeightForWidth(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hasHeightForWidth", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectHasHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hasHeightForWidth")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) HasHeightForWidth() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_HasHeightForWidth(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewWidget) HasHeightForWidthDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQPrintPreviewWidget_HeightForWidth
+func callbackQPrintPreviewWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
+	}
+
+	return C.int(int32(NewQPrintPreviewWidgetFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectHeightForWidth(f func(w int) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::heightForWidth", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectHeightForWidth() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::heightForWidth")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) HeightForWidth(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewWidget_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+func (ptr *QPrintPreviewWidget) HeightForWidthDefault(w int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewWidget_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
+	}
+	return 0
+}
+
+//export callbackQPrintPreviewWidget_Metric
+func callbackQPrintPreviewWidget_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
+	}
+
+	return C.int(int32(NewQPrintPreviewWidgetFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::metric", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::metric")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewWidget_Metric(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+func (ptr *QPrintPreviewWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrintPreviewWidget_MetricDefault(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+//export callbackQPrintPreviewWidget_EventFilter
+func callbackQPrintPreviewWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPrintPreviewWidget) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::eventFilter", f)
+	}
+}
+
+func (ptr *QPrintPreviewWidget) DisconnectEventFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::eventFilter")
+	}
+}
+
+func (ptr *QPrintPreviewWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QPrintPreviewWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPrintPreviewWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQPrintPreviewWidget_ChildEvent
@@ -14611,41 +14613,39 @@ func (ptr *QPrintPreviewWidget) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 	}
 }
 
-//export callbackQPrintPreviewWidget_EventFilter
-func callbackQPrintPreviewWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPrintPreviewWidget) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::eventFilter", f)
+//export callbackQPrintPreviewWidget_TimerEvent
+func callbackQPrintPreviewWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectEventFilter() {
+func (ptr *QPrintPreviewWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::eventFilter")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::timerEvent", f)
 	}
 }
 
-func (ptr *QPrintPreviewWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPrintPreviewWidget) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::timerEvent")
 	}
-	return false
 }
 
-func (ptr *QPrintPreviewWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QPrintPreviewWidget) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		C.QPrintPreviewWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
+}
+
+func (ptr *QPrintPreviewWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
 }
 
 //export callbackQPrintPreviewWidget_MetaObject
@@ -14975,35 +14975,6 @@ const (
 	QPrinter__DevicePixel QPrinter__Unit = QPrinter__Unit(6)
 )
 
-func (ptr *QPrinter) FromPage() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrinter_FromPage(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QPrinter) OutputFileName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinter_OutputFileName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinter) PrinterSelectionOption() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinter_PrinterSelectionOption(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinter) SetPrinterSelectionOption(option string) {
-	if ptr.Pointer() != nil {
-		var optionC = C.CString(option)
-		defer C.free(unsafe.Pointer(optionC))
-		C.QPrinter_SetPrinterSelectionOption(ptr.Pointer(), optionC)
-	}
-}
-
 func NewQPrinter(mode QPrinter__PrinterMode) *QPrinter {
 	return NewQPrinterFromPointer(C.QPrinter_NewQPrinter(C.longlong(mode)))
 }
@@ -15015,69 +14986,6 @@ func NewQPrinter2(printer QPrinterInfo_ITF, mode QPrinter__PrinterMode) *QPrinte
 func (ptr *QPrinter) Abort() bool {
 	if ptr.Pointer() != nil {
 		return C.QPrinter_Abort(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrinter) CollateCopies() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_CollateCopies(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrinter) ColorMode() QPrinter__ColorMode {
-	if ptr.Pointer() != nil {
-		return QPrinter__ColorMode(C.QPrinter_ColorMode(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrinter) CopyCount() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrinter_CopyCount(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QPrinter) Creator() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinter_Creator(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinter) DocName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinter_DocName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinter) Duplex() QPrinter__DuplexMode {
-	if ptr.Pointer() != nil {
-		return QPrinter__DuplexMode(C.QPrinter_Duplex(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrinter) FontEmbeddingEnabled() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_FontEmbeddingEnabled(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrinter) FullPage() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_FullPage(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QPrinter) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -15119,131 +15027,69 @@ func (ptr *QPrinter) NewPageDefault() bool {
 	return false
 }
 
-func (ptr *QPrinter) OutputFormat() QPrinter__OutputFormat {
+func (ptr *QPrinter) SetPageLayout(newLayout gui.QPageLayout_ITF) bool {
 	if ptr.Pointer() != nil {
-		return QPrinter__OutputFormat(C.QPrinter_OutputFormat(ptr.Pointer()))
+		return C.QPrinter_SetPageLayout(ptr.Pointer(), gui.PointerFromQPageLayout(newLayout)) != 0
 	}
-	return 0
+	return false
 }
 
-func (ptr *QPrinter) PageLayout() *gui.QPageLayout {
+func (ptr *QPrinter) SetPageMargins(margins core.QMarginsF_ITF) bool {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPageLayoutFromPointer(C.QPrinter_PageLayout(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageLayout).DestroyQPageLayout)
-		return tmpValue
+		return C.QPrinter_SetPageMargins(ptr.Pointer(), core.PointerFromQMarginsF(margins)) != 0
 	}
-	return nil
+	return false
 }
 
-func (ptr *QPrinter) PageOrder() QPrinter__PageOrder {
+func (ptr *QPrinter) SetPageMargins2(margins core.QMarginsF_ITF, units gui.QPageLayout__Unit) bool {
 	if ptr.Pointer() != nil {
-		return QPrinter__PageOrder(C.QPrinter_PageOrder(ptr.Pointer()))
+		return C.QPrinter_SetPageMargins2(ptr.Pointer(), core.PointerFromQMarginsF(margins), C.longlong(units)) != 0
 	}
-	return 0
+	return false
 }
 
-func (ptr *QPrinter) PageRect(unit QPrinter__Unit) *core.QRectF {
+func (ptr *QPrinter) SetPageOrientation(orientation gui.QPageLayout__Orientation) bool {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFFromPointer(C.QPrinter_PageRect(ptr.Pointer(), C.longlong(unit)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-		return tmpValue
+		return C.QPrinter_SetPageOrientation(ptr.Pointer(), C.longlong(orientation)) != 0
 	}
-	return nil
+	return false
 }
 
-//export callbackQPrinter_PaintEngine
-func callbackQPrinter_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrinter::paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+//export callbackQPrinter_SetPageSize
+func callbackQPrinter_SetPageSize(ptr unsafe.Pointer, pageSize unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrinter::setPageSize"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*gui.QPageSize) bool)(gui.NewQPageSizeFromPointer(pageSize)))))
 	}
 
-	return gui.PointerFromQPaintEngine(NewQPrinterFromPointer(ptr).PaintEngineDefault())
+	return C.char(int8(qt.GoBoolToInt(NewQPrinterFromPointer(ptr).SetPageSizeDefault(gui.NewQPageSizeFromPointer(pageSize)))))
 }
 
-func (ptr *QPrinter) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+func (ptr *QPrinter) ConnectSetPageSize(f func(pageSize *gui.QPageSize) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::paintEngine", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSize", f)
 	}
 }
 
-func (ptr *QPrinter) DisconnectPaintEngine() {
+func (ptr *QPrinter) DisconnectSetPageSize() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::paintEngine")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSize")
 	}
 }
 
-func (ptr *QPrinter) PaintEngine() *gui.QPaintEngine {
+func (ptr *QPrinter) SetPageSize(pageSize gui.QPageSize_ITF) bool {
 	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrinter_PaintEngine(ptr.Pointer()))
+		return C.QPrinter_SetPageSize(ptr.Pointer(), gui.PointerFromQPageSize(pageSize)) != 0
 	}
-	return nil
+	return false
 }
 
-func (ptr *QPrinter) PaintEngineDefault() *gui.QPaintEngine {
+func (ptr *QPrinter) SetPageSizeDefault(pageSize gui.QPageSize_ITF) bool {
 	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QPrinter_PaintEngineDefault(ptr.Pointer()))
+		return C.QPrinter_SetPageSizeDefault(ptr.Pointer(), gui.PointerFromQPageSize(pageSize)) != 0
 	}
-	return nil
-}
-
-func (ptr *QPrinter) PaperRect(unit QPrinter__Unit) *core.QRectF {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFFromPointer(C.QPrinter_PaperRect(ptr.Pointer(), C.longlong(unit)))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrinter) PaperSource() QPrinter__PaperSource {
-	if ptr.Pointer() != nil {
-		return QPrinter__PaperSource(C.QPrinter_PaperSource(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrinter) PrintEngine() *QPrintEngine {
-	if ptr.Pointer() != nil {
-		return NewQPrintEngineFromPointer(C.QPrinter_PrintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPrinter) PrintProgram() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinter_PrintProgram(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinter) PrintRange() QPrinter__PrintRange {
-	if ptr.Pointer() != nil {
-		return QPrinter__PrintRange(C.QPrinter_PrintRange(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrinter) PrinterName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinter_PrinterName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinter) PrinterState() QPrinter__PrinterState {
-	if ptr.Pointer() != nil {
-		return QPrinter__PrinterState(C.QPrinter_PrinterState(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrinter) Resolution() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QPrinter_Resolution(ptr.Pointer())))
-	}
-	return 0
+	return false
 }
 
 func (ptr *QPrinter) SetCollateCopies(collate bool) {
@@ -15324,75 +15170,10 @@ func (ptr *QPrinter) SetOutputFormat(format QPrinter__OutputFormat) {
 	}
 }
 
-func (ptr *QPrinter) SetPageLayout(newLayout gui.QPageLayout_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_SetPageLayout(ptr.Pointer(), gui.PointerFromQPageLayout(newLayout)) != 0
-	}
-	return false
-}
-
-func (ptr *QPrinter) SetPageMargins(margins core.QMarginsF_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_SetPageMargins(ptr.Pointer(), core.PointerFromQMarginsF(margins)) != 0
-	}
-	return false
-}
-
-func (ptr *QPrinter) SetPageMargins2(margins core.QMarginsF_ITF, units gui.QPageLayout__Unit) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_SetPageMargins2(ptr.Pointer(), core.PointerFromQMarginsF(margins), C.longlong(units)) != 0
-	}
-	return false
-}
-
 func (ptr *QPrinter) SetPageOrder(pageOrder QPrinter__PageOrder) {
 	if ptr.Pointer() != nil {
 		C.QPrinter_SetPageOrder(ptr.Pointer(), C.longlong(pageOrder))
 	}
-}
-
-func (ptr *QPrinter) SetPageOrientation(orientation gui.QPageLayout__Orientation) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_SetPageOrientation(ptr.Pointer(), C.longlong(orientation)) != 0
-	}
-	return false
-}
-
-//export callbackQPrinter_SetPageSize
-func callbackQPrinter_SetPageSize(ptr unsafe.Pointer, pageSize unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrinter::setPageSize"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*gui.QPageSize) bool)(gui.NewQPageSizeFromPointer(pageSize)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrinterFromPointer(ptr).SetPageSizeDefault(gui.NewQPageSizeFromPointer(pageSize)))))
-}
-
-func (ptr *QPrinter) ConnectSetPageSize(f func(pageSize *gui.QPageSize) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSize", f)
-	}
-}
-
-func (ptr *QPrinter) DisconnectSetPageSize() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSize")
-	}
-}
-
-func (ptr *QPrinter) SetPageSize(pageSize gui.QPageSize_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_SetPageSize(ptr.Pointer(), gui.PointerFromQPageSize(pageSize)) != 0
-	}
-	return false
-}
-
-func (ptr *QPrinter) SetPageSizeDefault(pageSize gui.QPageSize_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrinter_SetPageSizeDefault(ptr.Pointer(), gui.PointerFromQPageSize(pageSize)) != 0
-	}
-	return false
 }
 
 func (ptr *QPrinter) SetPaperSource(source QPrinter__PaperSource) {
@@ -15423,10 +15204,75 @@ func (ptr *QPrinter) SetPrinterName(name string) {
 	}
 }
 
+func (ptr *QPrinter) SetPrinterSelectionOption(option string) {
+	if ptr.Pointer() != nil {
+		var optionC = C.CString(option)
+		defer C.free(unsafe.Pointer(optionC))
+		C.QPrinter_SetPrinterSelectionOption(ptr.Pointer(), optionC)
+	}
+}
+
 func (ptr *QPrinter) SetResolution(dpi int) {
 	if ptr.Pointer() != nil {
 		C.QPrinter_SetResolution(ptr.Pointer(), C.int(int32(dpi)))
 	}
+}
+
+func (ptr *QPrinter) DestroyQPrinter() {
+	if ptr.Pointer() != nil {
+		C.QPrinter_DestroyQPrinter(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QPrinter) ColorMode() QPrinter__ColorMode {
+	if ptr.Pointer() != nil {
+		return QPrinter__ColorMode(C.QPrinter_ColorMode(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) Duplex() QPrinter__DuplexMode {
+	if ptr.Pointer() != nil {
+		return QPrinter__DuplexMode(C.QPrinter_Duplex(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) OutputFormat() QPrinter__OutputFormat {
+	if ptr.Pointer() != nil {
+		return QPrinter__OutputFormat(C.QPrinter_OutputFormat(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) PageOrder() QPrinter__PageOrder {
+	if ptr.Pointer() != nil {
+		return QPrinter__PageOrder(C.QPrinter_PageOrder(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) PaperSource() QPrinter__PaperSource {
+	if ptr.Pointer() != nil {
+		return QPrinter__PaperSource(C.QPrinter_PaperSource(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) PrintRange() QPrinter__PrintRange {
+	if ptr.Pointer() != nil {
+		return QPrinter__PrintRange(C.QPrinter_PrintRange(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) PrinterState() QPrinter__PrinterState {
+	if ptr.Pointer() != nil {
+		return QPrinter__PrinterState(C.QPrinter_PrinterState(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QPrinter) SupportedResolutions() []int {
@@ -15442,6 +15288,147 @@ func (ptr *QPrinter) SupportedResolutions() []int {
 	return make([]int, 0)
 }
 
+func (ptr *QPrinter) PageLayout() *gui.QPageLayout {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQPageLayoutFromPointer(C.QPrinter_PageLayout(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPageLayout).DestroyQPageLayout)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQPrinter_PaintEngine
+func callbackQPrinter_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrinter::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQPrinterFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QPrinter) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::paintEngine", f)
+	}
+}
+
+func (ptr *QPrinter) DisconnectPaintEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::paintEngine")
+	}
+}
+
+func (ptr *QPrinter) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrinter_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrinter) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QPrinter_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrinter) PrintEngine() *QPrintEngine {
+	if ptr.Pointer() != nil {
+		return NewQPrintEngineFromPointer(C.QPrinter_PrintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrinter) PageRect(unit QPrinter__Unit) *core.QRectF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFFromPointer(C.QPrinter_PageRect(ptr.Pointer(), C.longlong(unit)))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrinter) PaperRect(unit QPrinter__Unit) *core.QRectF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFFromPointer(C.QPrinter_PaperRect(ptr.Pointer(), C.longlong(unit)))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrinter) Creator() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinter_Creator(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinter) DocName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinter_DocName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinter) OutputFileName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinter_OutputFileName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinter) PrintProgram() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinter_PrintProgram(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinter) PrinterName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinter_PrinterName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinter) PrinterSelectionOption() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinter_PrinterSelectionOption(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinter) CollateCopies() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrinter_CollateCopies(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrinter) FontEmbeddingEnabled() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrinter_FontEmbeddingEnabled(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrinter) FullPage() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrinter_FullPage(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPrinter) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return C.QPrinter_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QPrinter) SupportsMultipleCopies() bool {
 	if ptr.Pointer() != nil {
 		return C.QPrinter_SupportsMultipleCopies(ptr.Pointer()) != 0
@@ -15449,19 +15436,32 @@ func (ptr *QPrinter) SupportsMultipleCopies() bool {
 	return false
 }
 
+func (ptr *QPrinter) CopyCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrinter_CopyCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) FromPage() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrinter_FromPage(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) Resolution() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QPrinter_Resolution(ptr.Pointer())))
+	}
+	return 0
+}
+
 func (ptr *QPrinter) ToPage() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QPrinter_ToPage(ptr.Pointer())))
 	}
 	return 0
-}
-
-func (ptr *QPrinter) DestroyQPrinter() {
-	if ptr.Pointer() != nil {
-		C.QPrinter_DestroyQPrinter(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 func (ptr *QPrinter) __supportedResolutions_atList(i int) int {
@@ -15628,32 +15628,6 @@ func NewQPrinterInfoFromPointer(ptr unsafe.Pointer) *QPrinterInfo {
 	n.SetPointer(ptr)
 	return n
 }
-func NewQPrinterInfo() *QPrinterInfo {
-	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo())
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
-	return tmpValue
-}
-
-func NewQPrinterInfo3(printer QPrinter_ITF) *QPrinterInfo {
-	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo3(PointerFromQPrinter(printer)))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
-	return tmpValue
-}
-
-func NewQPrinterInfo2(other QPrinterInfo_ITF) *QPrinterInfo {
-	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo2(PointerFromQPrinterInfo(other)))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
-	return tmpValue
-}
-
-func QPrinterInfo_AvailablePrinterNames() []string {
-	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
-}
-
-func (ptr *QPrinterInfo) AvailablePrinterNames() []string {
-	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
-}
-
 func QPrinterInfo_AvailablePrinters() []*QPrinterInfo {
 	return func(l C.struct_QtPrintSupport_PackedList) []*QPrinterInfo {
 		var out = make([]*QPrinterInfo, int(l.len))
@@ -15674,22 +15648,6 @@ func (ptr *QPrinterInfo) AvailablePrinters() []*QPrinterInfo {
 	}(C.QPrinterInfo_QPrinterInfo_AvailablePrinters())
 }
 
-func (ptr *QPrinterInfo) DefaultDuplexMode() QPrinter__DuplexMode {
-	if ptr.Pointer() != nil {
-		return QPrinter__DuplexMode(C.QPrinterInfo_DefaultDuplexMode(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrinterInfo) DefaultPageSize() *gui.QPageSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo_DefaultPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
-		return tmpValue
-	}
-	return nil
-}
-
 func QPrinterInfo_DefaultPrinter() *QPrinterInfo {
 	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_DefaultPrinter())
 	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
@@ -15702,6 +15660,40 @@ func (ptr *QPrinterInfo) DefaultPrinter() *QPrinterInfo {
 	return tmpValue
 }
 
+func QPrinterInfo_PrinterInfo(printerName string) *QPrinterInfo {
+	var printerNameC = C.CString(printerName)
+	defer C.free(unsafe.Pointer(printerNameC))
+	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(printerNameC))
+	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	return tmpValue
+}
+
+func (ptr *QPrinterInfo) PrinterInfo(printerName string) *QPrinterInfo {
+	var printerNameC = C.CString(printerName)
+	defer C.free(unsafe.Pointer(printerNameC))
+	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(printerNameC))
+	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	return tmpValue
+}
+
+func NewQPrinterInfo() *QPrinterInfo {
+	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo())
+	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	return tmpValue
+}
+
+func NewQPrinterInfo3(printer QPrinter_ITF) *QPrinterInfo {
+	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo3(PointerFromQPrinter(printer)))
+	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	return tmpValue
+}
+
+func NewQPrinterInfo2(other QPrinterInfo_ITF) *QPrinterInfo {
+	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_NewQPrinterInfo2(PointerFromQPrinterInfo(other)))
+	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+	return tmpValue
+}
+
 func QPrinterInfo_DefaultPrinterName() string {
 	return cGoUnpackString(C.QPrinterInfo_QPrinterInfo_DefaultPrinterName())
 }
@@ -15710,9 +15702,125 @@ func (ptr *QPrinterInfo) DefaultPrinterName() string {
 	return cGoUnpackString(C.QPrinterInfo_QPrinterInfo_DefaultPrinterName())
 }
 
+func QPrinterInfo_AvailablePrinterNames() []string {
+	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
+}
+
+func (ptr *QPrinterInfo) AvailablePrinterNames() []string {
+	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
+}
+
+func (ptr *QPrinterInfo) DestroyQPrinterInfo() {
+	if ptr.Pointer() != nil {
+		C.QPrinterInfo_DestroyQPrinterInfo(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QPrinterInfo) SupportedPageSizes() []*gui.QPageSize {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPrintSupport_PackedList) []*gui.QPageSize {
+			var out = make([]*gui.QPageSize, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPrinterInfoFromPointer(l.data).__supportedPageSizes_atList(i)
+			}
+			return out
+		}(C.QPrinterInfo_SupportedPageSizes(ptr.Pointer()))
+	}
+	return make([]*gui.QPageSize, 0)
+}
+
+func (ptr *QPrinterInfo) SupportedDuplexModes() []QPrinter__DuplexMode {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPrintSupport_PackedList) []QPrinter__DuplexMode {
+			var out = make([]QPrinter__DuplexMode, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPrinterInfoFromPointer(l.data).__supportedDuplexModes_atList(i)
+			}
+			return out
+		}(C.QPrinterInfo_SupportedDuplexModes(ptr.Pointer()))
+	}
+	return make([]QPrinter__DuplexMode, 0)
+}
+
+func (ptr *QPrinterInfo) SupportedResolutions() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPrintSupport_PackedList) []int {
+			var out = make([]int, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPrinterInfoFromPointer(l.data).__supportedResolutions_atList(i)
+			}
+			return out
+		}(C.QPrinterInfo_SupportedResolutions(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *QPrinterInfo) DefaultPageSize() *gui.QPageSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo_DefaultPageSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrinterInfo) MaximumPhysicalPageSize() *gui.QPageSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo_MaximumPhysicalPageSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrinterInfo) MinimumPhysicalPageSize() *gui.QPageSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo_MinimumPhysicalPageSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrinterInfo) DefaultDuplexMode() QPrinter__DuplexMode {
+	if ptr.Pointer() != nil {
+		return QPrinter__DuplexMode(C.QPrinterInfo_DefaultDuplexMode(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinterInfo) State() QPrinter__PrinterState {
+	if ptr.Pointer() != nil {
+		return QPrinter__PrinterState(C.QPrinterInfo_State(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QPrinterInfo) Description() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QPrinterInfo_Description(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinterInfo) Location() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinterInfo_Location(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinterInfo) MakeAndModel() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinterInfo_MakeAndModel(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QPrinterInfo) PrinterName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QPrinterInfo_PrinterName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -15738,119 +15846,11 @@ func (ptr *QPrinterInfo) IsRemote() bool {
 	return false
 }
 
-func (ptr *QPrinterInfo) Location() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinterInfo_Location(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinterInfo) MakeAndModel() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinterInfo_MakeAndModel(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinterInfo) MaximumPhysicalPageSize() *gui.QPageSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo_MaximumPhysicalPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QPrinterInfo) MinimumPhysicalPageSize() *gui.QPageSize {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo_MinimumPhysicalPageSize(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
-		return tmpValue
-	}
-	return nil
-}
-
-func QPrinterInfo_PrinterInfo(printerName string) *QPrinterInfo {
-	var printerNameC = C.CString(printerName)
-	defer C.free(unsafe.Pointer(printerNameC))
-	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(printerNameC))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
-	return tmpValue
-}
-
-func (ptr *QPrinterInfo) PrinterInfo(printerName string) *QPrinterInfo {
-	var printerNameC = C.CString(printerName)
-	defer C.free(unsafe.Pointer(printerNameC))
-	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(printerNameC))
-	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
-	return tmpValue
-}
-
-func (ptr *QPrinterInfo) PrinterName() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QPrinterInfo_PrinterName(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QPrinterInfo) State() QPrinter__PrinterState {
-	if ptr.Pointer() != nil {
-		return QPrinter__PrinterState(C.QPrinterInfo_State(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QPrinterInfo) SupportedDuplexModes() []QPrinter__DuplexMode {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtPrintSupport_PackedList) []QPrinter__DuplexMode {
-			var out = make([]QPrinter__DuplexMode, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPrinterInfoFromPointer(l.data).__supportedDuplexModes_atList(i)
-			}
-			return out
-		}(C.QPrinterInfo_SupportedDuplexModes(ptr.Pointer()))
-	}
-	return make([]QPrinter__DuplexMode, 0)
-}
-
-func (ptr *QPrinterInfo) SupportedPageSizes() []*gui.QPageSize {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtPrintSupport_PackedList) []*gui.QPageSize {
-			var out = make([]*gui.QPageSize, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPrinterInfoFromPointer(l.data).__supportedPageSizes_atList(i)
-			}
-			return out
-		}(C.QPrinterInfo_SupportedPageSizes(ptr.Pointer()))
-	}
-	return make([]*gui.QPageSize, 0)
-}
-
-func (ptr *QPrinterInfo) SupportedResolutions() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtPrintSupport_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPrinterInfoFromPointer(l.data).__supportedResolutions_atList(i)
-			}
-			return out
-		}(C.QPrinterInfo_SupportedResolutions(ptr.Pointer()))
-	}
-	return make([]int, 0)
-}
-
 func (ptr *QPrinterInfo) SupportsCustomPageSizes() bool {
 	if ptr.Pointer() != nil {
 		return C.QPrinterInfo_SupportsCustomPageSizes(ptr.Pointer()) != 0
 	}
 	return false
-}
-
-func (ptr *QPrinterInfo) DestroyQPrinterInfo() {
-	if ptr.Pointer() != nil {
-		C.QPrinterInfo_DestroyQPrinterInfo(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
 }
 
 func (ptr *QPrinterInfo) __availablePrinters_atList(i int) *QPrinterInfo {
@@ -15875,26 +15875,6 @@ func (ptr *QPrinterInfo) __availablePrinters_newList() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QPrinterInfo) __supportedDuplexModes_atList(i int) QPrinter__DuplexMode {
-	if ptr.Pointer() != nil {
-		return QPrinter__DuplexMode(C.QPrinterInfo___supportedDuplexModes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
-}
-
-func (ptr *QPrinterInfo) __supportedDuplexModes_setList(i QPrinter__DuplexMode) {
-	if ptr.Pointer() != nil {
-		C.QPrinterInfo___supportedDuplexModes_setList(ptr.Pointer(), C.longlong(i))
-	}
-}
-
-func (ptr *QPrinterInfo) __supportedDuplexModes_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPrinterInfo___supportedDuplexModes_newList(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QPrinterInfo) __supportedPageSizes_atList(i int) *gui.QPageSize {
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo___supportedPageSizes_atList(ptr.Pointer(), C.int(int32(i))))
@@ -15913,6 +15893,26 @@ func (ptr *QPrinterInfo) __supportedPageSizes_setList(i gui.QPageSize_ITF) {
 func (ptr *QPrinterInfo) __supportedPageSizes_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QPrinterInfo___supportedPageSizes_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPrinterInfo) __supportedDuplexModes_atList(i int) QPrinter__DuplexMode {
+	if ptr.Pointer() != nil {
+		return QPrinter__DuplexMode(C.QPrinterInfo___supportedDuplexModes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QPrinterInfo) __supportedDuplexModes_setList(i QPrinter__DuplexMode) {
+	if ptr.Pointer() != nil {
+		C.QPrinterInfo___supportedDuplexModes_setList(ptr.Pointer(), C.longlong(i))
+	}
+}
+
+func (ptr *QPrinterInfo) __supportedDuplexModes_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPrinterInfo___supportedDuplexModes_newList(ptr.Pointer()))
 	}
 	return nil
 }

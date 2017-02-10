@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QDOCINDEX>
+<INDEX url="http://doc.qt.io/qt-5" title="Qt Image Formats Documentation" version="5.8.0" project="QtImageFormats" indexTitle="Qt Image Formats">
+    <namespace threadsafety="unspecified" name="" status="active" access="public" module="qtimageformats">
+        <page name="qtimageformats-attribution-jasper.html" href="qtimageformats-attribution-jasper.html" status="active" location="codeattributions.qdoc" filepath="/home/qt/work/build/qtimageformats/src/imageformats/codeattributions.qdoc" lineno="1" subtype="attribution" title="JasPer" fulltitle="JasPer" subtitle="" module="QtImageFormats" groups="attributions-libs,attributions-qtimageformats" brief="JasPer License">
+            <target name="jasper"/>
+        </page>
+        <page name="qtimageformats-attribution-libmng.html" href="qtimageformats-attribution-libmng.html" status="active" location="codeattributions.qdoc" filepath="/home/qt/work/build/qtimageformats/src/imageformats/codeattributions.qdoc" lineno="82" subtype="attribution" title="MNG reference library" fulltitle="MNG reference library" subtitle="" module="QtImageFormats" groups="attributions-libs,attributions-qtimageformats" brief="Zlib License">
+            <target name="libmng"/>
+        </page>
+        <page name="qtimageformats-index.html" href="qtimageformats-index.html" status="active" location="qtimageformats.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtimageformats/src/imageformats/doc/src/qtimageformats.qdoc" lineno="28" subtype="page" title="Qt Image Formats" fulltitle="Qt Image Formats" subtitle="" module="QtImageFormats" brief="Qt Image Formats module provides support for extra image file formats">
+            <contents name="the-image-i-o-plugins" title="The Image I/O Plugins" level="1"/>
+            <contents name="deployment" title="Deployment" level="2"/>
+            <contents name="licenses-and-attributions" title="Licenses and Attributions" level="2"/>
+            <contents name="security-considerations" title="Security considerations" level="2"/>
+        </page>
+        <page name="qtimageformats-attribution-libtiff.html" href="qtimageformats-attribution-libtiff.html" status="active" location="codeattributions.qdoc" filepath="/home/qt/work/build/qtimageformats/src/imageformats/codeattributions.qdoc" lineno="162" subtype="attribution" title="TIFF Software Distribution (libtiff)" fulltitle="TIFF Software Distribution (libtiff)" subtitle="" module="QtImageFormats" groups="attributions-libs,attributions-qtimageformats" brief="Libtiff License">
+            <target name="libtiff"/>
+        </page>
+        <page name="qtimageformats-attribution-libwebp.html" href="qtimageformats-attribution-libwebp.html" status="active" location="codeattributions.qdoc" filepath="/home/qt/work/build/qtimageformats/src/imageformats/codeattributions.qdoc" lineno="211" subtype="attribution" title="WebP (libwebp)" fulltitle="WebP (libwebp)" subtitle="" module="QtImageFormats" groups="attributions-libs,attributions-qtimageformats" brief="BSD 3-clause &quot;New&quot; or &quot;Revised&quot; License">
+            <target name="libwebp"/>
+        </page>
+        <group name="attributions-libs" href="attributions-libs.html" status="internal" seen="false" title="" members="qtimageformats-attribution-jasper.html,qtimageformats-attribution-libmng.html,qtimageformats-attribution-libtiff.html,qtimageformats-attribution-libwebp.html"/>
+        <group name="attributions-qtimageformats" href="attributions-qtimageformats.html" status="internal" seen="false" title="" members="qtimageformats-attribution-jasper.html,qtimageformats-attribution-libmng.html,qtimageformats-attribution-libtiff.html,qtimageformats-attribution-libwebp.html"/>
+    </namespace>
+</INDEX>

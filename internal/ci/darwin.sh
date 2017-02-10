@@ -18,11 +18,11 @@ else
   #download and install qt
   if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
   then
-    QT=qt-opensource-mac-x64-android-ios-5.7.0
+    QT=qt-opensource-mac-x64-android-ios-5.8.0
   else
-    QT=qt-opensource-mac-x64-android-5.7.0
+    QT=qt-opensource-mac-x64-android-5.8.0
   fi
-  curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT.dmg https://download.qt.io/official_releases/qt/5.7/5.7.0/$QT.dmg
+  curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT.dmg https://download.qt.io/official_releases/qt/5.8/5.8.0/$QT.dmg
   hdiutil attach -noverify -noautofsck -quiet /tmp/$QT.dmg
   /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
   diskutil unmountDisk disk1

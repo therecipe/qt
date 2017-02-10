@@ -62,41 +62,6 @@ func NewQUiLoaderFromPointer(ptr unsafe.Pointer) *QUiLoader {
 	n.SetPointer(ptr)
 	return n
 }
-func NewQUiLoader(parent core.QObject_ITF) *QUiLoader {
-	var tmpValue = NewQUiLoaderFromPointer(C.QUiLoader_NewQUiLoader(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func (ptr *QUiLoader) AddPluginPath(path string) {
-	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-		C.QUiLoader_AddPluginPath(ptr.Pointer(), pathC)
-	}
-}
-
-func (ptr *QUiLoader) AvailableLayouts() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableLayouts(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QUiLoader) AvailableWidgets() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableWidgets(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QUiLoader) ClearPluginPaths() {
-	if ptr.Pointer() != nil {
-		C.QUiLoader_ClearPluginPaths(ptr.Pointer())
-	}
-}
 
 //export callbackQUiLoader_CreateAction
 func callbackQUiLoader_CreateAction(ptr unsafe.Pointer, parent unsafe.Pointer, name C.struct_QtUiTools_PackedString) unsafe.Pointer {
@@ -249,6 +214,14 @@ func (ptr *QUiLoader) CreateLayoutDefault(className string, parent core.QObject_
 	return nil
 }
 
+func NewQUiLoader(parent core.QObject_ITF) *QUiLoader {
+	var tmpValue = NewQUiLoaderFromPointer(C.QUiLoader_NewQUiLoader(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 //export callbackQUiLoader_CreateWidget
 func callbackQUiLoader_CreateWidget(ptr unsafe.Pointer, className C.struct_QtUiTools_PackedString, parent unsafe.Pointer, name C.struct_QtUiTools_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::createWidget"); signal != nil {
@@ -302,20 +275,6 @@ func (ptr *QUiLoader) CreateWidgetDefault(className string, parent widgets.QWidg
 	return nil
 }
 
-func (ptr *QUiLoader) ErrorString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QUiLoader_ErrorString(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QUiLoader) IsLanguageChangeEnabled() bool {
-	if ptr.Pointer() != nil {
-		return C.QUiLoader_IsLanguageChangeEnabled(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 func (ptr *QUiLoader) Load(device core.QIODevice_ITF, parentWidget widgets.QWidget_ITF) *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QUiLoader_Load(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parentWidget)))
@@ -327,11 +286,18 @@ func (ptr *QUiLoader) Load(device core.QIODevice_ITF, parentWidget widgets.QWidg
 	return nil
 }
 
-func (ptr *QUiLoader) PluginPaths() []string {
+func (ptr *QUiLoader) AddPluginPath(path string) {
 	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QUiLoader_PluginPaths(ptr.Pointer())), "|")
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QUiLoader_AddPluginPath(ptr.Pointer(), pathC)
 	}
-	return make([]string, 0)
+}
+
+func (ptr *QUiLoader) ClearPluginPaths() {
+	if ptr.Pointer() != nil {
+		C.QUiLoader_ClearPluginPaths(ptr.Pointer())
+	}
 }
 
 func (ptr *QUiLoader) SetLanguageChangeEnabled(enabled bool) {
@@ -344,15 +310,6 @@ func (ptr *QUiLoader) SetWorkingDirectory(dir core.QDir_ITF) {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_SetWorkingDirectory(ptr.Pointer(), core.PointerFromQDir(dir))
 	}
-}
-
-func (ptr *QUiLoader) WorkingDirectory() *core.QDir {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQDirFromPointer(C.QUiLoader_WorkingDirectory(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
-		return tmpValue
-	}
-	return nil
 }
 
 //export callbackQUiLoader_DestroyQUiLoader
@@ -394,28 +351,48 @@ func (ptr *QUiLoader) DestroyQUiLoaderDefault() {
 	}
 }
 
-func (ptr *QUiLoader) __children_atList(i int) *core.QObject {
+func (ptr *QUiLoader) WorkingDirectory() *core.QDir {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QUiLoader___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
+		var tmpValue = core.NewQDirFromPointer(C.QUiLoader_WorkingDirectory(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QUiLoader) __children_setList(i core.QObject_ITF) {
+func (ptr *QUiLoader) ErrorString() string {
 	if ptr.Pointer() != nil {
-		C.QUiLoader___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		return cGoUnpackString(C.QUiLoader_ErrorString(ptr.Pointer()))
 	}
+	return ""
 }
 
-func (ptr *QUiLoader) __children_newList() unsafe.Pointer {
+func (ptr *QUiLoader) AvailableLayouts() []string {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QUiLoader___children_newList(ptr.Pointer()))
+		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableLayouts(ptr.Pointer())), "|")
 	}
-	return nil
+	return make([]string, 0)
+}
+
+func (ptr *QUiLoader) AvailableWidgets() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableWidgets(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QUiLoader) PluginPaths() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QUiLoader_PluginPaths(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QUiLoader) IsLanguageChangeEnabled() bool {
+	if ptr.Pointer() != nil {
+		return C.QUiLoader_IsLanguageChangeEnabled(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 func (ptr *QUiLoader) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -512,39 +489,102 @@ func (ptr *QUiLoader) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQUiLoader_TimerEvent
-func callbackQUiLoader_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQUiLoaderFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QUiLoader) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QUiLoader___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QUiLoader) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUiLoader___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QUiLoader) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QUiLoader) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QUiLoader___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQUiLoader_Event
+func callbackQUiLoader_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQUiLoaderFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QUiLoader) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::event", f)
 	}
 }
 
-func (ptr *QUiLoader) DisconnectTimerEvent() {
+func (ptr *QUiLoader) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::event")
 	}
 }
 
-func (ptr *QUiLoader) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QUiLoader) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QUiLoader_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QUiLoader_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QUiLoader) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QUiLoader_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQUiLoader_EventFilter
+func callbackQUiLoader_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQUiLoaderFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QUiLoader) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::eventFilter", f)
 	}
 }
 
-func (ptr *QUiLoader) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QUiLoader) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QUiLoader_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::eventFilter")
 	}
+}
+
+func (ptr *QUiLoader) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QUiLoader_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QUiLoader) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QUiLoader_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQUiLoader_ChildEvent
@@ -726,78 +766,39 @@ func (ptr *QUiLoader) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQUiLoader_Event
-func callbackQUiLoader_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQUiLoader_TimerEvent
+func callbackQUiLoader_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQUiLoaderFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQUiLoaderFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QUiLoader) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QUiLoader) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::timerEvent", f)
 	}
 }
 
-func (ptr *QUiLoader) DisconnectEvent() {
+func (ptr *QUiLoader) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::timerEvent")
 	}
 }
 
-func (ptr *QUiLoader) Event(e core.QEvent_ITF) bool {
+func (ptr *QUiLoader) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QUiLoader_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QUiLoader_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QUiLoader) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QUiLoader) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QUiLoader_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QUiLoader_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQUiLoader_EventFilter
-func callbackQUiLoader_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQUiLoaderFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QUiLoader) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::eventFilter", f)
-	}
-}
-
-func (ptr *QUiLoader) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::eventFilter")
-	}
-}
-
-func (ptr *QUiLoader) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QUiLoader_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QUiLoader) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QUiLoader_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQUiLoader_MetaObject

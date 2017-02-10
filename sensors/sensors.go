@@ -141,32 +141,6 @@ const (
 	QAccelerometer__User     QAccelerometer__AccelerationMode = QAccelerometer__AccelerationMode(2)
 )
 
-func (ptr *QAccelerometer) AccelerationMode() QAccelerometer__AccelerationMode {
-	if ptr.Pointer() != nil {
-		return QAccelerometer__AccelerationMode(C.QAccelerometer_AccelerationMode(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQAccelerometerReadingFromPointer(C.QAccelerometer_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func NewQAccelerometer(parent core.QObject_ITF) *QAccelerometer {
-	var tmpValue = NewQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
 //export callbackQAccelerometer_AccelerationModeChanged
 func callbackQAccelerometer_AccelerationModeChanged(ptr unsafe.Pointer, accelerationMode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::accelerationModeChanged"); signal != nil {
@@ -199,6 +173,21 @@ func (ptr *QAccelerometer) SetAccelerationMode(accelerationMode QAccelerometer__
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_SetAccelerationMode(ptr.Pointer(), C.longlong(accelerationMode))
 	}
+}
+
+func (ptr *QAccelerometer) AccelerationMode() QAccelerometer__AccelerationMode {
+	if ptr.Pointer() != nil {
+		return QAccelerometer__AccelerationMode(C.QAccelerometer_AccelerationMode(ptr.Pointer()))
+	}
+	return 0
+}
+
+func NewQAccelerometer(parent core.QObject_ITF) *QAccelerometer {
+	var tmpValue = NewQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
 }
 
 //export callbackQAccelerometer_DestroyQAccelerometer
@@ -240,32 +229,23 @@ func (ptr *QAccelerometer) DestroyQAccelerometerDefault() {
 	}
 }
 
+func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAccelerometerReadingFromPointer(C.QAccelerometer_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QAccelerometer_Type() string {
 	return cGoUnpackString(C.QAccelerometer_QAccelerometer_Type())
 }
 
 func (ptr *QAccelerometer) Type() string {
 	return cGoUnpackString(C.QAccelerometer_QAccelerometer_Type())
-}
-
-func (ptr *QAccelerometer) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QAccelerometer___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QAccelerometer) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometer___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QAccelerometer) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAccelerometer___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QAccelerometer) __sensorTypes_atList(i int) *core.QByteArray {
@@ -308,6 +288,26 @@ func (ptr *QAccelerometer) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QAccelerometer) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAccelerometer___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAccelerometer) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAccelerometer___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAccelerometer) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAccelerometer___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAccelerometer) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAccelerometer___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -384,39 +384,78 @@ func (ptr *QAccelerometer) StopDefault() {
 	}
 }
 
-//export callbackQAccelerometer_TimerEvent
-func callbackQAccelerometer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAccelerometerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQAccelerometer_Event
+func callbackQAccelerometer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAccelerometer) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::event", f)
 	}
 }
 
-func (ptr *QAccelerometer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAccelerometer) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::event")
 	}
 }
 
-func (ptr *QAccelerometer) DisconnectTimerEvent() {
+func (ptr *QAccelerometer) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAccelerometer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAccelerometer) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAccelerometer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAccelerometer_EventFilter
+func callbackQAccelerometer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAccelerometer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::eventFilter", f)
 	}
 }
 
-func (ptr *QAccelerometer) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAccelerometer) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QAccelerometer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::eventFilter")
 	}
 }
 
-func (ptr *QAccelerometer) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAccelerometer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAccelerometer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAccelerometer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QAccelerometer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAccelerometer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQAccelerometer_ChildEvent
@@ -598,78 +637,39 @@ func (ptr *QAccelerometer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQAccelerometer_Event
-func callbackQAccelerometer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAccelerometer_TimerEvent
+func callbackQAccelerometer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAccelerometerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAccelerometer) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAccelerometer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::timerEvent", f)
 	}
 }
 
-func (ptr *QAccelerometer) DisconnectEvent() {
+func (ptr *QAccelerometer) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::timerEvent")
 	}
 }
 
-func (ptr *QAccelerometer) Event(e core.QEvent_ITF) bool {
+func (ptr *QAccelerometer) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAccelerometer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAccelerometer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAccelerometer) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAccelerometer) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAccelerometer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAccelerometer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAccelerometer_EventFilter
-func callbackQAccelerometer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAccelerometer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::eventFilter", f)
-	}
-}
-
-func (ptr *QAccelerometer) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::eventFilter")
-	}
-}
-
-func (ptr *QAccelerometer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAccelerometer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAccelerometer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAccelerometer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAccelerometer_MetaObject
@@ -833,6 +833,24 @@ func (ptr *QAccelerometerReading) DestroyQAccelerometerReading() {
 	}
 }
 
+func (ptr *QAccelerometerReading) SetX(x float64) {
+	if ptr.Pointer() != nil {
+		C.QAccelerometerReading_SetX(ptr.Pointer(), C.double(x))
+	}
+}
+
+func (ptr *QAccelerometerReading) SetY(y float64) {
+	if ptr.Pointer() != nil {
+		C.QAccelerometerReading_SetY(ptr.Pointer(), C.double(y))
+	}
+}
+
+func (ptr *QAccelerometerReading) SetZ(z float64) {
+	if ptr.Pointer() != nil {
+		C.QAccelerometerReading_SetZ(ptr.Pointer(), C.double(z))
+	}
+}
+
 func (ptr *QAccelerometerReading) X() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QAccelerometerReading_X(ptr.Pointer()))
@@ -854,57 +872,78 @@ func (ptr *QAccelerometerReading) Z() float64 {
 	return 0
 }
 
-func (ptr *QAccelerometerReading) SetX(x float64) {
+//export callbackQAccelerometerReading_Event
+func callbackQAccelerometerReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometerReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAccelerometerReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_SetX(ptr.Pointer(), C.double(x))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::event", f)
 	}
 }
 
-func (ptr *QAccelerometerReading) SetY(y float64) {
+func (ptr *QAccelerometerReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_SetY(ptr.Pointer(), C.double(y))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::event")
 	}
 }
 
-func (ptr *QAccelerometerReading) SetZ(z float64) {
+func (ptr *QAccelerometerReading) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_SetZ(ptr.Pointer(), C.double(z))
+		return C.QAccelerometerReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAccelerometerReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAccelerometerReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAccelerometerReading_EventFilter
+func callbackQAccelerometerReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometerReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAccelerometerReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::eventFilter", f)
 	}
 }
 
-//export callbackQAccelerometerReading_TimerEvent
-func callbackQAccelerometerReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometerReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAccelerometerReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QAccelerometerReading) DisconnectEventFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::eventFilter")
 	}
 }
 
-func (ptr *QAccelerometerReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAccelerometerReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::timerEvent", f)
+		return C.QAccelerometerReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QAccelerometerReading) DisconnectTimerEvent() {
+func (ptr *QAccelerometerReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::timerEvent")
+		return C.QAccelerometerReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
-}
-
-func (ptr *QAccelerometerReading) TimerEvent(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
-}
-
-func (ptr *QAccelerometerReading) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAccelerometerReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+	return false
 }
 
 //export callbackQAccelerometerReading_ChildEvent
@@ -1086,78 +1125,39 @@ func (ptr *QAccelerometerReading) DisconnectNotifyDefault(sign core.QMetaMethod_
 	}
 }
 
-//export callbackQAccelerometerReading_Event
-func callbackQAccelerometerReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometerReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAccelerometerReading_TimerEvent
+func callbackQAccelerometerReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometerReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAccelerometerReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAccelerometerReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAccelerometerReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::timerEvent", f)
 	}
 }
 
-func (ptr *QAccelerometerReading) DisconnectEvent() {
+func (ptr *QAccelerometerReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::timerEvent")
 	}
 }
 
-func (ptr *QAccelerometerReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QAccelerometerReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAccelerometerReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAccelerometerReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAccelerometerReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAccelerometerReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAccelerometerReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAccelerometerReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAccelerometerReading_EventFilter
-func callbackQAccelerometerReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometerReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAccelerometerReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAccelerometerReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::eventFilter", f)
-	}
-}
-
-func (ptr *QAccelerometerReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometerReading::eventFilter")
-	}
-}
-
-func (ptr *QAccelerometerReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAccelerometerReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAccelerometerReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAccelerometerReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAccelerometerReading_MetaObject
@@ -1235,17 +1235,6 @@ func NewQAltimeterFromPointer(ptr unsafe.Pointer) *QAltimeter {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QAltimeter) Reading() *QAltimeterReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQAltimeterReadingFromPointer(C.QAltimeter_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQAltimeter(parent core.QObject_ITF) *QAltimeter {
 	var tmpValue = NewQAltimeterFromPointer(C.QAltimeter_NewQAltimeter(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1262,32 +1251,23 @@ func (ptr *QAltimeter) DestroyQAltimeter() {
 	}
 }
 
+func (ptr *QAltimeter) Reading() *QAltimeterReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAltimeterReadingFromPointer(C.QAltimeter_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QAltimeter_Type() string {
 	return cGoUnpackString(C.QAltimeter_QAltimeter_Type())
 }
 
 func (ptr *QAltimeter) Type() string {
 	return cGoUnpackString(C.QAltimeter_QAltimeter_Type())
-}
-
-func (ptr *QAltimeter) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QAltimeter___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QAltimeter) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAltimeter___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QAltimeter) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAltimeter___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QAltimeter) __sensorTypes_atList(i int) *core.QByteArray {
@@ -1330,6 +1310,26 @@ func (ptr *QAltimeter) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QAltimeter) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAltimeter___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAltimeter) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAltimeter___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAltimeter) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAltimeter___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAltimeter) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAltimeter___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -1406,39 +1406,78 @@ func (ptr *QAltimeter) StopDefault() {
 	}
 }
 
-//export callbackQAltimeter_TimerEvent
-func callbackQAltimeter_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeter::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAltimeterFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQAltimeter_Event
+func callbackQAltimeter_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeter::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAltimeterFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAltimeter) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::event", f)
 	}
 }
 
-func (ptr *QAltimeter) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAltimeter) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::event")
 	}
 }
 
-func (ptr *QAltimeter) DisconnectTimerEvent() {
+func (ptr *QAltimeter) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAltimeter_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAltimeter) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAltimeter_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAltimeter_EventFilter
+func callbackQAltimeter_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeter::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAltimeterFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAltimeter) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::eventFilter", f)
 	}
 }
 
-func (ptr *QAltimeter) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAltimeter) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QAltimeter_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::eventFilter")
 	}
 }
 
-func (ptr *QAltimeter) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAltimeter) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAltimeter_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAltimeter_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QAltimeter) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAltimeter_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQAltimeter_ChildEvent
@@ -1620,78 +1659,39 @@ func (ptr *QAltimeter) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQAltimeter_Event
-func callbackQAltimeter_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeter::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAltimeter_TimerEvent
+func callbackQAltimeter_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeter::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAltimeterFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAltimeterFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAltimeter) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAltimeter) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::timerEvent", f)
 	}
 }
 
-func (ptr *QAltimeter) DisconnectEvent() {
+func (ptr *QAltimeter) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::timerEvent")
 	}
 }
 
-func (ptr *QAltimeter) Event(e core.QEvent_ITF) bool {
+func (ptr *QAltimeter) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAltimeter_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAltimeter_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAltimeter) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAltimeter) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAltimeter_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAltimeter_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAltimeter_EventFilter
-func callbackQAltimeter_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeter::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAltimeterFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAltimeter) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::eventFilter", f)
-	}
-}
-
-func (ptr *QAltimeter) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeter::eventFilter")
-	}
-}
-
-func (ptr *QAltimeter) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAltimeter_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAltimeter) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAltimeter_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAltimeter_MetaObject
@@ -1855,6 +1855,12 @@ func (ptr *QAltimeterReading) DestroyQAltimeterReading() {
 	}
 }
 
+func (ptr *QAltimeterReading) SetAltitude(altitude float64) {
+	if ptr.Pointer() != nil {
+		C.QAltimeterReading_SetAltitude(ptr.Pointer(), C.double(altitude))
+	}
+}
+
 func (ptr *QAltimeterReading) Altitude() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QAltimeterReading_Altitude(ptr.Pointer()))
@@ -1862,45 +1868,78 @@ func (ptr *QAltimeterReading) Altitude() float64 {
 	return 0
 }
 
-func (ptr *QAltimeterReading) SetAltitude(altitude float64) {
+//export callbackQAltimeterReading_Event
+func callbackQAltimeterReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeterReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAltimeterReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAltimeterReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QAltimeterReading_SetAltitude(ptr.Pointer(), C.double(altitude))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::event", f)
 	}
 }
 
-//export callbackQAltimeterReading_TimerEvent
-func callbackQAltimeterReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeterReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAltimeterReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QAltimeterReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::event")
 	}
 }
 
-func (ptr *QAltimeterReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAltimeterReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAltimeterReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAltimeterReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAltimeterReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAltimeterReading_EventFilter
+func callbackQAltimeterReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeterReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAltimeterReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAltimeterReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::eventFilter", f)
 	}
 }
 
-func (ptr *QAltimeterReading) DisconnectTimerEvent() {
+func (ptr *QAltimeterReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::eventFilter")
 	}
 }
 
-func (ptr *QAltimeterReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAltimeterReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAltimeterReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAltimeterReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QAltimeterReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAltimeterReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAltimeterReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAltimeterReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQAltimeterReading_ChildEvent
@@ -2082,78 +2121,39 @@ func (ptr *QAltimeterReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 	}
 }
 
-//export callbackQAltimeterReading_Event
-func callbackQAltimeterReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeterReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAltimeterReading_TimerEvent
+func callbackQAltimeterReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeterReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAltimeterReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAltimeterReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAltimeterReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAltimeterReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::timerEvent", f)
 	}
 }
 
-func (ptr *QAltimeterReading) DisconnectEvent() {
+func (ptr *QAltimeterReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::timerEvent")
 	}
 }
 
-func (ptr *QAltimeterReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QAltimeterReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAltimeterReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAltimeterReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAltimeterReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAltimeterReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAltimeterReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAltimeterReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAltimeterReading_EventFilter
-func callbackQAltimeterReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAltimeterReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAltimeterReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAltimeterReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::eventFilter", f)
-	}
-}
-
-func (ptr *QAltimeterReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAltimeterReading::eventFilter")
-	}
-}
-
-func (ptr *QAltimeterReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAltimeterReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAltimeterReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAltimeterReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAltimeterReading_MetaObject
@@ -2330,6 +2330,12 @@ const (
 	QAmbientLightReading__Sunny     QAmbientLightReading__LightLevel = QAmbientLightReading__LightLevel(5)
 )
 
+func (ptr *QAmbientLightReading) SetLightLevel(lightLevel QAmbientLightReading__LightLevel) {
+	if ptr.Pointer() != nil {
+		C.QAmbientLightReading_SetLightLevel(ptr.Pointer(), C.longlong(lightLevel))
+	}
+}
+
 func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
 	if ptr.Pointer() != nil {
 		return QAmbientLightReading__LightLevel(C.QAmbientLightReading_LightLevel(ptr.Pointer()))
@@ -2337,45 +2343,78 @@ func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
 	return 0
 }
 
-func (ptr *QAmbientLightReading) SetLightLevel(lightLevel QAmbientLightReading__LightLevel) {
+//export callbackQAmbientLightReading_Event
+func callbackQAmbientLightReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAmbientLightReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QAmbientLightReading_SetLightLevel(ptr.Pointer(), C.longlong(lightLevel))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::event", f)
 	}
 }
 
-//export callbackQAmbientLightReading_TimerEvent
-func callbackQAmbientLightReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAmbientLightReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QAmbientLightReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::event")
 	}
 }
 
-func (ptr *QAmbientLightReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAmbientLightReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientLightReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAmbientLightReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientLightReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAmbientLightReading_EventFilter
+func callbackQAmbientLightReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAmbientLightReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::eventFilter", f)
 	}
 }
 
-func (ptr *QAmbientLightReading) DisconnectTimerEvent() {
+func (ptr *QAmbientLightReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::eventFilter")
 	}
 }
 
-func (ptr *QAmbientLightReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientLightReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAmbientLightReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAmbientLightReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QAmbientLightReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientLightReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAmbientLightReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAmbientLightReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQAmbientLightReading_ChildEvent
@@ -2557,78 +2596,39 @@ func (ptr *QAmbientLightReading) DisconnectNotifyDefault(sign core.QMetaMethod_I
 	}
 }
 
-//export callbackQAmbientLightReading_Event
-func callbackQAmbientLightReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAmbientLightReading_TimerEvent
+func callbackQAmbientLightReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAmbientLightReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAmbientLightReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAmbientLightReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::timerEvent", f)
 	}
 }
 
-func (ptr *QAmbientLightReading) DisconnectEvent() {
+func (ptr *QAmbientLightReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::timerEvent")
 	}
 }
 
-func (ptr *QAmbientLightReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QAmbientLightReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientLightReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientLightReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAmbientLightReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAmbientLightReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientLightReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientLightReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAmbientLightReading_EventFilter
-func callbackQAmbientLightReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAmbientLightReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::eventFilter", f)
-	}
-}
-
-func (ptr *QAmbientLightReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightReading::eventFilter")
-	}
-}
-
-func (ptr *QAmbientLightReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientLightReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAmbientLightReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientLightReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAmbientLightReading_MetaObject
@@ -2706,17 +2706,6 @@ func NewQAmbientLightSensorFromPointer(ptr unsafe.Pointer) *QAmbientLightSensor 
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQAmbientLightReadingFromPointer(C.QAmbientLightSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQAmbientLightSensor(parent core.QObject_ITF) *QAmbientLightSensor {
 	var tmpValue = NewQAmbientLightSensorFromPointer(C.QAmbientLightSensor_NewQAmbientLightSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2764,32 +2753,23 @@ func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensorDefault() {
 	}
 }
 
+func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAmbientLightReadingFromPointer(C.QAmbientLightSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QAmbientLightSensor_Type() string {
 	return cGoUnpackString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
 }
 
 func (ptr *QAmbientLightSensor) Type() string {
 	return cGoUnpackString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
-}
-
-func (ptr *QAmbientLightSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QAmbientLightSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QAmbientLightSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAmbientLightSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QAmbientLightSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAmbientLightSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QAmbientLightSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -2832,6 +2812,26 @@ func (ptr *QAmbientLightSensor) __sensorsForType_setList(i core.QByteArray_ITF) 
 func (ptr *QAmbientLightSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAmbientLightSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAmbientLightSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAmbientLightSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAmbientLightSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientLightSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAmbientLightSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientLightSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -2908,39 +2908,78 @@ func (ptr *QAmbientLightSensor) StopDefault() {
 	}
 }
 
-//export callbackQAmbientLightSensor_TimerEvent
-func callbackQAmbientLightSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAmbientLightSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQAmbientLightSensor_Event
+func callbackQAmbientLightSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAmbientLightSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::event", f)
 	}
 }
 
-func (ptr *QAmbientLightSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAmbientLightSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::event")
 	}
 }
 
-func (ptr *QAmbientLightSensor) DisconnectTimerEvent() {
+func (ptr *QAmbientLightSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientLightSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAmbientLightSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientLightSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAmbientLightSensor_EventFilter
+func callbackQAmbientLightSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAmbientLightSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QAmbientLightSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientLightSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QAmbientLightSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::eventFilter")
 	}
 }
 
-func (ptr *QAmbientLightSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientLightSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAmbientLightSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAmbientLightSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QAmbientLightSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientLightSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQAmbientLightSensor_ChildEvent
@@ -3122,78 +3161,39 @@ func (ptr *QAmbientLightSensor) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 	}
 }
 
-//export callbackQAmbientLightSensor_Event
-func callbackQAmbientLightSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAmbientLightSensor_TimerEvent
+func callbackQAmbientLightSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAmbientLightSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAmbientLightSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAmbientLightSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QAmbientLightSensor) DisconnectEvent() {
+func (ptr *QAmbientLightSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::timerEvent")
 	}
 }
 
-func (ptr *QAmbientLightSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QAmbientLightSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientLightSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientLightSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAmbientLightSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAmbientLightSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientLightSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientLightSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAmbientLightSensor_EventFilter
-func callbackQAmbientLightSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientLightSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAmbientLightSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QAmbientLightSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::eventFilter")
-	}
-}
-
-func (ptr *QAmbientLightSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientLightSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAmbientLightSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientLightSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAmbientLightSensor_MetaObject
@@ -3357,6 +3357,12 @@ func (ptr *QAmbientTemperatureReading) DestroyQAmbientTemperatureReading() {
 	}
 }
 
+func (ptr *QAmbientTemperatureReading) SetTemperature(temperature float64) {
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureReading_SetTemperature(ptr.Pointer(), C.double(temperature))
+	}
+}
+
 func (ptr *QAmbientTemperatureReading) Temperature() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QAmbientTemperatureReading_Temperature(ptr.Pointer()))
@@ -3364,45 +3370,78 @@ func (ptr *QAmbientTemperatureReading) Temperature() float64 {
 	return 0
 }
 
-func (ptr *QAmbientTemperatureReading) SetTemperature(temperature float64) {
+//export callbackQAmbientTemperatureReading_Event
+func callbackQAmbientTemperatureReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAmbientTemperatureReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureReading_SetTemperature(ptr.Pointer(), C.double(temperature))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::event", f)
 	}
 }
 
-//export callbackQAmbientTemperatureReading_TimerEvent
-func callbackQAmbientTemperatureReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAmbientTemperatureReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QAmbientTemperatureReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::event")
 	}
 }
 
-func (ptr *QAmbientTemperatureReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAmbientTemperatureReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientTemperatureReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAmbientTemperatureReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientTemperatureReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAmbientTemperatureReading_EventFilter
+func callbackQAmbientTemperatureReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAmbientTemperatureReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::eventFilter", f)
 	}
 }
 
-func (ptr *QAmbientTemperatureReading) DisconnectTimerEvent() {
+func (ptr *QAmbientTemperatureReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::eventFilter")
 	}
 }
 
-func (ptr *QAmbientTemperatureReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientTemperatureReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAmbientTemperatureReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QAmbientTemperatureReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientTemperatureReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAmbientTemperatureReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQAmbientTemperatureReading_ChildEvent
@@ -3584,78 +3623,39 @@ func (ptr *QAmbientTemperatureReading) DisconnectNotifyDefault(sign core.QMetaMe
 	}
 }
 
-//export callbackQAmbientTemperatureReading_Event
-func callbackQAmbientTemperatureReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAmbientTemperatureReading_TimerEvent
+func callbackQAmbientTemperatureReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAmbientTemperatureReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAmbientTemperatureReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAmbientTemperatureReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::timerEvent", f)
 	}
 }
 
-func (ptr *QAmbientTemperatureReading) DisconnectEvent() {
+func (ptr *QAmbientTemperatureReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::timerEvent")
 	}
 }
 
-func (ptr *QAmbientTemperatureReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QAmbientTemperatureReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientTemperatureReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAmbientTemperatureReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAmbientTemperatureReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientTemperatureReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAmbientTemperatureReading_EventFilter
-func callbackQAmbientTemperatureReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAmbientTemperatureReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::eventFilter", f)
-	}
-}
-
-func (ptr *QAmbientTemperatureReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureReading::eventFilter")
-	}
-}
-
-func (ptr *QAmbientTemperatureReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAmbientTemperatureReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAmbientTemperatureReading_MetaObject
@@ -3733,17 +3733,6 @@ func NewQAmbientTemperatureSensorFromPointer(ptr unsafe.Pointer) *QAmbientTemper
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QAmbientTemperatureSensor) Reading() *QAmbientTemperatureReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQAmbientTemperatureReadingFromPointer(C.QAmbientTemperatureSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQAmbientTemperatureSensor(parent core.QObject_ITF) *QAmbientTemperatureSensor {
 	var tmpValue = NewQAmbientTemperatureSensorFromPointer(C.QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3760,32 +3749,23 @@ func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
 	}
 }
 
+func (ptr *QAmbientTemperatureSensor) Reading() *QAmbientTemperatureReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAmbientTemperatureReadingFromPointer(C.QAmbientTemperatureSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QAmbientTemperatureSensor_Type() string {
 	return cGoUnpackString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
 }
 
 func (ptr *QAmbientTemperatureSensor) Type() string {
 	return cGoUnpackString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
-}
-
-func (ptr *QAmbientTemperatureSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QAmbientTemperatureSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QAmbientTemperatureSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QAmbientTemperatureSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QAmbientTemperatureSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QAmbientTemperatureSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -3828,6 +3808,26 @@ func (ptr *QAmbientTemperatureSensor) __sensorsForType_setList(i core.QByteArray
 func (ptr *QAmbientTemperatureSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAmbientTemperatureSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAmbientTemperatureSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QAmbientTemperatureSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAmbientTemperatureSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QAmbientTemperatureSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -3904,39 +3904,78 @@ func (ptr *QAmbientTemperatureSensor) StopDefault() {
 	}
 }
 
-//export callbackQAmbientTemperatureSensor_TimerEvent
-func callbackQAmbientTemperatureSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQAmbientTemperatureSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQAmbientTemperatureSensor_Event
+func callbackQAmbientTemperatureSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAmbientTemperatureSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::event", f)
 	}
 }
 
-func (ptr *QAmbientTemperatureSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QAmbientTemperatureSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::event")
 	}
 }
 
-func (ptr *QAmbientTemperatureSensor) DisconnectTimerEvent() {
+func (ptr *QAmbientTemperatureSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientTemperatureSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QAmbientTemperatureSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientTemperatureSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAmbientTemperatureSensor_EventFilter
+func callbackQAmbientTemperatureSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAmbientTemperatureSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QAmbientTemperatureSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientTemperatureSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::eventFilter")
 	}
 }
 
-func (ptr *QAmbientTemperatureSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QAmbientTemperatureSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QAmbientTemperatureSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QAmbientTemperatureSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAmbientTemperatureSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQAmbientTemperatureSensor_ChildEvent
@@ -4118,78 +4157,39 @@ func (ptr *QAmbientTemperatureSensor) DisconnectNotifyDefault(sign core.QMetaMet
 	}
 }
 
-//export callbackQAmbientTemperatureSensor_Event
-func callbackQAmbientTemperatureSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQAmbientTemperatureSensor_TimerEvent
+func callbackQAmbientTemperatureSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAmbientTemperatureSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QAmbientTemperatureSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QAmbientTemperatureSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QAmbientTemperatureSensor) DisconnectEvent() {
+func (ptr *QAmbientTemperatureSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::timerEvent")
 	}
 }
 
-func (ptr *QAmbientTemperatureSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QAmbientTemperatureSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientTemperatureSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QAmbientTemperatureSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QAmbientTemperatureSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QAmbientTemperatureSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQAmbientTemperatureSensor_EventFilter
-func callbackQAmbientTemperatureSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientTemperatureSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAmbientTemperatureSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QAmbientTemperatureSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QAmbientTemperatureSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientTemperatureSensor::eventFilter")
-	}
-}
-
-func (ptr *QAmbientTemperatureSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QAmbientTemperatureSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQAmbientTemperatureSensor_MetaObject
@@ -4267,17 +4267,6 @@ func NewQCompassFromPointer(ptr unsafe.Pointer) *QCompass {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QCompass) Reading() *QCompassReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQCompassReadingFromPointer(C.QCompass_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQCompass(parent core.QObject_ITF) *QCompass {
 	var tmpValue = NewQCompassFromPointer(C.QCompass_NewQCompass(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4325,32 +4314,23 @@ func (ptr *QCompass) DestroyQCompassDefault() {
 	}
 }
 
+func (ptr *QCompass) Reading() *QCompassReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCompassReadingFromPointer(C.QCompass_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QCompass_Type() string {
 	return cGoUnpackString(C.QCompass_QCompass_Type())
 }
 
 func (ptr *QCompass) Type() string {
 	return cGoUnpackString(C.QCompass_QCompass_Type())
-}
-
-func (ptr *QCompass) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QCompass___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QCompass) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCompass___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QCompass) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QCompass___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QCompass) __sensorTypes_atList(i int) *core.QByteArray {
@@ -4393,6 +4373,26 @@ func (ptr *QCompass) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QCompass) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QCompass___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCompass) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QCompass___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QCompass) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompass___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QCompass) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QCompass___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -4469,39 +4469,78 @@ func (ptr *QCompass) StopDefault() {
 	}
 }
 
-//export callbackQCompass_TimerEvent
-func callbackQCompass_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompass::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQCompassFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQCompass_Event
+func callbackQCompass_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompass::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQCompassFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QCompass) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::event", f)
 	}
 }
 
-func (ptr *QCompass) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QCompass) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::event")
 	}
 }
 
-func (ptr *QCompass) DisconnectTimerEvent() {
+func (ptr *QCompass) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QCompass_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QCompass) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QCompass_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQCompass_EventFilter
+func callbackQCompass_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompass::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQCompassFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QCompass) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::eventFilter", f)
 	}
 }
 
-func (ptr *QCompass) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QCompass) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QCompass_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::eventFilter")
 	}
 }
 
-func (ptr *QCompass) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QCompass) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QCompass_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QCompass_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QCompass) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QCompass_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQCompass_ChildEvent
@@ -4683,78 +4722,39 @@ func (ptr *QCompass) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQCompass_Event
-func callbackQCompass_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompass::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQCompass_TimerEvent
+func callbackQCompass_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompass::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQCompassFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQCompassFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QCompass) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QCompass) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::timerEvent", f)
 	}
 }
 
-func (ptr *QCompass) DisconnectEvent() {
+func (ptr *QCompass) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::timerEvent")
 	}
 }
 
-func (ptr *QCompass) Event(e core.QEvent_ITF) bool {
+func (ptr *QCompass) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QCompass_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QCompass_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QCompass) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QCompass) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QCompass_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QCompass_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQCompass_EventFilter
-func callbackQCompass_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompass::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQCompassFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QCompass) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::eventFilter", f)
-	}
-}
-
-func (ptr *QCompass) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::eventFilter")
-	}
-}
-
-func (ptr *QCompass) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QCompass_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QCompass) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QCompass_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQCompass_MetaObject
@@ -4918,6 +4918,18 @@ func (ptr *QCompassReading) DestroyQCompassReading() {
 	}
 }
 
+func (ptr *QCompassReading) SetAzimuth(azimuth float64) {
+	if ptr.Pointer() != nil {
+		C.QCompassReading_SetAzimuth(ptr.Pointer(), C.double(azimuth))
+	}
+}
+
+func (ptr *QCompassReading) SetCalibrationLevel(calibrationLevel float64) {
+	if ptr.Pointer() != nil {
+		C.QCompassReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
+	}
+}
+
 func (ptr *QCompassReading) Azimuth() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QCompassReading_Azimuth(ptr.Pointer()))
@@ -4932,51 +4944,78 @@ func (ptr *QCompassReading) CalibrationLevel() float64 {
 	return 0
 }
 
-func (ptr *QCompassReading) SetAzimuth(azimuth float64) {
+//export callbackQCompassReading_Event
+func callbackQCompassReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompassReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQCompassReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QCompassReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QCompassReading_SetAzimuth(ptr.Pointer(), C.double(azimuth))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::event", f)
 	}
 }
 
-func (ptr *QCompassReading) SetCalibrationLevel(calibrationLevel float64) {
+func (ptr *QCompassReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
-		C.QCompassReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::event")
 	}
 }
 
-//export callbackQCompassReading_TimerEvent
-func callbackQCompassReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompassReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQCompassReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QCompassReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QCompassReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QCompassReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QCompassReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQCompassReading_EventFilter
+func callbackQCompassReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompassReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQCompassReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QCompassReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::eventFilter", f)
 	}
 }
 
-func (ptr *QCompassReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QCompassReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::eventFilter")
 	}
 }
 
-func (ptr *QCompassReading) DisconnectTimerEvent() {
+func (ptr *QCompassReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::timerEvent")
+		return C.QCompassReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QCompassReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QCompassReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QCompassReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QCompassReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
-}
-
-func (ptr *QCompassReading) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCompassReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+	return false
 }
 
 //export callbackQCompassReading_ChildEvent
@@ -5158,78 +5197,39 @@ func (ptr *QCompassReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQCompassReading_Event
-func callbackQCompassReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompassReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQCompassReading_TimerEvent
+func callbackQCompassReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompassReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQCompassReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQCompassReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QCompassReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QCompassReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::timerEvent", f)
 	}
 }
 
-func (ptr *QCompassReading) DisconnectEvent() {
+func (ptr *QCompassReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::timerEvent")
 	}
 }
 
-func (ptr *QCompassReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QCompassReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QCompassReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QCompassReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QCompassReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QCompassReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QCompassReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QCompassReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQCompassReading_EventFilter
-func callbackQCompassReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompassReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQCompassReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QCompassReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::eventFilter", f)
-	}
-}
-
-func (ptr *QCompassReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompassReading::eventFilter")
-	}
-}
-
-func (ptr *QCompassReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QCompassReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QCompassReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QCompassReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQCompassReading_MetaObject
@@ -5393,6 +5393,12 @@ func (ptr *QDistanceReading) DestroyQDistanceReading() {
 	}
 }
 
+func (ptr *QDistanceReading) SetDistance(distance float64) {
+	if ptr.Pointer() != nil {
+		C.QDistanceReading_SetDistance(ptr.Pointer(), C.double(distance))
+	}
+}
+
 func (ptr *QDistanceReading) Distance() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QDistanceReading_Distance(ptr.Pointer()))
@@ -5400,45 +5406,78 @@ func (ptr *QDistanceReading) Distance() float64 {
 	return 0
 }
 
-func (ptr *QDistanceReading) SetDistance(distance float64) {
+//export callbackQDistanceReading_Event
+func callbackQDistanceReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDistanceReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QDistanceReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QDistanceReading_SetDistance(ptr.Pointer(), C.double(distance))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::event", f)
 	}
 }
 
-//export callbackQDistanceReading_TimerEvent
-func callbackQDistanceReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQDistanceReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QDistanceReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::event")
 	}
 }
 
-func (ptr *QDistanceReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QDistanceReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDistanceReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QDistanceReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDistanceReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQDistanceReading_EventFilter
+func callbackQDistanceReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDistanceReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QDistanceReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::eventFilter", f)
 	}
 }
 
-func (ptr *QDistanceReading) DisconnectTimerEvent() {
+func (ptr *QDistanceReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::eventFilter")
 	}
 }
 
-func (ptr *QDistanceReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QDistanceReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QDistanceReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QDistanceReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QDistanceReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QDistanceReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QDistanceReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QDistanceReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQDistanceReading_ChildEvent
@@ -5620,78 +5659,39 @@ func (ptr *QDistanceReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
-//export callbackQDistanceReading_Event
-func callbackQDistanceReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQDistanceReading_TimerEvent
+func callbackQDistanceReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQDistanceReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQDistanceReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QDistanceReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QDistanceReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::timerEvent", f)
 	}
 }
 
-func (ptr *QDistanceReading) DisconnectEvent() {
+func (ptr *QDistanceReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::timerEvent")
 	}
 }
 
-func (ptr *QDistanceReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QDistanceReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QDistanceReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QDistanceReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QDistanceReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QDistanceReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QDistanceReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QDistanceReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQDistanceReading_EventFilter
-func callbackQDistanceReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQDistanceReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QDistanceReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::eventFilter", f)
-	}
-}
-
-func (ptr *QDistanceReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceReading::eventFilter")
-	}
-}
-
-func (ptr *QDistanceReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QDistanceReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QDistanceReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QDistanceReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQDistanceReading_MetaObject
@@ -5769,17 +5769,6 @@ func NewQDistanceSensorFromPointer(ptr unsafe.Pointer) *QDistanceSensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QDistanceSensor) Reading() *QDistanceReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQDistanceReadingFromPointer(C.QDistanceSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQDistanceSensor(parent core.QObject_ITF) *QDistanceSensor {
 	var tmpValue = NewQDistanceSensorFromPointer(C.QDistanceSensor_NewQDistanceSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -5796,32 +5785,23 @@ func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
 	}
 }
 
+func (ptr *QDistanceSensor) Reading() *QDistanceReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQDistanceReadingFromPointer(C.QDistanceSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QDistanceSensor_Type() string {
 	return cGoUnpackString(C.QDistanceSensor_QDistanceSensor_Type())
 }
 
 func (ptr *QDistanceSensor) Type() string {
 	return cGoUnpackString(C.QDistanceSensor_QDistanceSensor_Type())
-}
-
-func (ptr *QDistanceSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QDistanceSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QDistanceSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDistanceSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QDistanceSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QDistanceSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QDistanceSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -5864,6 +5844,26 @@ func (ptr *QDistanceSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QDistanceSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QDistanceSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDistanceSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QDistanceSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QDistanceSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDistanceSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QDistanceSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QDistanceSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -5940,39 +5940,78 @@ func (ptr *QDistanceSensor) StopDefault() {
 	}
 }
 
-//export callbackQDistanceSensor_TimerEvent
-func callbackQDistanceSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQDistanceSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQDistanceSensor_Event
+func callbackQDistanceSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDistanceSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QDistanceSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::event", f)
 	}
 }
 
-func (ptr *QDistanceSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QDistanceSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::event")
 	}
 }
 
-func (ptr *QDistanceSensor) DisconnectTimerEvent() {
+func (ptr *QDistanceSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDistanceSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QDistanceSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDistanceSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQDistanceSensor_EventFilter
+func callbackQDistanceSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDistanceSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QDistanceSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QDistanceSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QDistanceSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QDistanceSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::eventFilter")
 	}
 }
 
-func (ptr *QDistanceSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QDistanceSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QDistanceSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QDistanceSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QDistanceSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDistanceSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQDistanceSensor_ChildEvent
@@ -6154,78 +6193,39 @@ func (ptr *QDistanceSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQDistanceSensor_Event
-func callbackQDistanceSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQDistanceSensor_TimerEvent
+func callbackQDistanceSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQDistanceSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQDistanceSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QDistanceSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QDistanceSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QDistanceSensor) DisconnectEvent() {
+func (ptr *QDistanceSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::timerEvent")
 	}
 }
 
-func (ptr *QDistanceSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QDistanceSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QDistanceSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QDistanceSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QDistanceSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QDistanceSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QDistanceSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QDistanceSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQDistanceSensor_EventFilter
-func callbackQDistanceSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDistanceSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQDistanceSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QDistanceSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QDistanceSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDistanceSensor::eventFilter")
-	}
-}
-
-func (ptr *QDistanceSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QDistanceSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QDistanceSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QDistanceSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQDistanceSensor_MetaObject
@@ -6303,17 +6303,6 @@ func NewQGyroscopeFromPointer(ptr unsafe.Pointer) *QGyroscope {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QGyroscope) Reading() *QGyroscopeReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQGyroscopeReadingFromPointer(C.QGyroscope_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQGyroscope(parent core.QObject_ITF) *QGyroscope {
 	var tmpValue = NewQGyroscopeFromPointer(C.QGyroscope_NewQGyroscope(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -6361,32 +6350,23 @@ func (ptr *QGyroscope) DestroyQGyroscopeDefault() {
 	}
 }
 
+func (ptr *QGyroscope) Reading() *QGyroscopeReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGyroscopeReadingFromPointer(C.QGyroscope_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QGyroscope_Type() string {
 	return cGoUnpackString(C.QGyroscope_QGyroscope_Type())
 }
 
 func (ptr *QGyroscope) Type() string {
 	return cGoUnpackString(C.QGyroscope_QGyroscope_Type())
-}
-
-func (ptr *QGyroscope) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QGyroscope___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QGyroscope) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGyroscope___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QGyroscope) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QGyroscope___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QGyroscope) __sensorTypes_atList(i int) *core.QByteArray {
@@ -6429,6 +6409,26 @@ func (ptr *QGyroscope) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QGyroscope) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QGyroscope___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGyroscope) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QGyroscope___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QGyroscope) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGyroscope___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QGyroscope) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QGyroscope___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -6505,39 +6505,78 @@ func (ptr *QGyroscope) StopDefault() {
 	}
 }
 
-//export callbackQGyroscope_TimerEvent
-func callbackQGyroscope_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscope::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQGyroscopeFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQGyroscope_Event
+func callbackQGyroscope_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscope::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGyroscope) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::event", f)
 	}
 }
 
-func (ptr *QGyroscope) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QGyroscope) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::event")
 	}
 }
 
-func (ptr *QGyroscope) DisconnectTimerEvent() {
+func (ptr *QGyroscope) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGyroscope_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QGyroscope) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGyroscope_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQGyroscope_EventFilter
+func callbackQGyroscope_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscope::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QGyroscope) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::eventFilter", f)
 	}
 }
 
-func (ptr *QGyroscope) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QGyroscope) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QGyroscope_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::eventFilter")
 	}
 }
 
-func (ptr *QGyroscope) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QGyroscope) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QGyroscope_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QGyroscope_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QGyroscope) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGyroscope_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQGyroscope_ChildEvent
@@ -6719,78 +6758,39 @@ func (ptr *QGyroscope) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQGyroscope_Event
-func callbackQGyroscope_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscope::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQGyroscope_TimerEvent
+func callbackQGyroscope_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscope::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQGyroscopeFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QGyroscope) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QGyroscope) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::timerEvent", f)
 	}
 }
 
-func (ptr *QGyroscope) DisconnectEvent() {
+func (ptr *QGyroscope) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::timerEvent")
 	}
 }
 
-func (ptr *QGyroscope) Event(e core.QEvent_ITF) bool {
+func (ptr *QGyroscope) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QGyroscope_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QGyroscope_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QGyroscope) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QGyroscope) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QGyroscope_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QGyroscope_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQGyroscope_EventFilter
-func callbackQGyroscope_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscope::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QGyroscope) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::eventFilter", f)
-	}
-}
-
-func (ptr *QGyroscope) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::eventFilter")
-	}
-}
-
-func (ptr *QGyroscope) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QGyroscope_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QGyroscope) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QGyroscope_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQGyroscope_MetaObject
@@ -6954,6 +6954,24 @@ func (ptr *QGyroscopeReading) DestroyQGyroscopeReading() {
 	}
 }
 
+func (ptr *QGyroscopeReading) SetX(x float64) {
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_SetX(ptr.Pointer(), C.double(x))
+	}
+}
+
+func (ptr *QGyroscopeReading) SetY(y float64) {
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_SetY(ptr.Pointer(), C.double(y))
+	}
+}
+
+func (ptr *QGyroscopeReading) SetZ(z float64) {
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_SetZ(ptr.Pointer(), C.double(z))
+	}
+}
+
 func (ptr *QGyroscopeReading) X() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QGyroscopeReading_X(ptr.Pointer()))
@@ -6975,57 +6993,78 @@ func (ptr *QGyroscopeReading) Z() float64 {
 	return 0
 }
 
-func (ptr *QGyroscopeReading) SetX(x float64) {
+//export callbackQGyroscopeReading_Event
+func callbackQGyroscopeReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscopeReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGyroscopeReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_SetX(ptr.Pointer(), C.double(x))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::event", f)
 	}
 }
 
-func (ptr *QGyroscopeReading) SetY(y float64) {
+func (ptr *QGyroscopeReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_SetY(ptr.Pointer(), C.double(y))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::event")
 	}
 }
 
-func (ptr *QGyroscopeReading) SetZ(z float64) {
+func (ptr *QGyroscopeReading) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_SetZ(ptr.Pointer(), C.double(z))
+		return C.QGyroscopeReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QGyroscopeReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGyroscopeReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQGyroscopeReading_EventFilter
+func callbackQGyroscopeReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscopeReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QGyroscopeReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::eventFilter", f)
 	}
 }
 
-//export callbackQGyroscopeReading_TimerEvent
-func callbackQGyroscopeReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscopeReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQGyroscopeReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QGyroscopeReading) DisconnectEventFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::eventFilter")
 	}
 }
 
-func (ptr *QGyroscopeReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QGyroscopeReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::timerEvent", f)
+		return C.QGyroscopeReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QGyroscopeReading) DisconnectTimerEvent() {
+func (ptr *QGyroscopeReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::timerEvent")
+		return C.QGyroscopeReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
-}
-
-func (ptr *QGyroscopeReading) TimerEvent(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
-}
-
-func (ptr *QGyroscopeReading) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGyroscopeReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+	return false
 }
 
 //export callbackQGyroscopeReading_ChildEvent
@@ -7207,78 +7246,39 @@ func (ptr *QGyroscopeReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 	}
 }
 
-//export callbackQGyroscopeReading_Event
-func callbackQGyroscopeReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscopeReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQGyroscopeReading_TimerEvent
+func callbackQGyroscopeReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscopeReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQGyroscopeReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QGyroscopeReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QGyroscopeReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::timerEvent", f)
 	}
 }
 
-func (ptr *QGyroscopeReading) DisconnectEvent() {
+func (ptr *QGyroscopeReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::timerEvent")
 	}
 }
 
-func (ptr *QGyroscopeReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QGyroscopeReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QGyroscopeReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QGyroscopeReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QGyroscopeReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QGyroscopeReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QGyroscopeReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QGyroscopeReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQGyroscopeReading_EventFilter
-func callbackQGyroscopeReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscopeReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQGyroscopeReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QGyroscopeReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::eventFilter", f)
-	}
-}
-
-func (ptr *QGyroscopeReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscopeReading::eventFilter")
-	}
-}
-
-func (ptr *QGyroscopeReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QGyroscopeReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QGyroscopeReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QGyroscopeReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQGyroscopeReading_MetaObject
@@ -7442,6 +7442,12 @@ func (ptr *QHolsterReading) DestroyQHolsterReading() {
 	}
 }
 
+func (ptr *QHolsterReading) SetHolstered(holstered bool) {
+	if ptr.Pointer() != nil {
+		C.QHolsterReading_SetHolstered(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(holstered))))
+	}
+}
+
 func (ptr *QHolsterReading) Holstered() bool {
 	if ptr.Pointer() != nil {
 		return C.QHolsterReading_Holstered(ptr.Pointer()) != 0
@@ -7449,45 +7455,78 @@ func (ptr *QHolsterReading) Holstered() bool {
 	return false
 }
 
-func (ptr *QHolsterReading) SetHolstered(holstered bool) {
+//export callbackQHolsterReading_Event
+func callbackQHolsterReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHolsterReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QHolsterReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QHolsterReading_SetHolstered(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(holstered))))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::event", f)
 	}
 }
 
-//export callbackQHolsterReading_TimerEvent
-func callbackQHolsterReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQHolsterReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QHolsterReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::event")
 	}
 }
 
-func (ptr *QHolsterReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QHolsterReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHolsterReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QHolsterReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHolsterReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQHolsterReading_EventFilter
+func callbackQHolsterReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHolsterReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QHolsterReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::eventFilter", f)
 	}
 }
 
-func (ptr *QHolsterReading) DisconnectTimerEvent() {
+func (ptr *QHolsterReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::eventFilter")
 	}
 }
 
-func (ptr *QHolsterReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QHolsterReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QHolsterReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QHolsterReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QHolsterReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QHolsterReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QHolsterReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QHolsterReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQHolsterReading_ChildEvent
@@ -7669,78 +7708,39 @@ func (ptr *QHolsterReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQHolsterReading_Event
-func callbackQHolsterReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQHolsterReading_TimerEvent
+func callbackQHolsterReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQHolsterReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHolsterReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QHolsterReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QHolsterReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::timerEvent", f)
 	}
 }
 
-func (ptr *QHolsterReading) DisconnectEvent() {
+func (ptr *QHolsterReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::timerEvent")
 	}
 }
 
-func (ptr *QHolsterReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QHolsterReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QHolsterReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QHolsterReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QHolsterReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QHolsterReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QHolsterReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QHolsterReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQHolsterReading_EventFilter
-func callbackQHolsterReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHolsterReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QHolsterReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::eventFilter", f)
-	}
-}
-
-func (ptr *QHolsterReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterReading::eventFilter")
-	}
-}
-
-func (ptr *QHolsterReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHolsterReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QHolsterReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHolsterReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQHolsterReading_MetaObject
@@ -7818,17 +7818,6 @@ func NewQHolsterSensorFromPointer(ptr unsafe.Pointer) *QHolsterSensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QHolsterSensor) Reading() *QHolsterReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQHolsterReadingFromPointer(C.QHolsterSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQHolsterSensor(parent core.QObject_ITF) *QHolsterSensor {
 	var tmpValue = NewQHolsterSensorFromPointer(C.QHolsterSensor_NewQHolsterSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7845,32 +7834,23 @@ func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
 	}
 }
 
+func (ptr *QHolsterSensor) Reading() *QHolsterReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHolsterReadingFromPointer(C.QHolsterSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QHolsterSensor_Type() string {
 	return cGoUnpackString(C.QHolsterSensor_QHolsterSensor_Type())
 }
 
 func (ptr *QHolsterSensor) Type() string {
 	return cGoUnpackString(C.QHolsterSensor_QHolsterSensor_Type())
-}
-
-func (ptr *QHolsterSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QHolsterSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QHolsterSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHolsterSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QHolsterSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QHolsterSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QHolsterSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -7913,6 +7893,26 @@ func (ptr *QHolsterSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QHolsterSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QHolsterSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QHolsterSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QHolsterSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QHolsterSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QHolsterSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QHolsterSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -7989,39 +7989,78 @@ func (ptr *QHolsterSensor) StopDefault() {
 	}
 }
 
-//export callbackQHolsterSensor_TimerEvent
-func callbackQHolsterSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQHolsterSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQHolsterSensor_Event
+func callbackQHolsterSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHolsterSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QHolsterSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::event", f)
 	}
 }
 
-func (ptr *QHolsterSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QHolsterSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::event")
 	}
 }
 
-func (ptr *QHolsterSensor) DisconnectTimerEvent() {
+func (ptr *QHolsterSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHolsterSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QHolsterSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHolsterSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQHolsterSensor_EventFilter
+func callbackQHolsterSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHolsterSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QHolsterSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QHolsterSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QHolsterSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QHolsterSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::eventFilter")
 	}
 }
 
-func (ptr *QHolsterSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QHolsterSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QHolsterSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QHolsterSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QHolsterSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHolsterSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQHolsterSensor_ChildEvent
@@ -8203,78 +8242,39 @@ func (ptr *QHolsterSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQHolsterSensor_Event
-func callbackQHolsterSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQHolsterSensor_TimerEvent
+func callbackQHolsterSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQHolsterSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHolsterSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QHolsterSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QHolsterSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QHolsterSensor) DisconnectEvent() {
+func (ptr *QHolsterSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::timerEvent")
 	}
 }
 
-func (ptr *QHolsterSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QHolsterSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QHolsterSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QHolsterSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QHolsterSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QHolsterSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QHolsterSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QHolsterSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQHolsterSensor_EventFilter
-func callbackQHolsterSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHolsterSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHolsterSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QHolsterSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QHolsterSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHolsterSensor::eventFilter")
-	}
-}
-
-func (ptr *QHolsterSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHolsterSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QHolsterSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHolsterSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQHolsterSensor_MetaObject
@@ -8438,6 +8438,12 @@ func (ptr *QIRProximityReading) DestroyQIRProximityReading() {
 	}
 }
 
+func (ptr *QIRProximityReading) SetReflectance(reflectance float64) {
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_SetReflectance(ptr.Pointer(), C.double(reflectance))
+	}
+}
+
 func (ptr *QIRProximityReading) Reflectance() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QIRProximityReading_Reflectance(ptr.Pointer()))
@@ -8445,45 +8451,78 @@ func (ptr *QIRProximityReading) Reflectance() float64 {
 	return 0
 }
 
-func (ptr *QIRProximityReading) SetReflectance(reflectance float64) {
+//export callbackQIRProximityReading_Event
+func callbackQIRProximityReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximityReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQIRProximityReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QIRProximityReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QIRProximityReading_SetReflectance(ptr.Pointer(), C.double(reflectance))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::event", f)
 	}
 }
 
-//export callbackQIRProximityReading_TimerEvent
-func callbackQIRProximityReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximityReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQIRProximityReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QIRProximityReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::event")
 	}
 }
 
-func (ptr *QIRProximityReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QIRProximityReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIRProximityReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QIRProximityReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIRProximityReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQIRProximityReading_EventFilter
+func callbackQIRProximityReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximityReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQIRProximityReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QIRProximityReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::eventFilter", f)
 	}
 }
 
-func (ptr *QIRProximityReading) DisconnectTimerEvent() {
+func (ptr *QIRProximityReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::eventFilter")
 	}
 }
 
-func (ptr *QIRProximityReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QIRProximityReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QIRProximityReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QIRProximityReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QIRProximityReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QIRProximityReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QIRProximityReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QIRProximityReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQIRProximityReading_ChildEvent
@@ -8665,78 +8704,39 @@ func (ptr *QIRProximityReading) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 	}
 }
 
-//export callbackQIRProximityReading_Event
-func callbackQIRProximityReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximityReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQIRProximityReading_TimerEvent
+func callbackQIRProximityReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximityReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQIRProximityReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQIRProximityReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QIRProximityReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QIRProximityReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::timerEvent", f)
 	}
 }
 
-func (ptr *QIRProximityReading) DisconnectEvent() {
+func (ptr *QIRProximityReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::timerEvent")
 	}
 }
 
-func (ptr *QIRProximityReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QIRProximityReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QIRProximityReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QIRProximityReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QIRProximityReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QIRProximityReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QIRProximityReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QIRProximityReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQIRProximityReading_EventFilter
-func callbackQIRProximityReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximityReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQIRProximityReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QIRProximityReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::eventFilter", f)
-	}
-}
-
-func (ptr *QIRProximityReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximityReading::eventFilter")
-	}
-}
-
-func (ptr *QIRProximityReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QIRProximityReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QIRProximityReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QIRProximityReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQIRProximityReading_MetaObject
@@ -8814,17 +8814,6 @@ func NewQIRProximitySensorFromPointer(ptr unsafe.Pointer) *QIRProximitySensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQIRProximityReadingFromPointer(C.QIRProximitySensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQIRProximitySensor(parent core.QObject_ITF) *QIRProximitySensor {
 	var tmpValue = NewQIRProximitySensorFromPointer(C.QIRProximitySensor_NewQIRProximitySensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -8872,32 +8861,23 @@ func (ptr *QIRProximitySensor) DestroyQIRProximitySensorDefault() {
 	}
 }
 
+func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQIRProximityReadingFromPointer(C.QIRProximitySensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QIRProximitySensor_Type() string {
 	return cGoUnpackString(C.QIRProximitySensor_QIRProximitySensor_Type())
 }
 
 func (ptr *QIRProximitySensor) Type() string {
 	return cGoUnpackString(C.QIRProximitySensor_QIRProximitySensor_Type())
-}
-
-func (ptr *QIRProximitySensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QIRProximitySensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QIRProximitySensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QIRProximitySensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QIRProximitySensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QIRProximitySensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QIRProximitySensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -8940,6 +8920,26 @@ func (ptr *QIRProximitySensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QIRProximitySensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QIRProximitySensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QIRProximitySensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QIRProximitySensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QIRProximitySensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QIRProximitySensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QIRProximitySensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QIRProximitySensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -9016,39 +9016,78 @@ func (ptr *QIRProximitySensor) StopDefault() {
 	}
 }
 
-//export callbackQIRProximitySensor_TimerEvent
-func callbackQIRProximitySensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximitySensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQIRProximitySensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQIRProximitySensor_Event
+func callbackQIRProximitySensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximitySensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQIRProximitySensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QIRProximitySensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::event", f)
 	}
 }
 
-func (ptr *QIRProximitySensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QIRProximitySensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::event")
 	}
 }
 
-func (ptr *QIRProximitySensor) DisconnectTimerEvent() {
+func (ptr *QIRProximitySensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIRProximitySensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QIRProximitySensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIRProximitySensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQIRProximitySensor_EventFilter
+func callbackQIRProximitySensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximitySensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQIRProximitySensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QIRProximitySensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::eventFilter", f)
 	}
 }
 
-func (ptr *QIRProximitySensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QIRProximitySensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QIRProximitySensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::eventFilter")
 	}
 }
 
-func (ptr *QIRProximitySensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QIRProximitySensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QIRProximitySensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QIRProximitySensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QIRProximitySensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIRProximitySensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQIRProximitySensor_ChildEvent
@@ -9230,78 +9269,39 @@ func (ptr *QIRProximitySensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 	}
 }
 
-//export callbackQIRProximitySensor_Event
-func callbackQIRProximitySensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximitySensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQIRProximitySensor_TimerEvent
+func callbackQIRProximitySensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximitySensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQIRProximitySensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQIRProximitySensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QIRProximitySensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QIRProximitySensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::timerEvent", f)
 	}
 }
 
-func (ptr *QIRProximitySensor) DisconnectEvent() {
+func (ptr *QIRProximitySensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::timerEvent")
 	}
 }
 
-func (ptr *QIRProximitySensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QIRProximitySensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QIRProximitySensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QIRProximitySensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QIRProximitySensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QIRProximitySensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QIRProximitySensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QIRProximitySensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQIRProximitySensor_EventFilter
-func callbackQIRProximitySensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximitySensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQIRProximitySensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QIRProximitySensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::eventFilter", f)
-	}
-}
-
-func (ptr *QIRProximitySensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::eventFilter")
-	}
-}
-
-func (ptr *QIRProximitySensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QIRProximitySensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QIRProximitySensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QIRProximitySensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQIRProximitySensor_MetaObject
@@ -9465,6 +9465,12 @@ func (ptr *QLightReading) DestroyQLightReading() {
 	}
 }
 
+func (ptr *QLightReading) SetLux(lux float64) {
+	if ptr.Pointer() != nil {
+		C.QLightReading_SetLux(ptr.Pointer(), C.double(lux))
+	}
+}
+
 func (ptr *QLightReading) Lux() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QLightReading_Lux(ptr.Pointer()))
@@ -9472,45 +9478,78 @@ func (ptr *QLightReading) Lux() float64 {
 	return 0
 }
 
-func (ptr *QLightReading) SetLux(lux float64) {
+//export callbackQLightReading_Event
+func callbackQLightReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQLightReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QLightReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QLightReading_SetLux(ptr.Pointer(), C.double(lux))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::event", f)
 	}
 }
 
-//export callbackQLightReading_TimerEvent
-func callbackQLightReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQLightReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QLightReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::event")
 	}
 }
 
-func (ptr *QLightReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QLightReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QLightReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QLightReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QLightReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQLightReading_EventFilter
+func callbackQLightReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQLightReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QLightReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::eventFilter", f)
 	}
 }
 
-func (ptr *QLightReading) DisconnectTimerEvent() {
+func (ptr *QLightReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::eventFilter")
 	}
 }
 
-func (ptr *QLightReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QLightReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QLightReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QLightReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QLightReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QLightReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QLightReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QLightReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQLightReading_ChildEvent
@@ -9692,78 +9731,39 @@ func (ptr *QLightReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQLightReading_Event
-func callbackQLightReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQLightReading_TimerEvent
+func callbackQLightReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQLightReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLightReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QLightReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QLightReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::timerEvent", f)
 	}
 }
 
-func (ptr *QLightReading) DisconnectEvent() {
+func (ptr *QLightReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::timerEvent")
 	}
 }
 
-func (ptr *QLightReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QLightReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QLightReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QLightReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QLightReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QLightReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QLightReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QLightReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQLightReading_EventFilter
-func callbackQLightReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLightReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QLightReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::eventFilter", f)
-	}
-}
-
-func (ptr *QLightReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightReading::eventFilter")
-	}
-}
-
-func (ptr *QLightReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QLightReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QLightReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QLightReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQLightReading_MetaObject
@@ -9841,24 +9841,6 @@ func NewQLightSensorFromPointer(ptr unsafe.Pointer) *QLightSensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QLightSensor) FieldOfView() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QLightSensor_FieldOfView(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QLightSensor) Reading() *QLightReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQLightReadingFromPointer(C.QLightSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQLightSensor(parent core.QObject_ITF) *QLightSensor {
 	var tmpValue = NewQLightSensorFromPointer(C.QLightSensor_NewQLightSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -9940,32 +9922,30 @@ func (ptr *QLightSensor) DestroyQLightSensorDefault() {
 	}
 }
 
+func (ptr *QLightSensor) Reading() *QLightReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQLightReadingFromPointer(C.QLightSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) FieldOfView() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QLightSensor_FieldOfView(ptr.Pointer()))
+	}
+	return 0
+}
+
 func QLightSensor_Type() string {
 	return cGoUnpackString(C.QLightSensor_QLightSensor_Type())
 }
 
 func (ptr *QLightSensor) Type() string {
 	return cGoUnpackString(C.QLightSensor_QLightSensor_Type())
-}
-
-func (ptr *QLightSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QLightSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QLightSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLightSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QLightSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QLightSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QLightSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -10008,6 +9988,26 @@ func (ptr *QLightSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QLightSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QLightSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QLightSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QLightSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLightSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QLightSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QLightSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -10084,39 +10084,78 @@ func (ptr *QLightSensor) StopDefault() {
 	}
 }
 
-//export callbackQLightSensor_TimerEvent
-func callbackQLightSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQLightSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQLightSensor_Event
+func callbackQLightSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQLightSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QLightSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::event", f)
 	}
 }
 
-func (ptr *QLightSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QLightSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::event")
 	}
 }
 
-func (ptr *QLightSensor) DisconnectTimerEvent() {
+func (ptr *QLightSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QLightSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QLightSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QLightSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQLightSensor_EventFilter
+func callbackQLightSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQLightSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QLightSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QLightSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QLightSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QLightSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::eventFilter")
 	}
 }
 
-func (ptr *QLightSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QLightSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QLightSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QLightSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QLightSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QLightSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQLightSensor_ChildEvent
@@ -10298,78 +10337,39 @@ func (ptr *QLightSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQLightSensor_Event
-func callbackQLightSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQLightSensor_TimerEvent
+func callbackQLightSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQLightSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLightSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QLightSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QLightSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QLightSensor) DisconnectEvent() {
+func (ptr *QLightSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::timerEvent")
 	}
 }
 
-func (ptr *QLightSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QLightSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QLightSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QLightSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QLightSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QLightSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QLightSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QLightSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQLightSensor_EventFilter
-func callbackQLightSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQLightSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QLightSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QLightSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::eventFilter")
-	}
-}
-
-func (ptr *QLightSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QLightSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QLightSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QLightSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQLightSensor_MetaObject
@@ -10447,30 +10447,6 @@ func NewQMagnetometerFromPointer(ptr unsafe.Pointer) *QMagnetometer {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQMagnetometerReadingFromPointer(C.QMagnetometer_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QMagnetometer) ReturnGeoValues() bool {
-	if ptr.Pointer() != nil {
-		return C.QMagnetometer_ReturnGeoValues(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QMagnetometer) SetReturnGeoValues(returnGeoValues bool) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometer_SetReturnGeoValues(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnGeoValues))))
-	}
-}
-
 func NewQMagnetometer(parent core.QObject_ITF) *QMagnetometer {
 	var tmpValue = NewQMagnetometerFromPointer(C.QMagnetometer_NewQMagnetometer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -10504,6 +10480,12 @@ func (ptr *QMagnetometer) DisconnectReturnGeoValuesChanged() {
 func (ptr *QMagnetometer) ReturnGeoValuesChanged(returnGeoValues bool) {
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_ReturnGeoValuesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnGeoValues))))
+	}
+}
+
+func (ptr *QMagnetometer) SetReturnGeoValues(returnGeoValues bool) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometer_SetReturnGeoValues(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnGeoValues))))
 	}
 }
 
@@ -10546,32 +10528,30 @@ func (ptr *QMagnetometer) DestroyQMagnetometerDefault() {
 	}
 }
 
+func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMagnetometerReadingFromPointer(C.QMagnetometer_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) ReturnGeoValues() bool {
+	if ptr.Pointer() != nil {
+		return C.QMagnetometer_ReturnGeoValues(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func QMagnetometer_Type() string {
 	return cGoUnpackString(C.QMagnetometer_QMagnetometer_Type())
 }
 
 func (ptr *QMagnetometer) Type() string {
 	return cGoUnpackString(C.QMagnetometer_QMagnetometer_Type())
-}
-
-func (ptr *QMagnetometer) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QMagnetometer___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QMagnetometer) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometer___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QMagnetometer) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QMagnetometer___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QMagnetometer) __sensorTypes_atList(i int) *core.QByteArray {
@@ -10614,6 +10594,26 @@ func (ptr *QMagnetometer) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QMagnetometer) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QMagnetometer___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QMagnetometer___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QMagnetometer) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometer___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QMagnetometer) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QMagnetometer___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -10690,39 +10690,78 @@ func (ptr *QMagnetometer) StopDefault() {
 	}
 }
 
-//export callbackQMagnetometer_TimerEvent
-func callbackQMagnetometer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometer::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQMagnetometerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQMagnetometer_Event
+func callbackQMagnetometer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometer::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QMagnetometer) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::event", f)
 	}
 }
 
-func (ptr *QMagnetometer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QMagnetometer) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::event")
 	}
 }
 
-func (ptr *QMagnetometer) DisconnectTimerEvent() {
+func (ptr *QMagnetometer) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QMagnetometer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QMagnetometer) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QMagnetometer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQMagnetometer_EventFilter
+func callbackQMagnetometer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometer::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QMagnetometer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::eventFilter", f)
 	}
 }
 
-func (ptr *QMagnetometer) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QMagnetometer) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QMagnetometer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::eventFilter")
 	}
 }
 
-func (ptr *QMagnetometer) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QMagnetometer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QMagnetometer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QMagnetometer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QMagnetometer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QMagnetometer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQMagnetometer_ChildEvent
@@ -10904,78 +10943,39 @@ func (ptr *QMagnetometer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQMagnetometer_Event
-func callbackQMagnetometer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometer::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQMagnetometer_TimerEvent
+func callbackQMagnetometer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometer::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQMagnetometerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QMagnetometer) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QMagnetometer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::timerEvent", f)
 	}
 }
 
-func (ptr *QMagnetometer) DisconnectEvent() {
+func (ptr *QMagnetometer) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::timerEvent")
 	}
 }
 
-func (ptr *QMagnetometer) Event(e core.QEvent_ITF) bool {
+func (ptr *QMagnetometer) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QMagnetometer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QMagnetometer) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QMagnetometer) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QMagnetometer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQMagnetometer_EventFilter
-func callbackQMagnetometer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometer::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QMagnetometer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::eventFilter", f)
-	}
-}
-
-func (ptr *QMagnetometer) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::eventFilter")
-	}
-}
-
-func (ptr *QMagnetometer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QMagnetometer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QMagnetometer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QMagnetometer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQMagnetometer_MetaObject
@@ -11139,6 +11139,30 @@ func (ptr *QMagnetometerReading) DestroyQMagnetometerReading() {
 	}
 }
 
+func (ptr *QMagnetometerReading) SetCalibrationLevel(calibrationLevel float64) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
+	}
+}
+
+func (ptr *QMagnetometerReading) SetX(x float64) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_SetX(ptr.Pointer(), C.double(x))
+	}
+}
+
+func (ptr *QMagnetometerReading) SetY(y float64) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_SetY(ptr.Pointer(), C.double(y))
+	}
+}
+
+func (ptr *QMagnetometerReading) SetZ(z float64) {
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_SetZ(ptr.Pointer(), C.double(z))
+	}
+}
+
 func (ptr *QMagnetometerReading) CalibrationLevel() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QMagnetometerReading_CalibrationLevel(ptr.Pointer()))
@@ -11167,63 +11191,78 @@ func (ptr *QMagnetometerReading) Z() float64 {
 	return 0
 }
 
-func (ptr *QMagnetometerReading) SetCalibrationLevel(calibrationLevel float64) {
+//export callbackQMagnetometerReading_Event
+func callbackQMagnetometerReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometerReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QMagnetometerReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::event", f)
 	}
 }
 
-func (ptr *QMagnetometerReading) SetX(x float64) {
+func (ptr *QMagnetometerReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetX(ptr.Pointer(), C.double(x))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::event")
 	}
 }
 
-func (ptr *QMagnetometerReading) SetY(y float64) {
+func (ptr *QMagnetometerReading) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetY(ptr.Pointer(), C.double(y))
+		return C.QMagnetometerReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QMagnetometerReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QMagnetometerReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQMagnetometerReading_EventFilter
+func callbackQMagnetometerReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometerReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QMagnetometerReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::eventFilter", f)
 	}
 }
 
-func (ptr *QMagnetometerReading) SetZ(z float64) {
+func (ptr *QMagnetometerReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_SetZ(ptr.Pointer(), C.double(z))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::eventFilter")
 	}
 }
 
-//export callbackQMagnetometerReading_TimerEvent
-func callbackQMagnetometerReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometerReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQMagnetometerReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QMagnetometerReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QMagnetometerReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QMagnetometerReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QMagnetometerReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::timerEvent", f)
+		return C.QMagnetometerReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
-}
-
-func (ptr *QMagnetometerReading) DisconnectTimerEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::timerEvent")
-	}
-}
-
-func (ptr *QMagnetometerReading) TimerEvent(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
-}
-
-func (ptr *QMagnetometerReading) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMagnetometerReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+	return false
 }
 
 //export callbackQMagnetometerReading_ChildEvent
@@ -11405,78 +11444,39 @@ func (ptr *QMagnetometerReading) DisconnectNotifyDefault(sign core.QMetaMethod_I
 	}
 }
 
-//export callbackQMagnetometerReading_Event
-func callbackQMagnetometerReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometerReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQMagnetometerReading_TimerEvent
+func callbackQMagnetometerReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometerReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQMagnetometerReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QMagnetometerReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QMagnetometerReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::timerEvent", f)
 	}
 }
 
-func (ptr *QMagnetometerReading) DisconnectEvent() {
+func (ptr *QMagnetometerReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::timerEvent")
 	}
 }
 
-func (ptr *QMagnetometerReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QMagnetometerReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometerReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QMagnetometerReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QMagnetometerReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QMagnetometerReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometerReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QMagnetometerReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQMagnetometerReading_EventFilter
-func callbackQMagnetometerReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometerReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQMagnetometerReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QMagnetometerReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::eventFilter", f)
-	}
-}
-
-func (ptr *QMagnetometerReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometerReading::eventFilter")
-	}
-}
-
-func (ptr *QMagnetometerReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QMagnetometerReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QMagnetometerReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QMagnetometerReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQMagnetometerReading_MetaObject
@@ -11654,6 +11654,12 @@ const (
 	QOrientationReading__FaceDown  QOrientationReading__Orientation = QOrientationReading__Orientation(6)
 )
 
+func (ptr *QOrientationReading) SetOrientation(orientation QOrientationReading__Orientation) {
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_SetOrientation(ptr.Pointer(), C.longlong(orientation))
+	}
+}
+
 func (ptr *QOrientationReading) Orientation() QOrientationReading__Orientation {
 	if ptr.Pointer() != nil {
 		return QOrientationReading__Orientation(C.QOrientationReading_Orientation(ptr.Pointer()))
@@ -11661,45 +11667,78 @@ func (ptr *QOrientationReading) Orientation() QOrientationReading__Orientation {
 	return 0
 }
 
-func (ptr *QOrientationReading) SetOrientation(orientation QOrientationReading__Orientation) {
+//export callbackQOrientationReading_Event
+func callbackQOrientationReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQOrientationReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QOrientationReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QOrientationReading_SetOrientation(ptr.Pointer(), C.longlong(orientation))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::event", f)
 	}
 }
 
-//export callbackQOrientationReading_TimerEvent
-func callbackQOrientationReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQOrientationReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QOrientationReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::event")
 	}
 }
 
-func (ptr *QOrientationReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QOrientationReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QOrientationReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QOrientationReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QOrientationReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQOrientationReading_EventFilter
+func callbackQOrientationReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQOrientationReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QOrientationReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::eventFilter", f)
 	}
 }
 
-func (ptr *QOrientationReading) DisconnectTimerEvent() {
+func (ptr *QOrientationReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::eventFilter")
 	}
 }
 
-func (ptr *QOrientationReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QOrientationReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QOrientationReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QOrientationReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QOrientationReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QOrientationReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QOrientationReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QOrientationReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQOrientationReading_ChildEvent
@@ -11881,78 +11920,39 @@ func (ptr *QOrientationReading) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 	}
 }
 
-//export callbackQOrientationReading_Event
-func callbackQOrientationReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQOrientationReading_TimerEvent
+func callbackQOrientationReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQOrientationReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQOrientationReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QOrientationReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QOrientationReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::timerEvent", f)
 	}
 }
 
-func (ptr *QOrientationReading) DisconnectEvent() {
+func (ptr *QOrientationReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::timerEvent")
 	}
 }
 
-func (ptr *QOrientationReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QOrientationReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QOrientationReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QOrientationReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QOrientationReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QOrientationReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QOrientationReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QOrientationReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQOrientationReading_EventFilter
-func callbackQOrientationReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQOrientationReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QOrientationReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::eventFilter", f)
-	}
-}
-
-func (ptr *QOrientationReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationReading::eventFilter")
-	}
-}
-
-func (ptr *QOrientationReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QOrientationReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QOrientationReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QOrientationReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQOrientationReading_MetaObject
@@ -12030,17 +12030,6 @@ func NewQOrientationSensorFromPointer(ptr unsafe.Pointer) *QOrientationSensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QOrientationSensor) Reading() *QOrientationReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQOrientationReadingFromPointer(C.QOrientationSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQOrientationSensor(parent core.QObject_ITF) *QOrientationSensor {
 	var tmpValue = NewQOrientationSensorFromPointer(C.QOrientationSensor_NewQOrientationSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -12088,32 +12077,23 @@ func (ptr *QOrientationSensor) DestroyQOrientationSensorDefault() {
 	}
 }
 
+func (ptr *QOrientationSensor) Reading() *QOrientationReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQOrientationReadingFromPointer(C.QOrientationSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QOrientationSensor_Type() string {
 	return cGoUnpackString(C.QOrientationSensor_QOrientationSensor_Type())
 }
 
 func (ptr *QOrientationSensor) Type() string {
 	return cGoUnpackString(C.QOrientationSensor_QOrientationSensor_Type())
-}
-
-func (ptr *QOrientationSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QOrientationSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QOrientationSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QOrientationSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QOrientationSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QOrientationSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QOrientationSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -12156,6 +12136,26 @@ func (ptr *QOrientationSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QOrientationSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QOrientationSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QOrientationSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QOrientationSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QOrientationSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QOrientationSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QOrientationSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QOrientationSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -12232,39 +12232,78 @@ func (ptr *QOrientationSensor) StopDefault() {
 	}
 }
 
-//export callbackQOrientationSensor_TimerEvent
-func callbackQOrientationSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQOrientationSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQOrientationSensor_Event
+func callbackQOrientationSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQOrientationSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QOrientationSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::event", f)
 	}
 }
 
-func (ptr *QOrientationSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QOrientationSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::event")
 	}
 }
 
-func (ptr *QOrientationSensor) DisconnectTimerEvent() {
+func (ptr *QOrientationSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QOrientationSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QOrientationSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QOrientationSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQOrientationSensor_EventFilter
+func callbackQOrientationSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQOrientationSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QOrientationSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QOrientationSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QOrientationSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QOrientationSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::eventFilter")
 	}
 }
 
-func (ptr *QOrientationSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QOrientationSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QOrientationSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QOrientationSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QOrientationSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QOrientationSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQOrientationSensor_ChildEvent
@@ -12446,78 +12485,39 @@ func (ptr *QOrientationSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 	}
 }
 
-//export callbackQOrientationSensor_Event
-func callbackQOrientationSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQOrientationSensor_TimerEvent
+func callbackQOrientationSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQOrientationSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQOrientationSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QOrientationSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QOrientationSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QOrientationSensor) DisconnectEvent() {
+func (ptr *QOrientationSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::timerEvent")
 	}
 }
 
-func (ptr *QOrientationSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QOrientationSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QOrientationSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QOrientationSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QOrientationSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QOrientationSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QOrientationSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QOrientationSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQOrientationSensor_EventFilter
-func callbackQOrientationSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQOrientationSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QOrientationSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QOrientationSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::eventFilter")
-	}
-}
-
-func (ptr *QOrientationSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QOrientationSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QOrientationSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QOrientationSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQOrientationSensor_MetaObject
@@ -12681,6 +12681,18 @@ func (ptr *QPressureReading) DestroyQPressureReading() {
 	}
 }
 
+func (ptr *QPressureReading) SetPressure(pressure float64) {
+	if ptr.Pointer() != nil {
+		C.QPressureReading_SetPressure(ptr.Pointer(), C.double(pressure))
+	}
+}
+
+func (ptr *QPressureReading) SetTemperature(temperature float64) {
+	if ptr.Pointer() != nil {
+		C.QPressureReading_SetTemperature(ptr.Pointer(), C.double(temperature))
+	}
+}
+
 func (ptr *QPressureReading) Pressure() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QPressureReading_Pressure(ptr.Pointer()))
@@ -12695,51 +12707,78 @@ func (ptr *QPressureReading) Temperature() float64 {
 	return 0
 }
 
-func (ptr *QPressureReading) SetPressure(pressure float64) {
+//export callbackQPressureReading_Event
+func callbackQPressureReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPressureReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QPressureReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QPressureReading_SetPressure(ptr.Pointer(), C.double(pressure))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::event", f)
 	}
 }
 
-func (ptr *QPressureReading) SetTemperature(temperature float64) {
+func (ptr *QPressureReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
-		C.QPressureReading_SetTemperature(ptr.Pointer(), C.double(temperature))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::event")
 	}
 }
 
-//export callbackQPressureReading_TimerEvent
-func callbackQPressureReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQPressureReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QPressureReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPressureReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QPressureReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPressureReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQPressureReading_EventFilter
+func callbackQPressureReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPressureReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPressureReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::eventFilter", f)
 	}
 }
 
-func (ptr *QPressureReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QPressureReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::eventFilter")
 	}
 }
 
-func (ptr *QPressureReading) DisconnectTimerEvent() {
+func (ptr *QPressureReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::timerEvent")
+		return C.QPressureReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QPressureReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QPressureReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QPressureReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QPressureReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
-}
-
-func (ptr *QPressureReading) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPressureReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
+	return false
 }
 
 //export callbackQPressureReading_ChildEvent
@@ -12921,78 +12960,39 @@ func (ptr *QPressureReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
-//export callbackQPressureReading_Event
-func callbackQPressureReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQPressureReading_TimerEvent
+func callbackQPressureReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQPressureReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPressureReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QPressureReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QPressureReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::timerEvent", f)
 	}
 }
 
-func (ptr *QPressureReading) DisconnectEvent() {
+func (ptr *QPressureReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::timerEvent")
 	}
 }
 
-func (ptr *QPressureReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QPressureReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPressureReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QPressureReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QPressureReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QPressureReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPressureReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QPressureReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQPressureReading_EventFilter
-func callbackQPressureReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPressureReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPressureReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::eventFilter", f)
-	}
-}
-
-func (ptr *QPressureReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureReading::eventFilter")
-	}
-}
-
-func (ptr *QPressureReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPressureReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QPressureReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPressureReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQPressureReading_MetaObject
@@ -13070,17 +13070,6 @@ func NewQPressureSensorFromPointer(ptr unsafe.Pointer) *QPressureSensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QPressureSensor) Reading() *QPressureReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQPressureReadingFromPointer(C.QPressureSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQPressureSensor(parent core.QObject_ITF) *QPressureSensor {
 	var tmpValue = NewQPressureSensorFromPointer(C.QPressureSensor_NewQPressureSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -13097,32 +13086,23 @@ func (ptr *QPressureSensor) DestroyQPressureSensor() {
 	}
 }
 
+func (ptr *QPressureSensor) Reading() *QPressureReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPressureReadingFromPointer(C.QPressureSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QPressureSensor_Type() string {
 	return cGoUnpackString(C.QPressureSensor_QPressureSensor_Type())
 }
 
 func (ptr *QPressureSensor) Type() string {
 	return cGoUnpackString(C.QPressureSensor_QPressureSensor_Type())
-}
-
-func (ptr *QPressureSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QPressureSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QPressureSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPressureSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QPressureSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QPressureSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QPressureSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -13165,6 +13145,26 @@ func (ptr *QPressureSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QPressureSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QPressureSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPressureSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QPressureSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QPressureSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPressureSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QPressureSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QPressureSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -13241,39 +13241,78 @@ func (ptr *QPressureSensor) StopDefault() {
 	}
 }
 
-//export callbackQPressureSensor_TimerEvent
-func callbackQPressureSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQPressureSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQPressureSensor_Event
+func callbackQPressureSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPressureSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QPressureSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::event", f)
 	}
 }
 
-func (ptr *QPressureSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QPressureSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::event")
 	}
 }
 
-func (ptr *QPressureSensor) DisconnectTimerEvent() {
+func (ptr *QPressureSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPressureSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QPressureSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPressureSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQPressureSensor_EventFilter
+func callbackQPressureSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPressureSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QPressureSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QPressureSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QPressureSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QPressureSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::eventFilter")
 	}
 }
 
-func (ptr *QPressureSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QPressureSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QPressureSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QPressureSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QPressureSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPressureSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQPressureSensor_ChildEvent
@@ -13455,78 +13494,39 @@ func (ptr *QPressureSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQPressureSensor_Event
-func callbackQPressureSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQPressureSensor_TimerEvent
+func callbackQPressureSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQPressureSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPressureSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QPressureSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QPressureSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QPressureSensor) DisconnectEvent() {
+func (ptr *QPressureSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::timerEvent")
 	}
 }
 
-func (ptr *QPressureSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QPressureSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPressureSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QPressureSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QPressureSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QPressureSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QPressureSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QPressureSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQPressureSensor_EventFilter
-func callbackQPressureSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPressureSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPressureSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QPressureSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QPressureSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPressureSensor::eventFilter")
-	}
-}
-
-func (ptr *QPressureSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPressureSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QPressureSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QPressureSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQPressureSensor_MetaObject
@@ -13690,6 +13690,12 @@ func (ptr *QProximityReading) DestroyQProximityReading() {
 	}
 }
 
+func (ptr *QProximityReading) SetClose(close bool) {
+	if ptr.Pointer() != nil {
+		C.QProximityReading_SetClose(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(close))))
+	}
+}
+
 func (ptr *QProximityReading) Close() bool {
 	if ptr.Pointer() != nil {
 		return C.QProximityReading_Close(ptr.Pointer()) != 0
@@ -13697,45 +13703,78 @@ func (ptr *QProximityReading) Close() bool {
 	return false
 }
 
-func (ptr *QProximityReading) SetClose(close bool) {
+//export callbackQProximityReading_Event
+func callbackQProximityReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximityReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQProximityReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QProximityReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QProximityReading_SetClose(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(close))))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::event", f)
 	}
 }
 
-//export callbackQProximityReading_TimerEvent
-func callbackQProximityReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximityReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQProximityReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QProximityReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::event")
 	}
 }
 
-func (ptr *QProximityReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QProximityReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QProximityReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QProximityReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QProximityReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQProximityReading_EventFilter
+func callbackQProximityReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximityReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQProximityReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QProximityReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::eventFilter", f)
 	}
 }
 
-func (ptr *QProximityReading) DisconnectTimerEvent() {
+func (ptr *QProximityReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::eventFilter")
 	}
 }
 
-func (ptr *QProximityReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QProximityReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QProximityReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QProximityReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QProximityReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QProximityReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QProximityReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QProximityReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQProximityReading_ChildEvent
@@ -13917,78 +13956,39 @@ func (ptr *QProximityReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 	}
 }
 
-//export callbackQProximityReading_Event
-func callbackQProximityReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximityReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQProximityReading_TimerEvent
+func callbackQProximityReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximityReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQProximityReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQProximityReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QProximityReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QProximityReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::timerEvent", f)
 	}
 }
 
-func (ptr *QProximityReading) DisconnectEvent() {
+func (ptr *QProximityReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::timerEvent")
 	}
 }
 
-func (ptr *QProximityReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QProximityReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QProximityReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QProximityReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QProximityReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QProximityReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QProximityReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QProximityReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQProximityReading_EventFilter
-func callbackQProximityReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximityReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQProximityReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QProximityReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::eventFilter", f)
-	}
-}
-
-func (ptr *QProximityReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximityReading::eventFilter")
-	}
-}
-
-func (ptr *QProximityReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QProximityReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QProximityReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QProximityReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQProximityReading_MetaObject
@@ -14066,17 +14066,6 @@ func NewQProximitySensorFromPointer(ptr unsafe.Pointer) *QProximitySensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QProximitySensor) Reading() *QProximityReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQProximityReadingFromPointer(C.QProximitySensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQProximitySensor(parent core.QObject_ITF) *QProximitySensor {
 	var tmpValue = NewQProximitySensorFromPointer(C.QProximitySensor_NewQProximitySensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -14124,32 +14113,23 @@ func (ptr *QProximitySensor) DestroyQProximitySensorDefault() {
 	}
 }
 
+func (ptr *QProximitySensor) Reading() *QProximityReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQProximityReadingFromPointer(C.QProximitySensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func QProximitySensor_Type() string {
 	return cGoUnpackString(C.QProximitySensor_QProximitySensor_Type())
 }
 
 func (ptr *QProximitySensor) Type() string {
 	return cGoUnpackString(C.QProximitySensor_QProximitySensor_Type())
-}
-
-func (ptr *QProximitySensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QProximitySensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QProximitySensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QProximitySensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QProximitySensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QProximitySensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QProximitySensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -14192,6 +14172,26 @@ func (ptr *QProximitySensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QProximitySensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QProximitySensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QProximitySensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QProximitySensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QProximitySensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QProximitySensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QProximitySensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QProximitySensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -14268,39 +14268,78 @@ func (ptr *QProximitySensor) StopDefault() {
 	}
 }
 
-//export callbackQProximitySensor_TimerEvent
-func callbackQProximitySensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximitySensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQProximitySensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQProximitySensor_Event
+func callbackQProximitySensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximitySensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQProximitySensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QProximitySensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::event", f)
 	}
 }
 
-func (ptr *QProximitySensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QProximitySensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::event")
 	}
 }
 
-func (ptr *QProximitySensor) DisconnectTimerEvent() {
+func (ptr *QProximitySensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QProximitySensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QProximitySensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QProximitySensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQProximitySensor_EventFilter
+func callbackQProximitySensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximitySensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQProximitySensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QProximitySensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::eventFilter", f)
 	}
 }
 
-func (ptr *QProximitySensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QProximitySensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QProximitySensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::eventFilter")
 	}
 }
 
-func (ptr *QProximitySensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QProximitySensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QProximitySensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QProximitySensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QProximitySensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QProximitySensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQProximitySensor_ChildEvent
@@ -14482,78 +14521,39 @@ func (ptr *QProximitySensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
-//export callbackQProximitySensor_Event
-func callbackQProximitySensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximitySensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQProximitySensor_TimerEvent
+func callbackQProximitySensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximitySensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQProximitySensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQProximitySensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QProximitySensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QProximitySensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::timerEvent", f)
 	}
 }
 
-func (ptr *QProximitySensor) DisconnectEvent() {
+func (ptr *QProximitySensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::timerEvent")
 	}
 }
 
-func (ptr *QProximitySensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QProximitySensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QProximitySensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QProximitySensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QProximitySensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QProximitySensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QProximitySensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QProximitySensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQProximitySensor_EventFilter
-func callbackQProximitySensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximitySensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQProximitySensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QProximitySensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::eventFilter", f)
-	}
-}
-
-func (ptr *QProximitySensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::eventFilter")
-	}
-}
-
-func (ptr *QProximitySensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QProximitySensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QProximitySensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QProximitySensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQProximitySensor_MetaObject
@@ -14717,6 +14717,12 @@ func (ptr *QRotationReading) DestroyQRotationReading() {
 	}
 }
 
+func (ptr *QRotationReading) SetFromEuler(x float64, y float64, z float64) {
+	if ptr.Pointer() != nil {
+		C.QRotationReading_SetFromEuler(ptr.Pointer(), C.double(x), C.double(y), C.double(z))
+	}
+}
+
 func (ptr *QRotationReading) X() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QRotationReading_X(ptr.Pointer()))
@@ -14738,45 +14744,78 @@ func (ptr *QRotationReading) Z() float64 {
 	return 0
 }
 
-func (ptr *QRotationReading) SetFromEuler(x float64, y float64, z float64) {
+//export callbackQRotationReading_Event
+func callbackQRotationReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRotationReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QRotationReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
-		C.QRotationReading_SetFromEuler(ptr.Pointer(), C.double(x), C.double(y), C.double(z))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::event", f)
 	}
 }
 
-//export callbackQRotationReading_TimerEvent
-func callbackQRotationReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQRotationReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QRotationReading) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::event")
 	}
 }
 
-func (ptr *QRotationReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QRotationReading) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QRotationReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QRotationReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QRotationReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQRotationReading_EventFilter
+func callbackQRotationReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRotationReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QRotationReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::eventFilter", f)
 	}
 }
 
-func (ptr *QRotationReading) DisconnectTimerEvent() {
+func (ptr *QRotationReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::eventFilter")
 	}
 }
 
-func (ptr *QRotationReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QRotationReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QRotationReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QRotationReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
-func (ptr *QRotationReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QRotationReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QRotationReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QRotationReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
 }
 
 //export callbackQRotationReading_ChildEvent
@@ -14958,78 +14997,39 @@ func (ptr *QRotationReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 	}
 }
 
-//export callbackQRotationReading_Event
-func callbackQRotationReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQRotationReading_TimerEvent
+func callbackQRotationReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQRotationReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRotationReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QRotationReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QRotationReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::timerEvent", f)
 	}
 }
 
-func (ptr *QRotationReading) DisconnectEvent() {
+func (ptr *QRotationReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::timerEvent")
 	}
 }
 
-func (ptr *QRotationReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QRotationReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QRotationReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QRotationReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QRotationReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QRotationReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QRotationReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QRotationReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQRotationReading_EventFilter
-func callbackQRotationReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRotationReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QRotationReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::eventFilter", f)
-	}
-}
-
-func (ptr *QRotationReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationReading::eventFilter")
-	}
-}
-
-func (ptr *QRotationReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QRotationReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QRotationReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QRotationReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQRotationReading_MetaObject
@@ -15107,24 +15107,6 @@ func NewQRotationSensorFromPointer(ptr unsafe.Pointer) *QRotationSensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QRotationSensor) HasZ() bool {
-	if ptr.Pointer() != nil {
-		return C.QRotationSensor_HasZ(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QRotationSensor) Reading() *QRotationReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQRotationReadingFromPointer(C.QRotationSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
 func NewQRotationSensor(parent core.QObject_ITF) *QRotationSensor {
 	var tmpValue = NewQRotationSensorFromPointer(C.QRotationSensor_NewQRotationSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -15206,32 +15188,30 @@ func (ptr *QRotationSensor) DestroyQRotationSensorDefault() {
 	}
 }
 
+func (ptr *QRotationSensor) Reading() *QRotationReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQRotationReadingFromPointer(C.QRotationSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) HasZ() bool {
+	if ptr.Pointer() != nil {
+		return C.QRotationSensor_HasZ(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func QRotationSensor_Type() string {
 	return cGoUnpackString(C.QRotationSensor_QRotationSensor_Type())
 }
 
 func (ptr *QRotationSensor) Type() string {
 	return cGoUnpackString(C.QRotationSensor_QRotationSensor_Type())
-}
-
-func (ptr *QRotationSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QRotationSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QRotationSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QRotationSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QRotationSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QRotationSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QRotationSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -15274,6 +15254,26 @@ func (ptr *QRotationSensor) __sensorsForType_setList(i core.QByteArray_ITF) {
 func (ptr *QRotationSensor) __sensorsForType_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QRotationSensor___sensorsForType_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) __filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QRotationSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QRotationSensor) __filters_setList(i QSensorFilter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRotationSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
+	}
+}
+
+func (ptr *QRotationSensor) __filters_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QRotationSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -15350,39 +15350,78 @@ func (ptr *QRotationSensor) StopDefault() {
 	}
 }
 
-//export callbackQRotationSensor_TimerEvent
-func callbackQRotationSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQRotationSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQRotationSensor_Event
+func callbackQRotationSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRotationSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QRotationSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::event", f)
 	}
 }
 
-func (ptr *QRotationSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QRotationSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::event")
 	}
 }
 
-func (ptr *QRotationSensor) DisconnectTimerEvent() {
+func (ptr *QRotationSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QRotationSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QRotationSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QRotationSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQRotationSensor_EventFilter
+func callbackQRotationSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQRotationSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QRotationSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QRotationSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QRotationSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QRotationSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::eventFilter")
 	}
 }
 
-func (ptr *QRotationSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QRotationSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QRotationSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QRotationSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QRotationSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QRotationSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQRotationSensor_ChildEvent
@@ -15564,78 +15603,39 @@ func (ptr *QRotationSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQRotationSensor_Event
-func callbackQRotationSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQRotationSensor_TimerEvent
+func callbackQRotationSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQRotationSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRotationSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QRotationSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QRotationSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QRotationSensor) DisconnectEvent() {
+func (ptr *QRotationSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::timerEvent")
 	}
 }
 
-func (ptr *QRotationSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QRotationSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QRotationSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QRotationSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QRotationSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QRotationSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QRotationSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QRotationSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQRotationSensor_EventFilter
-func callbackQRotationSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQRotationSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QRotationSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QRotationSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::eventFilter")
-	}
-}
-
-func (ptr *QRotationSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QRotationSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QRotationSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QRotationSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQRotationSensor_MetaObject
@@ -15740,186 +15740,56 @@ const (
 	QSensor__Reserved                  QSensor__Feature = QSensor__Feature(257)
 )
 
-func (ptr *QSensor) AxesOrientationMode() QSensor__AxesOrientationMode {
-	if ptr.Pointer() != nil {
-		return QSensor__AxesOrientationMode(C.QSensor_AxesOrientationMode(ptr.Pointer()))
-	}
-	return 0
+func QSensor_DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QSensor) BufferSize() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_BufferSize(ptr.Pointer())))
-	}
-	return 0
+func (ptr *QSensor) DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QSensor) CurrentOrientation() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_CurrentOrientation(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSensor) DataRate() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_DataRate(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSensor) Description() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSensor_Description(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QSensor) EfficientBufferSize() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_EfficientBufferSize(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSensor) Error() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_Error(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSensor) Identifier() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_Identifier(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSensor) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_IsActive(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSensor) IsAlwaysOn() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_IsAlwaysOn(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSensor) IsBusy() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_IsBusy(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSensor) IsConnectedToBackend() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_IsConnectedToBackend(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSensor) MaxBufferSize() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_MaxBufferSize(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSensor) OutputRange() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_OutputRange(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QSensor) Reading() *QSensorReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQSensorReadingFromPointer(C.QSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func QSensor_SensorTypes() []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).__sensorTypes_atList(i)
 		}
-		return tmpValue
-	}
-	return nil
+		return out
+	}(C.QSensor_QSensor_SensorTypes())
 }
 
-func (ptr *QSensor) SetActive(active bool) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetActive(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(active))))
-	}
+func (ptr *QSensor) SensorTypes() []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).__sensorTypes_atList(i)
+		}
+		return out
+	}(C.QSensor_QSensor_SensorTypes())
 }
 
-func (ptr *QSensor) SetAlwaysOn(alwaysOn bool) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetAlwaysOn(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(alwaysOn))))
-	}
+func QSensor_SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).__sensorsForType_atList(i)
+		}
+		return out
+	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
 }
 
-func (ptr *QSensor) SetAxesOrientationMode(axesOrientationMode QSensor__AxesOrientationMode) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetAxesOrientationMode(ptr.Pointer(), C.longlong(axesOrientationMode))
-	}
-}
-
-func (ptr *QSensor) SetBufferSize(bufferSize int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetBufferSize(ptr.Pointer(), C.int(int32(bufferSize)))
-	}
-}
-
-func (ptr *QSensor) SetDataRate(rate int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetDataRate(ptr.Pointer(), C.int(int32(rate)))
-	}
-}
-
-func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetIdentifier(ptr.Pointer(), core.PointerFromQByteArray(identifier))
-	}
-}
-
-func (ptr *QSensor) SetOutputRange(index int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetOutputRange(ptr.Pointer(), C.int(int32(index)))
-	}
-}
-
-func (ptr *QSensor) SetUserOrientation(userOrientation int) {
-	if ptr.Pointer() != nil {
-		C.QSensor_SetUserOrientation(ptr.Pointer(), C.int(int32(userOrientation)))
-	}
-}
-
-func (ptr *QSensor) SkipDuplicates() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_SkipDuplicates(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSensor) Type() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_Type(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSensor) UserOrientation() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSensor_UserOrientation(ptr.Pointer())))
-	}
-	return 0
+func (ptr *QSensor) SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).__sensorsForType_atList(i)
+		}
+		return out
+	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
 }
 
 func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
@@ -15928,6 +15798,50 @@ func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func (ptr *QSensor) ConnectToBackend() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_ConnectToBackend(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQSensor_Start
+func callbackQSensor_Start(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::start"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).StartDefault())))
+}
+
+func (ptr *QSensor) ConnectStart(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::start", f)
+	}
+}
+
+func (ptr *QSensor) DisconnectStart() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::start")
+	}
+}
+
+func (ptr *QSensor) Start() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_Start(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) StartDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 //export callbackQSensor_ActiveChanged
@@ -16104,13 +16018,6 @@ func (ptr *QSensor) BusyChanged() {
 	}
 }
 
-func (ptr *QSensor) ConnectToBackend() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_ConnectToBackend(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 //export callbackQSensor_CurrentOrientationChanged
 func callbackQSensor_CurrentOrientationChanged(ptr unsafe.Pointer, currentOrientation C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::currentOrientationChanged"); signal != nil {
@@ -16167,18 +16074,6 @@ func (ptr *QSensor) DataRateChanged() {
 	}
 }
 
-func QSensor_DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
-	var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
-}
-
-func (ptr *QSensor) DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
-	var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
-}
-
 //export callbackQSensor_EfficientBufferSizeChanged
 func callbackQSensor_EfficientBufferSizeChanged(ptr unsafe.Pointer, efficientBufferSize C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::efficientBufferSizeChanged"); signal != nil {
@@ -16205,26 +16100,6 @@ func (ptr *QSensor) EfficientBufferSizeChanged(efficientBufferSize int) {
 	if ptr.Pointer() != nil {
 		C.QSensor_EfficientBufferSizeChanged(ptr.Pointer(), C.int(int32(efficientBufferSize)))
 	}
-}
-
-func (ptr *QSensor) Filters() []*QSensorFilter {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSensors_PackedList) []*QSensorFilter {
-			var out = make([]*QSensorFilter, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSensorFromPointer(l.data).__filters_atList(i)
-			}
-			return out
-		}(C.QSensor_Filters(ptr.Pointer()))
-	}
-	return make([]*QSensorFilter, 0)
-}
-
-func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_IsFeatureSupported(ptr.Pointer(), C.longlong(feature)) != 0
-	}
-	return false
 }
 
 //export callbackQSensor_MaxBufferSizeChanged
@@ -16317,49 +16192,39 @@ func (ptr *QSensor) SensorError(error int) {
 	}
 }
 
-func QSensor_SensorTypes() []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		var out = make([]*core.QByteArray, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).__sensorTypes_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorTypes())
+func (ptr *QSensor) SetActive(active bool) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetActive(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(active))))
+	}
 }
 
-func (ptr *QSensor) SensorTypes() []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		var out = make([]*core.QByteArray, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).__sensorTypes_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorTypes())
+func (ptr *QSensor) SetAlwaysOn(alwaysOn bool) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetAlwaysOn(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(alwaysOn))))
+	}
 }
 
-func QSensor_SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		var out = make([]*core.QByteArray, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).__sensorsForType_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
+func (ptr *QSensor) SetAxesOrientationMode(axesOrientationMode QSensor__AxesOrientationMode) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetAxesOrientationMode(ptr.Pointer(), C.longlong(axesOrientationMode))
+	}
 }
 
-func (ptr *QSensor) SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
-	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
-		var out = make([]*core.QByteArray, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSensorFromPointer(l.data).__sensorsForType_atList(i)
-		}
-		return out
-	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
+func (ptr *QSensor) SetBufferSize(bufferSize int) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetBufferSize(ptr.Pointer(), C.int(int32(bufferSize)))
+	}
 }
 
 func (ptr *QSensor) SetCurrentOrientation(currentOrientation int) {
 	if ptr.Pointer() != nil {
 		C.QSensor_SetCurrentOrientation(ptr.Pointer(), C.int(int32(currentOrientation)))
+	}
+}
+
+func (ptr *QSensor) SetDataRate(rate int) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetDataRate(ptr.Pointer(), C.int(int32(rate)))
 	}
 }
 
@@ -16369,15 +16234,33 @@ func (ptr *QSensor) SetEfficientBufferSize(efficientBufferSize int) {
 	}
 }
 
+func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetIdentifier(ptr.Pointer(), core.PointerFromQByteArray(identifier))
+	}
+}
+
 func (ptr *QSensor) SetMaxBufferSize(maxBufferSize int) {
 	if ptr.Pointer() != nil {
 		C.QSensor_SetMaxBufferSize(ptr.Pointer(), C.int(int32(maxBufferSize)))
 	}
 }
 
+func (ptr *QSensor) SetOutputRange(index int) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetOutputRange(ptr.Pointer(), C.int(int32(index)))
+	}
+}
+
 func (ptr *QSensor) SetSkipDuplicates(skipDuplicates bool) {
 	if ptr.Pointer() != nil {
 		C.QSensor_SetSkipDuplicates(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(skipDuplicates))))
+	}
+}
+
+func (ptr *QSensor) SetUserOrientation(userOrientation int) {
+	if ptr.Pointer() != nil {
+		C.QSensor_SetUserOrientation(ptr.Pointer(), C.int(int32(userOrientation)))
 	}
 }
 
@@ -16407,43 +16290,6 @@ func (ptr *QSensor) SkipDuplicatesChanged(skipDuplicates bool) {
 	if ptr.Pointer() != nil {
 		C.QSensor_SkipDuplicatesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(skipDuplicates))))
 	}
-}
-
-//export callbackQSensor_Start
-func callbackQSensor_Start(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::start"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).StartDefault())))
-}
-
-func (ptr *QSensor) ConnectStart(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::start", f)
-	}
-}
-
-func (ptr *QSensor) DisconnectStart() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::start")
-	}
-}
-
-func (ptr *QSensor) Start() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_Start(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSensor) StartDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_StartDefault(ptr.Pointer()) != 0
-	}
-	return false
 }
 
 //export callbackQSensor_Stop
@@ -16548,24 +16394,158 @@ func (ptr *QSensor) DestroyQSensorDefault() {
 	}
 }
 
-func (ptr *QSensor) __filters_atList(i int) *QSensorFilter {
+func (ptr *QSensor) AxesOrientationMode() QSensor__AxesOrientationMode {
 	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
+		return QSensor__AxesOrientationMode(C.QSensor_AxesOrientationMode(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSensor) Identifier() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_Identifier(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QSensor) __filters_setList(i QSensorFilter_ITF) {
+func (ptr *QSensor) Type() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSensor___filters_newList(ptr.Pointer()))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_Type(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QSensor) Filters() []*QSensorFilter {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSensors_PackedList) []*QSensorFilter {
+			var out = make([]*QSensorFilter, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSensorFromPointer(l.data).__filters_atList(i)
+			}
+			return out
+		}(C.QSensor_Filters(ptr.Pointer()))
+	}
+	return make([]*QSensorFilter, 0)
+}
+
+func (ptr *QSensor) Reading() *QSensorReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSensorReadingFromPointer(C.QSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) Description() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSensor_Description(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSensor) IsActive() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_IsActive(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) IsAlwaysOn() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_IsAlwaysOn(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) IsBusy() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_IsBusy(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) IsConnectedToBackend() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_IsConnectedToBackend(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_IsFeatureSupported(ptr.Pointer(), C.longlong(feature)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) SkipDuplicates() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_SkipDuplicates(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) BufferSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_BufferSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSensor) CurrentOrientation() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_CurrentOrientation(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSensor) DataRate() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_DataRate(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSensor) EfficientBufferSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_EfficientBufferSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSensor) Error() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_Error(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSensor) MaxBufferSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_MaxBufferSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSensor) OutputRange() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_OutputRange(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QSensor) UserOrientation() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSensor_UserOrientation(ptr.Pointer())))
+	}
+	return 0
 }
 
 func (ptr *QSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -16612,26 +16592,22 @@ func (ptr *QSensor) __sensorsForType_newList() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QSensor) __children_atList(i int) *core.QObject {
+func (ptr *QSensor) __filters_atList(i int) *QSensorFilter {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return NewQSensorFilterFromPointer(C.QSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *QSensor) __children_setList(i core.QObject_ITF) {
+func (ptr *QSensor) __filters_setList(i QSensorFilter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
 	}
 }
 
-func (ptr *QSensor) __children_newList() unsafe.Pointer {
+func (ptr *QSensor) __filters_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSensor___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -16730,39 +16706,102 @@ func (ptr *QSensor) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQSensor_TimerEvent
-func callbackQSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QSensor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QSensor) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensor___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSensor_Event
+func callbackQSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSensor) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::event", f)
 	}
 }
 
-func (ptr *QSensor) DisconnectTimerEvent() {
+func (ptr *QSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::event")
 	}
 }
 
-func (ptr *QSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QSensor) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQSensor_EventFilter
+func callbackQSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::eventFilter")
 	}
+}
+
+func (ptr *QSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQSensor_ChildEvent
@@ -16944,78 +16983,39 @@ func (ptr *QSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQSensor_Event
-func callbackQSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQSensor_TimerEvent
+func callbackQSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QSensor) DisconnectEvent() {
+func (ptr *QSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::timerEvent")
 	}
 }
 
-func (ptr *QSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQSensor_EventFilter
-func callbackQSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::eventFilter")
-	}
-}
-
-func (ptr *QSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQSensor_MetaObject
@@ -17108,55 +17108,6 @@ func (ptr *QSensorBackend) AddDataRate(min float64, max float64) {
 	}
 }
 
-//export callbackQSensorBackend_IsFeatureSupported
-func callbackQSensorBackend_IsFeatureSupported(ptr unsafe.Pointer, feature C.longlong) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::isFeatureSupported"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(QSensor__Feature) bool)(QSensor__Feature(feature)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).IsFeatureSupportedDefault(QSensor__Feature(feature)))))
-}
-
-func (ptr *QSensorBackend) ConnectIsFeatureSupported(f func(feature QSensor__Feature) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::isFeatureSupported", f)
-	}
-}
-
-func (ptr *QSensorBackend) DisconnectIsFeatureSupported() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::isFeatureSupported")
-	}
-}
-
-func (ptr *QSensorBackend) IsFeatureSupported(feature QSensor__Feature) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorBackend_IsFeatureSupported(ptr.Pointer(), C.longlong(feature)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorBackend) IsFeatureSupportedDefault(feature QSensor__Feature) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorBackend_IsFeatureSupportedDefault(ptr.Pointer(), C.longlong(feature)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorBackend) SensorBusy() {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_SensorBusy(ptr.Pointer())
-	}
-}
-
-func (ptr *QSensorBackend) SensorError(error int) {
-	if ptr.Pointer() != nil {
-		C.QSensorBackend_SensorError(ptr.Pointer(), C.int(int32(error)))
-	}
-}
-
 func (ptr *QSensorBackend) AddOutputRange(min float64, max float64, accuracy float64) {
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_AddOutputRange(ptr.Pointer(), C.double(min), C.double(max), C.double(accuracy))
@@ -17169,26 +17120,16 @@ func (ptr *QSensorBackend) NewReadingAvailable() {
 	}
 }
 
-func (ptr *QSensorBackend) Reading() *QSensorReading {
+func (ptr *QSensorBackend) SensorBusy() {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQSensorReadingFromPointer(C.QSensorBackend_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		C.QSensorBackend_SensorBusy(ptr.Pointer())
 	}
-	return nil
 }
 
-func (ptr *QSensorBackend) Sensor() *QSensor {
+func (ptr *QSensorBackend) SensorError(error int) {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQSensorFromPointer(C.QSensorBackend_Sensor(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		C.QSensorBackend_SensorError(ptr.Pointer(), C.int(int32(error)))
 	}
-	return nil
 }
 
 func (ptr *QSensorBackend) SensorStopped() {
@@ -17267,9 +17208,9 @@ func (ptr *QSensorBackend) Stop() {
 	}
 }
 
-func (ptr *QSensorBackend) __children_atList(i int) *core.QObject {
+func (ptr *QSensorBackend) Sensor() *QSensor {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSensorBackend___children_atList(ptr.Pointer(), C.int(int32(i))))
+		var tmpValue = NewQSensorFromPointer(C.QSensorBackend_Sensor(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -17278,17 +17219,52 @@ func (ptr *QSensorBackend) __children_atList(i int) *core.QObject {
 	return nil
 }
 
-func (ptr *QSensorBackend) __children_setList(i core.QObject_ITF) {
+func (ptr *QSensorBackend) Reading() *QSensorReading {
 	if ptr.Pointer() != nil {
-		C.QSensorBackend___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		var tmpValue = NewQSensorReadingFromPointer(C.QSensorBackend_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSensorBackend_IsFeatureSupported
+func callbackQSensorBackend_IsFeatureSupported(ptr unsafe.Pointer, feature C.longlong) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::isFeatureSupported"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(QSensor__Feature) bool)(QSensor__Feature(feature)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).IsFeatureSupportedDefault(QSensor__Feature(feature)))))
+}
+
+func (ptr *QSensorBackend) ConnectIsFeatureSupported(f func(feature QSensor__Feature) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::isFeatureSupported", f)
 	}
 }
 
-func (ptr *QSensorBackend) __children_newList() unsafe.Pointer {
+func (ptr *QSensorBackend) DisconnectIsFeatureSupported() {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSensorBackend___children_newList(ptr.Pointer()))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::isFeatureSupported")
 	}
-	return nil
+}
+
+func (ptr *QSensorBackend) IsFeatureSupported(feature QSensor__Feature) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorBackend_IsFeatureSupported(ptr.Pointer(), C.longlong(feature)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorBackend) IsFeatureSupportedDefault(feature QSensor__Feature) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorBackend_IsFeatureSupportedDefault(ptr.Pointer(), C.longlong(feature)) != 0
+	}
+	return false
 }
 
 func (ptr *QSensorBackend) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -17385,39 +17361,102 @@ func (ptr *QSensorBackend) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQSensorBackend_TimerEvent
-func callbackQSensorBackend_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorBackendFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QSensorBackend) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorBackend___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorBackend) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorBackend___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSensorBackend) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QSensorBackend) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorBackend___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSensorBackend_Event
+func callbackQSensorBackend_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSensorBackend) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::event", f)
 	}
 }
 
-func (ptr *QSensorBackend) DisconnectTimerEvent() {
+func (ptr *QSensorBackend) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::event")
 	}
 }
 
-func (ptr *QSensorBackend) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QSensorBackend) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QSensorBackend_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QSensorBackend_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorBackend) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorBackend_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQSensorBackend_EventFilter
+func callbackQSensorBackend_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSensorBackend) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::eventFilter", f)
 	}
 }
 
-func (ptr *QSensorBackend) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QSensorBackend) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QSensorBackend_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::eventFilter")
 	}
+}
+
+func (ptr *QSensorBackend) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorBackend_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorBackend) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorBackend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQSensorBackend_ChildEvent
@@ -17599,78 +17638,39 @@ func (ptr *QSensorBackend) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQSensorBackend_Event
-func callbackQSensorBackend_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQSensorBackend_TimerEvent
+func callbackQSensorBackend_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQSensorBackendFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QSensorBackend) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QSensorBackend) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::timerEvent", f)
 	}
 }
 
-func (ptr *QSensorBackend) DisconnectEvent() {
+func (ptr *QSensorBackend) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::timerEvent")
 	}
 }
 
-func (ptr *QSensorBackend) Event(e core.QEvent_ITF) bool {
+func (ptr *QSensorBackend) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorBackend_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorBackend_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QSensorBackend) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSensorBackend) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorBackend_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorBackend_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQSensorBackend_EventFilter
-func callbackQSensorBackend_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorBackend::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorBackendFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSensorBackend) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::eventFilter", f)
-	}
-}
-
-func (ptr *QSensorBackend) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorBackend::eventFilter")
-	}
-}
-
-func (ptr *QSensorBackend) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorBackend_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorBackend) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorBackend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQSensorBackend_MetaObject
@@ -18036,6 +18036,13 @@ func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
 	return tmpValue
 }
 
+func (ptr *QSensorGesture) IsActive() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGesture_IsActive(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQSensorGesture_Detected
 func callbackQSensorGesture_Detected(ptr unsafe.Pointer, gestureId C.struct_QtSensors_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::detected"); signal != nil {
@@ -18066,6 +18073,26 @@ func (ptr *QSensorGesture) Detected(gestureId string) {
 	}
 }
 
+func (ptr *QSensorGesture) StartDetection() {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture_StartDetection(ptr.Pointer())
+	}
+}
+
+func (ptr *QSensorGesture) StopDetection() {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture_StopDetection(ptr.Pointer())
+	}
+}
+
+func (ptr *QSensorGesture) DestroyQSensorGesture() {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture_DestroyQSensorGesture(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
 func (ptr *QSensorGesture) GestureSignals() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QSensorGesture_GestureSignals(ptr.Pointer())), "|")
@@ -18080,62 +18107,11 @@ func (ptr *QSensorGesture) InvalidIds() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QSensorGesture) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGesture_IsActive(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorGesture) StartDetection() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_StartDetection(ptr.Pointer())
-	}
-}
-
-func (ptr *QSensorGesture) StopDetection() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_StopDetection(ptr.Pointer())
-	}
-}
-
 func (ptr *QSensorGesture) ValidIds() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QSensorGesture_ValidIds(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
-}
-
-func (ptr *QSensorGesture) DestroyQSensorGesture() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture_DestroyQSensorGesture(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QSensorGesture) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSensorGesture___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSensorGesture) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorGesture___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSensorGesture) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSensorGesture___children_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QSensorGesture) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -18232,39 +18208,102 @@ func (ptr *QSensorGesture) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQSensorGesture_TimerEvent
-func callbackQSensorGesture_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorGestureFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QSensorGesture) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGesture___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGesture) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGesture___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSensorGesture) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QSensorGesture) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGesture___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSensorGesture_Event
+func callbackQSensorGesture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSensorGesture) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::event", f)
 	}
 }
 
-func (ptr *QSensorGesture) DisconnectTimerEvent() {
+func (ptr *QSensorGesture) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::event")
 	}
 }
 
-func (ptr *QSensorGesture) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QSensorGesture) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QSensorGesture_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QSensorGesture_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorGesture) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGesture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQSensorGesture_EventFilter
+func callbackQSensorGesture_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSensorGesture) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::eventFilter", f)
 	}
 }
 
-func (ptr *QSensorGesture) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QSensorGesture) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QSensorGesture_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::eventFilter")
 	}
+}
+
+func (ptr *QSensorGesture) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGesture_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorGesture) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGesture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQSensorGesture_ChildEvent
@@ -18446,78 +18485,39 @@ func (ptr *QSensorGesture) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQSensorGesture_Event
-func callbackQSensorGesture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQSensorGesture_TimerEvent
+func callbackQSensorGesture_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQSensorGestureFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QSensorGesture) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QSensorGesture) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::timerEvent", f)
 	}
 }
 
-func (ptr *QSensorGesture) DisconnectEvent() {
+func (ptr *QSensorGesture) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::timerEvent")
 	}
 }
 
-func (ptr *QSensorGesture) Event(e core.QEvent_ITF) bool {
+func (ptr *QSensorGesture) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorGesture_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorGesture_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QSensorGesture) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSensorGesture) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorGesture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorGesture_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQSensorGesture_EventFilter
-func callbackQSensorGesture_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSensorGesture) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::eventFilter", f)
-	}
-}
-
-func (ptr *QSensorGesture) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesture::eventFilter")
-	}
-}
-
-func (ptr *QSensorGesture) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGesture_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorGesture) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGesture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQSensorGesture_MetaObject
@@ -18603,11 +18603,31 @@ func NewQSensorGestureManager(parent core.QObject_ITF) *QSensorGestureManager {
 	return tmpValue
 }
 
-func (ptr *QSensorGestureManager) GestureIds() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGestureManager_GestureIds(ptr.Pointer())), "|")
+func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
+	var idC = C.CString(id)
+	defer C.free(unsafe.Pointer(idC))
+	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return make([]string, 0)
+	return tmpValue
+}
+
+func (ptr *QSensorGestureManager) SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
+	var idC = C.CString(id)
+	defer C.free(unsafe.Pointer(idC))
+	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QSensorGestureManager) RegisterSensorGestureRecognizer(recognizer QSensorGestureRecognizer_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureManager_RegisterSensorGestureRecognizer(ptr.Pointer(), PointerFromQSensorGestureRecognizer(recognizer)) != 0
+	}
+	return false
 }
 
 //export callbackQSensorGestureManager_NewSensorGestureAvailable
@@ -18638,42 +18658,6 @@ func (ptr *QSensorGestureManager) NewSensorGestureAvailable() {
 	}
 }
 
-func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
-	if ptr.Pointer() != nil {
-		var gestureIdC = C.CString(gestureId)
-		defer C.free(unsafe.Pointer(gestureIdC))
-		return strings.Split(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), gestureIdC)), "|")
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QSensorGestureManager) RegisterSensorGestureRecognizer(recognizer QSensorGestureRecognizer_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_RegisterSensorGestureRecognizer(ptr.Pointer(), PointerFromQSensorGestureRecognizer(recognizer)) != 0
-	}
-	return false
-}
-
-func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
-	var idC = C.CString(id)
-	defer C.free(unsafe.Pointer(idC))
-	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func (ptr *QSensorGestureManager) SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
-	var idC = C.CString(id)
-	defer C.free(unsafe.Pointer(idC))
-	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
 func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
 	if ptr.Pointer() != nil {
 		C.QSensorGestureManager_DestroyQSensorGestureManager(ptr.Pointer())
@@ -18682,28 +18666,20 @@ func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
 	}
 }
 
-func (ptr *QSensorGestureManager) __children_atList(i int) *core.QObject {
+func (ptr *QSensorGestureManager) GestureIds() []string {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureManager___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return strings.Split(cGoUnpackString(C.QSensorGestureManager_GestureIds(ptr.Pointer())), "|")
 	}
-	return nil
+	return make([]string, 0)
 }
 
-func (ptr *QSensorGestureManager) __children_setList(i core.QObject_ITF) {
+func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		var gestureIdC = C.CString(gestureId)
+		defer C.free(unsafe.Pointer(gestureIdC))
+		return strings.Split(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), gestureIdC)), "|")
 	}
-}
-
-func (ptr *QSensorGestureManager) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSensorGestureManager___children_newList(ptr.Pointer()))
-	}
-	return nil
+	return make([]string, 0)
 }
 
 func (ptr *QSensorGestureManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -18800,39 +18776,102 @@ func (ptr *QSensorGestureManager) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQSensorGestureManager_TimerEvent
-func callbackQSensorGestureManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureManager::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorGestureManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QSensorGestureManager) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureManager___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureManager) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSensorGestureManager) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QSensorGestureManager) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureManager___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSensorGestureManager_Event
+func callbackQSensorGestureManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureManager::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSensorGestureManager) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::event", f)
 	}
 }
 
-func (ptr *QSensorGestureManager) DisconnectTimerEvent() {
+func (ptr *QSensorGestureManager) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::event")
 	}
 }
 
-func (ptr *QSensorGestureManager) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QSensorGestureManager) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QSensorGestureManager_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorGestureManager) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQSensorGestureManager_EventFilter
+func callbackQSensorGestureManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureManager::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSensorGestureManager) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::eventFilter", f)
 	}
 }
 
-func (ptr *QSensorGestureManager) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QSensorGestureManager) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::eventFilter")
 	}
+}
+
+func (ptr *QSensorGestureManager) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureManager_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorGestureManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQSensorGestureManager_ChildEvent
@@ -19014,78 +19053,39 @@ func (ptr *QSensorGestureManager) DisconnectNotifyDefault(sign core.QMetaMethod_
 	}
 }
 
-//export callbackQSensorGestureManager_Event
-func callbackQSensorGestureManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureManager::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQSensorGestureManager_TimerEvent
+func callbackQSensorGestureManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureManager::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQSensorGestureManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QSensorGestureManager) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QSensorGestureManager) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::timerEvent", f)
 	}
 }
 
-func (ptr *QSensorGestureManager) DisconnectEvent() {
+func (ptr *QSensorGestureManager) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::timerEvent")
 	}
 }
 
-func (ptr *QSensorGestureManager) Event(e core.QEvent_ITF) bool {
+func (ptr *QSensorGestureManager) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorGestureManager_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QSensorGestureManager) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSensorGestureManager) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorGestureManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQSensorGestureManager_EventFilter
-func callbackQSensorGestureManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureManager::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSensorGestureManager) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::eventFilter", f)
-	}
-}
-
-func (ptr *QSensorGestureManager) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureManager::eventFilter")
-	}
-}
-
-func (ptr *QSensorGestureManager) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorGestureManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQSensorGestureManager_MetaObject
@@ -19162,9 +19162,6 @@ func NewQSensorGesturePluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorGes
 	n.SetPointer(ptr)
 	return n
 }
-func NewQSensorGesturePluginInterface() *QSensorGesturePluginInterface {
-	return NewQSensorGesturePluginInterfaceFromPointer(C.QSensorGesturePluginInterface_NewQSensorGesturePluginInterface())
-}
 
 //export callbackQSensorGesturePluginInterface_CreateRecognizers
 func callbackQSensorGesturePluginInterface_CreateRecognizers(ptr unsafe.Pointer) unsafe.Pointer {
@@ -19212,6 +19209,49 @@ func (ptr *QSensorGesturePluginInterface) CreateRecognizers() []*QSensorGestureR
 		}(C.QSensorGesturePluginInterface_CreateRecognizers(ptr.Pointer()))
 	}
 	return make([]*QSensorGestureRecognizer, 0)
+}
+
+func NewQSensorGesturePluginInterface() *QSensorGesturePluginInterface {
+	return NewQSensorGesturePluginInterfaceFromPointer(C.QSensorGesturePluginInterface_NewQSensorGesturePluginInterface())
+}
+
+//export callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface
+func callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSensorGesturePluginInterfaceFromPointer(ptr).DestroyQSensorGesturePluginInterfaceDefault()
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) ConnectDestroyQSensorGesturePluginInterface(f func()) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface", f)
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) DisconnectDestroyQSensorGesturePluginInterface() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterface() {
+	if ptr.Pointer() != nil {
+		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterfaceDefault() {
+	if ptr.Pointer() != nil {
+		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterfaceDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSensorGesturePluginInterface_Name
@@ -19272,45 +19312,6 @@ func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
 		return strings.Split(cGoUnpackString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
-}
-
-//export callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface
-func callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQSensorGesturePluginInterfaceFromPointer(ptr).DestroyQSensorGesturePluginInterfaceDefault()
-	}
-}
-
-func (ptr *QSensorGesturePluginInterface) ConnectDestroyQSensorGesturePluginInterface(f func()) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface", f)
-	}
-}
-
-func (ptr *QSensorGesturePluginInterface) DisconnectDestroyQSensorGesturePluginInterface() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
-	}
-}
-
-func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterface() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterfaceDefault() {
-	if ptr.Pointer() != nil {
-		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 func (ptr *QSensorGesturePluginInterface) __createRecognizers_atList(i int) *QSensorGestureRecognizer {
@@ -19383,6 +19384,96 @@ func NewQSensorGestureRecognizer(parent core.QObject_ITF) *QSensorGestureRecogni
 	return tmpValue
 }
 
+//export callbackQSensorGestureRecognizer_IsActive
+func callbackQSensorGestureRecognizer_IsActive(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::isActive"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QSensorGestureRecognizer) ConnectIsActive(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::isActive", f)
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) DisconnectIsActive() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::isActive")
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) IsActive() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureRecognizer_IsActive(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQSensorGestureRecognizer_Start
+func callbackQSensorGestureRecognizer_Start(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::start"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QSensorGestureRecognizer) ConnectStart(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::start", f)
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) DisconnectStart() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::start")
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) Start() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureRecognizer_Start(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQSensorGestureRecognizer_Stop
+func callbackQSensorGestureRecognizer_Stop(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::stop"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QSensorGestureRecognizer) ConnectStop(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::stop", f)
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) DisconnectStop() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::stop")
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) Stop() bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureRecognizer_Stop(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQSensorGestureRecognizer_Create
 func callbackQSensorGestureRecognizer_Create(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::create"); signal != nil {
@@ -19447,137 +19538,10 @@ func (ptr *QSensorGestureRecognizer) Detected(gestureId string) {
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-//export callbackQSensorGestureRecognizer_Id
-func callbackQSensorGestureRecognizer_Id(ptr unsafe.Pointer) *C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::id"); signal != nil {
-		return C.CString(signal.(func() string)())
-	}
-
-	return C.CString("")
-}
-
-func (ptr *QSensorGestureRecognizer) ConnectId(f func() string) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::id", f)
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) DisconnectId() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::id")
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) Id() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSensorGestureRecognizer_Id(ptr.Pointer()))
-	}
-	return ""
-}
-
-//export callbackQSensorGestureRecognizer_IsActive
-func callbackQSensorGestureRecognizer_IsActive(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::isActive"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
-func (ptr *QSensorGestureRecognizer) ConnectIsActive(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::isActive", f)
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) DisconnectIsActive() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::isActive")
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) IsActive() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_IsActive(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQSensorGestureRecognizer_Start
-func callbackQSensorGestureRecognizer_Start(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::start"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
-func (ptr *QSensorGestureRecognizer) ConnectStart(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::start", f)
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) DisconnectStart() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::start")
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) Start() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_Start(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 func (ptr *QSensorGestureRecognizer) StartBackend() {
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_StartBackend(ptr.Pointer())
 	}
-}
-
-//export callbackQSensorGestureRecognizer_Stop
-func callbackQSensorGestureRecognizer_Stop(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::stop"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
-func (ptr *QSensorGestureRecognizer) ConnectStop(f func() bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::stop", f)
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) DisconnectStop() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::stop")
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) Stop() bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_Stop(ptr.Pointer()) != 0
-	}
-	return false
 }
 
 func (ptr *QSensorGestureRecognizer) StopBackend() {
@@ -19625,28 +19589,41 @@ func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizerDefault() {
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureRecognizer___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+//export callbackQSensorGestureRecognizer_Id
+func callbackQSensorGestureRecognizer_Id(ptr unsafe.Pointer) *C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::id"); signal != nil {
+		return C.CString(signal.(func() string)())
 	}
-	return nil
+
+	return C.CString("")
 }
 
-func (ptr *QSensorGestureRecognizer) __children_setList(i core.QObject_ITF) {
+func (ptr *QSensorGestureRecognizer) ConnectId(f func() string) {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::id", f)
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) __children_newList() unsafe.Pointer {
+func (ptr *QSensorGestureRecognizer) DisconnectId() {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSensorGestureRecognizer___children_newList(ptr.Pointer()))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::id")
 	}
-	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) Id() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSensorGestureRecognizer_Id(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
 }
 
 func (ptr *QSensorGestureRecognizer) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -19743,39 +19720,102 @@ func (ptr *QSensorGestureRecognizer) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQSensorGestureRecognizer_TimerEvent
-func callbackQSensorGestureRecognizer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorGestureRecognizerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QSensorGestureRecognizer) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorGestureRecognizer___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorGestureRecognizer) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QSensorGestureRecognizer) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorGestureRecognizer___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSensorGestureRecognizer_Event
+func callbackQSensorGestureRecognizer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureRecognizerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSensorGestureRecognizer) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::event", f)
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) DisconnectTimerEvent() {
+func (ptr *QSensorGestureRecognizer) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::event")
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QSensorGestureRecognizer) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QSensorGestureRecognizer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorGestureRecognizer) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureRecognizer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQSensorGestureRecognizer_EventFilter
+func callbackQSensorGestureRecognizer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureRecognizerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSensorGestureRecognizer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::eventFilter", f)
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QSensorGestureRecognizer) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::eventFilter")
 	}
+}
+
+func (ptr *QSensorGestureRecognizer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureRecognizer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorGestureRecognizer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorGestureRecognizer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQSensorGestureRecognizer_ChildEvent
@@ -19957,78 +19997,39 @@ func (ptr *QSensorGestureRecognizer) DisconnectNotifyDefault(sign core.QMetaMeth
 	}
 }
 
-//export callbackQSensorGestureRecognizer_Event
-func callbackQSensorGestureRecognizer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQSensorGestureRecognizer_TimerEvent
+func callbackQSensorGestureRecognizer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQSensorGestureRecognizerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureRecognizerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QSensorGestureRecognizer) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QSensorGestureRecognizer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::timerEvent", f)
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) DisconnectEvent() {
+func (ptr *QSensorGestureRecognizer) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::timerEvent")
 	}
 }
 
-func (ptr *QSensorGestureRecognizer) Event(e core.QEvent_ITF) bool {
+func (ptr *QSensorGestureRecognizer) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorGestureRecognizer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QSensorGestureRecognizer) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSensorGestureRecognizer) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorGestureRecognizer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQSensorGestureRecognizer_EventFilter
-func callbackQSensorGestureRecognizer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorGestureRecognizerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSensorGestureRecognizer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::eventFilter", f)
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::eventFilter")
-	}
-}
-
-func (ptr *QSensorGestureRecognizer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorGestureRecognizer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQSensorGestureRecognizer_MetaObject
@@ -20288,13 +20289,6 @@ func (ptr *QSensorReading) SetTimestamp(timestamp uint64) {
 	}
 }
 
-func (ptr *QSensorReading) Timestamp() uint64 {
-	if ptr.Pointer() != nil {
-		return uint64(C.QSensorReading_Timestamp(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QSensorReading) Value(index int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QSensorReading_Value(ptr.Pointer(), C.int(int32(index))))
@@ -20311,28 +20305,11 @@ func (ptr *QSensorReading) ValueCount() int {
 	return 0
 }
 
-func (ptr *QSensorReading) __children_atList(i int) *core.QObject {
+func (ptr *QSensorReading) Timestamp() uint64 {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSensorReading___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return uint64(C.QSensorReading_Timestamp(ptr.Pointer()))
 	}
-	return nil
-}
-
-func (ptr *QSensorReading) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSensorReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSensorReading) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSensorReading___children_newList(ptr.Pointer()))
-	}
-	return nil
+	return 0
 }
 
 func (ptr *QSensorReading) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -20429,39 +20406,102 @@ func (ptr *QSensorReading) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQSensorReading_TimerEvent
-func callbackQSensorReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQSensorReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QSensorReading) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QSensorReading___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensorReading) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSensorReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QSensorReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QSensorReading) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QSensorReading___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSensorReading_Event
+func callbackQSensorReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSensorReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::event", f)
 	}
 }
 
-func (ptr *QSensorReading) DisconnectTimerEvent() {
+func (ptr *QSensorReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::event")
 	}
 }
 
-func (ptr *QSensorReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QSensorReading) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QSensorReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QSensorReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQSensorReading_EventFilter
+func callbackQSensorReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSensorReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QSensorReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::eventFilter", f)
 	}
 }
 
-func (ptr *QSensorReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QSensorReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QSensorReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::eventFilter")
 	}
+}
+
+func (ptr *QSensorReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QSensorReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSensorReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQSensorReading_ChildEvent
@@ -20643,78 +20683,39 @@ func (ptr *QSensorReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQSensorReading_Event
-func callbackQSensorReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQSensorReading_TimerEvent
+func callbackQSensorReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQSensorReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QSensorReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QSensorReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::timerEvent", f)
 	}
 }
 
-func (ptr *QSensorReading) DisconnectEvent() {
+func (ptr *QSensorReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::timerEvent")
 	}
 }
 
-func (ptr *QSensorReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QSensorReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QSensorReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QSensorReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QSensorReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QSensorReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQSensorReading_EventFilter
-func callbackQSensorReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSensorReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSensorReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::eventFilter", f)
-	}
-}
-
-func (ptr *QSensorReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorReading::eventFilter")
-	}
-}
-
-func (ptr *QSensorReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QSensorReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSensorReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQSensorReading_MetaObject
@@ -20898,20 +20899,6 @@ const (
 	QTapReading__Z_Both    QTapReading__TapDirection = QTapReading__TapDirection(0x0444)
 )
 
-func (ptr *QTapReading) IsDoubleTap() bool {
-	if ptr.Pointer() != nil {
-		return C.QTapReading_IsDoubleTap(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QTapReading) TapDirection() QTapReading__TapDirection {
-	if ptr.Pointer() != nil {
-		return QTapReading__TapDirection(C.QTapReading_TapDirection(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QTapReading) SetDoubleTap(doubleTap bool) {
 	if ptr.Pointer() != nil {
 		C.QTapReading_SetDoubleTap(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(doubleTap))))
@@ -20924,28 +20911,18 @@ func (ptr *QTapReading) SetTapDirection(tapDirection QTapReading__TapDirection) 
 	}
 }
 
-func (ptr *QTapReading) __children_atList(i int) *core.QObject {
+func (ptr *QTapReading) TapDirection() QTapReading__TapDirection {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QTapReading___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return QTapReading__TapDirection(C.QTapReading_TapDirection(ptr.Pointer()))
 	}
-	return nil
+	return 0
 }
 
-func (ptr *QTapReading) __children_setList(i core.QObject_ITF) {
+func (ptr *QTapReading) IsDoubleTap() bool {
 	if ptr.Pointer() != nil {
-		C.QTapReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		return C.QTapReading_IsDoubleTap(ptr.Pointer()) != 0
 	}
-}
-
-func (ptr *QTapReading) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTapReading___children_newList(ptr.Pointer()))
-	}
-	return nil
+	return false
 }
 
 func (ptr *QTapReading) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -21042,39 +21019,102 @@ func (ptr *QTapReading) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQTapReading_TimerEvent
-func callbackQTapReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQTapReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QTapReading) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapReading___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapReading) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QTapReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QTapReading) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapReading___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQTapReading_Event
+func callbackQTapReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTapReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QTapReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::event", f)
 	}
 }
 
-func (ptr *QTapReading) DisconnectTimerEvent() {
+func (ptr *QTapReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::event")
 	}
 }
 
-func (ptr *QTapReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QTapReading) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QTapReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QTapReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QTapReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTapReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQTapReading_EventFilter
+func callbackQTapReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTapReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QTapReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::eventFilter", f)
 	}
 }
 
-func (ptr *QTapReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QTapReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QTapReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::eventFilter")
 	}
+}
+
+func (ptr *QTapReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTapReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QTapReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTapReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQTapReading_ChildEvent
@@ -21256,78 +21296,39 @@ func (ptr *QTapReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQTapReading_Event
-func callbackQTapReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQTapReading_TimerEvent
+func callbackQTapReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQTapReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTapReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QTapReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QTapReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::timerEvent", f)
 	}
 }
 
-func (ptr *QTapReading) DisconnectEvent() {
+func (ptr *QTapReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::timerEvent")
 	}
 }
 
-func (ptr *QTapReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QTapReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTapReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTapReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QTapReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QTapReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTapReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTapReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQTapReading_EventFilter
-func callbackQTapReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTapReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QTapReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::eventFilter", f)
-	}
-}
-
-func (ptr *QTapReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapReading::eventFilter")
-	}
-}
-
-func (ptr *QTapReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTapReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QTapReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTapReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQTapReading_MetaObject
@@ -21405,30 +21406,6 @@ func NewQTapSensorFromPointer(ptr unsafe.Pointer) *QTapSensor {
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QTapSensor) Reading() *QTapReading {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQTapReadingFromPointer(C.QTapSensor_Reading(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTapSensor) ReturnDoubleTapEvents() bool {
-	if ptr.Pointer() != nil {
-		return C.QTapSensor_ReturnDoubleTapEvents(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QTapSensor) SetReturnDoubleTapEvents(returnDoubleTapEvents bool) {
-	if ptr.Pointer() != nil {
-		C.QTapSensor_SetReturnDoubleTapEvents(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnDoubleTapEvents))))
-	}
-}
-
 func NewQTapSensor(parent core.QObject_ITF) *QTapSensor {
 	var tmpValue = NewQTapSensorFromPointer(C.QTapSensor_NewQTapSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -21462,6 +21439,12 @@ func (ptr *QTapSensor) DisconnectReturnDoubleTapEventsChanged() {
 func (ptr *QTapSensor) ReturnDoubleTapEventsChanged(returnDoubleTapEvents bool) {
 	if ptr.Pointer() != nil {
 		C.QTapSensor_ReturnDoubleTapEventsChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnDoubleTapEvents))))
+	}
+}
+
+func (ptr *QTapSensor) SetReturnDoubleTapEvents(returnDoubleTapEvents bool) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor_SetReturnDoubleTapEvents(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(returnDoubleTapEvents))))
 	}
 }
 
@@ -21504,32 +21487,30 @@ func (ptr *QTapSensor) DestroyQTapSensorDefault() {
 	}
 }
 
+func (ptr *QTapSensor) Reading() *QTapReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTapReadingFromPointer(C.QTapSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) ReturnDoubleTapEvents() bool {
+	if ptr.Pointer() != nil {
+		return C.QTapSensor_ReturnDoubleTapEvents(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func QTapSensor_Type() string {
 	return cGoUnpackString(C.QTapSensor_QTapSensor_Type())
 }
 
 func (ptr *QTapSensor) Type() string {
 	return cGoUnpackString(C.QTapSensor_QTapSensor_Type())
-}
-
-func (ptr *QTapSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QTapSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QTapSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTapSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QTapSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTapSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QTapSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -21576,26 +21557,22 @@ func (ptr *QTapSensor) __sensorsForType_newList() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QTapSensor) __children_atList(i int) *core.QObject {
+func (ptr *QTapSensor) __filters_atList(i int) *QSensorFilter {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QTapSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return NewQSensorFilterFromPointer(C.QTapSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *QTapSensor) __children_setList(i core.QObject_ITF) {
+func (ptr *QTapSensor) __filters_setList(i QSensorFilter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTapSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QTapSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
 	}
 }
 
-func (ptr *QTapSensor) __children_newList() unsafe.Pointer {
+func (ptr *QTapSensor) __filters_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTapSensor___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QTapSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -21694,6 +21671,30 @@ func (ptr *QTapSensor) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
+func (ptr *QTapSensor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTapSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTapSensor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTapSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTapSensor) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTapSensor___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQTapSensor_Start
 func callbackQTapSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::start"); signal != nil {
@@ -21766,39 +21767,78 @@ func (ptr *QTapSensor) StopDefault() {
 	}
 }
 
-//export callbackQTapSensor_TimerEvent
-func callbackQTapSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQTapSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQTapSensor_Event
+func callbackQTapSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTapSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QTapSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::event", f)
 	}
 }
 
-func (ptr *QTapSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QTapSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::event")
 	}
 }
 
-func (ptr *QTapSensor) DisconnectTimerEvent() {
+func (ptr *QTapSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTapSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QTapSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTapSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQTapSensor_EventFilter
+func callbackQTapSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTapSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QTapSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QTapSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QTapSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QTapSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::eventFilter")
 	}
 }
 
-func (ptr *QTapSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QTapSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QTapSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QTapSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QTapSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTapSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQTapSensor_ChildEvent
@@ -21980,78 +22020,39 @@ func (ptr *QTapSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQTapSensor_Event
-func callbackQTapSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQTapSensor_TimerEvent
+func callbackQTapSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQTapSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTapSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QTapSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QTapSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QTapSensor) DisconnectEvent() {
+func (ptr *QTapSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::timerEvent")
 	}
 }
 
-func (ptr *QTapSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QTapSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTapSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTapSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QTapSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QTapSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTapSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTapSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQTapSensor_EventFilter
-func callbackQTapSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTapSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QTapSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QTapSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::eventFilter")
-	}
-}
-
-func (ptr *QTapSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTapSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QTapSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTapSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQTapSensor_MetaObject
@@ -22215,20 +22216,6 @@ func (ptr *QTiltReading) DestroyQTiltReading() {
 	}
 }
 
-func (ptr *QTiltReading) XRotation() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QTiltReading_XRotation(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QTiltReading) YRotation() float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QTiltReading_YRotation(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QTiltReading) SetXRotation(x float64) {
 	if ptr.Pointer() != nil {
 		C.QTiltReading_SetXRotation(ptr.Pointer(), C.double(x))
@@ -22241,28 +22228,18 @@ func (ptr *QTiltReading) SetYRotation(y float64) {
 	}
 }
 
-func (ptr *QTiltReading) __children_atList(i int) *core.QObject {
+func (ptr *QTiltReading) XRotation() float64 {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QTiltReading___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return float64(C.QTiltReading_XRotation(ptr.Pointer()))
 	}
-	return nil
+	return 0
 }
 
-func (ptr *QTiltReading) __children_setList(i core.QObject_ITF) {
+func (ptr *QTiltReading) YRotation() float64 {
 	if ptr.Pointer() != nil {
-		C.QTiltReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		return float64(C.QTiltReading_YRotation(ptr.Pointer()))
 	}
-}
-
-func (ptr *QTiltReading) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTiltReading___children_newList(ptr.Pointer()))
-	}
-	return nil
+	return 0
 }
 
 func (ptr *QTiltReading) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -22359,39 +22336,102 @@ func (ptr *QTiltReading) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
-//export callbackQTiltReading_TimerEvent
-func callbackQTiltReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltReading::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQTiltReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+func (ptr *QTiltReading) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltReading___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltReading) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltReading___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
 	}
 }
 
-func (ptr *QTiltReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QTiltReading) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltReading___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQTiltReading_Event
+func callbackQTiltReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltReading::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTiltReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QTiltReading) ConnectEvent(f func(e *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::event", f)
 	}
 }
 
-func (ptr *QTiltReading) DisconnectTimerEvent() {
+func (ptr *QTiltReading) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::event")
 	}
 }
 
-func (ptr *QTiltReading) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QTiltReading) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QTiltReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QTiltReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QTiltReading) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTiltReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQTiltReading_EventFilter
+func callbackQTiltReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltReading::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTiltReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QTiltReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::eventFilter", f)
 	}
 }
 
-func (ptr *QTiltReading) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QTiltReading) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QTiltReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::eventFilter")
 	}
+}
+
+func (ptr *QTiltReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTiltReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QTiltReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTiltReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQTiltReading_ChildEvent
@@ -22573,78 +22613,39 @@ func (ptr *QTiltReading) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQTiltReading_Event
-func callbackQTiltReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltReading::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQTiltReading_TimerEvent
+func callbackQTiltReading_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltReading::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQTiltReadingFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTiltReadingFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QTiltReading) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QTiltReading) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::timerEvent", f)
 	}
 }
 
-func (ptr *QTiltReading) DisconnectEvent() {
+func (ptr *QTiltReading) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::timerEvent")
 	}
 }
 
-func (ptr *QTiltReading) Event(e core.QEvent_ITF) bool {
+func (ptr *QTiltReading) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTiltReading_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTiltReading_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QTiltReading) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QTiltReading) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTiltReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTiltReading_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQTiltReading_EventFilter
-func callbackQTiltReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltReading::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTiltReadingFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QTiltReading) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::eventFilter", f)
-	}
-}
-
-func (ptr *QTiltReading) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltReading::eventFilter")
-	}
-}
-
-func (ptr *QTiltReading) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTiltReading_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QTiltReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTiltReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQTiltReading_MetaObject
@@ -22730,6 +22731,20 @@ func NewQTiltSensor(parent core.QObject_ITF) *QTiltSensor {
 	return tmpValue
 }
 
+func (ptr *QTiltSensor) Calibrate() {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor_Calibrate(ptr.Pointer())
+	}
+}
+
+func (ptr *QTiltSensor) DestroyQTiltSensor() {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor_DestroyQTiltSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
 func (ptr *QTiltSensor) Reading() *QTiltReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTiltReadingFromPointer(C.QTiltSensor_Reading(ptr.Pointer()))
@@ -22741,46 +22756,12 @@ func (ptr *QTiltSensor) Reading() *QTiltReading {
 	return nil
 }
 
-func (ptr *QTiltSensor) DestroyQTiltSensor() {
-	if ptr.Pointer() != nil {
-		C.QTiltSensor_DestroyQTiltSensor(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QTiltSensor) Calibrate() {
-	if ptr.Pointer() != nil {
-		C.QTiltSensor_Calibrate(ptr.Pointer())
-	}
-}
-
 func QTiltSensor_Type() string {
 	return cGoUnpackString(C.QTiltSensor_QTiltSensor_Type())
 }
 
 func (ptr *QTiltSensor) Type() string {
 	return cGoUnpackString(C.QTiltSensor_QTiltSensor_Type())
-}
-
-func (ptr *QTiltSensor) __filters_atList(i int) *QSensorFilter {
-	if ptr.Pointer() != nil {
-		return NewQSensorFilterFromPointer(C.QTiltSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
-}
-
-func (ptr *QTiltSensor) __filters_setList(i QSensorFilter_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTiltSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
-	}
-}
-
-func (ptr *QTiltSensor) __filters_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTiltSensor___filters_newList(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QTiltSensor) __sensorTypes_atList(i int) *core.QByteArray {
@@ -22827,26 +22808,22 @@ func (ptr *QTiltSensor) __sensorsForType_newList() unsafe.Pointer {
 	return nil
 }
 
-func (ptr *QTiltSensor) __children_atList(i int) *core.QObject {
+func (ptr *QTiltSensor) __filters_atList(i int) *QSensorFilter {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QTiltSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+		return NewQSensorFilterFromPointer(C.QTiltSensor___filters_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return nil
 }
 
-func (ptr *QTiltSensor) __children_setList(i core.QObject_ITF) {
+func (ptr *QTiltSensor) __filters_setList(i QSensorFilter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTiltSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+		C.QTiltSensor___filters_setList(ptr.Pointer(), PointerFromQSensorFilter(i))
 	}
 }
 
-func (ptr *QTiltSensor) __children_newList() unsafe.Pointer {
+func (ptr *QTiltSensor) __filters_newList() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTiltSensor___children_newList(ptr.Pointer()))
+		return unsafe.Pointer(C.QTiltSensor___filters_newList(ptr.Pointer()))
 	}
 	return nil
 }
@@ -22945,6 +22922,30 @@ func (ptr *QTiltSensor) __findChildren_newList() unsafe.Pointer {
 	return nil
 }
 
+func (ptr *QTiltSensor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QTiltSensor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTiltSensor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTiltSensor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QTiltSensor) __children_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTiltSensor___children_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQTiltSensor_Start
 func callbackQTiltSensor_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltSensor::start"); signal != nil {
@@ -23017,39 +23018,78 @@ func (ptr *QTiltSensor) StopDefault() {
 	}
 }
 
-//export callbackQTiltSensor_TimerEvent
-func callbackQTiltSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltSensor::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQTiltSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+//export callbackQTiltSensor_Event
+func callbackQTiltSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltSensor::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTiltSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QTiltSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::event", f)
 	}
 }
 
-func (ptr *QTiltSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+func (ptr *QTiltSensor) DisconnectEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::timerEvent", f)
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::event")
 	}
 }
 
-func (ptr *QTiltSensor) DisconnectTimerEvent() {
+func (ptr *QTiltSensor) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTiltSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QTiltSensor) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTiltSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQTiltSensor_EventFilter
+func callbackQTiltSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltSensor::eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTiltSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QTiltSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::timerEvent")
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::eventFilter", f)
 	}
 }
 
-func (ptr *QTiltSensor) TimerEvent(event core.QTimerEvent_ITF) {
+func (ptr *QTiltSensor) DisconnectEventFilter() {
 	if ptr.Pointer() != nil {
-		C.QTiltSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::eventFilter")
 	}
 }
 
-func (ptr *QTiltSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
+func (ptr *QTiltSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QTiltSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+		return C.QTiltSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
+	return false
+}
+
+func (ptr *QTiltSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTiltSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
 }
 
 //export callbackQTiltSensor_ChildEvent
@@ -23231,78 +23271,39 @@ func (ptr *QTiltSensor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
-//export callbackQTiltSensor_Event
-func callbackQTiltSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltSensor::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+//export callbackQTiltSensor_TimerEvent
+func callbackQTiltSensor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltSensor::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQTiltSensorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTiltSensorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
-func (ptr *QTiltSensor) ConnectEvent(f func(e *core.QEvent) bool) {
+func (ptr *QTiltSensor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::timerEvent", f)
 	}
 }
 
-func (ptr *QTiltSensor) DisconnectEvent() {
+func (ptr *QTiltSensor) DisconnectTimerEvent() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::timerEvent")
 	}
 }
 
-func (ptr *QTiltSensor) Event(e core.QEvent_ITF) bool {
+func (ptr *QTiltSensor) TimerEvent(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTiltSensor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTiltSensor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
 }
 
-func (ptr *QTiltSensor) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QTiltSensor) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QTiltSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		C.QTiltSensor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-	return false
-}
-
-//export callbackQTiltSensor_EventFilter
-func callbackQTiltSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTiltSensor::eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQTiltSensorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QTiltSensor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::eventFilter", f)
-	}
-}
-
-func (ptr *QTiltSensor) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTiltSensor::eventFilter")
-	}
-}
-
-func (ptr *QTiltSensor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTiltSensor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QTiltSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QTiltSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
 }
 
 //export callbackQTiltSensor_MetaObject

@@ -21,6 +21,10 @@
 #include <QBoxSet>
 #include <QBrush>
 #include <QByteArray>
+#include <QCandlestickLegendMarker>
+#include <QCandlestickModelMapper>
+#include <QCandlestickSeries>
+#include <QCandlestickSet>
 #include <QCategoryAxis>
 #include <QChar>
 #include <QChart>
@@ -33,6 +37,8 @@
 #include <QFont>
 #include <QGraphicsItem>
 #include <QHBarModelMapper>
+#include <QHBoxPlotModelMapper>
+#include <QHCandlestickModelMapper>
 #include <QHPieModelMapper>
 #include <QHXYModelMapper>
 #include <QHorizontalBarSeries>
@@ -67,6 +73,7 @@
 #include <QString>
 #include <QVBarModelMapper>
 #include <QVBoxPlotModelMapper>
+#include <QVCandlestickModelMapper>
 #include <QVPieModelMapper>
 #include <QVXYModelMapper>
 #include <QValueAxis>
@@ -88,11 +95,17 @@ typedef QtCharts::QBarSet QBarSet;
 typedef QtCharts::QBoxPlotLegendMarker QBoxPlotLegendMarker;
 typedef QtCharts::QBoxPlotSeries QBoxPlotSeries;
 typedef QtCharts::QBoxSet QBoxSet;
+typedef QtCharts::QCandlestickLegendMarker QCandlestickLegendMarker;
+typedef QtCharts::QCandlestickModelMapper QCandlestickModelMapper;
+typedef QtCharts::QCandlestickSeries QCandlestickSeries;
+typedef QtCharts::QCandlestickSet QCandlestickSet;
 typedef QtCharts::QCategoryAxis QCategoryAxis;
 typedef QtCharts::QChart QChart;
 typedef QtCharts::QChartView QChartView;
 typedef QtCharts::QDateTimeAxis QDateTimeAxis;
 typedef QtCharts::QHBarModelMapper QHBarModelMapper;
+typedef QtCharts::QHBoxPlotModelMapper QHBoxPlotModelMapper;
+typedef QtCharts::QHCandlestickModelMapper QHCandlestickModelMapper;
 typedef QtCharts::QHPieModelMapper QHPieModelMapper;
 typedef QtCharts::QHXYModelMapper QHXYModelMapper;
 typedef QtCharts::QHorizontalBarSeries QHorizontalBarSeries;
@@ -112,6 +125,7 @@ typedef QtCharts::QSplineSeries QSplineSeries;
 typedef QtCharts::QStackedBarSeries QStackedBarSeries;
 typedef QtCharts::QVBarModelMapper QVBarModelMapper;
 typedef QtCharts::QVBoxPlotModelMapper QVBoxPlotModelMapper;
+typedef QtCharts::QVCandlestickModelMapper QVCandlestickModelMapper;
 typedef QtCharts::QVPieModelMapper QVPieModelMapper;
 typedef QtCharts::QVXYModelMapper QVXYModelMapper;
 typedef QtCharts::QValueAxis QValueAxis;
@@ -145,173 +159,18 @@ public:
 	void Signal_TitleFontChanged(const QFont & font) { callbackQAbstractAxis_TitleFontChanged(this, const_cast<QFont*>(&font)); };
 	void Signal_TitleTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCharts_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQAbstractAxis_TitleTextChanged(this, textPacked); };
 	void Signal_TitleVisibleChanged(bool visible) { callbackQAbstractAxis_TitleVisibleChanged(this, visible); };
-	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQAbstractAxis_Type(const_cast<MyQAbstractAxis*>(this))); };
 	void Signal_VisibleChanged(bool visible) { callbackQAbstractAxis_VisibleChanged(this, visible); };
+	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQAbstractAxis_Type(const_cast<MyQAbstractAxis*>(this))); };
 };
-
-long long QAbstractAxis_Alignment(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->alignment();
-}
 
 void* QAbstractAxis_GridLineColor(void* ptr)
 {
 	return new QColor(static_cast<QAbstractAxis*>(ptr)->gridLineColor());
 }
 
-char QAbstractAxis_IsGridLineVisible(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->isGridLineVisible();
-}
-
-char QAbstractAxis_IsLineVisible(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->isLineVisible();
-}
-
-char QAbstractAxis_IsMinorGridLineVisible(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->isMinorGridLineVisible();
-}
-
-char QAbstractAxis_IsReverse(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->isReverse();
-}
-
-char QAbstractAxis_IsTitleVisible(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->isTitleVisible();
-}
-
-char QAbstractAxis_IsVisible(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->isVisible();
-}
-
-int QAbstractAxis_LabelsAngle(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->labelsAngle();
-}
-
-void* QAbstractAxis_LabelsColor(void* ptr)
-{
-	return new QColor(static_cast<QAbstractAxis*>(ptr)->labelsColor());
-}
-
-char QAbstractAxis_LabelsVisible(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->labelsVisible();
-}
-
-void* QAbstractAxis_LinePenColor(void* ptr)
-{
-	return new QColor(static_cast<QAbstractAxis*>(ptr)->linePenColor());
-}
-
 void* QAbstractAxis_MinorGridLineColor(void* ptr)
 {
 	return new QColor(static_cast<QAbstractAxis*>(ptr)->minorGridLineColor());
-}
-
-void* QAbstractAxis_MinorGridLinePen(void* ptr)
-{
-	return new QPen(static_cast<QAbstractAxis*>(ptr)->minorGridLinePen());
-}
-
-void QAbstractAxis_SetGridLineColor(void* ptr, void* color)
-{
-	static_cast<QAbstractAxis*>(ptr)->setGridLineColor(*static_cast<QColor*>(color));
-}
-
-void QAbstractAxis_SetGridLineVisible(void* ptr, char visible)
-{
-	static_cast<QAbstractAxis*>(ptr)->setGridLineVisible(visible != 0);
-}
-
-void QAbstractAxis_SetLabelsAngle(void* ptr, int angle)
-{
-	static_cast<QAbstractAxis*>(ptr)->setLabelsAngle(angle);
-}
-
-void QAbstractAxis_SetLabelsColor(void* ptr, void* color)
-{
-	static_cast<QAbstractAxis*>(ptr)->setLabelsColor(*static_cast<QColor*>(color));
-}
-
-void QAbstractAxis_SetLabelsVisible(void* ptr, char visible)
-{
-	static_cast<QAbstractAxis*>(ptr)->setLabelsVisible(visible != 0);
-}
-
-void QAbstractAxis_SetLinePenColor(void* ptr, void* color)
-{
-	static_cast<QAbstractAxis*>(ptr)->setLinePenColor(*static_cast<QColor*>(color));
-}
-
-void QAbstractAxis_SetMinorGridLineColor(void* ptr, void* color)
-{
-	static_cast<QAbstractAxis*>(ptr)->setMinorGridLineColor(*static_cast<QColor*>(color));
-}
-
-void QAbstractAxis_SetMinorGridLinePen(void* ptr, void* pen)
-{
-	static_cast<QAbstractAxis*>(ptr)->setMinorGridLinePen(*static_cast<QPen*>(pen));
-}
-
-void QAbstractAxis_SetMinorGridLineVisible(void* ptr, char visible)
-{
-	static_cast<QAbstractAxis*>(ptr)->setMinorGridLineVisible(visible != 0);
-}
-
-void QAbstractAxis_SetReverse(void* ptr, char reverse)
-{
-	static_cast<QAbstractAxis*>(ptr)->setReverse(reverse != 0);
-}
-
-void QAbstractAxis_SetShadesBorderColor(void* ptr, void* color)
-{
-	static_cast<QAbstractAxis*>(ptr)->setShadesBorderColor(*static_cast<QColor*>(color));
-}
-
-void QAbstractAxis_SetShadesColor(void* ptr, void* color)
-{
-	static_cast<QAbstractAxis*>(ptr)->setShadesColor(*static_cast<QColor*>(color));
-}
-
-void QAbstractAxis_SetShadesVisible(void* ptr, char visible)
-{
-	static_cast<QAbstractAxis*>(ptr)->setShadesVisible(visible != 0);
-}
-
-void QAbstractAxis_SetTitleText(void* ptr, char* title)
-{
-	static_cast<QAbstractAxis*>(ptr)->setTitleText(QString(title));
-}
-
-void QAbstractAxis_SetTitleVisible(void* ptr, char visible)
-{
-	static_cast<QAbstractAxis*>(ptr)->setTitleVisible(visible != 0);
-}
-
-void* QAbstractAxis_ShadesBorderColor(void* ptr)
-{
-	return new QColor(static_cast<QAbstractAxis*>(ptr)->shadesBorderColor());
-}
-
-void* QAbstractAxis_ShadesColor(void* ptr)
-{
-	return new QColor(static_cast<QAbstractAxis*>(ptr)->shadesColor());
-}
-
-char QAbstractAxis_ShadesVisible(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->shadesVisible();
-}
-
-struct QtCharts_PackedString QAbstractAxis_TitleText(void* ptr)
-{
-	return ({ QByteArray t6dcec2 = static_cast<QAbstractAxis*>(ptr)->titleText().toUtf8(); QtCharts_PackedString { const_cast<char*>(t6dcec2.prepend("WHITESPACE").constData()+10), t6dcec2.size()-10 }; });
 }
 
 void QAbstractAxis_ConnectColorChanged(void* ptr)
@@ -342,11 +201,6 @@ void QAbstractAxis_DisconnectGridLineColorChanged(void* ptr)
 void QAbstractAxis_GridLineColorChanged(void* ptr, void* color)
 {
 	static_cast<QAbstractAxis*>(ptr)->gridLineColorChanged(*static_cast<QColor*>(color));
-}
-
-void* QAbstractAxis_GridLinePen(void* ptr)
-{
-	return new QPen(static_cast<QAbstractAxis*>(ptr)->gridLinePen());
 }
 
 void QAbstractAxis_ConnectGridLinePenChanged(void* ptr)
@@ -399,11 +253,6 @@ void QAbstractAxis_LabelsAngleChanged(void* ptr, int angle)
 	static_cast<QAbstractAxis*>(ptr)->labelsAngleChanged(angle);
 }
 
-void* QAbstractAxis_LabelsBrush(void* ptr)
-{
-	return new QBrush(static_cast<QAbstractAxis*>(ptr)->labelsBrush());
-}
-
 void QAbstractAxis_ConnectLabelsBrushChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractAxis*>(ptr), static_cast<void (QAbstractAxis::*)(const QBrush &)>(&QAbstractAxis::labelsBrushChanged), static_cast<MyQAbstractAxis*>(ptr), static_cast<void (MyQAbstractAxis::*)(const QBrush &)>(&MyQAbstractAxis::Signal_LabelsBrushChanged));
@@ -434,11 +283,6 @@ void QAbstractAxis_LabelsColorChanged(void* ptr, void* color)
 	static_cast<QAbstractAxis*>(ptr)->labelsColorChanged(*static_cast<QColor*>(color));
 }
 
-void* QAbstractAxis_LabelsFont(void* ptr)
-{
-	return new QFont(static_cast<QAbstractAxis*>(ptr)->labelsFont());
-}
-
 void QAbstractAxis_ConnectLabelsFontChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractAxis*>(ptr), static_cast<void (QAbstractAxis::*)(const QFont &)>(&QAbstractAxis::labelsFontChanged), static_cast<MyQAbstractAxis*>(ptr), static_cast<void (MyQAbstractAxis::*)(const QFont &)>(&MyQAbstractAxis::Signal_LabelsFontChanged));
@@ -467,11 +311,6 @@ void QAbstractAxis_DisconnectLabelsVisibleChanged(void* ptr)
 void QAbstractAxis_LabelsVisibleChanged(void* ptr, char visible)
 {
 	static_cast<QAbstractAxis*>(ptr)->labelsVisibleChanged(visible != 0);
-}
-
-void* QAbstractAxis_LinePen(void* ptr)
-{
-	return new QPen(static_cast<QAbstractAxis*>(ptr)->linePen());
 }
 
 void QAbstractAxis_ConnectLinePenChanged(void* ptr)
@@ -549,11 +388,6 @@ void QAbstractAxis_MinorGridVisibleChanged(void* ptr, char visible)
 	static_cast<QAbstractAxis*>(ptr)->minorGridVisibleChanged(visible != 0);
 }
 
-long long QAbstractAxis_Orientation(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->orientation();
-}
-
 void QAbstractAxis_ConnectReverseChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractAxis*>(ptr), static_cast<void (QAbstractAxis::*)(bool)>(&QAbstractAxis::reverseChanged), static_cast<MyQAbstractAxis*>(ptr), static_cast<void (MyQAbstractAxis::*)(bool)>(&MyQAbstractAxis::Signal_ReverseChanged));
@@ -569,9 +403,24 @@ void QAbstractAxis_ReverseChanged(void* ptr, char reverse)
 	static_cast<QAbstractAxis*>(ptr)->reverseChanged(reverse != 0);
 }
 
+void QAbstractAxis_SetGridLineColor(void* ptr, void* color)
+{
+	static_cast<QAbstractAxis*>(ptr)->setGridLineColor(*static_cast<QColor*>(color));
+}
+
 void QAbstractAxis_SetGridLinePen(void* ptr, void* pen)
 {
 	static_cast<QAbstractAxis*>(ptr)->setGridLinePen(*static_cast<QPen*>(pen));
+}
+
+void QAbstractAxis_SetGridLineVisible(void* ptr, char visible)
+{
+	static_cast<QAbstractAxis*>(ptr)->setGridLineVisible(visible != 0);
+}
+
+void QAbstractAxis_SetLabelsAngle(void* ptr, int angle)
+{
+	static_cast<QAbstractAxis*>(ptr)->setLabelsAngle(angle);
 }
 
 void QAbstractAxis_SetLabelsBrush(void* ptr, void* brush)
@@ -579,14 +428,29 @@ void QAbstractAxis_SetLabelsBrush(void* ptr, void* brush)
 	static_cast<QAbstractAxis*>(ptr)->setLabelsBrush(*static_cast<QBrush*>(brush));
 }
 
+void QAbstractAxis_SetLabelsColor(void* ptr, void* color)
+{
+	static_cast<QAbstractAxis*>(ptr)->setLabelsColor(*static_cast<QColor*>(color));
+}
+
 void QAbstractAxis_SetLabelsFont(void* ptr, void* font)
 {
 	static_cast<QAbstractAxis*>(ptr)->setLabelsFont(*static_cast<QFont*>(font));
 }
 
+void QAbstractAxis_SetLabelsVisible(void* ptr, char visible)
+{
+	static_cast<QAbstractAxis*>(ptr)->setLabelsVisible(visible != 0);
+}
+
 void QAbstractAxis_SetLinePen(void* ptr, void* pen)
 {
 	static_cast<QAbstractAxis*>(ptr)->setLinePen(*static_cast<QPen*>(pen));
+}
+
+void QAbstractAxis_SetLinePenColor(void* ptr, void* color)
+{
+	static_cast<QAbstractAxis*>(ptr)->setLinePenColor(*static_cast<QColor*>(color));
 }
 
 void QAbstractAxis_SetLineVisible(void* ptr, char visible)
@@ -604,9 +468,34 @@ void QAbstractAxis_SetMin(void* ptr, void* min)
 	static_cast<QAbstractAxis*>(ptr)->setMin(*static_cast<QVariant*>(min));
 }
 
+void QAbstractAxis_SetMinorGridLineColor(void* ptr, void* color)
+{
+	static_cast<QAbstractAxis*>(ptr)->setMinorGridLineColor(*static_cast<QColor*>(color));
+}
+
+void QAbstractAxis_SetMinorGridLinePen(void* ptr, void* pen)
+{
+	static_cast<QAbstractAxis*>(ptr)->setMinorGridLinePen(*static_cast<QPen*>(pen));
+}
+
+void QAbstractAxis_SetMinorGridLineVisible(void* ptr, char visible)
+{
+	static_cast<QAbstractAxis*>(ptr)->setMinorGridLineVisible(visible != 0);
+}
+
 void QAbstractAxis_SetRange(void* ptr, void* min, void* max)
 {
 	static_cast<QAbstractAxis*>(ptr)->setRange(*static_cast<QVariant*>(min), *static_cast<QVariant*>(max));
+}
+
+void QAbstractAxis_SetReverse(void* ptr, char reverse)
+{
+	static_cast<QAbstractAxis*>(ptr)->setReverse(reverse != 0);
+}
+
+void QAbstractAxis_SetShadesBorderColor(void* ptr, void* color)
+{
+	static_cast<QAbstractAxis*>(ptr)->setShadesBorderColor(*static_cast<QColor*>(color));
 }
 
 void QAbstractAxis_SetShadesBrush(void* ptr, void* brush)
@@ -614,9 +503,19 @@ void QAbstractAxis_SetShadesBrush(void* ptr, void* brush)
 	static_cast<QAbstractAxis*>(ptr)->setShadesBrush(*static_cast<QBrush*>(brush));
 }
 
+void QAbstractAxis_SetShadesColor(void* ptr, void* color)
+{
+	static_cast<QAbstractAxis*>(ptr)->setShadesColor(*static_cast<QColor*>(color));
+}
+
 void QAbstractAxis_SetShadesPen(void* ptr, void* pen)
 {
 	static_cast<QAbstractAxis*>(ptr)->setShadesPen(*static_cast<QPen*>(pen));
+}
+
+void QAbstractAxis_SetShadesVisible(void* ptr, char visible)
+{
+	static_cast<QAbstractAxis*>(ptr)->setShadesVisible(visible != 0);
 }
 
 void QAbstractAxis_SetTitleBrush(void* ptr, void* brush)
@@ -627,6 +526,16 @@ void QAbstractAxis_SetTitleBrush(void* ptr, void* brush)
 void QAbstractAxis_SetTitleFont(void* ptr, void* font)
 {
 	static_cast<QAbstractAxis*>(ptr)->setTitleFont(*static_cast<QFont*>(font));
+}
+
+void QAbstractAxis_SetTitleText(void* ptr, char* title)
+{
+	static_cast<QAbstractAxis*>(ptr)->setTitleText(QString(title));
+}
+
+void QAbstractAxis_SetTitleVisible(void* ptr, char visible)
+{
+	static_cast<QAbstractAxis*>(ptr)->setTitleVisible(visible != 0);
 }
 
 void QAbstractAxis_SetVisible(void* ptr, char visible)
@@ -647,11 +556,6 @@ void QAbstractAxis_DisconnectShadesBorderColorChanged(void* ptr)
 void QAbstractAxis_ShadesBorderColorChanged(void* ptr, void* color)
 {
 	static_cast<QAbstractAxis*>(ptr)->shadesBorderColorChanged(*static_cast<QColor*>(color));
-}
-
-void* QAbstractAxis_ShadesBrush(void* ptr)
-{
-	return new QBrush(static_cast<QAbstractAxis*>(ptr)->shadesBrush());
 }
 
 void QAbstractAxis_ConnectShadesBrushChanged(void* ptr)
@@ -682,11 +586,6 @@ void QAbstractAxis_DisconnectShadesColorChanged(void* ptr)
 void QAbstractAxis_ShadesColorChanged(void* ptr, void* color)
 {
 	static_cast<QAbstractAxis*>(ptr)->shadesColorChanged(*static_cast<QColor*>(color));
-}
-
-void* QAbstractAxis_ShadesPen(void* ptr)
-{
-	return new QPen(static_cast<QAbstractAxis*>(ptr)->shadesPen());
 }
 
 void QAbstractAxis_ConnectShadesPenChanged(void* ptr)
@@ -724,11 +623,6 @@ void QAbstractAxis_Show(void* ptr)
 	static_cast<QAbstractAxis*>(ptr)->show();
 }
 
-void* QAbstractAxis_TitleBrush(void* ptr)
-{
-	return new QBrush(static_cast<QAbstractAxis*>(ptr)->titleBrush());
-}
-
 void QAbstractAxis_ConnectTitleBrushChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractAxis*>(ptr), static_cast<void (QAbstractAxis::*)(const QBrush &)>(&QAbstractAxis::titleBrushChanged), static_cast<MyQAbstractAxis*>(ptr), static_cast<void (MyQAbstractAxis::*)(const QBrush &)>(&MyQAbstractAxis::Signal_TitleBrushChanged));
@@ -742,11 +636,6 @@ void QAbstractAxis_DisconnectTitleBrushChanged(void* ptr)
 void QAbstractAxis_TitleBrushChanged(void* ptr, void* brush)
 {
 	static_cast<QAbstractAxis*>(ptr)->titleBrushChanged(*static_cast<QBrush*>(brush));
-}
-
-void* QAbstractAxis_TitleFont(void* ptr)
-{
-	return new QFont(static_cast<QAbstractAxis*>(ptr)->titleFont());
 }
 
 void QAbstractAxis_ConnectTitleFontChanged(void* ptr)
@@ -794,11 +683,6 @@ void QAbstractAxis_TitleVisibleChanged(void* ptr, char visible)
 	static_cast<QAbstractAxis*>(ptr)->titleVisibleChanged(visible != 0);
 }
 
-long long QAbstractAxis_Type(void* ptr)
-{
-	return static_cast<QAbstractAxis*>(ptr)->type();
-}
-
 void QAbstractAxis_ConnectVisibleChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractAxis*>(ptr), static_cast<void (QAbstractAxis::*)(bool)>(&QAbstractAxis::visibleChanged), static_cast<MyQAbstractAxis*>(ptr), static_cast<void (MyQAbstractAxis::*)(bool)>(&MyQAbstractAxis::Signal_VisibleChanged));
@@ -819,6 +703,136 @@ void QAbstractAxis_DestroyQAbstractAxis(void* ptr)
 	static_cast<QAbstractAxis*>(ptr)->~QAbstractAxis();
 }
 
+long long QAbstractAxis_Type(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->type();
+}
+
+void* QAbstractAxis_LabelsBrush(void* ptr)
+{
+	return new QBrush(static_cast<QAbstractAxis*>(ptr)->labelsBrush());
+}
+
+void* QAbstractAxis_ShadesBrush(void* ptr)
+{
+	return new QBrush(static_cast<QAbstractAxis*>(ptr)->shadesBrush());
+}
+
+void* QAbstractAxis_TitleBrush(void* ptr)
+{
+	return new QBrush(static_cast<QAbstractAxis*>(ptr)->titleBrush());
+}
+
+void* QAbstractAxis_LabelsColor(void* ptr)
+{
+	return new QColor(static_cast<QAbstractAxis*>(ptr)->labelsColor());
+}
+
+void* QAbstractAxis_LinePenColor(void* ptr)
+{
+	return new QColor(static_cast<QAbstractAxis*>(ptr)->linePenColor());
+}
+
+void* QAbstractAxis_ShadesBorderColor(void* ptr)
+{
+	return new QColor(static_cast<QAbstractAxis*>(ptr)->shadesBorderColor());
+}
+
+void* QAbstractAxis_ShadesColor(void* ptr)
+{
+	return new QColor(static_cast<QAbstractAxis*>(ptr)->shadesColor());
+}
+
+void* QAbstractAxis_LabelsFont(void* ptr)
+{
+	return new QFont(static_cast<QAbstractAxis*>(ptr)->labelsFont());
+}
+
+void* QAbstractAxis_TitleFont(void* ptr)
+{
+	return new QFont(static_cast<QAbstractAxis*>(ptr)->titleFont());
+}
+
+void* QAbstractAxis_GridLinePen(void* ptr)
+{
+	return new QPen(static_cast<QAbstractAxis*>(ptr)->gridLinePen());
+}
+
+void* QAbstractAxis_LinePen(void* ptr)
+{
+	return new QPen(static_cast<QAbstractAxis*>(ptr)->linePen());
+}
+
+void* QAbstractAxis_MinorGridLinePen(void* ptr)
+{
+	return new QPen(static_cast<QAbstractAxis*>(ptr)->minorGridLinePen());
+}
+
+void* QAbstractAxis_ShadesPen(void* ptr)
+{
+	return new QPen(static_cast<QAbstractAxis*>(ptr)->shadesPen());
+}
+
+struct QtCharts_PackedString QAbstractAxis_TitleText(void* ptr)
+{
+	return ({ QByteArray t6dcec2 = static_cast<QAbstractAxis*>(ptr)->titleText().toUtf8(); QtCharts_PackedString { const_cast<char*>(t6dcec2.prepend("WHITESPACE").constData()+10), t6dcec2.size()-10 }; });
+}
+
+long long QAbstractAxis_Alignment(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->alignment();
+}
+
+long long QAbstractAxis_Orientation(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->orientation();
+}
+
+char QAbstractAxis_IsGridLineVisible(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->isGridLineVisible();
+}
+
+char QAbstractAxis_IsLineVisible(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->isLineVisible();
+}
+
+char QAbstractAxis_IsMinorGridLineVisible(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->isMinorGridLineVisible();
+}
+
+char QAbstractAxis_IsReverse(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->isReverse();
+}
+
+char QAbstractAxis_IsTitleVisible(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->isTitleVisible();
+}
+
+char QAbstractAxis_IsVisible(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->isVisible();
+}
+
+char QAbstractAxis_LabelsVisible(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->labelsVisible();
+}
+
+char QAbstractAxis_ShadesVisible(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->shadesVisible();
+}
+
+int QAbstractAxis_LabelsAngle(void* ptr)
+{
+	return static_cast<QAbstractAxis*>(ptr)->labelsAngle();
+}
+
 class MyQAbstractBarSeries: public QAbstractBarSeries
 {
 public:
@@ -837,36 +851,6 @@ public:
 	 ~MyQAbstractBarSeries() { callbackQAbstractBarSeries_DestroyQAbstractBarSeries(this); };
 };
 
-double QAbstractBarSeries_LabelsAngle(void* ptr)
-{
-	return static_cast<QAbstractBarSeries*>(ptr)->labelsAngle();
-}
-
-struct QtCharts_PackedString QAbstractBarSeries_LabelsFormat(void* ptr)
-{
-	return ({ QByteArray tefa1eb = static_cast<QAbstractBarSeries*>(ptr)->labelsFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(tefa1eb.prepend("WHITESPACE").constData()+10), tefa1eb.size()-10 }; });
-}
-
-long long QAbstractBarSeries_LabelsPosition(void* ptr)
-{
-	return static_cast<QAbstractBarSeries*>(ptr)->labelsPosition();
-}
-
-void QAbstractBarSeries_SetLabelsAngle(void* ptr, double angle)
-{
-	static_cast<QAbstractBarSeries*>(ptr)->setLabelsAngle(angle);
-}
-
-void QAbstractBarSeries_SetLabelsFormat(void* ptr, char* format)
-{
-	static_cast<QAbstractBarSeries*>(ptr)->setLabelsFormat(QString(format));
-}
-
-void QAbstractBarSeries_SetLabelsPosition(void* ptr, long long position)
-{
-	static_cast<QAbstractBarSeries*>(ptr)->setLabelsPosition(static_cast<QAbstractBarSeries::LabelsPosition>(position));
-}
-
 char QAbstractBarSeries_Append(void* ptr, void* set)
 {
 	return static_cast<QAbstractBarSeries*>(ptr)->append(static_cast<QBarSet*>(set));
@@ -877,14 +861,19 @@ char QAbstractBarSeries_Append2(void* ptr, void* sets)
 	return static_cast<QAbstractBarSeries*>(ptr)->append(*static_cast<QList<QBarSet *>*>(sets));
 }
 
-struct QtCharts_PackedList QAbstractBarSeries_BarSets(void* ptr)
+char QAbstractBarSeries_Insert(void* ptr, int index, void* set)
 {
-	return ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(static_cast<QAbstractBarSeries*>(ptr)->barSets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	return static_cast<QAbstractBarSeries*>(ptr)->insert(index, static_cast<QBarSet*>(set));
 }
 
-double QAbstractBarSeries_BarWidth(void* ptr)
+char QAbstractBarSeries_Remove(void* ptr, void* set)
 {
-	return static_cast<QAbstractBarSeries*>(ptr)->barWidth();
+	return static_cast<QAbstractBarSeries*>(ptr)->remove(static_cast<QBarSet*>(set));
+}
+
+char QAbstractBarSeries_Take(void* ptr, void* set)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->take(static_cast<QBarSet*>(set));
 }
 
 void QAbstractBarSeries_ConnectBarsetsAdded(void* ptr)
@@ -937,11 +926,6 @@ void QAbstractBarSeries_Clicked(void* ptr, int index, void* barset)
 	static_cast<QAbstractBarSeries*>(ptr)->clicked(index, static_cast<QBarSet*>(barset));
 }
 
-int QAbstractBarSeries_Count(void* ptr)
-{
-	return static_cast<QAbstractBarSeries*>(ptr)->count();
-}
-
 void QAbstractBarSeries_ConnectCountChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractBarSeries*>(ptr), static_cast<void (QAbstractBarSeries::*)()>(&QAbstractBarSeries::countChanged), static_cast<MyQAbstractBarSeries*>(ptr), static_cast<void (MyQAbstractBarSeries::*)()>(&MyQAbstractBarSeries::Signal_CountChanged));
@@ -985,16 +969,6 @@ void QAbstractBarSeries_DisconnectHovered(void* ptr)
 void QAbstractBarSeries_Hovered(void* ptr, char status, int index, void* barset)
 {
 	static_cast<QAbstractBarSeries*>(ptr)->hovered(status != 0, index, static_cast<QBarSet*>(barset));
-}
-
-char QAbstractBarSeries_Insert(void* ptr, int index, void* set)
-{
-	return static_cast<QAbstractBarSeries*>(ptr)->insert(index, static_cast<QBarSet*>(set));
-}
-
-char QAbstractBarSeries_IsLabelsVisible(void* ptr)
-{
-	return static_cast<QAbstractBarSeries*>(ptr)->isLabelsVisible();
 }
 
 void QAbstractBarSeries_ConnectLabelsAngleChanged(void* ptr)
@@ -1087,24 +1061,29 @@ void QAbstractBarSeries_Released(void* ptr, int index, void* barset)
 	static_cast<QAbstractBarSeries*>(ptr)->released(index, static_cast<QBarSet*>(barset));
 }
 
-char QAbstractBarSeries_Remove(void* ptr, void* set)
-{
-	return static_cast<QAbstractBarSeries*>(ptr)->remove(static_cast<QBarSet*>(set));
-}
-
 void QAbstractBarSeries_SetBarWidth(void* ptr, double width)
 {
 	static_cast<QAbstractBarSeries*>(ptr)->setBarWidth(width);
 }
 
+void QAbstractBarSeries_SetLabelsAngle(void* ptr, double angle)
+{
+	static_cast<QAbstractBarSeries*>(ptr)->setLabelsAngle(angle);
+}
+
+void QAbstractBarSeries_SetLabelsFormat(void* ptr, char* format)
+{
+	static_cast<QAbstractBarSeries*>(ptr)->setLabelsFormat(QString(format));
+}
+
+void QAbstractBarSeries_SetLabelsPosition(void* ptr, long long position)
+{
+	static_cast<QAbstractBarSeries*>(ptr)->setLabelsPosition(static_cast<QAbstractBarSeries::LabelsPosition>(position));
+}
+
 void QAbstractBarSeries_SetLabelsVisible(void* ptr, char visible)
 {
 	static_cast<QAbstractBarSeries*>(ptr)->setLabelsVisible(visible != 0);
-}
-
-char QAbstractBarSeries_Take(void* ptr, void* set)
-{
-	return static_cast<QAbstractBarSeries*>(ptr)->take(static_cast<QBarSet*>(set));
 }
 
 void QAbstractBarSeries_DestroyQAbstractBarSeries(void* ptr)
@@ -1115,6 +1094,41 @@ void QAbstractBarSeries_DestroyQAbstractBarSeries(void* ptr)
 void QAbstractBarSeries_DestroyQAbstractBarSeriesDefault(void* ptr)
 {
 
+}
+
+long long QAbstractBarSeries_LabelsPosition(void* ptr)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->labelsPosition();
+}
+
+struct QtCharts_PackedList QAbstractBarSeries_BarSets(void* ptr)
+{
+	return ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(static_cast<QAbstractBarSeries*>(ptr)->barSets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtCharts_PackedString QAbstractBarSeries_LabelsFormat(void* ptr)
+{
+	return ({ QByteArray tefa1eb = static_cast<QAbstractBarSeries*>(ptr)->labelsFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(tefa1eb.prepend("WHITESPACE").constData()+10), tefa1eb.size()-10 }; });
+}
+
+char QAbstractBarSeries_IsLabelsVisible(void* ptr)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->isLabelsVisible();
+}
+
+int QAbstractBarSeries_Count(void* ptr)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->count();
+}
+
+double QAbstractBarSeries_BarWidth(void* ptr)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->barWidth();
+}
+
+double QAbstractBarSeries_LabelsAngle(void* ptr)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->labelsAngle();
 }
 
 void* QAbstractBarSeries___append_sets_atList2(void* ptr, int i)
@@ -1128,21 +1142,6 @@ void QAbstractBarSeries___append_sets_setList2(void* ptr, void* i)
 }
 
 void* QAbstractBarSeries___append_sets_newList2(void* ptr)
-{
-	return new QList<QBarSet *>;
-}
-
-void* QAbstractBarSeries___barSets_atList(void* ptr, int i)
-{
-	return const_cast<QBarSet*>(static_cast<QList<QBarSet *>*>(ptr)->at(i));
-}
-
-void QAbstractBarSeries___barSets_setList(void* ptr, void* i)
-{
-	static_cast<QList<QBarSet *>*>(ptr)->append(static_cast<QBarSet*>(i));
-}
-
-void* QAbstractBarSeries___barSets_newList(void* ptr)
 {
 	return new QList<QBarSet *>;
 }
@@ -1177,69 +1176,39 @@ void* QAbstractBarSeries___barsetsRemoved_sets_newList(void* ptr)
 	return new QList<QBarSet *>;
 }
 
+void* QAbstractBarSeries___barSets_atList(void* ptr, int i)
+{
+	return const_cast<QBarSet*>(static_cast<QList<QBarSet *>*>(ptr)->at(i));
+}
+
+void QAbstractBarSeries___barSets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBarSet *>*>(ptr)->append(static_cast<QBarSet*>(i));
+}
+
+void* QAbstractBarSeries___barSets_newList(void* ptr)
+{
+	return new QList<QBarSet *>;
+}
+
 class MyQAbstractSeries: public QAbstractSeries
 {
 public:
 	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
 	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
-	SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAbstractSeries_Type(const_cast<MyQAbstractSeries*>(this))); };
 	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
 	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
+	SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAbstractSeries_Type(const_cast<MyQAbstractSeries*>(this))); };
 };
-
-char QAbstractSeries_IsVisible(void* ptr)
-{
-	return static_cast<QAbstractSeries*>(ptr)->isVisible();
-}
-
-struct QtCharts_PackedString QAbstractSeries_Name(void* ptr)
-{
-	return ({ QByteArray tb9025a = static_cast<QAbstractSeries*>(ptr)->name().toUtf8(); QtCharts_PackedString { const_cast<char*>(tb9025a.prepend("WHITESPACE").constData()+10), tb9025a.size()-10 }; });
-}
-
-double QAbstractSeries_Opacity(void* ptr)
-{
-	return static_cast<QAbstractSeries*>(ptr)->opacity();
-}
-
-void QAbstractSeries_SetName(void* ptr, char* name)
-{
-	static_cast<QAbstractSeries*>(ptr)->setName(QString(name));
-}
-
-void QAbstractSeries_SetOpacity(void* ptr, double opacity)
-{
-	static_cast<QAbstractSeries*>(ptr)->setOpacity(opacity);
-}
-
-void QAbstractSeries_SetUseOpenGL(void* ptr, char enable)
-{
-	static_cast<QAbstractSeries*>(ptr)->setUseOpenGL(enable != 0);
-}
-
-void QAbstractSeries_SetVisible(void* ptr, char visible)
-{
-	static_cast<QAbstractSeries*>(ptr)->setVisible(visible != 0);
-}
-
-char QAbstractSeries_UseOpenGL(void* ptr)
-{
-	return static_cast<QAbstractSeries*>(ptr)->useOpenGL();
-}
-
-char QAbstractSeries_AttachAxis(void* ptr, void* axis)
-{
-	return static_cast<QAbstractSeries*>(ptr)->attachAxis(static_cast<QAbstractAxis*>(axis));
-}
 
 struct QtCharts_PackedList QAbstractSeries_AttachedAxes(void* ptr)
 {
 	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QAbstractSeries*>(ptr)->attachedAxes()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QAbstractSeries_Chart(void* ptr)
+char QAbstractSeries_AttachAxis(void* ptr, void* axis)
 {
-	return static_cast<QAbstractSeries*>(ptr)->chart();
+	return static_cast<QAbstractSeries*>(ptr)->attachAxis(static_cast<QAbstractAxis*>(axis));
 }
 
 char QAbstractSeries_DetachAxis(void* ptr, void* axis)
@@ -1282,14 +1251,29 @@ void QAbstractSeries_OpacityChanged(void* ptr)
 	static_cast<QAbstractSeries*>(ptr)->opacityChanged();
 }
 
+void QAbstractSeries_SetName(void* ptr, char* name)
+{
+	static_cast<QAbstractSeries*>(ptr)->setName(QString(name));
+}
+
+void QAbstractSeries_SetOpacity(void* ptr, double opacity)
+{
+	static_cast<QAbstractSeries*>(ptr)->setOpacity(opacity);
+}
+
+void QAbstractSeries_SetUseOpenGL(void* ptr, char enable)
+{
+	static_cast<QAbstractSeries*>(ptr)->setUseOpenGL(enable != 0);
+}
+
+void QAbstractSeries_SetVisible(void* ptr, char visible)
+{
+	static_cast<QAbstractSeries*>(ptr)->setVisible(visible != 0);
+}
+
 void QAbstractSeries_Show(void* ptr)
 {
 	static_cast<QAbstractSeries*>(ptr)->show();
-}
-
-long long QAbstractSeries_Type(void* ptr)
-{
-	return static_cast<QAbstractSeries*>(ptr)->type();
 }
 
 void QAbstractSeries_ConnectUseOpenGLChanged(void* ptr)
@@ -1325,6 +1309,36 @@ void QAbstractSeries_VisibleChanged(void* ptr)
 void QAbstractSeries_DestroyQAbstractSeries(void* ptr)
 {
 	static_cast<QAbstractSeries*>(ptr)->~QAbstractSeries();
+}
+
+void* QAbstractSeries_Chart(void* ptr)
+{
+	return static_cast<QAbstractSeries*>(ptr)->chart();
+}
+
+struct QtCharts_PackedString QAbstractSeries_Name(void* ptr)
+{
+	return ({ QByteArray tb9025a = static_cast<QAbstractSeries*>(ptr)->name().toUtf8(); QtCharts_PackedString { const_cast<char*>(tb9025a.prepend("WHITESPACE").constData()+10), tb9025a.size()-10 }; });
+}
+
+long long QAbstractSeries_Type(void* ptr)
+{
+	return static_cast<QAbstractSeries*>(ptr)->type();
+}
+
+char QAbstractSeries_IsVisible(void* ptr)
+{
+	return static_cast<QAbstractSeries*>(ptr)->isVisible();
+}
+
+char QAbstractSeries_UseOpenGL(void* ptr)
+{
+	return static_cast<QAbstractSeries*>(ptr)->useOpenGL();
+}
+
+double QAbstractSeries_Opacity(void* ptr)
+{
+	return static_cast<QAbstractSeries*>(ptr)->opacity();
 }
 
 void* QAbstractSeries___attachedAxes_atList(void* ptr, int i)
@@ -1386,99 +1400,8 @@ public:
 	void Signal_PointLabelsVisibilityChanged(bool visible) { callbackQAreaSeries_PointLabelsVisibilityChanged(this, visible); };
 	void Signal_Pressed(const QPointF & point) { callbackQAreaSeries_Pressed(this, const_cast<QPointF*>(&point)); };
 	void Signal_Released(const QPointF & point) { callbackQAreaSeries_Released(this, const_cast<QPointF*>(&point)); };
-	void Signal_Selected() { callbackQAreaSeries_Selected(this); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAreaSeries_Type(const_cast<MyQAreaSeries*>(this))); };
 };
-
-void* QAreaSeries_BorderColor(void* ptr)
-{
-	return new QColor(static_cast<QAreaSeries*>(ptr)->borderColor());
-}
-
-void* QAreaSeries_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QAreaSeries*>(ptr)->brush());
-}
-
-void* QAreaSeries_Color(void* ptr)
-{
-	return new QColor(static_cast<QAreaSeries*>(ptr)->color());
-}
-
-void* QAreaSeries_LowerSeries(void* ptr)
-{
-	return static_cast<QAreaSeries*>(ptr)->lowerSeries();
-}
-
-void* QAreaSeries_Pen(void* ptr)
-{
-	return new QPen(static_cast<QAreaSeries*>(ptr)->pen());
-}
-
-char QAreaSeries_PointLabelsClipping(void* ptr)
-{
-	return static_cast<QAreaSeries*>(ptr)->pointLabelsClipping();
-}
-
-void* QAreaSeries_PointLabelsColor(void* ptr)
-{
-	return new QColor(static_cast<QAreaSeries*>(ptr)->pointLabelsColor());
-}
-
-void* QAreaSeries_PointLabelsFont(void* ptr)
-{
-	return new QFont(static_cast<QAreaSeries*>(ptr)->pointLabelsFont());
-}
-
-struct QtCharts_PackedString QAreaSeries_PointLabelsFormat(void* ptr)
-{
-	return ({ QByteArray t607311 = static_cast<QAreaSeries*>(ptr)->pointLabelsFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t607311.prepend("WHITESPACE").constData()+10), t607311.size()-10 }; });
-}
-
-char QAreaSeries_PointLabelsVisible(void* ptr)
-{
-	return static_cast<QAreaSeries*>(ptr)->pointLabelsVisible();
-}
-
-void QAreaSeries_SetBorderColor(void* ptr, void* color)
-{
-	static_cast<QAreaSeries*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
-}
-
-void QAreaSeries_SetColor(void* ptr, void* color)
-{
-	static_cast<QAreaSeries*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-void QAreaSeries_SetPointLabelsClipping(void* ptr, char enabled)
-{
-	static_cast<QAreaSeries*>(ptr)->setPointLabelsClipping(enabled != 0);
-}
-
-void QAreaSeries_SetPointLabelsColor(void* ptr, void* color)
-{
-	static_cast<QAreaSeries*>(ptr)->setPointLabelsColor(*static_cast<QColor*>(color));
-}
-
-void QAreaSeries_SetPointLabelsFont(void* ptr, void* font)
-{
-	static_cast<QAreaSeries*>(ptr)->setPointLabelsFont(*static_cast<QFont*>(font));
-}
-
-void QAreaSeries_SetPointLabelsFormat(void* ptr, char* format)
-{
-	static_cast<QAreaSeries*>(ptr)->setPointLabelsFormat(QString(format));
-}
-
-void QAreaSeries_SetPointLabelsVisible(void* ptr, char visible)
-{
-	static_cast<QAreaSeries*>(ptr)->setPointLabelsVisible(visible != 0);
-}
-
-void* QAreaSeries_UpperSeries(void* ptr)
-{
-	return static_cast<QAreaSeries*>(ptr)->upperSeries();
-}
 
 void* QAreaSeries_NewQAreaSeries2(void* upperSeries, void* lowerSeries)
 {
@@ -1640,11 +1563,6 @@ void QAreaSeries_PointLabelsVisibilityChanged(void* ptr, char visible)
 	static_cast<QAreaSeries*>(ptr)->pointLabelsVisibilityChanged(visible != 0);
 }
 
-char QAreaSeries_PointsVisible(void* ptr)
-{
-	return static_cast<QAreaSeries*>(ptr)->pointsVisible();
-}
-
 void QAreaSeries_ConnectPressed(void* ptr)
 {
 	QObject::connect(static_cast<QAreaSeries*>(ptr), static_cast<void (QAreaSeries::*)(const QPointF &)>(&QAreaSeries::pressed), static_cast<MyQAreaSeries*>(ptr), static_cast<void (MyQAreaSeries::*)(const QPointF &)>(&MyQAreaSeries::Signal_Pressed));
@@ -1675,24 +1593,19 @@ void QAreaSeries_Released(void* ptr, void* point)
 	static_cast<QAreaSeries*>(ptr)->released(*static_cast<QPointF*>(point));
 }
 
-void QAreaSeries_ConnectSelected(void* ptr)
+void QAreaSeries_SetBorderColor(void* ptr, void* color)
 {
-	QObject::connect(static_cast<QAreaSeries*>(ptr), static_cast<void (QAreaSeries::*)()>(&QAreaSeries::selected), static_cast<MyQAreaSeries*>(ptr), static_cast<void (MyQAreaSeries::*)()>(&MyQAreaSeries::Signal_Selected));
-}
-
-void QAreaSeries_DisconnectSelected(void* ptr)
-{
-	QObject::disconnect(static_cast<QAreaSeries*>(ptr), static_cast<void (QAreaSeries::*)()>(&QAreaSeries::selected), static_cast<MyQAreaSeries*>(ptr), static_cast<void (MyQAreaSeries::*)()>(&MyQAreaSeries::Signal_Selected));
-}
-
-void QAreaSeries_Selected(void* ptr)
-{
-	static_cast<QAreaSeries*>(ptr)->selected();
+	static_cast<QAreaSeries*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
 }
 
 void QAreaSeries_SetBrush(void* ptr, void* brush)
 {
 	static_cast<QAreaSeries*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
+}
+
+void QAreaSeries_SetColor(void* ptr, void* color)
+{
+	static_cast<QAreaSeries*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
 
 void QAreaSeries_SetLowerSeries(void* ptr, void* series)
@@ -1705,6 +1618,31 @@ void QAreaSeries_SetPen(void* ptr, void* pen)
 	static_cast<QAreaSeries*>(ptr)->setPen(*static_cast<QPen*>(pen));
 }
 
+void QAreaSeries_SetPointLabelsClipping(void* ptr, char enabled)
+{
+	static_cast<QAreaSeries*>(ptr)->setPointLabelsClipping(enabled != 0);
+}
+
+void QAreaSeries_SetPointLabelsColor(void* ptr, void* color)
+{
+	static_cast<QAreaSeries*>(ptr)->setPointLabelsColor(*static_cast<QColor*>(color));
+}
+
+void QAreaSeries_SetPointLabelsFont(void* ptr, void* font)
+{
+	static_cast<QAreaSeries*>(ptr)->setPointLabelsFont(*static_cast<QFont*>(font));
+}
+
+void QAreaSeries_SetPointLabelsFormat(void* ptr, char* format)
+{
+	static_cast<QAreaSeries*>(ptr)->setPointLabelsFormat(QString(format));
+}
+
+void QAreaSeries_SetPointLabelsVisible(void* ptr, char visible)
+{
+	static_cast<QAreaSeries*>(ptr)->setPointLabelsVisible(visible != 0);
+}
+
 void QAreaSeries_SetPointsVisible(void* ptr, char visible)
 {
 	static_cast<QAreaSeries*>(ptr)->setPointsVisible(visible != 0);
@@ -1713,6 +1651,11 @@ void QAreaSeries_SetPointsVisible(void* ptr, char visible)
 void QAreaSeries_SetUpperSeries(void* ptr, void* series)
 {
 	static_cast<QAreaSeries*>(ptr)->setUpperSeries(static_cast<QLineSeries*>(series));
+}
+
+void QAreaSeries_DestroyQAreaSeries(void* ptr)
+{
+	static_cast<QAreaSeries*>(ptr)->~QAreaSeries();
 }
 
 long long QAreaSeries_Type(void* ptr)
@@ -1725,9 +1668,64 @@ long long QAreaSeries_TypeDefault(void* ptr)
 	return static_cast<QAreaSeries*>(ptr)->QAreaSeries::type();
 }
 
-void QAreaSeries_DestroyQAreaSeries(void* ptr)
+void* QAreaSeries_Brush(void* ptr)
 {
-	static_cast<QAreaSeries*>(ptr)->~QAreaSeries();
+	return new QBrush(static_cast<QAreaSeries*>(ptr)->brush());
+}
+
+void* QAreaSeries_BorderColor(void* ptr)
+{
+	return new QColor(static_cast<QAreaSeries*>(ptr)->borderColor());
+}
+
+void* QAreaSeries_Color(void* ptr)
+{
+	return new QColor(static_cast<QAreaSeries*>(ptr)->color());
+}
+
+void* QAreaSeries_PointLabelsColor(void* ptr)
+{
+	return new QColor(static_cast<QAreaSeries*>(ptr)->pointLabelsColor());
+}
+
+void* QAreaSeries_PointLabelsFont(void* ptr)
+{
+	return new QFont(static_cast<QAreaSeries*>(ptr)->pointLabelsFont());
+}
+
+void* QAreaSeries_LowerSeries(void* ptr)
+{
+	return static_cast<QAreaSeries*>(ptr)->lowerSeries();
+}
+
+void* QAreaSeries_UpperSeries(void* ptr)
+{
+	return static_cast<QAreaSeries*>(ptr)->upperSeries();
+}
+
+void* QAreaSeries_Pen(void* ptr)
+{
+	return new QPen(static_cast<QAreaSeries*>(ptr)->pen());
+}
+
+struct QtCharts_PackedString QAreaSeries_PointLabelsFormat(void* ptr)
+{
+	return ({ QByteArray t607311 = static_cast<QAreaSeries*>(ptr)->pointLabelsFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t607311.prepend("WHITESPACE").constData()+10), t607311.size()-10 }; });
+}
+
+char QAreaSeries_PointLabelsClipping(void* ptr)
+{
+	return static_cast<QAreaSeries*>(ptr)->pointLabelsClipping();
+}
+
+char QAreaSeries_PointLabelsVisible(void* ptr)
+{
+	return static_cast<QAreaSeries*>(ptr)->pointLabelsVisible();
+}
+
+char QAreaSeries_PointsVisible(void* ptr)
+{
+	return static_cast<QAreaSeries*>(ptr)->pointsVisible();
 }
 
 class MyQBarCategoryAxis: public QBarCategoryAxis
@@ -1746,6 +1744,11 @@ void* QBarCategoryAxis_NewQBarCategoryAxis(void* parent)
 	return new MyQBarCategoryAxis(static_cast<QObject*>(parent));
 }
 
+struct QtCharts_PackedString QBarCategoryAxis_Categories(void* ptr)
+{
+	return ({ QByteArray tcc0bf4 = static_cast<QBarCategoryAxis*>(ptr)->categories().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(tcc0bf4.prepend("WHITESPACE").constData()+10), tcc0bf4.size()-10 }; });
+}
+
 void QBarCategoryAxis_Append2(void* ptr, char* category)
 {
 	static_cast<QBarCategoryAxis*>(ptr)->append(QString(category));
@@ -1754,16 +1757,6 @@ void QBarCategoryAxis_Append2(void* ptr, char* category)
 void QBarCategoryAxis_Append(void* ptr, char* categories)
 {
 	static_cast<QBarCategoryAxis*>(ptr)->append(QString(categories).split("|", QString::SkipEmptyParts));
-}
-
-struct QtCharts_PackedString QBarCategoryAxis_At(void* ptr, int index)
-{
-	return ({ QByteArray tf55150 = static_cast<QBarCategoryAxis*>(ptr)->at(index).toUtf8(); QtCharts_PackedString { const_cast<char*>(tf55150.prepend("WHITESPACE").constData()+10), tf55150.size()-10 }; });
-}
-
-struct QtCharts_PackedString QBarCategoryAxis_Categories(void* ptr)
-{
-	return ({ QByteArray tcc0bf4 = static_cast<QBarCategoryAxis*>(ptr)->categories().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(tcc0bf4.prepend("WHITESPACE").constData()+10), tcc0bf4.size()-10 }; });
 }
 
 void QBarCategoryAxis_ConnectCategoriesChanged(void* ptr)
@@ -1786,11 +1779,6 @@ void QBarCategoryAxis_Clear(void* ptr)
 	static_cast<QBarCategoryAxis*>(ptr)->clear();
 }
 
-int QBarCategoryAxis_Count(void* ptr)
-{
-	return static_cast<QBarCategoryAxis*>(ptr)->count();
-}
-
 void QBarCategoryAxis_ConnectCountChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBarCategoryAxis*>(ptr), static_cast<void (QBarCategoryAxis::*)()>(&QBarCategoryAxis::countChanged), static_cast<MyQBarCategoryAxis*>(ptr), static_cast<void (MyQBarCategoryAxis::*)()>(&MyQBarCategoryAxis::Signal_CountChanged));
@@ -1811,11 +1799,6 @@ void QBarCategoryAxis_Insert(void* ptr, int index, char* category)
 	static_cast<QBarCategoryAxis*>(ptr)->insert(index, QString(category));
 }
 
-struct QtCharts_PackedString QBarCategoryAxis_Max(void* ptr)
-{
-	return ({ QByteArray tba51dd = static_cast<QBarCategoryAxis*>(ptr)->max().toUtf8(); QtCharts_PackedString { const_cast<char*>(tba51dd.prepend("WHITESPACE").constData()+10), tba51dd.size()-10 }; });
-}
-
 void QBarCategoryAxis_ConnectMaxChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBarCategoryAxis*>(ptr), static_cast<void (QBarCategoryAxis::*)(const QString &)>(&QBarCategoryAxis::maxChanged), static_cast<MyQBarCategoryAxis*>(ptr), static_cast<void (MyQBarCategoryAxis::*)(const QString &)>(&MyQBarCategoryAxis::Signal_MaxChanged));
@@ -1829,11 +1812,6 @@ void QBarCategoryAxis_DisconnectMaxChanged(void* ptr)
 void QBarCategoryAxis_MaxChanged(void* ptr, char* max)
 {
 	static_cast<QBarCategoryAxis*>(ptr)->maxChanged(QString(max));
-}
-
-struct QtCharts_PackedString QBarCategoryAxis_Min(void* ptr)
-{
-	return ({ QByteArray tbfa107 = static_cast<QBarCategoryAxis*>(ptr)->min().toUtf8(); QtCharts_PackedString { const_cast<char*>(tbfa107.prepend("WHITESPACE").constData()+10), tbfa107.size()-10 }; });
 }
 
 void QBarCategoryAxis_ConnectMinChanged(void* ptr)
@@ -1901,17 +1879,32 @@ void QBarCategoryAxis_DestroyQBarCategoryAxis(void* ptr)
 	static_cast<QBarCategoryAxis*>(ptr)->~QBarCategoryAxis();
 }
 
+struct QtCharts_PackedString QBarCategoryAxis_At(void* ptr, int index)
+{
+	return ({ QByteArray tf55150 = static_cast<QBarCategoryAxis*>(ptr)->at(index).toUtf8(); QtCharts_PackedString { const_cast<char*>(tf55150.prepend("WHITESPACE").constData()+10), tf55150.size()-10 }; });
+}
+
+struct QtCharts_PackedString QBarCategoryAxis_Max(void* ptr)
+{
+	return ({ QByteArray tba51dd = static_cast<QBarCategoryAxis*>(ptr)->max().toUtf8(); QtCharts_PackedString { const_cast<char*>(tba51dd.prepend("WHITESPACE").constData()+10), tba51dd.size()-10 }; });
+}
+
+struct QtCharts_PackedString QBarCategoryAxis_Min(void* ptr)
+{
+	return ({ QByteArray tbfa107 = static_cast<QBarCategoryAxis*>(ptr)->min().toUtf8(); QtCharts_PackedString { const_cast<char*>(tbfa107.prepend("WHITESPACE").constData()+10), tbfa107.size()-10 }; });
+}
+
+int QBarCategoryAxis_Count(void* ptr)
+{
+	return static_cast<QBarCategoryAxis*>(ptr)->count();
+}
+
 class MyQBarLegendMarker: public QBarLegendMarker
 {
 public:
 	QAbstractBarSeries * series() { return static_cast<QAbstractBarSeries*>(callbackQBarLegendMarker_Series(this)); };
 	 ~MyQBarLegendMarker() { callbackQBarLegendMarker_DestroyQBarLegendMarker(this); };
 };
-
-void* QBarLegendMarker_Barset(void* ptr)
-{
-	return static_cast<QBarLegendMarker*>(ptr)->barset();
-}
 
 void* QBarLegendMarker_Series(void* ptr)
 {
@@ -1921,6 +1914,11 @@ void* QBarLegendMarker_Series(void* ptr)
 void* QBarLegendMarker_SeriesDefault(void* ptr)
 {
 	return static_cast<QBarLegendMarker*>(ptr)->QBarLegendMarker::series();
+}
+
+void* QBarLegendMarker_Barset(void* ptr)
+{
+	return static_cast<QBarLegendMarker*>(ptr)->barset();
 }
 
 void QBarLegendMarker_DestroyQBarLegendMarker(void* ptr)
@@ -1945,6 +1943,11 @@ void* QBarSeries_NewQBarSeries(void* parent)
 	return new MyQBarSeries(static_cast<QObject*>(parent));
 }
 
+void QBarSeries_DestroyQBarSeries(void* ptr)
+{
+	static_cast<QBarSeries*>(ptr)->~QBarSeries();
+}
+
 long long QBarSeries_Type(void* ptr)
 {
 	return static_cast<QBarSeries*>(ptr)->type();
@@ -1953,11 +1956,6 @@ long long QBarSeries_Type(void* ptr)
 long long QBarSeries_TypeDefault(void* ptr)
 {
 	return static_cast<QBarSeries*>(ptr)->QBarSeries::type();
-}
-
-void QBarSeries_DestroyQBarSeries(void* ptr)
-{
-	static_cast<QBarSeries*>(ptr)->~QBarSeries();
 }
 
 class MyQBarSet: public QBarSet
@@ -1988,6 +1986,21 @@ void* QBarSet_NewQBarSet(char* label, void* parent)
 	return new MyQBarSet(QString(label), static_cast<QObject*>(parent));
 }
 
+void* QBarSet_BorderColor(void* ptr)
+{
+	return new QColor(static_cast<QBarSet*>(ptr)->borderColor());
+}
+
+void* QBarSet_Color(void* ptr)
+{
+	return new QColor(static_cast<QBarSet*>(ptr)->color());
+}
+
+void* QBarSet_LabelColor(void* ptr)
+{
+	return new QColor(static_cast<QBarSet*>(ptr)->labelColor());
+}
+
 void QBarSet_Append2(void* ptr, void* values)
 {
 	static_cast<QBarSet*>(ptr)->append(*static_cast<QList<qreal>*>(values));
@@ -1996,16 +2009,6 @@ void QBarSet_Append2(void* ptr, void* values)
 void QBarSet_Append(void* ptr, double value)
 {
 	static_cast<QBarSet*>(ptr)->append(value);
-}
-
-double QBarSet_At(void* ptr, int index)
-{
-	return static_cast<QBarSet*>(ptr)->at(index);
-}
-
-void* QBarSet_BorderColor(void* ptr)
-{
-	return new QColor(static_cast<QBarSet*>(ptr)->borderColor());
 }
 
 void QBarSet_ConnectBorderColorChanged(void* ptr)
@@ -2021,11 +2024,6 @@ void QBarSet_DisconnectBorderColorChanged(void* ptr)
 void QBarSet_BorderColorChanged(void* ptr, void* color)
 {
 	static_cast<QBarSet*>(ptr)->borderColorChanged(*static_cast<QColor*>(color));
-}
-
-void* QBarSet_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QBarSet*>(ptr)->brush());
 }
 
 void QBarSet_ConnectBrushChanged(void* ptr)
@@ -2058,11 +2056,6 @@ void QBarSet_Clicked(void* ptr, int index)
 	static_cast<QBarSet*>(ptr)->clicked(index);
 }
 
-void* QBarSet_Color(void* ptr)
-{
-	return new QColor(static_cast<QBarSet*>(ptr)->color());
-}
-
 void QBarSet_ConnectColorChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBarSet*>(ptr), static_cast<void (QBarSet::*)(QColor)>(&QBarSet::colorChanged), static_cast<MyQBarSet*>(ptr), static_cast<void (MyQBarSet::*)(QColor)>(&MyQBarSet::Signal_ColorChanged));
@@ -2076,11 +2069,6 @@ void QBarSet_DisconnectColorChanged(void* ptr)
 void QBarSet_ColorChanged(void* ptr, void* color)
 {
 	static_cast<QBarSet*>(ptr)->colorChanged(*static_cast<QColor*>(color));
-}
-
-int QBarSet_Count(void* ptr)
-{
-	return static_cast<QBarSet*>(ptr)->count();
 }
 
 void QBarSet_ConnectDoubleClicked(void* ptr)
@@ -2118,16 +2106,6 @@ void QBarSet_Insert(void* ptr, int index, double value)
 	static_cast<QBarSet*>(ptr)->insert(index, value);
 }
 
-struct QtCharts_PackedString QBarSet_Label(void* ptr)
-{
-	return ({ QByteArray t266af2 = static_cast<QBarSet*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(t266af2.prepend("WHITESPACE").constData()+10), t266af2.size()-10 }; });
-}
-
-void* QBarSet_LabelBrush(void* ptr)
-{
-	return new QBrush(static_cast<QBarSet*>(ptr)->labelBrush());
-}
-
 void QBarSet_ConnectLabelBrushChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBarSet*>(ptr), static_cast<void (QBarSet::*)()>(&QBarSet::labelBrushChanged), static_cast<MyQBarSet*>(ptr), static_cast<void (MyQBarSet::*)()>(&MyQBarSet::Signal_LabelBrushChanged));
@@ -2158,11 +2136,6 @@ void QBarSet_LabelChanged(void* ptr)
 	static_cast<QBarSet*>(ptr)->labelChanged();
 }
 
-void* QBarSet_LabelColor(void* ptr)
-{
-	return new QColor(static_cast<QBarSet*>(ptr)->labelColor());
-}
-
 void QBarSet_ConnectLabelColorChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBarSet*>(ptr), static_cast<void (QBarSet::*)(QColor)>(&QBarSet::labelColorChanged), static_cast<MyQBarSet*>(ptr), static_cast<void (MyQBarSet::*)(QColor)>(&MyQBarSet::Signal_LabelColorChanged));
@@ -2178,11 +2151,6 @@ void QBarSet_LabelColorChanged(void* ptr, void* color)
 	static_cast<QBarSet*>(ptr)->labelColorChanged(*static_cast<QColor*>(color));
 }
 
-void* QBarSet_LabelFont(void* ptr)
-{
-	return new QFont(static_cast<QBarSet*>(ptr)->labelFont());
-}
-
 void QBarSet_ConnectLabelFontChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBarSet*>(ptr), static_cast<void (QBarSet::*)()>(&QBarSet::labelFontChanged), static_cast<MyQBarSet*>(ptr), static_cast<void (MyQBarSet::*)()>(&MyQBarSet::Signal_LabelFontChanged));
@@ -2196,11 +2164,6 @@ void QBarSet_DisconnectLabelFontChanged(void* ptr)
 void QBarSet_LabelFontChanged(void* ptr)
 {
 	static_cast<QBarSet*>(ptr)->labelFontChanged();
-}
-
-void* QBarSet_Pen(void* ptr)
-{
-	return new QPen(static_cast<QBarSet*>(ptr)->pen());
 }
 
 void QBarSet_ConnectPenChanged(void* ptr)
@@ -2298,11 +2261,6 @@ void QBarSet_SetPen(void* ptr, void* pen)
 	static_cast<QBarSet*>(ptr)->setPen(*static_cast<QPen*>(pen));
 }
 
-double QBarSet_Sum(void* ptr)
-{
-	return static_cast<QBarSet*>(ptr)->sum();
-}
-
 void QBarSet_ConnectValueChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBarSet*>(ptr), static_cast<void (QBarSet::*)(int)>(&QBarSet::valueChanged), static_cast<MyQBarSet*>(ptr), static_cast<void (MyQBarSet::*)(int)>(&MyQBarSet::Signal_ValueChanged));
@@ -2358,6 +2316,46 @@ void QBarSet_DestroyQBarSetDefault(void* ptr)
 
 }
 
+void* QBarSet_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QBarSet*>(ptr)->brush());
+}
+
+void* QBarSet_LabelBrush(void* ptr)
+{
+	return new QBrush(static_cast<QBarSet*>(ptr)->labelBrush());
+}
+
+void* QBarSet_LabelFont(void* ptr)
+{
+	return new QFont(static_cast<QBarSet*>(ptr)->labelFont());
+}
+
+void* QBarSet_Pen(void* ptr)
+{
+	return new QPen(static_cast<QBarSet*>(ptr)->pen());
+}
+
+struct QtCharts_PackedString QBarSet_Label(void* ptr)
+{
+	return ({ QByteArray t266af2 = static_cast<QBarSet*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(t266af2.prepend("WHITESPACE").constData()+10), t266af2.size()-10 }; });
+}
+
+int QBarSet_Count(void* ptr)
+{
+	return static_cast<QBarSet*>(ptr)->count();
+}
+
+double QBarSet_At(void* ptr, int index)
+{
+	return static_cast<QBarSet*>(ptr)->at(index);
+}
+
+double QBarSet_Sum(void* ptr)
+{
+	return static_cast<QBarSet*>(ptr)->sum();
+}
+
 double QBarSet___append_values_atList2(void* ptr, int i)
 {
 	return static_cast<QList<qreal>*>(ptr)->at(i);
@@ -2404,7 +2402,6 @@ class MyQBoxPlotSeries: public QBoxPlotSeries
 {
 public:
 	MyQBoxPlotSeries(QObject *parent) : QBoxPlotSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBoxPlotSeries_Type(const_cast<MyQBoxPlotSeries*>(this))); };
 	void Signal_BoxOutlineVisibilityChanged() { callbackQBoxPlotSeries_BoxOutlineVisibilityChanged(this); };
 	void Signal_BoxWidthChanged() { callbackQBoxPlotSeries_BoxWidthChanged(this); };
 	void Signal_BoxsetsAdded(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsAdded(this, ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -2417,57 +2414,8 @@ public:
 	void Signal_PenChanged() { callbackQBoxPlotSeries_PenChanged(this); };
 	void Signal_Pressed(QBoxSet * boxset) { callbackQBoxPlotSeries_Pressed(this, boxset); };
 	void Signal_Released(QBoxSet * boxset) { callbackQBoxPlotSeries_Released(this, boxset); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBoxPlotSeries_Type(const_cast<MyQBoxPlotSeries*>(this))); };
 };
-
-char QBoxPlotSeries_BoxOutlineVisible(void* ptr)
-{
-	return static_cast<QBoxPlotSeries*>(ptr)->boxOutlineVisible();
-}
-
-double QBoxPlotSeries_BoxWidth(void* ptr)
-{
-	return static_cast<QBoxPlotSeries*>(ptr)->boxWidth();
-}
-
-void* QBoxPlotSeries_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QBoxPlotSeries*>(ptr)->brush());
-}
-
-void* QBoxPlotSeries_Pen(void* ptr)
-{
-	return new QPen(static_cast<QBoxPlotSeries*>(ptr)->pen());
-}
-
-void QBoxPlotSeries_SetBoxOutlineVisible(void* ptr, char visible)
-{
-	static_cast<QBoxPlotSeries*>(ptr)->setBoxOutlineVisible(visible != 0);
-}
-
-void QBoxPlotSeries_SetBoxWidth(void* ptr, double width)
-{
-	static_cast<QBoxPlotSeries*>(ptr)->setBoxWidth(width);
-}
-
-void QBoxPlotSeries_SetBrush(void* ptr, void* brush)
-{
-	static_cast<QBoxPlotSeries*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
-}
-
-void QBoxPlotSeries_SetPen(void* ptr, void* pen)
-{
-	static_cast<QBoxPlotSeries*>(ptr)->setPen(*static_cast<QPen*>(pen));
-}
-
-long long QBoxPlotSeries_Type(void* ptr)
-{
-	return static_cast<QBoxPlotSeries*>(ptr)->type();
-}
-
-long long QBoxPlotSeries_TypeDefault(void* ptr)
-{
-	return static_cast<QBoxPlotSeries*>(ptr)->QBoxPlotSeries::type();
-}
 
 void* QBoxPlotSeries_NewQBoxPlotSeries(void* parent)
 {
@@ -2484,6 +2432,31 @@ char QBoxPlotSeries_Append2(void* ptr, void* sets)
 	return static_cast<QBoxPlotSeries*>(ptr)->append(*static_cast<QList<QBoxSet *>*>(sets));
 }
 
+char QBoxPlotSeries_BoxOutlineVisible(void* ptr)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->boxOutlineVisible();
+}
+
+char QBoxPlotSeries_Insert(void* ptr, int index, void* set)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->insert(index, static_cast<QBoxSet*>(set));
+}
+
+char QBoxPlotSeries_Remove(void* ptr, void* set)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->remove(static_cast<QBoxSet*>(set));
+}
+
+char QBoxPlotSeries_Take(void* ptr, void* set)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->take(static_cast<QBoxSet*>(set));
+}
+
+double QBoxPlotSeries_BoxWidth(void* ptr)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->boxWidth();
+}
+
 void QBoxPlotSeries_ConnectBoxOutlineVisibilityChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBoxPlotSeries*>(ptr), static_cast<void (QBoxPlotSeries::*)()>(&QBoxPlotSeries::boxOutlineVisibilityChanged), static_cast<MyQBoxPlotSeries*>(ptr), static_cast<void (MyQBoxPlotSeries::*)()>(&MyQBoxPlotSeries::Signal_BoxOutlineVisibilityChanged));
@@ -2497,11 +2470,6 @@ void QBoxPlotSeries_DisconnectBoxOutlineVisibilityChanged(void* ptr)
 void QBoxPlotSeries_BoxOutlineVisibilityChanged(void* ptr)
 {
 	static_cast<QBoxPlotSeries*>(ptr)->boxOutlineVisibilityChanged();
-}
-
-struct QtCharts_PackedList QBoxPlotSeries_BoxSets(void* ptr)
-{
-	return ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(static_cast<QBoxPlotSeries*>(ptr)->boxSets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QBoxPlotSeries_ConnectBoxWidthChanged(void* ptr)
@@ -2584,11 +2552,6 @@ void QBoxPlotSeries_Clicked(void* ptr, void* boxset)
 	static_cast<QBoxPlotSeries*>(ptr)->clicked(static_cast<QBoxSet*>(boxset));
 }
 
-int QBoxPlotSeries_Count(void* ptr)
-{
-	return static_cast<QBoxPlotSeries*>(ptr)->count();
-}
-
 void QBoxPlotSeries_ConnectCountChanged(void* ptr)
 {
 	QObject::connect(static_cast<QBoxPlotSeries*>(ptr), static_cast<void (QBoxPlotSeries::*)()>(&QBoxPlotSeries::countChanged), static_cast<MyQBoxPlotSeries*>(ptr), static_cast<void (MyQBoxPlotSeries::*)()>(&MyQBoxPlotSeries::Signal_CountChanged));
@@ -2632,11 +2595,6 @@ void QBoxPlotSeries_DisconnectHovered(void* ptr)
 void QBoxPlotSeries_Hovered(void* ptr, char status, void* boxset)
 {
 	static_cast<QBoxPlotSeries*>(ptr)->hovered(status != 0, static_cast<QBoxSet*>(boxset));
-}
-
-char QBoxPlotSeries_Insert(void* ptr, int index, void* set)
-{
-	return static_cast<QBoxPlotSeries*>(ptr)->insert(index, static_cast<QBoxSet*>(set));
 }
 
 void QBoxPlotSeries_ConnectPenChanged(void* ptr)
@@ -2684,19 +2642,59 @@ void QBoxPlotSeries_Released(void* ptr, void* boxset)
 	static_cast<QBoxPlotSeries*>(ptr)->released(static_cast<QBoxSet*>(boxset));
 }
 
-char QBoxPlotSeries_Remove(void* ptr, void* set)
+void QBoxPlotSeries_SetBoxOutlineVisible(void* ptr, char visible)
 {
-	return static_cast<QBoxPlotSeries*>(ptr)->remove(static_cast<QBoxSet*>(set));
+	static_cast<QBoxPlotSeries*>(ptr)->setBoxOutlineVisible(visible != 0);
 }
 
-char QBoxPlotSeries_Take(void* ptr, void* set)
+void QBoxPlotSeries_SetBoxWidth(void* ptr, double width)
 {
-	return static_cast<QBoxPlotSeries*>(ptr)->take(static_cast<QBoxSet*>(set));
+	static_cast<QBoxPlotSeries*>(ptr)->setBoxWidth(width);
+}
+
+void QBoxPlotSeries_SetBrush(void* ptr, void* brush)
+{
+	static_cast<QBoxPlotSeries*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
+}
+
+void QBoxPlotSeries_SetPen(void* ptr, void* pen)
+{
+	static_cast<QBoxPlotSeries*>(ptr)->setPen(*static_cast<QPen*>(pen));
 }
 
 void QBoxPlotSeries_DestroyQBoxPlotSeries(void* ptr)
 {
 	static_cast<QBoxPlotSeries*>(ptr)->~QBoxPlotSeries();
+}
+
+long long QBoxPlotSeries_Type(void* ptr)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->type();
+}
+
+long long QBoxPlotSeries_TypeDefault(void* ptr)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->QBoxPlotSeries::type();
+}
+
+void* QBoxPlotSeries_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QBoxPlotSeries*>(ptr)->brush());
+}
+
+struct QtCharts_PackedList QBoxPlotSeries_BoxSets(void* ptr)
+{
+	return ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(static_cast<QBoxPlotSeries*>(ptr)->boxSets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QBoxPlotSeries_Pen(void* ptr)
+{
+	return new QPen(static_cast<QBoxPlotSeries*>(ptr)->pen());
+}
+
+int QBoxPlotSeries_Count(void* ptr)
+{
+	return static_cast<QBoxPlotSeries*>(ptr)->count();
 }
 
 void* QBoxPlotSeries___append_sets_atList2(void* ptr, int i)
@@ -2710,21 +2708,6 @@ void QBoxPlotSeries___append_sets_setList2(void* ptr, void* i)
 }
 
 void* QBoxPlotSeries___append_sets_newList2(void* ptr)
-{
-	return new QList<QBoxSet *>;
-}
-
-void* QBoxPlotSeries___boxSets_atList(void* ptr, int i)
-{
-	return const_cast<QBoxSet*>(static_cast<QList<QBoxSet *>*>(ptr)->at(i));
-}
-
-void QBoxPlotSeries___boxSets_setList(void* ptr, void* i)
-{
-	static_cast<QList<QBoxSet *>*>(ptr)->append(static_cast<QBoxSet*>(i));
-}
-
-void* QBoxPlotSeries___boxSets_newList(void* ptr)
 {
 	return new QList<QBoxSet *>;
 }
@@ -2755,6 +2738,21 @@ void QBoxPlotSeries___boxsetsRemoved_sets_setList(void* ptr, void* i)
 }
 
 void* QBoxPlotSeries___boxsetsRemoved_sets_newList(void* ptr)
+{
+	return new QList<QBoxSet *>;
+}
+
+void* QBoxPlotSeries___boxSets_atList(void* ptr, int i)
+{
+	return const_cast<QBoxSet*>(static_cast<QList<QBoxSet *>*>(ptr)->at(i));
+}
+
+void QBoxPlotSeries___boxSets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBoxSet *>*>(ptr)->append(static_cast<QBoxSet*>(i));
+}
+
+void* QBoxPlotSeries___boxSets_newList(void* ptr)
 {
 	return new QList<QBoxSet *>;
 }
@@ -2795,16 +2793,6 @@ void QBoxSet_Append2(void* ptr, void* values)
 void QBoxSet_Append(void* ptr, double value)
 {
 	static_cast<QBoxSet*>(ptr)->append(value);
-}
-
-double QBoxSet_At(void* ptr, int index)
-{
-	return static_cast<QBoxSet*>(ptr)->at(index);
-}
-
-void* QBoxSet_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QBoxSet*>(ptr)->brush());
 }
 
 void QBoxSet_ConnectBrushChanged(void* ptr)
@@ -2857,11 +2845,6 @@ void QBoxSet_Clicked(void* ptr)
 	static_cast<QBoxSet*>(ptr)->clicked();
 }
 
-int QBoxSet_Count(void* ptr)
-{
-	return static_cast<QBoxSet*>(ptr)->count();
-}
-
 void QBoxSet_ConnectDoubleClicked(void* ptr)
 {
 	QObject::connect(static_cast<QBoxSet*>(ptr), static_cast<void (QBoxSet::*)()>(&QBoxSet::doubleClicked), static_cast<MyQBoxSet*>(ptr), static_cast<void (MyQBoxSet::*)()>(&MyQBoxSet::Signal_DoubleClicked));
@@ -2890,16 +2873,6 @@ void QBoxSet_DisconnectHovered(void* ptr)
 void QBoxSet_Hovered(void* ptr, char status)
 {
 	static_cast<QBoxSet*>(ptr)->hovered(status != 0);
-}
-
-struct QtCharts_PackedString QBoxSet_Label(void* ptr)
-{
-	return ({ QByteArray tfb4aff = static_cast<QBoxSet*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(tfb4aff.prepend("WHITESPACE").constData()+10), tfb4aff.size()-10 }; });
-}
-
-void* QBoxSet_Pen(void* ptr)
-{
-	return new QPen(static_cast<QBoxSet*>(ptr)->pen());
 }
 
 void QBoxSet_ConnectPenChanged(void* ptr)
@@ -3007,6 +2980,31 @@ void QBoxSet_DestroyQBoxSetDefault(void* ptr)
 
 }
 
+void* QBoxSet_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QBoxSet*>(ptr)->brush());
+}
+
+void* QBoxSet_Pen(void* ptr)
+{
+	return new QPen(static_cast<QBoxSet*>(ptr)->pen());
+}
+
+struct QtCharts_PackedString QBoxSet_Label(void* ptr)
+{
+	return ({ QByteArray tfb4aff = static_cast<QBoxSet*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(tfb4aff.prepend("WHITESPACE").constData()+10), tfb4aff.size()-10 }; });
+}
+
+int QBoxSet_Count(void* ptr)
+{
+	return static_cast<QBoxSet*>(ptr)->count();
+}
+
+double QBoxSet_At(void* ptr, int index)
+{
+	return static_cast<QBoxSet*>(ptr)->at(index);
+}
+
 double QBoxSet___append_values_atList2(void* ptr, int i)
 {
 	return static_cast<QList<qreal>*>(ptr)->at(i);
@@ -3022,6 +3020,997 @@ void* QBoxSet___append_values_newList2(void* ptr)
 	return new QList<qreal>;
 }
 
+class MyQCandlestickLegendMarker: public QCandlestickLegendMarker
+{
+public:
+	QCandlestickSeries * series() { return static_cast<QCandlestickSeries*>(callbackQCandlestickLegendMarker_Series(this)); };
+	 ~MyQCandlestickLegendMarker() { callbackQCandlestickLegendMarker_DestroyQCandlestickLegendMarker(this); };
+};
+
+void* QCandlestickLegendMarker_Series(void* ptr)
+{
+	return static_cast<QCandlestickLegendMarker*>(ptr)->series();
+}
+
+void* QCandlestickLegendMarker_SeriesDefault(void* ptr)
+{
+	return static_cast<QCandlestickLegendMarker*>(ptr)->QCandlestickLegendMarker::series();
+}
+
+void QCandlestickLegendMarker_DestroyQCandlestickLegendMarker(void* ptr)
+{
+	static_cast<QCandlestickLegendMarker*>(ptr)->~QCandlestickLegendMarker();
+}
+
+void QCandlestickLegendMarker_DestroyQCandlestickLegendMarkerDefault(void* ptr)
+{
+
+}
+
+class MyQCandlestickModelMapper: public QCandlestickModelMapper
+{
+public:
+	MyQCandlestickModelMapper(QObject *parent) : QCandlestickModelMapper(parent) {};
+	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
+	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
+	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQCandlestickModelMapper_Orientation(const_cast<MyQCandlestickModelMapper*>(this))); };
+};
+
+void* QCandlestickModelMapper_NewQCandlestickModelMapper(void* parent)
+{
+	return new MyQCandlestickModelMapper(static_cast<QObject*>(parent));
+}
+
+void QCandlestickModelMapper_ConnectModelReplaced(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickModelMapper*>(ptr), static_cast<void (QCandlestickModelMapper::*)()>(&QCandlestickModelMapper::modelReplaced), static_cast<MyQCandlestickModelMapper*>(ptr), static_cast<void (MyQCandlestickModelMapper::*)()>(&MyQCandlestickModelMapper::Signal_ModelReplaced));
+}
+
+void QCandlestickModelMapper_DisconnectModelReplaced(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickModelMapper*>(ptr), static_cast<void (QCandlestickModelMapper::*)()>(&QCandlestickModelMapper::modelReplaced), static_cast<MyQCandlestickModelMapper*>(ptr), static_cast<void (MyQCandlestickModelMapper::*)()>(&MyQCandlestickModelMapper::Signal_ModelReplaced));
+}
+
+void QCandlestickModelMapper_ModelReplaced(void* ptr)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->modelReplaced();
+}
+
+void QCandlestickModelMapper_ConnectSeriesReplaced(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickModelMapper*>(ptr), static_cast<void (QCandlestickModelMapper::*)()>(&QCandlestickModelMapper::seriesReplaced), static_cast<MyQCandlestickModelMapper*>(ptr), static_cast<void (MyQCandlestickModelMapper::*)()>(&MyQCandlestickModelMapper::Signal_SeriesReplaced));
+}
+
+void QCandlestickModelMapper_DisconnectSeriesReplaced(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickModelMapper*>(ptr), static_cast<void (QCandlestickModelMapper::*)()>(&QCandlestickModelMapper::seriesReplaced), static_cast<MyQCandlestickModelMapper*>(ptr), static_cast<void (MyQCandlestickModelMapper::*)()>(&MyQCandlestickModelMapper::Signal_SeriesReplaced));
+}
+
+void QCandlestickModelMapper_SeriesReplaced(void* ptr)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->seriesReplaced();
+}
+
+void QCandlestickModelMapper_SetClose(void* ptr, int close)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setClose(close);
+}
+
+void QCandlestickModelMapper_SetFirstSetSection(void* ptr, int firstSetSection)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setFirstSetSection(firstSetSection);
+}
+
+void QCandlestickModelMapper_SetHigh(void* ptr, int high)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setHigh(high);
+}
+
+void QCandlestickModelMapper_SetLastSetSection(void* ptr, int lastSetSection)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setLastSetSection(lastSetSection);
+}
+
+void QCandlestickModelMapper_SetLow(void* ptr, int low)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setLow(low);
+}
+
+void QCandlestickModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QCandlestickModelMapper_SetOpen(void* ptr, int open)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setOpen(open);
+}
+
+void QCandlestickModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setSeries(static_cast<QCandlestickSeries*>(series));
+}
+
+void QCandlestickModelMapper_SetTimestamp(void* ptr, int timestamp)
+{
+	static_cast<QCandlestickModelMapper*>(ptr)->setTimestamp(timestamp);
+}
+
+void* QCandlestickModelMapper_Model(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->model();
+}
+
+void* QCandlestickModelMapper_Series(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->series();
+}
+
+long long QCandlestickModelMapper_Orientation(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->orientation();
+}
+
+int QCandlestickModelMapper_Close(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->close();
+}
+
+int QCandlestickModelMapper_FirstSetSection(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->firstSetSection();
+}
+
+int QCandlestickModelMapper_High(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->high();
+}
+
+int QCandlestickModelMapper_LastSetSection(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->lastSetSection();
+}
+
+int QCandlestickModelMapper_Low(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->low();
+}
+
+int QCandlestickModelMapper_Open(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->open();
+}
+
+int QCandlestickModelMapper_Timestamp(void* ptr)
+{
+	return static_cast<QCandlestickModelMapper*>(ptr)->timestamp();
+}
+
+class MyQCandlestickSeries: public QCandlestickSeries
+{
+public:
+	MyQCandlestickSeries(QObject *parent) : QCandlestickSeries(parent) {};
+	void Signal_BodyOutlineVisibilityChanged() { callbackQCandlestickSeries_BodyOutlineVisibilityChanged(this); };
+	void Signal_BodyWidthChanged() { callbackQCandlestickSeries_BodyWidthChanged(this); };
+	void Signal_BrushChanged() { callbackQCandlestickSeries_BrushChanged(this); };
+	void Signal_CandlestickSetsAdded(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsAdded(this, ({ QList<QCandlestickSet *>* tmpValue = const_cast<QList<QCandlestickSet *>*>(&sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_CandlestickSetsRemoved(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsRemoved(this, ({ QList<QCandlestickSet *>* tmpValue = const_cast<QList<QCandlestickSet *>*>(&sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_CapsVisibilityChanged() { callbackQCandlestickSeries_CapsVisibilityChanged(this); };
+	void Signal_CapsWidthChanged() { callbackQCandlestickSeries_CapsWidthChanged(this); };
+	void Signal_Clicked(QCandlestickSet * set) { callbackQCandlestickSeries_Clicked(this, set); };
+	void Signal_CountChanged() { callbackQCandlestickSeries_CountChanged(this); };
+	void Signal_DecreasingColorChanged() { callbackQCandlestickSeries_DecreasingColorChanged(this); };
+	void Signal_DoubleClicked(QCandlestickSet * set) { callbackQCandlestickSeries_DoubleClicked(this, set); };
+	void Signal_Hovered(bool status, QCandlestickSet * set) { callbackQCandlestickSeries_Hovered(this, status, set); };
+	void Signal_IncreasingColorChanged() { callbackQCandlestickSeries_IncreasingColorChanged(this); };
+	void Signal_MaximumColumnWidthChanged() { callbackQCandlestickSeries_MaximumColumnWidthChanged(this); };
+	void Signal_MinimumColumnWidthChanged() { callbackQCandlestickSeries_MinimumColumnWidthChanged(this); };
+	void Signal_PenChanged() { callbackQCandlestickSeries_PenChanged(this); };
+	void Signal_Pressed(QCandlestickSet * set) { callbackQCandlestickSeries_Pressed(this, set); };
+	void Signal_Released(QCandlestickSet * set) { callbackQCandlestickSeries_Released(this, set); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQCandlestickSeries_Type(const_cast<MyQCandlestickSeries*>(this))); };
+};
+
+void* QCandlestickSeries_NewQCandlestickSeries(void* parent)
+{
+	return new MyQCandlestickSeries(static_cast<QObject*>(parent));
+}
+
+char QCandlestickSeries_Append(void* ptr, void* set)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->append(static_cast<QCandlestickSet*>(set));
+}
+
+char QCandlestickSeries_Append2(void* ptr, void* sets)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->append(*static_cast<QList<QCandlestickSet *>*>(sets));
+}
+
+char QCandlestickSeries_Insert(void* ptr, int index, void* set)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->insert(index, static_cast<QCandlestickSet*>(set));
+}
+
+char QCandlestickSeries_Remove(void* ptr, void* set)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->remove(static_cast<QCandlestickSet*>(set));
+}
+
+char QCandlestickSeries_Remove2(void* ptr, void* sets)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->remove(*static_cast<QList<QCandlestickSet *>*>(sets));
+}
+
+char QCandlestickSeries_Take(void* ptr, void* set)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->take(static_cast<QCandlestickSet*>(set));
+}
+
+void QCandlestickSeries_ConnectBodyOutlineVisibilityChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::bodyOutlineVisibilityChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_BodyOutlineVisibilityChanged));
+}
+
+void QCandlestickSeries_DisconnectBodyOutlineVisibilityChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::bodyOutlineVisibilityChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_BodyOutlineVisibilityChanged));
+}
+
+void QCandlestickSeries_BodyOutlineVisibilityChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->bodyOutlineVisibilityChanged();
+}
+
+void QCandlestickSeries_ConnectBodyWidthChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::bodyWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_BodyWidthChanged));
+}
+
+void QCandlestickSeries_DisconnectBodyWidthChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::bodyWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_BodyWidthChanged));
+}
+
+void QCandlestickSeries_BodyWidthChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->bodyWidthChanged();
+}
+
+void QCandlestickSeries_ConnectBrushChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::brushChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_BrushChanged));
+}
+
+void QCandlestickSeries_DisconnectBrushChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::brushChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_BrushChanged));
+}
+
+void QCandlestickSeries_BrushChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->brushChanged();
+}
+
+void QCandlestickSeries_ConnectCandlestickSetsAdded(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&QCandlestickSeries::candlestickSetsAdded), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&MyQCandlestickSeries::Signal_CandlestickSetsAdded));
+}
+
+void QCandlestickSeries_DisconnectCandlestickSetsAdded(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&QCandlestickSeries::candlestickSetsAdded), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&MyQCandlestickSeries::Signal_CandlestickSetsAdded));
+}
+
+void QCandlestickSeries_CandlestickSetsAdded(void* ptr, void* sets)
+{
+	static_cast<QCandlestickSeries*>(ptr)->candlestickSetsAdded(*static_cast<QList<QCandlestickSet *>*>(sets));
+}
+
+void QCandlestickSeries_ConnectCandlestickSetsRemoved(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&QCandlestickSeries::candlestickSetsRemoved), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&MyQCandlestickSeries::Signal_CandlestickSetsRemoved));
+}
+
+void QCandlestickSeries_DisconnectCandlestickSetsRemoved(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&QCandlestickSeries::candlestickSetsRemoved), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(const QList<QCandlestickSet *> &)>(&MyQCandlestickSeries::Signal_CandlestickSetsRemoved));
+}
+
+void QCandlestickSeries_CandlestickSetsRemoved(void* ptr, void* sets)
+{
+	static_cast<QCandlestickSeries*>(ptr)->candlestickSetsRemoved(*static_cast<QList<QCandlestickSet *>*>(sets));
+}
+
+void QCandlestickSeries_ConnectCapsVisibilityChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::capsVisibilityChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_CapsVisibilityChanged));
+}
+
+void QCandlestickSeries_DisconnectCapsVisibilityChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::capsVisibilityChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_CapsVisibilityChanged));
+}
+
+void QCandlestickSeries_CapsVisibilityChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->capsVisibilityChanged();
+}
+
+void QCandlestickSeries_ConnectCapsWidthChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::capsWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_CapsWidthChanged));
+}
+
+void QCandlestickSeries_DisconnectCapsWidthChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::capsWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_CapsWidthChanged));
+}
+
+void QCandlestickSeries_CapsWidthChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->capsWidthChanged();
+}
+
+void QCandlestickSeries_Clear(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->clear();
+}
+
+void QCandlestickSeries_ConnectClicked(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::clicked), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Clicked));
+}
+
+void QCandlestickSeries_DisconnectClicked(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::clicked), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Clicked));
+}
+
+void QCandlestickSeries_Clicked(void* ptr, void* set)
+{
+	static_cast<QCandlestickSeries*>(ptr)->clicked(static_cast<QCandlestickSet*>(set));
+}
+
+void QCandlestickSeries_ConnectCountChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::countChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_CountChanged));
+}
+
+void QCandlestickSeries_DisconnectCountChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::countChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_CountChanged));
+}
+
+void QCandlestickSeries_CountChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->countChanged();
+}
+
+void QCandlestickSeries_ConnectDecreasingColorChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::decreasingColorChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_DecreasingColorChanged));
+}
+
+void QCandlestickSeries_DisconnectDecreasingColorChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::decreasingColorChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_DecreasingColorChanged));
+}
+
+void QCandlestickSeries_DecreasingColorChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->decreasingColorChanged();
+}
+
+void QCandlestickSeries_ConnectDoubleClicked(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::doubleClicked), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_DoubleClicked));
+}
+
+void QCandlestickSeries_DisconnectDoubleClicked(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::doubleClicked), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_DoubleClicked));
+}
+
+void QCandlestickSeries_DoubleClicked(void* ptr, void* set)
+{
+	static_cast<QCandlestickSeries*>(ptr)->doubleClicked(static_cast<QCandlestickSet*>(set));
+}
+
+void QCandlestickSeries_ConnectHovered(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(bool, QCandlestickSet *)>(&QCandlestickSeries::hovered), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(bool, QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Hovered));
+}
+
+void QCandlestickSeries_DisconnectHovered(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(bool, QCandlestickSet *)>(&QCandlestickSeries::hovered), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(bool, QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Hovered));
+}
+
+void QCandlestickSeries_Hovered(void* ptr, char status, void* set)
+{
+	static_cast<QCandlestickSeries*>(ptr)->hovered(status != 0, static_cast<QCandlestickSet*>(set));
+}
+
+void QCandlestickSeries_ConnectIncreasingColorChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::increasingColorChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_IncreasingColorChanged));
+}
+
+void QCandlestickSeries_DisconnectIncreasingColorChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::increasingColorChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_IncreasingColorChanged));
+}
+
+void QCandlestickSeries_IncreasingColorChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->increasingColorChanged();
+}
+
+void QCandlestickSeries_ConnectMaximumColumnWidthChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::maximumColumnWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_MaximumColumnWidthChanged));
+}
+
+void QCandlestickSeries_DisconnectMaximumColumnWidthChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::maximumColumnWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_MaximumColumnWidthChanged));
+}
+
+void QCandlestickSeries_MaximumColumnWidthChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->maximumColumnWidthChanged();
+}
+
+void QCandlestickSeries_ConnectMinimumColumnWidthChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::minimumColumnWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_MinimumColumnWidthChanged));
+}
+
+void QCandlestickSeries_DisconnectMinimumColumnWidthChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::minimumColumnWidthChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_MinimumColumnWidthChanged));
+}
+
+void QCandlestickSeries_MinimumColumnWidthChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->minimumColumnWidthChanged();
+}
+
+void QCandlestickSeries_ConnectPenChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::penChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_PenChanged));
+}
+
+void QCandlestickSeries_DisconnectPenChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)()>(&QCandlestickSeries::penChanged), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)()>(&MyQCandlestickSeries::Signal_PenChanged));
+}
+
+void QCandlestickSeries_PenChanged(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->penChanged();
+}
+
+void QCandlestickSeries_ConnectPressed(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::pressed), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Pressed));
+}
+
+void QCandlestickSeries_DisconnectPressed(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::pressed), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Pressed));
+}
+
+void QCandlestickSeries_Pressed(void* ptr, void* set)
+{
+	static_cast<QCandlestickSeries*>(ptr)->pressed(static_cast<QCandlestickSet*>(set));
+}
+
+void QCandlestickSeries_ConnectReleased(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::released), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Released));
+}
+
+void QCandlestickSeries_DisconnectReleased(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSeries*>(ptr), static_cast<void (QCandlestickSeries::*)(QCandlestickSet *)>(&QCandlestickSeries::released), static_cast<MyQCandlestickSeries*>(ptr), static_cast<void (MyQCandlestickSeries::*)(QCandlestickSet *)>(&MyQCandlestickSeries::Signal_Released));
+}
+
+void QCandlestickSeries_Released(void* ptr, void* set)
+{
+	static_cast<QCandlestickSeries*>(ptr)->released(static_cast<QCandlestickSet*>(set));
+}
+
+void QCandlestickSeries_SetBodyOutlineVisible(void* ptr, char bodyOutlineVisible)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setBodyOutlineVisible(bodyOutlineVisible != 0);
+}
+
+void QCandlestickSeries_SetBodyWidth(void* ptr, double bodyWidth)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setBodyWidth(bodyWidth);
+}
+
+void QCandlestickSeries_SetBrush(void* ptr, void* brush)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
+}
+
+void QCandlestickSeries_SetCapsVisible(void* ptr, char capsVisible)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setCapsVisible(capsVisible != 0);
+}
+
+void QCandlestickSeries_SetCapsWidth(void* ptr, double capsWidth)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setCapsWidth(capsWidth);
+}
+
+void QCandlestickSeries_SetDecreasingColor(void* ptr, void* decreasingColor)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setDecreasingColor(*static_cast<QColor*>(decreasingColor));
+}
+
+void QCandlestickSeries_SetIncreasingColor(void* ptr, void* increasingColor)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setIncreasingColor(*static_cast<QColor*>(increasingColor));
+}
+
+void QCandlestickSeries_SetMaximumColumnWidth(void* ptr, double maximumColumnWidth)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setMaximumColumnWidth(maximumColumnWidth);
+}
+
+void QCandlestickSeries_SetMinimumColumnWidth(void* ptr, double minimumColumnWidth)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setMinimumColumnWidth(minimumColumnWidth);
+}
+
+void QCandlestickSeries_SetPen(void* ptr, void* pen)
+{
+	static_cast<QCandlestickSeries*>(ptr)->setPen(*static_cast<QPen*>(pen));
+}
+
+void QCandlestickSeries_DestroyQCandlestickSeries(void* ptr)
+{
+	static_cast<QCandlestickSeries*>(ptr)->~QCandlestickSeries();
+}
+
+long long QCandlestickSeries_Type(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->type();
+}
+
+long long QCandlestickSeries_TypeDefault(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->QCandlestickSeries::type();
+}
+
+void* QCandlestickSeries_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QCandlestickSeries*>(ptr)->brush());
+}
+
+void* QCandlestickSeries_DecreasingColor(void* ptr)
+{
+	return new QColor(static_cast<QCandlestickSeries*>(ptr)->decreasingColor());
+}
+
+void* QCandlestickSeries_IncreasingColor(void* ptr)
+{
+	return new QColor(static_cast<QCandlestickSeries*>(ptr)->increasingColor());
+}
+
+struct QtCharts_PackedList QCandlestickSeries_Sets(void* ptr)
+{
+	return ({ QList<QCandlestickSet *>* tmpValue = new QList<QCandlestickSet *>(static_cast<QCandlestickSeries*>(ptr)->sets()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QCandlestickSeries_Pen(void* ptr)
+{
+	return new QPen(static_cast<QCandlestickSeries*>(ptr)->pen());
+}
+
+char QCandlestickSeries_BodyOutlineVisible(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->bodyOutlineVisible();
+}
+
+char QCandlestickSeries_CapsVisible(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->capsVisible();
+}
+
+int QCandlestickSeries_Count(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->count();
+}
+
+double QCandlestickSeries_BodyWidth(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->bodyWidth();
+}
+
+double QCandlestickSeries_CapsWidth(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->capsWidth();
+}
+
+double QCandlestickSeries_MaximumColumnWidth(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->maximumColumnWidth();
+}
+
+double QCandlestickSeries_MinimumColumnWidth(void* ptr)
+{
+	return static_cast<QCandlestickSeries*>(ptr)->minimumColumnWidth();
+}
+
+void* QCandlestickSeries___append_sets_atList2(void* ptr, int i)
+{
+	return const_cast<QCandlestickSet*>(static_cast<QList<QCandlestickSet *>*>(ptr)->at(i));
+}
+
+void QCandlestickSeries___append_sets_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QCandlestickSet *>*>(ptr)->append(static_cast<QCandlestickSet*>(i));
+}
+
+void* QCandlestickSeries___append_sets_newList2(void* ptr)
+{
+	return new QList<QCandlestickSet *>;
+}
+
+void* QCandlestickSeries___remove_sets_atList2(void* ptr, int i)
+{
+	return const_cast<QCandlestickSet*>(static_cast<QList<QCandlestickSet *>*>(ptr)->at(i));
+}
+
+void QCandlestickSeries___remove_sets_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QCandlestickSet *>*>(ptr)->append(static_cast<QCandlestickSet*>(i));
+}
+
+void* QCandlestickSeries___remove_sets_newList2(void* ptr)
+{
+	return new QList<QCandlestickSet *>;
+}
+
+void* QCandlestickSeries___candlestickSetsAdded_sets_atList(void* ptr, int i)
+{
+	return const_cast<QCandlestickSet*>(static_cast<QList<QCandlestickSet *>*>(ptr)->at(i));
+}
+
+void QCandlestickSeries___candlestickSetsAdded_sets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QCandlestickSet *>*>(ptr)->append(static_cast<QCandlestickSet*>(i));
+}
+
+void* QCandlestickSeries___candlestickSetsAdded_sets_newList(void* ptr)
+{
+	return new QList<QCandlestickSet *>;
+}
+
+void* QCandlestickSeries___candlestickSetsRemoved_sets_atList(void* ptr, int i)
+{
+	return const_cast<QCandlestickSet*>(static_cast<QList<QCandlestickSet *>*>(ptr)->at(i));
+}
+
+void QCandlestickSeries___candlestickSetsRemoved_sets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QCandlestickSet *>*>(ptr)->append(static_cast<QCandlestickSet*>(i));
+}
+
+void* QCandlestickSeries___candlestickSetsRemoved_sets_newList(void* ptr)
+{
+	return new QList<QCandlestickSet *>;
+}
+
+void* QCandlestickSeries___sets_atList(void* ptr, int i)
+{
+	return const_cast<QCandlestickSet*>(static_cast<QList<QCandlestickSet *>*>(ptr)->at(i));
+}
+
+void QCandlestickSeries___sets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QCandlestickSet *>*>(ptr)->append(static_cast<QCandlestickSet*>(i));
+}
+
+void* QCandlestickSeries___sets_newList(void* ptr)
+{
+	return new QList<QCandlestickSet *>;
+}
+
+class MyQCandlestickSet: public QCandlestickSet
+{
+public:
+	MyQCandlestickSet(qreal open, qreal high, qreal low, qreal close, qreal timestamp, QObject *parent) : QCandlestickSet(open, high, low, close, timestamp, parent) {};
+	MyQCandlestickSet(qreal timestamp, QObject *parent) : QCandlestickSet(timestamp, parent) {};
+	void Signal_BrushChanged() { callbackQCandlestickSet_BrushChanged(this); };
+	void Signal_Clicked() { callbackQCandlestickSet_Clicked(this); };
+	void Signal_CloseChanged() { callbackQCandlestickSet_CloseChanged(this); };
+	void Signal_DoubleClicked() { callbackQCandlestickSet_DoubleClicked(this); };
+	void Signal_HighChanged() { callbackQCandlestickSet_HighChanged(this); };
+	void Signal_Hovered(bool status) { callbackQCandlestickSet_Hovered(this, status); };
+	void Signal_LowChanged() { callbackQCandlestickSet_LowChanged(this); };
+	void Signal_OpenChanged() { callbackQCandlestickSet_OpenChanged(this); };
+	void Signal_PenChanged() { callbackQCandlestickSet_PenChanged(this); };
+	void Signal_Pressed() { callbackQCandlestickSet_Pressed(this); };
+	void Signal_Released() { callbackQCandlestickSet_Released(this); };
+	void Signal_TimestampChanged() { callbackQCandlestickSet_TimestampChanged(this); };
+	 ~MyQCandlestickSet() { callbackQCandlestickSet_DestroyQCandlestickSet(this); };
+};
+
+void* QCandlestickSet_NewQCandlestickSet2(double open, double high, double low, double close, double timestamp, void* parent)
+{
+	return new MyQCandlestickSet(open, high, low, close, timestamp, static_cast<QObject*>(parent));
+}
+
+void* QCandlestickSet_NewQCandlestickSet(double timestamp, void* parent)
+{
+	return new MyQCandlestickSet(timestamp, static_cast<QObject*>(parent));
+}
+
+void QCandlestickSet_ConnectBrushChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::brushChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_BrushChanged));
+}
+
+void QCandlestickSet_DisconnectBrushChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::brushChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_BrushChanged));
+}
+
+void QCandlestickSet_BrushChanged(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->brushChanged();
+}
+
+void QCandlestickSet_ConnectClicked(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::clicked), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_Clicked));
+}
+
+void QCandlestickSet_DisconnectClicked(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::clicked), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_Clicked));
+}
+
+void QCandlestickSet_Clicked(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->clicked();
+}
+
+void QCandlestickSet_ConnectCloseChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::closeChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_CloseChanged));
+}
+
+void QCandlestickSet_DisconnectCloseChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::closeChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_CloseChanged));
+}
+
+void QCandlestickSet_CloseChanged(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->closeChanged();
+}
+
+void QCandlestickSet_ConnectDoubleClicked(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::doubleClicked), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_DoubleClicked));
+}
+
+void QCandlestickSet_DisconnectDoubleClicked(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::doubleClicked), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_DoubleClicked));
+}
+
+void QCandlestickSet_DoubleClicked(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->doubleClicked();
+}
+
+void QCandlestickSet_ConnectHighChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::highChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_HighChanged));
+}
+
+void QCandlestickSet_DisconnectHighChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::highChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_HighChanged));
+}
+
+void QCandlestickSet_HighChanged(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->highChanged();
+}
+
+void QCandlestickSet_ConnectHovered(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)(bool)>(&QCandlestickSet::hovered), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)(bool)>(&MyQCandlestickSet::Signal_Hovered));
+}
+
+void QCandlestickSet_DisconnectHovered(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)(bool)>(&QCandlestickSet::hovered), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)(bool)>(&MyQCandlestickSet::Signal_Hovered));
+}
+
+void QCandlestickSet_Hovered(void* ptr, char status)
+{
+	static_cast<QCandlestickSet*>(ptr)->hovered(status != 0);
+}
+
+void QCandlestickSet_ConnectLowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::lowChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_LowChanged));
+}
+
+void QCandlestickSet_DisconnectLowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::lowChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_LowChanged));
+}
+
+void QCandlestickSet_LowChanged(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->lowChanged();
+}
+
+void QCandlestickSet_ConnectOpenChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::openChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_OpenChanged));
+}
+
+void QCandlestickSet_DisconnectOpenChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::openChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_OpenChanged));
+}
+
+void QCandlestickSet_OpenChanged(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->openChanged();
+}
+
+void QCandlestickSet_ConnectPenChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::penChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_PenChanged));
+}
+
+void QCandlestickSet_DisconnectPenChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::penChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_PenChanged));
+}
+
+void QCandlestickSet_PenChanged(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->penChanged();
+}
+
+void QCandlestickSet_ConnectPressed(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::pressed), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_Pressed));
+}
+
+void QCandlestickSet_DisconnectPressed(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::pressed), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_Pressed));
+}
+
+void QCandlestickSet_Pressed(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->pressed();
+}
+
+void QCandlestickSet_ConnectReleased(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::released), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_Released));
+}
+
+void QCandlestickSet_DisconnectReleased(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::released), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_Released));
+}
+
+void QCandlestickSet_Released(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->released();
+}
+
+void QCandlestickSet_SetBrush(void* ptr, void* brush)
+{
+	static_cast<QCandlestickSet*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
+}
+
+void QCandlestickSet_SetClose(void* ptr, double close)
+{
+	static_cast<QCandlestickSet*>(ptr)->setClose(close);
+}
+
+void QCandlestickSet_SetHigh(void* ptr, double high)
+{
+	static_cast<QCandlestickSet*>(ptr)->setHigh(high);
+}
+
+void QCandlestickSet_SetLow(void* ptr, double low)
+{
+	static_cast<QCandlestickSet*>(ptr)->setLow(low);
+}
+
+void QCandlestickSet_SetOpen(void* ptr, double open)
+{
+	static_cast<QCandlestickSet*>(ptr)->setOpen(open);
+}
+
+void QCandlestickSet_SetPen(void* ptr, void* pen)
+{
+	static_cast<QCandlestickSet*>(ptr)->setPen(*static_cast<QPen*>(pen));
+}
+
+void QCandlestickSet_SetTimestamp(void* ptr, double timestamp)
+{
+	static_cast<QCandlestickSet*>(ptr)->setTimestamp(timestamp);
+}
+
+void QCandlestickSet_ConnectTimestampChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::timestampChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_TimestampChanged));
+}
+
+void QCandlestickSet_DisconnectTimestampChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCandlestickSet*>(ptr), static_cast<void (QCandlestickSet::*)()>(&QCandlestickSet::timestampChanged), static_cast<MyQCandlestickSet*>(ptr), static_cast<void (MyQCandlestickSet::*)()>(&MyQCandlestickSet::Signal_TimestampChanged));
+}
+
+void QCandlestickSet_TimestampChanged(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->timestampChanged();
+}
+
+void QCandlestickSet_DestroyQCandlestickSet(void* ptr)
+{
+	static_cast<QCandlestickSet*>(ptr)->~QCandlestickSet();
+}
+
+void QCandlestickSet_DestroyQCandlestickSetDefault(void* ptr)
+{
+
+}
+
+void* QCandlestickSet_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QCandlestickSet*>(ptr)->brush());
+}
+
+void* QCandlestickSet_Pen(void* ptr)
+{
+	return new QPen(static_cast<QCandlestickSet*>(ptr)->pen());
+}
+
+double QCandlestickSet_Close(void* ptr)
+{
+	return static_cast<QCandlestickSet*>(ptr)->close();
+}
+
+double QCandlestickSet_High(void* ptr)
+{
+	return static_cast<QCandlestickSet*>(ptr)->high();
+}
+
+double QCandlestickSet_Low(void* ptr)
+{
+	return static_cast<QCandlestickSet*>(ptr)->low();
+}
+
+double QCandlestickSet_Open(void* ptr)
+{
+	return static_cast<QCandlestickSet*>(ptr)->open();
+}
+
+double QCandlestickSet_Timestamp(void* ptr)
+{
+	return static_cast<QCandlestickSet*>(ptr)->timestamp();
+}
+
 class MyQCategoryAxis: public QCategoryAxis
 {
 public:
@@ -3030,19 +4019,14 @@ public:
 	void Signal_LabelsPositionChanged(QCategoryAxis::AxisLabelsPosition position) { callbackQCategoryAxis_LabelsPositionChanged(this, position); };
 };
 
-long long QCategoryAxis_LabelsPosition(void* ptr)
-{
-	return static_cast<QCategoryAxis*>(ptr)->labelsPosition();
-}
-
-void QCategoryAxis_SetLabelsPosition(void* ptr, long long position)
-{
-	static_cast<QCategoryAxis*>(ptr)->setLabelsPosition(static_cast<QCategoryAxis::AxisLabelsPosition>(position));
-}
-
 void* QCategoryAxis_NewQCategoryAxis(void* parent)
 {
 	return new MyQCategoryAxis(static_cast<QObject*>(parent));
+}
+
+struct QtCharts_PackedString QCategoryAxis_CategoriesLabels(void* ptr)
+{
+	return ({ QByteArray t6d5777 = static_cast<QCategoryAxis*>(ptr)->categoriesLabels().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(t6d5777.prepend("WHITESPACE").constData()+10), t6d5777.size()-10 }; });
 }
 
 void QCategoryAxis_Append(void* ptr, char* categoryLabel, double categoryEndValue)
@@ -3063,21 +4047,6 @@ void QCategoryAxis_DisconnectCategoriesChanged(void* ptr)
 void QCategoryAxis_CategoriesChanged(void* ptr)
 {
 	static_cast<QCategoryAxis*>(ptr)->categoriesChanged();
-}
-
-struct QtCharts_PackedString QCategoryAxis_CategoriesLabels(void* ptr)
-{
-	return ({ QByteArray t6d5777 = static_cast<QCategoryAxis*>(ptr)->categoriesLabels().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(t6d5777.prepend("WHITESPACE").constData()+10), t6d5777.size()-10 }; });
-}
-
-int QCategoryAxis_Count(void* ptr)
-{
-	return static_cast<QCategoryAxis*>(ptr)->count();
-}
-
-double QCategoryAxis_EndValue(void* ptr, char* categoryLabel)
-{
-	return static_cast<QCategoryAxis*>(ptr)->endValue(QString(categoryLabel));
 }
 
 void QCategoryAxis_ConnectLabelsPositionChanged(void* ptr)
@@ -3105,19 +4074,39 @@ void QCategoryAxis_ReplaceLabel(void* ptr, char* oldLabel, char* newLabel)
 	static_cast<QCategoryAxis*>(ptr)->replaceLabel(QString(oldLabel), QString(newLabel));
 }
 
+void QCategoryAxis_SetLabelsPosition(void* ptr, long long position)
+{
+	static_cast<QCategoryAxis*>(ptr)->setLabelsPosition(static_cast<QCategoryAxis::AxisLabelsPosition>(position));
+}
+
 void QCategoryAxis_SetStartValue(void* ptr, double min)
 {
 	static_cast<QCategoryAxis*>(ptr)->setStartValue(min);
 }
 
-double QCategoryAxis_StartValue(void* ptr, char* categoryLabel)
-{
-	return static_cast<QCategoryAxis*>(ptr)->startValue(QString(categoryLabel));
-}
-
 void QCategoryAxis_DestroyQCategoryAxis(void* ptr)
 {
 	static_cast<QCategoryAxis*>(ptr)->~QCategoryAxis();
+}
+
+long long QCategoryAxis_LabelsPosition(void* ptr)
+{
+	return static_cast<QCategoryAxis*>(ptr)->labelsPosition();
+}
+
+int QCategoryAxis_Count(void* ptr)
+{
+	return static_cast<QCategoryAxis*>(ptr)->count();
+}
+
+double QCategoryAxis_EndValue(void* ptr, char* categoryLabel)
+{
+	return static_cast<QCategoryAxis*>(ptr)->endValue(QString(categoryLabel));
+}
+
+double QCategoryAxis_StartValue(void* ptr, char* categoryLabel)
+{
+	return static_cast<QCategoryAxis*>(ptr)->startValue(QString(categoryLabel));
 }
 
 class MyQChart: public QChart
@@ -3127,189 +4116,14 @@ public:
 	void Signal_PlotAreaChanged(const QRectF & plotArea) { callbackQChart_PlotAreaChanged(this, const_cast<QRectF*>(&plotArea)); };
 };
 
-int QChart_AnimationDuration(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->animationDuration();
-}
-
-void* QChart_AnimationEasingCurve(void* ptr)
-{
-	return new QEasingCurve(static_cast<QChart*>(ptr)->animationEasingCurve());
-}
-
-long long QChart_AnimationOptions(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->animationOptions();
-}
-
-double QChart_BackgroundRoundness(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->backgroundRoundness();
-}
-
-long long QChart_ChartType(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->chartType();
-}
-
-char QChart_IsBackgroundVisible(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->isBackgroundVisible();
-}
-
-char QChart_IsDropShadowEnabled(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->isDropShadowEnabled();
-}
-
-char QChart_IsPlotAreaBackgroundVisible(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->isPlotAreaBackgroundVisible();
-}
-
-void* QChart_Locale(void* ptr)
-{
-	return new QLocale(static_cast<QChart*>(ptr)->locale());
-}
-
-char QChart_LocalizeNumbers(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->localizeNumbers();
-}
-
-void* QChart_Margins(void* ptr)
-{
-	return ({ QMargins tmpValue = static_cast<QChart*>(ptr)->margins(); new QMargins(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); });
-}
-
-void* QChart_PlotArea(void* ptr)
-{
-	return ({ QRectF tmpValue = static_cast<QChart*>(ptr)->plotArea(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-}
-
-void QChart_SetAnimationDuration(void* ptr, int msecs)
-{
-	static_cast<QChart*>(ptr)->setAnimationDuration(msecs);
-}
-
 void QChart_SetAnimationEasingCurve(void* ptr, void* curve)
 {
 	static_cast<QChart*>(ptr)->setAnimationEasingCurve(*static_cast<QEasingCurve*>(curve));
 }
 
-void QChart_SetAnimationOptions(void* ptr, long long options)
-{
-	static_cast<QChart*>(ptr)->setAnimationOptions(static_cast<QChart::AnimationOption>(options));
-}
-
-void QChart_SetBackgroundRoundness(void* ptr, double diameter)
-{
-	static_cast<QChart*>(ptr)->setBackgroundRoundness(diameter);
-}
-
-void QChart_SetBackgroundVisible(void* ptr, char visible)
-{
-	static_cast<QChart*>(ptr)->setBackgroundVisible(visible != 0);
-}
-
-void QChart_SetDropShadowEnabled(void* ptr, char enabled)
-{
-	static_cast<QChart*>(ptr)->setDropShadowEnabled(enabled != 0);
-}
-
-void QChart_SetLocale(void* ptr, void* locale)
-{
-	static_cast<QChart*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
-}
-
-void QChart_SetLocalizeNumbers(void* ptr, char localize)
-{
-	static_cast<QChart*>(ptr)->setLocalizeNumbers(localize != 0);
-}
-
-void QChart_SetMargins(void* ptr, void* margins)
-{
-	static_cast<QChart*>(ptr)->setMargins(*static_cast<QMargins*>(margins));
-}
-
-void QChart_SetPlotAreaBackgroundVisible(void* ptr, char visible)
-{
-	static_cast<QChart*>(ptr)->setPlotAreaBackgroundVisible(visible != 0);
-}
-
-void QChart_SetTheme(void* ptr, long long theme)
-{
-	static_cast<QChart*>(ptr)->setTheme(static_cast<QChart::ChartTheme>(theme));
-}
-
-void QChart_SetTitle(void* ptr, char* title)
-{
-	static_cast<QChart*>(ptr)->setTitle(QString(title));
-}
-
-long long QChart_Theme(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->theme();
-}
-
-struct QtCharts_PackedString QChart_Title(void* ptr)
-{
-	return ({ QByteArray tf2b090 = static_cast<QChart*>(ptr)->title().toUtf8(); QtCharts_PackedString { const_cast<char*>(tf2b090.prepend("WHITESPACE").constData()+10), tf2b090.size()-10 }; });
-}
-
 void* QChart_NewQChart(void* parent, long long wFlags)
 {
 	return new MyQChart(static_cast<QGraphicsItem*>(parent), static_cast<Qt::WindowType>(wFlags));
-}
-
-void QChart_AddAxis(void* ptr, void* axis, long long alignment)
-{
-	static_cast<QChart*>(ptr)->addAxis(static_cast<QAbstractAxis*>(axis), static_cast<Qt::AlignmentFlag>(alignment));
-}
-
-void QChart_AddSeries(void* ptr, void* series)
-{
-	static_cast<QChart*>(ptr)->addSeries(static_cast<QAbstractSeries*>(series));
-}
-
-struct QtCharts_PackedList QChart_Axes(void* ptr, long long orientation, void* series)
-{
-	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QChart*>(ptr)->axes(static_cast<Qt::Orientation>(orientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* QChart_AxisX(void* ptr, void* series)
-{
-	return static_cast<QChart*>(ptr)->axisX(static_cast<QAbstractSeries*>(series));
-}
-
-void* QChart_AxisY(void* ptr, void* series)
-{
-	return static_cast<QChart*>(ptr)->axisY(static_cast<QAbstractSeries*>(series));
-}
-
-void* QChart_BackgroundBrush(void* ptr)
-{
-	return new QBrush(static_cast<QChart*>(ptr)->backgroundBrush());
-}
-
-void* QChart_BackgroundPen(void* ptr)
-{
-	return new QPen(static_cast<QChart*>(ptr)->backgroundPen());
-}
-
-void QChart_CreateDefaultAxes(void* ptr)
-{
-	static_cast<QChart*>(ptr)->createDefaultAxes();
-}
-
-char QChart_IsZoomed(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->isZoomed();
-}
-
-void* QChart_Legend(void* ptr)
-{
-	return static_cast<QChart*>(ptr)->legend();
 }
 
 void* QChart_MapToPosition(void* ptr, void* value, void* series)
@@ -3322,14 +4136,24 @@ void* QChart_MapToValue(void* ptr, void* position, void* series)
 	return ({ QPointF tmpValue = static_cast<QChart*>(ptr)->mapToValue(*static_cast<QPointF*>(position), static_cast<QAbstractSeries*>(series)); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void* QChart_PlotAreaBackgroundBrush(void* ptr)
+char QChart_IsZoomed(void* ptr)
 {
-	return new QBrush(static_cast<QChart*>(ptr)->plotAreaBackgroundBrush());
+	return static_cast<QChart*>(ptr)->isZoomed();
 }
 
-void* QChart_PlotAreaBackgroundPen(void* ptr)
+void QChart_AddAxis(void* ptr, void* axis, long long alignment)
 {
-	return new QPen(static_cast<QChart*>(ptr)->plotAreaBackgroundPen());
+	static_cast<QChart*>(ptr)->addAxis(static_cast<QAbstractAxis*>(axis), static_cast<Qt::AlignmentFlag>(alignment));
+}
+
+void QChart_AddSeries(void* ptr, void* series)
+{
+	static_cast<QChart*>(ptr)->addSeries(static_cast<QAbstractSeries*>(series));
+}
+
+void QChart_CreateDefaultAxes(void* ptr)
+{
+	static_cast<QChart*>(ptr)->createDefaultAxes();
 }
 
 void QChart_ConnectPlotAreaChanged(void* ptr)
@@ -3367,9 +4191,14 @@ void QChart_Scroll(void* ptr, double dx, double dy)
 	static_cast<QChart*>(ptr)->scroll(dx, dy);
 }
 
-struct QtCharts_PackedList QChart_Series(void* ptr)
+void QChart_SetAnimationDuration(void* ptr, int msecs)
 {
-	return ({ QList<QAbstractSeries *>* tmpValue = new QList<QAbstractSeries *>(static_cast<QChart*>(ptr)->series()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	static_cast<QChart*>(ptr)->setAnimationDuration(msecs);
+}
+
+void QChart_SetAnimationOptions(void* ptr, long long options)
+{
+	static_cast<QChart*>(ptr)->setAnimationOptions(static_cast<QChart::AnimationOption>(options));
 }
 
 void QChart_SetAxisX(void* ptr, void* axis, void* series)
@@ -3392,6 +4221,36 @@ void QChart_SetBackgroundPen(void* ptr, void* pen)
 	static_cast<QChart*>(ptr)->setBackgroundPen(*static_cast<QPen*>(pen));
 }
 
+void QChart_SetBackgroundRoundness(void* ptr, double diameter)
+{
+	static_cast<QChart*>(ptr)->setBackgroundRoundness(diameter);
+}
+
+void QChart_SetBackgroundVisible(void* ptr, char visible)
+{
+	static_cast<QChart*>(ptr)->setBackgroundVisible(visible != 0);
+}
+
+void QChart_SetDropShadowEnabled(void* ptr, char enabled)
+{
+	static_cast<QChart*>(ptr)->setDropShadowEnabled(enabled != 0);
+}
+
+void QChart_SetLocale(void* ptr, void* locale)
+{
+	static_cast<QChart*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
+}
+
+void QChart_SetLocalizeNumbers(void* ptr, char localize)
+{
+	static_cast<QChart*>(ptr)->setLocalizeNumbers(localize != 0);
+}
+
+void QChart_SetMargins(void* ptr, void* margins)
+{
+	static_cast<QChart*>(ptr)->setMargins(*static_cast<QMargins*>(margins));
+}
+
 void QChart_SetPlotAreaBackgroundBrush(void* ptr, void* brush)
 {
 	static_cast<QChart*>(ptr)->setPlotAreaBackgroundBrush(*static_cast<QBrush*>(brush));
@@ -3402,6 +4261,21 @@ void QChart_SetPlotAreaBackgroundPen(void* ptr, void* pen)
 	static_cast<QChart*>(ptr)->setPlotAreaBackgroundPen(*static_cast<QPen*>(pen));
 }
 
+void QChart_SetPlotAreaBackgroundVisible(void* ptr, char visible)
+{
+	static_cast<QChart*>(ptr)->setPlotAreaBackgroundVisible(visible != 0);
+}
+
+void QChart_SetTheme(void* ptr, long long theme)
+{
+	static_cast<QChart*>(ptr)->setTheme(static_cast<QChart::ChartTheme>(theme));
+}
+
+void QChart_SetTitle(void* ptr, char* title)
+{
+	static_cast<QChart*>(ptr)->setTitle(QString(title));
+}
+
 void QChart_SetTitleBrush(void* ptr, void* brush)
 {
 	static_cast<QChart*>(ptr)->setTitleBrush(*static_cast<QBrush*>(brush));
@@ -3410,16 +4284,6 @@ void QChart_SetTitleBrush(void* ptr, void* brush)
 void QChart_SetTitleFont(void* ptr, void* font)
 {
 	static_cast<QChart*>(ptr)->setTitleFont(*static_cast<QFont*>(font));
-}
-
-void* QChart_TitleBrush(void* ptr)
-{
-	return new QBrush(static_cast<QChart*>(ptr)->titleBrush());
-}
-
-void* QChart_TitleFont(void* ptr)
-{
-	return new QFont(static_cast<QChart*>(ptr)->titleFont());
 }
 
 void QChart_Zoom(void* ptr, double factor)
@@ -3450,6 +4314,131 @@ void QChart_ZoomReset(void* ptr)
 void QChart_DestroyQChart(void* ptr)
 {
 	static_cast<QChart*>(ptr)->~QChart();
+}
+
+long long QChart_AnimationOptions(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->animationOptions();
+}
+
+long long QChart_ChartType(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->chartType();
+}
+
+void* QChart_AxisX(void* ptr, void* series)
+{
+	return static_cast<QChart*>(ptr)->axisX(static_cast<QAbstractSeries*>(series));
+}
+
+void* QChart_AxisY(void* ptr, void* series)
+{
+	return static_cast<QChart*>(ptr)->axisY(static_cast<QAbstractSeries*>(series));
+}
+
+void* QChart_BackgroundBrush(void* ptr)
+{
+	return new QBrush(static_cast<QChart*>(ptr)->backgroundBrush());
+}
+
+void* QChart_PlotAreaBackgroundBrush(void* ptr)
+{
+	return new QBrush(static_cast<QChart*>(ptr)->plotAreaBackgroundBrush());
+}
+
+void* QChart_TitleBrush(void* ptr)
+{
+	return new QBrush(static_cast<QChart*>(ptr)->titleBrush());
+}
+
+long long QChart_Theme(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->theme();
+}
+
+void* QChart_AnimationEasingCurve(void* ptr)
+{
+	return new QEasingCurve(static_cast<QChart*>(ptr)->animationEasingCurve());
+}
+
+void* QChart_TitleFont(void* ptr)
+{
+	return new QFont(static_cast<QChart*>(ptr)->titleFont());
+}
+
+void* QChart_Legend(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->legend();
+}
+
+struct QtCharts_PackedList QChart_Axes(void* ptr, long long orientation, void* series)
+{
+	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QChart*>(ptr)->axes(static_cast<Qt::Orientation>(orientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtCharts_PackedList QChart_Series(void* ptr)
+{
+	return ({ QList<QAbstractSeries *>* tmpValue = new QList<QAbstractSeries *>(static_cast<QChart*>(ptr)->series()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QChart_Locale(void* ptr)
+{
+	return new QLocale(static_cast<QChart*>(ptr)->locale());
+}
+
+void* QChart_Margins(void* ptr)
+{
+	return ({ QMargins tmpValue = static_cast<QChart*>(ptr)->margins(); new QMargins(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); });
+}
+
+void* QChart_BackgroundPen(void* ptr)
+{
+	return new QPen(static_cast<QChart*>(ptr)->backgroundPen());
+}
+
+void* QChart_PlotAreaBackgroundPen(void* ptr)
+{
+	return new QPen(static_cast<QChart*>(ptr)->plotAreaBackgroundPen());
+}
+
+void* QChart_PlotArea(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QChart*>(ptr)->plotArea(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+struct QtCharts_PackedString QChart_Title(void* ptr)
+{
+	return ({ QByteArray tf2b090 = static_cast<QChart*>(ptr)->title().toUtf8(); QtCharts_PackedString { const_cast<char*>(tf2b090.prepend("WHITESPACE").constData()+10), tf2b090.size()-10 }; });
+}
+
+char QChart_IsBackgroundVisible(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->isBackgroundVisible();
+}
+
+char QChart_IsDropShadowEnabled(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->isDropShadowEnabled();
+}
+
+char QChart_IsPlotAreaBackgroundVisible(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->isPlotAreaBackgroundVisible();
+}
+
+char QChart_LocalizeNumbers(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->localizeNumbers();
+}
+
+int QChart_AnimationDuration(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->animationDuration();
+}
+
+double QChart_BackgroundRoundness(void* ptr)
+{
+	return static_cast<QChart*>(ptr)->backgroundRoundness();
 }
 
 void* QChart___axes_atList(void* ptr, int i)
@@ -3492,11 +4481,6 @@ void* QChartView_NewQChartView(void* parent)
 	return new QChartView(static_cast<QWidget*>(parent));
 }
 
-void* QChartView_Chart(void* ptr)
-{
-	return static_cast<QChartView*>(ptr)->chart();
-}
-
 void QChartView_MouseMoveEvent(void* ptr, void* event)
 {
 	static_cast<QChartView*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(event));
@@ -3517,11 +4501,6 @@ void QChartView_ResizeEvent(void* ptr, void* event)
 	static_cast<QChartView*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
-long long QChartView_RubberBand(void* ptr)
-{
-	return static_cast<QChartView*>(ptr)->rubberBand();
-}
-
 void QChartView_SetChart(void* ptr, void* chart)
 {
 	static_cast<QChartView*>(ptr)->setChart(static_cast<QChart*>(chart));
@@ -3537,6 +4516,16 @@ void QChartView_DestroyQChartView(void* ptr)
 	static_cast<QChartView*>(ptr)->~QChartView();
 }
 
+void* QChartView_Chart(void* ptr)
+{
+	return static_cast<QChartView*>(ptr)->chart();
+}
+
+long long QChartView_RubberBand(void* ptr)
+{
+	return static_cast<QChartView*>(ptr)->rubberBand();
+}
+
 class MyQDateTimeAxis: public QDateTimeAxis
 {
 public:
@@ -3547,41 +4536,6 @@ public:
 	void Signal_RangeChanged(QDateTime min, QDateTime max) { callbackQDateTimeAxis_RangeChanged(this, new QDateTime(min), new QDateTime(max)); };
 	void Signal_TickCountChanged(int tickCount) { callbackQDateTimeAxis_TickCountChanged(this, tickCount); };
 };
-
-struct QtCharts_PackedString QDateTimeAxis_Format(void* ptr)
-{
-	return ({ QByteArray t34d3ef = static_cast<QDateTimeAxis*>(ptr)->format().toUtf8(); QtCharts_PackedString { const_cast<char*>(t34d3ef.prepend("WHITESPACE").constData()+10), t34d3ef.size()-10 }; });
-}
-
-void* QDateTimeAxis_Max(void* ptr)
-{
-	return new QDateTime(static_cast<QDateTimeAxis*>(ptr)->max());
-}
-
-void* QDateTimeAxis_Min(void* ptr)
-{
-	return new QDateTime(static_cast<QDateTimeAxis*>(ptr)->min());
-}
-
-void QDateTimeAxis_SetFormat(void* ptr, char* format)
-{
-	static_cast<QDateTimeAxis*>(ptr)->setFormat(QString(format));
-}
-
-void QDateTimeAxis_SetMax(void* ptr, void* max)
-{
-	static_cast<QDateTimeAxis*>(ptr)->setMax(*static_cast<QDateTime*>(max));
-}
-
-void QDateTimeAxis_SetMin(void* ptr, void* min)
-{
-	static_cast<QDateTimeAxis*>(ptr)->setMin(*static_cast<QDateTime*>(min));
-}
-
-int QDateTimeAxis_TickCount(void* ptr)
-{
-	return static_cast<QDateTimeAxis*>(ptr)->tickCount();
-}
 
 void* QDateTimeAxis_NewQDateTimeAxis(void* parent)
 {
@@ -3648,6 +4602,21 @@ void QDateTimeAxis_RangeChanged(void* ptr, void* min, void* max)
 	static_cast<QDateTimeAxis*>(ptr)->rangeChanged(*static_cast<QDateTime*>(min), *static_cast<QDateTime*>(max));
 }
 
+void QDateTimeAxis_SetFormat(void* ptr, char* format)
+{
+	static_cast<QDateTimeAxis*>(ptr)->setFormat(QString(format));
+}
+
+void QDateTimeAxis_SetMax(void* ptr, void* max)
+{
+	static_cast<QDateTimeAxis*>(ptr)->setMax(*static_cast<QDateTime*>(max));
+}
+
+void QDateTimeAxis_SetMin(void* ptr, void* min)
+{
+	static_cast<QDateTimeAxis*>(ptr)->setMin(*static_cast<QDateTime*>(min));
+}
+
 void QDateTimeAxis_SetRange(void* ptr, void* min, void* max)
 {
 	static_cast<QDateTimeAxis*>(ptr)->setRange(*static_cast<QDateTime*>(min), *static_cast<QDateTime*>(max));
@@ -3678,6 +4647,26 @@ void QDateTimeAxis_DestroyQDateTimeAxis(void* ptr)
 	static_cast<QDateTimeAxis*>(ptr)->~QDateTimeAxis();
 }
 
+void* QDateTimeAxis_Max(void* ptr)
+{
+	return new QDateTime(static_cast<QDateTimeAxis*>(ptr)->max());
+}
+
+void* QDateTimeAxis_Min(void* ptr)
+{
+	return new QDateTime(static_cast<QDateTimeAxis*>(ptr)->min());
+}
+
+struct QtCharts_PackedString QDateTimeAxis_Format(void* ptr)
+{
+	return ({ QByteArray t34d3ef = static_cast<QDateTimeAxis*>(ptr)->format().toUtf8(); QtCharts_PackedString { const_cast<char*>(t34d3ef.prepend("WHITESPACE").constData()+10), t34d3ef.size()-10 }; });
+}
+
+int QDateTimeAxis_TickCount(void* ptr)
+{
+	return static_cast<QDateTimeAxis*>(ptr)->tickCount();
+}
+
 class MyQHBarModelMapper: public QHBarModelMapper
 {
 public:
@@ -3689,66 +4678,6 @@ public:
 	void Signal_ModelReplaced() { callbackQHBarModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQHBarModelMapper_SeriesReplaced(this); };
 };
-
-int QHBarModelMapper_ColumnCount(void* ptr)
-{
-	return static_cast<QHBarModelMapper*>(ptr)->columnCount();
-}
-
-int QHBarModelMapper_FirstBarSetRow(void* ptr)
-{
-	return static_cast<QHBarModelMapper*>(ptr)->firstBarSetRow();
-}
-
-int QHBarModelMapper_FirstColumn(void* ptr)
-{
-	return static_cast<QHBarModelMapper*>(ptr)->firstColumn();
-}
-
-int QHBarModelMapper_LastBarSetRow(void* ptr)
-{
-	return static_cast<QHBarModelMapper*>(ptr)->lastBarSetRow();
-}
-
-void* QHBarModelMapper_Model(void* ptr)
-{
-	return static_cast<QHBarModelMapper*>(ptr)->model();
-}
-
-void* QHBarModelMapper_Series(void* ptr)
-{
-	return static_cast<QHBarModelMapper*>(ptr)->series();
-}
-
-void QHBarModelMapper_SetColumnCount(void* ptr, int columnCount)
-{
-	static_cast<QHBarModelMapper*>(ptr)->setColumnCount(columnCount);
-}
-
-void QHBarModelMapper_SetFirstBarSetRow(void* ptr, int firstBarSetRow)
-{
-	static_cast<QHBarModelMapper*>(ptr)->setFirstBarSetRow(firstBarSetRow);
-}
-
-void QHBarModelMapper_SetFirstColumn(void* ptr, int firstColumn)
-{
-	static_cast<QHBarModelMapper*>(ptr)->setFirstColumn(firstColumn);
-}
-
-void QHBarModelMapper_SetLastBarSetRow(void* ptr, int lastBarSetRow)
-{
-	static_cast<QHBarModelMapper*>(ptr)->setLastBarSetRow(lastBarSetRow);
-}
-
-void QHBarModelMapper_SetModel(void* ptr, void* model)
-{
-	static_cast<QHBarModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QHBarModelMapper_SetSeries(void* ptr, void* series)
-{
-	static_cast<QHBarModelMapper*>(ptr)->setSeries(static_cast<QAbstractBarSeries*>(series));
-}
 
 void* QHBarModelMapper_NewQHBarModelMapper(void* parent)
 {
@@ -3845,6 +4774,437 @@ void QHBarModelMapper_SeriesReplaced(void* ptr)
 	static_cast<QHBarModelMapper*>(ptr)->seriesReplaced();
 }
 
+void QHBarModelMapper_SetColumnCount(void* ptr, int columnCount)
+{
+	static_cast<QHBarModelMapper*>(ptr)->setColumnCount(columnCount);
+}
+
+void QHBarModelMapper_SetFirstBarSetRow(void* ptr, int firstBarSetRow)
+{
+	static_cast<QHBarModelMapper*>(ptr)->setFirstBarSetRow(firstBarSetRow);
+}
+
+void QHBarModelMapper_SetFirstColumn(void* ptr, int firstColumn)
+{
+	static_cast<QHBarModelMapper*>(ptr)->setFirstColumn(firstColumn);
+}
+
+void QHBarModelMapper_SetLastBarSetRow(void* ptr, int lastBarSetRow)
+{
+	static_cast<QHBarModelMapper*>(ptr)->setLastBarSetRow(lastBarSetRow);
+}
+
+void QHBarModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QHBarModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QHBarModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QHBarModelMapper*>(ptr)->setSeries(static_cast<QAbstractBarSeries*>(series));
+}
+
+void* QHBarModelMapper_Series(void* ptr)
+{
+	return static_cast<QHBarModelMapper*>(ptr)->series();
+}
+
+void* QHBarModelMapper_Model(void* ptr)
+{
+	return static_cast<QHBarModelMapper*>(ptr)->model();
+}
+
+int QHBarModelMapper_ColumnCount(void* ptr)
+{
+	return static_cast<QHBarModelMapper*>(ptr)->columnCount();
+}
+
+int QHBarModelMapper_FirstBarSetRow(void* ptr)
+{
+	return static_cast<QHBarModelMapper*>(ptr)->firstBarSetRow();
+}
+
+int QHBarModelMapper_FirstColumn(void* ptr)
+{
+	return static_cast<QHBarModelMapper*>(ptr)->firstColumn();
+}
+
+int QHBarModelMapper_LastBarSetRow(void* ptr)
+{
+	return static_cast<QHBarModelMapper*>(ptr)->lastBarSetRow();
+}
+
+class MyQHBoxPlotModelMapper: public QHBoxPlotModelMapper
+{
+public:
+	MyQHBoxPlotModelMapper(QObject *parent) : QHBoxPlotModelMapper(parent) {};
+	void Signal_ColumnCountChanged() { callbackQHBoxPlotModelMapper_ColumnCountChanged(this); };
+	void Signal_FirstBoxSetRowChanged() { callbackQHBoxPlotModelMapper_FirstBoxSetRowChanged(this); };
+	void Signal_FirstColumnChanged() { callbackQHBoxPlotModelMapper_FirstColumnChanged(this); };
+	void Signal_LastBoxSetRowChanged() { callbackQHBoxPlotModelMapper_LastBoxSetRowChanged(this); };
+	void Signal_ModelReplaced() { callbackQHBoxPlotModelMapper_ModelReplaced(this); };
+	void Signal_SeriesReplaced() { callbackQHBoxPlotModelMapper_SeriesReplaced(this); };
+};
+
+void* QHBoxPlotModelMapper_NewQHBoxPlotModelMapper(void* parent)
+{
+	return new MyQHBoxPlotModelMapper(static_cast<QObject*>(parent));
+}
+
+void QHBoxPlotModelMapper_ConnectColumnCountChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::columnCountChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_ColumnCountChanged));
+}
+
+void QHBoxPlotModelMapper_DisconnectColumnCountChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::columnCountChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_ColumnCountChanged));
+}
+
+void QHBoxPlotModelMapper_ColumnCountChanged(void* ptr)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->columnCountChanged();
+}
+
+void QHBoxPlotModelMapper_ConnectFirstBoxSetRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::firstBoxSetRowChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_FirstBoxSetRowChanged));
+}
+
+void QHBoxPlotModelMapper_DisconnectFirstBoxSetRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::firstBoxSetRowChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_FirstBoxSetRowChanged));
+}
+
+void QHBoxPlotModelMapper_FirstBoxSetRowChanged(void* ptr)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->firstBoxSetRowChanged();
+}
+
+void QHBoxPlotModelMapper_ConnectFirstColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::firstColumnChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_FirstColumnChanged));
+}
+
+void QHBoxPlotModelMapper_DisconnectFirstColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::firstColumnChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_FirstColumnChanged));
+}
+
+void QHBoxPlotModelMapper_FirstColumnChanged(void* ptr)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->firstColumnChanged();
+}
+
+void QHBoxPlotModelMapper_ConnectLastBoxSetRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::lastBoxSetRowChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_LastBoxSetRowChanged));
+}
+
+void QHBoxPlotModelMapper_DisconnectLastBoxSetRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::lastBoxSetRowChanged), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_LastBoxSetRowChanged));
+}
+
+void QHBoxPlotModelMapper_LastBoxSetRowChanged(void* ptr)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->lastBoxSetRowChanged();
+}
+
+void QHBoxPlotModelMapper_ConnectModelReplaced(void* ptr)
+{
+	QObject::connect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::modelReplaced), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_ModelReplaced));
+}
+
+void QHBoxPlotModelMapper_DisconnectModelReplaced(void* ptr)
+{
+	QObject::disconnect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::modelReplaced), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_ModelReplaced));
+}
+
+void QHBoxPlotModelMapper_ModelReplaced(void* ptr)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->modelReplaced();
+}
+
+void QHBoxPlotModelMapper_ConnectSeriesReplaced(void* ptr)
+{
+	QObject::connect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::seriesReplaced), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_SeriesReplaced));
+}
+
+void QHBoxPlotModelMapper_DisconnectSeriesReplaced(void* ptr)
+{
+	QObject::disconnect(static_cast<QHBoxPlotModelMapper*>(ptr), static_cast<void (QHBoxPlotModelMapper::*)()>(&QHBoxPlotModelMapper::seriesReplaced), static_cast<MyQHBoxPlotModelMapper*>(ptr), static_cast<void (MyQHBoxPlotModelMapper::*)()>(&MyQHBoxPlotModelMapper::Signal_SeriesReplaced));
+}
+
+void QHBoxPlotModelMapper_SeriesReplaced(void* ptr)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->seriesReplaced();
+}
+
+void QHBoxPlotModelMapper_SetColumnCount(void* ptr, int rowCount)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->setColumnCount(rowCount);
+}
+
+void QHBoxPlotModelMapper_SetFirstBoxSetRow(void* ptr, int firstBoxSetRow)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->setFirstBoxSetRow(firstBoxSetRow);
+}
+
+void QHBoxPlotModelMapper_SetFirstColumn(void* ptr, int firstColumn)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->setFirstColumn(firstColumn);
+}
+
+void QHBoxPlotModelMapper_SetLastBoxSetRow(void* ptr, int lastBoxSetRow)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->setLastBoxSetRow(lastBoxSetRow);
+}
+
+void QHBoxPlotModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QHBoxPlotModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QHBoxPlotModelMapper*>(ptr)->setSeries(static_cast<QBoxPlotSeries*>(series));
+}
+
+void* QHBoxPlotModelMapper_Model(void* ptr)
+{
+	return static_cast<QHBoxPlotModelMapper*>(ptr)->model();
+}
+
+void* QHBoxPlotModelMapper_Series(void* ptr)
+{
+	return static_cast<QHBoxPlotModelMapper*>(ptr)->series();
+}
+
+int QHBoxPlotModelMapper_ColumnCount(void* ptr)
+{
+	return static_cast<QHBoxPlotModelMapper*>(ptr)->columnCount();
+}
+
+int QHBoxPlotModelMapper_FirstBoxSetRow(void* ptr)
+{
+	return static_cast<QHBoxPlotModelMapper*>(ptr)->firstBoxSetRow();
+}
+
+int QHBoxPlotModelMapper_FirstColumn(void* ptr)
+{
+	return static_cast<QHBoxPlotModelMapper*>(ptr)->firstColumn();
+}
+
+int QHBoxPlotModelMapper_LastBoxSetRow(void* ptr)
+{
+	return static_cast<QHBoxPlotModelMapper*>(ptr)->lastBoxSetRow();
+}
+
+class MyQHCandlestickModelMapper: public QHCandlestickModelMapper
+{
+public:
+	MyQHCandlestickModelMapper(QObject *parent) : QHCandlestickModelMapper(parent) {};
+	void Signal_CloseColumnChanged() { callbackQHCandlestickModelMapper_CloseColumnChanged(this); };
+	void Signal_FirstSetRowChanged() { callbackQHCandlestickModelMapper_FirstSetRowChanged(this); };
+	void Signal_HighColumnChanged() { callbackQHCandlestickModelMapper_HighColumnChanged(this); };
+	void Signal_LastSetRowChanged() { callbackQHCandlestickModelMapper_LastSetRowChanged(this); };
+	void Signal_LowColumnChanged() { callbackQHCandlestickModelMapper_LowColumnChanged(this); };
+	void Signal_OpenColumnChanged() { callbackQHCandlestickModelMapper_OpenColumnChanged(this); };
+	void Signal_TimestampColumnChanged() { callbackQHCandlestickModelMapper_TimestampColumnChanged(this); };
+	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQHCandlestickModelMapper_Orientation(const_cast<MyQHCandlestickModelMapper*>(this))); };
+};
+
+void* QHCandlestickModelMapper_NewQHCandlestickModelMapper(void* parent)
+{
+	return new MyQHCandlestickModelMapper(static_cast<QObject*>(parent));
+}
+
+void QHCandlestickModelMapper_ConnectCloseColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::closeColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_CloseColumnChanged));
+}
+
+void QHCandlestickModelMapper_DisconnectCloseColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::closeColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_CloseColumnChanged));
+}
+
+void QHCandlestickModelMapper_CloseColumnChanged(void* ptr)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->closeColumnChanged();
+}
+
+void QHCandlestickModelMapper_ConnectFirstSetRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::firstSetRowChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_FirstSetRowChanged));
+}
+
+void QHCandlestickModelMapper_DisconnectFirstSetRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::firstSetRowChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_FirstSetRowChanged));
+}
+
+void QHCandlestickModelMapper_FirstSetRowChanged(void* ptr)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->firstSetRowChanged();
+}
+
+void QHCandlestickModelMapper_ConnectHighColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::highColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_HighColumnChanged));
+}
+
+void QHCandlestickModelMapper_DisconnectHighColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::highColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_HighColumnChanged));
+}
+
+void QHCandlestickModelMapper_HighColumnChanged(void* ptr)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->highColumnChanged();
+}
+
+void QHCandlestickModelMapper_ConnectLastSetRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::lastSetRowChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_LastSetRowChanged));
+}
+
+void QHCandlestickModelMapper_DisconnectLastSetRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::lastSetRowChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_LastSetRowChanged));
+}
+
+void QHCandlestickModelMapper_LastSetRowChanged(void* ptr)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->lastSetRowChanged();
+}
+
+void QHCandlestickModelMapper_ConnectLowColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::lowColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_LowColumnChanged));
+}
+
+void QHCandlestickModelMapper_DisconnectLowColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::lowColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_LowColumnChanged));
+}
+
+void QHCandlestickModelMapper_LowColumnChanged(void* ptr)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->lowColumnChanged();
+}
+
+void QHCandlestickModelMapper_ConnectOpenColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::openColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_OpenColumnChanged));
+}
+
+void QHCandlestickModelMapper_DisconnectOpenColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::openColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_OpenColumnChanged));
+}
+
+void QHCandlestickModelMapper_OpenColumnChanged(void* ptr)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->openColumnChanged();
+}
+
+void QHCandlestickModelMapper_SetCloseColumn(void* ptr, int closeColumn)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->setCloseColumn(closeColumn);
+}
+
+void QHCandlestickModelMapper_SetFirstSetRow(void* ptr, int firstSetRow)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->setFirstSetRow(firstSetRow);
+}
+
+void QHCandlestickModelMapper_SetHighColumn(void* ptr, int highColumn)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->setHighColumn(highColumn);
+}
+
+void QHCandlestickModelMapper_SetLastSetRow(void* ptr, int lastSetRow)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->setLastSetRow(lastSetRow);
+}
+
+void QHCandlestickModelMapper_SetLowColumn(void* ptr, int lowColumn)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->setLowColumn(lowColumn);
+}
+
+void QHCandlestickModelMapper_SetOpenColumn(void* ptr, int openColumn)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->setOpenColumn(openColumn);
+}
+
+void QHCandlestickModelMapper_SetTimestampColumn(void* ptr, int timestampColumn)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->setTimestampColumn(timestampColumn);
+}
+
+void QHCandlestickModelMapper_ConnectTimestampColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::timestampColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_TimestampColumnChanged));
+}
+
+void QHCandlestickModelMapper_DisconnectTimestampColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHCandlestickModelMapper*>(ptr), static_cast<void (QHCandlestickModelMapper::*)()>(&QHCandlestickModelMapper::timestampColumnChanged), static_cast<MyQHCandlestickModelMapper*>(ptr), static_cast<void (MyQHCandlestickModelMapper::*)()>(&MyQHCandlestickModelMapper::Signal_TimestampColumnChanged));
+}
+
+void QHCandlestickModelMapper_TimestampColumnChanged(void* ptr)
+{
+	static_cast<QHCandlestickModelMapper*>(ptr)->timestampColumnChanged();
+}
+
+long long QHCandlestickModelMapper_Orientation(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->orientation();
+}
+
+long long QHCandlestickModelMapper_OrientationDefault(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::orientation();
+}
+
+int QHCandlestickModelMapper_CloseColumn(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->closeColumn();
+}
+
+int QHCandlestickModelMapper_FirstSetRow(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->firstSetRow();
+}
+
+int QHCandlestickModelMapper_HighColumn(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->highColumn();
+}
+
+int QHCandlestickModelMapper_LastSetRow(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->lastSetRow();
+}
+
+int QHCandlestickModelMapper_LowColumn(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->lowColumn();
+}
+
+int QHCandlestickModelMapper_OpenColumn(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->openColumn();
+}
+
+int QHCandlestickModelMapper_TimestampColumn(void* ptr)
+{
+	return static_cast<QHCandlestickModelMapper*>(ptr)->timestampColumn();
+}
+
 class MyQHPieModelMapper: public QHPieModelMapper
 {
 public:
@@ -3856,46 +5216,6 @@ public:
 	void Signal_SeriesReplaced() { callbackQHPieModelMapper_SeriesReplaced(this); };
 	void Signal_ValuesRowChanged() { callbackQHPieModelMapper_ValuesRowChanged(this); };
 };
-
-int QHPieModelMapper_ColumnCount(void* ptr)
-{
-	return static_cast<QHPieModelMapper*>(ptr)->columnCount();
-}
-
-int QHPieModelMapper_FirstColumn(void* ptr)
-{
-	return static_cast<QHPieModelMapper*>(ptr)->firstColumn();
-}
-
-void* QHPieModelMapper_Model(void* ptr)
-{
-	return static_cast<QHPieModelMapper*>(ptr)->model();
-}
-
-void* QHPieModelMapper_Series(void* ptr)
-{
-	return static_cast<QHPieModelMapper*>(ptr)->series();
-}
-
-void QHPieModelMapper_SetColumnCount(void* ptr, int columnCount)
-{
-	static_cast<QHPieModelMapper*>(ptr)->setColumnCount(columnCount);
-}
-
-void QHPieModelMapper_SetFirstColumn(void* ptr, int firstColumn)
-{
-	static_cast<QHPieModelMapper*>(ptr)->setFirstColumn(firstColumn);
-}
-
-void QHPieModelMapper_SetModel(void* ptr, void* model)
-{
-	static_cast<QHPieModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QHPieModelMapper_SetSeries(void* ptr, void* series)
-{
-	static_cast<QHPieModelMapper*>(ptr)->setSeries(static_cast<QPieSeries*>(series));
-}
 
 void* QHPieModelMapper_NewQHPieModelMapper(void* parent)
 {
@@ -3930,11 +5250,6 @@ void QHPieModelMapper_DisconnectFirstColumnChanged(void* ptr)
 void QHPieModelMapper_FirstColumnChanged(void* ptr)
 {
 	static_cast<QHPieModelMapper*>(ptr)->firstColumnChanged();
-}
-
-int QHPieModelMapper_LabelsRow(void* ptr)
-{
-	return static_cast<QHPieModelMapper*>(ptr)->labelsRow();
 }
 
 void QHPieModelMapper_ConnectLabelsRowChanged(void* ptr)
@@ -3982,19 +5297,34 @@ void QHPieModelMapper_SeriesReplaced(void* ptr)
 	static_cast<QHPieModelMapper*>(ptr)->seriesReplaced();
 }
 
+void QHPieModelMapper_SetColumnCount(void* ptr, int columnCount)
+{
+	static_cast<QHPieModelMapper*>(ptr)->setColumnCount(columnCount);
+}
+
+void QHPieModelMapper_SetFirstColumn(void* ptr, int firstColumn)
+{
+	static_cast<QHPieModelMapper*>(ptr)->setFirstColumn(firstColumn);
+}
+
 void QHPieModelMapper_SetLabelsRow(void* ptr, int labelsRow)
 {
 	static_cast<QHPieModelMapper*>(ptr)->setLabelsRow(labelsRow);
 }
 
+void QHPieModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QHPieModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QHPieModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QHPieModelMapper*>(ptr)->setSeries(static_cast<QPieSeries*>(series));
+}
+
 void QHPieModelMapper_SetValuesRow(void* ptr, int valuesRow)
 {
 	static_cast<QHPieModelMapper*>(ptr)->setValuesRow(valuesRow);
-}
-
-int QHPieModelMapper_ValuesRow(void* ptr)
-{
-	return static_cast<QHPieModelMapper*>(ptr)->valuesRow();
 }
 
 void QHPieModelMapper_ConnectValuesRowChanged(void* ptr)
@@ -4012,6 +5342,36 @@ void QHPieModelMapper_ValuesRowChanged(void* ptr)
 	static_cast<QHPieModelMapper*>(ptr)->valuesRowChanged();
 }
 
+void* QHPieModelMapper_Model(void* ptr)
+{
+	return static_cast<QHPieModelMapper*>(ptr)->model();
+}
+
+void* QHPieModelMapper_Series(void* ptr)
+{
+	return static_cast<QHPieModelMapper*>(ptr)->series();
+}
+
+int QHPieModelMapper_ColumnCount(void* ptr)
+{
+	return static_cast<QHPieModelMapper*>(ptr)->columnCount();
+}
+
+int QHPieModelMapper_FirstColumn(void* ptr)
+{
+	return static_cast<QHPieModelMapper*>(ptr)->firstColumn();
+}
+
+int QHPieModelMapper_LabelsRow(void* ptr)
+{
+	return static_cast<QHPieModelMapper*>(ptr)->labelsRow();
+}
+
+int QHPieModelMapper_ValuesRow(void* ptr)
+{
+	return static_cast<QHPieModelMapper*>(ptr)->valuesRow();
+}
+
 class MyQHXYModelMapper: public QHXYModelMapper
 {
 public:
@@ -4023,66 +5383,6 @@ public:
 	void Signal_XRowChanged() { callbackQHXYModelMapper_XRowChanged(this); };
 	void Signal_YRowChanged() { callbackQHXYModelMapper_YRowChanged(this); };
 };
-
-int QHXYModelMapper_ColumnCount(void* ptr)
-{
-	return static_cast<QHXYModelMapper*>(ptr)->columnCount();
-}
-
-int QHXYModelMapper_FirstColumn(void* ptr)
-{
-	return static_cast<QHXYModelMapper*>(ptr)->firstColumn();
-}
-
-void* QHXYModelMapper_Model(void* ptr)
-{
-	return static_cast<QHXYModelMapper*>(ptr)->model();
-}
-
-void* QHXYModelMapper_Series(void* ptr)
-{
-	return static_cast<QHXYModelMapper*>(ptr)->series();
-}
-
-void QHXYModelMapper_SetColumnCount(void* ptr, int columnCount)
-{
-	static_cast<QHXYModelMapper*>(ptr)->setColumnCount(columnCount);
-}
-
-void QHXYModelMapper_SetFirstColumn(void* ptr, int firstColumn)
-{
-	static_cast<QHXYModelMapper*>(ptr)->setFirstColumn(firstColumn);
-}
-
-void QHXYModelMapper_SetModel(void* ptr, void* model)
-{
-	static_cast<QHXYModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QHXYModelMapper_SetSeries(void* ptr, void* series)
-{
-	static_cast<QHXYModelMapper*>(ptr)->setSeries(static_cast<QXYSeries*>(series));
-}
-
-void QHXYModelMapper_SetXRow(void* ptr, int xRow)
-{
-	static_cast<QHXYModelMapper*>(ptr)->setXRow(xRow);
-}
-
-void QHXYModelMapper_SetYRow(void* ptr, int yRow)
-{
-	static_cast<QHXYModelMapper*>(ptr)->setYRow(yRow);
-}
-
-int QHXYModelMapper_XRow(void* ptr)
-{
-	return static_cast<QHXYModelMapper*>(ptr)->xRow();
-}
-
-int QHXYModelMapper_YRow(void* ptr)
-{
-	return static_cast<QHXYModelMapper*>(ptr)->yRow();
-}
 
 void* QHXYModelMapper_NewQHXYModelMapper(void* parent)
 {
@@ -4149,6 +5449,36 @@ void QHXYModelMapper_SeriesReplaced(void* ptr)
 	static_cast<QHXYModelMapper*>(ptr)->seriesReplaced();
 }
 
+void QHXYModelMapper_SetColumnCount(void* ptr, int columnCount)
+{
+	static_cast<QHXYModelMapper*>(ptr)->setColumnCount(columnCount);
+}
+
+void QHXYModelMapper_SetFirstColumn(void* ptr, int firstColumn)
+{
+	static_cast<QHXYModelMapper*>(ptr)->setFirstColumn(firstColumn);
+}
+
+void QHXYModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QHXYModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QHXYModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QHXYModelMapper*>(ptr)->setSeries(static_cast<QXYSeries*>(series));
+}
+
+void QHXYModelMapper_SetXRow(void* ptr, int xRow)
+{
+	static_cast<QHXYModelMapper*>(ptr)->setXRow(xRow);
+}
+
+void QHXYModelMapper_SetYRow(void* ptr, int yRow)
+{
+	static_cast<QHXYModelMapper*>(ptr)->setYRow(yRow);
+}
+
 void QHXYModelMapper_ConnectXRowChanged(void* ptr)
 {
 	QObject::connect(static_cast<QHXYModelMapper*>(ptr), static_cast<void (QHXYModelMapper::*)()>(&QHXYModelMapper::xRowChanged), static_cast<MyQHXYModelMapper*>(ptr), static_cast<void (MyQHXYModelMapper::*)()>(&MyQHXYModelMapper::Signal_XRowChanged));
@@ -4179,6 +5509,36 @@ void QHXYModelMapper_YRowChanged(void* ptr)
 	static_cast<QHXYModelMapper*>(ptr)->yRowChanged();
 }
 
+void* QHXYModelMapper_Model(void* ptr)
+{
+	return static_cast<QHXYModelMapper*>(ptr)->model();
+}
+
+void* QHXYModelMapper_Series(void* ptr)
+{
+	return static_cast<QHXYModelMapper*>(ptr)->series();
+}
+
+int QHXYModelMapper_ColumnCount(void* ptr)
+{
+	return static_cast<QHXYModelMapper*>(ptr)->columnCount();
+}
+
+int QHXYModelMapper_FirstColumn(void* ptr)
+{
+	return static_cast<QHXYModelMapper*>(ptr)->firstColumn();
+}
+
+int QHXYModelMapper_XRow(void* ptr)
+{
+	return static_cast<QHXYModelMapper*>(ptr)->xRow();
+}
+
+int QHXYModelMapper_YRow(void* ptr)
+{
+	return static_cast<QHXYModelMapper*>(ptr)->yRow();
+}
+
 class MyQHorizontalBarSeries: public QHorizontalBarSeries
 {
 public:
@@ -4191,6 +5551,11 @@ void* QHorizontalBarSeries_NewQHorizontalBarSeries(void* parent)
 	return new MyQHorizontalBarSeries(static_cast<QObject*>(parent));
 }
 
+void QHorizontalBarSeries_DestroyQHorizontalBarSeries(void* ptr)
+{
+	static_cast<QHorizontalBarSeries*>(ptr)->~QHorizontalBarSeries();
+}
+
 long long QHorizontalBarSeries_Type(void* ptr)
 {
 	return static_cast<QHorizontalBarSeries*>(ptr)->type();
@@ -4199,11 +5564,6 @@ long long QHorizontalBarSeries_Type(void* ptr)
 long long QHorizontalBarSeries_TypeDefault(void* ptr)
 {
 	return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::type();
-}
-
-void QHorizontalBarSeries_DestroyQHorizontalBarSeries(void* ptr)
-{
-	static_cast<QHorizontalBarSeries*>(ptr)->~QHorizontalBarSeries();
 }
 
 class MyQHorizontalPercentBarSeries: public QHorizontalPercentBarSeries
@@ -4218,6 +5578,11 @@ void* QHorizontalPercentBarSeries_NewQHorizontalPercentBarSeries(void* parent)
 	return new MyQHorizontalPercentBarSeries(static_cast<QObject*>(parent));
 }
 
+void QHorizontalPercentBarSeries_DestroyQHorizontalPercentBarSeries(void* ptr)
+{
+	static_cast<QHorizontalPercentBarSeries*>(ptr)->~QHorizontalPercentBarSeries();
+}
+
 long long QHorizontalPercentBarSeries_Type(void* ptr)
 {
 	return static_cast<QHorizontalPercentBarSeries*>(ptr)->type();
@@ -4226,11 +5591,6 @@ long long QHorizontalPercentBarSeries_Type(void* ptr)
 long long QHorizontalPercentBarSeries_TypeDefault(void* ptr)
 {
 	return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::type();
-}
-
-void QHorizontalPercentBarSeries_DestroyQHorizontalPercentBarSeries(void* ptr)
-{
-	static_cast<QHorizontalPercentBarSeries*>(ptr)->~QHorizontalPercentBarSeries();
 }
 
 class MyQHorizontalStackedBarSeries: public QHorizontalStackedBarSeries
@@ -4245,6 +5605,11 @@ void* QHorizontalStackedBarSeries_NewQHorizontalStackedBarSeries(void* parent)
 	return new MyQHorizontalStackedBarSeries(static_cast<QObject*>(parent));
 }
 
+void QHorizontalStackedBarSeries_DestroyQHorizontalStackedBarSeries(void* ptr)
+{
+	static_cast<QHorizontalStackedBarSeries*>(ptr)->~QHorizontalStackedBarSeries();
+}
+
 long long QHorizontalStackedBarSeries_Type(void* ptr)
 {
 	return static_cast<QHorizontalStackedBarSeries*>(ptr)->type();
@@ -4253,11 +5618,6 @@ long long QHorizontalStackedBarSeries_Type(void* ptr)
 long long QHorizontalStackedBarSeries_TypeDefault(void* ptr)
 {
 	return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::type();
-}
-
-void QHorizontalStackedBarSeries_DestroyQHorizontalStackedBarSeries(void* ptr)
-{
-	static_cast<QHorizontalStackedBarSeries*>(ptr)->~QHorizontalStackedBarSeries();
 }
 
 class MyQLegend: public QLegend
@@ -4272,11 +5632,6 @@ public:
 	void Signal_ShowToolTipsChanged(bool showToolTips) { callbackQLegend_ShowToolTipsChanged(this, showToolTips); };
 };
 
-long long QLegend_Alignment(void* ptr)
-{
-	return static_cast<QLegend*>(ptr)->alignment();
-}
-
 void* QLegend_BorderColor(void* ptr)
 {
 	return new QColor(static_cast<QLegend*>(ptr)->borderColor());
@@ -4287,49 +5642,14 @@ void* QLegend_Color(void* ptr)
 	return new QColor(static_cast<QLegend*>(ptr)->color());
 }
 
-void* QLegend_Font(void* ptr)
+char QLegend_IsAttachedToChart(void* ptr)
 {
-	return new QFont(static_cast<QLegend*>(ptr)->font());
-}
-
-void* QLegend_LabelColor(void* ptr)
-{
-	return new QColor(static_cast<QLegend*>(ptr)->labelColor());
+	return static_cast<QLegend*>(ptr)->isAttachedToChart();
 }
 
 char QLegend_ReverseMarkers(void* ptr)
 {
 	return static_cast<QLegend*>(ptr)->reverseMarkers();
-}
-
-void QLegend_SetAlignment(void* ptr, long long alignment)
-{
-	static_cast<QLegend*>(ptr)->setAlignment(static_cast<Qt::AlignmentFlag>(alignment));
-}
-
-void QLegend_SetBorderColor(void* ptr, void* color)
-{
-	static_cast<QLegend*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
-}
-
-void QLegend_SetColor(void* ptr, void* color)
-{
-	static_cast<QLegend*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-void QLegend_SetFont(void* ptr, void* font)
-{
-	static_cast<QLegend*>(ptr)->setFont(*static_cast<QFont*>(font));
-}
-
-void QLegend_SetLabelColor(void* ptr, void* color)
-{
-	static_cast<QLegend*>(ptr)->setLabelColor(*static_cast<QColor*>(color));
-}
-
-void QLegend_SetReverseMarkers(void* ptr, char reverseMarkers)
-{
-	static_cast<QLegend*>(ptr)->setReverseMarkers(reverseMarkers != 0);
 }
 
 void QLegend_AttachToChart(void* ptr)
@@ -4367,11 +5687,6 @@ void QLegend_BorderColorChanged(void* ptr, void* color)
 	static_cast<QLegend*>(ptr)->borderColorChanged(*static_cast<QColor*>(color));
 }
 
-void* QLegend_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QLegend*>(ptr)->brush());
-}
-
 void QLegend_ConnectColorChanged(void* ptr)
 {
 	QObject::connect(static_cast<QLegend*>(ptr), static_cast<void (QLegend::*)(QColor)>(&QLegend::colorChanged), static_cast<MyQLegend*>(ptr), static_cast<void (MyQLegend::*)(QColor)>(&MyQLegend::Signal_ColorChanged));
@@ -4407,26 +5722,6 @@ void QLegend_FontChanged(void* ptr, void* font)
 	static_cast<QLegend*>(ptr)->fontChanged(*static_cast<QFont*>(font));
 }
 
-char QLegend_IsBackgroundVisible(void* ptr)
-{
-	return static_cast<QLegend*>(ptr)->isBackgroundVisible();
-}
-
-struct QtCharts_PackedList QLegend_Markers(void* ptr, void* series)
-{
-	return ({ QList<QLegendMarker *>* tmpValue = new QList<QLegendMarker *>(static_cast<QLegend*>(ptr)->markers(static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-char QLegend_IsAttachedToChart(void* ptr)
-{
-	return static_cast<QLegend*>(ptr)->isAttachedToChart();
-}
-
-void* QLegend_LabelBrush(void* ptr)
-{
-	return new QBrush(static_cast<QLegend*>(ptr)->labelBrush());
-}
-
 void QLegend_ConnectLabelColorChanged(void* ptr)
 {
 	QObject::connect(static_cast<QLegend*>(ptr), static_cast<void (QLegend::*)(QColor)>(&QLegend::labelColorChanged), static_cast<MyQLegend*>(ptr), static_cast<void (MyQLegend::*)(QColor)>(&MyQLegend::Signal_LabelColorChanged));
@@ -4440,11 +5735,6 @@ void QLegend_DisconnectLabelColorChanged(void* ptr)
 void QLegend_LabelColorChanged(void* ptr, void* color)
 {
 	static_cast<QLegend*>(ptr)->labelColorChanged(*static_cast<QColor*>(color));
-}
-
-void* QLegend_Pen(void* ptr)
-{
-	return new QPen(static_cast<QLegend*>(ptr)->pen());
 }
 
 void QLegend_ConnectReverseMarkersChanged(void* ptr)
@@ -4462,9 +5752,19 @@ void QLegend_ReverseMarkersChanged(void* ptr, char reverseMarkers)
 	static_cast<QLegend*>(ptr)->reverseMarkersChanged(reverseMarkers != 0);
 }
 
+void QLegend_SetAlignment(void* ptr, long long alignment)
+{
+	static_cast<QLegend*>(ptr)->setAlignment(static_cast<Qt::AlignmentFlag>(alignment));
+}
+
 void QLegend_SetBackgroundVisible(void* ptr, char visible)
 {
 	static_cast<QLegend*>(ptr)->setBackgroundVisible(visible != 0);
+}
+
+void QLegend_SetBorderColor(void* ptr, void* color)
+{
+	static_cast<QLegend*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
 }
 
 void QLegend_SetBrush(void* ptr, void* brush)
@@ -4472,9 +5772,24 @@ void QLegend_SetBrush(void* ptr, void* brush)
 	static_cast<QLegend*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
 }
 
+void QLegend_SetColor(void* ptr, void* color)
+{
+	static_cast<QLegend*>(ptr)->setColor(*static_cast<QColor*>(color));
+}
+
+void QLegend_SetFont(void* ptr, void* font)
+{
+	static_cast<QLegend*>(ptr)->setFont(*static_cast<QFont*>(font));
+}
+
 void QLegend_SetLabelBrush(void* ptr, void* brush)
 {
 	static_cast<QLegend*>(ptr)->setLabelBrush(*static_cast<QBrush*>(brush));
+}
+
+void QLegend_SetLabelColor(void* ptr, void* color)
+{
+	static_cast<QLegend*>(ptr)->setLabelColor(*static_cast<QColor*>(color));
 }
 
 void QLegend_SetPen(void* ptr, void* pen)
@@ -4482,14 +5797,14 @@ void QLegend_SetPen(void* ptr, void* pen)
 	static_cast<QLegend*>(ptr)->setPen(*static_cast<QPen*>(pen));
 }
 
+void QLegend_SetReverseMarkers(void* ptr, char reverseMarkers)
+{
+	static_cast<QLegend*>(ptr)->setReverseMarkers(reverseMarkers != 0);
+}
+
 void QLegend_SetShowToolTips(void* ptr, char show)
 {
 	static_cast<QLegend*>(ptr)->setShowToolTips(show != 0);
-}
-
-char QLegend_ShowToolTips(void* ptr)
-{
-	return static_cast<QLegend*>(ptr)->showToolTips();
 }
 
 void QLegend_ConnectShowToolTipsChanged(void* ptr)
@@ -4512,6 +5827,51 @@ void QLegend_DestroyQLegend(void* ptr)
 	static_cast<QLegend*>(ptr)->~QLegend();
 }
 
+void* QLegend_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QLegend*>(ptr)->brush());
+}
+
+void* QLegend_LabelBrush(void* ptr)
+{
+	return new QBrush(static_cast<QLegend*>(ptr)->labelBrush());
+}
+
+void* QLegend_LabelColor(void* ptr)
+{
+	return new QColor(static_cast<QLegend*>(ptr)->labelColor());
+}
+
+void* QLegend_Font(void* ptr)
+{
+	return new QFont(static_cast<QLegend*>(ptr)->font());
+}
+
+struct QtCharts_PackedList QLegend_Markers(void* ptr, void* series)
+{
+	return ({ QList<QLegendMarker *>* tmpValue = new QList<QLegendMarker *>(static_cast<QLegend*>(ptr)->markers(static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QLegend_Pen(void* ptr)
+{
+	return new QPen(static_cast<QLegend*>(ptr)->pen());
+}
+
+long long QLegend_Alignment(void* ptr)
+{
+	return static_cast<QLegend*>(ptr)->alignment();
+}
+
+char QLegend_IsBackgroundVisible(void* ptr)
+{
+	return static_cast<QLegend*>(ptr)->isBackgroundVisible();
+}
+
+char QLegend_ShowToolTips(void* ptr)
+{
+	return static_cast<QLegend*>(ptr)->showToolTips();
+}
+
 void* QLegend___markers_atList(void* ptr, int i)
 {
 	return const_cast<QLegendMarker*>(static_cast<QList<QLegendMarker *>*>(ptr)->at(i));
@@ -4530,6 +5890,8 @@ void* QLegend___markers_newList(void* ptr)
 class MyQLegendMarker: public QLegendMarker
 {
 public:
+	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQLegendMarker_Type(this)); };
+	QAbstractSeries * series() { return static_cast<QAbstractSeries*>(callbackQLegendMarker_Series(this)); };
 	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
 	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
 	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
@@ -4537,15 +5899,18 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
-	QAbstractSeries * series() { return static_cast<QAbstractSeries*>(callbackQLegendMarker_Series(this)); };
-	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQLegendMarker_Type(this)); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 	 ~MyQLegendMarker() { callbackQLegendMarker_DestroyQLegendMarker(this); };
 };
 
-void* QLegendMarker_Brush(void* ptr)
+long long QLegendMarker_Type(void* ptr)
 {
-	return new QBrush(static_cast<QLegendMarker*>(ptr)->brush());
+	return static_cast<QLegendMarker*>(ptr)->type();
+}
+
+void* QLegendMarker_Series(void* ptr)
+{
+	return static_cast<QLegendMarker*>(ptr)->series();
 }
 
 void QLegendMarker_ConnectBrushChanged(void* ptr)
@@ -4578,11 +5943,6 @@ void QLegendMarker_Clicked(void* ptr)
 	static_cast<QLegendMarker*>(ptr)->clicked();
 }
 
-void* QLegendMarker_Font(void* ptr)
-{
-	return new QFont(static_cast<QLegendMarker*>(ptr)->font());
-}
-
 void QLegendMarker_ConnectFontChanged(void* ptr)
 {
 	QObject::connect(static_cast<QLegendMarker*>(ptr), static_cast<void (QLegendMarker::*)()>(&QLegendMarker::fontChanged), static_cast<MyQLegendMarker*>(ptr), static_cast<void (MyQLegendMarker::*)()>(&MyQLegendMarker::Signal_FontChanged));
@@ -4611,21 +5971,6 @@ void QLegendMarker_DisconnectHovered(void* ptr)
 void QLegendMarker_Hovered(void* ptr, char status)
 {
 	static_cast<QLegendMarker*>(ptr)->hovered(status != 0);
-}
-
-char QLegendMarker_IsVisible(void* ptr)
-{
-	return static_cast<QLegendMarker*>(ptr)->isVisible();
-}
-
-struct QtCharts_PackedString QLegendMarker_Label(void* ptr)
-{
-	return ({ QByteArray t83e390 = static_cast<QLegendMarker*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(t83e390.prepend("WHITESPACE").constData()+10), t83e390.size()-10 }; });
-}
-
-void* QLegendMarker_LabelBrush(void* ptr)
-{
-	return new QBrush(static_cast<QLegendMarker*>(ptr)->labelBrush());
 }
 
 void QLegendMarker_ConnectLabelBrushChanged(void* ptr)
@@ -4658,11 +6003,6 @@ void QLegendMarker_LabelChanged(void* ptr)
 	static_cast<QLegendMarker*>(ptr)->labelChanged();
 }
 
-void* QLegendMarker_Pen(void* ptr)
-{
-	return new QPen(static_cast<QLegendMarker*>(ptr)->pen());
-}
-
 void QLegendMarker_ConnectPenChanged(void* ptr)
 {
 	QObject::connect(static_cast<QLegendMarker*>(ptr), static_cast<void (QLegendMarker::*)()>(&QLegendMarker::penChanged), static_cast<MyQLegendMarker*>(ptr), static_cast<void (MyQLegendMarker::*)()>(&MyQLegendMarker::Signal_PenChanged));
@@ -4676,11 +6016,6 @@ void QLegendMarker_DisconnectPenChanged(void* ptr)
 void QLegendMarker_PenChanged(void* ptr)
 {
 	static_cast<QLegendMarker*>(ptr)->penChanged();
-}
-
-void* QLegendMarker_Series(void* ptr)
-{
-	return static_cast<QLegendMarker*>(ptr)->series();
 }
 
 void QLegendMarker_SetBrush(void* ptr, void* brush)
@@ -4713,11 +6048,6 @@ void QLegendMarker_SetVisible(void* ptr, char visible)
 	static_cast<QLegendMarker*>(ptr)->setVisible(visible != 0);
 }
 
-long long QLegendMarker_Type(void* ptr)
-{
-	return static_cast<QLegendMarker*>(ptr)->type();
-}
-
 void QLegendMarker_ConnectVisibleChanged(void* ptr)
 {
 	QObject::connect(static_cast<QLegendMarker*>(ptr), static_cast<void (QLegendMarker::*)()>(&QLegendMarker::visibleChanged), static_cast<MyQLegendMarker*>(ptr), static_cast<void (MyQLegendMarker::*)()>(&MyQLegendMarker::Signal_VisibleChanged));
@@ -4743,22 +6073,42 @@ void QLegendMarker_DestroyQLegendMarkerDefault(void* ptr)
 
 }
 
+void* QLegendMarker_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QLegendMarker*>(ptr)->brush());
+}
+
+void* QLegendMarker_LabelBrush(void* ptr)
+{
+	return new QBrush(static_cast<QLegendMarker*>(ptr)->labelBrush());
+}
+
+void* QLegendMarker_Font(void* ptr)
+{
+	return new QFont(static_cast<QLegendMarker*>(ptr)->font());
+}
+
+void* QLegendMarker_Pen(void* ptr)
+{
+	return new QPen(static_cast<QLegendMarker*>(ptr)->pen());
+}
+
+struct QtCharts_PackedString QLegendMarker_Label(void* ptr)
+{
+	return ({ QByteArray t83e390 = static_cast<QLegendMarker*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(t83e390.prepend("WHITESPACE").constData()+10), t83e390.size()-10 }; });
+}
+
+char QLegendMarker_IsVisible(void* ptr)
+{
+	return static_cast<QLegendMarker*>(ptr)->isVisible();
+}
+
 class MyQLineSeries: public QLineSeries
 {
 public:
 	MyQLineSeries(QObject *parent) : QLineSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<MyQLineSeries*>(this))); };
 };
-
-long long QLineSeries_Type(void* ptr)
-{
-	return static_cast<QLineSeries*>(ptr)->type();
-}
-
-long long QLineSeries_TypeDefault(void* ptr)
-{
-	return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
-}
 
 void* QLineSeries_NewQLineSeries(void* parent)
 {
@@ -4768,6 +6118,16 @@ void* QLineSeries_NewQLineSeries(void* parent)
 void QLineSeries_DestroyQLineSeries(void* ptr)
 {
 	static_cast<QLineSeries*>(ptr)->~QLineSeries();
+}
+
+long long QLineSeries_Type(void* ptr)
+{
+	return static_cast<QLineSeries*>(ptr)->type();
+}
+
+long long QLineSeries_TypeDefault(void* ptr)
+{
+	return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
 }
 
 class MyQLogValueAxis: public QLogValueAxis
@@ -4780,46 +6140,6 @@ public:
 	void Signal_MinChanged(qreal min) { callbackQLogValueAxis_MinChanged(this, min); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQLogValueAxis_RangeChanged(this, min, max); };
 };
-
-double QLogValueAxis_Base(void* ptr)
-{
-	return static_cast<QLogValueAxis*>(ptr)->base();
-}
-
-struct QtCharts_PackedString QLogValueAxis_LabelFormat(void* ptr)
-{
-	return ({ QByteArray tb0d38b = static_cast<QLogValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(tb0d38b.prepend("WHITESPACE").constData()+10), tb0d38b.size()-10 }; });
-}
-
-double QLogValueAxis_Max(void* ptr)
-{
-	return static_cast<QLogValueAxis*>(ptr)->max();
-}
-
-double QLogValueAxis_Min(void* ptr)
-{
-	return static_cast<QLogValueAxis*>(ptr)->min();
-}
-
-void QLogValueAxis_SetBase(void* ptr, double base)
-{
-	static_cast<QLogValueAxis*>(ptr)->setBase(base);
-}
-
-void QLogValueAxis_SetLabelFormat(void* ptr, char* format)
-{
-	static_cast<QLogValueAxis*>(ptr)->setLabelFormat(QString(format));
-}
-
-void QLogValueAxis_SetMax(void* ptr, double max)
-{
-	static_cast<QLogValueAxis*>(ptr)->setMax(max);
-}
-
-void QLogValueAxis_SetMin(void* ptr, double min)
-{
-	static_cast<QLogValueAxis*>(ptr)->setMin(min);
-}
 
 void* QLogValueAxis_NewQLogValueAxis(void* parent)
 {
@@ -4901,6 +6221,26 @@ void QLogValueAxis_RangeChanged(void* ptr, double min, double max)
 	static_cast<QLogValueAxis*>(ptr)->rangeChanged(min, max);
 }
 
+void QLogValueAxis_SetBase(void* ptr, double base)
+{
+	static_cast<QLogValueAxis*>(ptr)->setBase(base);
+}
+
+void QLogValueAxis_SetLabelFormat(void* ptr, char* format)
+{
+	static_cast<QLogValueAxis*>(ptr)->setLabelFormat(QString(format));
+}
+
+void QLogValueAxis_SetMax(void* ptr, double max)
+{
+	static_cast<QLogValueAxis*>(ptr)->setMax(max);
+}
+
+void QLogValueAxis_SetMin(void* ptr, double min)
+{
+	static_cast<QLogValueAxis*>(ptr)->setMin(min);
+}
+
 void QLogValueAxis_SetRange(void* ptr, double min, double max)
 {
 	static_cast<QLogValueAxis*>(ptr)->setRange(min, max);
@@ -4909,6 +6249,26 @@ void QLogValueAxis_SetRange(void* ptr, double min, double max)
 void QLogValueAxis_DestroyQLogValueAxis(void* ptr)
 {
 	static_cast<QLogValueAxis*>(ptr)->~QLogValueAxis();
+}
+
+struct QtCharts_PackedString QLogValueAxis_LabelFormat(void* ptr)
+{
+	return ({ QByteArray tb0d38b = static_cast<QLogValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(tb0d38b.prepend("WHITESPACE").constData()+10), tb0d38b.size()-10 }; });
+}
+
+double QLogValueAxis_Base(void* ptr)
+{
+	return static_cast<QLogValueAxis*>(ptr)->base();
+}
+
+double QLogValueAxis_Max(void* ptr)
+{
+	return static_cast<QLogValueAxis*>(ptr)->max();
+}
+
+double QLogValueAxis_Min(void* ptr)
+{
+	return static_cast<QLogValueAxis*>(ptr)->min();
 }
 
 class MyQPercentBarSeries: public QPercentBarSeries
@@ -4923,6 +6283,11 @@ void* QPercentBarSeries_NewQPercentBarSeries(void* parent)
 	return new MyQPercentBarSeries(static_cast<QObject*>(parent));
 }
 
+void QPercentBarSeries_DestroyQPercentBarSeries(void* ptr)
+{
+	static_cast<QPercentBarSeries*>(ptr)->~QPercentBarSeries();
+}
+
 long long QPercentBarSeries_Type(void* ptr)
 {
 	return static_cast<QPercentBarSeries*>(ptr)->type();
@@ -4931,11 +6296,6 @@ long long QPercentBarSeries_Type(void* ptr)
 long long QPercentBarSeries_TypeDefault(void* ptr)
 {
 	return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::type();
-}
-
-void QPercentBarSeries_DestroyQPercentBarSeries(void* ptr)
-{
-	static_cast<QPercentBarSeries*>(ptr)->~QPercentBarSeries();
 }
 
 class MyQPieLegendMarker: public QPieLegendMarker
@@ -4983,78 +6343,13 @@ public:
 	void Signal_Released(QPieSlice * slice) { callbackQPieSeries_Released(this, slice); };
 	void Signal_Removed(QList<QPieSlice *> slices) { callbackQPieSeries_Removed(this, ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_SumChanged() { callbackQPieSeries_SumChanged(this); };
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPieSeries_Type(const_cast<MyQPieSeries*>(this))); };
 	 ~MyQPieSeries() { callbackQPieSeries_DestroyQPieSeries(this); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPieSeries_Type(const_cast<MyQPieSeries*>(this))); };
 };
-
-double QPieSeries_HoleSize(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->holeSize();
-}
-
-double QPieSeries_HorizontalPosition(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->horizontalPosition();
-}
-
-double QPieSeries_PieSize(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->pieSize();
-}
-
-double QPieSeries_PieStartAngle(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->pieStartAngle();
-}
-
-void QPieSeries_SetHoleSize(void* ptr, double holeSize)
-{
-	static_cast<QPieSeries*>(ptr)->setHoleSize(holeSize);
-}
-
-void QPieSeries_SetHorizontalPosition(void* ptr, double relativePosition)
-{
-	static_cast<QPieSeries*>(ptr)->setHorizontalPosition(relativePosition);
-}
-
-void QPieSeries_SetPieSize(void* ptr, double relativeSize)
-{
-	static_cast<QPieSeries*>(ptr)->setPieSize(relativeSize);
-}
-
-void QPieSeries_SetPieStartAngle(void* ptr, double startAngle)
-{
-	static_cast<QPieSeries*>(ptr)->setPieStartAngle(startAngle);
-}
-
-void QPieSeries_SetVerticalPosition(void* ptr, double relativePosition)
-{
-	static_cast<QPieSeries*>(ptr)->setVerticalPosition(relativePosition);
-}
-
-double QPieSeries_VerticalPosition(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->verticalPosition();
-}
 
 void* QPieSeries_NewQPieSeries(void* parent)
 {
 	return new MyQPieSeries(static_cast<QObject*>(parent));
-}
-
-void QPieSeries_ConnectAdded(void* ptr)
-{
-	QObject::connect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::added), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Added));
-}
-
-void QPieSeries_DisconnectAdded(void* ptr)
-{
-	QObject::disconnect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::added), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Added));
-}
-
-void QPieSeries_Added(void* ptr, void* slices)
-{
-	static_cast<QPieSeries*>(ptr)->added(*static_cast<QList<QPieSlice *>*>(slices));
 }
 
 void* QPieSeries_Append3(void* ptr, char* label, double value)
@@ -5070,6 +6365,36 @@ char QPieSeries_Append2(void* ptr, void* slices)
 char QPieSeries_Append(void* ptr, void* slice)
 {
 	return static_cast<QPieSeries*>(ptr)->append(static_cast<QPieSlice*>(slice));
+}
+
+char QPieSeries_Insert(void* ptr, int index, void* slice)
+{
+	return static_cast<QPieSeries*>(ptr)->insert(index, static_cast<QPieSlice*>(slice));
+}
+
+char QPieSeries_Remove(void* ptr, void* slice)
+{
+	return static_cast<QPieSeries*>(ptr)->remove(static_cast<QPieSlice*>(slice));
+}
+
+char QPieSeries_Take(void* ptr, void* slice)
+{
+	return static_cast<QPieSeries*>(ptr)->take(static_cast<QPieSlice*>(slice));
+}
+
+void QPieSeries_ConnectAdded(void* ptr)
+{
+	QObject::connect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::added), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Added));
+}
+
+void QPieSeries_DisconnectAdded(void* ptr)
+{
+	QObject::disconnect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::added), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Added));
+}
+
+void QPieSeries_Added(void* ptr, void* slices)
+{
+	static_cast<QPieSeries*>(ptr)->added(*static_cast<QList<QPieSlice *>*>(slices));
 }
 
 void QPieSeries_Clear(void* ptr)
@@ -5090,11 +6415,6 @@ void QPieSeries_DisconnectClicked(void* ptr)
 void QPieSeries_Clicked(void* ptr, void* slice)
 {
 	static_cast<QPieSeries*>(ptr)->clicked(static_cast<QPieSlice*>(slice));
-}
-
-int QPieSeries_Count(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->count();
 }
 
 void QPieSeries_ConnectCountChanged(void* ptr)
@@ -5142,21 +6462,6 @@ void QPieSeries_Hovered(void* ptr, void* slice, char state)
 	static_cast<QPieSeries*>(ptr)->hovered(static_cast<QPieSlice*>(slice), state != 0);
 }
 
-char QPieSeries_Insert(void* ptr, int index, void* slice)
-{
-	return static_cast<QPieSeries*>(ptr)->insert(index, static_cast<QPieSlice*>(slice));
-}
-
-char QPieSeries_IsEmpty(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->isEmpty();
-}
-
-double QPieSeries_PieEndAngle(void* ptr)
-{
-	return static_cast<QPieSeries*>(ptr)->pieEndAngle();
-}
-
 void QPieSeries_ConnectPressed(void* ptr)
 {
 	QObject::connect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QPieSlice *)>(&QPieSeries::pressed), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QPieSlice *)>(&MyQPieSeries::Signal_Pressed));
@@ -5187,11 +6492,6 @@ void QPieSeries_Released(void* ptr, void* slice)
 	static_cast<QPieSeries*>(ptr)->released(static_cast<QPieSlice*>(slice));
 }
 
-char QPieSeries_Remove(void* ptr, void* slice)
-{
-	return static_cast<QPieSeries*>(ptr)->remove(static_cast<QPieSlice*>(slice));
-}
-
 void QPieSeries_ConnectRemoved(void* ptr)
 {
 	QObject::connect(static_cast<QPieSeries*>(ptr), static_cast<void (QPieSeries::*)(QList<QPieSlice *>)>(&QPieSeries::removed), static_cast<MyQPieSeries*>(ptr), static_cast<void (MyQPieSeries::*)(QList<QPieSlice *>)>(&MyQPieSeries::Signal_Removed));
@@ -5205,6 +6505,16 @@ void QPieSeries_DisconnectRemoved(void* ptr)
 void QPieSeries_Removed(void* ptr, void* slices)
 {
 	static_cast<QPieSeries*>(ptr)->removed(*static_cast<QList<QPieSlice *>*>(slices));
+}
+
+void QPieSeries_SetHoleSize(void* ptr, double holeSize)
+{
+	static_cast<QPieSeries*>(ptr)->setHoleSize(holeSize);
+}
+
+void QPieSeries_SetHorizontalPosition(void* ptr, double relativePosition)
+{
+	static_cast<QPieSeries*>(ptr)->setHorizontalPosition(relativePosition);
 }
 
 void QPieSeries_SetLabelsPosition(void* ptr, long long position)
@@ -5222,14 +6532,19 @@ void QPieSeries_SetPieEndAngle(void* ptr, double angle)
 	static_cast<QPieSeries*>(ptr)->setPieEndAngle(angle);
 }
 
-struct QtCharts_PackedList QPieSeries_Slices(void* ptr)
+void QPieSeries_SetPieSize(void* ptr, double relativeSize)
 {
-	return ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(static_cast<QPieSeries*>(ptr)->slices()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+	static_cast<QPieSeries*>(ptr)->setPieSize(relativeSize);
 }
 
-double QPieSeries_Sum(void* ptr)
+void QPieSeries_SetPieStartAngle(void* ptr, double startAngle)
 {
-	return static_cast<QPieSeries*>(ptr)->sum();
+	static_cast<QPieSeries*>(ptr)->setPieStartAngle(startAngle);
+}
+
+void QPieSeries_SetVerticalPosition(void* ptr, double relativePosition)
+{
+	static_cast<QPieSeries*>(ptr)->setVerticalPosition(relativePosition);
 }
 
 void QPieSeries_ConnectSumChanged(void* ptr)
@@ -5247,9 +6562,14 @@ void QPieSeries_SumChanged(void* ptr)
 	static_cast<QPieSeries*>(ptr)->sumChanged();
 }
 
-char QPieSeries_Take(void* ptr, void* slice)
+void QPieSeries_DestroyQPieSeries(void* ptr)
 {
-	return static_cast<QPieSeries*>(ptr)->take(static_cast<QPieSlice*>(slice));
+	static_cast<QPieSeries*>(ptr)->~QPieSeries();
+}
+
+void QPieSeries_DestroyQPieSeriesDefault(void* ptr)
+{
+
 }
 
 long long QPieSeries_Type(void* ptr)
@@ -5262,29 +6582,54 @@ long long QPieSeries_TypeDefault(void* ptr)
 	return static_cast<QPieSeries*>(ptr)->QPieSeries::type();
 }
 
-void QPieSeries_DestroyQPieSeries(void* ptr)
+struct QtCharts_PackedList QPieSeries_Slices(void* ptr)
 {
-	static_cast<QPieSeries*>(ptr)->~QPieSeries();
+	return ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(static_cast<QPieSeries*>(ptr)->slices()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void QPieSeries_DestroyQPieSeriesDefault(void* ptr)
+char QPieSeries_IsEmpty(void* ptr)
 {
-
+	return static_cast<QPieSeries*>(ptr)->isEmpty();
 }
 
-void* QPieSeries___added_slices_atList(void* ptr, int i)
+int QPieSeries_Count(void* ptr)
 {
-	return const_cast<QPieSlice*>(static_cast<QList<QPieSlice *>*>(ptr)->at(i));
+	return static_cast<QPieSeries*>(ptr)->count();
 }
 
-void QPieSeries___added_slices_setList(void* ptr, void* i)
+double QPieSeries_HoleSize(void* ptr)
 {
-	static_cast<QList<QPieSlice *>*>(ptr)->append(static_cast<QPieSlice*>(i));
+	return static_cast<QPieSeries*>(ptr)->holeSize();
 }
 
-void* QPieSeries___added_slices_newList(void* ptr)
+double QPieSeries_HorizontalPosition(void* ptr)
 {
-	return new QList<QPieSlice *>;
+	return static_cast<QPieSeries*>(ptr)->horizontalPosition();
+}
+
+double QPieSeries_PieEndAngle(void* ptr)
+{
+	return static_cast<QPieSeries*>(ptr)->pieEndAngle();
+}
+
+double QPieSeries_PieSize(void* ptr)
+{
+	return static_cast<QPieSeries*>(ptr)->pieSize();
+}
+
+double QPieSeries_PieStartAngle(void* ptr)
+{
+	return static_cast<QPieSeries*>(ptr)->pieStartAngle();
+}
+
+double QPieSeries_Sum(void* ptr)
+{
+	return static_cast<QPieSeries*>(ptr)->sum();
+}
+
+double QPieSeries_VerticalPosition(void* ptr)
+{
+	return static_cast<QPieSeries*>(ptr)->verticalPosition();
 }
 
 void* QPieSeries___append_slices_atList2(void* ptr, int i)
@@ -5298,6 +6643,21 @@ void QPieSeries___append_slices_setList2(void* ptr, void* i)
 }
 
 void* QPieSeries___append_slices_newList2(void* ptr)
+{
+	return new QList<QPieSlice *>;
+}
+
+void* QPieSeries___added_slices_atList(void* ptr, int i)
+{
+	return const_cast<QPieSlice*>(static_cast<QList<QPieSlice *>*>(ptr)->at(i));
+}
+
+void QPieSeries___added_slices_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPieSlice *>*>(ptr)->append(static_cast<QPieSlice*>(i));
+}
+
+void* QPieSeries___added_slices_newList(void* ptr)
 {
 	return new QList<QPieSlice *>;
 }
@@ -5359,9 +6719,9 @@ public:
 	 ~MyQPieSlice() { callbackQPieSlice_DestroyQPieSlice(this); };
 };
 
-double QPieSlice_AngleSpan(void* ptr)
+long long QPieSlice_LabelPosition(void* ptr)
 {
-	return static_cast<QPieSlice*>(ptr)->angleSpan();
+	return static_cast<QPieSlice*>(ptr)->labelPosition();
 }
 
 void* QPieSlice_BorderColor(void* ptr)
@@ -5369,159 +6729,14 @@ void* QPieSlice_BorderColor(void* ptr)
 	return new QColor(static_cast<QPieSlice*>(ptr)->borderColor());
 }
 
-int QPieSlice_BorderWidth(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->borderWidth();
-}
-
-void* QPieSlice_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QPieSlice*>(ptr)->brush());
-}
-
 void* QPieSlice_Color(void* ptr)
 {
 	return new QColor(static_cast<QPieSlice*>(ptr)->color());
 }
 
-double QPieSlice_ExplodeDistanceFactor(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->explodeDistanceFactor();
-}
-
-char QPieSlice_IsExploded(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->isExploded();
-}
-
-char QPieSlice_IsLabelVisible(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->isLabelVisible();
-}
-
-struct QtCharts_PackedString QPieSlice_Label(void* ptr)
-{
-	return ({ QByteArray t7101a7 = static_cast<QPieSlice*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(t7101a7.prepend("WHITESPACE").constData()+10), t7101a7.size()-10 }; });
-}
-
-double QPieSlice_LabelArmLengthFactor(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->labelArmLengthFactor();
-}
-
-void* QPieSlice_LabelBrush(void* ptr)
-{
-	return new QBrush(static_cast<QPieSlice*>(ptr)->labelBrush());
-}
-
 void* QPieSlice_LabelColor(void* ptr)
 {
 	return new QColor(static_cast<QPieSlice*>(ptr)->labelColor());
-}
-
-void* QPieSlice_LabelFont(void* ptr)
-{
-	return new QFont(static_cast<QPieSlice*>(ptr)->labelFont());
-}
-
-long long QPieSlice_LabelPosition(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->labelPosition();
-}
-
-void* QPieSlice_Pen(void* ptr)
-{
-	return new QPen(static_cast<QPieSlice*>(ptr)->pen());
-}
-
-double QPieSlice_Percentage(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->percentage();
-}
-
-void QPieSlice_SetBorderColor(void* ptr, void* color)
-{
-	static_cast<QPieSlice*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
-}
-
-void QPieSlice_SetBorderWidth(void* ptr, int width)
-{
-	static_cast<QPieSlice*>(ptr)->setBorderWidth(width);
-}
-
-void QPieSlice_SetBrush(void* ptr, void* brush)
-{
-	static_cast<QPieSlice*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
-}
-
-void QPieSlice_SetColor(void* ptr, void* color)
-{
-	static_cast<QPieSlice*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-void QPieSlice_SetExplodeDistanceFactor(void* ptr, double factor)
-{
-	static_cast<QPieSlice*>(ptr)->setExplodeDistanceFactor(factor);
-}
-
-void QPieSlice_SetExploded(void* ptr, char exploded)
-{
-	static_cast<QPieSlice*>(ptr)->setExploded(exploded != 0);
-}
-
-void QPieSlice_SetLabel(void* ptr, char* label)
-{
-	static_cast<QPieSlice*>(ptr)->setLabel(QString(label));
-}
-
-void QPieSlice_SetLabelArmLengthFactor(void* ptr, double factor)
-{
-	static_cast<QPieSlice*>(ptr)->setLabelArmLengthFactor(factor);
-}
-
-void QPieSlice_SetLabelBrush(void* ptr, void* brush)
-{
-	static_cast<QPieSlice*>(ptr)->setLabelBrush(*static_cast<QBrush*>(brush));
-}
-
-void QPieSlice_SetLabelColor(void* ptr, void* color)
-{
-	static_cast<QPieSlice*>(ptr)->setLabelColor(*static_cast<QColor*>(color));
-}
-
-void QPieSlice_SetLabelFont(void* ptr, void* font)
-{
-	static_cast<QPieSlice*>(ptr)->setLabelFont(*static_cast<QFont*>(font));
-}
-
-void QPieSlice_SetLabelPosition(void* ptr, long long position)
-{
-	static_cast<QPieSlice*>(ptr)->setLabelPosition(static_cast<QPieSlice::LabelPosition>(position));
-}
-
-void QPieSlice_SetLabelVisible(void* ptr, char visible)
-{
-	static_cast<QPieSlice*>(ptr)->setLabelVisible(visible != 0);
-}
-
-void QPieSlice_SetPen(void* ptr, void* pen)
-{
-	static_cast<QPieSlice*>(ptr)->setPen(*static_cast<QPen*>(pen));
-}
-
-void QPieSlice_SetValue(void* ptr, double value)
-{
-	static_cast<QPieSlice*>(ptr)->setValue(value);
-}
-
-double QPieSlice_StartAngle(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->startAngle();
-}
-
-double QPieSlice_Value(void* ptr)
-{
-	return static_cast<QPieSlice*>(ptr)->value();
 }
 
 void* QPieSlice_NewQPieSlice(void* parent)
@@ -5532,6 +6747,11 @@ void* QPieSlice_NewQPieSlice(void* parent)
 void* QPieSlice_NewQPieSlice2(char* label, double value, void* parent)
 {
 	return new MyQPieSlice(QString(label), value, static_cast<QObject*>(parent));
+}
+
+int QPieSlice_BorderWidth(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->borderWidth();
 }
 
 void QPieSlice_ConnectAngleSpanChanged(void* ptr)
@@ -5789,9 +7009,79 @@ void QPieSlice_Released(void* ptr)
 	static_cast<QPieSlice*>(ptr)->released();
 }
 
-void* QPieSlice_Series(void* ptr)
+void QPieSlice_SetBorderColor(void* ptr, void* color)
 {
-	return static_cast<QPieSlice*>(ptr)->series();
+	static_cast<QPieSlice*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
+}
+
+void QPieSlice_SetBorderWidth(void* ptr, int width)
+{
+	static_cast<QPieSlice*>(ptr)->setBorderWidth(width);
+}
+
+void QPieSlice_SetBrush(void* ptr, void* brush)
+{
+	static_cast<QPieSlice*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
+}
+
+void QPieSlice_SetColor(void* ptr, void* color)
+{
+	static_cast<QPieSlice*>(ptr)->setColor(*static_cast<QColor*>(color));
+}
+
+void QPieSlice_SetExplodeDistanceFactor(void* ptr, double factor)
+{
+	static_cast<QPieSlice*>(ptr)->setExplodeDistanceFactor(factor);
+}
+
+void QPieSlice_SetExploded(void* ptr, char exploded)
+{
+	static_cast<QPieSlice*>(ptr)->setExploded(exploded != 0);
+}
+
+void QPieSlice_SetLabel(void* ptr, char* label)
+{
+	static_cast<QPieSlice*>(ptr)->setLabel(QString(label));
+}
+
+void QPieSlice_SetLabelArmLengthFactor(void* ptr, double factor)
+{
+	static_cast<QPieSlice*>(ptr)->setLabelArmLengthFactor(factor);
+}
+
+void QPieSlice_SetLabelBrush(void* ptr, void* brush)
+{
+	static_cast<QPieSlice*>(ptr)->setLabelBrush(*static_cast<QBrush*>(brush));
+}
+
+void QPieSlice_SetLabelColor(void* ptr, void* color)
+{
+	static_cast<QPieSlice*>(ptr)->setLabelColor(*static_cast<QColor*>(color));
+}
+
+void QPieSlice_SetLabelFont(void* ptr, void* font)
+{
+	static_cast<QPieSlice*>(ptr)->setLabelFont(*static_cast<QFont*>(font));
+}
+
+void QPieSlice_SetLabelPosition(void* ptr, long long position)
+{
+	static_cast<QPieSlice*>(ptr)->setLabelPosition(static_cast<QPieSlice::LabelPosition>(position));
+}
+
+void QPieSlice_SetLabelVisible(void* ptr, char visible)
+{
+	static_cast<QPieSlice*>(ptr)->setLabelVisible(visible != 0);
+}
+
+void QPieSlice_SetPen(void* ptr, void* pen)
+{
+	static_cast<QPieSlice*>(ptr)->setPen(*static_cast<QPen*>(pen));
+}
+
+void QPieSlice_SetValue(void* ptr, double value)
+{
+	static_cast<QPieSlice*>(ptr)->setValue(value);
 }
 
 void QPieSlice_ConnectStartAngleChanged(void* ptr)
@@ -5834,6 +7124,81 @@ void QPieSlice_DestroyQPieSliceDefault(void* ptr)
 
 }
 
+void* QPieSlice_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QPieSlice*>(ptr)->brush());
+}
+
+void* QPieSlice_LabelBrush(void* ptr)
+{
+	return new QBrush(static_cast<QPieSlice*>(ptr)->labelBrush());
+}
+
+void* QPieSlice_LabelFont(void* ptr)
+{
+	return new QFont(static_cast<QPieSlice*>(ptr)->labelFont());
+}
+
+void* QPieSlice_Pen(void* ptr)
+{
+	return new QPen(static_cast<QPieSlice*>(ptr)->pen());
+}
+
+void* QPieSlice_Series(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->series();
+}
+
+struct QtCharts_PackedString QPieSlice_Label(void* ptr)
+{
+	return ({ QByteArray t7101a7 = static_cast<QPieSlice*>(ptr)->label().toUtf8(); QtCharts_PackedString { const_cast<char*>(t7101a7.prepend("WHITESPACE").constData()+10), t7101a7.size()-10 }; });
+}
+
+char QPieSlice_IsExploded(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->isExploded();
+}
+
+char QPieSlice_IsLabelVisible(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->isLabelVisible();
+}
+
+double QPieSlice_AngleSpan(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->angleSpan();
+}
+
+double QPieSlice_ExplodeDistanceFactor(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->explodeDistanceFactor();
+}
+
+double QPieSlice_LabelArmLengthFactor(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->labelArmLengthFactor();
+}
+
+double QPieSlice_Percentage(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->percentage();
+}
+
+double QPieSlice_StartAngle(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->startAngle();
+}
+
+double QPieSlice_Value(void* ptr)
+{
+	return static_cast<QPieSlice*>(ptr)->value();
+}
+
+long long QPolarChart_QPolarChart_AxisPolarOrientation(void* axis)
+{
+	return QPolarChart::axisPolarOrientation(static_cast<QAbstractAxis*>(axis));
+}
+
 void* QPolarChart_NewQPolarChart(void* parent, long long wFlags)
 {
 	return new QPolarChart(static_cast<QGraphicsItem*>(parent), static_cast<Qt::WindowType>(wFlags));
@@ -5844,19 +7209,14 @@ void QPolarChart_AddAxis(void* ptr, void* axis, long long polarOrientation)
 	static_cast<QPolarChart*>(ptr)->addAxis(static_cast<QAbstractAxis*>(axis), static_cast<QPolarChart::PolarOrientation>(polarOrientation));
 }
 
-struct QtCharts_PackedList QPolarChart_Axes(void* ptr, long long polarOrientation, void* series)
-{
-	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QPolarChart*>(ptr)->axes(static_cast<QPolarChart::PolarOrientation>(polarOrientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-long long QPolarChart_QPolarChart_AxisPolarOrientation(void* axis)
-{
-	return QPolarChart::axisPolarOrientation(static_cast<QAbstractAxis*>(axis));
-}
-
 void QPolarChart_DestroyQPolarChart(void* ptr)
 {
 	static_cast<QPolarChart*>(ptr)->~QPolarChart();
+}
+
+struct QtCharts_PackedList QPolarChart_Axes(void* ptr, long long polarOrientation, void* series)
+{
+	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QPolarChart*>(ptr)->axes(static_cast<QPolarChart::PolarOrientation>(polarOrientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QPolarChart___axes_atList(void* ptr, int i)
@@ -5878,80 +7238,20 @@ class MyQScatterSeries: public QScatterSeries
 {
 public:
 	MyQScatterSeries(QObject *parent) : QScatterSeries(parent) {};
-	QColor color() const { return *static_cast<QColor*>(callbackQScatterSeries_Color(const_cast<MyQScatterSeries*>(this))); };
-	void setColor(const QColor & color) { callbackQScatterSeries_SetColor(this, const_cast<QColor*>(&color)); };
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQScatterSeries_Type(const_cast<MyQScatterSeries*>(this))); };
 	void Signal_BorderColorChanged(QColor color) { callbackQScatterSeries_BorderColorChanged(this, new QColor(color)); };
 	void Signal_ColorChanged(QColor color) { callbackQScatterSeries_ColorChanged(this, new QColor(color)); };
 	void Signal_MarkerShapeChanged(QScatterSeries::MarkerShape shape) { callbackQScatterSeries_MarkerShapeChanged(this, shape); };
 	void Signal_MarkerSizeChanged(qreal size) { callbackQScatterSeries_MarkerSizeChanged(this, size); };
 	void setBrush(const QBrush & brush) { callbackQScatterSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
+	void setColor(const QColor & color) { callbackQScatterSeries_SetColor(this, const_cast<QColor*>(&color)); };
 	void setPen(const QPen & pen) { callbackQScatterSeries_SetPen(this, const_cast<QPen*>(&pen)); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQScatterSeries_Type(const_cast<MyQScatterSeries*>(this))); };
+	QColor color() const { return *static_cast<QColor*>(callbackQScatterSeries_Color(const_cast<MyQScatterSeries*>(this))); };
 };
 
 void* QScatterSeries_BorderColor(void* ptr)
 {
 	return new QColor(static_cast<QScatterSeries*>(ptr)->borderColor());
-}
-
-void* QScatterSeries_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QScatterSeries*>(ptr)->brush());
-}
-
-void* QScatterSeries_Color(void* ptr)
-{
-	return new QColor(static_cast<QScatterSeries*>(ptr)->color());
-}
-
-void* QScatterSeries_ColorDefault(void* ptr)
-{
-	return new QColor(static_cast<QScatterSeries*>(ptr)->QScatterSeries::color());
-}
-
-long long QScatterSeries_MarkerShape(void* ptr)
-{
-	return static_cast<QScatterSeries*>(ptr)->markerShape();
-}
-
-double QScatterSeries_MarkerSize(void* ptr)
-{
-	return static_cast<QScatterSeries*>(ptr)->markerSize();
-}
-
-void QScatterSeries_SetBorderColor(void* ptr, void* color)
-{
-	static_cast<QScatterSeries*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
-}
-
-void QScatterSeries_SetColor(void* ptr, void* color)
-{
-	static_cast<QScatterSeries*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-void QScatterSeries_SetColorDefault(void* ptr, void* color)
-{
-	static_cast<QScatterSeries*>(ptr)->QScatterSeries::setColor(*static_cast<QColor*>(color));
-}
-
-void QScatterSeries_SetMarkerShape(void* ptr, long long shape)
-{
-	static_cast<QScatterSeries*>(ptr)->setMarkerShape(static_cast<QScatterSeries::MarkerShape>(shape));
-}
-
-void QScatterSeries_SetMarkerSize(void* ptr, double size)
-{
-	static_cast<QScatterSeries*>(ptr)->setMarkerSize(size);
-}
-
-long long QScatterSeries_Type(void* ptr)
-{
-	return static_cast<QScatterSeries*>(ptr)->type();
-}
-
-long long QScatterSeries_TypeDefault(void* ptr)
-{
-	return static_cast<QScatterSeries*>(ptr)->QScatterSeries::type();
 }
 
 void* QScatterSeries_NewQScatterSeries(void* parent)
@@ -6019,6 +7319,11 @@ void QScatterSeries_MarkerSizeChanged(void* ptr, double size)
 	static_cast<QScatterSeries*>(ptr)->markerSizeChanged(size);
 }
 
+void QScatterSeries_SetBorderColor(void* ptr, void* color)
+{
+	static_cast<QScatterSeries*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
+}
+
 void QScatterSeries_SetBrush(void* ptr, void* brush)
 {
 	static_cast<QScatterSeries*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
@@ -6027,6 +7332,26 @@ void QScatterSeries_SetBrush(void* ptr, void* brush)
 void QScatterSeries_SetBrushDefault(void* ptr, void* brush)
 {
 	static_cast<QScatterSeries*>(ptr)->QScatterSeries::setBrush(*static_cast<QBrush*>(brush));
+}
+
+void QScatterSeries_SetColor(void* ptr, void* color)
+{
+	static_cast<QScatterSeries*>(ptr)->setColor(*static_cast<QColor*>(color));
+}
+
+void QScatterSeries_SetColorDefault(void* ptr, void* color)
+{
+	static_cast<QScatterSeries*>(ptr)->QScatterSeries::setColor(*static_cast<QColor*>(color));
+}
+
+void QScatterSeries_SetMarkerShape(void* ptr, long long shape)
+{
+	static_cast<QScatterSeries*>(ptr)->setMarkerShape(static_cast<QScatterSeries::MarkerShape>(shape));
+}
+
+void QScatterSeries_SetMarkerSize(void* ptr, double size)
+{
+	static_cast<QScatterSeries*>(ptr)->setMarkerSize(size);
 }
 
 void QScatterSeries_SetPen(void* ptr, void* pen)
@@ -6044,22 +7369,47 @@ void QScatterSeries_DestroyQScatterSeries(void* ptr)
 	static_cast<QScatterSeries*>(ptr)->~QScatterSeries();
 }
 
+long long QScatterSeries_MarkerShape(void* ptr)
+{
+	return static_cast<QScatterSeries*>(ptr)->markerShape();
+}
+
+long long QScatterSeries_Type(void* ptr)
+{
+	return static_cast<QScatterSeries*>(ptr)->type();
+}
+
+long long QScatterSeries_TypeDefault(void* ptr)
+{
+	return static_cast<QScatterSeries*>(ptr)->QScatterSeries::type();
+}
+
+void* QScatterSeries_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QScatterSeries*>(ptr)->brush());
+}
+
+void* QScatterSeries_Color(void* ptr)
+{
+	return new QColor(static_cast<QScatterSeries*>(ptr)->color());
+}
+
+void* QScatterSeries_ColorDefault(void* ptr)
+{
+	return new QColor(static_cast<QScatterSeries*>(ptr)->QScatterSeries::color());
+}
+
+double QScatterSeries_MarkerSize(void* ptr)
+{
+	return static_cast<QScatterSeries*>(ptr)->markerSize();
+}
+
 class MyQSplineSeries: public QSplineSeries
 {
 public:
 	MyQSplineSeries(QObject *parent) : QSplineSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQSplineSeries_Type(const_cast<MyQSplineSeries*>(this))); };
 };
-
-long long QSplineSeries_Type(void* ptr)
-{
-	return static_cast<QSplineSeries*>(ptr)->type();
-}
-
-long long QSplineSeries_TypeDefault(void* ptr)
-{
-	return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
-}
 
 void* QSplineSeries_NewQSplineSeries(void* parent)
 {
@@ -6069,6 +7419,16 @@ void* QSplineSeries_NewQSplineSeries(void* parent)
 void QSplineSeries_DestroyQSplineSeries(void* ptr)
 {
 	static_cast<QSplineSeries*>(ptr)->~QSplineSeries();
+}
+
+long long QSplineSeries_Type(void* ptr)
+{
+	return static_cast<QSplineSeries*>(ptr)->type();
+}
+
+long long QSplineSeries_TypeDefault(void* ptr)
+{
+	return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
 }
 
 class MyQStackedBarSeries: public QStackedBarSeries
@@ -6083,6 +7443,11 @@ void* QStackedBarSeries_NewQStackedBarSeries(void* parent)
 	return new MyQStackedBarSeries(static_cast<QObject*>(parent));
 }
 
+void QStackedBarSeries_DestroyQStackedBarSeries(void* ptr)
+{
+	static_cast<QStackedBarSeries*>(ptr)->~QStackedBarSeries();
+}
+
 long long QStackedBarSeries_Type(void* ptr)
 {
 	return static_cast<QStackedBarSeries*>(ptr)->type();
@@ -6091,11 +7456,6 @@ long long QStackedBarSeries_Type(void* ptr)
 long long QStackedBarSeries_TypeDefault(void* ptr)
 {
 	return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::type();
-}
-
-void QStackedBarSeries_DestroyQStackedBarSeries(void* ptr)
-{
-	static_cast<QStackedBarSeries*>(ptr)->~QStackedBarSeries();
 }
 
 class MyQVBarModelMapper: public QVBarModelMapper
@@ -6109,66 +7469,6 @@ public:
 	void Signal_RowCountChanged() { callbackQVBarModelMapper_RowCountChanged(this); };
 	void Signal_SeriesReplaced() { callbackQVBarModelMapper_SeriesReplaced(this); };
 };
-
-int QVBarModelMapper_FirstBarSetColumn(void* ptr)
-{
-	return static_cast<QVBarModelMapper*>(ptr)->firstBarSetColumn();
-}
-
-int QVBarModelMapper_FirstRow(void* ptr)
-{
-	return static_cast<QVBarModelMapper*>(ptr)->firstRow();
-}
-
-int QVBarModelMapper_LastBarSetColumn(void* ptr)
-{
-	return static_cast<QVBarModelMapper*>(ptr)->lastBarSetColumn();
-}
-
-void* QVBarModelMapper_Model(void* ptr)
-{
-	return static_cast<QVBarModelMapper*>(ptr)->model();
-}
-
-int QVBarModelMapper_RowCount(void* ptr)
-{
-	return static_cast<QVBarModelMapper*>(ptr)->rowCount();
-}
-
-void* QVBarModelMapper_Series(void* ptr)
-{
-	return static_cast<QVBarModelMapper*>(ptr)->series();
-}
-
-void QVBarModelMapper_SetFirstBarSetColumn(void* ptr, int firstBarSetColumn)
-{
-	static_cast<QVBarModelMapper*>(ptr)->setFirstBarSetColumn(firstBarSetColumn);
-}
-
-void QVBarModelMapper_SetFirstRow(void* ptr, int firstRow)
-{
-	static_cast<QVBarModelMapper*>(ptr)->setFirstRow(firstRow);
-}
-
-void QVBarModelMapper_SetLastBarSetColumn(void* ptr, int lastBarSetColumn)
-{
-	static_cast<QVBarModelMapper*>(ptr)->setLastBarSetColumn(lastBarSetColumn);
-}
-
-void QVBarModelMapper_SetModel(void* ptr, void* model)
-{
-	static_cast<QVBarModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QVBarModelMapper_SetRowCount(void* ptr, int rowCount)
-{
-	static_cast<QVBarModelMapper*>(ptr)->setRowCount(rowCount);
-}
-
-void QVBarModelMapper_SetSeries(void* ptr, void* series)
-{
-	static_cast<QVBarModelMapper*>(ptr)->setSeries(static_cast<QAbstractBarSeries*>(series));
-}
 
 void* QVBarModelMapper_NewQVBarModelMapper(void* parent)
 {
@@ -6265,6 +7565,66 @@ void QVBarModelMapper_SeriesReplaced(void* ptr)
 	static_cast<QVBarModelMapper*>(ptr)->seriesReplaced();
 }
 
+void QVBarModelMapper_SetFirstBarSetColumn(void* ptr, int firstBarSetColumn)
+{
+	static_cast<QVBarModelMapper*>(ptr)->setFirstBarSetColumn(firstBarSetColumn);
+}
+
+void QVBarModelMapper_SetFirstRow(void* ptr, int firstRow)
+{
+	static_cast<QVBarModelMapper*>(ptr)->setFirstRow(firstRow);
+}
+
+void QVBarModelMapper_SetLastBarSetColumn(void* ptr, int lastBarSetColumn)
+{
+	static_cast<QVBarModelMapper*>(ptr)->setLastBarSetColumn(lastBarSetColumn);
+}
+
+void QVBarModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QVBarModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QVBarModelMapper_SetRowCount(void* ptr, int rowCount)
+{
+	static_cast<QVBarModelMapper*>(ptr)->setRowCount(rowCount);
+}
+
+void QVBarModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QVBarModelMapper*>(ptr)->setSeries(static_cast<QAbstractBarSeries*>(series));
+}
+
+void* QVBarModelMapper_Series(void* ptr)
+{
+	return static_cast<QVBarModelMapper*>(ptr)->series();
+}
+
+void* QVBarModelMapper_Model(void* ptr)
+{
+	return static_cast<QVBarModelMapper*>(ptr)->model();
+}
+
+int QVBarModelMapper_FirstBarSetColumn(void* ptr)
+{
+	return static_cast<QVBarModelMapper*>(ptr)->firstBarSetColumn();
+}
+
+int QVBarModelMapper_FirstRow(void* ptr)
+{
+	return static_cast<QVBarModelMapper*>(ptr)->firstRow();
+}
+
+int QVBarModelMapper_LastBarSetColumn(void* ptr)
+{
+	return static_cast<QVBarModelMapper*>(ptr)->lastBarSetColumn();
+}
+
+int QVBarModelMapper_RowCount(void* ptr)
+{
+	return static_cast<QVBarModelMapper*>(ptr)->rowCount();
+}
+
 class MyQVBoxPlotModelMapper: public QVBoxPlotModelMapper
 {
 public:
@@ -6276,66 +7636,6 @@ public:
 	void Signal_RowCountChanged() { callbackQVBoxPlotModelMapper_RowCountChanged(this); };
 	void Signal_SeriesReplaced() { callbackQVBoxPlotModelMapper_SeriesReplaced(this); };
 };
-
-int QVBoxPlotModelMapper_FirstBoxSetColumn(void* ptr)
-{
-	return static_cast<QVBoxPlotModelMapper*>(ptr)->firstBoxSetColumn();
-}
-
-int QVBoxPlotModelMapper_FirstRow(void* ptr)
-{
-	return static_cast<QVBoxPlotModelMapper*>(ptr)->firstRow();
-}
-
-int QVBoxPlotModelMapper_LastBoxSetColumn(void* ptr)
-{
-	return static_cast<QVBoxPlotModelMapper*>(ptr)->lastBoxSetColumn();
-}
-
-void* QVBoxPlotModelMapper_Model(void* ptr)
-{
-	return static_cast<QVBoxPlotModelMapper*>(ptr)->model();
-}
-
-int QVBoxPlotModelMapper_RowCount(void* ptr)
-{
-	return static_cast<QVBoxPlotModelMapper*>(ptr)->rowCount();
-}
-
-void* QVBoxPlotModelMapper_Series(void* ptr)
-{
-	return static_cast<QVBoxPlotModelMapper*>(ptr)->series();
-}
-
-void QVBoxPlotModelMapper_SetFirstBoxSetColumn(void* ptr, int firstBoxSetColumn)
-{
-	static_cast<QVBoxPlotModelMapper*>(ptr)->setFirstBoxSetColumn(firstBoxSetColumn);
-}
-
-void QVBoxPlotModelMapper_SetFirstRow(void* ptr, int firstRow)
-{
-	static_cast<QVBoxPlotModelMapper*>(ptr)->setFirstRow(firstRow);
-}
-
-void QVBoxPlotModelMapper_SetLastBoxSetColumn(void* ptr, int lastBoxSetColumn)
-{
-	static_cast<QVBoxPlotModelMapper*>(ptr)->setLastBoxSetColumn(lastBoxSetColumn);
-}
-
-void QVBoxPlotModelMapper_SetModel(void* ptr, void* model)
-{
-	static_cast<QVBoxPlotModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QVBoxPlotModelMapper_SetRowCount(void* ptr, int rowCount)
-{
-	static_cast<QVBoxPlotModelMapper*>(ptr)->setRowCount(rowCount);
-}
-
-void QVBoxPlotModelMapper_SetSeries(void* ptr, void* series)
-{
-	static_cast<QVBoxPlotModelMapper*>(ptr)->setSeries(static_cast<QBoxPlotSeries*>(series));
-}
 
 void* QVBoxPlotModelMapper_NewQVBoxPlotModelMapper(void* parent)
 {
@@ -6432,6 +7732,270 @@ void QVBoxPlotModelMapper_SeriesReplaced(void* ptr)
 	static_cast<QVBoxPlotModelMapper*>(ptr)->seriesReplaced();
 }
 
+void QVBoxPlotModelMapper_SetFirstBoxSetColumn(void* ptr, int firstBoxSetColumn)
+{
+	static_cast<QVBoxPlotModelMapper*>(ptr)->setFirstBoxSetColumn(firstBoxSetColumn);
+}
+
+void QVBoxPlotModelMapper_SetFirstRow(void* ptr, int firstRow)
+{
+	static_cast<QVBoxPlotModelMapper*>(ptr)->setFirstRow(firstRow);
+}
+
+void QVBoxPlotModelMapper_SetLastBoxSetColumn(void* ptr, int lastBoxSetColumn)
+{
+	static_cast<QVBoxPlotModelMapper*>(ptr)->setLastBoxSetColumn(lastBoxSetColumn);
+}
+
+void QVBoxPlotModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QVBoxPlotModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QVBoxPlotModelMapper_SetRowCount(void* ptr, int rowCount)
+{
+	static_cast<QVBoxPlotModelMapper*>(ptr)->setRowCount(rowCount);
+}
+
+void QVBoxPlotModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QVBoxPlotModelMapper*>(ptr)->setSeries(static_cast<QBoxPlotSeries*>(series));
+}
+
+void* QVBoxPlotModelMapper_Model(void* ptr)
+{
+	return static_cast<QVBoxPlotModelMapper*>(ptr)->model();
+}
+
+void* QVBoxPlotModelMapper_Series(void* ptr)
+{
+	return static_cast<QVBoxPlotModelMapper*>(ptr)->series();
+}
+
+int QVBoxPlotModelMapper_FirstBoxSetColumn(void* ptr)
+{
+	return static_cast<QVBoxPlotModelMapper*>(ptr)->firstBoxSetColumn();
+}
+
+int QVBoxPlotModelMapper_FirstRow(void* ptr)
+{
+	return static_cast<QVBoxPlotModelMapper*>(ptr)->firstRow();
+}
+
+int QVBoxPlotModelMapper_LastBoxSetColumn(void* ptr)
+{
+	return static_cast<QVBoxPlotModelMapper*>(ptr)->lastBoxSetColumn();
+}
+
+int QVBoxPlotModelMapper_RowCount(void* ptr)
+{
+	return static_cast<QVBoxPlotModelMapper*>(ptr)->rowCount();
+}
+
+class MyQVCandlestickModelMapper: public QVCandlestickModelMapper
+{
+public:
+	MyQVCandlestickModelMapper(QObject *parent) : QVCandlestickModelMapper(parent) {};
+	void Signal_CloseRowChanged() { callbackQVCandlestickModelMapper_CloseRowChanged(this); };
+	void Signal_FirstSetColumnChanged() { callbackQVCandlestickModelMapper_FirstSetColumnChanged(this); };
+	void Signal_HighRowChanged() { callbackQVCandlestickModelMapper_HighRowChanged(this); };
+	void Signal_LastSetColumnChanged() { callbackQVCandlestickModelMapper_LastSetColumnChanged(this); };
+	void Signal_LowRowChanged() { callbackQVCandlestickModelMapper_LowRowChanged(this); };
+	void Signal_OpenRowChanged() { callbackQVCandlestickModelMapper_OpenRowChanged(this); };
+	void Signal_TimestampRowChanged() { callbackQVCandlestickModelMapper_TimestampRowChanged(this); };
+	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQVCandlestickModelMapper_Orientation(const_cast<MyQVCandlestickModelMapper*>(this))); };
+};
+
+void* QVCandlestickModelMapper_NewQVCandlestickModelMapper(void* parent)
+{
+	return new MyQVCandlestickModelMapper(static_cast<QObject*>(parent));
+}
+
+void QVCandlestickModelMapper_ConnectCloseRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::closeRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_CloseRowChanged));
+}
+
+void QVCandlestickModelMapper_DisconnectCloseRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::closeRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_CloseRowChanged));
+}
+
+void QVCandlestickModelMapper_CloseRowChanged(void* ptr)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->closeRowChanged();
+}
+
+void QVCandlestickModelMapper_ConnectFirstSetColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::firstSetColumnChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_FirstSetColumnChanged));
+}
+
+void QVCandlestickModelMapper_DisconnectFirstSetColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::firstSetColumnChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_FirstSetColumnChanged));
+}
+
+void QVCandlestickModelMapper_FirstSetColumnChanged(void* ptr)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->firstSetColumnChanged();
+}
+
+void QVCandlestickModelMapper_ConnectHighRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::highRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_HighRowChanged));
+}
+
+void QVCandlestickModelMapper_DisconnectHighRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::highRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_HighRowChanged));
+}
+
+void QVCandlestickModelMapper_HighRowChanged(void* ptr)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->highRowChanged();
+}
+
+void QVCandlestickModelMapper_ConnectLastSetColumnChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::lastSetColumnChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_LastSetColumnChanged));
+}
+
+void QVCandlestickModelMapper_DisconnectLastSetColumnChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::lastSetColumnChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_LastSetColumnChanged));
+}
+
+void QVCandlestickModelMapper_LastSetColumnChanged(void* ptr)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->lastSetColumnChanged();
+}
+
+void QVCandlestickModelMapper_ConnectLowRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::lowRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_LowRowChanged));
+}
+
+void QVCandlestickModelMapper_DisconnectLowRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::lowRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_LowRowChanged));
+}
+
+void QVCandlestickModelMapper_LowRowChanged(void* ptr)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->lowRowChanged();
+}
+
+void QVCandlestickModelMapper_ConnectOpenRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::openRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_OpenRowChanged));
+}
+
+void QVCandlestickModelMapper_DisconnectOpenRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::openRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_OpenRowChanged));
+}
+
+void QVCandlestickModelMapper_OpenRowChanged(void* ptr)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->openRowChanged();
+}
+
+void QVCandlestickModelMapper_SetCloseRow(void* ptr, int closeRow)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->setCloseRow(closeRow);
+}
+
+void QVCandlestickModelMapper_SetFirstSetColumn(void* ptr, int firstSetColumn)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->setFirstSetColumn(firstSetColumn);
+}
+
+void QVCandlestickModelMapper_SetHighRow(void* ptr, int highRow)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->setHighRow(highRow);
+}
+
+void QVCandlestickModelMapper_SetLastSetColumn(void* ptr, int lastSetColumn)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->setLastSetColumn(lastSetColumn);
+}
+
+void QVCandlestickModelMapper_SetLowRow(void* ptr, int lowRow)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->setLowRow(lowRow);
+}
+
+void QVCandlestickModelMapper_SetOpenRow(void* ptr, int openRow)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->setOpenRow(openRow);
+}
+
+void QVCandlestickModelMapper_SetTimestampRow(void* ptr, int timestampRow)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->setTimestampRow(timestampRow);
+}
+
+void QVCandlestickModelMapper_ConnectTimestampRowChanged(void* ptr)
+{
+	QObject::connect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::timestampRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_TimestampRowChanged));
+}
+
+void QVCandlestickModelMapper_DisconnectTimestampRowChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QVCandlestickModelMapper*>(ptr), static_cast<void (QVCandlestickModelMapper::*)()>(&QVCandlestickModelMapper::timestampRowChanged), static_cast<MyQVCandlestickModelMapper*>(ptr), static_cast<void (MyQVCandlestickModelMapper::*)()>(&MyQVCandlestickModelMapper::Signal_TimestampRowChanged));
+}
+
+void QVCandlestickModelMapper_TimestampRowChanged(void* ptr)
+{
+	static_cast<QVCandlestickModelMapper*>(ptr)->timestampRowChanged();
+}
+
+long long QVCandlestickModelMapper_Orientation(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->orientation();
+}
+
+long long QVCandlestickModelMapper_OrientationDefault(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::orientation();
+}
+
+int QVCandlestickModelMapper_CloseRow(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->closeRow();
+}
+
+int QVCandlestickModelMapper_FirstSetColumn(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->firstSetColumn();
+}
+
+int QVCandlestickModelMapper_HighRow(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->highRow();
+}
+
+int QVCandlestickModelMapper_LastSetColumn(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->lastSetColumn();
+}
+
+int QVCandlestickModelMapper_LowRow(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->lowRow();
+}
+
+int QVCandlestickModelMapper_OpenRow(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->openRow();
+}
+
+int QVCandlestickModelMapper_TimestampRow(void* ptr)
+{
+	return static_cast<QVCandlestickModelMapper*>(ptr)->timestampRow();
+}
+
 class MyQVPieModelMapper: public QVPieModelMapper
 {
 public:
@@ -6443,46 +8007,6 @@ public:
 	void Signal_SeriesReplaced() { callbackQVPieModelMapper_SeriesReplaced(this); };
 	void Signal_ValuesColumnChanged() { callbackQVPieModelMapper_ValuesColumnChanged(this); };
 };
-
-int QVPieModelMapper_FirstRow(void* ptr)
-{
-	return static_cast<QVPieModelMapper*>(ptr)->firstRow();
-}
-
-void* QVPieModelMapper_Model(void* ptr)
-{
-	return static_cast<QVPieModelMapper*>(ptr)->model();
-}
-
-int QVPieModelMapper_RowCount(void* ptr)
-{
-	return static_cast<QVPieModelMapper*>(ptr)->rowCount();
-}
-
-void* QVPieModelMapper_Series(void* ptr)
-{
-	return static_cast<QVPieModelMapper*>(ptr)->series();
-}
-
-void QVPieModelMapper_SetFirstRow(void* ptr, int firstRow)
-{
-	static_cast<QVPieModelMapper*>(ptr)->setFirstRow(firstRow);
-}
-
-void QVPieModelMapper_SetModel(void* ptr, void* model)
-{
-	static_cast<QVPieModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QVPieModelMapper_SetRowCount(void* ptr, int rowCount)
-{
-	static_cast<QVPieModelMapper*>(ptr)->setRowCount(rowCount);
-}
-
-void QVPieModelMapper_SetSeries(void* ptr, void* series)
-{
-	static_cast<QVPieModelMapper*>(ptr)->setSeries(static_cast<QPieSeries*>(series));
-}
 
 void* QVPieModelMapper_NewQVPieModelMapper(void* parent)
 {
@@ -6502,11 +8026,6 @@ void QVPieModelMapper_DisconnectFirstRowChanged(void* ptr)
 void QVPieModelMapper_FirstRowChanged(void* ptr)
 {
 	static_cast<QVPieModelMapper*>(ptr)->firstRowChanged();
-}
-
-int QVPieModelMapper_LabelsColumn(void* ptr)
-{
-	return static_cast<QVPieModelMapper*>(ptr)->labelsColumn();
 }
 
 void QVPieModelMapper_ConnectLabelsColumnChanged(void* ptr)
@@ -6569,19 +8088,34 @@ void QVPieModelMapper_SeriesReplaced(void* ptr)
 	static_cast<QVPieModelMapper*>(ptr)->seriesReplaced();
 }
 
+void QVPieModelMapper_SetFirstRow(void* ptr, int firstRow)
+{
+	static_cast<QVPieModelMapper*>(ptr)->setFirstRow(firstRow);
+}
+
 void QVPieModelMapper_SetLabelsColumn(void* ptr, int labelsColumn)
 {
 	static_cast<QVPieModelMapper*>(ptr)->setLabelsColumn(labelsColumn);
 }
 
+void QVPieModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QVPieModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QVPieModelMapper_SetRowCount(void* ptr, int rowCount)
+{
+	static_cast<QVPieModelMapper*>(ptr)->setRowCount(rowCount);
+}
+
+void QVPieModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QVPieModelMapper*>(ptr)->setSeries(static_cast<QPieSeries*>(series));
+}
+
 void QVPieModelMapper_SetValuesColumn(void* ptr, int valuesColumn)
 {
 	static_cast<QVPieModelMapper*>(ptr)->setValuesColumn(valuesColumn);
-}
-
-int QVPieModelMapper_ValuesColumn(void* ptr)
-{
-	return static_cast<QVPieModelMapper*>(ptr)->valuesColumn();
 }
 
 void QVPieModelMapper_ConnectValuesColumnChanged(void* ptr)
@@ -6599,6 +8133,36 @@ void QVPieModelMapper_ValuesColumnChanged(void* ptr)
 	static_cast<QVPieModelMapper*>(ptr)->valuesColumnChanged();
 }
 
+void* QVPieModelMapper_Model(void* ptr)
+{
+	return static_cast<QVPieModelMapper*>(ptr)->model();
+}
+
+void* QVPieModelMapper_Series(void* ptr)
+{
+	return static_cast<QVPieModelMapper*>(ptr)->series();
+}
+
+int QVPieModelMapper_FirstRow(void* ptr)
+{
+	return static_cast<QVPieModelMapper*>(ptr)->firstRow();
+}
+
+int QVPieModelMapper_LabelsColumn(void* ptr)
+{
+	return static_cast<QVPieModelMapper*>(ptr)->labelsColumn();
+}
+
+int QVPieModelMapper_RowCount(void* ptr)
+{
+	return static_cast<QVPieModelMapper*>(ptr)->rowCount();
+}
+
+int QVPieModelMapper_ValuesColumn(void* ptr)
+{
+	return static_cast<QVPieModelMapper*>(ptr)->valuesColumn();
+}
+
 class MyQVXYModelMapper: public QVXYModelMapper
 {
 public:
@@ -6610,66 +8174,6 @@ public:
 	void Signal_XColumnChanged() { callbackQVXYModelMapper_XColumnChanged(this); };
 	void Signal_YColumnChanged() { callbackQVXYModelMapper_YColumnChanged(this); };
 };
-
-int QVXYModelMapper_FirstRow(void* ptr)
-{
-	return static_cast<QVXYModelMapper*>(ptr)->firstRow();
-}
-
-void* QVXYModelMapper_Model(void* ptr)
-{
-	return static_cast<QVXYModelMapper*>(ptr)->model();
-}
-
-int QVXYModelMapper_RowCount(void* ptr)
-{
-	return static_cast<QVXYModelMapper*>(ptr)->rowCount();
-}
-
-void* QVXYModelMapper_Series(void* ptr)
-{
-	return static_cast<QVXYModelMapper*>(ptr)->series();
-}
-
-void QVXYModelMapper_SetFirstRow(void* ptr, int firstRow)
-{
-	static_cast<QVXYModelMapper*>(ptr)->setFirstRow(firstRow);
-}
-
-void QVXYModelMapper_SetModel(void* ptr, void* model)
-{
-	static_cast<QVXYModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QVXYModelMapper_SetRowCount(void* ptr, int rowCount)
-{
-	static_cast<QVXYModelMapper*>(ptr)->setRowCount(rowCount);
-}
-
-void QVXYModelMapper_SetSeries(void* ptr, void* series)
-{
-	static_cast<QVXYModelMapper*>(ptr)->setSeries(static_cast<QXYSeries*>(series));
-}
-
-void QVXYModelMapper_SetXColumn(void* ptr, int xColumn)
-{
-	static_cast<QVXYModelMapper*>(ptr)->setXColumn(xColumn);
-}
-
-void QVXYModelMapper_SetYColumn(void* ptr, int yColumn)
-{
-	static_cast<QVXYModelMapper*>(ptr)->setYColumn(yColumn);
-}
-
-int QVXYModelMapper_XColumn(void* ptr)
-{
-	return static_cast<QVXYModelMapper*>(ptr)->xColumn();
-}
-
-int QVXYModelMapper_YColumn(void* ptr)
-{
-	return static_cast<QVXYModelMapper*>(ptr)->yColumn();
-}
 
 void* QVXYModelMapper_NewQVXYModelMapper(void* parent)
 {
@@ -6736,6 +8240,36 @@ void QVXYModelMapper_SeriesReplaced(void* ptr)
 	static_cast<QVXYModelMapper*>(ptr)->seriesReplaced();
 }
 
+void QVXYModelMapper_SetFirstRow(void* ptr, int firstRow)
+{
+	static_cast<QVXYModelMapper*>(ptr)->setFirstRow(firstRow);
+}
+
+void QVXYModelMapper_SetModel(void* ptr, void* model)
+{
+	static_cast<QVXYModelMapper*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
+}
+
+void QVXYModelMapper_SetRowCount(void* ptr, int rowCount)
+{
+	static_cast<QVXYModelMapper*>(ptr)->setRowCount(rowCount);
+}
+
+void QVXYModelMapper_SetSeries(void* ptr, void* series)
+{
+	static_cast<QVXYModelMapper*>(ptr)->setSeries(static_cast<QXYSeries*>(series));
+}
+
+void QVXYModelMapper_SetXColumn(void* ptr, int xColumn)
+{
+	static_cast<QVXYModelMapper*>(ptr)->setXColumn(xColumn);
+}
+
+void QVXYModelMapper_SetYColumn(void* ptr, int yColumn)
+{
+	static_cast<QVXYModelMapper*>(ptr)->setYColumn(yColumn);
+}
+
 void QVXYModelMapper_ConnectXColumnChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVXYModelMapper*>(ptr), static_cast<void (QVXYModelMapper::*)()>(&QVXYModelMapper::xColumnChanged), static_cast<MyQVXYModelMapper*>(ptr), static_cast<void (MyQVXYModelMapper::*)()>(&MyQVXYModelMapper::Signal_XColumnChanged));
@@ -6766,6 +8300,36 @@ void QVXYModelMapper_YColumnChanged(void* ptr)
 	static_cast<QVXYModelMapper*>(ptr)->yColumnChanged();
 }
 
+void* QVXYModelMapper_Model(void* ptr)
+{
+	return static_cast<QVXYModelMapper*>(ptr)->model();
+}
+
+void* QVXYModelMapper_Series(void* ptr)
+{
+	return static_cast<QVXYModelMapper*>(ptr)->series();
+}
+
+int QVXYModelMapper_FirstRow(void* ptr)
+{
+	return static_cast<QVXYModelMapper*>(ptr)->firstRow();
+}
+
+int QVXYModelMapper_RowCount(void* ptr)
+{
+	return static_cast<QVXYModelMapper*>(ptr)->rowCount();
+}
+
+int QVXYModelMapper_XColumn(void* ptr)
+{
+	return static_cast<QVXYModelMapper*>(ptr)->xColumn();
+}
+
+int QVXYModelMapper_YColumn(void* ptr)
+{
+	return static_cast<QVXYModelMapper*>(ptr)->yColumn();
+}
+
 class MyQValueAxis: public QValueAxis
 {
 public:
@@ -6778,56 +8342,6 @@ public:
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQValueAxis_RangeChanged(this, min, max); };
 	void Signal_TickCountChanged(int tickCount) { callbackQValueAxis_TickCountChanged(this, tickCount); };
 };
-
-struct QtCharts_PackedString QValueAxis_LabelFormat(void* ptr)
-{
-	return ({ QByteArray t607f3e = static_cast<QValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t607f3e.prepend("WHITESPACE").constData()+10), t607f3e.size()-10 }; });
-}
-
-double QValueAxis_Max(void* ptr)
-{
-	return static_cast<QValueAxis*>(ptr)->max();
-}
-
-double QValueAxis_Min(void* ptr)
-{
-	return static_cast<QValueAxis*>(ptr)->min();
-}
-
-int QValueAxis_MinorTickCount(void* ptr)
-{
-	return static_cast<QValueAxis*>(ptr)->minorTickCount();
-}
-
-void QValueAxis_SetLabelFormat(void* ptr, char* format)
-{
-	static_cast<QValueAxis*>(ptr)->setLabelFormat(QString(format));
-}
-
-void QValueAxis_SetMax(void* ptr, double max)
-{
-	static_cast<QValueAxis*>(ptr)->setMax(max);
-}
-
-void QValueAxis_SetMin(void* ptr, double min)
-{
-	static_cast<QValueAxis*>(ptr)->setMin(min);
-}
-
-void QValueAxis_SetMinorTickCount(void* ptr, int count)
-{
-	static_cast<QValueAxis*>(ptr)->setMinorTickCount(count);
-}
-
-void QValueAxis_SetTickCount(void* ptr, int count)
-{
-	static_cast<QValueAxis*>(ptr)->setTickCount(count);
-}
-
-int QValueAxis_TickCount(void* ptr)
-{
-	return static_cast<QValueAxis*>(ptr)->tickCount();
-}
 
 void* QValueAxis_NewQValueAxis(void* parent)
 {
@@ -6919,9 +8433,34 @@ void QValueAxis_RangeChanged(void* ptr, double min, double max)
 	static_cast<QValueAxis*>(ptr)->rangeChanged(min, max);
 }
 
+void QValueAxis_SetLabelFormat(void* ptr, char* format)
+{
+	static_cast<QValueAxis*>(ptr)->setLabelFormat(QString(format));
+}
+
+void QValueAxis_SetMax(void* ptr, double max)
+{
+	static_cast<QValueAxis*>(ptr)->setMax(max);
+}
+
+void QValueAxis_SetMin(void* ptr, double min)
+{
+	static_cast<QValueAxis*>(ptr)->setMin(min);
+}
+
+void QValueAxis_SetMinorTickCount(void* ptr, int count)
+{
+	static_cast<QValueAxis*>(ptr)->setMinorTickCount(count);
+}
+
 void QValueAxis_SetRange(void* ptr, double min, double max)
 {
 	static_cast<QValueAxis*>(ptr)->setRange(min, max);
+}
+
+void QValueAxis_SetTickCount(void* ptr, int count)
+{
+	static_cast<QValueAxis*>(ptr)->setTickCount(count);
 }
 
 void QValueAxis_ConnectTickCountChanged(void* ptr)
@@ -6942,6 +8481,31 @@ void QValueAxis_TickCountChanged(void* ptr, int tickCount)
 void QValueAxis_DestroyQValueAxis(void* ptr)
 {
 	static_cast<QValueAxis*>(ptr)->~QValueAxis();
+}
+
+struct QtCharts_PackedString QValueAxis_LabelFormat(void* ptr)
+{
+	return ({ QByteArray t607f3e = static_cast<QValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t607f3e.prepend("WHITESPACE").constData()+10), t607f3e.size()-10 }; });
+}
+
+int QValueAxis_MinorTickCount(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->minorTickCount();
+}
+
+int QValueAxis_TickCount(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->tickCount();
+}
+
+double QValueAxis_Max(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->max();
+}
+
+double QValueAxis_Min(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->min();
 }
 
 class MyQXYLegendMarker: public QXYLegendMarker
@@ -6974,8 +8538,6 @@ void QXYLegendMarker_DestroyQXYLegendMarkerDefault(void* ptr)
 class MyQXYSeries: public QXYSeries
 {
 public:
-	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<MyQXYSeries*>(this))); };
-	void setColor(const QColor & color) { callbackQXYSeries_SetColor(this, const_cast<QColor*>(&color)); };
 	void Signal_Clicked(const QPointF & point) { callbackQXYSeries_Clicked(this, const_cast<QPointF*>(&point)); };
 	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
 	void Signal_DoubleClicked(const QPointF & point) { callbackQXYSeries_DoubleClicked(this, const_cast<QPointF*>(&point)); };
@@ -6994,98 +8556,10 @@ public:
 	void Signal_Pressed(const QPointF & point) { callbackQXYSeries_Pressed(this, const_cast<QPointF*>(&point)); };
 	void Signal_Released(const QPointF & point) { callbackQXYSeries_Released(this, const_cast<QPointF*>(&point)); };
 	void setBrush(const QBrush & brush) { callbackQXYSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
+	void setColor(const QColor & color) { callbackQXYSeries_SetColor(this, const_cast<QColor*>(&color)); };
 	void setPen(const QPen & pen) { callbackQXYSeries_SetPen(this, const_cast<QPen*>(&pen)); };
+	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<MyQXYSeries*>(this))); };
 };
-
-void* QXYSeries_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QXYSeries*>(ptr)->brush());
-}
-
-void* QXYSeries_Color(void* ptr)
-{
-	return new QColor(static_cast<QXYSeries*>(ptr)->color());
-}
-
-void* QXYSeries_ColorDefault(void* ptr)
-{
-	return new QColor(static_cast<QXYSeries*>(ptr)->QXYSeries::color());
-}
-
-void* QXYSeries_Pen(void* ptr)
-{
-	return new QPen(static_cast<QXYSeries*>(ptr)->pen());
-}
-
-char QXYSeries_PointLabelsClipping(void* ptr)
-{
-	return static_cast<QXYSeries*>(ptr)->pointLabelsClipping();
-}
-
-void* QXYSeries_PointLabelsColor(void* ptr)
-{
-	return new QColor(static_cast<QXYSeries*>(ptr)->pointLabelsColor());
-}
-
-void* QXYSeries_PointLabelsFont(void* ptr)
-{
-	return new QFont(static_cast<QXYSeries*>(ptr)->pointLabelsFont());
-}
-
-struct QtCharts_PackedString QXYSeries_PointLabelsFormat(void* ptr)
-{
-	return ({ QByteArray t00fe8f = static_cast<QXYSeries*>(ptr)->pointLabelsFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t00fe8f.prepend("WHITESPACE").constData()+10), t00fe8f.size()-10 }; });
-}
-
-char QXYSeries_PointLabelsVisible(void* ptr)
-{
-	return static_cast<QXYSeries*>(ptr)->pointLabelsVisible();
-}
-
-char QXYSeries_PointsVisible(void* ptr)
-{
-	return static_cast<QXYSeries*>(ptr)->pointsVisible();
-}
-
-void QXYSeries_SetColor(void* ptr, void* color)
-{
-	static_cast<QXYSeries*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-void QXYSeries_SetColorDefault(void* ptr, void* color)
-{
-	static_cast<QXYSeries*>(ptr)->QXYSeries::setColor(*static_cast<QColor*>(color));
-}
-
-void QXYSeries_SetPointLabelsClipping(void* ptr, char enabled)
-{
-	static_cast<QXYSeries*>(ptr)->setPointLabelsClipping(enabled != 0);
-}
-
-void QXYSeries_SetPointLabelsColor(void* ptr, void* color)
-{
-	static_cast<QXYSeries*>(ptr)->setPointLabelsColor(*static_cast<QColor*>(color));
-}
-
-void QXYSeries_SetPointLabelsFont(void* ptr, void* font)
-{
-	static_cast<QXYSeries*>(ptr)->setPointLabelsFont(*static_cast<QFont*>(font));
-}
-
-void QXYSeries_SetPointLabelsFormat(void* ptr, char* format)
-{
-	static_cast<QXYSeries*>(ptr)->setPointLabelsFormat(QString(format));
-}
-
-void QXYSeries_SetPointLabelsVisible(void* ptr, char visible)
-{
-	static_cast<QXYSeries*>(ptr)->setPointLabelsVisible(visible != 0);
-}
-
-void QXYSeries_SetPointsVisible(void* ptr, char visible)
-{
-	static_cast<QXYSeries*>(ptr)->setPointsVisible(visible != 0);
-}
 
 void QXYSeries_Append3(void* ptr, void* points)
 {
@@ -7100,11 +8574,6 @@ void QXYSeries_Append2(void* ptr, void* point)
 void QXYSeries_Append(void* ptr, double x, double y)
 {
 	static_cast<QXYSeries*>(ptr)->append(x, y);
-}
-
-void* QXYSeries_At(void* ptr, int index)
-{
-	return const_cast<QPointF*>(&static_cast<QXYSeries*>(ptr)->at(index));
 }
 
 void QXYSeries_Clear(void* ptr)
@@ -7140,11 +8609,6 @@ void QXYSeries_DisconnectColorChanged(void* ptr)
 void QXYSeries_ColorChanged(void* ptr, void* color)
 {
 	static_cast<QXYSeries*>(ptr)->colorChanged(*static_cast<QColor*>(color));
-}
-
-int QXYSeries_Count(void* ptr)
-{
-	return static_cast<QXYSeries*>(ptr)->count();
 }
 
 void QXYSeries_ConnectDoubleClicked(void* ptr)
@@ -7317,11 +8781,6 @@ void QXYSeries_PointReplaced(void* ptr, int index)
 	static_cast<QXYSeries*>(ptr)->pointReplaced(index);
 }
 
-struct QtCharts_PackedList QXYSeries_Points(void* ptr)
-{
-	return ({ QList<QPointF>* tmpValue = new QList<QPointF>(static_cast<QXYSeries*>(ptr)->points()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
-}
-
 void QXYSeries_ConnectPointsRemoved(void* ptr)
 {
 	QObject::connect(static_cast<QXYSeries*>(ptr), static_cast<void (QXYSeries::*)(int, int)>(&QXYSeries::pointsRemoved), static_cast<MyQXYSeries*>(ptr), static_cast<void (MyQXYSeries::*)(int, int)>(&MyQXYSeries::Signal_PointsRemoved));
@@ -7350,11 +8809,6 @@ void QXYSeries_DisconnectPointsReplaced(void* ptr)
 void QXYSeries_PointsReplaced(void* ptr)
 {
 	static_cast<QXYSeries*>(ptr)->pointsReplaced();
-}
-
-struct QtCharts_PackedList QXYSeries_PointsVector(void* ptr)
-{
-	return ({ QVector<QPointF>* tmpValue = new QVector<QPointF>(static_cast<QXYSeries*>(ptr)->pointsVector()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QXYSeries_ConnectPressed(void* ptr)
@@ -7447,6 +8901,16 @@ void QXYSeries_SetBrushDefault(void* ptr, void* brush)
 	static_cast<QXYSeries*>(ptr)->QXYSeries::setBrush(*static_cast<QBrush*>(brush));
 }
 
+void QXYSeries_SetColor(void* ptr, void* color)
+{
+	static_cast<QXYSeries*>(ptr)->setColor(*static_cast<QColor*>(color));
+}
+
+void QXYSeries_SetColorDefault(void* ptr, void* color)
+{
+	static_cast<QXYSeries*>(ptr)->QXYSeries::setColor(*static_cast<QColor*>(color));
+}
+
 void QXYSeries_SetPen(void* ptr, void* pen)
 {
 	static_cast<QXYSeries*>(ptr)->setPen(*static_cast<QPen*>(pen));
@@ -7457,9 +8921,109 @@ void QXYSeries_SetPenDefault(void* ptr, void* pen)
 	static_cast<QXYSeries*>(ptr)->QXYSeries::setPen(*static_cast<QPen*>(pen));
 }
 
+void QXYSeries_SetPointLabelsClipping(void* ptr, char enabled)
+{
+	static_cast<QXYSeries*>(ptr)->setPointLabelsClipping(enabled != 0);
+}
+
+void QXYSeries_SetPointLabelsColor(void* ptr, void* color)
+{
+	static_cast<QXYSeries*>(ptr)->setPointLabelsColor(*static_cast<QColor*>(color));
+}
+
+void QXYSeries_SetPointLabelsFont(void* ptr, void* font)
+{
+	static_cast<QXYSeries*>(ptr)->setPointLabelsFont(*static_cast<QFont*>(font));
+}
+
+void QXYSeries_SetPointLabelsFormat(void* ptr, char* format)
+{
+	static_cast<QXYSeries*>(ptr)->setPointLabelsFormat(QString(format));
+}
+
+void QXYSeries_SetPointLabelsVisible(void* ptr, char visible)
+{
+	static_cast<QXYSeries*>(ptr)->setPointLabelsVisible(visible != 0);
+}
+
+void QXYSeries_SetPointsVisible(void* ptr, char visible)
+{
+	static_cast<QXYSeries*>(ptr)->setPointsVisible(visible != 0);
+}
+
 void QXYSeries_DestroyQXYSeries(void* ptr)
 {
 	static_cast<QXYSeries*>(ptr)->~QXYSeries();
+}
+
+void* QXYSeries_Brush(void* ptr)
+{
+	return new QBrush(static_cast<QXYSeries*>(ptr)->brush());
+}
+
+void* QXYSeries_Color(void* ptr)
+{
+	return new QColor(static_cast<QXYSeries*>(ptr)->color());
+}
+
+void* QXYSeries_ColorDefault(void* ptr)
+{
+	return new QColor(static_cast<QXYSeries*>(ptr)->QXYSeries::color());
+}
+
+void* QXYSeries_PointLabelsColor(void* ptr)
+{
+	return new QColor(static_cast<QXYSeries*>(ptr)->pointLabelsColor());
+}
+
+void* QXYSeries_PointLabelsFont(void* ptr)
+{
+	return new QFont(static_cast<QXYSeries*>(ptr)->pointLabelsFont());
+}
+
+struct QtCharts_PackedList QXYSeries_Points(void* ptr)
+{
+	return ({ QList<QPointF>* tmpValue = new QList<QPointF>(static_cast<QXYSeries*>(ptr)->points()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QXYSeries_Pen(void* ptr)
+{
+	return new QPen(static_cast<QXYSeries*>(ptr)->pen());
+}
+
+struct QtCharts_PackedString QXYSeries_PointLabelsFormat(void* ptr)
+{
+	return ({ QByteArray t00fe8f = static_cast<QXYSeries*>(ptr)->pointLabelsFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t00fe8f.prepend("WHITESPACE").constData()+10), t00fe8f.size()-10 }; });
+}
+
+struct QtCharts_PackedList QXYSeries_PointsVector(void* ptr)
+{
+	return ({ QVector<QPointF>* tmpValue = new QVector<QPointF>(static_cast<QXYSeries*>(ptr)->pointsVector()); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QXYSeries_PointLabelsClipping(void* ptr)
+{
+	return static_cast<QXYSeries*>(ptr)->pointLabelsClipping();
+}
+
+char QXYSeries_PointLabelsVisible(void* ptr)
+{
+	return static_cast<QXYSeries*>(ptr)->pointLabelsVisible();
+}
+
+char QXYSeries_PointsVisible(void* ptr)
+{
+	return static_cast<QXYSeries*>(ptr)->pointsVisible();
+}
+
+void* QXYSeries_At(void* ptr, int index)
+{
+	return const_cast<QPointF*>(&static_cast<QXYSeries*>(ptr)->at(index));
+}
+
+int QXYSeries_Count(void* ptr)
+{
+	return static_cast<QXYSeries*>(ptr)->count();
 }
 
 void* QXYSeries___append_points_atList3(void* ptr, int i)
@@ -7475,36 +9039,6 @@ void QXYSeries___append_points_setList3(void* ptr, void* i)
 void* QXYSeries___append_points_newList3(void* ptr)
 {
 	return new QList<QPointF>;
-}
-
-void* QXYSeries___points_atList(void* ptr, int i)
-{
-	return ({ QPointF tmpValue = static_cast<QList<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
-}
-
-void QXYSeries___points_setList(void* ptr, void* i)
-{
-	static_cast<QList<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
-}
-
-void* QXYSeries___points_newList(void* ptr)
-{
-	return new QList<QPointF>;
-}
-
-void* QXYSeries___pointsVector_atList(void* ptr, int i)
-{
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
-}
-
-void QXYSeries___pointsVector_setList(void* ptr, void* i)
-{
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
-}
-
-void* QXYSeries___pointsVector_newList(void* ptr)
-{
-	return new QVector<QPointF>;
 }
 
 void* QXYSeries___replace_points_atList5(void* ptr, int i)
@@ -7533,6 +9067,36 @@ void QXYSeries___replace_points_setList6(void* ptr, void* i)
 }
 
 void* QXYSeries___replace_points_newList6(void* ptr)
+{
+	return new QVector<QPointF>;
+}
+
+void* QXYSeries___points_atList(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QList<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QXYSeries___points_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QXYSeries___points_newList(void* ptr)
+{
+	return new QList<QPointF>;
+}
+
+void* QXYSeries___pointsVector_atList(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QXYSeries___pointsVector_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QXYSeries___pointsVector_newList(void* ptr)
 {
 	return new QVector<QPointF>;
 }

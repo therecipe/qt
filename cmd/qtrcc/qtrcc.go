@@ -61,6 +61,6 @@ func main() {
 	if buildDocker {
 		cmd.Docker([]string{"qtrcc", "-debug"}, "linux", appPath)
 	} else {
-		rcc.Rcc(appPath, output_dir)
+		rcc.Rcc(appPath, "undefined", output_dir) //TODO: allow buildTarget specification
 	}
 }

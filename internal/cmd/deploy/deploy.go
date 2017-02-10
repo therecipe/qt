@@ -67,8 +67,6 @@ func Deploy(s *State) {
 		}
 	}
 
-	depPath += "_minimal"
-
 	switch buildMode {
 	case "build", "test":
 		{
@@ -102,12 +100,12 @@ func Deploy(s *State) {
 				if env_output_dir := os.Getenv("QTRCC_OUTPUT_DIR"); env_output_dir != "" {
 					qtrcc_output = &env_output_dir
 				}
-				rcc.Rcc(qtrcc_cwd, qtrcc_output)
+				rcc.Rcc(qtrcc_cwd, buildTarget, qtrcc_output)
 				utils.Log.Debug("qtrcc - done")
 
 				//moc
 				utils.Log.Debug("qtmoc - start")
-				moc.MocTree(appPath)
+				moc.MocTree(appPath, buildTarget)
 
 				parser.State.Moc = false
 				parser.State.Module = ""
@@ -190,8 +188,8 @@ func build() {
 						"CGO_ENABLED":  "1",
 						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
 						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
-						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
+						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
+						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
 					}
 				}
 
@@ -212,8 +210,8 @@ func build() {
 						"CGO_ENABLED":  "1",
 						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
 						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
-						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
+						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
+						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
 					}
 				}
 			}
@@ -327,7 +325,7 @@ func build() {
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-as", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/as")
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-ld", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/ld")
 
-				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
+				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)), "-o", "deploy/"+buildTarget+"/harbour-"+appName)
 				if errBuild != nil {
 					cleanup()
 					utils.Log.WithError(errBuild).Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
@@ -337,7 +335,7 @@ func build() {
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/armv7hl-meego-linux-gnueabi-as", "/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/as")
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/armv7hl-meego-linux-gnueabi-ld", "/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/ld")
 
-				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", fmt.Sprintf("-installsuffix=%v", buildTarget), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
+				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", fmt.Sprintf("-installsuffix=%v", buildTarget), "-o", "deploy/"+buildTarget+"/harbour-"+appName)
 				if errBuild != nil {
 					cleanup()
 					utils.Log.WithError(errBuild).Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
@@ -623,12 +621,12 @@ func predeploy() {
 				utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), depPath), fmt.Sprintf("copy assets for %v on %v", buildTarget, runtime.GOOS))
 			}
 
-			var errClean = sshCommand("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", buildTarget+"_minimal")
+			var errClean = sshCommand("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", buildTarget)
 			if errClean != nil {
 				utils.Log.WithError(errClean).Errorf("failed to cleanup for %v on %v", buildTarget, runtime.GOOS)
 			}
 
-			var errCopy = sshCommand("2222", "mersdk", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", buildTarget+"_minimal", "/home/mersdk")
+			var errCopy = sshCommand("2222", "mersdk", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", buildTarget, "/home/mersdk")
 			if errCopy != nil {
 				cleanup()
 				utils.Log.WithError(errClean).Panicf("failed to copy project for %v on %v", buildTarget, runtime.GOOS)
@@ -878,13 +876,13 @@ func deployInternal() {
 	case "sailfish", "sailfish-emulator":
 		{
 			if buildTarget == "sailfish-emulator" {
-				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal", "&&", "mb2", "-t", "SailfishOS-i486", "build")
+				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget, "&&", "mb2", "-t", "SailfishOS-i486", "build")
 				if errDeploy != nil {
 					cleanup()
 					utils.Log.WithError(errDeploy).Errorf("failed to deploy for %v on %v", buildTarget, runtime.GOOS)
 				}
 			} else {
-				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal", "&&", "mb2", "-t", "SailfishOS-armv7hl", "build")
+				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget, "&&", "mb2", "-t", "SailfishOS-armv7hl", "build")
 				if errDeploy != nil {
 					cleanup()
 					utils.Log.WithError(errDeploy).Errorf("failed to deploy for %v on %v", buildTarget, runtime.GOOS)
@@ -945,7 +943,7 @@ func pastdeploy() {
 
 	case "sailfish", "sailfish-emulator":
 		{
-			var errPastDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1))
+			var errPastDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1))
 			if errPastDeploy != nil {
 				cleanup()
 				utils.Log.WithError(errPastDeploy).Panicf("failed to receive project for %v on %v", buildTarget, runtime.GOOS)
@@ -1505,10 +1503,10 @@ Q_IMPORT_PLUGIN(AudioCaptureServicePlugin)
 Q_IMPORT_PLUGIN(CoreAudioPlugin)
 Q_IMPORT_PLUGIN(QM3uPlaylistPlugin)
 //Q_IMPORT_PLUGIN(ContextPlugin)
-Q_IMPORT_PLUGIN(QDDSPlugin)
+//Q_IMPORT_PLUGIN(QDDSPlugin)
 Q_IMPORT_PLUGIN(QICNSPlugin)
 Q_IMPORT_PLUGIN(QICOPlugin)
-//Q_IMPORT_PLUGIN(QMacJp2Plugin)
+Q_IMPORT_PLUGIN(QMacJp2Plugin)
 Q_IMPORT_PLUGIN(QTgaPlugin)
 Q_IMPORT_PLUGIN(QTiffPlugin)
 Q_IMPORT_PLUGIN(QWbmpPlugin)

@@ -59,7 +59,7 @@ func main() {
 		cmd.Docker([]string{"qtmoc", "-debug"}, "linux", appPath)
 	} else {
 		utils.Log.WithFields(fields).Debug("Running...")
-		if err = moc.MocTree(appPath); err != nil {
+		if err = moc.MocTree(appPath, "undefined"); err != nil { //TODO: allow buildTarget specification
 			fmt.Println(err.Error())
 			os.Exit(1)
 		}

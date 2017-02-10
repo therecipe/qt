@@ -16,8 +16,11 @@ func cppEnumHeader(enum *parser.Enum, value *parser.Value) string {
 }
 
 func cppEnumBody(enum *parser.Enum, value *parser.Value) string {
-	//needed for sailfish with 5.7 docs
-	if strings.HasPrefix(value.Name, "MV_") || strings.HasPrefix(value.Name, "PM_") || strings.HasPrefix(value.Name, "SH_") {
+	//TODO: check for "since" tag in enums
+
+	//needed for sailfish with 5.6 docs
+	if strings.HasPrefix(value.Name, "MV_") || strings.HasPrefix(value.Name, "PM_") ||
+		strings.HasPrefix(value.Name, "SH_") || strings.HasPrefix(value.Name, "ISODate") {
 		return fmt.Sprintf(`#if QT_VERSION >= 0x056000
 		return %v::%v;
 	#else

@@ -56,6 +56,8 @@ func test(buildTarget string) {
 			"quick": []string{"bridge", "bridge2", "calc", "dialog", "dynamic",
 				"hotreload", "listview", "sailfish", "tableview", "translate", "view"},
 
+			"sailfish": []string{"listview", "listview_variant"},
+
 			"sql": []string{"querymodel"},
 
 			"uitools": []string{"calculator"},
@@ -68,6 +70,8 @@ func test(buildTarget string) {
 		if strings.HasPrefix(buildTarget, "sailfish") {
 			examples = map[string][]string{
 				"quick": []string{"sailfish"},
+
+				"sailfish": []string{"listview", "listview_variant"},
 			}
 		} else {
 			examples = map[string][]string{

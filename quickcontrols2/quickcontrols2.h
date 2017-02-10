@@ -15,6 +15,7 @@ struct QtQuickControls2_PackedString { char* data; long long len; };
 struct QtQuickControls2_PackedList { void* data; long long len; };
 struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_Name();
 struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_Path();
+void QQuickStyle_QQuickStyle_SetFallbackStyle(char* style);
 void QQuickStyle_QQuickStyle_SetStyle(char* style);
 
 #ifdef __cplusplus

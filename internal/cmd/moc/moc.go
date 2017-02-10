@@ -21,13 +21,15 @@ import (
 )
 
 type appMoc struct {
-	appPath string
-	module  *parser.Module
+	appPath     string
+	buildTarget string
+	module      *parser.Module
 }
 
-func newAppMoc(appPath string) *appMoc {
+func newAppMoc(appPath, buildTarget string) *appMoc {
 	return &appMoc{
-		appPath: appPath,
+		appPath:     appPath,
+		buildTarget: buildTarget,
 		module: &parser.Module{
 			Project: parser.MOC,
 			Namespace: &parser.Namespace{
@@ -254,7 +256,14 @@ func (m *appMoc) runQtMoc() (err error) {
 	case "darwin":
 		mocPath = filepath.Join(utils.QT_DARWIN_DIR(), "bin", "moc")
 	case "linux":
-		if utils.UsePkgConfig() {
+		if m.buildTarget == "windows" || os.Getenv("QT_MXE_ARCH") != "" {
+			mocPath = filepath.Join("/usr/lib/mxe/usr/", func() string {
+				if utils.QT_MXE_ARCH() == "386" {
+					return "i686"
+				}
+				return "x86_64"
+			}()+"-w64-mingw32.shared/qt5/bin/moc")
+		} else if utils.UsePkgConfig() {
 			mocPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "moc.LinuxPkgConfig_hostBins")), "moc")
 		} else {
 			mocPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "bin", "moc")
@@ -551,7 +560,7 @@ func getCppTypeFromGoType(f *parser.Function, t string) string {
 }
 
 // MocTree process an application and all it's sub-packages and create moc files
-func MocTree(appPath string) (err error) {
+func MocTree(appPath, buildTarget string) (err error) {
 	parser.State.Moc = true
 
 	err = filepath.Walk(
@@ -561,7 +570,7 @@ func MocTree(appPath string) (err error) {
 				if err != nil {
 					return err
 				}
-				return newAppMoc(path).generate()
+				return newAppMoc(path, buildTarget).generate()
 			}),
 		),
 	)

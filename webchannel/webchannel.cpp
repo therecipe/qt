@@ -29,26 +29,16 @@ public:
 	void Signal_BlockUpdatesChanged(bool block) { callbackQWebChannel_BlockUpdatesChanged(this, block); };
 	void connectTo(QWebChannelAbstractTransport * transport) { callbackQWebChannel_ConnectTo(this, transport); };
 	void disconnectFrom(QWebChannelAbstractTransport * transport) { callbackQWebChannel_DisconnectFrom(this, transport); };
-	void timerEvent(QTimerEvent * event) { callbackQWebChannel_TimerEvent(this, event); };
+	bool event(QEvent * e) { return callbackQWebChannel_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebChannel_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQWebChannel_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebChannel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebChannel_CustomEvent(this, event); };
 	void deleteLater() { callbackQWebChannel_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebChannel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQWebChannel_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebChannel_EventFilter(this, watched, event) != 0; };
+	void timerEvent(QTimerEvent * event) { callbackQWebChannel_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebChannel_MetaObject(const_cast<MyQWebChannel*>(this))); };
 };
-
-char QWebChannel_BlockUpdates(void* ptr)
-{
-	return static_cast<QWebChannel*>(ptr)->blockUpdates();
-}
-
-void QWebChannel_SetBlockUpdates(void* ptr, char block)
-{
-	static_cast<QWebChannel*>(ptr)->setBlockUpdates(block != 0);
-}
 
 void* QWebChannel_NewQWebChannel(void* parent)
 {
@@ -105,14 +95,24 @@ void QWebChannel_RegisterObjects(void* ptr, void* objects)
 	static_cast<QWebChannel*>(ptr)->registerObjects(*static_cast<QHash<QString, QObject *>*>(objects));
 }
 
-struct QtWebChannel_PackedList QWebChannel_RegisteredObjects(void* ptr)
+void QWebChannel_SetBlockUpdates(void* ptr, char block)
 {
-	return ({ QHash<QString, QObject *>* tmpValue = new QHash<QString, QObject *>(static_cast<QWebChannel*>(ptr)->registeredObjects()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+	static_cast<QWebChannel*>(ptr)->setBlockUpdates(block != 0);
 }
 
 void QWebChannel_DestroyQWebChannel(void* ptr)
 {
 	static_cast<QWebChannel*>(ptr)->~QWebChannel();
+}
+
+struct QtWebChannel_PackedList QWebChannel_RegisteredObjects(void* ptr)
+{
+	return ({ QHash<QString, QObject *>* tmpValue = new QHash<QString, QObject *>(static_cast<QWebChannel*>(ptr)->registeredObjects()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QWebChannel_BlockUpdates(void* ptr)
+{
+	return static_cast<QWebChannel*>(ptr)->blockUpdates();
 }
 
 void* QWebChannel___registerObjects_objects_atList(void* ptr, char* i)
@@ -185,21 +185,6 @@ void* QWebChannel_____registeredObjects_keyList_newList(void* ptr)
 	return new QList<QString>;
 }
 
-void* QWebChannel___children_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
-}
-
-void QWebChannel___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QWebChannel___children_newList(void* ptr)
-{
-	return new QList<QObject *>;
-}
-
 void* QWebChannel___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
@@ -260,14 +245,39 @@ void* QWebChannel___findChildren_newList(void* ptr)
 	return new QList<QObject*>;
 }
 
-void QWebChannel_TimerEvent(void* ptr, void* event)
+void* QWebChannel___children_atList(void* ptr, int i)
 {
-	static_cast<QWebChannel*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
 }
 
-void QWebChannel_TimerEventDefault(void* ptr, void* event)
+void QWebChannel___children_setList(void* ptr, void* i)
 {
-	static_cast<QWebChannel*>(ptr)->QWebChannel::timerEvent(static_cast<QTimerEvent*>(event));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannel___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QWebChannel_Event(void* ptr, void* e)
+{
+	return static_cast<QWebChannel*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QWebChannel_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QWebChannel*>(ptr)->QWebChannel::event(static_cast<QEvent*>(e));
+}
+
+char QWebChannel_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QWebChannel*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QWebChannel_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QWebChannel*>(ptr)->QWebChannel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QWebChannel_ChildEvent(void* ptr, void* event)
@@ -320,24 +330,14 @@ void QWebChannel_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QWebChannel*>(ptr)->QWebChannel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QWebChannel_Event(void* ptr, void* e)
+void QWebChannel_TimerEvent(void* ptr, void* event)
 {
-	return static_cast<QWebChannel*>(ptr)->event(static_cast<QEvent*>(e));
+	static_cast<QWebChannel*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-char QWebChannel_EventDefault(void* ptr, void* e)
+void QWebChannel_TimerEventDefault(void* ptr, void* event)
 {
-	return static_cast<QWebChannel*>(ptr)->QWebChannel::event(static_cast<QEvent*>(e));
-}
-
-char QWebChannel_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QWebChannel*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char QWebChannel_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<QWebChannel*>(ptr)->QWebChannel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	static_cast<QWebChannel*>(ptr)->QWebChannel::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QWebChannel_MetaObject(void* ptr)
@@ -357,14 +357,14 @@ public:
 	void Signal_MessageReceived(const QJsonObject & message, QWebChannelAbstractTransport * transport) { callbackQWebChannelAbstractTransport_MessageReceived(this, const_cast<QJsonObject*>(&message), transport); };
 	void sendMessage(const QJsonObject & message) { callbackQWebChannelAbstractTransport_SendMessage(this, const_cast<QJsonObject*>(&message)); };
 	 ~MyQWebChannelAbstractTransport() { callbackQWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(this); };
-	void timerEvent(QTimerEvent * event) { callbackQWebChannelAbstractTransport_TimerEvent(this, event); };
+	bool event(QEvent * e) { return callbackQWebChannelAbstractTransport_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebChannelAbstractTransport_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQWebChannelAbstractTransport_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebChannelAbstractTransport_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebChannelAbstractTransport_CustomEvent(this, event); };
 	void deleteLater() { callbackQWebChannelAbstractTransport_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebChannelAbstractTransport_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQWebChannelAbstractTransport_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebChannelAbstractTransport_EventFilter(this, watched, event) != 0; };
+	void timerEvent(QTimerEvent * event) { callbackQWebChannelAbstractTransport_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebChannelAbstractTransport_MetaObject(const_cast<MyQWebChannelAbstractTransport*>(this))); };
 };
 
@@ -401,21 +401,6 @@ void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(void* ptr)
 void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(void* ptr)
 {
 
-}
-
-void* QWebChannelAbstractTransport___children_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
-}
-
-void QWebChannelAbstractTransport___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QWebChannelAbstractTransport___children_newList(void* ptr)
-{
-	return new QList<QObject *>;
 }
 
 void* QWebChannelAbstractTransport___dynamicPropertyNames_atList(void* ptr, int i)
@@ -478,14 +463,39 @@ void* QWebChannelAbstractTransport___findChildren_newList(void* ptr)
 	return new QList<QObject*>;
 }
 
-void QWebChannelAbstractTransport_TimerEvent(void* ptr, void* event)
+void* QWebChannelAbstractTransport___children_atList(void* ptr, int i)
 {
-	static_cast<QWebChannelAbstractTransport*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
 }
 
-void QWebChannelAbstractTransport_TimerEventDefault(void* ptr, void* event)
+void QWebChannelAbstractTransport___children_setList(void* ptr, void* i)
 {
-	static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::timerEvent(static_cast<QTimerEvent*>(event));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QWebChannelAbstractTransport___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QWebChannelAbstractTransport_Event(void* ptr, void* e)
+{
+	return static_cast<QWebChannelAbstractTransport*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QWebChannelAbstractTransport_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::event(static_cast<QEvent*>(e));
+}
+
+char QWebChannelAbstractTransport_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QWebChannelAbstractTransport*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QWebChannelAbstractTransport_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QWebChannelAbstractTransport_ChildEvent(void* ptr, void* event)
@@ -538,24 +548,14 @@ void QWebChannelAbstractTransport_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QWebChannelAbstractTransport_Event(void* ptr, void* e)
+void QWebChannelAbstractTransport_TimerEvent(void* ptr, void* event)
 {
-	return static_cast<QWebChannelAbstractTransport*>(ptr)->event(static_cast<QEvent*>(e));
+	static_cast<QWebChannelAbstractTransport*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-char QWebChannelAbstractTransport_EventDefault(void* ptr, void* e)
+void QWebChannelAbstractTransport_TimerEventDefault(void* ptr, void* event)
 {
-	return static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::event(static_cast<QEvent*>(e));
-}
-
-char QWebChannelAbstractTransport_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QWebChannelAbstractTransport*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char QWebChannelAbstractTransport_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QWebChannelAbstractTransport_MetaObject(void* ptr)

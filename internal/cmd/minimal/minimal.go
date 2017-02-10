@@ -156,6 +156,7 @@ func Minimal(appPath, buildTarget string) {
 			delete(parser.State.ClassMap, "TestCase")
 		}
 
+		//TODO: use parseFloat
 		for _, c := range parser.State.ClassMap {
 			switch c.Since {
 			case "5.3", "5.4", "5.5", "5.6", "5.7", "5.8":

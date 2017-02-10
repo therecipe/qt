@@ -125,7 +125,7 @@ func check(buildTarget string) {
 
 		case "windows":
 			{
-				if _, err := exec.LookPath("g++"); err != nil {
+				if _, err := exec.LookPath("g++"); err != nil && !utils.UseMsys2() {
 					utils.Log.WithError(err).Panic("failed to find g++, did you add the directory that contains g++ to your PATH?")
 				}
 			}
