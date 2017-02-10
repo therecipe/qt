@@ -10,13 +10,7 @@ env: DESKTOP=true ANDROID=true
 matrix:
   include:
     - os: linux
-      env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true PKG_CONFIG_PATH=/opt/qt57/lib/pkgconfig QT_DOC_DIR=/opt/qt57/doc QT_MISC_DIR=/opt/qt57
-
-    - os: linux
-      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=false QT_MXE_ARCH=386
-
-    - os: linux
-      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=false QT_MXE_ARCH=amd64
+      env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true PKG_CONFIG_PATH=/opt/qt58/lib/pkgconfig QT_DOC_DIR=/opt/qt58/doc QT_MISC_DIR=/opt/qt58
 
     - os: osx
       env: DESKTOP=true ANDROID=false
@@ -29,35 +23,11 @@ matrix:
       env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
 
     - os: osx
-      osx_image: xcode8.1
-      env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
-
-    - os: osx
-      osx_image: xcode8
-      env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
-
-    - os: osx
       osx_image: xcode8.2
       env: DESKTOP=false ANDROID=false IOS=true
 
     - os: osx
-      osx_image: xcode8.1
-      env: DESKTOP=false ANDROID=false IOS=true
-
-    - os: osx
-      osx_image: xcode8
-      env: DESKTOP=false ANDROID=false IOS=true
-
-    - os: osx
       osx_image: xcode8.2
-      env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
-
-    - os: osx
-      osx_image: xcode8.1
-      env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
-
-    - os: osx
-      osx_image: xcode8
       env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
 
 install:

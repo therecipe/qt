@@ -24,7 +24,7 @@ func generate(buildTarget string) {
 			utils.ExistsFile(utils.GoQtPkgPath("core", "core.h")) &&
 			utils.ExistsFile(utils.GoQtPkgPath("core", "core.cpp")) {
 
-			utils.Log.Debug("real files are up to date -> don't re-generate")
+			utils.Log.Debug("full files are up to date -> don't re-generate")
 			return
 		}
 	}
