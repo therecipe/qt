@@ -244,7 +244,7 @@ func cppFunctionBody(function *parser.Function) string {
 				}
 
 				if strings.Contains(ibody, "static_cast<QMac") {
-					ibody = fmt.Sprintf("#ifdef Q_OS_OSX %v #endif", ibody)
+					ibody = fmt.Sprintf("#ifdef Q_OS_OSX\n\t%v\n\t#endif", ibody)
 				}
 
 				if inner {

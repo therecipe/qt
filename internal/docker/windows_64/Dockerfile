@@ -3,6 +3,9 @@ FROM therecipe/qt:base
 
 RUN mkdir /usr/lib/mxe/
 
+ENV PKG mxe-x86-64-w64-mingw32.shared-gcc_5.4.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-x86-64-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
 ENV PKG mxe-x86-64-w64-mingw32.shared-qt3d_5.8.0.tar.xz
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-x86-64-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
 
