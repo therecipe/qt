@@ -12,12 +12,20 @@ matrix:
     - os: linux
       env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true PKG_CONFIG_PATH=/opt/qt58/lib/pkgconfig QT_DOC_DIR=/opt/qt58/doc QT_MISC_DIR=/opt/qt58
 
-    - os: osx
+    - os: linux
       env: DESKTOP=false ANDROID=true
 
     - os: osx
       osx_image: xcode8.2
+      env: DESKTOP=true ANDROID=false
+
+    - os: osx
+      osx_image: xcode8.2
       env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
+
+    - os: osx
+      osx_image: xcode8.2
+      env: DESKTOP=false ANDROID=true
 
     - os: osx
       osx_image: xcode8.2
