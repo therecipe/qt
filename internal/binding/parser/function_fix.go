@@ -42,8 +42,8 @@ func (f *Function) fixGeneral() {
 		f.Meta = CONSTRUCTOR
 	}
 
-	var class, exists = f.Class()
-	if !exists || !class.isSubClass() {
+	var class, ok = f.Class()
+	if !ok || !class.isSubClass() {
 		return
 	}
 
@@ -117,8 +117,8 @@ func (f *Function) fixOverload_Version() {
 		"QAccessibleWidget::setText", "QSvgGenerator::setViewBox",
 		"QSvgRenderer::setViewBox":
 		{
-			var class, exist = f.Class()
-			if !exist {
+			var class, ok = f.Class()
+			if !ok {
 				return
 			}
 

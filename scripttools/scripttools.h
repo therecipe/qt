@@ -46,23 +46,14 @@ void* QScriptEngineDebugger___findChildren_newList(void* ptr);
 void* QScriptEngineDebugger___children_atList(void* ptr, int i);
 void QScriptEngineDebugger___children_setList(void* ptr, void* i);
 void* QScriptEngineDebugger___children_newList(void* ptr);
-char QScriptEngineDebugger_Event(void* ptr, void* e);
 char QScriptEngineDebugger_EventDefault(void* ptr, void* e);
-char QScriptEngineDebugger_EventFilter(void* ptr, void* watched, void* event);
 char QScriptEngineDebugger_EventFilterDefault(void* ptr, void* watched, void* event);
-void QScriptEngineDebugger_ChildEvent(void* ptr, void* event);
 void QScriptEngineDebugger_ChildEventDefault(void* ptr, void* event);
-void QScriptEngineDebugger_ConnectNotify(void* ptr, void* sign);
 void QScriptEngineDebugger_ConnectNotifyDefault(void* ptr, void* sign);
-void QScriptEngineDebugger_CustomEvent(void* ptr, void* event);
 void QScriptEngineDebugger_CustomEventDefault(void* ptr, void* event);
-void QScriptEngineDebugger_DeleteLater(void* ptr);
 void QScriptEngineDebugger_DeleteLaterDefault(void* ptr);
-void QScriptEngineDebugger_DisconnectNotify(void* ptr, void* sign);
 void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign);
-void QScriptEngineDebugger_TimerEvent(void* ptr, void* event);
 void QScriptEngineDebugger_TimerEventDefault(void* ptr, void* event);
-void* QScriptEngineDebugger_MetaObject(void* ptr);
 void* QScriptEngineDebugger_MetaObjectDefault(void* ptr);
 
 #ifdef __cplusplus

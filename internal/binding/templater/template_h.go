@@ -31,7 +31,7 @@ func HTemplate(m string) []byte {
 
 	fmt.Fprint(bb, "#ifdef __cplusplus\n")
 	if parser.State.Moc {
-		for _, c := range sortedClassNamesForModule(m) {
+		for _, c := range parser.SortedClassNamesForModule(m, true) {
 			fmt.Fprintf(bb, "class %v;\n", c)
 		}
 	}
@@ -41,7 +41,7 @@ func HTemplate(m string) []byte {
 	fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; };\n", strings.Title(m))
 
 	//body
-	for _, c := range sortedClassesForModule(m) {
+	for _, c := range parser.SortedClassesForModule(m, true) {
 		cTemplate(bb, c, cppEnumHeader, cppFunctionHeader, ";\n", false)
 	}
 

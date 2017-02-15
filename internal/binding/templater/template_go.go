@@ -45,7 +45,7 @@ func GoTemplate(module string, stub bool) []byte {
 		}
 	}
 
-	for _, class := range sortedClassesForModule(module) {
+	for _, class := range parser.SortedClassesForModule(module, true) {
 
 		class.Stub = UseStub() || stub
 
@@ -149,7 +149,7 @@ func New%vFromPointer(ptr unsafe.Pointer) *%v {
 }
 `, strings.Title(class.Name), class.Name, class.Name)
 
-			if class.NeedsDestructor() {
+			if !class.HasDestructor() {
 				if UseStub() {
 					fmt.Fprintf(bb, `
 			func (ptr *%v) Destroy%v() {}

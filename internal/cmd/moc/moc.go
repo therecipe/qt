@@ -391,7 +391,7 @@ func (m *appMoc) generate() error {
 	//copy constructor and destructor
 	for _ = range m.module.Namespace.Classes {
 		for _, c := range m.module.Namespace.Classes {
-			if bc, exists := parser.State.ClassMap[c.Bases]; exists {
+			if bc, ok := parser.State.ClassMap[c.Bases]; ok {
 				for _, bcf := range bc.Functions {
 					if bcf.Meta == parser.CONSTRUCTOR || bcf.Meta == parser.DESTRUCTOR {
 						var f = *bcf
@@ -547,7 +547,7 @@ func getCppTypeFromGoType(f *parser.Function, t string) string {
 		return strings.Replace(t, "_", ":", -1)
 	}
 
-	if _, exists := parser.State.ClassMap[t]; exists {
+	if _, ok := parser.State.ClassMap[t]; ok {
 		if parser.State.ClassMap[t].IsSubClassOfQObject() /*TODO: || f == nil && strings.HasPrefix(tOLD, "*")*/ {
 			return t + "*"
 		}

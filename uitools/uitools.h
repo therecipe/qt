@@ -50,23 +50,14 @@ void* QUiLoader___findChildren_newList(void* ptr);
 void* QUiLoader___children_atList(void* ptr, int i);
 void QUiLoader___children_setList(void* ptr, void* i);
 void* QUiLoader___children_newList(void* ptr);
-char QUiLoader_Event(void* ptr, void* e);
 char QUiLoader_EventDefault(void* ptr, void* e);
-char QUiLoader_EventFilter(void* ptr, void* watched, void* event);
 char QUiLoader_EventFilterDefault(void* ptr, void* watched, void* event);
-void QUiLoader_ChildEvent(void* ptr, void* event);
 void QUiLoader_ChildEventDefault(void* ptr, void* event);
-void QUiLoader_ConnectNotify(void* ptr, void* sign);
 void QUiLoader_ConnectNotifyDefault(void* ptr, void* sign);
-void QUiLoader_CustomEvent(void* ptr, void* event);
 void QUiLoader_CustomEventDefault(void* ptr, void* event);
-void QUiLoader_DeleteLater(void* ptr);
 void QUiLoader_DeleteLaterDefault(void* ptr);
-void QUiLoader_DisconnectNotify(void* ptr, void* sign);
 void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign);
-void QUiLoader_TimerEvent(void* ptr, void* event);
 void QUiLoader_TimerEventDefault(void* ptr, void* event);
-void* QUiLoader_MetaObject(void* ptr);
 void* QUiLoader_MetaObjectDefault(void* ptr);
 
 #ifdef __cplusplus

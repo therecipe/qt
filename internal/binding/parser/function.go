@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"sort"
 	"strings"
 
@@ -49,8 +50,8 @@ type Parameter struct {
 }
 
 func (f *Function) Class() (*Class, bool) {
-	var class, exist = State.ClassMap[f.ClassName()]
-	return class, exist
+	var class, ok = State.ClassMap[f.ClassName()]
+	return class, ok
 }
 
 func (f *Function) ClassName() string {
@@ -63,9 +64,8 @@ func (f *Function) ClassName() string {
 
 //TODO: multipoly [][]string
 //TODO: connect/disconnect slot functions + add necessary SIGNAL_* functions (check first if really needed)
-//TODO: replace self poly deduction with overridden methods ?
 
-func (f *Function) PossiblePolymorphic(self bool) ([]string, string) {
+func (f *Function) PossiblePolymorphicDerivations(self bool) ([]string, string) {
 	var out = make([]string, 0)
 
 	var params = func() []*Parameter {
@@ -78,13 +78,101 @@ func (f *Function) PossiblePolymorphic(self bool) ([]string, string) {
 	var fc, _ = f.Class()
 
 	for _, p := range params {
-		var c, exist = State.ClassMap[CleanValue(p.Value)]
-		if !exist {
+		var c, ok = State.ClassMap[CleanValue(p.Value)]
+		if !ok {
 			continue
 		}
 
 		for _, class := range SortedClassesForModule(fc.Module, false) {
-			if class.IsPolymorphic() && class.IsSubClassOf(c.Name) {
+			if class.IsPolymorphic() && class.IsSubClassOf(c.Name) && class.IsSupported() {
+				out = append(out, class.Name)
+			}
+		}
+
+		//TODO: multipoly
+		if len(out) > 0 {
+			sort.Stable(sort.StringSlice(out))
+			out = append(out, c.Name)
+			return out, CleanName(p.Name, p.Value)
+		}
+	}
+
+	return out, ""
+}
+
+func (f *Function) PossibleDerivationsReversedAndRemovedPure(self bool) ([]string, string) {
+	if self {
+		var fc, ok = f.Class()
+		if !ok {
+			return make([]string, 0), ""
+		}
+		var derv = fc.GetAllDerivationsInSameModule()
+		var out = make([]string, 0)
+		for i := len(derv); i > 0; i-- {
+			if !(derv[i-1] == "QAbstractButton" && f.Name == "paintEvent") {
+				if c, ok := State.ClassMap[derv[i-1]]; ok && c.IsSupported() {
+					out = append(out, derv[i-1])
+				}
+			}
+		}
+		out = append(out, fc.Name)
+		return out, ""
+	}
+
+	var out = make([]string, 0)
+
+	var params = func() []*Parameter {
+		if self {
+			return []*Parameter{{Name: "ptr", Value: f.ClassName()}}
+		}
+		return f.Parameters
+	}()
+
+	var fc, _ = f.Class()
+
+	for _, p := range params {
+		var c, ok = State.ClassMap[CleanValue(p.Value)]
+		if !ok {
+			continue
+		}
+
+		for _, class := range SortedClassesForModule(fc.Module, false) {
+			if class.IsSubClassOf(c.Name) && class.IsSupported() &&
+				!(class.Name == "QAbstractButton" && f.Name == "paintEvent") {
+				out = append(out, class.Name)
+			}
+		}
+
+		//TODO: multipoly
+		if len(out) > 0 {
+			sort.Stable(sort.StringSlice(out))
+			out = append(out, c.Name)
+			return out, CleanName(p.Name, p.Value)
+		}
+	}
+
+	return out, ""
+}
+
+func (f *Function) PossibleDerivationsInAllModules(self bool) ([]string, string) {
+	var out = make([]string, 0)
+
+	var params = func() []*Parameter {
+		if self {
+			return []*Parameter{{Name: "ptr", Value: f.ClassName()}}
+		}
+		return f.Parameters
+	}()
+
+	for _, p := range params {
+		var c, ok = State.ClassMap[CleanValue(p.Value)]
+		if !ok {
+			continue
+		}
+
+		for _, class := range State.ClassMap {
+			if class.IsSubClassOf(c.Name) && class.IsSupported() &&
+				!(class.Name == "QAbstractButton" && f.Name == "paintEvent") {
 				out = append(out, class.Name)
 			}
 		}
@@ -229,6 +317,28 @@ func (f *Function) IsSupported() bool {
 		return false
 	}
 
+	//TODO: blocked for small
+	if f.Fullname == "QTemporaryFile::open" && f.OverloadNumber == "2" ||
+		f.Fullname == "QXmlEntityResolver::resolveEntity" ||
+		f.Fullname == "QXmlReader::parse" && f.OverloadNumber == "2" ||
+		f.Fullname == "QGraphicsItem::updateMicroFocus" ||
+		f.Fullname == "QGridLayout::addItem" && f.OverloadNumber == "2" ||
+		f.Fullname == "QSvgGenerator::metric" ||
+		f.Fullname == "QScxmlDataModel::setScxmlEvent" ||
+		f.Fullname == "QPageSetupDialog::open" ||
+		f.Fullname == "QPrintPreviewDialog::open" ||
+		f.Fullname == "QSqlRelationalTableModel::revert" ||
+		f.Fullname == "QSqlRelationalTableModel::submit" ||
+		f.Fullname == "QSqlTableModel::revert" ||
+		f.Fullname == "QSqlTableModel::submit" ||
+		f.Fullname == "QFormLayout::itemAt" ||
+		f.Fullname == "QGraphicsGridLayout::itemAt" ||
+		f.Fullname == "QGridLayout::addItem" ||
+
+		((f.ClassName() == "QGraphicsGridLayout" || f.ClassName() == "QFormLayout") && f.Name == "itemAt" && f.OverloadNumber == "2") {
+		return false
+	}
+
 	if State.Minimal {
 		return f.Export || f.Meta == DESTRUCTOR || f.Fullname == "QObject::destroyed" || strings.HasPrefix(f.Name, TILDE)
 	}
@@ -236,45 +346,244 @@ func (f *Function) IsSupported() bool {
 	return true
 }
 
-func (f *Function) IsDerivedFromVirtual() bool {
-	var class, ok = f.Class()
-	if !ok {
-		return false
-	}
+func IsBlockedDefault() []string {
+	return []string{
+		"QAnimationGroup::updateCurrentTime",
+		"QAnimationGroup::duration",
+		"QAbstractProxyModel::columnCount",
+		"QAbstractTableModel::columnCount",
+		"QAbstractListModel::data",
+		"QAbstractTableModel::data",
+		"QAbstractProxyModel::index",
+		"QAbstractProxyModel::parent",
+		"QAbstractListModel::rowCount",
+		"QAbstractProxyModel::rowCount",
+		"QAbstractTableModel::rowCount",
 
+		"QNetworkReply::readData",
+
+		"QPagedPaintDevice::paintEngine",
+		"QAccessibleObject::childCount",
+		"QAccessibleObject::indexOfChild",
+		"QAccessibleObject::role",
+		"QAccessibleObject::text",
+		"QAccessibleObject::child",
+		"QAccessibleObject::parent",
+		"QAbstractGraphicsShapeItem::paint",
+		"QGraphicsObject::paint",
+		"QLayout::sizeHint",
+		"QAbstractGraphicsShapeItem::boundingRect",
+		"QGraphicsObject::boundingRect",
+		"QGraphicsLayout::sizeHint",
+
+		"QSimpleXmlNodeModel::typedValue",
+		"QSimpleXmlNodeModel::documentUri",
+		"QSimpleXmlNodeModel::compareOrder",
+		"QSimpleXmlNodeModel::nextFromSimpleAxis",
+		"QSimpleXmlNodeModel::kind",
+		"QSimpleXmlNodeModel::name",
+		"QSimpleXmlNodeModel::root",
+
+		"QAbstractPlanarVideoBuffer::unmap",
+		"QAbstractPlanarVideoBuffer::mapMode",
+
+		"QSGDynamicTexture::bind",
+		"QSGDynamicTexture::hasMipmaps",
+		"QSGDynamicTexture::textureSize",
+		"QSGDynamicTexture::hasAlphaChannel",
+		"QSGDynamicTexture::textureId",
+
+		"QModbusClient::open",
+		"QModbusServer::open",
+		"QModbusClient::close",
+		"QModbusServer::close",
+	}
+}
+
+//TODO: combine
+func (f *Function) IsDerivedFromVirtual() bool {
 	if f.Virtual != "non" {
 		return true
 	}
 
+	var class, ok = f.Class()
+	if !ok {
+		//return false
+	}
+
 	for _, bc := range class.GetAllBases() {
-		if bclass, exists := State.ClassMap[bc]; exists {
-			for _, bcf := range bclass.Functions {
-				if f.Name == bcf.Name && bcf.Virtual != "non" {
-					return true
+		if bclass, ok := State.ClassMap[bc]; ok {
+
+			for _, cf := range bclass.Functions {
+				if cf.Name == f.Name &&
+
+					cf.Output == f.Output && len(cf.Parameters) == len(f.Parameters) &&
+					cf.Virtual != "non" {
+
+					var similar = true
+					for i, cfp := range cf.Parameters {
+						if cfp.Value != f.Parameters[i].Value {
+							similar = false
+						}
+					}
+					if similar {
+						return true
+					}
 				}
 			}
+
 		}
 	}
 
 	return false
 }
 
+//TODO: combine
 func (f *Function) IsDerivedFromImpure() bool {
-	var class, _ = f.Class()
+	if f.Static || f.Virtual == PURE {
+		return false
+	}
 
-	if f.Virtual != PURE {
+	var class, ok = f.Class()
+	if !ok {
+		//return false
+	}
+
+	if f.Virtual == IMPURE {
 		return true
 	}
 
 	for _, bc := range class.GetAllBases() {
-		if bclass, exists := State.ClassMap[bc]; exists {
-			for _, bcf := range bclass.Functions {
-				if f.Name == bcf.Name {
-					return bcf.Virtual != PURE
+		if bclass, ok := State.ClassMap[bc]; ok {
+
+			for _, cf := range bclass.Functions {
+				if cf.Name == f.Name &&
+
+					cf.Output == f.Output && len(cf.Parameters) == len(f.Parameters) &&
+					cf.Virtual == IMPURE {
+
+					var similar = true
+					for i, cfp := range cf.Parameters {
+						if cfp.Value != f.Parameters[i].Value {
+							similar = false
+						}
+					}
+					if similar {
+						return true
+					}
 				}
 			}
+
 		}
 	}
 
 	return false
+}
+
+func (f *Function) IsDerivedFromPure() bool {
+	var class, ok = f.Class()
+	if !ok {
+		//return false
+	}
+
+	if f.Virtual == PURE {
+		return true
+	}
+
+	for _, bc := range class.GetAllBases() {
+		if bclass, ok := State.ClassMap[bc]; ok {
+
+			for _, cf := range bclass.Functions {
+				if cf.Name == f.Name &&
+
+					cf.Output == f.Output && len(cf.Parameters) == len(f.Parameters) &&
+					cf.Virtual == PURE {
+
+					var similar = true
+					for i, cfp := range cf.Parameters {
+						if cfp.Value != f.Parameters[i].Value {
+							similar = false
+						}
+					}
+					if similar {
+						return true
+					}
+				}
+			}
+
+		}
+	}
+
+	return false
+}
+
+func (f *Function) FindDeepestImplementation() string {
+	var c, _ = f.Class()
+
+	for _, bcn := range c.GetBases() {
+		var bc, ok = State.ClassMap[bcn]
+		if !ok {
+			continue
+		}
+
+		var f = *f
+		f.Fullname = fmt.Sprintf("%v::%v", bcn, f.Name)
+		var out = f.FindDeepestImplementation()
+		if out != "" {
+			if c.Module != bc.Module {
+				if f.SignalMode == CALLBACK || f.Default || f.Static || strings.HasPrefix(f.Name, "__") {
+					return c.Name
+				}
+
+				//TODO: --->
+				if strings.HasPrefix(f.Name, "__") {
+					if f.Root().IsDerivedFromVirtual() {
+						return c.Name
+					}
+				}
+				//<--
+
+				f.Fullname = fmt.Sprintf("%v::%v", c.Name, f.Name)
+				if plist, _ := f.PossiblePolymorphicDerivations(true); len(plist) > 0 {
+					return c.Name
+				}
+			}
+			var lf = bc.GetFunction(f.Name)
+			if lf != nil && lf.Virtual == PURE {
+				return c.Name
+			}
+			return out
+		}
+	}
+
+	if c.HasFunction(f) {
+		return c.Name
+	}
+
+	return ""
+}
+
+func (f *Function) Implements() bool {
+	return f.FindDeepestImplementation() == f.ClassName()
+}
+
+func (f *Function) Root() *Function {
+	var c, ok = f.Class()
+	if !ok || !strings.HasPrefix(f.Name, "__") {
+		return f
+	}
+
+	for _, bcn := range c.GetAllBases() {
+		var bc, ok = State.ClassMap[bcn]
+		if !ok {
+			continue
+		}
+		for _, cf := range bc.Functions {
+			if cf.Name == strings.Split(strings.TrimPrefix(f.Name, "__"), "_")[0] && cf.OverloadNumber == f.OverloadNumber {
+				return cf
+			}
+		}
+	}
+
+	return f
 }

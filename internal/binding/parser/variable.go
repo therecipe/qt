@@ -20,8 +20,8 @@ type Variable struct {
 }
 
 func (v *Variable) Class() (*Class, bool) {
-	var class, exists = State.ClassMap[v.ClassName()]
-	return class, exists
+	var class, ok = State.ClassMap[v.ClassName()]
+	return class, ok
 }
 
 func (v *Variable) ClassName() string {
@@ -35,8 +35,8 @@ func (v *Variable) ClassName() string {
 func (v *Variable) varToFunc() []*Function {
 	var funcs = make([]*Function, 0)
 
-	var class, exist = v.Class()
-	if !exist || class.HasFunctionWithName(v.Name) {
+	var class, ok = v.Class()
+	if !ok || class.HasFunctionWithName(v.Name) {
 		return funcs
 	}
 
@@ -142,8 +142,8 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 	//TODO: move rest into seperate function, as this func is called multiple times
 
 	for _, bc := range c.GetAllBases() {
-		var bclass, exist = State.ClassMap[bc]
-		if !exist {
+		var bclass, ok = State.ClassMap[bc]
+		if !ok {
 			continue
 		}
 

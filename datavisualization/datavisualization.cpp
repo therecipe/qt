@@ -500,7 +500,7 @@ void Q3DCamera_CopyValuesFrom(void* ptr, void* source)
 
 void Q3DCamera_CopyValuesFromDefault(void* ptr, void* source)
 {
-	static_cast<Q3DCamera*>(ptr)->Q3DCamera::copyValuesFrom(*static_cast<Q3DObject*>(source));
+		static_cast<Q3DCamera*>(ptr)->Q3DCamera::copyValuesFrom(*static_cast<Q3DObject*>(source));
 }
 
 void Q3DCamera_ConnectMaxZoomLevelChanged(void* ptr)
@@ -745,7 +745,7 @@ void Q3DInputHandler_MouseMoveEvent(void* ptr, void* event, void* mousePos)
 
 void Q3DInputHandler_MouseMoveEventDefault(void* ptr, void* event, void* mousePos)
 {
-	static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::mouseMoveEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
+		static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::mouseMoveEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
 void Q3DInputHandler_MousePressEvent(void* ptr, void* event, void* mousePos)
@@ -755,7 +755,7 @@ void Q3DInputHandler_MousePressEvent(void* ptr, void* event, void* mousePos)
 
 void Q3DInputHandler_MousePressEventDefault(void* ptr, void* event, void* mousePos)
 {
-	static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::mousePressEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
+		static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::mousePressEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
 void Q3DInputHandler_MouseReleaseEvent(void* ptr, void* event, void* mousePos)
@@ -765,7 +765,7 @@ void Q3DInputHandler_MouseReleaseEvent(void* ptr, void* event, void* mousePos)
 
 void Q3DInputHandler_MouseReleaseEventDefault(void* ptr, void* event, void* mousePos)
 {
-	static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::mouseReleaseEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
+		static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::mouseReleaseEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
 void Q3DInputHandler_ConnectRotationEnabledChanged(void* ptr)
@@ -825,7 +825,7 @@ void Q3DInputHandler_WheelEvent(void* ptr, void* event)
 
 void Q3DInputHandler_WheelEventDefault(void* ptr, void* event)
 {
-	static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::wheelEvent(static_cast<QWheelEvent*>(event));
+		static_cast<Q3DInputHandler*>(ptr)->Q3DInputHandler::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
 void Q3DInputHandler_ConnectZoomAtTargetEnabledChanged(void* ptr)
@@ -936,7 +936,7 @@ void Q3DObject_CopyValuesFrom(void* ptr, void* source)
 
 void Q3DObject_CopyValuesFromDefault(void* ptr, void* source)
 {
-	static_cast<Q3DObject*>(ptr)->Q3DObject::copyValuesFrom(*static_cast<Q3DObject*>(source));
+		static_cast<Q3DObject*>(ptr)->Q3DObject::copyValuesFrom(*static_cast<Q3DObject*>(source));
 }
 
 void Q3DObject_ConnectPositionChanged(void* ptr)
@@ -2647,7 +2647,7 @@ public:
 	void Signal_SelectionModeChanged(QAbstract3DGraph::SelectionFlags mode) { callbackQAbstract3DGraph_SelectionModeChanged(this, mode); };
 	void Signal_ShadowQualityChanged(QAbstract3DGraph::ShadowQuality quality) { callbackQAbstract3DGraph_ShadowQualityChanged(this, quality); };
 	 ~MyQAbstract3DGraph() { callbackQAbstract3DGraph_DestroyQAbstract3DGraph(this); };
-	bool shadowsSupported() const { return callbackQAbstract3DGraph_ShadowsSupported(const_cast<MyQAbstract3DGraph*>(this)) != 0; };
+	bool shadowsSupported() const { return callbackQAbstract3DGraph_ShadowsSupported(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 };
 
 void* QAbstract3DGraph_RenderToImage(void* ptr, int msaaSamples, void* imageSize)
@@ -3162,7 +3162,7 @@ char QAbstract3DGraph_ShadowsSupported(void* ptr)
 
 char QAbstract3DGraph_ShadowsSupportedDefault(void* ptr)
 {
-	return static_cast<QAbstract3DGraph*>(ptr)->QAbstract3DGraph::shadowsSupported();
+		return static_cast<QAbstract3DGraph*>(ptr)->QAbstract3DGraph::shadowsSupported();
 }
 
 float QAbstract3DGraph_RadialLabelOffset(void* ptr)
@@ -3308,7 +3308,7 @@ void QAbstract3DInputHandler_MouseDoubleClickEvent(void* ptr, void* event)
 
 void QAbstract3DInputHandler_MouseDoubleClickEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+		static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
 void QAbstract3DInputHandler_MouseMoveEvent(void* ptr, void* event, void* mousePos)
@@ -3318,7 +3318,7 @@ void QAbstract3DInputHandler_MouseMoveEvent(void* ptr, void* event, void* mouseP
 
 void QAbstract3DInputHandler_MouseMoveEventDefault(void* ptr, void* event, void* mousePos)
 {
-	static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mouseMoveEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
+		static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mouseMoveEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
 void QAbstract3DInputHandler_MousePressEvent(void* ptr, void* event, void* mousePos)
@@ -3328,7 +3328,7 @@ void QAbstract3DInputHandler_MousePressEvent(void* ptr, void* event, void* mouse
 
 void QAbstract3DInputHandler_MousePressEventDefault(void* ptr, void* event, void* mousePos)
 {
-	static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mousePressEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
+		static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mousePressEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
 void QAbstract3DInputHandler_MouseReleaseEvent(void* ptr, void* event, void* mousePos)
@@ -3338,7 +3338,7 @@ void QAbstract3DInputHandler_MouseReleaseEvent(void* ptr, void* event, void* mou
 
 void QAbstract3DInputHandler_MouseReleaseEventDefault(void* ptr, void* event, void* mousePos)
 {
-	static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mouseReleaseEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
+		static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::mouseReleaseEvent(static_cast<QMouseEvent*>(event), *static_cast<QPoint*>(mousePos));
 }
 
 void QAbstract3DInputHandler_ConnectPositionChanged(void* ptr)
@@ -3393,7 +3393,7 @@ void QAbstract3DInputHandler_TouchEvent(void* ptr, void* event)
 
 void QAbstract3DInputHandler_TouchEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::touchEvent(static_cast<QTouchEvent*>(event));
+		static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::touchEvent(static_cast<QTouchEvent*>(event));
 }
 
 void QAbstract3DInputHandler_WheelEvent(void* ptr, void* event)
@@ -3403,7 +3403,7 @@ void QAbstract3DInputHandler_WheelEvent(void* ptr, void* event)
 
 void QAbstract3DInputHandler_WheelEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::wheelEvent(static_cast<QWheelEvent*>(event));
+		static_cast<QAbstract3DInputHandler*>(ptr)->QAbstract3DInputHandler::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
 void QAbstract3DInputHandler_DestroyQAbstract3DInputHandler(void* ptr)
@@ -7994,7 +7994,7 @@ void QTouch3DInputHandler_TouchEvent(void* ptr, void* event)
 
 void QTouch3DInputHandler_TouchEventDefault(void* ptr, void* event)
 {
-	static_cast<QTouch3DInputHandler*>(ptr)->QTouch3DInputHandler::touchEvent(static_cast<QTouchEvent*>(event));
+		static_cast<QTouch3DInputHandler*>(ptr)->QTouch3DInputHandler::touchEvent(static_cast<QTouchEvent*>(event));
 }
 
 void QTouch3DInputHandler_DestroyQTouch3DInputHandler(void* ptr)
@@ -8165,11 +8165,11 @@ public:
 	MyQValue3DAxisFormatter(QObject *parent) : QValue3DAxisFormatter(parent) {};
 	void recalculate() { callbackQValue3DAxisFormatter_Recalculate(this); };
 	 ~MyQValue3DAxisFormatter() { callbackQValue3DAxisFormatter_DestroyQValue3DAxisFormatter(this); };
-	QString stringForValue(qreal value, const QString & format) const { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return QString(callbackQValue3DAxisFormatter_StringForValue(const_cast<MyQValue3DAxisFormatter*>(this), value, formatPacked)); };
-	QValue3DAxisFormatter * createNewInstance() const { return static_cast<QValue3DAxisFormatter*>(callbackQValue3DAxisFormatter_CreateNewInstance(const_cast<MyQValue3DAxisFormatter*>(this))); };
-	float positionAt(float value) const { return callbackQValue3DAxisFormatter_PositionAt(const_cast<MyQValue3DAxisFormatter*>(this), value); };
-	float valueAt(float position) const { return callbackQValue3DAxisFormatter_ValueAt(const_cast<MyQValue3DAxisFormatter*>(this), position); };
-	void populateCopy(QValue3DAxisFormatter & copy) const { callbackQValue3DAxisFormatter_PopulateCopy(const_cast<MyQValue3DAxisFormatter*>(this), static_cast<QValue3DAxisFormatter*>(&copy)); };
+	QString stringForValue(qreal value, const QString & format) const { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return QString(callbackQValue3DAxisFormatter_StringForValue(const_cast<void*>(static_cast<const void*>(this)), value, formatPacked)); };
+	QValue3DAxisFormatter * createNewInstance() const { return static_cast<QValue3DAxisFormatter*>(callbackQValue3DAxisFormatter_CreateNewInstance(const_cast<void*>(static_cast<const void*>(this)))); };
+	float positionAt(float value) const { return callbackQValue3DAxisFormatter_PositionAt(const_cast<void*>(static_cast<const void*>(this)), value); };
+	float valueAt(float position) const { return callbackQValue3DAxisFormatter_ValueAt(const_cast<void*>(static_cast<const void*>(this)), position); };
+	void populateCopy(QValue3DAxisFormatter & copy) const { callbackQValue3DAxisFormatter_PopulateCopy(const_cast<void*>(static_cast<const void*>(this)), static_cast<QValue3DAxisFormatter*>(&copy)); };
 };
 
 void* QValue3DAxisFormatter_NewQValue3DAxisFormatter(void* parent)
@@ -8189,7 +8189,7 @@ void QValue3DAxisFormatter_Recalculate(void* ptr)
 
 void QValue3DAxisFormatter_RecalculateDefault(void* ptr)
 {
-	static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::recalculate();
+		static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::recalculate();
 }
 
 void QValue3DAxisFormatter_SetAllowNegatives(void* ptr, char allow)
@@ -8229,7 +8229,7 @@ struct QtDataVisualization_PackedString QValue3DAxisFormatter_StringForValue(voi
 
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_StringForValueDefault(void* ptr, double value, char* format)
 {
-	return ({ QByteArray td4f76c = static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::stringForValue(value, QString(format)).toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td4f76c.prepend("WHITESPACE").constData()+10), td4f76c.size()-10 }; });
+		return ({ QByteArray td4f76c = static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::stringForValue(value, QString(format)).toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(td4f76c.prepend("WHITESPACE").constData()+10), td4f76c.size()-10 }; });
 }
 
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_LabelStrings(void* ptr)
@@ -8249,7 +8249,7 @@ void* QValue3DAxisFormatter_CreateNewInstance(void* ptr)
 
 void* QValue3DAxisFormatter_CreateNewInstanceDefault(void* ptr)
 {
-	return static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::createNewInstance();
+		return static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::createNewInstance();
 }
 
 struct QtDataVisualization_PackedList QValue3DAxisFormatter_GridPositions(void* ptr)
@@ -8284,7 +8284,7 @@ float QValue3DAxisFormatter_PositionAt(void* ptr, float value)
 
 float QValue3DAxisFormatter_PositionAtDefault(void* ptr, float value)
 {
-	return static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::positionAt(value);
+		return static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::positionAt(value);
 }
 
 float QValue3DAxisFormatter_ValueAt(void* ptr, float position)
@@ -8294,7 +8294,7 @@ float QValue3DAxisFormatter_ValueAt(void* ptr, float position)
 
 float QValue3DAxisFormatter_ValueAtDefault(void* ptr, float position)
 {
-	return static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::valueAt(position);
+		return static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::valueAt(position);
 }
 
 void QValue3DAxisFormatter_PopulateCopy(void* ptr, void* copy)
@@ -8304,7 +8304,7 @@ void QValue3DAxisFormatter_PopulateCopy(void* ptr, void* copy)
 
 void QValue3DAxisFormatter_PopulateCopyDefault(void* ptr, void* copy)
 {
-	static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::populateCopy(*static_cast<QValue3DAxisFormatter*>(copy));
+		static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::populateCopy(*static_cast<QValue3DAxisFormatter*>(copy));
 }
 
 float QValue3DAxisFormatter___gridPositions_atList(void* ptr, int i)

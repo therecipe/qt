@@ -71,7 +71,7 @@ func goFunctionBody(function *parser.Function) string {
 		)
 	}
 
-	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK) {
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
 		fmt.Fprintf(bb, "if ptr.Pointer() != nil {\n")
 	}
 
@@ -200,8 +200,7 @@ func goFunctionBody(function *parser.Function) string {
 	switch function.SignalMode {
 	case parser.CALLBACK:
 		{
-			fmt.Fprintf(bb, "if signal := qt.GetSignal(fmt.Sprint(ptr), \"%v::%v%v\"); signal != nil {\n",
-				class.Name,
+			fmt.Fprintf(bb, "if signal := qt.GetSignal(fmt.Sprint(ptr), \"%v%v\"); signal != nil {\n",
 				function.Name,
 				function.OverloadNumber,
 			)
@@ -222,7 +221,7 @@ func goFunctionBody(function *parser.Function) string {
 			fmt.Fprintf(bb, "\n}%v\n",
 				func() string {
 					if converter.GoHeaderOutput(function) == "" {
-						if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
+						if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 							return "else{"
 						}
 					}
@@ -231,11 +230,11 @@ func goFunctionBody(function *parser.Function) string {
 			)
 
 			if converter.GoHeaderOutput(function) == "" {
-				if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
+				if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 				}
 			} else {
-				if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
+				if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 					if function.Name == "readData" && len(function.Parameters) == 2 {
 						fmt.Fprint(bb, "var retS = cGoUnpackString(data)\n")
 						fmt.Fprintf(bb, "var ret = %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
@@ -249,9 +248,9 @@ func goFunctionBody(function *parser.Function) string {
 						var (
 							class, _ = function.Class()
 							found    bool
-							c, exist = parser.State.ClassMap[parser.CleanValue(function.Output)]
+							c, ok    = parser.State.ClassMap[parser.CleanValue(function.Output)]
 						)
-						if exist && c.IsSupported() && !hasUnimplementedPureVirtualFunctions(c.Name) {
+						if ok && c.IsSupported() && !hasUnimplementedPureVirtualFunctions(c.Name) {
 							for _, f := range c.Functions {
 								if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 0 {
 									if c.Module == class.Module {
@@ -292,7 +291,7 @@ func goFunctionBody(function *parser.Function) string {
 			fmt.Fprintf(bb, "%v",
 				func() string {
 					if converter.GoHeaderOutput(function) == "" {
-						if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
+						if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 							return "\n}"
 						}
 					}
@@ -304,9 +303,8 @@ func goFunctionBody(function *parser.Function) string {
 
 	case parser.CONNECT, parser.DISCONNECT:
 		{
-			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v::%v%v\"%v)",
+			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\"%v)",
 				function.SignalMode,
-				class.Name,
 				function.Name,
 				function.OverloadNumber,
 				func() string {
@@ -326,7 +324,7 @@ func goFunctionBody(function *parser.Function) string {
 		fmt.Fprint(bb, "\nptr.SetPointer(nil)")
 	}
 
-	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK) {
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
 		fmt.Fprint(bb, "\n}")
 
 		if converter.GoHeaderOutput(function) == "" {

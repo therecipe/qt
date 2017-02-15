@@ -15,6 +15,7 @@
 #include <QObject>
 #include <QScriptEngine>
 #include <QScriptEngineDebugger>
+#include <QString>
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
@@ -32,9 +33,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQScriptEngineDebugger_CustomEvent(this, event); };
 	void deleteLater() { callbackQScriptEngineDebugger_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQScriptEngineDebugger_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScriptTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptEngineDebugger_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<MyQScriptEngineDebugger*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent)
@@ -202,93 +205,48 @@ void* QScriptEngineDebugger___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QScriptEngineDebugger_Event(void* ptr, void* e)
-{
-	return static_cast<QScriptEngineDebugger*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QScriptEngineDebugger_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::event(static_cast<QEvent*>(e));
-}
-
-char QScriptEngineDebugger_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QScriptEngineDebugger*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::event(static_cast<QEvent*>(e));
 }
 
 char QScriptEngineDebugger_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QScriptEngineDebugger_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QScriptEngineDebugger*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QScriptEngineDebugger_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QScriptEngineDebugger_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QScriptEngineDebugger*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QScriptEngineDebugger_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QScriptEngineDebugger_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QScriptEngineDebugger*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QScriptEngineDebugger_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::customEvent(static_cast<QEvent*>(event));
-}
-
-void QScriptEngineDebugger_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QScriptEngineDebugger*>(ptr), "deleteLater");
+		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::customEvent(static_cast<QEvent*>(event));
 }
 
 void QScriptEngineDebugger_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::deleteLater();
-}
-
-void QScriptEngineDebugger_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QScriptEngineDebugger*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::deleteLater();
 }
 
 void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QScriptEngineDebugger_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QScriptEngineDebugger*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QScriptEngineDebugger_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QScriptEngineDebugger_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QScriptEngineDebugger*>(ptr)->metaObject());
+		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QScriptEngineDebugger_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::metaObject());
 }
 

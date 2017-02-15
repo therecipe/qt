@@ -95,7 +95,6 @@ void QTestEventList_AddMouseDClick(void* ptr, long long button, long long modifi
 void QTestEventList_AddMouseMove(void* ptr, void* pos, int delay);
 void QTestEventList_AddMousePress(void* ptr, long long button, long long modifiers, void* pos, int delay);
 void QTestEventList_AddMouseRelease(void* ptr, long long button, long long modifiers, void* pos, int delay);
-void QTestEventList_Clear(void* ptr);
 void QTestEventList_Simulate(void* ptr, void* w);
 void QTestEventList_DestroyQTestEventList(void* ptr);
 void* QTestEventList___QList_other_atList3(void* ptr, int i);

@@ -132,23 +132,14 @@ void* QGamepad___findChildren_newList(void* ptr);
 void* QGamepad___children_atList(void* ptr, int i);
 void QGamepad___children_setList(void* ptr, void* i);
 void* QGamepad___children_newList(void* ptr);
-char QGamepad_Event(void* ptr, void* e);
 char QGamepad_EventDefault(void* ptr, void* e);
-char QGamepad_EventFilter(void* ptr, void* watched, void* event);
 char QGamepad_EventFilterDefault(void* ptr, void* watched, void* event);
-void QGamepad_ChildEvent(void* ptr, void* event);
 void QGamepad_ChildEventDefault(void* ptr, void* event);
-void QGamepad_ConnectNotify(void* ptr, void* sign);
 void QGamepad_ConnectNotifyDefault(void* ptr, void* sign);
-void QGamepad_CustomEvent(void* ptr, void* event);
 void QGamepad_CustomEventDefault(void* ptr, void* event);
-void QGamepad_DeleteLater(void* ptr);
 void QGamepad_DeleteLaterDefault(void* ptr);
-void QGamepad_DisconnectNotify(void* ptr, void* sign);
 void QGamepad_DisconnectNotifyDefault(void* ptr, void* sign);
-void QGamepad_TimerEvent(void* ptr, void* event);
 void QGamepad_TimerEventDefault(void* ptr, void* event);
-void* QGamepad_MetaObject(void* ptr);
 void* QGamepad_MetaObjectDefault(void* ptr);
 
 #ifdef __cplusplus

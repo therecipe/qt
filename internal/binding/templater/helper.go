@@ -27,14 +27,6 @@ func goModule(module string) string {
 	return strings.ToLower(strings.TrimPrefix(module, "Qt"))
 }
 
-func sortedClassNamesForModule(module string) []string {
-	return parser.SortedClassNamesForModule(module, true)
-}
-
-func sortedClassesForModule(module string) []*parser.Class {
-	return parser.SortedClassesForModule(module, true)
-}
-
 func UseStub() bool {
 	return utils.QT_STUB() && !parser.State.Minimal && !parser.State.Moc && !(parser.State.Module == "AndroidExtras" || parser.State.Module == "Sailfish")
 }

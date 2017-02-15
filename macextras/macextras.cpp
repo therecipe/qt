@@ -82,7 +82,7 @@ int QMacPasteboardMime_Count(void* ptr, void* mimeData)
 int QMacPasteboardMime_CountDefault(void* ptr, void* mimeData)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacPasteboardMime*>(ptr)->QMacPasteboardMime::count(static_cast<QMimeData*>(mimeData));
+		return static_cast<QMacPasteboardMime*>(ptr)->QMacPasteboardMime::count(static_cast<QMimeData*>(mimeData));
 #else
 	return 0;
 #endif
@@ -130,6 +130,24 @@ void* QMacPasteboardMime___convertToMime_data_newList(void* ptr)
 	return new QList<QByteArray>;
 }
 
+class MyQMacToolBar: public QMacToolBar
+{
+public:
+	MyQMacToolBar(QObject *parent) : QMacToolBar(parent) {};
+	MyQMacToolBar(const QString &identifier, QObject *parent) : QMacToolBar(identifier, parent) {};
+	bool event(QEvent * e) { return callbackQMacToolBar_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacToolBar_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQMacToolBar_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQMacToolBar_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQMacToolBar_CustomEvent(this, event); };
+	void deleteLater() { callbackQMacToolBar_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQMacToolBar_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQMacToolBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMacExtras_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMacToolBar_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQMacToolBar_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBar_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
 struct QtMacExtras_PackedList QMacToolBar_AllowedItems(void* ptr)
 {
 	return ({ QList<QMacToolBarItem *>* tmpValue = new QList<QMacToolBarItem *>(static_cast<QMacToolBar*>(ptr)->allowedItems()); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
@@ -142,12 +160,12 @@ struct QtMacExtras_PackedList QMacToolBar_Items(void* ptr)
 
 void* QMacToolBar_NewQMacToolBar(void* parent)
 {
-	return new QMacToolBar(static_cast<QObject*>(parent));
+	return new MyQMacToolBar(static_cast<QObject*>(parent));
 }
 
 void* QMacToolBar_NewQMacToolBar2(char* identifier, void* parent)
 {
-	return new QMacToolBar(QString(identifier), static_cast<QObject*>(parent));
+	return new MyQMacToolBar(QString(identifier), static_cast<QObject*>(parent));
 }
 
 void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, char* text)
@@ -325,115 +343,70 @@ void* QMacToolBar___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QMacToolBar_Event(void* ptr, void* e)
-{
-	return static_cast<QMacToolBar*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QMacToolBar_EventDefault(void* ptr, void* e)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacToolBar*>(ptr)->QMacToolBar::event(static_cast<QEvent*>(e));
+		return static_cast<QMacToolBar*>(ptr)->QMacToolBar::event(static_cast<QEvent*>(e));
 #else
 	return false;
 #endif
-}
-
-char QMacToolBar_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QMacToolBar*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 char QMacToolBar_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacToolBar*>(ptr)->QMacToolBar::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QMacToolBar*>(ptr)->QMacToolBar::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 #else
 	return false;
 #endif
 }
 
-void QMacToolBar_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QMacToolBar*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
 void QMacToolBar_ChildEventDefault(void* ptr, void* event)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBar*>(ptr)->QMacToolBar::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QMacToolBar*>(ptr)->QMacToolBar::childEvent(static_cast<QChildEvent*>(event));
 #endif
-}
-
-void QMacToolBar_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QMacToolBar*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QMacToolBar_ConnectNotifyDefault(void* ptr, void* sign)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBar*>(ptr)->QMacToolBar::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QMacToolBar*>(ptr)->QMacToolBar::connectNotify(*static_cast<QMetaMethod*>(sign));
 #endif
-}
-
-void QMacToolBar_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QMacToolBar*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QMacToolBar_CustomEventDefault(void* ptr, void* event)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBar*>(ptr)->QMacToolBar::customEvent(static_cast<QEvent*>(event));
+		static_cast<QMacToolBar*>(ptr)->QMacToolBar::customEvent(static_cast<QEvent*>(event));
 #endif
-}
-
-void QMacToolBar_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QMacToolBar*>(ptr), "deleteLater");
 }
 
 void QMacToolBar_DeleteLaterDefault(void* ptr)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBar*>(ptr)->QMacToolBar::deleteLater();
+		static_cast<QMacToolBar*>(ptr)->QMacToolBar::deleteLater();
 #endif
-}
-
-void QMacToolBar_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QMacToolBar*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QMacToolBar_DisconnectNotifyDefault(void* ptr, void* sign)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBar*>(ptr)->QMacToolBar::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QMacToolBar*>(ptr)->QMacToolBar::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 #endif
-}
-
-void QMacToolBar_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QMacToolBar*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QMacToolBar_TimerEventDefault(void* ptr, void* event)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBar*>(ptr)->QMacToolBar::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QMacToolBar*>(ptr)->QMacToolBar::timerEvent(static_cast<QTimerEvent*>(event));
 #endif
-}
-
-void* QMacToolBar_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QMacToolBar*>(ptr)->metaObject());
 }
 
 void* QMacToolBar_MetaObjectDefault(void* ptr)
 {
 #ifdef Q_OS_OSX
-	return const_cast<QMetaObject*>(static_cast<QMacToolBar*>(ptr)->QMacToolBar::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QMacToolBar*>(ptr)->QMacToolBar::metaObject());
 #else
 	return NULL;
 #endif
@@ -451,9 +424,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQMacToolBarItem_CustomEvent(this, event); };
 	void deleteLater() { callbackQMacToolBarItem_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQMacToolBarItem_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMacExtras_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMacToolBarItem_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItem_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBarItem_MetaObject(const_cast<MyQMacToolBarItem*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBarItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
@@ -603,115 +578,70 @@ void* QMacToolBarItem___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QMacToolBarItem_Event(void* ptr, void* e)
-{
-	return static_cast<QMacToolBarItem*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QMacToolBarItem_EventDefault(void* ptr, void* e)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::event(static_cast<QEvent*>(e));
+		return static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::event(static_cast<QEvent*>(e));
 #else
 	return false;
 #endif
-}
-
-char QMacToolBarItem_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QMacToolBarItem*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 char QMacToolBarItem_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 #else
 	return false;
 #endif
 }
 
-void QMacToolBarItem_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QMacToolBarItem*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
 void QMacToolBarItem_ChildEventDefault(void* ptr, void* event)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::childEvent(static_cast<QChildEvent*>(event));
 #endif
-}
-
-void QMacToolBarItem_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QMacToolBarItem*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QMacToolBarItem_ConnectNotifyDefault(void* ptr, void* sign)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::connectNotify(*static_cast<QMetaMethod*>(sign));
 #endif
-}
-
-void QMacToolBarItem_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QMacToolBarItem*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QMacToolBarItem_CustomEventDefault(void* ptr, void* event)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::customEvent(static_cast<QEvent*>(event));
+		static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::customEvent(static_cast<QEvent*>(event));
 #endif
-}
-
-void QMacToolBarItem_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QMacToolBarItem*>(ptr), "deleteLater");
 }
 
 void QMacToolBarItem_DeleteLaterDefault(void* ptr)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::deleteLater();
+		static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::deleteLater();
 #endif
-}
-
-void QMacToolBarItem_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QMacToolBarItem*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QMacToolBarItem_DisconnectNotifyDefault(void* ptr, void* sign)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 #endif
-}
-
-void QMacToolBarItem_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QMacToolBarItem*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QMacToolBarItem_TimerEventDefault(void* ptr, void* event)
 {
 #ifdef Q_OS_OSX
-	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::timerEvent(static_cast<QTimerEvent*>(event));
 #endif
-}
-
-void* QMacToolBarItem_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QMacToolBarItem*>(ptr)->metaObject());
 }
 
 void* QMacToolBarItem_MetaObjectDefault(void* ptr)
 {
 #ifdef Q_OS_OSX
-	return const_cast<QMetaObject*>(static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::metaObject());
 #else
 	return NULL;
 #endif

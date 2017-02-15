@@ -75,7 +75,7 @@ void QTextToSpeech_Pause(void* ptr)
 
 void QTextToSpeech_PauseDefault(void* ptr)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::pause();
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::pause();
 }
 
 void QTextToSpeech_ConnectPitchChanged(void* ptr)
@@ -115,7 +115,7 @@ void QTextToSpeech_Resume(void* ptr)
 
 void QTextToSpeech_ResumeDefault(void* ptr)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::resume();
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::resume();
 }
 
 void QTextToSpeech_Say(void* ptr, char* text)
@@ -125,7 +125,7 @@ void QTextToSpeech_Say(void* ptr, char* text)
 
 void QTextToSpeech_SayDefault(void* ptr, char* text)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::say(QString(text));
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::say(QString(text));
 }
 
 void QTextToSpeech_SetLocale(void* ptr, void* locale)
@@ -135,7 +135,7 @@ void QTextToSpeech_SetLocale(void* ptr, void* locale)
 
 void QTextToSpeech_SetLocaleDefault(void* ptr, void* locale)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setLocale(*static_cast<QLocale*>(locale));
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setLocale(*static_cast<QLocale*>(locale));
 }
 
 void QTextToSpeech_SetPitch(void* ptr, double pitch)
@@ -145,7 +145,7 @@ void QTextToSpeech_SetPitch(void* ptr, double pitch)
 
 void QTextToSpeech_SetPitchDefault(void* ptr, double pitch)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setPitch(pitch);
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setPitch(pitch);
 }
 
 void QTextToSpeech_SetRate(void* ptr, double rate)
@@ -155,7 +155,7 @@ void QTextToSpeech_SetRate(void* ptr, double rate)
 
 void QTextToSpeech_SetRateDefault(void* ptr, double rate)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setRate(rate);
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setRate(rate);
 }
 
 void QTextToSpeech_SetVolume(void* ptr, double volume)
@@ -165,7 +165,7 @@ void QTextToSpeech_SetVolume(void* ptr, double volume)
 
 void QTextToSpeech_SetVolumeDefault(void* ptr, double volume)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setVolume(volume);
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setVolume(volume);
 }
 
 void QTextToSpeech_ConnectStateChanged(void* ptr)
@@ -190,7 +190,7 @@ void QTextToSpeech_Stop(void* ptr)
 
 void QTextToSpeech_StopDefault(void* ptr)
 {
-	static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::stop();
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::stop();
 }
 
 void QTextToSpeech_ConnectVolumeChanged(void* ptr)

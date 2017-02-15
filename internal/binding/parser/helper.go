@@ -281,7 +281,7 @@ func SortedClassNamesForModule(module string, template bool) []string {
 		var items = make(map[string]string)
 
 		for _, cn := range output {
-			if class, exist := State.ClassMap[cn]; exist {
+			if class, ok := State.ClassMap[cn]; ok {
 				items[cn] = class.Bases
 			}
 		}
@@ -291,8 +291,8 @@ func SortedClassNamesForModule(module string, template bool) []string {
 		for len(items) > 0 {
 			for item, dep := range items {
 
-				var c, exist = State.ClassMap[dep]
-				if exist && c.Module != MOC {
+				var c, ok = State.ClassMap[dep]
+				if ok && c.Module != MOC {
 					tmpOutput = append(tmpOutput, item)
 					delete(items, item)
 					continue

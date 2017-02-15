@@ -46,14 +46,6 @@ func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Func
 				continue
 			}
 
-			if i > 0 && (f.Meta == parser.CONSTRUCTOR || f.Meta == parser.DESTRUCTOR || (f.Meta == parser.SIGNAL && !parser.State.Moc)) {
-				continue
-			}
-
-			if i > 0 && !(f.Meta == parser.SLOT || f.Virtual == parser.PURE || f.Virtual == parser.IMPURE) {
-				continue
-			}
-
 			if !f.Checked {
 				cppFunction(f)
 				goFunction(f)
@@ -64,12 +56,25 @@ func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Func
 				continue
 			}
 
+			if i > 0 && (f.Meta == parser.CONSTRUCTOR || f.Meta == parser.DESTRUCTOR) {
+				continue
+			}
+
+			if f.Meta == parser.CONSTRUCTOR && hasUnimplementedPureVirtualFunctions(c.Name) {
+				continue
+			}
+
 			var f = *f
 
+			if f.IsDerivedFromImpure() {
+				f.Virtual = parser.IMPURE
+			}
+
 			if i > 0 {
-				f.Fullname = fmt.Sprintf("%v::%v", pc.Name, f.Name)
 				f.Synthetic = true
 			}
+
+			f.Fullname = fmt.Sprintf("%v::%v", pc.Name, f.Name)
 
 			implemented[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
 			switch {
@@ -79,43 +84,70 @@ func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Func
 						for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
 							var f = f
 							f.SignalMode = signalMode
+							if !f.Implements() {
+								break
+							}
 							if out := ff(&f); out != "" {
 								if signalMode == parser.CALLBACK {
 									fmt.Fprintf(bb, "//export %v\n", converter.GoHeaderName(&f))
 								}
 								fmt.Fprintf(bb, "%v%v", out, del)
 							}
+							if i > 0 {
+								break
+							}
 						}
 					}
 
-					if isGo {
-						f.Meta = parser.PLAIN
-					}
-					fmt.Fprintf(bb, "%v%v", ff(&f), del)
-
-					if f.Virtual != parser.PURE || (f.Synthetic && f.IsDerivedFromImpure()) {
-						f.Meta = parser.PLAIN
-						f.Default = true
+					if f.Implements() {
+						var f = f
+						if isGo {
+							f.Meta = parser.PLAIN
+						}
 						fmt.Fprintf(bb, "%v%v", ff(&f), del)
+					}
+					if f.Virtual != parser.PURE || f.IsDerivedFromImpure() || i > 0 {
+						f.Default = true
+						if f.Implements() {
+							f.Meta = parser.PLAIN
+							fmt.Fprintf(bb, "%v%v", ff(&f), del)
+						}
 					}
 				}
 
 			case f.Meta == parser.SIGNAL:
 				{
 					for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
-						if !isGo && signalMode == parser.CALLBACK {
-							continue
-						}
 						var f = f
 						f.SignalMode = signalMode
+
+						if !isGo && signalMode == parser.CALLBACK {
+							if i > 0 {
+								break
+							}
+							continue
+						}
+
+						if !f.Implements() {
+							break
+						}
 						if out := ff(&f); out != "" {
 							if signalMode == parser.CALLBACK && isGo {
 								fmt.Fprintf(bb, "//export %v\n", converter.GoHeaderName(&f))
 							}
 							fmt.Fprintf(bb, "%v%v", out, del)
 						}
+						if i > 0 {
+							break
+						}
 					}
 
+					if !f.Implements() {
+						break
+					}
+					if i > 0 {
+						break
+					}
 					if !converter.IsPrivateSignal(&f) {
 						f.Meta = parser.PLAIN
 						fmt.Fprintf(bb, "%v%v", ff(&f), del)
@@ -128,26 +160,44 @@ func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Func
 						for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
 							var f = f
 							f.SignalMode = signalMode
+
+							if !f.Implements() {
+								break
+							}
 							if out := ff(&f); out != "" {
 								if signalMode == parser.CALLBACK {
 									fmt.Fprintf(bb, "//export %v\n", converter.GoHeaderName(&f))
 								}
 								fmt.Fprintf(bb, "%v%v", out, del)
 							}
+							if i > 0 {
+								break
+							}
 						}
 					}
 
-					f.Meta = parser.PLAIN
-					fmt.Fprintf(bb, "%v%v", ff(&f), del)
-
-					if f.Virtual != parser.PURE || (f.Synthetic && f.IsDerivedFromImpure()) {
-						f.Default = true
+					if f.Implements() {
+						var f = f
+						f.Meta = parser.PLAIN
 						fmt.Fprintf(bb, "%v%v", ff(&f), del)
+					}
+					if f.Virtual != parser.PURE || f.IsDerivedFromImpure() || i > 0 {
+						f.Default = true
+						if f.Implements() {
+							f.Meta = parser.PLAIN
+							fmt.Fprintf(bb, "%v%v", ff(&f), del)
+						}
 					}
 				}
 
 			case f.IsJNIGeneric():
 				{
+					if !f.Implements() {
+						break
+					}
+					if i > 0 {
+						break
+					}
 					for _, m := range converter.CppOutputParametersJNIGenericModes(&f) {
 						f.TemplateModeJNI = m
 						fmt.Fprintf(bb, "%v%v", ff(&f), del)
@@ -160,22 +210,24 @@ func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Func
 
 			default:
 				{
-					if !(f.Meta == parser.CONSTRUCTOR && hasUnimplementedPureVirtualFunctions(c.Name)) {
-						var out = ff(&f)
-						if out != "" {
-							fmt.Fprintf(bb, "%v%v", out, del)
-							if isGo && f.Static {
-								fmt.Fprintf(bb, "%v{\n%v\n}\n\n",
-									func() string {
-										var f = f
-										f.Static = false
-										return goFunctionHeader(&f)
-									}(),
-									goFunctionBody(&f),
-								)
-							}
-						} else {
-							f.Access = "unsupported_"
+					if !f.Implements() {
+						break
+					}
+					if i > 0 {
+						break
+					}
+					var out = ff(&f)
+					if out != "" {
+						fmt.Fprintf(bb, "%v%v", out, del)
+						if isGo && f.Static {
+							fmt.Fprintf(bb, "%v{\n%v\n}\n\n",
+								func() string {
+									var f = f
+									f.Static = false
+									return goFunctionHeader(&f)
+								}(),
+								goFunctionBody(&f),
+							)
 						}
 					}
 				}

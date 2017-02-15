@@ -29,6 +29,7 @@ type Class struct {
 	Fullname  string
 
 	Constructors []string
+	Derivations  []string
 }
 
 func (c *Class) register(m string) {
@@ -47,36 +48,27 @@ func (c *Class) register(m string) {
 	}
 }
 
-func (c *Class) GetBases() []string {
+func (c *Class) derivation() {
+	for _, b := range c.GetBases() {
+		if bc, e := State.ClassMap[b]; e {
+			bc.Derivations = append(bc.Derivations, c.Name)
+		}
+	}
+}
 
+func (c *Class) GetBases() []string {
 	if c.Bases == "" {
 		return make([]string, 0)
 	}
-
 	if strings.Contains(c.Bases, ",") {
 		return strings.Split(c.Bases, ",")
 	}
-
 	return []string{c.Bases}
 }
 
 func (c *Class) GetAllBases() []string {
-
-	var input = make([]string, 0)
-
-	for _, b := range c.GetBases() {
-		var bc, exists = State.ClassMap[b]
-		if !exists {
-			continue
-		}
-
-		input = append(input, b)
-		for _, sbc := range bc.GetAllBases() {
-			input = append(input, sbc)
-		}
-	}
-
-	return input
+	var out, _ = c.GetAllBasesRecursiveCheckFailed(0)
+	return out
 }
 
 func (c *Class) GetAllBasesRecursiveCheckFailed(i int) ([]string, bool) {
@@ -88,8 +80,8 @@ func (c *Class) GetAllBasesRecursiveCheckFailed(i int) ([]string, bool) {
 	}
 
 	for _, b := range c.GetBases() {
-		var bc, exists = State.ClassMap[b]
-		if !exists {
+		var bc, ok = State.ClassMap[b]
+		if !ok {
 			continue
 		}
 
@@ -115,18 +107,69 @@ func (c *Class) IsSubClassOf(class string) bool {
 		return false
 	}
 
-	for _, b := range append([]string{c.Name}, c.GetAllBases()...) {
-		if b != class {
-			continue
+	for _, bcn := range append([]string{c.Name}, c.GetAllBases()...) {
+		if bcn == class {
+			return true
 		}
-
-		return true
 	}
 
 	return false
 }
 
 func (c *Class) isSubClass() bool { return c.Fullname != "" }
+
+func (c *Class) GetAllDerivations() []string {
+
+	var input = make([]string, 0)
+
+	for _, b := range c.Derivations {
+		var bc, exists = State.ClassMap[b]
+		if !exists {
+			continue
+		}
+
+		input = append(input, b)
+		for _, sbc := range bc.GetAllDerivations() {
+			input = append(input, sbc)
+		}
+	}
+
+	return input
+}
+
+func (c *Class) GetAllDerivationsInSameModule() []string {
+
+	var input = make([]string, 0)
+
+	for _, i := range c.GetAllDerivations() {
+		if State.ClassMap[i].Module == c.Module && i != "QWinEventNotifier" && i != "QFutureWatcher" {
+			input = append(input, i)
+		}
+	}
+
+	return input
+}
+
+func (c *Class) HasFunction(f *Function) bool {
+	for _, cf := range c.Functions {
+		if cf.Name == f.Name && cf.Virtual == f.Virtual &&
+			cf.Meta == f.Meta &&
+			cf.Output == f.Output && len(cf.Parameters) == len(f.Parameters) {
+
+			var similar = true
+			for i, cfp := range cf.Parameters {
+				if cfp.Value != f.Parameters[i].Value {
+					similar = false
+				}
+			}
+			if similar {
+				return true
+			}
+		}
+	}
+
+	return false
+}
 
 func (c *Class) HasFunctionWithName(n string) bool {
 	return c.HasFunctionWithNameAndOverloadNumber(n, "")
@@ -138,7 +181,6 @@ func (c *Class) HasFunctionWithNameAndOverloadNumber(n string, num string) bool 
 			return true
 		}
 	}
-
 	return false
 }
 
@@ -153,23 +195,27 @@ func (c *Class) HasConstructor() bool {
 	return false
 }
 
-func (c *Class) NeedsDestructor() bool {
+func (c *Class) HasDestructor() bool {
 	for _, f := range c.Functions {
 		if f.Meta == DESTRUCTOR {
-			return false
-		}
-	}
-	return true
-}
-
-func (c *Class) HasCallbackFunctions() bool {
-
-	for _, f := range c.Functions {
-		if f.Virtual == IMPURE || f.Virtual == PURE || f.Meta == SIGNAL || f.Meta == SLOT {
 			return true
 		}
 	}
+	return false
+}
 
+func (c *Class) HasCallbackFunctions() bool {
+	for _, bcn := range append([]string{c.Name}, c.GetAllBases()...) {
+		var bc, ok = State.ClassMap[bcn]
+		if !ok {
+			continue
+		}
+		for _, f := range bc.Functions {
+			if f.Virtual == IMPURE || f.Virtual == PURE || f.Meta == SIGNAL || f.Meta == SLOT {
+				return true
+			}
+		}
+	}
 	return false
 }
 
@@ -230,4 +276,13 @@ func (c *Class) IsSupported() bool {
 	}
 
 	return true
+}
+
+func (c *Class) GetFunction(fname string) *Function {
+	for _, f := range c.Functions {
+		if f.Name == fname {
+			return f
+		}
+	}
+	return nil
 }

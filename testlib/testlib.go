@@ -122,10 +122,7 @@ func (ptr *QSignalSpy) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
 }
 
 func (ptr *QSignalSpy) __dynamicPropertyNames_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___dynamicPropertyNames_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___dynamicPropertyNames_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __findChildren_atList2(i int) *core.QObject {
@@ -146,10 +143,7 @@ func (ptr *QSignalSpy) __findChildren_setList2(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __findChildren_newList2() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___findChildren_newList2(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___findChildren_newList2(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __findChildren_atList3(i int) *core.QObject {
@@ -170,10 +164,7 @@ func (ptr *QSignalSpy) __findChildren_setList3(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __findChildren_newList3() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___findChildren_newList3(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___findChildren_newList3(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __findChildren_atList(i int) *core.QObject {
@@ -194,10 +185,7 @@ func (ptr *QSignalSpy) __findChildren_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __findChildren_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___findChildren_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___findChildren_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __children_atList(i int) *core.QObject {
@@ -218,10 +206,7 @@ func (ptr *QSignalSpy) __children_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __children_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___children_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___children_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __QList_other_atList3(i int) *core.QObject {
@@ -242,10 +227,7 @@ func (ptr *QSignalSpy) __QList_other_setList3(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __QList_other_newList3() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___QList_other_newList3(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___QList_other_newList3(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __QList_other_atList2(i int) *core.QObject {
@@ -266,10 +248,7 @@ func (ptr *QSignalSpy) __QList_other_setList2(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __QList_other_newList2() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___QList_other_newList2(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___QList_other_newList2(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __fromSet_atList(i int) *core.QObject {
@@ -290,10 +269,7 @@ func (ptr *QSignalSpy) __fromSet_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __fromSet_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___fromSet_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___fromSet_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __fromStdList_atList(i int) *core.QObject {
@@ -314,10 +290,7 @@ func (ptr *QSignalSpy) __fromStdList_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __fromStdList_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___fromStdList_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___fromStdList_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __fromVector_atList(i int) *core.QObject {
@@ -338,10 +311,7 @@ func (ptr *QSignalSpy) __fromVector_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __fromVector_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___fromVector_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___fromVector_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __fromVector_vector_atList(i int) *core.QObject {
@@ -362,10 +332,7 @@ func (ptr *QSignalSpy) __fromVector_vector_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __fromVector_vector_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___fromVector_vector_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___fromVector_vector_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __append_value_atList2(i int) *core.QObject {
@@ -386,10 +353,7 @@ func (ptr *QSignalSpy) __append_value_setList2(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __append_value_newList2() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___append_value_newList2(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___append_value_newList2(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __swap_other_atList(i int) *core.QObject {
@@ -410,10 +374,7 @@ func (ptr *QSignalSpy) __swap_other_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __swap_other_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___swap_other_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___swap_other_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __mid_atList(i int) *core.QObject {
@@ -434,10 +395,7 @@ func (ptr *QSignalSpy) __mid_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __mid_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___mid_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___mid_newList(ptr.Pointer()))
 }
 
 func (ptr *QSignalSpy) __toVector_atList(i int) *core.QObject {
@@ -458,33 +416,16 @@ func (ptr *QSignalSpy) __toVector_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QSignalSpy) __toVector_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QSignalSpy___toVector_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QSignalSpy___toVector_newList(ptr.Pointer()))
 }
 
 //export callbackQSignalSpy_Event
 func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QSignalSpy) ConnectEvent(f func(e *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::event", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::event")
-	}
 }
 
 func (ptr *QSignalSpy) Event(e core.QEvent_ITF) bool {
@@ -503,25 +444,11 @@ func (ptr *QSignalSpy) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQSignalSpy_EventFilter
 func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QSignalSpy) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::eventFilter", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectEventFilter() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::eventFilter")
-	}
 }
 
 func (ptr *QSignalSpy) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
@@ -540,24 +467,10 @@ func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.Q
 
 //export callbackQSignalSpy_ChildEvent
 func callbackQSignalSpy_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
-}
-
-func (ptr *QSignalSpy) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::childEvent", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectChildEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::childEvent")
 	}
 }
 
@@ -575,24 +488,10 @@ func (ptr *QSignalSpy) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQSignalSpy_ConnectNotify
 func callbackQSignalSpy_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSignalSpyFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
-}
-
-func (ptr *QSignalSpy) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::connectNotify", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectConnectNotify() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::connectNotify")
 	}
 }
 
@@ -610,24 +509,10 @@ func (ptr *QSignalSpy) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQSignalSpy_CustomEvent
 func callbackQSignalSpy_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QSignalSpy) ConnectCustomEvent(f func(event *core.QEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::customEvent", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectCustomEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::customEvent")
 	}
 }
 
@@ -645,24 +530,10 @@ func (ptr *QSignalSpy) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQSignalSpy_DeleteLater
 func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSignalSpyFromPointer(ptr).DeleteLaterDefault()
-	}
-}
-
-func (ptr *QSignalSpy) ConnectDeleteLater(f func()) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::deleteLater", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectDeleteLater() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::deleteLater")
 	}
 }
 
@@ -682,26 +553,20 @@ func (ptr *QSignalSpy) DeleteLaterDefault() {
 	}
 }
 
+//export callbackQSignalSpy_Destroyed
+func callbackQSignalSpy_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "destroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
 //export callbackQSignalSpy_DisconnectNotify
 func callbackQSignalSpy_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSignalSpyFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
-}
-
-func (ptr *QSignalSpy) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::disconnectNotify", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectDisconnectNotify() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::disconnectNotify")
 	}
 }
 
@@ -717,26 +582,20 @@ func (ptr *QSignalSpy) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	}
 }
 
+//export callbackQSignalSpy_ObjectNameChanged
+func callbackQSignalSpy_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtTestLib_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
 //export callbackQSignalSpy_TimerEvent
 func callbackQSignalSpy_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
-}
-
-func (ptr *QSignalSpy) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::timerEvent", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectTimerEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::timerEvent")
 	}
 }
 
@@ -754,25 +613,11 @@ func (ptr *QSignalSpy) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQSignalSpy_MetaObject
 func callbackQSignalSpy_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
 	return core.PointerFromQMetaObject(NewQSignalSpyFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QSignalSpy) ConnectMetaObject(f func() *core.QMetaObject) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::metaObject", f)
-	}
-}
-
-func (ptr *QSignalSpy) DisconnectMetaObject() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::metaObject")
-	}
 }
 
 func (ptr *QSignalSpy) MetaObject() *core.QMetaObject {
@@ -1080,12 +925,6 @@ func (ptr *QTestEventList) AddMouseRelease(button core.Qt__MouseButton, modifier
 	}
 }
 
-func (ptr *QTestEventList) Clear() {
-	if ptr.Pointer() != nil {
-		C.QTestEventList_Clear(ptr.Pointer())
-	}
-}
-
 func (ptr *QTestEventList) Simulate(w widgets.QWidget_ITF) {
 	if ptr.Pointer() != nil {
 		C.QTestEventList_Simulate(ptr.Pointer(), widgets.PointerFromQWidget(w))
@@ -1117,10 +956,7 @@ func (ptr *QTestEventList) __QList_other_setList3(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __QList_other_newList3() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___QList_other_newList3(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___QList_other_newList3(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __QList_other_atList2(i int) *core.QObject {
@@ -1141,10 +977,7 @@ func (ptr *QTestEventList) __QList_other_setList2(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __QList_other_newList2() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___QList_other_newList2(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___QList_other_newList2(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __fromSet_atList(i int) *core.QObject {
@@ -1165,10 +998,7 @@ func (ptr *QTestEventList) __fromSet_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __fromSet_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___fromSet_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___fromSet_newList(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __fromStdList_atList(i int) *core.QObject {
@@ -1189,10 +1019,7 @@ func (ptr *QTestEventList) __fromStdList_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __fromStdList_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___fromStdList_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___fromStdList_newList(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __fromVector_atList(i int) *core.QObject {
@@ -1213,10 +1040,7 @@ func (ptr *QTestEventList) __fromVector_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __fromVector_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___fromVector_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___fromVector_newList(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __fromVector_vector_atList(i int) *core.QObject {
@@ -1237,10 +1061,7 @@ func (ptr *QTestEventList) __fromVector_vector_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __fromVector_vector_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___fromVector_vector_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___fromVector_vector_newList(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __append_value_atList2(i int) *core.QObject {
@@ -1261,10 +1082,7 @@ func (ptr *QTestEventList) __append_value_setList2(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __append_value_newList2() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___append_value_newList2(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___append_value_newList2(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __swap_other_atList(i int) *core.QObject {
@@ -1285,10 +1103,7 @@ func (ptr *QTestEventList) __swap_other_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __swap_other_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___swap_other_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___swap_other_newList(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __mid_atList(i int) *core.QObject {
@@ -1309,10 +1124,7 @@ func (ptr *QTestEventList) __mid_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __mid_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___mid_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___mid_newList(ptr.Pointer()))
 }
 
 func (ptr *QTestEventList) __toVector_atList(i int) *core.QObject {
@@ -1333,8 +1145,5 @@ func (ptr *QTestEventList) __toVector_setList(i core.QObject_ITF) {
 }
 
 func (ptr *QTestEventList) __toVector_newList() unsafe.Pointer {
-	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QTestEventList___toVector_newList(ptr.Pointer()))
-	}
-	return nil
+	return unsafe.Pointer(C.QTestEventList___toVector_newList(ptr.Pointer()))
 }

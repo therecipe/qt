@@ -183,13 +183,42 @@ func cppFunctionBodyFailed(function *parser.Function) string {
 
 func cppFunctionBody(function *parser.Function) string {
 
-	var polyinputs, polyName = function.PossiblePolymorphic(false)
-	var polyinputsSelf, _ = function.PossiblePolymorphic(true)
+	var polyinputs, polyName = function.PossiblePolymorphicDerivations(false)
+
+	var polyinputsSelf []string
+
+	if function.Default && !parser.State.Moc {
+		polyinputsSelf, _ = function.PossibleDerivationsReversedAndRemovedPure(true)
+	} else {
+		polyinputsSelf, _ = function.PossiblePolymorphicDerivations(true)
+	}
+
+	if parser.State.Moc {
+		var fc, ok = function.Class()
+		if !ok {
+			return ""
+		}
+
+		for _, bcn := range append([]string{function.ClassName()}, fc.GetBases()...) {
+			var bc, ok = parser.State.ClassMap[bcn]
+			if !ok {
+				continue
+			}
+			var f = *function
+			f.Fullname = fmt.Sprintf("%v::%v", bcn, f.Name)
+
+			var ff = bc.GetFunction(f.Name)
+			for _, fb := range parser.IsBlockedDefault() {
+				if f.Fullname == fb || (ff != nil && ff.Virtual == parser.PURE && bc.Module != parser.MOC) {
+					return ""
+				}
+			}
+		}
+	}
 
 	if (len(polyinputsSelf) == 0 && len(polyinputs) == 0) ||
-		!(function.Meta == parser.PLAIN || function.Meta == parser.GETTER || function.Meta == parser.SETTER || function.Meta == parser.SLOT) ||
-		strings.HasPrefix(function.Name, parser.TILDE) {
-
+		function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT ||
+		function.Meta == parser.CONSTRUCTOR || (function.Meta == parser.DESTRUCTOR || strings.HasPrefix(function.Name, parser.TILDE)) {
 		return cppFunctionBodyInternal(function)
 	}
 
@@ -205,9 +234,15 @@ func cppFunctionBody(function *parser.Function) string {
 			if polyType == "QObject" || polyType == input[len(input)-1] {
 				continue
 			}
-			fmt.Fprintf(bb, "if (dynamic_cast<%v*>(static_cast<QObject*>(%v))) {\n", polyType, polyName)
+			fmt.Fprintf(bb, "if (dynamic_cast<%v*>(static_cast<%v*>(%v))) {\n", polyType, "QObject", polyName)
 			fmt.Fprintf(bb, "\t%v\n", func() string {
-				var ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")", "static_cast<"+polyType+"*>("+polyName+")", -1)
+				var ibody string
+				if function.Default && polyName == "ptr" {
+					ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")->"+input[len(input)-1]+"::", "static_cast<"+polyType+"*>("+polyName+")->"+polyType+"::", -1)
+				} else {
+					ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")", "static_cast<"+polyType+"*>("+polyName+")", -1)
+				}
+
 				if inner {
 					return ibody
 				}
@@ -218,6 +253,21 @@ func cppFunctionBody(function *parser.Function) string {
 			}())
 			fmt.Fprint(bb, "\t} else ")
 		}
+
+		if len(input) > 0 {
+			var _, ok = parser.State.ClassMap[input[len(input)-1]]
+			if ok {
+				var f = *function
+				f.Fullname = fmt.Sprintf("%v::%v", input[len(input)-1], f.Name)
+
+				for _, fb := range parser.IsBlockedDefault() {
+					if f.Fullname == fb {
+						body = ""
+					}
+				}
+			}
+		}
+
 		if bb.String() == "" {
 			return body
 		}

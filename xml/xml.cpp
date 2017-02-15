@@ -96,11 +96,6 @@ void* QDomCDATASection_NewQDomCDATASection2(void* x)
 	return new QDomCDATASection(*static_cast<QDomCDATASection*>(x));
 }
 
-long long QDomCDATASection_NodeType(void* ptr)
-{
-	return static_cast<QDomCDATASection*>(ptr)->nodeType();
-}
-
 void* QDomCharacterData_NewQDomCharacterData()
 {
 	return new QDomCharacterData();
@@ -164,11 +159,6 @@ void* QDomComment_NewQDomComment()
 void* QDomComment_NewQDomComment2(void* x)
 {
 	return new QDomComment(*static_cast<QDomComment*>(x));
-}
-
-long long QDomComment_NodeType(void* ptr)
-{
-	return static_cast<QDomComment*>(ptr)->nodeType();
 }
 
 void* QDomDocument_CreateAttribute(void* ptr, char* name)
@@ -1156,11 +1146,6 @@ void* QDomText_NewQDomText2(void* x)
 	return new QDomText(*static_cast<QDomText*>(x));
 }
 
-long long QDomText_NodeType(void* ptr)
-{
-	return static_cast<QDomText*>(ptr)->nodeType();
-}
-
 class MyQXmlAttributes: public QXmlAttributes
 {
 public:
@@ -1288,7 +1273,7 @@ public:
 	bool startPrefixMapping(const QString & prefix, const QString & uri) { QByteArray tb4ebfe = prefix.toUtf8(); QtXml_PackedString prefixPacked = { const_cast<char*>(tb4ebfe.prepend("WHITESPACE").constData()+10), tb4ebfe.size()-10 };QByteArray t2c6d68 = uri.toUtf8(); QtXml_PackedString uriPacked = { const_cast<char*>(t2c6d68.prepend("WHITESPACE").constData()+10), t2c6d68.size()-10 };return callbackQXmlContentHandler_StartPrefixMapping(this, prefixPacked, uriPacked) != 0; };
 	void setDocumentLocator(QXmlLocator * locator) { callbackQXmlContentHandler_SetDocumentLocator(this, locator); };
 	 ~MyQXmlContentHandler() { callbackQXmlContentHandler_DestroyQXmlContentHandler(this); };
-	QString errorString() const { return QString(callbackQXmlContentHandler_ErrorString(const_cast<MyQXmlContentHandler*>(this))); };
+	QString errorString() const { return QString(callbackQXmlContentHandler_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 char QXmlContentHandler_Characters(void* ptr, char* ch)
@@ -1415,7 +1400,7 @@ public:
 	bool notationDecl(const QString & name, const QString & publicId, const QString & systemId) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tcfc7b7 = publicId.toUtf8(); QtXml_PackedString publicIdPacked = { const_cast<char*>(tcfc7b7.prepend("WHITESPACE").constData()+10), tcfc7b7.size()-10 };QByteArray te11426 = systemId.toUtf8(); QtXml_PackedString systemIdPacked = { const_cast<char*>(te11426.prepend("WHITESPACE").constData()+10), te11426.size()-10 };return callbackQXmlDTDHandler_NotationDecl(this, namePacked, publicIdPacked, systemIdPacked) != 0; };
 	bool unparsedEntityDecl(const QString & name, const QString & publicId, const QString & systemId, const QString & notationName) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tcfc7b7 = publicId.toUtf8(); QtXml_PackedString publicIdPacked = { const_cast<char*>(tcfc7b7.prepend("WHITESPACE").constData()+10), tcfc7b7.size()-10 };QByteArray te11426 = systemId.toUtf8(); QtXml_PackedString systemIdPacked = { const_cast<char*>(te11426.prepend("WHITESPACE").constData()+10), te11426.size()-10 };QByteArray te46e8f = notationName.toUtf8(); QtXml_PackedString notationNamePacked = { const_cast<char*>(te46e8f.prepend("WHITESPACE").constData()+10), te46e8f.size()-10 };return callbackQXmlDTDHandler_UnparsedEntityDecl(this, namePacked, publicIdPacked, systemIdPacked, notationNamePacked) != 0; };
 	 ~MyQXmlDTDHandler() { callbackQXmlDTDHandler_DestroyQXmlDTDHandler(this); };
-	QString errorString() const { return QString(callbackQXmlDTDHandler_ErrorString(const_cast<MyQXmlDTDHandler*>(this))); };
+	QString errorString() const { return QString(callbackQXmlDTDHandler_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 char QXmlDTDHandler_NotationDecl(void* ptr, char* name, char* publicId, char* systemId)
@@ -1462,7 +1447,7 @@ public:
 	bool externalEntityDecl(const QString & name, const QString & publicId, const QString & systemId) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tcfc7b7 = publicId.toUtf8(); QtXml_PackedString publicIdPacked = { const_cast<char*>(tcfc7b7.prepend("WHITESPACE").constData()+10), tcfc7b7.size()-10 };QByteArray te11426 = systemId.toUtf8(); QtXml_PackedString systemIdPacked = { const_cast<char*>(te11426.prepend("WHITESPACE").constData()+10), te11426.size()-10 };return callbackQXmlDeclHandler_ExternalEntityDecl(this, namePacked, publicIdPacked, systemIdPacked) != 0; };
 	bool internalEntityDecl(const QString & name, const QString & value) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tf32b67 = value.toUtf8(); QtXml_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };return callbackQXmlDeclHandler_InternalEntityDecl(this, namePacked, valuePacked) != 0; };
 	 ~MyQXmlDeclHandler() { callbackQXmlDeclHandler_DestroyQXmlDeclHandler(this); };
-	QString errorString() const { return QString(callbackQXmlDeclHandler_ErrorString(const_cast<MyQXmlDeclHandler*>(this))); };
+	QString errorString() const { return QString(callbackQXmlDeclHandler_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 char QXmlDeclHandler_AttributeDecl(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value)
@@ -1542,7 +1527,7 @@ public:
 	bool warning(const QXmlParseException & exception) { return callbackQXmlDefaultHandler_Warning(this, const_cast<QXmlParseException*>(&exception)) != 0; };
 	void setDocumentLocator(QXmlLocator * locator) { callbackQXmlDefaultHandler_SetDocumentLocator(this, locator); };
 	 ~MyQXmlDefaultHandler() { callbackQXmlDefaultHandler_DestroyQXmlDefaultHandler(this); };
-	QString errorString() const { return QString(callbackQXmlDefaultHandler_ErrorString(const_cast<MyQXmlDefaultHandler*>(this))); };
+	QString errorString() const { return QString(callbackQXmlDefaultHandler_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QXmlDefaultHandler_NewQXmlDefaultHandler()
@@ -1834,7 +1819,7 @@ class MyQXmlEntityResolver: public QXmlEntityResolver
 {
 public:
 	 ~MyQXmlEntityResolver() { callbackQXmlEntityResolver_DestroyQXmlEntityResolver(this); };
-	QString errorString() const { return QString(callbackQXmlEntityResolver_ErrorString(const_cast<MyQXmlEntityResolver*>(this))); };
+	QString errorString() const { return QString(callbackQXmlEntityResolver_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void QXmlEntityResolver_DestroyQXmlEntityResolver(void* ptr)
@@ -1863,7 +1848,7 @@ public:
 	bool fatalError(const QXmlParseException & exception) { return callbackQXmlErrorHandler_FatalError(this, const_cast<QXmlParseException*>(&exception)) != 0; };
 	bool warning(const QXmlParseException & exception) { return callbackQXmlErrorHandler_Warning(this, const_cast<QXmlParseException*>(&exception)) != 0; };
 	 ~MyQXmlErrorHandler() { callbackQXmlErrorHandler_DestroyQXmlErrorHandler(this); };
-	QString errorString() const { return QString(callbackQXmlErrorHandler_ErrorString(const_cast<MyQXmlErrorHandler*>(this))); };
+	QString errorString() const { return QString(callbackQXmlErrorHandler_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 char QXmlErrorHandler_Error(void* ptr, void* exception)
@@ -1924,7 +1909,7 @@ public:
 	void setData(const QByteArray & dat) { callbackQXmlInputSource_SetData2(this, const_cast<QByteArray*>(&dat)); };
 	void setData(const QString & dat) { QByteArray tfbd0b9 = dat.toUtf8(); QtXml_PackedString datPacked = { const_cast<char*>(tfbd0b9.prepend("WHITESPACE").constData()+10), tfbd0b9.size()-10 };callbackQXmlInputSource_SetData(this, datPacked); };
 	 ~MyQXmlInputSource() { callbackQXmlInputSource_DestroyQXmlInputSource(this); };
-	QString data() const { return QString(callbackQXmlInputSource_Data(const_cast<MyQXmlInputSource*>(this))); };
+	QString data() const { return QString(callbackQXmlInputSource_Data(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QXmlInputSource_Next(void* ptr)
@@ -1934,7 +1919,7 @@ void* QXmlInputSource_Next(void* ptr)
 
 void* QXmlInputSource_NextDefault(void* ptr)
 {
-	return new QChar(static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::next());
+		return new QChar(static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::next());
 }
 
 struct QtXml_PackedString QXmlInputSource_FromRawData(void* ptr, void* data, char beginning)
@@ -1944,7 +1929,7 @@ struct QtXml_PackedString QXmlInputSource_FromRawData(void* ptr, void* data, cha
 
 struct QtXml_PackedString QXmlInputSource_FromRawDataDefault(void* ptr, void* data, char beginning)
 {
-	return ({ QByteArray tded04d = static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fromRawData(*static_cast<QByteArray*>(data), beginning != 0).toUtf8(); QtXml_PackedString { const_cast<char*>(tded04d.prepend("WHITESPACE").constData()+10), tded04d.size()-10 }; });
+		return ({ QByteArray tded04d = static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fromRawData(*static_cast<QByteArray*>(data), beginning != 0).toUtf8(); QtXml_PackedString { const_cast<char*>(tded04d.prepend("WHITESPACE").constData()+10), tded04d.size()-10 }; });
 }
 
 void* QXmlInputSource_NewQXmlInputSource()
@@ -1964,7 +1949,7 @@ void QXmlInputSource_FetchData(void* ptr)
 
 void QXmlInputSource_FetchDataDefault(void* ptr)
 {
-	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fetchData();
+		static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fetchData();
 }
 
 void QXmlInputSource_Reset(void* ptr)
@@ -1974,7 +1959,7 @@ void QXmlInputSource_Reset(void* ptr)
 
 void QXmlInputSource_ResetDefault(void* ptr)
 {
-	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::reset();
+		static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::reset();
 }
 
 void QXmlInputSource_SetData2(void* ptr, void* dat)
@@ -1984,7 +1969,7 @@ void QXmlInputSource_SetData2(void* ptr, void* dat)
 
 void QXmlInputSource_SetData2Default(void* ptr, void* dat)
 {
-	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::setData(*static_cast<QByteArray*>(dat));
+		static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::setData(*static_cast<QByteArray*>(dat));
 }
 
 void QXmlInputSource_SetData(void* ptr, char* dat)
@@ -1994,7 +1979,7 @@ void QXmlInputSource_SetData(void* ptr, char* dat)
 
 void QXmlInputSource_SetDataDefault(void* ptr, char* dat)
 {
-	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::setData(QString(dat));
+		static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::setData(QString(dat));
 }
 
 void QXmlInputSource_DestroyQXmlInputSource(void* ptr)
@@ -2014,7 +1999,7 @@ struct QtXml_PackedString QXmlInputSource_Data(void* ptr)
 
 struct QtXml_PackedString QXmlInputSource_DataDefault(void* ptr)
 {
-	return ({ QByteArray ta6ef1f = static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::data().toUtf8(); QtXml_PackedString { const_cast<char*>(ta6ef1f.prepend("WHITESPACE").constData()+10), ta6ef1f.size()-10 }; });
+		return ({ QByteArray ta6ef1f = static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::data().toUtf8(); QtXml_PackedString { const_cast<char*>(ta6ef1f.prepend("WHITESPACE").constData()+10), ta6ef1f.size()-10 }; });
 }
 
 unsigned short QXmlInputSource_QXmlInputSource_EndOfData()
@@ -2038,7 +2023,7 @@ public:
 	bool startDTD(const QString & name, const QString & publicId, const QString & systemId) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tcfc7b7 = publicId.toUtf8(); QtXml_PackedString publicIdPacked = { const_cast<char*>(tcfc7b7.prepend("WHITESPACE").constData()+10), tcfc7b7.size()-10 };QByteArray te11426 = systemId.toUtf8(); QtXml_PackedString systemIdPacked = { const_cast<char*>(te11426.prepend("WHITESPACE").constData()+10), te11426.size()-10 };return callbackQXmlLexicalHandler_StartDTD(this, namePacked, publicIdPacked, systemIdPacked) != 0; };
 	bool startEntity(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlLexicalHandler_StartEntity(this, namePacked) != 0; };
 	 ~MyQXmlLexicalHandler() { callbackQXmlLexicalHandler_DestroyQXmlLexicalHandler(this); };
-	QString errorString() const { return QString(callbackQXmlLexicalHandler_ErrorString(const_cast<MyQXmlLexicalHandler*>(this))); };
+	QString errorString() const { return QString(callbackQXmlLexicalHandler_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 char QXmlLexicalHandler_Comment(void* ptr, char* ch)
@@ -2128,8 +2113,8 @@ class MyQXmlLocator: public QXmlLocator
 public:
 	MyQXmlLocator() : QXmlLocator() {};
 	 ~MyQXmlLocator() { callbackQXmlLocator_DestroyQXmlLocator(this); };
-	int columnNumber() const { return callbackQXmlLocator_ColumnNumber(const_cast<MyQXmlLocator*>(this)); };
-	int lineNumber() const { return callbackQXmlLocator_LineNumber(const_cast<MyQXmlLocator*>(this)); };
+	int columnNumber() const { return callbackQXmlLocator_ColumnNumber(const_cast<void*>(static_cast<const void*>(this))); };
+	int lineNumber() const { return callbackQXmlLocator_LineNumber(const_cast<void*>(static_cast<const void*>(this))); };
 };
 
 void* QXmlLocator_NewQXmlLocator()
@@ -2270,16 +2255,16 @@ public:
 	void setLexicalHandler(QXmlLexicalHandler * handler) { callbackQXmlReader_SetLexicalHandler(this, handler); };
 	void setProperty(const QString & name, void * value) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQXmlReader_SetProperty(this, namePacked, value); };
 	 ~MyQXmlReader() { callbackQXmlReader_DestroyQXmlReader(this); };
-	QXmlContentHandler * contentHandler() const { return static_cast<QXmlContentHandler*>(callbackQXmlReader_ContentHandler(const_cast<MyQXmlReader*>(this))); };
-	QXmlDTDHandler * DTDHandler() const { return static_cast<QXmlDTDHandler*>(callbackQXmlReader_DTDHandler(const_cast<MyQXmlReader*>(this))); };
-	QXmlDeclHandler * declHandler() const { return static_cast<QXmlDeclHandler*>(callbackQXmlReader_DeclHandler(const_cast<MyQXmlReader*>(this))); };
-	QXmlEntityResolver * entityResolver() const { return static_cast<QXmlEntityResolver*>(callbackQXmlReader_EntityResolver(const_cast<MyQXmlReader*>(this))); };
-	QXmlErrorHandler * errorHandler() const { return static_cast<QXmlErrorHandler*>(callbackQXmlReader_ErrorHandler(const_cast<MyQXmlReader*>(this))); };
-	QXmlLexicalHandler * lexicalHandler() const { return static_cast<QXmlLexicalHandler*>(callbackQXmlReader_LexicalHandler(const_cast<MyQXmlReader*>(this))); };
-	bool feature(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_Feature(const_cast<MyQXmlReader*>(this), namePacked, *ok) != 0; };
-	bool hasFeature(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_HasFeature(const_cast<MyQXmlReader*>(this), namePacked) != 0; };
-	bool hasProperty(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_HasProperty(const_cast<MyQXmlReader*>(this), namePacked) != 0; };
-	void * property(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_Property(const_cast<MyQXmlReader*>(this), namePacked, *ok); };
+	QXmlContentHandler * contentHandler() const { return static_cast<QXmlContentHandler*>(callbackQXmlReader_ContentHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlDTDHandler * DTDHandler() const { return static_cast<QXmlDTDHandler*>(callbackQXmlReader_DTDHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlDeclHandler * declHandler() const { return static_cast<QXmlDeclHandler*>(callbackQXmlReader_DeclHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlEntityResolver * entityResolver() const { return static_cast<QXmlEntityResolver*>(callbackQXmlReader_EntityResolver(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlErrorHandler * errorHandler() const { return static_cast<QXmlErrorHandler*>(callbackQXmlReader_ErrorHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlLexicalHandler * lexicalHandler() const { return static_cast<QXmlLexicalHandler*>(callbackQXmlReader_LexicalHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool feature(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_Feature(const_cast<void*>(static_cast<const void*>(this)), namePacked, *ok) != 0; };
+	bool hasFeature(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_HasFeature(const_cast<void*>(static_cast<const void*>(this)), namePacked) != 0; };
+	bool hasProperty(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_HasProperty(const_cast<void*>(static_cast<const void*>(this)), namePacked) != 0; };
+	void * property(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlReader_Property(const_cast<void*>(static_cast<const void*>(this)), namePacked, *ok); };
 };
 
 char QXmlReader_Parse(void* ptr, void* input)
@@ -2428,16 +2413,16 @@ public:
 	void setLexicalHandler(QXmlLexicalHandler * handler) { callbackQXmlSimpleReader_SetLexicalHandler(this, handler); };
 	void setProperty(const QString & name, void * value) { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQXmlSimpleReader_SetProperty(this, namePacked, value); };
 	 ~MyQXmlSimpleReader() { callbackQXmlSimpleReader_DestroyQXmlSimpleReader(this); };
-	QXmlContentHandler * contentHandler() const { return static_cast<QXmlContentHandler*>(callbackQXmlSimpleReader_ContentHandler(const_cast<MyQXmlSimpleReader*>(this))); };
-	QXmlDTDHandler * DTDHandler() const { return static_cast<QXmlDTDHandler*>(callbackQXmlSimpleReader_DTDHandler(const_cast<MyQXmlSimpleReader*>(this))); };
-	QXmlDeclHandler * declHandler() const { return static_cast<QXmlDeclHandler*>(callbackQXmlSimpleReader_DeclHandler(const_cast<MyQXmlSimpleReader*>(this))); };
-	QXmlEntityResolver * entityResolver() const { return static_cast<QXmlEntityResolver*>(callbackQXmlSimpleReader_EntityResolver(const_cast<MyQXmlSimpleReader*>(this))); };
-	QXmlErrorHandler * errorHandler() const { return static_cast<QXmlErrorHandler*>(callbackQXmlSimpleReader_ErrorHandler(const_cast<MyQXmlSimpleReader*>(this))); };
-	QXmlLexicalHandler * lexicalHandler() const { return static_cast<QXmlLexicalHandler*>(callbackQXmlSimpleReader_LexicalHandler(const_cast<MyQXmlSimpleReader*>(this))); };
-	bool feature(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_Feature(const_cast<MyQXmlSimpleReader*>(this), namePacked, *ok) != 0; };
-	bool hasFeature(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_HasFeature(const_cast<MyQXmlSimpleReader*>(this), namePacked) != 0; };
-	bool hasProperty(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_HasProperty(const_cast<MyQXmlSimpleReader*>(this), namePacked) != 0; };
-	void * property(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_Property(const_cast<MyQXmlSimpleReader*>(this), namePacked, *ok); };
+	QXmlContentHandler * contentHandler() const { return static_cast<QXmlContentHandler*>(callbackQXmlSimpleReader_ContentHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlDTDHandler * DTDHandler() const { return static_cast<QXmlDTDHandler*>(callbackQXmlSimpleReader_DTDHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlDeclHandler * declHandler() const { return static_cast<QXmlDeclHandler*>(callbackQXmlSimpleReader_DeclHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlEntityResolver * entityResolver() const { return static_cast<QXmlEntityResolver*>(callbackQXmlSimpleReader_EntityResolver(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlErrorHandler * errorHandler() const { return static_cast<QXmlErrorHandler*>(callbackQXmlSimpleReader_ErrorHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	QXmlLexicalHandler * lexicalHandler() const { return static_cast<QXmlLexicalHandler*>(callbackQXmlSimpleReader_LexicalHandler(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool feature(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_Feature(const_cast<void*>(static_cast<const void*>(this)), namePacked, *ok) != 0; };
+	bool hasFeature(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_HasFeature(const_cast<void*>(static_cast<const void*>(this)), namePacked) != 0; };
+	bool hasProperty(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_HasProperty(const_cast<void*>(static_cast<const void*>(this)), namePacked) != 0; };
+	void * property(const QString & name, bool * ok) const { QByteArray t6ae999 = name.toUtf8(); QtXml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQXmlSimpleReader_Property(const_cast<void*>(static_cast<const void*>(this)), namePacked, *ok); };
 };
 
 void* QXmlSimpleReader_NewQXmlSimpleReader()
@@ -2452,7 +2437,7 @@ char QXmlSimpleReader_Parse(void* ptr, void* input)
 
 char QXmlSimpleReader_ParseDefault(void* ptr, void* input)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parse(*static_cast<QXmlInputSource*>(input));
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parse(*static_cast<QXmlInputSource*>(input));
 }
 
 char QXmlSimpleReader_Parse2(void* ptr, void* input)
@@ -2462,7 +2447,7 @@ char QXmlSimpleReader_Parse2(void* ptr, void* input)
 
 char QXmlSimpleReader_Parse2Default(void* ptr, void* input)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parse(static_cast<QXmlInputSource*>(input));
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parse(static_cast<QXmlInputSource*>(input));
 }
 
 char QXmlSimpleReader_Parse3(void* ptr, void* input, char incremental)
@@ -2472,7 +2457,7 @@ char QXmlSimpleReader_Parse3(void* ptr, void* input, char incremental)
 
 char QXmlSimpleReader_Parse3Default(void* ptr, void* input, char incremental)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parse(static_cast<QXmlInputSource*>(input), incremental != 0);
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parse(static_cast<QXmlInputSource*>(input), incremental != 0);
 }
 
 char QXmlSimpleReader_ParseContinue(void* ptr)
@@ -2482,7 +2467,7 @@ char QXmlSimpleReader_ParseContinue(void* ptr)
 
 char QXmlSimpleReader_ParseContinueDefault(void* ptr)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parseContinue();
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parseContinue();
 }
 
 void QXmlSimpleReader_SetContentHandler(void* ptr, void* handler)
@@ -2582,7 +2567,7 @@ void QXmlSimpleReader_SetFeature(void* ptr, char* name, char enable)
 
 void QXmlSimpleReader_SetFeatureDefault(void* ptr, char* name, char enable)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setFeature(QString(name), enable != 0);
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setFeature(QString(name), enable != 0);
 }
 
 void QXmlSimpleReader_SetLexicalHandler(void* ptr, void* handler)
@@ -2610,7 +2595,7 @@ void QXmlSimpleReader_SetProperty(void* ptr, char* name, void* value)
 
 void QXmlSimpleReader_SetPropertyDefault(void* ptr, char* name, void* value)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setProperty(QString(name), value);
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setProperty(QString(name), value);
 }
 
 void QXmlSimpleReader_DestroyQXmlSimpleReader(void* ptr)
@@ -2630,7 +2615,7 @@ void* QXmlSimpleReader_ContentHandler(void* ptr)
 
 void* QXmlSimpleReader_ContentHandlerDefault(void* ptr)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::contentHandler();
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::contentHandler();
 }
 
 void* QXmlSimpleReader_DTDHandler(void* ptr)
@@ -2640,7 +2625,7 @@ void* QXmlSimpleReader_DTDHandler(void* ptr)
 
 void* QXmlSimpleReader_DTDHandlerDefault(void* ptr)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::DTDHandler();
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::DTDHandler();
 }
 
 void* QXmlSimpleReader_DeclHandler(void* ptr)
@@ -2650,7 +2635,7 @@ void* QXmlSimpleReader_DeclHandler(void* ptr)
 
 void* QXmlSimpleReader_DeclHandlerDefault(void* ptr)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::declHandler();
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::declHandler();
 }
 
 void* QXmlSimpleReader_EntityResolver(void* ptr)
@@ -2660,7 +2645,7 @@ void* QXmlSimpleReader_EntityResolver(void* ptr)
 
 void* QXmlSimpleReader_EntityResolverDefault(void* ptr)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::entityResolver();
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::entityResolver();
 }
 
 void* QXmlSimpleReader_ErrorHandler(void* ptr)
@@ -2670,7 +2655,7 @@ void* QXmlSimpleReader_ErrorHandler(void* ptr)
 
 void* QXmlSimpleReader_ErrorHandlerDefault(void* ptr)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::errorHandler();
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::errorHandler();
 }
 
 void* QXmlSimpleReader_LexicalHandler(void* ptr)
@@ -2680,7 +2665,7 @@ void* QXmlSimpleReader_LexicalHandler(void* ptr)
 
 void* QXmlSimpleReader_LexicalHandlerDefault(void* ptr)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::lexicalHandler();
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::lexicalHandler();
 }
 
 char QXmlSimpleReader_Feature(void* ptr, char* name, char ok)
@@ -2690,7 +2675,7 @@ char QXmlSimpleReader_Feature(void* ptr, char* name, char ok)
 
 char QXmlSimpleReader_FeatureDefault(void* ptr, char* name, char ok)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::feature(QString(name), NULL);
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::feature(QString(name), NULL);
 }
 
 char QXmlSimpleReader_HasFeature(void* ptr, char* name)
@@ -2700,7 +2685,7 @@ char QXmlSimpleReader_HasFeature(void* ptr, char* name)
 
 char QXmlSimpleReader_HasFeatureDefault(void* ptr, char* name)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::hasFeature(QString(name));
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::hasFeature(QString(name));
 }
 
 char QXmlSimpleReader_HasProperty(void* ptr, char* name)
@@ -2710,7 +2695,7 @@ char QXmlSimpleReader_HasProperty(void* ptr, char* name)
 
 char QXmlSimpleReader_HasPropertyDefault(void* ptr, char* name)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::hasProperty(QString(name));
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::hasProperty(QString(name));
 }
 
 void* QXmlSimpleReader_Property(void* ptr, char* name, char ok)
@@ -2720,6 +2705,6 @@ void* QXmlSimpleReader_Property(void* ptr, char* name, char ok)
 
 void* QXmlSimpleReader_PropertyDefault(void* ptr, char* name, char ok)
 {
-	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::property(QString(name), NULL);
+		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::property(QString(name), NULL);
 }
 

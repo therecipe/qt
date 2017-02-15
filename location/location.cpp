@@ -252,9 +252,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQGeoRouteReply_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQGeoRouteReply_CustomEvent(this, event); };
 	void deleteLater() { callbackQGeoRouteReply_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQGeoRouteReply_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRouteReply_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtLocation_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoRouteReply_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoRouteReply_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRouteReply_MetaObject(const_cast<MyQGeoRouteReply*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRouteReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QGeoRouteReply_NewQGeoRouteReply(long long error, char* errorString, void* parent)
@@ -274,7 +276,7 @@ void QGeoRouteReply_Abort(void* ptr)
 
 void QGeoRouteReply_AbortDefault(void* ptr)
 {
-	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::abort();
+		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::abort();
 }
 
 void QGeoRouteReply_AddRoutes(void* ptr, void* routes)
@@ -482,94 +484,49 @@ void* QGeoRouteReply___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QGeoRouteReply_Event(void* ptr, void* e)
-{
-	return static_cast<QGeoRouteReply*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QGeoRouteReply_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::event(static_cast<QEvent*>(e));
-}
-
-char QGeoRouteReply_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QGeoRouteReply*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::event(static_cast<QEvent*>(e));
 }
 
 char QGeoRouteReply_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QGeoRouteReply_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRouteReply*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QGeoRouteReply_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QGeoRouteReply_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoRouteReply*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QGeoRouteReply_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoRouteReply_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRouteReply*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoRouteReply_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::customEvent(static_cast<QEvent*>(event));
-}
-
-void QGeoRouteReply_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QGeoRouteReply*>(ptr), "deleteLater");
+		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::customEvent(static_cast<QEvent*>(event));
 }
 
 void QGeoRouteReply_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::deleteLater();
-}
-
-void QGeoRouteReply_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoRouteReply*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::deleteLater();
 }
 
 void QGeoRouteReply_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoRouteReply_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRouteReply*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoRouteReply_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QGeoRouteReply_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QGeoRouteReply*>(ptr)->metaObject());
+		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QGeoRouteReply_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::metaObject());
 }
 
 void* QGeoRouteRequest_NewQGeoRouteRequest2(void* origin, void* destination)
@@ -858,9 +815,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQGeoRoutingManager_CustomEvent(this, event); };
 	void deleteLater() { callbackQGeoRoutingManager_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQGeoRoutingManager_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtLocation_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoRoutingManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManager_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManager_MetaObject(const_cast<MyQGeoRoutingManager*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request)
@@ -1043,94 +1002,49 @@ void* QGeoRoutingManager___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QGeoRoutingManager_Event(void* ptr, void* e)
-{
-	return static_cast<QGeoRoutingManager*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QGeoRoutingManager_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::event(static_cast<QEvent*>(e));
-}
-
-char QGeoRoutingManager_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QGeoRoutingManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::event(static_cast<QEvent*>(e));
 }
 
 char QGeoRoutingManager_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QGeoRoutingManager_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRoutingManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QGeoRoutingManager_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QGeoRoutingManager_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoRoutingManager*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QGeoRoutingManager_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoRoutingManager_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRoutingManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoRoutingManager_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::customEvent(static_cast<QEvent*>(event));
-}
-
-void QGeoRoutingManager_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QGeoRoutingManager*>(ptr), "deleteLater");
+		static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::customEvent(static_cast<QEvent*>(event));
 }
 
 void QGeoRoutingManager_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::deleteLater();
-}
-
-void QGeoRoutingManager_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoRoutingManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::deleteLater();
 }
 
 void QGeoRoutingManager_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoRoutingManager_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRoutingManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoRoutingManager_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QGeoRoutingManager_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QGeoRoutingManager*>(ptr)->metaObject());
+		static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QGeoRoutingManager_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::metaObject());
 }
 
 class MyQGeoRoutingManagerEngine: public QGeoRoutingManagerEngine
@@ -1148,9 +1062,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManagerEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQGeoRoutingManagerEngine_CustomEvent(this, event); };
 	void deleteLater() { callbackQGeoRoutingManagerEngine_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQGeoRoutingManagerEngine_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManagerEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtLocation_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoRoutingManagerEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManagerEngine_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManagerEngine_MetaObject(const_cast<MyQGeoRoutingManagerEngine*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManagerEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QGeoRoutingManagerEngine_CalculateRoute(void* ptr, void* request)
@@ -1165,7 +1081,7 @@ void* QGeoRoutingManagerEngine_UpdateRoute(void* ptr, void* route, void* positio
 
 void* QGeoRoutingManagerEngine_UpdateRouteDefault(void* ptr, void* route, void* position)
 {
-	return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::updateRoute(*static_cast<QGeoRoute*>(route), *static_cast<QGeoCoordinate*>(position));
+		return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::updateRoute(*static_cast<QGeoRoute*>(route), *static_cast<QGeoCoordinate*>(position));
 }
 
 void* QGeoRoutingManagerEngine_NewQGeoRoutingManagerEngine(void* parameters, void* parent)
@@ -1413,95 +1329,67 @@ void* QGeoRoutingManagerEngine___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QGeoRoutingManagerEngine_Event(void* ptr, void* e)
-{
-	return static_cast<QGeoRoutingManagerEngine*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QGeoRoutingManagerEngine_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::event(static_cast<QEvent*>(e));
-}
-
-char QGeoRoutingManagerEngine_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QGeoRoutingManagerEngine*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::event(static_cast<QEvent*>(e));
 }
 
 char QGeoRoutingManagerEngine_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QGeoRoutingManagerEngine_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QGeoRoutingManagerEngine_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QGeoRoutingManagerEngine_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QGeoRoutingManagerEngine_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoRoutingManagerEngine_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoRoutingManagerEngine_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::customEvent(static_cast<QEvent*>(event));
-}
-
-void QGeoRoutingManagerEngine_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QGeoRoutingManagerEngine*>(ptr), "deleteLater");
+		static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::customEvent(static_cast<QEvent*>(event));
 }
 
 void QGeoRoutingManagerEngine_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::deleteLater();
-}
-
-void QGeoRoutingManagerEngine_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::deleteLater();
 }
 
 void QGeoRoutingManagerEngine_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoRoutingManagerEngine_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoRoutingManagerEngine_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QGeoRoutingManagerEngine_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QGeoRoutingManagerEngine*>(ptr)->metaObject());
+		static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QGeoRoutingManagerEngine_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::metaObject());
 }
+
+class MyQGeoServiceProvider: public QGeoServiceProvider
+{
+public:
+	MyQGeoServiceProvider(const QString &providerName, const QVariantMap &parameters, bool allowExperimental) : QGeoServiceProvider(providerName, parameters, allowExperimental) {};
+	bool event(QEvent * e) { return callbackQGeoServiceProvider_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoServiceProvider_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQGeoServiceProvider_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQGeoServiceProvider_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQGeoServiceProvider_CustomEvent(this, event); };
+	void deleteLater() { callbackQGeoServiceProvider_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQGeoServiceProvider_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoServiceProvider_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtLocation_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGeoServiceProvider_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQGeoServiceProvider_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoServiceProvider_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
 
 int QGeoServiceProvider_OnlineGeocodingFeature_Type()
 {
@@ -1645,7 +1533,7 @@ int QGeoServiceProvider_AnyRoutingFeatures_Type()
 
 void* QGeoServiceProvider_NewQGeoServiceProvider(char* providerName, void* parameters, char allowExperimental)
 {
-	return new QGeoServiceProvider(QString(providerName), *static_cast<QMap<QString, QVariant>*>(parameters), allowExperimental != 0);
+	return new MyQGeoServiceProvider(QString(providerName), *static_cast<QMap<QString, QVariant>*>(parameters), allowExperimental != 0);
 }
 
 struct QtLocation_PackedString QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()
@@ -1863,94 +1751,49 @@ void* QGeoServiceProvider___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QGeoServiceProvider_Event(void* ptr, void* e)
-{
-	return static_cast<QGeoServiceProvider*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QGeoServiceProvider_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::event(static_cast<QEvent*>(e));
-}
-
-char QGeoServiceProvider_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QGeoServiceProvider*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::event(static_cast<QEvent*>(e));
 }
 
 char QGeoServiceProvider_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QGeoServiceProvider_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QGeoServiceProvider*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QGeoServiceProvider_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QGeoServiceProvider_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoServiceProvider*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QGeoServiceProvider_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoServiceProvider_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QGeoServiceProvider*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoServiceProvider_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::customEvent(static_cast<QEvent*>(event));
-}
-
-void QGeoServiceProvider_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QGeoServiceProvider*>(ptr), "deleteLater");
+		static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::customEvent(static_cast<QEvent*>(event));
 }
 
 void QGeoServiceProvider_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::deleteLater();
-}
-
-void QGeoServiceProvider_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGeoServiceProvider*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::deleteLater();
 }
 
 void QGeoServiceProvider_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGeoServiceProvider_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QGeoServiceProvider*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGeoServiceProvider_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QGeoServiceProvider_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QGeoServiceProvider*>(ptr)->metaObject());
+		static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QGeoServiceProvider_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::metaObject());
 }
 
 class MyQGeoServiceProviderFactory: public QGeoServiceProviderFactory

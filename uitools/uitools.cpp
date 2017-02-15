@@ -40,9 +40,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQUiLoader_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQUiLoader_CustomEvent(this, event); };
 	void deleteLater() { callbackQUiLoader_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQUiLoader_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQUiLoader_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtUiTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQUiLoader_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<MyQUiLoader*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QUiLoader_CreateAction(void* ptr, void* parent, char* name)
@@ -52,7 +54,7 @@ void* QUiLoader_CreateAction(void* ptr, void* parent, char* name)
 
 void* QUiLoader_CreateActionDefault(void* ptr, void* parent, char* name)
 {
-	return static_cast<QUiLoader*>(ptr)->QUiLoader::createAction(static_cast<QObject*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createAction(static_cast<QObject*>(parent), QString(name));
 }
 
 void* QUiLoader_CreateActionGroup(void* ptr, void* parent, char* name)
@@ -62,7 +64,7 @@ void* QUiLoader_CreateActionGroup(void* ptr, void* parent, char* name)
 
 void* QUiLoader_CreateActionGroupDefault(void* ptr, void* parent, char* name)
 {
-	return static_cast<QUiLoader*>(ptr)->QUiLoader::createActionGroup(static_cast<QObject*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createActionGroup(static_cast<QObject*>(parent), QString(name));
 }
 
 void* QUiLoader_CreateLayout(void* ptr, char* className, void* parent, char* name)
@@ -72,7 +74,7 @@ void* QUiLoader_CreateLayout(void* ptr, char* className, void* parent, char* nam
 
 void* QUiLoader_CreateLayoutDefault(void* ptr, char* className, void* parent, char* name)
 {
-	return static_cast<QUiLoader*>(ptr)->QUiLoader::createLayout(QString(className), static_cast<QObject*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createLayout(QString(className), static_cast<QObject*>(parent), QString(name));
 }
 
 void* QUiLoader_NewQUiLoader(void* parent)
@@ -87,7 +89,7 @@ void* QUiLoader_CreateWidget(void* ptr, char* className, void* parent, char* nam
 
 void* QUiLoader_CreateWidgetDefault(void* ptr, char* className, void* parent, char* name)
 {
-	return static_cast<QUiLoader*>(ptr)->QUiLoader::createWidget(QString(className), static_cast<QWidget*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createWidget(QString(className), static_cast<QWidget*>(parent), QString(name));
 }
 
 void* QUiLoader_Load(void* ptr, void* device, void* parentWidget)
@@ -230,93 +232,48 @@ void* QUiLoader___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QUiLoader_Event(void* ptr, void* e)
-{
-	return static_cast<QUiLoader*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QUiLoader_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QUiLoader*>(ptr)->QUiLoader::event(static_cast<QEvent*>(e));
-}
-
-char QUiLoader_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QUiLoader*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::event(static_cast<QEvent*>(e));
 }
 
 char QUiLoader_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QUiLoader*>(ptr)->QUiLoader::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QUiLoader_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QUiLoader*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QUiLoader_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QUiLoader*>(ptr)->QUiLoader::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QUiLoader_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QUiLoader*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QUiLoader*>(ptr)->QUiLoader::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QUiLoader_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QUiLoader*>(ptr)->QUiLoader::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QUiLoader_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QUiLoader*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QUiLoader*>(ptr)->QUiLoader::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QUiLoader_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QUiLoader*>(ptr)->QUiLoader::customEvent(static_cast<QEvent*>(event));
-}
-
-void QUiLoader_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QUiLoader*>(ptr), "deleteLater");
+		static_cast<QUiLoader*>(ptr)->QUiLoader::customEvent(static_cast<QEvent*>(event));
 }
 
 void QUiLoader_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QUiLoader*>(ptr)->QUiLoader::deleteLater();
-}
-
-void QUiLoader_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QUiLoader*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QUiLoader*>(ptr)->QUiLoader::deleteLater();
 }
 
 void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QUiLoader*>(ptr)->QUiLoader::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QUiLoader_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QUiLoader*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QUiLoader*>(ptr)->QUiLoader::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QUiLoader_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QUiLoader*>(ptr)->QUiLoader::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QUiLoader_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QUiLoader*>(ptr)->metaObject());
+		static_cast<QUiLoader*>(ptr)->QUiLoader::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QUiLoader_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QUiLoader*>(ptr)->QUiLoader::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QUiLoader*>(ptr)->QUiLoader::metaObject());
 }
 

@@ -28,7 +28,7 @@ func GoEnum(n string, v string, e *parser.Enum) string {
 
 	case err != nil:
 		{
-			if c, exists := parser.State.ClassMap[class(goEnum(e, v))]; exists && module(c.Module) != module(e) && module(c.Module) != "" {
+			if c, ok := parser.State.ClassMap[class(goEnum(e, v))]; ok && module(c.Module) != module(e) && module(c.Module) != "" {
 				return fmt.Sprintf("%v.%v", module(c.Module), goEnum(e, v))
 			}
 			return goEnum(e, v)

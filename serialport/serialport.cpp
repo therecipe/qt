@@ -43,24 +43,33 @@ public:
 	void Signal_RequestToSendChanged(bool set) { callbackQSerialPort_RequestToSendChanged(this, set); };
 	void Signal_StopBitsChanged(QSerialPort::StopBits stopBits) { callbackQSerialPort_StopBitsChanged(this, stopBits); };
 	 ~MyQSerialPort() { callbackQSerialPort_DestroyQSerialPort(this); };
-	bool atEnd() const { return callbackQSerialPort_AtEnd(const_cast<MyQSerialPort*>(this)) != 0; };
-	bool canReadLine() const { return callbackQSerialPort_CanReadLine(const_cast<MyQSerialPort*>(this)) != 0; };
-	bool isSequential() const { return callbackQSerialPort_IsSequential(const_cast<MyQSerialPort*>(this)) != 0; };
-	qint64 bytesAvailable() const { return callbackQSerialPort_BytesAvailable(const_cast<MyQSerialPort*>(this)); };
-	qint64 bytesToWrite() const { return callbackQSerialPort_BytesToWrite(const_cast<MyQSerialPort*>(this)); };
+	bool atEnd() const { return callbackQSerialPort_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool canReadLine() const { return callbackQSerialPort_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool isSequential() const { return callbackQSerialPort_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQSerialPort_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQSerialPort_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
+	bool open(QIODevice::OpenMode mode) { return callbackQSerialPort_Open(this, mode) != 0; };
 	bool reset() { return callbackQSerialPort_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQSerialPort_Seek(this, pos) != 0; };
-	qint64 pos() const { return callbackQSerialPort_Pos(const_cast<MyQSerialPort*>(this)); };
-	qint64 size() const { return callbackQSerialPort_Size(const_cast<MyQSerialPort*>(this)); };
+	void Signal_AboutToClose() { callbackQSerialPort_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQSerialPort_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQSerialPort_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQSerialPort_ChannelReadyRead(this, channel); };
+	void Signal_ReadChannelFinished() { callbackQSerialPort_ReadChannelFinished(this); };
+	void Signal_ReadyRead() { callbackQSerialPort_ReadyRead(this); };
+	qint64 pos() const { return callbackQSerialPort_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 size() const { return callbackQSerialPort_Size(const_cast<void*>(static_cast<const void*>(this))); };
 	bool event(QEvent * e) { return callbackQSerialPort_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSerialPort_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSerialPort_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSerialPort_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSerialPort_CustomEvent(this, event); };
 	void deleteLater() { callbackQSerialPort_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQSerialPort_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSerialPort_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialPort_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSerialPort_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSerialPort_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSerialPort_MetaObject(const_cast<MyQSerialPort*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSerialPort_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 long long QSerialPort_PinoutSignals(void* ptr)
@@ -103,9 +112,9 @@ char QSerialPort_IsRequestToSend(void* ptr)
 	return static_cast<QSerialPort*>(ptr)->isRequestToSend();
 }
 
-char QSerialPort_Open(void* ptr, long long mode)
+char QSerialPort_OpenDefault(void* ptr, long long mode)
 {
-	return static_cast<QSerialPort*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::open(static_cast<QIODevice::OpenModeFlag>(mode));
 }
 
 char QSerialPort_SetBaudRate(void* ptr, int baudRate, long long directions)
@@ -148,24 +157,14 @@ char QSerialPort_SetStopBits(void* ptr, long long stopBits)
 	return static_cast<QSerialPort*>(ptr)->setStopBits(static_cast<QSerialPort::StopBits>(stopBits));
 }
 
-char QSerialPort_WaitForBytesWritten(void* ptr, int msecs)
-{
-	return static_cast<QSerialPort*>(ptr)->waitForBytesWritten(msecs);
-}
-
 char QSerialPort_WaitForBytesWrittenDefault(void* ptr, int msecs)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::waitForBytesWritten(msecs);
-}
-
-char QSerialPort_WaitForReadyRead(void* ptr, int msecs)
-{
-	return static_cast<QSerialPort*>(ptr)->waitForReadyRead(msecs);
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::waitForBytesWritten(msecs);
 }
 
 char QSerialPort_WaitForReadyReadDefault(void* ptr, int msecs)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::waitForReadyRead(msecs);
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::waitForReadyRead(msecs);
 }
 
 long long QSerialPort_ReadData(void* ptr, char* data, long long maxSize)
@@ -175,17 +174,12 @@ long long QSerialPort_ReadData(void* ptr, char* data, long long maxSize)
 
 long long QSerialPort_ReadDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::readData(data, maxSize);
-}
-
-long long QSerialPort_ReadLineData(void* ptr, char* data, long long maxSize)
-{
-	return static_cast<QSerialPort*>(ptr)->readLineData(data, maxSize);
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::readData(data, maxSize);
 }
 
 long long QSerialPort_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::readLineData(data, maxSize);
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::readLineData(data, maxSize);
 }
 
 long long QSerialPort_WriteData(void* ptr, char* data, long long maxSize)
@@ -195,7 +189,7 @@ long long QSerialPort_WriteData(void* ptr, char* data, long long maxSize)
 
 long long QSerialPort_WriteDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::writeData(const_cast<const char*>(data), maxSize);
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::writeData(const_cast<const char*>(data), maxSize);
 }
 
 void QSerialPort_ConnectBaudRateChanged(void* ptr)
@@ -233,14 +227,9 @@ void QSerialPort_ClearError(void* ptr)
 	static_cast<QSerialPort*>(ptr)->clearError();
 }
 
-void QSerialPort_Close(void* ptr)
-{
-	static_cast<QSerialPort*>(ptr)->close();
-}
-
 void QSerialPort_CloseDefault(void* ptr)
 {
-	static_cast<QSerialPort*>(ptr)->QSerialPort::close();
+		static_cast<QSerialPort*>(ptr)->QSerialPort::close();
 }
 
 void QSerialPort_ConnectDataBitsChanged(void* ptr)
@@ -413,54 +402,29 @@ int QSerialPort_BaudRate(void* ptr, long long directions)
 	return static_cast<QSerialPort*>(ptr)->baudRate(static_cast<QSerialPort::Direction>(directions));
 }
 
-char QSerialPort_AtEnd(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->atEnd();
-}
-
 char QSerialPort_AtEndDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::atEnd();
-}
-
-char QSerialPort_CanReadLine(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->canReadLine();
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::atEnd();
 }
 
 char QSerialPort_CanReadLineDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::canReadLine();
-}
-
-char QSerialPort_IsSequential(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->isSequential();
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::canReadLine();
 }
 
 char QSerialPort_IsSequentialDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::isSequential();
-}
-
-long long QSerialPort_BytesAvailable(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->bytesAvailable();
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::isSequential();
 }
 
 long long QSerialPort_BytesAvailableDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::bytesAvailable();
-}
-
-long long QSerialPort_BytesToWrite(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->bytesToWrite();
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::bytesAvailable();
 }
 
 long long QSerialPort_BytesToWriteDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::bytesToWrite();
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::bytesToWrite();
 }
 
 long long QSerialPort_ReadBufferSize(void* ptr)
@@ -543,134 +507,69 @@ void* QSerialPort___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QSerialPort_Reset(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->reset();
-}
-
 char QSerialPort_ResetDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::reset();
-}
-
-char QSerialPort_Seek(void* ptr, long long pos)
-{
-	return static_cast<QSerialPort*>(ptr)->seek(pos);
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::reset();
 }
 
 char QSerialPort_SeekDefault(void* ptr, long long pos)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::seek(pos);
-}
-
-long long QSerialPort_Pos(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->pos();
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::seek(pos);
 }
 
 long long QSerialPort_PosDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::pos();
-}
-
-long long QSerialPort_Size(void* ptr)
-{
-	return static_cast<QSerialPort*>(ptr)->size();
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::pos();
 }
 
 long long QSerialPort_SizeDefault(void* ptr)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::size();
-}
-
-char QSerialPort_Event(void* ptr, void* e)
-{
-	return static_cast<QSerialPort*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::size();
 }
 
 char QSerialPort_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::event(static_cast<QEvent*>(e));
-}
-
-char QSerialPort_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QSerialPort*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::event(static_cast<QEvent*>(e));
 }
 
 char QSerialPort_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QSerialPort*>(ptr)->QSerialPort::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QSerialPort_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QSerialPort*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QSerialPort*>(ptr)->QSerialPort::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QSerialPort_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QSerialPort*>(ptr)->QSerialPort::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QSerialPort_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QSerialPort*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QSerialPort*>(ptr)->QSerialPort::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QSerialPort_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QSerialPort*>(ptr)->QSerialPort::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QSerialPort_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QSerialPort*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QSerialPort*>(ptr)->QSerialPort::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QSerialPort_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QSerialPort*>(ptr)->QSerialPort::customEvent(static_cast<QEvent*>(event));
-}
-
-void QSerialPort_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QSerialPort*>(ptr), "deleteLater");
+		static_cast<QSerialPort*>(ptr)->QSerialPort::customEvent(static_cast<QEvent*>(event));
 }
 
 void QSerialPort_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QSerialPort*>(ptr)->QSerialPort::deleteLater();
-}
-
-void QSerialPort_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QSerialPort*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QSerialPort*>(ptr)->QSerialPort::deleteLater();
 }
 
 void QSerialPort_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QSerialPort*>(ptr)->QSerialPort::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QSerialPort_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QSerialPort*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QSerialPort*>(ptr)->QSerialPort::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QSerialPort_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QSerialPort*>(ptr)->QSerialPort::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QSerialPort_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QSerialPort*>(ptr)->metaObject());
+		static_cast<QSerialPort*>(ptr)->QSerialPort::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QSerialPort_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QSerialPort*>(ptr)->QSerialPort::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QSerialPort*>(ptr)->QSerialPort::metaObject());
 }
 
 struct QtSerialPort_PackedList QSerialPortInfo_QSerialPortInfo_AvailablePorts()

@@ -48,11 +48,6 @@ func install(buildTarget string) {
 		return
 	}
 
-	if utils.IsCI() && !utils.QT_STUB() {
-		utils.Log.Debug("running on CI without QT_STUB -> skipping installation of modules")
-		return
-	}
-
 	utils.Log.Infof("starting to install modules (~%v5min)", func() string {
 		if !utils.QT_STUB() {
 			return "1"

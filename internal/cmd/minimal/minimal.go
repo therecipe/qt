@@ -47,10 +47,10 @@ func Minimal(appPath, buildTarget string) {
 									pkg = pkgs
 								}
 							}
-							if _, exists := parser.LibDeps[pkg]; exists {
+							if _, ok := parser.LibDeps[pkg]; ok {
 								importedPkgMap[pkg] = struct{}{}
 								for _, dep := range parser.LibDeps[pkg] {
-									if _, exists := parser.LibDeps[dep]; exists {
+									if _, ok := parser.LibDeps[dep]; ok {
 										importedPkgMap[dep] = struct{}{}
 									}
 								}
@@ -87,7 +87,7 @@ func Minimal(appPath, buildTarget string) {
 
 	var importedPkgs []string
 	for _, dep := range parser.Libs {
-		if _, exist := importedPkgMap[dep]; exist {
+		if _, ok := importedPkgMap[dep]; ok {
 			importedPkgs = append(importedPkgs, dep)
 		}
 	}
@@ -105,7 +105,14 @@ func Minimal(appPath, buildTarget string) {
 			if hasPureVirtualFunctions(className) {
 				for _, f := range c.Functions {
 					if f.Virtual == parser.PURE {
-						exportFunction(c, f)
+						var cdna, _ = f.PossibleDerivationsInAllModules(true)
+						for _, cdn := range cdna {
+							var c, ok = parser.State.ClassMap[cdn]
+							if !ok || !c.HasFunctionWithName(f.Name) {
+								continue
+							}
+							exportFunction(c, c.GetFunction(f.Name))
+						}
 					}
 				}
 			}
@@ -201,7 +208,7 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 			}
 
 			for _, p := range f.Parameters {
-				if class, exists := parser.State.ClassMap[parser.CleanValue(p.Value)]; exists {
+				if class, ok := parser.State.ClassMap[parser.CleanValue(p.Value)]; ok {
 					class.Export = true
 
 					for _, bc := range class.GetAllBases() {
@@ -210,7 +217,7 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 				}
 			}
 
-			if class, exists := parser.State.ClassMap[parser.CleanValue(f.Output)]; exists {
+			if class, ok := parser.State.ClassMap[parser.CleanValue(f.Output)]; ok {
 				exportClass(class)
 
 				for _, bc := range class.GetAllBases() {
@@ -218,7 +225,7 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 				}
 			}
 
-			if parser.IsPackedList(f.Output) {
+			if parser.IsPackedList(f.Output) || parser.IsPackedMap(f.Output) {
 				for _, f := range class.Functions {
 					if strings.Contains(f.Name, function.Name) &&
 						(strings.HasSuffix(f.Name, "_atList") ||
@@ -228,10 +235,11 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 						f.Export = true
 					}
 				}
-			}
-
-			for _, p := range f.Parameters {
-				if parser.IsPackedList(parser.CleanValue(p.Value)) {
+				for _, bc := range append(class.GetAllBases(), class.GetAllDerivations()...) {
+					var class, ok = parser.State.ClassMap[bc]
+					if !ok {
+						continue
+					}
 					for _, f := range class.Functions {
 						if strings.Contains(f.Name, function.Name) &&
 							(strings.HasSuffix(f.Name, "_atList") ||
@@ -239,6 +247,35 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 								strings.HasSuffix(f.Name, "_newList") ||
 								strings.HasSuffix(f.Name, "_keyList")) {
 							f.Export = true
+						}
+					}
+				}
+			}
+
+			for _, p := range f.Parameters {
+				if parser.IsPackedList(parser.CleanValue(p.Value)) || parser.IsPackedMap(p.Value) {
+					for _, f := range class.Functions {
+						if strings.Contains(f.Name, function.Name) &&
+							(strings.HasSuffix(f.Name, "_atList") ||
+								strings.HasSuffix(f.Name, "_setList") ||
+								strings.HasSuffix(f.Name, "_newList") ||
+								strings.HasSuffix(f.Name, "_keyList")) {
+							f.Export = true
+						}
+					}
+					for _, bc := range append(class.GetAllBases(), class.GetAllDerivations()...) {
+						var class, ok = parser.State.ClassMap[bc]
+						if !ok {
+							continue
+						}
+						for _, f := range class.Functions {
+							if strings.Contains(f.Name, function.Name) &&
+								(strings.HasSuffix(f.Name, "_atList") ||
+									strings.HasSuffix(f.Name, "_setList") ||
+									strings.HasSuffix(f.Name, "_newList") ||
+									strings.HasSuffix(f.Name, "_keyList")) {
+								f.Export = true
+							}
 						}
 					}
 				}

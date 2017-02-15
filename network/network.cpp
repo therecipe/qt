@@ -85,16 +85,18 @@ public:
 	void insert(QIODevice * device) { callbackQAbstractNetworkCache_Insert(this, device); };
 	void updateMetaData(const QNetworkCacheMetaData & metaData) { callbackQAbstractNetworkCache_UpdateMetaData(this, const_cast<QNetworkCacheMetaData*>(&metaData)); };
 	 ~MyQAbstractNetworkCache() { callbackQAbstractNetworkCache_DestroyQAbstractNetworkCache(this); };
-	qint64 cacheSize() const { return callbackQAbstractNetworkCache_CacheSize(const_cast<MyQAbstractNetworkCache*>(this)); };
+	qint64 cacheSize() const { return callbackQAbstractNetworkCache_CacheSize(const_cast<void*>(static_cast<const void*>(this))); };
 	bool event(QEvent * e) { return callbackQAbstractNetworkCache_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractNetworkCache_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAbstractNetworkCache_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractNetworkCache_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractNetworkCache_CustomEvent(this, event); };
 	void deleteLater() { callbackQAbstractNetworkCache_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractNetworkCache_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractNetworkCache_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractNetworkCache_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractNetworkCache_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractNetworkCache_MetaObject(const_cast<MyQAbstractNetworkCache*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractNetworkCache_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QAbstractNetworkCache_NewQAbstractNetworkCache(void* parent)
@@ -227,94 +229,85 @@ void* QAbstractNetworkCache___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QAbstractNetworkCache_Event(void* ptr, void* e)
-{
-	return static_cast<QAbstractNetworkCache*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QAbstractNetworkCache_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::event(static_cast<QEvent*>(e));
-}
-
-char QAbstractNetworkCache_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QAbstractNetworkCache*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::event(static_cast<QEvent*>(e));
+	} else {
+		return static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::event(static_cast<QEvent*>(e));
+	}
 }
 
 char QAbstractNetworkCache_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QAbstractNetworkCache_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QAbstractNetworkCache*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void QAbstractNetworkCache_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QAbstractNetworkCache_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QAbstractNetworkCache*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::childEvent(static_cast<QChildEvent*>(event));
+	} else {
+		static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::childEvent(static_cast<QChildEvent*>(event));
+	}
 }
 
 void QAbstractNetworkCache_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QAbstractNetworkCache_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QAbstractNetworkCache*>(ptr)->customEvent(static_cast<QEvent*>(event));
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::connectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 void QAbstractNetworkCache_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::customEvent(static_cast<QEvent*>(event));
-}
-
-void QAbstractNetworkCache_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QAbstractNetworkCache*>(ptr), "deleteLater");
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::customEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::customEvent(static_cast<QEvent*>(event));
+	}
 }
 
 void QAbstractNetworkCache_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::deleteLater();
-}
-
-void QAbstractNetworkCache_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QAbstractNetworkCache*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::deleteLater();
+	} else {
+		static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::deleteLater();
+	}
 }
 
 void QAbstractNetworkCache_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QAbstractNetworkCache_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QAbstractNetworkCache*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 void QAbstractNetworkCache_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QAbstractNetworkCache_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QAbstractNetworkCache*>(ptr)->metaObject());
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::timerEvent(static_cast<QTimerEvent*>(event));
+	} else {
+		static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::timerEvent(static_cast<QTimerEvent*>(event));
+	}
 }
 
 void* QAbstractNetworkCache_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::metaObject());
+	if (dynamic_cast<QNetworkDiskCache*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::metaObject());
+	}
 }
 
 class MyQAbstractSocket: public QAbstractSocket
@@ -343,25 +336,33 @@ public:
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQAbstractSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
 	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocket_StateChanged(this, socketState); };
 	 ~MyQAbstractSocket() { callbackQAbstractSocket_DestroyQAbstractSocket(this); };
-	bool atEnd() const { return callbackQAbstractSocket_AtEnd(const_cast<MyQAbstractSocket*>(this)) != 0; };
-	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<MyQAbstractSocket*>(this)) != 0; };
-	bool isSequential() const { return callbackQAbstractSocket_IsSequential(const_cast<MyQAbstractSocket*>(this)) != 0; };
-	qint64 bytesAvailable() const { return callbackQAbstractSocket_BytesAvailable(const_cast<MyQAbstractSocket*>(this)); };
-	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<MyQAbstractSocket*>(this)); };
+	bool atEnd() const { return callbackQAbstractSocket_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool isSequential() const { return callbackQAbstractSocket_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQAbstractSocket_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
 	bool open(QIODevice::OpenMode mode) { return callbackQAbstractSocket_Open(this, mode) != 0; };
 	bool reset() { return callbackQAbstractSocket_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQAbstractSocket_Seek(this, pos) != 0; };
-	qint64 pos() const { return callbackQAbstractSocket_Pos(const_cast<MyQAbstractSocket*>(this)); };
-	qint64 size() const { return callbackQAbstractSocket_Size(const_cast<MyQAbstractSocket*>(this)); };
+	void Signal_AboutToClose() { callbackQAbstractSocket_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQAbstractSocket_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQAbstractSocket_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQAbstractSocket_ChannelReadyRead(this, channel); };
+	void Signal_ReadChannelFinished() { callbackQAbstractSocket_ReadChannelFinished(this); };
+	void Signal_ReadyRead() { callbackQAbstractSocket_ReadyRead(this); };
+	qint64 pos() const { return callbackQAbstractSocket_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 size() const { return callbackQAbstractSocket_Size(const_cast<void*>(static_cast<const void*>(this))); };
 	bool event(QEvent * e) { return callbackQAbstractSocket_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractSocket_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAbstractSocket_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractSocket_CustomEvent(this, event); };
 	void deleteLater() { callbackQAbstractSocket_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractSocket_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractSocket_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<MyQAbstractSocket*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QAbstractSocket_NewQAbstractSocket(long long socketType, void* parent)
@@ -376,7 +377,15 @@ void* QAbstractSocket_SocketOption(void* ptr, long long option)
 
 void* QAbstractSocket_SocketOptionDefault(void* ptr, long long option)
 {
-	return new QVariant(static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QUdpSocket*>(ptr)->QUdpSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QSslSocket*>(ptr)->QSslSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QTcpSocket*>(ptr)->QTcpSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
+	} else {
+		return new QVariant(static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
+	}
 }
 
 char QAbstractSocket_Bind(void* ptr, void* address, unsigned short port, long long mode)
@@ -394,14 +403,17 @@ char QAbstractSocket_Flush(void* ptr)
 	return static_cast<QAbstractSocket*>(ptr)->flush();
 }
 
-char QAbstractSocket_WaitForBytesWritten(void* ptr, int msecs)
-{
-	return static_cast<QAbstractSocket*>(ptr)->waitForBytesWritten(msecs);
-}
-
 char QAbstractSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForBytesWritten(msecs);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForBytesWritten(msecs);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForBytesWritten(msecs);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForBytesWritten(msecs);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForBytesWritten(msecs);
+	}
 }
 
 char QAbstractSocket_WaitForConnected(void* ptr, int msecs)
@@ -411,7 +423,15 @@ char QAbstractSocket_WaitForConnected(void* ptr, int msecs)
 
 char QAbstractSocket_WaitForConnectedDefault(void* ptr, int msecs)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForConnected(msecs);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForConnected(msecs);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForConnected(msecs);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForConnected(msecs);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForConnected(msecs);
+	}
 }
 
 char QAbstractSocket_WaitForDisconnected(void* ptr, int msecs)
@@ -421,17 +441,28 @@ char QAbstractSocket_WaitForDisconnected(void* ptr, int msecs)
 
 char QAbstractSocket_WaitForDisconnectedDefault(void* ptr, int msecs)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForDisconnected(msecs);
-}
-
-char QAbstractSocket_WaitForReadyRead(void* ptr, int msecs)
-{
-	return static_cast<QAbstractSocket*>(ptr)->waitForReadyRead(msecs);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForDisconnected(msecs);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForDisconnected(msecs);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForDisconnected(msecs);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForDisconnected(msecs);
+	}
 }
 
 char QAbstractSocket_WaitForReadyReadDefault(void* ptr, int msecs)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForReadyRead(msecs);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForReadyRead(msecs);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForReadyRead(msecs);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForReadyRead(msecs);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::waitForReadyRead(msecs);
+	}
 }
 
 long long QAbstractSocket_ReadData(void* ptr, char* data, long long maxSize)
@@ -441,17 +472,28 @@ long long QAbstractSocket_ReadData(void* ptr, char* data, long long maxSize)
 
 long long QAbstractSocket_ReadDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::readData(data, maxSize);
-}
-
-long long QAbstractSocket_ReadLineData(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QAbstractSocket*>(ptr)->readLineData(data, maxlen);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::readData(data, maxSize);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::readData(data, maxSize);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::readData(data, maxSize);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::readData(data, maxSize);
+	}
 }
 
 long long QAbstractSocket_ReadLineDataDefault(void* ptr, char* data, long long maxlen)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::readLineData(data, maxlen);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::readLineData(data, maxlen);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::readLineData(data, maxlen);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::readLineData(data, maxlen);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::readLineData(data, maxlen);
+	}
 }
 
 long long QAbstractSocket_WriteData(void* ptr, char* data, long long size)
@@ -461,7 +503,15 @@ long long QAbstractSocket_WriteData(void* ptr, char* data, long long size)
 
 long long QAbstractSocket_WriteDataDefault(void* ptr, char* data, long long size)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::writeData(const_cast<const char*>(data), size);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::writeData(const_cast<const char*>(data), size);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::writeData(const_cast<const char*>(data), size);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::writeData(const_cast<const char*>(data), size);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::writeData(const_cast<const char*>(data), size);
+	}
 }
 
 void QAbstractSocket_Abort(void* ptr)
@@ -469,14 +519,17 @@ void QAbstractSocket_Abort(void* ptr)
 	static_cast<QAbstractSocket*>(ptr)->abort();
 }
 
-void QAbstractSocket_Close(void* ptr)
-{
-	static_cast<QAbstractSocket*>(ptr)->close();
-}
-
 void QAbstractSocket_CloseDefault(void* ptr)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::close();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::close();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::close();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::close();
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::close();
+	}
 }
 
 void QAbstractSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)
@@ -486,7 +539,15 @@ void QAbstractSocket_ConnectToHost2(void* ptr, void* address, unsigned short por
 
 void QAbstractSocket_ConnectToHost2Default(void* ptr, void* address, unsigned short port, long long openMode)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
+	}
 }
 
 void QAbstractSocket_ConnectToHost(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
@@ -496,7 +557,15 @@ void QAbstractSocket_ConnectToHost(void* ptr, char* hostName, unsigned short por
 
 void QAbstractSocket_ConnectToHostDefault(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+	}
 }
 
 void QAbstractSocket_ConnectConnected(void* ptr)
@@ -521,7 +590,15 @@ void QAbstractSocket_DisconnectFromHost(void* ptr)
 
 void QAbstractSocket_DisconnectFromHostDefault(void* ptr)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::disconnectFromHost();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::disconnectFromHost();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::disconnectFromHost();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::disconnectFromHost();
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::disconnectFromHost();
+	}
 }
 
 void QAbstractSocket_ConnectDisconnected(void* ptr)
@@ -591,7 +668,15 @@ void QAbstractSocket_Resume(void* ptr)
 
 void QAbstractSocket_ResumeDefault(void* ptr)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::resume();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::resume();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::resume();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::resume();
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::resume();
+	}
 }
 
 void QAbstractSocket_SetLocalAddress(void* ptr, void* address)
@@ -636,7 +721,15 @@ void QAbstractSocket_SetReadBufferSize(void* ptr, long long size)
 
 void QAbstractSocket_SetReadBufferSizeDefault(void* ptr, long long size)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::setReadBufferSize(size);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::setReadBufferSize(size);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::setReadBufferSize(size);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::setReadBufferSize(size);
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::setReadBufferSize(size);
+	}
 }
 
 void QAbstractSocket_SetSocketError(void* ptr, long long socketError)
@@ -651,7 +744,15 @@ void QAbstractSocket_SetSocketOption(void* ptr, long long option, void* value)
 
 void QAbstractSocket_SetSocketOptionDefault(void* ptr, long long option, void* value)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
+	}
 }
 
 void QAbstractSocket_SetSocketState(void* ptr, long long state)
@@ -724,34 +825,43 @@ long long QAbstractSocket_SocketType(void* ptr)
 	return static_cast<QAbstractSocket*>(ptr)->socketType();
 }
 
-char QAbstractSocket_AtEnd(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->atEnd();
-}
-
 char QAbstractSocket_AtEndDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::atEnd();
-}
-
-char QAbstractSocket_CanReadLine(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->canReadLine();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::atEnd();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::atEnd();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::atEnd();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::atEnd();
+	}
 }
 
 char QAbstractSocket_CanReadLineDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::canReadLine();
-}
-
-char QAbstractSocket_IsSequential(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->isSequential();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::canReadLine();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::canReadLine();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::canReadLine();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::canReadLine();
+	}
 }
 
 char QAbstractSocket_IsSequentialDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::isSequential();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::isSequential();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::isSequential();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::isSequential();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::isSequential();
+	}
 }
 
 char QAbstractSocket_IsValid(void* ptr)
@@ -759,24 +869,30 @@ char QAbstractSocket_IsValid(void* ptr)
 	return static_cast<QAbstractSocket*>(ptr)->isValid();
 }
 
-long long QAbstractSocket_BytesAvailable(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->bytesAvailable();
-}
-
 long long QAbstractSocket_BytesAvailableDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::bytesAvailable();
-}
-
-long long QAbstractSocket_BytesToWrite(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->bytesToWrite();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::bytesAvailable();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::bytesAvailable();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::bytesAvailable();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::bytesAvailable();
+	}
 }
 
 long long QAbstractSocket_BytesToWriteDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::bytesToWrite();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::bytesToWrite();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::bytesToWrite();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::bytesToWrite();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::bytesToWrite();
+	}
 }
 
 long long QAbstractSocket_ReadBufferSize(void* ptr)
@@ -869,144 +985,186 @@ void* QAbstractSocket___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QAbstractSocket_Open(void* ptr, long long mode)
-{
-	return static_cast<QAbstractSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
 char QAbstractSocket_OpenDefault(void* ptr, long long mode)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QAbstractSocket_Reset(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->reset();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
+	}
 }
 
 char QAbstractSocket_ResetDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::reset();
-}
-
-char QAbstractSocket_Seek(void* ptr, long long pos)
-{
-	return static_cast<QAbstractSocket*>(ptr)->seek(pos);
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::reset();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::reset();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::reset();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::reset();
+	}
 }
 
 char QAbstractSocket_SeekDefault(void* ptr, long long pos)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::seek(pos);
-}
-
-long long QAbstractSocket_Pos(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->pos();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::seek(pos);
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::seek(pos);
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::seek(pos);
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::seek(pos);
+	}
 }
 
 long long QAbstractSocket_PosDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::pos();
-}
-
-long long QAbstractSocket_Size(void* ptr)
-{
-	return static_cast<QAbstractSocket*>(ptr)->size();
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::pos();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::pos();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::pos();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::pos();
+	}
 }
 
 long long QAbstractSocket_SizeDefault(void* ptr)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::size();
-}
-
-char QAbstractSocket_Event(void* ptr, void* e)
-{
-	return static_cast<QAbstractSocket*>(ptr)->event(static_cast<QEvent*>(e));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::size();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::size();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::size();
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::size();
+	}
 }
 
 char QAbstractSocket_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::event(static_cast<QEvent*>(e));
-}
-
-char QAbstractSocket_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QAbstractSocket*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::event(static_cast<QEvent*>(e));
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::event(static_cast<QEvent*>(e));
+	}
 }
 
 char QAbstractSocket_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QAbstractSocket_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QAbstractSocket*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QUdpSocket*>(ptr)->QUdpSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSslSocket*>(ptr)->QSslSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QTcpSocket*>(ptr)->QTcpSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void QAbstractSocket_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QAbstractSocket_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QAbstractSocket*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::childEvent(static_cast<QChildEvent*>(event));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::childEvent(static_cast<QChildEvent*>(event));
+	}
 }
 
 void QAbstractSocket_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QAbstractSocket_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QAbstractSocket*>(ptr)->customEvent(static_cast<QEvent*>(event));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 void QAbstractSocket_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::customEvent(static_cast<QEvent*>(event));
-}
-
-void QAbstractSocket_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QAbstractSocket*>(ptr), "deleteLater");
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::customEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::customEvent(static_cast<QEvent*>(event));
+	}
 }
 
 void QAbstractSocket_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::deleteLater();
-}
-
-void QAbstractSocket_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QAbstractSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::deleteLater();
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::deleteLater();
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::deleteLater();
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::deleteLater();
+	}
 }
 
 void QAbstractSocket_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QAbstractSocket_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QAbstractSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 void QAbstractSocket_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QAbstractSocket_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QAbstractSocket*>(ptr)->metaObject());
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QUdpSocket*>(ptr)->QUdpSocket::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSslSocket*>(ptr)->QSslSocket::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTcpSocket*>(ptr)->QTcpSocket::timerEvent(static_cast<QTimerEvent*>(event));
+	} else {
+		static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::timerEvent(static_cast<QTimerEvent*>(event));
+	}
 }
 
 void* QAbstractSocket_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::metaObject());
+	if (dynamic_cast<QUdpSocket*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QUdpSocket*>(ptr)->QUdpSocket::metaObject());
+	} else if (dynamic_cast<QSslSocket*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QSslSocket*>(ptr)->QSslSocket::metaObject());
+	} else if (dynamic_cast<QTcpSocket*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QTcpSocket*>(ptr)->QTcpSocket::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::metaObject());
+	}
 }
 
 void* QAuthenticator_NewQAuthenticator()
@@ -1192,9 +1350,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQDnsLookup_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDnsLookup_CustomEvent(this, event); };
 	void deleteLater() { callbackQDnsLookup_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQDnsLookup_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDnsLookup_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDnsLookup_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDnsLookup_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDnsLookup_MetaObject(const_cast<MyQDnsLookup*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDnsLookup_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QDnsLookup_NewQDnsLookup(void* parent)
@@ -1219,7 +1379,7 @@ void QDnsLookup_Abort(void* ptr)
 
 void QDnsLookup_AbortDefault(void* ptr)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::abort();
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::abort();
 }
 
 void QDnsLookup_ConnectFinished(void* ptr)
@@ -1244,7 +1404,7 @@ void QDnsLookup_Lookup(void* ptr)
 
 void QDnsLookup_LookupDefault(void* ptr)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::lookup();
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::lookup();
 }
 
 void QDnsLookup_ConnectNameChanged(void* ptr)
@@ -1557,94 +1717,49 @@ void* QDnsLookup___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QDnsLookup_Event(void* ptr, void* e)
-{
-	return static_cast<QDnsLookup*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QDnsLookup_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QDnsLookup*>(ptr)->QDnsLookup::event(static_cast<QEvent*>(e));
-}
-
-char QDnsLookup_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QDnsLookup*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QDnsLookup*>(ptr)->QDnsLookup::event(static_cast<QEvent*>(e));
 }
 
 char QDnsLookup_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDnsLookup*>(ptr)->QDnsLookup::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QDnsLookup_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QDnsLookup*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QDnsLookup*>(ptr)->QDnsLookup::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QDnsLookup_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QDnsLookup_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QDnsLookup*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QDnsLookup_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QDnsLookup_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QDnsLookup*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QDnsLookup_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::customEvent(static_cast<QEvent*>(event));
-}
-
-void QDnsLookup_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QDnsLookup*>(ptr), "deleteLater");
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::customEvent(static_cast<QEvent*>(event));
 }
 
 void QDnsLookup_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::deleteLater();
-}
-
-void QDnsLookup_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QDnsLookup*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::deleteLater();
 }
 
 void QDnsLookup_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QDnsLookup_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QDnsLookup*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QDnsLookup_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QDnsLookup*>(ptr)->QDnsLookup::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QDnsLookup_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QDnsLookup*>(ptr)->metaObject());
+		static_cast<QDnsLookup*>(ptr)->QDnsLookup::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QDnsLookup_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QDnsLookup*>(ptr)->QDnsLookup::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QDnsLookup*>(ptr)->QDnsLookup::metaObject());
 }
 
 void* QDnsMailExchangeRecord_NewQDnsMailExchangeRecord()
@@ -2037,14 +2152,32 @@ void* QHostInfo___addresses_newList(void* ptr)
 	return new QList<QHostAddress>;
 }
 
+class MyQHttpMultiPart: public QHttpMultiPart
+{
+public:
+	MyQHttpMultiPart(ContentType contentType, QObject *parent) : QHttpMultiPart(contentType, parent) {};
+	MyQHttpMultiPart(QObject *parent) : QHttpMultiPart(parent) {};
+	bool event(QEvent * e) { return callbackQHttpMultiPart_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHttpMultiPart_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQHttpMultiPart_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHttpMultiPart_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQHttpMultiPart_CustomEvent(this, event); };
+	void deleteLater() { callbackQHttpMultiPart_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQHttpMultiPart_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHttpMultiPart_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHttpMultiPart_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQHttpMultiPart_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHttpMultiPart_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
 void* QHttpMultiPart_NewQHttpMultiPart2(long long contentType, void* parent)
 {
-	return new QHttpMultiPart(static_cast<QHttpMultiPart::ContentType>(contentType), static_cast<QObject*>(parent));
+	return new MyQHttpMultiPart(static_cast<QHttpMultiPart::ContentType>(contentType), static_cast<QObject*>(parent));
 }
 
 void* QHttpMultiPart_NewQHttpMultiPart(void* parent)
 {
-	return new QHttpMultiPart(static_cast<QObject*>(parent));
+	return new MyQHttpMultiPart(static_cast<QObject*>(parent));
 }
 
 void QHttpMultiPart_Append(void* ptr, void* httpPart)
@@ -2147,94 +2280,49 @@ void* QHttpMultiPart___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QHttpMultiPart_Event(void* ptr, void* e)
-{
-	return static_cast<QHttpMultiPart*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QHttpMultiPart_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::event(static_cast<QEvent*>(e));
-}
-
-char QHttpMultiPart_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QHttpMultiPart*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::event(static_cast<QEvent*>(e));
 }
 
 char QHttpMultiPart_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QHttpMultiPart_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QHttpMultiPart*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QHttpMultiPart_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QHttpMultiPart_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QHttpMultiPart*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QHttpMultiPart_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QHttpMultiPart_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QHttpMultiPart*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QHttpMultiPart_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::customEvent(static_cast<QEvent*>(event));
-}
-
-void QHttpMultiPart_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QHttpMultiPart*>(ptr), "deleteLater");
+		static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::customEvent(static_cast<QEvent*>(event));
 }
 
 void QHttpMultiPart_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::deleteLater();
-}
-
-void QHttpMultiPart_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QHttpMultiPart*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::deleteLater();
 }
 
 void QHttpMultiPart_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QHttpMultiPart_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QHttpMultiPart*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QHttpMultiPart_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QHttpMultiPart_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QHttpMultiPart*>(ptr)->metaObject());
+		static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QHttpMultiPart_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::metaObject());
 }
 
 void* QHttpPart_NewQHttpPart()
@@ -2284,16 +2372,18 @@ public:
 	QLocalSocket * nextPendingConnection() { return static_cast<QLocalSocket*>(callbackQLocalServer_NextPendingConnection(this)); };
 	void incomingConnection(quintptr socketDescriptor) { callbackQLocalServer_IncomingConnection(this, socketDescriptor); };
 	void Signal_NewConnection() { callbackQLocalServer_NewConnection(this); };
-	bool hasPendingConnections() const { return callbackQLocalServer_HasPendingConnections(const_cast<MyQLocalServer*>(this)) != 0; };
+	bool hasPendingConnections() const { return callbackQLocalServer_HasPendingConnections(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool event(QEvent * e) { return callbackQLocalServer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLocalServer_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQLocalServer_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQLocalServer_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQLocalServer_CustomEvent(this, event); };
 	void deleteLater() { callbackQLocalServer_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQLocalServer_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQLocalServer_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQLocalServer_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQLocalServer_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLocalServer_MetaObject(const_cast<MyQLocalServer*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLocalServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QLocalServer_NewQLocalServer(void* parent)
@@ -2308,7 +2398,7 @@ void* QLocalServer_NextPendingConnection(void* ptr)
 
 void* QLocalServer_NextPendingConnectionDefault(void* ptr)
 {
-	return static_cast<QLocalServer*>(ptr)->QLocalServer::nextPendingConnection();
+		return static_cast<QLocalServer*>(ptr)->QLocalServer::nextPendingConnection();
 }
 
 char QLocalServer_Listen(void* ptr, char* name)
@@ -2338,7 +2428,7 @@ void QLocalServer_IncomingConnection(void* ptr, uintptr_t socketDescriptor)
 
 void QLocalServer_IncomingConnectionDefault(void* ptr, uintptr_t socketDescriptor)
 {
-	static_cast<QLocalServer*>(ptr)->QLocalServer::incomingConnection(socketDescriptor);
+		static_cast<QLocalServer*>(ptr)->QLocalServer::incomingConnection(socketDescriptor);
 }
 
 void QLocalServer_ConnectNewConnection(void* ptr)
@@ -2403,7 +2493,7 @@ char QLocalServer_HasPendingConnections(void* ptr)
 
 char QLocalServer_HasPendingConnectionsDefault(void* ptr)
 {
-	return static_cast<QLocalServer*>(ptr)->QLocalServer::hasPendingConnections();
+		return static_cast<QLocalServer*>(ptr)->QLocalServer::hasPendingConnections();
 }
 
 char QLocalServer_IsListening(void* ptr)
@@ -2491,94 +2581,49 @@ void* QLocalServer___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QLocalServer_Event(void* ptr, void* e)
-{
-	return static_cast<QLocalServer*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QLocalServer_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QLocalServer*>(ptr)->QLocalServer::event(static_cast<QEvent*>(e));
-}
-
-char QLocalServer_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QLocalServer*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QLocalServer*>(ptr)->QLocalServer::event(static_cast<QEvent*>(e));
 }
 
 char QLocalServer_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QLocalServer*>(ptr)->QLocalServer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QLocalServer_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QLocalServer*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QLocalServer*>(ptr)->QLocalServer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QLocalServer_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QLocalServer*>(ptr)->QLocalServer::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QLocalServer_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QLocalServer*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QLocalServer*>(ptr)->QLocalServer::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QLocalServer_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QLocalServer*>(ptr)->QLocalServer::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QLocalServer_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QLocalServer*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QLocalServer*>(ptr)->QLocalServer::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QLocalServer_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QLocalServer*>(ptr)->QLocalServer::customEvent(static_cast<QEvent*>(event));
-}
-
-void QLocalServer_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QLocalServer*>(ptr), "deleteLater");
+		static_cast<QLocalServer*>(ptr)->QLocalServer::customEvent(static_cast<QEvent*>(event));
 }
 
 void QLocalServer_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QLocalServer*>(ptr)->QLocalServer::deleteLater();
-}
-
-void QLocalServer_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QLocalServer*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QLocalServer*>(ptr)->QLocalServer::deleteLater();
 }
 
 void QLocalServer_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QLocalServer*>(ptr)->QLocalServer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QLocalServer_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QLocalServer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QLocalServer*>(ptr)->QLocalServer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QLocalServer_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QLocalServer*>(ptr)->QLocalServer::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QLocalServer_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QLocalServer*>(ptr)->metaObject());
+		static_cast<QLocalServer*>(ptr)->QLocalServer::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QLocalServer_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QLocalServer*>(ptr)->QLocalServer::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QLocalServer*>(ptr)->QLocalServer::metaObject());
 }
 
 class MyQLocalSocket: public QLocalSocket
@@ -2595,35 +2640,38 @@ public:
 	void Signal_Disconnected() { callbackQLocalSocket_Disconnected(this); };
 	void Signal_Error2(QLocalSocket::LocalSocketError socketError) { callbackQLocalSocket_Error2(this, socketError); };
 	void Signal_StateChanged(QLocalSocket::LocalSocketState socketState) { callbackQLocalSocket_StateChanged(this, socketState); };
-	bool canReadLine() const { return callbackQLocalSocket_CanReadLine(const_cast<MyQLocalSocket*>(this)) != 0; };
-	bool isSequential() const { return callbackQLocalSocket_IsSequential(const_cast<MyQLocalSocket*>(this)) != 0; };
-	qint64 bytesAvailable() const { return callbackQLocalSocket_BytesAvailable(const_cast<MyQLocalSocket*>(this)); };
-	qint64 bytesToWrite() const { return callbackQLocalSocket_BytesToWrite(const_cast<MyQLocalSocket*>(this)); };
+	bool canReadLine() const { return callbackQLocalSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool isSequential() const { return callbackQLocalSocket_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQLocalSocket_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQLocalSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
 	bool reset() { return callbackQLocalSocket_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQLocalSocket_Seek(this, pos) != 0; };
 	qint64 readLineData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQLocalSocket_ReadLineData(this, dataPacked, maxSize); };
-	bool atEnd() const { return callbackQLocalSocket_AtEnd(const_cast<MyQLocalSocket*>(this)) != 0; };
-	qint64 pos() const { return callbackQLocalSocket_Pos(const_cast<MyQLocalSocket*>(this)); };
-	qint64 size() const { return callbackQLocalSocket_Size(const_cast<MyQLocalSocket*>(this)); };
+	void Signal_AboutToClose() { callbackQLocalSocket_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQLocalSocket_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQLocalSocket_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQLocalSocket_ChannelReadyRead(this, channel); };
+	void Signal_ReadChannelFinished() { callbackQLocalSocket_ReadChannelFinished(this); };
+	void Signal_ReadyRead() { callbackQLocalSocket_ReadyRead(this); };
+	bool atEnd() const { return callbackQLocalSocket_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 pos() const { return callbackQLocalSocket_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 size() const { return callbackQLocalSocket_Size(const_cast<void*>(static_cast<const void*>(this))); };
 	bool event(QEvent * e) { return callbackQLocalSocket_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLocalSocket_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQLocalSocket_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQLocalSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQLocalSocket_CustomEvent(this, event); };
 	void deleteLater() { callbackQLocalSocket_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQLocalSocket_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQLocalSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQLocalSocket_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQLocalSocket_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLocalSocket_MetaObject(const_cast<MyQLocalSocket*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLocalSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
-
-char QLocalSocket_Open(void* ptr, long long openMode)
-{
-	return static_cast<QLocalSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(openMode));
-}
 
 char QLocalSocket_OpenDefault(void* ptr, long long openMode)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::open(static_cast<QIODevice::OpenModeFlag>(openMode));
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::open(static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 void* QLocalSocket_NewQLocalSocket(void* parent)
@@ -2636,14 +2684,9 @@ char QLocalSocket_Flush(void* ptr)
 	return static_cast<QLocalSocket*>(ptr)->flush();
 }
 
-char QLocalSocket_WaitForBytesWritten(void* ptr, int msecs)
-{
-	return static_cast<QLocalSocket*>(ptr)->waitForBytesWritten(msecs);
-}
-
 char QLocalSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::waitForBytesWritten(msecs);
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::waitForBytesWritten(msecs);
 }
 
 char QLocalSocket_WaitForConnected(void* ptr, int msecs)
@@ -2656,14 +2699,9 @@ char QLocalSocket_WaitForDisconnected(void* ptr, int msecs)
 	return static_cast<QLocalSocket*>(ptr)->waitForDisconnected(msecs);
 }
 
-char QLocalSocket_WaitForReadyRead(void* ptr, int msecs)
-{
-	return static_cast<QLocalSocket*>(ptr)->waitForReadyRead(msecs);
-}
-
 char QLocalSocket_WaitForReadyReadDefault(void* ptr, int msecs)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::waitForReadyRead(msecs);
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::waitForReadyRead(msecs);
 }
 
 long long QLocalSocket_ReadData(void* ptr, char* data, long long c)
@@ -2673,7 +2711,7 @@ long long QLocalSocket_ReadData(void* ptr, char* data, long long c)
 
 long long QLocalSocket_ReadDataDefault(void* ptr, char* data, long long c)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::readData(data, c);
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::readData(data, c);
 }
 
 long long QLocalSocket_WriteData(void* ptr, char* data, long long c)
@@ -2683,7 +2721,7 @@ long long QLocalSocket_WriteData(void* ptr, char* data, long long c)
 
 long long QLocalSocket_WriteDataDefault(void* ptr, char* data, long long c)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::writeData(const_cast<const char*>(data), c);
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::writeData(const_cast<const char*>(data), c);
 }
 
 void QLocalSocket_Abort(void* ptr)
@@ -2691,14 +2729,9 @@ void QLocalSocket_Abort(void* ptr)
 	static_cast<QLocalSocket*>(ptr)->abort();
 }
 
-void QLocalSocket_Close(void* ptr)
-{
-	static_cast<QLocalSocket*>(ptr)->close();
-}
-
 void QLocalSocket_CloseDefault(void* ptr)
 {
-	static_cast<QLocalSocket*>(ptr)->QLocalSocket::close();
+		static_cast<QLocalSocket*>(ptr)->QLocalSocket::close();
 }
 
 void QLocalSocket_ConnectToServer(void* ptr, long long openMode)
@@ -2811,24 +2844,14 @@ struct QtNetwork_PackedString QLocalSocket_ServerName(void* ptr)
 	return ({ QByteArray t348d56 = static_cast<QLocalSocket*>(ptr)->serverName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t348d56.prepend("WHITESPACE").constData()+10), t348d56.size()-10 }; });
 }
 
-char QLocalSocket_CanReadLine(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->canReadLine();
-}
-
 char QLocalSocket_CanReadLineDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::canReadLine();
-}
-
-char QLocalSocket_IsSequential(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->isSequential();
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::canReadLine();
 }
 
 char QLocalSocket_IsSequentialDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::isSequential();
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::isSequential();
 }
 
 char QLocalSocket_IsValid(void* ptr)
@@ -2836,24 +2859,14 @@ char QLocalSocket_IsValid(void* ptr)
 	return static_cast<QLocalSocket*>(ptr)->isValid();
 }
 
-long long QLocalSocket_BytesAvailable(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->bytesAvailable();
-}
-
 long long QLocalSocket_BytesAvailableDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::bytesAvailable();
-}
-
-long long QLocalSocket_BytesToWrite(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->bytesToWrite();
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::bytesAvailable();
 }
 
 long long QLocalSocket_BytesToWriteDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::bytesToWrite();
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::bytesToWrite();
 }
 
 long long QLocalSocket_ReadBufferSize(void* ptr)
@@ -2936,154 +2949,79 @@ void* QLocalSocket___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QLocalSocket_Reset(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->reset();
-}
-
 char QLocalSocket_ResetDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::reset();
-}
-
-char QLocalSocket_Seek(void* ptr, long long pos)
-{
-	return static_cast<QLocalSocket*>(ptr)->seek(pos);
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::reset();
 }
 
 char QLocalSocket_SeekDefault(void* ptr, long long pos)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::seek(pos);
-}
-
-long long QLocalSocket_ReadLineData(void* ptr, char* data, long long maxSize)
-{
-	return static_cast<QLocalSocket*>(ptr)->readLineData(data, maxSize);
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::seek(pos);
 }
 
 long long QLocalSocket_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::readLineData(data, maxSize);
-}
-
-char QLocalSocket_AtEnd(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->atEnd();
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::readLineData(data, maxSize);
 }
 
 char QLocalSocket_AtEndDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::atEnd();
-}
-
-long long QLocalSocket_Pos(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->pos();
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::atEnd();
 }
 
 long long QLocalSocket_PosDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::pos();
-}
-
-long long QLocalSocket_Size(void* ptr)
-{
-	return static_cast<QLocalSocket*>(ptr)->size();
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::pos();
 }
 
 long long QLocalSocket_SizeDefault(void* ptr)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::size();
-}
-
-char QLocalSocket_Event(void* ptr, void* e)
-{
-	return static_cast<QLocalSocket*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::size();
 }
 
 char QLocalSocket_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::event(static_cast<QEvent*>(e));
-}
-
-char QLocalSocket_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QLocalSocket*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::event(static_cast<QEvent*>(e));
 }
 
 char QLocalSocket_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QLocalSocket*>(ptr)->QLocalSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QLocalSocket_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QLocalSocket*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QLocalSocket*>(ptr)->QLocalSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QLocalSocket_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QLocalSocket*>(ptr)->QLocalSocket::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QLocalSocket_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QLocalSocket*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QLocalSocket*>(ptr)->QLocalSocket::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QLocalSocket_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QLocalSocket*>(ptr)->QLocalSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QLocalSocket_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QLocalSocket*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QLocalSocket*>(ptr)->QLocalSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QLocalSocket_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QLocalSocket*>(ptr)->QLocalSocket::customEvent(static_cast<QEvent*>(event));
-}
-
-void QLocalSocket_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QLocalSocket*>(ptr), "deleteLater");
+		static_cast<QLocalSocket*>(ptr)->QLocalSocket::customEvent(static_cast<QEvent*>(event));
 }
 
 void QLocalSocket_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QLocalSocket*>(ptr)->QLocalSocket::deleteLater();
-}
-
-void QLocalSocket_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QLocalSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QLocalSocket*>(ptr)->QLocalSocket::deleteLater();
 }
 
 void QLocalSocket_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QLocalSocket*>(ptr)->QLocalSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QLocalSocket_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QLocalSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QLocalSocket*>(ptr)->QLocalSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QLocalSocket_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QLocalSocket*>(ptr)->QLocalSocket::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QLocalSocket_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QLocalSocket*>(ptr)->metaObject());
+		static_cast<QLocalSocket*>(ptr)->QLocalSocket::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QLocalSocket_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QLocalSocket*>(ptr)->QLocalSocket::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QLocalSocket*>(ptr)->QLocalSocket::metaObject());
 }
 
 class MyQNetworkAccessManager: public QNetworkAccessManager
@@ -3098,16 +3036,18 @@ public:
 	void Signal_PreSharedKeyAuthenticationRequired(QNetworkReply * reply, QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired(this, reply, authenticator); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQNetworkAccessManager_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
 	void Signal_SslErrors(QNetworkReply * reply, const QList<QSslError> & errors) { callbackQNetworkAccessManager_SslErrors(this, reply, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
-	QStringList supportedSchemesImplementation() const { return QString(callbackQNetworkAccessManager_SupportedSchemesImplementation(const_cast<MyQNetworkAccessManager*>(this))).split("|", QString::SkipEmptyParts); };
+	QStringList supportedSchemesImplementation() const { return QString(callbackQNetworkAccessManager_SupportedSchemesImplementation(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
 	bool event(QEvent * e) { return callbackQNetworkAccessManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNetworkAccessManager_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQNetworkAccessManager_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkAccessManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNetworkAccessManager_CustomEvent(this, event); };
 	void deleteLater() { callbackQNetworkAccessManager_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQNetworkAccessManager_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNetworkAccessManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNetworkAccessManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkAccessManager_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkAccessManager_MetaObject(const_cast<MyQNetworkAccessManager*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkAccessManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QNetworkAccessManager_NewQNetworkAccessManager(void* parent)
@@ -3122,7 +3062,7 @@ void* QNetworkAccessManager_CreateRequest(void* ptr, long long op, void* req, vo
 
 void* QNetworkAccessManager_CreateRequestDefault(void* ptr, long long op, void* req, void* outgoingData)
 {
-	return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::createRequest(static_cast<QNetworkAccessManager::Operation>(op), *static_cast<QNetworkRequest*>(req), static_cast<QIODevice*>(outgoingData));
+		return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::createRequest(static_cast<QNetworkAccessManager::Operation>(op), *static_cast<QNetworkRequest*>(req), static_cast<QIODevice*>(outgoingData));
 }
 
 void* QNetworkAccessManager_DeleteResource(void* ptr, void* request)
@@ -3389,7 +3329,7 @@ struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemesImplementati
 
 struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemesImplementationDefault(void* ptr)
 {
-	return ({ QByteArray t5e649f = static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::supportedSchemesImplementation().join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(t5e649f.prepend("WHITESPACE").constData()+10), t5e649f.size()-10 }; });
+		return ({ QByteArray t5e649f = static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::supportedSchemesImplementation().join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(t5e649f.prepend("WHITESPACE").constData()+10), t5e649f.size()-10 }; });
 }
 
 void* QNetworkAccessManager___sslErrors_errors_atList(void* ptr, int i)
@@ -3482,94 +3422,49 @@ void* QNetworkAccessManager___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QNetworkAccessManager_Event(void* ptr, void* e)
-{
-	return static_cast<QNetworkAccessManager*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QNetworkAccessManager_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::event(static_cast<QEvent*>(e));
-}
-
-char QNetworkAccessManager_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QNetworkAccessManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::event(static_cast<QEvent*>(e));
 }
 
 char QNetworkAccessManager_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QNetworkAccessManager_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkAccessManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNetworkAccessManager_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QNetworkAccessManager_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkAccessManager*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QNetworkAccessManager_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkAccessManager_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkAccessManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkAccessManager_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::customEvent(static_cast<QEvent*>(event));
-}
-
-void QNetworkAccessManager_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QNetworkAccessManager*>(ptr), "deleteLater");
+		static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::customEvent(static_cast<QEvent*>(event));
 }
 
 void QNetworkAccessManager_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::deleteLater();
-}
-
-void QNetworkAccessManager_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkAccessManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::deleteLater();
 }
 
 void QNetworkAccessManager_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkAccessManager_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkAccessManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkAccessManager_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QNetworkAccessManager_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QNetworkAccessManager*>(ptr)->metaObject());
+		static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QNetworkAccessManager_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::metaObject());
 }
 
 void* QNetworkAddressEntry_NewQNetworkAddressEntry()
@@ -3804,9 +3699,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkConfigurationManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNetworkConfigurationManager_CustomEvent(this, event); };
 	void deleteLater() { callbackQNetworkConfigurationManager_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQNetworkConfigurationManager_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNetworkConfigurationManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNetworkConfigurationManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkConfigurationManager_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkConfigurationManager_MetaObject(const_cast<MyQNetworkConfigurationManager*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkConfigurationManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QNetworkConfigurationManager_NewQNetworkConfigurationManager(void* parent)
@@ -3896,7 +3793,7 @@ void QNetworkConfigurationManager_UpdateConfigurations(void* ptr)
 
 void QNetworkConfigurationManager_UpdateConfigurationsDefault(void* ptr)
 {
-	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::updateConfigurations();
+		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::updateConfigurations();
 }
 
 void QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(void* ptr)
@@ -4024,94 +3921,49 @@ void* QNetworkConfigurationManager___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QNetworkConfigurationManager_Event(void* ptr, void* e)
-{
-	return static_cast<QNetworkConfigurationManager*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QNetworkConfigurationManager_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::event(static_cast<QEvent*>(e));
-}
-
-char QNetworkConfigurationManager_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QNetworkConfigurationManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::event(static_cast<QEvent*>(e));
 }
 
 char QNetworkConfigurationManager_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QNetworkConfigurationManager_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkConfigurationManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNetworkConfigurationManager_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QNetworkConfigurationManager_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkConfigurationManager*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QNetworkConfigurationManager_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkConfigurationManager_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkConfigurationManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkConfigurationManager_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::customEvent(static_cast<QEvent*>(event));
-}
-
-void QNetworkConfigurationManager_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QNetworkConfigurationManager*>(ptr), "deleteLater");
+		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::customEvent(static_cast<QEvent*>(event));
 }
 
 void QNetworkConfigurationManager_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::deleteLater();
-}
-
-void QNetworkConfigurationManager_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkConfigurationManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::deleteLater();
 }
 
 void QNetworkConfigurationManager_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkConfigurationManager_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkConfigurationManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkConfigurationManager_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QNetworkConfigurationManager_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QNetworkConfigurationManager*>(ptr)->metaObject());
+		static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QNetworkConfigurationManager_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::metaObject());
 }
 
 struct QtNetwork_PackedList QNetworkCookie_QNetworkCookie_ParseCookies(void* cookieString)
@@ -4253,17 +4105,19 @@ public:
 	bool setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, const QUrl & url) { return callbackQNetworkCookieJar_SetCookiesFromUrl(this, ({ QList<QNetworkCookie>* tmpValue = const_cast<QList<QNetworkCookie>*>(&cookieList); QtNetwork_PackedList { tmpValue, tmpValue->size() }; }), const_cast<QUrl*>(&url)) != 0; };
 	bool updateCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_UpdateCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	 ~MyQNetworkCookieJar() { callbackQNetworkCookieJar_DestroyQNetworkCookieJar(this); };
-	QList<QNetworkCookie> cookiesForUrl(const QUrl & url) const { return *static_cast<QList<QNetworkCookie>*>(callbackQNetworkCookieJar_CookiesForUrl(const_cast<MyQNetworkCookieJar*>(this), const_cast<QUrl*>(&url))); };
-	bool validateCookie(const QNetworkCookie & cookie, const QUrl & url) const { return callbackQNetworkCookieJar_ValidateCookie(const_cast<MyQNetworkCookieJar*>(this), const_cast<QNetworkCookie*>(&cookie), const_cast<QUrl*>(&url)) != 0; };
+	QList<QNetworkCookie> cookiesForUrl(const QUrl & url) const { return *static_cast<QList<QNetworkCookie>*>(callbackQNetworkCookieJar_CookiesForUrl(const_cast<void*>(static_cast<const void*>(this)), const_cast<QUrl*>(&url))); };
+	bool validateCookie(const QNetworkCookie & cookie, const QUrl & url) const { return callbackQNetworkCookieJar_ValidateCookie(const_cast<void*>(static_cast<const void*>(this)), const_cast<QNetworkCookie*>(&cookie), const_cast<QUrl*>(&url)) != 0; };
 	bool event(QEvent * e) { return callbackQNetworkCookieJar_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNetworkCookieJar_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQNetworkCookieJar_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkCookieJar_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNetworkCookieJar_CustomEvent(this, event); };
 	void deleteLater() { callbackQNetworkCookieJar_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQNetworkCookieJar_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNetworkCookieJar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNetworkCookieJar_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkCookieJar_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkCookieJar_MetaObject(const_cast<MyQNetworkCookieJar*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkCookieJar_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QNetworkCookieJar_NewQNetworkCookieJar(void* parent)
@@ -4278,7 +4132,7 @@ char QNetworkCookieJar_DeleteCookie(void* ptr, void* cookie)
 
 char QNetworkCookieJar_DeleteCookieDefault(void* ptr, void* cookie)
 {
-	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::deleteCookie(*static_cast<QNetworkCookie*>(cookie));
+		return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::deleteCookie(*static_cast<QNetworkCookie*>(cookie));
 }
 
 char QNetworkCookieJar_InsertCookie(void* ptr, void* cookie)
@@ -4288,7 +4142,7 @@ char QNetworkCookieJar_InsertCookie(void* ptr, void* cookie)
 
 char QNetworkCookieJar_InsertCookieDefault(void* ptr, void* cookie)
 {
-	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::insertCookie(*static_cast<QNetworkCookie*>(cookie));
+		return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::insertCookie(*static_cast<QNetworkCookie*>(cookie));
 }
 
 char QNetworkCookieJar_SetCookiesFromUrl(void* ptr, void* cookieList, void* url)
@@ -4298,7 +4152,7 @@ char QNetworkCookieJar_SetCookiesFromUrl(void* ptr, void* cookieList, void* url)
 
 char QNetworkCookieJar_SetCookiesFromUrlDefault(void* ptr, void* cookieList, void* url)
 {
-	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::setCookiesFromUrl(*static_cast<QList<QNetworkCookie>*>(cookieList), *static_cast<QUrl*>(url));
+		return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::setCookiesFromUrl(*static_cast<QList<QNetworkCookie>*>(cookieList), *static_cast<QUrl*>(url));
 }
 
 char QNetworkCookieJar_UpdateCookie(void* ptr, void* cookie)
@@ -4308,7 +4162,7 @@ char QNetworkCookieJar_UpdateCookie(void* ptr, void* cookie)
 
 char QNetworkCookieJar_UpdateCookieDefault(void* ptr, void* cookie)
 {
-	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::updateCookie(*static_cast<QNetworkCookie*>(cookie));
+		return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::updateCookie(*static_cast<QNetworkCookie*>(cookie));
 }
 
 void QNetworkCookieJar_SetAllCookies(void* ptr, void* cookieList)
@@ -4338,7 +4192,7 @@ struct QtNetwork_PackedList QNetworkCookieJar_CookiesForUrl(void* ptr, void* url
 
 struct QtNetwork_PackedList QNetworkCookieJar_CookiesForUrlDefault(void* ptr, void* url)
 {
-	return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::cookiesForUrl(*static_cast<QUrl*>(url))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::cookiesForUrl(*static_cast<QUrl*>(url))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 char QNetworkCookieJar_ValidateCookie(void* ptr, void* cookie, void* url)
@@ -4348,7 +4202,7 @@ char QNetworkCookieJar_ValidateCookie(void* ptr, void* cookie, void* url)
 
 char QNetworkCookieJar_ValidateCookieDefault(void* ptr, void* cookie, void* url)
 {
-	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::validateCookie(*static_cast<QNetworkCookie*>(cookie), *static_cast<QUrl*>(url));
+		return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::validateCookie(*static_cast<QNetworkCookie*>(cookie), *static_cast<QUrl*>(url));
 }
 
 void* QNetworkCookieJar___setCookiesFromUrl_cookieList_atList(void* ptr, int i)
@@ -4486,94 +4340,49 @@ void* QNetworkCookieJar___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QNetworkCookieJar_Event(void* ptr, void* e)
-{
-	return static_cast<QNetworkCookieJar*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QNetworkCookieJar_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::event(static_cast<QEvent*>(e));
-}
-
-char QNetworkCookieJar_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QNetworkCookieJar*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::event(static_cast<QEvent*>(e));
 }
 
 char QNetworkCookieJar_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QNetworkCookieJar_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkCookieJar*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNetworkCookieJar_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QNetworkCookieJar_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkCookieJar*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QNetworkCookieJar_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkCookieJar_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkCookieJar*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkCookieJar_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::customEvent(static_cast<QEvent*>(event));
-}
-
-void QNetworkCookieJar_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QNetworkCookieJar*>(ptr), "deleteLater");
+		static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::customEvent(static_cast<QEvent*>(event));
 }
 
 void QNetworkCookieJar_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::deleteLater();
-}
-
-void QNetworkCookieJar_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkCookieJar*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::deleteLater();
 }
 
 void QNetworkCookieJar_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkCookieJar_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkCookieJar*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkCookieJar_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QNetworkCookieJar_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QNetworkCookieJar*>(ptr)->metaObject());
+		static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QNetworkCookieJar_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::metaObject());
 }
 
 void* QNetworkDatagram_NewQNetworkDatagram()
@@ -4698,16 +4507,18 @@ public:
 	void clear() { callbackQNetworkDiskCache_Clear(this); };
 	void insert(QIODevice * device) { callbackQNetworkDiskCache_Insert(this, device); };
 	void updateMetaData(const QNetworkCacheMetaData & metaData) { callbackQNetworkDiskCache_UpdateMetaData(this, const_cast<QNetworkCacheMetaData*>(&metaData)); };
-	qint64 cacheSize() const { return callbackQNetworkDiskCache_CacheSize(const_cast<MyQNetworkDiskCache*>(this)); };
-	bool event(QEvent * e) { return callbackQNetworkDiskCache_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNetworkDiskCache_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQNetworkDiskCache_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQNetworkDiskCache_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQNetworkDiskCache_CustomEvent(this, event); };
-	void deleteLater() { callbackQNetworkDiskCache_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQNetworkDiskCache_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void timerEvent(QTimerEvent * event) { callbackQNetworkDiskCache_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkDiskCache_MetaObject(const_cast<MyQNetworkDiskCache*>(this))); };
+	qint64 cacheSize() const { return callbackQNetworkDiskCache_CacheSize(const_cast<void*>(static_cast<const void*>(this))); };
+	bool event(QEvent * e) { return callbackQAbstractNetworkCache_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractNetworkCache_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAbstractNetworkCache_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractNetworkCache_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAbstractNetworkCache_CustomEvent(this, event); };
+	void deleteLater() { callbackQAbstractNetworkCache_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractNetworkCache_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractNetworkCache_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractNetworkCache_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractNetworkCache_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractNetworkCache_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QNetworkDiskCache_Data(void* ptr, void* url)
@@ -4717,7 +4528,7 @@ void* QNetworkDiskCache_Data(void* ptr, void* url)
 
 void* QNetworkDiskCache_DataDefault(void* ptr, void* url)
 {
-	return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::data(*static_cast<QUrl*>(url));
+		return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::data(*static_cast<QUrl*>(url));
 }
 
 void* QNetworkDiskCache_Prepare(void* ptr, void* metaData)
@@ -4727,7 +4538,7 @@ void* QNetworkDiskCache_Prepare(void* ptr, void* metaData)
 
 void* QNetworkDiskCache_PrepareDefault(void* ptr, void* metaData)
 {
-	return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::prepare(*static_cast<QNetworkCacheMetaData*>(metaData));
+		return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::prepare(*static_cast<QNetworkCacheMetaData*>(metaData));
 }
 
 void* QNetworkDiskCache_MetaData(void* ptr, void* url)
@@ -4737,7 +4548,7 @@ void* QNetworkDiskCache_MetaData(void* ptr, void* url)
 
 void* QNetworkDiskCache_MetaDataDefault(void* ptr, void* url)
 {
-	return new QNetworkCacheMetaData(static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::metaData(*static_cast<QUrl*>(url)));
+		return new QNetworkCacheMetaData(static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::metaData(*static_cast<QUrl*>(url)));
 }
 
 void* QNetworkDiskCache_NewQNetworkDiskCache(void* parent)
@@ -4752,7 +4563,7 @@ char QNetworkDiskCache_Remove(void* ptr, void* url)
 
 char QNetworkDiskCache_RemoveDefault(void* ptr, void* url)
 {
-	return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::remove(*static_cast<QUrl*>(url));
+		return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::remove(*static_cast<QUrl*>(url));
 }
 
 long long QNetworkDiskCache_Expire(void* ptr)
@@ -4762,7 +4573,7 @@ long long QNetworkDiskCache_Expire(void* ptr)
 
 long long QNetworkDiskCache_ExpireDefault(void* ptr)
 {
-	return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::expire();
+		return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::expire();
 }
 
 void QNetworkDiskCache_Clear(void* ptr)
@@ -4772,7 +4583,7 @@ void QNetworkDiskCache_Clear(void* ptr)
 
 void QNetworkDiskCache_ClearDefault(void* ptr)
 {
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::clear();
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::clear();
 }
 
 void QNetworkDiskCache_Insert(void* ptr, void* device)
@@ -4782,7 +4593,7 @@ void QNetworkDiskCache_Insert(void* ptr, void* device)
 
 void QNetworkDiskCache_InsertDefault(void* ptr, void* device)
 {
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::insert(static_cast<QIODevice*>(device));
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::insert(static_cast<QIODevice*>(device));
 }
 
 void QNetworkDiskCache_SetCacheDirectory(void* ptr, char* cacheDir)
@@ -4802,7 +4613,7 @@ void QNetworkDiskCache_UpdateMetaData(void* ptr, void* metaData)
 
 void QNetworkDiskCache_UpdateMetaDataDefault(void* ptr, void* metaData)
 {
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::updateMetaData(*static_cast<QNetworkCacheMetaData*>(metaData));
+		static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::updateMetaData(*static_cast<QNetworkCacheMetaData*>(metaData));
 }
 
 void QNetworkDiskCache_DestroyQNetworkDiskCache(void* ptr)
@@ -4827,177 +4638,12 @@ long long QNetworkDiskCache_CacheSize(void* ptr)
 
 long long QNetworkDiskCache_CacheSizeDefault(void* ptr)
 {
-	return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::cacheSize();
+		return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::cacheSize();
 }
 
 long long QNetworkDiskCache_MaximumCacheSize(void* ptr)
 {
 	return static_cast<QNetworkDiskCache*>(ptr)->maximumCacheSize();
-}
-
-void* QNetworkDiskCache___dynamicPropertyNames_atList(void* ptr, int i)
-{
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
-}
-
-void QNetworkDiskCache___dynamicPropertyNames_setList(void* ptr, void* i)
-{
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
-}
-
-void* QNetworkDiskCache___dynamicPropertyNames_newList(void* ptr)
-{
-	return new QList<QByteArray>;
-}
-
-void* QNetworkDiskCache___findChildren_atList2(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QNetworkDiskCache___findChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNetworkDiskCache___findChildren_newList2(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QNetworkDiskCache___findChildren_atList3(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QNetworkDiskCache___findChildren_setList3(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNetworkDiskCache___findChildren_newList3(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QNetworkDiskCache___findChildren_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QNetworkDiskCache___findChildren_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNetworkDiskCache___findChildren_newList(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QNetworkDiskCache___children_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
-}
-
-void QNetworkDiskCache___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QNetworkDiskCache___children_newList(void* ptr)
-{
-	return new QList<QObject *>;
-}
-
-char QNetworkDiskCache_Event(void* ptr, void* e)
-{
-	return static_cast<QNetworkDiskCache*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QNetworkDiskCache_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::event(static_cast<QEvent*>(e));
-}
-
-char QNetworkDiskCache_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QNetworkDiskCache*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char QNetworkDiskCache_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QNetworkDiskCache_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QNetworkDiskCache_ChildEventDefault(void* ptr, void* event)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QNetworkDiskCache_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkDiskCache_ConnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkDiskCache_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->customEvent(static_cast<QEvent*>(event));
-}
-
-void QNetworkDiskCache_CustomEventDefault(void* ptr, void* event)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::customEvent(static_cast<QEvent*>(event));
-}
-
-void QNetworkDiskCache_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QNetworkDiskCache*>(ptr), "deleteLater");
-}
-
-void QNetworkDiskCache_DeleteLaterDefault(void* ptr)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::deleteLater();
-}
-
-void QNetworkDiskCache_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkDiskCache_DisconnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkDiskCache_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QNetworkDiskCache_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QNetworkDiskCache_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QNetworkDiskCache*>(ptr)->metaObject());
-}
-
-void* QNetworkDiskCache_MetaObjectDefault(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::metaObject());
 }
 
 struct QtNetwork_PackedList QNetworkInterface_QNetworkInterface_AllAddresses()
@@ -5517,7 +5163,7 @@ public:
 	void setSslConfigurationImplementation(const QSslConfiguration & configuration) { callbackQNetworkReply_SetSslConfigurationImplementation(this, const_cast<QSslConfiguration*>(&configuration)); };
 	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQNetworkReply_SslErrors(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_UploadProgress(qint64 bytesSent, qint64 bytesTotal) { callbackQNetworkReply_UploadProgress(this, bytesSent, bytesTotal); };
-	void sslConfigurationImplementation(QSslConfiguration & configuration) const { callbackQNetworkReply_SslConfigurationImplementation(const_cast<MyQNetworkReply*>(this), static_cast<QSslConfiguration*>(&configuration)); };
+	void sslConfigurationImplementation(QSslConfiguration & configuration) const { callbackQNetworkReply_SslConfigurationImplementation(const_cast<void*>(static_cast<const void*>(this)), static_cast<QSslConfiguration*>(&configuration)); };
 	bool open(QIODevice::OpenMode mode) { return callbackQNetworkReply_Open(this, mode) != 0; };
 	bool reset() { return callbackQNetworkReply_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQNetworkReply_Seek(this, pos) != 0; };
@@ -5526,22 +5172,30 @@ public:
 	qint64 readData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQNetworkReply_ReadData(this, dataPacked, maxSize); };
 	qint64 readLineData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQNetworkReply_ReadLineData(this, dataPacked, maxSize); };
 	qint64 writeData(const char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQNetworkReply_WriteData(this, dataPacked, maxSize); };
-	bool atEnd() const { return callbackQNetworkReply_AtEnd(const_cast<MyQNetworkReply*>(this)) != 0; };
-	bool canReadLine() const { return callbackQNetworkReply_CanReadLine(const_cast<MyQNetworkReply*>(this)) != 0; };
-	bool isSequential() const { return callbackQNetworkReply_IsSequential(const_cast<MyQNetworkReply*>(this)) != 0; };
-	qint64 bytesAvailable() const { return callbackQNetworkReply_BytesAvailable(const_cast<MyQNetworkReply*>(this)); };
-	qint64 bytesToWrite() const { return callbackQNetworkReply_BytesToWrite(const_cast<MyQNetworkReply*>(this)); };
-	qint64 pos() const { return callbackQNetworkReply_Pos(const_cast<MyQNetworkReply*>(this)); };
-	qint64 size() const { return callbackQNetworkReply_Size(const_cast<MyQNetworkReply*>(this)); };
+	void Signal_AboutToClose() { callbackQNetworkReply_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQNetworkReply_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQNetworkReply_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQNetworkReply_ChannelReadyRead(this, channel); };
+	void Signal_ReadChannelFinished() { callbackQNetworkReply_ReadChannelFinished(this); };
+	void Signal_ReadyRead() { callbackQNetworkReply_ReadyRead(this); };
+	bool atEnd() const { return callbackQNetworkReply_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool canReadLine() const { return callbackQNetworkReply_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool isSequential() const { return callbackQNetworkReply_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQNetworkReply_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQNetworkReply_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 pos() const { return callbackQNetworkReply_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 size() const { return callbackQNetworkReply_Size(const_cast<void*>(static_cast<const void*>(this))); };
 	bool event(QEvent * e) { return callbackQNetworkReply_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQNetworkReply_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQNetworkReply_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkReply_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNetworkReply_CustomEvent(this, event); };
 	void deleteLater() { callbackQNetworkReply_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQNetworkReply_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNetworkReply_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNetworkReply_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkReply_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkReply_MetaObject(const_cast<MyQNetworkReply*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QNetworkReply_NewQNetworkReply(void* parent)
@@ -5554,14 +5208,9 @@ void QNetworkReply_Abort(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNetworkReply*>(ptr), "abort");
 }
 
-void QNetworkReply_Close(void* ptr)
-{
-	static_cast<QNetworkReply*>(ptr)->close();
-}
-
 void QNetworkReply_CloseDefault(void* ptr)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::close();
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::close();
 }
 
 void QNetworkReply_ConnectDownloadProgress(void* ptr)
@@ -5631,7 +5280,7 @@ void QNetworkReply_IgnoreSslErrors(void* ptr)
 
 void QNetworkReply_IgnoreSslErrorsDefault(void* ptr)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrors();
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrors();
 }
 
 void QNetworkReply_IgnoreSslErrors2(void* ptr, void* errors)
@@ -5646,7 +5295,7 @@ void QNetworkReply_IgnoreSslErrorsImplementation(void* ptr, void* errors)
 
 void QNetworkReply_IgnoreSslErrorsImplementationDefault(void* ptr, void* errors)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(errors));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(errors));
 }
 
 void QNetworkReply_ConnectMetaDataChanged(void* ptr)
@@ -5731,7 +5380,7 @@ void QNetworkReply_SetReadBufferSize(void* ptr, long long size)
 
 void QNetworkReply_SetReadBufferSizeDefault(void* ptr, long long size)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::setReadBufferSize(size);
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::setReadBufferSize(size);
 }
 
 void QNetworkReply_SetRequest(void* ptr, void* request)
@@ -5751,7 +5400,7 @@ void QNetworkReply_SetSslConfigurationImplementation(void* ptr, void* configurat
 
 void QNetworkReply_SetSslConfigurationImplementationDefault(void* ptr, void* configuration)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::setSslConfigurationImplementation(*static_cast<QSslConfiguration*>(configuration));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::setSslConfigurationImplementation(*static_cast<QSslConfiguration*>(configuration));
 }
 
 void QNetworkReply_SetUrl(void* ptr, void* url)
@@ -5871,7 +5520,7 @@ void QNetworkReply_SslConfigurationImplementation(void* ptr, void* configuration
 
 void QNetworkReply_SslConfigurationImplementationDefault(void* ptr, void* configuration)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::sslConfigurationImplementation(*static_cast<QSslConfiguration*>(configuration));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::sslConfigurationImplementation(*static_cast<QSslConfiguration*>(configuration));
 }
 
 void* QNetworkReply___ignoreSslErrors_errors_atList2(void* ptr, int i)
@@ -6009,54 +5658,29 @@ void* QNetworkReply___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QNetworkReply_Open(void* ptr, long long mode)
-{
-	return static_cast<QNetworkReply*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
 char QNetworkReply_OpenDefault(void* ptr, long long mode)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QNetworkReply_Reset(void* ptr)
-{
-	return static_cast<QNetworkReply*>(ptr)->reset();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::open(static_cast<QIODevice::OpenModeFlag>(mode));
 }
 
 char QNetworkReply_ResetDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::reset();
-}
-
-char QNetworkReply_Seek(void* ptr, long long pos)
-{
-	return static_cast<QNetworkReply*>(ptr)->seek(pos);
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::reset();
 }
 
 char QNetworkReply_SeekDefault(void* ptr, long long pos)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::seek(pos);
-}
-
-char QNetworkReply_WaitForBytesWritten(void* ptr, int msecs)
-{
-	return static_cast<QNetworkReply*>(ptr)->waitForBytesWritten(msecs);
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::seek(pos);
 }
 
 char QNetworkReply_WaitForBytesWrittenDefault(void* ptr, int msecs)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::waitForBytesWritten(msecs);
-}
-
-char QNetworkReply_WaitForReadyRead(void* ptr, int msecs)
-{
-	return static_cast<QNetworkReply*>(ptr)->waitForReadyRead(msecs);
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::waitForBytesWritten(msecs);
 }
 
 char QNetworkReply_WaitForReadyReadDefault(void* ptr, int msecs)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::waitForReadyRead(msecs);
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::waitForReadyRead(msecs);
 }
 
 long long QNetworkReply_ReadData(void* ptr, char* data, long long maxSize)
@@ -6064,14 +5688,14 @@ long long QNetworkReply_ReadData(void* ptr, char* data, long long maxSize)
 	return static_cast<QNetworkReply*>(ptr)->readData(data, maxSize);
 }
 
-long long QNetworkReply_ReadLineData(void* ptr, char* data, long long maxSize)
+long long QNetworkReply_ReadDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QNetworkReply*>(ptr)->readLineData(data, maxSize);
+	
 }
 
 long long QNetworkReply_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::readLineData(data, maxSize);
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::readLineData(data, maxSize);
 }
 
 long long QNetworkReply_WriteData(void* ptr, char* data, long long maxSize)
@@ -6079,164 +5703,89 @@ long long QNetworkReply_WriteData(void* ptr, char* data, long long maxSize)
 	return static_cast<QNetworkReply*>(ptr)->writeData(const_cast<const char*>(data), maxSize);
 }
 
-char QNetworkReply_AtEnd(void* ptr)
+long long QNetworkReply_WriteDataDefault(void* ptr, char* data, long long maxSize)
 {
-	return static_cast<QNetworkReply*>(ptr)->atEnd();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::writeData(const_cast<const char*>(data), maxSize);
 }
 
 char QNetworkReply_AtEndDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::atEnd();
-}
-
-char QNetworkReply_CanReadLine(void* ptr)
-{
-	return static_cast<QNetworkReply*>(ptr)->canReadLine();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::atEnd();
 }
 
 char QNetworkReply_CanReadLineDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::canReadLine();
-}
-
-char QNetworkReply_IsSequential(void* ptr)
-{
-	return static_cast<QNetworkReply*>(ptr)->isSequential();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::canReadLine();
 }
 
 char QNetworkReply_IsSequentialDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::isSequential();
-}
-
-long long QNetworkReply_BytesAvailable(void* ptr)
-{
-	return static_cast<QNetworkReply*>(ptr)->bytesAvailable();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::isSequential();
 }
 
 long long QNetworkReply_BytesAvailableDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::bytesAvailable();
-}
-
-long long QNetworkReply_BytesToWrite(void* ptr)
-{
-	return static_cast<QNetworkReply*>(ptr)->bytesToWrite();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::bytesAvailable();
 }
 
 long long QNetworkReply_BytesToWriteDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::bytesToWrite();
-}
-
-long long QNetworkReply_Pos(void* ptr)
-{
-	return static_cast<QNetworkReply*>(ptr)->pos();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::bytesToWrite();
 }
 
 long long QNetworkReply_PosDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::pos();
-}
-
-long long QNetworkReply_Size(void* ptr)
-{
-	return static_cast<QNetworkReply*>(ptr)->size();
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::pos();
 }
 
 long long QNetworkReply_SizeDefault(void* ptr)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::size();
-}
-
-char QNetworkReply_Event(void* ptr, void* e)
-{
-	return static_cast<QNetworkReply*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::size();
 }
 
 char QNetworkReply_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::event(static_cast<QEvent*>(e));
-}
-
-char QNetworkReply_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QNetworkReply*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::event(static_cast<QEvent*>(e));
 }
 
 char QNetworkReply_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QNetworkReply_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkReply*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QNetworkReply*>(ptr)->QNetworkReply::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNetworkReply_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QNetworkReply_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkReply*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QNetworkReply_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkReply_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkReply*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkReply_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::customEvent(static_cast<QEvent*>(event));
-}
-
-void QNetworkReply_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QNetworkReply*>(ptr), "deleteLater");
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::customEvent(static_cast<QEvent*>(event));
 }
 
 void QNetworkReply_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::deleteLater();
-}
-
-void QNetworkReply_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkReply*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::deleteLater();
 }
 
 void QNetworkReply_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkReply_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkReply*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkReply_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkReply*>(ptr)->QNetworkReply::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QNetworkReply_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QNetworkReply*>(ptr)->metaObject());
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QNetworkReply_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QNetworkReply*>(ptr)->QNetworkReply::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QNetworkReply*>(ptr)->QNetworkReply::metaObject());
 }
 
 void* QNetworkRequest_NewQNetworkRequest2(void* other)
@@ -6389,9 +5938,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkSession_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQNetworkSession_CustomEvent(this, event); };
 	void deleteLater() { callbackQNetworkSession_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQNetworkSession_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQNetworkSession_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQNetworkSession_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkSession_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkSession_MetaObject(const_cast<MyQNetworkSession*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkSession_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QNetworkSession_NewQNetworkSession(void* connectionConfig, void* parent)
@@ -6411,7 +5962,7 @@ void QNetworkSession_Accept(void* ptr)
 
 void QNetworkSession_AcceptDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::accept();
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::accept();
 }
 
 void QNetworkSession_Close(void* ptr)
@@ -6421,7 +5972,7 @@ void QNetworkSession_Close(void* ptr)
 
 void QNetworkSession_CloseDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::close();
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::close();
 }
 
 void QNetworkSession_ConnectClosed(void* ptr)
@@ -6461,7 +6012,7 @@ void QNetworkSession_Ignore(void* ptr)
 
 void QNetworkSession_IgnoreDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::ignore();
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::ignore();
 }
 
 void QNetworkSession_Migrate(void* ptr)
@@ -6471,7 +6022,7 @@ void QNetworkSession_Migrate(void* ptr)
 
 void QNetworkSession_MigrateDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::migrate();
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::migrate();
 }
 
 void QNetworkSession_ConnectNewConfigurationActivated(void* ptr)
@@ -6496,7 +6047,7 @@ void QNetworkSession_Open(void* ptr)
 
 void QNetworkSession_OpenDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::open();
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::open();
 }
 
 void QNetworkSession_ConnectOpened(void* ptr)
@@ -6536,7 +6087,7 @@ void QNetworkSession_Reject(void* ptr)
 
 void QNetworkSession_RejectDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::reject();
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::reject();
 }
 
 void QNetworkSession_SetSessionProperty(void* ptr, char* key, void* value)
@@ -6566,7 +6117,7 @@ void QNetworkSession_Stop(void* ptr)
 
 void QNetworkSession_StopDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::stop();
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::stop();
 }
 
 void QNetworkSession_ConnectUsagePoliciesChanged(void* ptr)
@@ -6724,94 +6275,49 @@ void* QNetworkSession___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QNetworkSession_Event(void* ptr, void* e)
-{
-	return static_cast<QNetworkSession*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QNetworkSession_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QNetworkSession*>(ptr)->QNetworkSession::event(static_cast<QEvent*>(e));
-}
-
-char QNetworkSession_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QNetworkSession*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QNetworkSession*>(ptr)->QNetworkSession::event(static_cast<QEvent*>(e));
 }
 
 char QNetworkSession_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QNetworkSession*>(ptr)->QNetworkSession::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QNetworkSession_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkSession*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QNetworkSession*>(ptr)->QNetworkSession::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QNetworkSession_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QNetworkSession_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkSession*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QNetworkSession_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkSession_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkSession*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkSession_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::customEvent(static_cast<QEvent*>(event));
-}
-
-void QNetworkSession_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "deleteLater");
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::customEvent(static_cast<QEvent*>(event));
 }
 
 void QNetworkSession_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::deleteLater();
-}
-
-void QNetworkSession_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QNetworkSession*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::deleteLater();
 }
 
 void QNetworkSession_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QNetworkSession_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QNetworkSession*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QNetworkSession_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QNetworkSession*>(ptr)->QNetworkSession::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QNetworkSession_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QNetworkSession*>(ptr)->metaObject());
+		static_cast<QNetworkSession*>(ptr)->QNetworkSession::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QNetworkSession_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QNetworkSession*>(ptr)->QNetworkSession::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QNetworkSession*>(ptr)->QNetworkSession::metaObject());
 }
 
 int QSsl_TlsV1_1_Type()
@@ -7993,49 +7499,63 @@ class MyQSslSocket: public QSslSocket
 {
 public:
 	MyQSslSocket(QObject *parent) : QSslSocket(parent) {};
-	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQSslSocket_SocketOption(this, option)); };
-	bool waitForBytesWritten(int msecs) { return callbackQSslSocket_WaitForBytesWritten(this, msecs) != 0; };
-	bool waitForConnected(int msecs) { return callbackQSslSocket_WaitForConnected(this, msecs) != 0; };
-	bool waitForDisconnected(int msecs) { return callbackQSslSocket_WaitForDisconnected(this, msecs) != 0; };
-	bool waitForReadyRead(int msecs) { return callbackQSslSocket_WaitForReadyRead(this, msecs) != 0; };
-	qint64 readData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQSslSocket_ReadData(this, dataPacked, maxlen); };
-	qint64 writeData(const char * data, qint64 len) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), len };return callbackQSslSocket_WriteData(this, dataPacked, len); };
-	void close() { callbackQSslSocket_Close(this); };
+	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
+	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
+	bool waitForConnected(int msecs) { return callbackQAbstractSocket_WaitForConnected(this, msecs) != 0; };
+	bool waitForDisconnected(int msecs) { return callbackQAbstractSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQAbstractSocket_WaitForReadyRead(this, msecs) != 0; };
+	qint64 readData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQAbstractSocket_ReadData(this, dataPacked, maxlen); };
+	qint64 writeData(const char * data, qint64 len) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), len };return callbackQAbstractSocket_WriteData(this, dataPacked, len); };
+	void close() { callbackQAbstractSocket_Close(this); };
 	void Signal_Encrypted() { callbackQSslSocket_Encrypted(this); };
 	void Signal_EncryptedBytesWritten(qint64 written) { callbackQSslSocket_EncryptedBytesWritten(this, written); };
 	void ignoreSslErrors() { callbackQSslSocket_IgnoreSslErrors(this); };
 	void Signal_ModeChanged(QSslSocket::SslMode mode) { callbackQSslSocket_ModeChanged(this, mode); };
 	void Signal_PeerVerifyError(const QSslError & error) { callbackQSslSocket_PeerVerifyError(this, const_cast<QSslError*>(&error)); };
 	void Signal_PreSharedKeyAuthenticationRequired(QSslPreSharedKeyAuthenticator * authenticator) { callbackQSslSocket_PreSharedKeyAuthenticationRequired(this, authenticator); };
-	void resume() { callbackQSslSocket_Resume(this); };
-	void setReadBufferSize(qint64 size) { callbackQSslSocket_SetReadBufferSize(this, size); };
-	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQSslSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
+	void resume() { callbackQAbstractSocket_Resume(this); };
+	void setReadBufferSize(qint64 size) { callbackQAbstractSocket_SetReadBufferSize(this, size); };
+	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQAbstractSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
 	void Signal_SslErrors2(const QList<QSslError> & errors) { callbackQSslSocket_SslErrors2(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void startClientEncryption() { callbackQSslSocket_StartClientEncryption(this); };
 	void startServerEncryption() { callbackQSslSocket_StartServerEncryption(this); };
-	bool atEnd() const { return callbackQSslSocket_AtEnd(const_cast<MyQSslSocket*>(this)) != 0; };
-	bool canReadLine() const { return callbackQSslSocket_CanReadLine(const_cast<MyQSslSocket*>(this)) != 0; };
-	qint64 bytesAvailable() const { return callbackQSslSocket_BytesAvailable(const_cast<MyQSslSocket*>(this)); };
-	qint64 bytesToWrite() const { return callbackQSslSocket_BytesToWrite(const_cast<MyQSslSocket*>(this)); };
-	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQSslSocket_ReadLineData(this, dataPacked, maxlen); };
-	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQSslSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQSslSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
-	void disconnectFromHost() { callbackQSslSocket_DisconnectFromHost(this); };
-	bool isSequential() const { return callbackQSslSocket_IsSequential(const_cast<MyQSslSocket*>(this)) != 0; };
-	bool open(QIODevice::OpenMode mode) { return callbackQSslSocket_Open(this, mode) != 0; };
-	bool reset() { return callbackQSslSocket_Reset(this) != 0; };
-	bool seek(qint64 pos) { return callbackQSslSocket_Seek(this, pos) != 0; };
-	qint64 pos() const { return callbackQSslSocket_Pos(const_cast<MyQSslSocket*>(this)); };
-	qint64 size() const { return callbackQSslSocket_Size(const_cast<MyQSslSocket*>(this)); };
-	bool event(QEvent * e) { return callbackQSslSocket_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSslSocket_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQSslSocket_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSslSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQSslSocket_CustomEvent(this, event); };
-	void deleteLater() { callbackQSslSocket_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSslSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void timerEvent(QTimerEvent * event) { callbackQSslSocket_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSslSocket_MetaObject(const_cast<MyQSslSocket*>(this))); };
+	bool atEnd() const { return callbackQAbstractSocket_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQAbstractSocket_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQAbstractSocket_ReadLineData(this, dataPacked, maxlen); };
+	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
+	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
+	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };
+	void Signal_Disconnected() { callbackQAbstractSocket_Disconnected(this); };
+	void Signal_Error2(QAbstractSocket::SocketError socketError) { callbackQAbstractSocket_Error2(this, socketError); };
+	void Signal_HostFound() { callbackQAbstractSocket_HostFound(this); };
+	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQAbstractSocket_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
+	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocket_StateChanged(this, socketState); };
+	bool isSequential() const { return callbackQAbstractSocket_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool open(QIODevice::OpenMode mode) { return callbackQAbstractSocket_Open(this, mode) != 0; };
+	bool reset() { return callbackQAbstractSocket_Reset(this) != 0; };
+	bool seek(qint64 pos) { return callbackQAbstractSocket_Seek(this, pos) != 0; };
+	void Signal_AboutToClose() { callbackQAbstractSocket_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQAbstractSocket_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQAbstractSocket_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQAbstractSocket_ChannelReadyRead(this, channel); };
+	void Signal_ReadChannelFinished() { callbackQAbstractSocket_ReadChannelFinished(this); };
+	void Signal_ReadyRead() { callbackQAbstractSocket_ReadyRead(this); };
+	qint64 pos() const { return callbackQAbstractSocket_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 size() const { return callbackQAbstractSocket_Size(const_cast<void*>(static_cast<const void*>(this))); };
+	bool event(QEvent * e) { return callbackQAbstractSocket_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractSocket_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAbstractSocket_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAbstractSocket_CustomEvent(this, event); };
+	void deleteLater() { callbackQAbstractSocket_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractSocket_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractSocket_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QSslSocket_NewQSslSocket(void* parent)
@@ -8053,16 +7573,6 @@ struct QtNetwork_PackedString QSslSocket_QSslSocket_SslLibraryVersionString()
 	return ({ QByteArray tdd64b4 = QSslSocket::sslLibraryVersionString().toUtf8(); QtNetwork_PackedString { const_cast<char*>(tdd64b4.prepend("WHITESPACE").constData()+10), tdd64b4.size()-10 }; });
 }
 
-void* QSslSocket_SocketOption(void* ptr, long long option)
-{
-	return new QVariant(static_cast<QSslSocket*>(ptr)->socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
-}
-
-void* QSslSocket_SocketOptionDefault(void* ptr, long long option)
-{
-	return new QVariant(static_cast<QSslSocket*>(ptr)->QSslSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
-}
-
 char QSslSocket_AddCaCertificates(void* ptr, char* path, long long format, long long syntax)
 {
 	return static_cast<QSslSocket*>(ptr)->addCaCertificates(QString(path), static_cast<QSsl::EncodingFormat>(format), static_cast<QRegExp::PatternSyntax>(syntax));
@@ -8073,59 +7583,14 @@ char QSslSocket_QSslSocket_AddDefaultCaCertificates(char* path, long long encodi
 	return QSslSocket::addDefaultCaCertificates(QString(path), static_cast<QSsl::EncodingFormat>(encoding), static_cast<QRegExp::PatternSyntax>(syntax));
 }
 
-char QSslSocket_Flush(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->flush();
-}
-
 char QSslSocket_QSslSocket_SupportsSsl()
 {
 	return QSslSocket::supportsSsl();
 }
 
-char QSslSocket_WaitForBytesWritten(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->waitForBytesWritten(msecs);
-}
-
-char QSslSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForBytesWritten(msecs);
-}
-
-char QSslSocket_WaitForConnected(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->waitForConnected(msecs);
-}
-
-char QSslSocket_WaitForConnectedDefault(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForConnected(msecs);
-}
-
-char QSslSocket_WaitForDisconnected(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->waitForDisconnected(msecs);
-}
-
-char QSslSocket_WaitForDisconnectedDefault(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForDisconnected(msecs);
-}
-
 char QSslSocket_WaitForEncrypted(void* ptr, int msecs)
 {
 	return static_cast<QSslSocket*>(ptr)->waitForEncrypted(msecs);
-}
-
-char QSslSocket_WaitForReadyRead(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->waitForReadyRead(msecs);
-}
-
-char QSslSocket_WaitForReadyReadDefault(void* ptr, int msecs)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForReadyRead(msecs);
 }
 
 long QSslSocket_QSslSocket_SslLibraryBuildVersionNumber()
@@ -8136,31 +7601,6 @@ long QSslSocket_QSslSocket_SslLibraryBuildVersionNumber()
 long QSslSocket_QSslSocket_SslLibraryVersionNumber()
 {
 	return QSslSocket::sslLibraryVersionNumber();
-}
-
-long long QSslSocket_ReadData(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QSslSocket*>(ptr)->readData(data, maxlen);
-}
-
-long long QSslSocket_ReadDataDefault(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::readData(data, maxlen);
-}
-
-long long QSslSocket_WriteData(void* ptr, char* data, long long len)
-{
-	return static_cast<QSslSocket*>(ptr)->writeData(const_cast<const char*>(data), len);
-}
-
-long long QSslSocket_WriteDataDefault(void* ptr, char* data, long long len)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::writeData(const_cast<const char*>(data), len);
-}
-
-void QSslSocket_Abort(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->abort();
 }
 
 void QSslSocket_AddCaCertificate(void* ptr, void* certificate)
@@ -8181,16 +7621,6 @@ void QSslSocket_QSslSocket_AddDefaultCaCertificate(void* certificate)
 void QSslSocket_QSslSocket_AddDefaultCaCertificates2(void* certificates)
 {
 	QSslSocket::addDefaultCaCertificates(*static_cast<QList<QSslCertificate>*>(certificates));
-}
-
-void QSslSocket_Close(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->close();
-}
-
-void QSslSocket_CloseDefault(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::close();
 }
 
 void QSslSocket_ConnectToHostEncrypted(void* ptr, char* hostName, unsigned short port, long long mode, long long protocol)
@@ -8240,7 +7670,7 @@ void QSslSocket_IgnoreSslErrors(void* ptr)
 
 void QSslSocket_IgnoreSslErrorsDefault(void* ptr)
 {
-	static_cast<QSslSocket*>(ptr)->QSslSocket::ignoreSslErrors();
+		static_cast<QSslSocket*>(ptr)->QSslSocket::ignoreSslErrors();
 }
 
 void QSslSocket_IgnoreSslErrors2(void* ptr, void* errors)
@@ -8293,16 +7723,6 @@ void QSslSocket_PreSharedKeyAuthenticationRequired(void* ptr, void* authenticato
 	static_cast<QSslSocket*>(ptr)->preSharedKeyAuthenticationRequired(static_cast<QSslPreSharedKeyAuthenticator*>(authenticator));
 }
 
-void QSslSocket_Resume(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->resume();
-}
-
-void QSslSocket_ResumeDefault(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::resume();
-}
-
 void QSslSocket_SetLocalCertificate(void* ptr, void* certificate)
 {
 	static_cast<QSslSocket*>(ptr)->setLocalCertificate(*static_cast<QSslCertificate*>(certificate));
@@ -8348,26 +7768,6 @@ void QSslSocket_SetProtocol(void* ptr, long long protocol)
 	static_cast<QSslSocket*>(ptr)->setProtocol(static_cast<QSsl::SslProtocol>(protocol));
 }
 
-void QSslSocket_SetReadBufferSize(void* ptr, long long size)
-{
-	static_cast<QSslSocket*>(ptr)->setReadBufferSize(size);
-}
-
-void QSslSocket_SetReadBufferSizeDefault(void* ptr, long long size)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::setReadBufferSize(size);
-}
-
-void QSslSocket_SetSocketOption(void* ptr, long long option, void* value)
-{
-	static_cast<QSslSocket*>(ptr)->setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
-}
-
-void QSslSocket_SetSocketOptionDefault(void* ptr, long long option, void* value)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
-}
-
 void QSslSocket_SetSslConfiguration(void* ptr, void* configuration)
 {
 	static_cast<QSslSocket*>(ptr)->setSslConfiguration(*static_cast<QSslConfiguration*>(configuration));
@@ -8395,7 +7795,7 @@ void QSslSocket_StartClientEncryption(void* ptr)
 
 void QSslSocket_StartClientEncryptionDefault(void* ptr)
 {
-	static_cast<QSslSocket*>(ptr)->QSslSocket::startClientEncryption();
+		static_cast<QSslSocket*>(ptr)->QSslSocket::startClientEncryption();
 }
 
 void QSslSocket_StartServerEncryption(void* ptr)
@@ -8405,7 +7805,7 @@ void QSslSocket_StartServerEncryption(void* ptr)
 
 void QSslSocket_StartServerEncryptionDefault(void* ptr)
 {
-	static_cast<QSslSocket*>(ptr)->QSslSocket::startServerEncryption();
+		static_cast<QSslSocket*>(ptr)->QSslSocket::startServerEncryption();
 }
 
 void QSslSocket_DestroyQSslSocket(void* ptr)
@@ -8478,26 +7878,6 @@ long long QSslSocket_Mode(void* ptr)
 	return static_cast<QSslSocket*>(ptr)->mode();
 }
 
-char QSslSocket_AtEnd(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->atEnd();
-}
-
-char QSslSocket_AtEndDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::atEnd();
-}
-
-char QSslSocket_CanReadLine(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->canReadLine();
-}
-
-char QSslSocket_CanReadLineDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::canReadLine();
-}
-
 char QSslSocket_IsEncrypted(void* ptr)
 {
 	return static_cast<QSslSocket*>(ptr)->isEncrypted();
@@ -8506,26 +7886,6 @@ char QSslSocket_IsEncrypted(void* ptr)
 int QSslSocket_PeerVerifyDepth(void* ptr)
 {
 	return static_cast<QSslSocket*>(ptr)->peerVerifyDepth();
-}
-
-long long QSslSocket_BytesAvailable(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->bytesAvailable();
-}
-
-long long QSslSocket_BytesAvailableDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::bytesAvailable();
-}
-
-long long QSslSocket_BytesToWrite(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->bytesToWrite();
-}
-
-long long QSslSocket_BytesToWriteDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::bytesToWrite();
 }
 
 long long QSslSocket_EncryptedBytesAvailable(void* ptr)
@@ -8808,271 +8168,6 @@ void* QSslSocket___sslErrors_newList(void* ptr)
 	return new QList<QSslError>;
 }
 
-void* QSslSocket___dynamicPropertyNames_atList(void* ptr, int i)
-{
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
-}
-
-void QSslSocket___dynamicPropertyNames_setList(void* ptr, void* i)
-{
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
-}
-
-void* QSslSocket___dynamicPropertyNames_newList(void* ptr)
-{
-	return new QList<QByteArray>;
-}
-
-void* QSslSocket___findChildren_atList2(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QSslSocket___findChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QSslSocket___findChildren_newList2(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QSslSocket___findChildren_atList3(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QSslSocket___findChildren_setList3(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QSslSocket___findChildren_newList3(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QSslSocket___findChildren_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QSslSocket___findChildren_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QSslSocket___findChildren_newList(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QSslSocket___children_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
-}
-
-void QSslSocket___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QSslSocket___children_newList(void* ptr)
-{
-	return new QList<QObject *>;
-}
-
-long long QSslSocket_ReadLineData(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QSslSocket*>(ptr)->readLineData(data, maxlen);
-}
-
-long long QSslSocket_ReadLineDataDefault(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::readLineData(data, maxlen);
-}
-
-void QSslSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)
-{
-	static_cast<QSslSocket*>(ptr)->connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
-}
-
-void QSslSocket_ConnectToHost2Default(void* ptr, void* address, unsigned short port, long long openMode)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
-}
-
-void QSslSocket_ConnectToHost(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
-{
-	static_cast<QSslSocket*>(ptr)->connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
-}
-
-void QSslSocket_ConnectToHostDefault(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
-}
-
-void QSslSocket_DisconnectFromHost(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->disconnectFromHost();
-}
-
-void QSslSocket_DisconnectFromHostDefault(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::disconnectFromHost();
-}
-
-char QSslSocket_IsSequential(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->isSequential();
-}
-
-char QSslSocket_IsSequentialDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::isSequential();
-}
-
-char QSslSocket_Open(void* ptr, long long mode)
-{
-	return static_cast<QSslSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QSslSocket_OpenDefault(void* ptr, long long mode)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QSslSocket_Reset(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->reset();
-}
-
-char QSslSocket_ResetDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::reset();
-}
-
-char QSslSocket_Seek(void* ptr, long long pos)
-{
-	return static_cast<QSslSocket*>(ptr)->seek(pos);
-}
-
-char QSslSocket_SeekDefault(void* ptr, long long pos)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::seek(pos);
-}
-
-long long QSslSocket_Pos(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->pos();
-}
-
-long long QSslSocket_PosDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::pos();
-}
-
-long long QSslSocket_Size(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->size();
-}
-
-long long QSslSocket_SizeDefault(void* ptr)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::size();
-}
-
-char QSslSocket_Event(void* ptr, void* e)
-{
-	return static_cast<QSslSocket*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QSslSocket_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::event(static_cast<QEvent*>(e));
-}
-
-char QSslSocket_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QSslSocket*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char QSslSocket_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<QSslSocket*>(ptr)->QSslSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QSslSocket_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QSslSocket*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QSslSocket_ChildEventDefault(void* ptr, void* event)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QSslSocket_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QSslSocket*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QSslSocket_ConnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QSslSocket_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QSslSocket*>(ptr)->customEvent(static_cast<QEvent*>(event));
-}
-
-void QSslSocket_CustomEventDefault(void* ptr, void* event)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::customEvent(static_cast<QEvent*>(event));
-}
-
-void QSslSocket_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QSslSocket*>(ptr), "deleteLater");
-}
-
-void QSslSocket_DeleteLaterDefault(void* ptr)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::deleteLater();
-}
-
-void QSslSocket_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QSslSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QSslSocket_DisconnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QSslSocket_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QSslSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QSslSocket_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QSslSocket*>(ptr)->QSslSocket::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QSslSocket_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QSslSocket*>(ptr)->metaObject());
-}
-
-void* QSslSocket_MetaObjectDefault(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QSslSocket*>(ptr)->QSslSocket::metaObject());
-}
-
 class MyQTcpServer: public QTcpServer
 {
 public:
@@ -9081,16 +8176,18 @@ public:
 	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQTcpServer_AcceptError(this, socketError); };
 	void Signal_NewConnection() { callbackQTcpServer_NewConnection(this); };
 	 ~MyQTcpServer() { callbackQTcpServer_DestroyQTcpServer(this); };
-	bool hasPendingConnections() const { return callbackQTcpServer_HasPendingConnections(const_cast<MyQTcpServer*>(this)) != 0; };
+	bool hasPendingConnections() const { return callbackQTcpServer_HasPendingConnections(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool event(QEvent * e) { return callbackQTcpServer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTcpServer_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQTcpServer_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTcpServer_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTcpServer_CustomEvent(this, event); };
 	void deleteLater() { callbackQTcpServer_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQTcpServer_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTcpServer_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQTcpServer_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQTcpServer_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTcpServer_MetaObject(const_cast<MyQTcpServer*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTcpServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QTcpServer_NewQTcpServer(void* parent)
@@ -9105,7 +8202,7 @@ void* QTcpServer_NextPendingConnection(void* ptr)
 
 void* QTcpServer_NextPendingConnectionDefault(void* ptr)
 {
-	return static_cast<QTcpServer*>(ptr)->QTcpServer::nextPendingConnection();
+		return static_cast<QTcpServer*>(ptr)->QTcpServer::nextPendingConnection();
 }
 
 char QTcpServer_Listen(void* ptr, void* address, unsigned short port)
@@ -9215,7 +8312,7 @@ char QTcpServer_HasPendingConnections(void* ptr)
 
 char QTcpServer_HasPendingConnectionsDefault(void* ptr)
 {
-	return static_cast<QTcpServer*>(ptr)->QTcpServer::hasPendingConnections();
+		return static_cast<QTcpServer*>(ptr)->QTcpServer::hasPendingConnections();
 }
 
 char QTcpServer_IsListening(void* ptr)
@@ -9308,94 +8405,49 @@ void* QTcpServer___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QTcpServer_Event(void* ptr, void* e)
-{
-	return static_cast<QTcpServer*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QTcpServer_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QTcpServer*>(ptr)->QTcpServer::event(static_cast<QEvent*>(e));
-}
-
-char QTcpServer_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QTcpServer*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QTcpServer*>(ptr)->QTcpServer::event(static_cast<QEvent*>(e));
 }
 
 char QTcpServer_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTcpServer*>(ptr)->QTcpServer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QTcpServer_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QTcpServer*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QTcpServer*>(ptr)->QTcpServer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QTcpServer_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QTcpServer*>(ptr)->QTcpServer::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QTcpServer_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QTcpServer*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QTcpServer*>(ptr)->QTcpServer::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QTcpServer_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QTcpServer*>(ptr)->QTcpServer::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QTcpServer_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QTcpServer*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QTcpServer*>(ptr)->QTcpServer::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QTcpServer_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QTcpServer*>(ptr)->QTcpServer::customEvent(static_cast<QEvent*>(event));
-}
-
-void QTcpServer_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QTcpServer*>(ptr), "deleteLater");
+		static_cast<QTcpServer*>(ptr)->QTcpServer::customEvent(static_cast<QEvent*>(event));
 }
 
 void QTcpServer_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QTcpServer*>(ptr)->QTcpServer::deleteLater();
-}
-
-void QTcpServer_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QTcpServer*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QTcpServer*>(ptr)->QTcpServer::deleteLater();
 }
 
 void QTcpServer_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QTcpServer*>(ptr)->QTcpServer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QTcpServer_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QTcpServer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QTcpServer*>(ptr)->QTcpServer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QTcpServer_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QTcpServer*>(ptr)->QTcpServer::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QTcpServer_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QTcpServer*>(ptr)->metaObject());
+		static_cast<QTcpServer*>(ptr)->QTcpServer::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QTcpServer_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QTcpServer*>(ptr)->QTcpServer::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QTcpServer*>(ptr)->QTcpServer::metaObject());
 }
 
 class MyQTcpSocket: public QTcpSocket
@@ -9403,40 +8455,54 @@ class MyQTcpSocket: public QTcpSocket
 public:
 	MyQTcpSocket(QObject *parent) : QTcpSocket(parent) {};
 	 ~MyQTcpSocket() { callbackQTcpSocket_DestroyQTcpSocket(this); };
-	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQTcpSocket_SocketOption(this, option)); };
-	bool waitForBytesWritten(int msecs) { return callbackQTcpSocket_WaitForBytesWritten(this, msecs) != 0; };
-	bool waitForConnected(int msecs) { return callbackQTcpSocket_WaitForConnected(this, msecs) != 0; };
-	bool waitForDisconnected(int msecs) { return callbackQTcpSocket_WaitForDisconnected(this, msecs) != 0; };
-	bool waitForReadyRead(int msecs) { return callbackQTcpSocket_WaitForReadyRead(this, msecs) != 0; };
-	qint64 readData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQTcpSocket_ReadData(this, dataPacked, maxSize); };
-	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQTcpSocket_ReadLineData(this, dataPacked, maxlen); };
-	qint64 writeData(const char * data, qint64 size) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQTcpSocket_WriteData(this, dataPacked, size); };
-	void close() { callbackQTcpSocket_Close(this); };
-	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQTcpSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQTcpSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
-	void disconnectFromHost() { callbackQTcpSocket_DisconnectFromHost(this); };
-	void resume() { callbackQTcpSocket_Resume(this); };
-	void setReadBufferSize(qint64 size) { callbackQTcpSocket_SetReadBufferSize(this, size); };
-	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQTcpSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
-	bool atEnd() const { return callbackQTcpSocket_AtEnd(const_cast<MyQTcpSocket*>(this)) != 0; };
-	bool canReadLine() const { return callbackQTcpSocket_CanReadLine(const_cast<MyQTcpSocket*>(this)) != 0; };
-	bool isSequential() const { return callbackQTcpSocket_IsSequential(const_cast<MyQTcpSocket*>(this)) != 0; };
-	qint64 bytesAvailable() const { return callbackQTcpSocket_BytesAvailable(const_cast<MyQTcpSocket*>(this)); };
-	qint64 bytesToWrite() const { return callbackQTcpSocket_BytesToWrite(const_cast<MyQTcpSocket*>(this)); };
-	bool open(QIODevice::OpenMode mode) { return callbackQTcpSocket_Open(this, mode) != 0; };
-	bool reset() { return callbackQTcpSocket_Reset(this) != 0; };
-	bool seek(qint64 pos) { return callbackQTcpSocket_Seek(this, pos) != 0; };
-	qint64 pos() const { return callbackQTcpSocket_Pos(const_cast<MyQTcpSocket*>(this)); };
-	qint64 size() const { return callbackQTcpSocket_Size(const_cast<MyQTcpSocket*>(this)); };
-	bool event(QEvent * e) { return callbackQTcpSocket_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTcpSocket_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQTcpSocket_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQTcpSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQTcpSocket_CustomEvent(this, event); };
-	void deleteLater() { callbackQTcpSocket_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQTcpSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void timerEvent(QTimerEvent * event) { callbackQTcpSocket_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTcpSocket_MetaObject(const_cast<MyQTcpSocket*>(this))); };
+	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
+	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
+	bool waitForConnected(int msecs) { return callbackQAbstractSocket_WaitForConnected(this, msecs) != 0; };
+	bool waitForDisconnected(int msecs) { return callbackQAbstractSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQAbstractSocket_WaitForReadyRead(this, msecs) != 0; };
+	qint64 readData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQAbstractSocket_ReadData(this, dataPacked, maxSize); };
+	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQAbstractSocket_ReadLineData(this, dataPacked, maxlen); };
+	qint64 writeData(const char * data, qint64 size) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQAbstractSocket_WriteData(this, dataPacked, size); };
+	void close() { callbackQAbstractSocket_Close(this); };
+	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
+	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
+	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };
+	void Signal_Disconnected() { callbackQAbstractSocket_Disconnected(this); };
+	void Signal_Error2(QAbstractSocket::SocketError socketError) { callbackQAbstractSocket_Error2(this, socketError); };
+	void Signal_HostFound() { callbackQAbstractSocket_HostFound(this); };
+	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQAbstractSocket_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
+	void resume() { callbackQAbstractSocket_Resume(this); };
+	void setReadBufferSize(qint64 size) { callbackQAbstractSocket_SetReadBufferSize(this, size); };
+	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQAbstractSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
+	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocket_StateChanged(this, socketState); };
+	bool atEnd() const { return callbackQAbstractSocket_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool isSequential() const { return callbackQAbstractSocket_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQAbstractSocket_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
+	bool open(QIODevice::OpenMode mode) { return callbackQAbstractSocket_Open(this, mode) != 0; };
+	bool reset() { return callbackQAbstractSocket_Reset(this) != 0; };
+	bool seek(qint64 pos) { return callbackQAbstractSocket_Seek(this, pos) != 0; };
+	void Signal_AboutToClose() { callbackQAbstractSocket_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQAbstractSocket_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQAbstractSocket_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQAbstractSocket_ChannelReadyRead(this, channel); };
+	void Signal_ReadChannelFinished() { callbackQAbstractSocket_ReadChannelFinished(this); };
+	void Signal_ReadyRead() { callbackQAbstractSocket_ReadyRead(this); };
+	qint64 pos() const { return callbackQAbstractSocket_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 size() const { return callbackQAbstractSocket_Size(const_cast<void*>(static_cast<const void*>(this))); };
+	bool event(QEvent * e) { return callbackQAbstractSocket_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractSocket_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAbstractSocket_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAbstractSocket_CustomEvent(this, event); };
+	void deleteLater() { callbackQAbstractSocket_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractSocket_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractSocket_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QTcpSocket_NewQTcpSocket(void* parent)
@@ -9454,460 +8520,59 @@ void QTcpSocket_DestroyQTcpSocketDefault(void* ptr)
 
 }
 
-void* QTcpSocket___dynamicPropertyNames_atList(void* ptr, int i)
-{
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
-}
-
-void QTcpSocket___dynamicPropertyNames_setList(void* ptr, void* i)
-{
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
-}
-
-void* QTcpSocket___dynamicPropertyNames_newList(void* ptr)
-{
-	return new QList<QByteArray>;
-}
-
-void* QTcpSocket___findChildren_atList2(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QTcpSocket___findChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QTcpSocket___findChildren_newList2(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QTcpSocket___findChildren_atList3(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QTcpSocket___findChildren_setList3(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QTcpSocket___findChildren_newList3(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QTcpSocket___findChildren_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QTcpSocket___findChildren_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QTcpSocket___findChildren_newList(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QTcpSocket___children_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
-}
-
-void QTcpSocket___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QTcpSocket___children_newList(void* ptr)
-{
-	return new QList<QObject *>;
-}
-
-void* QTcpSocket_SocketOption(void* ptr, long long option)
-{
-	return new QVariant(static_cast<QTcpSocket*>(ptr)->socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
-}
-
-void* QTcpSocket_SocketOptionDefault(void* ptr, long long option)
-{
-	return new QVariant(static_cast<QTcpSocket*>(ptr)->QTcpSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
-}
-
-char QTcpSocket_WaitForBytesWritten(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->waitForBytesWritten(msecs);
-}
-
-char QTcpSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForBytesWritten(msecs);
-}
-
-char QTcpSocket_WaitForConnected(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->waitForConnected(msecs);
-}
-
-char QTcpSocket_WaitForConnectedDefault(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForConnected(msecs);
-}
-
-char QTcpSocket_WaitForDisconnected(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->waitForDisconnected(msecs);
-}
-
-char QTcpSocket_WaitForDisconnectedDefault(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForDisconnected(msecs);
-}
-
-char QTcpSocket_WaitForReadyRead(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->waitForReadyRead(msecs);
-}
-
-char QTcpSocket_WaitForReadyReadDefault(void* ptr, int msecs)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForReadyRead(msecs);
-}
-
-long long QTcpSocket_ReadData(void* ptr, char* data, long long maxSize)
-{
-	return static_cast<QTcpSocket*>(ptr)->readData(data, maxSize);
-}
-
-long long QTcpSocket_ReadDataDefault(void* ptr, char* data, long long maxSize)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::readData(data, maxSize);
-}
-
-long long QTcpSocket_ReadLineData(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QTcpSocket*>(ptr)->readLineData(data, maxlen);
-}
-
-long long QTcpSocket_ReadLineDataDefault(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::readLineData(data, maxlen);
-}
-
-long long QTcpSocket_WriteData(void* ptr, char* data, long long size)
-{
-	return static_cast<QTcpSocket*>(ptr)->writeData(const_cast<const char*>(data), size);
-}
-
-long long QTcpSocket_WriteDataDefault(void* ptr, char* data, long long size)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::writeData(const_cast<const char*>(data), size);
-}
-
-void QTcpSocket_Close(void* ptr)
-{
-	static_cast<QTcpSocket*>(ptr)->close();
-}
-
-void QTcpSocket_CloseDefault(void* ptr)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::close();
-}
-
-void QTcpSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)
-{
-	static_cast<QTcpSocket*>(ptr)->connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
-}
-
-void QTcpSocket_ConnectToHost2Default(void* ptr, void* address, unsigned short port, long long openMode)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
-}
-
-void QTcpSocket_ConnectToHost(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
-{
-	static_cast<QTcpSocket*>(ptr)->connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
-}
-
-void QTcpSocket_ConnectToHostDefault(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
-}
-
-void QTcpSocket_DisconnectFromHost(void* ptr)
-{
-	static_cast<QTcpSocket*>(ptr)->disconnectFromHost();
-}
-
-void QTcpSocket_DisconnectFromHostDefault(void* ptr)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::disconnectFromHost();
-}
-
-void QTcpSocket_Resume(void* ptr)
-{
-	static_cast<QTcpSocket*>(ptr)->resume();
-}
-
-void QTcpSocket_ResumeDefault(void* ptr)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::resume();
-}
-
-void QTcpSocket_SetReadBufferSize(void* ptr, long long size)
-{
-	static_cast<QTcpSocket*>(ptr)->setReadBufferSize(size);
-}
-
-void QTcpSocket_SetReadBufferSizeDefault(void* ptr, long long size)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::setReadBufferSize(size);
-}
-
-void QTcpSocket_SetSocketOption(void* ptr, long long option, void* value)
-{
-	static_cast<QTcpSocket*>(ptr)->setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
-}
-
-void QTcpSocket_SetSocketOptionDefault(void* ptr, long long option, void* value)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
-}
-
-char QTcpSocket_AtEnd(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->atEnd();
-}
-
-char QTcpSocket_AtEndDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::atEnd();
-}
-
-char QTcpSocket_CanReadLine(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->canReadLine();
-}
-
-char QTcpSocket_CanReadLineDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::canReadLine();
-}
-
-char QTcpSocket_IsSequential(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->isSequential();
-}
-
-char QTcpSocket_IsSequentialDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::isSequential();
-}
-
-long long QTcpSocket_BytesAvailable(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->bytesAvailable();
-}
-
-long long QTcpSocket_BytesAvailableDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::bytesAvailable();
-}
-
-long long QTcpSocket_BytesToWrite(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->bytesToWrite();
-}
-
-long long QTcpSocket_BytesToWriteDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::bytesToWrite();
-}
-
-char QTcpSocket_Open(void* ptr, long long mode)
-{
-	return static_cast<QTcpSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QTcpSocket_OpenDefault(void* ptr, long long mode)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QTcpSocket_Reset(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->reset();
-}
-
-char QTcpSocket_ResetDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::reset();
-}
-
-char QTcpSocket_Seek(void* ptr, long long pos)
-{
-	return static_cast<QTcpSocket*>(ptr)->seek(pos);
-}
-
-char QTcpSocket_SeekDefault(void* ptr, long long pos)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::seek(pos);
-}
-
-long long QTcpSocket_Pos(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->pos();
-}
-
-long long QTcpSocket_PosDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::pos();
-}
-
-long long QTcpSocket_Size(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->size();
-}
-
-long long QTcpSocket_SizeDefault(void* ptr)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::size();
-}
-
-char QTcpSocket_Event(void* ptr, void* e)
-{
-	return static_cast<QTcpSocket*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QTcpSocket_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::event(static_cast<QEvent*>(e));
-}
-
-char QTcpSocket_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QTcpSocket*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char QTcpSocket_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QTcpSocket_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QTcpSocket*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QTcpSocket_ChildEventDefault(void* ptr, void* event)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QTcpSocket_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QTcpSocket*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QTcpSocket_ConnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QTcpSocket_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QTcpSocket*>(ptr)->customEvent(static_cast<QEvent*>(event));
-}
-
-void QTcpSocket_CustomEventDefault(void* ptr, void* event)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::customEvent(static_cast<QEvent*>(event));
-}
-
-void QTcpSocket_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QTcpSocket*>(ptr), "deleteLater");
-}
-
-void QTcpSocket_DeleteLaterDefault(void* ptr)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::deleteLater();
-}
-
-void QTcpSocket_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QTcpSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QTcpSocket_DisconnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QTcpSocket_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QTcpSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QTcpSocket_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QTcpSocket*>(ptr)->QTcpSocket::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QTcpSocket_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QTcpSocket*>(ptr)->metaObject());
-}
-
-void* QTcpSocket_MetaObjectDefault(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QTcpSocket*>(ptr)->QTcpSocket::metaObject());
-}
-
 class MyQUdpSocket: public QUdpSocket
 {
 public:
 	MyQUdpSocket(QObject *parent) : QUdpSocket(parent) {};
 	 ~MyQUdpSocket() { callbackQUdpSocket_DestroyQUdpSocket(this); };
-	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQUdpSocket_SocketOption(this, option)); };
-	bool waitForBytesWritten(int msecs) { return callbackQUdpSocket_WaitForBytesWritten(this, msecs) != 0; };
-	bool waitForConnected(int msecs) { return callbackQUdpSocket_WaitForConnected(this, msecs) != 0; };
-	bool waitForDisconnected(int msecs) { return callbackQUdpSocket_WaitForDisconnected(this, msecs) != 0; };
-	bool waitForReadyRead(int msecs) { return callbackQUdpSocket_WaitForReadyRead(this, msecs) != 0; };
-	qint64 readData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQUdpSocket_ReadData(this, dataPacked, maxSize); };
-	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQUdpSocket_ReadLineData(this, dataPacked, maxlen); };
-	qint64 writeData(const char * data, qint64 size) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQUdpSocket_WriteData(this, dataPacked, size); };
-	void close() { callbackQUdpSocket_Close(this); };
-	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQUdpSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQUdpSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
-	void disconnectFromHost() { callbackQUdpSocket_DisconnectFromHost(this); };
-	void resume() { callbackQUdpSocket_Resume(this); };
-	void setReadBufferSize(qint64 size) { callbackQUdpSocket_SetReadBufferSize(this, size); };
-	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQUdpSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
-	bool atEnd() const { return callbackQUdpSocket_AtEnd(const_cast<MyQUdpSocket*>(this)) != 0; };
-	bool canReadLine() const { return callbackQUdpSocket_CanReadLine(const_cast<MyQUdpSocket*>(this)) != 0; };
-	bool isSequential() const { return callbackQUdpSocket_IsSequential(const_cast<MyQUdpSocket*>(this)) != 0; };
-	qint64 bytesAvailable() const { return callbackQUdpSocket_BytesAvailable(const_cast<MyQUdpSocket*>(this)); };
-	qint64 bytesToWrite() const { return callbackQUdpSocket_BytesToWrite(const_cast<MyQUdpSocket*>(this)); };
-	bool open(QIODevice::OpenMode mode) { return callbackQUdpSocket_Open(this, mode) != 0; };
-	bool reset() { return callbackQUdpSocket_Reset(this) != 0; };
-	bool seek(qint64 pos) { return callbackQUdpSocket_Seek(this, pos) != 0; };
-	qint64 pos() const { return callbackQUdpSocket_Pos(const_cast<MyQUdpSocket*>(this)); };
-	qint64 size() const { return callbackQUdpSocket_Size(const_cast<MyQUdpSocket*>(this)); };
-	bool event(QEvent * e) { return callbackQUdpSocket_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUdpSocket_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQUdpSocket_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQUdpSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQUdpSocket_CustomEvent(this, event); };
-	void deleteLater() { callbackQUdpSocket_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQUdpSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void timerEvent(QTimerEvent * event) { callbackQUdpSocket_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUdpSocket_MetaObject(const_cast<MyQUdpSocket*>(this))); };
+	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
+	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
+	bool waitForConnected(int msecs) { return callbackQAbstractSocket_WaitForConnected(this, msecs) != 0; };
+	bool waitForDisconnected(int msecs) { return callbackQAbstractSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQAbstractSocket_WaitForReadyRead(this, msecs) != 0; };
+	qint64 readData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQAbstractSocket_ReadData(this, dataPacked, maxSize); };
+	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQAbstractSocket_ReadLineData(this, dataPacked, maxlen); };
+	qint64 writeData(const char * data, qint64 size) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQAbstractSocket_WriteData(this, dataPacked, size); };
+	void close() { callbackQAbstractSocket_Close(this); };
+	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
+	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
+	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };
+	void Signal_Disconnected() { callbackQAbstractSocket_Disconnected(this); };
+	void Signal_Error2(QAbstractSocket::SocketError socketError) { callbackQAbstractSocket_Error2(this, socketError); };
+	void Signal_HostFound() { callbackQAbstractSocket_HostFound(this); };
+	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQAbstractSocket_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
+	void resume() { callbackQAbstractSocket_Resume(this); };
+	void setReadBufferSize(qint64 size) { callbackQAbstractSocket_SetReadBufferSize(this, size); };
+	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQAbstractSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
+	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocket_StateChanged(this, socketState); };
+	bool atEnd() const { return callbackQAbstractSocket_AtEnd(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool canReadLine() const { return callbackQAbstractSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	bool isSequential() const { return callbackQAbstractSocket_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	qint64 bytesAvailable() const { return callbackQAbstractSocket_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
+	bool open(QIODevice::OpenMode mode) { return callbackQAbstractSocket_Open(this, mode) != 0; };
+	bool reset() { return callbackQAbstractSocket_Reset(this) != 0; };
+	bool seek(qint64 pos) { return callbackQAbstractSocket_Seek(this, pos) != 0; };
+	void Signal_AboutToClose() { callbackQAbstractSocket_AboutToClose(this); };
+	void Signal_BytesWritten(qint64 bytes) { callbackQAbstractSocket_BytesWritten(this, bytes); };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQAbstractSocket_ChannelBytesWritten(this, channel, bytes); };
+	void Signal_ChannelReadyRead(int channel) { callbackQAbstractSocket_ChannelReadyRead(this, channel); };
+	void Signal_ReadChannelFinished() { callbackQAbstractSocket_ReadChannelFinished(this); };
+	void Signal_ReadyRead() { callbackQAbstractSocket_ReadyRead(this); };
+	qint64 pos() const { return callbackQAbstractSocket_Pos(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 size() const { return callbackQAbstractSocket_Size(const_cast<void*>(static_cast<const void*>(this))); };
+	bool event(QEvent * e) { return callbackQAbstractSocket_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractSocket_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAbstractSocket_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAbstractSocket_CustomEvent(this, event); };
+	void deleteLater() { callbackQAbstractSocket_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractSocket_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtNetwork_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractSocket_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QUdpSocket_ReceiveDatagram(void* ptr, long long maxSize)
@@ -9988,420 +8653,5 @@ char QUdpSocket_HasPendingDatagrams(void* ptr)
 long long QUdpSocket_PendingDatagramSize(void* ptr)
 {
 	return static_cast<QUdpSocket*>(ptr)->pendingDatagramSize();
-}
-
-void* QUdpSocket___dynamicPropertyNames_atList(void* ptr, int i)
-{
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
-}
-
-void QUdpSocket___dynamicPropertyNames_setList(void* ptr, void* i)
-{
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
-}
-
-void* QUdpSocket___dynamicPropertyNames_newList(void* ptr)
-{
-	return new QList<QByteArray>;
-}
-
-void* QUdpSocket___findChildren_atList2(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QUdpSocket___findChildren_setList2(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QUdpSocket___findChildren_newList2(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QUdpSocket___findChildren_atList3(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QUdpSocket___findChildren_setList3(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QUdpSocket___findChildren_newList3(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QUdpSocket___findChildren_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
-}
-
-void QUdpSocket___findChildren_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QUdpSocket___findChildren_newList(void* ptr)
-{
-	return new QList<QObject*>;
-}
-
-void* QUdpSocket___children_atList(void* ptr, int i)
-{
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
-}
-
-void QUdpSocket___children_setList(void* ptr, void* i)
-{
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-}
-
-void* QUdpSocket___children_newList(void* ptr)
-{
-	return new QList<QObject *>;
-}
-
-void* QUdpSocket_SocketOption(void* ptr, long long option)
-{
-	return new QVariant(static_cast<QUdpSocket*>(ptr)->socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
-}
-
-void* QUdpSocket_SocketOptionDefault(void* ptr, long long option)
-{
-	return new QVariant(static_cast<QUdpSocket*>(ptr)->QUdpSocket::socketOption(static_cast<QAbstractSocket::SocketOption>(option)));
-}
-
-char QUdpSocket_WaitForBytesWritten(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->waitForBytesWritten(msecs);
-}
-
-char QUdpSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForBytesWritten(msecs);
-}
-
-char QUdpSocket_WaitForConnected(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->waitForConnected(msecs);
-}
-
-char QUdpSocket_WaitForConnectedDefault(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForConnected(msecs);
-}
-
-char QUdpSocket_WaitForDisconnected(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->waitForDisconnected(msecs);
-}
-
-char QUdpSocket_WaitForDisconnectedDefault(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForDisconnected(msecs);
-}
-
-char QUdpSocket_WaitForReadyRead(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->waitForReadyRead(msecs);
-}
-
-char QUdpSocket_WaitForReadyReadDefault(void* ptr, int msecs)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForReadyRead(msecs);
-}
-
-long long QUdpSocket_ReadData(void* ptr, char* data, long long maxSize)
-{
-	return static_cast<QUdpSocket*>(ptr)->readData(data, maxSize);
-}
-
-long long QUdpSocket_ReadDataDefault(void* ptr, char* data, long long maxSize)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::readData(data, maxSize);
-}
-
-long long QUdpSocket_ReadLineData(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QUdpSocket*>(ptr)->readLineData(data, maxlen);
-}
-
-long long QUdpSocket_ReadLineDataDefault(void* ptr, char* data, long long maxlen)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::readLineData(data, maxlen);
-}
-
-long long QUdpSocket_WriteData(void* ptr, char* data, long long size)
-{
-	return static_cast<QUdpSocket*>(ptr)->writeData(const_cast<const char*>(data), size);
-}
-
-long long QUdpSocket_WriteDataDefault(void* ptr, char* data, long long size)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::writeData(const_cast<const char*>(data), size);
-}
-
-void QUdpSocket_Close(void* ptr)
-{
-	static_cast<QUdpSocket*>(ptr)->close();
-}
-
-void QUdpSocket_CloseDefault(void* ptr)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::close();
-}
-
-void QUdpSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)
-{
-	static_cast<QUdpSocket*>(ptr)->connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
-}
-
-void QUdpSocket_ConnectToHost2Default(void* ptr, void* address, unsigned short port, long long openMode)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectToHost(*static_cast<QHostAddress*>(address), port, static_cast<QIODevice::OpenModeFlag>(openMode));
-}
-
-void QUdpSocket_ConnectToHost(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
-{
-	static_cast<QUdpSocket*>(ptr)->connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
-}
-
-void QUdpSocket_ConnectToHostDefault(void* ptr, char* hostName, unsigned short port, long long openMode, long long protocol)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectToHost(QString(hostName), port, static_cast<QIODevice::OpenModeFlag>(openMode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
-}
-
-void QUdpSocket_DisconnectFromHost(void* ptr)
-{
-	static_cast<QUdpSocket*>(ptr)->disconnectFromHost();
-}
-
-void QUdpSocket_DisconnectFromHostDefault(void* ptr)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::disconnectFromHost();
-}
-
-void QUdpSocket_Resume(void* ptr)
-{
-	static_cast<QUdpSocket*>(ptr)->resume();
-}
-
-void QUdpSocket_ResumeDefault(void* ptr)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::resume();
-}
-
-void QUdpSocket_SetReadBufferSize(void* ptr, long long size)
-{
-	static_cast<QUdpSocket*>(ptr)->setReadBufferSize(size);
-}
-
-void QUdpSocket_SetReadBufferSizeDefault(void* ptr, long long size)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::setReadBufferSize(size);
-}
-
-void QUdpSocket_SetSocketOption(void* ptr, long long option, void* value)
-{
-	static_cast<QUdpSocket*>(ptr)->setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
-}
-
-void QUdpSocket_SetSocketOptionDefault(void* ptr, long long option, void* value)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
-}
-
-char QUdpSocket_AtEnd(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->atEnd();
-}
-
-char QUdpSocket_AtEndDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::atEnd();
-}
-
-char QUdpSocket_CanReadLine(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->canReadLine();
-}
-
-char QUdpSocket_CanReadLineDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::canReadLine();
-}
-
-char QUdpSocket_IsSequential(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->isSequential();
-}
-
-char QUdpSocket_IsSequentialDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::isSequential();
-}
-
-long long QUdpSocket_BytesAvailable(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->bytesAvailable();
-}
-
-long long QUdpSocket_BytesAvailableDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::bytesAvailable();
-}
-
-long long QUdpSocket_BytesToWrite(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->bytesToWrite();
-}
-
-long long QUdpSocket_BytesToWriteDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::bytesToWrite();
-}
-
-char QUdpSocket_Open(void* ptr, long long mode)
-{
-	return static_cast<QUdpSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QUdpSocket_OpenDefault(void* ptr, long long mode)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::open(static_cast<QIODevice::OpenModeFlag>(mode));
-}
-
-char QUdpSocket_Reset(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->reset();
-}
-
-char QUdpSocket_ResetDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::reset();
-}
-
-char QUdpSocket_Seek(void* ptr, long long pos)
-{
-	return static_cast<QUdpSocket*>(ptr)->seek(pos);
-}
-
-char QUdpSocket_SeekDefault(void* ptr, long long pos)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::seek(pos);
-}
-
-long long QUdpSocket_Pos(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->pos();
-}
-
-long long QUdpSocket_PosDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::pos();
-}
-
-long long QUdpSocket_Size(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->size();
-}
-
-long long QUdpSocket_SizeDefault(void* ptr)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::size();
-}
-
-char QUdpSocket_Event(void* ptr, void* e)
-{
-	return static_cast<QUdpSocket*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QUdpSocket_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::event(static_cast<QEvent*>(e));
-}
-
-char QUdpSocket_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QUdpSocket*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char QUdpSocket_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QUdpSocket_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QUdpSocket*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QUdpSocket_ChildEventDefault(void* ptr, void* event)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QUdpSocket_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QUdpSocket*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QUdpSocket_ConnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QUdpSocket_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QUdpSocket*>(ptr)->customEvent(static_cast<QEvent*>(event));
-}
-
-void QUdpSocket_CustomEventDefault(void* ptr, void* event)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::customEvent(static_cast<QEvent*>(event));
-}
-
-void QUdpSocket_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QUdpSocket*>(ptr), "deleteLater");
-}
-
-void QUdpSocket_DeleteLaterDefault(void* ptr)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::deleteLater();
-}
-
-void QUdpSocket_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QUdpSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QUdpSocket_DisconnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QUdpSocket_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QUdpSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QUdpSocket_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QUdpSocket*>(ptr)->QUdpSocket::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QUdpSocket_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QUdpSocket*>(ptr)->metaObject());
-}
-
-void* QUdpSocket_MetaObjectDefault(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QUdpSocket*>(ptr)->QUdpSocket::metaObject());
 }
 

@@ -22,9 +22,26 @@
 #include <QTimerEvent>
 #include <QWidget>
 
+class MyQSignalSpy: public QSignalSpy
+{
+public:
+	MyQSignalSpy(const QObject *object, const char *signal) : QSignalSpy(object, signal) {};
+	bool event(QEvent * e) { return callbackQSignalSpy_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSignalSpy_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQSignalSpy_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSignalSpy_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQSignalSpy_CustomEvent(this, event); };
+	void deleteLater() { callbackQSignalSpy_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQSignalSpy_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSignalSpy_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtTestLib_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSignalSpy_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQSignalSpy_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSignalSpy_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
 void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 {
-	return new QSignalSpy(static_cast<QObject*>(object), const_cast<const char*>(sign));
+	return new MyQSignalSpy(static_cast<QObject*>(object), const_cast<const char*>(sign));
 }
 
 char QSignalSpy_Wait(void* ptr, int timeout)
@@ -494,11 +511,6 @@ void QTestEventList_AddMousePress(void* ptr, long long button, long long modifie
 void QTestEventList_AddMouseRelease(void* ptr, long long button, long long modifiers, void* pos, int delay)
 {
 	static_cast<QTestEventList*>(ptr)->addMouseRelease(static_cast<Qt::MouseButton>(button), static_cast<Qt::KeyboardModifier>(modifiers), *static_cast<QPoint*>(pos), delay);
-}
-
-void QTestEventList_Clear(void* ptr)
-{
-	static_cast<QTestEventList*>(ptr)->clear();
 }
 
 void QTestEventList_Simulate(void* ptr, void* w)

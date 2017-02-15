@@ -21,7 +21,7 @@ func CppTemplate(module string) []byte {
 	if !parser.State.Moc {
 		module = "Qt" + module
 	} else {
-		for _, c := range sortedClassNamesForModule(module) {
+		for _, c := range parser.SortedClassNamesForModule(module, true) {
 			var class, e = parser.State.ClassMap[c]
 			if !e {
 				continue
@@ -58,17 +58,16 @@ func CppTemplate(module string) []byte {
 	}
 
 	if module == "QtCharts" || module == "QtDataVisualization" {
-		for _, classname := range sortedClassNamesForModule(module) {
+		for _, classname := range parser.SortedClassNamesForModule(module, true) {
 			fmt.Fprintf(bb, "typedef %v::%v %v;\n", module, classname, classname)
 		}
 		fmt.Fprint(bb, "\n")
 	}
 
-	for _, className := range sortedClassNamesForModule(module) {
+	for _, className := range parser.SortedClassNamesForModule(module, true) {
 		var class = parser.State.ClassMap[className]
 
 		if class.IsSupported() {
-			var implementedVirtuals = make(map[string]struct{})
 
 			if class.HasCallbackFunctions() || parser.State.Moc {
 
@@ -160,46 +159,39 @@ func CppTemplate(module string) []byte {
 					}
 				}
 
-				//TODO: integrate into cTemplate? -->
+				//callback functions
+				var implementedVirtuals = make(map[string]struct{})
+				for i, parentClassName := range append([]string{class.Name}, class.GetAllBases()...) {
+					var parentClass, e = parser.State.ClassMap[parentClassName]
+					if !e || !parentClass.IsSupported() {
+						continue
+					}
 
-				//all class functions
-				for _, function := range class.Functions {
-					implementedVirtuals[fmt.Sprint(function.Fullname, function.OverloadNumber)] = struct{}{}
-					if function.IsSupported() {
-						if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
-							if !(parser.State.Moc && function.Meta == parser.SLOT) {
-								var function = *function
-								function.SignalMode = parser.CALLBACK
-								fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&function))
-							}
+					for _, f := range parentClass.Functions {
+						var _, e = implementedVirtuals[f.Name+f.OverloadNumber]
+						if e || !f.IsSupported() {
+							continue
+						}
+
+						if parentClass.Module == parser.MOC && f.Meta == parser.SLOT {
+							continue
+						}
+
+						if i > 0 && (f.Meta == parser.CONSTRUCTOR || f.Meta == parser.DESTRUCTOR) {
+							continue
+						}
+
+						var f = *f
+						f.SignalMode = parser.CALLBACK
+						f.Fullname = fmt.Sprintf("%v::%v", class.Name, f.Name)
+						f.Fullname = fmt.Sprintf("%v::%v", f.FindDeepestImplementation(), f.Name)
+
+						if f.Meta == parser.SLOT || f.Meta == parser.SIGNAL || f.Virtual == parser.IMPURE || f.Virtual == parser.PURE {
+							implementedVirtuals[f.Name+f.OverloadNumber] = struct{}{}
+							fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&f))
 						}
 					}
 				}
-
-				//virtual parent functions
-				for _, parentClassName := range class.GetAllBases() {
-					var parentClass = parser.State.ClassMap[parentClassName]
-					if parentClass.IsSupported() {
-
-						for _, function := range parentClass.Functions {
-							if _, exists := implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)]; !exists {
-								if function.IsSupported() && function.Meta != parser.DESTRUCTOR {
-
-									var function = *function
-									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
-									function.SignalMode = parser.CALLBACK
-									if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT {
-										implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = struct{}{}
-										fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&function))
-									}
-
-								}
-							}
-						}
-
-					}
-				}
-				//<--
 
 				if parser.State.Moc {
 					for _, p := range class.Properties {
@@ -256,10 +248,20 @@ func CppTemplate(module string) []byte {
 			}
 		}
 
-		cTemplate(bb, class, cppEnum, cppFunction, "\n\n", false)
+		if !parser.State.Moc {
+			cTemplate(bb, class, cppEnum, cppFunction, "\n\n", false)
+		}
 	}
 
 	if parser.State.Moc {
+		for _, className := range parser.SortedClassNamesForModule(module, true) {
+			var class = parser.State.ClassMap[className]
+
+			if class.IsSupported() {
+				cTemplate(bb, class, cppEnum, cppFunction, "\n\n", false)
+			}
+		}
+
 		fmt.Fprintln(bb, "#include \"moc_moc.h\"")
 	}
 

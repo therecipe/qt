@@ -160,7 +160,7 @@ public:
 	void Signal_TitleTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCharts_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQAbstractAxis_TitleTextChanged(this, textPacked); };
 	void Signal_TitleVisibleChanged(bool visible) { callbackQAbstractAxis_TitleVisibleChanged(this, visible); };
 	void Signal_VisibleChanged(bool visible) { callbackQAbstractAxis_VisibleChanged(this, visible); };
-	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQAbstractAxis_Type(const_cast<MyQAbstractAxis*>(this))); };
+	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQAbstractAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QAbstractAxis_GridLineColor(void* ptr)
@@ -1198,7 +1198,7 @@ public:
 	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
 	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
 	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
-	SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAbstractSeries_Type(const_cast<MyQAbstractSeries*>(this))); };
+	SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAbstractSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 struct QtCharts_PackedList QAbstractSeries_AttachedAxes(void* ptr)
@@ -1370,7 +1370,7 @@ void* QAreaLegendMarker_Series(void* ptr)
 
 void* QAreaLegendMarker_SeriesDefault(void* ptr)
 {
-	return static_cast<QAreaLegendMarker*>(ptr)->QAreaLegendMarker::series();
+		return static_cast<QAreaLegendMarker*>(ptr)->QAreaLegendMarker::series();
 }
 
 void QAreaLegendMarker_DestroyQAreaLegendMarker(void* ptr)
@@ -1400,7 +1400,7 @@ public:
 	void Signal_PointLabelsVisibilityChanged(bool visible) { callbackQAreaSeries_PointLabelsVisibilityChanged(this, visible); };
 	void Signal_Pressed(const QPointF & point) { callbackQAreaSeries_Pressed(this, const_cast<QPointF*>(&point)); };
 	void Signal_Released(const QPointF & point) { callbackQAreaSeries_Released(this, const_cast<QPointF*>(&point)); };
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAreaSeries_Type(const_cast<MyQAreaSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAreaSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QAreaSeries_NewQAreaSeries2(void* upperSeries, void* lowerSeries)
@@ -1665,7 +1665,7 @@ long long QAreaSeries_Type(void* ptr)
 
 long long QAreaSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QAreaSeries*>(ptr)->QAreaSeries::type();
+		return static_cast<QAreaSeries*>(ptr)->QAreaSeries::type();
 }
 
 void* QAreaSeries_Brush(void* ptr)
@@ -1913,7 +1913,7 @@ void* QBarLegendMarker_Series(void* ptr)
 
 void* QBarLegendMarker_SeriesDefault(void* ptr)
 {
-	return static_cast<QBarLegendMarker*>(ptr)->QBarLegendMarker::series();
+		return static_cast<QBarLegendMarker*>(ptr)->QBarLegendMarker::series();
 }
 
 void* QBarLegendMarker_Barset(void* ptr)
@@ -1935,7 +1935,7 @@ class MyQBarSeries: public QBarSeries
 {
 public:
 	MyQBarSeries(QObject *parent) : QBarSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBarSeries_Type(const_cast<MyQBarSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QBarSeries_NewQBarSeries(void* parent)
@@ -1955,7 +1955,7 @@ long long QBarSeries_Type(void* ptr)
 
 long long QBarSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QBarSeries*>(ptr)->QBarSeries::type();
+		return static_cast<QBarSeries*>(ptr)->QBarSeries::type();
 }
 
 class MyQBarSet: public QBarSet
@@ -2385,7 +2385,7 @@ void* QBoxPlotLegendMarker_Series(void* ptr)
 
 void* QBoxPlotLegendMarker_SeriesDefault(void* ptr)
 {
-	return static_cast<QBoxPlotLegendMarker*>(ptr)->QBoxPlotLegendMarker::series();
+		return static_cast<QBoxPlotLegendMarker*>(ptr)->QBoxPlotLegendMarker::series();
 }
 
 void QBoxPlotLegendMarker_DestroyQBoxPlotLegendMarker(void* ptr)
@@ -2414,7 +2414,7 @@ public:
 	void Signal_PenChanged() { callbackQBoxPlotSeries_PenChanged(this); };
 	void Signal_Pressed(QBoxSet * boxset) { callbackQBoxPlotSeries_Pressed(this, boxset); };
 	void Signal_Released(QBoxSet * boxset) { callbackQBoxPlotSeries_Released(this, boxset); };
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBoxPlotSeries_Type(const_cast<MyQBoxPlotSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBoxPlotSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QBoxPlotSeries_NewQBoxPlotSeries(void* parent)
@@ -2674,7 +2674,7 @@ long long QBoxPlotSeries_Type(void* ptr)
 
 long long QBoxPlotSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QBoxPlotSeries*>(ptr)->QBoxPlotSeries::type();
+		return static_cast<QBoxPlotSeries*>(ptr)->QBoxPlotSeries::type();
 }
 
 void* QBoxPlotSeries_Brush(void* ptr)
@@ -3034,7 +3034,7 @@ void* QCandlestickLegendMarker_Series(void* ptr)
 
 void* QCandlestickLegendMarker_SeriesDefault(void* ptr)
 {
-	return static_cast<QCandlestickLegendMarker*>(ptr)->QCandlestickLegendMarker::series();
+		return static_cast<QCandlestickLegendMarker*>(ptr)->QCandlestickLegendMarker::series();
 }
 
 void QCandlestickLegendMarker_DestroyQCandlestickLegendMarker(void* ptr)
@@ -3053,7 +3053,7 @@ public:
 	MyQCandlestickModelMapper(QObject *parent) : QCandlestickModelMapper(parent) {};
 	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
-	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQCandlestickModelMapper_Orientation(const_cast<MyQCandlestickModelMapper*>(this))); };
+	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QCandlestickModelMapper_NewQCandlestickModelMapper(void* parent)
@@ -3208,7 +3208,7 @@ public:
 	void Signal_PenChanged() { callbackQCandlestickSeries_PenChanged(this); };
 	void Signal_Pressed(QCandlestickSet * set) { callbackQCandlestickSeries_Pressed(this, set); };
 	void Signal_Released(QCandlestickSet * set) { callbackQCandlestickSeries_Released(this, set); };
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQCandlestickSeries_Type(const_cast<MyQCandlestickSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQCandlestickSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QCandlestickSeries_NewQCandlestickSeries(void* parent)
@@ -3583,7 +3583,7 @@ long long QCandlestickSeries_Type(void* ptr)
 
 long long QCandlestickSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QCandlestickSeries*>(ptr)->QCandlestickSeries::type();
+		return static_cast<QCandlestickSeries*>(ptr)->QCandlestickSeries::type();
 }
 
 void* QCandlestickSeries_Brush(void* ptr)
@@ -5012,7 +5012,7 @@ public:
 	void Signal_LowColumnChanged() { callbackQHCandlestickModelMapper_LowColumnChanged(this); };
 	void Signal_OpenColumnChanged() { callbackQHCandlestickModelMapper_OpenColumnChanged(this); };
 	void Signal_TimestampColumnChanged() { callbackQHCandlestickModelMapper_TimestampColumnChanged(this); };
-	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQHCandlestickModelMapper_Orientation(const_cast<MyQHCandlestickModelMapper*>(this))); };
+	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQHCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QHCandlestickModelMapper_NewQHCandlestickModelMapper(void* parent)
@@ -5167,7 +5167,7 @@ long long QHCandlestickModelMapper_Orientation(void* ptr)
 
 long long QHCandlestickModelMapper_OrientationDefault(void* ptr)
 {
-	return static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::orientation();
+		return static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::orientation();
 }
 
 int QHCandlestickModelMapper_CloseColumn(void* ptr)
@@ -5543,7 +5543,7 @@ class MyQHorizontalBarSeries: public QHorizontalBarSeries
 {
 public:
 	MyQHorizontalBarSeries(QObject *parent) : QHorizontalBarSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalBarSeries_Type(const_cast<MyQHorizontalBarSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QHorizontalBarSeries_NewQHorizontalBarSeries(void* parent)
@@ -5563,14 +5563,14 @@ long long QHorizontalBarSeries_Type(void* ptr)
 
 long long QHorizontalBarSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::type();
+		return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::type();
 }
 
 class MyQHorizontalPercentBarSeries: public QHorizontalPercentBarSeries
 {
 public:
 	MyQHorizontalPercentBarSeries(QObject *parent) : QHorizontalPercentBarSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalPercentBarSeries_Type(const_cast<MyQHorizontalPercentBarSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QHorizontalPercentBarSeries_NewQHorizontalPercentBarSeries(void* parent)
@@ -5590,14 +5590,14 @@ long long QHorizontalPercentBarSeries_Type(void* ptr)
 
 long long QHorizontalPercentBarSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::type();
+		return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::type();
 }
 
 class MyQHorizontalStackedBarSeries: public QHorizontalStackedBarSeries
 {
 public:
 	MyQHorizontalStackedBarSeries(QObject *parent) : QHorizontalStackedBarSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalStackedBarSeries_Type(const_cast<MyQHorizontalStackedBarSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QHorizontalStackedBarSeries_NewQHorizontalStackedBarSeries(void* parent)
@@ -5617,7 +5617,7 @@ long long QHorizontalStackedBarSeries_Type(void* ptr)
 
 long long QHorizontalStackedBarSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::type();
+		return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::type();
 }
 
 class MyQLegend: public QLegend
@@ -6107,7 +6107,7 @@ class MyQLineSeries: public QLineSeries
 {
 public:
 	MyQLineSeries(QObject *parent) : QLineSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<MyQLineSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QLineSeries_NewQLineSeries(void* parent)
@@ -6127,7 +6127,7 @@ long long QLineSeries_Type(void* ptr)
 
 long long QLineSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
+		return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
 }
 
 class MyQLogValueAxis: public QLogValueAxis
@@ -6275,7 +6275,7 @@ class MyQPercentBarSeries: public QPercentBarSeries
 {
 public:
 	MyQPercentBarSeries(QObject *parent) : QPercentBarSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPercentBarSeries_Type(const_cast<MyQPercentBarSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QPercentBarSeries_NewQPercentBarSeries(void* parent)
@@ -6295,7 +6295,7 @@ long long QPercentBarSeries_Type(void* ptr)
 
 long long QPercentBarSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::type();
+		return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::type();
 }
 
 class MyQPieLegendMarker: public QPieLegendMarker
@@ -6312,7 +6312,7 @@ void* QPieLegendMarker_Series(void* ptr)
 
 void* QPieLegendMarker_SeriesDefault(void* ptr)
 {
-	return static_cast<QPieLegendMarker*>(ptr)->QPieLegendMarker::series();
+		return static_cast<QPieLegendMarker*>(ptr)->QPieLegendMarker::series();
 }
 
 void* QPieLegendMarker_Slice(void* ptr)
@@ -6344,7 +6344,7 @@ public:
 	void Signal_Removed(QList<QPieSlice *> slices) { callbackQPieSeries_Removed(this, ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_SumChanged() { callbackQPieSeries_SumChanged(this); };
 	 ~MyQPieSeries() { callbackQPieSeries_DestroyQPieSeries(this); };
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPieSeries_Type(const_cast<MyQPieSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPieSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QPieSeries_NewQPieSeries(void* parent)
@@ -6579,7 +6579,7 @@ long long QPieSeries_Type(void* ptr)
 
 long long QPieSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QPieSeries*>(ptr)->QPieSeries::type();
+		return static_cast<QPieSeries*>(ptr)->QPieSeries::type();
 }
 
 struct QtCharts_PackedList QPieSeries_Slices(void* ptr)
@@ -7245,8 +7245,8 @@ public:
 	void setBrush(const QBrush & brush) { callbackQScatterSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
 	void setColor(const QColor & color) { callbackQScatterSeries_SetColor(this, const_cast<QColor*>(&color)); };
 	void setPen(const QPen & pen) { callbackQScatterSeries_SetPen(this, const_cast<QPen*>(&pen)); };
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQScatterSeries_Type(const_cast<MyQScatterSeries*>(this))); };
-	QColor color() const { return *static_cast<QColor*>(callbackQScatterSeries_Color(const_cast<MyQScatterSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQScatterSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	QColor color() const { return *static_cast<QColor*>(callbackQScatterSeries_Color(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QScatterSeries_BorderColor(void* ptr)
@@ -7331,7 +7331,7 @@ void QScatterSeries_SetBrush(void* ptr, void* brush)
 
 void QScatterSeries_SetBrushDefault(void* ptr, void* brush)
 {
-	static_cast<QScatterSeries*>(ptr)->QScatterSeries::setBrush(*static_cast<QBrush*>(brush));
+		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setBrush(*static_cast<QBrush*>(brush));
 }
 
 void QScatterSeries_SetColor(void* ptr, void* color)
@@ -7341,7 +7341,7 @@ void QScatterSeries_SetColor(void* ptr, void* color)
 
 void QScatterSeries_SetColorDefault(void* ptr, void* color)
 {
-	static_cast<QScatterSeries*>(ptr)->QScatterSeries::setColor(*static_cast<QColor*>(color));
+		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setColor(*static_cast<QColor*>(color));
 }
 
 void QScatterSeries_SetMarkerShape(void* ptr, long long shape)
@@ -7361,7 +7361,7 @@ void QScatterSeries_SetPen(void* ptr, void* pen)
 
 void QScatterSeries_SetPenDefault(void* ptr, void* pen)
 {
-	static_cast<QScatterSeries*>(ptr)->QScatterSeries::setPen(*static_cast<QPen*>(pen));
+		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setPen(*static_cast<QPen*>(pen));
 }
 
 void QScatterSeries_DestroyQScatterSeries(void* ptr)
@@ -7381,7 +7381,7 @@ long long QScatterSeries_Type(void* ptr)
 
 long long QScatterSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QScatterSeries*>(ptr)->QScatterSeries::type();
+		return static_cast<QScatterSeries*>(ptr)->QScatterSeries::type();
 }
 
 void* QScatterSeries_Brush(void* ptr)
@@ -7396,7 +7396,7 @@ void* QScatterSeries_Color(void* ptr)
 
 void* QScatterSeries_ColorDefault(void* ptr)
 {
-	return new QColor(static_cast<QScatterSeries*>(ptr)->QScatterSeries::color());
+		return new QColor(static_cast<QScatterSeries*>(ptr)->QScatterSeries::color());
 }
 
 double QScatterSeries_MarkerSize(void* ptr)
@@ -7408,7 +7408,7 @@ class MyQSplineSeries: public QSplineSeries
 {
 public:
 	MyQSplineSeries(QObject *parent) : QSplineSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQSplineSeries_Type(const_cast<MyQSplineSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQSplineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QSplineSeries_NewQSplineSeries(void* parent)
@@ -7428,14 +7428,14 @@ long long QSplineSeries_Type(void* ptr)
 
 long long QSplineSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
+		return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
 }
 
 class MyQStackedBarSeries: public QStackedBarSeries
 {
 public:
 	MyQStackedBarSeries(QObject *parent) : QStackedBarSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQStackedBarSeries_Type(const_cast<MyQStackedBarSeries*>(this))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QStackedBarSeries_NewQStackedBarSeries(void* parent)
@@ -7455,7 +7455,7 @@ long long QStackedBarSeries_Type(void* ptr)
 
 long long QStackedBarSeries_TypeDefault(void* ptr)
 {
-	return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::type();
+		return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::type();
 }
 
 class MyQVBarModelMapper: public QVBarModelMapper
@@ -7803,7 +7803,7 @@ public:
 	void Signal_LowRowChanged() { callbackQVCandlestickModelMapper_LowRowChanged(this); };
 	void Signal_OpenRowChanged() { callbackQVCandlestickModelMapper_OpenRowChanged(this); };
 	void Signal_TimestampRowChanged() { callbackQVCandlestickModelMapper_TimestampRowChanged(this); };
-	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQVCandlestickModelMapper_Orientation(const_cast<MyQVCandlestickModelMapper*>(this))); };
+	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQVCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QVCandlestickModelMapper_NewQVCandlestickModelMapper(void* parent)
@@ -7958,7 +7958,7 @@ long long QVCandlestickModelMapper_Orientation(void* ptr)
 
 long long QVCandlestickModelMapper_OrientationDefault(void* ptr)
 {
-	return static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::orientation();
+		return static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::orientation();
 }
 
 int QVCandlestickModelMapper_CloseRow(void* ptr)
@@ -8355,7 +8355,7 @@ void QValueAxis_ApplyNiceNumbers(void* ptr)
 
 void QValueAxis_ApplyNiceNumbersDefault(void* ptr)
 {
-	static_cast<QValueAxis*>(ptr)->QValueAxis::applyNiceNumbers();
+		static_cast<QValueAxis*>(ptr)->QValueAxis::applyNiceNumbers();
 }
 
 void QValueAxis_ConnectLabelFormatChanged(void* ptr)
@@ -8522,7 +8522,7 @@ void* QXYLegendMarker_Series(void* ptr)
 
 void* QXYLegendMarker_SeriesDefault(void* ptr)
 {
-	return static_cast<QXYLegendMarker*>(ptr)->QXYLegendMarker::series();
+		return static_cast<QXYLegendMarker*>(ptr)->QXYLegendMarker::series();
 }
 
 void QXYLegendMarker_DestroyQXYLegendMarker(void* ptr)
@@ -8558,7 +8558,7 @@ public:
 	void setBrush(const QBrush & brush) { callbackQXYSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
 	void setColor(const QColor & color) { callbackQXYSeries_SetColor(this, const_cast<QColor*>(&color)); };
 	void setPen(const QPen & pen) { callbackQXYSeries_SetPen(this, const_cast<QPen*>(&pen)); };
-	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<MyQXYSeries*>(this))); };
+	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void QXYSeries_Append3(void* ptr, void* points)
@@ -8898,7 +8898,7 @@ void QXYSeries_SetBrush(void* ptr, void* brush)
 
 void QXYSeries_SetBrushDefault(void* ptr, void* brush)
 {
-	static_cast<QXYSeries*>(ptr)->QXYSeries::setBrush(*static_cast<QBrush*>(brush));
+		static_cast<QXYSeries*>(ptr)->QXYSeries::setBrush(*static_cast<QBrush*>(brush));
 }
 
 void QXYSeries_SetColor(void* ptr, void* color)
@@ -8908,7 +8908,7 @@ void QXYSeries_SetColor(void* ptr, void* color)
 
 void QXYSeries_SetColorDefault(void* ptr, void* color)
 {
-	static_cast<QXYSeries*>(ptr)->QXYSeries::setColor(*static_cast<QColor*>(color));
+		static_cast<QXYSeries*>(ptr)->QXYSeries::setColor(*static_cast<QColor*>(color));
 }
 
 void QXYSeries_SetPen(void* ptr, void* pen)
@@ -8918,7 +8918,7 @@ void QXYSeries_SetPen(void* ptr, void* pen)
 
 void QXYSeries_SetPenDefault(void* ptr, void* pen)
 {
-	static_cast<QXYSeries*>(ptr)->QXYSeries::setPen(*static_cast<QPen*>(pen));
+		static_cast<QXYSeries*>(ptr)->QXYSeries::setPen(*static_cast<QPen*>(pen));
 }
 
 void QXYSeries_SetPointLabelsClipping(void* ptr, char enabled)
@@ -8968,7 +8968,7 @@ void* QXYSeries_Color(void* ptr)
 
 void* QXYSeries_ColorDefault(void* ptr)
 {
-	return new QColor(static_cast<QXYSeries*>(ptr)->QXYSeries::color());
+		return new QColor(static_cast<QXYSeries*>(ptr)->QXYSeries::color());
 }
 
 void* QXYSeries_PointLabelsColor(void* ptr)

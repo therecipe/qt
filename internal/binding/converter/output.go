@@ -129,8 +129,8 @@ func goOutput(name, value string, f *parser.Function) string {
 	switch {
 	case isEnum(f.ClassName(), value):
 		{
-			if c, exists := parser.State.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
-				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; exists {
+			if c, ok := parser.State.ClassMap[class(cppEnum(f, value, false))]; ok && module(c.Module) != module(f) && module(c.Module) != "" {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; ok {
 					return fmt.Sprintf("int64(%v)", name)
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
@@ -141,7 +141,7 @@ func goOutput(name, value string, f *parser.Function) string {
 	case isClass(value):
 		{
 			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
-				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; exists {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
 				}
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
@@ -366,8 +366,8 @@ func cgoOutput(name, value string, f *parser.Function) string {
 	switch {
 	case isEnum(f.ClassName(), value):
 		{
-			if c, exists := parser.State.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
-				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; exists {
+			if c, ok := parser.State.ClassMap[class(cppEnum(f, value, false))]; ok && module(c.Module) != module(f) && module(c.Module) != "" {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; ok {
 					return fmt.Sprintf("int64%v)", name)
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
@@ -378,7 +378,7 @@ func cgoOutput(name, value string, f *parser.Function) string {
 	case isClass(value):
 		{
 			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
-				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; exists {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
 				}
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)

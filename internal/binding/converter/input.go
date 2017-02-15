@@ -154,7 +154,7 @@ func GoInput(name, value string, f *parser.Function) string {
 	case isClass(value):
 		{
 			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
-				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; exists {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return name
 				}
 				return fmt.Sprintf("%v.PointerFrom%v(%v)", m, strings.Title(value), name)
@@ -165,17 +165,17 @@ func GoInput(name, value string, f *parser.Function) string {
 	case parser.IsPackedList(value):
 		{
 			if strings.ContainsAny(name, "*&()[]") {
-				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
 			}
-			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
 		}
 
 	case parser.IsPackedMap(value):
 		{
 			if strings.ContainsAny(name, "*&()[]") {
-				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
 			}
-			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(unsafe.Pointer(uintptr(1))).__%v_%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
 		}
 	}
 

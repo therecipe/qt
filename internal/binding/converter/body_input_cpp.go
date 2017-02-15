@@ -110,18 +110,7 @@ func CppInputParametersForCallbackBody(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters)+1)
 
 	if strings.Contains(strings.Split(function.Signature, ")")[1], "const") {
-
-		input[0] = fmt.Sprintf("const_cast<%v%v*>(this)",
-
-			func() string {
-				if parser.State.Moc {
-					return ""
-				}
-				return "My"
-			}(),
-
-			function.ClassName())
-
+		input[0] = fmt.Sprintf("const_cast<void*>(static_cast<const void*>(this))")
 	} else {
 		input[0] = "this"
 	}

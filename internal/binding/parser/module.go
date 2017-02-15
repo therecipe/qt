@@ -48,5 +48,10 @@ func (m *Module) Prepare() error {
 		c.remove()
 	}
 
+	//register derivations
+	for _, c := range m.Namespace.Classes {
+		c.derivation()
+	}
+
 	return nil
 }

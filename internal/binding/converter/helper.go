@@ -59,8 +59,8 @@ func isClass(value string) bool {
 		return isClass(strings.Split(value, ".")[1])
 	}
 
-	var _, exists = parser.State.ClassMap[value]
-	return exists
+	var _, ok = parser.State.ClassMap[value]
+	return ok
 }
 
 func isEnum(class, value string) bool {
@@ -78,7 +78,7 @@ func isEnum(class, value string) bool {
 func findEnum(className, value string, byValue bool) (string, string) {
 
 	//look in given class
-	if c, exists := parser.State.ClassMap[class(value)]; exists {
+	if c, ok := parser.State.ClassMap[class(value)]; ok {
 		for _, e := range c.Enums {
 			if outE, outT := findEnumH(e, value, byValue); outE != "" {
 				return outE, outT
@@ -87,7 +87,7 @@ func findEnum(className, value string, byValue bool) (string, string) {
 	}
 
 	//look in same class
-	if c, exists := parser.State.ClassMap[className]; exists {
+	if c, ok := parser.State.ClassMap[className]; ok {
 		for _, e := range c.Enums {
 			if outE, outT := findEnumH(e, value, byValue); outE != "" {
 				return outE, outT
@@ -96,9 +96,9 @@ func findEnum(className, value string, byValue bool) (string, string) {
 	}
 
 	//look in super classes
-	if c, exists := parser.State.ClassMap[className]; exists {
+	if c, ok := parser.State.ClassMap[className]; ok {
 		for _, s := range c.GetAllBases() {
-			if sc, exists := parser.State.ClassMap[s]; exists {
+			if sc, ok := parser.State.ClassMap[s]; ok {
 				for _, e := range sc.Enums {
 					if outE, outT := findEnumH(e, value, byValue); outE != "" {
 						return outE, outT
@@ -220,8 +220,12 @@ func cppEnumExact(value, outE, outT string) string {
 }
 
 func IsPrivateSignal(f *parser.Function) bool {
+	var fc, ok = f.Class()
+	if !ok {
+		return false
+	}
 
-	if parser.State.ClassMap[f.ClassName()].Module == "QtCore" {
+	if fc.Module == "QtCore" {
 
 		var (
 			fData string

@@ -55,9 +55,11 @@ public:
 	void connectNotify(const QMetaMethod & sign) { callbackQGamepad_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQGamepad_CustomEvent(this, event); };
 	void deleteLater() { callbackQGamepad_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQGamepad_Destroyed(this, obj); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGamepad_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepad_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepad_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepad_MetaObject(const_cast<MyQGamepad*>(this))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepad_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QGamepad_NewQGamepad(int deviceId, void* parent)
@@ -447,7 +449,7 @@ void QGamepad_SetDeviceId(void* ptr, int number)
 
 void QGamepad_SetDeviceIdDefault(void* ptr, int number)
 {
-	static_cast<QGamepad*>(ptr)->QGamepad::setDeviceId(number);
+		static_cast<QGamepad*>(ptr)->QGamepad::setDeviceId(number);
 }
 
 void QGamepad_DestroyQGamepad(void* ptr)
@@ -655,93 +657,48 @@ void* QGamepad___children_newList(void* ptr)
 	return new QList<QObject *>;
 }
 
-char QGamepad_Event(void* ptr, void* e)
-{
-	return static_cast<QGamepad*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
 char QGamepad_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QGamepad*>(ptr)->QGamepad::event(static_cast<QEvent*>(e));
-}
-
-char QGamepad_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QGamepad*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		return static_cast<QGamepad*>(ptr)->QGamepad::event(static_cast<QEvent*>(e));
 }
 
 char QGamepad_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGamepad*>(ptr)->QGamepad::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-void QGamepad_ChildEvent(void* ptr, void* event)
-{
-	static_cast<QGamepad*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		return static_cast<QGamepad*>(ptr)->QGamepad::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 void QGamepad_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QGamepad*>(ptr)->QGamepad::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QGamepad_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGamepad*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGamepad*>(ptr)->QGamepad::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QGamepad_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGamepad*>(ptr)->QGamepad::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGamepad_CustomEvent(void* ptr, void* event)
-{
-	static_cast<QGamepad*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QGamepad*>(ptr)->QGamepad::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGamepad_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QGamepad*>(ptr)->QGamepad::customEvent(static_cast<QEvent*>(event));
-}
-
-void QGamepad_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QGamepad*>(ptr), "deleteLater");
+		static_cast<QGamepad*>(ptr)->QGamepad::customEvent(static_cast<QEvent*>(event));
 }
 
 void QGamepad_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QGamepad*>(ptr)->QGamepad::deleteLater();
-}
-
-void QGamepad_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<QGamepad*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QGamepad*>(ptr)->QGamepad::deleteLater();
 }
 
 void QGamepad_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QGamepad*>(ptr)->QGamepad::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGamepad_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QGamepad*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QGamepad*>(ptr)->QGamepad::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QGamepad_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QGamepad*>(ptr)->QGamepad::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QGamepad_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QGamepad*>(ptr)->metaObject());
+		static_cast<QGamepad*>(ptr)->QGamepad::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void* QGamepad_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QGamepad*>(ptr)->QGamepad::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QGamepad*>(ptr)->QGamepad::metaObject());
 }
 
