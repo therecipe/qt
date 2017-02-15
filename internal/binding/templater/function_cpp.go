@@ -243,6 +243,10 @@ func cppFunctionBody(function *parser.Function) string {
 					ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")", "static_cast<"+polyType+"*>("+polyName+")", -1)
 				}
 
+				if strings.Contains(ibody, "static_cast<QMac") {
+					ibody = fmt.Sprintf("#ifdef Q_OS_OSX %v #endif", ibody)
+				}
+
 				if inner {
 					return ibody
 				}
