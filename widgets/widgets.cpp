@@ -53912,11 +53912,21 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::close();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::close();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::close();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::close();
 		#endif
@@ -54076,11 +54086,21 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::event(static_cast<QEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::event(static_cast<QEvent*>(event));
 		#endif
@@ -54245,11 +54265,21 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::focusNextPrevChild(next != 0);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::focusNextPrevChild(next != 0);
 		#endif
@@ -54414,11 +54444,21 @@ char QWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long 
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 		#endif
@@ -54588,11 +54628,21 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::actionEvent(static_cast<QActionEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::actionEvent(static_cast<QActionEvent*>(event));
 		#endif
@@ -54772,11 +54822,21 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::changeEvent(static_cast<QEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::changeEvent(static_cast<QEvent*>(event));
 		#endif
@@ -54946,11 +55006,21 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::closeEvent(static_cast<QCloseEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::closeEvent(static_cast<QCloseEvent*>(event));
 		#endif
@@ -55110,11 +55180,21 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 		#endif
@@ -55299,11 +55379,21 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 		#endif
@@ -55463,11 +55553,21 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 		#endif
@@ -55627,11 +55727,21 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 		#endif
@@ -55791,11 +55901,21 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dropEvent(static_cast<QDropEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dropEvent(static_cast<QDropEvent*>(event));
 		#endif
@@ -55955,11 +56075,21 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::enterEvent(static_cast<QEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::enterEvent(static_cast<QEvent*>(event));
 		#endif
@@ -56119,11 +56249,21 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::focusInEvent(static_cast<QFocusEvent*>(event));
 		#endif
@@ -56283,11 +56423,21 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::focusOutEvent(static_cast<QFocusEvent*>(event));
 		#endif
@@ -56467,11 +56617,21 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::hide();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::hide();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::hide();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::hide();
 		#endif
@@ -56631,11 +56791,21 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::hideEvent(static_cast<QHideEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::hideEvent(static_cast<QHideEvent*>(event));
 		#endif
@@ -56795,11 +56965,21 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 		#endif
@@ -56969,11 +57149,21 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::keyPressEvent(static_cast<QKeyEvent*>(event));
 		#endif
@@ -57133,11 +57323,21 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 		#endif
@@ -57297,11 +57497,21 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::leaveEvent(static_cast<QEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::leaveEvent(static_cast<QEvent*>(event));
 		#endif
@@ -57461,11 +57671,21 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::lower();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::lower();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::lower();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::lower();
 		#endif
@@ -57625,11 +57845,21 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 		#endif
@@ -57789,11 +58019,21 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 		#endif
@@ -57953,11 +58193,21 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mousePressEvent(static_cast<QMouseEvent*>(event));
 		#endif
@@ -58117,11 +58367,21 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 		#endif
@@ -58291,11 +58551,21 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::moveEvent(static_cast<QMoveEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::moveEvent(static_cast<QMoveEvent*>(event));
 		#endif
@@ -58460,11 +58730,21 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::paintEvent(static_cast<QPaintEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::paintEvent(static_cast<QPaintEvent*>(event));
 		#endif
@@ -58622,11 +58902,21 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::raise();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::raise();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::raise();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::raise();
 		#endif
@@ -58820,11 +59110,21 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::repaint();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::repaint();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::repaint();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::repaint();
 		#endif
@@ -59009,11 +59309,21 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::resizeEvent(static_cast<QResizeEvent*>(event));
 		#endif
@@ -59243,11 +59553,21 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setDisabled(disable != 0);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setDisabled(disable != 0);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setDisabled(disable != 0);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setDisabled(disable != 0);
 		#endif
@@ -59414,11 +59734,21 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setEnabled(vbo != 0);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setEnabled(vbo != 0);
 		#endif
@@ -59598,11 +59928,21 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setFocus();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setFocus();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setFocus();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setFocus();
 		#endif
@@ -59802,11 +60142,21 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setHidden(hidden != 0);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setHidden(hidden != 0);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setHidden(hidden != 0);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setHidden(hidden != 0);
 		#endif
@@ -60096,11 +60446,21 @@ void QWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setStyleSheet(QString(styleSheet));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setStyleSheet(QString(styleSheet));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setStyleSheet(QString(styleSheet));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setStyleSheet(QString(styleSheet));
 		#endif
@@ -60280,11 +60640,21 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setVisible(visible != 0);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setVisible(visible != 0);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setVisible(visible != 0);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setVisible(visible != 0);
 		#endif
@@ -60474,11 +60844,21 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setWindowModified(vbo != 0);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setWindowModified(vbo != 0);
 		#endif
@@ -60653,11 +61033,21 @@ void QWidget_SetWindowTitleDefault(void* ptr, char* vqs)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setWindowTitle(QString(vqs));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::setWindowTitle(QString(vqs));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setWindowTitle(QString(vqs));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setWindowTitle(QString(vqs));
 		#endif
@@ -60824,11 +61214,21 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::show();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::show();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::show();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::show();
 		#endif
@@ -60988,11 +61388,21 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showEvent(static_cast<QShowEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showEvent(static_cast<QShowEvent*>(event));
 		#endif
@@ -61152,11 +61562,21 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showFullScreen();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::showFullScreen();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showFullScreen();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showFullScreen();
 		#endif
@@ -61316,11 +61736,21 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showMaximized();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::showMaximized();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showMaximized();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showMaximized();
 		#endif
@@ -61480,11 +61910,21 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showMinimized();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::showMinimized();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showMinimized();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showMinimized();
 		#endif
@@ -61644,11 +62084,21 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showNormal();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::showNormal();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showNormal();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showNormal();
 		#endif
@@ -61813,11 +62263,21 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::tabletEvent(static_cast<QTabletEvent*>(event));
 		#endif
@@ -61997,11 +62457,21 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::update();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::update();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::update();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::update();
 		#endif
@@ -62181,11 +62651,21 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::updateMicroFocus();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::updateMicroFocus();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::updateMicroFocus();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::updateMicroFocus();
 		#endif
@@ -62345,11 +62825,21 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::wheelEvent(static_cast<QWheelEvent*>(event));
 		#endif
@@ -62604,11 +63094,21 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::paintEngine();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::paintEngine();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::paintEngine();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::paintEngine();
 		#endif
@@ -62873,11 +63373,21 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QMainWindow*>(ptr)->QMainWindow::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return ({ QSize tmpValue = static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return ({ QSize tmpValue = static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 		#endif
@@ -63042,11 +63552,21 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QMainWindow*>(ptr)->QMainWindow::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return ({ QSize tmpValue = static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return ({ QSize tmpValue = static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 		#endif
@@ -63271,11 +63791,21 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QMainWindow*>(ptr)->QMainWindow::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return new QVariant(static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return new QVariant(static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 		#endif
@@ -63559,11 +64089,21 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::hasHeightForWidth();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::hasHeightForWidth();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::hasHeightForWidth();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::hasHeightForWidth();
 		#endif
@@ -63828,11 +64368,21 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::heightForWidth(w);
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::heightForWidth(w);
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::heightForWidth(w);
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::heightForWidth(w);
 		#endif
@@ -64002,11 +64552,21 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMainWindow*>(ptr)->QMainWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 		#endif
@@ -64516,7 +65076,12 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 		} else {
 			return static_cast<QMainWindow*>(ptr)->QMainWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
@@ -64530,7 +65095,12 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
@@ -65300,11 +65870,21 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::childEvent(static_cast<QChildEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::childEvent(static_cast<QChildEvent*>(event));
 		#endif
@@ -65464,11 +66044,21 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::connectNotify(*static_cast<QMetaMethod*>(sign));
 		#endif
@@ -65628,11 +66218,21 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::customEvent(static_cast<QEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::customEvent(static_cast<QEvent*>(event));
 		#endif
@@ -65792,11 +66392,21 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::deleteLater();
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::deleteLater();
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::deleteLater();
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::deleteLater();
 		#endif
@@ -65956,11 +66566,21 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 		#endif
@@ -66120,11 +66740,21 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMainWindow*>(ptr)->QMainWindow::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::timerEvent(static_cast<QTimerEvent*>(event));
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::timerEvent(static_cast<QTimerEvent*>(event));
 		#endif
@@ -66284,11 +66914,21 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::metaObject());
 	} else if (dynamic_cast<QMainWindow*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QMainWindow*>(ptr)->QMainWindow::metaObject());
-	} else if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return const_cast<QMetaObject*>(static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::metaObject());
 		#endif
-	} else if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	} else 
+	#ifdef Q_OS_OSX
+		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
+	#else
+		if (false) {
+	#endif
 		#ifdef Q_OS_OSX
 			return const_cast<QMetaObject*>(static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::metaObject());
 		#endif

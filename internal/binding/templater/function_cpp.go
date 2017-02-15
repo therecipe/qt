@@ -234,7 +234,17 @@ func cppFunctionBody(function *parser.Function) string {
 			if polyType == "QObject" || polyType == input[len(input)-1] {
 				continue
 			}
+
+			if strings.HasPrefix(polyType, "QMac") {
+				fmt.Fprint(bb, "\n\t#ifdef Q_OS_OSX\n\t\t")
+			}
+
 			fmt.Fprintf(bb, "if (dynamic_cast<%v*>(static_cast<%v*>(%v))) {\n", polyType, "QObject", polyName)
+
+			if strings.HasPrefix(polyType, "QMac") {
+				fmt.Fprint(bb, "\t#else\n\t\tif (false) {\n\t#endif\n")
+			}
+
 			fmt.Fprintf(bb, "\t%v\n", func() string {
 				var ibody string
 				if function.Default && polyName == "ptr" {
@@ -243,7 +253,7 @@ func cppFunctionBody(function *parser.Function) string {
 					ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")", "static_cast<"+polyType+"*>("+polyName+")", -1)
 				}
 
-				if strings.Contains(ibody, "static_cast<QMac") {
+				if strings.HasPrefix(polyType, "QMac") {
 					ibody = fmt.Sprintf("#ifdef Q_OS_OSX\n\t%v\n\t#endif", ibody)
 				}
 
