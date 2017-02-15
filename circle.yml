@@ -2,7 +2,6 @@ machine:
   environment:
     OS: linux
     CI: true
-    QT_STUB: true
     DESKTOP: true
     ANDROID: true
     QT_WINDOWS_CC: false

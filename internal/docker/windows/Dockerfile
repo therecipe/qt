@@ -1,7 +1,97 @@
 FROM therecipe/qt:base
 
 
-RUN echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | tee --append /etc/apt/sources.list.d/mxeapt.list > /dev/null && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB && apt-get -qq update && apt-get -y -qq install mxe-i686-w64-mingw32.shared-qt3d mxe-i686-w64-mingw32.shared-qtactiveqt mxe-i686-w64-mingw32.shared-qtbase mxe-i686-w64-mingw32.shared-qtcanvas3d mxe-i686-w64-mingw32.shared-qtcharts mxe-i686-w64-mingw32.shared-qtconnectivity mxe-i686-w64-mingw32.shared-qtdatavis3d mxe-i686-w64-mingw32.shared-qtdeclarative mxe-i686-w64-mingw32.shared-qtdeclarative-render2d mxe-i686-w64-mingw32.shared-qtgamepad mxe-i686-w64-mingw32.shared-qtgraphicaleffects mxe-i686-w64-mingw32.shared-qtimageformats mxe-i686-w64-mingw32.shared-qtlocation mxe-i686-w64-mingw32.shared-qtmultimedia mxe-i686-w64-mingw32.shared-qtofficeopenxml mxe-i686-w64-mingw32.shared-qtpurchasing mxe-i686-w64-mingw32.shared-qtquickcontrols mxe-i686-w64-mingw32.shared-qtquickcontrols2 mxe-i686-w64-mingw32.shared-qtscript mxe-i686-w64-mingw32.shared-qtscxml mxe-i686-w64-mingw32.shared-qtsensors mxe-i686-w64-mingw32.shared-qtserialbus mxe-i686-w64-mingw32.shared-qtserialport mxe-i686-w64-mingw32.shared-qtservice mxe-i686-w64-mingw32.shared-qtsvg mxe-i686-w64-mingw32.shared-qtsystems mxe-i686-w64-mingw32.shared-qttools mxe-i686-w64-mingw32.shared-qttranslations mxe-i686-w64-mingw32.shared-qtvirtualkeyboard mxe-i686-w64-mingw32.shared-qtwebchannel mxe-i686-w64-mingw32.shared-qtwebkit mxe-i686-w64-mingw32.shared-qtwebsockets mxe-i686-w64-mingw32.shared-qtwinextras mxe-i686-w64-mingw32.shared-qtxlsxwriter mxe-i686-w64-mingw32.shared-qtxmlpatterns && apt-get -qq clean
+RUN mkdir /usr/lib/mxe/
+
+ENV PKG mxe-i686-w64-mingw32.shared-qt3d_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtactiveqt_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtbase_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtcanvas3d_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtcharts_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtconnectivity_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtdatavis3d_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtdeclarative_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtgamepad_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtgraphicaleffects_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtimageformats_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtlocation_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtmultimedia_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtpurchasing_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtquickcontrols2_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtquickcontrols_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtscript_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtscxml_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtsensors_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtserialbus_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtserialport_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtsvg_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qttools_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qttranslations_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtvirtualkeyboard_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtwebchannel_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtwebkit_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtwebsockets_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtwinextras_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
+
+ENV PKG mxe-i686-w64-mingw32.shared-qtxmlpatterns_5.8.0.tar.xz
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$PKG http://pkg.mxe.cc/releases/2017-02-11/tar/mxe-i686-w64-mingw32.shared/$PKG && tar xf /tmp/$PKG -C /usr/lib/mxe/ && rm -f /tmp/$PKG
 
 
 ENV QT_MXE_ARCH 386
