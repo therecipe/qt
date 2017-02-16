@@ -582,14 +582,17 @@ func predeploy() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
+					utils.MkdirAll(filepath.Join(appPath, runtime.GOOS))
 					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), darwinSH())
 					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/Info.plist", appName)), darwinPLIST())
-					//TODO: icon + plist
+					utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, runtime.GOOS), filepath.Join(depPath, fmt.Sprintf("%v.app/", appName))), fmt.Sprintf("copy assets for %v on %v", buildTarget, runtime.GOOS))
 				}
 
 			case "linux":
 				{
+					utils.MkdirAll(filepath.Join(appPath, runtime.GOOS))
 					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.sh", appName)), linuxSH())
+					utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, runtime.GOOS), depPath), fmt.Sprintf("copy assets for %v on %v", buildTarget, runtime.GOOS))
 				}
 
 			case "windows":
