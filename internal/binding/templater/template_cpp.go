@@ -328,6 +328,15 @@ func preambleCpp(module string, input []byte) []byte {
 			}
 		}
 	}
+
+	if parser.State.Minimal {
+		if module == "QtCore" {
+			fmt.Fprint(bb, "#include <QObject>\n")
+		} else if module == "QtNetwork" {
+			fmt.Fprint(bb, "#include <QSslError>\n")
+		}
+	}
+
 	fmt.Fprint(bb, "\n")
 
 	bb.Write(input)
