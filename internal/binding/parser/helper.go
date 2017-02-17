@@ -153,7 +153,7 @@ var LibDeps = map[string][]string{
 	"ScriptTools":   {"Script", "Widgets", "Core"}, //Script, Widgets
 	"UiTools":       {"Widgets", "Gui", "Core"},
 	"X11Extras":     {"Gui", "Core"},
-	"WinExtras":     {"Gui", "Core"},
+	"WinExtras":     {"Widgets", "Gui", "Core"},
 	"WebEngine":     {"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "Gui", "Qml", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
 	"TestLib":       {"Widgets", "Gui", "Core"},                                                                               //Widgets, Gui
 	"SerialPort":    {"Core"},
@@ -238,7 +238,7 @@ func ShouldBuild(module string) bool {
 func GetLibs() []string {
 	for i := len(Libs) - 1; i >= 0; i-- {
 		switch {
-		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && Libs[i] == "WebEngine",
+		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && (Libs[i] == "WebEngine" || Libs[i] == "WebView"),
 			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
 			runtime.GOOS != "linux" && Libs[i] == "X11Extras":
