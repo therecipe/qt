@@ -53,6 +53,7 @@
 #include <QPaintDevice>
 #include <QPaintEngine>
 #include <QPaintEvent>
+#include <QPainter>
 #include <QPersistentModelIndex>
 #include <QPoint>
 #include <QRect>
@@ -862,6 +863,8 @@ public:
 	int horizontalOffset() const { return callbackQHelpContentWidget_HorizontalOffset(const_cast<void*>(static_cast<const void*>(this))); };
 	int sizeHintForColumn(int column) const { return callbackQHelpContentWidget_SizeHintForColumn(const_cast<void*>(static_cast<const void*>(this)), column); };
 	int verticalOffset() const { return callbackQHelpContentWidget_VerticalOffset(const_cast<void*>(static_cast<const void*>(this))); };
+	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQHelpContentWidget_DrawBranches(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), const_cast<QModelIndex*>(&index)); };
+	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQHelpContentWidget_DrawRow(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQHelpContentWidget_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQHelpContentWidget_FocusNextPrevChild(this, next) != 0; };
 	void Signal_Activated(const QModelIndex & index) { callbackQHelpContentWidget_Activated(this, const_cast<QModelIndex*>(&index)); };
@@ -1357,6 +1360,16 @@ int QHelpContentWidget_SizeHintForColumnDefault(void* ptr, int column)
 int QHelpContentWidget_VerticalOffsetDefault(void* ptr)
 {
 		return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::verticalOffset();
+}
+
+void QHelpContentWidget_DrawBranchesDefault(void* ptr, void* painter, void* rect, void* index)
+{
+		static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
+}
+
+void QHelpContentWidget_DrawRowDefault(void* ptr, void* painter, void* option, void* index)
+{
+		static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::drawRow(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
 char QHelpContentWidget_Edit2Default(void* ptr, void* index, long long trigger, void* event)

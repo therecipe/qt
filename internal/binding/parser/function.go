@@ -311,13 +311,17 @@ func (f *Function) IsSupported() bool {
 		}
 	}
 
+	if f.Name == "__draw_selections_newList" {
+		return false
+	}
+
 	//generic blocked
 	//TODO: also check _setList _atList _newList _keyList instead ?
 	var genName = strings.TrimPrefix(f.Name, "__")
 	if strings.HasPrefix(genName, "registeredTimers") || strings.HasPrefix(genName, "countriesForLanguage") ||
 		strings.HasPrefix(genName, "writingSystem") || strings.HasPrefix(genName, "textList") ||
 		strings.HasPrefix(genName, "attributes") || strings.HasPrefix(genName, "additionalFormats") ||
-		strings.HasPrefix(genName, "rawHeaderPairs") || strings.HasPrefix(genName, "draw") || strings.HasPrefix(genName, "tabs") ||
+		strings.HasPrefix(genName, "rawHeaderPairs") || strings.HasPrefix(genName, "tabs") ||
 		strings.HasPrefix(genName, "QInputMethodEvent_attributes") || strings.HasPrefix(genName, "selections") || strings.HasPrefix(genName, "setSelections") ||
 		strings.HasPrefix(genName, "formats") || strings.HasPrefix(genName, "setAdditionalFormats") || strings.HasPrefix(genName, "setFormats") ||
 		strings.HasPrefix(genName, "setTabs") || strings.HasPrefix(genName, "extraSelections") ||

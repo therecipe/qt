@@ -5688,6 +5688,11 @@ int QSGGeometry_VertexCount(void* ptr)
 	return static_cast<QSGGeometry*>(ptr)->vertexCount();
 }
 
+unsigned int QSGGeometry_DrawingMode(void* ptr)
+{
+	return static_cast<QSGGeometry*>(ptr)->drawingMode();
+}
+
 class MyQSGGeometryNode: public QSGGeometryNode
 {
 public:

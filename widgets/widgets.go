@@ -13749,6 +13749,111 @@ func (ptr *QCommonStyle) StyleHintDefault(sh QStyle__StyleHint, opt QStyleOption
 	return 0
 }
 
+//export callbackQCommonStyle_DrawComplexControl
+func callbackQCommonStyle_DrawComplexControl(ptr unsafe.Pointer, cc C.longlong, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawComplexControl"); signal != nil {
+		signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(cc), NewQStyleOptionComplexFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
+	} else {
+		NewQCommonStyleFromPointer(ptr).DrawComplexControlDefault(QStyle__ComplexControl(cc), NewQStyleOptionComplexFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
+	}
+}
+
+func (ptr *QCommonStyle) ConnectDrawComplexControl(f func(cc QStyle__ComplexControl, opt *QStyleOptionComplex, p *gui.QPainter, widget *QWidget)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawComplexControl", f)
+	}
+}
+
+func (ptr *QCommonStyle) DisconnectDrawComplexControl() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawComplexControl")
+	}
+}
+
+func (ptr *QCommonStyle) DrawComplexControl(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawComplexControl(ptr.Pointer(), C.longlong(cc), PointerFromQStyleOptionComplex(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) DrawComplexControlDefault(cc QStyle__ComplexControl, opt QStyleOptionComplex_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawComplexControlDefault(ptr.Pointer(), C.longlong(cc), PointerFromQStyleOptionComplex(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+//export callbackQCommonStyle_DrawControl
+func callbackQCommonStyle_DrawControl(ptr unsafe.Pointer, element C.longlong, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawControl"); signal != nil {
+		signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
+	} else {
+		NewQCommonStyleFromPointer(ptr).DrawControlDefault(QStyle__ControlElement(element), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
+	}
+}
+
+func (ptr *QCommonStyle) ConnectDrawControl(f func(element QStyle__ControlElement, opt *QStyleOption, p *gui.QPainter, widget *QWidget)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawControl", f)
+	}
+}
+
+func (ptr *QCommonStyle) DisconnectDrawControl() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawControl")
+	}
+}
+
+func (ptr *QCommonStyle) DrawControl(element QStyle__ControlElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawControl(ptr.Pointer(), C.longlong(element), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) DrawControlDefault(element QStyle__ControlElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawControlDefault(ptr.Pointer(), C.longlong(element), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+//export callbackQCommonStyle_DrawPrimitive
+func callbackQCommonStyle_DrawPrimitive(ptr unsafe.Pointer, pe C.longlong, opt unsafe.Pointer, p unsafe.Pointer, widget unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPrimitive"); signal != nil {
+		signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(pe), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
+	} else {
+		NewQCommonStyleFromPointer(ptr).DrawPrimitiveDefault(QStyle__PrimitiveElement(pe), NewQStyleOptionFromPointer(opt), gui.NewQPainterFromPointer(p), NewQWidgetFromPointer(widget))
+	}
+}
+
+func (ptr *QCommonStyle) ConnectDrawPrimitive(f func(pe QStyle__PrimitiveElement, opt *QStyleOption, p *gui.QPainter, widget *QWidget)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPrimitive", f)
+	}
+}
+
+func (ptr *QCommonStyle) DisconnectDrawPrimitive() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPrimitive")
+	}
+}
+
+func (ptr *QCommonStyle) DrawPrimitive(pe QStyle__PrimitiveElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawPrimitive(ptr.Pointer(), C.longlong(pe), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QCommonStyle) DrawPrimitiveDefault(pe QStyle__PrimitiveElement, opt QStyleOption_ITF, p gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCommonStyle_DrawPrimitiveDefault(ptr.Pointer(), C.longlong(pe), PointerFromQStyleOption(opt), gui.PointerFromQPainter(p), PointerFromQWidget(widget))
+	}
+}
+
 //export callbackQCommonStyle_StandardIcon
 func callbackQCommonStyle_StandardIcon(ptr unsafe.Pointer, standardIcon C.longlong, option unsafe.Pointer, widget unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "standardIcon"); signal != nil {
@@ -24327,6 +24432,41 @@ func NewQGraphicsBlurEffect(parent core.QObject_ITF) *QGraphicsBlurEffect {
 	return tmpValue
 }
 
+//export callbackQGraphicsBlurEffect_Draw
+func callbackQGraphicsBlurEffect_Draw(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "draw"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQGraphicsBlurEffectFromPointer(ptr).DrawDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QGraphicsBlurEffect) ConnectDraw(f func(painter *gui.QPainter)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "draw", f)
+	}
+}
+
+func (ptr *QGraphicsBlurEffect) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "draw")
+	}
+}
+
+func (ptr *QGraphicsBlurEffect) Draw(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_Draw(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QGraphicsBlurEffect) DrawDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_DrawDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 func (ptr *QGraphicsBlurEffect) DestroyQGraphicsBlurEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(ptr.Pointer())
@@ -24406,6 +24546,41 @@ func (ptr *QGraphicsColorizeEffect) DisconnectColorChanged() {
 func (ptr *QGraphicsColorizeEffect) ColorChanged(color gui.QColor_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsColorizeEffect_ColorChanged(ptr.Pointer(), gui.PointerFromQColor(color))
+	}
+}
+
+//export callbackQGraphicsColorizeEffect_Draw
+func callbackQGraphicsColorizeEffect_Draw(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "draw"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQGraphicsColorizeEffectFromPointer(ptr).DrawDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QGraphicsColorizeEffect) ConnectDraw(f func(painter *gui.QPainter)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "draw", f)
+	}
+}
+
+func (ptr *QGraphicsColorizeEffect) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "draw")
+	}
+}
+
+func (ptr *QGraphicsColorizeEffect) Draw(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_Draw(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QGraphicsColorizeEffect) DrawDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsColorizeEffect_DrawDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
 	}
 }
 
@@ -24630,6 +24805,41 @@ func (ptr *QGraphicsDropShadowEffect) DisconnectColorChanged() {
 func (ptr *QGraphicsDropShadowEffect) ColorChanged(color gui.QColor_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsDropShadowEffect_ColorChanged(ptr.Pointer(), gui.PointerFromQColor(color))
+	}
+}
+
+//export callbackQGraphicsDropShadowEffect_Draw
+func callbackQGraphicsDropShadowEffect_Draw(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "draw"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQGraphicsDropShadowEffectFromPointer(ptr).DrawDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) ConnectDraw(f func(painter *gui.QPainter)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "draw", f)
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "draw")
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) Draw(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_Draw(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QGraphicsDropShadowEffect) DrawDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsDropShadowEffect_DrawDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
 	}
 }
 
@@ -25073,6 +25283,48 @@ func (ptr *QGraphicsEffect) SetEnabled(enable bool) {
 func (ptr *QGraphicsEffect) SetEnabledDefault(enable bool) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEffect_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+	}
+}
+
+func NewQGraphicsEffect(parent core.QObject_ITF) *QGraphicsEffect {
+	var tmpValue = NewQGraphicsEffectFromPointer(C.QGraphicsEffect_NewQGraphicsEffect(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackQGraphicsEffect_Draw
+func callbackQGraphicsEffect_Draw(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "draw"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	}
+
+}
+
+func (ptr *QGraphicsEffect) ConnectDraw(f func(painter *gui.QPainter)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "draw", f)
+	}
+}
+
+func (ptr *QGraphicsEffect) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "draw")
+	}
+}
+
+func (ptr *QGraphicsEffect) Draw(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsEffect_Draw(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QGraphicsEffect) DrawSource(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsEffect_DrawSource(ptr.Pointer(), gui.PointerFromQPainter(painter))
 	}
 }
 
@@ -31158,6 +31410,41 @@ func NewQGraphicsOpacityEffect(parent core.QObject_ITF) *QGraphicsOpacityEffect 
 	return tmpValue
 }
 
+//export callbackQGraphicsOpacityEffect_Draw
+func callbackQGraphicsOpacityEffect_Draw(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "draw"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQGraphicsOpacityEffectFromPointer(ptr).DrawDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) ConnectDraw(f func(painter *gui.QPainter)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "draw", f)
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "draw")
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) Draw(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_Draw(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QGraphicsOpacityEffect) DrawDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsOpacityEffect_DrawDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQGraphicsOpacityEffect_OpacityChanged
 func callbackQGraphicsOpacityEffect_OpacityChanged(ptr unsafe.Pointer, opacity C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "opacityChanged"); signal != nil {
@@ -33178,6 +33465,76 @@ func (ptr *QGraphicsScene) DragMoveEvent(event QGraphicsSceneDragDropEvent_ITF) 
 func (ptr *QGraphicsScene) DragMoveEventDefault(event QGraphicsSceneDragDropEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_DragMoveEventDefault(ptr.Pointer(), PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+//export callbackQGraphicsScene_DrawBackground
+func callbackQGraphicsScene_DrawBackground(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawBackground"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRectF))(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	} else {
+		NewQGraphicsSceneFromPointer(ptr).DrawBackgroundDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	}
+}
+
+func (ptr *QGraphicsScene) ConnectDrawBackground(f func(painter *gui.QPainter, rect *core.QRectF)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawBackground", f)
+	}
+}
+
+func (ptr *QGraphicsScene) DisconnectDrawBackground() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawBackground")
+	}
+}
+
+func (ptr *QGraphicsScene) DrawBackground(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_DrawBackground(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QGraphicsScene) DrawBackgroundDefault(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_DrawBackgroundDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
+	}
+}
+
+//export callbackQGraphicsScene_DrawForeground
+func callbackQGraphicsScene_DrawForeground(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawForeground"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRectF))(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	} else {
+		NewQGraphicsSceneFromPointer(ptr).DrawForegroundDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	}
+}
+
+func (ptr *QGraphicsScene) ConnectDrawForeground(f func(painter *gui.QPainter, rect *core.QRectF)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawForeground", f)
+	}
+}
+
+func (ptr *QGraphicsScene) DisconnectDrawForeground() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawForeground")
+	}
+}
+
+func (ptr *QGraphicsScene) DrawForeground(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_DrawForeground(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QGraphicsScene) DrawForegroundDefault(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_DrawForegroundDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
 	}
 }
 
@@ -36570,6 +36927,76 @@ func (ptr *QGraphicsView) CenterOn(pos core.QPointF_ITF) {
 func (ptr *QGraphicsView) CenterOn2(x float64, y float64) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_CenterOn2(ptr.Pointer(), C.double(x), C.double(y))
+	}
+}
+
+//export callbackQGraphicsView_DrawBackground
+func callbackQGraphicsView_DrawBackground(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawBackground"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRectF))(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	} else {
+		NewQGraphicsViewFromPointer(ptr).DrawBackgroundDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	}
+}
+
+func (ptr *QGraphicsView) ConnectDrawBackground(f func(painter *gui.QPainter, rect *core.QRectF)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawBackground", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectDrawBackground() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawBackground")
+	}
+}
+
+func (ptr *QGraphicsView) DrawBackground(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView_DrawBackground(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QGraphicsView) DrawBackgroundDefault(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView_DrawBackgroundDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
+	}
+}
+
+//export callbackQGraphicsView_DrawForeground
+func callbackQGraphicsView_DrawForeground(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawForeground"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRectF))(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	} else {
+		NewQGraphicsViewFromPointer(ptr).DrawForegroundDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect))
+	}
+}
+
+func (ptr *QGraphicsView) ConnectDrawForeground(f func(painter *gui.QPainter, rect *core.QRectF)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawForeground", f)
+	}
+}
+
+func (ptr *QGraphicsView) DisconnectDrawForeground() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawForeground")
+	}
+}
+
+func (ptr *QGraphicsView) DrawForeground(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView_DrawForeground(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QGraphicsView) DrawForegroundDefault(painter gui.QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView_DrawForegroundDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect))
 	}
 }
 
@@ -41594,6 +42021,156 @@ func (ptr *QItemDelegate) HasClipping() bool {
 		return C.QItemDelegate_HasClipping(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QItemDelegate) DrawBackground(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DrawBackground(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+	}
+}
+
+//export callbackQItemDelegate_DrawCheck
+func callbackQItemDelegate_DrawCheck(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, state C.longlong) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawCheck"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionViewItem, *core.QRect, core.Qt__CheckState))(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), core.Qt__CheckState(state))
+	} else {
+		NewQItemDelegateFromPointer(ptr).DrawCheckDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), core.Qt__CheckState(state))
+	}
+}
+
+func (ptr *QItemDelegate) ConnectDrawCheck(f func(painter *gui.QPainter, option *QStyleOptionViewItem, rect *core.QRect, state core.Qt__CheckState)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawCheck", f)
+	}
+}
+
+func (ptr *QItemDelegate) DisconnectDrawCheck() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawCheck")
+	}
+}
+
+func (ptr *QItemDelegate) DrawCheck(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, state core.Qt__CheckState) {
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DrawCheck(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.longlong(state))
+	}
+}
+
+func (ptr *QItemDelegate) DrawCheckDefault(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, state core.Qt__CheckState) {
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DrawCheckDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.longlong(state))
+	}
+}
+
+//export callbackQItemDelegate_DrawDecoration
+func callbackQItemDelegate_DrawDecoration(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, pixmap unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawDecoration"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionViewItem, *core.QRect, *gui.QPixmap))(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), gui.NewQPixmapFromPointer(pixmap))
+	} else {
+		NewQItemDelegateFromPointer(ptr).DrawDecorationDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), gui.NewQPixmapFromPointer(pixmap))
+	}
+}
+
+func (ptr *QItemDelegate) ConnectDrawDecoration(f func(painter *gui.QPainter, option *QStyleOptionViewItem, rect *core.QRect, pixmap *gui.QPixmap)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawDecoration", f)
+	}
+}
+
+func (ptr *QItemDelegate) DisconnectDrawDecoration() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawDecoration")
+	}
+}
+
+func (ptr *QItemDelegate) DrawDecoration(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, pixmap gui.QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DrawDecoration(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QItemDelegate) DrawDecorationDefault(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, pixmap gui.QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DrawDecorationDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+//export callbackQItemDelegate_DrawDisplay
+func callbackQItemDelegate_DrawDisplay(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, text C.struct_QtWidgets_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawDisplay"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionViewItem, *core.QRect, string))(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), cGoUnpackString(text))
+	} else {
+		NewQItemDelegateFromPointer(ptr).DrawDisplayDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), cGoUnpackString(text))
+	}
+}
+
+func (ptr *QItemDelegate) ConnectDrawDisplay(f func(painter *gui.QPainter, option *QStyleOptionViewItem, rect *core.QRect, text string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawDisplay", f)
+	}
+}
+
+func (ptr *QItemDelegate) DisconnectDrawDisplay() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawDisplay")
+	}
+}
+
+func (ptr *QItemDelegate) DrawDisplay(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QItemDelegate_DrawDisplay(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
+	}
+}
+
+func (ptr *QItemDelegate) DrawDisplayDefault(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QItemDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
+	}
+}
+
+//export callbackQItemDelegate_DrawFocus
+func callbackQItemDelegate_DrawFocus(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawFocus"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionViewItem, *core.QRect))(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect))
+	} else {
+		NewQItemDelegateFromPointer(ptr).DrawFocusDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect))
+	}
+}
+
+func (ptr *QItemDelegate) ConnectDrawFocus(f func(painter *gui.QPainter, option *QStyleOptionViewItem, rect *core.QRect)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawFocus", f)
+	}
+}
+
+func (ptr *QItemDelegate) DisconnectDrawFocus() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawFocus")
+	}
+}
+
+func (ptr *QItemDelegate) DrawFocus(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DrawFocus(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QItemDelegate) DrawFocusDefault(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QItemDelegate_DrawFocusDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect))
+	}
 }
 
 //export callbackQItemDelegate_Paint
@@ -52651,6 +53228,41 @@ func (ptr *QPlainTextDocumentLayout) DocumentChangedDefault(from int, charsRemov
 	}
 }
 
+//export callbackQPlainTextDocumentLayout_Draw
+func callbackQPlainTextDocumentLayout_Draw(ptr unsafe.Pointer, vqp unsafe.Pointer, vpa unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "draw"); signal != nil {
+		signal.(func(*gui.QPainter, *gui.QAbstractTextDocumentLayout_PaintContext))(gui.NewQPainterFromPointer(vqp), gui.NewQAbstractTextDocumentLayout_PaintContextFromPointer(vpa))
+	} else {
+		NewQPlainTextDocumentLayoutFromPointer(ptr).DrawDefault(gui.NewQPainterFromPointer(vqp), gui.NewQAbstractTextDocumentLayout_PaintContextFromPointer(vpa))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) ConnectDraw(f func(vqp *gui.QPainter, vpa *gui.QAbstractTextDocumentLayout_PaintContext)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "draw", f)
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "draw")
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) Draw(vqp gui.QPainter_ITF, vpa gui.QAbstractTextDocumentLayout_PaintContext_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_Draw(ptr.Pointer(), gui.PointerFromQPainter(vqp), gui.PointerFromQAbstractTextDocumentLayout_PaintContext(vpa))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) DrawDefault(vqp gui.QPainter_ITF, vpa gui.QAbstractTextDocumentLayout_PaintContext_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_DrawDefault(ptr.Pointer(), gui.PointerFromQPainter(vqp), gui.PointerFromQAbstractTextDocumentLayout_PaintContext(vpa))
+	}
+}
+
 func (ptr *QPlainTextDocumentLayout) RequestUpdate() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_RequestUpdate(ptr.Pointer())
@@ -52990,6 +53602,21 @@ func callbackQPlainTextDocumentLayout_DocumentSizeChanged(ptr unsafe.Pointer, ne
 		signal.(func(*core.QSizeF))(core.NewQSizeFFromPointer(newSize))
 	}
 
+}
+
+//export callbackQPlainTextDocumentLayout_DrawInlineObject
+func callbackQPlainTextDocumentLayout_DrawInlineObject(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, object unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawInlineObject"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRectF, *gui.QTextInlineObject, int, *gui.QTextFormat))(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), gui.NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
+	} else {
+		NewQPlainTextDocumentLayoutFromPointer(ptr).DrawInlineObjectDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), gui.NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), gui.NewQTextFormatFromPointer(format))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) DrawInlineObjectDefault(painter gui.QPainter_ITF, rect core.QRectF_ITF, object gui.QTextInlineObject_ITF, posInDocument int, format gui.QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_DrawInlineObjectDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(rect), gui.PointerFromQTextInlineObject(object), C.int(int32(posInDocument)), gui.PointerFromQTextFormat(format))
+	}
 }
 
 //export callbackQPlainTextDocumentLayout_PageCountChanged
@@ -58950,6 +59577,41 @@ func (ptr *QSplashScreen) ClearMessageDefault() {
 	}
 }
 
+//export callbackQSplashScreen_DrawContents
+func callbackQSplashScreen_DrawContents(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawContents"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQSplashScreenFromPointer(ptr).DrawContentsDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QSplashScreen) ConnectDrawContents(f func(painter *gui.QPainter)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawContents", f)
+	}
+}
+
+func (ptr *QSplashScreen) DisconnectDrawContents() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawContents")
+	}
+}
+
+func (ptr *QSplashScreen) DrawContents(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DrawContents(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
+func (ptr *QSplashScreen) DrawContentsDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSplashScreen_DrawContentsDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 func (ptr *QSplashScreen) Finish(mainWin QWidget_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSplashScreen_Finish(ptr.Pointer(), PointerFromQWidget(mainWin))
@@ -61250,6 +61912,14 @@ func (ptr *QStyle) VisualRect(direction core.Qt__LayoutDirection, boundingRectan
 	return tmpValue
 }
 
+func NewQStyle() *QStyle {
+	var tmpValue = NewQStyleFromPointer(C.QStyle_NewQStyle())
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func QStyle_VisualAlignment(direction core.Qt__LayoutDirection, alignment core.Qt__AlignmentFlag) core.Qt__AlignmentFlag {
 	return core.Qt__AlignmentFlag(C.QStyle_QStyle_VisualAlignment(C.longlong(direction), C.longlong(alignment)))
 }
@@ -61911,6 +62581,164 @@ func (ptr *QStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_ITF, wi
 		return int(int32(C.QStyle_StyleHint(ptr.Pointer(), C.longlong(hint), PointerFromQStyleOption(option), PointerFromQWidget(widget), PointerFromQStyleHintReturn(returnData))))
 	}
 	return 0
+}
+
+//export callbackQStyle_DrawComplexControl
+func callbackQStyle_DrawComplexControl(ptr unsafe.Pointer, control C.longlong, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawComplexControl"); signal != nil {
+		signal.(func(QStyle__ComplexControl, *QStyleOptionComplex, *gui.QPainter, *QWidget))(QStyle__ComplexControl(control), NewQStyleOptionComplexFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	}
+
+}
+
+func (ptr *QStyle) ConnectDrawComplexControl(f func(control QStyle__ComplexControl, option *QStyleOptionComplex, painter *gui.QPainter, widget *QWidget)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawComplexControl", f)
+	}
+}
+
+func (ptr *QStyle) DisconnectDrawComplexControl() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawComplexControl")
+	}
+}
+
+func (ptr *QStyle) DrawComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_DrawComplexControl(ptr.Pointer(), C.longlong(control), PointerFromQStyleOptionComplex(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+//export callbackQStyle_DrawControl
+func callbackQStyle_DrawControl(ptr unsafe.Pointer, element C.longlong, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawControl"); signal != nil {
+		signal.(func(QStyle__ControlElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__ControlElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	}
+
+}
+
+func (ptr *QStyle) ConnectDrawControl(f func(element QStyle__ControlElement, option *QStyleOption, painter *gui.QPainter, widget *QWidget)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawControl", f)
+	}
+}
+
+func (ptr *QStyle) DisconnectDrawControl() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawControl")
+	}
+}
+
+func (ptr *QStyle) DrawControl(element QStyle__ControlElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_DrawControl(ptr.Pointer(), C.longlong(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+//export callbackQStyle_DrawItemPixmap
+func callbackQStyle_DrawItemPixmap(ptr unsafe.Pointer, painter unsafe.Pointer, rectangle unsafe.Pointer, alignment C.int, pixmap unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawItemPixmap"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRect, int, *gui.QPixmap))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rectangle), int(int32(alignment)), gui.NewQPixmapFromPointer(pixmap))
+	} else {
+		NewQStyleFromPointer(ptr).DrawItemPixmapDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rectangle), int(int32(alignment)), gui.NewQPixmapFromPointer(pixmap))
+	}
+}
+
+func (ptr *QStyle) ConnectDrawItemPixmap(f func(painter *gui.QPainter, rectangle *core.QRect, alignment int, pixmap *gui.QPixmap)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawItemPixmap", f)
+	}
+}
+
+func (ptr *QStyle) DisconnectDrawItemPixmap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawItemPixmap")
+	}
+}
+
+func (ptr *QStyle) DrawItemPixmap(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, pixmap gui.QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_DrawItemPixmap(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QStyle) DrawItemPixmapDefault(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, pixmap gui.QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_DrawItemPixmapDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+//export callbackQStyle_DrawItemText
+func callbackQStyle_DrawItemText(ptr unsafe.Pointer, painter unsafe.Pointer, rectangle unsafe.Pointer, alignment C.int, palette unsafe.Pointer, enabled C.char, text C.struct_QtWidgets_PackedString, textRole C.longlong) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawItemText"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRect, int, *gui.QPalette, bool, string, gui.QPalette__ColorRole))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rectangle), int(int32(alignment)), gui.NewQPaletteFromPointer(palette), int8(enabled) != 0, cGoUnpackString(text), gui.QPalette__ColorRole(textRole))
+	} else {
+		NewQStyleFromPointer(ptr).DrawItemTextDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rectangle), int(int32(alignment)), gui.NewQPaletteFromPointer(palette), int8(enabled) != 0, cGoUnpackString(text), gui.QPalette__ColorRole(textRole))
+	}
+}
+
+func (ptr *QStyle) ConnectDrawItemText(f func(painter *gui.QPainter, rectangle *core.QRect, alignment int, palette *gui.QPalette, enabled bool, text string, textRole gui.QPalette__ColorRole)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawItemText", f)
+	}
+}
+
+func (ptr *QStyle) DisconnectDrawItemText() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawItemText")
+	}
+}
+
+func (ptr *QStyle) DrawItemText(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, palette gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QStyle_DrawItemText(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), textC, C.longlong(textRole))
+	}
+}
+
+func (ptr *QStyle) DrawItemTextDefault(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, palette gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QStyle_DrawItemTextDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), textC, C.longlong(textRole))
+	}
+}
+
+//export callbackQStyle_DrawPrimitive
+func callbackQStyle_DrawPrimitive(ptr unsafe.Pointer, element C.longlong, option unsafe.Pointer, painter unsafe.Pointer, widget unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPrimitive"); signal != nil {
+		signal.(func(QStyle__PrimitiveElement, *QStyleOption, *gui.QPainter, *QWidget))(QStyle__PrimitiveElement(element), NewQStyleOptionFromPointer(option), gui.NewQPainterFromPointer(painter), NewQWidgetFromPointer(widget))
+	}
+
+}
+
+func (ptr *QStyle) ConnectDrawPrimitive(f func(element QStyle__PrimitiveElement, option *QStyleOption, painter *gui.QPainter, widget *QWidget)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPrimitive", f)
+	}
+}
+
+func (ptr *QStyle) DisconnectDrawPrimitive() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPrimitive")
+	}
+}
+
+func (ptr *QStyle) DrawPrimitive(element QStyle__PrimitiveElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_DrawPrimitive(ptr.Pointer(), C.longlong(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
 }
 
 //export callbackQStyle_StandardPixmap
@@ -66630,6 +67458,38 @@ func (ptr *QStylePainter) Begin(widget QWidget_ITF) bool {
 	return false
 }
 
+func (ptr *QStylePainter) DrawComplexControl(cc QStyle__ComplexControl, option QStyleOptionComplex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter_DrawComplexControl(ptr.Pointer(), C.longlong(cc), PointerFromQStyleOptionComplex(option))
+	}
+}
+
+func (ptr *QStylePainter) DrawControl(ce QStyle__ControlElement, option QStyleOption_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter_DrawControl(ptr.Pointer(), C.longlong(ce), PointerFromQStyleOption(option))
+	}
+}
+
+func (ptr *QStylePainter) DrawItemPixmap(rect core.QRect_ITF, flags int, pixmap gui.QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter_DrawItemPixmap(ptr.Pointer(), core.PointerFromQRect(rect), C.int(int32(flags)), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QStylePainter) DrawItemText(rect core.QRect_ITF, flags int, pal gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QStylePainter_DrawItemText(ptr.Pointer(), core.PointerFromQRect(rect), C.int(int32(flags)), gui.PointerFromQPalette(pal), C.char(int8(qt.GoBoolToInt(enabled))), textC, C.longlong(textRole))
+	}
+}
+
+func (ptr *QStylePainter) DrawPrimitive(pe QStyle__PrimitiveElement, option QStyleOption_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter_DrawPrimitive(ptr.Pointer(), C.longlong(pe), PointerFromQStyleOption(option))
+	}
+}
+
 func (ptr *QStylePainter) Style() *QStyle {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQStyleFromPointer(C.QStylePainter_Style(ptr.Pointer()))
@@ -66639,6 +67499,120 @@ func (ptr *QStylePainter) Style() *QStyle {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QStylePainter) __drawLines_lines_atList6(i int) *core.QLine {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQLineFromPointer(C.QStylePainter___drawLines_lines_atList6(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QLine).DestroyQLine)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStylePainter) __drawLines_lines_setList6(i core.QLine_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_lines_setList6(ptr.Pointer(), core.PointerFromQLine(i))
+	}
+}
+
+func (ptr *QStylePainter) __drawLines_lines_newList6() unsafe.Pointer {
+	return unsafe.Pointer(C.QStylePainter___drawLines_lines_newList6(ptr.Pointer()))
+}
+
+func (ptr *QStylePainter) __drawLines_lines_atList2(i int) *core.QLineF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQLineFFromPointer(C.QStylePainter___drawLines_lines_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStylePainter) __drawLines_lines_setList2(i core.QLineF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_lines_setList2(ptr.Pointer(), core.PointerFromQLineF(i))
+	}
+}
+
+func (ptr *QStylePainter) __drawLines_lines_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QStylePainter___drawLines_lines_newList2(ptr.Pointer()))
+}
+
+func (ptr *QStylePainter) __drawLines_pointPairs_atList8(i int) *core.QPoint {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFromPointer(C.QStylePainter___drawLines_pointPairs_atList8(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStylePainter) __drawLines_pointPairs_setList8(i core.QPoint_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_pointPairs_setList8(ptr.Pointer(), core.PointerFromQPoint(i))
+	}
+}
+
+func (ptr *QStylePainter) __drawLines_pointPairs_newList8() unsafe.Pointer {
+	return unsafe.Pointer(C.QStylePainter___drawLines_pointPairs_newList8(ptr.Pointer()))
+}
+
+func (ptr *QStylePainter) __drawLines_pointPairs_atList4(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFFromPointer(C.QStylePainter___drawLines_pointPairs_atList4(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStylePainter) __drawLines_pointPairs_setList4(i core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_pointPairs_setList4(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
+}
+
+func (ptr *QStylePainter) __drawLines_pointPairs_newList4() unsafe.Pointer {
+	return unsafe.Pointer(C.QStylePainter___drawLines_pointPairs_newList4(ptr.Pointer()))
+}
+
+func (ptr *QStylePainter) __drawRects_rectangles_atList4(i int) *core.QRect {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFromPointer(C.QStylePainter___drawRects_rectangles_atList4(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStylePainter) __drawRects_rectangles_setList4(i core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawRects_rectangles_setList4(ptr.Pointer(), core.PointerFromQRect(i))
+	}
+}
+
+func (ptr *QStylePainter) __drawRects_rectangles_newList4() unsafe.Pointer {
+	return unsafe.Pointer(C.QStylePainter___drawRects_rectangles_newList4(ptr.Pointer()))
+}
+
+func (ptr *QStylePainter) __drawRects_rectangles_atList2(i int) *core.QRectF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFFromPointer(C.QStylePainter___drawRects_rectangles_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStylePainter) __drawRects_rectangles_setList2(i core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawRects_rectangles_setList2(ptr.Pointer(), core.PointerFromQRectF(i))
+	}
+}
+
+func (ptr *QStylePainter) __drawRects_rectangles_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QStylePainter___drawRects_rectangles_newList2(ptr.Pointer()))
 }
 
 type QStylePlugin struct {
@@ -66686,7 +67660,7 @@ func callbackQStylePlugin_Create(ptr unsafe.Pointer, key C.struct_QtWidgets_Pack
 		return PointerFromQStyle(signal.(func(string) *QStyle)(cGoUnpackString(key)))
 	}
 
-	return PointerFromQStyle(nil)
+	return PointerFromQStyle(NewQStyle())
 }
 
 func (ptr *QStylePlugin) ConnectCreate(f func(key string) *QStyle) {
@@ -68669,6 +69643,13 @@ func (ptr *QTabBar) ChangeCurrentOnDrag() bool {
 func (ptr *QTabBar) DocumentMode() bool {
 	if ptr.Pointer() != nil {
 		return C.QTabBar_DocumentMode(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QTabBar) DrawBase() bool {
+	if ptr.Pointer() != nil {
+		return C.QTabBar_DrawBase(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -78159,6 +79140,82 @@ func (ptr *QTreeView) VerticalOffsetDefault() int {
 		return int(int32(C.QTreeView_VerticalOffsetDefault(ptr.Pointer())))
 	}
 	return 0
+}
+
+//export callbackQTreeView_DrawBranches
+func callbackQTreeView_DrawBranches(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, index unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawBranches"); signal != nil {
+		signal.(func(*gui.QPainter, *core.QRect, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQTreeViewFromPointer(ptr).DrawBranchesDefault(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QTreeView) ConnectDrawBranches(f func(painter *gui.QPainter, rect *core.QRect, index *core.QModelIndex)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawBranches", f)
+	}
+}
+
+func (ptr *QTreeView) DisconnectDrawBranches() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawBranches")
+	}
+}
+
+func (ptr *QTreeView) DrawBranches(painter gui.QPainter_ITF, rect core.QRect_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeView_DrawBranches(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rect), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QTreeView) DrawBranchesDefault(painter gui.QPainter_ITF, rect core.QRect_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeView_DrawBranchesDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rect), core.PointerFromQModelIndex(index))
+	}
+}
+
+//export callbackQTreeView_DrawRow
+func callbackQTreeView_DrawRow(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawRow"); signal != nil {
+		signal.(func(*gui.QPainter, *QStyleOptionViewItem, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQTreeViewFromPointer(ptr).DrawRowDefault(gui.NewQPainterFromPointer(painter), NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QTreeView) ConnectDrawRow(f func(painter *gui.QPainter, option *QStyleOptionViewItem, index *core.QModelIndex)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawRow", f)
+	}
+}
+
+func (ptr *QTreeView) DisconnectDrawRow() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawRow")
+	}
+}
+
+func (ptr *QTreeView) DrawRow(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeView_DrawRow(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QTreeView) DrawRowDefault(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeView_DrawRowDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QTreeView) DrawTree(painter gui.QPainter_ITF, region gui.QRegion_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeView_DrawTree(ptr.Pointer(), gui.PointerFromQPainter(painter), gui.PointerFromQRegion(region))
+	}
 }
 
 type QTreeWidget struct {

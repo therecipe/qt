@@ -8967,6 +8967,62 @@ func (ptr *QCustom3DVolume) ColorTableChanged() {
 	}
 }
 
+//export callbackQCustom3DVolume_DrawSliceFramesChanged
+func callbackQCustom3DVolume_DrawSliceFramesChanged(ptr unsafe.Pointer, enabled C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawSliceFramesChanged"); signal != nil {
+		signal.(func(bool))(int8(enabled) != 0)
+	}
+
+}
+
+func (ptr *QCustom3DVolume) ConnectDrawSliceFramesChanged(f func(enabled bool)) {
+	if ptr.Pointer() != nil {
+		C.QCustom3DVolume_ConnectDrawSliceFramesChanged(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawSliceFramesChanged", f)
+	}
+}
+
+func (ptr *QCustom3DVolume) DisconnectDrawSliceFramesChanged() {
+	if ptr.Pointer() != nil {
+		C.QCustom3DVolume_DisconnectDrawSliceFramesChanged(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawSliceFramesChanged")
+	}
+}
+
+func (ptr *QCustom3DVolume) DrawSliceFramesChanged(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QCustom3DVolume_DrawSliceFramesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
+//export callbackQCustom3DVolume_DrawSlicesChanged
+func callbackQCustom3DVolume_DrawSlicesChanged(ptr unsafe.Pointer, enabled C.char) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawSlicesChanged"); signal != nil {
+		signal.(func(bool))(int8(enabled) != 0)
+	}
+
+}
+
+func (ptr *QCustom3DVolume) ConnectDrawSlicesChanged(f func(enabled bool)) {
+	if ptr.Pointer() != nil {
+		C.QCustom3DVolume_ConnectDrawSlicesChanged(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawSlicesChanged", f)
+	}
+}
+
+func (ptr *QCustom3DVolume) DisconnectDrawSlicesChanged() {
+	if ptr.Pointer() != nil {
+		C.QCustom3DVolume_DisconnectDrawSlicesChanged(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawSlicesChanged")
+	}
+}
+
+func (ptr *QCustom3DVolume) DrawSlicesChanged(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QCustom3DVolume_DrawSlicesChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
 //export callbackQCustom3DVolume_PreserveOpacityChanged
 func callbackQCustom3DVolume_PreserveOpacityChanged(ptr unsafe.Pointer, enabled C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "preserveOpacityChanged"); signal != nil {
@@ -9533,6 +9589,20 @@ func (ptr *QCustom3DVolume) SliceFrameWidths() *gui.QVector3D {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QCustom3DVolume) DrawSliceFrames() bool {
+	if ptr.Pointer() != nil {
+		return C.QCustom3DVolume_DrawSliceFrames(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QCustom3DVolume) DrawSlices() bool {
+	if ptr.Pointer() != nil {
+		return C.QCustom3DVolume_DrawSlices(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 func (ptr *QCustom3DVolume) PreserveOpacity() bool {
@@ -13835,6 +13905,34 @@ func (ptr *QSurface3DSeries) DataProxyChanged(proxy QSurfaceDataProxy_ITF) {
 	}
 }
 
+//export callbackQSurface3DSeries_DrawModeChanged
+func callbackQSurface3DSeries_DrawModeChanged(ptr unsafe.Pointer, mode C.longlong) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawModeChanged"); signal != nil {
+		signal.(func(QSurface3DSeries__DrawFlag))(QSurface3DSeries__DrawFlag(mode))
+	}
+
+}
+
+func (ptr *QSurface3DSeries) ConnectDrawModeChanged(f func(mode QSurface3DSeries__DrawFlag)) {
+	if ptr.Pointer() != nil {
+		C.QSurface3DSeries_ConnectDrawModeChanged(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawModeChanged", f)
+	}
+}
+
+func (ptr *QSurface3DSeries) DisconnectDrawModeChanged() {
+	if ptr.Pointer() != nil {
+		C.QSurface3DSeries_DisconnectDrawModeChanged(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawModeChanged")
+	}
+}
+
+func (ptr *QSurface3DSeries) DrawModeChanged(mode QSurface3DSeries__DrawFlag) {
+	if ptr.Pointer() != nil {
+		C.QSurface3DSeries_DrawModeChanged(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
 //export callbackQSurface3DSeries_FlatShadingEnabledChanged
 func callbackQSurface3DSeries_FlatShadingEnabledChanged(ptr unsafe.Pointer, enable C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "flatShadingEnabledChanged"); signal != nil {
@@ -14043,6 +14141,13 @@ func (ptr *QSurface3DSeries) TextureFile() string {
 		return cGoUnpackString(C.QSurface3DSeries_TextureFile(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QSurface3DSeries) DrawMode() QSurface3DSeries__DrawFlag {
+	if ptr.Pointer() != nil {
+		return QSurface3DSeries__DrawFlag(C.QSurface3DSeries_DrawMode(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSurface3DSeries) DataProxy() *QSurfaceDataProxy {

@@ -862,6 +862,7 @@ int QSGGeometry_IndexType(void* ptr);
 int QSGGeometry_SizeOfIndex(void* ptr);
 int QSGGeometry_SizeOfVertex(void* ptr);
 int QSGGeometry_VertexCount(void* ptr);
+unsigned int QSGGeometry_DrawingMode(void* ptr);
 void* QSGGeometryNode_NewQSGGeometryNode();
 void QSGGeometryNode_SetMaterial(void* ptr, void* material);
 void QSGGeometryNode_SetOpaqueMaterial(void* ptr, void* material);

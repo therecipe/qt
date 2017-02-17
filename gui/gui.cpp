@@ -251,8 +251,11 @@ void PaintContext_SetPalette(void* ptr, void* vqp)
 class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout
 {
 public:
+	MyQAbstractTextDocumentLayout(QTextDocument *document) : QAbstractTextDocumentLayout(document) {};
 	void documentChanged(int position, int charsRemoved, int charsAdded) { callbackQAbstractTextDocumentLayout_DocumentChanged(this, position, charsRemoved, charsAdded); };
 	void Signal_DocumentSizeChanged(const QSizeF & newSize) { callbackQAbstractTextDocumentLayout_DocumentSizeChanged(this, const_cast<QSizeF*>(&newSize)); };
+	void draw(QPainter * painter, const PaintContext & context) { callbackQAbstractTextDocumentLayout_Draw(this, painter, const_cast<PaintContext*>(&context)); };
+	
 	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayout_PageCountChanged(this, newPages); };
 	
 	
@@ -281,6 +284,11 @@ void* QAbstractTextDocumentLayout_Format(void* ptr, int position)
 	return new QTextCharFormat(static_cast<QAbstractTextDocumentLayout*>(ptr)->format(position));
 }
 
+void* QAbstractTextDocumentLayout_NewQAbstractTextDocumentLayout(void* document)
+{
+	return new MyQAbstractTextDocumentLayout(static_cast<QTextDocument*>(document));
+}
+
 void QAbstractTextDocumentLayout_DocumentChanged(void* ptr, int position, int charsRemoved, int charsAdded)
 {
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->documentChanged(position, charsRemoved, charsAdded);
@@ -299,6 +307,21 @@ void QAbstractTextDocumentLayout_DisconnectDocumentSizeChanged(void* ptr)
 void QAbstractTextDocumentLayout_DocumentSizeChanged(void* ptr, void* newSize)
 {
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->documentSizeChanged(*static_cast<QSizeF*>(newSize));
+}
+
+void QAbstractTextDocumentLayout_Draw(void* ptr, void* painter, void* context)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->draw(static_cast<QPainter*>(painter), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(context));
+}
+
+void QAbstractTextDocumentLayout_DrawInlineObject(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->drawInlineObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), *static_cast<QTextInlineObject*>(object), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QAbstractTextDocumentLayout_DrawInlineObjectDefault(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)
+{
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::drawInlineObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), *static_cast<QTextInlineObject*>(object), posInDocument, *static_cast<QTextFormat*>(format));
 }
 
 void QAbstractTextDocumentLayout_ConnectPageCountChanged(void* ptr)
@@ -11569,8 +11592,24 @@ void* QPaintDeviceWindow_PaintEngineDefault(void* ptr)
 class MyQPaintEngine: public QPaintEngine
 {
 public:
+	MyQPaintEngine(PaintEngineFeatures caps) : QPaintEngine(caps) {};
 	bool end() { return callbackQPaintEngine_End(this) != 0; };
+	void drawEllipse(const QRectF & rect) { callbackQPaintEngine_DrawEllipse(this, const_cast<QRectF*>(&rect)); };
+	void drawImage(const QRectF & rectangle, const QImage & image, const QRectF & sr, Qt::ImageConversionFlags flags) { callbackQPaintEngine_DrawImage(this, const_cast<QRectF*>(&rectangle), const_cast<QImage*>(&image), const_cast<QRectF*>(&sr), flags); };
+	void drawPolygon(const QPointF * points, int pointCount, QPaintEngine::PolygonDrawMode mode) { callbackQPaintEngine_DrawPolygon(this, const_cast<QPointF*>(points), pointCount, mode); };
 	bool begin(QPaintDevice * pdev) { return callbackQPaintEngine_Begin(this, pdev) != 0; };
+	void drawEllipse(const QRect & rect) { callbackQPaintEngine_DrawEllipse2(this, const_cast<QRect*>(&rect)); };
+	void drawLines(const QLine * lines, int lineCount) { callbackQPaintEngine_DrawLines2(this, const_cast<QLine*>(lines), lineCount); };
+	void drawLines(const QLineF * lines, int lineCount) { callbackQPaintEngine_DrawLines(this, const_cast<QLineF*>(lines), lineCount); };
+	void drawPath(const QPainterPath & path) { callbackQPaintEngine_DrawPath(this, const_cast<QPainterPath*>(&path)); };
+	void drawPixmap(const QRectF & r, const QPixmap & pm, const QRectF & sr) { callbackQPaintEngine_DrawPixmap(this, const_cast<QRectF*>(&r), const_cast<QPixmap*>(&pm), const_cast<QRectF*>(&sr)); };
+	void drawPoints(const QPoint * points, int pointCount) { callbackQPaintEngine_DrawPoints2(this, const_cast<QPoint*>(points), pointCount); };
+	void drawPoints(const QPointF * points, int pointCount) { callbackQPaintEngine_DrawPoints(this, const_cast<QPointF*>(points), pointCount); };
+	void drawPolygon(const QPoint * points, int pointCount, QPaintEngine::PolygonDrawMode mode) { callbackQPaintEngine_DrawPolygon2(this, const_cast<QPoint*>(points), pointCount, mode); };
+	void drawRects(const QRect * rects, int rectCount) { callbackQPaintEngine_DrawRects2(this, const_cast<QRect*>(rects), rectCount); };
+	void drawRects(const QRectF * rects, int rectCount) { callbackQPaintEngine_DrawRects(this, const_cast<QRectF*>(rects), rectCount); };
+	void drawTextItem(const QPointF & p, const QTextItem & textItem) { callbackQPaintEngine_DrawTextItem(this, const_cast<QPointF*>(&p), const_cast<QTextItem*>(&textItem)); };
+	void drawTiledPixmap(const QRectF & rect, const QPixmap & pixmap, const QPointF & p) { callbackQPaintEngine_DrawTiledPixmap(this, const_cast<QRectF*>(&rect), const_cast<QPixmap*>(&pixmap), const_cast<QPointF*>(&p)); };
 	void updateState(const QPaintEngineState & state) { callbackQPaintEngine_UpdateState(this, const_cast<QPaintEngineState*>(&state)); };
 	 ~MyQPaintEngine() { callbackQPaintEngine_DestroyQPaintEngine(this); };
 	Type type() const { return static_cast<QPaintEngine::Type>(callbackQPaintEngine_Type(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -11579,6 +11618,41 @@ public:
 char QPaintEngine_End(void* ptr)
 {
 	return static_cast<QPaintEngine*>(ptr)->end();
+}
+
+void QPaintEngine_DrawEllipse(void* ptr, void* rect)
+{
+	static_cast<QPaintEngine*>(ptr)->drawEllipse(*static_cast<QRectF*>(rect));
+}
+
+void QPaintEngine_DrawEllipseDefault(void* ptr, void* rect)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawEllipse(*static_cast<QRectF*>(rect));
+}
+
+void QPaintEngine_DrawImage(void* ptr, void* rectangle, void* image, void* sr, long long flags)
+{
+	static_cast<QPaintEngine*>(ptr)->drawImage(*static_cast<QRectF*>(rectangle), *static_cast<QImage*>(image), *static_cast<QRectF*>(sr), static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPaintEngine_DrawImageDefault(void* ptr, void* rectangle, void* image, void* sr, long long flags)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawImage(*static_cast<QRectF*>(rectangle), *static_cast<QImage*>(image), *static_cast<QRectF*>(sr), static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPaintEngine_DrawPolygon(void* ptr, void* points, int pointCount, long long mode)
+{
+	static_cast<QPaintEngine*>(ptr)->drawPolygon(static_cast<QPointF*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
+}
+
+void QPaintEngine_DrawPolygonDefault(void* ptr, void* points, int pointCount, long long mode)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPolygon(static_cast<QPointF*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
+}
+
+void* QPaintEngine_NewQPaintEngine(long long caps)
+{
+	return new MyQPaintEngine(static_cast<QPaintEngine::PaintEngineFeature>(caps));
 }
 
 char QPaintEngine_Begin(void* ptr, void* pdev)
@@ -11590,6 +11664,121 @@ char QPaintEngine_Begin(void* ptr, void* pdev)
 	} else {
 		return static_cast<QPaintEngine*>(ptr)->begin(static_cast<QPaintDevice*>(pdev));
 	}
+}
+
+void QPaintEngine_DrawEllipse2(void* ptr, void* rect)
+{
+	static_cast<QPaintEngine*>(ptr)->drawEllipse(*static_cast<QRect*>(rect));
+}
+
+void QPaintEngine_DrawEllipse2Default(void* ptr, void* rect)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawEllipse(*static_cast<QRect*>(rect));
+}
+
+void QPaintEngine_DrawLines2(void* ptr, void* lines, int lineCount)
+{
+	static_cast<QPaintEngine*>(ptr)->drawLines(static_cast<QLine*>(lines), lineCount);
+}
+
+void QPaintEngine_DrawLines2Default(void* ptr, void* lines, int lineCount)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawLines(static_cast<QLine*>(lines), lineCount);
+}
+
+void QPaintEngine_DrawLines(void* ptr, void* lines, int lineCount)
+{
+	static_cast<QPaintEngine*>(ptr)->drawLines(static_cast<QLineF*>(lines), lineCount);
+}
+
+void QPaintEngine_DrawLinesDefault(void* ptr, void* lines, int lineCount)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawLines(static_cast<QLineF*>(lines), lineCount);
+}
+
+void QPaintEngine_DrawPath(void* ptr, void* path)
+{
+	static_cast<QPaintEngine*>(ptr)->drawPath(*static_cast<QPainterPath*>(path));
+}
+
+void QPaintEngine_DrawPathDefault(void* ptr, void* path)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPath(*static_cast<QPainterPath*>(path));
+}
+
+void QPaintEngine_DrawPixmap(void* ptr, void* r, void* pm, void* sr)
+{
+	static_cast<QPaintEngine*>(ptr)->drawPixmap(*static_cast<QRectF*>(r), *static_cast<QPixmap*>(pm), *static_cast<QRectF*>(sr));
+}
+
+void QPaintEngine_DrawPoints2(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPaintEngine*>(ptr)->drawPoints(static_cast<QPoint*>(points), pointCount);
+}
+
+void QPaintEngine_DrawPoints2Default(void* ptr, void* points, int pointCount)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPoints(static_cast<QPoint*>(points), pointCount);
+}
+
+void QPaintEngine_DrawPoints(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPaintEngine*>(ptr)->drawPoints(static_cast<QPointF*>(points), pointCount);
+}
+
+void QPaintEngine_DrawPointsDefault(void* ptr, void* points, int pointCount)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPoints(static_cast<QPointF*>(points), pointCount);
+}
+
+void QPaintEngine_DrawPolygon2(void* ptr, void* points, int pointCount, long long mode)
+{
+	static_cast<QPaintEngine*>(ptr)->drawPolygon(static_cast<QPoint*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
+}
+
+void QPaintEngine_DrawPolygon2Default(void* ptr, void* points, int pointCount, long long mode)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPolygon(static_cast<QPoint*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
+}
+
+void QPaintEngine_DrawRects2(void* ptr, void* rects, int rectCount)
+{
+	static_cast<QPaintEngine*>(ptr)->drawRects(static_cast<QRect*>(rects), rectCount);
+}
+
+void QPaintEngine_DrawRects2Default(void* ptr, void* rects, int rectCount)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawRects(static_cast<QRect*>(rects), rectCount);
+}
+
+void QPaintEngine_DrawRects(void* ptr, void* rects, int rectCount)
+{
+	static_cast<QPaintEngine*>(ptr)->drawRects(static_cast<QRectF*>(rects), rectCount);
+}
+
+void QPaintEngine_DrawRectsDefault(void* ptr, void* rects, int rectCount)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawRects(static_cast<QRectF*>(rects), rectCount);
+}
+
+void QPaintEngine_DrawTextItem(void* ptr, void* p, void* textItem)
+{
+	static_cast<QPaintEngine*>(ptr)->drawTextItem(*static_cast<QPointF*>(p), *static_cast<QTextItem*>(textItem));
+}
+
+void QPaintEngine_DrawTextItemDefault(void* ptr, void* p, void* textItem)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawTextItem(*static_cast<QPointF*>(p), *static_cast<QTextItem*>(textItem));
+}
+
+void QPaintEngine_DrawTiledPixmap(void* ptr, void* rect, void* pixmap, void* p)
+{
+	static_cast<QPaintEngine*>(ptr)->drawTiledPixmap(*static_cast<QRectF*>(rect), *static_cast<QPixmap*>(pixmap), *static_cast<QPointF*>(p));
+}
+
+void QPaintEngine_DrawTiledPixmapDefault(void* ptr, void* rect, void* pixmap, void* p)
+{
+		static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawTiledPixmap(*static_cast<QRectF*>(rect), *static_cast<QPixmap*>(pixmap), *static_cast<QPointF*>(p));
 }
 
 void QPaintEngine_SetActive(void* ptr, char state)
@@ -11845,6 +12034,11 @@ char QPainter_Begin(void* ptr, void* device)
 	}
 }
 
+void QPainter_DrawArc(void* ptr, void* rectangle, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawArc(*static_cast<QRectF*>(rectangle), startAngle, spanAngle);
+}
+
 void* QPainter_NewQPainter()
 {
 	return new QPainter();
@@ -11863,6 +12057,471 @@ char QPainter_End(void* ptr)
 void QPainter_BeginNativePainting(void* ptr)
 {
 	static_cast<QPainter*>(ptr)->beginNativePainting();
+}
+
+void QPainter_DrawArc2(void* ptr, void* rectangle, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawArc(*static_cast<QRect*>(rectangle), startAngle, spanAngle);
+}
+
+void QPainter_DrawArc3(void* ptr, int x, int y, int width, int height, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawArc(x, y, width, height, startAngle, spanAngle);
+}
+
+void QPainter_DrawChord3(void* ptr, void* rectangle, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawChord(*static_cast<QRect*>(rectangle), startAngle, spanAngle);
+}
+
+void QPainter_DrawChord(void* ptr, void* rectangle, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawChord(*static_cast<QRectF*>(rectangle), startAngle, spanAngle);
+}
+
+void QPainter_DrawChord2(void* ptr, int x, int y, int width, int height, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawChord(x, y, width, height, startAngle, spanAngle);
+}
+
+void QPainter_DrawConvexPolygon3(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPainter*>(ptr)->drawConvexPolygon(static_cast<QPoint*>(points), pointCount);
+}
+
+void QPainter_DrawConvexPolygon(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPainter*>(ptr)->drawConvexPolygon(static_cast<QPointF*>(points), pointCount);
+}
+
+void QPainter_DrawConvexPolygon4(void* ptr, void* polygon)
+{
+	static_cast<QPainter*>(ptr)->drawConvexPolygon(*static_cast<QPolygon*>(polygon));
+}
+
+void QPainter_DrawConvexPolygon2(void* ptr, void* polygon)
+{
+	static_cast<QPainter*>(ptr)->drawConvexPolygon(*static_cast<QPolygonF*>(polygon));
+}
+
+void QPainter_DrawEllipse5(void* ptr, void* center, int rx, int ry)
+{
+	static_cast<QPainter*>(ptr)->drawEllipse(*static_cast<QPoint*>(center), rx, ry);
+}
+
+void QPainter_DrawEllipse4(void* ptr, void* center, double rx, double ry)
+{
+	static_cast<QPainter*>(ptr)->drawEllipse(*static_cast<QPointF*>(center), rx, ry);
+}
+
+void QPainter_DrawEllipse2(void* ptr, void* rectangle)
+{
+	static_cast<QPainter*>(ptr)->drawEllipse(*static_cast<QRect*>(rectangle));
+}
+
+void QPainter_DrawEllipse(void* ptr, void* rectangle)
+{
+	static_cast<QPainter*>(ptr)->drawEllipse(*static_cast<QRectF*>(rectangle));
+}
+
+void QPainter_DrawEllipse3(void* ptr, int x, int y, int width, int height)
+{
+	static_cast<QPainter*>(ptr)->drawEllipse(x, y, width, height);
+}
+
+void QPainter_DrawGlyphRun(void* ptr, void* position, void* glyphs)
+{
+	static_cast<QPainter*>(ptr)->drawGlyphRun(*static_cast<QPointF*>(position), *static_cast<QGlyphRun*>(glyphs));
+}
+
+void QPainter_DrawImage8(void* ptr, void* point, void* image)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPoint*>(point), *static_cast<QImage*>(image));
+}
+
+void QPainter_DrawImage4(void* ptr, void* point, void* image, void* source, long long flags)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPoint*>(point), *static_cast<QImage*>(image), *static_cast<QRect*>(source), static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPainter_DrawImage7(void* ptr, void* point, void* image)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPointF*>(point), *static_cast<QImage*>(image));
+}
+
+void QPainter_DrawImage3(void* ptr, void* point, void* image, void* source, long long flags)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPointF*>(point), *static_cast<QImage*>(image), *static_cast<QRectF*>(source), static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPainter_DrawImage6(void* ptr, void* rectangle, void* image)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRect*>(rectangle), *static_cast<QImage*>(image));
+}
+
+void QPainter_DrawImage2(void* ptr, void* target, void* image, void* source, long long flags)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRect*>(target), *static_cast<QImage*>(image), *static_cast<QRect*>(source), static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPainter_DrawImage5(void* ptr, void* rectangle, void* image)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRectF*>(rectangle), *static_cast<QImage*>(image));
+}
+
+void QPainter_DrawImage(void* ptr, void* target, void* image, void* source, long long flags)
+{
+	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRectF*>(target), *static_cast<QImage*>(image), *static_cast<QRectF*>(source), static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPainter_DrawImage9(void* ptr, int x, int y, void* image, int sx, int sy, int sw, int sh, long long flags)
+{
+	static_cast<QPainter*>(ptr)->drawImage(x, y, *static_cast<QImage*>(image), sx, sy, sw, sh, static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPainter_DrawLine2(void* ptr, void* line)
+{
+	static_cast<QPainter*>(ptr)->drawLine(*static_cast<QLine*>(line));
+}
+
+void QPainter_DrawLine(void* ptr, void* line)
+{
+	static_cast<QPainter*>(ptr)->drawLine(*static_cast<QLineF*>(line));
+}
+
+void QPainter_DrawLine4(void* ptr, void* p1, void* p2)
+{
+	static_cast<QPainter*>(ptr)->drawLine(*static_cast<QPoint*>(p1), *static_cast<QPoint*>(p2));
+}
+
+void QPainter_DrawLine5(void* ptr, void* p1, void* p2)
+{
+	static_cast<QPainter*>(ptr)->drawLine(*static_cast<QPointF*>(p1), *static_cast<QPointF*>(p2));
+}
+
+void QPainter_DrawLine3(void* ptr, int x1, int y1, int x2, int y2)
+{
+	static_cast<QPainter*>(ptr)->drawLine(x1, y1, x2, y2);
+}
+
+void QPainter_DrawLines5(void* ptr, void* lines, int lineCount)
+{
+	static_cast<QPainter*>(ptr)->drawLines(static_cast<QLine*>(lines), lineCount);
+}
+
+void QPainter_DrawLines(void* ptr, void* lines, int lineCount)
+{
+	static_cast<QPainter*>(ptr)->drawLines(static_cast<QLineF*>(lines), lineCount);
+}
+
+void QPainter_DrawLines7(void* ptr, void* pointPairs, int lineCount)
+{
+	static_cast<QPainter*>(ptr)->drawLines(static_cast<QPoint*>(pointPairs), lineCount);
+}
+
+void QPainter_DrawLines3(void* ptr, void* pointPairs, int lineCount)
+{
+	static_cast<QPainter*>(ptr)->drawLines(static_cast<QPointF*>(pointPairs), lineCount);
+}
+
+void QPainter_DrawLines6(void* ptr, void* lines)
+{
+	static_cast<QPainter*>(ptr)->drawLines(*static_cast<QVector<QLine>*>(lines));
+}
+
+void QPainter_DrawLines2(void* ptr, void* lines)
+{
+	static_cast<QPainter*>(ptr)->drawLines(*static_cast<QVector<QLineF>*>(lines));
+}
+
+void QPainter_DrawLines8(void* ptr, void* pointPairs)
+{
+	static_cast<QPainter*>(ptr)->drawLines(*static_cast<QVector<QPoint>*>(pointPairs));
+}
+
+void QPainter_DrawLines4(void* ptr, void* pointPairs)
+{
+	static_cast<QPainter*>(ptr)->drawLines(*static_cast<QVector<QPointF>*>(pointPairs));
+}
+
+void QPainter_DrawPath(void* ptr, void* path)
+{
+	static_cast<QPainter*>(ptr)->drawPath(*static_cast<QPainterPath*>(path));
+}
+
+void QPainter_DrawPicture3(void* ptr, void* point, void* picture)
+{
+	static_cast<QPainter*>(ptr)->drawPicture(*static_cast<QPoint*>(point), *static_cast<QPicture*>(picture));
+}
+
+void QPainter_DrawPicture(void* ptr, void* point, void* picture)
+{
+	static_cast<QPainter*>(ptr)->drawPicture(*static_cast<QPointF*>(point), *static_cast<QPicture*>(picture));
+}
+
+void QPainter_DrawPicture2(void* ptr, int x, int y, void* picture)
+{
+	static_cast<QPainter*>(ptr)->drawPicture(x, y, *static_cast<QPicture*>(picture));
+}
+
+void QPainter_DrawPie3(void* ptr, void* rectangle, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawPie(*static_cast<QRect*>(rectangle), startAngle, spanAngle);
+}
+
+void QPainter_DrawPie(void* ptr, void* rectangle, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawPie(*static_cast<QRectF*>(rectangle), startAngle, spanAngle);
+}
+
+void QPainter_DrawPie2(void* ptr, int x, int y, int width, int height, int startAngle, int spanAngle)
+{
+	static_cast<QPainter*>(ptr)->drawPie(x, y, width, height, startAngle, spanAngle);
+}
+
+void QPainter_DrawPixmap8(void* ptr, void* point, void* pixmap)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPoint*>(point), *static_cast<QPixmap*>(pixmap));
+}
+
+void QPainter_DrawPixmap6(void* ptr, void* point, void* pixmap, void* source)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPoint*>(point), *static_cast<QPixmap*>(pixmap), *static_cast<QRect*>(source));
+}
+
+void QPainter_DrawPixmap7(void* ptr, void* point, void* pixmap)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPointF*>(point), *static_cast<QPixmap*>(pixmap));
+}
+
+void QPainter_DrawPixmap5(void* ptr, void* point, void* pixmap, void* source)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPointF*>(point), *static_cast<QPixmap*>(pixmap), *static_cast<QRectF*>(source));
+}
+
+void QPainter_DrawPixmap10(void* ptr, void* rectangle, void* pixmap)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QRect*>(rectangle), *static_cast<QPixmap*>(pixmap));
+}
+
+void QPainter_DrawPixmap2(void* ptr, void* target, void* pixmap, void* source)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QRect*>(target), *static_cast<QPixmap*>(pixmap), *static_cast<QRect*>(source));
+}
+
+void QPainter_DrawPixmap(void* ptr, void* target, void* pixmap, void* source)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QRectF*>(target), *static_cast<QPixmap*>(pixmap), *static_cast<QRectF*>(source));
+}
+
+void QPainter_DrawPixmap9(void* ptr, int x, int y, void* pixmap)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(x, y, *static_cast<QPixmap*>(pixmap));
+}
+
+void QPainter_DrawPixmap4(void* ptr, int x, int y, void* pixmap, int sx, int sy, int sw, int sh)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(x, y, *static_cast<QPixmap*>(pixmap), sx, sy, sw, sh);
+}
+
+void QPainter_DrawPixmap3(void* ptr, int x, int y, int w, int h, void* pixmap, int sx, int sy, int sw, int sh)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(x, y, w, h, *static_cast<QPixmap*>(pixmap), sx, sy, sw, sh);
+}
+
+void QPainter_DrawPixmap11(void* ptr, int x, int y, int width, int height, void* pixmap)
+{
+	static_cast<QPainter*>(ptr)->drawPixmap(x, y, width, height, *static_cast<QPixmap*>(pixmap));
+}
+
+void QPainter_DrawPoint2(void* ptr, void* position)
+{
+	static_cast<QPainter*>(ptr)->drawPoint(*static_cast<QPoint*>(position));
+}
+
+void QPainter_DrawPoint(void* ptr, void* position)
+{
+	static_cast<QPainter*>(ptr)->drawPoint(*static_cast<QPointF*>(position));
+}
+
+void QPainter_DrawPoint3(void* ptr, int x, int y)
+{
+	static_cast<QPainter*>(ptr)->drawPoint(x, y);
+}
+
+void QPainter_DrawPoints3(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPainter*>(ptr)->drawPoints(static_cast<QPoint*>(points), pointCount);
+}
+
+void QPainter_DrawPoints(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPainter*>(ptr)->drawPoints(static_cast<QPointF*>(points), pointCount);
+}
+
+void QPainter_DrawPoints4(void* ptr, void* points)
+{
+	static_cast<QPainter*>(ptr)->drawPoints(*static_cast<QPolygon*>(points));
+}
+
+void QPainter_DrawPoints2(void* ptr, void* points)
+{
+	static_cast<QPainter*>(ptr)->drawPoints(*static_cast<QPolygonF*>(points));
+}
+
+void QPainter_DrawPolygon3(void* ptr, void* points, int pointCount, long long fillRule)
+{
+	static_cast<QPainter*>(ptr)->drawPolygon(static_cast<QPoint*>(points), pointCount, static_cast<Qt::FillRule>(fillRule));
+}
+
+void QPainter_DrawPolygon(void* ptr, void* points, int pointCount, long long fillRule)
+{
+	static_cast<QPainter*>(ptr)->drawPolygon(static_cast<QPointF*>(points), pointCount, static_cast<Qt::FillRule>(fillRule));
+}
+
+void QPainter_DrawPolygon4(void* ptr, void* points, long long fillRule)
+{
+	static_cast<QPainter*>(ptr)->drawPolygon(*static_cast<QPolygon*>(points), static_cast<Qt::FillRule>(fillRule));
+}
+
+void QPainter_DrawPolygon2(void* ptr, void* points, long long fillRule)
+{
+	static_cast<QPainter*>(ptr)->drawPolygon(*static_cast<QPolygonF*>(points), static_cast<Qt::FillRule>(fillRule));
+}
+
+void QPainter_DrawPolyline3(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPainter*>(ptr)->drawPolyline(static_cast<QPoint*>(points), pointCount);
+}
+
+void QPainter_DrawPolyline(void* ptr, void* points, int pointCount)
+{
+	static_cast<QPainter*>(ptr)->drawPolyline(static_cast<QPointF*>(points), pointCount);
+}
+
+void QPainter_DrawPolyline4(void* ptr, void* points)
+{
+	static_cast<QPainter*>(ptr)->drawPolyline(*static_cast<QPolygon*>(points));
+}
+
+void QPainter_DrawPolyline2(void* ptr, void* points)
+{
+	static_cast<QPainter*>(ptr)->drawPolyline(*static_cast<QPolygonF*>(points));
+}
+
+void QPainter_DrawRect3(void* ptr, void* rectangle)
+{
+	static_cast<QPainter*>(ptr)->drawRect(*static_cast<QRect*>(rectangle));
+}
+
+void QPainter_DrawRect(void* ptr, void* rectangle)
+{
+	static_cast<QPainter*>(ptr)->drawRect(*static_cast<QRectF*>(rectangle));
+}
+
+void QPainter_DrawRect2(void* ptr, int x, int y, int width, int height)
+{
+	static_cast<QPainter*>(ptr)->drawRect(x, y, width, height);
+}
+
+void QPainter_DrawRects3(void* ptr, void* rectangles, int rectCount)
+{
+	static_cast<QPainter*>(ptr)->drawRects(static_cast<QRect*>(rectangles), rectCount);
+}
+
+void QPainter_DrawRects(void* ptr, void* rectangles, int rectCount)
+{
+	static_cast<QPainter*>(ptr)->drawRects(static_cast<QRectF*>(rectangles), rectCount);
+}
+
+void QPainter_DrawRects4(void* ptr, void* rectangles)
+{
+	static_cast<QPainter*>(ptr)->drawRects(*static_cast<QVector<QRect>*>(rectangles));
+}
+
+void QPainter_DrawRects2(void* ptr, void* rectangles)
+{
+	static_cast<QPainter*>(ptr)->drawRects(*static_cast<QVector<QRectF>*>(rectangles));
+}
+
+void QPainter_DrawRoundedRect3(void* ptr, void* rect, double xRadius, double yRadius, long long mode)
+{
+	static_cast<QPainter*>(ptr)->drawRoundedRect(*static_cast<QRect*>(rect), xRadius, yRadius, static_cast<Qt::SizeMode>(mode));
+}
+
+void QPainter_DrawRoundedRect(void* ptr, void* rect, double xRadius, double yRadius, long long mode)
+{
+	static_cast<QPainter*>(ptr)->drawRoundedRect(*static_cast<QRectF*>(rect), xRadius, yRadius, static_cast<Qt::SizeMode>(mode));
+}
+
+void QPainter_DrawRoundedRect2(void* ptr, int x, int y, int w, int h, double xRadius, double yRadius, long long mode)
+{
+	static_cast<QPainter*>(ptr)->drawRoundedRect(x, y, w, h, xRadius, yRadius, static_cast<Qt::SizeMode>(mode));
+}
+
+void QPainter_DrawStaticText2(void* ptr, void* topLeftPosition, void* staticText)
+{
+	static_cast<QPainter*>(ptr)->drawStaticText(*static_cast<QPoint*>(topLeftPosition), *static_cast<QStaticText*>(staticText));
+}
+
+void QPainter_DrawStaticText(void* ptr, void* topLeftPosition, void* staticText)
+{
+	static_cast<QPainter*>(ptr)->drawStaticText(*static_cast<QPointF*>(topLeftPosition), *static_cast<QStaticText*>(staticText));
+}
+
+void QPainter_DrawStaticText3(void* ptr, int left, int top, void* staticText)
+{
+	static_cast<QPainter*>(ptr)->drawStaticText(left, top, *static_cast<QStaticText*>(staticText));
+}
+
+void QPainter_DrawText2(void* ptr, void* position, char* text)
+{
+	static_cast<QPainter*>(ptr)->drawText(*static_cast<QPoint*>(position), QString(text));
+}
+
+void QPainter_DrawText(void* ptr, void* position, char* text)
+{
+	static_cast<QPainter*>(ptr)->drawText(*static_cast<QPointF*>(position), QString(text));
+}
+
+void QPainter_DrawText6(void* ptr, void* rectangle, int flags, char* text, void* boundingRect)
+{
+	static_cast<QPainter*>(ptr)->drawText(*static_cast<QRect*>(rectangle), flags, QString(text), static_cast<QRect*>(boundingRect));
+}
+
+void QPainter_DrawText8(void* ptr, void* rectangle, char* text, void* option)
+{
+	static_cast<QPainter*>(ptr)->drawText(*static_cast<QRectF*>(rectangle), QString(text), *static_cast<QTextOption*>(option));
+}
+
+void QPainter_DrawText5(void* ptr, void* rectangle, int flags, char* text, void* boundingRect)
+{
+	static_cast<QPainter*>(ptr)->drawText(*static_cast<QRectF*>(rectangle), flags, QString(text), static_cast<QRectF*>(boundingRect));
+}
+
+void QPainter_DrawText3(void* ptr, int x, int y, char* text)
+{
+	static_cast<QPainter*>(ptr)->drawText(x, y, QString(text));
+}
+
+void QPainter_DrawText7(void* ptr, int x, int y, int width, int height, int flags, char* text, void* boundingRect)
+{
+	static_cast<QPainter*>(ptr)->drawText(x, y, width, height, flags, QString(text), static_cast<QRect*>(boundingRect));
+}
+
+void QPainter_DrawTiledPixmap3(void* ptr, void* rectangle, void* pixmap, void* position)
+{
+	static_cast<QPainter*>(ptr)->drawTiledPixmap(*static_cast<QRect*>(rectangle), *static_cast<QPixmap*>(pixmap), *static_cast<QPoint*>(position));
+}
+
+void QPainter_DrawTiledPixmap(void* ptr, void* rectangle, void* pixmap, void* position)
+{
+	static_cast<QPainter*>(ptr)->drawTiledPixmap(*static_cast<QRectF*>(rectangle), *static_cast<QPixmap*>(pixmap), *static_cast<QPointF*>(position));
+}
+
+void QPainter_DrawTiledPixmap2(void* ptr, int x, int y, int width, int height, void* pixmap, int sx, int sy)
+{
+	static_cast<QPainter*>(ptr)->drawTiledPixmap(x, y, width, height, *static_cast<QPixmap*>(pixmap), sx, sy);
 }
 
 void QPainter_EndNativePainting(void* ptr)
@@ -12293,6 +12952,96 @@ void* QPainter_WorldTransform(void* ptr)
 double QPainter_Opacity(void* ptr)
 {
 	return static_cast<QPainter*>(ptr)->opacity();
+}
+
+void* QPainter___drawLines_lines_atList6(void* ptr, int i)
+{
+	return ({ QLine tmpValue = static_cast<QVector<QLine>*>(ptr)->at(i); new QLine(tmpValue.p1(), tmpValue.p2()); });
+}
+
+void QPainter___drawLines_lines_setList6(void* ptr, void* i)
+{
+	static_cast<QVector<QLine>*>(ptr)->append(*static_cast<QLine*>(i));
+}
+
+void* QPainter___drawLines_lines_newList6(void* ptr)
+{
+	return new QVector<QLine>;
+}
+
+void* QPainter___drawLines_lines_atList2(void* ptr, int i)
+{
+	return ({ QLineF tmpValue = static_cast<QVector<QLineF>*>(ptr)->at(i); new QLineF(tmpValue.p1(), tmpValue.p2()); });
+}
+
+void QPainter___drawLines_lines_setList2(void* ptr, void* i)
+{
+	static_cast<QVector<QLineF>*>(ptr)->append(*static_cast<QLineF*>(i));
+}
+
+void* QPainter___drawLines_lines_newList2(void* ptr)
+{
+	return new QVector<QLineF>;
+}
+
+void* QPainter___drawLines_pointPairs_atList8(void* ptr, int i)
+{
+	return ({ QPoint tmpValue = static_cast<QVector<QPoint>*>(ptr)->at(i); new QPoint(tmpValue.x(), tmpValue.y()); });
+}
+
+void QPainter___drawLines_pointPairs_setList8(void* ptr, void* i)
+{
+	static_cast<QVector<QPoint>*>(ptr)->append(*static_cast<QPoint*>(i));
+}
+
+void* QPainter___drawLines_pointPairs_newList8(void* ptr)
+{
+	return new QVector<QPoint>;
+}
+
+void* QPainter___drawLines_pointPairs_atList4(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QPainter___drawLines_pointPairs_setList4(void* ptr, void* i)
+{
+	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QPainter___drawLines_pointPairs_newList4(void* ptr)
+{
+	return new QVector<QPointF>;
+}
+
+void* QPainter___drawRects_rectangles_atList4(void* ptr, int i)
+{
+	return ({ QRect tmpValue = static_cast<QVector<QRect>*>(ptr)->at(i); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void QPainter___drawRects_rectangles_setList4(void* ptr, void* i)
+{
+	static_cast<QVector<QRect>*>(ptr)->append(*static_cast<QRect*>(i));
+}
+
+void* QPainter___drawRects_rectangles_newList4(void* ptr)
+{
+	return new QVector<QRect>;
+}
+
+void* QPainter___drawRects_rectangles_atList2(void* ptr, int i)
+{
+	return ({ QRectF tmpValue = static_cast<QVector<QRectF>*>(ptr)->at(i); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void QPainter___drawRects_rectangles_setList2(void* ptr, void* i)
+{
+	static_cast<QVector<QRectF>*>(ptr)->append(*static_cast<QRectF*>(i));
+}
+
+void* QPainter___drawRects_rectangles_newList2(void* ptr)
+{
+	return new QVector<QRectF>;
 }
 
 void* QPainterPath_NewQPainterPath3(void* path)
@@ -20916,6 +21665,11 @@ void QTextDocument_DocumentLayoutChanged(void* ptr)
 	static_cast<QTextDocument*>(ptr)->documentLayoutChanged();
 }
 
+void QTextDocument_DrawContents(void* ptr, void* p, void* rect)
+{
+	static_cast<QTextDocument*>(ptr)->drawContents(static_cast<QPainter*>(p), *static_cast<QRectF*>(rect));
+}
+
 void QTextDocument_MarkContentsDirty(void* ptr, int position, int length)
 {
 	static_cast<QTextDocument*>(ptr)->markContentsDirty(position, length);
@@ -22619,6 +23373,16 @@ double QTextLayout_MinimumWidth(void* ptr)
 	return static_cast<QTextLayout*>(ptr)->minimumWidth();
 }
 
+void QTextLayout_DrawCursor2(void* ptr, void* painter, void* position, int cursorPosition)
+{
+	static_cast<QTextLayout*>(ptr)->drawCursor(static_cast<QPainter*>(painter), *static_cast<QPointF*>(position), cursorPosition);
+}
+
+void QTextLayout_DrawCursor(void* ptr, void* painter, void* position, int cursorPosition, int width)
+{
+	static_cast<QTextLayout*>(ptr)->drawCursor(static_cast<QPainter*>(painter), *static_cast<QPointF*>(position), cursorPosition, width);
+}
+
 void* QTextLayout___glyphRuns_atList(void* ptr, int i)
 {
 	return new QGlyphRun(static_cast<QList<QGlyphRun>*>(ptr)->at(i));
@@ -23274,12 +24038,18 @@ class MyQTextObjectInterface: public QTextObjectInterface
 {
 public:
 	QSizeF intrinsicSize(QTextDocument * doc, int posInDocument, const QTextFormat & format) { return *static_cast<QSizeF*>(callbackQTextObjectInterface_IntrinsicSize(this, doc, posInDocument, const_cast<QTextFormat*>(&format))); };
+	void drawObject(QPainter * painter, const QRectF & rect, QTextDocument * doc, int posInDocument, const QTextFormat & format) { callbackQTextObjectInterface_DrawObject(this, painter, const_cast<QRectF*>(&rect), doc, posInDocument, const_cast<QTextFormat*>(&format)); };
 	 ~MyQTextObjectInterface() { callbackQTextObjectInterface_DestroyQTextObjectInterface(this); };
 };
 
 void* QTextObjectInterface_IntrinsicSize(void* ptr, void* doc, int posInDocument, void* format)
 {
 	return ({ QSizeF tmpValue = static_cast<QTextObjectInterface*>(ptr)->intrinsicSize(static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format)); new QSizeF(tmpValue.width(), tmpValue.height()); });
+}
+
+void QTextObjectInterface_DrawObject(void* ptr, void* painter, void* rect, void* doc, int posInDocument, void* format)
+{
+	static_cast<QTextObjectInterface*>(ptr)->drawObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format));
 }
 
 void QTextObjectInterface_DestroyQTextObjectInterface(void* ptr)

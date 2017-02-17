@@ -51,7 +51,7 @@ func test(buildTarget string) {
 			//"grpc": []string{"hello_world","hello_world2"},
 
 			"qml": []string{"application", "drawer_nav_x", "gallery", "material",
-				"prop", "prop2"},
+				"prop", "prop2", "webview"},
 
 			"quick": []string{"bridge", "bridge2", "calc", "dialog", "dynamic",
 				"hotreload", "listview", "sailfish", "tableview", "translate", "view"},

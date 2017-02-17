@@ -23,6 +23,8 @@
 #include <QObject>
 #include <QPainter>
 #include <QPersistentModelIndex>
+#include <QPixmap>
+#include <QRect>
 #include <QSize>
 #include <QSqlDatabase>
 #include <QSqlDriver>
@@ -2559,6 +2561,10 @@ public:
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQSqlRelationalDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQSqlRelationalDelegate_EventFilter(this, editor, event) != 0; };
 	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlRelationalDelegate_SizeHint(const_cast<void*>(static_cast<const void*>(this)), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	void drawCheck(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, Qt::CheckState state) const { callbackQSqlRelationalDelegate_DrawCheck(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), state); };
+	void drawDecoration(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QPixmap & pixmap) const { callbackQSqlRelationalDelegate_DrawDecoration(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), const_cast<QPixmap*>(&pixmap)); };
+	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtSql_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSqlRelationalDelegate_DrawDisplay(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), textPacked); };
+	void drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const { callbackQSqlRelationalDelegate_DrawFocus(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect)); };
 	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQSqlRelationalDelegate_Paint(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetEditorData(const_cast<void*>(static_cast<const void*>(this)), editor, const_cast<QModelIndex*>(&index)); };
 	void updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQSqlRelationalDelegate_UpdateEditorGeometry(const_cast<void*>(static_cast<const void*>(this)), editor, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
@@ -2687,6 +2693,26 @@ char QSqlRelationalDelegate_EventFilterDefault(void* ptr, void* editor, void* ev
 void* QSqlRelationalDelegate_SizeHintDefault(void* ptr, void* option, void* index)
 {
 		return ({ QSize tmpValue = static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void QSqlRelationalDelegate_DrawCheckDefault(void* ptr, void* painter, void* option, void* rect, long long state)
+{
+		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
+}
+
+void QSqlRelationalDelegate_DrawDecorationDefault(void* ptr, void* painter, void* option, void* rect, void* pixmap)
+{
+		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
+}
+
+void QSqlRelationalDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, char* text)
+{
+		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+}
+
+void QSqlRelationalDelegate_DrawFocusDefault(void* ptr, void* painter, void* option, void* rect)
+{
+		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
 }
 
 void QSqlRelationalDelegate_PaintDefault(void* ptr, void* painter, void* option, void* index)

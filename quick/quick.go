@@ -10780,6 +10780,13 @@ func (ptr *QSGGeometry) VertexCount() int {
 	return 0
 }
 
+func (ptr *QSGGeometry) DrawingMode() uint {
+	if ptr.Pointer() != nil {
+		return uint(uint32(C.QSGGeometry_DrawingMode(ptr.Pointer())))
+	}
+	return 0
+}
+
 type QSGGeometryNode struct {
 	QSGBasicGeometryNode
 }

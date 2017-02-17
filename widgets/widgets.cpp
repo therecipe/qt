@@ -17,6 +17,7 @@
 #include <QAbstractSlider>
 #include <QAbstractSpinBox>
 #include <QAbstractState>
+#include <QAbstractTextDocumentLayout>
 #include <QAccessible>
 #include <QAccessibleInterface>
 #include <QAccessibleWidget>
@@ -8565,10 +8566,15 @@ public:
 	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQCommonStyle_LayoutSpacing(const_cast<void*>(static_cast<const void*>(this)), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int pixelMetric(QStyle::PixelMetric m, const QStyleOption * opt, const QWidget * widget) const { return callbackQCommonStyle_PixelMetric(const_cast<void*>(static_cast<const void*>(this)), m, const_cast<QStyleOption*>(opt), const_cast<QWidget*>(widget)); };
 	int styleHint(QStyle::StyleHint sh, const QStyleOption * opt, const QWidget * widget, QStyleHintReturn * hret) const { return callbackQCommonStyle_StyleHint(const_cast<void*>(static_cast<const void*>(this)), sh, const_cast<QStyleOption*>(opt), const_cast<QWidget*>(widget), hret); };
+	void drawComplexControl(QStyle::ComplexControl cc, const QStyleOptionComplex * opt, QPainter * p, const QWidget * widget) const { callbackQCommonStyle_DrawComplexControl(const_cast<void*>(static_cast<const void*>(this)), cc, const_cast<QStyleOptionComplex*>(opt), p, const_cast<QWidget*>(widget)); };
+	void drawControl(QStyle::ControlElement element, const QStyleOption * opt, QPainter * p, const QWidget * widget) const { callbackQCommonStyle_DrawControl(const_cast<void*>(static_cast<const void*>(this)), element, const_cast<QStyleOption*>(opt), p, const_cast<QWidget*>(widget)); };
+	void drawPrimitive(QStyle::PrimitiveElement pe, const QStyleOption * opt, QPainter * p, const QWidget * widget) const { callbackQCommonStyle_DrawPrimitive(const_cast<void*>(static_cast<const void*>(this)), pe, const_cast<QStyleOption*>(opt), p, const_cast<QWidget*>(widget)); };
 	QIcon standardIcon(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QIcon*>(callbackQCommonStyle_StandardIcon(const_cast<void*>(static_cast<const void*>(this)), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
 	QPalette standardPalette() const { return *static_cast<QPalette*>(callbackQStyle_StandardPalette(const_cast<void*>(static_cast<const void*>(this)))); };
 	QRect itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQStyle_ItemPixmapRect(const_cast<void*>(static_cast<const void*>(this)), const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap))); };
 	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QRect*>(callbackQStyle_ItemTextRect(const_cast<void*>(static_cast<const void*>(this)), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, textPacked)); };
+	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQStyle_DrawItemPixmap(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap)); };
+	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQStyle_DrawItemText(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, textPacked, textRole); };
 	bool event(QEvent * e) { return callbackQStyle_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStyle_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQStyle_ChildEvent(this, event); };
@@ -8715,6 +8721,48 @@ int QCommonStyle_StyleHintDefault(void* ptr, long long sh, void* opt, void* widg
 		return static_cast<QProxyStyle*>(ptr)->QProxyStyle::styleHint(static_cast<QStyle::StyleHint>(sh), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget), static_cast<QStyleHintReturn*>(hret));
 	} else {
 		return static_cast<QCommonStyle*>(ptr)->QCommonStyle::styleHint(static_cast<QStyle::StyleHint>(sh), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget), static_cast<QStyleHintReturn*>(hret));
+	}
+}
+
+void QCommonStyle_DrawComplexControl(void* ptr, long long cc, void* opt, void* p, void* widget)
+{
+		static_cast<QCommonStyle*>(ptr)->drawComplexControl(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+}
+
+void QCommonStyle_DrawComplexControlDefault(void* ptr, long long cc, void* opt, void* p, void* widget)
+{
+	if (dynamic_cast<QProxyStyle*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawComplexControl(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+	} else {
+		static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawComplexControl(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+	}
+}
+
+void QCommonStyle_DrawControl(void* ptr, long long element, void* opt, void* p, void* widget)
+{
+		static_cast<QCommonStyle*>(ptr)->drawControl(static_cast<QStyle::ControlElement>(element), static_cast<QStyleOption*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+}
+
+void QCommonStyle_DrawControlDefault(void* ptr, long long element, void* opt, void* p, void* widget)
+{
+	if (dynamic_cast<QProxyStyle*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawControl(static_cast<QStyle::ControlElement>(element), static_cast<QStyleOption*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+	} else {
+		static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawControl(static_cast<QStyle::ControlElement>(element), static_cast<QStyleOption*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+	}
+}
+
+void QCommonStyle_DrawPrimitive(void* ptr, long long pe, void* opt, void* p, void* widget)
+{
+		static_cast<QCommonStyle*>(ptr)->drawPrimitive(static_cast<QStyle::PrimitiveElement>(pe), static_cast<QStyleOption*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+}
+
+void QCommonStyle_DrawPrimitiveDefault(void* ptr, long long pe, void* opt, void* p, void* widget)
+{
+	if (dynamic_cast<QProxyStyle*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawPrimitive(static_cast<QStyle::PrimitiveElement>(pe), static_cast<QStyleOption*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
+	} else {
+		static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawPrimitive(static_cast<QStyle::PrimitiveElement>(pe), static_cast<QStyleOption*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
 	}
 }
 
@@ -15196,6 +15244,7 @@ public:
 	void Signal_BlurRadiusChanged(qreal radius) { callbackQGraphicsBlurEffect_BlurRadiusChanged(this, radius); };
 	void setBlurHints(QGraphicsBlurEffect::BlurHints hints) { callbackQGraphicsBlurEffect_SetBlurHints(this, hints); };
 	void setBlurRadius(qreal blurRadius) { callbackQGraphicsBlurEffect_SetBlurRadius(this, blurRadius); };
+	void draw(QPainter * painter) { callbackQGraphicsBlurEffect_Draw(this, painter); };
 	QRectF boundingRectFor(const QRectF & rect) const { return *static_cast<QRectF*>(callbackQGraphicsEffect_BoundingRectFor(const_cast<void*>(static_cast<const void*>(this)), const_cast<QRectF*>(&rect))); };
 	void Signal_EnabledChanged(bool enabled) { callbackQGraphicsEffect_EnabledChanged(this, enabled); };
 	void setEnabled(bool enable) { callbackQGraphicsEffect_SetEnabled(this, enable); };
@@ -15279,6 +15328,16 @@ void* QGraphicsBlurEffect_NewQGraphicsBlurEffect(void* parent)
 	return new MyQGraphicsBlurEffect(static_cast<QObject*>(parent));
 }
 
+void QGraphicsBlurEffect_Draw(void* ptr, void* painter)
+{
+	static_cast<QGraphicsBlurEffect*>(ptr)->draw(static_cast<QPainter*>(painter));
+}
+
+void QGraphicsBlurEffect_DrawDefault(void* ptr, void* painter)
+{
+		static_cast<QGraphicsBlurEffect*>(ptr)->QGraphicsBlurEffect::draw(static_cast<QPainter*>(painter));
+}
+
 void QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(void* ptr)
 {
 	static_cast<QGraphicsBlurEffect*>(ptr)->~QGraphicsBlurEffect();
@@ -15289,6 +15348,7 @@ class MyQGraphicsColorizeEffect: public QGraphicsColorizeEffect
 public:
 	MyQGraphicsColorizeEffect(QObject *parent) : QGraphicsColorizeEffect(parent) {};
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsColorizeEffect_ColorChanged(this, const_cast<QColor*>(&color)); };
+	void draw(QPainter * painter) { callbackQGraphicsColorizeEffect_Draw(this, painter); };
 	void setColor(const QColor & c) { callbackQGraphicsColorizeEffect_SetColor(this, const_cast<QColor*>(&c)); };
 	void setStrength(qreal strength) { callbackQGraphicsColorizeEffect_SetStrength(this, strength); };
 	void Signal_StrengthChanged(qreal strength) { callbackQGraphicsColorizeEffect_StrengthChanged(this, strength); };
@@ -15328,6 +15388,16 @@ void QGraphicsColorizeEffect_DisconnectColorChanged(void* ptr)
 void QGraphicsColorizeEffect_ColorChanged(void* ptr, void* color)
 {
 	static_cast<QGraphicsColorizeEffect*>(ptr)->colorChanged(*static_cast<QColor*>(color));
+}
+
+void QGraphicsColorizeEffect_Draw(void* ptr, void* painter)
+{
+	static_cast<QGraphicsColorizeEffect*>(ptr)->draw(static_cast<QPainter*>(painter));
+}
+
+void QGraphicsColorizeEffect_DrawDefault(void* ptr, void* painter)
+{
+		static_cast<QGraphicsColorizeEffect*>(ptr)->QGraphicsColorizeEffect::draw(static_cast<QPainter*>(painter));
 }
 
 void QGraphicsColorizeEffect_SetColor(void* ptr, void* c)
@@ -15386,6 +15456,7 @@ public:
 	MyQGraphicsDropShadowEffect(QObject *parent) : QGraphicsDropShadowEffect(parent) {};
 	void Signal_BlurRadiusChanged(qreal blurRadius) { callbackQGraphicsDropShadowEffect_BlurRadiusChanged(this, blurRadius); };
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsDropShadowEffect_ColorChanged(this, const_cast<QColor*>(&color)); };
+	void draw(QPainter * painter) { callbackQGraphicsDropShadowEffect_Draw(this, painter); };
 	void Signal_OffsetChanged(const QPointF & offset) { callbackQGraphicsDropShadowEffect_OffsetChanged(this, const_cast<QPointF*>(&offset)); };
 	void setBlurRadius(qreal blurRadius) { callbackQGraphicsDropShadowEffect_SetBlurRadius(this, blurRadius); };
 	void setColor(const QColor & color) { callbackQGraphicsDropShadowEffect_SetColor(this, const_cast<QColor*>(&color)); };
@@ -15445,6 +15516,16 @@ void QGraphicsDropShadowEffect_DisconnectColorChanged(void* ptr)
 void QGraphicsDropShadowEffect_ColorChanged(void* ptr, void* color)
 {
 	static_cast<QGraphicsDropShadowEffect*>(ptr)->colorChanged(*static_cast<QColor*>(color));
+}
+
+void QGraphicsDropShadowEffect_Draw(void* ptr, void* painter)
+{
+	static_cast<QGraphicsDropShadowEffect*>(ptr)->draw(static_cast<QPainter*>(painter));
+}
+
+void QGraphicsDropShadowEffect_DrawDefault(void* ptr, void* painter)
+{
+		static_cast<QGraphicsDropShadowEffect*>(ptr)->QGraphicsDropShadowEffect::draw(static_cast<QPainter*>(painter));
 }
 
 void QGraphicsDropShadowEffect_ConnectOffsetChanged(void* ptr)
@@ -15565,8 +15646,10 @@ double QGraphicsDropShadowEffect_YOffset(void* ptr)
 class MyQGraphicsEffect: public QGraphicsEffect
 {
 public:
+	MyQGraphicsEffect(QObject *parent) : QGraphicsEffect(parent) {};
 	void Signal_EnabledChanged(bool enabled) { callbackQGraphicsEffect_EnabledChanged(this, enabled); };
 	void setEnabled(bool enable) { callbackQGraphicsEffect_SetEnabled(this, enable); };
+	void draw(QPainter * painter) { callbackQGraphicsEffect_Draw(this, painter); };
 	void sourceChanged(QGraphicsEffect::ChangeFlags flags) { callbackQGraphicsEffect_SourceChanged(this, flags); };
 	void update() { callbackQGraphicsEffect_Update(this); };
 	 ~MyQGraphicsEffect() { callbackQGraphicsEffect_DestroyQGraphicsEffect(this); };
@@ -15617,6 +15700,21 @@ void QGraphicsEffect_SetEnabledDefault(void* ptr, char enable)
 	} else {
 		static_cast<QGraphicsEffect*>(ptr)->QGraphicsEffect::setEnabled(enable != 0);
 	}
+}
+
+void* QGraphicsEffect_NewQGraphicsEffect(void* parent)
+{
+	return new MyQGraphicsEffect(static_cast<QObject*>(parent));
+}
+
+void QGraphicsEffect_Draw(void* ptr, void* painter)
+{
+	static_cast<QGraphicsEffect*>(ptr)->draw(static_cast<QPainter*>(painter));
+}
+
+void QGraphicsEffect_DrawSource(void* ptr, void* painter)
+{
+	static_cast<QGraphicsEffect*>(ptr)->drawSource(static_cast<QPainter*>(painter));
 }
 
 void QGraphicsEffect_SourceChanged(void* ptr, long long flags)
@@ -22574,6 +22672,7 @@ class MyQGraphicsOpacityEffect: public QGraphicsOpacityEffect
 {
 public:
 	MyQGraphicsOpacityEffect(QObject *parent) : QGraphicsOpacityEffect(parent) {};
+	void draw(QPainter * painter) { callbackQGraphicsOpacityEffect_Draw(this, painter); };
 	void Signal_OpacityChanged(qreal opacity) { callbackQGraphicsOpacityEffect_OpacityChanged(this, opacity); };
 	void Signal_OpacityMaskChanged(const QBrush & mask) { callbackQGraphicsOpacityEffect_OpacityMaskChanged(this, const_cast<QBrush*>(&mask)); };
 	void setOpacity(qreal opacity) { callbackQGraphicsOpacityEffect_SetOpacity(this, opacity); };
@@ -22599,6 +22698,16 @@ public:
 void* QGraphicsOpacityEffect_NewQGraphicsOpacityEffect(void* parent)
 {
 	return new MyQGraphicsOpacityEffect(static_cast<QObject*>(parent));
+}
+
+void QGraphicsOpacityEffect_Draw(void* ptr, void* painter)
+{
+	static_cast<QGraphicsOpacityEffect*>(ptr)->draw(static_cast<QPainter*>(painter));
+}
+
+void QGraphicsOpacityEffect_DrawDefault(void* ptr, void* painter)
+{
+		static_cast<QGraphicsOpacityEffect*>(ptr)->QGraphicsOpacityEffect::draw(static_cast<QPainter*>(painter));
 }
 
 void QGraphicsOpacityEffect_ConnectOpacityChanged(void* ptr)
@@ -23480,6 +23589,8 @@ public:
 	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsScene_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsScene_DragLeaveEvent(this, event); };
 	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsScene_DragMoveEvent(this, event); };
+	void drawBackground(QPainter * painter, const QRectF & rect) { callbackQGraphicsScene_DrawBackground(this, painter, const_cast<QRectF*>(&rect)); };
+	void drawForeground(QPainter * painter, const QRectF & rect) { callbackQGraphicsScene_DrawForeground(this, painter, const_cast<QRectF*>(&rect)); };
 	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsScene_DropEvent(this, event); };
 	void focusInEvent(QFocusEvent * focusEvent) { callbackQGraphicsScene_FocusInEvent(this, focusEvent); };
 	void Signal_FocusItemChanged(QGraphicsItem * newFocusItem, QGraphicsItem * oldFocusItem, Qt::FocusReason reason) { callbackQGraphicsScene_FocusItemChanged(this, newFocusItem, oldFocusItem, reason); };
@@ -23737,6 +23848,26 @@ void QGraphicsScene_DragMoveEvent(void* ptr, void* event)
 void QGraphicsScene_DragMoveEventDefault(void* ptr, void* event)
 {
 		static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsScene_DrawBackground(void* ptr, void* painter, void* rect)
+{
+	static_cast<QGraphicsScene*>(ptr)->drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsScene_DrawBackgroundDefault(void* ptr, void* painter, void* rect)
+{
+		static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsScene_DrawForeground(void* ptr, void* painter, void* rect)
+{
+	static_cast<QGraphicsScene*>(ptr)->drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsScene_DrawForegroundDefault(void* ptr, void* painter, void* rect)
+{
+		static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
 }
 
 void QGraphicsScene_DropEvent(void* ptr, void* event)
@@ -25611,6 +25742,8 @@ public:
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
+	void drawBackground(QPainter * painter, const QRectF & rect) { callbackQGraphicsView_DrawBackground(this, painter, const_cast<QRectF*>(&rect)); };
+	void drawForeground(QPainter * painter, const QRectF & rect) { callbackQGraphicsView_DrawForeground(this, painter, const_cast<QRectF*>(&rect)); };
 	void dropEvent(QDropEvent * event) { callbackQWidget_DropEvent(this, event); };
 	void focusInEvent(QFocusEvent * event) { callbackQWidget_FocusInEvent(this, event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQWidget_FocusOutEvent(this, event); };
@@ -25713,6 +25846,26 @@ void QGraphicsView_CenterOn(void* ptr, void* pos)
 void QGraphicsView_CenterOn2(void* ptr, double x, double y)
 {
 	static_cast<QGraphicsView*>(ptr)->centerOn(x, y);
+}
+
+void QGraphicsView_DrawBackground(void* ptr, void* painter, void* rect)
+{
+	static_cast<QGraphicsView*>(ptr)->drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsView_DrawBackgroundDefault(void* ptr, void* painter, void* rect)
+{
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsView_DrawForeground(void* ptr, void* painter, void* rect)
+{
+	static_cast<QGraphicsView*>(ptr)->drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsView_DrawForegroundDefault(void* ptr, void* painter, void* rect)
+{
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
 }
 
 void QGraphicsView_EnsureVisible3(void* ptr, void* item, int xmargin, int ymargin)
@@ -28710,6 +28863,10 @@ public:
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQAbstractItemDelegate_EventFilter(this, editor, event) != 0; };
 	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQItemDelegate_SizeHint(const_cast<void*>(static_cast<const void*>(this)), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
 	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackQAbstractItemDelegate_CreateEditor(const_cast<void*>(static_cast<const void*>(this)), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	void drawCheck(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, Qt::CheckState state) const { callbackQItemDelegate_DrawCheck(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), state); };
+	void drawDecoration(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QPixmap & pixmap) const { callbackQItemDelegate_DrawDecoration(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), const_cast<QPixmap*>(&pixmap)); };
+	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQItemDelegate_DrawDisplay(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), textPacked); };
+	void drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const { callbackQItemDelegate_DrawFocus(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect)); };
 	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQItemDelegate_Paint(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQAbstractItemDelegate_SetEditorData(const_cast<void*>(static_cast<const void*>(this)), editor, const_cast<QModelIndex*>(&index)); };
 	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQAbstractItemDelegate_SetModelData(const_cast<void*>(static_cast<const void*>(this)), editor, model, const_cast<QModelIndex*>(&index)); };
@@ -28769,6 +28926,51 @@ void* QItemDelegate_SizeHintDefault(void* ptr, void* option, void* index)
 char QItemDelegate_HasClipping(void* ptr)
 {
 	return static_cast<QItemDelegate*>(ptr)->hasClipping();
+}
+
+void QItemDelegate_DrawBackground(void* ptr, void* painter, void* option, void* index)
+{
+	static_cast<QItemDelegate*>(ptr)->drawBackground(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QItemDelegate_DrawCheck(void* ptr, void* painter, void* option, void* rect, long long state)
+{
+	static_cast<QItemDelegate*>(ptr)->drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
+}
+
+void QItemDelegate_DrawCheckDefault(void* ptr, void* painter, void* option, void* rect, long long state)
+{
+		static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
+}
+
+void QItemDelegate_DrawDecoration(void* ptr, void* painter, void* option, void* rect, void* pixmap)
+{
+	static_cast<QItemDelegate*>(ptr)->drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
+}
+
+void QItemDelegate_DrawDecorationDefault(void* ptr, void* painter, void* option, void* rect, void* pixmap)
+{
+		static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
+}
+
+void QItemDelegate_DrawDisplay(void* ptr, void* painter, void* option, void* rect, char* text)
+{
+	static_cast<QItemDelegate*>(ptr)->drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+}
+
+void QItemDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, char* text)
+{
+		static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+}
+
+void QItemDelegate_DrawFocus(void* ptr, void* painter, void* option, void* rect)
+{
+	static_cast<QItemDelegate*>(ptr)->drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
+}
+
+void QItemDelegate_DrawFocusDefault(void* ptr, void* painter, void* option, void* rect)
+{
+		static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
 }
 
 void QItemDelegate_Paint(void* ptr, void* painter, void* option, void* index)
@@ -35626,12 +35828,14 @@ class MyQPlainTextDocumentLayout: public QPlainTextDocumentLayout
 public:
 	MyQPlainTextDocumentLayout(QTextDocument *document) : QPlainTextDocumentLayout(document) {};
 	void documentChanged(int from, int charsRemoved, int charsAdded) { callbackQPlainTextDocumentLayout_DocumentChanged(this, from, charsRemoved, charsAdded); };
+	void draw(QPainter * vqp, const PaintContext & vpa) { callbackQPlainTextDocumentLayout_Draw(this, vqp, const_cast<PaintContext*>(&vpa)); };
 	QRectF blockBoundingRect(const QTextBlock & block) const { return *static_cast<QRectF*>(callbackQPlainTextDocumentLayout_BlockBoundingRect(const_cast<void*>(static_cast<const void*>(this)), const_cast<QTextBlock*>(&block))); };
 	QRectF frameBoundingRect(QTextFrame * vqt) const { return *static_cast<QRectF*>(callbackQPlainTextDocumentLayout_FrameBoundingRect(const_cast<void*>(static_cast<const void*>(this)), vqt)); };
 	QSizeF documentSize() const { return *static_cast<QSizeF*>(callbackQPlainTextDocumentLayout_DocumentSize(const_cast<void*>(static_cast<const void*>(this)))); };
 	int hitTest(const QPointF & vqp, Qt::HitTestAccuracy vqt) const { return callbackQPlainTextDocumentLayout_HitTest(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&vqp), vqt); };
 	int pageCount() const { return callbackQPlainTextDocumentLayout_PageCount(const_cast<void*>(static_cast<const void*>(this))); };
 	void Signal_DocumentSizeChanged(const QSizeF & newSize) { callbackQPlainTextDocumentLayout_DocumentSizeChanged(this, const_cast<QSizeF*>(&newSize)); };
+	
 	void Signal_PageCountChanged(int newPages) { callbackQPlainTextDocumentLayout_PageCountChanged(this, newPages); };
 	
 	
@@ -35663,6 +35867,16 @@ void QPlainTextDocumentLayout_DocumentChanged(void* ptr, int from, int charsRemo
 void QPlainTextDocumentLayout_DocumentChangedDefault(void* ptr, int from, int charsRemoved, int charsAdded)
 {
 		static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::documentChanged(from, charsRemoved, charsAdded);
+}
+
+void QPlainTextDocumentLayout_Draw(void* ptr, void* vqp, void* vpa)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->draw(static_cast<QPainter*>(vqp), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(vpa));
+}
+
+void QPlainTextDocumentLayout_DrawDefault(void* ptr, void* vqp, void* vpa)
+{
+		static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::draw(static_cast<QPainter*>(vqp), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(vpa));
 }
 
 void QPlainTextDocumentLayout_RequestUpdate(void* ptr)
@@ -35853,6 +36067,11 @@ void QPlainTextDocumentLayout___children_setList(void* ptr, void* i)
 void* QPlainTextDocumentLayout___children_newList(void* ptr)
 {
 	return new QList<QObject *>;
+}
+
+void QPlainTextDocumentLayout_DrawInlineObjectDefault(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)
+{
+		static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::drawInlineObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), *static_cast<QTextInlineObject*>(object), posInDocument, *static_cast<QTextFormat*>(format));
 }
 
 void QPlainTextDocumentLayout_PositionInlineObjectDefault(void* ptr, void* item, int posInDocument, void* format)
@@ -37216,6 +37435,11 @@ public:
 	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQCommonStyle_LayoutSpacing(const_cast<void*>(static_cast<const void*>(this)), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int pixelMetric(QStyle::PixelMetric metric, const QStyleOption * option, const QWidget * widget) const { return callbackQCommonStyle_PixelMetric(const_cast<void*>(static_cast<const void*>(this)), metric, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int styleHint(QStyle::StyleHint hint, const QStyleOption * option, const QWidget * widget, QStyleHintReturn * returnData) const { return callbackQCommonStyle_StyleHint(const_cast<void*>(static_cast<const void*>(this)), hint, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget), returnData); };
+	void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const { callbackQCommonStyle_DrawComplexControl(const_cast<void*>(static_cast<const void*>(this)), control, const_cast<QStyleOptionComplex*>(option), painter, const_cast<QWidget*>(widget)); };
+	void drawControl(QStyle::ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQCommonStyle_DrawControl(const_cast<void*>(static_cast<const void*>(this)), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
+	void drawItemPixmap(QPainter * painter, const QRect & rect, int alignment, const QPixmap & pixmap) const { callbackQStyle_DrawItemPixmap(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), alignment, const_cast<QPixmap*>(&pixmap)); };
+	void drawItemText(QPainter * painter, const QRect & rect, int flags, const QPalette & pal, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQStyle_DrawItemText(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), flags, const_cast<QPalette*>(&pal), enabled, textPacked, textRole); };
+	void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQCommonStyle_DrawPrimitive(const_cast<void*>(static_cast<const void*>(this)), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
 	bool event(QEvent * e) { return callbackQStyle_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStyle_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQStyle_ChildEvent(this, event); };
@@ -39399,6 +39623,7 @@ public:
 	MyQSplashScreen(QWidget *parent, const QPixmap &pixmap, Qt::WindowFlags f) : QSplashScreen(parent, pixmap, f) {};
 	MyQSplashScreen(const QPixmap &pixmap, Qt::WindowFlags f) : QSplashScreen(pixmap, f) {};
 	void clearMessage() { callbackQSplashScreen_ClearMessage(this); };
+	void drawContents(QPainter * painter) { callbackQSplashScreen_DrawContents(this, painter); };
 	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_MessageChanged(this, messagePacked); };
 	void mousePressEvent(QMouseEvent * vqm) { callbackQWidget_MousePressEvent(this, vqm); };
 	void showMessage(const QString & message, int alignment, const QColor & color) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_ShowMessage(this, messagePacked, alignment, const_cast<QColor*>(&color)); };
@@ -39491,6 +39716,16 @@ void QSplashScreen_ClearMessage(void* ptr)
 void QSplashScreen_ClearMessageDefault(void* ptr)
 {
 		static_cast<QSplashScreen*>(ptr)->QSplashScreen::clearMessage();
+}
+
+void QSplashScreen_DrawContents(void* ptr, void* painter)
+{
+	static_cast<QSplashScreen*>(ptr)->drawContents(static_cast<QPainter*>(painter));
+}
+
+void QSplashScreen_DrawContentsDefault(void* ptr, void* painter)
+{
+		static_cast<QSplashScreen*>(ptr)->QSplashScreen::drawContents(static_cast<QPainter*>(painter));
 }
 
 void QSplashScreen_Finish(void* ptr, void* mainWin)
@@ -40513,6 +40748,7 @@ char QStatusBar_IsSizeGripEnabled(void* ptr)
 class MyQStyle: public QStyle
 {
 public:
+	MyQStyle() : QStyle() {};
 	void polish(QApplication * application) { callbackQStyle_Polish2(this, application); };
 	void polish(QPalette & palette) { callbackQStyle_Polish3(this, static_cast<QPalette*>(&palette)); };
 	void polish(QWidget * widget) { callbackQStyle_Polish(this, widget); };
@@ -40531,6 +40767,11 @@ public:
 	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQStyle_LayoutSpacing(const_cast<void*>(static_cast<const void*>(this)), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int pixelMetric(QStyle::PixelMetric metric, const QStyleOption * option, const QWidget * widget) const { return callbackQStyle_PixelMetric(const_cast<void*>(static_cast<const void*>(this)), metric, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int styleHint(QStyle::StyleHint hint, const QStyleOption * option, const QWidget * widget, QStyleHintReturn * returnData) const { return callbackQStyle_StyleHint(const_cast<void*>(static_cast<const void*>(this)), hint, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget), returnData); };
+	void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawComplexControl(const_cast<void*>(static_cast<const void*>(this)), control, const_cast<QStyleOptionComplex*>(option), painter, const_cast<QWidget*>(widget)); };
+	void drawControl(QStyle::ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawControl(const_cast<void*>(static_cast<const void*>(this)), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
+	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQStyle_DrawItemPixmap(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap)); };
+	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQStyle_DrawItemText(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, textPacked, textRole); };
+	void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawPrimitive(const_cast<void*>(static_cast<const void*>(this)), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
 	QPixmap standardPixmap(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QPixmap*>(callbackQStyle_StandardPixmap(const_cast<void*>(static_cast<const void*>(this)), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
 	bool event(QEvent * e) { return callbackQStyle_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStyle_EventFilter(this, watched, event) != 0; };
@@ -42459,6 +42700,11 @@ void* QStyle_QStyle_VisualRect(long long direction, void* boundingRectangle, voi
 	return ({ QRect tmpValue = QStyle::visualRect(static_cast<Qt::LayoutDirection>(direction), *static_cast<QRect*>(boundingRectangle), *static_cast<QRect*>(logicalRectangle)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
+void* QStyle_NewQStyle()
+{
+	return new MyQStyle();
+}
+
 long long QStyle_QStyle_VisualAlignment(long long direction, long long alignment)
 {
 	return QStyle::visualAlignment(static_cast<Qt::LayoutDirection>(direction), static_cast<Qt::AlignmentFlag>(alignment));
@@ -42665,6 +42911,53 @@ int QStyle_PixelMetric(void* ptr, long long metric, void* option, void* widget)
 int QStyle_StyleHint(void* ptr, long long hint, void* option, void* widget, void* returnData)
 {
 		return static_cast<QStyle*>(ptr)->styleHint(static_cast<QStyle::StyleHint>(hint), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget), static_cast<QStyleHintReturn*>(returnData));
+}
+
+void QStyle_DrawComplexControl(void* ptr, long long control, void* option, void* painter, void* widget)
+{
+		static_cast<QStyle*>(ptr)->drawComplexControl(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
+}
+
+void QStyle_DrawControl(void* ptr, long long element, void* option, void* painter, void* widget)
+{
+		static_cast<QStyle*>(ptr)->drawControl(static_cast<QStyle::ControlElement>(element), static_cast<QStyleOption*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
+}
+
+void QStyle_DrawItemPixmap(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap)
+{
+	static_cast<QStyle*>(ptr)->drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
+}
+
+void QStyle_DrawItemPixmapDefault(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap)
+{
+	if (dynamic_cast<QProxyStyle*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
+	} else if (dynamic_cast<QCommonStyle*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
+	} else {
+		static_cast<QStyle*>(ptr)->QStyle::drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
+	}
+}
+
+void QStyle_DrawItemText(void* ptr, void* painter, void* rectangle, int alignment, void* palette, char enabled, char* text, long long textRole)
+{
+	static_cast<QStyle*>(ptr)->drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+}
+
+void QStyle_DrawItemTextDefault(void* ptr, void* painter, void* rectangle, int alignment, void* palette, char enabled, char* text, long long textRole)
+{
+	if (dynamic_cast<QProxyStyle*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+	} else if (dynamic_cast<QCommonStyle*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+	} else {
+		static_cast<QStyle*>(ptr)->QStyle::drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+	}
+}
+
+void QStyle_DrawPrimitive(void* ptr, long long element, void* option, void* painter, void* widget)
+{
+		static_cast<QStyle*>(ptr)->drawPrimitive(static_cast<QStyle::PrimitiveElement>(element), static_cast<QStyleOption*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
 }
 
 void* QStyle_StandardPixmap(void* ptr, long long standardIcon, void* option, void* widget)
@@ -44763,9 +45056,124 @@ char QStylePainter_Begin(void* ptr, void* widget)
 		return static_cast<QStylePainter*>(ptr)->begin(static_cast<QWidget*>(widget));
 }
 
+void QStylePainter_DrawComplexControl(void* ptr, long long cc, void* option)
+{
+	static_cast<QStylePainter*>(ptr)->drawComplexControl(static_cast<QStyle::ComplexControl>(cc), *static_cast<QStyleOptionComplex*>(option));
+}
+
+void QStylePainter_DrawControl(void* ptr, long long ce, void* option)
+{
+	static_cast<QStylePainter*>(ptr)->drawControl(static_cast<QStyle::ControlElement>(ce), *static_cast<QStyleOption*>(option));
+}
+
+void QStylePainter_DrawItemPixmap(void* ptr, void* rect, int flags, void* pixmap)
+{
+	static_cast<QStylePainter*>(ptr)->drawItemPixmap(*static_cast<QRect*>(rect), flags, *static_cast<QPixmap*>(pixmap));
+}
+
+void QStylePainter_DrawItemText(void* ptr, void* rect, int flags, void* pal, char enabled, char* text, long long textRole)
+{
+	static_cast<QStylePainter*>(ptr)->drawItemText(*static_cast<QRect*>(rect), flags, *static_cast<QPalette*>(pal), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+}
+
+void QStylePainter_DrawPrimitive(void* ptr, long long pe, void* option)
+{
+	static_cast<QStylePainter*>(ptr)->drawPrimitive(static_cast<QStyle::PrimitiveElement>(pe), *static_cast<QStyleOption*>(option));
+}
+
 void* QStylePainter_Style(void* ptr)
 {
 	return static_cast<QStylePainter*>(ptr)->style();
+}
+
+void* QStylePainter___drawLines_lines_atList6(void* ptr, int i)
+{
+	return ({ QLine tmpValue = static_cast<QVector<QLine>*>(ptr)->at(i); new QLine(tmpValue.p1(), tmpValue.p2()); });
+}
+
+void QStylePainter___drawLines_lines_setList6(void* ptr, void* i)
+{
+	static_cast<QVector<QLine>*>(ptr)->append(*static_cast<QLine*>(i));
+}
+
+void* QStylePainter___drawLines_lines_newList6(void* ptr)
+{
+	return new QVector<QLine>;
+}
+
+void* QStylePainter___drawLines_lines_atList2(void* ptr, int i)
+{
+	return ({ QLineF tmpValue = static_cast<QVector<QLineF>*>(ptr)->at(i); new QLineF(tmpValue.p1(), tmpValue.p2()); });
+}
+
+void QStylePainter___drawLines_lines_setList2(void* ptr, void* i)
+{
+	static_cast<QVector<QLineF>*>(ptr)->append(*static_cast<QLineF*>(i));
+}
+
+void* QStylePainter___drawLines_lines_newList2(void* ptr)
+{
+	return new QVector<QLineF>;
+}
+
+void* QStylePainter___drawLines_pointPairs_atList8(void* ptr, int i)
+{
+	return ({ QPoint tmpValue = static_cast<QVector<QPoint>*>(ptr)->at(i); new QPoint(tmpValue.x(), tmpValue.y()); });
+}
+
+void QStylePainter___drawLines_pointPairs_setList8(void* ptr, void* i)
+{
+	static_cast<QVector<QPoint>*>(ptr)->append(*static_cast<QPoint*>(i));
+}
+
+void* QStylePainter___drawLines_pointPairs_newList8(void* ptr)
+{
+	return new QVector<QPoint>;
+}
+
+void* QStylePainter___drawLines_pointPairs_atList4(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QStylePainter___drawLines_pointPairs_setList4(void* ptr, void* i)
+{
+	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+}
+
+void* QStylePainter___drawLines_pointPairs_newList4(void* ptr)
+{
+	return new QVector<QPointF>;
+}
+
+void* QStylePainter___drawRects_rectangles_atList4(void* ptr, int i)
+{
+	return ({ QRect tmpValue = static_cast<QVector<QRect>*>(ptr)->at(i); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void QStylePainter___drawRects_rectangles_setList4(void* ptr, void* i)
+{
+	static_cast<QVector<QRect>*>(ptr)->append(*static_cast<QRect*>(i));
+}
+
+void* QStylePainter___drawRects_rectangles_newList4(void* ptr)
+{
+	return new QVector<QRect>;
+}
+
+void* QStylePainter___drawRects_rectangles_atList2(void* ptr, int i)
+{
+	return ({ QRectF tmpValue = static_cast<QVector<QRectF>*>(ptr)->at(i); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void QStylePainter___drawRects_rectangles_setList2(void* ptr, void* i)
+{
+	static_cast<QVector<QRectF>*>(ptr)->append(*static_cast<QRectF*>(i));
+}
+
+void* QStylePainter___drawRects_rectangles_newList2(void* ptr)
+{
+	return new QVector<QRectF>;
 }
 
 class MyQStylePlugin: public QStylePlugin
@@ -45871,6 +46279,11 @@ char QTabBar_ChangeCurrentOnDrag(void* ptr)
 char QTabBar_DocumentMode(void* ptr)
 {
 	return static_cast<QTabBar*>(ptr)->documentMode();
+}
+
+char QTabBar_DrawBase(void* ptr)
+{
+	return static_cast<QTabBar*>(ptr)->drawBase();
 }
 
 char QTabBar_Expanding(void* ptr)
@@ -50606,6 +51019,8 @@ public:
 	int horizontalOffset() const { return callbackQTreeView_HorizontalOffset(const_cast<void*>(static_cast<const void*>(this))); };
 	int sizeHintForColumn(int column) const { return callbackQAbstractItemView_SizeHintForColumn(const_cast<void*>(static_cast<const void*>(this)), column); };
 	int verticalOffset() const { return callbackQTreeView_VerticalOffset(const_cast<void*>(static_cast<const void*>(this))); };
+	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeView_DrawBranches(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), const_cast<QModelIndex*>(&index)); };
+	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQTreeView_DrawRow(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQAbstractItemView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void Signal_Activated(const QModelIndex & index) { callbackQAbstractItemView_Activated(this, const_cast<QModelIndex*>(&index)); };
@@ -51371,6 +51786,39 @@ int QTreeView_VerticalOffsetDefault(void* ptr)
 	}
 }
 
+void QTreeView_DrawBranches(void* ptr, void* painter, void* rect, void* index)
+{
+	static_cast<QTreeView*>(ptr)->drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
+}
+
+void QTreeView_DrawBranchesDefault(void* ptr, void* painter, void* rect, void* index)
+{
+	if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTreeWidget*>(ptr)->QTreeWidget::drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
+	} else {
+		static_cast<QTreeView*>(ptr)->QTreeView::drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
+	}
+}
+
+void QTreeView_DrawRow(void* ptr, void* painter, void* option, void* index)
+{
+	static_cast<QTreeView*>(ptr)->drawRow(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QTreeView_DrawRowDefault(void* ptr, void* painter, void* option, void* index)
+{
+	if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QTreeWidget*>(ptr)->QTreeWidget::drawRow(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+	} else {
+		static_cast<QTreeView*>(ptr)->QTreeView::drawRow(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+	}
+}
+
+void QTreeView_DrawTree(void* ptr, void* painter, void* region)
+{
+	static_cast<QTreeView*>(ptr)->drawTree(static_cast<QPainter*>(painter), *static_cast<QRegion*>(region));
+}
+
 class MyQTreeWidget: public QTreeWidget
 {
 public:
@@ -51441,6 +51889,8 @@ public:
 	int horizontalOffset() const { return callbackQTreeView_HorizontalOffset(const_cast<void*>(static_cast<const void*>(this))); };
 	int sizeHintForColumn(int column) const { return callbackQAbstractItemView_SizeHintForColumn(const_cast<void*>(static_cast<const void*>(this)), column); };
 	int verticalOffset() const { return callbackQTreeView_VerticalOffset(const_cast<void*>(static_cast<const void*>(this))); };
+	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeView_DrawBranches(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QRect*>(&rect), const_cast<QModelIndex*>(&index)); };
+	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQTreeView_DrawRow(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQAbstractItemView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void Signal_Activated(const QModelIndex & index) { callbackQAbstractItemView_Activated(this, const_cast<QModelIndex*>(&index)); };

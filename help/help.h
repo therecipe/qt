@@ -229,6 +229,8 @@ char QHelpContentWidget_IsIndexHiddenDefault(void* ptr, void* index);
 int QHelpContentWidget_HorizontalOffsetDefault(void* ptr);
 int QHelpContentWidget_SizeHintForColumnDefault(void* ptr, int column);
 int QHelpContentWidget_VerticalOffsetDefault(void* ptr);
+void QHelpContentWidget_DrawBranchesDefault(void* ptr, void* painter, void* rect, void* index);
+void QHelpContentWidget_DrawRowDefault(void* ptr, void* painter, void* option, void* index);
 char QHelpContentWidget_Edit2Default(void* ptr, void* index, long long trigger, void* event);
 char QHelpContentWidget_EventDefault(void* ptr, void* event);
 char QHelpContentWidget_FocusNextPrevChildDefault(void* ptr, char next);

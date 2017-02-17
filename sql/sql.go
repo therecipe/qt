@@ -5619,6 +5619,68 @@ func (ptr *QSqlRelationalDelegate) SizeHintDefault(option widgets.QStyleOptionVi
 	return nil
 }
 
+//export callbackQSqlRelationalDelegate_DrawCheck
+func callbackQSqlRelationalDelegate_DrawCheck(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, state C.longlong) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawCheck"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, core.Qt__CheckState))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), core.Qt__CheckState(state))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawCheckDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), core.Qt__CheckState(state))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawCheckDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, state core.Qt__CheckState) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawCheckDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.longlong(state))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DrawDecoration
+func callbackQSqlRelationalDelegate_DrawDecoration(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, pixmap unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawDecoration"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, *gui.QPixmap))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), gui.NewQPixmapFromPointer(pixmap))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawDecorationDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), gui.NewQPixmapFromPointer(pixmap))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawDecorationDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, pixmap gui.QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawDecorationDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DrawDisplay
+func callbackQSqlRelationalDelegate_DrawDisplay(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, text C.struct_QtSql_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawDisplay"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, string))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), cGoUnpackString(text))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawDisplayDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), cGoUnpackString(text))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawDisplayDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QSqlRelationalDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DrawFocus
+func callbackQSqlRelationalDelegate_DrawFocus(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawFocus"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawFocusDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawFocusDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawFocusDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect))
+	}
+}
+
 //export callbackQSqlRelationalDelegate_Paint
 func callbackQSqlRelationalDelegate_Paint(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "paint"); signal != nil {

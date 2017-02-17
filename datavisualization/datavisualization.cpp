@@ -4828,6 +4828,8 @@ public:
 	MyQCustom3DVolume(QObject *parent) : QCustom3DVolume(parent) {};
 	void Signal_AlphaMultiplierChanged(float mult) { callbackQCustom3DVolume_AlphaMultiplierChanged(this, mult); };
 	void Signal_ColorTableChanged() { callbackQCustom3DVolume_ColorTableChanged(this); };
+	void Signal_DrawSliceFramesChanged(bool enabled) { callbackQCustom3DVolume_DrawSliceFramesChanged(this, enabled); };
+	void Signal_DrawSlicesChanged(bool enabled) { callbackQCustom3DVolume_DrawSlicesChanged(this, enabled); };
 	void Signal_PreserveOpacityChanged(bool enabled) { callbackQCustom3DVolume_PreserveOpacityChanged(this, enabled); };
 	void Signal_SliceFrameColorChanged(const QColor & color) { callbackQCustom3DVolume_SliceFrameColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_SliceFrameGapsChanged(const QVector3D & values) { callbackQCustom3DVolume_SliceFrameGapsChanged(this, const_cast<QVector3D*>(&values)); };
@@ -4882,6 +4884,36 @@ void QCustom3DVolume_DisconnectColorTableChanged(void* ptr)
 void QCustom3DVolume_ColorTableChanged(void* ptr)
 {
 	static_cast<QCustom3DVolume*>(ptr)->colorTableChanged();
+}
+
+void QCustom3DVolume_ConnectDrawSliceFramesChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSliceFramesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSliceFramesChanged));
+}
+
+void QCustom3DVolume_DisconnectDrawSliceFramesChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSliceFramesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSliceFramesChanged));
+}
+
+void QCustom3DVolume_DrawSliceFramesChanged(void* ptr, char enabled)
+{
+	static_cast<QCustom3DVolume*>(ptr)->drawSliceFramesChanged(enabled != 0);
+}
+
+void QCustom3DVolume_ConnectDrawSlicesChanged(void* ptr)
+{
+	QObject::connect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSlicesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSlicesChanged));
+}
+
+void QCustom3DVolume_DisconnectDrawSlicesChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QCustom3DVolume*>(ptr), static_cast<void (QCustom3DVolume::*)(bool)>(&QCustom3DVolume::drawSlicesChanged), static_cast<MyQCustom3DVolume*>(ptr), static_cast<void (MyQCustom3DVolume::*)(bool)>(&MyQCustom3DVolume::Signal_DrawSlicesChanged));
+}
+
+void QCustom3DVolume_DrawSlicesChanged(void* ptr, char enabled)
+{
+	static_cast<QCustom3DVolume*>(ptr)->drawSlicesChanged(enabled != 0);
 }
 
 void QCustom3DVolume_ConnectPreserveOpacityChanged(void* ptr)
@@ -5212,6 +5244,16 @@ void* QCustom3DVolume_SliceFrameThicknesses(void* ptr)
 void* QCustom3DVolume_SliceFrameWidths(void* ptr)
 {
 	return new QVector3D(static_cast<QCustom3DVolume*>(ptr)->sliceFrameWidths());
+}
+
+char QCustom3DVolume_DrawSliceFrames(void* ptr)
+{
+	return static_cast<QCustom3DVolume*>(ptr)->drawSliceFrames();
+}
+
+char QCustom3DVolume_DrawSlices(void* ptr)
+{
+	return static_cast<QCustom3DVolume*>(ptr)->drawSlices();
 }
 
 char QCustom3DVolume_PreserveOpacity(void* ptr)
@@ -7526,6 +7568,7 @@ public:
 	MyQSurface3DSeries(QSurfaceDataProxy *dataProxy, QObject *parent) : QSurface3DSeries(dataProxy, parent) {};
 	void Signal_SelectedPointChanged(const QPoint & position) { callbackQSurface3DSeries_SelectedPointChanged(this, const_cast<QPoint*>(&position)); };
 	void Signal_DataProxyChanged(QSurfaceDataProxy * proxy) { callbackQSurface3DSeries_DataProxyChanged(this, proxy); };
+	void Signal_DrawModeChanged(QSurface3DSeries::DrawFlags mode) { callbackQSurface3DSeries_DrawModeChanged(this, mode); };
 	void Signal_FlatShadingEnabledChanged(bool enable) { callbackQSurface3DSeries_FlatShadingEnabledChanged(this, enable); };
 	void Signal_FlatShadingSupportedChanged(bool enable) { callbackQSurface3DSeries_FlatShadingSupportedChanged(this, enable); };
 	void Signal_TextureChanged(const QImage & image) { callbackQSurface3DSeries_TextureChanged(this, const_cast<QImage*>(&image)); };
@@ -7581,6 +7624,21 @@ void QSurface3DSeries_DisconnectDataProxyChanged(void* ptr)
 void QSurface3DSeries_DataProxyChanged(void* ptr, void* proxy)
 {
 	static_cast<QSurface3DSeries*>(ptr)->dataProxyChanged(static_cast<QSurfaceDataProxy*>(proxy));
+}
+
+void QSurface3DSeries_ConnectDrawModeChanged(void* ptr)
+{
+	QObject::connect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&QSurface3DSeries::drawModeChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&MyQSurface3DSeries::Signal_DrawModeChanged));
+}
+
+void QSurface3DSeries_DisconnectDrawModeChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QSurface3DSeries*>(ptr), static_cast<void (QSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&QSurface3DSeries::drawModeChanged), static_cast<MyQSurface3DSeries*>(ptr), static_cast<void (MyQSurface3DSeries::*)(QSurface3DSeries::DrawFlags)>(&MyQSurface3DSeries::Signal_DrawModeChanged));
+}
+
+void QSurface3DSeries_DrawModeChanged(void* ptr, long long mode)
+{
+	static_cast<QSurface3DSeries*>(ptr)->drawModeChanged(static_cast<QSurface3DSeries::DrawFlag>(mode));
 }
 
 void QSurface3DSeries_ConnectFlatShadingEnabledChanged(void* ptr)
@@ -7691,6 +7749,11 @@ void* QSurface3DSeries_SelectedPoint(void* ptr)
 struct QtDataVisualization_PackedString QSurface3DSeries_TextureFile(void* ptr)
 {
 	return ({ QByteArray tf3d489 = static_cast<QSurface3DSeries*>(ptr)->textureFile().toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(tf3d489.prepend("WHITESPACE").constData()+10), tf3d489.size()-10 }; });
+}
+
+long long QSurface3DSeries_DrawMode(void* ptr)
+{
+	return static_cast<QSurface3DSeries*>(ptr)->drawMode();
 }
 
 void* QSurface3DSeries_DataProxy(void* ptr)

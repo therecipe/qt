@@ -211,6 +211,14 @@ func (ptr *QAbstractTextDocumentLayout) Format(position int) *QTextCharFormat {
 	return nil
 }
 
+func NewQAbstractTextDocumentLayout(document QTextDocument_ITF) *QAbstractTextDocumentLayout {
+	var tmpValue = NewQAbstractTextDocumentLayoutFromPointer(C.QAbstractTextDocumentLayout_NewQAbstractTextDocumentLayout(PointerFromQTextDocument(document)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 //export callbackQAbstractTextDocumentLayout_DocumentChanged
 func callbackQAbstractTextDocumentLayout_DocumentChanged(ptr unsafe.Pointer, position C.int, charsRemoved C.int, charsAdded C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "documentChanged"); signal != nil {
@@ -264,6 +272,69 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectDocumentSizeChanged() {
 func (ptr *QAbstractTextDocumentLayout) DocumentSizeChanged(newSize core.QSizeF_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_DocumentSizeChanged(ptr.Pointer(), core.PointerFromQSizeF(newSize))
+	}
+}
+
+//export callbackQAbstractTextDocumentLayout_Draw
+func callbackQAbstractTextDocumentLayout_Draw(ptr unsafe.Pointer, painter unsafe.Pointer, context unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "draw"); signal != nil {
+		signal.(func(*QPainter, *QAbstractTextDocumentLayout_PaintContext))(NewQPainterFromPointer(painter), NewQAbstractTextDocumentLayout_PaintContextFromPointer(context))
+	}
+
+}
+
+func (ptr *QAbstractTextDocumentLayout) ConnectDraw(f func(painter *QPainter, context *QAbstractTextDocumentLayout_PaintContext)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "draw", f)
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "draw")
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) Draw(painter QPainter_ITF, context QAbstractTextDocumentLayout_PaintContext_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_Draw(ptr.Pointer(), PointerFromQPainter(painter), PointerFromQAbstractTextDocumentLayout_PaintContext(context))
+	}
+}
+
+//export callbackQAbstractTextDocumentLayout_DrawInlineObject
+func callbackQAbstractTextDocumentLayout_DrawInlineObject(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, object unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawInlineObject"); signal != nil {
+		signal.(func(*QPainter, *core.QRectF, *QTextInlineObject, int, *QTextFormat))(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	} else {
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).DrawInlineObjectDefault(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) ConnectDrawInlineObject(f func(painter *QPainter, rect *core.QRectF, object *QTextInlineObject, posInDocument int, format *QTextFormat)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawInlineObject", f)
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DisconnectDrawInlineObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawInlineObject")
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DrawInlineObject(painter QPainter_ITF, rect core.QRectF_ITF, object QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_DrawInlineObject(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRectF(rect), PointerFromQTextInlineObject(object), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DrawInlineObjectDefault(painter QPainter_ITF, rect core.QRectF_ITF, object QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_DrawInlineObjectDefault(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRectF(rect), PointerFromQTextInlineObject(object), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
 	}
 }
 
@@ -25988,7 +26059,7 @@ func callbackQPaintDevice_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(nil)
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QPaintDevice) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -26462,6 +26533,115 @@ func (ptr *QPaintEngine) End() bool {
 	return false
 }
 
+//export callbackQPaintEngine_DrawEllipse
+func callbackQPaintEngine_DrawEllipse(ptr unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawEllipse"); signal != nil {
+		signal.(func(*core.QRectF))(core.NewQRectFFromPointer(rect))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawEllipseDefault(core.NewQRectFFromPointer(rect))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawEllipse(f func(rect *core.QRectF)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawEllipse", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawEllipse() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawEllipse")
+	}
+}
+
+func (ptr *QPaintEngine) DrawEllipse(rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawEllipse(ptr.Pointer(), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QPaintEngine) DrawEllipseDefault(rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawEllipseDefault(ptr.Pointer(), core.PointerFromQRectF(rect))
+	}
+}
+
+//export callbackQPaintEngine_DrawImage
+func callbackQPaintEngine_DrawImage(ptr unsafe.Pointer, rectangle unsafe.Pointer, image unsafe.Pointer, sr unsafe.Pointer, flags C.longlong) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawImage"); signal != nil {
+		signal.(func(*core.QRectF, *QImage, *core.QRectF, core.Qt__ImageConversionFlag))(core.NewQRectFFromPointer(rectangle), NewQImageFromPointer(image), core.NewQRectFFromPointer(sr), core.Qt__ImageConversionFlag(flags))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawImageDefault(core.NewQRectFFromPointer(rectangle), NewQImageFromPointer(image), core.NewQRectFFromPointer(sr), core.Qt__ImageConversionFlag(flags))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawImage(f func(rectangle *core.QRectF, image *QImage, sr *core.QRectF, flags core.Qt__ImageConversionFlag)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawImage", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawImage() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawImage")
+	}
+}
+
+func (ptr *QPaintEngine) DrawImage(rectangle core.QRectF_ITF, image QImage_ITF, sr core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawImage(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image), core.PointerFromQRectF(sr), C.longlong(flags))
+	}
+}
+
+func (ptr *QPaintEngine) DrawImageDefault(rectangle core.QRectF_ITF, image QImage_ITF, sr core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawImageDefault(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image), core.PointerFromQRectF(sr), C.longlong(flags))
+	}
+}
+
+//export callbackQPaintEngine_DrawPolygon
+func callbackQPaintEngine_DrawPolygon(ptr unsafe.Pointer, points unsafe.Pointer, pointCount C.int, mode C.longlong) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPolygon"); signal != nil {
+		signal.(func(*core.QPointF, int, QPaintEngine__PolygonDrawMode))(core.NewQPointFFromPointer(points), int(int32(pointCount)), QPaintEngine__PolygonDrawMode(mode))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawPolygonDefault(core.NewQPointFFromPointer(points), int(int32(pointCount)), QPaintEngine__PolygonDrawMode(mode))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawPolygon(f func(points *core.QPointF, pointCount int, mode QPaintEngine__PolygonDrawMode)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPolygon", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawPolygon() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPolygon")
+	}
+}
+
+func (ptr *QPaintEngine) DrawPolygon(points core.QPointF_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)), C.longlong(mode))
+	}
+}
+
+func (ptr *QPaintEngine) DrawPolygonDefault(points core.QPointF_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPolygonDefault(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)), C.longlong(mode))
+	}
+}
+
+func NewQPaintEngine(caps QPaintEngine__PaintEngineFeature) *QPaintEngine {
+	return NewQPaintEngineFromPointer(C.QPaintEngine_NewQPaintEngine(C.longlong(caps)))
+}
+
 //export callbackQPaintEngine_Begin
 func callbackQPaintEngine_Begin(ptr unsafe.Pointer, pdev unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "begin"); signal != nil {
@@ -26490,6 +26670,419 @@ func (ptr *QPaintEngine) Begin(pdev QPaintDevice_ITF) bool {
 		return C.QPaintEngine_Begin(ptr.Pointer(), PointerFromQPaintDevice(pdev)) != 0
 	}
 	return false
+}
+
+//export callbackQPaintEngine_DrawEllipse2
+func callbackQPaintEngine_DrawEllipse2(ptr unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawEllipse2"); signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawEllipse2Default(core.NewQRectFromPointer(rect))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawEllipse2(f func(rect *core.QRect)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawEllipse2", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawEllipse2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawEllipse2")
+	}
+}
+
+func (ptr *QPaintEngine) DrawEllipse2(rect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawEllipse2(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QPaintEngine) DrawEllipse2Default(rect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawEllipse2Default(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+//export callbackQPaintEngine_DrawLines2
+func callbackQPaintEngine_DrawLines2(ptr unsafe.Pointer, lines unsafe.Pointer, lineCount C.int) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawLines2"); signal != nil {
+		signal.(func(*core.QLine, int))(core.NewQLineFromPointer(lines), int(int32(lineCount)))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawLines2Default(core.NewQLineFromPointer(lines), int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawLines2(f func(lines *core.QLine, lineCount int)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawLines2", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawLines2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawLines2")
+	}
+}
+
+func (ptr *QPaintEngine) DrawLines2(lines core.QLine_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawLines2(ptr.Pointer(), core.PointerFromQLine(lines), C.int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPaintEngine) DrawLines2Default(lines core.QLine_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawLines2Default(ptr.Pointer(), core.PointerFromQLine(lines), C.int(int32(lineCount)))
+	}
+}
+
+//export callbackQPaintEngine_DrawLines
+func callbackQPaintEngine_DrawLines(ptr unsafe.Pointer, lines unsafe.Pointer, lineCount C.int) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawLines"); signal != nil {
+		signal.(func(*core.QLineF, int))(core.NewQLineFFromPointer(lines), int(int32(lineCount)))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawLinesDefault(core.NewQLineFFromPointer(lines), int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawLines(f func(lines *core.QLineF, lineCount int)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawLines", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawLines() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawLines")
+	}
+}
+
+func (ptr *QPaintEngine) DrawLines(lines core.QLineF_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawLines(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPaintEngine) DrawLinesDefault(lines core.QLineF_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawLinesDefault(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(int32(lineCount)))
+	}
+}
+
+//export callbackQPaintEngine_DrawPath
+func callbackQPaintEngine_DrawPath(ptr unsafe.Pointer, path unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPath"); signal != nil {
+		signal.(func(*QPainterPath))(NewQPainterPathFromPointer(path))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawPathDefault(NewQPainterPathFromPointer(path))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawPath(f func(path *QPainterPath)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPath", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawPath() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPath")
+	}
+}
+
+func (ptr *QPaintEngine) DrawPath(path QPainterPath_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPath(ptr.Pointer(), PointerFromQPainterPath(path))
+	}
+}
+
+func (ptr *QPaintEngine) DrawPathDefault(path QPainterPath_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPathDefault(ptr.Pointer(), PointerFromQPainterPath(path))
+	}
+}
+
+//export callbackQPaintEngine_DrawPixmap
+func callbackQPaintEngine_DrawPixmap(ptr unsafe.Pointer, r unsafe.Pointer, pm unsafe.Pointer, sr unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPixmap"); signal != nil {
+		signal.(func(*core.QRectF, *QPixmap, *core.QRectF))(core.NewQRectFFromPointer(r), NewQPixmapFromPointer(pm), core.NewQRectFFromPointer(sr))
+	}
+
+}
+
+func (ptr *QPaintEngine) ConnectDrawPixmap(f func(r *core.QRectF, pm *QPixmap, sr *core.QRectF)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPixmap", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawPixmap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPixmap")
+	}
+}
+
+func (ptr *QPaintEngine) DrawPixmap(r core.QRectF_ITF, pm QPixmap_ITF, sr core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPixmap(ptr.Pointer(), core.PointerFromQRectF(r), PointerFromQPixmap(pm), core.PointerFromQRectF(sr))
+	}
+}
+
+//export callbackQPaintEngine_DrawPoints2
+func callbackQPaintEngine_DrawPoints2(ptr unsafe.Pointer, points unsafe.Pointer, pointCount C.int) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPoints2"); signal != nil {
+		signal.(func(*core.QPoint, int))(core.NewQPointFromPointer(points), int(int32(pointCount)))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawPoints2Default(core.NewQPointFromPointer(points), int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawPoints2(f func(points *core.QPoint, pointCount int)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPoints2", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawPoints2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPoints2")
+	}
+}
+
+func (ptr *QPaintEngine) DrawPoints2(points core.QPoint_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPoints2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPaintEngine) DrawPoints2Default(points core.QPoint_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPoints2Default(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)))
+	}
+}
+
+//export callbackQPaintEngine_DrawPoints
+func callbackQPaintEngine_DrawPoints(ptr unsafe.Pointer, points unsafe.Pointer, pointCount C.int) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPoints"); signal != nil {
+		signal.(func(*core.QPointF, int))(core.NewQPointFFromPointer(points), int(int32(pointCount)))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawPointsDefault(core.NewQPointFFromPointer(points), int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawPoints(f func(points *core.QPointF, pointCount int)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPoints", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawPoints() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPoints")
+	}
+}
+
+func (ptr *QPaintEngine) DrawPoints(points core.QPointF_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPoints(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPaintEngine) DrawPointsDefault(points core.QPointF_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPointsDefault(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)))
+	}
+}
+
+//export callbackQPaintEngine_DrawPolygon2
+func callbackQPaintEngine_DrawPolygon2(ptr unsafe.Pointer, points unsafe.Pointer, pointCount C.int, mode C.longlong) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawPolygon2"); signal != nil {
+		signal.(func(*core.QPoint, int, QPaintEngine__PolygonDrawMode))(core.NewQPointFromPointer(points), int(int32(pointCount)), QPaintEngine__PolygonDrawMode(mode))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawPolygon2Default(core.NewQPointFromPointer(points), int(int32(pointCount)), QPaintEngine__PolygonDrawMode(mode))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawPolygon2(f func(points *core.QPoint, pointCount int, mode QPaintEngine__PolygonDrawMode)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawPolygon2", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawPolygon2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawPolygon2")
+	}
+}
+
+func (ptr *QPaintEngine) DrawPolygon2(points core.QPoint_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPolygon2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)), C.longlong(mode))
+	}
+}
+
+func (ptr *QPaintEngine) DrawPolygon2Default(points core.QPoint_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawPolygon2Default(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)), C.longlong(mode))
+	}
+}
+
+//export callbackQPaintEngine_DrawRects2
+func callbackQPaintEngine_DrawRects2(ptr unsafe.Pointer, rects unsafe.Pointer, rectCount C.int) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawRects2"); signal != nil {
+		signal.(func(*core.QRect, int))(core.NewQRectFromPointer(rects), int(int32(rectCount)))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawRects2Default(core.NewQRectFromPointer(rects), int(int32(rectCount)))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawRects2(f func(rects *core.QRect, rectCount int)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawRects2", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawRects2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawRects2")
+	}
+}
+
+func (ptr *QPaintEngine) DrawRects2(rects core.QRect_ITF, rectCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawRects2(ptr.Pointer(), core.PointerFromQRect(rects), C.int(int32(rectCount)))
+	}
+}
+
+func (ptr *QPaintEngine) DrawRects2Default(rects core.QRect_ITF, rectCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawRects2Default(ptr.Pointer(), core.PointerFromQRect(rects), C.int(int32(rectCount)))
+	}
+}
+
+//export callbackQPaintEngine_DrawRects
+func callbackQPaintEngine_DrawRects(ptr unsafe.Pointer, rects unsafe.Pointer, rectCount C.int) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawRects"); signal != nil {
+		signal.(func(*core.QRectF, int))(core.NewQRectFFromPointer(rects), int(int32(rectCount)))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawRectsDefault(core.NewQRectFFromPointer(rects), int(int32(rectCount)))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawRects(f func(rects *core.QRectF, rectCount int)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawRects", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawRects() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawRects")
+	}
+}
+
+func (ptr *QPaintEngine) DrawRects(rects core.QRectF_ITF, rectCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawRects(ptr.Pointer(), core.PointerFromQRectF(rects), C.int(int32(rectCount)))
+	}
+}
+
+func (ptr *QPaintEngine) DrawRectsDefault(rects core.QRectF_ITF, rectCount int) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawRectsDefault(ptr.Pointer(), core.PointerFromQRectF(rects), C.int(int32(rectCount)))
+	}
+}
+
+//export callbackQPaintEngine_DrawTextItem
+func callbackQPaintEngine_DrawTextItem(ptr unsafe.Pointer, p unsafe.Pointer, textItem unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawTextItem"); signal != nil {
+		signal.(func(*core.QPointF, *QTextItem))(core.NewQPointFFromPointer(p), NewQTextItemFromPointer(textItem))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawTextItemDefault(core.NewQPointFFromPointer(p), NewQTextItemFromPointer(textItem))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawTextItem(f func(p *core.QPointF, textItem *QTextItem)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawTextItem", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawTextItem() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawTextItem")
+	}
+}
+
+func (ptr *QPaintEngine) DrawTextItem(p core.QPointF_ITF, textItem QTextItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawTextItem(ptr.Pointer(), core.PointerFromQPointF(p), PointerFromQTextItem(textItem))
+	}
+}
+
+func (ptr *QPaintEngine) DrawTextItemDefault(p core.QPointF_ITF, textItem QTextItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawTextItemDefault(ptr.Pointer(), core.PointerFromQPointF(p), PointerFromQTextItem(textItem))
+	}
+}
+
+//export callbackQPaintEngine_DrawTiledPixmap
+func callbackQPaintEngine_DrawTiledPixmap(ptr unsafe.Pointer, rect unsafe.Pointer, pixmap unsafe.Pointer, p unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawTiledPixmap"); signal != nil {
+		signal.(func(*core.QRectF, *QPixmap, *core.QPointF))(core.NewQRectFFromPointer(rect), NewQPixmapFromPointer(pixmap), core.NewQPointFFromPointer(p))
+	} else {
+		NewQPaintEngineFromPointer(ptr).DrawTiledPixmapDefault(core.NewQRectFFromPointer(rect), NewQPixmapFromPointer(pixmap), core.NewQPointFFromPointer(p))
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDrawTiledPixmap(f func(rect *core.QRectF, pixmap *QPixmap, p *core.QPointF)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawTiledPixmap", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDrawTiledPixmap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawTiledPixmap")
+	}
+}
+
+func (ptr *QPaintEngine) DrawTiledPixmap(rect core.QRectF_ITF, pixmap QPixmap_ITF, p core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawTiledPixmap(ptr.Pointer(), core.PointerFromQRectF(rect), PointerFromQPixmap(pixmap), core.PointerFromQPointF(p))
+	}
+}
+
+func (ptr *QPaintEngine) DrawTiledPixmapDefault(rect core.QRectF_ITF, pixmap QPixmap_ITF, p core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DrawTiledPixmapDefault(ptr.Pointer(), core.PointerFromQRectF(rect), PointerFromQPixmap(pixmap), core.PointerFromQPointF(p))
+	}
 }
 
 func (ptr *QPaintEngine) SetActive(state bool) {
@@ -27111,6 +27704,12 @@ func (ptr *QPainter) Begin(device QPaintDevice_ITF) bool {
 	return false
 }
 
+func (ptr *QPainter) DrawArc(rectangle core.QRectF_ITF, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawArc(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
 func NewQPainter() *QPainter {
 	var tmpValue = NewQPainterFromPointer(C.QPainter_NewQPainter())
 	runtime.SetFinalizer(tmpValue, (*QPainter).DestroyQPainter)
@@ -27138,6 +27737,614 @@ func (ptr *QPainter) End() bool {
 func (ptr *QPainter) BeginNativePainting() {
 	if ptr.Pointer() != nil {
 		C.QPainter_BeginNativePainting(ptr.Pointer())
+	}
+}
+
+func (ptr *QPainter) DrawArc2(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawArc2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawArc3(x int, y int, width int, height int, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawArc3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawChord3(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawChord3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawChord(rectangle core.QRectF_ITF, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawChord(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawChord2(x int, y int, width int, height int, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawChord2(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawConvexPolygon3(points core.QPoint_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawConvexPolygon3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPainter) DrawConvexPolygon(points core.QPointF_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawConvexPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPainter) DrawConvexPolygon4(polygon QPolygon_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawConvexPolygon4(ptr.Pointer(), PointerFromQPolygon(polygon))
+	}
+}
+
+func (ptr *QPainter) DrawConvexPolygon2(polygon QPolygonF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawConvexPolygon2(ptr.Pointer(), PointerFromQPolygonF(polygon))
+	}
+}
+
+func (ptr *QPainter) DrawEllipse5(center core.QPoint_ITF, rx int, ry int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawEllipse5(ptr.Pointer(), core.PointerFromQPoint(center), C.int(int32(rx)), C.int(int32(ry)))
+	}
+}
+
+func (ptr *QPainter) DrawEllipse4(center core.QPointF_ITF, rx float64, ry float64) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawEllipse4(ptr.Pointer(), core.PointerFromQPointF(center), C.double(rx), C.double(ry))
+	}
+}
+
+func (ptr *QPainter) DrawEllipse2(rectangle core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawEllipse2(ptr.Pointer(), core.PointerFromQRect(rectangle))
+	}
+}
+
+func (ptr *QPainter) DrawEllipse(rectangle core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawEllipse(ptr.Pointer(), core.PointerFromQRectF(rectangle))
+	}
+}
+
+func (ptr *QPainter) DrawEllipse3(x int, y int, width int, height int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawEllipse3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)))
+	}
+}
+
+func (ptr *QPainter) DrawGlyphRun(position core.QPointF_ITF, glyphs QGlyphRun_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawGlyphRun(ptr.Pointer(), core.PointerFromQPointF(position), PointerFromQGlyphRun(glyphs))
+	}
+}
+
+func (ptr *QPainter) DrawImage8(point core.QPoint_ITF, image QImage_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage8(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image))
+	}
+}
+
+func (ptr *QPainter) DrawImage4(point core.QPoint_ITF, image QImage_ITF, source core.QRect_ITF, flags core.Qt__ImageConversionFlag) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage4(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image), core.PointerFromQRect(source), C.longlong(flags))
+	}
+}
+
+func (ptr *QPainter) DrawImage7(point core.QPointF_ITF, image QImage_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage7(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image))
+	}
+}
+
+func (ptr *QPainter) DrawImage3(point core.QPointF_ITF, image QImage_ITF, source core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage3(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image), core.PointerFromQRectF(source), C.longlong(flags))
+	}
+}
+
+func (ptr *QPainter) DrawImage6(rectangle core.QRect_ITF, image QImage_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage6(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQImage(image))
+	}
+}
+
+func (ptr *QPainter) DrawImage2(target core.QRect_ITF, image QImage_ITF, source core.QRect_ITF, flags core.Qt__ImageConversionFlag) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage2(ptr.Pointer(), core.PointerFromQRect(target), PointerFromQImage(image), core.PointerFromQRect(source), C.longlong(flags))
+	}
+}
+
+func (ptr *QPainter) DrawImage5(rectangle core.QRectF_ITF, image QImage_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage5(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image))
+	}
+}
+
+func (ptr *QPainter) DrawImage(target core.QRectF_ITF, image QImage_ITF, source core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage(ptr.Pointer(), core.PointerFromQRectF(target), PointerFromQImage(image), core.PointerFromQRectF(source), C.longlong(flags))
+	}
+}
+
+func (ptr *QPainter) DrawImage9(x int, y int, image QImage_ITF, sx int, sy int, sw int, sh int, flags core.Qt__ImageConversionFlag) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawImage9(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), PointerFromQImage(image), C.int(int32(sx)), C.int(int32(sy)), C.int(int32(sw)), C.int(int32(sh)), C.longlong(flags))
+	}
+}
+
+func (ptr *QPainter) DrawLine2(line core.QLine_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLine2(ptr.Pointer(), core.PointerFromQLine(line))
+	}
+}
+
+func (ptr *QPainter) DrawLine(line core.QLineF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLine(ptr.Pointer(), core.PointerFromQLineF(line))
+	}
+}
+
+func (ptr *QPainter) DrawLine4(p1 core.QPoint_ITF, p2 core.QPoint_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLine4(ptr.Pointer(), core.PointerFromQPoint(p1), core.PointerFromQPoint(p2))
+	}
+}
+
+func (ptr *QPainter) DrawLine5(p1 core.QPointF_ITF, p2 core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLine5(ptr.Pointer(), core.PointerFromQPointF(p1), core.PointerFromQPointF(p2))
+	}
+}
+
+func (ptr *QPainter) DrawLine3(x1 int, y1 int, x2 int, y2 int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLine3(ptr.Pointer(), C.int(int32(x1)), C.int(int32(y1)), C.int(int32(x2)), C.int(int32(y2)))
+	}
+}
+
+func (ptr *QPainter) DrawLines5(lines core.QLine_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines5(ptr.Pointer(), core.PointerFromQLine(lines), C.int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPainter) DrawLines(lines core.QLineF_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPainter) DrawLines7(pointPairs core.QPoint_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines7(ptr.Pointer(), core.PointerFromQPoint(pointPairs), C.int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPainter) DrawLines3(pointPairs core.QPointF_ITF, lineCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines3(ptr.Pointer(), core.PointerFromQPointF(pointPairs), C.int(int32(lineCount)))
+	}
+}
+
+func (ptr *QPainter) DrawLines6(lines []*core.QLine) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines6(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPainterFromPointer(NewQPainterFromPointer(nil).__drawLines_lines_newList6())
+			for _, v := range lines {
+				tmpList.__drawLines_lines_setList6(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QPainter) DrawLines2(lines []*core.QLineF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPainterFromPointer(NewQPainterFromPointer(nil).__drawLines_lines_newList2())
+			for _, v := range lines {
+				tmpList.__drawLines_lines_setList2(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QPainter) DrawLines8(pointPairs []*core.QPoint) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines8(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPainterFromPointer(NewQPainterFromPointer(nil).__drawLines_pointPairs_newList8())
+			for _, v := range pointPairs {
+				tmpList.__drawLines_pointPairs_setList8(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QPainter) DrawLines4(pointPairs []*core.QPointF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawLines4(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPainterFromPointer(NewQPainterFromPointer(nil).__drawLines_pointPairs_newList4())
+			for _, v := range pointPairs {
+				tmpList.__drawLines_pointPairs_setList4(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QPainter) DrawPath(path QPainterPath_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPath(ptr.Pointer(), PointerFromQPainterPath(path))
+	}
+}
+
+func (ptr *QPainter) DrawPicture3(point core.QPoint_ITF, picture QPicture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPicture3(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPicture(picture))
+	}
+}
+
+func (ptr *QPainter) DrawPicture(point core.QPointF_ITF, picture QPicture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPicture(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPicture(picture))
+	}
+}
+
+func (ptr *QPainter) DrawPicture2(x int, y int, picture QPicture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPicture2(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), PointerFromQPicture(picture))
+	}
+}
+
+func (ptr *QPainter) DrawPie3(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPie3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawPie(rectangle core.QRectF_ITF, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPie(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawPie2(x int, y int, width int, height int, startAngle int, spanAngle int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPie2(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(startAngle)), C.int(int32(spanAngle)))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap8(point core.QPoint_ITF, pixmap QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap8(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap6(point core.QPoint_ITF, pixmap QPixmap_ITF, source core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap6(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap), core.PointerFromQRect(source))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap7(point core.QPointF_ITF, pixmap QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap7(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap5(point core.QPointF_ITF, pixmap QPixmap_ITF, source core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap5(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap), core.PointerFromQRectF(source))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap10(rectangle core.QRect_ITF, pixmap QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap10(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap2(target core.QRect_ITF, pixmap QPixmap_ITF, source core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap2(ptr.Pointer(), core.PointerFromQRect(target), PointerFromQPixmap(pixmap), core.PointerFromQRect(source))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap(target core.QRectF_ITF, pixmap QPixmap_ITF, source core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap(ptr.Pointer(), core.PointerFromQRectF(target), PointerFromQPixmap(pixmap), core.PointerFromQRectF(source))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap9(x int, y int, pixmap QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap9(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap4(x int, y int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap4(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), PointerFromQPixmap(pixmap), C.int(int32(sx)), C.int(int32(sy)), C.int(int32(sw)), C.int(int32(sh)))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap3(x int, y int, w int, h int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(w)), C.int(int32(h)), PointerFromQPixmap(pixmap), C.int(int32(sx)), C.int(int32(sy)), C.int(int32(sw)), C.int(int32(sh)))
+	}
+}
+
+func (ptr *QPainter) DrawPixmap11(x int, y int, width int, height int, pixmap QPixmap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPixmap11(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QPainter) DrawPoint2(position core.QPoint_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPoint2(ptr.Pointer(), core.PointerFromQPoint(position))
+	}
+}
+
+func (ptr *QPainter) DrawPoint(position core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPoint(ptr.Pointer(), core.PointerFromQPointF(position))
+	}
+}
+
+func (ptr *QPainter) DrawPoint3(x int, y int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPoint3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)))
+	}
+}
+
+func (ptr *QPainter) DrawPoints3(points core.QPoint_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPoints3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPainter) DrawPoints(points core.QPointF_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPoints(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPainter) DrawPoints4(points QPolygon_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPoints4(ptr.Pointer(), PointerFromQPolygon(points))
+	}
+}
+
+func (ptr *QPainter) DrawPoints2(points QPolygonF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPoints2(ptr.Pointer(), PointerFromQPolygonF(points))
+	}
+}
+
+func (ptr *QPainter) DrawPolygon3(points core.QPoint_ITF, pointCount int, fillRule core.Qt__FillRule) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolygon3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)), C.longlong(fillRule))
+	}
+}
+
+func (ptr *QPainter) DrawPolygon(points core.QPointF_ITF, pointCount int, fillRule core.Qt__FillRule) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)), C.longlong(fillRule))
+	}
+}
+
+func (ptr *QPainter) DrawPolygon4(points QPolygon_ITF, fillRule core.Qt__FillRule) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolygon4(ptr.Pointer(), PointerFromQPolygon(points), C.longlong(fillRule))
+	}
+}
+
+func (ptr *QPainter) DrawPolygon2(points QPolygonF_ITF, fillRule core.Qt__FillRule) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolygon2(ptr.Pointer(), PointerFromQPolygonF(points), C.longlong(fillRule))
+	}
+}
+
+func (ptr *QPainter) DrawPolyline3(points core.QPoint_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolyline3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPainter) DrawPolyline(points core.QPointF_ITF, pointCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolyline(ptr.Pointer(), core.PointerFromQPointF(points), C.int(int32(pointCount)))
+	}
+}
+
+func (ptr *QPainter) DrawPolyline4(points QPolygon_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolyline4(ptr.Pointer(), PointerFromQPolygon(points))
+	}
+}
+
+func (ptr *QPainter) DrawPolyline2(points QPolygonF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawPolyline2(ptr.Pointer(), PointerFromQPolygonF(points))
+	}
+}
+
+func (ptr *QPainter) DrawRect3(rectangle core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRect3(ptr.Pointer(), core.PointerFromQRect(rectangle))
+	}
+}
+
+func (ptr *QPainter) DrawRect(rectangle core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRect(ptr.Pointer(), core.PointerFromQRectF(rectangle))
+	}
+}
+
+func (ptr *QPainter) DrawRect2(x int, y int, width int, height int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRect2(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)))
+	}
+}
+
+func (ptr *QPainter) DrawRects3(rectangles core.QRect_ITF, rectCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRects3(ptr.Pointer(), core.PointerFromQRect(rectangles), C.int(int32(rectCount)))
+	}
+}
+
+func (ptr *QPainter) DrawRects(rectangles core.QRectF_ITF, rectCount int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRects(ptr.Pointer(), core.PointerFromQRectF(rectangles), C.int(int32(rectCount)))
+	}
+}
+
+func (ptr *QPainter) DrawRects4(rectangles []*core.QRect) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRects4(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPainterFromPointer(NewQPainterFromPointer(nil).__drawRects_rectangles_newList4())
+			for _, v := range rectangles {
+				tmpList.__drawRects_rectangles_setList4(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QPainter) DrawRects2(rectangles []*core.QRectF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRects2(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQPainterFromPointer(NewQPainterFromPointer(nil).__drawRects_rectangles_newList2())
+			for _, v := range rectangles {
+				tmpList.__drawRects_rectangles_setList2(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QPainter) DrawRoundedRect3(rect core.QRect_ITF, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRoundedRect3(ptr.Pointer(), core.PointerFromQRect(rect), C.double(xRadius), C.double(yRadius), C.longlong(mode))
+	}
+}
+
+func (ptr *QPainter) DrawRoundedRect(rect core.QRectF_ITF, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRoundedRect(ptr.Pointer(), core.PointerFromQRectF(rect), C.double(xRadius), C.double(yRadius), C.longlong(mode))
+	}
+}
+
+func (ptr *QPainter) DrawRoundedRect2(x int, y int, w int, h int, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawRoundedRect2(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(w)), C.int(int32(h)), C.double(xRadius), C.double(yRadius), C.longlong(mode))
+	}
+}
+
+func (ptr *QPainter) DrawStaticText2(topLeftPosition core.QPoint_ITF, staticText QStaticText_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawStaticText2(ptr.Pointer(), core.PointerFromQPoint(topLeftPosition), PointerFromQStaticText(staticText))
+	}
+}
+
+func (ptr *QPainter) DrawStaticText(topLeftPosition core.QPointF_ITF, staticText QStaticText_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawStaticText(ptr.Pointer(), core.PointerFromQPointF(topLeftPosition), PointerFromQStaticText(staticText))
+	}
+}
+
+func (ptr *QPainter) DrawStaticText3(left int, top int, staticText QStaticText_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawStaticText3(ptr.Pointer(), C.int(int32(left)), C.int(int32(top)), PointerFromQStaticText(staticText))
+	}
+}
+
+func (ptr *QPainter) DrawText2(position core.QPoint_ITF, text string) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QPainter_DrawText2(ptr.Pointer(), core.PointerFromQPoint(position), textC)
+	}
+}
+
+func (ptr *QPainter) DrawText(position core.QPointF_ITF, text string) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QPainter_DrawText(ptr.Pointer(), core.PointerFromQPointF(position), textC)
+	}
+}
+
+func (ptr *QPainter) DrawText6(rectangle core.QRect_ITF, flags int, text string, boundingRect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QPainter_DrawText6(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(flags)), textC, core.PointerFromQRect(boundingRect))
+	}
+}
+
+func (ptr *QPainter) DrawText8(rectangle core.QRectF_ITF, text string, option QTextOption_ITF) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QPainter_DrawText8(ptr.Pointer(), core.PointerFromQRectF(rectangle), textC, PointerFromQTextOption(option))
+	}
+}
+
+func (ptr *QPainter) DrawText5(rectangle core.QRectF_ITF, flags int, text string, boundingRect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QPainter_DrawText5(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(flags)), textC, core.PointerFromQRectF(boundingRect))
+	}
+}
+
+func (ptr *QPainter) DrawText3(x int, y int, text string) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QPainter_DrawText3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), textC)
+	}
+}
+
+func (ptr *QPainter) DrawText7(x int, y int, width int, height int, flags int, text string, boundingRect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QPainter_DrawText7(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(flags)), textC, core.PointerFromQRect(boundingRect))
+	}
+}
+
+func (ptr *QPainter) DrawTiledPixmap3(rectangle core.QRect_ITF, pixmap QPixmap_ITF, position core.QPoint_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawTiledPixmap3(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap), core.PointerFromQPoint(position))
+	}
+}
+
+func (ptr *QPainter) DrawTiledPixmap(rectangle core.QRectF_ITF, pixmap QPixmap_ITF, position core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawTiledPixmap(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQPixmap(pixmap), core.PointerFromQPointF(position))
+	}
+}
+
+func (ptr *QPainter) DrawTiledPixmap2(x int, y int, width int, height int, pixmap QPixmap_ITF, sx int, sy int) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawTiledPixmap2(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), PointerFromQPixmap(pixmap), C.int(int32(sx)), C.int(int32(sy)))
 	}
 }
 
@@ -27702,6 +28909,120 @@ func (ptr *QPainter) Opacity() float64 {
 		return float64(C.QPainter_Opacity(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QPainter) __drawLines_lines_atList6(i int) *core.QLine {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQLineFromPointer(C.QPainter___drawLines_lines_atList6(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QLine).DestroyQLine)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainter) __drawLines_lines_setList6(i core.QLine_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter___drawLines_lines_setList6(ptr.Pointer(), core.PointerFromQLine(i))
+	}
+}
+
+func (ptr *QPainter) __drawLines_lines_newList6() unsafe.Pointer {
+	return unsafe.Pointer(C.QPainter___drawLines_lines_newList6(ptr.Pointer()))
+}
+
+func (ptr *QPainter) __drawLines_lines_atList2(i int) *core.QLineF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQLineFFromPointer(C.QPainter___drawLines_lines_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainter) __drawLines_lines_setList2(i core.QLineF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter___drawLines_lines_setList2(ptr.Pointer(), core.PointerFromQLineF(i))
+	}
+}
+
+func (ptr *QPainter) __drawLines_lines_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QPainter___drawLines_lines_newList2(ptr.Pointer()))
+}
+
+func (ptr *QPainter) __drawLines_pointPairs_atList8(i int) *core.QPoint {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFromPointer(C.QPainter___drawLines_pointPairs_atList8(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainter) __drawLines_pointPairs_setList8(i core.QPoint_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter___drawLines_pointPairs_setList8(ptr.Pointer(), core.PointerFromQPoint(i))
+	}
+}
+
+func (ptr *QPainter) __drawLines_pointPairs_newList8() unsafe.Pointer {
+	return unsafe.Pointer(C.QPainter___drawLines_pointPairs_newList8(ptr.Pointer()))
+}
+
+func (ptr *QPainter) __drawLines_pointPairs_atList4(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFFromPointer(C.QPainter___drawLines_pointPairs_atList4(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainter) __drawLines_pointPairs_setList4(i core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter___drawLines_pointPairs_setList4(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
+}
+
+func (ptr *QPainter) __drawLines_pointPairs_newList4() unsafe.Pointer {
+	return unsafe.Pointer(C.QPainter___drawLines_pointPairs_newList4(ptr.Pointer()))
+}
+
+func (ptr *QPainter) __drawRects_rectangles_atList4(i int) *core.QRect {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFromPointer(C.QPainter___drawRects_rectangles_atList4(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainter) __drawRects_rectangles_setList4(i core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter___drawRects_rectangles_setList4(ptr.Pointer(), core.PointerFromQRect(i))
+	}
+}
+
+func (ptr *QPainter) __drawRects_rectangles_newList4() unsafe.Pointer {
+	return unsafe.Pointer(C.QPainter___drawRects_rectangles_newList4(ptr.Pointer()))
+}
+
+func (ptr *QPainter) __drawRects_rectangles_atList2(i int) *core.QRectF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFFromPointer(C.QPainter___drawRects_rectangles_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainter) __drawRects_rectangles_setList2(i core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter___drawRects_rectangles_setList2(ptr.Pointer(), core.PointerFromQRectF(i))
+	}
+}
+
+func (ptr *QPainter) __drawRects_rectangles_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QPainter___drawRects_rectangles_newList2(ptr.Pointer()))
 }
 
 type QPainterPath struct {
@@ -43003,6 +44324,12 @@ func (ptr *QTextDocument) DocumentLayoutChanged() {
 	}
 }
 
+func (ptr *QTextDocument) DrawContents(p QPainter_ITF, rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTextDocument_DrawContents(ptr.Pointer(), PointerFromQPainter(p), core.PointerFromQRectF(rect))
+	}
+}
+
 func (ptr *QTextDocument) MarkContentsDirty(position int, length int) {
 	if ptr.Pointer() != nil {
 		C.QTextDocument_MarkContentsDirty(ptr.Pointer(), C.int(int32(position)), C.int(int32(length)))
@@ -46181,6 +47508,18 @@ func (ptr *QTextLayout) MinimumWidth() float64 {
 	return 0
 }
 
+func (ptr *QTextLayout) DrawCursor2(painter QPainter_ITF, position core.QPointF_ITF, cursorPosition int) {
+	if ptr.Pointer() != nil {
+		C.QTextLayout_DrawCursor2(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQPointF(position), C.int(int32(cursorPosition)))
+	}
+}
+
+func (ptr *QTextLayout) DrawCursor(painter QPainter_ITF, position core.QPointF_ITF, cursorPosition int, width int) {
+	if ptr.Pointer() != nil {
+		C.QTextLayout_DrawCursor(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQPointF(position), C.int(int32(cursorPosition)), C.int(int32(width)))
+	}
+}
+
 func (ptr *QTextLayout) __glyphRuns_atList(i int) *QGlyphRun {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQGlyphRunFromPointer(C.QTextLayout___glyphRuns_atList(ptr.Pointer(), C.int(int32(i))))
@@ -47220,6 +48559,34 @@ func (ptr *QTextObjectInterface) IntrinsicSize(doc QTextDocument_ITF, posInDocum
 		return tmpValue
 	}
 	return nil
+}
+
+//export callbackQTextObjectInterface_DrawObject
+func callbackQTextObjectInterface_DrawObject(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, doc unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "drawObject"); signal != nil {
+		signal.(func(*QPainter, *core.QRectF, *QTextDocument, int, *QTextFormat))(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), NewQTextDocumentFromPointer(doc), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	}
+
+}
+
+func (ptr *QTextObjectInterface) ConnectDrawObject(f func(painter *QPainter, rect *core.QRectF, doc *QTextDocument, posInDocument int, format *QTextFormat)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "drawObject", f)
+	}
+}
+
+func (ptr *QTextObjectInterface) DisconnectDrawObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "drawObject")
+	}
+}
+
+func (ptr *QTextObjectInterface) DrawObject(painter QPainter_ITF, rect core.QRectF_ITF, doc QTextDocument_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTextObjectInterface_DrawObject(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRectF(rect), PointerFromQTextDocument(doc), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
+	}
 }
 
 //export callbackQTextObjectInterface_DestroyQTextObjectInterface
