@@ -3226,6 +3226,59 @@ func (ptr *QDBusPendingReply) DestroyQDBusPendingReply() {
 	}
 }
 
+type QDBusPendingReplyTypes struct {
+	ptr unsafe.Pointer
+}
+
+type QDBusPendingReplyTypes_ITF interface {
+	QDBusPendingReplyTypes_PTR() *QDBusPendingReplyTypes
+}
+
+func (ptr *QDBusPendingReplyTypes) QDBusPendingReplyTypes_PTR() *QDBusPendingReplyTypes {
+	return ptr
+}
+
+func (ptr *QDBusPendingReplyTypes) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QDBusPendingReplyTypes) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQDBusPendingReplyTypes(ptr QDBusPendingReplyTypes_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDBusPendingReplyTypes_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDBusPendingReplyTypesFromPointer(ptr unsafe.Pointer) *QDBusPendingReplyTypes {
+	var n = new(QDBusPendingReplyTypes)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QDBusPendingReplyTypes) DestroyQDBusPendingReplyTypes() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func QDBusPendingReplyTypes_MetaTypeFor2(vqv core.QVariant_ITF) int {
+	return int(int32(C.QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(core.PointerFromQVariant(vqv))))
+}
+
+func (ptr *QDBusPendingReplyTypes) MetaTypeFor2(vqv core.QVariant_ITF) int {
+	return int(int32(C.QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(core.PointerFromQVariant(vqv))))
+}
+
 type QDBusReply struct {
 	ptr unsafe.Pointer
 }
@@ -4374,60 +4427,6 @@ func (ptr *QDBusUnixFileDescriptor) FileDescriptor() int {
 	}
 	return 0
 }
-
-type QDBusUtil struct {
-	ptr unsafe.Pointer
-}
-
-type QDBusUtil_ITF interface {
-	QDBusUtil_PTR() *QDBusUtil
-}
-
-func (ptr *QDBusUtil) QDBusUtil_PTR() *QDBusUtil {
-	return ptr
-}
-
-func (ptr *QDBusUtil) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QDBusUtil) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQDBusUtil(ptr QDBusUtil_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QDBusUtil_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQDBusUtilFromPointer(ptr unsafe.Pointer) *QDBusUtil {
-	var n = new(QDBusUtil)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QDBusUtil) DestroyQDBusUtil() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//go:generate stringer -type=QDBusUtil__AllowEmptyFlag
-//QDBusUtil::AllowEmptyFlag
-type QDBusUtil__AllowEmptyFlag int64
-
-const (
-	QDBusUtil__EmptyAllowed    QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(0)
-	QDBusUtil__EmptyNotAllowed QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(1)
-)
 
 type QDBusVariant struct {
 	ptr unsafe.Pointer

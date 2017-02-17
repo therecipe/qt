@@ -1172,6 +1172,11 @@ func iosPLIST() string {
 	</array>
 	<key>QtRunLoopIntegrationDisableSeparateStack</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>  
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
 `, appName, appName, func() string {
@@ -1500,6 +1505,7 @@ func iosProject() string {
 
 const (
 	iosGalleryPluginImport = `#include <QtPlugin>
+Q_IMPORT_PLUGIN(QIOSIntegrationPlugin)
 Q_IMPORT_PLUGIN(AVFServicePlugin)
 Q_IMPORT_PLUGIN(AVFMediaPlayerServicePlugin)
 Q_IMPORT_PLUGIN(AudioCaptureServicePlugin)
@@ -1507,8 +1513,10 @@ Q_IMPORT_PLUGIN(CoreAudioPlugin)
 Q_IMPORT_PLUGIN(QM3uPlaylistPlugin)
 //Q_IMPORT_PLUGIN(ContextPlugin)
 //Q_IMPORT_PLUGIN(QDDSPlugin)
+Q_IMPORT_PLUGIN(QGifPlugin)
 Q_IMPORT_PLUGIN(QICNSPlugin)
 Q_IMPORT_PLUGIN(QICOPlugin)
+Q_IMPORT_PLUGIN(QJpegPlugin)
 Q_IMPORT_PLUGIN(QMacJp2Plugin)
 Q_IMPORT_PLUGIN(QTgaPlugin)
 Q_IMPORT_PLUGIN(QTiffPlugin)
@@ -1543,6 +1551,7 @@ Q_IMPORT_PLUGIN(QtQmlModelsPlugin)
 Q_IMPORT_PLUGIN(QtQuickExtrasPlugin)
 Q_IMPORT_PLUGIN(QtGraphicalEffectsPlugin)
 Q_IMPORT_PLUGIN(QtGraphicalEffectsPrivatePlugin)
+Q_IMPORT_PLUGIN(QWebViewModule)
 `
 
 	iosQtConf = `[Paths]

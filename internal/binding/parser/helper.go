@@ -114,7 +114,12 @@ func CleanName(name, value string) string {
 
 	case "":
 		{
-			return fmt.Sprintf("v%v", strings.Replace(strings.ToLower(CleanValue(value)[:2]), ".", "", -1))
+			var v = strings.Replace(CleanValue(value), ".", "", -1)
+			if len(v) >= 3 {
+				return fmt.Sprintf("v%v", strings.ToLower(v[:2]))
+			} else {
+				return fmt.Sprintf("v%v", strings.ToLower(v))
+			}
 		}
 	}
 
@@ -135,15 +140,15 @@ var LibDeps = map[string][]string{
 	"Widgets":       {"Gui", "Core"},
 	"Sql":           {"Widgets", "Gui", "Core"}, //Widgets, Gui
 	"MacExtras":     {"Gui", "Core"},
-	"Qml":           {"Network", "Core"},
+	"Qml":           {"QuickControls2", "Network", "Core"},
 	"WebSockets":    {"Network", "Core"},
 	"XmlPatterns":   {"Network", "Core"},
 	"Bluetooth":     {"Core"},
 	"WebChannel":    {"Network", "Qml", "Core"}, //Network (needed for static linking ios)
 	"Svg":           {"Widgets", "Gui", "Core"},
-	"Multimedia":    {"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
-	"Quick":         {"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
-	"Help":          {"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
+	"Multimedia":    {"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},                     //MultimediaWidgets, Widgets
+	"Quick":         {"QuickControls2", "QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
+	"Help":          {"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},                        //Sql + CLucene + Network (needed for static linking ios)
 	"Location":      {"Positioning", "Quick", "Gui", "Core"},
 	"ScriptTools":   {"Script", "Widgets", "Core"}, //Script, Widgets
 	"UiTools":       {"Widgets", "Gui", "Core"},
@@ -169,9 +174,10 @@ var LibDeps = map[string][]string{
 	"QuickControls2": {"Quick", "QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //Quick, QuickWidgets, Widgets, Network, Qml, Gui (needed for static linking ios)
 
 	"Sailfish": {"Core"},
+	"WebView":  {"Core"},
 
 	MOC:         make([]string, 0),
-	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},
+	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport", "WebView"},
 }
 
 var Libs = []string{
@@ -222,6 +228,7 @@ var Libs = []string{
 	"QuickControls2",
 
 	"Sailfish",
+	"WebView",
 }
 
 func ShouldBuild(module string) bool {

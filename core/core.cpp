@@ -178,6 +178,7 @@
 #include <QXmlStreamNotationDeclaration>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
+#include <QTextDocument>
 
 class MyQAbstractAnimation: public QAbstractAnimation
 {
@@ -22267,5 +22268,15 @@ int Qt_ISODateWithMs_Type()
 int Qt_LastGestureType_Type()
 {
 	return Qt::LastGestureType;
+}
+
+struct QtCore_PackedString Qt_Qt_ConvertFromPlainText(char* plain, long long mode)
+{
+	return ({ QByteArray t446f97 = Qt::convertFromPlainText(QString(plain), static_cast<Qt::WhiteSpaceMode>(mode)).toUtf8(); QtCore_PackedString { const_cast<char*>(t446f97.prepend("WHITESPACE").constData()+10), t446f97.size()-10 }; });
+}
+
+char Qt_Qt_MightBeRichText(char* text)
+{
+	return Qt::mightBeRichText(QString(text));
 }
 

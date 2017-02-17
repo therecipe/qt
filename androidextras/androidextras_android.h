@@ -142,6 +142,13 @@ char QAndroidJniObject_GetFieldBoolean(void* ptr, char* fieldName);
 char QAndroidJniObject_GetFieldBooleanCaught(void* ptr, char* fieldName);
 void* QAndroidJniObject_Object(void* ptr);
 char QAndroidJniObject_IsValid(void* ptr);
+void* QtAndroid_QtAndroid_AndroidActivity();
+void* QtAndroid_QtAndroid_AndroidContext();
+void* QtAndroid_QtAndroid_AndroidService();
+int QtAndroid_QtAndroid_AndroidSdkVersion();
+void QtAndroid_QtAndroid_HideSplashScreen();
+void QtAndroid_QtAndroid_StartActivity(void* intent, int receiverRequestCode, void* resultReceiver);
+void QtAndroid_QtAndroid_StartIntentSender(void* intentSender, int receiverRequestCode, void* resultReceiver);
 
 #ifdef __cplusplus
 }

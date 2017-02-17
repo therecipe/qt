@@ -275,6 +275,7 @@ void QDBusPendingCallWatcher_TimerEvent(void* ptr, void* event);
 void QDBusPendingCallWatcher_TimerEventDefault(void* ptr, void* event);
 void* QDBusPendingCallWatcher_MetaObject(void* ptr);
 void* QDBusPendingCallWatcher_MetaObjectDefault(void* ptr);
+int QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(void* vqv);
 void* QDBusServer_NewQDBusServer2(void* parent);
 void* QDBusServer_NewQDBusServer(char* address, void* parent);
 void QDBusServer_ConnectNewConnection(void* ptr);

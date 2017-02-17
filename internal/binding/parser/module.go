@@ -13,14 +13,17 @@ type Module struct {
 
 type Namespace struct {
 	Classes []*Class `xml:"class"`
-	//Functions    []*Function   `xml:"function"` //TODO: uncomment
-	SubNamespace *SubNamespace `xml:"namespace"`
+	//Functions     []*Function     `xml:"function"` //TODO: uncomment
+	//Enums         []*Enum         `xml:"enum"`     //TODO: uncomment
+	SubNamespaces []*SubNamespace `xml:"namespace"`
 }
 
 type SubNamespace struct {
 	//Classes   []*Class    `xml:"class"`    //TODO: uncomment
-	//Functions []*Function `xml:"function"` //TODO: uncomment
-	Enums []*Enum `xml:"enum"`
+	Functions []*Function `xml:"function"`
+	Enums     []*Enum     `xml:"enum"`
+	Status    string      `xml:"status,attr"`
+	Access    string      `xml:"access,attr"`
 }
 
 func (m *Module) Prepare() error {
@@ -31,10 +34,38 @@ func (m *Module) Prepare() error {
 		c.register(m.Project)
 	}
 
-	//register enums from subnamespace
-	if m.Namespace.SubNamespace != nil {
-		for _, e := range m.Namespace.SubNamespace.Enums {
+	//register enums and functions from subnamespaces
+	for _, sns := range m.Namespace.SubNamespaces {
+		for _, e := range sns.Enums {
+			if !(e.Status == "active") || !(e.Access == "public" || e.Access == "protected") ||
+				strings.Contains(e.Fullname, "Private") || strings.Contains(e.Fullname, "Util") ||
+				strings.Contains(e.Fullname, "nternal") || strings.ToLower(e.Name) == e.Name {
+				continue
+			}
 			e.register(m.Project)
+		}
+		if m.Project != "QtSensors" && m.Project != "QtXmlPatterns" &&
+			m.Project != "QtQml" && m.Project != "QtWidgets" && m.Project != "QtMacExtras" &&
+			m.Project != "QtTestLib" && m.Project != "QtWebEngine" && m.Project != "QtScript" && m.Project != "QtQuick" {
+			for _, f := range sns.Functions {
+
+				if !(f.Status == "active") || !(f.Access == "public" || f.Access == "protected") ||
+					strings.Contains(f.Fullname, "Private") || strings.Contains(f.Fullname, "Util") ||
+					strings.Contains(f.Fullname, "nternal") || f.Name == "qDefaultSurfaceFormat" ||
+					f.ClassName() == "QUnicodeTables" ||
+					f.ClassName() == "QUtf8Functions" ||
+					f.ClassName() == "QUnicodeTools" ||
+					f.ClassName() == "HPack" ||
+					f.ClassName() == "QHighDpi" ||
+					f.ClassName() == "QPdf" ||
+					f.ClassName() == "QPlatformGraphicsBufferHelper" ||
+					strings.ToLower(f.ClassName()) == f.ClassName() {
+					continue
+				}
+
+				f.Static = true
+				f.register(m.Project)
+			}
 		}
 	}
 

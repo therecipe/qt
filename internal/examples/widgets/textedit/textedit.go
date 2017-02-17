@@ -432,10 +432,9 @@ func (t *TextEdit) load(f string) bool {
 		str   = codec.ToUnicode(data)
 	)
 
-	if true /*TODO: core.Qt_MightBeRichText(str)*/ {
+	if core.Qt_MightBeRichText(str) {
 		t.textEdit.SetHtml(str)
 	} else {
-		str = data.ConstData()
 		t.textEdit.SetPlainText(str)
 	}
 

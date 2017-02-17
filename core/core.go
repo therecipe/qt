@@ -25448,63 +25448,6 @@ func (ptr *QModelIndex) InternalPointer() unsafe.Pointer {
 	return nil
 }
 
-type QModulesPrivate struct {
-	ptr unsafe.Pointer
-}
-
-type QModulesPrivate_ITF interface {
-	QModulesPrivate_PTR() *QModulesPrivate
-}
-
-func (ptr *QModulesPrivate) QModulesPrivate_PTR() *QModulesPrivate {
-	return ptr
-}
-
-func (ptr *QModulesPrivate) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QModulesPrivate) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQModulesPrivate(ptr QModulesPrivate_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QModulesPrivate_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQModulesPrivateFromPointer(ptr unsafe.Pointer) *QModulesPrivate {
-	var n = new(QModulesPrivate)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QModulesPrivate) DestroyQModulesPrivate() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//go:generate stringer -type=QModulesPrivate__Names
-//QModulesPrivate::Names
-type QModulesPrivate__Names int64
-
-const (
-	QModulesPrivate__Core         QModulesPrivate__Names = QModulesPrivate__Names(0)
-	QModulesPrivate__Gui          QModulesPrivate__Names = QModulesPrivate__Names(1)
-	QModulesPrivate__Widgets      QModulesPrivate__Names = QModulesPrivate__Names(2)
-	QModulesPrivate__Unknown      QModulesPrivate__Names = QModulesPrivate__Names(3)
-	QModulesPrivate__ModulesCount QModulesPrivate__Names = QModulesPrivate__Names(4)
-)
-
 type QMultiHash struct {
 	QHash
 }
@@ -46861,59 +46804,29 @@ const (
 	Qt__WindowFullscreenButtonHint          Qt__WindowType = Qt__WindowType(0x80000000)
 )
 
-type QtAndroidPrivate struct {
-	ptr unsafe.Pointer
+func Qt_ConvertFromPlainText(plain string, mode Qt__WhiteSpaceMode) string {
+	var plainC = C.CString(plain)
+	defer C.free(unsafe.Pointer(plainC))
+	return cGoUnpackString(C.Qt_Qt_ConvertFromPlainText(plainC, C.longlong(mode)))
 }
 
-type QtAndroidPrivate_ITF interface {
-	QtAndroidPrivate_PTR() *QtAndroidPrivate
+func (ptr *Qt) ConvertFromPlainText(plain string, mode Qt__WhiteSpaceMode) string {
+	var plainC = C.CString(plain)
+	defer C.free(unsafe.Pointer(plainC))
+	return cGoUnpackString(C.Qt_Qt_ConvertFromPlainText(plainC, C.longlong(mode)))
 }
 
-func (ptr *QtAndroidPrivate) QtAndroidPrivate_PTR() *QtAndroidPrivate {
-	return ptr
+func Qt_MightBeRichText(text string) bool {
+	var textC = C.CString(text)
+	defer C.free(unsafe.Pointer(textC))
+	return C.Qt_Qt_MightBeRichText(textC) != 0
 }
 
-func (ptr *QtAndroidPrivate) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
+func (ptr *Qt) MightBeRichText(text string) bool {
+	var textC = C.CString(text)
+	defer C.free(unsafe.Pointer(textC))
+	return C.Qt_Qt_MightBeRichText(textC) != 0
 }
-
-func (ptr *QtAndroidPrivate) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQtAndroidPrivate(ptr QtAndroidPrivate_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QtAndroidPrivate_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQtAndroidPrivateFromPointer(ptr unsafe.Pointer) *QtAndroidPrivate {
-	var n = new(QtAndroidPrivate)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QtAndroidPrivate) DestroyQtAndroidPrivate() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//go:generate stringer -type=QtAndroidPrivate__PermissionsResult
-//QtAndroidPrivate::PermissionsResult
-type QtAndroidPrivate__PermissionsResult int64
-
-const (
-	QtAndroidPrivate__Granted QtAndroidPrivate__PermissionsResult = QtAndroidPrivate__PermissionsResult(0)
-	QtAndroidPrivate__Denied  QtAndroidPrivate__PermissionsResult = QtAndroidPrivate__PermissionsResult(1)
-)
 
 type QtGlobalStatic struct {
 	ptr unsafe.Pointer
@@ -46969,59 +46882,4 @@ const (
 	QtGlobalStatic__Initialized   QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(-1)
 	QtGlobalStatic__Uninitialized QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(0)
 	QtGlobalStatic__Initializing  QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(1)
-)
-
-type QtMetaTypePrivate struct {
-	ptr unsafe.Pointer
-}
-
-type QtMetaTypePrivate_ITF interface {
-	QtMetaTypePrivate_PTR() *QtMetaTypePrivate
-}
-
-func (ptr *QtMetaTypePrivate) QtMetaTypePrivate_PTR() *QtMetaTypePrivate {
-	return ptr
-}
-
-func (ptr *QtMetaTypePrivate) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QtMetaTypePrivate) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQtMetaTypePrivate(ptr QtMetaTypePrivate_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QtMetaTypePrivate_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQtMetaTypePrivateFromPointer(ptr unsafe.Pointer) *QtMetaTypePrivate {
-	var n = new(QtMetaTypePrivate)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QtMetaTypePrivate) DestroyQtMetaTypePrivate() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//go:generate stringer -type=QtMetaTypePrivate__IteratorCapability
-//QtMetaTypePrivate::IteratorCapability
-type QtMetaTypePrivate__IteratorCapability int64
-
-const (
-	QtMetaTypePrivate__ForwardCapability       QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(1)
-	QtMetaTypePrivate__BiDirectionalCapability QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(2)
-	QtMetaTypePrivate__RandomAccessCapability  QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(4)
 )

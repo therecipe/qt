@@ -11,6 +11,7 @@
 #include <QAndroidJniObject>
 #include <QByteArray>
 #include <QString>
+#include <QtAndroid>
 
 class MyQAndroidActivityResultReceiver: public QAndroidActivityResultReceiver
 {
@@ -661,5 +662,40 @@ void* QAndroidJniObject_Object(void* ptr)
 char QAndroidJniObject_IsValid(void* ptr)
 {
 	return static_cast<QAndroidJniObject*>(ptr)->isValid();
+}
+
+void* QtAndroid_QtAndroid_AndroidActivity()
+{
+	return new QAndroidJniObject(QtAndroid::androidActivity().object());
+}
+
+void* QtAndroid_QtAndroid_AndroidContext()
+{
+	return new QAndroidJniObject(QtAndroid::androidContext().object());
+}
+
+void* QtAndroid_QtAndroid_AndroidService()
+{
+	return new QAndroidJniObject(QtAndroid::androidService().object());
+}
+
+int QtAndroid_QtAndroid_AndroidSdkVersion()
+{
+	return QtAndroid::androidSdkVersion();
+}
+
+void QtAndroid_QtAndroid_HideSplashScreen()
+{
+	QtAndroid::hideSplashScreen();
+}
+
+void QtAndroid_QtAndroid_StartActivity(void* intent, int receiverRequestCode, void* resultReceiver)
+{
+	QtAndroid::startActivity(*static_cast<QAndroidJniObject*>(intent), receiverRequestCode, static_cast<QAndroidActivityResultReceiver*>(resultReceiver));
+}
+
+void QtAndroid_QtAndroid_StartIntentSender(void* intentSender, int receiverRequestCode, void* resultReceiver)
+{
+	QtAndroid::startIntentSender(*static_cast<QAndroidJniObject*>(intentSender), receiverRequestCode, static_cast<QAndroidActivityResultReceiver*>(resultReceiver));
 }
 

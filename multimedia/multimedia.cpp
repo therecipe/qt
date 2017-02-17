@@ -12,7 +12,6 @@
 #include <QAbstractVideoSurface>
 #include <QAction>
 #include <QActionEvent>
-#include <QAudio>
 #include <QAudioBuffer>
 #include <QAudioDecoder>
 #include <QAudioDecoderControl>
@@ -113,7 +112,6 @@
 #include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
-#include <QMultimedia>
 #include <QNetworkConfiguration>
 #include <QNetworkRequest>
 #include <QObject>
@@ -921,6 +919,11 @@ void QAbstractVideoSurface_TimerEventDefault(void* ptr, void* event)
 void* QAbstractVideoSurface_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::metaObject());
+}
+
+double QAudio_QAudio_ConvertVolume(double volume, long long from, long long to)
+{
+	return QAudio::convertVolume(volume, static_cast<QAudio::VolumeScale>(from), static_cast<QAudio::VolumeScale>(to));
 }
 
 void* QAudioBuffer_NewQAudioBuffer()

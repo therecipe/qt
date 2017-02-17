@@ -122,6 +122,7 @@ void QAbstractVideoSurface_DeleteLaterDefault(void* ptr);
 void QAbstractVideoSurface_DisconnectNotifyDefault(void* ptr, void* sign);
 void QAbstractVideoSurface_TimerEventDefault(void* ptr, void* event);
 void* QAbstractVideoSurface_MetaObjectDefault(void* ptr);
+double QAudio_QAudio_ConvertVolume(double volume, long long from, long long to);
 void* QAudioBuffer_NewQAudioBuffer();
 void* QAudioBuffer_NewQAudioBuffer3(void* other);
 void* QAudioBuffer_NewQAudioBuffer4(void* data, void* format, long long startTime);

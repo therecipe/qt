@@ -3708,6 +3708,8 @@ int Qt_DefaultLocaleLongDate_Type();
 int Qt_RFC2822Date_Type();
 int Qt_ISODateWithMs_Type();
 int Qt_LastGestureType_Type();
+struct QtCore_PackedString Qt_Qt_ConvertFromPlainText(char* plain, long long mode);
+char Qt_Qt_MightBeRichText(char* text);
 
 #ifdef __cplusplus
 }

@@ -44,6 +44,21 @@
 #include <QUuid>
 #include <QVariant>
 
+void* OSXBluetooth___extract_services_uuids_atList(void* ptr, int i)
+{
+	return new QBluetoothUuid(static_cast<QList<QBluetoothUuid>*>(ptr)->at(i));
+}
+
+void OSXBluetooth___extract_services_uuids_setList(void* ptr, void* i)
+{
+	static_cast<QList<QBluetoothUuid>*>(ptr)->append(*static_cast<QBluetoothUuid*>(i));
+}
+
+void* OSXBluetooth___extract_services_uuids_newList(void* ptr)
+{
+	return new QList<QBluetoothUuid>;
+}
+
 void* QBluetoothAddress_NewQBluetoothAddress()
 {
 	return new QBluetoothAddress();

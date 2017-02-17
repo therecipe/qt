@@ -313,7 +313,7 @@ func preambleCpp(module string, input []byte) []byte {
 
 	var classes = make([]string, 0)
 	for _, class := range parser.State.ClassMap {
-		if strings.Contains(string(input), class.Name) && !(strings.HasPrefix(class.Name, "Qt") || class.Module == parser.MOC) {
+		if strings.Contains(string(input), class.Name) && class.Module != parser.MOC {
 			classes = append(classes, class.Name)
 		}
 	}
@@ -323,9 +323,36 @@ func preambleCpp(module string, input []byte) []byte {
 		if class == "SailfishApp" {
 			fmt.Fprint(bb, "#include <sailfishapp.h>\n")
 		} else {
-			if strings.HasPrefix(class, "Q") && !(class == "QBluetooth" || class == "QDBus" || class == "QCss" || class == "QPdf" || class == "QSsl" || class == "QPrint" || class == "QScript" || class == "QSql" || class == "QTest" || class == "QWebSocketProtocol") {
-				fmt.Fprintf(bb, "#include <%v>\n", class)
+			var c, _ = parser.State.ClassMap[class]
+			switch c.Name {
+			case
+				"Qt",
+				"QPdf",
+				"QDBus",
+				"QAudio",
+				"QMultimedia",
+				"QSsl",
+				"QPrint",
+				"QScript",
+				"QSql",
+				"QTest",
+				"QWebSocketProtocol",
+				"OSXBluetooth",
+				"QBluetooth",
+				"PaintContext",
+				"QPlatformGraphicsBuffer",
+				"QDBusPendingReplyTypes":
+				{
+					continue
+				}
 			}
+			fmt.Fprintf(bb, "#include <%v>\n", class)
+		}
+	}
+
+	if module == "QtCore" {
+		if !strings.Contains(bb.String(), "QTextDocument") {
+			fmt.Fprint(bb, "#include <QTextDocument>\n")
 		}
 	}
 

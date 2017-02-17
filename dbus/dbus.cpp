@@ -20,6 +20,7 @@
 #include <QDBusObjectPath>
 #include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
+#include <QDBusPendingReply>
 #include <QDBusServer>
 #include <QDBusServiceWatcher>
 #include <QDBusSignature>
@@ -1616,6 +1617,11 @@ void* QDBusPendingCallWatcher_MetaObject(void* ptr)
 void* QDBusPendingCallWatcher_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QDBusPendingCallWatcher*>(ptr)->QDBusPendingCallWatcher::metaObject());
+}
+
+int QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(void* vqv)
+{
+	return QDBusPendingReplyTypes::metaTypeFor(static_cast<QVariant*>(vqv));
 }
 
 class MyQDBusServer: public QDBusServer

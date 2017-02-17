@@ -2653,3 +2653,116 @@ func (ptr *QAndroidJniObject) IsValid() bool {
 	}
 	return false
 }
+
+type QtAndroid struct {
+	ptr unsafe.Pointer
+}
+
+type QtAndroid_ITF interface {
+	QtAndroid_PTR() *QtAndroid
+}
+
+func (ptr *QtAndroid) QtAndroid_PTR() *QtAndroid {
+	return ptr
+}
+
+func (ptr *QtAndroid) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QtAndroid) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQtAndroid(ptr QtAndroid_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QtAndroid_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtAndroidFromPointer(ptr unsafe.Pointer) *QtAndroid {
+	var n = new(QtAndroid)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QtAndroid) DestroyQtAndroid() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func QtAndroid_AndroidActivity() *QAndroidJniObject {
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QtAndroid_QtAndroid_AndroidActivity())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
+	return tmpValue
+}
+
+func (ptr *QtAndroid) AndroidActivity() *QAndroidJniObject {
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QtAndroid_QtAndroid_AndroidActivity())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
+	return tmpValue
+}
+
+func QtAndroid_AndroidContext() *QAndroidJniObject {
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QtAndroid_QtAndroid_AndroidContext())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
+	return tmpValue
+}
+
+func (ptr *QtAndroid) AndroidContext() *QAndroidJniObject {
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QtAndroid_QtAndroid_AndroidContext())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
+	return tmpValue
+}
+
+func QtAndroid_AndroidService() *QAndroidJniObject {
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QtAndroid_QtAndroid_AndroidService())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
+	return tmpValue
+}
+
+func (ptr *QtAndroid) AndroidService() *QAndroidJniObject {
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QtAndroid_QtAndroid_AndroidService())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
+	return tmpValue
+}
+
+func QtAndroid_AndroidSdkVersion() int {
+	return int(int32(C.QtAndroid_QtAndroid_AndroidSdkVersion()))
+}
+
+func (ptr *QtAndroid) AndroidSdkVersion() int {
+	return int(int32(C.QtAndroid_QtAndroid_AndroidSdkVersion()))
+}
+
+func QtAndroid_HideSplashScreen() {
+	C.QtAndroid_QtAndroid_HideSplashScreen()
+}
+
+func (ptr *QtAndroid) HideSplashScreen() {
+	C.QtAndroid_QtAndroid_HideSplashScreen()
+}
+
+func QtAndroid_StartActivity(intent QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+	C.QtAndroid_QtAndroid_StartActivity(PointerFromQAndroidJniObject(intent), C.int(int32(receiverRequestCode)), PointerFromQAndroidActivityResultReceiver(resultReceiver))
+}
+
+func (ptr *QtAndroid) StartActivity(intent QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+	C.QtAndroid_QtAndroid_StartActivity(PointerFromQAndroidJniObject(intent), C.int(int32(receiverRequestCode)), PointerFromQAndroidActivityResultReceiver(resultReceiver))
+}
+
+func QtAndroid_StartIntentSender(intentSender QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+	C.QtAndroid_QtAndroid_StartIntentSender(PointerFromQAndroidJniObject(intentSender), C.int(int32(receiverRequestCode)), PointerFromQAndroidActivityResultReceiver(resultReceiver))
+}
+
+func (ptr *QtAndroid) StartIntentSender(intentSender QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+	C.QtAndroid_QtAndroid_StartIntentSender(PointerFromQAndroidJniObject(intentSender), C.int(int32(receiverRequestCode)), PointerFromQAndroidActivityResultReceiver(resultReceiver))
+}

@@ -639,7 +639,7 @@ func cgoIos(module, mocPath string) string {
 
 	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=7.0 -arch x86_64\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/%v/ios/plugins/platforms -framework Foundation -framework UIKit -framework QuartzCore -framework AudioToolbox -framework AssetsLibrary -L%v/%v/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework OpenGLES -framework CoreText -framework CoreGraphics -framework Security -framework SystemConfiguration -framework CoreBluetooth -lqios -lQt5FontDatabaseSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lqtfreetype -L%v/%v/ios/plugins/imageformats -lqgif -lqicns -lqico -lqjpeg -lqmacjp2 -framework ImageIO -lqtga -lqtiff -lqwbmp -lqwebp -lqtlibpng -lqtharfbuzz -lm -lz -lqtpcre", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/%v/ios/plugins/platforms -framework Foundation -framework UIKit -framework QuartzCore -framework AudioToolbox -framework AssetsLibrary -L%v/%v/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework OpenGLES -framework CoreText -framework CoreGraphics -framework Security -framework SystemConfiguration -framework WebKit -framework CoreBluetooth -lqios -lQt5FontDatabaseSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lqtfreetype -L%v/%v/ios/plugins/imageformats -lqgif -lqicns -lqico -lqjpeg -lqmacjp2 -framework ImageIO -lqtga -lqtiff -lqwbmp -lqwebp -lqtlibpng -lqtharfbuzz -lm -lz -lqtpcre", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -678,6 +678,11 @@ func cgoIos(module, mocPath string) string {
 		{
 			fmt.Fprint(bb, " -framework StoreKit")
 		}
+
+	case "WebView":
+		{
+			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtWebView -ldeclarative_webview", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+		}
 	}
 
 	if module == "build_ios" {
@@ -693,9 +698,11 @@ func cgoIos(module, mocPath string) string {
 		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtMultimedia -ldeclarative_multimedia -lQt5MultimediaQuick_p", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 		fmt.Fprintf(bb, " -L%v/%v/ios/plugins/mediaservice -lqtmedia_audioengine -L%v/%v/ios/plugins/audio -lqtaudio_coreaudio -L%v/%v/ios/plugins/playlistformats -lqtmultimedia_m3u -lQt5Multimedia", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 		fmt.Fprint(bb, " -lqavfcamera -framework AudioToolbox -framework CoreAudio -framework AVFoundation -framework CoreMedia -framework CoreVideo -lqavfmediaplayer -lQt5MultimediaWidgets")
+
+		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtWebView -ldeclarative_webview", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 	}
 
-	fmt.Fprint(bb, "*/\n")
+	fmt.Fprint(bb, "\n*/\n")
 
 	fmt.Fprint(bb, "import \"C\"\n")
 

@@ -62,6 +62,21 @@ func (f *Function) ClassName() string {
 	return s[0]
 }
 
+func (f *Function) register(m string) {
+
+	if c, ok := f.Class(); !ok {
+		State.ClassMap[f.ClassName()] = &Class{
+			Name:      f.ClassName(),
+			Status:    "commendable",
+			Module:    m,
+			Access:    "public",
+			Functions: []*Function{f},
+		}
+	} else {
+		c.Functions = append(c.Functions, f)
+	}
+}
+
 //TODO: multipoly [][]string
 //TODO: connect/disconnect slot functions + add necessary SIGNAL_* functions (check first if really needed)
 

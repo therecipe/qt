@@ -823,3 +823,112 @@ func (ptr *QAndroidJniObject) IsValid() bool {
 
 	return false
 }
+
+type QtAndroid struct {
+	ptr unsafe.Pointer
+}
+
+type QtAndroid_ITF interface {
+	QtAndroid_PTR() *QtAndroid
+}
+
+func (ptr *QtAndroid) QtAndroid_PTR() *QtAndroid {
+	return ptr
+}
+
+func (ptr *QtAndroid) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QtAndroid) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQtAndroid(ptr QtAndroid_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QtAndroid_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtAndroidFromPointer(ptr unsafe.Pointer) *QtAndroid {
+	var n = new(QtAndroid)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QtAndroid) DestroyQtAndroid() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func QtAndroid_AndroidActivity() *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QtAndroid) AndroidActivity() *QAndroidJniObject {
+
+	return nil
+}
+
+func QtAndroid_AndroidContext() *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QtAndroid) AndroidContext() *QAndroidJniObject {
+
+	return nil
+}
+
+func QtAndroid_AndroidService() *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QtAndroid) AndroidService() *QAndroidJniObject {
+
+	return nil
+}
+
+func QtAndroid_AndroidSdkVersion() int {
+
+	return 0
+}
+
+func (ptr *QtAndroid) AndroidSdkVersion() int {
+
+	return 0
+}
+
+func QtAndroid_HideSplashScreen() {
+
+}
+
+func (ptr *QtAndroid) HideSplashScreen() {
+
+}
+
+func QtAndroid_StartActivity(intent QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+
+}
+
+func (ptr *QtAndroid) StartActivity(intent QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+
+}
+
+func QtAndroid_StartIntentSender(intentSender QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+
+}
+
+func (ptr *QtAndroid) StartIntentSender(intentSender QAndroidJniObject_ITF, receiverRequestCode int, resultReceiver QAndroidActivityResultReceiver_ITF) {
+
+}

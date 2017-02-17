@@ -1678,6 +1678,14 @@ const (
 	QAudio__DecibelVolumeScale     QAudio__VolumeScale = QAudio__VolumeScale(3)
 )
 
+func QAudio_ConvertVolume(volume float64, from QAudio__VolumeScale, to QAudio__VolumeScale) float64 {
+	return float64(C.QAudio_QAudio_ConvertVolume(C.double(volume), C.longlong(from), C.longlong(to)))
+}
+
+func (ptr *QAudio) ConvertVolume(volume float64, from QAudio__VolumeScale, to QAudio__VolumeScale) float64 {
+	return float64(C.QAudio_QAudio_ConvertVolume(C.double(volume), C.longlong(from), C.longlong(to)))
+}
+
 type QAudioBuffer struct {
 	ptr unsafe.Pointer
 }
