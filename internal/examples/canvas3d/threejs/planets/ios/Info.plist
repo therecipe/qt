@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIconFile</key>
+    <string></string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleGetInfoString</key>
+    <string>Created by Qt/QMake</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleExecutable</key>
+    <string>planets</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.theqtcompany.${PRODUCT_NAME:rfc1034identifier}</string>
+    <key>CFBundleDisplayName</key>
+    <string>Planets</string>
+    <key>CFBundleName</key>
+    <string>${PRODUCT_NAME}</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1.0</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+<key>CFBundleIcons</key>
+<dict>
+    <key>CFBundlePrimaryIcon</key>
+    <dict>
+        <key>CFBundleIconFiles</key>
+        <array>
+            <string>AppIcon29x29.png</string>
+            <string>AppIcon29x29@2x.png</string>
+            <string>AppIcon40x40@2x.png</string>
+            <string>AppIcon57x57.png</string>
+            <string>AppIcon57x57@2x.png</string>
+            <string>AppIcon60x60@2x.png</string>
+        </array>
+    </dict>
+</dict>
+
+<key>CFBundleIcons~ipad</key>
+<dict>
+    <key>CFBundlePrimaryIcon</key>
+    <dict>
+        <key>CFBundleIconFiles</key>
+        <array>
+            <string>AppIcon29x29.png</string>
+            <string>AppIcon29x29@2x.png</string>
+            <string>AppIcon40x40@2x.png</string>
+            <string>AppIcon57x57.png</string>
+            <string>AppIcon57x57@2x.png</string>
+            <string>AppIcon60x60@2x.png</string>
+            <string>AppIcon29x29~ipad.png</string>
+            <string>AppIcon29x29@2x~ipad.png</string>
+            <string>AppIcon40x40~ipad.png</string>
+            <string>AppIcon40x40@2x~ipad.png</string>
+            <string>AppIcon50x50~ipad.png</string>
+            <string>AppIcon50x50@2x~ipad.png</string>
+            <string>AppIcon72x72~ipad.png</string>
+            <string>AppIcon72x72@2x~ipad.png</string>
+            <string>AppIcon76x76~ipad.png</string>
+            <string>AppIcon76x76@2x~ipad.png</string>
+        </array>
+    </dict>
+</dict>
+</dict>
+
+</plist>

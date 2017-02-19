@@ -10,6 +10,8 @@
 #include <QAbstractBarSeries>
 #include <QAbstractItemModel>
 #include <QAbstractSeries>
+#include <QAction>
+#include <QActionEvent>
 #include <QAreaLegendMarker>
 #include <QAreaSeries>
 #include <QBarCategoryAxis>
@@ -29,21 +31,45 @@
 #include <QChar>
 #include <QChart>
 #include <QChartView>
+#include <QChildEvent>
+#include <QCloseEvent>
 #include <QColor>
+#include <QContextMenuEvent>
 #include <QDate>
 #include <QDateTime>
 #include <QDateTimeAxis>
+#include <QDrag>
+#include <QDragEnterEvent>
+#include <QDragLeaveEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
 #include <QEasingCurve>
+#include <QEvent>
+#include <QFocusEvent>
 #include <QFont>
 #include <QGraphicsItem>
+#include <QGraphicsScene>
+#include <QGraphicsSceneContextMenuEvent>
+#include <QGraphicsSceneDragDropEvent>
+#include <QGraphicsSceneHoverEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsSceneMoveEvent>
+#include <QGraphicsSceneResizeEvent>
+#include <QGraphicsSceneWheelEvent>
+#include <QGraphicsTransform>
 #include <QHBarModelMapper>
 #include <QHBoxPlotModelMapper>
 #include <QHCandlestickModelMapper>
 #include <QHPieModelMapper>
 #include <QHXYModelMapper>
+#include <QHideEvent>
 #include <QHorizontalBarSeries>
 #include <QHorizontalPercentBarSeries>
 #include <QHorizontalStackedBarSeries>
+#include <QIcon>
+#include <QInputMethod>
+#include <QInputMethodEvent>
+#include <QKeyEvent>
 #include <QLegend>
 #include <QLegendMarker>
 #include <QLine>
@@ -52,9 +78,16 @@
 #include <QLocale>
 #include <QLogValueAxis>
 #include <QMargins>
+#include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>
+#include <QMoveEvent>
 #include <QObject>
+#include <QPaintDevice>
+#include <QPaintEngine>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QPainterPath>
 #include <QPen>
 #include <QPercentBarSeries>
 #include <QPieLegendMarker>
@@ -67,10 +100,20 @@
 #include <QRectF>
 #include <QResizeEvent>
 #include <QScatterSeries>
+#include <QShowEvent>
+#include <QSize>
+#include <QSizeF>
 #include <QSplineSeries>
 #include <QStack>
 #include <QStackedBarSeries>
 #include <QString>
+#include <QStyle>
+#include <QStyleOption>
+#include <QStyleOptionGraphicsItem>
+#include <QTabletEvent>
+#include <QTime>
+#include <QTimer>
+#include <QTimerEvent>
 #include <QVBarModelMapper>
 #include <QVBoxPlotModelMapper>
 #include <QVCandlestickModelMapper>
@@ -79,6 +122,7 @@
 #include <QValueAxis>
 #include <QVariant>
 #include <QVector>
+#include <QWheelEvent>
 #include <QWidget>
 #include <QXYLegendMarker>
 #include <QXYSeries>
@@ -849,6 +893,11 @@ public:
 	void Signal_Pressed(int index, QBarSet * barset) { callbackQAbstractBarSeries_Pressed(this, index, barset); };
 	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
 	 ~MyQAbstractBarSeries() { callbackQAbstractBarSeries_DestroyQAbstractBarSeries(this); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
+	SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAbstractBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 char QAbstractBarSeries_Append(void* ptr, void* set)
@@ -1191,6 +1240,30 @@ void* QAbstractBarSeries___barSets_newList(void* ptr)
 	return new QList<QBarSet *>;
 }
 
+long long QAbstractBarSeries_Type(void* ptr)
+{
+	return static_cast<QAbstractBarSeries*>(ptr)->type();
+}
+
+long long QAbstractBarSeries_TypeDefault(void* ptr)
+{
+	if (dynamic_cast<QStackedBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::type();
+	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::type();
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QBarSeries*>(ptr)->QBarSeries::type();
+	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::type();
+	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::type();
+	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::type();
+	} else {
+	
+	}
+}
+
 class MyQAbstractSeries: public QAbstractSeries
 {
 public:
@@ -1359,9 +1432,28 @@ void* QAbstractSeries___attachedAxes_newList(void* ptr)
 class MyQAreaLegendMarker: public QAreaLegendMarker
 {
 public:
+	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQAreaLegendMarker_Type(this)); };
 	QAreaSeries * series() { return static_cast<QAreaSeries*>(callbackQAreaLegendMarker_Series(this)); };
 	 ~MyQAreaLegendMarker() { callbackQAreaLegendMarker_DestroyQAreaLegendMarker(this); };
+	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
+	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
+	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
+	void Signal_Hovered(bool status) { callbackQLegendMarker_Hovered(this, status); };
+	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
+	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
+	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
+
+long long QAreaLegendMarker_Type(void* ptr)
+{
+	return static_cast<QAreaLegendMarker*>(ptr)->type();
+}
+
+long long QAreaLegendMarker_TypeDefault(void* ptr)
+{
+		return static_cast<QAreaLegendMarker*>(ptr)->QAreaLegendMarker::type();
+}
 
 void* QAreaLegendMarker_Series(void* ptr)
 {
@@ -1401,6 +1493,10 @@ public:
 	void Signal_Pressed(const QPointF & point) { callbackQAreaSeries_Pressed(this, const_cast<QPointF*>(&point)); };
 	void Signal_Released(const QPointF & point) { callbackQAreaSeries_Released(this, const_cast<QPointF*>(&point)); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQAreaSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QAreaSeries_NewQAreaSeries2(void* upperSeries, void* lowerSeries)
@@ -1737,6 +1833,32 @@ public:
 	void Signal_MaxChanged(const QString & max) { QByteArray t070602 = max.toUtf8(); QtCharts_PackedString maxPacked = { const_cast<char*>(t070602.prepend("WHITESPACE").constData()+10), t070602.size()-10 };callbackQBarCategoryAxis_MaxChanged(this, maxPacked); };
 	void Signal_MinChanged(const QString & min) { QByteArray tb6c935 = min.toUtf8(); QtCharts_PackedString minPacked = { const_cast<char*>(tb6c935.prepend("WHITESPACE").constData()+10), tb6c935.size()-10 };callbackQBarCategoryAxis_MinChanged(this, minPacked); };
 	void Signal_RangeChanged(const QString & min, const QString & max) { QByteArray tb6c935 = min.toUtf8(); QtCharts_PackedString minPacked = { const_cast<char*>(tb6c935.prepend("WHITESPACE").constData()+10), tb6c935.size()-10 };QByteArray t070602 = max.toUtf8(); QtCharts_PackedString maxPacked = { const_cast<char*>(t070602.prepend("WHITESPACE").constData()+10), t070602.size()-10 };callbackQBarCategoryAxis_RangeChanged(this, minPacked, maxPacked); };
+	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQBarCategoryAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_ColorChanged(QColor color) { callbackQAbstractAxis_ColorChanged(this, new QColor(color)); };
+	void Signal_GridLineColorChanged(const QColor & color) { callbackQAbstractAxis_GridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_GridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_GridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_GridVisibleChanged(bool visible) { callbackQAbstractAxis_GridVisibleChanged(this, visible); };
+	void Signal_LabelsAngleChanged(int angle) { callbackQAbstractAxis_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsBrushChanged(const QBrush & brush) { callbackQAbstractAxis_LabelsBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_LabelsColorChanged(QColor color) { callbackQAbstractAxis_LabelsColorChanged(this, new QColor(color)); };
+	void Signal_LabelsFontChanged(const QFont & font) { callbackQAbstractAxis_LabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_LabelsVisibleChanged(bool visible) { callbackQAbstractAxis_LabelsVisibleChanged(this, visible); };
+	void Signal_LinePenChanged(const QPen & pen) { callbackQAbstractAxis_LinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_LineVisibleChanged(bool visible) { callbackQAbstractAxis_LineVisibleChanged(this, visible); };
+	void Signal_MinorGridLineColorChanged(const QColor & color) { callbackQAbstractAxis_MinorGridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_MinorGridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_MinorGridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_MinorGridVisibleChanged(bool visible) { callbackQAbstractAxis_MinorGridVisibleChanged(this, visible); };
+	void Signal_ReverseChanged(bool reverse) { callbackQAbstractAxis_ReverseChanged(this, reverse); };
+	void Signal_ShadesBorderColorChanged(QColor color) { callbackQAbstractAxis_ShadesBorderColorChanged(this, new QColor(color)); };
+	void Signal_ShadesBrushChanged(const QBrush & brush) { callbackQAbstractAxis_ShadesBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_ShadesColorChanged(QColor color) { callbackQAbstractAxis_ShadesColorChanged(this, new QColor(color)); };
+	void Signal_ShadesPenChanged(const QPen & pen) { callbackQAbstractAxis_ShadesPenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_ShadesVisibleChanged(bool visible) { callbackQAbstractAxis_ShadesVisibleChanged(this, visible); };
+	void Signal_TitleBrushChanged(const QBrush & brush) { callbackQAbstractAxis_TitleBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_TitleFontChanged(const QFont & font) { callbackQAbstractAxis_TitleFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_TitleTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCharts_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQAbstractAxis_TitleTextChanged(this, textPacked); };
+	void Signal_TitleVisibleChanged(bool visible) { callbackQAbstractAxis_TitleVisibleChanged(this, visible); };
+	void Signal_VisibleChanged(bool visible) { callbackQAbstractAxis_VisibleChanged(this, visible); };
 };
 
 void* QBarCategoryAxis_NewQBarCategoryAxis(void* parent)
@@ -1879,6 +2001,16 @@ void QBarCategoryAxis_DestroyQBarCategoryAxis(void* ptr)
 	static_cast<QBarCategoryAxis*>(ptr)->~QBarCategoryAxis();
 }
 
+long long QBarCategoryAxis_Type(void* ptr)
+{
+	return static_cast<QBarCategoryAxis*>(ptr)->type();
+}
+
+long long QBarCategoryAxis_TypeDefault(void* ptr)
+{
+		return static_cast<QBarCategoryAxis*>(ptr)->QBarCategoryAxis::type();
+}
+
 struct QtCharts_PackedString QBarCategoryAxis_At(void* ptr, int index)
 {
 	return ({ QByteArray tf55150 = static_cast<QBarCategoryAxis*>(ptr)->at(index).toUtf8(); QtCharts_PackedString { const_cast<char*>(tf55150.prepend("WHITESPACE").constData()+10), tf55150.size()-10 }; });
@@ -1902,9 +2034,28 @@ int QBarCategoryAxis_Count(void* ptr)
 class MyQBarLegendMarker: public QBarLegendMarker
 {
 public:
+	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQBarLegendMarker_Type(this)); };
 	QAbstractBarSeries * series() { return static_cast<QAbstractBarSeries*>(callbackQBarLegendMarker_Series(this)); };
 	 ~MyQBarLegendMarker() { callbackQBarLegendMarker_DestroyQBarLegendMarker(this); };
+	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
+	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
+	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
+	void Signal_Hovered(bool status) { callbackQLegendMarker_Hovered(this, status); };
+	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
+	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
+	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
+
+long long QBarLegendMarker_Type(void* ptr)
+{
+	return static_cast<QBarLegendMarker*>(ptr)->type();
+}
+
+long long QBarLegendMarker_TypeDefault(void* ptr)
+{
+		return static_cast<QBarLegendMarker*>(ptr)->QBarLegendMarker::type();
+}
 
 void* QBarLegendMarker_Series(void* ptr)
 {
@@ -1936,6 +2087,22 @@ class MyQBarSeries: public QBarSeries
 public:
 	MyQBarSeries(QObject *parent) : QBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
+	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
+	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
+	void Signal_Hovered(bool status, int index, QBarSet * barset) { callbackQAbstractBarSeries_Hovered(this, status, index, barset); };
+	void Signal_LabelsAngleChanged(qreal angle) { callbackQAbstractBarSeries_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQAbstractBarSeries_LabelsFormatChanged(this, formatPacked); };
+	void Signal_LabelsPositionChanged(QAbstractBarSeries::LabelsPosition position) { callbackQAbstractBarSeries_LabelsPositionChanged(this, position); };
+	void Signal_LabelsVisibleChanged() { callbackQAbstractBarSeries_LabelsVisibleChanged(this); };
+	void Signal_Pressed(int index, QBarSet * barset) { callbackQAbstractBarSeries_Pressed(this, index, barset); };
+	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QBarSeries_NewQBarSeries(void* parent)
@@ -2374,9 +2541,28 @@ void* QBarSet___append_values_newList2(void* ptr)
 class MyQBoxPlotLegendMarker: public QBoxPlotLegendMarker
 {
 public:
+	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQBoxPlotLegendMarker_Type(this)); };
 	QBoxPlotSeries * series() { return static_cast<QBoxPlotSeries*>(callbackQBoxPlotLegendMarker_Series(this)); };
 	 ~MyQBoxPlotLegendMarker() { callbackQBoxPlotLegendMarker_DestroyQBoxPlotLegendMarker(this); };
+	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
+	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
+	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
+	void Signal_Hovered(bool status) { callbackQLegendMarker_Hovered(this, status); };
+	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
+	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
+	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
+
+long long QBoxPlotLegendMarker_Type(void* ptr)
+{
+	return static_cast<QBoxPlotLegendMarker*>(ptr)->type();
+}
+
+long long QBoxPlotLegendMarker_TypeDefault(void* ptr)
+{
+		return static_cast<QBoxPlotLegendMarker*>(ptr)->QBoxPlotLegendMarker::type();
+}
 
 void* QBoxPlotLegendMarker_Series(void* ptr)
 {
@@ -2415,6 +2601,10 @@ public:
 	void Signal_Pressed(QBoxSet * boxset) { callbackQBoxPlotSeries_Pressed(this, boxset); };
 	void Signal_Released(QBoxSet * boxset) { callbackQBoxPlotSeries_Released(this, boxset); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBoxPlotSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QBoxPlotSeries_NewQBoxPlotSeries(void* parent)
@@ -3023,9 +3213,28 @@ void* QBoxSet___append_values_newList2(void* ptr)
 class MyQCandlestickLegendMarker: public QCandlestickLegendMarker
 {
 public:
+	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQCandlestickLegendMarker_Type(this)); };
 	QCandlestickSeries * series() { return static_cast<QCandlestickSeries*>(callbackQCandlestickLegendMarker_Series(this)); };
 	 ~MyQCandlestickLegendMarker() { callbackQCandlestickLegendMarker_DestroyQCandlestickLegendMarker(this); };
+	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
+	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
+	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
+	void Signal_Hovered(bool status) { callbackQLegendMarker_Hovered(this, status); };
+	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
+	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
+	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
+
+long long QCandlestickLegendMarker_Type(void* ptr)
+{
+	return static_cast<QCandlestickLegendMarker*>(ptr)->type();
+}
+
+long long QCandlestickLegendMarker_TypeDefault(void* ptr)
+{
+		return static_cast<QCandlestickLegendMarker*>(ptr)->QCandlestickLegendMarker::type();
+}
 
 void* QCandlestickLegendMarker_Series(void* ptr)
 {
@@ -3209,6 +3418,10 @@ public:
 	void Signal_Pressed(QCandlestickSet * set) { callbackQCandlestickSeries_Pressed(this, set); };
 	void Signal_Released(QCandlestickSet * set) { callbackQCandlestickSeries_Released(this, set); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQCandlestickSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QCandlestickSeries_NewQCandlestickSeries(void* parent)
@@ -4017,6 +4230,39 @@ public:
 	MyQCategoryAxis(QObject *parent) : QCategoryAxis(parent) {};
 	void Signal_CategoriesChanged() { callbackQCategoryAxis_CategoriesChanged(this); };
 	void Signal_LabelsPositionChanged(QCategoryAxis::AxisLabelsPosition position) { callbackQCategoryAxis_LabelsPositionChanged(this, position); };
+	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQValueAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void applyNiceNumbers() { callbackQValueAxis_ApplyNiceNumbers(this); };
+	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQValueAxis_LabelFormatChanged(this, formatPacked); };
+	void Signal_MaxChanged(qreal max) { callbackQValueAxis_MaxChanged(this, max); };
+	void Signal_MinChanged(qreal min) { callbackQValueAxis_MinChanged(this, min); };
+	void Signal_MinorTickCountChanged(int minorTickCount) { callbackQValueAxis_MinorTickCountChanged(this, minorTickCount); };
+	void Signal_RangeChanged(qreal min, qreal max) { callbackQValueAxis_RangeChanged(this, min, max); };
+	void Signal_TickCountChanged(int tickCount) { callbackQValueAxis_TickCountChanged(this, tickCount); };
+	void Signal_ColorChanged(QColor color) { callbackQAbstractAxis_ColorChanged(this, new QColor(color)); };
+	void Signal_GridLineColorChanged(const QColor & color) { callbackQAbstractAxis_GridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_GridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_GridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_GridVisibleChanged(bool visible) { callbackQAbstractAxis_GridVisibleChanged(this, visible); };
+	void Signal_LabelsAngleChanged(int angle) { callbackQAbstractAxis_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsBrushChanged(const QBrush & brush) { callbackQAbstractAxis_LabelsBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_LabelsColorChanged(QColor color) { callbackQAbstractAxis_LabelsColorChanged(this, new QColor(color)); };
+	void Signal_LabelsFontChanged(const QFont & font) { callbackQAbstractAxis_LabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_LabelsVisibleChanged(bool visible) { callbackQAbstractAxis_LabelsVisibleChanged(this, visible); };
+	void Signal_LinePenChanged(const QPen & pen) { callbackQAbstractAxis_LinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_LineVisibleChanged(bool visible) { callbackQAbstractAxis_LineVisibleChanged(this, visible); };
+	void Signal_MinorGridLineColorChanged(const QColor & color) { callbackQAbstractAxis_MinorGridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_MinorGridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_MinorGridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_MinorGridVisibleChanged(bool visible) { callbackQAbstractAxis_MinorGridVisibleChanged(this, visible); };
+	void Signal_ReverseChanged(bool reverse) { callbackQAbstractAxis_ReverseChanged(this, reverse); };
+	void Signal_ShadesBorderColorChanged(QColor color) { callbackQAbstractAxis_ShadesBorderColorChanged(this, new QColor(color)); };
+	void Signal_ShadesBrushChanged(const QBrush & brush) { callbackQAbstractAxis_ShadesBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_ShadesColorChanged(QColor color) { callbackQAbstractAxis_ShadesColorChanged(this, new QColor(color)); };
+	void Signal_ShadesPenChanged(const QPen & pen) { callbackQAbstractAxis_ShadesPenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_ShadesVisibleChanged(bool visible) { callbackQAbstractAxis_ShadesVisibleChanged(this, visible); };
+	void Signal_TitleBrushChanged(const QBrush & brush) { callbackQAbstractAxis_TitleBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_TitleFontChanged(const QFont & font) { callbackQAbstractAxis_TitleFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_TitleTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCharts_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQAbstractAxis_TitleTextChanged(this, textPacked); };
+	void Signal_TitleVisibleChanged(bool visible) { callbackQAbstractAxis_TitleVisibleChanged(this, visible); };
+	void Signal_VisibleChanged(bool visible) { callbackQAbstractAxis_VisibleChanged(this, visible); };
 };
 
 void* QCategoryAxis_NewQCategoryAxis(void* parent)
@@ -4114,6 +4360,81 @@ class MyQChart: public QChart
 public:
 	MyQChart(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QChart(parent, wFlags) {};
 	void Signal_PlotAreaChanged(const QRectF & plotArea) { callbackQChart_PlotAreaChanged(this, const_cast<QRectF*>(&plotArea)); };
+	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQChart_ItemChange(this, change, const_cast<QVariant*>(&value))); };
+	bool close() { return callbackQChart_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQChart_Event(this, event) != 0; };
+	bool focusNextPrevChild(bool next) { return callbackQChart_FocusNextPrevChild(this, next) != 0; };
+	bool sceneEvent(QEvent * event) { return callbackQChart_SceneEvent(this, event) != 0; };
+	bool windowFrameEvent(QEvent * event) { return callbackQChart_WindowFrameEvent(this, event) != 0; };
+	void changeEvent(QEvent * event) { callbackQChart_ChangeEvent(this, event); };
+	void closeEvent(QCloseEvent * event) { callbackQChart_CloseEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackQChart_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQChart_FocusOutEvent(this, event); };
+	void Signal_GeometryChanged() { callbackQChart_GeometryChanged(this); };
+	void grabKeyboardEvent(QEvent * event) { callbackQChart_GrabKeyboardEvent(this, event); };
+	void grabMouseEvent(QEvent * event) { callbackQChart_GrabMouseEvent(this, event); };
+	void hideEvent(QHideEvent * event) { callbackQChart_HideEvent(this, event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQChart_HoverLeaveEvent(this, event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQChart_HoverMoveEvent(this, event); };
+	void moveEvent(QGraphicsSceneMoveEvent * event) { callbackQChart_MoveEvent(this, event); };
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQChart_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void paintWindowFrame(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQChart_PaintWindowFrame(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void polishEvent() { callbackQChart_PolishEvent(this); };
+	void resizeEvent(QGraphicsSceneResizeEvent * event) { callbackQChart_ResizeEvent(this, event); };
+	void setGeometry(const QRectF & rect) { callbackQChart_SetGeometry(this, const_cast<QRectF*>(&rect)); };
+	void showEvent(QShowEvent * event) { callbackQChart_ShowEvent(this, event); };
+	void ungrabKeyboardEvent(QEvent * event) { callbackQChart_UngrabKeyboardEvent(this, event); };
+	void ungrabMouseEvent(QEvent * event) { callbackQChart_UngrabMouseEvent(this, event); };
+	void updateGeometry() { callbackQChart_UpdateGeometry(this); };
+	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQChart_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
+	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQChart_BoundingRect(const_cast<void*>(static_cast<const void*>(this)))); };
+	QSizeF sizeHint(Qt::SizeHint which, const QSizeF & constraint) const { return *static_cast<QSizeF*>(callbackQChart_SizeHint(const_cast<void*>(static_cast<const void*>(this)), which, const_cast<QSizeF*>(&constraint))); };
+	Qt::WindowFrameSection windowFrameSectionAt(const QPointF & pos) const { return static_cast<Qt::WindowFrameSection>(callbackQChart_WindowFrameSectionAt(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&pos))); };
+	int type() const { return callbackQChart_Type(const_cast<void*>(static_cast<const void*>(this))); };
+	void getContentsMargins(qreal * left, qreal * top, qreal * right, qreal * bottom) const { callbackQChart_GetContentsMargins(const_cast<void*>(static_cast<const void*>(this)), *left, *top, *right, *bottom); };
+	void initStyleOption(QStyleOption * option) const { callbackQChart_InitStyleOption(const_cast<void*>(static_cast<const void*>(this)), option); };
+	void Signal_EnabledChanged() { callbackQChart_EnabledChanged(this); };
+	void Signal_OpacityChanged() { callbackQChart_OpacityChanged(this); };
+	void Signal_ParentChanged() { callbackQChart_ParentChanged(this); };
+	void Signal_RotationChanged() { callbackQChart_RotationChanged(this); };
+	void Signal_ScaleChanged() { callbackQChart_ScaleChanged(this); };
+	void updateMicroFocus() { callbackQChart_UpdateMicroFocus(this); };
+	void Signal_VisibleChanged() { callbackQChart_VisibleChanged(this); };
+	void Signal_XChanged() { callbackQChart_XChanged(this); };
+	void Signal_YChanged() { callbackQChart_YChanged(this); };
+	void Signal_ZChanged() { callbackQChart_ZChanged(this); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQChart_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQChart_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQChart_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQChart_CustomEvent(this, event); };
+	void deleteLater() { callbackQChart_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQChart_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQChart_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQChart_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQChart_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQChart_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool sceneEventFilter(QGraphicsItem * watched, QEvent * event) { return callbackQChart_SceneEventFilter(this, watched, event) != 0; };
+	void advance(int phase) { callbackQChart_Advance(this, phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQChart_ContextMenuEvent(this, event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DragMoveEvent(this, event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DropEvent(this, event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQChart_HoverEnterEvent(this, event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQChart_InputMethodEvent(this, event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQChart_KeyPressEvent(this, event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQChart_KeyReleaseEvent(this, event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MouseDoubleClickEvent(this, event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MouseMoveEvent(this, event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MouseReleaseEvent(this, event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQChart_WheelEvent(this, event); };
+	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQChart_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQChart_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
+	bool collidesWithItem(const QGraphicsItem * other, Qt::ItemSelectionMode mode) const { return callbackQChart_CollidesWithItem(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(other), mode) != 0; };
+	bool collidesWithPath(const QPainterPath & path, Qt::ItemSelectionMode mode) const { return callbackQChart_CollidesWithPath(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPainterPath*>(&path), mode) != 0; };
+	bool contains(const QPointF & point) const { return callbackQChart_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
+	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQChart_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
 
 void QChart_SetAnimationEasingCurve(void* ptr, void* curve)
@@ -4471,34 +4792,867 @@ void* QChart___series_newList(void* ptr)
 	return new QList<QAbstractSeries *>;
 }
 
+void* QChart___addActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QChart___addActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QChart___addActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QChart___insertActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QChart___insertActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QChart___insertActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QChart___actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QChart___actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QChart___actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QChart___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QChart___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QChart___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QChart___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QChart___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChart___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QChart___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QChart___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChart___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QChart___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QChart___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChart___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QChart___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QChart___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChart___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QChart___setTransformations_transformations_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsTransform*>(static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i));
+}
+
+void QChart___setTransformations_transformations_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
+}
+
+void* QChart___setTransformations_transformations_newList(void* ptr)
+{
+	return new QList<QGraphicsTransform *>;
+}
+
+void* QChart___childItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChart___childItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChart___childItems_newList(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChart___collidingItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChart___collidingItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChart___collidingItems_newList(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChart___transformations_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsTransform*>(static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i));
+}
+
+void QChart___transformations_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
+}
+
+void* QChart___transformations_newList(void* ptr)
+{
+	return new QList<QGraphicsTransform *>;
+}
+
+void* QChart_ItemChangeDefault(void* ptr, long long change, void* value)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QPolarChart*>(ptr)->QPolarChart::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
+	} else {
+		return new QVariant(static_cast<QChart*>(ptr)->QChart::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
+	}
+}
+
+char QChart_CloseDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::close();
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::close();
+	}
+}
+
+char QChart_EventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::event(static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::event(static_cast<QEvent*>(event));
+	}
+}
+
+char QChart_FocusNextPrevChildDefault(void* ptr, char next)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::focusNextPrevChild(next != 0);
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::focusNextPrevChild(next != 0);
+	}
+}
+
+char QChart_SceneEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::sceneEvent(static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::sceneEvent(static_cast<QEvent*>(event));
+	}
+}
+
+char QChart_WindowFrameEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::windowFrameEvent(static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::windowFrameEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_ChangeEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::changeEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::changeEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_CloseEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::closeEvent(static_cast<QCloseEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::closeEvent(static_cast<QCloseEvent*>(event));
+	}
+}
+
+void QChart_FocusInEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::focusInEvent(static_cast<QFocusEvent*>(event));
+	}
+}
+
+void QChart_FocusOutEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::focusOutEvent(static_cast<QFocusEvent*>(event));
+	}
+}
+
+void QChart_GrabKeyboardEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::grabKeyboardEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::grabKeyboardEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_GrabMouseEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::grabMouseEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::grabMouseEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_HideEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::hideEvent(static_cast<QHideEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::hideEvent(static_cast<QHideEvent*>(event));
+	}
+}
+
+void QChart_HoverLeaveEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+	}
+}
+
+void QChart_HoverMoveEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+	}
+}
+
+void QChart_MoveEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::moveEvent(static_cast<QGraphicsSceneMoveEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::moveEvent(static_cast<QGraphicsSceneMoveEvent*>(event));
+	}
+}
+
+void QChart_PaintDefault(void* ptr, void* painter, void* option, void* widget)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+	}
+}
+
+void QChart_PaintWindowFrameDefault(void* ptr, void* painter, void* option, void* widget)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::paintWindowFrame(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::paintWindowFrame(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+	}
+}
+
+void QChart_PolishEventDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::polishEvent();
+	} else {
+		static_cast<QChart*>(ptr)->QChart::polishEvent();
+	}
+}
+
+void QChart_ResizeEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::resizeEvent(static_cast<QGraphicsSceneResizeEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::resizeEvent(static_cast<QGraphicsSceneResizeEvent*>(event));
+	}
+}
+
+void QChart_SetGeometryDefault(void* ptr, void* rect)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::setGeometry(*static_cast<QRectF*>(rect));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::setGeometry(*static_cast<QRectF*>(rect));
+	}
+}
+
+void QChart_ShowEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::showEvent(static_cast<QShowEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::showEvent(static_cast<QShowEvent*>(event));
+	}
+}
+
+void QChart_UngrabKeyboardEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::ungrabKeyboardEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::ungrabKeyboardEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_UngrabMouseEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::ungrabMouseEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::ungrabMouseEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_UpdateGeometryDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::updateGeometry();
+	} else {
+		static_cast<QChart*>(ptr)->QChart::updateGeometry();
+	}
+}
+
+void* QChart_ShapeDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return new QPainterPath(static_cast<QPolarChart*>(ptr)->QPolarChart::shape());
+	} else {
+		return new QPainterPath(static_cast<QChart*>(ptr)->QChart::shape());
+	}
+}
+
+void* QChart_BoundingRectDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return ({ QRectF tmpValue = static_cast<QPolarChart*>(ptr)->QPolarChart::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QRectF tmpValue = static_cast<QChart*>(ptr)->QChart::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	}
+}
+
+void* QChart_SizeHintDefault(void* ptr, long long which, void* constraint)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return ({ QSizeF tmpValue = static_cast<QPolarChart*>(ptr)->QPolarChart::sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint)); new QSizeF(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSizeF tmpValue = static_cast<QChart*>(ptr)->QChart::sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint)); new QSizeF(tmpValue.width(), tmpValue.height()); });
+	}
+}
+
+long long QChart_WindowFrameSectionAtDefault(void* ptr, void* pos)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::windowFrameSectionAt(*static_cast<QPointF*>(pos));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::windowFrameSectionAt(*static_cast<QPointF*>(pos));
+	}
+}
+
+int QChart_TypeDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::type();
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::type();
+	}
+}
+
+void QChart_GetContentsMarginsDefault(void* ptr, double left, double top, double right, double bottom)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::getContentsMargins(&left, &top, &right, &bottom);
+	} else {
+		static_cast<QChart*>(ptr)->QChart::getContentsMargins(&left, &top, &right, &bottom);
+	}
+}
+
+void QChart_InitStyleOptionDefault(void* ptr, void* option)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::initStyleOption(static_cast<QStyleOption*>(option));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::initStyleOption(static_cast<QStyleOption*>(option));
+	}
+}
+
+void QChart_UpdateMicroFocusDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::updateMicroFocus();
+	} else {
+		static_cast<QChart*>(ptr)->QChart::updateMicroFocus();
+	}
+}
+
+char QChart_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_ChildEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::childEvent(static_cast<QChildEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::childEvent(static_cast<QChildEvent*>(event));
+	}
+}
+
+void QChart_ConnectNotifyDefault(void* ptr, void* sign)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::connectNotify(*static_cast<QMetaMethod*>(sign));
+	}
+}
+
+void QChart_CustomEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::customEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::customEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_DeleteLaterDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::deleteLater();
+	} else {
+		static_cast<QChart*>(ptr)->QChart::deleteLater();
+	}
+}
+
+void QChart_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	}
+}
+
+void QChart_TimerEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::timerEvent(static_cast<QTimerEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::timerEvent(static_cast<QTimerEvent*>(event));
+	}
+}
+
+void* QChart_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QPolarChart*>(ptr)->QPolarChart::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QChart*>(ptr)->QChart::metaObject());
+	}
+}
+
+char QChart_SceneEventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QChart_AdvanceDefault(void* ptr, int phase)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::advance(phase);
+	} else {
+		static_cast<QChart*>(ptr)->QChart::advance(phase);
+	}
+}
+
+void QChart_ContextMenuEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+	}
+}
+
+void QChart_DragEnterEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	}
+}
+
+void QChart_DragLeaveEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	}
+}
+
+void QChart_DragMoveEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	}
+}
+
+void QChart_DropEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+	}
+}
+
+void QChart_HoverEnterEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+	}
+}
+
+void QChart_InputMethodEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	}
+}
+
+void QChart_KeyPressEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::keyPressEvent(static_cast<QKeyEvent*>(event));
+	}
+}
+
+void QChart_KeyReleaseEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	}
+}
+
+void QChart_MouseDoubleClickEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	}
+}
+
+void QChart_MouseMoveEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	}
+}
+
+void QChart_MousePressEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	}
+}
+
+void QChart_MouseReleaseEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+	}
+}
+
+void QChart_WheelEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPolarChart*>(ptr)->QPolarChart::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+	} else {
+		static_cast<QChart*>(ptr)->QChart::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+	}
+}
+
+void* QChart_OpaqueAreaDefault(void* ptr)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return new QPainterPath(static_cast<QPolarChart*>(ptr)->QPolarChart::opaqueArea());
+	} else {
+		return new QPainterPath(static_cast<QChart*>(ptr)->QChart::opaqueArea());
+	}
+}
+
+void* QChart_InputMethodQueryDefault(void* ptr, long long query)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QPolarChart*>(ptr)->QPolarChart::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else {
+		return new QVariant(static_cast<QChart*>(ptr)->QChart::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	}
+}
+
+char QChart_CollidesWithItemDefault(void* ptr, void* other, long long mode)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
+	}
+}
+
+char QChart_CollidesWithPathDefault(void* ptr, void* path, long long mode)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
+	}
+}
+
+char QChart_ContainsDefault(void* ptr, void* point)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::contains(*static_cast<QPointF*>(point));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::contains(*static_cast<QPointF*>(point));
+	}
+}
+
+char QChart_IsObscuredByDefault(void* ptr, void* item)
+{
+	if (dynamic_cast<QPolarChart*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPolarChart*>(ptr)->QPolarChart::isObscuredBy(static_cast<QGraphicsItem*>(item));
+	} else {
+		return static_cast<QChart*>(ptr)->QChart::isObscuredBy(static_cast<QGraphicsItem*>(item));
+	}
+}
+
+class MyQChartView: public QChartView
+{
+public:
+	MyQChartView(QChart *chart, QWidget *parent) : QChartView(chart, parent) {};
+	MyQChartView(QWidget *parent) : QChartView(parent) {};
+	void mouseMoveEvent(QMouseEvent * event) { callbackQChartView_MouseMoveEvent(this, event); };
+	void mousePressEvent(QMouseEvent * event) { callbackQChartView_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QMouseEvent * event) { callbackQChartView_MouseReleaseEvent(this, event); };
+	void resizeEvent(QResizeEvent * event) { callbackQChartView_ResizeEvent(this, event); };
+	bool focusNextPrevChild(bool next) { return callbackQChartView_FocusNextPrevChild(this, next) != 0; };
+	bool viewportEvent(QEvent * event) { return callbackQChartView_ViewportEvent(this, event) != 0; };
+	void contextMenuEvent(QContextMenuEvent * event) { callbackQChartView_ContextMenuEvent(this, event); };
+	void dragEnterEvent(QDragEnterEvent * event) { callbackQChartView_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQChartView_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QDragMoveEvent * event) { callbackQChartView_DragMoveEvent(this, event); };
+	void drawBackground(QPainter * painter, const QRectF & rect) { callbackQChartView_DrawBackground(this, painter, const_cast<QRectF*>(&rect)); };
+	void drawForeground(QPainter * painter, const QRectF & rect) { callbackQChartView_DrawForeground(this, painter, const_cast<QRectF*>(&rect)); };
+	void dropEvent(QDropEvent * event) { callbackQChartView_DropEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackQChartView_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQChartView_FocusOutEvent(this, event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQChartView_InputMethodEvent(this, event); };
+	void invalidateScene(const QRectF & rect, QGraphicsScene::SceneLayers layers) { callbackQChartView_InvalidateScene(this, const_cast<QRectF*>(&rect), layers); };
+	void keyPressEvent(QKeyEvent * event) { callbackQChartView_KeyPressEvent(this, event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQChartView_KeyReleaseEvent(this, event); };
+	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQChartView_MouseDoubleClickEvent(this, event); };
+	void paintEvent(QPaintEvent * event) { callbackQChartView_PaintEvent(this, event); };
+	void Signal_RubberBandChanged(QRect rubberBandRect, QPointF fromScenePoint, QPointF toScenePoint) { callbackQChartView_RubberBandChanged(this, ({ QRect tmpValue = rubberBandRect; new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); }), ({ QPointF tmpValue = fromScenePoint; new QPointF(tmpValue.x(), tmpValue.y()); }), ({ QPointF tmpValue = toScenePoint; new QPointF(tmpValue.x(), tmpValue.y()); })); };
+	void scrollContentsBy(int dx, int dy) { callbackQChartView_ScrollContentsBy(this, dx, dy); };
+	void setupViewport(QWidget * widget) { callbackQChartView_SetupViewport(this, widget); };
+	void showEvent(QShowEvent * event) { callbackQChartView_ShowEvent(this, event); };
+	void updateScene(const QList<QRectF> & rects) { callbackQChartView_UpdateScene(this, ({ QList<QRectF>* tmpValue = const_cast<QList<QRectF>*>(&rects); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void updateSceneRect(const QRectF & rect) { callbackQChartView_UpdateSceneRect(this, const_cast<QRectF*>(&rect)); };
+	void wheelEvent(QWheelEvent * event) { callbackQChartView_WheelEvent(this, event); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackQChartView_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQChartView_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
+	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQChartView_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
+	QSize viewportSizeHint() const { return *static_cast<QSize*>(callbackQChartView_ViewportSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
+	void changeEvent(QEvent * ev) { callbackQChartView_ChangeEvent(this, ev); };
+	bool close() { return callbackQChartView_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQChartView_Event(this, event) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQChartView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
+	void actionEvent(QActionEvent * event) { callbackQChartView_ActionEvent(this, event); };
+	void closeEvent(QCloseEvent * event) { callbackQChartView_CloseEvent(this, event); };
+	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQChartView_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
+	void enterEvent(QEvent * event) { callbackQChartView_EnterEvent(this, event); };
+	void hide() { callbackQChartView_Hide(this); };
+	void hideEvent(QHideEvent * event) { callbackQChartView_HideEvent(this, event); };
+	void leaveEvent(QEvent * event) { callbackQChartView_LeaveEvent(this, event); };
+	void lower() { callbackQChartView_Lower(this); };
+	void moveEvent(QMoveEvent * event) { callbackQChartView_MoveEvent(this, event); };
+	void raise() { callbackQChartView_Raise(this); };
+	void repaint() { callbackQChartView_Repaint(this); };
+	void setDisabled(bool disable) { callbackQChartView_SetDisabled(this, disable); };
+	void setEnabled(bool vbo) { callbackQChartView_SetEnabled(this, vbo); };
+	void setFocus() { callbackQChartView_SetFocus2(this); };
+	void setHidden(bool hidden) { callbackQChartView_SetHidden(this, hidden); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtCharts_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQChartView_SetStyleSheet(this, styleSheetPacked); };
+	void setVisible(bool visible) { callbackQChartView_SetVisible(this, visible); };
+	void setWindowModified(bool vbo) { callbackQChartView_SetWindowModified(this, vbo); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtCharts_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQChartView_SetWindowTitle(this, vqsPacked); };
+	void show() { callbackQChartView_Show(this); };
+	void showFullScreen() { callbackQChartView_ShowFullScreen(this); };
+	void showMaximized() { callbackQChartView_ShowMaximized(this); };
+	void showMinimized() { callbackQChartView_ShowMinimized(this); };
+	void showNormal() { callbackQChartView_ShowNormal(this); };
+	void tabletEvent(QTabletEvent * event) { callbackQChartView_TabletEvent(this, event); };
+	void update() { callbackQChartView_Update(this); };
+	void updateMicroFocus() { callbackQChartView_UpdateMicroFocus(this); };
+	void Signal_WindowIconChanged(const QIcon & icon) { callbackQChartView_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtCharts_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQChartView_WindowTitleChanged(this, titlePacked); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQChartView_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool hasHeightForWidth() const { return callbackQChartView_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	int heightForWidth(int w) const { return callbackQChartView_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQChartView_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQChartView_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQChartView_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQChartView_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQChartView_CustomEvent(this, event); };
+	void deleteLater() { callbackQChartView_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQChartView_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQChartView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQChartView_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQChartView_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQChartView_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
 void* QChartView_NewQChartView2(void* chart, void* parent)
 {
-	return new QChartView(static_cast<QChart*>(chart), static_cast<QWidget*>(parent));
+	return new MyQChartView(static_cast<QChart*>(chart), static_cast<QWidget*>(parent));
 }
 
 void* QChartView_NewQChartView(void* parent)
 {
-	return new QChartView(static_cast<QWidget*>(parent));
+	return new MyQChartView(static_cast<QWidget*>(parent));
 }
 
-void QChartView_MouseMoveEvent(void* ptr, void* event)
+void QChartView_MouseMoveEventDefault(void* ptr, void* event)
 {
-	static_cast<QChartView*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(event));
+		static_cast<QChartView*>(ptr)->QChartView::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 }
 
-void QChartView_MousePressEvent(void* ptr, void* event)
+void QChartView_MousePressEventDefault(void* ptr, void* event)
 {
-	static_cast<QChartView*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(event));
+		static_cast<QChartView*>(ptr)->QChartView::mousePressEvent(static_cast<QMouseEvent*>(event));
 }
 
-void QChartView_MouseReleaseEvent(void* ptr, void* event)
+void QChartView_MouseReleaseEventDefault(void* ptr, void* event)
 {
-	static_cast<QChartView*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+		static_cast<QChartView*>(ptr)->QChartView::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-void QChartView_ResizeEvent(void* ptr, void* event)
+void QChartView_ResizeEventDefault(void* ptr, void* event)
 {
-	static_cast<QChartView*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
+		static_cast<QChartView*>(ptr)->QChartView::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
 void QChartView_SetChart(void* ptr, void* chart)
@@ -4526,6 +5680,606 @@ long long QChartView_RubberBand(void* ptr)
 	return static_cast<QChartView*>(ptr)->rubberBand();
 }
 
+void* QChartView___updateScene_rects_atList(void* ptr, int i)
+{
+	return ({ QRectF tmpValue = static_cast<QList<QRectF>*>(ptr)->at(i); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void QChartView___updateScene_rects_setList(void* ptr, void* i)
+{
+	static_cast<QList<QRectF>*>(ptr)->append(*static_cast<QRectF*>(i));
+}
+
+void* QChartView___updateScene_rects_newList(void* ptr)
+{
+	return new QList<QRectF>;
+}
+
+void* QChartView___items_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChartView___items_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChartView___items_newList(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChartView___items_atList7(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChartView___items_setList7(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChartView___items_newList7(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChartView___items_atList2(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChartView___items_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChartView___items_newList2(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChartView___items_atList6(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChartView___items_setList6(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChartView___items_newList6(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChartView___items_atList4(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChartView___items_setList4(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChartView___items_newList4(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChartView___items_atList3(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChartView___items_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChartView___items_newList3(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChartView___items_atList5(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QChartView___items_setList5(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QChartView___items_newList5(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QChartView___scrollBarWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QWidget*>(static_cast<QList<QWidget *>*>(ptr)->at(i));
+}
+
+void QChartView___scrollBarWidgets_setList(void* ptr, void* i)
+{
+	static_cast<QList<QWidget *>*>(ptr)->append(static_cast<QWidget*>(i));
+}
+
+void* QChartView___scrollBarWidgets_newList(void* ptr)
+{
+	return new QList<QWidget *>;
+}
+
+void* QChartView___addActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QChartView___addActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QChartView___addActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QChartView___insertActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QChartView___insertActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QChartView___insertActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QChartView___actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QChartView___actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QChartView___actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QChartView___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QChartView___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QChartView___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QChartView___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QChartView___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChartView___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QChartView___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QChartView___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChartView___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QChartView___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QChartView___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChartView___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QChartView___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QChartView___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QChartView___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QChartView_EventDefault(void* ptr, void* event)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::event(static_cast<QEvent*>(event));
+}
+
+char QChartView_FocusNextPrevChildDefault(void* ptr, char next)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::focusNextPrevChild(next != 0);
+}
+
+char QChartView_ViewportEventDefault(void* ptr, void* event)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::viewportEvent(static_cast<QEvent*>(event));
+}
+
+void QChartView_ContextMenuEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+void QChartView_DragEnterEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+}
+
+void QChartView_DragLeaveEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+}
+
+void QChartView_DragMoveEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+}
+
+void QChartView_DrawBackgroundDefault(void* ptr, void* painter, void* rect)
+{
+		static_cast<QChartView*>(ptr)->QChartView::drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QChartView_DrawForegroundDefault(void* ptr, void* painter, void* rect)
+{
+		static_cast<QChartView*>(ptr)->QChartView::drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QChartView_DropEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::dropEvent(static_cast<QDropEvent*>(event));
+}
+
+void QChartView_FocusInEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QChartView_FocusOutEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QChartView_InputMethodEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QChartView_InvalidateSceneDefault(void* ptr, void* rect, long long layers)
+{
+		static_cast<QChartView*>(ptr)->QChartView::invalidateScene(*static_cast<QRectF*>(rect), static_cast<QGraphicsScene::SceneLayer>(layers));
+}
+
+void QChartView_KeyPressEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QChartView_KeyReleaseEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QChartView_MouseDoubleClickEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+}
+
+void QChartView_PaintEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void QChartView_ScrollContentsByDefault(void* ptr, int dx, int dy)
+{
+		static_cast<QChartView*>(ptr)->QChartView::scrollContentsBy(dx, dy);
+}
+
+void QChartView_SetupViewportDefault(void* ptr, void* widget)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setupViewport(static_cast<QWidget*>(widget));
+}
+
+void QChartView_ShowEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::showEvent(static_cast<QShowEvent*>(event));
+}
+
+void QChartView_UpdateSceneDefault(void* ptr, void* rects)
+{
+		static_cast<QChartView*>(ptr)->QChartView::updateScene(*static_cast<QList<QRectF>*>(rects));
+}
+
+void QChartView_UpdateSceneRectDefault(void* ptr, void* rect)
+{
+		static_cast<QChartView*>(ptr)->QChartView::updateSceneRect(*static_cast<QRectF*>(rect));
+}
+
+void QChartView_WheelEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::wheelEvent(static_cast<QWheelEvent*>(event));
+}
+
+void* QChartView_SizeHintDefault(void* ptr)
+{
+		return ({ QSize tmpValue = static_cast<QChartView*>(ptr)->QChartView::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QChartView_InputMethodQueryDefault(void* ptr, long long query)
+{
+		return new QVariant(static_cast<QChartView*>(ptr)->QChartView::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+}
+
+void* QChartView_MinimumSizeHintDefault(void* ptr)
+{
+		return ({ QSize tmpValue = static_cast<QChartView*>(ptr)->QChartView::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QChartView_ViewportSizeHintDefault(void* ptr)
+{
+		return ({ QSize tmpValue = static_cast<QChartView*>(ptr)->QChartView::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void QChartView_ChangeEventDefault(void* ptr, void* ev)
+{
+		static_cast<QChartView*>(ptr)->QChartView::changeEvent(static_cast<QEvent*>(ev));
+}
+
+char QChartView_CloseDefault(void* ptr)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::close();
+}
+
+char QChartView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+}
+
+void QChartView_ActionEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::actionEvent(static_cast<QActionEvent*>(event));
+}
+
+void QChartView_CloseEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+void QChartView_EnterEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::enterEvent(static_cast<QEvent*>(event));
+}
+
+void QChartView_HideDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::hide();
+}
+
+void QChartView_HideEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void QChartView_LeaveEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::leaveEvent(static_cast<QEvent*>(event));
+}
+
+void QChartView_LowerDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::lower();
+}
+
+void QChartView_MoveEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void QChartView_RaiseDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::raise();
+}
+
+void QChartView_RepaintDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::repaint();
+}
+
+void QChartView_SetDisabledDefault(void* ptr, char disable)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setDisabled(disable != 0);
+}
+
+void QChartView_SetEnabledDefault(void* ptr, char vbo)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setEnabled(vbo != 0);
+}
+
+void QChartView_SetFocus2Default(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setFocus();
+}
+
+void QChartView_SetHiddenDefault(void* ptr, char hidden)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setHidden(hidden != 0);
+}
+
+void QChartView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setStyleSheet(QString(styleSheet));
+}
+
+void QChartView_SetVisibleDefault(void* ptr, char visible)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setVisible(visible != 0);
+}
+
+void QChartView_SetWindowModifiedDefault(void* ptr, char vbo)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setWindowModified(vbo != 0);
+}
+
+void QChartView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+		static_cast<QChartView*>(ptr)->QChartView::setWindowTitle(QString(vqs));
+}
+
+void QChartView_ShowDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::show();
+}
+
+void QChartView_ShowFullScreenDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::showFullScreen();
+}
+
+void QChartView_ShowMaximizedDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::showMaximized();
+}
+
+void QChartView_ShowMinimizedDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::showMinimized();
+}
+
+void QChartView_ShowNormalDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::showNormal();
+}
+
+void QChartView_TabletEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::tabletEvent(static_cast<QTabletEvent*>(event));
+}
+
+void QChartView_UpdateDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::update();
+}
+
+void QChartView_UpdateMicroFocusDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::updateMicroFocus();
+}
+
+void* QChartView_PaintEngineDefault(void* ptr)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::paintEngine();
+}
+
+char QChartView_HasHeightForWidthDefault(void* ptr)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::hasHeightForWidth();
+}
+
+int QChartView_HeightForWidthDefault(void* ptr, int w)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::heightForWidth(w);
+}
+
+int QChartView_MetricDefault(void* ptr, long long m)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+char QChartView_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QChartView*>(ptr)->QChartView::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void QChartView_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QChartView_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QChartView*>(ptr)->QChartView::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QChartView_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::customEvent(static_cast<QEvent*>(event));
+}
+
+void QChartView_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QChartView*>(ptr)->QChartView::deleteLater();
+}
+
+void QChartView_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QChartView*>(ptr)->QChartView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QChartView_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QChartView*>(ptr)->QChartView::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QChartView_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QChartView*>(ptr)->QChartView::metaObject());
+}
+
 class MyQDateTimeAxis: public QDateTimeAxis
 {
 public:
@@ -4535,6 +6289,32 @@ public:
 	void Signal_MinChanged(QDateTime min) { callbackQDateTimeAxis_MinChanged(this, new QDateTime(min)); };
 	void Signal_RangeChanged(QDateTime min, QDateTime max) { callbackQDateTimeAxis_RangeChanged(this, new QDateTime(min), new QDateTime(max)); };
 	void Signal_TickCountChanged(int tickCount) { callbackQDateTimeAxis_TickCountChanged(this, tickCount); };
+	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQDateTimeAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_ColorChanged(QColor color) { callbackQAbstractAxis_ColorChanged(this, new QColor(color)); };
+	void Signal_GridLineColorChanged(const QColor & color) { callbackQAbstractAxis_GridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_GridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_GridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_GridVisibleChanged(bool visible) { callbackQAbstractAxis_GridVisibleChanged(this, visible); };
+	void Signal_LabelsAngleChanged(int angle) { callbackQAbstractAxis_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsBrushChanged(const QBrush & brush) { callbackQAbstractAxis_LabelsBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_LabelsColorChanged(QColor color) { callbackQAbstractAxis_LabelsColorChanged(this, new QColor(color)); };
+	void Signal_LabelsFontChanged(const QFont & font) { callbackQAbstractAxis_LabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_LabelsVisibleChanged(bool visible) { callbackQAbstractAxis_LabelsVisibleChanged(this, visible); };
+	void Signal_LinePenChanged(const QPen & pen) { callbackQAbstractAxis_LinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_LineVisibleChanged(bool visible) { callbackQAbstractAxis_LineVisibleChanged(this, visible); };
+	void Signal_MinorGridLineColorChanged(const QColor & color) { callbackQAbstractAxis_MinorGridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_MinorGridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_MinorGridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_MinorGridVisibleChanged(bool visible) { callbackQAbstractAxis_MinorGridVisibleChanged(this, visible); };
+	void Signal_ReverseChanged(bool reverse) { callbackQAbstractAxis_ReverseChanged(this, reverse); };
+	void Signal_ShadesBorderColorChanged(QColor color) { callbackQAbstractAxis_ShadesBorderColorChanged(this, new QColor(color)); };
+	void Signal_ShadesBrushChanged(const QBrush & brush) { callbackQAbstractAxis_ShadesBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_ShadesColorChanged(QColor color) { callbackQAbstractAxis_ShadesColorChanged(this, new QColor(color)); };
+	void Signal_ShadesPenChanged(const QPen & pen) { callbackQAbstractAxis_ShadesPenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_ShadesVisibleChanged(bool visible) { callbackQAbstractAxis_ShadesVisibleChanged(this, visible); };
+	void Signal_TitleBrushChanged(const QBrush & brush) { callbackQAbstractAxis_TitleBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_TitleFontChanged(const QFont & font) { callbackQAbstractAxis_TitleFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_TitleTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCharts_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQAbstractAxis_TitleTextChanged(this, textPacked); };
+	void Signal_TitleVisibleChanged(bool visible) { callbackQAbstractAxis_TitleVisibleChanged(this, visible); };
+	void Signal_VisibleChanged(bool visible) { callbackQAbstractAxis_VisibleChanged(this, visible); };
 };
 
 void* QDateTimeAxis_NewQDateTimeAxis(void* parent)
@@ -4645,6 +6425,16 @@ void QDateTimeAxis_TickCountChanged(void* ptr, int tickCount)
 void QDateTimeAxis_DestroyQDateTimeAxis(void* ptr)
 {
 	static_cast<QDateTimeAxis*>(ptr)->~QDateTimeAxis();
+}
+
+long long QDateTimeAxis_Type(void* ptr)
+{
+	return static_cast<QDateTimeAxis*>(ptr)->type();
+}
+
+long long QDateTimeAxis_TypeDefault(void* ptr)
+{
+		return static_cast<QDateTimeAxis*>(ptr)->QDateTimeAxis::type();
 }
 
 void* QDateTimeAxis_Max(void* ptr)
@@ -5013,6 +6803,8 @@ public:
 	void Signal_OpenColumnChanged() { callbackQHCandlestickModelMapper_OpenColumnChanged(this); };
 	void Signal_TimestampColumnChanged() { callbackQHCandlestickModelMapper_TimestampColumnChanged(this); };
 	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQHCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
+	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
 };
 
 void* QHCandlestickModelMapper_NewQHCandlestickModelMapper(void* parent)
@@ -5544,6 +7336,22 @@ class MyQHorizontalBarSeries: public QHorizontalBarSeries
 public:
 	MyQHorizontalBarSeries(QObject *parent) : QHorizontalBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
+	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
+	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
+	void Signal_Hovered(bool status, int index, QBarSet * barset) { callbackQAbstractBarSeries_Hovered(this, status, index, barset); };
+	void Signal_LabelsAngleChanged(qreal angle) { callbackQAbstractBarSeries_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQAbstractBarSeries_LabelsFormatChanged(this, formatPacked); };
+	void Signal_LabelsPositionChanged(QAbstractBarSeries::LabelsPosition position) { callbackQAbstractBarSeries_LabelsPositionChanged(this, position); };
+	void Signal_LabelsVisibleChanged() { callbackQAbstractBarSeries_LabelsVisibleChanged(this); };
+	void Signal_Pressed(int index, QBarSet * barset) { callbackQAbstractBarSeries_Pressed(this, index, barset); };
+	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QHorizontalBarSeries_NewQHorizontalBarSeries(void* parent)
@@ -5571,6 +7379,22 @@ class MyQHorizontalPercentBarSeries: public QHorizontalPercentBarSeries
 public:
 	MyQHorizontalPercentBarSeries(QObject *parent) : QHorizontalPercentBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
+	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
+	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
+	void Signal_Hovered(bool status, int index, QBarSet * barset) { callbackQAbstractBarSeries_Hovered(this, status, index, barset); };
+	void Signal_LabelsAngleChanged(qreal angle) { callbackQAbstractBarSeries_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQAbstractBarSeries_LabelsFormatChanged(this, formatPacked); };
+	void Signal_LabelsPositionChanged(QAbstractBarSeries::LabelsPosition position) { callbackQAbstractBarSeries_LabelsPositionChanged(this, position); };
+	void Signal_LabelsVisibleChanged() { callbackQAbstractBarSeries_LabelsVisibleChanged(this); };
+	void Signal_Pressed(int index, QBarSet * barset) { callbackQAbstractBarSeries_Pressed(this, index, barset); };
+	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QHorizontalPercentBarSeries_NewQHorizontalPercentBarSeries(void* parent)
@@ -5598,6 +7422,22 @@ class MyQHorizontalStackedBarSeries: public QHorizontalStackedBarSeries
 public:
 	MyQHorizontalStackedBarSeries(QObject *parent) : QHorizontalStackedBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
+	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
+	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
+	void Signal_Hovered(bool status, int index, QBarSet * barset) { callbackQAbstractBarSeries_Hovered(this, status, index, barset); };
+	void Signal_LabelsAngleChanged(qreal angle) { callbackQAbstractBarSeries_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQAbstractBarSeries_LabelsFormatChanged(this, formatPacked); };
+	void Signal_LabelsPositionChanged(QAbstractBarSeries::LabelsPosition position) { callbackQAbstractBarSeries_LabelsPositionChanged(this, position); };
+	void Signal_LabelsVisibleChanged() { callbackQAbstractBarSeries_LabelsVisibleChanged(this); };
+	void Signal_Pressed(int index, QBarSet * barset) { callbackQAbstractBarSeries_Pressed(this, index, barset); };
+	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QHorizontalStackedBarSeries_NewQHorizontalStackedBarSeries(void* parent)
@@ -5630,6 +7470,81 @@ public:
 	void Signal_LabelColorChanged(QColor color) { callbackQLegend_LabelColorChanged(this, new QColor(color)); };
 	void Signal_ReverseMarkersChanged(bool reverseMarkers) { callbackQLegend_ReverseMarkersChanged(this, reverseMarkers); };
 	void Signal_ShowToolTipsChanged(bool showToolTips) { callbackQLegend_ShowToolTipsChanged(this, showToolTips); };
+	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQLegend_ItemChange(this, change, const_cast<QVariant*>(&value))); };
+	bool close() { return callbackQLegend_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQLegend_Event(this, event) != 0; };
+	bool focusNextPrevChild(bool next) { return callbackQLegend_FocusNextPrevChild(this, next) != 0; };
+	bool sceneEvent(QEvent * event) { return callbackQLegend_SceneEvent(this, event) != 0; };
+	bool windowFrameEvent(QEvent * event) { return callbackQLegend_WindowFrameEvent(this, event) != 0; };
+	void changeEvent(QEvent * event) { callbackQLegend_ChangeEvent(this, event); };
+	void closeEvent(QCloseEvent * event) { callbackQLegend_CloseEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackQLegend_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQLegend_FocusOutEvent(this, event); };
+	void Signal_GeometryChanged() { callbackQLegend_GeometryChanged(this); };
+	void grabKeyboardEvent(QEvent * event) { callbackQLegend_GrabKeyboardEvent(this, event); };
+	void grabMouseEvent(QEvent * event) { callbackQLegend_GrabMouseEvent(this, event); };
+	void hideEvent(QHideEvent * event) { callbackQLegend_HideEvent(this, event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQLegend_HoverLeaveEvent(this, event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQLegend_HoverMoveEvent(this, event); };
+	void moveEvent(QGraphicsSceneMoveEvent * event) { callbackQLegend_MoveEvent(this, event); };
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQLegend_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void paintWindowFrame(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQLegend_PaintWindowFrame(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void polishEvent() { callbackQLegend_PolishEvent(this); };
+	void resizeEvent(QGraphicsSceneResizeEvent * event) { callbackQLegend_ResizeEvent(this, event); };
+	void setGeometry(const QRectF & rect) { callbackQLegend_SetGeometry(this, const_cast<QRectF*>(&rect)); };
+	void showEvent(QShowEvent * event) { callbackQLegend_ShowEvent(this, event); };
+	void ungrabKeyboardEvent(QEvent * event) { callbackQLegend_UngrabKeyboardEvent(this, event); };
+	void ungrabMouseEvent(QEvent * event) { callbackQLegend_UngrabMouseEvent(this, event); };
+	void updateGeometry() { callbackQLegend_UpdateGeometry(this); };
+	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQLegend_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
+	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQLegend_BoundingRect(const_cast<void*>(static_cast<const void*>(this)))); };
+	QSizeF sizeHint(Qt::SizeHint which, const QSizeF & constraint) const { return *static_cast<QSizeF*>(callbackQLegend_SizeHint(const_cast<void*>(static_cast<const void*>(this)), which, const_cast<QSizeF*>(&constraint))); };
+	Qt::WindowFrameSection windowFrameSectionAt(const QPointF & pos) const { return static_cast<Qt::WindowFrameSection>(callbackQLegend_WindowFrameSectionAt(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&pos))); };
+	int type() const { return callbackQLegend_Type(const_cast<void*>(static_cast<const void*>(this))); };
+	void getContentsMargins(qreal * left, qreal * top, qreal * right, qreal * bottom) const { callbackQLegend_GetContentsMargins(const_cast<void*>(static_cast<const void*>(this)), *left, *top, *right, *bottom); };
+	void initStyleOption(QStyleOption * option) const { callbackQLegend_InitStyleOption(const_cast<void*>(static_cast<const void*>(this)), option); };
+	void Signal_EnabledChanged() { callbackQLegend_EnabledChanged(this); };
+	void Signal_OpacityChanged() { callbackQLegend_OpacityChanged(this); };
+	void Signal_ParentChanged() { callbackQLegend_ParentChanged(this); };
+	void Signal_RotationChanged() { callbackQLegend_RotationChanged(this); };
+	void Signal_ScaleChanged() { callbackQLegend_ScaleChanged(this); };
+	void updateMicroFocus() { callbackQLegend_UpdateMicroFocus(this); };
+	void Signal_VisibleChanged() { callbackQLegend_VisibleChanged(this); };
+	void Signal_XChanged() { callbackQLegend_XChanged(this); };
+	void Signal_YChanged() { callbackQLegend_YChanged(this); };
+	void Signal_ZChanged() { callbackQLegend_ZChanged(this); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLegend_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQLegend_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQLegend_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQLegend_CustomEvent(this, event); };
+	void deleteLater() { callbackQLegend_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQLegend_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQLegend_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQLegend_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQLegend_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLegend_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool sceneEventFilter(QGraphicsItem * watched, QEvent * event) { return callbackQLegend_SceneEventFilter(this, watched, event) != 0; };
+	void advance(int phase) { callbackQLegend_Advance(this, phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQLegend_ContextMenuEvent(this, event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQLegend_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQLegend_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQLegend_DragMoveEvent(this, event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQLegend_DropEvent(this, event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQLegend_HoverEnterEvent(this, event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQLegend_InputMethodEvent(this, event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQLegend_KeyPressEvent(this, event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQLegend_KeyReleaseEvent(this, event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQLegend_MouseDoubleClickEvent(this, event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQLegend_MouseMoveEvent(this, event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQLegend_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQLegend_MouseReleaseEvent(this, event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQLegend_WheelEvent(this, event); };
+	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQLegend_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQLegend_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
+	bool collidesWithItem(const QGraphicsItem * other, Qt::ItemSelectionMode mode) const { return callbackQLegend_CollidesWithItem(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(other), mode) != 0; };
+	bool collidesWithPath(const QPainterPath & path, Qt::ItemSelectionMode mode) const { return callbackQLegend_CollidesWithPath(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPainterPath*>(&path), mode) != 0; };
+	bool contains(const QPointF & point) const { return callbackQLegend_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
+	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQLegend_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
 
 void* QLegend_BorderColor(void* ptr)
@@ -5777,11 +7692,6 @@ void QLegend_SetColor(void* ptr, void* color)
 	static_cast<QLegend*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
 
-void QLegend_SetFont(void* ptr, void* font)
-{
-	static_cast<QLegend*>(ptr)->setFont(*static_cast<QFont*>(font));
-}
-
 void QLegend_SetLabelBrush(void* ptr, void* brush)
 {
 	static_cast<QLegend*>(ptr)->setLabelBrush(*static_cast<QBrush*>(brush));
@@ -5842,11 +7752,6 @@ void* QLegend_LabelColor(void* ptr)
 	return new QColor(static_cast<QLegend*>(ptr)->labelColor());
 }
 
-void* QLegend_Font(void* ptr)
-{
-	return new QFont(static_cast<QLegend*>(ptr)->font());
-}
-
 struct QtCharts_PackedList QLegend_Markers(void* ptr, void* series)
 {
 	return ({ QList<QLegendMarker *>* tmpValue = new QList<QLegendMarker *>(static_cast<QLegend*>(ptr)->markers(static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
@@ -5885,6 +7790,501 @@ void QLegend___markers_setList(void* ptr, void* i)
 void* QLegend___markers_newList(void* ptr)
 {
 	return new QList<QLegendMarker *>;
+}
+
+void* QLegend___addActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QLegend___addActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QLegend___addActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QLegend___insertActions_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QLegend___insertActions_actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QLegend___insertActions_actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QLegend___actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
+void QLegend___actions_setList(void* ptr, void* i)
+{
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
+}
+
+void* QLegend___actions_newList(void* ptr)
+{
+	return new QList<QAction *>;
+}
+
+void* QLegend___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QLegend___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QLegend___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QLegend___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLegend___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLegend___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QLegend___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLegend___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLegend___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QLegend___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QLegend___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLegend___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QLegend___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QLegend___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QLegend___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+void* QLegend___setTransformations_transformations_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsTransform*>(static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i));
+}
+
+void QLegend___setTransformations_transformations_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
+}
+
+void* QLegend___setTransformations_transformations_newList(void* ptr)
+{
+	return new QList<QGraphicsTransform *>;
+}
+
+void* QLegend___childItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QLegend___childItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QLegend___childItems_newList(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QLegend___collidingItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void QLegend___collidingItems_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
+}
+
+void* QLegend___collidingItems_newList(void* ptr)
+{
+	return new QList<QGraphicsItem *>;
+}
+
+void* QLegend___transformations_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsTransform*>(static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i));
+}
+
+void QLegend___transformations_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
+}
+
+void* QLegend___transformations_newList(void* ptr)
+{
+	return new QList<QGraphicsTransform *>;
+}
+
+void* QLegend_ItemChangeDefault(void* ptr, long long change, void* value)
+{
+		return new QVariant(static_cast<QLegend*>(ptr)->QLegend::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
+}
+
+char QLegend_CloseDefault(void* ptr)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::close();
+}
+
+char QLegend_EventDefault(void* ptr, void* event)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::event(static_cast<QEvent*>(event));
+}
+
+char QLegend_FocusNextPrevChildDefault(void* ptr, char next)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::focusNextPrevChild(next != 0);
+}
+
+char QLegend_SceneEventDefault(void* ptr, void* event)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::sceneEvent(static_cast<QEvent*>(event));
+}
+
+char QLegend_WindowFrameEventDefault(void* ptr, void* event)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::windowFrameEvent(static_cast<QEvent*>(event));
+}
+
+void QLegend_ChangeEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::changeEvent(static_cast<QEvent*>(event));
+}
+
+void QLegend_CloseEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+void QLegend_FocusInEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QLegend_FocusOutEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QLegend_GrabKeyboardEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::grabKeyboardEvent(static_cast<QEvent*>(event));
+}
+
+void QLegend_GrabMouseEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::grabMouseEvent(static_cast<QEvent*>(event));
+}
+
+void QLegend_HideEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void QLegend_HoverLeaveEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QLegend_HoverMoveEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QLegend_MoveEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::moveEvent(static_cast<QGraphicsSceneMoveEvent*>(event));
+}
+
+void QLegend_PaintDefault(void* ptr, void* painter, void* option, void* widget)
+{
+		static_cast<QLegend*>(ptr)->QLegend::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void QLegend_PaintWindowFrameDefault(void* ptr, void* painter, void* option, void* widget)
+{
+		static_cast<QLegend*>(ptr)->QLegend::paintWindowFrame(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void QLegend_PolishEventDefault(void* ptr)
+{
+		static_cast<QLegend*>(ptr)->QLegend::polishEvent();
+}
+
+void QLegend_ResizeEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::resizeEvent(static_cast<QGraphicsSceneResizeEvent*>(event));
+}
+
+void QLegend_SetGeometryDefault(void* ptr, void* rect)
+{
+		static_cast<QLegend*>(ptr)->QLegend::setGeometry(*static_cast<QRectF*>(rect));
+}
+
+void QLegend_ShowEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::showEvent(static_cast<QShowEvent*>(event));
+}
+
+void QLegend_UngrabKeyboardEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::ungrabKeyboardEvent(static_cast<QEvent*>(event));
+}
+
+void QLegend_UngrabMouseEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::ungrabMouseEvent(static_cast<QEvent*>(event));
+}
+
+void QLegend_UpdateGeometryDefault(void* ptr)
+{
+		static_cast<QLegend*>(ptr)->QLegend::updateGeometry();
+}
+
+void* QLegend_ShapeDefault(void* ptr)
+{
+		return new QPainterPath(static_cast<QLegend*>(ptr)->QLegend::shape());
+}
+
+void* QLegend_BoundingRectDefault(void* ptr)
+{
+		return ({ QRectF tmpValue = static_cast<QLegend*>(ptr)->QLegend::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void* QLegend_SizeHintDefault(void* ptr, long long which, void* constraint)
+{
+		return ({ QSizeF tmpValue = static_cast<QLegend*>(ptr)->QLegend::sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint)); new QSizeF(tmpValue.width(), tmpValue.height()); });
+}
+
+long long QLegend_WindowFrameSectionAtDefault(void* ptr, void* pos)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::windowFrameSectionAt(*static_cast<QPointF*>(pos));
+}
+
+int QLegend_TypeDefault(void* ptr)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::type();
+}
+
+void QLegend_GetContentsMarginsDefault(void* ptr, double left, double top, double right, double bottom)
+{
+		static_cast<QLegend*>(ptr)->QLegend::getContentsMargins(&left, &top, &right, &bottom);
+}
+
+void QLegend_InitStyleOptionDefault(void* ptr, void* option)
+{
+		static_cast<QLegend*>(ptr)->QLegend::initStyleOption(static_cast<QStyleOption*>(option));
+}
+
+void QLegend_UpdateMicroFocusDefault(void* ptr)
+{
+		static_cast<QLegend*>(ptr)->QLegend::updateMicroFocus();
+}
+
+char QLegend_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void QLegend_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QLegend_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QLegend*>(ptr)->QLegend::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QLegend_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::customEvent(static_cast<QEvent*>(event));
+}
+
+void QLegend_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QLegend*>(ptr)->QLegend::deleteLater();
+}
+
+void QLegend_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QLegend*>(ptr)->QLegend::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QLegend_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QLegend_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QLegend*>(ptr)->QLegend::metaObject());
+}
+
+char QLegend_SceneEventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
+}
+
+void QLegend_AdvanceDefault(void* ptr, int phase)
+{
+		static_cast<QLegend*>(ptr)->QLegend::advance(phase);
+}
+
+void QLegend_ContextMenuEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QLegend_DragEnterEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QLegend_DragLeaveEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QLegend_DragMoveEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QLegend_DropEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QLegend_HoverEnterEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QLegend_InputMethodEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QLegend_KeyPressEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QLegend_KeyReleaseEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QLegend_MouseDoubleClickEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QLegend_MouseMoveEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QLegend_MousePressEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QLegend_MouseReleaseEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QLegend_WheelEventDefault(void* ptr, void* event)
+{
+		static_cast<QLegend*>(ptr)->QLegend::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void* QLegend_OpaqueAreaDefault(void* ptr)
+{
+		return new QPainterPath(static_cast<QLegend*>(ptr)->QLegend::opaqueArea());
+}
+
+void* QLegend_InputMethodQueryDefault(void* ptr, long long query)
+{
+		return new QVariant(static_cast<QLegend*>(ptr)->QLegend::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+}
+
+char QLegend_CollidesWithItemDefault(void* ptr, void* other, long long mode)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
+}
+
+char QLegend_CollidesWithPathDefault(void* ptr, void* path, long long mode)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
+}
+
+char QLegend_ContainsDefault(void* ptr, void* point)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::contains(*static_cast<QPointF*>(point));
+}
+
+char QLegend_IsObscuredByDefault(void* ptr, void* item)
+{
+		return static_cast<QLegend*>(ptr)->QLegend::isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
 class MyQLegendMarker: public QLegendMarker
@@ -6108,6 +8508,31 @@ class MyQLineSeries: public QLineSeries
 public:
 	MyQLineSeries(QObject *parent) : QLineSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_Clicked(const QPointF & point) { callbackQXYSeries_Clicked(this, const_cast<QPointF*>(&point)); };
+	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
+	void Signal_DoubleClicked(const QPointF & point) { callbackQXYSeries_DoubleClicked(this, const_cast<QPointF*>(&point)); };
+	void Signal_Hovered(const QPointF & point, bool state) { callbackQXYSeries_Hovered(this, const_cast<QPointF*>(&point), state); };
+	void Signal_PenChanged(const QPen & pen) { callbackQXYSeries_PenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_PointAdded(int index) { callbackQXYSeries_PointAdded(this, index); };
+	void Signal_PointLabelsClippingChanged(bool clipping) { callbackQXYSeries_PointLabelsClippingChanged(this, clipping); };
+	void Signal_PointLabelsColorChanged(const QColor & color) { callbackQXYSeries_PointLabelsColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_PointLabelsFontChanged(const QFont & font) { callbackQXYSeries_PointLabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_PointLabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQXYSeries_PointLabelsFormatChanged(this, formatPacked); };
+	void Signal_PointLabelsVisibilityChanged(bool visible) { callbackQXYSeries_PointLabelsVisibilityChanged(this, visible); };
+	void Signal_PointRemoved(int index) { callbackQXYSeries_PointRemoved(this, index); };
+	void Signal_PointReplaced(int index) { callbackQXYSeries_PointReplaced(this, index); };
+	void Signal_PointsRemoved(int index, int count) { callbackQXYSeries_PointsRemoved(this, index, count); };
+	void Signal_PointsReplaced() { callbackQXYSeries_PointsReplaced(this); };
+	void Signal_Pressed(const QPointF & point) { callbackQXYSeries_Pressed(this, const_cast<QPointF*>(&point)); };
+	void Signal_Released(const QPointF & point) { callbackQXYSeries_Released(this, const_cast<QPointF*>(&point)); };
+	void setBrush(const QBrush & brush) { callbackQXYSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
+	void setColor(const QColor & color) { callbackQXYSeries_SetColor(this, const_cast<QColor*>(&color)); };
+	void setPen(const QPen & pen) { callbackQXYSeries_SetPen(this, const_cast<QPen*>(&pen)); };
+	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QLineSeries_NewQLineSeries(void* parent)
@@ -6127,7 +8552,11 @@ long long QLineSeries_Type(void* ptr)
 
 long long QLineSeries_TypeDefault(void* ptr)
 {
+	if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
+	} else {
 		return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
+	}
 }
 
 class MyQLogValueAxis: public QLogValueAxis
@@ -6139,6 +8568,32 @@ public:
 	void Signal_MaxChanged(qreal max) { callbackQLogValueAxis_MaxChanged(this, max); };
 	void Signal_MinChanged(qreal min) { callbackQLogValueAxis_MinChanged(this, min); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQLogValueAxis_RangeChanged(this, min, max); };
+	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQLogValueAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_ColorChanged(QColor color) { callbackQAbstractAxis_ColorChanged(this, new QColor(color)); };
+	void Signal_GridLineColorChanged(const QColor & color) { callbackQAbstractAxis_GridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_GridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_GridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_GridVisibleChanged(bool visible) { callbackQAbstractAxis_GridVisibleChanged(this, visible); };
+	void Signal_LabelsAngleChanged(int angle) { callbackQAbstractAxis_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsBrushChanged(const QBrush & brush) { callbackQAbstractAxis_LabelsBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_LabelsColorChanged(QColor color) { callbackQAbstractAxis_LabelsColorChanged(this, new QColor(color)); };
+	void Signal_LabelsFontChanged(const QFont & font) { callbackQAbstractAxis_LabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_LabelsVisibleChanged(bool visible) { callbackQAbstractAxis_LabelsVisibleChanged(this, visible); };
+	void Signal_LinePenChanged(const QPen & pen) { callbackQAbstractAxis_LinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_LineVisibleChanged(bool visible) { callbackQAbstractAxis_LineVisibleChanged(this, visible); };
+	void Signal_MinorGridLineColorChanged(const QColor & color) { callbackQAbstractAxis_MinorGridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_MinorGridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_MinorGridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_MinorGridVisibleChanged(bool visible) { callbackQAbstractAxis_MinorGridVisibleChanged(this, visible); };
+	void Signal_ReverseChanged(bool reverse) { callbackQAbstractAxis_ReverseChanged(this, reverse); };
+	void Signal_ShadesBorderColorChanged(QColor color) { callbackQAbstractAxis_ShadesBorderColorChanged(this, new QColor(color)); };
+	void Signal_ShadesBrushChanged(const QBrush & brush) { callbackQAbstractAxis_ShadesBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_ShadesColorChanged(QColor color) { callbackQAbstractAxis_ShadesColorChanged(this, new QColor(color)); };
+	void Signal_ShadesPenChanged(const QPen & pen) { callbackQAbstractAxis_ShadesPenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_ShadesVisibleChanged(bool visible) { callbackQAbstractAxis_ShadesVisibleChanged(this, visible); };
+	void Signal_TitleBrushChanged(const QBrush & brush) { callbackQAbstractAxis_TitleBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_TitleFontChanged(const QFont & font) { callbackQAbstractAxis_TitleFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_TitleTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCharts_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQAbstractAxis_TitleTextChanged(this, textPacked); };
+	void Signal_TitleVisibleChanged(bool visible) { callbackQAbstractAxis_TitleVisibleChanged(this, visible); };
+	void Signal_VisibleChanged(bool visible) { callbackQAbstractAxis_VisibleChanged(this, visible); };
 };
 
 void* QLogValueAxis_NewQLogValueAxis(void* parent)
@@ -6251,6 +8706,16 @@ void QLogValueAxis_DestroyQLogValueAxis(void* ptr)
 	static_cast<QLogValueAxis*>(ptr)->~QLogValueAxis();
 }
 
+long long QLogValueAxis_Type(void* ptr)
+{
+	return static_cast<QLogValueAxis*>(ptr)->type();
+}
+
+long long QLogValueAxis_TypeDefault(void* ptr)
+{
+		return static_cast<QLogValueAxis*>(ptr)->QLogValueAxis::type();
+}
+
 struct QtCharts_PackedString QLogValueAxis_LabelFormat(void* ptr)
 {
 	return ({ QByteArray tb0d38b = static_cast<QLogValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(tb0d38b.prepend("WHITESPACE").constData()+10), tb0d38b.size()-10 }; });
@@ -6276,6 +8741,22 @@ class MyQPercentBarSeries: public QPercentBarSeries
 public:
 	MyQPercentBarSeries(QObject *parent) : QPercentBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
+	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
+	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
+	void Signal_Hovered(bool status, int index, QBarSet * barset) { callbackQAbstractBarSeries_Hovered(this, status, index, barset); };
+	void Signal_LabelsAngleChanged(qreal angle) { callbackQAbstractBarSeries_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQAbstractBarSeries_LabelsFormatChanged(this, formatPacked); };
+	void Signal_LabelsPositionChanged(QAbstractBarSeries::LabelsPosition position) { callbackQAbstractBarSeries_LabelsPositionChanged(this, position); };
+	void Signal_LabelsVisibleChanged() { callbackQAbstractBarSeries_LabelsVisibleChanged(this); };
+	void Signal_Pressed(int index, QBarSet * barset) { callbackQAbstractBarSeries_Pressed(this, index, barset); };
+	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QPercentBarSeries_NewQPercentBarSeries(void* parent)
@@ -6301,9 +8782,28 @@ long long QPercentBarSeries_TypeDefault(void* ptr)
 class MyQPieLegendMarker: public QPieLegendMarker
 {
 public:
+	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQPieLegendMarker_Type(this)); };
 	QPieSeries * series() { return static_cast<QPieSeries*>(callbackQPieLegendMarker_Series(this)); };
 	 ~MyQPieLegendMarker() { callbackQPieLegendMarker_DestroyQPieLegendMarker(this); };
+	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
+	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
+	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
+	void Signal_Hovered(bool status) { callbackQLegendMarker_Hovered(this, status); };
+	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
+	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
+	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
+
+long long QPieLegendMarker_Type(void* ptr)
+{
+	return static_cast<QPieLegendMarker*>(ptr)->type();
+}
+
+long long QPieLegendMarker_TypeDefault(void* ptr)
+{
+		return static_cast<QPieLegendMarker*>(ptr)->QPieLegendMarker::type();
+}
 
 void* QPieLegendMarker_Series(void* ptr)
 {
@@ -6345,6 +8845,10 @@ public:
 	void Signal_SumChanged() { callbackQPieSeries_SumChanged(this); };
 	 ~MyQPieSeries() { callbackQPieSeries_DestroyQPieSeries(this); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPieSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QPieSeries_NewQPieSeries(void* parent)
@@ -7194,6 +9698,88 @@ double QPieSlice_Value(void* ptr)
 	return static_cast<QPieSlice*>(ptr)->value();
 }
 
+class MyQPolarChart: public QPolarChart
+{
+public:
+	MyQPolarChart(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QPolarChart(parent, wFlags) {};
+	void Signal_PlotAreaChanged(const QRectF & plotArea) { callbackQChart_PlotAreaChanged(this, const_cast<QRectF*>(&plotArea)); };
+	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQChart_ItemChange(this, change, const_cast<QVariant*>(&value))); };
+	bool close() { return callbackQChart_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQChart_Event(this, event) != 0; };
+	bool focusNextPrevChild(bool next) { return callbackQChart_FocusNextPrevChild(this, next) != 0; };
+	bool sceneEvent(QEvent * event) { return callbackQChart_SceneEvent(this, event) != 0; };
+	bool windowFrameEvent(QEvent * event) { return callbackQChart_WindowFrameEvent(this, event) != 0; };
+	void changeEvent(QEvent * event) { callbackQChart_ChangeEvent(this, event); };
+	void closeEvent(QCloseEvent * event) { callbackQChart_CloseEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackQChart_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQChart_FocusOutEvent(this, event); };
+	void Signal_GeometryChanged() { callbackQChart_GeometryChanged(this); };
+	void grabKeyboardEvent(QEvent * event) { callbackQChart_GrabKeyboardEvent(this, event); };
+	void grabMouseEvent(QEvent * event) { callbackQChart_GrabMouseEvent(this, event); };
+	void hideEvent(QHideEvent * event) { callbackQChart_HideEvent(this, event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQChart_HoverLeaveEvent(this, event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQChart_HoverMoveEvent(this, event); };
+	void moveEvent(QGraphicsSceneMoveEvent * event) { callbackQChart_MoveEvent(this, event); };
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQChart_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void paintWindowFrame(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQChart_PaintWindowFrame(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void polishEvent() { callbackQChart_PolishEvent(this); };
+	void resizeEvent(QGraphicsSceneResizeEvent * event) { callbackQChart_ResizeEvent(this, event); };
+	void setGeometry(const QRectF & rect) { callbackQChart_SetGeometry(this, const_cast<QRectF*>(&rect)); };
+	void showEvent(QShowEvent * event) { callbackQChart_ShowEvent(this, event); };
+	void ungrabKeyboardEvent(QEvent * event) { callbackQChart_UngrabKeyboardEvent(this, event); };
+	void ungrabMouseEvent(QEvent * event) { callbackQChart_UngrabMouseEvent(this, event); };
+	void updateGeometry() { callbackQChart_UpdateGeometry(this); };
+	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQChart_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
+	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQChart_BoundingRect(const_cast<void*>(static_cast<const void*>(this)))); };
+	QSizeF sizeHint(Qt::SizeHint which, const QSizeF & constraint) const { return *static_cast<QSizeF*>(callbackQChart_SizeHint(const_cast<void*>(static_cast<const void*>(this)), which, const_cast<QSizeF*>(&constraint))); };
+	Qt::WindowFrameSection windowFrameSectionAt(const QPointF & pos) const { return static_cast<Qt::WindowFrameSection>(callbackQChart_WindowFrameSectionAt(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&pos))); };
+	int type() const { return callbackQChart_Type(const_cast<void*>(static_cast<const void*>(this))); };
+	void getContentsMargins(qreal * left, qreal * top, qreal * right, qreal * bottom) const { callbackQChart_GetContentsMargins(const_cast<void*>(static_cast<const void*>(this)), *left, *top, *right, *bottom); };
+	void initStyleOption(QStyleOption * option) const { callbackQChart_InitStyleOption(const_cast<void*>(static_cast<const void*>(this)), option); };
+	void Signal_EnabledChanged() { callbackQChart_EnabledChanged(this); };
+	void Signal_OpacityChanged() { callbackQChart_OpacityChanged(this); };
+	void Signal_ParentChanged() { callbackQChart_ParentChanged(this); };
+	void Signal_RotationChanged() { callbackQChart_RotationChanged(this); };
+	void Signal_ScaleChanged() { callbackQChart_ScaleChanged(this); };
+	void updateMicroFocus() { callbackQChart_UpdateMicroFocus(this); };
+	void Signal_VisibleChanged() { callbackQChart_VisibleChanged(this); };
+	void Signal_XChanged() { callbackQChart_XChanged(this); };
+	void Signal_YChanged() { callbackQChart_YChanged(this); };
+	void Signal_ZChanged() { callbackQChart_ZChanged(this); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQChart_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQChart_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQChart_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQChart_CustomEvent(this, event); };
+	void deleteLater() { callbackQChart_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQChart_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQChart_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQChart_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQChart_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQChart_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool sceneEventFilter(QGraphicsItem * watched, QEvent * event) { return callbackQChart_SceneEventFilter(this, watched, event) != 0; };
+	void advance(int phase) { callbackQChart_Advance(this, phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQChart_ContextMenuEvent(this, event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DragMoveEvent(this, event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQChart_DropEvent(this, event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQChart_HoverEnterEvent(this, event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQChart_InputMethodEvent(this, event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQChart_KeyPressEvent(this, event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQChart_KeyReleaseEvent(this, event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MouseDoubleClickEvent(this, event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MouseMoveEvent(this, event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQChart_MouseReleaseEvent(this, event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQChart_WheelEvent(this, event); };
+	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQChart_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQChart_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
+	bool collidesWithItem(const QGraphicsItem * other, Qt::ItemSelectionMode mode) const { return callbackQChart_CollidesWithItem(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(other), mode) != 0; };
+	bool collidesWithPath(const QPainterPath & path, Qt::ItemSelectionMode mode) const { return callbackQChart_CollidesWithPath(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPainterPath*>(&path), mode) != 0; };
+	bool contains(const QPointF & point) const { return callbackQChart_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
+	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQChart_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
+};
+
 long long QPolarChart_QPolarChart_AxisPolarOrientation(void* axis)
 {
 	return QPolarChart::axisPolarOrientation(static_cast<QAbstractAxis*>(axis));
@@ -7201,7 +9787,7 @@ long long QPolarChart_QPolarChart_AxisPolarOrientation(void* axis)
 
 void* QPolarChart_NewQPolarChart(void* parent, long long wFlags)
 {
-	return new QPolarChart(static_cast<QGraphicsItem*>(parent), static_cast<Qt::WindowType>(wFlags));
+	return new MyQPolarChart(static_cast<QGraphicsItem*>(parent), static_cast<Qt::WindowType>(wFlags));
 }
 
 void QPolarChart_AddAxis(void* ptr, void* axis, long long polarOrientation)
@@ -7219,34 +9805,39 @@ struct QtCharts_PackedList QPolarChart_Axes(void* ptr, long long polarOrientatio
 	return ({ QList<QAbstractAxis *>* tmpValue = new QList<QAbstractAxis *>(static_cast<QPolarChart*>(ptr)->axes(static_cast<QPolarChart::PolarOrientation>(polarOrientation), static_cast<QAbstractSeries*>(series))); QtCharts_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QPolarChart___axes_atList(void* ptr, int i)
-{
-	return const_cast<QAbstractAxis*>(static_cast<QList<QAbstractAxis *>*>(ptr)->at(i));
-}
-
-void QPolarChart___axes_setList(void* ptr, void* i)
-{
-	static_cast<QList<QAbstractAxis *>*>(ptr)->append(static_cast<QAbstractAxis*>(i));
-}
-
-void* QPolarChart___axes_newList(void* ptr)
-{
-	return new QList<QAbstractAxis *>;
-}
-
 class MyQScatterSeries: public QScatterSeries
 {
 public:
 	MyQScatterSeries(QObject *parent) : QScatterSeries(parent) {};
 	void Signal_BorderColorChanged(QColor color) { callbackQScatterSeries_BorderColorChanged(this, new QColor(color)); };
-	void Signal_ColorChanged(QColor color) { callbackQScatterSeries_ColorChanged(this, new QColor(color)); };
+	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
 	void Signal_MarkerShapeChanged(QScatterSeries::MarkerShape shape) { callbackQScatterSeries_MarkerShapeChanged(this, shape); };
 	void Signal_MarkerSizeChanged(qreal size) { callbackQScatterSeries_MarkerSizeChanged(this, size); };
-	void setBrush(const QBrush & brush) { callbackQScatterSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
-	void setColor(const QColor & color) { callbackQScatterSeries_SetColor(this, const_cast<QColor*>(&color)); };
-	void setPen(const QPen & pen) { callbackQScatterSeries_SetPen(this, const_cast<QPen*>(&pen)); };
+	void setBrush(const QBrush & brush) { callbackQXYSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
+	void setColor(const QColor & color) { callbackQXYSeries_SetColor(this, const_cast<QColor*>(&color)); };
+	void setPen(const QPen & pen) { callbackQXYSeries_SetPen(this, const_cast<QPen*>(&pen)); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQScatterSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
-	QColor color() const { return *static_cast<QColor*>(callbackQScatterSeries_Color(const_cast<void*>(static_cast<const void*>(this)))); };
+	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_Clicked(const QPointF & point) { callbackQXYSeries_Clicked(this, const_cast<QPointF*>(&point)); };
+	void Signal_DoubleClicked(const QPointF & point) { callbackQXYSeries_DoubleClicked(this, const_cast<QPointF*>(&point)); };
+	void Signal_Hovered(const QPointF & point, bool state) { callbackQXYSeries_Hovered(this, const_cast<QPointF*>(&point), state); };
+	void Signal_PenChanged(const QPen & pen) { callbackQXYSeries_PenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_PointAdded(int index) { callbackQXYSeries_PointAdded(this, index); };
+	void Signal_PointLabelsClippingChanged(bool clipping) { callbackQXYSeries_PointLabelsClippingChanged(this, clipping); };
+	void Signal_PointLabelsColorChanged(const QColor & color) { callbackQXYSeries_PointLabelsColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_PointLabelsFontChanged(const QFont & font) { callbackQXYSeries_PointLabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_PointLabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQXYSeries_PointLabelsFormatChanged(this, formatPacked); };
+	void Signal_PointLabelsVisibilityChanged(bool visible) { callbackQXYSeries_PointLabelsVisibilityChanged(this, visible); };
+	void Signal_PointRemoved(int index) { callbackQXYSeries_PointRemoved(this, index); };
+	void Signal_PointReplaced(int index) { callbackQXYSeries_PointReplaced(this, index); };
+	void Signal_PointsRemoved(int index, int count) { callbackQXYSeries_PointsRemoved(this, index, count); };
+	void Signal_PointsReplaced() { callbackQXYSeries_PointsReplaced(this); };
+	void Signal_Pressed(const QPointF & point) { callbackQXYSeries_Pressed(this, const_cast<QPointF*>(&point)); };
+	void Signal_Released(const QPointF & point) { callbackQXYSeries_Released(this, const_cast<QPointF*>(&point)); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QScatterSeries_BorderColor(void* ptr)
@@ -7272,21 +9863,6 @@ void QScatterSeries_DisconnectBorderColorChanged(void* ptr)
 void QScatterSeries_BorderColorChanged(void* ptr, void* color)
 {
 	static_cast<QScatterSeries*>(ptr)->borderColorChanged(*static_cast<QColor*>(color));
-}
-
-void QScatterSeries_ConnectColorChanged(void* ptr)
-{
-	QObject::connect(static_cast<QScatterSeries*>(ptr), static_cast<void (QScatterSeries::*)(QColor)>(&QScatterSeries::colorChanged), static_cast<MyQScatterSeries*>(ptr), static_cast<void (MyQScatterSeries::*)(QColor)>(&MyQScatterSeries::Signal_ColorChanged));
-}
-
-void QScatterSeries_DisconnectColorChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QScatterSeries*>(ptr), static_cast<void (QScatterSeries::*)(QColor)>(&QScatterSeries::colorChanged), static_cast<MyQScatterSeries*>(ptr), static_cast<void (MyQScatterSeries::*)(QColor)>(&MyQScatterSeries::Signal_ColorChanged));
-}
-
-void QScatterSeries_ColorChanged(void* ptr, void* color)
-{
-	static_cast<QScatterSeries*>(ptr)->colorChanged(*static_cast<QColor*>(color));
 }
 
 void QScatterSeries_ConnectMarkerShapeChanged(void* ptr)
@@ -7324,26 +9900,6 @@ void QScatterSeries_SetBorderColor(void* ptr, void* color)
 	static_cast<QScatterSeries*>(ptr)->setBorderColor(*static_cast<QColor*>(color));
 }
 
-void QScatterSeries_SetBrush(void* ptr, void* brush)
-{
-	static_cast<QScatterSeries*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
-}
-
-void QScatterSeries_SetBrushDefault(void* ptr, void* brush)
-{
-		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setBrush(*static_cast<QBrush*>(brush));
-}
-
-void QScatterSeries_SetColor(void* ptr, void* color)
-{
-	static_cast<QScatterSeries*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-void QScatterSeries_SetColorDefault(void* ptr, void* color)
-{
-		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setColor(*static_cast<QColor*>(color));
-}
-
 void QScatterSeries_SetMarkerShape(void* ptr, long long shape)
 {
 	static_cast<QScatterSeries*>(ptr)->setMarkerShape(static_cast<QScatterSeries::MarkerShape>(shape));
@@ -7352,16 +9908,6 @@ void QScatterSeries_SetMarkerShape(void* ptr, long long shape)
 void QScatterSeries_SetMarkerSize(void* ptr, double size)
 {
 	static_cast<QScatterSeries*>(ptr)->setMarkerSize(size);
-}
-
-void QScatterSeries_SetPen(void* ptr, void* pen)
-{
-	static_cast<QScatterSeries*>(ptr)->setPen(*static_cast<QPen*>(pen));
-}
-
-void QScatterSeries_SetPenDefault(void* ptr, void* pen)
-{
-		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setPen(*static_cast<QPen*>(pen));
 }
 
 void QScatterSeries_DestroyQScatterSeries(void* ptr)
@@ -7384,21 +9930,6 @@ long long QScatterSeries_TypeDefault(void* ptr)
 		return static_cast<QScatterSeries*>(ptr)->QScatterSeries::type();
 }
 
-void* QScatterSeries_Brush(void* ptr)
-{
-	return new QBrush(static_cast<QScatterSeries*>(ptr)->brush());
-}
-
-void* QScatterSeries_Color(void* ptr)
-{
-	return new QColor(static_cast<QScatterSeries*>(ptr)->color());
-}
-
-void* QScatterSeries_ColorDefault(void* ptr)
-{
-		return new QColor(static_cast<QScatterSeries*>(ptr)->QScatterSeries::color());
-}
-
 double QScatterSeries_MarkerSize(void* ptr)
 {
 	return static_cast<QScatterSeries*>(ptr)->markerSize();
@@ -7408,7 +9939,32 @@ class MyQSplineSeries: public QSplineSeries
 {
 public:
 	MyQSplineSeries(QObject *parent) : QSplineSeries(parent) {};
-	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQSplineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_Clicked(const QPointF & point) { callbackQXYSeries_Clicked(this, const_cast<QPointF*>(&point)); };
+	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
+	void Signal_DoubleClicked(const QPointF & point) { callbackQXYSeries_DoubleClicked(this, const_cast<QPointF*>(&point)); };
+	void Signal_Hovered(const QPointF & point, bool state) { callbackQXYSeries_Hovered(this, const_cast<QPointF*>(&point), state); };
+	void Signal_PenChanged(const QPen & pen) { callbackQXYSeries_PenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_PointAdded(int index) { callbackQXYSeries_PointAdded(this, index); };
+	void Signal_PointLabelsClippingChanged(bool clipping) { callbackQXYSeries_PointLabelsClippingChanged(this, clipping); };
+	void Signal_PointLabelsColorChanged(const QColor & color) { callbackQXYSeries_PointLabelsColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_PointLabelsFontChanged(const QFont & font) { callbackQXYSeries_PointLabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_PointLabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQXYSeries_PointLabelsFormatChanged(this, formatPacked); };
+	void Signal_PointLabelsVisibilityChanged(bool visible) { callbackQXYSeries_PointLabelsVisibilityChanged(this, visible); };
+	void Signal_PointRemoved(int index) { callbackQXYSeries_PointRemoved(this, index); };
+	void Signal_PointReplaced(int index) { callbackQXYSeries_PointReplaced(this, index); };
+	void Signal_PointsRemoved(int index, int count) { callbackQXYSeries_PointsRemoved(this, index, count); };
+	void Signal_PointsReplaced() { callbackQXYSeries_PointsReplaced(this); };
+	void Signal_Pressed(const QPointF & point) { callbackQXYSeries_Pressed(this, const_cast<QPointF*>(&point)); };
+	void Signal_Released(const QPointF & point) { callbackQXYSeries_Released(this, const_cast<QPointF*>(&point)); };
+	void setBrush(const QBrush & brush) { callbackQXYSeries_SetBrush(this, const_cast<QBrush*>(&brush)); };
+	void setColor(const QColor & color) { callbackQXYSeries_SetColor(this, const_cast<QColor*>(&color)); };
+	void setPen(const QPen & pen) { callbackQXYSeries_SetPen(this, const_cast<QPen*>(&pen)); };
+	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QSplineSeries_NewQSplineSeries(void* parent)
@@ -7421,21 +9977,27 @@ void QSplineSeries_DestroyQSplineSeries(void* ptr)
 	static_cast<QSplineSeries*>(ptr)->~QSplineSeries();
 }
 
-long long QSplineSeries_Type(void* ptr)
-{
-	return static_cast<QSplineSeries*>(ptr)->type();
-}
-
-long long QSplineSeries_TypeDefault(void* ptr)
-{
-		return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
-}
-
 class MyQStackedBarSeries: public QStackedBarSeries
 {
 public:
 	MyQStackedBarSeries(QObject *parent) : QStackedBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Clicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_Clicked(this, index, barset); };
+	void Signal_CountChanged() { callbackQAbstractBarSeries_CountChanged(this); };
+	void Signal_DoubleClicked(int index, QBarSet * barset) { callbackQAbstractBarSeries_DoubleClicked(this, index, barset); };
+	void Signal_Hovered(bool status, int index, QBarSet * barset) { callbackQAbstractBarSeries_Hovered(this, status, index, barset); };
+	void Signal_LabelsAngleChanged(qreal angle) { callbackQAbstractBarSeries_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQAbstractBarSeries_LabelsFormatChanged(this, formatPacked); };
+	void Signal_LabelsPositionChanged(QAbstractBarSeries::LabelsPosition position) { callbackQAbstractBarSeries_LabelsPositionChanged(this, position); };
+	void Signal_LabelsVisibleChanged() { callbackQAbstractBarSeries_LabelsVisibleChanged(this); };
+	void Signal_Pressed(int index, QBarSet * barset) { callbackQAbstractBarSeries_Pressed(this, index, barset); };
+	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
 };
 
 void* QStackedBarSeries_NewQStackedBarSeries(void* parent)
@@ -7804,6 +10366,8 @@ public:
 	void Signal_OpenRowChanged() { callbackQVCandlestickModelMapper_OpenRowChanged(this); };
 	void Signal_TimestampRowChanged() { callbackQVCandlestickModelMapper_TimestampRowChanged(this); };
 	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQVCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
+	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
 };
 
 void* QVCandlestickModelMapper_NewQVCandlestickModelMapper(void* parent)
@@ -8341,6 +10905,32 @@ public:
 	void Signal_MinorTickCountChanged(int minorTickCount) { callbackQValueAxis_MinorTickCountChanged(this, minorTickCount); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQValueAxis_RangeChanged(this, min, max); };
 	void Signal_TickCountChanged(int tickCount) { callbackQValueAxis_TickCountChanged(this, tickCount); };
+	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQValueAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_ColorChanged(QColor color) { callbackQAbstractAxis_ColorChanged(this, new QColor(color)); };
+	void Signal_GridLineColorChanged(const QColor & color) { callbackQAbstractAxis_GridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_GridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_GridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_GridVisibleChanged(bool visible) { callbackQAbstractAxis_GridVisibleChanged(this, visible); };
+	void Signal_LabelsAngleChanged(int angle) { callbackQAbstractAxis_LabelsAngleChanged(this, angle); };
+	void Signal_LabelsBrushChanged(const QBrush & brush) { callbackQAbstractAxis_LabelsBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_LabelsColorChanged(QColor color) { callbackQAbstractAxis_LabelsColorChanged(this, new QColor(color)); };
+	void Signal_LabelsFontChanged(const QFont & font) { callbackQAbstractAxis_LabelsFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_LabelsVisibleChanged(bool visible) { callbackQAbstractAxis_LabelsVisibleChanged(this, visible); };
+	void Signal_LinePenChanged(const QPen & pen) { callbackQAbstractAxis_LinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_LineVisibleChanged(bool visible) { callbackQAbstractAxis_LineVisibleChanged(this, visible); };
+	void Signal_MinorGridLineColorChanged(const QColor & color) { callbackQAbstractAxis_MinorGridLineColorChanged(this, const_cast<QColor*>(&color)); };
+	void Signal_MinorGridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_MinorGridLinePenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_MinorGridVisibleChanged(bool visible) { callbackQAbstractAxis_MinorGridVisibleChanged(this, visible); };
+	void Signal_ReverseChanged(bool reverse) { callbackQAbstractAxis_ReverseChanged(this, reverse); };
+	void Signal_ShadesBorderColorChanged(QColor color) { callbackQAbstractAxis_ShadesBorderColorChanged(this, new QColor(color)); };
+	void Signal_ShadesBrushChanged(const QBrush & brush) { callbackQAbstractAxis_ShadesBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_ShadesColorChanged(QColor color) { callbackQAbstractAxis_ShadesColorChanged(this, new QColor(color)); };
+	void Signal_ShadesPenChanged(const QPen & pen) { callbackQAbstractAxis_ShadesPenChanged(this, const_cast<QPen*>(&pen)); };
+	void Signal_ShadesVisibleChanged(bool visible) { callbackQAbstractAxis_ShadesVisibleChanged(this, visible); };
+	void Signal_TitleBrushChanged(const QBrush & brush) { callbackQAbstractAxis_TitleBrushChanged(this, const_cast<QBrush*>(&brush)); };
+	void Signal_TitleFontChanged(const QFont & font) { callbackQAbstractAxis_TitleFontChanged(this, const_cast<QFont*>(&font)); };
+	void Signal_TitleTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCharts_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQAbstractAxis_TitleTextChanged(this, textPacked); };
+	void Signal_TitleVisibleChanged(bool visible) { callbackQAbstractAxis_TitleVisibleChanged(this, visible); };
+	void Signal_VisibleChanged(bool visible) { callbackQAbstractAxis_VisibleChanged(this, visible); };
 };
 
 void* QValueAxis_NewQValueAxis(void* parent)
@@ -8355,7 +10945,11 @@ void QValueAxis_ApplyNiceNumbers(void* ptr)
 
 void QValueAxis_ApplyNiceNumbersDefault(void* ptr)
 {
+	if (dynamic_cast<QCategoryAxis*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCategoryAxis*>(ptr)->QCategoryAxis::applyNiceNumbers();
+	} else {
 		static_cast<QValueAxis*>(ptr)->QValueAxis::applyNiceNumbers();
+	}
 }
 
 void QValueAxis_ConnectLabelFormatChanged(void* ptr)
@@ -8483,6 +11077,20 @@ void QValueAxis_DestroyQValueAxis(void* ptr)
 	static_cast<QValueAxis*>(ptr)->~QValueAxis();
 }
 
+long long QValueAxis_Type(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->type();
+}
+
+long long QValueAxis_TypeDefault(void* ptr)
+{
+	if (dynamic_cast<QCategoryAxis*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCategoryAxis*>(ptr)->QCategoryAxis::type();
+	} else {
+		return static_cast<QValueAxis*>(ptr)->QValueAxis::type();
+	}
+}
+
 struct QtCharts_PackedString QValueAxis_LabelFormat(void* ptr)
 {
 	return ({ QByteArray t607f3e = static_cast<QValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t607f3e.prepend("WHITESPACE").constData()+10), t607f3e.size()-10 }; });
@@ -8511,9 +11119,28 @@ double QValueAxis_Min(void* ptr)
 class MyQXYLegendMarker: public QXYLegendMarker
 {
 public:
+	LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQXYLegendMarker_Type(this)); };
 	QXYSeries * series() { return static_cast<QXYSeries*>(callbackQXYLegendMarker_Series(this)); };
 	 ~MyQXYLegendMarker() { callbackQXYLegendMarker_DestroyQXYLegendMarker(this); };
+	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
+	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
+	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
+	void Signal_Hovered(bool status) { callbackQLegendMarker_Hovered(this, status); };
+	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
+	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
+	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
+
+long long QXYLegendMarker_Type(void* ptr)
+{
+	return static_cast<QXYLegendMarker*>(ptr)->type();
+}
+
+long long QXYLegendMarker_TypeDefault(void* ptr)
+{
+		return static_cast<QXYLegendMarker*>(ptr)->QXYLegendMarker::type();
+}
 
 void* QXYLegendMarker_Series(void* ptr)
 {
@@ -8559,6 +11186,11 @@ public:
 	void setColor(const QColor & color) { callbackQXYSeries_SetColor(this, const_cast<QColor*>(&color)); };
 	void setPen(const QPen & pen) { callbackQXYSeries_SetPen(this, const_cast<QPen*>(&pen)); };
 	QColor color() const { return *static_cast<QColor*>(callbackQXYSeries_Color(const_cast<void*>(static_cast<const void*>(this)))); };
+	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
+	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
+	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
+	void Signal_VisibleChanged() { callbackQAbstractSeries_VisibleChanged(this); };
+	SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQXYSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void QXYSeries_Append3(void* ptr, void* points)
@@ -8898,7 +11530,15 @@ void QXYSeries_SetBrush(void* ptr, void* brush)
 
 void QXYSeries_SetBrushDefault(void* ptr, void* brush)
 {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setBrush(*static_cast<QBrush*>(brush));
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSplineSeries*>(ptr)->QSplineSeries::setBrush(*static_cast<QBrush*>(brush));
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLineSeries*>(ptr)->QLineSeries::setBrush(*static_cast<QBrush*>(brush));
+	} else {
 		static_cast<QXYSeries*>(ptr)->QXYSeries::setBrush(*static_cast<QBrush*>(brush));
+	}
 }
 
 void QXYSeries_SetColor(void* ptr, void* color)
@@ -8908,7 +11548,15 @@ void QXYSeries_SetColor(void* ptr, void* color)
 
 void QXYSeries_SetColorDefault(void* ptr, void* color)
 {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setColor(*static_cast<QColor*>(color));
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSplineSeries*>(ptr)->QSplineSeries::setColor(*static_cast<QColor*>(color));
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLineSeries*>(ptr)->QLineSeries::setColor(*static_cast<QColor*>(color));
+	} else {
 		static_cast<QXYSeries*>(ptr)->QXYSeries::setColor(*static_cast<QColor*>(color));
+	}
 }
 
 void QXYSeries_SetPen(void* ptr, void* pen)
@@ -8918,7 +11566,15 @@ void QXYSeries_SetPen(void* ptr, void* pen)
 
 void QXYSeries_SetPenDefault(void* ptr, void* pen)
 {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setPen(*static_cast<QPen*>(pen));
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSplineSeries*>(ptr)->QSplineSeries::setPen(*static_cast<QPen*>(pen));
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLineSeries*>(ptr)->QLineSeries::setPen(*static_cast<QPen*>(pen));
+	} else {
 		static_cast<QXYSeries*>(ptr)->QXYSeries::setPen(*static_cast<QPen*>(pen));
+	}
 }
 
 void QXYSeries_SetPointLabelsClipping(void* ptr, char enabled)
@@ -8968,7 +11624,15 @@ void* QXYSeries_Color(void* ptr)
 
 void* QXYSeries_ColorDefault(void* ptr)
 {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+		return new QColor(static_cast<QScatterSeries*>(ptr)->QScatterSeries::color());
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+		return new QColor(static_cast<QSplineSeries*>(ptr)->QSplineSeries::color());
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+		return new QColor(static_cast<QLineSeries*>(ptr)->QLineSeries::color());
+	} else {
 		return new QColor(static_cast<QXYSeries*>(ptr)->QXYSeries::color());
+	}
 }
 
 void* QXYSeries_PointLabelsColor(void* ptr)
@@ -9099,5 +11763,23 @@ void QXYSeries___pointsVector_setList(void* ptr, void* i)
 void* QXYSeries___pointsVector_newList(void* ptr)
 {
 	return new QVector<QPointF>;
+}
+
+long long QXYSeries_Type(void* ptr)
+{
+	return static_cast<QXYSeries*>(ptr)->type();
+}
+
+long long QXYSeries_TypeDefault(void* ptr)
+{
+	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QScatterSeries*>(ptr)->QScatterSeries::type();
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
+	} else {
+	
+	}
 }
 

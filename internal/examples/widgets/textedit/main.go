@@ -1,4 +1,4 @@
-//source and assets: http://doc.qt.io/qt-5/qtwidgets-richtext-textedit-example.html
+//source: http://doc.qt.io/qt-5/qtwidgets-richtext-textedit-example.html
 
 package main
 

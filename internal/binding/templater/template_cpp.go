@@ -360,7 +360,7 @@ func preambleCpp(module string, input []byte) []byte {
 		if module == "QtCore" {
 			fmt.Fprint(bb, "#include <QObject>\n")
 		} else if module == "QtNetwork" {
-			fmt.Fprint(bb, "#include <QSslError>\n")
+			fmt.Fprint(bb, "#include <QSsl>\n")
 		}
 	}
 

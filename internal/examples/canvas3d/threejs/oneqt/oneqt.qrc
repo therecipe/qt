@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="three.js">../../3rdparty/three.js</file>
+        <file>oneqt.qml</file>
+        <file>imagecube.js</file>
+        <file>Navibutton.qml</file>
+        <file>InfoSheet.qml</file>
+        <file>textures/qtlogo.png</file>
+        <file>textures/qtlogosmall.png</file>
+        <file>textures/dataviz.jpg</file>
+        <file>textures/devices.png</file>
+        <file>textures/embedded.png</file>
+        <file>textures/iot.png</file>
+        <file>textures/multiscreen.png</file>
+        <file>textures/puzzle-pieces.png</file>
+        <file>ImageCube.qml</file>
+        <file>SwipeArea.qml</file>
+    </qresource>
+</RCC>

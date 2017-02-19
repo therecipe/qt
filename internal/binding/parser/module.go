@@ -46,7 +46,7 @@ func (m *Module) Prepare() error {
 		}
 		if m.Project != "QtSensors" && m.Project != "QtXmlPatterns" &&
 			m.Project != "QtQml" && m.Project != "QtWidgets" && m.Project != "QtMacExtras" &&
-			m.Project != "QtTestLib" && m.Project != "QtWebEngine" && m.Project != "QtScript" && m.Project != "QtQuick" {
+			m.Project != "QtTestLib" && m.Project != "QtScript" && m.Project != "QtQuick" {
 			for _, f := range sns.Functions {
 
 				if !(f.Status == "active") || !(f.Access == "public" || f.Access == "protected") ||
@@ -60,6 +60,10 @@ func (m *Module) Prepare() error {
 					f.ClassName() == "QPdf" ||
 					f.ClassName() == "QPlatformGraphicsBufferHelper" ||
 					strings.ToLower(f.ClassName()) == f.ClassName() {
+					continue
+				}
+
+				if m.Project == "QtWebEngine" && f.Name != "initialize" {
 					continue
 				}
 

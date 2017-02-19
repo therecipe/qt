@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="three.js">../../3rdparty/three.js</file>
+        <file alias="main.qml">qml/cellphone/main.qml</file>
+        <file alias="CellphoneApp.qml">qml/cellphone/cellphoneapp.qml</file>
+        <file alias="CellphoneCanvas.qml">qml/cellphone/cellphonecanvas.qml</file>
+        <file alias="ColorSelector.qml">qml/cellphone/colorselector.qml</file>
+        <file alias="FpsDisplay.qml">qml/cellphone/fpsdisplay.qml</file>
+        <file alias="cellphone.js">qml/cellphone/cellphone.js</file>
+        <file alias="cellphone_case.json">qml/cellphone/cellphone_case.json</file>
+        <file alias="cellphone_front.json">qml/cellphone/cellphone_front.json</file>
+        <file alias="cellphone_icon.json">qml/cellphone/cellphone_icon.json</file>
+        <file alias="menu_background.jpg">images/menu_background.jpg</file>
+        <file alias="plutomap1k.jpg">images/plutomap1k.jpg</file>
+        <file alias="qtlogo_with_alpha.png">images/qtlogo_with_alpha.png</file>
+        <file alias="calendar.png">images/calendar.png</file>
+        <file alias="camera.png">images/camera.png</file>
+        <file alias="clock.png">images/clock.png</file>
+        <file alias="contacts.png">images/contacts.png</file>
+        <file alias="gallery.png">images/gallery.png</file>
+        <file alias="games.png">images/games.png</file>
+        <file alias="lock.png">images/lock.png</file>
+        <file alias="mail.png">images/mail.png</file>
+        <file alias="maps.png">images/maps.png</file>
+        <file alias="music.png">images/music.png</file>
+        <file alias="settings.png">images/settings.png</file>
+        <file alias="todo.png">images/todo.png</file>
+        <file alias="videos.png">images/videos.png</file>
+    </qresource>
+</RCC>

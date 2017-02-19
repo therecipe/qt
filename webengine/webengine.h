@@ -737,6 +737,7 @@ void QWebEngineView_DeleteLaterDefault(void* ptr);
 void QWebEngineView_DisconnectNotifyDefault(void* ptr, void* sign);
 void QWebEngineView_TimerEventDefault(void* ptr, void* event);
 void* QWebEngineView_MetaObjectDefault(void* ptr);
+void QtWebEngine_QtWebEngine_Initialize();
 
 #ifdef __cplusplus
 }

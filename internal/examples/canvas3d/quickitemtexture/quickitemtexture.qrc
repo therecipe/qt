@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="gl-matrix.js">../3rdparty/gl-matrix.js</file>
+        <file alias="main.qml">qml/quickitemtexture/main.qml</file>
+        <file alias="quickitemtexture.js">qml/quickitemtexture/quickitemtexture.js</file>
+    </qresource>
+</RCC>

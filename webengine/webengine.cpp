@@ -76,6 +76,7 @@
 #include <QWebEngineView>
 #include <QWheelEvent>
 #include <QWidget>
+#include <QtWebEngine>
 
 class MyQQuickWebEngineProfile: public QQuickWebEngineProfile
 {
@@ -3971,5 +3972,10 @@ void QWebEngineView_TimerEventDefault(void* ptr, void* event)
 void* QWebEngineView_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::metaObject());
+}
+
+void QtWebEngine_QtWebEngine_Initialize()
+{
+	QtWebEngine::initialize();
 }
 

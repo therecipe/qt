@@ -133,6 +133,21 @@ func (c *Class) fixBases() {
 		return
 	}
 
+	switch c.Name {
+	case "QChart", "QLegend":
+		{
+			c.Bases = "QGraphicsWidget"
+		}
+	case "QChartView":
+		{
+			c.Bases = "QGraphicsView"
+		}
+	}
+
+	if c.Module == "QtCharts" {
+		return
+	}
+
 	if utils.QT_VERSION() == "5.8.0" {
 		if c.Name == "QDesignerCustomWidgetInterface" ||
 			c.Name == "QDesignerCustomWidgetCollectionInterface" {

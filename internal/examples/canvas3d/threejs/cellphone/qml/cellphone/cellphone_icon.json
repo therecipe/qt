@@ -1,0 +1,34 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "cellphone_icon.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 4,
+        "faces"         : 2,
+        "normals"       : 1,
+        "colors"        : 0,
+        "uvs"           : 4,
+        "materials"     : 0
+    },
+
+    "scale" : 1.000000,
+
+    "materials": [],
+
+    "vertices": [-0.119373,-0.026000,0.625100,-0.119373,-0.026000,0.386354,0.119373,-0.026000,0.386354,0.119373,-0.026000,0.625100],
+
+    "morphTargets": [],
+
+    "morphColors": [],
+
+    "normals": [0,-1,0],
+
+    "colors": [],
+
+    "uvs": [[0,0,1,0,1,1,0,1]],
+
+    "faces": [42,1,2,3,0,0,1,2,0,0,0,42,0,1,3,0,3,0,2,0,0,0]
+
+}

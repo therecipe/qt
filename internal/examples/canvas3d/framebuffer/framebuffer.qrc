@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="gl-matrix.js">../3rdparty/gl-matrix.js</file>
+        <file alias="main.qml">qml/framebuffer/main.qml</file>
+        <file alias="qtlogo.png">qml/framebuffer/qtlogo.png</file>
+        <file alias="framebuffer.js">qml/framebuffer/framebuffer.js</file>
+    </qresource>
+</RCC>

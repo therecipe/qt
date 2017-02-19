@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="gl-matrix.js">../3rdparty/gl-matrix.js</file>
+        <file alias="ThreeJSLoader.js">../3rdparty/ThreeJSLoader.js</file>
+        <file alias="bush.json">qml/jsonmodels/bush.json</file>
+        <file alias="bush.png">qml/jsonmodels/bush.png</file>
+        <file alias="gold.jpg">qml/jsonmodels/gold.jpg</file>
+        <file alias="gold.json">qml/jsonmodels/gold.json</file>
+        <file alias="jsonmodels.js">qml/jsonmodels/jsonmodels.js</file>
+        <file alias="jsonmodels.qml">qml/jsonmodels/jsonmodels.qml</file>
+        <file alias="pallet.jpg">qml/jsonmodels/pallet.jpg</file>
+        <file alias="pallet.json">qml/jsonmodels/pallet.json</file>
+        <file alias="rock.jpg">qml/jsonmodels/rock.jpg</file>
+        <file alias="rock.json">qml/jsonmodels/rock.json</file>
+        <file alias="woodbox.jpg">qml/jsonmodels/woodbox.jpg</file>
+        <file alias="woodbox.json">qml/jsonmodels/woodbox.json</file>
+    </qresource>
+</RCC>

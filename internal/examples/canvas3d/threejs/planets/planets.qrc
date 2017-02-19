@@ -1,0 +1,44 @@
+<RCC>
+    <qresource prefix="/">
+        <file>planets.qml</file>
+        <file>PlanetButton.qml</file>
+        <file>InfoSheet.qml</file>
+        <file>StyledSlider.qml</file>
+        <file>FpsDisplay.qml</file>
+        <file alias="three.js">../../3rdparty/three.js</file>
+        <file alias="ControlEventSource.qml">../controls/ControlEventSource.qml</file>
+        <file alias="threex.planets.js">../../3rdparty/threex.planets.js</file>
+        <file>planets.js</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="sunmap.jpg">images/sunmap.jpg</file>
+        <file alias="mercurymap.jpg">images/mercurymap.jpg</file>
+        <file alias="mercurybump.jpg">images/mercurybump.jpg</file>
+        <file alias="venusmap.jpg">images/venusmap.jpg</file>
+        <file alias="venusbump.jpg">images/venusbump.jpg</file>
+        <file alias="earthmap1k.jpg">images/earthmap1k.jpg</file>
+        <file alias="earthbump1k.jpg">images/earthbump1k.jpg</file>
+        <file alias="earthspec1k.jpg">images/earthspec1k.jpg</file>
+        <file alias="moonmap1k.jpg">images/moonmap1k.jpg</file>
+        <file alias="moonbump1k.jpg">images/moonbump1k.jpg</file>
+        <file alias="marsmap1k.jpg">images/marsmap1k.jpg</file>
+        <file alias="marsbump1k.jpg">images/marsbump1k.jpg</file>
+        <file alias="jupitermap.jpg">images/jupitermap.jpg</file>
+        <file alias="saturnmap.jpg">images/saturnmap.jpg</file>
+        <file alias="uranusmap.jpg">images/uranusmap.jpg</file>
+        <file alias="neptunemap.jpg">images/neptunemap.jpg</file>
+        <file alias="earth.png">images/earth.png</file>
+        <file alias="mercury.png">images/mercury.png</file>
+        <file alias="jupiter.png">images/jupiter.png</file>
+        <file alias="mars.png">images/mars.png</file>
+        <file alias="neptune.png">images/neptune.png</file>
+        <file alias="saturn.png">images/saturn.png</file>
+        <file alias="sun.png">images/sun.png</file>
+        <file alias="uranus.png">images/uranus.png</file>
+        <file alias="venus.png">images/venus.png</file>
+        <file alias="earthcloudmapcolortrans.png">images/earthcloudmapcolortrans.png</file>
+        <file alias="saturnringcolortrans.png">images/saturnringcolortrans.png</file>
+        <file alias="uranusringcolortrans.png">images/uranusringcolortrans.png</file>
+        <file alias="galaxy_starfield.png">images/galaxy_starfield.png</file>
+    </qresource>
+</RCC>

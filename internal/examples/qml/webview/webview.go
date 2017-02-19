@@ -1,4 +1,4 @@
-//source and assets taken from: http://doc.qt.io/qt-5/qtwebview-minibrowser-example.html
+//source: http://doc.qt.io/qt-5/qtwebview-minibrowser-example.html
 
 package main
 

@@ -1,0 +1,34 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "cellphone_front.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 4,
+        "faces"         : 1,
+        "normals"       : 1,
+        "colors"        : 0,
+        "uvs"           : 4,
+        "materials"     : 0
+    },
+
+    "scale" : 1.000000,
+
+    "materials": [],
+
+    "vertices": [0.475000,0.025000,-0.974999,0.474999,0.025000,0.975000,-0.475000,0.025000,0.974999,-0.475000,0.025000,-0.975000],
+
+    "morphTargets": [],
+
+    "morphColors": [],
+
+    "normals": [0,1,0],
+
+    "colors": [],
+
+    "uvs": [[0,0,1,0,1,1,0,1]],
+
+    "faces": [43,0,3,2,1,0,0,1,2,3,0,0,0,0]
+
+}

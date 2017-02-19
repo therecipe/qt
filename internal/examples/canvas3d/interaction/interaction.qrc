@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="gl-matrix.js">../3rdparty/gl-matrix.js</file>
+        <file alias="ThreeJSLoader.js">../3rdparty/ThreeJSLoader.js</file>
+        <file>qml/interaction/barrel.jpg</file>
+        <file>qml/interaction/barrel.json</file>
+        <file alias="main.qml">qml/interaction/main.qml</file>
+        <file alias="interaction.js">qml/interaction/interaction.js</file>
+    </qresource>
+</RCC>

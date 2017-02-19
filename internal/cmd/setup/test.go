@@ -46,12 +46,26 @@ func test(buildTarget string) {
 	var examples map[string][]string
 	if utils.IsCI() {
 		examples = map[string][]string{
-			"androidextras": []string{"jni"},
+			"androidextras": []string{"jni", "notification"},
+
+			"canvas3d": []string{"framebuffer", "interaction", "jsonmodels",
+				"quickitemtexture", "textureandlight",
+				filepath.Join("threejs", "cellphone"),
+				filepath.Join("threejs", "controls"),
+				filepath.Join("threejs", "oneqt"),
+				filepath.Join("threejs", "planets"),
+			},
+
+			"charts": []string{"audio"},
 
 			//"grpc": []string{"hello_world","hello_world2"},
 
+			"gui": []string{"analogclock", "rasterwindow"},
+
 			"qml": []string{"application", "drawer_nav_x", "gallery", "material",
-				"prop", "prop2", "webview"},
+				"prop", "prop2" /*, "webview"*/},
+
+			"qt3d": []string{"audio-visualizer-qml"},
 
 			"quick": []string{"bridge", "bridge2", "calc", "dialog", "dynamic",
 				"hotreload", "listview", "sailfish", "tableview", "translate", "view"},

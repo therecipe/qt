@@ -416,6 +416,9 @@ func IsBlockedDefault() []string {
 		"QModbusServer::open",
 		"QModbusClient::close",
 		"QModbusServer::close",
+
+		"QAbstractBarSeries::type",
+		"QXYSeries::type",
 	}
 }
 

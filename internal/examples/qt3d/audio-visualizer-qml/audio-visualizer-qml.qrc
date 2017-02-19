@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Visualizer.qml</file>
+        <file>BarEntity.qml</file>
+        <file>meshes/circle.obj</file>
+        <file>meshes/progressbar.obj</file>
+        <file>images/pausenormal.png</file>
+        <file>images/playnormal.png</file>
+        <file>images/stopdisabled.png</file>
+        <file>images/stopnormal.png</file>
+        <file>images/pausehoverpressed.png</file>
+        <file>images/playhoverpressed.png</file>
+        <file>images/stophoverpressed.png</file>
+        <file>music/tiltshifted_lost_neon_sun.mp3</file>
+        <file>images/demotitle.png</file>
+        <file>images/songtitle.png</file>
+        <file>images/normalmap.png</file>
+        <file>images/albumcover.png</file>
+        <file>music/visualization.raw</file>
+    </qresource>
+</RCC>

@@ -8471,6 +8471,59 @@ func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QtWebEngine struct {
+	ptr unsafe.Pointer
+}
+
+type QtWebEngine_ITF interface {
+	QtWebEngine_PTR() *QtWebEngine
+}
+
+func (ptr *QtWebEngine) QtWebEngine_PTR() *QtWebEngine {
+	return ptr
+}
+
+func (ptr *QtWebEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QtWebEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQtWebEngine(ptr QtWebEngine_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QtWebEngine_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtWebEngineFromPointer(ptr unsafe.Pointer) *QtWebEngine {
+	var n = new(QtWebEngine)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QtWebEngine) DestroyQtWebEngine() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func QtWebEngine_Initialize() {
+	C.QtWebEngine_QtWebEngine_Initialize()
+}
+
+func (ptr *QtWebEngine) Initialize() {
+	C.QtWebEngine_QtWebEngine_Initialize()
+}
+
 type QtWebEngineCore struct {
 	ptr unsafe.Pointer
 }
