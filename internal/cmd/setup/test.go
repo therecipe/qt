@@ -51,7 +51,6 @@ func test(buildTarget string) {
 			"canvas3d": []string{"framebuffer", "interaction", "jsonmodels",
 				"quickitemtexture", "textureandlight",
 				filepath.Join("threejs", "cellphone"),
-				filepath.Join("threejs", "controls"),
 				filepath.Join("threejs", "oneqt"),
 				filepath.Join("threejs", "planets"),
 			},
