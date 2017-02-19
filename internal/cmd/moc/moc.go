@@ -201,7 +201,7 @@ func CleanPath(path string) (err error) {
 			"moc_cgo_desktop_darwin_amd64.go", "moc_cgo_desktop_windows_386.go", "moc_cgo_desktop_windows_amd64.go", "moc_cgo_desktop_linux_amd64.go",
 			"moc_cgo_android_linux_arm.go",
 			"moc_cgo_ios_simulator_darwin_amd64.go", "moc_cgo_ios_simulator_darwin_386.go", "moc_cgo_ios_darwin_arm64.go", "moc_cgo_ios_darwin_arm.go",
-			"moc_cgo_sailfish_emulator_linux_386.go", "moc_cgo_sailfish_linux_arm.go",
+			"moc_cgo_sailfish_emulator_linux_386.go", "moc_cgo_sailfish_linux_arm.go", "moc_cgo_asteroid_linux_arm.go",
 			"moc_cgo_rpi1_linux_arm.go", "moc_cgo_rpi2_linux_arm.go", "moc_cgo_rpi3_linux_arm.go",
 		}
 

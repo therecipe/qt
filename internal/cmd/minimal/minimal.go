@@ -183,6 +183,33 @@ func Minimal(appPath, buildTarget string) {
 		}
 	}
 
+	if buildTarget == "asteroid" {
+		if _, ok := parser.State.ClassMap["TestCase"]; ok {
+			delete(parser.State.ClassMap, "TestCase")
+		}
+		if _, ok := parser.State.ClassMap["QQuickWidget"]; ok {
+			parser.State.ClassMap["QQuickWidget"].Export = false
+		}
+
+		for k, c := range parser.State.ClassMap {
+			switch c.Since {
+			case "5.7", "5.8":
+				delete(parser.State.ClassMap, c.Name)
+			}
+
+			for _, f := range c.Functions {
+				switch f.Since {
+				case "5.7", "5.8":
+					f.Export = false
+				}
+			}
+
+			if strings.HasPrefix(k, "QAccessible") {
+				delete(parser.State.ClassMap, k)
+			}
+		}
+	}
+
 	if buildTarget == "ios" || buildTarget == "ios-simulator" {
 		parser.State.ClassMap["QProcess"].Export = false
 		parser.State.ClassMap["QProcessEnvironment"].Export = false
