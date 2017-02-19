@@ -3,6 +3,7 @@ package templater
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -31,6 +32,7 @@ func CgoTemplate(module, mocPath string) {
 			cgoLinux(module, mocPath)
 		}
 		cgoSailfish(module, mocPath)
+		cgoAsteroid(module, mocPath)
 		cgoRaspberryPi1(module, mocPath) //TODO: 5.8
 		cgoRaspberryPi2(module, mocPath) //TODO: 5.8
 		cgoRaspberryPi3(module, mocPath) //TODO: 5.8
@@ -1131,6 +1133,85 @@ func IsWhiteListedSailfishLib(name string) bool {
 	default:
 		{
 			return false
+		}
+	}
+}
+
+func cgoAsteroid(module, mocPath string) {
+	var (
+		bb   = new(bytes.Buffer)
+		libs = cleanLibs(module)
+	)
+	defer bb.Reset()
+
+	fmt.Fprintf(bb, "// +build ${BUILDTARGET}%v\n\n", func() string {
+		if parser.State.Minimal {
+			return ",minimal"
+		}
+		if parser.State.Moc {
+			return ""
+		}
+		return ",!minimal"
+	}())
+
+	fmt.Fprintf(bb, "package %v\n\n", func() string {
+		if parser.State.Moc {
+			return parser.State.Module
+		}
+		return strings.ToLower(module)
+	}())
+	fmt.Fprint(bb, "/*\n")
+
+	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -feliminate-unused-debug-types -fexceptions -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -fmessage-length=0 -march=armv7ve -mfloat-abi=softfp -mfpu=neon -mthumb -Wno-psabi -fPIC -fvisibility=hidden -Wall -W -D_REENTRANT -fPIE\n")
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -feliminate-unused-debug-types -fexceptions -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -fmessage-length=0 -march=armv7ve -mfloat-abi=softfp -mfpu=neon -mthumb -Wno-psabi -fPIC -fvisibility=hidden -Wall -W -D_REENTRANT -fPIE\n")
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -DQT_NO_DEBUG")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	fmt.Fprint(bb, "\n")
+
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%[1]s/usr/include/c++/6.2.0/arm-oe-linux-gnueabi -I%[1]s/usr/include/c++/6.2.0  -I%[1]s/usr/lib/mkspecs -I%[1]s/usr/include -I%[1]s/usr/include/mdeclarativecache5 -I%[1]s/usr/include/resource/qt5\n", os.Getenv("OECORE_TARGET_SYSROOT"))
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS:")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -I%s/usr/include/Qt%v", os.Getenv("OECORE_TARGET_SYSROOT"), m)
+	}
+	fmt.Fprint(bb, "\n\n")
+
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath-link,%[1]s/usr/lib -Wl,-rpath-link,%[1]s/lib\n", os.Getenv("OECORE_TARGET_SYSROOT"))
+
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -rdynamic -L%[1]s/usr/lib -L%[1]s/lib -lmdeclarativecache5", os.Getenv("OECORE_TARGET_SYSROOT"))
+	for _, m := range libs {
+		if m != "UiPlugin" {
+			if IsWhiteListedSailfishLib(m) {
+				fmt.Fprintf(bb, " -lQt5%v", m)
+			}
+		}
+	}
+
+	fmt.Fprint(bb, " -lGLESv2 -lpthread\n")
+	fmt.Fprint(bb, "*/\n")
+
+	fmt.Fprint(bb, "import \"C\"\n")
+
+	var tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "asteroid", -1)
+	tmp = strings.Replace(tmp, "i486", "armv7ve", -1)
+
+	switch {
+	case parser.State.Moc:
+		{
+			utils.Save(filepath.Join(mocPath, "moc_cgo_asteroid_linux_arm.go"), tmp)
+		}
+
+	case parser.State.Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_asteroid_linux_arm.go"), tmp)
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_asteroid_linux_arm.go"), tmp)
 		}
 	}
 }

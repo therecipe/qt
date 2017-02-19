@@ -106,7 +106,7 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 //TODO: make docker compatible
 func qmlHeader(appName string) string {
 
-	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
+	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
 #cgo +build windows,386 windows,amd64 LDFLAGS: -L${QT_WINDOWS_DIR} -lQt5Core
@@ -134,6 +134,8 @@ func qmlHeader(appName string) string {
 
 #cgo +build sailfish_emulator,linux,386 LDFLAGS: -Wl,-rpath,/usr/share/harbour-${APPNAME}/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core
 #cgo +build sailfish,linux,arm LDFLAGS: -Wl,-rpath,/usr/share/harbour-${APPNAME}/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/lib -L/srv/mer/targets/SailfishOS-armv7hl/usr/lib -L/srv/mer/targets/SailfishOS-armv7hl/lib -lQt5Core
+
+#cgo +build asteroid,linux,arm LDFLAGS: -Wl,-rpath-link,${OECORE_TARGET_SYSROOT}/usr/lib -Wl,-rpath-link,${OECORE_TARGET_SYSROOT}/lib -L${OECORE_TARGET_SYSROOT}/usr/lib -L${OECORE_TARGET_SYSROOT}/lib -lQt5Core
 
 
 #cgo +build rpi1,linux,arm LDFLAGS: -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/${QT_VERSION_MAJOR}/rpi1/lib -mfloat-abi=hard --sysroot=${RPI1_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L${RPI1_SYSROOT_DIR}/opt/vc/lib -L${QT_DIR}/${QT_VERSION_MAJOR}/rpi1/lib -lQt5Core
@@ -168,6 +170,7 @@ import "C"`,
 		"${IPHONEOS_SDK_DIR}", utils.IPHONEOS_SDK_DIR(), -1),
 		"${IPHONESIMULATOR_SDK_DIR}", utils.IPHONESIMULATOR_SDK_DIR(), -1),
 		"${APPNAME}", appName, -1),
+		"${OECORE_TARGET_SYSROOT}", os.Getenv("OECORE_TARGET_SYSROOT"), -1),
 		"${QT_VERSION_MAJOR}", utils.QT_VERSION_MAJOR(), -1),
 		"\\", "/", -1)
 }
