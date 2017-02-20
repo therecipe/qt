@@ -6322,12 +6322,20 @@ void* QNetworkSession_MetaObjectDefault(void* ptr)
 
 int QSsl_TlsV1_1_Type()
 {
-	return QSsl::TlsV1_1;
+	#if QT_VERSION >= 0x056000
+		return QSsl::TlsV1_1;
+	#else
+		return 0;
+	#endif
 }
 
 int QSsl_TlsV1_2_Type()
 {
-	return QSsl::TlsV1_2;
+	#if QT_VERSION >= 0x056000
+		return QSsl::TlsV1_2;
+	#else
+		return 0;
+	#endif
 }
 
 int QSsl_AnyProtocol_Type()
@@ -6347,17 +6355,29 @@ int QSsl_SecureProtocols_Type()
 
 int QSsl_TlsV1_0OrLater_Type()
 {
-	return QSsl::TlsV1_0OrLater;
+	#if QT_VERSION >= 0x056000
+		return QSsl::TlsV1_0OrLater;
+	#else
+		return 0;
+	#endif
 }
 
 int QSsl_TlsV1_1OrLater_Type()
 {
-	return QSsl::TlsV1_1OrLater;
+	#if QT_VERSION >= 0x056000
+		return QSsl::TlsV1_1OrLater;
+	#else
+		return 0;
+	#endif
 }
 
 int QSsl_TlsV1_2OrLater_Type()
 {
-	return QSsl::TlsV1_2OrLater;
+	#if QT_VERSION >= 0x056000
+		return QSsl::TlsV1_2OrLater;
+	#else
+		return 0;
+	#endif
 }
 
 struct QtNetwork_PackedList QSslCertificate_QSslCertificate_FromData(void* data, long long format)

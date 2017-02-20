@@ -20,7 +20,8 @@ func cppEnumBody(enum *parser.Enum, value *parser.Value) string {
 
 	//needed for sailfish with 5.6 docs
 	if strings.HasPrefix(value.Name, "MV_") || strings.HasPrefix(value.Name, "PM_") ||
-		strings.HasPrefix(value.Name, "SH_") || strings.HasPrefix(value.Name, "ISODate") {
+		strings.HasPrefix(value.Name, "SH_") || strings.HasPrefix(value.Name, "ISODate") ||
+		strings.HasPrefix(value.Name, "TlsV1_") {
 		return fmt.Sprintf(`#if QT_VERSION >= 0x056000
 		return %v::%v;
 	#else

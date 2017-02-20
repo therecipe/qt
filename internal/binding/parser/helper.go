@@ -140,15 +140,15 @@ var LibDeps = map[string][]string{
 	"Widgets":       {"Gui", "Core"},
 	"Sql":           {"Widgets", "Gui", "Core"}, //Widgets, Gui
 	"MacExtras":     {"Gui", "Core"},
-	"Qml":           {"QuickControls2", "Network", "Core"},
+	"Qml":           {"Network", "Core"},
 	"WebSockets":    {"Network", "Core"},
 	"XmlPatterns":   {"Network", "Core"},
 	"Bluetooth":     {"Core"},
 	"WebChannel":    {"Network", "Qml", "Core"}, //Network (needed for static linking ios)
 	"Svg":           {"Widgets", "Gui", "Core"},
-	"Multimedia":    {"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},                     //MultimediaWidgets, Widgets
-	"Quick":         {"QuickControls2", "QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
-	"Help":          {"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},                        //Sql + CLucene + Network (needed for static linking ios)
+	"Multimedia":    {"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
+	"Quick":         {"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
+	"Help":          {"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
 	"Location":      {"Positioning", "Quick", "Gui", "Core"},
 	"ScriptTools":   {"Script", "Widgets", "Core"}, //Script, Widgets
 	"UiTools":       {"Widgets", "Gui", "Core"},
