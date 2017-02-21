@@ -83,8 +83,11 @@ func NewQDomAttr2(x QDomAttr_ITF) *QDomAttr {
 
 func (ptr *QDomAttr) SetValue(v string) {
 	if ptr.Pointer() != nil {
-		var vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
 		C.QDomAttr_SetValue(ptr.Pointer(), vC)
 	}
 }
@@ -251,8 +254,11 @@ func (ptr *QDomCharacterData) SubstringData(offset uint, count uint) string {
 
 func (ptr *QDomCharacterData) AppendData(arg string) {
 	if ptr.Pointer() != nil {
-		var argC = C.CString(arg)
-		defer C.free(unsafe.Pointer(argC))
+		var argC *C.char
+		if arg != "" {
+			argC = C.CString(arg)
+			defer C.free(unsafe.Pointer(argC))
+		}
 		C.QDomCharacterData_AppendData(ptr.Pointer(), argC)
 	}
 }
@@ -265,24 +271,33 @@ func (ptr *QDomCharacterData) DeleteData(offset uint, count uint) {
 
 func (ptr *QDomCharacterData) InsertData(offset uint, arg string) {
 	if ptr.Pointer() != nil {
-		var argC = C.CString(arg)
-		defer C.free(unsafe.Pointer(argC))
+		var argC *C.char
+		if arg != "" {
+			argC = C.CString(arg)
+			defer C.free(unsafe.Pointer(argC))
+		}
 		C.QDomCharacterData_InsertData(ptr.Pointer(), C.ulong(uint32(offset)), argC)
 	}
 }
 
 func (ptr *QDomCharacterData) ReplaceData(offset uint, count uint, arg string) {
 	if ptr.Pointer() != nil {
-		var argC = C.CString(arg)
-		defer C.free(unsafe.Pointer(argC))
+		var argC *C.char
+		if arg != "" {
+			argC = C.CString(arg)
+			defer C.free(unsafe.Pointer(argC))
+		}
 		C.QDomCharacterData_ReplaceData(ptr.Pointer(), C.ulong(uint32(offset)), C.ulong(uint32(count)), argC)
 	}
 }
 
 func (ptr *QDomCharacterData) SetData(v string) {
 	if ptr.Pointer() != nil {
-		var vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
 		C.QDomCharacterData_SetData(ptr.Pointer(), vC)
 	}
 }
@@ -406,8 +421,11 @@ func NewQDomDocumentFromPointer(ptr unsafe.Pointer) *QDomDocument {
 }
 func (ptr *QDomDocument) CreateAttribute(name string) *QDomAttr {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQDomAttrFromPointer(C.QDomDocument_CreateAttribute(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
@@ -417,10 +435,16 @@ func (ptr *QDomDocument) CreateAttribute(name string) *QDomAttr {
 
 func (ptr *QDomDocument) CreateAttributeNS(nsURI string, qName string) *QDomAttr {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		var tmpValue = NewQDomAttrFromPointer(C.QDomDocument_CreateAttributeNS(ptr.Pointer(), nsURIC, qNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
@@ -430,8 +454,11 @@ func (ptr *QDomDocument) CreateAttributeNS(nsURI string, qName string) *QDomAttr
 
 func (ptr *QDomDocument) CreateCDATASection(value string) *QDomCDATASection {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		var tmpValue = NewQDomCDATASectionFromPointer(C.QDomDocument_CreateCDATASection(ptr.Pointer(), valueC))
 		runtime.SetFinalizer(tmpValue, (*QDomCDATASection).DestroyQDomCDATASection)
 		return tmpValue
@@ -441,8 +468,11 @@ func (ptr *QDomDocument) CreateCDATASection(value string) *QDomCDATASection {
 
 func (ptr *QDomDocument) CreateComment(value string) *QDomComment {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		var tmpValue = NewQDomCommentFromPointer(C.QDomDocument_CreateComment(ptr.Pointer(), valueC))
 		runtime.SetFinalizer(tmpValue, (*QDomComment).DestroyQDomComment)
 		return tmpValue
@@ -469,8 +499,11 @@ func NewQDomDocument3(doctype QDomDocumentType_ITF) *QDomDocument {
 }
 
 func NewQDomDocument2(name string) *QDomDocument {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument2(nameC))
 	runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 	return tmpValue
@@ -487,8 +520,11 @@ func (ptr *QDomDocument) CreateDocumentFragment() *QDomDocumentFragment {
 
 func (ptr *QDomDocument) CreateElement(tagName string) *QDomElement {
 	if ptr.Pointer() != nil {
-		var tagNameC = C.CString(tagName)
-		defer C.free(unsafe.Pointer(tagNameC))
+		var tagNameC *C.char
+		if tagName != "" {
+			tagNameC = C.CString(tagName)
+			defer C.free(unsafe.Pointer(tagNameC))
+		}
 		var tmpValue = NewQDomElementFromPointer(C.QDomDocument_CreateElement(ptr.Pointer(), tagNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
@@ -498,10 +534,16 @@ func (ptr *QDomDocument) CreateElement(tagName string) *QDomElement {
 
 func (ptr *QDomDocument) CreateElementNS(nsURI string, qName string) *QDomElement {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		var tmpValue = NewQDomElementFromPointer(C.QDomDocument_CreateElementNS(ptr.Pointer(), nsURIC, qNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
@@ -511,8 +553,11 @@ func (ptr *QDomDocument) CreateElementNS(nsURI string, qName string) *QDomElemen
 
 func (ptr *QDomDocument) ElementById(elementId string) *QDomElement {
 	if ptr.Pointer() != nil {
-		var elementIdC = C.CString(elementId)
-		defer C.free(unsafe.Pointer(elementIdC))
+		var elementIdC *C.char
+		if elementId != "" {
+			elementIdC = C.CString(elementId)
+			defer C.free(unsafe.Pointer(elementIdC))
+		}
 		var tmpValue = NewQDomElementFromPointer(C.QDomDocument_ElementById(ptr.Pointer(), elementIdC))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
@@ -522,8 +567,11 @@ func (ptr *QDomDocument) ElementById(elementId string) *QDomElement {
 
 func (ptr *QDomDocument) CreateEntityReference(name string) *QDomEntityReference {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQDomEntityReferenceFromPointer(C.QDomDocument_CreateEntityReference(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QDomEntityReference).DestroyQDomEntityReference)
 		return tmpValue
@@ -542,10 +590,16 @@ func (ptr *QDomDocument) ImportNode(importedNode QDomNode_ITF, deep bool) *QDomN
 
 func (ptr *QDomDocument) ElementsByTagNameNS(nsURI string, localName string) *QDomNodeList {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		var tmpValue = NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagNameNS(ptr.Pointer(), nsURIC, localNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
@@ -555,10 +609,16 @@ func (ptr *QDomDocument) ElementsByTagNameNS(nsURI string, localName string) *QD
 
 func (ptr *QDomDocument) CreateProcessingInstruction(target string, data string) *QDomProcessingInstruction {
 	if ptr.Pointer() != nil {
-		var targetC = C.CString(target)
-		defer C.free(unsafe.Pointer(targetC))
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var targetC *C.char
+		if target != "" {
+			targetC = C.CString(target)
+			defer C.free(unsafe.Pointer(targetC))
+		}
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		var tmpValue = NewQDomProcessingInstructionFromPointer(C.QDomDocument_CreateProcessingInstruction(ptr.Pointer(), targetC, dataC))
 		runtime.SetFinalizer(tmpValue, (*QDomProcessingInstruction).DestroyQDomProcessingInstruction)
 		return tmpValue
@@ -568,8 +628,11 @@ func (ptr *QDomDocument) CreateProcessingInstruction(target string, data string)
 
 func (ptr *QDomDocument) CreateTextNode(value string) *QDomText {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		var tmpValue = NewQDomTextFromPointer(C.QDomDocument_CreateTextNode(ptr.Pointer(), valueC))
 		runtime.SetFinalizer(tmpValue, (*QDomText).DestroyQDomText)
 		return tmpValue
@@ -579,8 +642,11 @@ func (ptr *QDomDocument) CreateTextNode(value string) *QDomText {
 
 func (ptr *QDomDocument) SetContent7(dev core.QIODevice_ITF, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent7(ptr.Pointer(), core.PointerFromQIODevice(dev), errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -588,8 +654,11 @@ func (ptr *QDomDocument) SetContent7(dev core.QIODevice_ITF, errorMsg string, er
 
 func (ptr *QDomDocument) SetContent3(dev core.QIODevice_ITF, namespaceProcessing bool, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent3(ptr.Pointer(), core.PointerFromQIODevice(dev), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -597,8 +666,11 @@ func (ptr *QDomDocument) SetContent3(dev core.QIODevice_ITF, namespaceProcessing
 
 func (ptr *QDomDocument) SetContent8(source QXmlInputSource_ITF, reader QXmlReader_ITF, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent8(ptr.Pointer(), PointerFromQXmlInputSource(source), PointerFromQXmlReader(reader), errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -606,8 +678,11 @@ func (ptr *QDomDocument) SetContent8(source QXmlInputSource_ITF, reader QXmlRead
 
 func (ptr *QDomDocument) SetContent4(source QXmlInputSource_ITF, namespaceProcessing bool, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent4(ptr.Pointer(), PointerFromQXmlInputSource(source), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -615,8 +690,11 @@ func (ptr *QDomDocument) SetContent4(source QXmlInputSource_ITF, namespaceProces
 
 func (ptr *QDomDocument) SetContent5(buffer core.QByteArray_ITF, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent5(ptr.Pointer(), core.PointerFromQByteArray(buffer), errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -624,8 +702,11 @@ func (ptr *QDomDocument) SetContent5(buffer core.QByteArray_ITF, errorMsg string
 
 func (ptr *QDomDocument) SetContent(data core.QByteArray_ITF, namespaceProcessing bool, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -633,10 +714,16 @@ func (ptr *QDomDocument) SetContent(data core.QByteArray_ITF, namespaceProcessin
 
 func (ptr *QDomDocument) SetContent6(text string, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent6(ptr.Pointer(), textC, errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -644,10 +731,16 @@ func (ptr *QDomDocument) SetContent6(text string, errorMsg string, errorLine int
 
 func (ptr *QDomDocument) SetContent2(text string, namespaceProcessing bool, errorMsg string, errorLine int, errorColumn int) bool {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var errorMsgC = C.CString(errorMsg)
-		defer C.free(unsafe.Pointer(errorMsgC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var errorMsgC *C.char
+		if errorMsg != "" {
+			errorMsgC = C.CString(errorMsg)
+			defer C.free(unsafe.Pointer(errorMsgC))
+		}
 		return C.QDomDocument_SetContent2(ptr.Pointer(), textC, C.char(int8(qt.GoBoolToInt(namespaceProcessing))), errorMsgC, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
 	}
 	return false
@@ -705,8 +798,11 @@ func (ptr *QDomDocument) NodeType() QDomNode__NodeType {
 
 func (ptr *QDomDocument) ElementsByTagName(tagname string) *QDomNodeList {
 	if ptr.Pointer() != nil {
-		var tagnameC = C.CString(tagname)
-		defer C.free(unsafe.Pointer(tagnameC))
+		var tagnameC *C.char
+		if tagname != "" {
+			tagnameC = C.CString(tagname)
+			defer C.free(unsafe.Pointer(tagnameC))
+		}
 		var tmpValue = NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagName(ptr.Pointer(), tagnameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
@@ -945,8 +1041,11 @@ func (ptr *QDomElement) DestroyQDomElement() {
 
 func (ptr *QDomElement) AttributeNode(name string) *QDomAttr {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQDomAttrFromPointer(C.QDomElement_AttributeNode(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
@@ -956,10 +1055,16 @@ func (ptr *QDomElement) AttributeNode(name string) *QDomAttr {
 
 func (ptr *QDomElement) AttributeNodeNS(nsURI string, localName string) *QDomAttr {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		var tmpValue = NewQDomAttrFromPointer(C.QDomElement_AttributeNodeNS(ptr.Pointer(), nsURIC, localNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
@@ -1008,146 +1113,221 @@ func NewQDomElement2(x QDomElement_ITF) *QDomElement {
 
 func (ptr *QDomElement) RemoveAttribute(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_RemoveAttribute(ptr.Pointer(), nameC)
 	}
 }
 
 func (ptr *QDomElement) RemoveAttributeNS(nsURI string, localName string) {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		C.QDomElement_RemoveAttributeNS(ptr.Pointer(), nsURIC, localNameC)
 	}
 }
 
 func (ptr *QDomElement) SetAttribute(name string, value string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QDomElement_SetAttribute(ptr.Pointer(), nameC, valueC)
 	}
 }
 
 func (ptr *QDomElement) SetAttribute7(name string, value float64) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_SetAttribute7(ptr.Pointer(), nameC, C.double(value))
 	}
 }
 
 func (ptr *QDomElement) SetAttribute6(name string, value float32) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_SetAttribute6(ptr.Pointer(), nameC, C.float(value))
 	}
 }
 
 func (ptr *QDomElement) SetAttribute4(name string, value int) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_SetAttribute4(ptr.Pointer(), nameC, C.int(int32(value)))
 	}
 }
 
 func (ptr *QDomElement) SetAttribute2(name string, value int64) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_SetAttribute2(ptr.Pointer(), nameC, C.longlong(value))
 	}
 }
 
 func (ptr *QDomElement) SetAttribute3(name string, value uint64) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_SetAttribute3(ptr.Pointer(), nameC, C.ulonglong(value))
 	}
 }
 
 func (ptr *QDomElement) SetAttribute5(name string, value uint) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_SetAttribute5(ptr.Pointer(), nameC, C.uint(uint32(value)))
 	}
 }
 
 func (ptr *QDomElement) SetAttributeNS(nsURI string, qName string, value string) {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QDomElement_SetAttributeNS(ptr.Pointer(), nsURIC, qNameC, valueC)
 	}
 }
 
 func (ptr *QDomElement) SetAttributeNS6(nsURI string, qName string, value float64) {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		C.QDomElement_SetAttributeNS6(ptr.Pointer(), nsURIC, qNameC, C.double(value))
 	}
 }
 
 func (ptr *QDomElement) SetAttributeNS2(nsURI string, qName string, value int) {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		C.QDomElement_SetAttributeNS2(ptr.Pointer(), nsURIC, qNameC, C.int(int32(value)))
 	}
 }
 
 func (ptr *QDomElement) SetAttributeNS4(nsURI string, qName string, value int64) {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		C.QDomElement_SetAttributeNS4(ptr.Pointer(), nsURIC, qNameC, C.longlong(value))
 	}
 }
 
 func (ptr *QDomElement) SetAttributeNS5(nsURI string, qName string, value uint64) {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		C.QDomElement_SetAttributeNS5(ptr.Pointer(), nsURIC, qNameC, C.ulonglong(value))
 	}
 }
 
 func (ptr *QDomElement) SetAttributeNS3(nsURI string, qName string, value uint) {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		C.QDomElement_SetAttributeNS3(ptr.Pointer(), nsURIC, qNameC, C.uint(uint32(value)))
 	}
 }
 
 func (ptr *QDomElement) SetTagName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDomElement_SetTagName(ptr.Pointer(), nameC)
 	}
 }
@@ -1161,8 +1341,11 @@ func (ptr *QDomElement) NodeType() QDomNode__NodeType {
 
 func (ptr *QDomElement) ElementsByTagName(tagname string) *QDomNodeList {
 	if ptr.Pointer() != nil {
-		var tagnameC = C.CString(tagname)
-		defer C.free(unsafe.Pointer(tagnameC))
+		var tagnameC *C.char
+		if tagname != "" {
+			tagnameC = C.CString(tagname)
+			defer C.free(unsafe.Pointer(tagnameC))
+		}
 		var tmpValue = NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagName(ptr.Pointer(), tagnameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
@@ -1172,10 +1355,16 @@ func (ptr *QDomElement) ElementsByTagName(tagname string) *QDomNodeList {
 
 func (ptr *QDomElement) ElementsByTagNameNS(nsURI string, localName string) *QDomNodeList {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		var tmpValue = NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagNameNS(ptr.Pointer(), nsURIC, localNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
@@ -1185,10 +1374,16 @@ func (ptr *QDomElement) ElementsByTagNameNS(nsURI string, localName string) *QDo
 
 func (ptr *QDomElement) Attribute(name string, defValue string) string {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var defValueC = C.CString(defValue)
-		defer C.free(unsafe.Pointer(defValueC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var defValueC *C.char
+		if defValue != "" {
+			defValueC = C.CString(defValue)
+			defer C.free(unsafe.Pointer(defValueC))
+		}
 		return cGoUnpackString(C.QDomElement_Attribute(ptr.Pointer(), nameC, defValueC))
 	}
 	return ""
@@ -1196,12 +1391,21 @@ func (ptr *QDomElement) Attribute(name string, defValue string) string {
 
 func (ptr *QDomElement) AttributeNS(nsURI string, localName string, defValue string) string {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
-		var defValueC = C.CString(defValue)
-		defer C.free(unsafe.Pointer(defValueC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
+		var defValueC *C.char
+		if defValue != "" {
+			defValueC = C.CString(defValue)
+			defer C.free(unsafe.Pointer(defValueC))
+		}
 		return cGoUnpackString(C.QDomElement_AttributeNS(ptr.Pointer(), nsURIC, localNameC, defValueC))
 	}
 	return ""
@@ -1223,8 +1427,11 @@ func (ptr *QDomElement) Text() string {
 
 func (ptr *QDomElement) HasAttribute(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QDomElement_HasAttribute(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -1232,10 +1439,16 @@ func (ptr *QDomElement) HasAttribute(name string) bool {
 
 func (ptr *QDomElement) HasAttributeNS(nsURI string, localName string) bool {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		return C.QDomElement_HasAttributeNS(ptr.Pointer(), nsURIC, localNameC) != 0
 	}
 	return false
@@ -1450,10 +1663,16 @@ func (ptr *QDomImplementation) InvalidDataPolicy() QDomImplementation__InvalidDa
 
 func (ptr *QDomImplementation) CreateDocument(nsURI string, qName string, doctype QDomDocumentType_ITF) *QDomDocument {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		var tmpValue = NewQDomDocumentFromPointer(C.QDomImplementation_CreateDocument(ptr.Pointer(), nsURIC, qNameC, PointerFromQDomDocumentType(doctype)))
 		runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 		return tmpValue
@@ -1463,12 +1682,21 @@ func (ptr *QDomImplementation) CreateDocument(nsURI string, qName string, doctyp
 
 func (ptr *QDomImplementation) CreateDocumentType(qName string, publicId string, systemId string) *QDomDocumentType {
 	if ptr.Pointer() != nil {
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		var tmpValue = NewQDomDocumentTypeFromPointer(C.QDomImplementation_CreateDocumentType(ptr.Pointer(), qNameC, publicIdC, systemIdC))
 		runtime.SetFinalizer(tmpValue, (*QDomDocumentType).DestroyQDomDocumentType)
 		return tmpValue
@@ -1512,10 +1740,16 @@ func (ptr *QDomImplementation) DestroyQDomImplementation() {
 
 func (ptr *QDomImplementation) HasFeature(feature string, version string) bool {
 	if ptr.Pointer() != nil {
-		var featureC = C.CString(feature)
-		defer C.free(unsafe.Pointer(featureC))
-		var versionC = C.CString(version)
-		defer C.free(unsafe.Pointer(versionC))
+		var featureC *C.char
+		if feature != "" {
+			featureC = C.CString(feature)
+			defer C.free(unsafe.Pointer(featureC))
+		}
+		var versionC *C.char
+		if version != "" {
+			versionC = C.CString(version)
+			defer C.free(unsafe.Pointer(versionC))
+		}
 		return C.QDomImplementation_HasFeature(ptr.Pointer(), featureC, versionC) != 0
 	}
 	return false
@@ -1572,8 +1806,11 @@ func NewQDomNamedNodeMap2(n QDomNamedNodeMap_ITF) *QDomNamedNodeMap {
 
 func (ptr *QDomNamedNodeMap) RemoveNamedItem(name string) *QDomNode {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItem(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
@@ -1583,10 +1820,16 @@ func (ptr *QDomNamedNodeMap) RemoveNamedItem(name string) *QDomNode {
 
 func (ptr *QDomNamedNodeMap) RemoveNamedItemNS(nsURI string, localName string) *QDomNode {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItemNS(ptr.Pointer(), nsURIC, localNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
@@ -1630,8 +1873,11 @@ func (ptr *QDomNamedNodeMap) Item(index int) *QDomNode {
 
 func (ptr *QDomNamedNodeMap) NamedItem(name string) *QDomNode {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItem(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
@@ -1641,10 +1887,16 @@ func (ptr *QDomNamedNodeMap) NamedItem(name string) *QDomNode {
 
 func (ptr *QDomNamedNodeMap) NamedItemNS(nsURI string, localName string) *QDomNode {
 	if ptr.Pointer() != nil {
-		var nsURIC = C.CString(nsURI)
-		defer C.free(unsafe.Pointer(nsURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var nsURIC *C.char
+		if nsURI != "" {
+			nsURIC = C.CString(nsURI)
+			defer C.free(unsafe.Pointer(nsURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItemNS(ptr.Pointer(), nsURIC, localNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
@@ -1654,8 +1906,11 @@ func (ptr *QDomNamedNodeMap) NamedItemNS(nsURI string, localName string) *QDomNo
 
 func (ptr *QDomNamedNodeMap) Contains(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QDomNamedNodeMap_Contains(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -1828,16 +2083,22 @@ func (ptr *QDomNode) Normalize() {
 
 func (ptr *QDomNode) SetNodeValue(v string) {
 	if ptr.Pointer() != nil {
-		var vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
 		C.QDomNode_SetNodeValue(ptr.Pointer(), vC)
 	}
 }
 
 func (ptr *QDomNode) SetPrefix(pre string) {
 	if ptr.Pointer() != nil {
-		var preC = C.CString(pre)
-		defer C.free(unsafe.Pointer(preC))
+		var preC *C.char
+		if pre != "" {
+			preC = C.CString(pre)
+			defer C.free(unsafe.Pointer(preC))
+		}
 		C.QDomNode_SetPrefix(ptr.Pointer(), preC)
 	}
 }
@@ -1930,8 +2191,11 @@ func (ptr *QDomNode) ToDocumentType() *QDomDocumentType {
 
 func (ptr *QDomNode) FirstChildElement(tagName string) *QDomElement {
 	if ptr.Pointer() != nil {
-		var tagNameC = C.CString(tagName)
-		defer C.free(unsafe.Pointer(tagNameC))
+		var tagNameC *C.char
+		if tagName != "" {
+			tagNameC = C.CString(tagName)
+			defer C.free(unsafe.Pointer(tagNameC))
+		}
 		var tmpValue = NewQDomElementFromPointer(C.QDomNode_FirstChildElement(ptr.Pointer(), tagNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
@@ -1941,8 +2205,11 @@ func (ptr *QDomNode) FirstChildElement(tagName string) *QDomElement {
 
 func (ptr *QDomNode) LastChildElement(tagName string) *QDomElement {
 	if ptr.Pointer() != nil {
-		var tagNameC = C.CString(tagName)
-		defer C.free(unsafe.Pointer(tagNameC))
+		var tagNameC *C.char
+		if tagName != "" {
+			tagNameC = C.CString(tagName)
+			defer C.free(unsafe.Pointer(tagNameC))
+		}
 		var tmpValue = NewQDomElementFromPointer(C.QDomNode_LastChildElement(ptr.Pointer(), tagNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
@@ -1952,8 +2219,11 @@ func (ptr *QDomNode) LastChildElement(tagName string) *QDomElement {
 
 func (ptr *QDomNode) NextSiblingElement(tagName string) *QDomElement {
 	if ptr.Pointer() != nil {
-		var tagNameC = C.CString(tagName)
-		defer C.free(unsafe.Pointer(tagNameC))
+		var tagNameC *C.char
+		if tagName != "" {
+			tagNameC = C.CString(tagName)
+			defer C.free(unsafe.Pointer(tagNameC))
+		}
 		var tmpValue = NewQDomElementFromPointer(C.QDomNode_NextSiblingElement(ptr.Pointer(), tagNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
@@ -1963,8 +2233,11 @@ func (ptr *QDomNode) NextSiblingElement(tagName string) *QDomElement {
 
 func (ptr *QDomNode) PreviousSiblingElement(tagName string) *QDomElement {
 	if ptr.Pointer() != nil {
-		var tagNameC = C.CString(tagName)
-		defer C.free(unsafe.Pointer(tagNameC))
+		var tagNameC *C.char
+		if tagName != "" {
+			tagNameC = C.CString(tagName)
+			defer C.free(unsafe.Pointer(tagNameC))
+		}
 		var tmpValue = NewQDomElementFromPointer(C.QDomNode_PreviousSiblingElement(ptr.Pointer(), tagNameC))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
@@ -2028,8 +2301,11 @@ func (ptr *QDomNode) LastChild() *QDomNode {
 
 func (ptr *QDomNode) NamedItem(name string) *QDomNode {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_NamedItem(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
@@ -2242,10 +2518,16 @@ func (ptr *QDomNode) IsProcessingInstruction() bool {
 
 func (ptr *QDomNode) IsSupported(feature string, version string) bool {
 	if ptr.Pointer() != nil {
-		var featureC = C.CString(feature)
-		defer C.free(unsafe.Pointer(featureC))
-		var versionC = C.CString(version)
-		defer C.free(unsafe.Pointer(versionC))
+		var featureC *C.char
+		if feature != "" {
+			featureC = C.CString(feature)
+			defer C.free(unsafe.Pointer(featureC))
+		}
+		var versionC *C.char
+		if version != "" {
+			versionC = C.CString(version)
+			defer C.free(unsafe.Pointer(versionC))
+		}
 		return C.QDomNode_IsSupported(ptr.Pointer(), featureC, versionC) != 0
 	}
 	return false
@@ -2519,8 +2801,11 @@ func NewQDomProcessingInstruction2(x QDomProcessingInstruction_ITF) *QDomProcess
 
 func (ptr *QDomProcessingInstruction) SetData(d string) {
 	if ptr.Pointer() != nil {
-		var dC = C.CString(d)
-		defer C.free(unsafe.Pointer(dC))
+		var dC *C.char
+		if d != "" {
+			dC = C.CString(d)
+			defer C.free(unsafe.Pointer(dC))
+		}
 		C.QDomProcessingInstruction_SetData(ptr.Pointer(), dC)
 	}
 }
@@ -2695,14 +2980,26 @@ func (ptr *QXmlAttributes) DestroyQXmlAttributesDefault() {
 
 func (ptr *QXmlAttributes) Append(qName string, uri string, localPart string, value string) {
 	if ptr.Pointer() != nil {
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
-		var localPartC = C.CString(localPart)
-		defer C.free(unsafe.Pointer(localPartC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
+		var localPartC *C.char
+		if localPart != "" {
+			localPartC = C.CString(localPart)
+			defer C.free(unsafe.Pointer(localPartC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlAttributes_Append(ptr.Pointer(), qNameC, uriC, localPartC, valueC)
 	}
 }
@@ -2735,8 +3032,11 @@ func (ptr *QXmlAttributes) QName(index int) string {
 
 func (ptr *QXmlAttributes) Type2(qName string) string {
 	if ptr.Pointer() != nil {
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return cGoUnpackString(C.QXmlAttributes_Type2(ptr.Pointer(), qNameC))
 	}
 	return ""
@@ -2744,10 +3044,16 @@ func (ptr *QXmlAttributes) Type2(qName string) string {
 
 func (ptr *QXmlAttributes) Type3(uri string, localName string) string {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		return cGoUnpackString(C.QXmlAttributes_Type3(ptr.Pointer(), uriC, localNameC))
 	}
 	return ""
@@ -2776,8 +3082,11 @@ func (ptr *QXmlAttributes) Value3(qName core.QLatin1String_ITF) string {
 
 func (ptr *QXmlAttributes) Value2(qName string) string {
 	if ptr.Pointer() != nil {
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return cGoUnpackString(C.QXmlAttributes_Value2(ptr.Pointer(), qNameC))
 	}
 	return ""
@@ -2785,10 +3094,16 @@ func (ptr *QXmlAttributes) Value2(qName string) string {
 
 func (ptr *QXmlAttributes) Value4(uri string, localName string) string {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		return cGoUnpackString(C.QXmlAttributes_Value4(ptr.Pointer(), uriC, localNameC))
 	}
 	return ""
@@ -2817,8 +3132,11 @@ func (ptr *QXmlAttributes) Index2(qName core.QLatin1String_ITF) int {
 
 func (ptr *QXmlAttributes) Index(qName string) int {
 	if ptr.Pointer() != nil {
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return int(int32(C.QXmlAttributes_Index(ptr.Pointer(), qNameC)))
 	}
 	return 0
@@ -2826,10 +3144,16 @@ func (ptr *QXmlAttributes) Index(qName string) int {
 
 func (ptr *QXmlAttributes) Index3(uri string, localPart string) int {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
-		var localPartC = C.CString(localPart)
-		defer C.free(unsafe.Pointer(localPartC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
+		var localPartC *C.char
+		if localPart != "" {
+			localPartC = C.CString(localPart)
+			defer C.free(unsafe.Pointer(localPartC))
+		}
 		return int(int32(C.QXmlAttributes_Index3(ptr.Pointer(), uriC, localPartC)))
 	}
 	return 0
@@ -2905,8 +3229,11 @@ func (ptr *QXmlContentHandler) DisconnectCharacters() {
 
 func (ptr *QXmlContentHandler) Characters(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlContentHandler_Characters(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -2967,12 +3294,21 @@ func (ptr *QXmlContentHandler) DisconnectEndElement() {
 
 func (ptr *QXmlContentHandler) EndElement(namespaceURI string, localName string, qName string) bool {
 	if ptr.Pointer() != nil {
-		var namespaceURIC = C.CString(namespaceURI)
-		defer C.free(unsafe.Pointer(namespaceURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var namespaceURIC *C.char
+		if namespaceURI != "" {
+			namespaceURIC = C.CString(namespaceURI)
+			defer C.free(unsafe.Pointer(namespaceURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return C.QXmlContentHandler_EndElement(ptr.Pointer(), namespaceURIC, localNameC, qNameC) != 0
 	}
 	return false
@@ -3003,8 +3339,11 @@ func (ptr *QXmlContentHandler) DisconnectEndPrefixMapping() {
 
 func (ptr *QXmlContentHandler) EndPrefixMapping(prefix string) bool {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		return C.QXmlContentHandler_EndPrefixMapping(ptr.Pointer(), prefixC) != 0
 	}
 	return false
@@ -3035,8 +3374,11 @@ func (ptr *QXmlContentHandler) DisconnectIgnorableWhitespace() {
 
 func (ptr *QXmlContentHandler) IgnorableWhitespace(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlContentHandler_IgnorableWhitespace(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -3067,10 +3409,16 @@ func (ptr *QXmlContentHandler) DisconnectProcessingInstruction() {
 
 func (ptr *QXmlContentHandler) ProcessingInstruction(target string, data string) bool {
 	if ptr.Pointer() != nil {
-		var targetC = C.CString(target)
-		defer C.free(unsafe.Pointer(targetC))
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var targetC *C.char
+		if target != "" {
+			targetC = C.CString(target)
+			defer C.free(unsafe.Pointer(targetC))
+		}
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return C.QXmlContentHandler_ProcessingInstruction(ptr.Pointer(), targetC, dataC) != 0
 	}
 	return false
@@ -3101,8 +3449,11 @@ func (ptr *QXmlContentHandler) DisconnectSkippedEntity() {
 
 func (ptr *QXmlContentHandler) SkippedEntity(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlContentHandler_SkippedEntity(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -3163,12 +3514,21 @@ func (ptr *QXmlContentHandler) DisconnectStartElement() {
 
 func (ptr *QXmlContentHandler) StartElement(namespaceURI string, localName string, qName string, atts QXmlAttributes_ITF) bool {
 	if ptr.Pointer() != nil {
-		var namespaceURIC = C.CString(namespaceURI)
-		defer C.free(unsafe.Pointer(namespaceURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var namespaceURIC *C.char
+		if namespaceURI != "" {
+			namespaceURIC = C.CString(namespaceURI)
+			defer C.free(unsafe.Pointer(namespaceURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return C.QXmlContentHandler_StartElement(ptr.Pointer(), namespaceURIC, localNameC, qNameC, PointerFromQXmlAttributes(atts)) != 0
 	}
 	return false
@@ -3199,10 +3559,16 @@ func (ptr *QXmlContentHandler) DisconnectStartPrefixMapping() {
 
 func (ptr *QXmlContentHandler) StartPrefixMapping(prefix string, uri string) bool {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		return C.QXmlContentHandler_StartPrefixMapping(ptr.Pointer(), prefixC, uriC) != 0
 	}
 	return false
@@ -3368,12 +3734,21 @@ func (ptr *QXmlDTDHandler) DisconnectNotationDecl() {
 
 func (ptr *QXmlDTDHandler) NotationDecl(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDTDHandler_NotationDecl(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -3404,14 +3779,26 @@ func (ptr *QXmlDTDHandler) DisconnectUnparsedEntityDecl() {
 
 func (ptr *QXmlDTDHandler) UnparsedEntityDecl(name string, publicId string, systemId string, notationName string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
-		var notationNameC = C.CString(notationName)
-		defer C.free(unsafe.Pointer(notationNameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
+		var notationNameC *C.char
+		if notationName != "" {
+			notationNameC = C.CString(notationName)
+			defer C.free(unsafe.Pointer(notationNameC))
+		}
 		return C.QXmlDTDHandler_UnparsedEntityDecl(ptr.Pointer(), nameC, publicIdC, systemIdC, notationNameC) != 0
 	}
 	return false
@@ -3549,16 +3936,31 @@ func (ptr *QXmlDeclHandler) DisconnectAttributeDecl() {
 
 func (ptr *QXmlDeclHandler) AttributeDecl(eName string, aName string, ty string, valueDefault string, value string) bool {
 	if ptr.Pointer() != nil {
-		var eNameC = C.CString(eName)
-		defer C.free(unsafe.Pointer(eNameC))
-		var aNameC = C.CString(aName)
-		defer C.free(unsafe.Pointer(aNameC))
-		var tyC = C.CString(ty)
-		defer C.free(unsafe.Pointer(tyC))
-		var valueDefaultC = C.CString(valueDefault)
-		defer C.free(unsafe.Pointer(valueDefaultC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var eNameC *C.char
+		if eName != "" {
+			eNameC = C.CString(eName)
+			defer C.free(unsafe.Pointer(eNameC))
+		}
+		var aNameC *C.char
+		if aName != "" {
+			aNameC = C.CString(aName)
+			defer C.free(unsafe.Pointer(aNameC))
+		}
+		var tyC *C.char
+		if ty != "" {
+			tyC = C.CString(ty)
+			defer C.free(unsafe.Pointer(tyC))
+		}
+		var valueDefaultC *C.char
+		if valueDefault != "" {
+			valueDefaultC = C.CString(valueDefault)
+			defer C.free(unsafe.Pointer(valueDefaultC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		return C.QXmlDeclHandler_AttributeDecl(ptr.Pointer(), eNameC, aNameC, tyC, valueDefaultC, valueC) != 0
 	}
 	return false
@@ -3589,12 +3991,21 @@ func (ptr *QXmlDeclHandler) DisconnectExternalEntityDecl() {
 
 func (ptr *QXmlDeclHandler) ExternalEntityDecl(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDeclHandler_ExternalEntityDecl(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -3625,10 +4036,16 @@ func (ptr *QXmlDeclHandler) DisconnectInternalEntityDecl() {
 
 func (ptr *QXmlDeclHandler) InternalEntityDecl(name string, value string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		return C.QXmlDeclHandler_InternalEntityDecl(ptr.Pointer(), nameC, valueC) != 0
 	}
 	return false
@@ -3785,16 +4202,31 @@ func (ptr *QXmlDefaultHandler) DisconnectAttributeDecl() {
 
 func (ptr *QXmlDefaultHandler) AttributeDecl(eName string, aName string, ty string, valueDefault string, value string) bool {
 	if ptr.Pointer() != nil {
-		var eNameC = C.CString(eName)
-		defer C.free(unsafe.Pointer(eNameC))
-		var aNameC = C.CString(aName)
-		defer C.free(unsafe.Pointer(aNameC))
-		var tyC = C.CString(ty)
-		defer C.free(unsafe.Pointer(tyC))
-		var valueDefaultC = C.CString(valueDefault)
-		defer C.free(unsafe.Pointer(valueDefaultC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var eNameC *C.char
+		if eName != "" {
+			eNameC = C.CString(eName)
+			defer C.free(unsafe.Pointer(eNameC))
+		}
+		var aNameC *C.char
+		if aName != "" {
+			aNameC = C.CString(aName)
+			defer C.free(unsafe.Pointer(aNameC))
+		}
+		var tyC *C.char
+		if ty != "" {
+			tyC = C.CString(ty)
+			defer C.free(unsafe.Pointer(tyC))
+		}
+		var valueDefaultC *C.char
+		if valueDefault != "" {
+			valueDefaultC = C.CString(valueDefault)
+			defer C.free(unsafe.Pointer(valueDefaultC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		return C.QXmlDefaultHandler_AttributeDecl(ptr.Pointer(), eNameC, aNameC, tyC, valueDefaultC, valueC) != 0
 	}
 	return false
@@ -3802,16 +4234,31 @@ func (ptr *QXmlDefaultHandler) AttributeDecl(eName string, aName string, ty stri
 
 func (ptr *QXmlDefaultHandler) AttributeDeclDefault(eName string, aName string, ty string, valueDefault string, value string) bool {
 	if ptr.Pointer() != nil {
-		var eNameC = C.CString(eName)
-		defer C.free(unsafe.Pointer(eNameC))
-		var aNameC = C.CString(aName)
-		defer C.free(unsafe.Pointer(aNameC))
-		var tyC = C.CString(ty)
-		defer C.free(unsafe.Pointer(tyC))
-		var valueDefaultC = C.CString(valueDefault)
-		defer C.free(unsafe.Pointer(valueDefaultC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var eNameC *C.char
+		if eName != "" {
+			eNameC = C.CString(eName)
+			defer C.free(unsafe.Pointer(eNameC))
+		}
+		var aNameC *C.char
+		if aName != "" {
+			aNameC = C.CString(aName)
+			defer C.free(unsafe.Pointer(aNameC))
+		}
+		var tyC *C.char
+		if ty != "" {
+			tyC = C.CString(ty)
+			defer C.free(unsafe.Pointer(tyC))
+		}
+		var valueDefaultC *C.char
+		if valueDefault != "" {
+			valueDefaultC = C.CString(valueDefault)
+			defer C.free(unsafe.Pointer(valueDefaultC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		return C.QXmlDefaultHandler_AttributeDeclDefault(ptr.Pointer(), eNameC, aNameC, tyC, valueDefaultC, valueC) != 0
 	}
 	return false
@@ -3842,8 +4289,11 @@ func (ptr *QXmlDefaultHandler) DisconnectCharacters() {
 
 func (ptr *QXmlDefaultHandler) Characters(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlDefaultHandler_Characters(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -3851,8 +4301,11 @@ func (ptr *QXmlDefaultHandler) Characters(ch string) bool {
 
 func (ptr *QXmlDefaultHandler) CharactersDefault(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlDefaultHandler_CharactersDefault(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -3883,8 +4336,11 @@ func (ptr *QXmlDefaultHandler) DisconnectComment() {
 
 func (ptr *QXmlDefaultHandler) Comment(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlDefaultHandler_Comment(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -3892,8 +4348,11 @@ func (ptr *QXmlDefaultHandler) Comment(ch string) bool {
 
 func (ptr *QXmlDefaultHandler) CommentDefault(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlDefaultHandler_CommentDefault(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -4035,12 +4494,21 @@ func (ptr *QXmlDefaultHandler) DisconnectEndElement() {
 
 func (ptr *QXmlDefaultHandler) EndElement(namespaceURI string, localName string, qName string) bool {
 	if ptr.Pointer() != nil {
-		var namespaceURIC = C.CString(namespaceURI)
-		defer C.free(unsafe.Pointer(namespaceURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var namespaceURIC *C.char
+		if namespaceURI != "" {
+			namespaceURIC = C.CString(namespaceURI)
+			defer C.free(unsafe.Pointer(namespaceURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return C.QXmlDefaultHandler_EndElement(ptr.Pointer(), namespaceURIC, localNameC, qNameC) != 0
 	}
 	return false
@@ -4048,12 +4516,21 @@ func (ptr *QXmlDefaultHandler) EndElement(namespaceURI string, localName string,
 
 func (ptr *QXmlDefaultHandler) EndElementDefault(namespaceURI string, localName string, qName string) bool {
 	if ptr.Pointer() != nil {
-		var namespaceURIC = C.CString(namespaceURI)
-		defer C.free(unsafe.Pointer(namespaceURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var namespaceURIC *C.char
+		if namespaceURI != "" {
+			namespaceURIC = C.CString(namespaceURI)
+			defer C.free(unsafe.Pointer(namespaceURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return C.QXmlDefaultHandler_EndElementDefault(ptr.Pointer(), namespaceURIC, localNameC, qNameC) != 0
 	}
 	return false
@@ -4084,8 +4561,11 @@ func (ptr *QXmlDefaultHandler) DisconnectEndEntity() {
 
 func (ptr *QXmlDefaultHandler) EndEntity(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlDefaultHandler_EndEntity(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -4093,8 +4573,11 @@ func (ptr *QXmlDefaultHandler) EndEntity(name string) bool {
 
 func (ptr *QXmlDefaultHandler) EndEntityDefault(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlDefaultHandler_EndEntityDefault(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -4125,8 +4608,11 @@ func (ptr *QXmlDefaultHandler) DisconnectEndPrefixMapping() {
 
 func (ptr *QXmlDefaultHandler) EndPrefixMapping(prefix string) bool {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		return C.QXmlDefaultHandler_EndPrefixMapping(ptr.Pointer(), prefixC) != 0
 	}
 	return false
@@ -4134,8 +4620,11 @@ func (ptr *QXmlDefaultHandler) EndPrefixMapping(prefix string) bool {
 
 func (ptr *QXmlDefaultHandler) EndPrefixMappingDefault(prefix string) bool {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		return C.QXmlDefaultHandler_EndPrefixMappingDefault(ptr.Pointer(), prefixC) != 0
 	}
 	return false
@@ -4203,12 +4692,21 @@ func (ptr *QXmlDefaultHandler) DisconnectExternalEntityDecl() {
 
 func (ptr *QXmlDefaultHandler) ExternalEntityDecl(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDefaultHandler_ExternalEntityDecl(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -4216,12 +4714,21 @@ func (ptr *QXmlDefaultHandler) ExternalEntityDecl(name string, publicId string, 
 
 func (ptr *QXmlDefaultHandler) ExternalEntityDeclDefault(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDefaultHandler_ExternalEntityDeclDefault(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -4289,8 +4796,11 @@ func (ptr *QXmlDefaultHandler) DisconnectIgnorableWhitespace() {
 
 func (ptr *QXmlDefaultHandler) IgnorableWhitespace(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlDefaultHandler_IgnorableWhitespace(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -4298,8 +4808,11 @@ func (ptr *QXmlDefaultHandler) IgnorableWhitespace(ch string) bool {
 
 func (ptr *QXmlDefaultHandler) IgnorableWhitespaceDefault(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlDefaultHandler_IgnorableWhitespaceDefault(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -4330,10 +4843,16 @@ func (ptr *QXmlDefaultHandler) DisconnectInternalEntityDecl() {
 
 func (ptr *QXmlDefaultHandler) InternalEntityDecl(name string, value string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		return C.QXmlDefaultHandler_InternalEntityDecl(ptr.Pointer(), nameC, valueC) != 0
 	}
 	return false
@@ -4341,10 +4860,16 @@ func (ptr *QXmlDefaultHandler) InternalEntityDecl(name string, value string) boo
 
 func (ptr *QXmlDefaultHandler) InternalEntityDeclDefault(name string, value string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		return C.QXmlDefaultHandler_InternalEntityDeclDefault(ptr.Pointer(), nameC, valueC) != 0
 	}
 	return false
@@ -4375,12 +4900,21 @@ func (ptr *QXmlDefaultHandler) DisconnectNotationDecl() {
 
 func (ptr *QXmlDefaultHandler) NotationDecl(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDefaultHandler_NotationDecl(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -4388,12 +4922,21 @@ func (ptr *QXmlDefaultHandler) NotationDecl(name string, publicId string, system
 
 func (ptr *QXmlDefaultHandler) NotationDeclDefault(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDefaultHandler_NotationDeclDefault(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -4424,10 +4967,16 @@ func (ptr *QXmlDefaultHandler) DisconnectProcessingInstruction() {
 
 func (ptr *QXmlDefaultHandler) ProcessingInstruction(target string, data string) bool {
 	if ptr.Pointer() != nil {
-		var targetC = C.CString(target)
-		defer C.free(unsafe.Pointer(targetC))
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var targetC *C.char
+		if target != "" {
+			targetC = C.CString(target)
+			defer C.free(unsafe.Pointer(targetC))
+		}
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return C.QXmlDefaultHandler_ProcessingInstruction(ptr.Pointer(), targetC, dataC) != 0
 	}
 	return false
@@ -4435,10 +4984,16 @@ func (ptr *QXmlDefaultHandler) ProcessingInstruction(target string, data string)
 
 func (ptr *QXmlDefaultHandler) ProcessingInstructionDefault(target string, data string) bool {
 	if ptr.Pointer() != nil {
-		var targetC = C.CString(target)
-		defer C.free(unsafe.Pointer(targetC))
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var targetC *C.char
+		if target != "" {
+			targetC = C.CString(target)
+			defer C.free(unsafe.Pointer(targetC))
+		}
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return C.QXmlDefaultHandler_ProcessingInstructionDefault(ptr.Pointer(), targetC, dataC) != 0
 	}
 	return false
@@ -4469,8 +5024,11 @@ func (ptr *QXmlDefaultHandler) DisconnectSkippedEntity() {
 
 func (ptr *QXmlDefaultHandler) SkippedEntity(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlDefaultHandler_SkippedEntity(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -4478,8 +5036,11 @@ func (ptr *QXmlDefaultHandler) SkippedEntity(name string) bool {
 
 func (ptr *QXmlDefaultHandler) SkippedEntityDefault(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlDefaultHandler_SkippedEntityDefault(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -4547,12 +5108,21 @@ func (ptr *QXmlDefaultHandler) DisconnectStartDTD() {
 
 func (ptr *QXmlDefaultHandler) StartDTD(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDefaultHandler_StartDTD(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -4560,12 +5130,21 @@ func (ptr *QXmlDefaultHandler) StartDTD(name string, publicId string, systemId s
 
 func (ptr *QXmlDefaultHandler) StartDTDDefault(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlDefaultHandler_StartDTDDefault(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -4633,12 +5212,21 @@ func (ptr *QXmlDefaultHandler) DisconnectStartElement() {
 
 func (ptr *QXmlDefaultHandler) StartElement(namespaceURI string, localName string, qName string, atts QXmlAttributes_ITF) bool {
 	if ptr.Pointer() != nil {
-		var namespaceURIC = C.CString(namespaceURI)
-		defer C.free(unsafe.Pointer(namespaceURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var namespaceURIC *C.char
+		if namespaceURI != "" {
+			namespaceURIC = C.CString(namespaceURI)
+			defer C.free(unsafe.Pointer(namespaceURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return C.QXmlDefaultHandler_StartElement(ptr.Pointer(), namespaceURIC, localNameC, qNameC, PointerFromQXmlAttributes(atts)) != 0
 	}
 	return false
@@ -4646,12 +5234,21 @@ func (ptr *QXmlDefaultHandler) StartElement(namespaceURI string, localName strin
 
 func (ptr *QXmlDefaultHandler) StartElementDefault(namespaceURI string, localName string, qName string, atts QXmlAttributes_ITF) bool {
 	if ptr.Pointer() != nil {
-		var namespaceURIC = C.CString(namespaceURI)
-		defer C.free(unsafe.Pointer(namespaceURIC))
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
-		var qNameC = C.CString(qName)
-		defer C.free(unsafe.Pointer(qNameC))
+		var namespaceURIC *C.char
+		if namespaceURI != "" {
+			namespaceURIC = C.CString(namespaceURI)
+			defer C.free(unsafe.Pointer(namespaceURIC))
+		}
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
 		return C.QXmlDefaultHandler_StartElementDefault(ptr.Pointer(), namespaceURIC, localNameC, qNameC, PointerFromQXmlAttributes(atts)) != 0
 	}
 	return false
@@ -4682,8 +5279,11 @@ func (ptr *QXmlDefaultHandler) DisconnectStartEntity() {
 
 func (ptr *QXmlDefaultHandler) StartEntity(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlDefaultHandler_StartEntity(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -4691,8 +5291,11 @@ func (ptr *QXmlDefaultHandler) StartEntity(name string) bool {
 
 func (ptr *QXmlDefaultHandler) StartEntityDefault(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlDefaultHandler_StartEntityDefault(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -4723,10 +5326,16 @@ func (ptr *QXmlDefaultHandler) DisconnectStartPrefixMapping() {
 
 func (ptr *QXmlDefaultHandler) StartPrefixMapping(prefix string, uri string) bool {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		return C.QXmlDefaultHandler_StartPrefixMapping(ptr.Pointer(), prefixC, uriC) != 0
 	}
 	return false
@@ -4734,10 +5343,16 @@ func (ptr *QXmlDefaultHandler) StartPrefixMapping(prefix string, uri string) boo
 
 func (ptr *QXmlDefaultHandler) StartPrefixMappingDefault(prefix string, uri string) bool {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		return C.QXmlDefaultHandler_StartPrefixMappingDefault(ptr.Pointer(), prefixC, uriC) != 0
 	}
 	return false
@@ -4768,14 +5383,26 @@ func (ptr *QXmlDefaultHandler) DisconnectUnparsedEntityDecl() {
 
 func (ptr *QXmlDefaultHandler) UnparsedEntityDecl(name string, publicId string, systemId string, notationName string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
-		var notationNameC = C.CString(notationName)
-		defer C.free(unsafe.Pointer(notationNameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
+		var notationNameC *C.char
+		if notationName != "" {
+			notationNameC = C.CString(notationName)
+			defer C.free(unsafe.Pointer(notationNameC))
+		}
 		return C.QXmlDefaultHandler_UnparsedEntityDecl(ptr.Pointer(), nameC, publicIdC, systemIdC, notationNameC) != 0
 	}
 	return false
@@ -4783,14 +5410,26 @@ func (ptr *QXmlDefaultHandler) UnparsedEntityDecl(name string, publicId string, 
 
 func (ptr *QXmlDefaultHandler) UnparsedEntityDeclDefault(name string, publicId string, systemId string, notationName string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
-		var notationNameC = C.CString(notationName)
-		defer C.free(unsafe.Pointer(notationNameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
+		var notationNameC *C.char
+		if notationName != "" {
+			notationNameC = C.CString(notationName)
+			defer C.free(unsafe.Pointer(notationNameC))
+		}
 		return C.QXmlDefaultHandler_UnparsedEntityDeclDefault(ptr.Pointer(), nameC, publicIdC, systemIdC, notationNameC) != 0
 	}
 	return false
@@ -5502,16 +6141,22 @@ func (ptr *QXmlInputSource) DisconnectSetData() {
 
 func (ptr *QXmlInputSource) SetData(dat string) {
 	if ptr.Pointer() != nil {
-		var datC = C.CString(dat)
-		defer C.free(unsafe.Pointer(datC))
+		var datC *C.char
+		if dat != "" {
+			datC = C.CString(dat)
+			defer C.free(unsafe.Pointer(datC))
+		}
 		C.QXmlInputSource_SetData(ptr.Pointer(), datC)
 	}
 }
 
 func (ptr *QXmlInputSource) SetDataDefault(dat string) {
 	if ptr.Pointer() != nil {
-		var datC = C.CString(dat)
-		defer C.free(unsafe.Pointer(datC))
+		var datC *C.char
+		if dat != "" {
+			datC = C.CString(dat)
+			defer C.free(unsafe.Pointer(datC))
+		}
 		C.QXmlInputSource_SetDataDefault(ptr.Pointer(), datC)
 	}
 }
@@ -5671,8 +6316,11 @@ func (ptr *QXmlLexicalHandler) DisconnectComment() {
 
 func (ptr *QXmlLexicalHandler) Comment(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QXmlLexicalHandler_Comment(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -5763,8 +6411,11 @@ func (ptr *QXmlLexicalHandler) DisconnectEndEntity() {
 
 func (ptr *QXmlLexicalHandler) EndEntity(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlLexicalHandler_EndEntity(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -5825,12 +6476,21 @@ func (ptr *QXmlLexicalHandler) DisconnectStartDTD() {
 
 func (ptr *QXmlLexicalHandler) StartDTD(name string, publicId string, systemId string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var publicIdC = C.CString(publicId)
-		defer C.free(unsafe.Pointer(publicIdC))
-		var systemIdC = C.CString(systemId)
-		defer C.free(unsafe.Pointer(systemIdC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var publicIdC *C.char
+		if publicId != "" {
+			publicIdC = C.CString(publicId)
+			defer C.free(unsafe.Pointer(publicIdC))
+		}
+		var systemIdC *C.char
+		if systemId != "" {
+			systemIdC = C.CString(systemId)
+			defer C.free(unsafe.Pointer(systemIdC))
+		}
 		return C.QXmlLexicalHandler_StartDTD(ptr.Pointer(), nameC, publicIdC, systemIdC) != 0
 	}
 	return false
@@ -5861,8 +6521,11 @@ func (ptr *QXmlLexicalHandler) DisconnectStartEntity() {
 
 func (ptr *QXmlLexicalHandler) StartEntity(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlLexicalHandler_StartEntity(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -6140,10 +6803,16 @@ func (ptr *QXmlNamespaceSupport) Reset() {
 
 func (ptr *QXmlNamespaceSupport) SetPrefix(pre string, uri string) {
 	if ptr.Pointer() != nil {
-		var preC = C.CString(pre)
-		defer C.free(unsafe.Pointer(preC))
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var preC *C.char
+		if pre != "" {
+			preC = C.CString(pre)
+			defer C.free(unsafe.Pointer(preC))
+		}
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		C.QXmlNamespaceSupport_SetPrefix(ptr.Pointer(), preC, uriC)
 	}
 }
@@ -6157,8 +6826,11 @@ func (ptr *QXmlNamespaceSupport) DestroyQXmlNamespaceSupport() {
 
 func (ptr *QXmlNamespaceSupport) Prefix(uri string) string {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		return cGoUnpackString(C.QXmlNamespaceSupport_Prefix(ptr.Pointer(), uriC))
 	}
 	return ""
@@ -6166,8 +6838,11 @@ func (ptr *QXmlNamespaceSupport) Prefix(uri string) string {
 
 func (ptr *QXmlNamespaceSupport) Uri(prefix string) string {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		return cGoUnpackString(C.QXmlNamespaceSupport_Uri(ptr.Pointer(), prefixC))
 	}
 	return ""
@@ -6182,8 +6857,11 @@ func (ptr *QXmlNamespaceSupport) Prefixes() []string {
 
 func (ptr *QXmlNamespaceSupport) Prefixes2(uri string) []string {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		return strings.Split(cGoUnpackString(C.QXmlNamespaceSupport_Prefixes2(ptr.Pointer(), uriC)), "|")
 	}
 	return make([]string, 0)
@@ -6191,24 +6869,42 @@ func (ptr *QXmlNamespaceSupport) Prefixes2(uri string) []string {
 
 func (ptr *QXmlNamespaceSupport) ProcessName(qname string, isAttribute bool, nsuri string, localname string) {
 	if ptr.Pointer() != nil {
-		var qnameC = C.CString(qname)
-		defer C.free(unsafe.Pointer(qnameC))
-		var nsuriC = C.CString(nsuri)
-		defer C.free(unsafe.Pointer(nsuriC))
-		var localnameC = C.CString(localname)
-		defer C.free(unsafe.Pointer(localnameC))
+		var qnameC *C.char
+		if qname != "" {
+			qnameC = C.CString(qname)
+			defer C.free(unsafe.Pointer(qnameC))
+		}
+		var nsuriC *C.char
+		if nsuri != "" {
+			nsuriC = C.CString(nsuri)
+			defer C.free(unsafe.Pointer(nsuriC))
+		}
+		var localnameC *C.char
+		if localname != "" {
+			localnameC = C.CString(localname)
+			defer C.free(unsafe.Pointer(localnameC))
+		}
 		C.QXmlNamespaceSupport_ProcessName(ptr.Pointer(), qnameC, C.char(int8(qt.GoBoolToInt(isAttribute))), nsuriC, localnameC)
 	}
 }
 
 func (ptr *QXmlNamespaceSupport) SplitName(qname string, prefix string, localname string) {
 	if ptr.Pointer() != nil {
-		var qnameC = C.CString(qname)
-		defer C.free(unsafe.Pointer(qnameC))
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
-		var localnameC = C.CString(localname)
-		defer C.free(unsafe.Pointer(localnameC))
+		var qnameC *C.char
+		if qname != "" {
+			qnameC = C.CString(qname)
+			defer C.free(unsafe.Pointer(qnameC))
+		}
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
+		var localnameC *C.char
+		if localname != "" {
+			localnameC = C.CString(localname)
+			defer C.free(unsafe.Pointer(localnameC))
+		}
 		C.QXmlNamespaceSupport_SplitName(ptr.Pointer(), qnameC, prefixC, localnameC)
 	}
 }
@@ -6251,12 +6947,21 @@ func NewQXmlParseExceptionFromPointer(ptr unsafe.Pointer) *QXmlParseException {
 	return n
 }
 func NewQXmlParseException(name string, c int, l int, p string, s string) *QXmlParseException {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
-	var pC = C.CString(p)
-	defer C.free(unsafe.Pointer(pC))
-	var sC = C.CString(s)
-	defer C.free(unsafe.Pointer(sC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
+	var pC *C.char
+	if p != "" {
+		pC = C.CString(p)
+		defer C.free(unsafe.Pointer(pC))
+	}
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
 	var tmpValue = NewQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException(nameC, C.int(int32(c)), C.int(int32(l)), pC, sC))
 	runtime.SetFinalizer(tmpValue, (*QXmlParseException).DestroyQXmlParseException)
 	return tmpValue
@@ -6542,8 +7247,11 @@ func (ptr *QXmlReader) DisconnectSetFeature() {
 
 func (ptr *QXmlReader) SetFeature(name string, value bool) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlReader_SetFeature(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(value))))
 	}
 }
@@ -6600,8 +7308,11 @@ func (ptr *QXmlReader) DisconnectSetProperty() {
 
 func (ptr *QXmlReader) SetProperty(name string, value unsafe.Pointer) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlReader_SetProperty(ptr.Pointer(), nameC, value)
 	}
 }
@@ -6850,8 +7561,11 @@ func (ptr *QXmlReader) DisconnectFeature() {
 
 func (ptr *QXmlReader) Feature(name string, ok bool) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlReader_Feature(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(ok)))) != 0
 	}
 	return false
@@ -6882,8 +7596,11 @@ func (ptr *QXmlReader) DisconnectHasFeature() {
 
 func (ptr *QXmlReader) HasFeature(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlReader_HasFeature(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -6914,8 +7631,11 @@ func (ptr *QXmlReader) DisconnectHasProperty() {
 
 func (ptr *QXmlReader) HasProperty(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlReader_HasProperty(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -6946,8 +7666,11 @@ func (ptr *QXmlReader) DisconnectProperty() {
 
 func (ptr *QXmlReader) Property(name string, ok bool) unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return unsafe.Pointer(C.QXmlReader_Property(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return nil
@@ -7343,16 +8066,22 @@ func (ptr *QXmlSimpleReader) DisconnectSetFeature() {
 
 func (ptr *QXmlSimpleReader) SetFeature(name string, enable bool) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlSimpleReader_SetFeature(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(enable))))
 	}
 }
 
 func (ptr *QXmlSimpleReader) SetFeatureDefault(name string, enable bool) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlSimpleReader_SetFeatureDefault(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(enable))))
 	}
 }
@@ -7417,16 +8146,22 @@ func (ptr *QXmlSimpleReader) DisconnectSetProperty() {
 
 func (ptr *QXmlSimpleReader) SetProperty(name string, value unsafe.Pointer) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlSimpleReader_SetProperty(ptr.Pointer(), nameC, value)
 	}
 }
 
 func (ptr *QXmlSimpleReader) SetPropertyDefault(name string, value unsafe.Pointer) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlSimpleReader_SetPropertyDefault(ptr.Pointer(), nameC, value)
 	}
 }
@@ -7717,8 +8452,11 @@ func (ptr *QXmlSimpleReader) DisconnectFeature() {
 
 func (ptr *QXmlSimpleReader) Feature(name string, ok bool) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlSimpleReader_Feature(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(ok)))) != 0
 	}
 	return false
@@ -7726,8 +8464,11 @@ func (ptr *QXmlSimpleReader) Feature(name string, ok bool) bool {
 
 func (ptr *QXmlSimpleReader) FeatureDefault(name string, ok bool) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlSimpleReader_FeatureDefault(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(ok)))) != 0
 	}
 	return false
@@ -7758,8 +8499,11 @@ func (ptr *QXmlSimpleReader) DisconnectHasFeature() {
 
 func (ptr *QXmlSimpleReader) HasFeature(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlSimpleReader_HasFeature(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -7767,8 +8511,11 @@ func (ptr *QXmlSimpleReader) HasFeature(name string) bool {
 
 func (ptr *QXmlSimpleReader) HasFeatureDefault(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlSimpleReader_HasFeatureDefault(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -7799,8 +8546,11 @@ func (ptr *QXmlSimpleReader) DisconnectHasProperty() {
 
 func (ptr *QXmlSimpleReader) HasProperty(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlSimpleReader_HasProperty(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -7808,8 +8558,11 @@ func (ptr *QXmlSimpleReader) HasProperty(name string) bool {
 
 func (ptr *QXmlSimpleReader) HasPropertyDefault(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlSimpleReader_HasPropertyDefault(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -7840,8 +8593,11 @@ func (ptr *QXmlSimpleReader) DisconnectProperty() {
 
 func (ptr *QXmlSimpleReader) Property(name string, ok bool) unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return unsafe.Pointer(C.QXmlSimpleReader_Property(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return nil
@@ -7849,8 +8605,11 @@ func (ptr *QXmlSimpleReader) Property(name string, ok bool) unsafe.Pointer {
 
 func (ptr *QXmlSimpleReader) PropertyDefault(name string, ok bool) unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return unsafe.Pointer(C.QXmlSimpleReader_PropertyDefault(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return nil

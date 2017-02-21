@@ -80,72 +80,99 @@ func (ptr *QGeoAddress) Clear() {
 
 func (ptr *QGeoAddress) SetCity(city string) {
 	if ptr.Pointer() != nil {
-		var cityC = C.CString(city)
-		defer C.free(unsafe.Pointer(cityC))
+		var cityC *C.char
+		if city != "" {
+			cityC = C.CString(city)
+			defer C.free(unsafe.Pointer(cityC))
+		}
 		C.QGeoAddress_SetCity(ptr.Pointer(), cityC)
 	}
 }
 
 func (ptr *QGeoAddress) SetCountry(country string) {
 	if ptr.Pointer() != nil {
-		var countryC = C.CString(country)
-		defer C.free(unsafe.Pointer(countryC))
+		var countryC *C.char
+		if country != "" {
+			countryC = C.CString(country)
+			defer C.free(unsafe.Pointer(countryC))
+		}
 		C.QGeoAddress_SetCountry(ptr.Pointer(), countryC)
 	}
 }
 
 func (ptr *QGeoAddress) SetCountryCode(countryCode string) {
 	if ptr.Pointer() != nil {
-		var countryCodeC = C.CString(countryCode)
-		defer C.free(unsafe.Pointer(countryCodeC))
+		var countryCodeC *C.char
+		if countryCode != "" {
+			countryCodeC = C.CString(countryCode)
+			defer C.free(unsafe.Pointer(countryCodeC))
+		}
 		C.QGeoAddress_SetCountryCode(ptr.Pointer(), countryCodeC)
 	}
 }
 
 func (ptr *QGeoAddress) SetCounty(county string) {
 	if ptr.Pointer() != nil {
-		var countyC = C.CString(county)
-		defer C.free(unsafe.Pointer(countyC))
+		var countyC *C.char
+		if county != "" {
+			countyC = C.CString(county)
+			defer C.free(unsafe.Pointer(countyC))
+		}
 		C.QGeoAddress_SetCounty(ptr.Pointer(), countyC)
 	}
 }
 
 func (ptr *QGeoAddress) SetDistrict(district string) {
 	if ptr.Pointer() != nil {
-		var districtC = C.CString(district)
-		defer C.free(unsafe.Pointer(districtC))
+		var districtC *C.char
+		if district != "" {
+			districtC = C.CString(district)
+			defer C.free(unsafe.Pointer(districtC))
+		}
 		C.QGeoAddress_SetDistrict(ptr.Pointer(), districtC)
 	}
 }
 
 func (ptr *QGeoAddress) SetPostalCode(postalCode string) {
 	if ptr.Pointer() != nil {
-		var postalCodeC = C.CString(postalCode)
-		defer C.free(unsafe.Pointer(postalCodeC))
+		var postalCodeC *C.char
+		if postalCode != "" {
+			postalCodeC = C.CString(postalCode)
+			defer C.free(unsafe.Pointer(postalCodeC))
+		}
 		C.QGeoAddress_SetPostalCode(ptr.Pointer(), postalCodeC)
 	}
 }
 
 func (ptr *QGeoAddress) SetState(state string) {
 	if ptr.Pointer() != nil {
-		var stateC = C.CString(state)
-		defer C.free(unsafe.Pointer(stateC))
+		var stateC *C.char
+		if state != "" {
+			stateC = C.CString(state)
+			defer C.free(unsafe.Pointer(stateC))
+		}
 		C.QGeoAddress_SetState(ptr.Pointer(), stateC)
 	}
 }
 
 func (ptr *QGeoAddress) SetStreet(street string) {
 	if ptr.Pointer() != nil {
-		var streetC = C.CString(street)
-		defer C.free(unsafe.Pointer(streetC))
+		var streetC *C.char
+		if street != "" {
+			streetC = C.CString(street)
+			defer C.free(unsafe.Pointer(streetC))
+		}
 		C.QGeoAddress_SetStreet(ptr.Pointer(), streetC)
 	}
 }
 
 func (ptr *QGeoAddress) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QGeoAddress_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -278,8 +305,11 @@ func NewQGeoAreaMonitorInfo2(other QGeoAreaMonitorInfo_ITF) *QGeoAreaMonitorInfo
 }
 
 func NewQGeoAreaMonitorInfo(name string) *QGeoAreaMonitorInfo {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(nameC))
 	runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
 	return tmpValue
@@ -299,8 +329,11 @@ func (ptr *QGeoAreaMonitorInfo) SetExpiration(expiry core.QDateTime_ITF) {
 
 func (ptr *QGeoAreaMonitorInfo) SetName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QGeoAreaMonitorInfo_SetName(ptr.Pointer(), nameC)
 	}
 }
@@ -391,8 +424,11 @@ func (ptr *QGeoAreaMonitorInfo) IsValid() bool {
 
 func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -402,8 +438,11 @@ func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_atList(i 
 
 func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -427,8 +466,11 @@ func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_keyList() []string {
 
 func (ptr *QGeoAreaMonitorInfo) __notificationParameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___notificationParameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -438,8 +480,11 @@ func (ptr *QGeoAreaMonitorInfo) __notificationParameters_atList(i string) *core.
 
 func (ptr *QGeoAreaMonitorInfo) __notificationParameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoAreaMonitorInfo___notificationParameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -470,8 +515,11 @@ func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_atList(i i
 
 func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -489,8 +537,11 @@ func (ptr *QGeoAreaMonitorInfo) ____notificationParameters_keyList_atList(i int)
 
 func (ptr *QGeoAreaMonitorInfo) ____notificationParameters_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoAreaMonitorInfo_____notificationParameters_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -575,8 +626,11 @@ func (ptr *QGeoAreaMonitorSource) CreateDefaultSource(parent core.QObject_ITF) *
 }
 
 func QGeoAreaMonitorSource_CreateSource(sourceName string, parent core.QObject_ITF) *QGeoAreaMonitorSource {
-	var sourceNameC = C.CString(sourceName)
-	defer C.free(unsafe.Pointer(sourceNameC))
+	var sourceNameC *C.char
+	if sourceName != "" {
+		sourceNameC = C.CString(sourceName)
+		defer C.free(unsafe.Pointer(sourceNameC))
+	}
 	var tmpValue = NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(sourceNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -585,8 +639,11 @@ func QGeoAreaMonitorSource_CreateSource(sourceName string, parent core.QObject_I
 }
 
 func (ptr *QGeoAreaMonitorSource) CreateSource(sourceName string, parent core.QObject_ITF) *QGeoAreaMonitorSource {
-	var sourceNameC = C.CString(sourceName)
-	defer C.free(unsafe.Pointer(sourceNameC))
+	var sourceNameC *C.char
+	if sourceName != "" {
+		sourceNameC = C.CString(sourceName)
+		defer C.free(unsafe.Pointer(sourceNameC))
+	}
 	var tmpValue = NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(sourceNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -635,8 +692,11 @@ func (ptr *QGeoAreaMonitorSource) DisconnectRequestUpdate() {
 
 func (ptr *QGeoAreaMonitorSource) RequestUpdate(monitor QGeoAreaMonitorInfo_ITF, sign string) bool {
 	if ptr.Pointer() != nil {
-		var signC = C.CString(sign)
-		defer C.free(unsafe.Pointer(signC))
+		var signC *C.char
+		if sign != "" {
+			signC = C.CString(sign)
+			defer C.free(unsafe.Pointer(signC))
+		}
 		return C.QGeoAreaMonitorSource_RequestUpdate(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor), signC) != 0
 	}
 	return false
@@ -1989,8 +2049,11 @@ func (ptr *QGeoPositionInfoSource) CreateDefaultSource(parent core.QObject_ITF) 
 }
 
 func QGeoPositionInfoSource_CreateSource(sourceName string, parent core.QObject_ITF) *QGeoPositionInfoSource {
-	var sourceNameC = C.CString(sourceName)
-	defer C.free(unsafe.Pointer(sourceNameC))
+	var sourceNameC *C.char
+	if sourceName != "" {
+		sourceNameC = C.CString(sourceName)
+		defer C.free(unsafe.Pointer(sourceNameC))
+	}
 	var tmpValue = NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(sourceNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1999,8 +2062,11 @@ func QGeoPositionInfoSource_CreateSource(sourceName string, parent core.QObject_
 }
 
 func (ptr *QGeoPositionInfoSource) CreateSource(sourceName string, parent core.QObject_ITF) *QGeoPositionInfoSource {
-	var sourceNameC = C.CString(sourceName)
-	defer C.free(unsafe.Pointer(sourceNameC))
+	var sourceNameC *C.char
+	if sourceName != "" {
+		sourceNameC = C.CString(sourceName)
+		defer C.free(unsafe.Pointer(sourceNameC))
+	}
 	var tmpValue = NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(sourceNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3263,8 +3329,11 @@ func (ptr *QGeoSatelliteInfoSource) CreateDefaultSource(parent core.QObject_ITF)
 }
 
 func QGeoSatelliteInfoSource_CreateSource(sourceName string, parent core.QObject_ITF) *QGeoSatelliteInfoSource {
-	var sourceNameC = C.CString(sourceName)
-	defer C.free(unsafe.Pointer(sourceNameC))
+	var sourceNameC *C.char
+	if sourceName != "" {
+		sourceNameC = C.CString(sourceName)
+		defer C.free(unsafe.Pointer(sourceNameC))
+	}
 	var tmpValue = NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(sourceNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3273,8 +3342,11 @@ func QGeoSatelliteInfoSource_CreateSource(sourceName string, parent core.QObject
 }
 
 func (ptr *QGeoSatelliteInfoSource) CreateSource(sourceName string, parent core.QObject_ITF) *QGeoSatelliteInfoSource {
-	var sourceNameC = C.CString(sourceName)
-	defer C.free(unsafe.Pointer(sourceNameC))
+	var sourceNameC *C.char
+	if sourceName != "" {
+		sourceNameC = C.CString(sourceName)
+		defer C.free(unsafe.Pointer(sourceNameC))
+	}
 	var tmpValue = NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(sourceNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -4161,8 +4233,11 @@ func (ptr *QNmeaPositionInfoSource) DisconnectParsePosInfoFromNmeaData() {
 
 func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaData(data string, size int, posInfo QGeoPositionInfo_ITF, hasFix bool) bool {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return C.QNmeaPositionInfoSource_ParsePosInfoFromNmeaData(ptr.Pointer(), dataC, C.int(int32(size)), PointerFromQGeoPositionInfo(posInfo), C.char(int8(qt.GoBoolToInt(hasFix)))) != 0
 	}
 	return false
@@ -4170,8 +4245,11 @@ func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaData(data string, size i
 
 func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaDataDefault(data string, size int, posInfo QGeoPositionInfo_ITF, hasFix bool) bool {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return C.QNmeaPositionInfoSource_ParsePosInfoFromNmeaDataDefault(ptr.Pointer(), dataC, C.int(int32(size)), PointerFromQGeoPositionInfo(posInfo), C.char(int8(qt.GoBoolToInt(hasFix)))) != 0
 	}
 	return false

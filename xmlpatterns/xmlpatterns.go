@@ -1459,8 +1459,11 @@ func (ptr *QAbstractXmlReceiver) DisconnectComment() {
 
 func (ptr *QAbstractXmlReceiver) Comment(value string) {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QAbstractXmlReceiver_Comment(ptr.Pointer(), valueC)
 	}
 }
@@ -1601,8 +1604,11 @@ func (ptr *QAbstractXmlReceiver) DisconnectProcessingInstruction() {
 
 func (ptr *QAbstractXmlReceiver) ProcessingInstruction(target QXmlName_ITF, value string) {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QAbstractXmlReceiver_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(target), valueC)
 	}
 }
@@ -2658,16 +2664,22 @@ func (ptr *QXmlName) DestroyQXmlName() {
 }
 
 func QXmlName_FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
-	var clarkNameC = C.CString(clarkName)
-	defer C.free(unsafe.Pointer(clarkNameC))
+	var clarkNameC *C.char
+	if clarkName != "" {
+		clarkNameC = C.CString(clarkName)
+		defer C.free(unsafe.Pointer(clarkNameC))
+	}
 	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
 
 func (ptr *QXmlName) FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
-	var clarkNameC = C.CString(clarkName)
-	defer C.free(unsafe.Pointer(clarkNameC))
+	var clarkNameC *C.char
+	if clarkName != "" {
+		clarkNameC = C.CString(clarkName)
+		defer C.free(unsafe.Pointer(clarkNameC))
+	}
 	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
@@ -2680,26 +2692,41 @@ func NewQXmlName() *QXmlName {
 }
 
 func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI string, prefix string) *QXmlName {
-	var localNameC = C.CString(localName)
-	defer C.free(unsafe.Pointer(localNameC))
-	var namespaceURIC = C.CString(namespaceURI)
-	defer C.free(unsafe.Pointer(namespaceURIC))
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
+	var localNameC *C.char
+	if localName != "" {
+		localNameC = C.CString(localName)
+		defer C.free(unsafe.Pointer(localNameC))
+	}
+	var namespaceURIC *C.char
+	if namespaceURI != "" {
+		namespaceURIC = C.CString(namespaceURI)
+		defer C.free(unsafe.Pointer(namespaceURIC))
+	}
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
 	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), localNameC, namespaceURIC, prefixC))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
 
 func QXmlName_IsNCName(candidate string) bool {
-	var candidateC = C.CString(candidate)
-	defer C.free(unsafe.Pointer(candidateC))
+	var candidateC *C.char
+	if candidate != "" {
+		candidateC = C.CString(candidate)
+		defer C.free(unsafe.Pointer(candidateC))
+	}
 	return C.QXmlName_QXmlName_IsNCName(candidateC) != 0
 }
 
 func (ptr *QXmlName) IsNCName(candidate string) bool {
-	var candidateC = C.CString(candidate)
-	defer C.free(unsafe.Pointer(candidateC))
+	var candidateC *C.char
+	if candidate != "" {
+		candidateC = C.CString(candidate)
+		defer C.free(unsafe.Pointer(candidateC))
+	}
 	return C.QXmlName_QXmlName_IsNCName(candidateC) != 0
 }
 
@@ -3012,8 +3039,11 @@ func (ptr *QXmlQuery) SetFocus3(document core.QIODevice_ITF) bool {
 
 func (ptr *QXmlQuery) SetFocus4(focus string) bool {
 	if ptr.Pointer() != nil {
-		var focusC = C.CString(focus)
-		defer C.free(unsafe.Pointer(focusC))
+		var focusC *C.char
+		if focus != "" {
+			focusC = C.CString(focus)
+			defer C.free(unsafe.Pointer(focusC))
+		}
 		return C.QXmlQuery_SetFocus4(ptr.Pointer(), focusC) != 0
 	}
 	return false
@@ -3028,24 +3058,33 @@ func (ptr *QXmlQuery) SetFocus2(documentURI core.QUrl_ITF) bool {
 
 func (ptr *QXmlQuery) BindVariable4(localName string, device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		C.QXmlQuery_BindVariable4(ptr.Pointer(), localNameC, core.PointerFromQIODevice(device))
 	}
 }
 
 func (ptr *QXmlQuery) BindVariable2(localName string, value QXmlItem_ITF) {
 	if ptr.Pointer() != nil {
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		C.QXmlQuery_BindVariable2(ptr.Pointer(), localNameC, PointerFromQXmlItem(value))
 	}
 }
 
 func (ptr *QXmlQuery) BindVariable6(localName string, query QXmlQuery_ITF) {
 	if ptr.Pointer() != nil {
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		C.QXmlQuery_BindVariable6(ptr.Pointer(), localNameC, PointerFromQXmlQuery(query))
 	}
 }
@@ -3076,8 +3115,11 @@ func (ptr *QXmlQuery) SetFocus(item QXmlItem_ITF) {
 
 func (ptr *QXmlQuery) SetInitialTemplateName2(localName string) {
 	if ptr.Pointer() != nil {
-		var localNameC = C.CString(localName)
-		defer C.free(unsafe.Pointer(localNameC))
+		var localNameC *C.char
+		if localName != "" {
+			localNameC = C.CString(localName)
+			defer C.free(unsafe.Pointer(localNameC))
+		}
 		C.QXmlQuery_SetInitialTemplateName2(ptr.Pointer(), localNameC)
 	}
 }
@@ -3108,8 +3150,11 @@ func (ptr *QXmlQuery) SetQuery(sourceCode core.QIODevice_ITF, documentURI core.Q
 
 func (ptr *QXmlQuery) SetQuery2(sourceCode string, documentURI core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		var sourceCodeC = C.CString(sourceCode)
-		defer C.free(unsafe.Pointer(sourceCodeC))
+		var sourceCodeC *C.char
+		if sourceCode != "" {
+			sourceCodeC = C.CString(sourceCode)
+			defer C.free(unsafe.Pointer(sourceCodeC))
+		}
 		C.QXmlQuery_SetQuery2(ptr.Pointer(), sourceCodeC, core.PointerFromQUrl(documentURI))
 	}
 }
@@ -3196,8 +3241,11 @@ func (ptr *QXmlQuery) EvaluateTo4(target core.QIODevice_ITF) bool {
 
 func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
 	if ptr.Pointer() != nil {
-		var outputC = C.CString(output)
-		defer C.free(unsafe.Pointer(outputC))
+		var outputC *C.char
+		if output != "" {
+			outputC = C.CString(output)
+			defer C.free(unsafe.Pointer(outputC))
+		}
 		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), outputC) != 0
 	}
 	return false
@@ -3827,16 +3875,22 @@ func (ptr *QXmlSerializer) DisconnectComment() {
 
 func (ptr *QXmlSerializer) Comment(value string) {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlSerializer_Comment(ptr.Pointer(), valueC)
 	}
 }
 
 func (ptr *QXmlSerializer) CommentDefault(value string) {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlSerializer_CommentDefault(ptr.Pointer(), valueC)
 	}
 }
@@ -4006,16 +4060,22 @@ func (ptr *QXmlSerializer) DisconnectProcessingInstruction() {
 
 func (ptr *QXmlSerializer) ProcessingInstruction(name QXmlName_ITF, value string) {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlSerializer_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(name), valueC)
 	}
 }
 
 func (ptr *QXmlSerializer) ProcessingInstructionDefault(name QXmlName_ITF, value string) {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlSerializer_ProcessingInstructionDefault(ptr.Pointer(), PointerFromQXmlName(name), valueC)
 	}
 }

@@ -513,10 +513,16 @@ func (ptr *QNdefNfcSmartPosterRecord) AddTitle(text QNdefNfcTextRecord_ITF) bool
 
 func (ptr *QNdefNfcSmartPosterRecord) AddTitle2(text string, locale string, encoding QNdefNfcTextRecord__Encoding) bool {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var localeC = C.CString(locale)
-		defer C.free(unsafe.Pointer(localeC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
 		return C.QNdefNfcSmartPosterRecord_AddTitle2(ptr.Pointer(), textC, localeC, C.longlong(encoding)) != 0
 	}
 	return false
@@ -538,8 +544,11 @@ func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle(text QNdefNfcTextRecord_ITF) b
 
 func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle2(locale string) bool {
 	if ptr.Pointer() != nil {
-		var localeC = C.CString(locale)
-		defer C.free(unsafe.Pointer(localeC))
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
 		return C.QNdefNfcSmartPosterRecord_RemoveTitle2(ptr.Pointer(), localeC) != 0
 	}
 	return false
@@ -645,8 +654,11 @@ func (ptr *QNdefNfcSmartPosterRecord) UriRecord() *QNdefNfcUriRecord {
 
 func (ptr *QNdefNfcSmartPosterRecord) Title(locale string) string {
 	if ptr.Pointer() != nil {
-		var localeC = C.CString(locale)
-		defer C.free(unsafe.Pointer(localeC))
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
 		return cGoUnpackString(C.QNdefNfcSmartPosterRecord_Title(ptr.Pointer(), localeC))
 	}
 	return ""
@@ -684,8 +696,11 @@ func (ptr *QNdefNfcSmartPosterRecord) HasSize() bool {
 
 func (ptr *QNdefNfcSmartPosterRecord) HasTitle(locale string) bool {
 	if ptr.Pointer() != nil {
-		var localeC = C.CString(locale)
-		defer C.free(unsafe.Pointer(localeC))
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
 		return C.QNdefNfcSmartPosterRecord_HasTitle(ptr.Pointer(), localeC) != 0
 	}
 	return false
@@ -840,16 +855,22 @@ func (ptr *QNdefNfcTextRecord) SetEncoding(encoding QNdefNfcTextRecord__Encoding
 
 func (ptr *QNdefNfcTextRecord) SetLocale(locale string) {
 	if ptr.Pointer() != nil {
-		var localeC = C.CString(locale)
-		defer C.free(unsafe.Pointer(localeC))
+		var localeC *C.char
+		if locale != "" {
+			localeC = C.CString(locale)
+			defer C.free(unsafe.Pointer(localeC))
+		}
 		C.QNdefNfcTextRecord_SetLocale(ptr.Pointer(), localeC)
 	}
 }
 
 func (ptr *QNdefNfcTextRecord) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QNdefNfcTextRecord_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -1157,8 +1178,11 @@ func (ptr *QNearFieldManager) UnregisterNdefMessageHandler(handlerId int) bool {
 
 func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRecord__TypeNameFormat, ty core.QByteArray_ITF, object core.QObject_ITF, method string) int {
 	if ptr.Pointer() != nil {
-		var methodC = C.CString(method)
-		defer C.free(unsafe.Pointer(methodC))
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
 		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler2(ptr.Pointer(), C.longlong(typeNameFormat), core.PointerFromQByteArray(ty), core.PointerFromQObject(object), methodC)))
 	}
 	return 0
@@ -1166,8 +1190,11 @@ func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRe
 
 func (ptr *QNearFieldManager) RegisterNdefMessageHandler(object core.QObject_ITF, method string) int {
 	if ptr.Pointer() != nil {
-		var methodC = C.CString(method)
-		defer C.free(unsafe.Pointer(methodC))
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
 		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler(ptr.Pointer(), core.PointerFromQObject(object), methodC)))
 	}
 	return 0
@@ -1175,8 +1202,11 @@ func (ptr *QNearFieldManager) RegisterNdefMessageHandler(object core.QObject_ITF
 
 func (ptr *QNearFieldManager) RegisterNdefMessageHandler3(filter QNdefFilter_ITF, object core.QObject_ITF, method string) int {
 	if ptr.Pointer() != nil {
-		var methodC = C.CString(method)
-		defer C.free(unsafe.Pointer(methodC))
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
 		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler3(ptr.Pointer(), PointerFromQNdefFilter(filter), core.PointerFromQObject(object), methodC)))
 	}
 	return 0
@@ -3214,8 +3244,11 @@ func NewQQmlNdefRecord2(record QNdefRecord_ITF, parent core.QObject_ITF) *QQmlNd
 
 func (ptr *QQmlNdefRecord) SetType(newtype string) {
 	if ptr.Pointer() != nil {
-		var newtypeC = C.CString(newtype)
-		defer C.free(unsafe.Pointer(newtypeC))
+		var newtypeC *C.char
+		if newtype != "" {
+			newtypeC = C.CString(newtype)
+			defer C.free(unsafe.Pointer(newtypeC))
+		}
 		C.QQmlNdefRecord_SetType(ptr.Pointer(), newtypeC)
 	}
 }

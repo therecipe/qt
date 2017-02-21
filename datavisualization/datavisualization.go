@@ -4470,8 +4470,11 @@ func (ptr *QAbstract3DAxis) SetRange(min float32, max float32) {
 
 func (ptr *QAbstract3DAxis) SetTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QAbstract3DAxis_SetTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -4506,8 +4509,11 @@ func (ptr *QAbstract3DAxis) DisconnectTitleChanged() {
 
 func (ptr *QAbstract3DAxis) TitleChanged(newTitle string) {
 	if ptr.Pointer() != nil {
-		var newTitleC = C.CString(newTitle)
-		defer C.free(unsafe.Pointer(newTitleC))
+		var newTitleC *C.char
+		if newTitle != "" {
+			newTitleC = C.CString(newTitle)
+			defer C.free(unsafe.Pointer(newTitleC))
+		}
 		C.QAbstract3DAxis_TitleChanged(ptr.Pointer(), newTitleC)
 	}
 }
@@ -6434,8 +6440,11 @@ func (ptr *QAbstract3DSeries) DisconnectItemLabelChanged() {
 
 func (ptr *QAbstract3DSeries) ItemLabelChanged(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QAbstract3DSeries_ItemLabelChanged(ptr.Pointer(), labelC)
 	}
 }
@@ -6464,8 +6473,11 @@ func (ptr *QAbstract3DSeries) DisconnectItemLabelFormatChanged() {
 
 func (ptr *QAbstract3DSeries) ItemLabelFormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QAbstract3DSeries_ItemLabelFormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -6634,8 +6646,11 @@ func (ptr *QAbstract3DSeries) DisconnectNameChanged() {
 
 func (ptr *QAbstract3DSeries) NameChanged(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QAbstract3DSeries_NameChanged(ptr.Pointer(), nameC)
 	}
 }
@@ -6660,8 +6675,11 @@ func (ptr *QAbstract3DSeries) SetColorStyle(style Q3DTheme__ColorStyle) {
 
 func (ptr *QAbstract3DSeries) SetItemLabelFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QAbstract3DSeries_SetItemLabelFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -6704,8 +6722,11 @@ func (ptr *QAbstract3DSeries) SetMultiHighlightGradient(gradient gui.QLinearGrad
 
 func (ptr *QAbstract3DSeries) SetName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QAbstract3DSeries_SetName(ptr.Pointer(), nameC)
 	}
 }
@@ -6724,8 +6745,11 @@ func (ptr *QAbstract3DSeries) SetSingleHighlightGradient(gradient gui.QLinearGra
 
 func (ptr *QAbstract3DSeries) SetUserDefinedMesh(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QAbstract3DSeries_SetUserDefinedMesh(ptr.Pointer(), fileNameC)
 	}
 }
@@ -6816,8 +6840,11 @@ func (ptr *QAbstract3DSeries) DisconnectUserDefinedMeshChanged() {
 
 func (ptr *QAbstract3DSeries) UserDefinedMeshChanged(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QAbstract3DSeries_UserDefinedMeshChanged(ptr.Pointer(), fileNameC)
 	}
 }
@@ -8039,8 +8066,11 @@ func NewQCustom3DItem(parent core.QObject_ITF) *QCustom3DItem {
 }
 
 func NewQCustom3DItem2(meshFile string, position gui.QVector3D_ITF, scaling gui.QVector3D_ITF, rotation gui.QQuaternion_ITF, texture gui.QImage_ITF, parent core.QObject_ITF) *QCustom3DItem {
-	var meshFileC = C.CString(meshFile)
-	defer C.free(unsafe.Pointer(meshFileC))
+	var meshFileC *C.char
+	if meshFile != "" {
+		meshFileC = C.CString(meshFile)
+		defer C.free(unsafe.Pointer(meshFileC))
+	}
 	return NewQCustom3DItemFromPointer(C.QCustom3DItem_NewQCustom3DItem2(meshFileC, gui.PointerFromQVector3D(position), gui.PointerFromQVector3D(scaling), gui.PointerFromQQuaternion(rotation), gui.PointerFromQImage(texture), core.PointerFromQObject(parent)))
 }
 
@@ -8077,8 +8107,11 @@ func (ptr *QCustom3DItem) DisconnectMeshFileChanged() {
 
 func (ptr *QCustom3DItem) MeshFileChanged(meshFile string) {
 	if ptr.Pointer() != nil {
-		var meshFileC = C.CString(meshFile)
-		defer C.free(unsafe.Pointer(meshFileC))
+		var meshFileC *C.char
+		if meshFile != "" {
+			meshFileC = C.CString(meshFile)
+			defer C.free(unsafe.Pointer(meshFileC))
+		}
 		C.QCustom3DItem_MeshFileChanged(ptr.Pointer(), meshFileC)
 	}
 }
@@ -8225,8 +8258,11 @@ func (ptr *QCustom3DItem) ScalingChanged(scaling gui.QVector3D_ITF) {
 
 func (ptr *QCustom3DItem) SetMeshFile(meshFile string) {
 	if ptr.Pointer() != nil {
-		var meshFileC = C.CString(meshFile)
-		defer C.free(unsafe.Pointer(meshFileC))
+		var meshFileC *C.char
+		if meshFile != "" {
+			meshFileC = C.CString(meshFile)
+			defer C.free(unsafe.Pointer(meshFileC))
+		}
 		C.QCustom3DItem_SetMeshFile(ptr.Pointer(), meshFileC)
 	}
 }
@@ -8275,8 +8311,11 @@ func (ptr *QCustom3DItem) SetShadowCasting(enabled bool) {
 
 func (ptr *QCustom3DItem) SetTextureFile(textureFile string) {
 	if ptr.Pointer() != nil {
-		var textureFileC = C.CString(textureFile)
-		defer C.free(unsafe.Pointer(textureFileC))
+		var textureFileC *C.char
+		if textureFile != "" {
+			textureFileC = C.CString(textureFile)
+			defer C.free(unsafe.Pointer(textureFileC))
+		}
 		C.QCustom3DItem_SetTextureFile(ptr.Pointer(), textureFileC)
 	}
 }
@@ -8345,8 +8384,11 @@ func (ptr *QCustom3DItem) DisconnectTextureFileChanged() {
 
 func (ptr *QCustom3DItem) TextureFileChanged(textureFile string) {
 	if ptr.Pointer() != nil {
-		var textureFileC = C.CString(textureFile)
-		defer C.free(unsafe.Pointer(textureFileC))
+		var textureFileC *C.char
+		if textureFile != "" {
+			textureFileC = C.CString(textureFile)
+			defer C.free(unsafe.Pointer(textureFileC))
+		}
 		C.QCustom3DItem_TextureFileChanged(ptr.Pointer(), textureFileC)
 	}
 }
@@ -8520,8 +8562,11 @@ func NewQCustom3DLabel(parent core.QObject_ITF) *QCustom3DLabel {
 }
 
 func NewQCustom3DLabel2(text string, font gui.QFont_ITF, position gui.QVector3D_ITF, scaling gui.QVector3D_ITF, rotation gui.QQuaternion_ITF, parent core.QObject_ITF) *QCustom3DLabel {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return NewQCustom3DLabelFromPointer(C.QCustom3DLabel_NewQCustom3DLabel2(textC, gui.PointerFromQFont(font), gui.PointerFromQVector3D(position), gui.PointerFromQVector3D(scaling), gui.PointerFromQQuaternion(rotation), core.PointerFromQObject(parent)))
 }
 
@@ -8697,8 +8742,11 @@ func (ptr *QCustom3DLabel) SetFont(font gui.QFont_ITF) {
 
 func (ptr *QCustom3DLabel) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QCustom3DLabel_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -8733,8 +8781,11 @@ func (ptr *QCustom3DLabel) DisconnectTextChanged() {
 
 func (ptr *QCustom3DLabel) TextChanged(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QCustom3DLabel_TextChanged(ptr.Pointer(), textC)
 	}
 }
@@ -9131,8 +9182,11 @@ func (ptr *QCustom3DVolume) SetSubTextureData2(axis core.Qt__Axis, index int, im
 
 func (ptr *QCustom3DVolume) SetSubTextureData(axis core.Qt__Axis, index int, data string) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		C.QCustom3DVolume_SetSubTextureData(ptr.Pointer(), C.longlong(axis), C.int(int32(index)), dataC)
 	}
 }
@@ -9726,8 +9780,11 @@ func NewQHeightMapSurfaceDataProxy2(image gui.QImage_ITF, parent core.QObject_IT
 }
 
 func NewQHeightMapSurfaceDataProxy3(filename string, parent core.QObject_ITF) *QHeightMapSurfaceDataProxy {
-	var filenameC = C.CString(filename)
-	defer C.free(unsafe.Pointer(filenameC))
+	var filenameC *C.char
+	if filename != "" {
+		filenameC = C.CString(filename)
+		defer C.free(unsafe.Pointer(filenameC))
+	}
 	return NewQHeightMapSurfaceDataProxyFromPointer(C.QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy3(filenameC, core.PointerFromQObject(parent)))
 }
 
@@ -9783,8 +9840,11 @@ func (ptr *QHeightMapSurfaceDataProxy) DisconnectHeightMapFileChanged() {
 
 func (ptr *QHeightMapSurfaceDataProxy) HeightMapFileChanged(filename string) {
 	if ptr.Pointer() != nil {
-		var filenameC = C.CString(filename)
-		defer C.free(unsafe.Pointer(filenameC))
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
 		C.QHeightMapSurfaceDataProxy_HeightMapFileChanged(ptr.Pointer(), filenameC)
 	}
 }
@@ -9909,8 +9969,11 @@ func (ptr *QHeightMapSurfaceDataProxy) SetHeightMap(image gui.QImage_ITF) {
 
 func (ptr *QHeightMapSurfaceDataProxy) SetHeightMapFile(filename string) {
 	if ptr.Pointer() != nil {
-		var filenameC = C.CString(filename)
-		defer C.free(unsafe.Pointer(filenameC))
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
 		C.QHeightMapSurfaceDataProxy_SetHeightMapFile(ptr.Pointer(), filenameC)
 	}
 }
@@ -10082,36 +10145,69 @@ func NewQItemModelBarDataProxy2(itemModel core.QAbstractItemModel_ITF, parent co
 }
 
 func NewQItemModelBarDataProxy4(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, parent core.QObject_ITF) *QItemModelBarDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var valueRoleC = C.CString(valueRole)
-	defer C.free(unsafe.Pointer(valueRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var valueRoleC *C.char
+	if valueRole != "" {
+		valueRoleC = C.CString(valueRole)
+		defer C.free(unsafe.Pointer(valueRoleC))
+	}
 	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy4(core.PointerFromQAbstractItemModel(itemModel), rowRoleC, columnRoleC, valueRoleC, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy5(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, rotationRole string, parent core.QObject_ITF) *QItemModelBarDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var valueRoleC = C.CString(valueRole)
-	defer C.free(unsafe.Pointer(valueRoleC))
-	var rotationRoleC = C.CString(rotationRole)
-	defer C.free(unsafe.Pointer(rotationRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var valueRoleC *C.char
+	if valueRole != "" {
+		valueRoleC = C.CString(valueRole)
+		defer C.free(unsafe.Pointer(valueRoleC))
+	}
+	var rotationRoleC *C.char
+	if rotationRole != "" {
+		rotationRoleC = C.CString(rotationRole)
+		defer C.free(unsafe.Pointer(rotationRoleC))
+	}
 	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy5(core.PointerFromQAbstractItemModel(itemModel), rowRoleC, columnRoleC, valueRoleC, rotationRoleC, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, rotationRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelBarDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var valueRoleC = C.CString(valueRole)
-	defer C.free(unsafe.Pointer(valueRoleC))
-	var rotationRoleC = C.CString(rotationRole)
-	defer C.free(unsafe.Pointer(rotationRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var valueRoleC *C.char
+	if valueRole != "" {
+		valueRoleC = C.CString(valueRole)
+		defer C.free(unsafe.Pointer(valueRoleC))
+	}
+	var rotationRoleC *C.char
+	if rotationRole != "" {
+		rotationRoleC = C.CString(rotationRole)
+		defer C.free(unsafe.Pointer(rotationRoleC))
+	}
 	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
@@ -10120,12 +10216,21 @@ func NewQItemModelBarDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole s
 }
 
 func NewQItemModelBarDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelBarDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var valueRoleC = C.CString(valueRole)
-	defer C.free(unsafe.Pointer(valueRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var valueRoleC *C.char
+	if valueRole != "" {
+		valueRoleC = C.CString(valueRole)
+		defer C.free(unsafe.Pointer(valueRoleC))
+	}
 	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
@@ -10134,8 +10239,11 @@ func NewQItemModelBarDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole s
 }
 
 func NewQItemModelBarDataProxy3(itemModel core.QAbstractItemModel_ITF, valueRole string, parent core.QObject_ITF) *QItemModelBarDataProxy {
-	var valueRoleC = C.CString(valueRole)
-	defer C.free(unsafe.Pointer(valueRoleC))
+	var valueRoleC *C.char
+	if valueRole != "" {
+		valueRoleC = C.CString(valueRole)
+		defer C.free(unsafe.Pointer(valueRoleC))
+	}
 	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy3(core.PointerFromQAbstractItemModel(itemModel), valueRoleC, core.PointerFromQObject(parent)))
 }
 
@@ -10145,8 +10253,11 @@ func NewQItemModelBarDataProxy(parent core.QObject_ITF) *QItemModelBarDataProxy 
 
 func (ptr *QItemModelBarDataProxy) ColumnCategoryIndex(category string) int {
 	if ptr.Pointer() != nil {
-		var categoryC = C.CString(category)
-		defer C.free(unsafe.Pointer(categoryC))
+		var categoryC *C.char
+		if category != "" {
+			categoryC = C.CString(category)
+			defer C.free(unsafe.Pointer(categoryC))
+		}
 		return int(int32(C.QItemModelBarDataProxy_ColumnCategoryIndex(ptr.Pointer(), categoryC)))
 	}
 	return 0
@@ -10154,8 +10265,11 @@ func (ptr *QItemModelBarDataProxy) ColumnCategoryIndex(category string) int {
 
 func (ptr *QItemModelBarDataProxy) RowCategoryIndex(category string) int {
 	if ptr.Pointer() != nil {
-		var categoryC = C.CString(category)
-		defer C.free(unsafe.Pointer(categoryC))
+		var categoryC *C.char
+		if category != "" {
+			categoryC = C.CString(category)
+			defer C.free(unsafe.Pointer(categoryC))
+		}
 		return int(int32(C.QItemModelBarDataProxy_RowCategoryIndex(ptr.Pointer(), categoryC)))
 	}
 	return 0
@@ -10269,8 +10383,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectColumnRoleChanged() {
 
 func (ptr *QItemModelBarDataProxy) ColumnRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_ColumnRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -10327,8 +10444,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectColumnRoleReplaceChanged() {
 
 func (ptr *QItemModelBarDataProxy) ColumnRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_ColumnRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -10391,14 +10511,26 @@ func (ptr *QItemModelBarDataProxy) MultiMatchBehaviorChanged(behavior QItemModel
 
 func (ptr *QItemModelBarDataProxy) Remap(rowRole string, columnRole string, valueRole string, rotationRole string, rowCategories []string, columnCategories []string) {
 	if ptr.Pointer() != nil {
-		var rowRoleC = C.CString(rowRole)
-		defer C.free(unsafe.Pointer(rowRoleC))
-		var columnRoleC = C.CString(columnRole)
-		defer C.free(unsafe.Pointer(columnRoleC))
-		var valueRoleC = C.CString(valueRole)
-		defer C.free(unsafe.Pointer(valueRoleC))
-		var rotationRoleC = C.CString(rotationRole)
-		defer C.free(unsafe.Pointer(rotationRoleC))
+		var rowRoleC *C.char
+		if rowRole != "" {
+			rowRoleC = C.CString(rowRole)
+			defer C.free(unsafe.Pointer(rowRoleC))
+		}
+		var columnRoleC *C.char
+		if columnRole != "" {
+			columnRoleC = C.CString(columnRole)
+			defer C.free(unsafe.Pointer(columnRoleC))
+		}
+		var valueRoleC *C.char
+		if valueRole != "" {
+			valueRoleC = C.CString(valueRole)
+			defer C.free(unsafe.Pointer(valueRoleC))
+		}
+		var rotationRoleC *C.char
+		if rotationRole != "" {
+			rotationRoleC = C.CString(rotationRole)
+			defer C.free(unsafe.Pointer(rotationRoleC))
+		}
 		var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
 		defer C.free(unsafe.Pointer(rowCategoriesC))
 		var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
@@ -10431,8 +10563,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectRotationRoleChanged() {
 
 func (ptr *QItemModelBarDataProxy) RotationRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_RotationRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -10489,8 +10624,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectRotationRoleReplaceChanged() {
 
 func (ptr *QItemModelBarDataProxy) RotationRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_RotationRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -10547,8 +10685,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectRowRoleChanged() {
 
 func (ptr *QItemModelBarDataProxy) RowRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_RowRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -10605,8 +10746,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectRowRoleReplaceChanged() {
 
 func (ptr *QItemModelBarDataProxy) RowRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_RowRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -10633,8 +10777,11 @@ func (ptr *QItemModelBarDataProxy) SetColumnCategories(categories []string) {
 
 func (ptr *QItemModelBarDataProxy) SetColumnRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_SetColumnRole(ptr.Pointer(), roleC)
 	}
 }
@@ -10647,8 +10794,11 @@ func (ptr *QItemModelBarDataProxy) SetColumnRolePattern(pattern core.QRegExp_ITF
 
 func (ptr *QItemModelBarDataProxy) SetColumnRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_SetColumnRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -10667,8 +10817,11 @@ func (ptr *QItemModelBarDataProxy) SetMultiMatchBehavior(behavior QItemModelBarD
 
 func (ptr *QItemModelBarDataProxy) SetRotationRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_SetRotationRole(ptr.Pointer(), roleC)
 	}
 }
@@ -10681,8 +10834,11 @@ func (ptr *QItemModelBarDataProxy) SetRotationRolePattern(pattern core.QRegExp_I
 
 func (ptr *QItemModelBarDataProxy) SetRotationRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_SetRotationRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -10697,8 +10853,11 @@ func (ptr *QItemModelBarDataProxy) SetRowCategories(categories []string) {
 
 func (ptr *QItemModelBarDataProxy) SetRowRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_SetRowRole(ptr.Pointer(), roleC)
 	}
 }
@@ -10711,8 +10870,11 @@ func (ptr *QItemModelBarDataProxy) SetRowRolePattern(pattern core.QRegExp_ITF) {
 
 func (ptr *QItemModelBarDataProxy) SetRowRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_SetRowRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -10725,8 +10887,11 @@ func (ptr *QItemModelBarDataProxy) SetUseModelCategories(enable bool) {
 
 func (ptr *QItemModelBarDataProxy) SetValueRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_SetValueRole(ptr.Pointer(), roleC)
 	}
 }
@@ -10739,8 +10904,11 @@ func (ptr *QItemModelBarDataProxy) SetValueRolePattern(pattern core.QRegExp_ITF)
 
 func (ptr *QItemModelBarDataProxy) SetValueRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_SetValueRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -10797,8 +10965,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectValueRoleChanged() {
 
 func (ptr *QItemModelBarDataProxy) ValueRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelBarDataProxy_ValueRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -10855,8 +11026,11 @@ func (ptr *QItemModelBarDataProxy) DisconnectValueRoleReplaceChanged() {
 
 func (ptr *QItemModelBarDataProxy) ValueRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelBarDataProxy_ValueRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -11087,24 +11261,45 @@ func NewQItemModelScatterDataProxy2(itemModel core.QAbstractItemModel_ITF, paren
 }
 
 func NewQItemModelScatterDataProxy3(itemModel core.QAbstractItemModel_ITF, xPosRole string, yPosRole string, zPosRole string, parent core.QObject_ITF) *QItemModelScatterDataProxy {
-	var xPosRoleC = C.CString(xPosRole)
-	defer C.free(unsafe.Pointer(xPosRoleC))
-	var yPosRoleC = C.CString(yPosRole)
-	defer C.free(unsafe.Pointer(yPosRoleC))
-	var zPosRoleC = C.CString(zPosRole)
-	defer C.free(unsafe.Pointer(zPosRoleC))
+	var xPosRoleC *C.char
+	if xPosRole != "" {
+		xPosRoleC = C.CString(xPosRole)
+		defer C.free(unsafe.Pointer(xPosRoleC))
+	}
+	var yPosRoleC *C.char
+	if yPosRole != "" {
+		yPosRoleC = C.CString(yPosRole)
+		defer C.free(unsafe.Pointer(yPosRoleC))
+	}
+	var zPosRoleC *C.char
+	if zPosRole != "" {
+		zPosRoleC = C.CString(zPosRole)
+		defer C.free(unsafe.Pointer(zPosRoleC))
+	}
 	return NewQItemModelScatterDataProxyFromPointer(C.QItemModelScatterDataProxy_NewQItemModelScatterDataProxy3(core.PointerFromQAbstractItemModel(itemModel), xPosRoleC, yPosRoleC, zPosRoleC, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelScatterDataProxy4(itemModel core.QAbstractItemModel_ITF, xPosRole string, yPosRole string, zPosRole string, rotationRole string, parent core.QObject_ITF) *QItemModelScatterDataProxy {
-	var xPosRoleC = C.CString(xPosRole)
-	defer C.free(unsafe.Pointer(xPosRoleC))
-	var yPosRoleC = C.CString(yPosRole)
-	defer C.free(unsafe.Pointer(yPosRoleC))
-	var zPosRoleC = C.CString(zPosRole)
-	defer C.free(unsafe.Pointer(zPosRoleC))
-	var rotationRoleC = C.CString(rotationRole)
-	defer C.free(unsafe.Pointer(rotationRoleC))
+	var xPosRoleC *C.char
+	if xPosRole != "" {
+		xPosRoleC = C.CString(xPosRole)
+		defer C.free(unsafe.Pointer(xPosRoleC))
+	}
+	var yPosRoleC *C.char
+	if yPosRole != "" {
+		yPosRoleC = C.CString(yPosRole)
+		defer C.free(unsafe.Pointer(yPosRoleC))
+	}
+	var zPosRoleC *C.char
+	if zPosRole != "" {
+		zPosRoleC = C.CString(zPosRole)
+		defer C.free(unsafe.Pointer(zPosRoleC))
+	}
+	var rotationRoleC *C.char
+	if rotationRole != "" {
+		rotationRoleC = C.CString(rotationRole)
+		defer C.free(unsafe.Pointer(rotationRoleC))
+	}
 	return NewQItemModelScatterDataProxyFromPointer(C.QItemModelScatterDataProxy_NewQItemModelScatterDataProxy4(core.PointerFromQAbstractItemModel(itemModel), xPosRoleC, yPosRoleC, zPosRoleC, rotationRoleC, core.PointerFromQObject(parent)))
 }
 
@@ -11142,14 +11337,26 @@ func (ptr *QItemModelScatterDataProxy) ItemModelChanged(itemModel core.QAbstract
 
 func (ptr *QItemModelScatterDataProxy) Remap(xPosRole string, yPosRole string, zPosRole string, rotationRole string) {
 	if ptr.Pointer() != nil {
-		var xPosRoleC = C.CString(xPosRole)
-		defer C.free(unsafe.Pointer(xPosRoleC))
-		var yPosRoleC = C.CString(yPosRole)
-		defer C.free(unsafe.Pointer(yPosRoleC))
-		var zPosRoleC = C.CString(zPosRole)
-		defer C.free(unsafe.Pointer(zPosRoleC))
-		var rotationRoleC = C.CString(rotationRole)
-		defer C.free(unsafe.Pointer(rotationRoleC))
+		var xPosRoleC *C.char
+		if xPosRole != "" {
+			xPosRoleC = C.CString(xPosRole)
+			defer C.free(unsafe.Pointer(xPosRoleC))
+		}
+		var yPosRoleC *C.char
+		if yPosRole != "" {
+			yPosRoleC = C.CString(yPosRole)
+			defer C.free(unsafe.Pointer(yPosRoleC))
+		}
+		var zPosRoleC *C.char
+		if zPosRole != "" {
+			zPosRoleC = C.CString(zPosRole)
+			defer C.free(unsafe.Pointer(zPosRoleC))
+		}
+		var rotationRoleC *C.char
+		if rotationRole != "" {
+			rotationRoleC = C.CString(rotationRole)
+			defer C.free(unsafe.Pointer(rotationRoleC))
+		}
 		C.QItemModelScatterDataProxy_Remap(ptr.Pointer(), xPosRoleC, yPosRoleC, zPosRoleC, rotationRoleC)
 	}
 }
@@ -11178,8 +11385,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectRotationRoleChanged() {
 
 func (ptr *QItemModelScatterDataProxy) RotationRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_RotationRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -11236,8 +11446,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectRotationRoleReplaceChanged() {
 
 func (ptr *QItemModelScatterDataProxy) RotationRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_RotationRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -11250,8 +11463,11 @@ func (ptr *QItemModelScatterDataProxy) SetItemModel(itemModel core.QAbstractItem
 
 func (ptr *QItemModelScatterDataProxy) SetRotationRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_SetRotationRole(ptr.Pointer(), roleC)
 	}
 }
@@ -11264,16 +11480,22 @@ func (ptr *QItemModelScatterDataProxy) SetRotationRolePattern(pattern core.QRegE
 
 func (ptr *QItemModelScatterDataProxy) SetRotationRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_SetRotationRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
 
 func (ptr *QItemModelScatterDataProxy) SetXPosRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_SetXPosRole(ptr.Pointer(), roleC)
 	}
 }
@@ -11286,16 +11508,22 @@ func (ptr *QItemModelScatterDataProxy) SetXPosRolePattern(pattern core.QRegExp_I
 
 func (ptr *QItemModelScatterDataProxy) SetXPosRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_SetXPosRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
 
 func (ptr *QItemModelScatterDataProxy) SetYPosRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_SetYPosRole(ptr.Pointer(), roleC)
 	}
 }
@@ -11308,16 +11536,22 @@ func (ptr *QItemModelScatterDataProxy) SetYPosRolePattern(pattern core.QRegExp_I
 
 func (ptr *QItemModelScatterDataProxy) SetYPosRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_SetYPosRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
 
 func (ptr *QItemModelScatterDataProxy) SetZPosRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_SetZPosRole(ptr.Pointer(), roleC)
 	}
 }
@@ -11330,8 +11564,11 @@ func (ptr *QItemModelScatterDataProxy) SetZPosRolePattern(pattern core.QRegExp_I
 
 func (ptr *QItemModelScatterDataProxy) SetZPosRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_SetZPosRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -11360,8 +11597,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectXPosRoleChanged() {
 
 func (ptr *QItemModelScatterDataProxy) XPosRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_XPosRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -11418,8 +11658,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectXPosRoleReplaceChanged() {
 
 func (ptr *QItemModelScatterDataProxy) XPosRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_XPosRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -11448,8 +11691,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectYPosRoleChanged() {
 
 func (ptr *QItemModelScatterDataProxy) YPosRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_YPosRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -11506,8 +11752,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectYPosRoleReplaceChanged() {
 
 func (ptr *QItemModelScatterDataProxy) YPosRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_YPosRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -11536,8 +11785,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectZPosRoleChanged() {
 
 func (ptr *QItemModelScatterDataProxy) ZPosRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelScatterDataProxy_ZPosRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -11594,8 +11846,11 @@ func (ptr *QItemModelScatterDataProxy) DisconnectZPosRoleReplaceChanged() {
 
 func (ptr *QItemModelScatterDataProxy) ZPosRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelScatterDataProxy_ZPosRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -11796,30 +12051,60 @@ func NewQItemModelSurfaceDataProxy2(itemModel core.QAbstractItemModel_ITF, paren
 }
 
 func NewQItemModelSurfaceDataProxy5(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, xPosRole string, yPosRole string, zPosRole string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var xPosRoleC = C.CString(xPosRole)
-	defer C.free(unsafe.Pointer(xPosRoleC))
-	var yPosRoleC = C.CString(yPosRole)
-	defer C.free(unsafe.Pointer(yPosRoleC))
-	var zPosRoleC = C.CString(zPosRole)
-	defer C.free(unsafe.Pointer(zPosRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var xPosRoleC *C.char
+	if xPosRole != "" {
+		xPosRoleC = C.CString(xPosRole)
+		defer C.free(unsafe.Pointer(xPosRoleC))
+	}
+	var yPosRoleC *C.char
+	if yPosRole != "" {
+		yPosRoleC = C.CString(yPosRole)
+		defer C.free(unsafe.Pointer(yPosRoleC))
+	}
+	var zPosRoleC *C.char
+	if zPosRole != "" {
+		zPosRoleC = C.CString(zPosRole)
+		defer C.free(unsafe.Pointer(zPosRoleC))
+	}
 	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy5(core.PointerFromQAbstractItemModel(itemModel), rowRoleC, columnRoleC, xPosRoleC, yPosRoleC, zPosRoleC, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, xPosRole string, yPosRole string, zPosRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var xPosRoleC = C.CString(xPosRole)
-	defer C.free(unsafe.Pointer(xPosRoleC))
-	var yPosRoleC = C.CString(yPosRole)
-	defer C.free(unsafe.Pointer(yPosRoleC))
-	var zPosRoleC = C.CString(zPosRole)
-	defer C.free(unsafe.Pointer(zPosRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var xPosRoleC *C.char
+	if xPosRole != "" {
+		xPosRoleC = C.CString(xPosRole)
+		defer C.free(unsafe.Pointer(xPosRoleC))
+	}
+	var yPosRoleC *C.char
+	if yPosRole != "" {
+		yPosRoleC = C.CString(yPosRole)
+		defer C.free(unsafe.Pointer(yPosRoleC))
+	}
+	var zPosRoleC *C.char
+	if zPosRole != "" {
+		zPosRoleC = C.CString(zPosRole)
+		defer C.free(unsafe.Pointer(zPosRoleC))
+	}
 	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
@@ -11828,22 +12113,40 @@ func NewQItemModelSurfaceDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRo
 }
 
 func NewQItemModelSurfaceDataProxy4(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, yPosRole string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var yPosRoleC = C.CString(yPosRole)
-	defer C.free(unsafe.Pointer(yPosRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var yPosRoleC *C.char
+	if yPosRole != "" {
+		yPosRoleC = C.CString(yPosRole)
+		defer C.free(unsafe.Pointer(yPosRoleC))
+	}
 	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy4(core.PointerFromQAbstractItemModel(itemModel), rowRoleC, columnRoleC, yPosRoleC, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, yPosRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
-	var rowRoleC = C.CString(rowRole)
-	defer C.free(unsafe.Pointer(rowRoleC))
-	var columnRoleC = C.CString(columnRole)
-	defer C.free(unsafe.Pointer(columnRoleC))
-	var yPosRoleC = C.CString(yPosRole)
-	defer C.free(unsafe.Pointer(yPosRoleC))
+	var rowRoleC *C.char
+	if rowRole != "" {
+		rowRoleC = C.CString(rowRole)
+		defer C.free(unsafe.Pointer(rowRoleC))
+	}
+	var columnRoleC *C.char
+	if columnRole != "" {
+		columnRoleC = C.CString(columnRole)
+		defer C.free(unsafe.Pointer(columnRoleC))
+	}
+	var yPosRoleC *C.char
+	if yPosRole != "" {
+		yPosRoleC = C.CString(yPosRole)
+		defer C.free(unsafe.Pointer(yPosRoleC))
+	}
 	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
@@ -11852,8 +12155,11 @@ func NewQItemModelSurfaceDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRo
 }
 
 func NewQItemModelSurfaceDataProxy3(itemModel core.QAbstractItemModel_ITF, yPosRole string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
-	var yPosRoleC = C.CString(yPosRole)
-	defer C.free(unsafe.Pointer(yPosRoleC))
+	var yPosRoleC *C.char
+	if yPosRole != "" {
+		yPosRoleC = C.CString(yPosRole)
+		defer C.free(unsafe.Pointer(yPosRoleC))
+	}
 	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy3(core.PointerFromQAbstractItemModel(itemModel), yPosRoleC, core.PointerFromQObject(parent)))
 }
 
@@ -11863,8 +12169,11 @@ func NewQItemModelSurfaceDataProxy(parent core.QObject_ITF) *QItemModelSurfaceDa
 
 func (ptr *QItemModelSurfaceDataProxy) ColumnCategoryIndex(category string) int {
 	if ptr.Pointer() != nil {
-		var categoryC = C.CString(category)
-		defer C.free(unsafe.Pointer(categoryC))
+		var categoryC *C.char
+		if category != "" {
+			categoryC = C.CString(category)
+			defer C.free(unsafe.Pointer(categoryC))
+		}
 		return int(int32(C.QItemModelSurfaceDataProxy_ColumnCategoryIndex(ptr.Pointer(), categoryC)))
 	}
 	return 0
@@ -11872,8 +12181,11 @@ func (ptr *QItemModelSurfaceDataProxy) ColumnCategoryIndex(category string) int 
 
 func (ptr *QItemModelSurfaceDataProxy) RowCategoryIndex(category string) int {
 	if ptr.Pointer() != nil {
-		var categoryC = C.CString(category)
-		defer C.free(unsafe.Pointer(categoryC))
+		var categoryC *C.char
+		if category != "" {
+			categoryC = C.CString(category)
+			defer C.free(unsafe.Pointer(categoryC))
+		}
 		return int(int32(C.QItemModelSurfaceDataProxy_RowCategoryIndex(ptr.Pointer(), categoryC)))
 	}
 	return 0
@@ -11987,8 +12299,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectColumnRoleChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) ColumnRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_ColumnRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -12045,8 +12360,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectColumnRoleReplaceChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) ColumnRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_ColumnRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -12109,16 +12427,31 @@ func (ptr *QItemModelSurfaceDataProxy) MultiMatchBehaviorChanged(behavior QItemM
 
 func (ptr *QItemModelSurfaceDataProxy) Remap(rowRole string, columnRole string, xPosRole string, yPosRole string, zPosRole string, rowCategories []string, columnCategories []string) {
 	if ptr.Pointer() != nil {
-		var rowRoleC = C.CString(rowRole)
-		defer C.free(unsafe.Pointer(rowRoleC))
-		var columnRoleC = C.CString(columnRole)
-		defer C.free(unsafe.Pointer(columnRoleC))
-		var xPosRoleC = C.CString(xPosRole)
-		defer C.free(unsafe.Pointer(xPosRoleC))
-		var yPosRoleC = C.CString(yPosRole)
-		defer C.free(unsafe.Pointer(yPosRoleC))
-		var zPosRoleC = C.CString(zPosRole)
-		defer C.free(unsafe.Pointer(zPosRoleC))
+		var rowRoleC *C.char
+		if rowRole != "" {
+			rowRoleC = C.CString(rowRole)
+			defer C.free(unsafe.Pointer(rowRoleC))
+		}
+		var columnRoleC *C.char
+		if columnRole != "" {
+			columnRoleC = C.CString(columnRole)
+			defer C.free(unsafe.Pointer(columnRoleC))
+		}
+		var xPosRoleC *C.char
+		if xPosRole != "" {
+			xPosRoleC = C.CString(xPosRole)
+			defer C.free(unsafe.Pointer(xPosRoleC))
+		}
+		var yPosRoleC *C.char
+		if yPosRole != "" {
+			yPosRoleC = C.CString(yPosRole)
+			defer C.free(unsafe.Pointer(yPosRoleC))
+		}
+		var zPosRoleC *C.char
+		if zPosRole != "" {
+			zPosRoleC = C.CString(zPosRole)
+			defer C.free(unsafe.Pointer(zPosRoleC))
+		}
 		var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
 		defer C.free(unsafe.Pointer(rowCategoriesC))
 		var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
@@ -12179,8 +12512,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectRowRoleChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) RowRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_RowRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -12237,8 +12573,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectRowRoleReplaceChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) RowRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_RowRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -12265,8 +12604,11 @@ func (ptr *QItemModelSurfaceDataProxy) SetColumnCategories(categories []string) 
 
 func (ptr *QItemModelSurfaceDataProxy) SetColumnRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_SetColumnRole(ptr.Pointer(), roleC)
 	}
 }
@@ -12279,8 +12621,11 @@ func (ptr *QItemModelSurfaceDataProxy) SetColumnRolePattern(pattern core.QRegExp
 
 func (ptr *QItemModelSurfaceDataProxy) SetColumnRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_SetColumnRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -12307,8 +12652,11 @@ func (ptr *QItemModelSurfaceDataProxy) SetRowCategories(categories []string) {
 
 func (ptr *QItemModelSurfaceDataProxy) SetRowRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_SetRowRole(ptr.Pointer(), roleC)
 	}
 }
@@ -12321,8 +12669,11 @@ func (ptr *QItemModelSurfaceDataProxy) SetRowRolePattern(pattern core.QRegExp_IT
 
 func (ptr *QItemModelSurfaceDataProxy) SetRowRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_SetRowRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -12335,8 +12686,11 @@ func (ptr *QItemModelSurfaceDataProxy) SetUseModelCategories(enable bool) {
 
 func (ptr *QItemModelSurfaceDataProxy) SetXPosRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_SetXPosRole(ptr.Pointer(), roleC)
 	}
 }
@@ -12349,16 +12703,22 @@ func (ptr *QItemModelSurfaceDataProxy) SetXPosRolePattern(pattern core.QRegExp_I
 
 func (ptr *QItemModelSurfaceDataProxy) SetXPosRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_SetXPosRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
 
 func (ptr *QItemModelSurfaceDataProxy) SetYPosRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_SetYPosRole(ptr.Pointer(), roleC)
 	}
 }
@@ -12371,16 +12731,22 @@ func (ptr *QItemModelSurfaceDataProxy) SetYPosRolePattern(pattern core.QRegExp_I
 
 func (ptr *QItemModelSurfaceDataProxy) SetYPosRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_SetYPosRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
 
 func (ptr *QItemModelSurfaceDataProxy) SetZPosRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_SetZPosRole(ptr.Pointer(), roleC)
 	}
 }
@@ -12393,8 +12759,11 @@ func (ptr *QItemModelSurfaceDataProxy) SetZPosRolePattern(pattern core.QRegExp_I
 
 func (ptr *QItemModelSurfaceDataProxy) SetZPosRoleReplace(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_SetZPosRoleReplace(ptr.Pointer(), replaceC)
 	}
 }
@@ -12451,8 +12820,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectXPosRoleChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) XPosRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_XPosRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -12509,8 +12881,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectXPosRoleReplaceChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) XPosRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_XPosRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -12539,8 +12914,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectYPosRoleChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) YPosRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_YPosRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -12597,8 +12975,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectYPosRoleReplaceChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) YPosRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_YPosRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -12627,8 +13008,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectZPosRoleChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) ZPosRoleChanged(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QItemModelSurfaceDataProxy_ZPosRoleChanged(ptr.Pointer(), roleC)
 	}
 }
@@ -12685,8 +13069,11 @@ func (ptr *QItemModelSurfaceDataProxy) DisconnectZPosRoleReplaceChanged() {
 
 func (ptr *QItemModelSurfaceDataProxy) ZPosRoleReplaceChanged(replace string) {
 	if ptr.Pointer() != nil {
-		var replaceC = C.CString(replace)
-		defer C.free(unsafe.Pointer(replaceC))
+		var replaceC *C.char
+		if replace != "" {
+			replaceC = C.CString(replace)
+			defer C.free(unsafe.Pointer(replaceC))
+		}
 		C.QItemModelSurfaceDataProxy_ZPosRoleReplaceChanged(ptr.Pointer(), replaceC)
 	}
 }
@@ -14015,8 +14402,11 @@ func (ptr *QSurface3DSeries) SetTexture(texture gui.QImage_ITF) {
 
 func (ptr *QSurface3DSeries) SetTextureFile(filename string) {
 	if ptr.Pointer() != nil {
-		var filenameC = C.CString(filename)
-		defer C.free(unsafe.Pointer(filenameC))
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
 		C.QSurface3DSeries_SetTextureFile(ptr.Pointer(), filenameC)
 	}
 }
@@ -14073,8 +14463,11 @@ func (ptr *QSurface3DSeries) DisconnectTextureFileChanged() {
 
 func (ptr *QSurface3DSeries) TextureFileChanged(filename string) {
 	if ptr.Pointer() != nil {
-		var filenameC = C.CString(filename)
-		defer C.free(unsafe.Pointer(filenameC))
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
 		C.QSurface3DSeries_TextureFileChanged(ptr.Pointer(), filenameC)
 	}
 }
@@ -14880,8 +15273,11 @@ func (ptr *QValue3DAxis) DisconnectLabelFormatChanged() {
 
 func (ptr *QValue3DAxis) LabelFormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QValue3DAxis_LabelFormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -14950,8 +15346,11 @@ func (ptr *QValue3DAxis) SetFormatter(formatter QValue3DAxisFormatter_ITF) {
 
 func (ptr *QValue3DAxis) SetLabelFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QValue3DAxis_SetLabelFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -15249,8 +15648,11 @@ func (ptr *QValue3DAxisFormatter) DisconnectStringForValue() {
 
 func (ptr *QValue3DAxisFormatter) StringForValue(value float64, format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QValue3DAxisFormatter_StringForValue(ptr.Pointer(), C.double(value), formatC))
 	}
 	return ""
@@ -15258,8 +15660,11 @@ func (ptr *QValue3DAxisFormatter) StringForValue(value float64, format string) s
 
 func (ptr *QValue3DAxisFormatter) StringForValueDefault(value float64, format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QValue3DAxisFormatter_StringForValueDefault(ptr.Pointer(), C.double(value), formatC))
 	}
 	return ""

@@ -80,25 +80,37 @@ func (ptr *QQuickStyle) Path() string {
 }
 
 func QQuickStyle_SetFallbackStyle(style string) {
-	var styleC = C.CString(style)
-	defer C.free(unsafe.Pointer(styleC))
+	var styleC *C.char
+	if style != "" {
+		styleC = C.CString(style)
+		defer C.free(unsafe.Pointer(styleC))
+	}
 	C.QQuickStyle_QQuickStyle_SetFallbackStyle(styleC)
 }
 
 func (ptr *QQuickStyle) SetFallbackStyle(style string) {
-	var styleC = C.CString(style)
-	defer C.free(unsafe.Pointer(styleC))
+	var styleC *C.char
+	if style != "" {
+		styleC = C.CString(style)
+		defer C.free(unsafe.Pointer(styleC))
+	}
 	C.QQuickStyle_QQuickStyle_SetFallbackStyle(styleC)
 }
 
 func QQuickStyle_SetStyle(style string) {
-	var styleC = C.CString(style)
-	defer C.free(unsafe.Pointer(styleC))
+	var styleC *C.char
+	if style != "" {
+		styleC = C.CString(style)
+		defer C.free(unsafe.Pointer(styleC))
+	}
 	C.QQuickStyle_QQuickStyle_SetStyle(styleC)
 }
 
 func (ptr *QQuickStyle) SetStyle(style string) {
-	var styleC = C.CString(style)
-	defer C.free(unsafe.Pointer(styleC))
+	var styleC *C.char
+	if style != "" {
+		styleC = C.CString(style)
+		defer C.free(unsafe.Pointer(styleC))
+	}
 	C.QQuickStyle_QQuickStyle_SetStyle(styleC)
 }

@@ -217,8 +217,11 @@ func (ptr *QHelpContentModel) ContentsCreationStarted() {
 
 func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
 	if ptr.Pointer() != nil {
-		var customFilterNameC = C.CString(customFilterName)
-		defer C.free(unsafe.Pointer(customFilterNameC))
+		var customFilterNameC *C.char
+		if customFilterName != "" {
+			customFilterNameC = C.CString(customFilterName)
+			defer C.free(unsafe.Pointer(customFilterNameC))
+		}
 		C.QHelpContentModel_CreateContents(ptr.Pointer(), customFilterNameC)
 	}
 }
@@ -2353,8 +2356,11 @@ func callbackQHelpContentWidget_KeyboardSearch(ptr unsafe.Pointer, search C.stru
 
 func (ptr *QHelpContentWidget) KeyboardSearchDefault(search string) {
 	if ptr.Pointer() != nil {
-		var searchC = C.CString(search)
-		defer C.free(unsafe.Pointer(searchC))
+		var searchC *C.char
+		if search != "" {
+			searchC = C.CString(search)
+			defer C.free(unsafe.Pointer(searchC))
+		}
 		C.QHelpContentWidget_KeyboardSearchDefault(ptr.Pointer(), searchC)
 	}
 }
@@ -3639,8 +3645,11 @@ func callbackQHelpContentWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.s
 
 func (ptr *QHelpContentWidget) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QHelpContentWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -3686,8 +3695,11 @@ func callbackQHelpContentWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_
 
 func (ptr *QHelpContentWidget) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QHelpContentWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -4067,8 +4079,11 @@ func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
 }
 
 func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine {
-	var collectionFileC = C.CString(collectionFile)
-	defer C.free(unsafe.Pointer(collectionFileC))
+	var collectionFileC *C.char
+	if collectionFile != "" {
+		collectionFileC = C.CString(collectionFile)
+		defer C.free(unsafe.Pointer(collectionFileC))
+	}
 	var tmpValue = NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(collectionFileC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -4167,8 +4182,11 @@ func NewQHelpEngineCoreFromPointer(ptr unsafe.Pointer) *QHelpEngineCore {
 	return n
 }
 func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEngineCore {
-	var collectionFileC = C.CString(collectionFile)
-	defer C.free(unsafe.Pointer(collectionFileC))
+	var collectionFileC *C.char
+	if collectionFile != "" {
+		collectionFileC = C.CString(collectionFile)
+		defer C.free(unsafe.Pointer(collectionFileC))
+	}
 	var tmpValue = NewQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(collectionFileC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -4178,12 +4196,18 @@ func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEn
 
 func (ptr *QHelpEngineCore) Files(namespaceName string, filterAttributes []string, extensionFilter string) []*core.QUrl {
 	if ptr.Pointer() != nil {
-		var namespaceNameC = C.CString(namespaceName)
-		defer C.free(unsafe.Pointer(namespaceNameC))
+		var namespaceNameC *C.char
+		if namespaceName != "" {
+			namespaceNameC = C.CString(namespaceName)
+			defer C.free(unsafe.Pointer(namespaceNameC))
+		}
 		var filterAttributesC = C.CString(strings.Join(filterAttributes, "|"))
 		defer C.free(unsafe.Pointer(filterAttributesC))
-		var extensionFilterC = C.CString(extensionFilter)
-		defer C.free(unsafe.Pointer(extensionFilterC))
+		var extensionFilterC *C.char
+		if extensionFilter != "" {
+			extensionFilterC = C.CString(extensionFilter)
+			defer C.free(unsafe.Pointer(extensionFilterC))
+		}
 		return func(l C.struct_QtHelp_PackedList) []*core.QUrl {
 			var out = make([]*core.QUrl, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -4197,40 +4221,61 @@ func (ptr *QHelpEngineCore) Files(namespaceName string, filterAttributes []strin
 
 func (ptr *QHelpEngineCore) DocumentationFileName(namespaceName string) string {
 	if ptr.Pointer() != nil {
-		var namespaceNameC = C.CString(namespaceName)
-		defer C.free(unsafe.Pointer(namespaceNameC))
+		var namespaceNameC *C.char
+		if namespaceName != "" {
+			namespaceNameC = C.CString(namespaceName)
+			defer C.free(unsafe.Pointer(namespaceNameC))
+		}
 		return cGoUnpackString(C.QHelpEngineCore_DocumentationFileName(ptr.Pointer(), namespaceNameC))
 	}
 	return ""
 }
 
 func QHelpEngineCore_NamespaceName(documentationFileName string) string {
-	var documentationFileNameC = C.CString(documentationFileName)
-	defer C.free(unsafe.Pointer(documentationFileNameC))
+	var documentationFileNameC *C.char
+	if documentationFileName != "" {
+		documentationFileNameC = C.CString(documentationFileName)
+		defer C.free(unsafe.Pointer(documentationFileNameC))
+	}
 	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
 }
 
 func (ptr *QHelpEngineCore) NamespaceName(documentationFileName string) string {
-	var documentationFileNameC = C.CString(documentationFileName)
-	defer C.free(unsafe.Pointer(documentationFileNameC))
+	var documentationFileNameC *C.char
+	if documentationFileName != "" {
+		documentationFileNameC = C.CString(documentationFileName)
+		defer C.free(unsafe.Pointer(documentationFileNameC))
+	}
 	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
 }
 
 func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.QVariant {
-	var documentationFileNameC = C.CString(documentationFileName)
-	defer C.free(unsafe.Pointer(documentationFileNameC))
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var documentationFileNameC *C.char
+	if documentationFileName != "" {
+		documentationFileNameC = C.CString(documentationFileName)
+		defer C.free(unsafe.Pointer(documentationFileNameC))
+	}
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(documentationFileNameC, nameC))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func (ptr *QHelpEngineCore) MetaData(documentationFileName string, name string) *core.QVariant {
-	var documentationFileNameC = C.CString(documentationFileName)
-	defer C.free(unsafe.Pointer(documentationFileNameC))
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var documentationFileNameC *C.char
+	if documentationFileName != "" {
+		documentationFileNameC = C.CString(documentationFileName)
+		defer C.free(unsafe.Pointer(documentationFileNameC))
+	}
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(documentationFileNameC, nameC))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
@@ -4238,8 +4283,11 @@ func (ptr *QHelpEngineCore) MetaData(documentationFileName string, name string) 
 
 func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []string) bool {
 	if ptr.Pointer() != nil {
-		var filterNameC = C.CString(filterName)
-		defer C.free(unsafe.Pointer(filterNameC))
+		var filterNameC *C.char
+		if filterName != "" {
+			filterNameC = C.CString(filterName)
+			defer C.free(unsafe.Pointer(filterNameC))
+		}
 		var attributesC = C.CString(strings.Join(attributes, "|"))
 		defer C.free(unsafe.Pointer(attributesC))
 		return C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), filterNameC, attributesC) != 0
@@ -4249,8 +4297,11 @@ func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []stri
 
 func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return C.QHelpEngineCore_CopyCollectionFile(ptr.Pointer(), fileNameC) != 0
 	}
 	return false
@@ -4258,8 +4309,11 @@ func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 
 func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) bool {
 	if ptr.Pointer() != nil {
-		var documentationFileNameC = C.CString(documentationFileName)
-		defer C.free(unsafe.Pointer(documentationFileNameC))
+		var documentationFileNameC *C.char
+		if documentationFileName != "" {
+			documentationFileNameC = C.CString(documentationFileName)
+			defer C.free(unsafe.Pointer(documentationFileNameC))
+		}
 		return C.QHelpEngineCore_RegisterDocumentation(ptr.Pointer(), documentationFileNameC) != 0
 	}
 	return false
@@ -4267,8 +4321,11 @@ func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) 
 
 func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
 	if ptr.Pointer() != nil {
-		var filterNameC = C.CString(filterName)
-		defer C.free(unsafe.Pointer(filterNameC))
+		var filterNameC *C.char
+		if filterName != "" {
+			filterNameC = C.CString(filterName)
+			defer C.free(unsafe.Pointer(filterNameC))
+		}
 		return C.QHelpEngineCore_RemoveCustomFilter(ptr.Pointer(), filterNameC) != 0
 	}
 	return false
@@ -4276,8 +4333,11 @@ func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
 
 func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return C.QHelpEngineCore_RemoveCustomValue(ptr.Pointer(), keyC) != 0
 	}
 	return false
@@ -4285,8 +4345,11 @@ func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
 
 func (ptr *QHelpEngineCore) SetCustomValue(key string, value core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return C.QHelpEngineCore_SetCustomValue(ptr.Pointer(), keyC, core.PointerFromQVariant(value)) != 0
 	}
 	return false
@@ -4301,8 +4364,11 @@ func (ptr *QHelpEngineCore) SetupData() bool {
 
 func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
 	if ptr.Pointer() != nil {
-		var namespaceNameC = C.CString(namespaceName)
-		defer C.free(unsafe.Pointer(namespaceNameC))
+		var namespaceNameC *C.char
+		if namespaceName != "" {
+			namespaceNameC = C.CString(namespaceName)
+			defer C.free(unsafe.Pointer(namespaceNameC))
+		}
 		return C.QHelpEngineCore_UnregisterDocumentation(ptr.Pointer(), namespaceNameC) != 0
 	}
 	return false
@@ -4332,8 +4398,11 @@ func (ptr *QHelpEngineCore) DisconnectCurrentFilterChanged() {
 
 func (ptr *QHelpEngineCore) CurrentFilterChanged(newFilter string) {
 	if ptr.Pointer() != nil {
-		var newFilterC = C.CString(newFilter)
-		defer C.free(unsafe.Pointer(newFilterC))
+		var newFilterC *C.char
+		if newFilter != "" {
+			newFilterC = C.CString(newFilter)
+			defer C.free(unsafe.Pointer(newFilterC))
+		}
 		C.QHelpEngineCore_CurrentFilterChanged(ptr.Pointer(), newFilterC)
 	}
 }
@@ -4374,16 +4443,22 @@ func (ptr *QHelpEngineCore) SetAutoSaveFilter(save bool) {
 
 func (ptr *QHelpEngineCore) SetCollectionFile(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QHelpEngineCore_SetCollectionFile(ptr.Pointer(), fileNameC)
 	}
 }
 
 func (ptr *QHelpEngineCore) SetCurrentFilter(filterName string) {
 	if ptr.Pointer() != nil {
-		var filterNameC = C.CString(filterName)
-		defer C.free(unsafe.Pointer(filterNameC))
+		var filterNameC *C.char
+		if filterName != "" {
+			filterNameC = C.CString(filterName)
+			defer C.free(unsafe.Pointer(filterNameC))
+		}
 		C.QHelpEngineCore_SetCurrentFilter(ptr.Pointer(), filterNameC)
 	}
 }
@@ -4468,8 +4543,11 @@ func (ptr *QHelpEngineCore) DisconnectWarning() {
 
 func (ptr *QHelpEngineCore) Warning(msg string) {
 	if ptr.Pointer() != nil {
-		var msgC = C.CString(msg)
-		defer C.free(unsafe.Pointer(msgC))
+		var msgC *C.char
+		if msg != "" {
+			msgC = C.CString(msg)
+			defer C.free(unsafe.Pointer(msgC))
+		}
 		C.QHelpEngineCore_Warning(ptr.Pointer(), msgC)
 	}
 }
@@ -4524,8 +4602,11 @@ func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) *core.QByteArray {
 
 func (ptr *QHelpEngineCore) LinksForIdentifier(id string) map[string]*core.QUrl {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		return func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
 			var out = make(map[string]*core.QUrl, int(l.len))
 			for _, i := range NewQHelpEngineCoreFromPointer(l.data).__linksForIdentifier_keyList() {
@@ -4574,8 +4655,11 @@ func (ptr *QHelpEngineCore) FilterAttributes() []string {
 
 func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
 	if ptr.Pointer() != nil {
-		var filterNameC = C.CString(filterName)
-		defer C.free(unsafe.Pointer(filterNameC))
+		var filterNameC *C.char
+		if filterName != "" {
+			filterNameC = C.CString(filterName)
+			defer C.free(unsafe.Pointer(filterNameC))
+		}
 		return strings.Split(cGoUnpackString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), filterNameC)), "|")
 	}
 	return make([]string, 0)
@@ -4599,8 +4683,11 @@ func (ptr *QHelpEngineCore) FindFile(url core.QUrl_ITF) *core.QUrl {
 
 func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_CustomValue(ptr.Pointer(), keyC, core.PointerFromQVariant(defaultValue)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -4655,8 +4742,11 @@ func (ptr *QHelpEngineCore) __filterAttributeSets_newList() unsafe.Pointer {
 
 func (ptr *QHelpEngineCore) __linksForIdentifier_atList(i string) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore___linksForIdentifier_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
@@ -4666,8 +4756,11 @@ func (ptr *QHelpEngineCore) __linksForIdentifier_atList(i string) *core.QUrl {
 
 func (ptr *QHelpEngineCore) __linksForIdentifier_setList(key string, i core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QHelpEngineCore___linksForIdentifier_setList(ptr.Pointer(), keyC, core.PointerFromQUrl(i))
 	}
 }
@@ -4698,8 +4791,11 @@ func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_atList(i int) string 
 
 func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QHelpEngineCore_____linksForIdentifier_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -5016,10 +5112,16 @@ func (ptr *QHelpIndexModel) DestroyQHelpIndexModel() {
 
 func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
-		var wildcardC = C.CString(wildcard)
-		defer C.free(unsafe.Pointer(wildcardC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
+		var wildcardC *C.char
+		if wildcard != "" {
+			wildcardC = C.CString(wildcard)
+			defer C.free(unsafe.Pointer(wildcardC))
+		}
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Filter(ptr.Pointer(), filterC, wildcardC))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
@@ -5029,8 +5131,11 @@ func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelI
 
 func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
 	if ptr.Pointer() != nil {
-		var customFilterNameC = C.CString(customFilterName)
-		defer C.free(unsafe.Pointer(customFilterNameC))
+		var customFilterNameC *C.char
+		if customFilterName != "" {
+			customFilterNameC = C.CString(customFilterName)
+			defer C.free(unsafe.Pointer(customFilterNameC))
+		}
 		C.QHelpIndexModel_CreateIndex(ptr.Pointer(), customFilterNameC)
 	}
 }
@@ -5093,8 +5198,11 @@ func (ptr *QHelpIndexModel) IndexCreationStarted() {
 
 func (ptr *QHelpIndexModel) LinksForKeyword(keyword string) map[string]*core.QUrl {
 	if ptr.Pointer() != nil {
-		var keywordC = C.CString(keyword)
-		defer C.free(unsafe.Pointer(keywordC))
+		var keywordC *C.char
+		if keyword != "" {
+			keywordC = C.CString(keyword)
+			defer C.free(unsafe.Pointer(keywordC))
+		}
 		return func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
 			var out = make(map[string]*core.QUrl, int(l.len))
 			for _, i := range NewQHelpIndexModelFromPointer(l.data).__linksForKeyword_keyList() {
@@ -5115,8 +5223,11 @@ func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
 
 func (ptr *QHelpIndexModel) __linksForKeyword_atList(i string) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQUrlFromPointer(C.QHelpIndexModel___linksForKeyword_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
@@ -5126,8 +5237,11 @@ func (ptr *QHelpIndexModel) __linksForKeyword_atList(i string) *core.QUrl {
 
 func (ptr *QHelpIndexModel) __linksForKeyword_setList(key string, i core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QHelpIndexModel___linksForKeyword_setList(ptr.Pointer(), keyC, core.PointerFromQUrl(i))
 	}
 }
@@ -5158,8 +5272,11 @@ func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_atList(i int) string {
 
 func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QHelpIndexModel_____linksForKeyword_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -6691,20 +6808,32 @@ func (ptr *QHelpIndexWidget) DisconnectFilterIndices() {
 
 func (ptr *QHelpIndexWidget) FilterIndices(filter string, wildcard string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
-		var wildcardC = C.CString(wildcard)
-		defer C.free(unsafe.Pointer(wildcardC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
+		var wildcardC *C.char
+		if wildcard != "" {
+			wildcardC = C.CString(wildcard)
+			defer C.free(unsafe.Pointer(wildcardC))
+		}
 		C.QHelpIndexWidget_FilterIndices(ptr.Pointer(), filterC, wildcardC)
 	}
 }
 
 func (ptr *QHelpIndexWidget) FilterIndicesDefault(filter string, wildcard string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
-		var wildcardC = C.CString(wildcard)
-		defer C.free(unsafe.Pointer(wildcardC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
+		var wildcardC *C.char
+		if wildcard != "" {
+			wildcardC = C.CString(wildcard)
+			defer C.free(unsafe.Pointer(wildcardC))
+		}
 		C.QHelpIndexWidget_FilterIndicesDefault(ptr.Pointer(), filterC, wildcardC)
 	}
 }
@@ -6733,8 +6862,11 @@ func (ptr *QHelpIndexWidget) DisconnectLinkActivated() {
 
 func (ptr *QHelpIndexWidget) LinkActivated(link core.QUrl_ITF, keyword string) {
 	if ptr.Pointer() != nil {
-		var keywordC = C.CString(keyword)
-		defer C.free(unsafe.Pointer(keywordC))
+		var keywordC *C.char
+		if keyword != "" {
+			keywordC = C.CString(keyword)
+			defer C.free(unsafe.Pointer(keywordC))
+		}
 		C.QHelpIndexWidget_LinkActivated(ptr.Pointer(), core.PointerFromQUrl(link), keywordC)
 	}
 }
@@ -6769,8 +6901,11 @@ func (ptr *QHelpIndexWidget) DisconnectLinksActivated() {
 
 func (ptr *QHelpIndexWidget) LinksActivated(links map[string]*core.QUrl, keyword string) {
 	if ptr.Pointer() != nil {
-		var keywordC = C.CString(keyword)
-		defer C.free(unsafe.Pointer(keywordC))
+		var keywordC *C.char
+		if keyword != "" {
+			keywordC = C.CString(keyword)
+			defer C.free(unsafe.Pointer(keywordC))
+		}
 		C.QHelpIndexWidget_LinksActivated(ptr.Pointer(), func() unsafe.Pointer {
 			var tmpList = NewQHelpIndexWidgetFromPointer(NewQHelpIndexWidgetFromPointer(nil).__linksActivated_links_newList())
 			for k, v := range links {
@@ -6783,8 +6918,11 @@ func (ptr *QHelpIndexWidget) LinksActivated(links map[string]*core.QUrl, keyword
 
 func (ptr *QHelpIndexWidget) __linksActivated_links_atList(i string) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQUrlFromPointer(C.QHelpIndexWidget___linksActivated_links_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
@@ -6794,8 +6932,11 @@ func (ptr *QHelpIndexWidget) __linksActivated_links_atList(i string) *core.QUrl 
 
 func (ptr *QHelpIndexWidget) __linksActivated_links_setList(key string, i core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QHelpIndexWidget___linksActivated_links_setList(ptr.Pointer(), keyC, core.PointerFromQUrl(i))
 	}
 }
@@ -6826,8 +6967,11 @@ func (ptr *QHelpIndexWidget) ____linksActivated_keyList_atList(i int) string {
 
 func (ptr *QHelpIndexWidget) ____linksActivated_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QHelpIndexWidget_____linksActivated_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -7821,8 +7965,11 @@ func callbackQHelpIndexWidget_KeyboardSearch(ptr unsafe.Pointer, search C.struct
 
 func (ptr *QHelpIndexWidget) KeyboardSearchDefault(search string) {
 	if ptr.Pointer() != nil {
-		var searchC = C.CString(search)
-		defer C.free(unsafe.Pointer(searchC))
+		var searchC *C.char
+		if search != "" {
+			searchC = C.CString(search)
+			defer C.free(unsafe.Pointer(searchC))
+		}
 		C.QHelpIndexWidget_KeyboardSearchDefault(ptr.Pointer(), searchC)
 	}
 }
@@ -8446,8 +8593,11 @@ func callbackQHelpIndexWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.str
 
 func (ptr *QHelpIndexWidget) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QHelpIndexWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -8493,8 +8643,11 @@ func callbackQHelpIndexWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_Qt
 
 func (ptr *QHelpIndexWidget) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QHelpIndexWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -10445,8 +10598,11 @@ func callbackQHelpSearchQueryWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet
 
 func (ptr *QHelpSearchQueryWidget) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QHelpSearchQueryWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -10492,8 +10648,11 @@ func callbackQHelpSearchQueryWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.str
 
 func (ptr *QHelpSearchQueryWidget) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QHelpSearchQueryWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -11719,8 +11878,11 @@ func callbackQHelpSearchResultWidget_SetStyleSheet(ptr unsafe.Pointer, styleShee
 
 func (ptr *QHelpSearchResultWidget) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QHelpSearchResultWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -11766,8 +11928,11 @@ func callbackQHelpSearchResultWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.st
 
 func (ptr *QHelpSearchResultWidget) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QHelpSearchResultWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }

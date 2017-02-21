@@ -92,10 +92,16 @@ func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
 
 func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) *QJSValue {
 	if ptr.Pointer() != nil {
-		var programC = C.CString(program)
-		defer C.free(unsafe.Pointer(programC))
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var programC *C.char
+		if program != "" {
+			programC = C.CString(program)
+			defer C.free(unsafe.Pointer(programC))
+		}
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		var tmpValue = NewQJSValueFromPointer(C.QJSEngine_Evaluate(ptr.Pointer(), programC, fileNameC, C.int(int32(lineNumber))))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
@@ -581,16 +587,22 @@ func NewQJSValue9(value core.QLatin1String_ITF) *QJSValue {
 }
 
 func NewQJSValue8(value string) *QJSValue {
-	var valueC = C.CString(value)
-	defer C.free(unsafe.Pointer(valueC))
+	var valueC *C.char
+	if value != "" {
+		valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+	}
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue8(valueC))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue10(value string) *QJSValue {
-	var valueC = C.CString(value)
-	defer C.free(unsafe.Pointer(valueC))
+	var valueC *C.char
+	if value != "" {
+		valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+	}
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue10(valueC))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
@@ -616,8 +628,11 @@ func NewQJSValue6(value uint) *QJSValue {
 
 func (ptr *QJSValue) DeleteProperty(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QJSValue_DeleteProperty(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -625,8 +640,11 @@ func (ptr *QJSValue) DeleteProperty(name string) bool {
 
 func (ptr *QJSValue) SetProperty(name string, value QJSValue_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QJSValue_SetProperty(ptr.Pointer(), nameC, PointerFromQJSValue(value))
 	}
 }
@@ -661,8 +679,11 @@ func (ptr *QJSValue) ToDateTime() *core.QDateTime {
 
 func (ptr *QJSValue) Property(name string) *QJSValue {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQJSValueFromPointer(C.QJSValue_Property(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
@@ -724,8 +745,11 @@ func (ptr *QJSValue) Equals(other QJSValue_ITF) bool {
 
 func (ptr *QJSValue) HasOwnProperty(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QJSValue_HasOwnProperty(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -733,8 +757,11 @@ func (ptr *QJSValue) HasOwnProperty(name string) bool {
 
 func (ptr *QJSValue) HasProperty(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QJSValue_HasProperty(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -1159,8 +1186,11 @@ func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
 }
 
 func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlApplicationEngine {
-	var filePathC = C.CString(filePath)
-	defer C.free(unsafe.Pointer(filePathC))
+	var filePathC *C.char
+	if filePath != "" {
+		filePathC = C.CString(filePath)
+		defer C.free(unsafe.Pointer(filePathC))
+	}
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(filePathC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1201,16 +1231,22 @@ func (ptr *QQmlApplicationEngine) DisconnectLoad2() {
 
 func (ptr *QQmlApplicationEngine) Load2(filePath string) {
 	if ptr.Pointer() != nil {
-		var filePathC = C.CString(filePath)
-		defer C.free(unsafe.Pointer(filePathC))
+		var filePathC *C.char
+		if filePath != "" {
+			filePathC = C.CString(filePath)
+			defer C.free(unsafe.Pointer(filePathC))
+		}
 		C.QQmlApplicationEngine_Load2(ptr.Pointer(), filePathC)
 	}
 }
 
 func (ptr *QQmlApplicationEngine) Load2Default(filePath string) {
 	if ptr.Pointer() != nil {
-		var filePathC = C.CString(filePath)
-		defer C.free(unsafe.Pointer(filePathC))
+		var filePathC *C.char
+		if filePath != "" {
+			filePathC = C.CString(filePath)
+			defer C.free(unsafe.Pointer(filePathC))
+		}
 		C.QQmlApplicationEngine_Load2Default(ptr.Pointer(), filePathC)
 	}
 }
@@ -1500,8 +1536,11 @@ func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlCompo
 }
 
 func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent4(PointerFromQQmlEngine(engine), fileNameC, C.longlong(mode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1510,8 +1549,11 @@ func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponen
 }
 
 func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObject_ITF) *QQmlComponent {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), fileNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2206,16 +2248,22 @@ func (ptr *QQmlContext) SetContextObject(object core.QObject_ITF) {
 
 func (ptr *QQmlContext) SetContextProperty(name string, value core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QQmlContext_SetContextProperty(ptr.Pointer(), nameC, core.PointerFromQObject(value))
 	}
 }
 
 func (ptr *QQmlContext) SetContextProperty2(name string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QQmlContext_SetContextProperty2(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
 	}
 }
@@ -2310,8 +2358,11 @@ func (ptr *QQmlContext) BaseUrl() *core.QUrl {
 
 func (ptr *QQmlContext) ContextProperty(name string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QQmlContext_ContextProperty(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -2667,10 +2718,16 @@ func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
 
 func (ptr *QQmlEngine) ImportPlugin(filePath string, uri string, errors []*QQmlError) bool {
 	if ptr.Pointer() != nil {
-		var filePathC = C.CString(filePath)
-		defer C.free(unsafe.Pointer(filePathC))
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var filePathC *C.char
+		if filePath != "" {
+			filePathC = C.CString(filePath)
+			defer C.free(unsafe.Pointer(filePathC))
+		}
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		return C.QQmlEngine_ImportPlugin(ptr.Pointer(), filePathC, uriC, func() unsafe.Pointer {
 			var tmpList = NewQQmlEngineFromPointer(NewQQmlEngineFromPointer(nil).__importPlugin_errors_newList())
 			for _, v := range errors {
@@ -2684,24 +2741,33 @@ func (ptr *QQmlEngine) ImportPlugin(filePath string, uri string, errors []*QQmlE
 
 func (ptr *QQmlEngine) AddImageProvider(providerId string, provider QQmlImageProviderBase_ITF) {
 	if ptr.Pointer() != nil {
-		var providerIdC = C.CString(providerId)
-		defer C.free(unsafe.Pointer(providerIdC))
+		var providerIdC *C.char
+		if providerId != "" {
+			providerIdC = C.CString(providerId)
+			defer C.free(unsafe.Pointer(providerIdC))
+		}
 		C.QQmlEngine_AddImageProvider(ptr.Pointer(), providerIdC, PointerFromQQmlImageProviderBase(provider))
 	}
 }
 
 func (ptr *QQmlEngine) AddImportPath(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QQmlEngine_AddImportPath(ptr.Pointer(), pathC)
 	}
 }
 
 func (ptr *QQmlEngine) AddPluginPath(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QQmlEngine_AddPluginPath(ptr.Pointer(), pathC)
 	}
 }
@@ -2770,8 +2836,11 @@ func (ptr *QQmlEngine) Quit() {
 
 func (ptr *QQmlEngine) RemoveImageProvider(providerId string) {
 	if ptr.Pointer() != nil {
-		var providerIdC = C.CString(providerId)
-		defer C.free(unsafe.Pointer(providerIdC))
+		var providerIdC *C.char
+		if providerId != "" {
+			providerIdC = C.CString(providerId)
+			defer C.free(unsafe.Pointer(providerIdC))
+		}
 		C.QQmlEngine_RemoveImageProvider(ptr.Pointer(), providerIdC)
 	}
 }
@@ -2820,8 +2889,11 @@ func (ptr *QQmlEngine) SetObjectOwnership(object core.QObject_ITF, ownership QQm
 
 func (ptr *QQmlEngine) SetOfflineStoragePath(dir string) {
 	if ptr.Pointer() != nil {
-		var dirC = C.CString(dir)
-		defer C.free(unsafe.Pointer(dirC))
+		var dirC *C.char
+		if dir != "" {
+			dirC = C.CString(dir)
+			defer C.free(unsafe.Pointer(dirC))
+		}
 		C.QQmlEngine_SetOfflineStoragePath(ptr.Pointer(), dirC)
 	}
 }
@@ -2949,8 +3021,11 @@ func (ptr *QQmlEngine) RootContext() *QQmlContext {
 
 func (ptr *QQmlEngine) ImageProvider(providerId string) *QQmlImageProviderBase {
 	if ptr.Pointer() != nil {
-		var providerIdC = C.CString(providerId)
-		defer C.free(unsafe.Pointer(providerIdC))
+		var providerIdC *C.char
+		if providerId != "" {
+			providerIdC = C.CString(providerId)
+			defer C.free(unsafe.Pointer(providerIdC))
+		}
 		return NewQQmlImageProviderBaseFromPointer(C.QQmlEngine_ImageProvider(ptr.Pointer(), providerIdC))
 	}
 	return nil
@@ -3008,18 +3083,30 @@ func (ptr *QQmlEngine) OutputWarningsToStandardError() bool {
 }
 
 func QQmlEngine_QmlRegisterSingletonType(url core.QUrl_ITF, uri string, versionMajor int, versionMinor int, qmlName string) int {
-	var uriC = C.CString(uri)
-	defer C.free(unsafe.Pointer(uriC))
-	var qmlNameC = C.CString(qmlName)
-	defer C.free(unsafe.Pointer(qmlNameC))
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
 	return int(int32(C.QQmlEngine_QQmlEngine_QmlRegisterSingletonType(core.PointerFromQUrl(url), uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
 func (ptr *QQmlEngine) QmlRegisterSingletonType(url core.QUrl_ITF, uri string, versionMajor int, versionMinor int, qmlName string) int {
-	var uriC = C.CString(uri)
-	defer C.free(unsafe.Pointer(uriC))
-	var qmlNameC = C.CString(qmlName)
-	defer C.free(unsafe.Pointer(qmlNameC))
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
 	return int(int32(C.QQmlEngine_QQmlEngine_QmlRegisterSingletonType(core.PointerFromQUrl(url), uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
@@ -3126,8 +3213,11 @@ func (ptr *QQmlError) SetColumn(column int) {
 
 func (ptr *QQmlError) SetDescription(description string) {
 	if ptr.Pointer() != nil {
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
 		C.QQmlError_SetDescription(ptr.Pointer(), descriptionC)
 	}
 }
@@ -3252,8 +3342,11 @@ func NewQQmlExpression() *QQmlExpression {
 }
 
 func NewQQmlExpression2(ctxt QQmlContext_ITF, scope core.QObject_ITF, expression string, parent core.QObject_ITF) *QQmlExpression {
-	var expressionC = C.CString(expression)
-	defer C.free(unsafe.Pointer(expressionC))
+	var expressionC *C.char
+	if expression != "" {
+		expressionC = C.CString(expression)
+		defer C.free(unsafe.Pointer(expressionC))
+	}
 	var tmpValue = NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression2(PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), expressionC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3286,8 +3379,11 @@ func (ptr *QQmlExpression) ClearError() {
 
 func (ptr *QQmlExpression) SetExpression(expression string) {
 	if ptr.Pointer() != nil {
-		var expressionC = C.CString(expression)
-		defer C.free(unsafe.Pointer(expressionC))
+		var expressionC *C.char
+		if expression != "" {
+			expressionC = C.CString(expression)
+			defer C.free(unsafe.Pointer(expressionC))
+		}
 		C.QQmlExpression_SetExpression(ptr.Pointer(), expressionC)
 	}
 }
@@ -3300,8 +3396,11 @@ func (ptr *QQmlExpression) SetNotifyOnValueChanged(notifyOnChange bool) {
 
 func (ptr *QQmlExpression) SetSourceLocation(url string, line int, column int) {
 	if ptr.Pointer() != nil {
-		var urlC = C.CString(url)
-		defer C.free(unsafe.Pointer(urlC))
+		var urlC *C.char
+		if url != "" {
+			urlC = C.CString(url)
+			defer C.free(unsafe.Pointer(urlC))
+		}
 		C.QQmlExpression_SetSourceLocation(ptr.Pointer(), urlC, C.int(int32(line)), C.int(int32(column)))
 	}
 }
@@ -3796,16 +3895,22 @@ func (ptr *QQmlExtensionPlugin) DisconnectInitializeEngine() {
 
 func (ptr *QQmlExtensionPlugin) InitializeEngine(engine QQmlEngine_ITF, uri string) {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		C.QQmlExtensionPlugin_InitializeEngine(ptr.Pointer(), PointerFromQQmlEngine(engine), uriC)
 	}
 }
 
 func (ptr *QQmlExtensionPlugin) InitializeEngineDefault(engine QQmlEngine_ITF, uri string) {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		C.QQmlExtensionPlugin_InitializeEngineDefault(ptr.Pointer(), PointerFromQQmlEngine(engine), uriC)
 	}
 }
@@ -3834,8 +3939,11 @@ func (ptr *QQmlExtensionPlugin) DisconnectRegisterTypes() {
 
 func (ptr *QQmlExtensionPlugin) RegisterTypes(uri string) {
 	if ptr.Pointer() != nil {
-		var uriC = C.CString(uri)
-		defer C.free(unsafe.Pointer(uriC))
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
 		C.QQmlExtensionPlugin_RegisterTypes(ptr.Pointer(), uriC)
 	}
 }
@@ -5040,8 +5148,11 @@ func NewQQmlListReference() *QQmlListReference {
 }
 
 func NewQQmlListReference2(object core.QObject_ITF, property string, engine QQmlEngine_ITF) *QQmlListReference {
-	var propertyC = C.CString(property)
-	defer C.free(unsafe.Pointer(propertyC))
+	var propertyC *C.char
+	if property != "" {
+		propertyC = C.CString(property)
+		defer C.free(unsafe.Pointer(propertyC))
+	}
 	var tmpValue = NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference2(core.PointerFromQObject(object), propertyC, PointerFromQQmlEngine(engine)))
 	runtime.SetFinalizer(tmpValue, (*QQmlListReference).DestroyQQmlListReference)
 	return tmpValue
@@ -5454,24 +5565,33 @@ func NewQQmlProperty4(obj core.QObject_ITF, engine QQmlEngine_ITF) *QQmlProperty
 }
 
 func NewQQmlProperty5(obj core.QObject_ITF, name string) *QQmlProperty {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty5(core.PointerFromQObject(obj), nameC))
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty6(obj core.QObject_ITF, name string, ctxt QQmlContext_ITF) *QQmlProperty {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty6(core.PointerFromQObject(obj), nameC, PointerFromQQmlContext(ctxt)))
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty7(obj core.QObject_ITF, name string, engine QQmlEngine_ITF) *QQmlProperty {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty7(core.PointerFromQObject(obj), nameC, PointerFromQQmlEngine(engine)))
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
@@ -5484,86 +5604,122 @@ func NewQQmlProperty8(other QQmlProperty_ITF) *QQmlProperty {
 }
 
 func QQmlProperty_Read2(object core.QObject_ITF, name string) *core.QVariant {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read2(core.PointerFromQObject(object), nameC))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func (ptr *QQmlProperty) Read2(object core.QObject_ITF, name string) *core.QVariant {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read2(core.PointerFromQObject(object), nameC))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func QQmlProperty_Read3(object core.QObject_ITF, name string, ctxt QQmlContext_ITF) *core.QVariant {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read3(core.PointerFromQObject(object), nameC, PointerFromQQmlContext(ctxt)))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func (ptr *QQmlProperty) Read3(object core.QObject_ITF, name string, ctxt QQmlContext_ITF) *core.QVariant {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read3(core.PointerFromQObject(object), nameC, PointerFromQQmlContext(ctxt)))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func QQmlProperty_Read4(object core.QObject_ITF, name string, engine QQmlEngine_ITF) *core.QVariant {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read4(core.PointerFromQObject(object), nameC, PointerFromQQmlEngine(engine)))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func (ptr *QQmlProperty) Read4(object core.QObject_ITF, name string, engine QQmlEngine_ITF) *core.QVariant {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read4(core.PointerFromQObject(object), nameC, PointerFromQQmlEngine(engine)))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
 func QQmlProperty_Write2(object core.QObject_ITF, name string, value core.QVariant_ITF) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value)) != 0
 }
 
 func (ptr *QQmlProperty) Write2(object core.QObject_ITF, name string, value core.QVariant_ITF) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value)) != 0
 }
 
 func QQmlProperty_Write3(object core.QObject_ITF, name string, value core.QVariant_ITF, ctxt QQmlContext_ITF) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt)) != 0
 }
 
 func (ptr *QQmlProperty) Write3(object core.QObject_ITF, name string, value core.QVariant_ITF, ctxt QQmlContext_ITF) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt)) != 0
 }
 
 func QQmlProperty_Write4(object core.QObject_ITF, name string, value core.QVariant_ITF, engine QQmlEngine_ITF) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine)) != 0
 }
 
 func (ptr *QQmlProperty) Write4(object core.QObject_ITF, name string, value core.QVariant_ITF, engine QQmlEngine_ITF) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine)) != 0
 }
 
@@ -5619,8 +5775,11 @@ func (ptr *QQmlProperty) Type() QQmlProperty__Type {
 
 func (ptr *QQmlProperty) ConnectNotifySignal(dest core.QObject_ITF, slot string) bool {
 	if ptr.Pointer() != nil {
-		var slotC = C.CString(slot)
-		defer C.free(unsafe.Pointer(slotC))
+		var slotC *C.char
+		if slot != "" {
+			slotC = C.CString(slot)
+			defer C.free(unsafe.Pointer(slotC))
+		}
 		return C.QQmlProperty_ConnectNotifySignal(ptr.Pointer(), core.PointerFromQObject(dest), slotC) != 0
 	}
 	return false
@@ -5795,8 +5954,11 @@ func (ptr *QQmlPropertyMap) DisconnectUpdateValue() {
 
 func (ptr *QQmlPropertyMap) UpdateValue(key string, input core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QQmlPropertyMap_UpdateValue(ptr.Pointer(), keyC, core.PointerFromQVariant(input)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -5806,8 +5968,11 @@ func (ptr *QQmlPropertyMap) UpdateValue(key string, input core.QVariant_ITF) *co
 
 func (ptr *QQmlPropertyMap) UpdateValueDefault(key string, input core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QQmlPropertyMap_UpdateValueDefault(ptr.Pointer(), keyC, core.PointerFromQVariant(input)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -5817,16 +5982,22 @@ func (ptr *QQmlPropertyMap) UpdateValueDefault(key string, input core.QVariant_I
 
 func (ptr *QQmlPropertyMap) Clear(key string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QQmlPropertyMap_Clear(ptr.Pointer(), keyC)
 	}
 }
 
 func (ptr *QQmlPropertyMap) Insert(key string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QQmlPropertyMap_Insert(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
 	}
 }
@@ -5855,8 +6026,11 @@ func (ptr *QQmlPropertyMap) DisconnectValueChanged() {
 
 func (ptr *QQmlPropertyMap) ValueChanged(key string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QQmlPropertyMap_ValueChanged(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
 	}
 }
@@ -5909,8 +6083,11 @@ func (ptr *QQmlPropertyMap) Keys() []string {
 
 func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QQmlPropertyMap_Value(ptr.Pointer(), keyC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -5920,8 +6097,11 @@ func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
 
 func (ptr *QQmlPropertyMap) Contains(key string) bool {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return C.QQmlPropertyMap_Contains(ptr.Pointer(), keyC) != 0
 	}
 	return false

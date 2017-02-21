@@ -39,8 +39,16 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 				alloc = GoInput(parameter.Name, parameter.Value, function)
 				name  = fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value))
 			)
-			if strings.Contains(alloc, "C.CString") {
-				input = append(input, fmt.Sprintf("var %v = %v\ndefer C.free(unsafe.Pointer(%v))\n", name, alloc, name))
+			switch goType(function, parameter.Value) {
+			case "string":
+				{
+					input = append(input, fmt.Sprintf("var %v *C.char\nif %v != \"\" {\n %v = %v\ndefer C.free(unsafe.Pointer(%v))\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
+				}
+
+			case "*string", "[]string":
+				{
+					input = append(input, fmt.Sprintf("var %v = %v\ndefer C.free(unsafe.Pointer(%v))\n", name, alloc, name))
+				}
 			}
 		}
 	}

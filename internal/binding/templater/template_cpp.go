@@ -362,6 +362,10 @@ func preambleCpp(module string, input []byte) []byte {
 		} else if module == "QtNetwork" {
 			fmt.Fprint(bb, "#include <QSsl>\n")
 		}
+
+		if !strings.Contains(bb.String(), "QStringList") {
+			fmt.Fprint(bb, "#include <QStringList>\n")
+		}
 	}
 
 	fmt.Fprint(bb, "\n")

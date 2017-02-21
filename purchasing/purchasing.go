@@ -498,16 +498,22 @@ func (ptr *QInAppStore) DisconnectProductUnknown() {
 
 func (ptr *QInAppStore) ProductUnknown(productType QInAppProduct__ProductType, identifier string) {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		C.QInAppStore_ProductUnknown(ptr.Pointer(), C.longlong(productType), identifierC)
 	}
 }
 
 func (ptr *QInAppStore) RegisterProduct(productType QInAppProduct__ProductType, identifier string) {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		C.QInAppStore_RegisterProduct(ptr.Pointer(), C.longlong(productType), identifierC)
 	}
 }
@@ -520,10 +526,16 @@ func (ptr *QInAppStore) RestorePurchases() {
 
 func (ptr *QInAppStore) SetPlatformProperty(propertyName string, value string) {
 	if ptr.Pointer() != nil {
-		var propertyNameC = C.CString(propertyName)
-		defer C.free(unsafe.Pointer(propertyNameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var propertyNameC *C.char
+		if propertyName != "" {
+			propertyNameC = C.CString(propertyName)
+			defer C.free(unsafe.Pointer(propertyNameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QInAppStore_SetPlatformProperty(ptr.Pointer(), propertyNameC, valueC)
 	}
 }
@@ -566,8 +578,11 @@ func (ptr *QInAppStore) DestroyQInAppStore() {
 
 func (ptr *QInAppStore) RegisteredProduct(identifier string) *QInAppProduct {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		var tmpValue = NewQInAppProductFromPointer(C.QInAppStore_RegisteredProduct(ptr.Pointer(), identifierC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1120,8 +1135,11 @@ func (ptr *QInAppTransaction) DisconnectPlatformProperty() {
 
 func (ptr *QInAppTransaction) PlatformProperty(propertyName string) string {
 	if ptr.Pointer() != nil {
-		var propertyNameC = C.CString(propertyName)
-		defer C.free(unsafe.Pointer(propertyNameC))
+		var propertyNameC *C.char
+		if propertyName != "" {
+			propertyNameC = C.CString(propertyName)
+			defer C.free(unsafe.Pointer(propertyNameC))
+		}
 		return cGoUnpackString(C.QInAppTransaction_PlatformProperty(ptr.Pointer(), propertyNameC))
 	}
 	return ""
@@ -1129,8 +1147,11 @@ func (ptr *QInAppTransaction) PlatformProperty(propertyName string) string {
 
 func (ptr *QInAppTransaction) PlatformPropertyDefault(propertyName string) string {
 	if ptr.Pointer() != nil {
-		var propertyNameC = C.CString(propertyName)
-		defer C.free(unsafe.Pointer(propertyNameC))
+		var propertyNameC *C.char
+		if propertyName != "" {
+			propertyNameC = C.CString(propertyName)
+			defer C.free(unsafe.Pointer(propertyNameC))
+		}
 		return cGoUnpackString(C.QInAppTransaction_PlatformPropertyDefault(ptr.Pointer(), propertyNameC))
 	}
 	return ""

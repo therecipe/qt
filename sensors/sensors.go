@@ -5163,8 +5163,11 @@ func (ptr *QSensorBackend) SetDataRates(otherSensor QSensor_ITF) {
 
 func (ptr *QSensorBackend) SetDescription(description string) {
 	if ptr.Pointer() != nil {
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
 		C.QSensorBackend_SetDescription(ptr.Pointer(), descriptionC)
 	}
 }
@@ -5900,8 +5903,11 @@ func (ptr *QSensorGesture) DisconnectDetected() {
 
 func (ptr *QSensorGesture) Detected(gestureId string) {
 	if ptr.Pointer() != nil {
-		var gestureIdC = C.CString(gestureId)
-		defer C.free(unsafe.Pointer(gestureIdC))
+		var gestureIdC *C.char
+		if gestureId != "" {
+			gestureIdC = C.CString(gestureId)
+			defer C.free(unsafe.Pointer(gestureIdC))
+		}
 		C.QSensorGesture_Detected(ptr.Pointer(), gestureIdC)
 	}
 }
@@ -6253,8 +6259,11 @@ func NewQSensorGestureManager(parent core.QObject_ITF) *QSensorGestureManager {
 }
 
 func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
-	var idC = C.CString(id)
-	defer C.free(unsafe.Pointer(idC))
+	var idC *C.char
+	if id != "" {
+		idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+	}
 	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -6263,8 +6272,11 @@ func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRec
 }
 
 func (ptr *QSensorGestureManager) SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
-	var idC = C.CString(id)
-	defer C.free(unsafe.Pointer(idC))
+	var idC *C.char
+	if id != "" {
+		idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+	}
 	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -6324,8 +6336,11 @@ func (ptr *QSensorGestureManager) GestureIds() []string {
 
 func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
 	if ptr.Pointer() != nil {
-		var gestureIdC = C.CString(gestureId)
-		defer C.free(unsafe.Pointer(gestureIdC))
+		var gestureIdC *C.char
+		if gestureId != "" {
+			gestureIdC = C.CString(gestureId)
+			defer C.free(unsafe.Pointer(gestureIdC))
+		}
 		return strings.Split(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), gestureIdC)), "|")
 	}
 	return make([]string, 0)
@@ -6994,8 +7009,11 @@ func (ptr *QSensorGestureRecognizer) DisconnectDetected() {
 
 func (ptr *QSensorGestureRecognizer) Detected(gestureId string) {
 	if ptr.Pointer() != nil {
-		var gestureIdC = C.CString(gestureId)
-		defer C.free(unsafe.Pointer(gestureIdC))
+		var gestureIdC *C.char
+		if gestureId != "" {
+			gestureIdC = C.CString(gestureId)
+			defer C.free(unsafe.Pointer(gestureIdC))
+		}
 		C.QSensorGestureRecognizer_Detected(ptr.Pointer(), gestureIdC)
 	}
 }

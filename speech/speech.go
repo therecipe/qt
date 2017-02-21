@@ -93,8 +93,11 @@ func NewQTextToSpeech(parent core.QObject_ITF) *QTextToSpeech {
 }
 
 func NewQTextToSpeech2(engine string, parent core.QObject_ITF) *QTextToSpeech {
-	var engineC = C.CString(engine)
-	defer C.free(unsafe.Pointer(engineC))
+	var engineC *C.char
+	if engine != "" {
+		engineC = C.CString(engine)
+		defer C.free(unsafe.Pointer(engineC))
+	}
 	return NewQTextToSpeechFromPointer(C.QTextToSpeech_NewQTextToSpeech2(engineC, core.PointerFromQObject(parent)))
 }
 
@@ -277,16 +280,22 @@ func (ptr *QTextToSpeech) DisconnectSay() {
 
 func (ptr *QTextToSpeech) Say(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextToSpeech_Say(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QTextToSpeech) SayDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextToSpeech_SayDefault(ptr.Pointer(), textC)
 	}
 }
@@ -674,8 +683,11 @@ func (ptr *QTextToSpeechPlugin) DestroyQTextToSpeechPluginDefault() {
 
 func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -685,8 +697,11 @@ func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_atList(i s
 
 func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -717,8 +732,11 @@ func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_atList(i in
 
 func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(ptr.Pointer(), iC)
 	}
 }

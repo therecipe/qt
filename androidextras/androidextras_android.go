@@ -239,38 +239,62 @@ func NewQAndroidJniObjectFromPointer(ptr unsafe.Pointer) *QAndroidJniObject {
 	return n
 }
 func QAndroidJniObject_CallStaticObjectMethod(className string, methodName string) *QAndroidJniObject {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod(classNameC, methodNameC))
 	return tmpValue
 }
 
 func QAndroidJniObject_CallStaticObjectMethodCaught(className string, methodName string) (*QAndroidJniObject, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethodCaught(classNameC, methodNameC))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticMethodString(className string, methodName string) string {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString(classNameC, methodNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
 }
 
 func QAndroidJniObject_CallStaticMethodStringCaught(className string, methodName string) (string, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodStringCaught(classNameC, methodNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -317,12 +341,21 @@ func QAndroidJniObject_CallStaticObjectMethod2(className string, methodName stri
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod2(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	return tmpValue
 }
@@ -368,12 +401,21 @@ func QAndroidJniObject_CallStaticObjectMethod2Caught(className string, methodNam
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod2Caught(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
@@ -419,12 +461,21 @@ func QAndroidJniObject_CallStaticMethodString2(className string, methodName stri
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString2(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
@@ -471,42 +522,63 @@ func QAndroidJniObject_CallStaticMethodString2Caught(className string, methodNam
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString2Caught(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticObjectMethod3(clazz unsafe.Pointer, methodName string) *QAndroidJniObject {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod3(clazz, methodNameC))
 	return tmpValue
 }
 
 func QAndroidJniObject_CallStaticObjectMethod3Caught(clazz unsafe.Pointer, methodName string) (*QAndroidJniObject, error) {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod3Caught(clazz, methodNameC))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticMethodString3(clazz unsafe.Pointer, methodName string) string {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString3(clazz, methodNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
 }
 
 func QAndroidJniObject_CallStaticMethodString3Caught(clazz unsafe.Pointer, methodName string) (string, error) {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString3Caught(clazz, methodNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -553,10 +625,16 @@ func QAndroidJniObject_CallStaticObjectMethod4(clazz unsafe.Pointer, methodName 
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	return tmpValue
 }
@@ -602,10 +680,16 @@ func QAndroidJniObject_CallStaticObjectMethod4Caught(clazz unsafe.Pointer, metho
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4Caught(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
@@ -651,10 +735,16 @@ func QAndroidJniObject_CallStaticMethodString4(clazz unsafe.Pointer, methodName 
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
@@ -701,10 +791,16 @@ func QAndroidJniObject_CallStaticMethodString4Caught(clazz unsafe.Pointer, metho
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4Caught(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -721,166 +817,268 @@ func (ptr *QAndroidJniObject) FromLocalRef(localRef unsafe.Pointer) *QAndroidJni
 }
 
 func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(striC))
 	return tmpValue
 }
 
 func (ptr *QAndroidJniObject) FromString(stri string) *QAndroidJniObject {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(striC))
 	return tmpValue
 }
 
 func QAndroidJniObject_GetStaticObjectField(className string, fieldName string) *QAndroidJniObject {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField(classNameC, fieldNameC))
 	return tmpValue
 }
 
 func QAndroidJniObject_GetStaticObjectFieldCaught(className string, fieldName string) (*QAndroidJniObject, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectFieldCaught(classNameC, fieldNameC))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldString(className string, fieldName string) string {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString(classNameC, fieldNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
 }
 
 func QAndroidJniObject_GetStaticFieldStringCaught(className string, fieldName string) (string, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldStringCaught(classNameC, fieldNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticObjectField2(className string, fieldName string, signature string) *QAndroidJniObject {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField2(classNameC, fieldNameC, signatureC))
 	return tmpValue
 }
 
 func QAndroidJniObject_GetStaticObjectField2Caught(className string, fieldName string, signature string) (*QAndroidJniObject, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField2Caught(classNameC, fieldNameC, signatureC))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldString2(className string, fieldName string, signature string) string {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString2(classNameC, fieldNameC, signatureC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
 }
 
 func QAndroidJniObject_GetStaticFieldString2Caught(className string, fieldName string, signature string) (string, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString2Caught(classNameC, fieldNameC, signatureC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticObjectField3(clazz unsafe.Pointer, fieldName string) *QAndroidJniObject {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField3(clazz, fieldNameC))
 	return tmpValue
 }
 
 func QAndroidJniObject_GetStaticObjectField3Caught(clazz unsafe.Pointer, fieldName string) (*QAndroidJniObject, error) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField3Caught(clazz, fieldNameC))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldString3(clazz unsafe.Pointer, fieldName string) string {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString3(clazz, fieldNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
 }
 
 func QAndroidJniObject_GetStaticFieldString3Caught(clazz unsafe.Pointer, fieldName string) (string, error) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString3Caught(clazz, fieldNameC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticObjectField4(clazz unsafe.Pointer, fieldName string, signature string) *QAndroidJniObject {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField4(clazz, fieldNameC, signatureC))
 	return tmpValue
 }
 
 func QAndroidJniObject_GetStaticObjectField4Caught(clazz unsafe.Pointer, fieldName string, signature string) (*QAndroidJniObject, error) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField4Caught(clazz, fieldNameC, signatureC))
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldString4(clazz unsafe.Pointer, fieldName string, signature string) string {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString4(clazz, fieldNameC, signatureC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString()
 }
 
 func QAndroidJniObject_GetStaticFieldString4Caught(clazz unsafe.Pointer, fieldName string, signature string) (string, error) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString4Caught(clazz, fieldNameC, signatureC))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -892,8 +1090,11 @@ func NewQAndroidJniObject() *QAndroidJniObject {
 }
 
 func NewQAndroidJniObject2(className string) *QAndroidJniObject {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject2(classNameC))
 	return tmpValue
 }
@@ -939,10 +1140,16 @@ func NewQAndroidJniObject3(className string, signature string, v ...interface{})
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject3(classNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	return tmpValue
 }
@@ -993,8 +1200,11 @@ func NewQAndroidJniObject5(clazz unsafe.Pointer, signature string, v ...interfac
 	if d9 != nil {
 		defer d9()
 	}
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject5(clazz, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 	return tmpValue
 }
@@ -1005,50 +1215,86 @@ func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
 }
 
 func QAndroidJniObject_CallStaticMethodInt(className string, methodName string) int {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt(classNameC, methodNameC)))
 }
 
 func QAndroidJniObject_CallStaticMethodIntCaught(className string, methodName string) (int, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodIntCaught(classNameC, methodNameC))), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticMethodBoolean(className string, methodName string) bool {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean(classNameC, methodNameC)) != 0
 }
 
 func QAndroidJniObject_CallStaticMethodBooleanCaught(className string, methodName string) (bool, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBooleanCaught(classNameC, methodNameC)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticMethodVoid(className string, methodName string) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid(classNameC, methodNameC)
 }
 
 func QAndroidJniObject_CallStaticMethodVoidCaught(className string, methodName string) error {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoidCaught(classNameC, methodNameC)
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
@@ -1094,12 +1340,21 @@ func QAndroidJniObject_CallStaticMethodInt2(className string, methodName string,
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt2(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)))
 }
 
@@ -1144,12 +1399,21 @@ func QAndroidJniObject_CallStaticMethodInt2Caught(className string, methodName s
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt2Caught(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))), QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -1194,12 +1458,21 @@ func QAndroidJniObject_CallStaticMethodBoolean2(className string, methodName str
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean2(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0
 }
 
@@ -1244,12 +1517,21 @@ func QAndroidJniObject_CallStaticMethodBoolean2Caught(className string, methodNa
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean2Caught(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -1294,12 +1576,21 @@ func QAndroidJniObject_CallStaticMethodVoid2(className string, methodName string
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid2(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 }
 
@@ -1344,49 +1635,76 @@ func QAndroidJniObject_CallStaticMethodVoid2Caught(className string, methodName 
 	if d9 != nil {
 		defer d9()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid2Caught(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticMethodInt3(clazz unsafe.Pointer, methodName string) int {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt3(clazz, methodNameC)))
 }
 
 func QAndroidJniObject_CallStaticMethodInt3Caught(clazz unsafe.Pointer, methodName string) (int, error) {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt3Caught(clazz, methodNameC))), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticMethodBoolean3(clazz unsafe.Pointer, methodName string) bool {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean3(clazz, methodNameC)) != 0
 }
 
 func QAndroidJniObject_CallStaticMethodBoolean3Caught(clazz unsafe.Pointer, methodName string) (bool, error) {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean3Caught(clazz, methodNameC)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticMethodVoid3(clazz unsafe.Pointer, methodName string) {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid3(clazz, methodNameC)
 }
 
 func QAndroidJniObject_CallStaticMethodVoid3Caught(clazz unsafe.Pointer, methodName string) error {
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid3Caught(clazz, methodNameC)
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
@@ -1432,10 +1750,16 @@ func QAndroidJniObject_CallStaticMethodInt4(clazz unsafe.Pointer, methodName str
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt4(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)))
 }
 
@@ -1480,10 +1804,16 @@ func QAndroidJniObject_CallStaticMethodInt4Caught(clazz unsafe.Pointer, methodNa
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt4Caught(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))), QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -1528,10 +1858,16 @@ func QAndroidJniObject_CallStaticMethodBoolean4(clazz unsafe.Pointer, methodName
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean4(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0
 }
 
@@ -1576,10 +1912,16 @@ func QAndroidJniObject_CallStaticMethodBoolean4Caught(clazz unsafe.Pointer, meth
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean4Caught(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -1624,10 +1966,16 @@ func QAndroidJniObject_CallStaticMethodVoid4(clazz unsafe.Pointer, methodName st
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid4(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 }
 
@@ -1672,79 +2020,127 @@ func QAndroidJniObject_CallStaticMethodVoid4Caught(clazz unsafe.Pointer, methodN
 	if d9 != nil {
 		defer d9()
 	}
-	var methodNameC = C.CString(methodName)
-	defer C.free(unsafe.Pointer(methodNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var methodNameC *C.char
+	if methodName != "" {
+		methodNameC = C.CString(methodName)
+		defer C.free(unsafe.Pointer(methodNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid4Caught(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldInt(className string, fieldName string) int {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldInt(classNameC, fieldNameC)))
 }
 
 func QAndroidJniObject_GetStaticFieldIntCaught(className string, fieldName string) (int, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldIntCaught(classNameC, fieldNameC))), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldBoolean(className string, fieldName string) bool {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean(classNameC, fieldNameC)) != 0
 }
 
 func QAndroidJniObject_GetStaticFieldBooleanCaught(className string, fieldName string) (bool, error) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldBooleanCaught(classNameC, fieldNameC)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldInt2(clazz unsafe.Pointer, fieldName string) int {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldInt2(clazz, fieldNameC)))
 }
 
 func QAndroidJniObject_GetStaticFieldInt2Caught(clazz unsafe.Pointer, fieldName string) (int, error) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int(int32(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldInt2Caught(clazz, fieldNameC))), QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticFieldBoolean2(clazz unsafe.Pointer, fieldName string) bool {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean2(clazz, fieldNameC)) != 0
 }
 
 func QAndroidJniObject_GetStaticFieldBoolean2Caught(clazz unsafe.Pointer, fieldName string) (bool, error) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	return int8(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean2Caught(clazz, fieldNameC)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_IsClassAvailable(className string) bool {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	return C.QAndroidJniObject_QAndroidJniObject_IsClassAvailable(classNameC) != 0
 }
 
 func (ptr *QAndroidJniObject) IsClassAvailable(className string) bool {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	return C.QAndroidJniObject_QAndroidJniObject_IsClassAvailable(classNameC) != 0
 }
 
@@ -1754,8 +2150,11 @@ func (ptr *QAndroidJniObject) SetField(fieldName string, value interface{}) {
 		if d0 != nil {
 			defer d0()
 		}
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		C.QAndroidJniObject_SetField(ptr.Pointer(), fieldNameC, p0)
 	}
 }
@@ -1766,44 +2165,74 @@ func (ptr *QAndroidJniObject) SetField2(fieldName string, signature string, valu
 		if d0 != nil {
 			defer d0()
 		}
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		C.QAndroidJniObject_SetField2(ptr.Pointer(), fieldNameC, signatureC, p0)
 	}
 }
 
 func QAndroidJniObject_SetStaticFieldInt2(className string, fieldName string, value int) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt2(classNameC, fieldNameC, C.int(int32(value)))
 }
 
 func QAndroidJniObject_SetStaticFieldInt2Caught(className string, fieldName string, value int) error {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt2Caught(classNameC, fieldNameC, C.int(int32(value)))
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_SetStaticFieldBoolean2(className string, fieldName string, value bool) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean2(classNameC, fieldNameC, C.char(int8(qt.GoBoolToInt(value))))
 }
 
 func QAndroidJniObject_SetStaticFieldBoolean2Caught(className string, fieldName string, value bool) error {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean2Caught(classNameC, fieldNameC, C.char(int8(qt.GoBoolToInt(value))))
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
@@ -1813,12 +2242,21 @@ func QAndroidJniObject_SetStaticField(className string, fieldName string, signat
 	if d0 != nil {
 		defer d0()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticField(classNameC, fieldNameC, signatureC, p0)
 }
 
@@ -1827,37 +2265,58 @@ func (ptr *QAndroidJniObject) SetStaticField(className string, fieldName string,
 	if d0 != nil {
 		defer d0()
 	}
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticField(classNameC, fieldNameC, signatureC, p0)
 }
 
 func QAndroidJniObject_SetStaticFieldInt4(clazz unsafe.Pointer, fieldName string, value int) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt4(clazz, fieldNameC, C.int(int32(value)))
 }
 
 func QAndroidJniObject_SetStaticFieldInt4Caught(clazz unsafe.Pointer, fieldName string, value int) error {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt4Caught(clazz, fieldNameC, C.int(int32(value)))
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_SetStaticFieldBoolean4(clazz unsafe.Pointer, fieldName string, value bool) {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean4(clazz, fieldNameC, C.char(int8(qt.GoBoolToInt(value))))
 }
 
 func QAndroidJniObject_SetStaticFieldBoolean4Caught(clazz unsafe.Pointer, fieldName string, value bool) error {
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean4Caught(clazz, fieldNameC, C.char(int8(qt.GoBoolToInt(value))))
 	return QAndroidJniEnvironment_ExceptionCatch()
 }
@@ -1867,10 +2326,16 @@ func QAndroidJniObject_SetStaticField3(clazz unsafe.Pointer, fieldName string, s
 	if d0 != nil {
 		defer d0()
 	}
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticField3(clazz, fieldNameC, signatureC, p0)
 }
 
@@ -1879,10 +2344,16 @@ func (ptr *QAndroidJniObject) SetStaticField3(clazz unsafe.Pointer, fieldName st
 	if d0 != nil {
 		defer d0()
 	}
-	var fieldNameC = C.CString(fieldName)
-	defer C.free(unsafe.Pointer(fieldNameC))
-	var signatureC = C.CString(signature)
-	defer C.free(unsafe.Pointer(signatureC))
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var signatureC *C.char
+	if signature != "" {
+		signatureC = C.CString(signature)
+		defer C.free(unsafe.Pointer(signatureC))
+	}
 	C.QAndroidJniObject_QAndroidJniObject_SetStaticField3(clazz, fieldNameC, signatureC, p0)
 }
 
@@ -1895,8 +2366,11 @@ func (ptr *QAndroidJniObject) DestroyQAndroidJniObject() {
 
 func (ptr *QAndroidJniObject) CallObjectMethod(methodName string) *QAndroidJniObject {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod(ptr.Pointer(), methodNameC))
 		return tmpValue
 	}
@@ -1905,8 +2379,11 @@ func (ptr *QAndroidJniObject) CallObjectMethod(methodName string) *QAndroidJniOb
 
 func (ptr *QAndroidJniObject) CallObjectMethodCaught(methodName string) (*QAndroidJniObject, error) {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethodCaught(ptr.Pointer(), methodNameC))
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
@@ -1915,8 +2392,11 @@ func (ptr *QAndroidJniObject) CallObjectMethodCaught(methodName string) (*QAndro
 
 func (ptr *QAndroidJniObject) CallMethodString(methodName string) string {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodString(ptr.Pointer(), methodNameC))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString()
@@ -1926,8 +2406,11 @@ func (ptr *QAndroidJniObject) CallMethodString(methodName string) string {
 
 func (ptr *QAndroidJniObject) CallMethodStringCaught(methodName string) (string, error) {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodStringCaught(ptr.Pointer(), methodNameC))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -1977,10 +2460,16 @@ func (ptr *QAndroidJniObject) CallObjectMethod2(methodName string, signature str
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 		return tmpValue
 	}
@@ -2029,10 +2518,16 @@ func (ptr *QAndroidJniObject) CallObjectMethod2Caught(methodName string, signatu
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
@@ -2081,10 +2576,16 @@ func (ptr *QAndroidJniObject) CallMethodString2(methodName string, signature str
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodString2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString()
@@ -2134,10 +2635,16 @@ func (ptr *QAndroidJniObject) CallMethodString2Caught(methodName string, signatu
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodString2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -2147,8 +2654,11 @@ func (ptr *QAndroidJniObject) CallMethodString2Caught(methodName string, signatu
 
 func (ptr *QAndroidJniObject) GetObjectField(fieldName string) *QAndroidJniObject {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectField(ptr.Pointer(), fieldNameC))
 		return tmpValue
 	}
@@ -2157,8 +2667,11 @@ func (ptr *QAndroidJniObject) GetObjectField(fieldName string) *QAndroidJniObjec
 
 func (ptr *QAndroidJniObject) GetObjectFieldCaught(fieldName string) (*QAndroidJniObject, error) {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectFieldCaught(ptr.Pointer(), fieldNameC))
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
@@ -2167,8 +2680,11 @@ func (ptr *QAndroidJniObject) GetObjectFieldCaught(fieldName string) (*QAndroidJ
 
 func (ptr *QAndroidJniObject) GetFieldString(fieldName string) string {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldString(ptr.Pointer(), fieldNameC))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString()
@@ -2178,8 +2694,11 @@ func (ptr *QAndroidJniObject) GetFieldString(fieldName string) string {
 
 func (ptr *QAndroidJniObject) GetFieldStringCaught(fieldName string) (string, error) {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldStringCaught(ptr.Pointer(), fieldNameC))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -2189,10 +2708,16 @@ func (ptr *QAndroidJniObject) GetFieldStringCaught(fieldName string) (string, er
 
 func (ptr *QAndroidJniObject) GetObjectField2(fieldName string, signature string) *QAndroidJniObject {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectField2(ptr.Pointer(), fieldNameC, signatureC))
 		return tmpValue
 	}
@@ -2201,10 +2726,16 @@ func (ptr *QAndroidJniObject) GetObjectField2(fieldName string, signature string
 
 func (ptr *QAndroidJniObject) GetObjectField2Caught(fieldName string, signature string) (*QAndroidJniObject, error) {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectField2Caught(ptr.Pointer(), fieldNameC, signatureC))
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
@@ -2213,10 +2744,16 @@ func (ptr *QAndroidJniObject) GetObjectField2Caught(fieldName string, signature 
 
 func (ptr *QAndroidJniObject) GetFieldString2(fieldName string, signature string) string {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldString2(ptr.Pointer(), fieldNameC, signatureC))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString()
@@ -2226,10 +2763,16 @@ func (ptr *QAndroidJniObject) GetFieldString2(fieldName string, signature string
 
 func (ptr *QAndroidJniObject) GetFieldString2Caught(fieldName string, signature string) (string, error) {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldString2Caught(ptr.Pointer(), fieldNameC, signatureC))
 		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
@@ -2246,8 +2789,11 @@ func (ptr *QAndroidJniObject) ToString() string {
 
 func (ptr *QAndroidJniObject) CallMethodInt(methodName string) int {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		return int(int32(C.QAndroidJniObject_CallMethodInt(ptr.Pointer(), methodNameC)))
 	}
 	return 0
@@ -2255,8 +2801,11 @@ func (ptr *QAndroidJniObject) CallMethodInt(methodName string) int {
 
 func (ptr *QAndroidJniObject) CallMethodIntCaught(methodName string) (int, error) {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		return int(int32(C.QAndroidJniObject_CallMethodIntCaught(ptr.Pointer(), methodNameC))), QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return 0, errors.New("*.Pointer() == nil")
@@ -2264,8 +2813,11 @@ func (ptr *QAndroidJniObject) CallMethodIntCaught(methodName string) (int, error
 
 func (ptr *QAndroidJniObject) CallMethodBoolean(methodName string) bool {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		return int8(C.QAndroidJniObject_CallMethodBoolean(ptr.Pointer(), methodNameC)) != 0
 	}
 	return false
@@ -2273,8 +2825,11 @@ func (ptr *QAndroidJniObject) CallMethodBoolean(methodName string) bool {
 
 func (ptr *QAndroidJniObject) CallMethodBooleanCaught(methodName string) (bool, error) {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		return int8(C.QAndroidJniObject_CallMethodBooleanCaught(ptr.Pointer(), methodNameC)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return false, errors.New("*.Pointer() == nil")
@@ -2282,16 +2837,22 @@ func (ptr *QAndroidJniObject) CallMethodBooleanCaught(methodName string) (bool, 
 
 func (ptr *QAndroidJniObject) CallMethodVoid(methodName string) {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		C.QAndroidJniObject_CallMethodVoid(ptr.Pointer(), methodNameC)
 	}
 }
 
 func (ptr *QAndroidJniObject) CallMethodVoidCaught(methodName string) error {
 	if ptr.Pointer() != nil {
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
 		C.QAndroidJniObject_CallMethodVoidCaught(ptr.Pointer(), methodNameC)
 		return QAndroidJniEnvironment_ExceptionCatch()
 	}
@@ -2340,10 +2901,16 @@ func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		return int(int32(C.QAndroidJniObject_CallMethodInt2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)))
 	}
 	return 0
@@ -2391,10 +2958,16 @@ func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, signature 
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		return int(int32(C.QAndroidJniObject_CallMethodInt2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))), QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return 0, errors.New("*.Pointer() == nil")
@@ -2442,10 +3015,16 @@ func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature st
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		return int8(C.QAndroidJniObject_CallMethodBoolean2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0
 	}
 	return false
@@ -2493,10 +3072,16 @@ func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, signat
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		return int8(C.QAndroidJniObject_CallMethodBoolean2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return false, errors.New("*.Pointer() == nil")
@@ -2544,10 +3129,16 @@ func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature strin
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		C.QAndroidJniObject_CallMethodVoid2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 	}
 }
@@ -2594,10 +3185,16 @@ func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, signature
 		if d9 != nil {
 			defer d9()
 		}
-		var methodNameC = C.CString(methodName)
-		defer C.free(unsafe.Pointer(methodNameC))
-		var signatureC = C.CString(signature)
-		defer C.free(unsafe.Pointer(signatureC))
+		var methodNameC *C.char
+		if methodName != "" {
+			methodNameC = C.CString(methodName)
+			defer C.free(unsafe.Pointer(methodNameC))
+		}
+		var signatureC *C.char
+		if signature != "" {
+			signatureC = C.CString(signature)
+			defer C.free(unsafe.Pointer(signatureC))
+		}
 		C.QAndroidJniObject_CallMethodVoid2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 		return QAndroidJniEnvironment_ExceptionCatch()
 	}
@@ -2606,8 +3203,11 @@ func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, signature
 
 func (ptr *QAndroidJniObject) GetFieldInt(fieldName string) int {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		return int(int32(C.QAndroidJniObject_GetFieldInt(ptr.Pointer(), fieldNameC)))
 	}
 	return 0
@@ -2615,8 +3215,11 @@ func (ptr *QAndroidJniObject) GetFieldInt(fieldName string) int {
 
 func (ptr *QAndroidJniObject) GetFieldIntCaught(fieldName string) (int, error) {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		return int(int32(C.QAndroidJniObject_GetFieldIntCaught(ptr.Pointer(), fieldNameC))), QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return 0, errors.New("*.Pointer() == nil")
@@ -2624,8 +3227,11 @@ func (ptr *QAndroidJniObject) GetFieldIntCaught(fieldName string) (int, error) {
 
 func (ptr *QAndroidJniObject) GetFieldBoolean(fieldName string) bool {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		return int8(C.QAndroidJniObject_GetFieldBoolean(ptr.Pointer(), fieldNameC)) != 0
 	}
 	return false
@@ -2633,8 +3239,11 @@ func (ptr *QAndroidJniObject) GetFieldBoolean(fieldName string) bool {
 
 func (ptr *QAndroidJniObject) GetFieldBooleanCaught(fieldName string) (bool, error) {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		return int8(C.QAndroidJniObject_GetFieldBooleanCaught(ptr.Pointer(), fieldNameC)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return false, errors.New("*.Pointer() == nil")

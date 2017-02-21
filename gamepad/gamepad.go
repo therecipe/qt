@@ -764,8 +764,11 @@ func (ptr *QGamepad) DisconnectNameChanged() {
 
 func (ptr *QGamepad) NameChanged(value string) {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QGamepad_NameChanged(ptr.Pointer(), valueC)
 	}
 }

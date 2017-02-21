@@ -238,8 +238,11 @@ func (ptr *QGeoManeuver) SetDistanceToNextInstruction(distance float64) {
 
 func (ptr *QGeoManeuver) SetInstructionText(instructionText string) {
 	if ptr.Pointer() != nil {
-		var instructionTextC = C.CString(instructionText)
-		defer C.free(unsafe.Pointer(instructionTextC))
+		var instructionTextC *C.char
+		if instructionText != "" {
+			instructionTextC = C.CString(instructionText)
+			defer C.free(unsafe.Pointer(instructionTextC))
+		}
 		C.QGeoManeuver_SetInstructionText(ptr.Pointer(), instructionTextC)
 	}
 }
@@ -409,8 +412,11 @@ func (ptr *QGeoRoute) SetRequest(request QGeoRouteRequest_ITF) {
 
 func (ptr *QGeoRoute) SetRouteId(id string) {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		C.QGeoRoute_SetRouteId(ptr.Pointer(), idC)
 	}
 }
@@ -593,8 +599,11 @@ const (
 )
 
 func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent core.QObject_ITF) *QGeoRouteReply {
-	var errorStringC = C.CString(errorString)
-	defer C.free(unsafe.Pointer(errorStringC))
+	var errorStringC *C.char
+	if errorString != "" {
+		errorStringC = C.CString(errorString)
+		defer C.free(unsafe.Pointer(errorStringC))
+	}
 	var tmpValue = NewQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.longlong(error), errorStringC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -681,8 +690,11 @@ func (ptr *QGeoRouteReply) DisconnectError2() {
 
 func (ptr *QGeoRouteReply) Error2(error QGeoRouteReply__Error, errorString string) {
 	if ptr.Pointer() != nil {
-		var errorStringC = C.CString(errorString)
-		defer C.free(unsafe.Pointer(errorStringC))
+		var errorStringC *C.char
+		if errorString != "" {
+			errorStringC = C.CString(errorString)
+			defer C.free(unsafe.Pointer(errorStringC))
+		}
 		C.QGeoRouteReply_Error2(ptr.Pointer(), C.longlong(error), errorStringC)
 	}
 }
@@ -717,8 +729,11 @@ func (ptr *QGeoRouteReply) Finished() {
 
 func (ptr *QGeoRouteReply) SetError(error QGeoRouteReply__Error, errorString string) {
 	if ptr.Pointer() != nil {
-		var errorStringC = C.CString(errorString)
-		defer C.free(unsafe.Pointer(errorStringC))
+		var errorStringC *C.char
+		if errorString != "" {
+			errorStringC = C.CString(errorString)
+			defer C.free(unsafe.Pointer(errorStringC))
+		}
 		C.QGeoRouteReply_SetError(ptr.Pointer(), C.longlong(error), errorStringC)
 	}
 }
@@ -1766,8 +1781,11 @@ func (ptr *QGeoRoutingManager) DisconnectError() {
 
 func (ptr *QGeoRoutingManager) Error(reply QGeoRouteReply_ITF, error QGeoRouteReply__Error, errorString string) {
 	if ptr.Pointer() != nil {
-		var errorStringC = C.CString(errorString)
-		defer C.free(unsafe.Pointer(errorStringC))
+		var errorStringC *C.char
+		if errorString != "" {
+			errorStringC = C.CString(errorString)
+			defer C.free(unsafe.Pointer(errorStringC))
+		}
 		C.QGeoRoutingManager_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.longlong(error), errorStringC)
 	}
 }
@@ -2307,8 +2325,11 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectError() {
 
 func (ptr *QGeoRoutingManagerEngine) Error(reply QGeoRouteReply_ITF, error QGeoRouteReply__Error, errorString string) {
 	if ptr.Pointer() != nil {
-		var errorStringC = C.CString(errorString)
-		defer C.free(unsafe.Pointer(errorStringC))
+		var errorStringC *C.char
+		if errorString != "" {
+			errorStringC = C.CString(errorString)
+			defer C.free(unsafe.Pointer(errorStringC))
+		}
 		C.QGeoRoutingManagerEngine_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.longlong(error), errorStringC)
 	}
 }
@@ -2502,8 +2523,11 @@ func (ptr *QGeoRoutingManagerEngine) ManagerVersion() int {
 
 func (ptr *QGeoRoutingManagerEngine) __QGeoRoutingManagerEngine_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -2513,8 +2537,11 @@ func (ptr *QGeoRoutingManagerEngine) __QGeoRoutingManagerEngine_parameters_atLis
 
 func (ptr *QGeoRoutingManagerEngine) __QGeoRoutingManagerEngine_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -2545,8 +2572,11 @@ func (ptr *QGeoRoutingManagerEngine) ____QGeoRoutingManagerEngine_keyList_atList
 
 func (ptr *QGeoRoutingManagerEngine) ____QGeoRoutingManagerEngine_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -2926,8 +2956,11 @@ var (
 )
 
 func NewQGeoServiceProvider(providerName string, parameters map[string]*core.QVariant, allowExperimental bool) *QGeoServiceProvider {
-	var providerNameC = C.CString(providerName)
-	defer C.free(unsafe.Pointer(providerNameC))
+	var providerNameC *C.char
+	if providerName != "" {
+		providerNameC = C.CString(providerName)
+		defer C.free(unsafe.Pointer(providerNameC))
+	}
 	var tmpValue = NewQGeoServiceProviderFromPointer(C.QGeoServiceProvider_NewQGeoServiceProvider(providerNameC, func() unsafe.Pointer {
 		var tmpList = NewQGeoServiceProviderFromPointer(NewQGeoServiceProviderFromPointer(nil).__QGeoServiceProvider_parameters_newList())
 		for k, v := range parameters {
@@ -3058,8 +3091,11 @@ func (ptr *QGeoServiceProvider) RoutingFeatures() QGeoServiceProvider__RoutingFe
 
 func (ptr *QGeoServiceProvider) __QGeoServiceProvider_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProvider___QGeoServiceProvider_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3069,8 +3105,11 @@ func (ptr *QGeoServiceProvider) __QGeoServiceProvider_parameters_atList(i string
 
 func (ptr *QGeoServiceProvider) __QGeoServiceProvider_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoServiceProvider___QGeoServiceProvider_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -3094,8 +3133,11 @@ func (ptr *QGeoServiceProvider) __QGeoServiceProvider_keyList() []string {
 
 func (ptr *QGeoServiceProvider) __setParameters_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProvider___setParameters_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3105,8 +3147,11 @@ func (ptr *QGeoServiceProvider) __setParameters_parameters_atList(i string) *cor
 
 func (ptr *QGeoServiceProvider) __setParameters_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoServiceProvider___setParameters_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -3137,8 +3182,11 @@ func (ptr *QGeoServiceProvider) ____QGeoServiceProvider_keyList_atList(i int) st
 
 func (ptr *QGeoServiceProvider) ____QGeoServiceProvider_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoServiceProvider_____QGeoServiceProvider_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -3156,8 +3204,11 @@ func (ptr *QGeoServiceProvider) ____setParameters_keyList_atList(i int) string {
 
 func (ptr *QGeoServiceProvider) ____setParameters_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoServiceProvider_____setParameters_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -3504,8 +3555,11 @@ func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactoryDefault(
 
 func (ptr *QGeoServiceProviderFactory) __createGeocodingManagerEngine_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3515,8 +3569,11 @@ func (ptr *QGeoServiceProviderFactory) __createGeocodingManagerEngine_parameters
 
 func (ptr *QGeoServiceProviderFactory) __createGeocodingManagerEngine_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -3540,8 +3597,11 @@ func (ptr *QGeoServiceProviderFactory) __createGeocodingManagerEngine_keyList() 
 
 func (ptr *QGeoServiceProviderFactory) __createMappingManagerEngine_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createMappingManagerEngine_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3551,8 +3611,11 @@ func (ptr *QGeoServiceProviderFactory) __createMappingManagerEngine_parameters_a
 
 func (ptr *QGeoServiceProviderFactory) __createMappingManagerEngine_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoServiceProviderFactory___createMappingManagerEngine_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -3576,8 +3639,11 @@ func (ptr *QGeoServiceProviderFactory) __createMappingManagerEngine_keyList() []
 
 func (ptr *QGeoServiceProviderFactory) __createRoutingManagerEngine_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3587,8 +3653,11 @@ func (ptr *QGeoServiceProviderFactory) __createRoutingManagerEngine_parameters_a
 
 func (ptr *QGeoServiceProviderFactory) __createRoutingManagerEngine_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -3612,8 +3681,11 @@ func (ptr *QGeoServiceProviderFactory) __createRoutingManagerEngine_keyList() []
 
 func (ptr *QGeoServiceProviderFactory) __createPlaceManagerEngine_parameters_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3623,8 +3695,11 @@ func (ptr *QGeoServiceProviderFactory) __createPlaceManagerEngine_parameters_atL
 
 func (ptr *QGeoServiceProviderFactory) __createPlaceManagerEngine_parameters_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -3655,8 +3730,11 @@ func (ptr *QGeoServiceProviderFactory) ____createGeocodingManagerEngine_keyList_
 
 func (ptr *QGeoServiceProviderFactory) ____createGeocodingManagerEngine_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -3674,8 +3752,11 @@ func (ptr *QGeoServiceProviderFactory) ____createMappingManagerEngine_keyList_at
 
 func (ptr *QGeoServiceProviderFactory) ____createMappingManagerEngine_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -3693,8 +3774,11 @@ func (ptr *QGeoServiceProviderFactory) ____createRoutingManagerEngine_keyList_at
 
 func (ptr *QGeoServiceProviderFactory) ____createRoutingManagerEngine_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -3712,8 +3796,11 @@ func (ptr *QGeoServiceProviderFactory) ____createPlaceManagerEngine_keyList_atLi
 
 func (ptr *QGeoServiceProviderFactory) ____createPlaceManagerEngine_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QGeoServiceProviderFactory_____createPlaceManagerEngine_keyList_setList(ptr.Pointer(), iC)
 	}
 }

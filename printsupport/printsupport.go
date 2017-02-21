@@ -1109,8 +1109,11 @@ func callbackQAbstractPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C
 
 func (ptr *QAbstractPrintDialog) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QAbstractPrintDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -1141,8 +1144,11 @@ func callbackQAbstractPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struc
 
 func (ptr *QAbstractPrintDialog) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QAbstractPrintDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -2495,8 +2501,11 @@ func callbackQPageSetupDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.str
 
 func (ptr *QPageSetupDialog) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QPageSetupDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -2527,8 +2536,11 @@ func callbackQPageSetupDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_Qt
 
 func (ptr *QPageSetupDialog) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QPageSetupDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -3160,8 +3172,11 @@ func (ptr *QPrintDialog) Accepted(printer QPrinter_ITF) {
 
 func (ptr *QPrintDialog) Open(receiver core.QObject_ITF, member string) {
 	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		C.QPrintDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
 	}
 }
@@ -4494,8 +4509,11 @@ func callbackQPrintPreviewDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.
 
 func (ptr *QPrintPreviewDialog) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QPrintPreviewDialog_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -4526,8 +4544,11 @@ func callbackQPrintPreviewDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct
 
 func (ptr *QPrintPreviewDialog) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QPrintPreviewDialog_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -6379,8 +6400,11 @@ func callbackQPrintPreviewWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.
 
 func (ptr *QPrintPreviewWidget) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QPrintPreviewWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -6411,8 +6435,11 @@ func callbackQPrintPreviewWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct
 
 func (ptr *QPrintPreviewWidget) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QPrintPreviewWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -7203,16 +7230,22 @@ func (ptr *QPrinter) SetCopyCount(count int) {
 
 func (ptr *QPrinter) SetCreator(creator string) {
 	if ptr.Pointer() != nil {
-		var creatorC = C.CString(creator)
-		defer C.free(unsafe.Pointer(creatorC))
+		var creatorC *C.char
+		if creator != "" {
+			creatorC = C.CString(creator)
+			defer C.free(unsafe.Pointer(creatorC))
+		}
 		C.QPrinter_SetCreator(ptr.Pointer(), creatorC)
 	}
 }
 
 func (ptr *QPrinter) SetDocName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QPrinter_SetDocName(ptr.Pointer(), nameC)
 	}
 }
@@ -7249,8 +7282,11 @@ func (ptr *QPrinter) SetFullPage(fp bool) {
 
 func (ptr *QPrinter) SetOutputFileName(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QPrinter_SetOutputFileName(ptr.Pointer(), fileNameC)
 	}
 }
@@ -7275,8 +7311,11 @@ func (ptr *QPrinter) SetPaperSource(source QPrinter__PaperSource) {
 
 func (ptr *QPrinter) SetPrintProgram(printProg string) {
 	if ptr.Pointer() != nil {
-		var printProgC = C.CString(printProg)
-		defer C.free(unsafe.Pointer(printProgC))
+		var printProgC *C.char
+		if printProg != "" {
+			printProgC = C.CString(printProg)
+			defer C.free(unsafe.Pointer(printProgC))
+		}
 		C.QPrinter_SetPrintProgram(ptr.Pointer(), printProgC)
 	}
 }
@@ -7289,16 +7328,22 @@ func (ptr *QPrinter) SetPrintRange(ran QPrinter__PrintRange) {
 
 func (ptr *QPrinter) SetPrinterName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QPrinter_SetPrinterName(ptr.Pointer(), nameC)
 	}
 }
 
 func (ptr *QPrinter) SetPrinterSelectionOption(option string) {
 	if ptr.Pointer() != nil {
-		var optionC = C.CString(option)
-		defer C.free(unsafe.Pointer(optionC))
+		var optionC *C.char
+		if option != "" {
+			optionC = C.CString(option)
+			defer C.free(unsafe.Pointer(optionC))
+		}
 		C.QPrinter_SetPrinterSelectionOption(ptr.Pointer(), optionC)
 	}
 }
@@ -7679,16 +7724,22 @@ func (ptr *QPrinterInfo) DefaultPrinter() *QPrinterInfo {
 }
 
 func QPrinterInfo_PrinterInfo(printerName string) *QPrinterInfo {
-	var printerNameC = C.CString(printerName)
-	defer C.free(unsafe.Pointer(printerNameC))
+	var printerNameC *C.char
+	if printerName != "" {
+		printerNameC = C.CString(printerName)
+		defer C.free(unsafe.Pointer(printerNameC))
+	}
 	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(printerNameC))
 	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
 
 func (ptr *QPrinterInfo) PrinterInfo(printerName string) *QPrinterInfo {
-	var printerNameC = C.CString(printerName)
-	defer C.free(unsafe.Pointer(printerNameC))
+	var printerNameC *C.char
+	if printerName != "" {
+		printerNameC = C.CString(printerName)
+		defer C.free(unsafe.Pointer(printerNameC))
+	}
 	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(printerNameC))
 	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue

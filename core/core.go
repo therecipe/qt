@@ -6045,8 +6045,11 @@ func (ptr *QBuffer) DisconnectWriteData() {
 
 func (ptr *QBuffer) WriteData(data string, len int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QBuffer_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
@@ -6054,8 +6057,11 @@ func (ptr *QBuffer) WriteData(data string, len int64) int64 {
 
 func (ptr *QBuffer) WriteDataDefault(data string, len int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QBuffer_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
@@ -6075,8 +6081,11 @@ func (ptr *QBuffer) SetData(data QByteArray_ITF) {
 
 func (ptr *QBuffer) SetData2(data string, size int) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		C.QBuffer_SetData2(ptr.Pointer(), dataC, C.int(int32(size)))
 	}
 }
@@ -6154,8 +6163,11 @@ const (
 
 func (ptr *QByteArray) Append5(ch string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Append5(ptr.Pointer(), chC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6174,8 +6186,11 @@ func (ptr *QByteArray) Append(ba QByteArray_ITF) *QByteArray {
 
 func (ptr *QByteArray) Append6(str string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Append6(ptr.Pointer(), strC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6185,8 +6200,11 @@ func (ptr *QByteArray) Append6(str string) *QByteArray {
 
 func (ptr *QByteArray) Append3(str string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Append3(ptr.Pointer(), strC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6196,8 +6214,11 @@ func (ptr *QByteArray) Append3(str string) *QByteArray {
 
 func (ptr *QByteArray) Append4(str string, len int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Append4(ptr.Pointer(), strC, C.int(int32(len))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6207,8 +6228,11 @@ func (ptr *QByteArray) Append4(str string, len int) *QByteArray {
 
 func (ptr *QByteArray) Append2(count int, ch string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Append2(ptr.Pointer(), C.int(int32(count)), chC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6218,8 +6242,11 @@ func (ptr *QByteArray) Append2(count int, ch string) *QByteArray {
 
 func (ptr *QByteArray) Fill(ch string, size int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Fill(ptr.Pointer(), chC, C.int(int32(size))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6229,8 +6256,11 @@ func (ptr *QByteArray) Fill(ch string, size int) *QByteArray {
 
 func (ptr *QByteArray) Insert5(i int, ch string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Insert5(ptr.Pointer(), C.int(int32(i)), chC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6249,8 +6279,11 @@ func (ptr *QByteArray) Insert(i int, ba QByteArray_ITF) *QByteArray {
 
 func (ptr *QByteArray) Insert6(i int, str string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Insert6(ptr.Pointer(), C.int(int32(i)), strC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6260,8 +6293,11 @@ func (ptr *QByteArray) Insert6(i int, str string) *QByteArray {
 
 func (ptr *QByteArray) Insert3(i int, str string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Insert3(ptr.Pointer(), C.int(int32(i)), strC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6271,8 +6307,11 @@ func (ptr *QByteArray) Insert3(i int, str string) *QByteArray {
 
 func (ptr *QByteArray) Insert4(i int, str string, len int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Insert4(ptr.Pointer(), C.int(int32(i)), strC, C.int(int32(len))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6282,8 +6321,11 @@ func (ptr *QByteArray) Insert4(i int, str string, len int) *QByteArray {
 
 func (ptr *QByteArray) Insert2(i int, count int, ch string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Insert2(ptr.Pointer(), C.int(int32(i)), C.int(int32(count)), chC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6293,8 +6335,11 @@ func (ptr *QByteArray) Insert2(i int, count int, ch string) *QByteArray {
 
 func (ptr *QByteArray) Prepend5(ch string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Prepend5(ptr.Pointer(), chC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6313,8 +6358,11 @@ func (ptr *QByteArray) Prepend(ba QByteArray_ITF) *QByteArray {
 
 func (ptr *QByteArray) Prepend3(str string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Prepend3(ptr.Pointer(), strC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6324,8 +6372,11 @@ func (ptr *QByteArray) Prepend3(str string) *QByteArray {
 
 func (ptr *QByteArray) Prepend4(str string, len int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Prepend4(ptr.Pointer(), strC, C.int(int32(len))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6335,8 +6386,11 @@ func (ptr *QByteArray) Prepend4(str string, len int) *QByteArray {
 
 func (ptr *QByteArray) Prepend2(count int, ch string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Prepend2(ptr.Pointer(), C.int(int32(count)), chC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6355,10 +6409,16 @@ func (ptr *QByteArray) Remove(pos int, len int) *QByteArray {
 
 func (ptr *QByteArray) Replace11(before string, after string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace11(ptr.Pointer(), beforeC, afterC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6368,8 +6428,11 @@ func (ptr *QByteArray) Replace11(before string, after string) *QByteArray {
 
 func (ptr *QByteArray) Replace5(before string, after QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace5(ptr.Pointer(), beforeC, PointerFromQByteArray(after)))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6379,10 +6442,16 @@ func (ptr *QByteArray) Replace5(before string, after QByteArray_ITF) *QByteArray
 
 func (ptr *QByteArray) Replace13(before string, after string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace13(ptr.Pointer(), beforeC, afterC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6392,10 +6461,16 @@ func (ptr *QByteArray) Replace13(before string, after string) *QByteArray {
 
 func (ptr *QByteArray) Replace4(before string, after string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace4(ptr.Pointer(), beforeC, afterC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6414,8 +6489,11 @@ func (ptr *QByteArray) Replace8(before QByteArray_ITF, after QByteArray_ITF) *QB
 
 func (ptr *QByteArray) Replace9(before QByteArray_ITF, after string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace9(ptr.Pointer(), PointerFromQByteArray(before), afterC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6425,8 +6503,11 @@ func (ptr *QByteArray) Replace9(before QByteArray_ITF, after string) *QByteArray
 
 func (ptr *QByteArray) Replace14(before string, after QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace14(ptr.Pointer(), beforeC, PointerFromQByteArray(after)))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6436,10 +6517,16 @@ func (ptr *QByteArray) Replace14(before string, after QByteArray_ITF) *QByteArra
 
 func (ptr *QByteArray) Replace12(before string, after string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace12(ptr.Pointer(), beforeC, afterC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6449,8 +6536,11 @@ func (ptr *QByteArray) Replace12(before string, after string) *QByteArray {
 
 func (ptr *QByteArray) Replace10(before string, after QByteArray_ITF) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace10(ptr.Pointer(), beforeC, PointerFromQByteArray(after)))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6460,10 +6550,16 @@ func (ptr *QByteArray) Replace10(before string, after QByteArray_ITF) *QByteArra
 
 func (ptr *QByteArray) Replace6(before string, after string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace6(ptr.Pointer(), beforeC, afterC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6473,10 +6569,16 @@ func (ptr *QByteArray) Replace6(before string, after string) *QByteArray {
 
 func (ptr *QByteArray) Replace7(before string, bsize int, after string, asize int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var beforeC = C.CString(before)
-		defer C.free(unsafe.Pointer(beforeC))
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var beforeC *C.char
+		if before != "" {
+			beforeC = C.CString(before)
+			defer C.free(unsafe.Pointer(beforeC))
+		}
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace7(ptr.Pointer(), beforeC, C.int(int32(bsize)), afterC, C.int(int32(asize))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6495,8 +6597,11 @@ func (ptr *QByteArray) Replace(pos int, len int, after QByteArray_ITF) *QByteArr
 
 func (ptr *QByteArray) Replace3(pos int, len int, after string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace3(ptr.Pointer(), C.int(int32(pos)), C.int(int32(len)), afterC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6506,8 +6611,11 @@ func (ptr *QByteArray) Replace3(pos int, len int, after string) *QByteArray {
 
 func (ptr *QByteArray) Replace2(pos int, len int, after string, alen int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var afterC = C.CString(after)
-		defer C.free(unsafe.Pointer(afterC))
+		var afterC *C.char
+		if after != "" {
+			afterC = C.CString(after)
+			defer C.free(unsafe.Pointer(afterC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Replace2(ptr.Pointer(), C.int(int32(pos)), C.int(int32(len)), afterC, C.int(int32(alen))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6517,8 +6625,11 @@ func (ptr *QByteArray) Replace2(pos int, len int, after string, alen int) *QByte
 
 func (ptr *QByteArray) SetNum8(n float64, f string, prec int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var fC = C.CString(f)
-		defer C.free(unsafe.Pointer(fC))
+		var fC *C.char
+		if f != "" {
+			fC = C.CString(f)
+			defer C.free(unsafe.Pointer(fC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_SetNum8(ptr.Pointer(), C.double(n), fC, C.int(int32(prec))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6528,8 +6639,11 @@ func (ptr *QByteArray) SetNum8(n float64, f string, prec int) *QByteArray {
 
 func (ptr *QByteArray) SetNum7(n float32, f string, prec int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var fC = C.CString(f)
-		defer C.free(unsafe.Pointer(fC))
+		var fC *C.char
+		if f != "" {
+			fC = C.CString(f)
+			defer C.free(unsafe.Pointer(fC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_SetNum7(ptr.Pointer(), C.float(n), fC, C.int(int32(prec))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6593,8 +6707,11 @@ func (ptr *QByteArray) SetNum2(n uint16, base int) *QByteArray {
 
 func (ptr *QByteArray) SetRawData(data string, size uint) *QByteArray {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_SetRawData(ptr.Pointer(), dataC, C.uint(uint32(size))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6639,48 +6756,66 @@ func (ptr *QByteArray) FromHex(hexEncoded QByteArray_ITF) *QByteArray {
 }
 
 func QByteArray_FromPercentEncoding(input QByteArray_ITF, percent string) *QByteArray {
-	var percentC = C.CString(percent)
-	defer C.free(unsafe.Pointer(percentC))
+	var percentC *C.char
+	if percent != "" {
+		percentC = C.CString(percent)
+		defer C.free(unsafe.Pointer(percentC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromPercentEncoding(PointerFromQByteArray(input), percentC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) FromPercentEncoding(input QByteArray_ITF, percent string) *QByteArray {
-	var percentC = C.CString(percent)
-	defer C.free(unsafe.Pointer(percentC))
+	var percentC *C.char
+	if percent != "" {
+		percentC = C.CString(percent)
+		defer C.free(unsafe.Pointer(percentC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromPercentEncoding(PointerFromQByteArray(input), percentC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QByteArray_FromRawData(data string, size int) *QByteArray {
-	var dataC = C.CString(data)
-	defer C.free(unsafe.Pointer(dataC))
+	var dataC *C.char
+	if data != "" {
+		dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromRawData(dataC, C.int(int32(size))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) FromRawData(data string, size int) *QByteArray {
-	var dataC = C.CString(data)
-	defer C.free(unsafe.Pointer(dataC))
+	var dataC *C.char
+	if data != "" {
+		dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromRawData(dataC, C.int(int32(size))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QByteArray_Number5(n float64, f string, prec int) *QByteArray {
-	var fC = C.CString(f)
-	defer C.free(unsafe.Pointer(fC))
+	var fC *C.char
+	if f != "" {
+		fC = C.CString(f)
+		defer C.free(unsafe.Pointer(fC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), fC, C.int(int32(prec))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QByteArray) Number5(n float64, f string, prec int) *QByteArray {
-	var fC = C.CString(f)
-	defer C.free(unsafe.Pointer(fC))
+	var fC *C.char
+	if f != "" {
+		fC = C.CString(f)
+		defer C.free(unsafe.Pointer(fC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), fC, C.int(int32(prec))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
@@ -6753,16 +6888,22 @@ func NewQByteArray5(other QByteArray_ITF) *QByteArray {
 }
 
 func NewQByteArray2(data string, size int) *QByteArray {
-	var dataC = C.CString(data)
-	defer C.free(unsafe.Pointer(dataC))
+	var dataC *C.char
+	if data != "" {
+		dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_NewQByteArray2(dataC, C.int(int32(size))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func NewQByteArray3(size int, ch string) *QByteArray {
-	var chC = C.CString(ch)
-	defer C.free(unsafe.Pointer(chC))
+	var chC *C.char
+	if ch != "" {
+		chC = C.CString(ch)
+		defer C.free(unsafe.Pointer(chC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QByteArray_NewQByteArray3(C.int(int32(size)), chC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
@@ -6789,8 +6930,11 @@ func (ptr *QByteArray) Clear() {
 
 func (ptr *QByteArray) Push_back3(ch string) {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		C.QByteArray_Push_back3(ptr.Pointer(), chC)
 	}
 }
@@ -6803,16 +6947,22 @@ func (ptr *QByteArray) Push_back(other QByteArray_ITF) {
 
 func (ptr *QByteArray) Push_back2(str string) {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		C.QByteArray_Push_back2(ptr.Pointer(), strC)
 	}
 }
 
 func (ptr *QByteArray) Push_front3(ch string) {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		C.QByteArray_Push_front3(ptr.Pointer(), chC)
 	}
 }
@@ -6825,8 +6975,11 @@ func (ptr *QByteArray) Push_front(other QByteArray_ITF) {
 
 func (ptr *QByteArray) Push_front2(str string) {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		C.QByteArray_Push_front2(ptr.Pointer(), strC)
 	}
 }
@@ -6879,8 +7032,11 @@ func (ptr *QByteArray) Left(len int) *QByteArray {
 
 func (ptr *QByteArray) LeftJustified(width int, fill string, truncate bool) *QByteArray {
 	if ptr.Pointer() != nil {
-		var fillC = C.CString(fill)
-		defer C.free(unsafe.Pointer(fillC))
+		var fillC *C.char
+		if fill != "" {
+			fillC = C.CString(fill)
+			defer C.free(unsafe.Pointer(fillC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_LeftJustified(ptr.Pointer(), C.int(int32(width)), fillC, C.char(int8(qt.GoBoolToInt(truncate)))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6917,8 +7073,11 @@ func (ptr *QByteArray) Right(len int) *QByteArray {
 
 func (ptr *QByteArray) RightJustified(width int, fill string, truncate bool) *QByteArray {
 	if ptr.Pointer() != nil {
-		var fillC = C.CString(fill)
-		defer C.free(unsafe.Pointer(fillC))
+		var fillC *C.char
+		if fill != "" {
+			fillC = C.CString(fill)
+			defer C.free(unsafe.Pointer(fillC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_RightJustified(ptr.Pointer(), C.int(int32(width)), fillC, C.char(int8(qt.GoBoolToInt(truncate)))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -6973,8 +7132,11 @@ func (ptr *QByteArray) ToLower() *QByteArray {
 
 func (ptr *QByteArray) ToPercentEncoding(exclude QByteArray_ITF, include QByteArray_ITF, percent string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var percentC = C.CString(percent)
-		defer C.free(unsafe.Pointer(percentC))
+		var percentC *C.char
+		if percent != "" {
+			percentC = C.CString(percent)
+			defer C.free(unsafe.Pointer(percentC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_ToPercentEncoding(ptr.Pointer(), PointerFromQByteArray(exclude), PointerFromQByteArray(include), percentC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -7002,8 +7164,11 @@ func (ptr *QByteArray) Trimmed() *QByteArray {
 
 func (ptr *QByteArray) Split(sep string) []*QByteArray {
 	if ptr.Pointer() != nil {
-		var sepC = C.CString(sep)
-		defer C.free(unsafe.Pointer(sepC))
+		var sepC *C.char
+		if sep != "" {
+			sepC = C.CString(sep)
+			defer C.free(unsafe.Pointer(sepC))
+		}
 		return func(l C.struct_QtCore_PackedList) []*QByteArray {
 			var out = make([]*QByteArray, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -7017,8 +7182,11 @@ func (ptr *QByteArray) Split(sep string) []*QByteArray {
 
 func (ptr *QByteArray) Contains3(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QByteArray_Contains3(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -7033,8 +7201,11 @@ func (ptr *QByteArray) Contains(ba QByteArray_ITF) bool {
 
 func (ptr *QByteArray) Contains2(str string) bool {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return C.QByteArray_Contains2(ptr.Pointer(), strC) != 0
 	}
 	return false
@@ -7042,8 +7213,11 @@ func (ptr *QByteArray) Contains2(str string) bool {
 
 func (ptr *QByteArray) EndsWith2(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QByteArray_EndsWith2(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -7058,8 +7232,11 @@ func (ptr *QByteArray) EndsWith(ba QByteArray_ITF) bool {
 
 func (ptr *QByteArray) EndsWith3(str string) bool {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return C.QByteArray_EndsWith3(ptr.Pointer(), strC) != 0
 	}
 	return false
@@ -7081,8 +7258,11 @@ func (ptr *QByteArray) IsNull() bool {
 
 func (ptr *QByteArray) StartsWith2(ch string) bool {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return C.QByteArray_StartsWith2(ptr.Pointer(), chC) != 0
 	}
 	return false
@@ -7097,8 +7277,11 @@ func (ptr *QByteArray) StartsWith(ba QByteArray_ITF) bool {
 
 func (ptr *QByteArray) StartsWith3(str string) bool {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return C.QByteArray_StartsWith3(ptr.Pointer(), strC) != 0
 	}
 	return false
@@ -7155,8 +7338,11 @@ func (ptr *QByteArray) Count4() int {
 
 func (ptr *QByteArray) Count3(ch string) int {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return int(int32(C.QByteArray_Count3(ptr.Pointer(), chC)))
 	}
 	return 0
@@ -7171,8 +7357,11 @@ func (ptr *QByteArray) Count(ba QByteArray_ITF) int {
 
 func (ptr *QByteArray) Count2(str string) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QByteArray_Count2(ptr.Pointer(), strC)))
 	}
 	return 0
@@ -7180,8 +7369,11 @@ func (ptr *QByteArray) Count2(str string) int {
 
 func (ptr *QByteArray) IndexOf3(ch string, from int) int {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return int(int32(C.QByteArray_IndexOf3(ptr.Pointer(), chC, C.int(int32(from)))))
 	}
 	return 0
@@ -7196,8 +7388,11 @@ func (ptr *QByteArray) IndexOf(ba QByteArray_ITF, from int) int {
 
 func (ptr *QByteArray) IndexOf4(str string, from int) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QByteArray_IndexOf4(ptr.Pointer(), strC, C.int(int32(from)))))
 	}
 	return 0
@@ -7205,8 +7400,11 @@ func (ptr *QByteArray) IndexOf4(str string, from int) int {
 
 func (ptr *QByteArray) IndexOf2(str string, from int) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QByteArray_IndexOf2(ptr.Pointer(), strC, C.int(int32(from)))))
 	}
 	return 0
@@ -7214,8 +7412,11 @@ func (ptr *QByteArray) IndexOf2(str string, from int) int {
 
 func (ptr *QByteArray) LastIndexOf3(ch string, from int) int {
 	if ptr.Pointer() != nil {
-		var chC = C.CString(ch)
-		defer C.free(unsafe.Pointer(chC))
+		var chC *C.char
+		if ch != "" {
+			chC = C.CString(ch)
+			defer C.free(unsafe.Pointer(chC))
+		}
 		return int(int32(C.QByteArray_LastIndexOf3(ptr.Pointer(), chC, C.int(int32(from)))))
 	}
 	return 0
@@ -7230,8 +7431,11 @@ func (ptr *QByteArray) LastIndexOf(ba QByteArray_ITF, from int) int {
 
 func (ptr *QByteArray) LastIndexOf4(str string, from int) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QByteArray_LastIndexOf4(ptr.Pointer(), strC, C.int(int32(from)))))
 	}
 	return 0
@@ -7239,8 +7443,11 @@ func (ptr *QByteArray) LastIndexOf4(str string, from int) int {
 
 func (ptr *QByteArray) LastIndexOf2(str string, from int) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QByteArray_LastIndexOf2(ptr.Pointer(), strC, C.int(int32(from)))))
 	}
 	return 0
@@ -7392,8 +7599,11 @@ func (ptr *QByteArrayList) Join() *QByteArray {
 
 func (ptr *QByteArrayList) Join3(separator string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var separatorC = C.CString(separator)
-		defer C.free(unsafe.Pointer(separatorC))
+		var separatorC *C.char
+		if separator != "" {
+			separatorC = C.CString(separator)
+			defer C.free(unsafe.Pointer(separatorC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArrayList_Join3(ptr.Pointer(), separatorC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -7466,8 +7676,11 @@ func NewQByteArrayMatcher4(other QByteArrayMatcher_ITF) *QByteArrayMatcher {
 }
 
 func NewQByteArrayMatcher3(pattern string, length int) *QByteArrayMatcher {
-	var patternC = C.CString(pattern)
-	defer C.free(unsafe.Pointer(patternC))
+	var patternC *C.char
+	if pattern != "" {
+		patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+	}
 	var tmpValue = NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher3(patternC, C.int(int32(length))))
 	runtime.SetFinalizer(tmpValue, (*QByteArrayMatcher).DestroyQByteArrayMatcher)
 	return tmpValue
@@ -7504,8 +7717,11 @@ func (ptr *QByteArrayMatcher) IndexIn(ba QByteArray_ITF, from int) int {
 
 func (ptr *QByteArrayMatcher) IndexIn2(str string, len int, from int) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QByteArrayMatcher_IndexIn2(ptr.Pointer(), strC, C.int(int32(len)), C.int(int32(from)))))
 	}
 	return 0
@@ -7918,16 +8134,22 @@ func (ptr *QChar) JoiningType2(ucs4 uint) QChar__JoiningType {
 }
 
 func QChar_FromLatin1(c string) *QChar {
-	var cC = C.CString(c)
-	defer C.free(unsafe.Pointer(cC))
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
 	var tmpValue = NewQCharFromPointer(C.QChar_QChar_FromLatin1(cC))
 	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func (ptr *QChar) FromLatin1(c string) *QChar {
-	var cC = C.CString(c)
-	defer C.free(unsafe.Pointer(cC))
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
 	var tmpValue = NewQCharFromPointer(C.QChar_QChar_FromLatin1(cC))
 	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
@@ -7952,8 +8174,11 @@ func NewQChar7(ch QChar__SpecialCharacter) *QChar {
 }
 
 func NewQChar9(ch string) *QChar {
-	var chC = C.CString(ch)
-	defer C.free(unsafe.Pointer(chC))
+	var chC *C.char
+	if ch != "" {
+		chC = C.CString(ch)
+		defer C.free(unsafe.Pointer(chC))
+	}
 	var tmpValue = NewQCharFromPointer(C.QChar_NewQChar9(chC))
 	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
@@ -7972,18 +8197,27 @@ func NewQChar4(code int16) *QChar {
 }
 
 func NewQChar3(cell string, row string) *QChar {
-	var cellC = C.CString(cell)
-	defer C.free(unsafe.Pointer(cellC))
-	var rowC = C.CString(row)
-	defer C.free(unsafe.Pointer(rowC))
+	var cellC *C.char
+	if cell != "" {
+		cellC = C.CString(cell)
+		defer C.free(unsafe.Pointer(cellC))
+	}
+	var rowC *C.char
+	if row != "" {
+		rowC = C.CString(row)
+		defer C.free(unsafe.Pointer(rowC))
+	}
 	var tmpValue = NewQCharFromPointer(C.QChar_NewQChar3(cellC, rowC))
 	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
 }
 
 func NewQChar10(ch string) *QChar {
-	var chC = C.CString(ch)
-	defer C.free(unsafe.Pointer(chC))
+	var chC *C.char
+	if ch != "" {
+		chC = C.CString(ch)
+		defer C.free(unsafe.Pointer(chC))
+	}
 	var tmpValue = NewQCharFromPointer(C.QChar_NewQChar10(chC))
 	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
 	return tmpValue
@@ -8713,8 +8947,11 @@ func (ptr *QCollator) DestroyQCollator() {
 
 func (ptr *QCollator) SortKey(stri string) *QCollatorSortKey {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
 		var tmpValue = NewQCollatorSortKeyFromPointer(C.QCollator_SortKey(ptr.Pointer(), striC))
 		runtime.SetFinalizer(tmpValue, (*QCollatorSortKey).DestroyQCollatorSortKey)
 		return tmpValue
@@ -8761,10 +8998,16 @@ func (ptr *QCollator) Compare3(s1 QChar_ITF, len1 int, s2 QChar_ITF, len2 int) i
 
 func (ptr *QCollator) Compare(s1 string, s2 string) int {
 	if ptr.Pointer() != nil {
-		var s1C = C.CString(s1)
-		defer C.free(unsafe.Pointer(s1C))
-		var s2C = C.CString(s2)
-		defer C.free(unsafe.Pointer(s2C))
+		var s1C *C.char
+		if s1 != "" {
+			s1C = C.CString(s1)
+			defer C.free(unsafe.Pointer(s1C))
+		}
+		var s2C *C.char
+		if s2 != "" {
+			s2C = C.CString(s2)
+			defer C.free(unsafe.Pointer(s2C))
+		}
 		return int(int32(C.QCollator_Compare(ptr.Pointer(), s1C, s2C)))
 	}
 	return 0
@@ -8894,22 +9137,37 @@ func NewQCommandLineOption5(other QCommandLineOption_ITF) *QCommandLineOption {
 }
 
 func NewQCommandLineOption(name string) *QCommandLineOption {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption(nameC))
 	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
 }
 
 func NewQCommandLineOption3(name string, description string, valueName string, defaultValue string) *QCommandLineOption {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
-	var descriptionC = C.CString(description)
-	defer C.free(unsafe.Pointer(descriptionC))
-	var valueNameC = C.CString(valueName)
-	defer C.free(unsafe.Pointer(valueNameC))
-	var defaultValueC = C.CString(defaultValue)
-	defer C.free(unsafe.Pointer(defaultValueC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
+	var descriptionC *C.char
+	if description != "" {
+		descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+	}
+	var valueNameC *C.char
+	if valueName != "" {
+		valueNameC = C.CString(valueName)
+		defer C.free(unsafe.Pointer(valueNameC))
+	}
+	var defaultValueC *C.char
+	if defaultValue != "" {
+		defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+	}
 	var tmpValue = NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption3(nameC, descriptionC, valueNameC, defaultValueC))
 	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
@@ -8926,12 +9184,21 @@ func NewQCommandLineOption2(names []string) *QCommandLineOption {
 func NewQCommandLineOption4(names []string, description string, valueName string, defaultValue string) *QCommandLineOption {
 	var namesC = C.CString(strings.Join(names, "|"))
 	defer C.free(unsafe.Pointer(namesC))
-	var descriptionC = C.CString(description)
-	defer C.free(unsafe.Pointer(descriptionC))
-	var valueNameC = C.CString(valueName)
-	defer C.free(unsafe.Pointer(valueNameC))
-	var defaultValueC = C.CString(defaultValue)
-	defer C.free(unsafe.Pointer(defaultValueC))
+	var descriptionC *C.char
+	if description != "" {
+		descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+	}
+	var valueNameC *C.char
+	if valueName != "" {
+		valueNameC = C.CString(valueName)
+		defer C.free(unsafe.Pointer(valueNameC))
+	}
+	var defaultValueC *C.char
+	if defaultValue != "" {
+		defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+	}
 	var tmpValue = NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(namesC, descriptionC, valueNameC, defaultValueC))
 	runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
 	return tmpValue
@@ -8939,8 +9206,11 @@ func NewQCommandLineOption4(names []string, description string, valueName string
 
 func (ptr *QCommandLineOption) SetDefaultValue(defaultValue string) {
 	if ptr.Pointer() != nil {
-		var defaultValueC = C.CString(defaultValue)
-		defer C.free(unsafe.Pointer(defaultValueC))
+		var defaultValueC *C.char
+		if defaultValue != "" {
+			defaultValueC = C.CString(defaultValue)
+			defer C.free(unsafe.Pointer(defaultValueC))
+		}
 		C.QCommandLineOption_SetDefaultValue(ptr.Pointer(), defaultValueC)
 	}
 }
@@ -8955,8 +9225,11 @@ func (ptr *QCommandLineOption) SetDefaultValues(defaultValues []string) {
 
 func (ptr *QCommandLineOption) SetDescription(description string) {
 	if ptr.Pointer() != nil {
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
 		C.QCommandLineOption_SetDescription(ptr.Pointer(), descriptionC)
 	}
 }
@@ -8969,8 +9242,11 @@ func (ptr *QCommandLineOption) SetFlags(flags QCommandLineOption__Flag) {
 
 func (ptr *QCommandLineOption) SetValueName(valueName string) {
 	if ptr.Pointer() != nil {
-		var valueNameC = C.CString(valueName)
-		defer C.free(unsafe.Pointer(valueNameC))
+		var valueNameC *C.char
+		if valueName != "" {
+			valueNameC = C.CString(valueName)
+			defer C.free(unsafe.Pointer(valueNameC))
+		}
 		C.QCommandLineOption_SetValueName(ptr.Pointer(), valueNameC)
 	}
 }
@@ -9134,12 +9410,21 @@ func (ptr *QCommandLineParser) Parse(arguments []string) bool {
 
 func (ptr *QCommandLineParser) AddPositionalArgument(name string, description string, syntax string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
-		var syntaxC = C.CString(syntax)
-		defer C.free(unsafe.Pointer(syntaxC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
+		var syntaxC *C.char
+		if syntax != "" {
+			syntaxC = C.CString(syntax)
+			defer C.free(unsafe.Pointer(syntaxC))
+		}
 		C.QCommandLineParser_AddPositionalArgument(ptr.Pointer(), nameC, descriptionC, syntaxC)
 	}
 }
@@ -9166,8 +9451,11 @@ func (ptr *QCommandLineParser) Process(arguments []string) {
 
 func (ptr *QCommandLineParser) SetApplicationDescription(description string) {
 	if ptr.Pointer() != nil {
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
 		C.QCommandLineParser_SetApplicationDescription(ptr.Pointer(), descriptionC)
 	}
 }
@@ -9233,8 +9521,11 @@ func (ptr *QCommandLineParser) Value2(option QCommandLineOption_ITF) string {
 
 func (ptr *QCommandLineParser) Value(optionName string) string {
 	if ptr.Pointer() != nil {
-		var optionNameC = C.CString(optionName)
-		defer C.free(unsafe.Pointer(optionNameC))
+		var optionNameC *C.char
+		if optionName != "" {
+			optionNameC = C.CString(optionName)
+			defer C.free(unsafe.Pointer(optionNameC))
+		}
 		return cGoUnpackString(C.QCommandLineParser_Value(ptr.Pointer(), optionNameC))
 	}
 	return ""
@@ -9270,8 +9561,11 @@ func (ptr *QCommandLineParser) Values2(option QCommandLineOption_ITF) []string {
 
 func (ptr *QCommandLineParser) Values(optionName string) []string {
 	if ptr.Pointer() != nil {
-		var optionNameC = C.CString(optionName)
-		defer C.free(unsafe.Pointer(optionNameC))
+		var optionNameC *C.char
+		if optionName != "" {
+			optionNameC = C.CString(optionName)
+			defer C.free(unsafe.Pointer(optionNameC))
+		}
 		return strings.Split(cGoUnpackString(C.QCommandLineParser_Values(ptr.Pointer(), optionNameC)), "|")
 	}
 	return make([]string, 0)
@@ -9286,8 +9580,11 @@ func (ptr *QCommandLineParser) IsSet2(option QCommandLineOption_ITF) bool {
 
 func (ptr *QCommandLineParser) IsSet(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QCommandLineParser_IsSet(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -9479,22 +9776,40 @@ func (ptr *QCoreApplication) OrganizationName() string {
 }
 
 func QCoreApplication_Translate(context string, sourceText string, disambiguation string, n int) string {
-	var contextC = C.CString(context)
-	defer C.free(unsafe.Pointer(contextC))
-	var sourceTextC = C.CString(sourceText)
-	defer C.free(unsafe.Pointer(sourceTextC))
-	var disambiguationC = C.CString(disambiguation)
-	defer C.free(unsafe.Pointer(disambiguationC))
+	var contextC *C.char
+	if context != "" {
+		contextC = C.CString(context)
+		defer C.free(unsafe.Pointer(contextC))
+	}
+	var sourceTextC *C.char
+	if sourceText != "" {
+		sourceTextC = C.CString(sourceText)
+		defer C.free(unsafe.Pointer(sourceTextC))
+	}
+	var disambiguationC *C.char
+	if disambiguation != "" {
+		disambiguationC = C.CString(disambiguation)
+		defer C.free(unsafe.Pointer(disambiguationC))
+	}
 	return cGoUnpackString(C.QCoreApplication_QCoreApplication_Translate(contextC, sourceTextC, disambiguationC, C.int(int32(n))))
 }
 
 func (ptr *QCoreApplication) Translate(context string, sourceText string, disambiguation string, n int) string {
-	var contextC = C.CString(context)
-	defer C.free(unsafe.Pointer(contextC))
-	var sourceTextC = C.CString(sourceText)
-	defer C.free(unsafe.Pointer(sourceTextC))
-	var disambiguationC = C.CString(disambiguation)
-	defer C.free(unsafe.Pointer(disambiguationC))
+	var contextC *C.char
+	if context != "" {
+		contextC = C.CString(context)
+		defer C.free(unsafe.Pointer(contextC))
+	}
+	var sourceTextC *C.char
+	if sourceText != "" {
+		sourceTextC = C.CString(sourceText)
+		defer C.free(unsafe.Pointer(sourceTextC))
+	}
+	var disambiguationC *C.char
+	if disambiguation != "" {
+		disambiguationC = C.CString(disambiguation)
+		defer C.free(unsafe.Pointer(disambiguationC))
+	}
 	return cGoUnpackString(C.QCoreApplication_QCoreApplication_Translate(contextC, sourceTextC, disambiguationC, C.int(int32(n))))
 }
 
@@ -9617,14 +9932,20 @@ func (ptr *QCoreApplication) DisconnectAboutToQuit() {
 }
 
 func QCoreApplication_AddLibraryPath(path string) {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QCoreApplication_QCoreApplication_AddLibraryPath(pathC)
 }
 
 func (ptr *QCoreApplication) AddLibraryPath(path string) {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QCoreApplication_QCoreApplication_AddLibraryPath(pathC)
 }
 
@@ -9710,14 +10031,20 @@ func (ptr *QCoreApplication) QuitDefault() {
 }
 
 func QCoreApplication_RemoveLibraryPath(path string) {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QCoreApplication_QCoreApplication_RemoveLibraryPath(pathC)
 }
 
 func (ptr *QCoreApplication) RemoveLibraryPath(path string) {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QCoreApplication_QCoreApplication_RemoveLibraryPath(pathC)
 }
 
@@ -9744,26 +10071,38 @@ func (ptr *QCoreApplication) SendPostedEvents(receiver QObject_ITF, event_type i
 }
 
 func QCoreApplication_SetApplicationName(application string) {
-	var applicationC = C.CString(application)
-	defer C.free(unsafe.Pointer(applicationC))
+	var applicationC *C.char
+	if application != "" {
+		applicationC = C.CString(application)
+		defer C.free(unsafe.Pointer(applicationC))
+	}
 	C.QCoreApplication_QCoreApplication_SetApplicationName(applicationC)
 }
 
 func (ptr *QCoreApplication) SetApplicationName(application string) {
-	var applicationC = C.CString(application)
-	defer C.free(unsafe.Pointer(applicationC))
+	var applicationC *C.char
+	if application != "" {
+		applicationC = C.CString(application)
+		defer C.free(unsafe.Pointer(applicationC))
+	}
 	C.QCoreApplication_QCoreApplication_SetApplicationName(applicationC)
 }
 
 func QCoreApplication_SetApplicationVersion(version string) {
-	var versionC = C.CString(version)
-	defer C.free(unsafe.Pointer(versionC))
+	var versionC *C.char
+	if version != "" {
+		versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+	}
 	C.QCoreApplication_QCoreApplication_SetApplicationVersion(versionC)
 }
 
 func (ptr *QCoreApplication) SetApplicationVersion(version string) {
-	var versionC = C.CString(version)
-	defer C.free(unsafe.Pointer(versionC))
+	var versionC *C.char
+	if version != "" {
+		versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+	}
 	C.QCoreApplication_QCoreApplication_SetApplicationVersion(versionC)
 }
 
@@ -9796,26 +10135,38 @@ func (ptr *QCoreApplication) SetLibraryPaths(paths []string) {
 }
 
 func QCoreApplication_SetOrganizationDomain(orgDomain string) {
-	var orgDomainC = C.CString(orgDomain)
-	defer C.free(unsafe.Pointer(orgDomainC))
+	var orgDomainC *C.char
+	if orgDomain != "" {
+		orgDomainC = C.CString(orgDomain)
+		defer C.free(unsafe.Pointer(orgDomainC))
+	}
 	C.QCoreApplication_QCoreApplication_SetOrganizationDomain(orgDomainC)
 }
 
 func (ptr *QCoreApplication) SetOrganizationDomain(orgDomain string) {
-	var orgDomainC = C.CString(orgDomain)
-	defer C.free(unsafe.Pointer(orgDomainC))
+	var orgDomainC *C.char
+	if orgDomain != "" {
+		orgDomainC = C.CString(orgDomain)
+		defer C.free(unsafe.Pointer(orgDomainC))
+	}
 	C.QCoreApplication_QCoreApplication_SetOrganizationDomain(orgDomainC)
 }
 
 func QCoreApplication_SetOrganizationName(orgName string) {
-	var orgNameC = C.CString(orgName)
-	defer C.free(unsafe.Pointer(orgNameC))
+	var orgNameC *C.char
+	if orgName != "" {
+		orgNameC = C.CString(orgName)
+		defer C.free(unsafe.Pointer(orgNameC))
+	}
 	C.QCoreApplication_QCoreApplication_SetOrganizationName(orgNameC)
 }
 
 func (ptr *QCoreApplication) SetOrganizationName(orgName string) {
-	var orgNameC = C.CString(orgName)
-	defer C.free(unsafe.Pointer(orgNameC))
+	var orgNameC *C.char
+	if orgName != "" {
+		orgNameC = C.CString(orgName)
+		defer C.free(unsafe.Pointer(orgNameC))
+	}
 	C.QCoreApplication_QCoreApplication_SetOrganizationName(orgNameC)
 }
 
@@ -9940,8 +10291,11 @@ func (ptr *QCryptographicHash) AddData2(data QByteArray_ITF) {
 
 func (ptr *QCryptographicHash) AddData(data string, length int) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		C.QCryptographicHash_AddData(ptr.Pointer(), dataC, C.int(int32(length)))
 	}
 }
@@ -10101,8 +10455,11 @@ func (ptr *QDataStream) CommitTransaction() bool {
 
 func (ptr *QDataStream) ReadRawData(s string, len int) int {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return int(int32(C.QDataStream_ReadRawData(ptr.Pointer(), sC, C.int(int32(len)))))
 	}
 	return 0
@@ -10117,8 +10474,11 @@ func (ptr *QDataStream) SkipRawData(len int) int {
 
 func (ptr *QDataStream) WriteRawData(s string, len int) int {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return int(int32(C.QDataStream_WriteRawData(ptr.Pointer(), sC, C.int(int32(len)))))
 	}
 	return 0
@@ -10310,36 +10670,54 @@ func (ptr *QDate) FromJulianDay(jd int64) *QDate {
 }
 
 func QDate_FromString(stri string, format Qt__DateFormat) *QDate {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString(striC, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
 func (ptr *QDate) FromString(stri string, format Qt__DateFormat) *QDate {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString(striC, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
 func QDate_FromString2(stri string, format string) *QDate {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
-	var formatC = C.CString(format)
-	defer C.free(unsafe.Pointer(formatC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
+	var formatC *C.char
+	if format != "" {
+		formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+	}
 	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString2(striC, formatC))
 	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
 }
 
 func (ptr *QDate) FromString2(stri string, format string) *QDate {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
-	var formatC = C.CString(format)
-	defer C.free(unsafe.Pointer(formatC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
+	var formatC *C.char
+	if format != "" {
+		formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+	}
 	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString2(striC, formatC))
 	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
@@ -10448,8 +10826,11 @@ func (ptr *QDate) ToString2(format Qt__DateFormat) string {
 
 func (ptr *QDate) ToString(format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QDate_ToString(ptr.Pointer(), formatC))
 	}
 	return ""
@@ -10667,36 +11048,54 @@ func (ptr *QDateTime) FromSecsSinceEpoch2(secs int64, timeZone QTimeZone_ITF) *Q
 }
 
 func QDateTime_FromString(stri string, format Qt__DateFormat) *QDateTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(striC, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) FromString(stri string, format Qt__DateFormat) *QDateTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(striC, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func QDateTime_FromString2(stri string, format string) *QDateTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
-	var formatC = C.CString(format)
-	defer C.free(unsafe.Pointer(formatC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
+	var formatC *C.char
+	if format != "" {
+		formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+	}
 	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(striC, formatC))
 	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
 func (ptr *QDateTime) FromString2(stri string, format string) *QDateTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
-	var formatC = C.CString(format)
-	defer C.free(unsafe.Pointer(formatC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
+	var formatC *C.char
+	if format != "" {
+		formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+	}
 	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(striC, formatC))
 	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
@@ -10930,8 +11329,11 @@ func (ptr *QDateTime) ToString2(format Qt__DateFormat) string {
 
 func (ptr *QDateTime) ToString(format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QDateTime_ToString(ptr.Pointer(), formatC))
 	}
 	return ""
@@ -11220,8 +11622,11 @@ func NewQDebugFromPointer(ptr unsafe.Pointer) *QDebug {
 }
 func (ptr *QDebug) MaybeQuote(c string) *QDebug {
 	if ptr.Pointer() != nil {
-		var cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
+		var cC *C.char
+		if c != "" {
+			cC = C.CString(c)
+			defer C.free(unsafe.Pointer(cC))
+		}
 		var tmpValue = NewQDebugFromPointer(C.QDebug_MaybeQuote(ptr.Pointer(), cC))
 		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 		return tmpValue
@@ -11290,8 +11695,11 @@ func NewQDebug(device QIODevice_ITF) *QDebug {
 }
 
 func NewQDebug2(stri string) *QDebug {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQDebugFromPointer(C.QDebug_NewQDebug2(striC))
 	runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
 	return tmpValue
@@ -11555,18 +11963,27 @@ func NewQDir(dir QDir_ITF) *QDir {
 }
 
 func NewQDir2(path string) *QDir {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	var tmpValue = NewQDirFromPointer(C.QDir_NewQDir2(pathC))
 	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
 }
 
 func NewQDir3(path string, nameFilter string, sort QDir__SortFlag, filters QDir__Filter) *QDir {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
-	var nameFilterC = C.CString(nameFilter)
-	defer C.free(unsafe.Pointer(nameFilterC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
+	var nameFilterC *C.char
+	if nameFilter != "" {
+		nameFilterC = C.CString(nameFilter)
+		defer C.free(unsafe.Pointer(nameFilterC))
+	}
 	var tmpValue = NewQDirFromPointer(C.QDir_NewQDir3(pathC, nameFilterC, C.longlong(sort), C.longlong(filters)))
 	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
 	return tmpValue
@@ -11593,14 +12010,20 @@ func (ptr *QDir) Drives() []*QFileInfo {
 }
 
 func QDir_CleanPath(path string) string {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return cGoUnpackString(C.QDir_QDir_CleanPath(pathC))
 }
 
 func (ptr *QDir) CleanPath(path string) string {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return cGoUnpackString(C.QDir_QDir_CleanPath(pathC))
 }
 
@@ -11613,14 +12036,20 @@ func (ptr *QDir) CurrentPath() string {
 }
 
 func QDir_FromNativeSeparators(pathName string) string {
-	var pathNameC = C.CString(pathName)
-	defer C.free(unsafe.Pointer(pathNameC))
+	var pathNameC *C.char
+	if pathName != "" {
+		pathNameC = C.CString(pathName)
+		defer C.free(unsafe.Pointer(pathNameC))
+	}
 	return cGoUnpackString(C.QDir_QDir_FromNativeSeparators(pathNameC))
 }
 
 func (ptr *QDir) FromNativeSeparators(pathName string) string {
-	var pathNameC = C.CString(pathName)
-	defer C.free(unsafe.Pointer(pathNameC))
+	var pathNameC *C.char
+	if pathName != "" {
+		pathNameC = C.CString(pathName)
+		defer C.free(unsafe.Pointer(pathNameC))
+	}
 	return cGoUnpackString(C.QDir_QDir_FromNativeSeparators(pathNameC))
 }
 
@@ -11649,33 +12078,48 @@ func (ptr *QDir) TempPath() string {
 }
 
 func QDir_ToNativeSeparators(pathName string) string {
-	var pathNameC = C.CString(pathName)
-	defer C.free(unsafe.Pointer(pathNameC))
+	var pathNameC *C.char
+	if pathName != "" {
+		pathNameC = C.CString(pathName)
+		defer C.free(unsafe.Pointer(pathNameC))
+	}
 	return cGoUnpackString(C.QDir_QDir_ToNativeSeparators(pathNameC))
 }
 
 func (ptr *QDir) ToNativeSeparators(pathName string) string {
-	var pathNameC = C.CString(pathName)
-	defer C.free(unsafe.Pointer(pathNameC))
+	var pathNameC *C.char
+	if pathName != "" {
+		pathNameC = C.CString(pathName)
+		defer C.free(unsafe.Pointer(pathNameC))
+	}
 	return cGoUnpackString(C.QDir_QDir_ToNativeSeparators(pathNameC))
 }
 
 func QDir_SearchPaths(prefix string) []string {
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
 	return strings.Split(cGoUnpackString(C.QDir_QDir_SearchPaths(prefixC)), "|")
 }
 
 func (ptr *QDir) SearchPaths(prefix string) []string {
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
 	return strings.Split(cGoUnpackString(C.QDir_QDir_SearchPaths(prefixC)), "|")
 }
 
 func (ptr *QDir) Cd(dirName string) bool {
 	if ptr.Pointer() != nil {
-		var dirNameC = C.CString(dirName)
-		defer C.free(unsafe.Pointer(dirNameC))
+		var dirNameC *C.char
+		if dirName != "" {
+			dirNameC = C.CString(dirName)
+			defer C.free(unsafe.Pointer(dirNameC))
+		}
 		return C.QDir_Cd(ptr.Pointer(), dirNameC) != 0
 	}
 	return false
@@ -11689,26 +12133,38 @@ func (ptr *QDir) CdUp() bool {
 }
 
 func QDir_IsAbsolutePath(path string) bool {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return C.QDir_QDir_IsAbsolutePath(pathC) != 0
 }
 
 func (ptr *QDir) IsAbsolutePath(path string) bool {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return C.QDir_QDir_IsAbsolutePath(pathC) != 0
 }
 
 func QDir_IsRelativePath(path string) bool {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return C.QDir_QDir_IsRelativePath(pathC) != 0
 }
 
 func (ptr *QDir) IsRelativePath(path string) bool {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return C.QDir_QDir_IsRelativePath(pathC) != 0
 }
 
@@ -11720,41 +12176,62 @@ func (ptr *QDir) MakeAbsolute() bool {
 }
 
 func QDir_Match(filter string, fileName string) bool {
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QDir_QDir_Match(filterC, fileNameC) != 0
 }
 
 func (ptr *QDir) Match(filter string, fileName string) bool {
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QDir_QDir_Match(filterC, fileNameC) != 0
 }
 
 func QDir_Match2(filters []string, fileName string) bool {
 	var filtersC = C.CString(strings.Join(filters, "|"))
 	defer C.free(unsafe.Pointer(filtersC))
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QDir_QDir_Match2(filtersC, fileNameC) != 0
 }
 
 func (ptr *QDir) Match2(filters []string, fileName string) bool {
 	var filtersC = C.CString(strings.Join(filters, "|"))
 	defer C.free(unsafe.Pointer(filtersC))
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QDir_QDir_Match2(filtersC, fileNameC) != 0
 }
 
 func (ptr *QDir) Remove(fileName string) bool {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return C.QDir_Remove(ptr.Pointer(), fileNameC) != 0
 	}
 	return false
@@ -11769,40 +12246,64 @@ func (ptr *QDir) RemoveRecursively() bool {
 
 func (ptr *QDir) Rename(oldName string, newName string) bool {
 	if ptr.Pointer() != nil {
-		var oldNameC = C.CString(oldName)
-		defer C.free(unsafe.Pointer(oldNameC))
-		var newNameC = C.CString(newName)
-		defer C.free(unsafe.Pointer(newNameC))
+		var oldNameC *C.char
+		if oldName != "" {
+			oldNameC = C.CString(oldName)
+			defer C.free(unsafe.Pointer(oldNameC))
+		}
+		var newNameC *C.char
+		if newName != "" {
+			newNameC = C.CString(newName)
+			defer C.free(unsafe.Pointer(newNameC))
+		}
 		return C.QDir_Rename(ptr.Pointer(), oldNameC, newNameC) != 0
 	}
 	return false
 }
 
 func QDir_SetCurrent(path string) bool {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return C.QDir_QDir_SetCurrent(pathC) != 0
 }
 
 func (ptr *QDir) SetCurrent(path string) bool {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	return C.QDir_QDir_SetCurrent(pathC) != 0
 }
 
 func QDir_AddSearchPath(prefix string, path string) {
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QDir_QDir_AddSearchPath(prefixC, pathC)
 }
 
 func (ptr *QDir) AddSearchPath(prefix string, path string) {
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QDir_QDir_AddSearchPath(prefixC, pathC)
 }
 
@@ -11822,23 +12323,32 @@ func (ptr *QDir) SetNameFilters(nameFilters []string) {
 
 func (ptr *QDir) SetPath(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QDir_SetPath(ptr.Pointer(), pathC)
 	}
 }
 
 func QDir_SetSearchPaths(prefix string, searchPaths []string) {
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
 	var searchPathsC = C.CString(strings.Join(searchPaths, "|"))
 	defer C.free(unsafe.Pointer(searchPathsC))
 	C.QDir_QDir_SetSearchPaths(prefixC, searchPathsC)
 }
 
 func (ptr *QDir) SetSearchPaths(prefix string, searchPaths []string) {
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
 	var searchPathsC = C.CString(strings.Join(searchPaths, "|"))
 	defer C.free(unsafe.Pointer(searchPathsC))
 	C.QDir_QDir_SetSearchPaths(prefixC, searchPathsC)
@@ -11900,8 +12410,11 @@ func (ptr *QDir) EntryInfoList(nameFilters []string, filters QDir__Filter, sort 
 
 func (ptr *QDir) AbsoluteFilePath(fileName string) string {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return cGoUnpackString(C.QDir_AbsoluteFilePath(ptr.Pointer(), fileNameC))
 	}
 	return ""
@@ -11930,8 +12443,11 @@ func (ptr *QDir) DirName() string {
 
 func (ptr *QDir) FilePath(fileName string) string {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return cGoUnpackString(C.QDir_FilePath(ptr.Pointer(), fileNameC))
 	}
 	return ""
@@ -11946,8 +12462,11 @@ func (ptr *QDir) Path() string {
 
 func (ptr *QDir) RelativeFilePath(fileName string) string {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return cGoUnpackString(C.QDir_RelativeFilePath(ptr.Pointer(), fileNameC))
 	}
 	return ""
@@ -11992,8 +12511,11 @@ func (ptr *QDir) Exists2() bool {
 
 func (ptr *QDir) Exists(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QDir_Exists(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -12029,8 +12551,11 @@ func (ptr *QDir) IsRoot() bool {
 
 func (ptr *QDir) Mkdir(dirName string) bool {
 	if ptr.Pointer() != nil {
-		var dirNameC = C.CString(dirName)
-		defer C.free(unsafe.Pointer(dirNameC))
+		var dirNameC *C.char
+		if dirName != "" {
+			dirNameC = C.CString(dirName)
+			defer C.free(unsafe.Pointer(dirNameC))
+		}
 		return C.QDir_Mkdir(ptr.Pointer(), dirNameC) != 0
 	}
 	return false
@@ -12038,8 +12563,11 @@ func (ptr *QDir) Mkdir(dirName string) bool {
 
 func (ptr *QDir) Mkpath(dirPath string) bool {
 	if ptr.Pointer() != nil {
-		var dirPathC = C.CString(dirPath)
-		defer C.free(unsafe.Pointer(dirPathC))
+		var dirPathC *C.char
+		if dirPath != "" {
+			dirPathC = C.CString(dirPath)
+			defer C.free(unsafe.Pointer(dirPathC))
+		}
 		return C.QDir_Mkpath(ptr.Pointer(), dirPathC) != 0
 	}
 	return false
@@ -12047,8 +12575,11 @@ func (ptr *QDir) Mkpath(dirPath string) bool {
 
 func (ptr *QDir) Rmdir(dirName string) bool {
 	if ptr.Pointer() != nil {
-		var dirNameC = C.CString(dirName)
-		defer C.free(unsafe.Pointer(dirNameC))
+		var dirNameC *C.char
+		if dirName != "" {
+			dirNameC = C.CString(dirName)
+			defer C.free(unsafe.Pointer(dirNameC))
+		}
 		return C.QDir_Rmdir(ptr.Pointer(), dirNameC) != 0
 	}
 	return false
@@ -12056,8 +12587,11 @@ func (ptr *QDir) Rmdir(dirName string) bool {
 
 func (ptr *QDir) Rmpath(dirPath string) bool {
 	if ptr.Pointer() != nil {
-		var dirPathC = C.CString(dirPath)
-		defer C.free(unsafe.Pointer(dirPathC))
+		var dirPathC *C.char
+		if dirPath != "" {
+			dirPathC = C.CString(dirPath)
+			defer C.free(unsafe.Pointer(dirPathC))
+		}
 		return C.QDir_Rmpath(ptr.Pointer(), dirPathC) != 0
 	}
 	return false
@@ -13493,28 +14027,40 @@ func NewQFileFromPointer(ptr unsafe.Pointer) *QFile {
 	return n
 }
 func QFile_Permissions2(fileName string) QFileDevice__Permission {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return QFileDevice__Permission(C.QFile_QFile_Permissions2(fileNameC))
 }
 
 func (ptr *QFile) Permissions2(fileName string) QFileDevice__Permission {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return QFileDevice__Permission(C.QFile_QFile_Permissions2(fileNameC))
 }
 
 func QFile_EncodeName(fileName string) *QByteArray {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QFile_QFile_EncodeName(fileNameC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QFile) EncodeName(fileName string) *QByteArray {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QFile_QFile_EncodeName(fileNameC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
@@ -13537,8 +14083,11 @@ func NewQFile3(parent QObject_ITF) *QFile {
 }
 
 func NewQFile2(name string) *QFile {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQFileFromPointer(C.QFile_NewQFile2(nameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -13547,8 +14096,11 @@ func NewQFile2(name string) *QFile {
 }
 
 func NewQFile4(name string, parent QObject_ITF) *QFile {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQFileFromPointer(C.QFile_NewQFile4(nameC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -13565,86 +14117,134 @@ func (ptr *QFile) DecodeName(localFileName QByteArray_ITF) string {
 }
 
 func QFile_DecodeName2(localFileName string) string {
-	var localFileNameC = C.CString(localFileName)
-	defer C.free(unsafe.Pointer(localFileNameC))
+	var localFileNameC *C.char
+	if localFileName != "" {
+		localFileNameC = C.CString(localFileName)
+		defer C.free(unsafe.Pointer(localFileNameC))
+	}
 	return cGoUnpackString(C.QFile_QFile_DecodeName2(localFileNameC))
 }
 
 func (ptr *QFile) DecodeName2(localFileName string) string {
-	var localFileNameC = C.CString(localFileName)
-	defer C.free(unsafe.Pointer(localFileNameC))
+	var localFileNameC *C.char
+	if localFileName != "" {
+		localFileNameC = C.CString(localFileName)
+		defer C.free(unsafe.Pointer(localFileNameC))
+	}
 	return cGoUnpackString(C.QFile_QFile_DecodeName2(localFileNameC))
 }
 
 func QFile_SymLinkTarget(fileName string) string {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return cGoUnpackString(C.QFile_QFile_SymLinkTarget(fileNameC))
 }
 
 func (ptr *QFile) SymLinkTarget(fileName string) string {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return cGoUnpackString(C.QFile_QFile_SymLinkTarget(fileNameC))
 }
 
 func QFile_Copy2(fileName string, newName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
-	var newNameC = C.CString(newName)
-	defer C.free(unsafe.Pointer(newNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var newNameC *C.char
+	if newName != "" {
+		newNameC = C.CString(newName)
+		defer C.free(unsafe.Pointer(newNameC))
+	}
 	return C.QFile_QFile_Copy2(fileNameC, newNameC) != 0
 }
 
 func (ptr *QFile) Copy2(fileName string, newName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
-	var newNameC = C.CString(newName)
-	defer C.free(unsafe.Pointer(newNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var newNameC *C.char
+	if newName != "" {
+		newNameC = C.CString(newName)
+		defer C.free(unsafe.Pointer(newNameC))
+	}
 	return C.QFile_QFile_Copy2(fileNameC, newNameC) != 0
 }
 
 func (ptr *QFile) Copy(newName string) bool {
 	if ptr.Pointer() != nil {
-		var newNameC = C.CString(newName)
-		defer C.free(unsafe.Pointer(newNameC))
+		var newNameC *C.char
+		if newName != "" {
+			newNameC = C.CString(newName)
+			defer C.free(unsafe.Pointer(newNameC))
+		}
 		return C.QFile_Copy(ptr.Pointer(), newNameC) != 0
 	}
 	return false
 }
 
 func QFile_Exists(fileName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_Exists(fileNameC) != 0
 }
 
 func (ptr *QFile) Exists(fileName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_Exists(fileNameC) != 0
 }
 
 func QFile_Link2(fileName string, linkName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
-	var linkNameC = C.CString(linkName)
-	defer C.free(unsafe.Pointer(linkNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var linkNameC *C.char
+	if linkName != "" {
+		linkNameC = C.CString(linkName)
+		defer C.free(unsafe.Pointer(linkNameC))
+	}
 	return C.QFile_QFile_Link2(fileNameC, linkNameC) != 0
 }
 
 func (ptr *QFile) Link2(fileName string, linkName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
-	var linkNameC = C.CString(linkName)
-	defer C.free(unsafe.Pointer(linkNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var linkNameC *C.char
+	if linkName != "" {
+		linkNameC = C.CString(linkName)
+		defer C.free(unsafe.Pointer(linkNameC))
+	}
 	return C.QFile_QFile_Link2(fileNameC, linkNameC) != 0
 }
 
 func (ptr *QFile) Link(linkName string) bool {
 	if ptr.Pointer() != nil {
-		var linkNameC = C.CString(linkName)
-		defer C.free(unsafe.Pointer(linkNameC))
+		var linkNameC *C.char
+		if linkName != "" {
+			linkNameC = C.CString(linkName)
+			defer C.free(unsafe.Pointer(linkNameC))
+		}
 		return C.QFile_Link(ptr.Pointer(), linkNameC) != 0
 	}
 	return false
@@ -13665,70 +14265,106 @@ func (ptr *QFile) Remove() bool {
 }
 
 func QFile_Remove2(fileName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_Remove2(fileNameC) != 0
 }
 
 func (ptr *QFile) Remove2(fileName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_Remove2(fileNameC) != 0
 }
 
 func (ptr *QFile) Rename(newName string) bool {
 	if ptr.Pointer() != nil {
-		var newNameC = C.CString(newName)
-		defer C.free(unsafe.Pointer(newNameC))
+		var newNameC *C.char
+		if newName != "" {
+			newNameC = C.CString(newName)
+			defer C.free(unsafe.Pointer(newNameC))
+		}
 		return C.QFile_Rename(ptr.Pointer(), newNameC) != 0
 	}
 	return false
 }
 
 func QFile_Rename2(oldName string, newName string) bool {
-	var oldNameC = C.CString(oldName)
-	defer C.free(unsafe.Pointer(oldNameC))
-	var newNameC = C.CString(newName)
-	defer C.free(unsafe.Pointer(newNameC))
+	var oldNameC *C.char
+	if oldName != "" {
+		oldNameC = C.CString(oldName)
+		defer C.free(unsafe.Pointer(oldNameC))
+	}
+	var newNameC *C.char
+	if newName != "" {
+		newNameC = C.CString(newName)
+		defer C.free(unsafe.Pointer(newNameC))
+	}
 	return C.QFile_QFile_Rename2(oldNameC, newNameC) != 0
 }
 
 func (ptr *QFile) Rename2(oldName string, newName string) bool {
-	var oldNameC = C.CString(oldName)
-	defer C.free(unsafe.Pointer(oldNameC))
-	var newNameC = C.CString(newName)
-	defer C.free(unsafe.Pointer(newNameC))
+	var oldNameC *C.char
+	if oldName != "" {
+		oldNameC = C.CString(oldName)
+		defer C.free(unsafe.Pointer(oldNameC))
+	}
+	var newNameC *C.char
+	if newName != "" {
+		newNameC = C.CString(newName)
+		defer C.free(unsafe.Pointer(newNameC))
+	}
 	return C.QFile_QFile_Rename2(oldNameC, newNameC) != 0
 }
 
 func QFile_Resize2(fileName string, sz int64) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_Resize2(fileNameC, C.longlong(sz)) != 0
 }
 
 func (ptr *QFile) Resize2(fileName string, sz int64) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_Resize2(fileNameC, C.longlong(sz)) != 0
 }
 
 func QFile_SetPermissions2(fileName string, permissions QFileDevice__Permission) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_SetPermissions2(fileNameC, C.longlong(permissions)) != 0
 }
 
 func (ptr *QFile) SetPermissions2(fileName string, permissions QFileDevice__Permission) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QFile_QFile_SetPermissions2(fileNameC, C.longlong(permissions)) != 0
 }
 
 func (ptr *QFile) SetFileName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QFile_SetFileName(ptr.Pointer(), nameC)
 	}
 }
@@ -13936,8 +14572,11 @@ func (ptr *QFileDevice) SetPermissionsDefault(permissions QFileDevice__Permissio
 
 func (ptr *QFileDevice) Unmap(address string) bool {
 	if ptr.Pointer() != nil {
-		var addressC = C.CString(address)
-		defer C.free(unsafe.Pointer(addressC))
+		var addressC *C.char
+		if address != "" {
+			addressC = C.CString(address)
+			defer C.free(unsafe.Pointer(addressC))
+		}
 		return C.QFileDevice_Unmap(ptr.Pointer(), addressC) != 0
 	}
 	return false
@@ -14026,8 +14665,11 @@ func (ptr *QFileDevice) DisconnectWriteData() {
 
 func (ptr *QFileDevice) WriteData(data string, len int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QFileDevice_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
@@ -14035,8 +14677,11 @@ func (ptr *QFileDevice) WriteData(data string, len int64) int64 {
 
 func (ptr *QFileDevice) WriteDataDefault(data string, len int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QFileDevice_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
@@ -14195,8 +14840,11 @@ func NewQFileInfo() *QFileInfo {
 }
 
 func NewQFileInfo5(dir QDir_ITF, file string) *QFileInfo {
-	var fileC = C.CString(file)
-	defer C.free(unsafe.Pointer(fileC))
+	var fileC *C.char
+	if file != "" {
+		fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+	}
 	var tmpValue = NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo5(PointerFromQDir(dir), fileC))
 	runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 	return tmpValue
@@ -14215,22 +14863,31 @@ func NewQFileInfo6(fileinfo QFileInfo_ITF) *QFileInfo {
 }
 
 func NewQFileInfo3(file string) *QFileInfo {
-	var fileC = C.CString(file)
-	defer C.free(unsafe.Pointer(fileC))
+	var fileC *C.char
+	if file != "" {
+		fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+	}
 	var tmpValue = NewQFileInfoFromPointer(C.QFileInfo_NewQFileInfo3(fileC))
 	runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
 	return tmpValue
 }
 
 func QFileInfo_Exists2(file string) bool {
-	var fileC = C.CString(file)
-	defer C.free(unsafe.Pointer(fileC))
+	var fileC *C.char
+	if file != "" {
+		fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+	}
 	return C.QFileInfo_QFileInfo_Exists2(fileC) != 0
 }
 
 func (ptr *QFileInfo) Exists2(file string) bool {
-	var fileC = C.CString(file)
-	defer C.free(unsafe.Pointer(fileC))
+	var fileC *C.char
+	if file != "" {
+		fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+	}
 	return C.QFileInfo_QFileInfo_Exists2(fileC) != 0
 }
 
@@ -14255,8 +14912,11 @@ func (ptr *QFileInfo) SetCaching(enable bool) {
 
 func (ptr *QFileInfo) SetFile3(dir QDir_ITF, file string) {
 	if ptr.Pointer() != nil {
-		var fileC = C.CString(file)
-		defer C.free(unsafe.Pointer(fileC))
+		var fileC *C.char
+		if file != "" {
+			fileC = C.CString(file)
+			defer C.free(unsafe.Pointer(fileC))
+		}
 		C.QFileInfo_SetFile3(ptr.Pointer(), PointerFromQDir(dir), fileC)
 	}
 }
@@ -14269,8 +14929,11 @@ func (ptr *QFileInfo) SetFile2(file QFile_ITF) {
 
 func (ptr *QFileInfo) SetFile(file string) {
 	if ptr.Pointer() != nil {
-		var fileC = C.CString(file)
-		defer C.free(unsafe.Pointer(fileC))
+		var fileC *C.char
+		if file != "" {
+			fileC = C.CString(file)
+			defer C.free(unsafe.Pointer(fileC))
+		}
 		C.QFileInfo_SetFile(ptr.Pointer(), fileC)
 	}
 }
@@ -14621,8 +15284,11 @@ func (ptr *QFileSelector) DestroyQFileSelector() {
 
 func (ptr *QFileSelector) Select(filePath string) string {
 	if ptr.Pointer() != nil {
-		var filePathC = C.CString(filePath)
-		defer C.free(unsafe.Pointer(filePathC))
+		var filePathC *C.char
+		if filePath != "" {
+			filePathC = C.CString(filePath)
+			defer C.free(unsafe.Pointer(filePathC))
+		}
 		return cGoUnpackString(C.QFileSelector_Select(ptr.Pointer(), filePathC))
 	}
 	return ""
@@ -14727,8 +15393,11 @@ func (ptr *QFileSystemWatcher) RemovePaths(paths []string) []string {
 
 func (ptr *QFileSystemWatcher) AddPath(path string) bool {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		return C.QFileSystemWatcher_AddPath(ptr.Pointer(), pathC) != 0
 	}
 	return false
@@ -14736,8 +15405,11 @@ func (ptr *QFileSystemWatcher) AddPath(path string) bool {
 
 func (ptr *QFileSystemWatcher) RemovePath(path string) bool {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		return C.QFileSystemWatcher_RemovePath(ptr.Pointer(), pathC) != 0
 	}
 	return false
@@ -15260,8 +15932,11 @@ func (ptr *QGenericArgument) DestroyQGenericArgument() {
 }
 
 func NewQGenericArgument(name string, data unsafe.Pointer) *QGenericArgument {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQGenericArgumentFromPointer(C.QGenericArgument_NewQGenericArgument(nameC, data))
 	runtime.SetFinalizer(tmpValue, (*QGenericArgument).DestroyQGenericArgument)
 	return tmpValue
@@ -15328,8 +16003,11 @@ func (ptr *QGenericReturnArgument) DestroyQGenericReturnArgument() {
 }
 
 func NewQGenericReturnArgument(name string, data unsafe.Pointer) *QGenericReturnArgument {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQGenericReturnArgumentFromPointer(C.QGenericReturnArgument_NewQGenericReturnArgument(nameC, data))
 	runtime.SetFinalizer(tmpValue, (*QGenericReturnArgument).DestroyQGenericReturnArgument)
 	return tmpValue
@@ -15869,8 +16547,11 @@ func NewQIODevice2(parent QObject_ITF) *QIODevice {
 
 func (ptr *QIODevice) GetChar(c string) bool {
 	if ptr.Pointer() != nil {
-		var cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
+		var cC *C.char
+		if c != "" {
+			cC = C.CString(c)
+			defer C.free(unsafe.Pointer(cC))
+		}
 		return C.QIODevice_GetChar(ptr.Pointer(), cC) != 0
 	}
 	return false
@@ -15932,8 +16613,11 @@ func (ptr *QIODevice) OpenDefault(mode QIODevice__OpenModeFlag) bool {
 
 func (ptr *QIODevice) PutChar(c string) bool {
 	if ptr.Pointer() != nil {
-		var cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
+		var cC *C.char
+		if c != "" {
+			cC = C.CString(c)
+			defer C.free(unsafe.Pointer(cC))
+		}
 		return C.QIODevice_PutChar(ptr.Pointer(), cC) != 0
 	}
 	return false
@@ -16089,8 +16773,11 @@ func (ptr *QIODevice) WaitForReadyReadDefault(msecs int) bool {
 
 func (ptr *QIODevice) Peek(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_Peek(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -16098,8 +16785,11 @@ func (ptr *QIODevice) Peek(data string, maxSize int64) int64 {
 
 func (ptr *QIODevice) Read(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_Read(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -16148,8 +16838,11 @@ func (ptr *QIODevice) ReadData(data *string, maxSize int64) int64 {
 
 func (ptr *QIODevice) ReadLine(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_ReadLine(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -16180,8 +16873,11 @@ func (ptr *QIODevice) DisconnectReadLineData() {
 
 func (ptr *QIODevice) ReadLineData(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -16189,8 +16885,11 @@ func (ptr *QIODevice) ReadLineData(data string, maxSize int64) int64 {
 
 func (ptr *QIODevice) ReadLineDataDefault(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -16205,8 +16904,11 @@ func (ptr *QIODevice) Write3(byteArray QByteArray_ITF) int64 {
 
 func (ptr *QIODevice) Write2(data string) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_Write2(ptr.Pointer(), dataC))
 	}
 	return 0
@@ -16214,8 +16916,11 @@ func (ptr *QIODevice) Write2(data string) int64 {
 
 func (ptr *QIODevice) Write(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_Write(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -16246,8 +16951,11 @@ func (ptr *QIODevice) DisconnectWriteData() {
 
 func (ptr *QIODevice) WriteData(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QIODevice_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -16482,8 +17190,11 @@ func (ptr *QIODevice) SetCurrentWriteChannel(channel int) {
 
 func (ptr *QIODevice) SetErrorString(str string) {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		C.QIODevice_SetErrorString(ptr.Pointer(), strC)
 	}
 }
@@ -16508,8 +17219,11 @@ func (ptr *QIODevice) StartTransaction() {
 
 func (ptr *QIODevice) UngetChar(c string) {
 	if ptr.Pointer() != nil {
-		var cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
+		var cC *C.char
+		if c != "" {
+			cC = C.CString(c)
+			defer C.free(unsafe.Pointer(cC))
+		}
 		C.QIODevice_UngetChar(ptr.Pointer(), cC)
 	}
 }
@@ -18583,16 +19297,22 @@ func (ptr *QJsonDocument) FromJson(json QByteArray_ITF, error QJsonParseError_IT
 }
 
 func QJsonDocument_FromRawData(data string, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
-	var dataC = C.CString(data)
-	defer C.free(unsafe.Pointer(dataC))
+	var dataC *C.char
+	if data != "" {
+		dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+	}
 	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(int32(size)), C.longlong(validation)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromRawData(data string, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
-	var dataC = C.CString(data)
-	defer C.free(unsafe.Pointer(dataC))
+	var dataC *C.char
+	if data != "" {
+		dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+	}
 	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(int32(size)), C.longlong(validation)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
@@ -18808,8 +19528,11 @@ func NewQJsonObject3(other QJsonObject_ITF) *QJsonObject {
 
 func (ptr *QJsonObject) Take(key string) *QJsonValue {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = NewQJsonValueFromPointer(C.QJsonObject_Take(ptr.Pointer(), keyC))
 		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
@@ -18819,8 +19542,11 @@ func (ptr *QJsonObject) Take(key string) *QJsonValue {
 
 func (ptr *QJsonObject) Remove(key string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QJsonObject_Remove(ptr.Pointer(), keyC)
 	}
 }
@@ -18843,8 +19569,11 @@ func (ptr *QJsonObject) Value2(key QLatin1String_ITF) *QJsonValue {
 
 func (ptr *QJsonObject) Value(key string) *QJsonValue {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = NewQJsonValueFromPointer(C.QJsonObject_Value(ptr.Pointer(), keyC))
 		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 		return tmpValue
@@ -18894,8 +19623,11 @@ func (ptr *QJsonObject) Contains2(key QLatin1String_ITF) bool {
 
 func (ptr *QJsonObject) Contains(key string) bool {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return C.QJsonObject_Contains(ptr.Pointer(), keyC) != 0
 	}
 	return false
@@ -18938,8 +19670,11 @@ func (ptr *QJsonObject) Size() int {
 
 func (ptr *QJsonObject) __fromVariantHash_hash_atList(i string) *QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QJsonObject___fromVariantHash_hash_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -18949,8 +19684,11 @@ func (ptr *QJsonObject) __fromVariantHash_hash_atList(i string) *QVariant {
 
 func (ptr *QJsonObject) __fromVariantHash_hash_setList(key string, i QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QJsonObject___fromVariantHash_hash_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
 	}
 }
@@ -18974,8 +19712,11 @@ func (ptr *QJsonObject) __fromVariantHash_keyList() []string {
 
 func (ptr *QJsonObject) __toVariantHash_atList(i string) *QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QJsonObject___toVariantHash_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -18985,8 +19726,11 @@ func (ptr *QJsonObject) __toVariantHash_atList(i string) *QVariant {
 
 func (ptr *QJsonObject) __toVariantHash_setList(key string, i QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QJsonObject___toVariantHash_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
 	}
 }
@@ -19010,8 +19754,11 @@ func (ptr *QJsonObject) __toVariantHash_keyList() []string {
 
 func (ptr *QJsonObject) __toVariantMap_atList(i string) *QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QJsonObject___toVariantMap_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -19021,8 +19768,11 @@ func (ptr *QJsonObject) __toVariantMap_atList(i string) *QVariant {
 
 func (ptr *QJsonObject) __toVariantMap_setList(key string, i QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QJsonObject___toVariantMap_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
 	}
 }
@@ -19053,8 +19803,11 @@ func (ptr *QJsonObject) ____fromVariantHash_keyList_atList(i int) string {
 
 func (ptr *QJsonObject) ____fromVariantHash_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QJsonObject_____fromVariantHash_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -19072,8 +19825,11 @@ func (ptr *QJsonObject) ____fromVariantMap_keyList_atList(i int) string {
 
 func (ptr *QJsonObject) ____fromVariantMap_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QJsonObject_____fromVariantMap_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -19091,8 +19847,11 @@ func (ptr *QJsonObject) ____toVariantHash_keyList_atList(i int) string {
 
 func (ptr *QJsonObject) ____toVariantHash_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QJsonObject_____toVariantHash_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -19110,8 +19869,11 @@ func (ptr *QJsonObject) ____toVariantMap_keyList_atList(i int) string {
 
 func (ptr *QJsonObject) ____toVariantMap_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QJsonObject_____toVariantMap_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -19321,16 +20083,22 @@ func NewQJsonValue11(other QJsonValue_ITF) *QJsonValue {
 }
 
 func NewQJsonValue6(s string) *QJsonValue {
-	var sC = C.CString(s)
-	defer C.free(unsafe.Pointer(sC))
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
 	var tmpValue = NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue6(sC))
 	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
 }
 
 func NewQJsonValue8(s string) *QJsonValue {
-	var sC = C.CString(s)
-	defer C.free(unsafe.Pointer(sC))
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
 	var tmpValue = NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue8(sC))
 	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
 	return tmpValue
@@ -19406,8 +20174,11 @@ func (ptr *QJsonValue) ToString() string {
 
 func (ptr *QJsonValue) ToString2(defaultValue string) string {
 	if ptr.Pointer() != nil {
-		var defaultValueC = C.CString(defaultValue)
-		defer C.free(unsafe.Pointer(defaultValueC))
+		var defaultValueC *C.char
+		if defaultValue != "" {
+			defaultValueC = C.CString(defaultValue)
+			defer C.free(unsafe.Pointer(defaultValueC))
+		}
 		return cGoUnpackString(C.QJsonValue_ToString2(ptr.Pointer(), defaultValueC))
 	}
 	return ""
@@ -19545,8 +20316,11 @@ func (ptr *QLatin1Char) DestroyQLatin1Char() {
 }
 
 func NewQLatin1Char(c string) *QLatin1Char {
-	var cC = C.CString(c)
-	defer C.free(unsafe.Pointer(cC))
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
 	var tmpValue = NewQLatin1CharFromPointer(C.QLatin1Char_NewQLatin1Char(cC))
 	runtime.SetFinalizer(tmpValue, (*QLatin1Char).DestroyQLatin1Char)
 	return tmpValue
@@ -19624,16 +20398,22 @@ func NewQLatin1String4(str QByteArray_ITF) *QLatin1String {
 }
 
 func NewQLatin1String2(str string) *QLatin1String {
-	var strC = C.CString(str)
-	defer C.free(unsafe.Pointer(strC))
+	var strC *C.char
+	if str != "" {
+		strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+	}
 	var tmpValue = NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String2(strC))
 	runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 	return tmpValue
 }
 
 func NewQLatin1String3(str string, size int) *QLatin1String {
-	var strC = C.CString(str)
-	defer C.free(unsafe.Pointer(strC))
+	var strC *C.char
+	if str != "" {
+		strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+	}
 	var tmpValue = NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String3(strC, C.int(int32(size))))
 	runtime.SetFinalizer(tmpValue, (*QLatin1String).DestroyQLatin1String)
 	return tmpValue
@@ -19756,8 +20536,11 @@ func NewQLibrary(parent QObject_ITF) *QLibrary {
 }
 
 func NewQLibrary2(fileName string, parent QObject_ITF) *QLibrary {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQLibraryFromPointer(C.QLibrary_NewQLibrary2(fileNameC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -19766,10 +20549,16 @@ func NewQLibrary2(fileName string, parent QObject_ITF) *QLibrary {
 }
 
 func NewQLibrary4(fileName string, version string, parent QObject_ITF) *QLibrary {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
-	var versionC = C.CString(version)
-	defer C.free(unsafe.Pointer(versionC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	var versionC *C.char
+	if version != "" {
+		versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+	}
 	var tmpValue = NewQLibraryFromPointer(C.QLibrary_NewQLibrary4(fileNameC, versionC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -19778,8 +20567,11 @@ func NewQLibrary4(fileName string, version string, parent QObject_ITF) *QLibrary
 }
 
 func NewQLibrary3(fileName string, verNum int, parent QObject_ITF) *QLibrary {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQLibraryFromPointer(C.QLibrary_NewQLibrary3(fileNameC, C.int(int32(verNum)), PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -19788,14 +20580,20 @@ func NewQLibrary3(fileName string, verNum int, parent QObject_ITF) *QLibrary {
 }
 
 func QLibrary_IsLibrary(fileName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QLibrary_QLibrary_IsLibrary(fileNameC) != 0
 }
 
 func (ptr *QLibrary) IsLibrary(fileName string) bool {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return C.QLibrary_QLibrary_IsLibrary(fileNameC) != 0
 }
 
@@ -19815,26 +20613,38 @@ func (ptr *QLibrary) Unload() bool {
 
 func (ptr *QLibrary) SetFileName(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QLibrary_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
 
 func (ptr *QLibrary) SetFileNameAndVersion2(fileName string, version string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
-		var versionC = C.CString(version)
-		defer C.free(unsafe.Pointer(versionC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
+		var versionC *C.char
+		if version != "" {
+			versionC = C.CString(version)
+			defer C.free(unsafe.Pointer(versionC))
+		}
 		C.QLibrary_SetFileNameAndVersion2(ptr.Pointer(), fileNameC, versionC)
 	}
 }
 
 func (ptr *QLibrary) SetFileNameAndVersion(fileName string, versionNumber int) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QLibrary_SetFileNameAndVersion(ptr.Pointer(), fileNameC, C.int(int32(versionNumber)))
 	}
 }
@@ -21609,8 +22419,11 @@ func NewQLocale5(other QLocale_ITF) *QLocale {
 }
 
 func NewQLocale2(name string) *QLocale {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQLocaleFromPointer(C.QLocale_NewQLocale2(nameC))
 	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
@@ -21760,8 +22573,11 @@ func (ptr *QLocale) ZeroDigit() *QChar {
 
 func (ptr *QLocale) ToDate(stri string, format QLocale__FormatType) *QDate {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
 		var tmpValue = NewQDateFromPointer(C.QLocale_ToDate(ptr.Pointer(), striC, C.longlong(format)))
 		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
@@ -21771,10 +22587,16 @@ func (ptr *QLocale) ToDate(stri string, format QLocale__FormatType) *QDate {
 
 func (ptr *QLocale) ToDate2(stri string, format string) *QDate {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		var tmpValue = NewQDateFromPointer(C.QLocale_ToDate2(ptr.Pointer(), striC, formatC))
 		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 		return tmpValue
@@ -21784,8 +22606,11 @@ func (ptr *QLocale) ToDate2(stri string, format string) *QDate {
 
 func (ptr *QLocale) ToDateTime(stri string, format QLocale__FormatType) *QDateTime {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
 		var tmpValue = NewQDateTimeFromPointer(C.QLocale_ToDateTime(ptr.Pointer(), striC, C.longlong(format)))
 		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
@@ -21795,10 +22620,16 @@ func (ptr *QLocale) ToDateTime(stri string, format QLocale__FormatType) *QDateTi
 
 func (ptr *QLocale) ToDateTime2(stri string, format string) *QDateTime {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		var tmpValue = NewQDateTimeFromPointer(C.QLocale_ToDateTime2(ptr.Pointer(), striC, formatC))
 		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
@@ -21907,8 +22738,11 @@ func (ptr *QLocale) PmText() string {
 
 func (ptr *QLocale) QuoteString(str string, style QLocale__QuotationStyle) string {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return cGoUnpackString(C.QLocale_QuoteString(ptr.Pointer(), strC, C.longlong(style)))
 	}
 	return ""
@@ -21944,8 +22778,11 @@ func (ptr *QLocale) TimeFormat(format QLocale__FormatType) string {
 
 func (ptr *QLocale) ToCurrencyString7(value float64, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString7(ptr.Pointer(), C.double(value), symbolC))
 	}
 	return ""
@@ -21953,8 +22790,11 @@ func (ptr *QLocale) ToCurrencyString7(value float64, symbol string) string {
 
 func (ptr *QLocale) ToCurrencyString8(value float64, symbol string, precision int) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString8(ptr.Pointer(), C.double(value), symbolC, C.int(int32(precision))))
 	}
 	return ""
@@ -21962,8 +22802,11 @@ func (ptr *QLocale) ToCurrencyString8(value float64, symbol string, precision in
 
 func (ptr *QLocale) ToCurrencyString10(i float32, symbol string, precision int) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString10(ptr.Pointer(), C.float(i), symbolC, C.int(int32(precision))))
 	}
 	return ""
@@ -21971,8 +22814,11 @@ func (ptr *QLocale) ToCurrencyString10(i float32, symbol string, precision int) 
 
 func (ptr *QLocale) ToCurrencyString9(value float32, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString9(ptr.Pointer(), C.float(value), symbolC))
 	}
 	return ""
@@ -21980,8 +22826,11 @@ func (ptr *QLocale) ToCurrencyString9(value float32, symbol string) string {
 
 func (ptr *QLocale) ToCurrencyString5(value int, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString5(ptr.Pointer(), C.int(int32(value)), symbolC))
 	}
 	return ""
@@ -21989,8 +22838,11 @@ func (ptr *QLocale) ToCurrencyString5(value int, symbol string) string {
 
 func (ptr *QLocale) ToCurrencyString(value int64, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString(ptr.Pointer(), C.longlong(value), symbolC))
 	}
 	return ""
@@ -21998,8 +22850,11 @@ func (ptr *QLocale) ToCurrencyString(value int64, symbol string) string {
 
 func (ptr *QLocale) ToCurrencyString2(value uint64, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString2(ptr.Pointer(), C.ulonglong(value), symbolC))
 	}
 	return ""
@@ -22007,8 +22862,11 @@ func (ptr *QLocale) ToCurrencyString2(value uint64, symbol string) string {
 
 func (ptr *QLocale) ToCurrencyString3(value int16, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString3(ptr.Pointer(), C.short(value), symbolC))
 	}
 	return ""
@@ -22016,8 +22874,11 @@ func (ptr *QLocale) ToCurrencyString3(value int16, symbol string) string {
 
 func (ptr *QLocale) ToCurrencyString6(value uint, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString6(ptr.Pointer(), C.uint(uint32(value)), symbolC))
 	}
 	return ""
@@ -22025,8 +22886,11 @@ func (ptr *QLocale) ToCurrencyString6(value uint, symbol string) string {
 
 func (ptr *QLocale) ToCurrencyString4(value uint16, symbol string) string {
 	if ptr.Pointer() != nil {
-		var symbolC = C.CString(symbol)
-		defer C.free(unsafe.Pointer(symbolC))
+		var symbolC *C.char
+		if symbol != "" {
+			symbolC = C.CString(symbol)
+			defer C.free(unsafe.Pointer(symbolC))
+		}
 		return cGoUnpackString(C.QLocale_ToCurrencyString4(ptr.Pointer(), C.ushort(value), symbolC))
 	}
 	return ""
@@ -22034,8 +22898,11 @@ func (ptr *QLocale) ToCurrencyString4(value uint16, symbol string) string {
 
 func (ptr *QLocale) ToLower(str string) string {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return cGoUnpackString(C.QLocale_ToLower(ptr.Pointer(), strC))
 	}
 	return ""
@@ -22050,8 +22917,11 @@ func (ptr *QLocale) ToString10(date QDate_ITF, format QLocale__FormatType) strin
 
 func (ptr *QLocale) ToString9(date QDate_ITF, format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QLocale_ToString9(ptr.Pointer(), PointerFromQDate(date), formatC))
 	}
 	return ""
@@ -22066,8 +22936,11 @@ func (ptr *QLocale) ToString13(dateTime QDateTime_ITF, format QLocale__FormatTyp
 
 func (ptr *QLocale) ToString14(dateTime QDateTime_ITF, format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QLocale_ToString14(ptr.Pointer(), PointerFromQDateTime(dateTime), formatC))
 	}
 	return ""
@@ -22082,8 +22955,11 @@ func (ptr *QLocale) ToString12(time QTime_ITF, format QLocale__FormatType) strin
 
 func (ptr *QLocale) ToString11(time QTime_ITF, format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QLocale_ToString11(ptr.Pointer(), PointerFromQTime(time), formatC))
 	}
 	return ""
@@ -22091,8 +22967,11 @@ func (ptr *QLocale) ToString11(time QTime_ITF, format string) string {
 
 func (ptr *QLocale) ToString7(i float64, f string, prec int) string {
 	if ptr.Pointer() != nil {
-		var fC = C.CString(f)
-		defer C.free(unsafe.Pointer(fC))
+		var fC *C.char
+		if f != "" {
+			fC = C.CString(f)
+			defer C.free(unsafe.Pointer(fC))
+		}
 		return cGoUnpackString(C.QLocale_ToString7(ptr.Pointer(), C.double(i), fC, C.int(int32(prec))))
 	}
 	return ""
@@ -22100,8 +22979,11 @@ func (ptr *QLocale) ToString7(i float64, f string, prec int) string {
 
 func (ptr *QLocale) ToString8(i float32, f string, prec int) string {
 	if ptr.Pointer() != nil {
-		var fC = C.CString(f)
-		defer C.free(unsafe.Pointer(fC))
+		var fC *C.char
+		if f != "" {
+			fC = C.CString(f)
+			defer C.free(unsafe.Pointer(fC))
+		}
 		return cGoUnpackString(C.QLocale_ToString8(ptr.Pointer(), C.float(i), fC, C.int(int32(prec))))
 	}
 	return ""
@@ -22151,8 +23033,11 @@ func (ptr *QLocale) ToString4(i uint16) string {
 
 func (ptr *QLocale) ToUpper(str string) string {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return cGoUnpackString(C.QLocale_ToUpper(ptr.Pointer(), strC))
 	}
 	return ""
@@ -22167,8 +23052,11 @@ func (ptr *QLocale) UiLanguages() []string {
 
 func (ptr *QLocale) ToTime(stri string, format QLocale__FormatType) *QTime {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
 		var tmpValue = NewQTimeFromPointer(C.QLocale_ToTime(ptr.Pointer(), striC, C.longlong(format)))
 		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
@@ -22178,10 +23066,16 @@ func (ptr *QLocale) ToTime(stri string, format QLocale__FormatType) *QTime {
 
 func (ptr *QLocale) ToTime2(stri string, format string) *QTime {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		var tmpValue = NewQTimeFromPointer(C.QLocale_ToTime2(ptr.Pointer(), striC, formatC))
 		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 		return tmpValue
@@ -22212,8 +23106,11 @@ func (ptr *QLocale) Script() QLocale__Script {
 
 func (ptr *QLocale) ToDouble(s string, ok bool) float64 {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return float64(C.QLocale_ToDouble(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return 0
@@ -22228,8 +23125,11 @@ func (ptr *QLocale) ToDouble2(s QStringRef_ITF, ok bool) float64 {
 
 func (ptr *QLocale) ToFloat(s string, ok bool) float32 {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return float32(C.QLocale_ToFloat(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return 0
@@ -22244,8 +23144,11 @@ func (ptr *QLocale) ToFloat2(s QStringRef_ITF, ok bool) float32 {
 
 func (ptr *QLocale) ToInt(s string, ok bool) int {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return int(int32(C.QLocale_ToInt(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok))))))
 	}
 	return 0
@@ -22260,8 +23163,11 @@ func (ptr *QLocale) ToInt2(s QStringRef_ITF, ok bool) int {
 
 func (ptr *QLocale) ToLongLong(s string, ok bool) int64 {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return int64(C.QLocale_ToLongLong(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return 0
@@ -22276,8 +23182,11 @@ func (ptr *QLocale) ToLongLong2(s QStringRef_ITF, ok bool) int64 {
 
 func (ptr *QLocale) ToULongLong(s string, ok bool) uint64 {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return uint64(C.QLocale_ToULongLong(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return 0
@@ -22292,8 +23201,11 @@ func (ptr *QLocale) ToULongLong2(s QStringRef_ITF, ok bool) uint64 {
 
 func (ptr *QLocale) ToShort(s string, ok bool) int16 {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return int16(C.QLocale_ToShort(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return 0
@@ -22308,8 +23220,11 @@ func (ptr *QLocale) ToShort2(s QStringRef_ITF, ok bool) int16 {
 
 func (ptr *QLocale) ToUInt(s string, ok bool) uint {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return uint(uint32(C.QLocale_ToUInt(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok))))))
 	}
 	return 0
@@ -22324,8 +23239,11 @@ func (ptr *QLocale) ToUInt2(s QStringRef_ITF, ok bool) uint {
 
 func (ptr *QLocale) ToUShort(s string, ok bool) uint16 {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return uint16(C.QLocale_ToUShort(ptr.Pointer(), sC, C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return 0
@@ -22424,8 +23342,11 @@ const (
 )
 
 func NewQLockFile(fileName string) *QLockFile {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQLockFileFromPointer(C.QLockFile_NewQLockFile(fileNameC))
 	runtime.SetFinalizer(tmpValue, (*QLockFile).DestroyQLockFile)
 	return tmpValue
@@ -22480,10 +23401,16 @@ func (ptr *QLockFile) Error() QLockFile__LockError {
 
 func (ptr *QLockFile) GetLockInfo(pid int64, hostname string, appname string) bool {
 	if ptr.Pointer() != nil {
-		var hostnameC = C.CString(hostname)
-		defer C.free(unsafe.Pointer(hostnameC))
-		var appnameC = C.CString(appname)
-		defer C.free(unsafe.Pointer(appnameC))
+		var hostnameC *C.char
+		if hostname != "" {
+			hostnameC = C.CString(hostname)
+			defer C.free(unsafe.Pointer(hostnameC))
+		}
+		var appnameC *C.char
+		if appname != "" {
+			appnameC = C.CString(appname)
+			defer C.free(unsafe.Pointer(appnameC))
+		}
 		return C.QLockFile_GetLockInfo(ptr.Pointer(), C.longlong(pid), hostnameC, appnameC) != 0
 	}
 	return false
@@ -22549,22 +23476,31 @@ func (ptr *QLoggingCategory) DefaultCategory() *QLoggingCategory {
 }
 
 func NewQLoggingCategory(category string) *QLoggingCategory {
-	var categoryC = C.CString(category)
-	defer C.free(unsafe.Pointer(categoryC))
+	var categoryC *C.char
+	if category != "" {
+		categoryC = C.CString(category)
+		defer C.free(unsafe.Pointer(categoryC))
+	}
 	var tmpValue = NewQLoggingCategoryFromPointer(C.QLoggingCategory_NewQLoggingCategory(categoryC))
 	runtime.SetFinalizer(tmpValue, (*QLoggingCategory).DestroyQLoggingCategory)
 	return tmpValue
 }
 
 func QLoggingCategory_SetFilterRules(rules string) {
-	var rulesC = C.CString(rules)
-	defer C.free(unsafe.Pointer(rulesC))
+	var rulesC *C.char
+	if rules != "" {
+		rulesC = C.CString(rules)
+		defer C.free(unsafe.Pointer(rulesC))
+	}
 	C.QLoggingCategory_QLoggingCategory_SetFilterRules(rulesC)
 }
 
 func (ptr *QLoggingCategory) SetFilterRules(rules string) {
-	var rulesC = C.CString(rules)
-	defer C.free(unsafe.Pointer(rulesC))
+	var rulesC *C.char
+	if rules != "" {
+		rulesC = C.CString(rules)
+		defer C.free(unsafe.Pointer(rulesC))
+	}
 	C.QLoggingCategory_QLoggingCategory_SetFilterRules(rulesC)
 }
 
@@ -23010,8 +23946,11 @@ func (ptr *QMessageAuthenticationCode) AddData2(data QByteArray_ITF) {
 
 func (ptr *QMessageAuthenticationCode) AddData(data string, length int) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		C.QMessageAuthenticationCode_AddData(ptr.Pointer(), dataC, C.int(int32(length)))
 	}
 }
@@ -23188,22 +24127,37 @@ func NewQMessageLogger() *QMessageLogger {
 }
 
 func NewQMessageLogger2(file string, line int, function string) *QMessageLogger {
-	var fileC = C.CString(file)
-	defer C.free(unsafe.Pointer(fileC))
-	var functionC = C.CString(function)
-	defer C.free(unsafe.Pointer(functionC))
+	var fileC *C.char
+	if file != "" {
+		fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+	}
+	var functionC *C.char
+	if function != "" {
+		functionC = C.CString(function)
+		defer C.free(unsafe.Pointer(functionC))
+	}
 	var tmpValue = NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger2(fileC, C.int(int32(line)), functionC))
 	runtime.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
 	return tmpValue
 }
 
 func NewQMessageLogger3(file string, line int, function string, category string) *QMessageLogger {
-	var fileC = C.CString(file)
-	defer C.free(unsafe.Pointer(fileC))
-	var functionC = C.CString(function)
-	defer C.free(unsafe.Pointer(functionC))
-	var categoryC = C.CString(category)
-	defer C.free(unsafe.Pointer(categoryC))
+	var fileC *C.char
+	if file != "" {
+		fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+	}
+	var functionC *C.char
+	if function != "" {
+		functionC = C.CString(function)
+		defer C.free(unsafe.Pointer(functionC))
+	}
+	var categoryC *C.char
+	if category != "" {
+		categoryC = C.CString(category)
+		defer C.free(unsafe.Pointer(categoryC))
+	}
 	var tmpValue = NewQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger3(fileC, C.int(int32(line)), functionC, categoryC))
 	runtime.SetFinalizer(tmpValue, (*QMessageLogger).DestroyQMessageLogger)
 	return tmpValue
@@ -23452,8 +24406,11 @@ func (ptr *QMetaEnum) KeyCount() int {
 
 func (ptr *QMetaEnum) KeyToValue(key string, ok bool) int {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return int(int32(C.QMetaEnum_KeyToValue(ptr.Pointer(), keyC, C.char(int8(qt.GoBoolToInt(ok))))))
 	}
 	return 0
@@ -23461,8 +24418,11 @@ func (ptr *QMetaEnum) KeyToValue(key string, ok bool) int {
 
 func (ptr *QMetaEnum) KeysToValue(keys string, ok bool) int {
 	if ptr.Pointer() != nil {
-		var keysC = C.CString(keys)
-		defer C.free(unsafe.Pointer(keysC))
+		var keysC *C.char
+		if keys != "" {
+			keysC = C.CString(keys)
+			defer C.free(unsafe.Pointer(keysC))
+		}
 		return int(int32(C.QMetaEnum_KeysToValue(ptr.Pointer(), keysC, C.char(int8(qt.GoBoolToInt(ok))))))
 	}
 	return 0
@@ -23781,32 +24741,44 @@ func (ptr *QMetaObject) DestroyQMetaObject() {
 }
 
 func QMetaObject_NormalizedSignature(method string) *QByteArray {
-	var methodC = C.CString(method)
-	defer C.free(unsafe.Pointer(methodC))
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QMetaObject) NormalizedSignature(method string) *QByteArray {
-	var methodC = C.CString(method)
-	defer C.free(unsafe.Pointer(methodC))
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QMetaObject_NormalizedType(ty string) *QByteArray {
-	var tyC = C.CString(ty)
-	defer C.free(unsafe.Pointer(tyC))
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedType(tyC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QMetaObject) NormalizedType(ty string) *QByteArray {
-	var tyC = C.CString(ty)
-	defer C.free(unsafe.Pointer(tyC))
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QMetaObject_QMetaObject_NormalizedType(tyC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
@@ -23821,66 +24793,102 @@ func (ptr *QMetaObject) CheckConnectArgs2(sign QMetaMethod_ITF, method QMetaMeth
 }
 
 func QMetaObject_CheckConnectArgs(sign string, method string) bool {
-	var signC = C.CString(sign)
-	defer C.free(unsafe.Pointer(signC))
-	var methodC = C.CString(method)
-	defer C.free(unsafe.Pointer(methodC))
+	var signC *C.char
+	if sign != "" {
+		signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+	}
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
 	return C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC) != 0
 }
 
 func (ptr *QMetaObject) CheckConnectArgs(sign string, method string) bool {
-	var signC = C.CString(sign)
-	defer C.free(unsafe.Pointer(signC))
-	var methodC = C.CString(method)
-	defer C.free(unsafe.Pointer(methodC))
+	var signC *C.char
+	if sign != "" {
+		signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+	}
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
 	return C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC) != 0
 }
 
 func QMetaObject_InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func QMetaObject_InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func QMetaObject_InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func QMetaObject_InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
@@ -23979,8 +24987,11 @@ func (ptr *QMetaObject) EnumeratorOffset() int {
 
 func (ptr *QMetaObject) IndexOfClassInfo(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QMetaObject_IndexOfClassInfo(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -23988,8 +24999,11 @@ func (ptr *QMetaObject) IndexOfClassInfo(name string) int {
 
 func (ptr *QMetaObject) IndexOfConstructor(constructor string) int {
 	if ptr.Pointer() != nil {
-		var constructorC = C.CString(constructor)
-		defer C.free(unsafe.Pointer(constructorC))
+		var constructorC *C.char
+		if constructor != "" {
+			constructorC = C.CString(constructor)
+			defer C.free(unsafe.Pointer(constructorC))
+		}
 		return int(int32(C.QMetaObject_IndexOfConstructor(ptr.Pointer(), constructorC)))
 	}
 	return 0
@@ -23997,8 +25011,11 @@ func (ptr *QMetaObject) IndexOfConstructor(constructor string) int {
 
 func (ptr *QMetaObject) IndexOfEnumerator(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QMetaObject_IndexOfEnumerator(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -24006,8 +25023,11 @@ func (ptr *QMetaObject) IndexOfEnumerator(name string) int {
 
 func (ptr *QMetaObject) IndexOfMethod(method string) int {
 	if ptr.Pointer() != nil {
-		var methodC = C.CString(method)
-		defer C.free(unsafe.Pointer(methodC))
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
 		return int(int32(C.QMetaObject_IndexOfMethod(ptr.Pointer(), methodC)))
 	}
 	return 0
@@ -24015,8 +25035,11 @@ func (ptr *QMetaObject) IndexOfMethod(method string) int {
 
 func (ptr *QMetaObject) IndexOfProperty(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QMetaObject_IndexOfProperty(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -24024,8 +25047,11 @@ func (ptr *QMetaObject) IndexOfProperty(name string) int {
 
 func (ptr *QMetaObject) IndexOfSignal(sign string) int {
 	if ptr.Pointer() != nil {
-		var signC = C.CString(sign)
-		defer C.free(unsafe.Pointer(signC))
+		var signC *C.char
+		if sign != "" {
+			signC = C.CString(sign)
+			defer C.free(unsafe.Pointer(signC))
+		}
 		return int(int32(C.QMetaObject_IndexOfSignal(ptr.Pointer(), signC)))
 	}
 	return 0
@@ -24033,8 +25059,11 @@ func (ptr *QMetaObject) IndexOfSignal(sign string) int {
 
 func (ptr *QMetaObject) IndexOfSlot(slot string) int {
 	if ptr.Pointer() != nil {
-		var slotC = C.CString(slot)
-		defer C.free(unsafe.Pointer(slotC))
+		var slotC *C.char
+		if slot != "" {
+			slotC = C.CString(slot)
+			defer C.free(unsafe.Pointer(slotC))
+		}
 		return int(int32(C.QMetaObject_IndexOfSlot(ptr.Pointer(), slotC)))
 	}
 	return 0
@@ -24542,14 +25571,20 @@ func (ptr *QMetaType) Type2(typeName QByteArray_ITF) int {
 }
 
 func QMetaType_Type(typeName string) int {
-	var typeNameC = C.CString(typeName)
-	defer C.free(unsafe.Pointer(typeNameC))
+	var typeNameC *C.char
+	if typeName != "" {
+		typeNameC = C.CString(typeName)
+		defer C.free(unsafe.Pointer(typeNameC))
+	}
 	return int(int32(C.QMetaType_QMetaType_Type(typeNameC)))
 }
 
 func (ptr *QMetaType) Type(typeName string) int {
-	var typeNameC = C.CString(typeName)
-	defer C.free(unsafe.Pointer(typeNameC))
+	var typeNameC *C.char
+	if typeName != "" {
+		typeNameC = C.CString(typeName)
+		defer C.free(unsafe.Pointer(typeNameC))
+	}
 	return int(int32(C.QMetaType_QMetaType_Type(typeNameC)))
 }
 
@@ -24707,8 +25742,11 @@ func (ptr *QMimeData) Clear() {
 
 func (ptr *QMimeData) RemoveFormat(mimeType string) {
 	if ptr.Pointer() != nil {
-		var mimeTypeC = C.CString(mimeType)
-		defer C.free(unsafe.Pointer(mimeTypeC))
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
 		C.QMimeData_RemoveFormat(ptr.Pointer(), mimeTypeC)
 	}
 }
@@ -24721,16 +25759,22 @@ func (ptr *QMimeData) SetColorData(color QVariant_ITF) {
 
 func (ptr *QMimeData) SetData(mimeType string, data QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var mimeTypeC = C.CString(mimeType)
-		defer C.free(unsafe.Pointer(mimeTypeC))
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
 		C.QMimeData_SetData(ptr.Pointer(), mimeTypeC, PointerFromQByteArray(data))
 	}
 }
 
 func (ptr *QMimeData) SetHtml(html string) {
 	if ptr.Pointer() != nil {
-		var htmlC = C.CString(html)
-		defer C.free(unsafe.Pointer(htmlC))
+		var htmlC *C.char
+		if html != "" {
+			htmlC = C.CString(html)
+			defer C.free(unsafe.Pointer(htmlC))
+		}
 		C.QMimeData_SetHtml(ptr.Pointer(), htmlC)
 	}
 }
@@ -24743,8 +25787,11 @@ func (ptr *QMimeData) SetImageData(image QVariant_ITF) {
 
 func (ptr *QMimeData) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QMimeData_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -24771,8 +25818,11 @@ func (ptr *QMimeData) DestroyQMimeData() {
 
 func (ptr *QMimeData) Data(mimeType string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var mimeTypeC = C.CString(mimeType)
-		defer C.free(unsafe.Pointer(mimeTypeC))
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QMimeData_Data(ptr.Pointer(), mimeTypeC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -24857,8 +25907,11 @@ func (ptr *QMimeData) DisconnectHasFormat() {
 
 func (ptr *QMimeData) HasFormat(mimeType string) bool {
 	if ptr.Pointer() != nil {
-		var mimeTypeC = C.CString(mimeType)
-		defer C.free(unsafe.Pointer(mimeTypeC))
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
 		return C.QMimeData_HasFormat(ptr.Pointer(), mimeTypeC) != 0
 	}
 	return false
@@ -24866,8 +25919,11 @@ func (ptr *QMimeData) HasFormat(mimeType string) bool {
 
 func (ptr *QMimeData) HasFormatDefault(mimeType string) bool {
 	if ptr.Pointer() != nil {
-		var mimeTypeC = C.CString(mimeType)
-		defer C.free(unsafe.Pointer(mimeTypeC))
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
 		return C.QMimeData_HasFormatDefault(ptr.Pointer(), mimeTypeC) != 0
 	}
 	return false
@@ -25002,8 +26058,11 @@ func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
 
 func (ptr *QMimeDatabase) MimeTypeForName(nameOrAlias string) *QMimeType {
 	if ptr.Pointer() != nil {
-		var nameOrAliasC = C.CString(nameOrAlias)
-		defer C.free(unsafe.Pointer(nameOrAliasC))
+		var nameOrAliasC *C.char
+		if nameOrAlias != "" {
+			nameOrAliasC = C.CString(nameOrAlias)
+			defer C.free(unsafe.Pointer(nameOrAliasC))
+		}
 		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForName(ptr.Pointer(), nameOrAliasC))
 		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
@@ -25026,8 +26085,11 @@ func (ptr *QMimeDatabase) AllMimeTypes() []*QMimeType {
 
 func (ptr *QMimeDatabase) MimeTypesForFileName(fileName string) []*QMimeType {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return func(l C.struct_QtCore_PackedList) []*QMimeType {
 			var out = make([]*QMimeType, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -25068,8 +26130,11 @@ func (ptr *QMimeDatabase) MimeTypeForFile(fileInfo QFileInfo_ITF, mode QMimeData
 
 func (ptr *QMimeDatabase) MimeTypeForFile2(fileName string, mode QMimeDatabase__MatchMode) *QMimeType {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFile2(ptr.Pointer(), fileNameC, C.longlong(mode)))
 		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
@@ -25079,8 +26144,11 @@ func (ptr *QMimeDatabase) MimeTypeForFile2(fileName string, mode QMimeDatabase__
 
 func (ptr *QMimeDatabase) MimeTypeForFileNameAndData(fileName string, device QIODevice_ITF) *QMimeType {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData(ptr.Pointer(), fileNameC, PointerFromQIODevice(device)))
 		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
@@ -25090,8 +26158,11 @@ func (ptr *QMimeDatabase) MimeTypeForFileNameAndData(fileName string, device QIO
 
 func (ptr *QMimeDatabase) MimeTypeForFileNameAndData2(fileName string, data QByteArray_ITF) *QMimeType {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData2(ptr.Pointer(), fileNameC, PointerFromQByteArray(data)))
 		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
 		return tmpValue
@@ -25110,8 +26181,11 @@ func (ptr *QMimeDatabase) MimeTypeForUrl(url QUrl_ITF) *QMimeType {
 
 func (ptr *QMimeDatabase) SuffixForFileName(fileName string) string {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return cGoUnpackString(C.QMimeDatabase_SuffixForFileName(ptr.Pointer(), fileNameC))
 	}
 	return ""
@@ -25296,8 +26370,11 @@ func (ptr *QMimeType) Suffixes() []string {
 
 func (ptr *QMimeType) Inherits(mimeTypeName string) bool {
 	if ptr.Pointer() != nil {
-		var mimeTypeNameC = C.CString(mimeTypeName)
-		defer C.free(unsafe.Pointer(mimeTypeNameC))
+		var mimeTypeNameC *C.char
+		if mimeTypeName != "" {
+			mimeTypeNameC = C.CString(mimeTypeName)
+			defer C.free(unsafe.Pointer(mimeTypeNameC))
+		}
 		return C.QMimeType_Inherits(ptr.Pointer(), mimeTypeNameC) != 0
 	}
 	return false
@@ -26018,18 +27095,30 @@ func NewQObject(parent QObject_ITF) *QObject {
 }
 
 func QObject_Tr(sourceText string, disambiguation string, n int) string {
-	var sourceTextC = C.CString(sourceText)
-	defer C.free(unsafe.Pointer(sourceTextC))
-	var disambiguationC = C.CString(disambiguation)
-	defer C.free(unsafe.Pointer(disambiguationC))
+	var sourceTextC *C.char
+	if sourceText != "" {
+		sourceTextC = C.CString(sourceText)
+		defer C.free(unsafe.Pointer(sourceTextC))
+	}
+	var disambiguationC *C.char
+	if disambiguation != "" {
+		disambiguationC = C.CString(disambiguation)
+		defer C.free(unsafe.Pointer(disambiguationC))
+	}
 	return cGoUnpackString(C.QObject_QObject_Tr(sourceTextC, disambiguationC, C.int(int32(n))))
 }
 
 func (ptr *QObject) Tr(sourceText string, disambiguation string, n int) string {
-	var sourceTextC = C.CString(sourceText)
-	defer C.free(unsafe.Pointer(sourceTextC))
-	var disambiguationC = C.CString(disambiguation)
-	defer C.free(unsafe.Pointer(disambiguationC))
+	var sourceTextC *C.char
+	if sourceText != "" {
+		sourceTextC = C.CString(sourceText)
+		defer C.free(unsafe.Pointer(sourceTextC))
+	}
+	var disambiguationC *C.char
+	if disambiguation != "" {
+		disambiguationC = C.CString(disambiguation)
+		defer C.free(unsafe.Pointer(disambiguationC))
+	}
 	return cGoUnpackString(C.QObject_QObject_Tr(sourceTextC, disambiguationC, C.int(int32(n))))
 }
 
@@ -26049,18 +27138,30 @@ func (ptr *QObject) Disconnect2(sender QObject_ITF, sign QMetaMethod_ITF, receiv
 }
 
 func QObject_Disconnect(sender QObject_ITF, sign string, receiver QObject_ITF, method string) bool {
-	var signC = C.CString(sign)
-	defer C.free(unsafe.Pointer(signC))
-	var methodC = C.CString(method)
-	defer C.free(unsafe.Pointer(methodC))
+	var signC *C.char
+	if sign != "" {
+		signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+	}
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
 	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC) != 0
 }
 
 func (ptr *QObject) Disconnect(sender QObject_ITF, sign string, receiver QObject_ITF, method string) bool {
-	var signC = C.CString(sign)
-	defer C.free(unsafe.Pointer(signC))
-	var methodC = C.CString(method)
-	defer C.free(unsafe.Pointer(methodC))
+	var signC *C.char
+	if sign != "" {
+		signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+	}
+	var methodC *C.char
+	if method != "" {
+		methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+	}
 	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC) != 0
 }
 
@@ -26140,8 +27241,11 @@ func (ptr *QObject) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) bo
 
 func (ptr *QObject) SetProperty(name string, value QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QObject_SetProperty(ptr.Pointer(), nameC, PointerFromQVariant(value)) != 0
 	}
 	return false
@@ -26423,8 +27527,11 @@ func (ptr *QObject) RemoveEventFilter(obj QObject_ITF) {
 
 func (ptr *QObject) SetObjectName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QObject_SetObjectName(ptr.Pointer(), nameC)
 	}
 }
@@ -26550,8 +27657,11 @@ func (ptr *QObject) FindChildren3(re QRegularExpression_ITF, options Qt__FindChi
 
 func (ptr *QObject) FindChildren(name string, options Qt__FindChildOption) []*QObject {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return func(l C.struct_QtCore_PackedList) []*QObject {
 			var out = make([]*QObject, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -26605,8 +27715,11 @@ func (ptr *QObject) Thread() *QThread {
 
 func (ptr *QObject) Property(name string) *QVariant {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QObject_Property(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -26616,8 +27729,11 @@ func (ptr *QObject) Property(name string) *QVariant {
 
 func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) *QObject {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQObjectFromPointer(C.QObject_FindChild(ptr.Pointer(), nameC, C.longlong(options)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -26629,8 +27745,11 @@ func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) *QObject
 
 func (ptr *QObject) Disconnect4(receiver QObject_ITF, method string) bool {
 	if ptr.Pointer() != nil {
-		var methodC = C.CString(method)
-		defer C.free(unsafe.Pointer(methodC))
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
 		return C.QObject_Disconnect4(ptr.Pointer(), PointerFromQObject(receiver), methodC) != 0
 	}
 	return false
@@ -26638,10 +27757,16 @@ func (ptr *QObject) Disconnect4(receiver QObject_ITF, method string) bool {
 
 func (ptr *QObject) Disconnect3(sign string, receiver QObject_ITF, method string) bool {
 	if ptr.Pointer() != nil {
-		var signC = C.CString(sign)
-		defer C.free(unsafe.Pointer(signC))
-		var methodC = C.CString(method)
-		defer C.free(unsafe.Pointer(methodC))
+		var signC *C.char
+		if sign != "" {
+			signC = C.CString(sign)
+			defer C.free(unsafe.Pointer(signC))
+		}
+		var methodC *C.char
+		if method != "" {
+			methodC = C.CString(method)
+			defer C.free(unsafe.Pointer(methodC))
+		}
 		return C.QObject_Disconnect3(ptr.Pointer(), signC, PointerFromQObject(receiver), methodC) != 0
 	}
 	return false
@@ -26649,8 +27774,11 @@ func (ptr *QObject) Disconnect3(sign string, receiver QObject_ITF, method string
 
 func (ptr *QObject) Inherits(className string) bool {
 	if ptr.Pointer() != nil {
-		var classNameC = C.CString(className)
-		defer C.free(unsafe.Pointer(classNameC))
+		var classNameC *C.char
+		if className != "" {
+			classNameC = C.CString(className)
+			defer C.free(unsafe.Pointer(classNameC))
+		}
 		return C.QObject_Inherits(ptr.Pointer(), classNameC) != 0
 	}
 	return false
@@ -26736,8 +27864,11 @@ func (ptr *QObject) Children() []*QObject {
 
 func (ptr *QObject) Receivers(sign string) int {
 	if ptr.Pointer() != nil {
-		var signC = C.CString(sign)
-		defer C.free(unsafe.Pointer(signC))
+		var signC *C.char
+		if sign != "" {
+			signC = C.CString(sign)
+			defer C.free(unsafe.Pointer(signC))
+		}
 		return int(int32(C.QObject_Receivers(ptr.Pointer(), signC)))
 	}
 	return 0
@@ -27470,8 +28601,11 @@ func NewQPluginLoader(parent QObject_ITF) *QPluginLoader {
 }
 
 func NewQPluginLoader2(fileName string, parent QObject_ITF) *QPluginLoader {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQPluginLoaderFromPointer(C.QPluginLoader_NewQPluginLoader2(fileNameC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -27495,8 +28629,11 @@ func (ptr *QPluginLoader) Unload() bool {
 
 func (ptr *QPluginLoader) SetFileName(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QPluginLoader_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
@@ -29423,22 +30560,31 @@ func NewQRegExp3(rx QRegExp_ITF) *QRegExp {
 }
 
 func NewQRegExp2(pattern string, cs Qt__CaseSensitivity, syntax QRegExp__PatternSyntax) *QRegExp {
-	var patternC = C.CString(pattern)
-	defer C.free(unsafe.Pointer(patternC))
+	var patternC *C.char
+	if pattern != "" {
+		patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+	}
 	var tmpValue = NewQRegExpFromPointer(C.QRegExp_NewQRegExp2(patternC, C.longlong(cs), C.longlong(syntax)))
 	runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
 	return tmpValue
 }
 
 func QRegExp_Escape(str string) string {
-	var strC = C.CString(str)
-	defer C.free(unsafe.Pointer(strC))
+	var strC *C.char
+	if str != "" {
+		strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+	}
 	return cGoUnpackString(C.QRegExp_QRegExp_Escape(strC))
 }
 
 func (ptr *QRegExp) Escape(str string) string {
-	var strC = C.CString(str)
-	defer C.free(unsafe.Pointer(strC))
+	var strC *C.char
+	if str != "" {
+		strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+	}
 	return cGoUnpackString(C.QRegExp_QRegExp_Escape(strC))
 }
 
@@ -29456,8 +30602,11 @@ func (ptr *QRegExp) SetMinimal(minimal bool) {
 
 func (ptr *QRegExp) SetPattern(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QRegExp_SetPattern(ptr.Pointer(), patternC)
 	}
 }
@@ -29525,8 +30674,11 @@ func (ptr *QRegExp) CaseSensitivity() Qt__CaseSensitivity {
 
 func (ptr *QRegExp) ExactMatch(str string) bool {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return C.QRegExp_ExactMatch(ptr.Pointer(), strC) != 0
 	}
 	return false
@@ -29562,8 +30714,11 @@ func (ptr *QRegExp) CaptureCount() int {
 
 func (ptr *QRegExp) IndexIn(str string, offset int, caretMode QRegExp__CaretMode) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QRegExp_IndexIn(ptr.Pointer(), strC, C.int(int32(offset)), C.longlong(caretMode))))
 	}
 	return 0
@@ -29571,8 +30726,11 @@ func (ptr *QRegExp) IndexIn(str string, offset int, caretMode QRegExp__CaretMode
 
 func (ptr *QRegExp) LastIndexIn(str string, offset int, caretMode QRegExp__CaretMode) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QRegExp_LastIndexIn(ptr.Pointer(), strC, C.int(int32(offset)), C.longlong(caretMode))))
 	}
 	return 0
@@ -29681,29 +30839,41 @@ func NewQRegularExpression3(re QRegularExpression_ITF) *QRegularExpression {
 }
 
 func NewQRegularExpression2(pattern string, options QRegularExpression__PatternOption) *QRegularExpression {
-	var patternC = C.CString(pattern)
-	defer C.free(unsafe.Pointer(patternC))
+	var patternC *C.char
+	if pattern != "" {
+		patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+	}
 	var tmpValue = NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression2(patternC, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 	return tmpValue
 }
 
 func QRegularExpression_Escape(str string) string {
-	var strC = C.CString(str)
-	defer C.free(unsafe.Pointer(strC))
+	var strC *C.char
+	if str != "" {
+		strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+	}
 	return cGoUnpackString(C.QRegularExpression_QRegularExpression_Escape(strC))
 }
 
 func (ptr *QRegularExpression) Escape(str string) string {
-	var strC = C.CString(str)
-	defer C.free(unsafe.Pointer(strC))
+	var strC *C.char
+	if str != "" {
+		strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+	}
 	return cGoUnpackString(C.QRegularExpression_QRegularExpression_Escape(strC))
 }
 
 func (ptr *QRegularExpression) SetPattern(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QRegularExpression_SetPattern(ptr.Pointer(), patternC)
 	}
 }
@@ -29736,8 +30906,11 @@ func (ptr *QRegularExpression) PatternOptions() QRegularExpression__PatternOptio
 
 func (ptr *QRegularExpression) Match(subject string, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatch {
 	if ptr.Pointer() != nil {
-		var subjectC = C.CString(subject)
-		defer C.free(unsafe.Pointer(subjectC))
+		var subjectC *C.char
+		if subject != "" {
+			subjectC = C.CString(subject)
+			defer C.free(unsafe.Pointer(subjectC))
+		}
 		var tmpValue = NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match(ptr.Pointer(), subjectC, C.int(int32(offset)), C.longlong(matchType), C.longlong(matchOptions)))
 		runtime.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
 		return tmpValue
@@ -29756,8 +30929,11 @@ func (ptr *QRegularExpression) Match2(subjectRef QStringRef_ITF, offset int, mat
 
 func (ptr *QRegularExpression) GlobalMatch(subject string, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatchIterator {
 	if ptr.Pointer() != nil {
-		var subjectC = C.CString(subject)
-		defer C.free(unsafe.Pointer(subjectC))
+		var subjectC *C.char
+		if subject != "" {
+			subjectC = C.CString(subject)
+			defer C.free(unsafe.Pointer(subjectC))
+		}
 		return NewQRegularExpressionMatchIteratorFromPointer(C.QRegularExpression_GlobalMatch(ptr.Pointer(), subjectC, C.int(int32(offset)), C.longlong(matchType), C.longlong(matchOptions)))
 	}
 	return nil
@@ -29905,8 +31081,11 @@ func (ptr *QRegularExpressionMatch) MatchType() QRegularExpression__MatchType {
 
 func (ptr *QRegularExpressionMatch) Captured2(name string) string {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return cGoUnpackString(C.QRegularExpressionMatch_Captured2(ptr.Pointer(), nameC))
 	}
 	return ""
@@ -29928,8 +31107,11 @@ func (ptr *QRegularExpressionMatch) CapturedTexts() []string {
 
 func (ptr *QRegularExpressionMatch) CapturedRef2(name string) *QStringRef {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef2(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
@@ -29969,8 +31151,11 @@ func (ptr *QRegularExpressionMatch) IsValid() bool {
 
 func (ptr *QRegularExpressionMatch) CapturedEnd2(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QRegularExpressionMatch_CapturedEnd2(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -29985,8 +31170,11 @@ func (ptr *QRegularExpressionMatch) CapturedEnd(nth int) int {
 
 func (ptr *QRegularExpressionMatch) CapturedLength2(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QRegularExpressionMatch_CapturedLength2(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -30001,8 +31189,11 @@ func (ptr *QRegularExpressionMatch) CapturedLength(nth int) int {
 
 func (ptr *QRegularExpressionMatch) CapturedStart2(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QRegularExpressionMatch_CapturedStart2(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -30098,81 +31289,135 @@ func NewQResourceFromPointer(ptr unsafe.Pointer) *QResource {
 	return n
 }
 func NewQResource(file string, locale QLocale_ITF) *QResource {
-	var fileC = C.CString(file)
-	defer C.free(unsafe.Pointer(fileC))
+	var fileC *C.char
+	if file != "" {
+		fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+	}
 	var tmpValue = NewQResourceFromPointer(C.QResource_NewQResource(fileC, PointerFromQLocale(locale)))
 	runtime.SetFinalizer(tmpValue, (*QResource).DestroyQResource)
 	return tmpValue
 }
 
 func QResource_RegisterResource(rccFileName string, mapRoot string) bool {
-	var rccFileNameC = C.CString(rccFileName)
-	defer C.free(unsafe.Pointer(rccFileNameC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccFileNameC *C.char
+	if rccFileName != "" {
+		rccFileNameC = C.CString(rccFileName)
+		defer C.free(unsafe.Pointer(rccFileNameC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_RegisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func (ptr *QResource) RegisterResource(rccFileName string, mapRoot string) bool {
-	var rccFileNameC = C.CString(rccFileName)
-	defer C.free(unsafe.Pointer(rccFileNameC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccFileNameC *C.char
+	if rccFileName != "" {
+		rccFileNameC = C.CString(rccFileName)
+		defer C.free(unsafe.Pointer(rccFileNameC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_RegisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func QResource_RegisterResource2(rccData string, mapRoot string) bool {
-	var rccDataC = C.CString(rccData)
-	defer C.free(unsafe.Pointer(rccDataC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccDataC *C.char
+	if rccData != "" {
+		rccDataC = C.CString(rccData)
+		defer C.free(unsafe.Pointer(rccDataC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_RegisterResource2(rccDataC, mapRootC) != 0
 }
 
 func (ptr *QResource) RegisterResource2(rccData string, mapRoot string) bool {
-	var rccDataC = C.CString(rccData)
-	defer C.free(unsafe.Pointer(rccDataC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccDataC *C.char
+	if rccData != "" {
+		rccDataC = C.CString(rccData)
+		defer C.free(unsafe.Pointer(rccDataC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_RegisterResource2(rccDataC, mapRootC) != 0
 }
 
 func QResource_UnregisterResource(rccFileName string, mapRoot string) bool {
-	var rccFileNameC = C.CString(rccFileName)
-	defer C.free(unsafe.Pointer(rccFileNameC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccFileNameC *C.char
+	if rccFileName != "" {
+		rccFileNameC = C.CString(rccFileName)
+		defer C.free(unsafe.Pointer(rccFileNameC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_UnregisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func (ptr *QResource) UnregisterResource(rccFileName string, mapRoot string) bool {
-	var rccFileNameC = C.CString(rccFileName)
-	defer C.free(unsafe.Pointer(rccFileNameC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccFileNameC *C.char
+	if rccFileName != "" {
+		rccFileNameC = C.CString(rccFileName)
+		defer C.free(unsafe.Pointer(rccFileNameC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_UnregisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func QResource_UnregisterResource2(rccData string, mapRoot string) bool {
-	var rccDataC = C.CString(rccData)
-	defer C.free(unsafe.Pointer(rccDataC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccDataC *C.char
+	if rccData != "" {
+		rccDataC = C.CString(rccData)
+		defer C.free(unsafe.Pointer(rccDataC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_UnregisterResource2(rccDataC, mapRootC) != 0
 }
 
 func (ptr *QResource) UnregisterResource2(rccData string, mapRoot string) bool {
-	var rccDataC = C.CString(rccData)
-	defer C.free(unsafe.Pointer(rccDataC))
-	var mapRootC = C.CString(mapRoot)
-	defer C.free(unsafe.Pointer(mapRootC))
+	var rccDataC *C.char
+	if rccData != "" {
+		rccDataC = C.CString(rccData)
+		defer C.free(unsafe.Pointer(rccDataC))
+	}
+	var mapRootC *C.char
+	if mapRoot != "" {
+		mapRootC = C.CString(mapRoot)
+		defer C.free(unsafe.Pointer(mapRootC))
+	}
 	return C.QResource_QResource_UnregisterResource2(rccDataC, mapRootC) != 0
 }
 
 func (ptr *QResource) SetFileName(file string) {
 	if ptr.Pointer() != nil {
-		var fileC = C.CString(file)
-		defer C.free(unsafe.Pointer(fileC))
+		var fileC *C.char
+		if file != "" {
+			fileC = C.CString(file)
+			defer C.free(unsafe.Pointer(fileC))
+		}
 		C.QResource_SetFileName(ptr.Pointer(), fileC)
 	}
 }
@@ -30439,8 +31684,11 @@ func NewQSaveFile2(parent QObject_ITF) *QSaveFile {
 }
 
 func NewQSaveFile(name string) *QSaveFile {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile(nameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -30449,8 +31697,11 @@ func NewQSaveFile(name string) *QSaveFile {
 }
 
 func NewQSaveFile3(name string, parent QObject_ITF) *QSaveFile {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile3(nameC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -30479,8 +31730,11 @@ func (ptr *QSaveFile) SetDirectWriteFallback(enabled bool) {
 
 func (ptr *QSaveFile) SetFileName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSaveFile_SetFileName(ptr.Pointer(), nameC)
 	}
 }
@@ -31145,10 +32399,16 @@ func (ptr *QSettings) DefaultFormat() QSettings__Format {
 }
 
 func NewQSettings3(format QSettings__Format, scope QSettings__Scope, organization string, application string, parent QObject_ITF) *QSettings {
-	var organizationC = C.CString(organization)
-	defer C.free(unsafe.Pointer(organizationC))
-	var applicationC = C.CString(application)
-	defer C.free(unsafe.Pointer(applicationC))
+	var organizationC *C.char
+	if organization != "" {
+		organizationC = C.CString(organization)
+		defer C.free(unsafe.Pointer(organizationC))
+	}
+	var applicationC *C.char
+	if application != "" {
+		applicationC = C.CString(application)
+		defer C.free(unsafe.Pointer(applicationC))
+	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings3(C.longlong(format), C.longlong(scope), organizationC, applicationC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -31165,10 +32425,16 @@ func NewQSettings5(parent QObject_ITF) *QSettings {
 }
 
 func NewQSettings2(scope QSettings__Scope, organization string, application string, parent QObject_ITF) *QSettings {
-	var organizationC = C.CString(organization)
-	defer C.free(unsafe.Pointer(organizationC))
-	var applicationC = C.CString(application)
-	defer C.free(unsafe.Pointer(applicationC))
+	var organizationC *C.char
+	if organization != "" {
+		organizationC = C.CString(organization)
+		defer C.free(unsafe.Pointer(organizationC))
+	}
+	var applicationC *C.char
+	if application != "" {
+		applicationC = C.CString(application)
+		defer C.free(unsafe.Pointer(applicationC))
+	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings2(C.longlong(scope), organizationC, applicationC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -31177,8 +32443,11 @@ func NewQSettings2(scope QSettings__Scope, organization string, application stri
 }
 
 func NewQSettings4(fileName string, format QSettings__Format, parent QObject_ITF) *QSettings {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings4(fileNameC, C.longlong(format), PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -31187,10 +32456,16 @@ func NewQSettings4(fileName string, format QSettings__Format, parent QObject_ITF
 }
 
 func NewQSettings(organization string, application string, parent QObject_ITF) *QSettings {
-	var organizationC = C.CString(organization)
-	defer C.free(unsafe.Pointer(organizationC))
-	var applicationC = C.CString(application)
-	defer C.free(unsafe.Pointer(applicationC))
+	var organizationC *C.char
+	if organization != "" {
+		organizationC = C.CString(organization)
+		defer C.free(unsafe.Pointer(organizationC))
+	}
+	var applicationC *C.char
+	if application != "" {
+		applicationC = C.CString(application)
+		defer C.free(unsafe.Pointer(applicationC))
+	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings(organizationC, applicationC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -31200,8 +32475,11 @@ func NewQSettings(organization string, application string, parent QObject_ITF) *
 
 func (ptr *QSettings) BeginReadArray(prefix string) int {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		return int(int32(C.QSettings_BeginReadArray(ptr.Pointer(), prefixC)))
 	}
 	return 0
@@ -31209,16 +32487,22 @@ func (ptr *QSettings) BeginReadArray(prefix string) int {
 
 func (ptr *QSettings) BeginGroup(prefix string) {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		C.QSettings_BeginGroup(ptr.Pointer(), prefixC)
 	}
 }
 
 func (ptr *QSettings) BeginWriteArray(prefix string, size int) {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		C.QSettings_BeginWriteArray(ptr.Pointer(), prefixC, C.int(int32(size)))
 	}
 }
@@ -31243,8 +32527,11 @@ func (ptr *QSettings) EndGroup() {
 
 func (ptr *QSettings) Remove(key string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QSettings_Remove(ptr.Pointer(), keyC)
 	}
 }
@@ -31277,28 +32564,40 @@ func (ptr *QSettings) SetIniCodec(codec QTextCodec_ITF) {
 
 func (ptr *QSettings) SetIniCodec2(codecName string) {
 	if ptr.Pointer() != nil {
-		var codecNameC = C.CString(codecName)
-		defer C.free(unsafe.Pointer(codecNameC))
+		var codecNameC *C.char
+		if codecName != "" {
+			codecNameC = C.CString(codecName)
+			defer C.free(unsafe.Pointer(codecNameC))
+		}
 		C.QSettings_SetIniCodec2(ptr.Pointer(), codecNameC)
 	}
 }
 
 func QSettings_SetPath(format QSettings__Format, scope QSettings__Scope, path string) {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QSettings_QSettings_SetPath(C.longlong(format), C.longlong(scope), pathC)
 }
 
 func (ptr *QSettings) SetPath(format QSettings__Format, scope QSettings__Scope, path string) {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	C.QSettings_QSettings_SetPath(C.longlong(format), C.longlong(scope), pathC)
 }
 
 func (ptr *QSettings) SetValue(key string, value QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QSettings_SetValue(ptr.Pointer(), keyC, PointerFromQVariant(value))
 	}
 }
@@ -31382,8 +32681,11 @@ func (ptr *QSettings) IniCodec() *QTextCodec {
 
 func (ptr *QSettings) Value(key string, defaultValue QVariant_ITF) *QVariant {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QSettings_Value(ptr.Pointer(), keyC, PointerFromQVariant(defaultValue)))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -31407,8 +32709,11 @@ func (ptr *QSettings) Status() QSettings__Status {
 
 func (ptr *QSettings) Contains(key string) bool {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return C.QSettings_Contains(ptr.Pointer(), keyC) != 0
 	}
 	return false
@@ -31596,8 +32901,11 @@ func NewQSharedMemory2(parent QObject_ITF) *QSharedMemory {
 }
 
 func NewQSharedMemory(key string, parent QObject_ITF) *QSharedMemory {
-	var keyC = C.CString(key)
-	defer C.free(unsafe.Pointer(keyC))
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+	}
 	var tmpValue = NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory(keyC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -31649,16 +32957,22 @@ func (ptr *QSharedMemory) Data() unsafe.Pointer {
 
 func (ptr *QSharedMemory) SetKey(key string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QSharedMemory_SetKey(ptr.Pointer(), keyC)
 	}
 }
 
 func (ptr *QSharedMemory) SetNativeKey(key string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QSharedMemory_SetNativeKey(ptr.Pointer(), keyC)
 	}
 }
@@ -32029,8 +33343,11 @@ func (ptr *QSignalMapper) DisconnectMapped2() {
 
 func (ptr *QSignalMapper) Mapped2(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QSignalMapper_Mapped2(ptr.Pointer(), textC)
 	}
 }
@@ -32083,8 +33400,11 @@ func (ptr *QSignalMapper) SetMapping3(sender QObject_ITF, widget unsafe.Pointer)
 
 func (ptr *QSignalMapper) SetMapping2(sender QObject_ITF, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QSignalMapper_SetMapping2(ptr.Pointer(), PointerFromQObject(sender), textC)
 	}
 }
@@ -32127,8 +33447,11 @@ func (ptr *QSignalMapper) Mapping3(widget unsafe.Pointer) *QObject {
 
 func (ptr *QSignalMapper) Mapping2(id string) *QObject {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = NewQObjectFromPointer(C.QSignalMapper_Mapping2(ptr.Pointer(), idC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -32196,8 +33519,11 @@ func NewQSignalTransition(sourceState QState_ITF) *QSignalTransition {
 }
 
 func NewQSignalTransition2(sender QObject_ITF, sign string, sourceState QState_ITF) *QSignalTransition {
-	var signC = C.CString(sign)
-	defer C.free(unsafe.Pointer(signC))
+	var signC *C.char
+	if sign != "" {
+		signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+	}
 	var tmpValue = NewQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), signC, PointerFromQState(sourceState)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -32990,16 +34316,22 @@ func (ptr *QSortFilterProxyModel) DisconnectSetFilterFixedString() {
 
 func (ptr *QSortFilterProxyModel) SetFilterFixedString(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QSortFilterProxyModel_SetFilterFixedString(ptr.Pointer(), patternC)
 	}
 }
 
 func (ptr *QSortFilterProxyModel) SetFilterFixedStringDefault(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QSortFilterProxyModel_SetFilterFixedStringDefault(ptr.Pointer(), patternC)
 	}
 }
@@ -33041,16 +34373,22 @@ func (ptr *QSortFilterProxyModel) DisconnectSetFilterRegExp2() {
 
 func (ptr *QSortFilterProxyModel) SetFilterRegExp2(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QSortFilterProxyModel_SetFilterRegExp2(ptr.Pointer(), patternC)
 	}
 }
 
 func (ptr *QSortFilterProxyModel) SetFilterRegExp2Default(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QSortFilterProxyModel_SetFilterRegExp2Default(ptr.Pointer(), patternC)
 	}
 }
@@ -33086,16 +34424,22 @@ func (ptr *QSortFilterProxyModel) DisconnectSetFilterWildcard() {
 
 func (ptr *QSortFilterProxyModel) SetFilterWildcard(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QSortFilterProxyModel_SetFilterWildcard(ptr.Pointer(), patternC)
 	}
 }
 
 func (ptr *QSortFilterProxyModel) SetFilterWildcardDefault(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QSortFilterProxyModel_SetFilterWildcardDefault(ptr.Pointer(), patternC)
 	}
 }
@@ -33683,30 +35027,42 @@ func (ptr *QStandardPaths) DisplayName(ty QStandardPaths__StandardLocation) stri
 }
 
 func QStandardPaths_FindExecutable(executableName string, paths []string) string {
-	var executableNameC = C.CString(executableName)
-	defer C.free(unsafe.Pointer(executableNameC))
+	var executableNameC *C.char
+	if executableName != "" {
+		executableNameC = C.CString(executableName)
+		defer C.free(unsafe.Pointer(executableNameC))
+	}
 	var pathsC = C.CString(strings.Join(paths, "|"))
 	defer C.free(unsafe.Pointer(pathsC))
 	return cGoUnpackString(C.QStandardPaths_QStandardPaths_FindExecutable(executableNameC, pathsC))
 }
 
 func (ptr *QStandardPaths) FindExecutable(executableName string, paths []string) string {
-	var executableNameC = C.CString(executableName)
-	defer C.free(unsafe.Pointer(executableNameC))
+	var executableNameC *C.char
+	if executableName != "" {
+		executableNameC = C.CString(executableName)
+		defer C.free(unsafe.Pointer(executableNameC))
+	}
 	var pathsC = C.CString(strings.Join(paths, "|"))
 	defer C.free(unsafe.Pointer(pathsC))
 	return cGoUnpackString(C.QStandardPaths_QStandardPaths_FindExecutable(executableNameC, pathsC))
 }
 
 func QStandardPaths_Locate(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) string {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return cGoUnpackString(C.QStandardPaths_QStandardPaths_Locate(C.longlong(ty), fileNameC, C.longlong(options)))
 }
 
 func (ptr *QStandardPaths) Locate(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) string {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return cGoUnpackString(C.QStandardPaths_QStandardPaths_Locate(C.longlong(ty), fileNameC, C.longlong(options)))
 }
 
@@ -33719,14 +35075,20 @@ func (ptr *QStandardPaths) WritableLocation(ty QStandardPaths__StandardLocation)
 }
 
 func QStandardPaths_LocateAll(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) []string {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return strings.Split(cGoUnpackString(C.QStandardPaths_QStandardPaths_LocateAll(C.longlong(ty), fileNameC, C.longlong(options))), "|")
 }
 
 func (ptr *QStandardPaths) LocateAll(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) []string {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	return strings.Split(cGoUnpackString(C.QStandardPaths_QStandardPaths_LocateAll(C.longlong(ty), fileNameC, C.longlong(options))), "|")
 }
 
@@ -33816,8 +35178,11 @@ func (ptr *QState) AddTransition4(target QAbstractState_ITF) *QAbstractTransitio
 
 func (ptr *QState) AddTransition2(sender QObject_ITF, sign string, target QAbstractState_ITF) *QSignalTransition {
 	if ptr.Pointer() != nil {
-		var signC = C.CString(sign)
-		defer C.free(unsafe.Pointer(signC))
+		var signC *C.char
+		if sign != "" {
+			signC = C.CString(sign)
+			defer C.free(unsafe.Pointer(signC))
+		}
 		var tmpValue = NewQSignalTransitionFromPointer(C.QState_AddTransition2(ptr.Pointer(), PointerFromQObject(sender), signC, PointerFromQAbstractState(target)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -33851,8 +35216,11 @@ func (ptr *QState) AddTransition(transition QAbstractTransition_ITF) {
 
 func (ptr *QState) AssignProperty(object QObject_ITF, name string, value QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QState_AssignProperty(ptr.Pointer(), PointerFromQObject(object), nameC, PointerFromQVariant(value))
 	}
 }
@@ -34683,8 +36051,11 @@ func NewQStorageInfo4(other QStorageInfo_ITF) *QStorageInfo {
 }
 
 func NewQStorageInfo2(path string) *QStorageInfo {
-	var pathC = C.CString(path)
-	defer C.free(unsafe.Pointer(pathC))
+	var pathC *C.char
+	if path != "" {
+		pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+	}
 	var tmpValue = NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo2(pathC))
 	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
 	return tmpValue
@@ -34698,8 +36069,11 @@ func (ptr *QStorageInfo) Refresh() {
 
 func (ptr *QStorageInfo) SetPath(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QStorageInfo_SetPath(ptr.Pointer(), pathC)
 	}
 }
@@ -35155,8 +36529,11 @@ func NewQStringMatcher3(uc QChar_ITF, length int, cs Qt__CaseSensitivity) *QStri
 }
 
 func NewQStringMatcher2(pattern string, cs Qt__CaseSensitivity) *QStringMatcher {
-	var patternC = C.CString(pattern)
-	defer C.free(unsafe.Pointer(patternC))
+	var patternC *C.char
+	if pattern != "" {
+		patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+	}
 	var tmpValue = NewQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher2(patternC, C.longlong(cs)))
 	runtime.SetFinalizer(tmpValue, (*QStringMatcher).DestroyQStringMatcher)
 	return tmpValue
@@ -35176,8 +36553,11 @@ func (ptr *QStringMatcher) SetCaseSensitivity(cs Qt__CaseSensitivity) {
 
 func (ptr *QStringMatcher) SetPattern(pattern string) {
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
-		defer C.free(unsafe.Pointer(patternC))
+		var patternC *C.char
+		if pattern != "" {
+			patternC = C.CString(pattern)
+			defer C.free(unsafe.Pointer(patternC))
+		}
 		C.QStringMatcher_SetPattern(ptr.Pointer(), patternC)
 	}
 }
@@ -35212,8 +36592,11 @@ func (ptr *QStringMatcher) IndexIn2(str QChar_ITF, length int, from int) int {
 
 func (ptr *QStringMatcher) IndexIn(str string, from int) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QStringMatcher_IndexIn(ptr.Pointer(), strC, C.int(int32(from)))))
 	}
 	return 0
@@ -35269,16 +36652,22 @@ func NewQStringRef5(other QStringRef_ITF) *QStringRef {
 }
 
 func NewQStringRef3(stri string) *QStringRef {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQStringRefFromPointer(C.QStringRef_NewQStringRef3(striC))
 	runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 	return tmpValue
 }
 
 func NewQStringRef2(stri string, position int, length int) *QStringRef {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQStringRefFromPointer(C.QStringRef_NewQStringRef2(striC, C.int(int32(position)), C.int(int32(length))))
 	runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 	return tmpValue
@@ -35299,14 +36688,20 @@ func (ptr *QStringRef) Compare7(s1 QStringRef_ITF, s2 QLatin1String_ITF, cs Qt__
 }
 
 func QStringRef_Compare(s1 QStringRef_ITF, s2 string, cs Qt__CaseSensitivity) int {
-	var s2C = C.CString(s2)
-	defer C.free(unsafe.Pointer(s2C))
+	var s2C *C.char
+	if s2 != "" {
+		s2C = C.CString(s2)
+		defer C.free(unsafe.Pointer(s2C))
+	}
 	return int(int32(C.QStringRef_QStringRef_Compare(PointerFromQStringRef(s1), s2C, C.longlong(cs))))
 }
 
 func (ptr *QStringRef) Compare(s1 QStringRef_ITF, s2 string, cs Qt__CaseSensitivity) int {
-	var s2C = C.CString(s2)
-	defer C.free(unsafe.Pointer(s2C))
+	var s2C *C.char
+	if s2 != "" {
+		s2C = C.CString(s2)
+		defer C.free(unsafe.Pointer(s2C))
+	}
 	return int(int32(C.QStringRef_QStringRef_Compare(PointerFromQStringRef(s1), s2C, C.longlong(cs))))
 }
 
@@ -35319,14 +36714,20 @@ func (ptr *QStringRef) Compare6(s1 QStringRef_ITF, s2 QStringRef_ITF, cs Qt__Cas
 }
 
 func QStringRef_LocaleAwareCompare(s1 QStringRef_ITF, s2 string) int {
-	var s2C = C.CString(s2)
-	defer C.free(unsafe.Pointer(s2C))
+	var s2C *C.char
+	if s2 != "" {
+		s2C = C.CString(s2)
+		defer C.free(unsafe.Pointer(s2C))
+	}
 	return int(int32(C.QStringRef_QStringRef_LocaleAwareCompare(PointerFromQStringRef(s1), s2C)))
 }
 
 func (ptr *QStringRef) LocaleAwareCompare(s1 QStringRef_ITF, s2 string) int {
-	var s2C = C.CString(s2)
-	defer C.free(unsafe.Pointer(s2C))
+	var s2C *C.char
+	if s2 != "" {
+		s2C = C.CString(s2)
+		defer C.free(unsafe.Pointer(s2C))
+	}
 	return int(int32(C.QStringRef_QStringRef_LocaleAwareCompare(PointerFromQStringRef(s1), s2C)))
 }
 
@@ -35399,8 +36800,11 @@ func (ptr *QStringRef) ToString() string {
 
 func (ptr *QStringRef) AppendTo(stri string) *QStringRef {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
 		var tmpValue = NewQStringRefFromPointer(C.QStringRef_AppendTo(ptr.Pointer(), striC))
 		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
@@ -35459,8 +36863,11 @@ func (ptr *QStringRef) Split2(sep QChar_ITF, behavior QString__SplitBehavior, cs
 
 func (ptr *QStringRef) Split(sep string, behavior QString__SplitBehavior, cs Qt__CaseSensitivity) []*QStringRef {
 	if ptr.Pointer() != nil {
-		var sepC = C.CString(sep)
-		defer C.free(unsafe.Pointer(sepC))
+		var sepC *C.char
+		if sep != "" {
+			sepC = C.CString(sep)
+			defer C.free(unsafe.Pointer(sepC))
+		}
 		return func(l C.struct_QtCore_PackedList) []*QStringRef {
 			var out = make([]*QStringRef, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -35501,8 +36908,11 @@ func (ptr *QStringRef) Contains3(str QLatin1String_ITF, cs Qt__CaseSensitivity) 
 
 func (ptr *QStringRef) Contains(str string, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return C.QStringRef_Contains(ptr.Pointer(), strC, C.longlong(cs)) != 0
 	}
 	return false
@@ -35531,8 +36941,11 @@ func (ptr *QStringRef) EndsWith2(str QLatin1String_ITF, cs Qt__CaseSensitivity) 
 
 func (ptr *QStringRef) EndsWith(str string, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return C.QStringRef_EndsWith(ptr.Pointer(), strC, C.longlong(cs)) != 0
 	}
 	return false
@@ -35575,8 +36988,11 @@ func (ptr *QStringRef) StartsWith2(str QLatin1String_ITF, cs Qt__CaseSensitivity
 
 func (ptr *QStringRef) StartsWith(str string, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return C.QStringRef_StartsWith(ptr.Pointer(), strC, C.longlong(cs)) != 0
 	}
 	return false
@@ -35656,8 +37072,11 @@ func (ptr *QStringRef) Compare4(other QByteArray_ITF, cs Qt__CaseSensitivity) in
 
 func (ptr *QStringRef) Compare5(other string, cs Qt__CaseSensitivity) int {
 	if ptr.Pointer() != nil {
-		var otherC = C.CString(other)
-		defer C.free(unsafe.Pointer(otherC))
+		var otherC *C.char
+		if other != "" {
+			otherC = C.CString(other)
+			defer C.free(unsafe.Pointer(otherC))
+		}
 		return int(int32(C.QStringRef_Compare5(ptr.Pointer(), otherC, C.longlong(cs))))
 	}
 	return 0
@@ -35686,8 +37105,11 @@ func (ptr *QStringRef) Count3(ch QChar_ITF, cs Qt__CaseSensitivity) int {
 
 func (ptr *QStringRef) Count2(str string, cs Qt__CaseSensitivity) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QStringRef_Count2(ptr.Pointer(), strC, C.longlong(cs))))
 	}
 	return 0
@@ -35716,8 +37138,11 @@ func (ptr *QStringRef) IndexOf3(str QLatin1String_ITF, from int, cs Qt__CaseSens
 
 func (ptr *QStringRef) IndexOf(str string, from int, cs Qt__CaseSensitivity) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QStringRef_IndexOf(ptr.Pointer(), strC, C.int(int32(from)), C.longlong(cs))))
 	}
 	return 0
@@ -35746,8 +37171,11 @@ func (ptr *QStringRef) LastIndexOf3(str QLatin1String_ITF, from int, cs Qt__Case
 
 func (ptr *QStringRef) LastIndexOf(str string, from int, cs Qt__CaseSensitivity) int {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		return int(int32(C.QStringRef_LastIndexOf(ptr.Pointer(), strC, C.int(int32(from)), C.longlong(cs))))
 	}
 	return 0
@@ -35769,8 +37197,11 @@ func (ptr *QStringRef) Length() int {
 
 func (ptr *QStringRef) LocaleAwareCompare3(other string) int {
 	if ptr.Pointer() != nil {
-		var otherC = C.CString(other)
-		defer C.free(unsafe.Pointer(otherC))
+		var otherC *C.char
+		if other != "" {
+			otherC = C.CString(other)
+			defer C.free(unsafe.Pointer(otherC))
+		}
 		return int(int32(C.QStringRef_LocaleAwareCompare3(ptr.Pointer(), otherC)))
 	}
 	return 0
@@ -36229,8 +37660,11 @@ const (
 )
 
 func NewQSystemSemaphore(key string, initialValue int, mode QSystemSemaphore__AccessMode) *QSystemSemaphore {
-	var keyC = C.CString(key)
-	defer C.free(unsafe.Pointer(keyC))
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+	}
 	var tmpValue = NewQSystemSemaphoreFromPointer(C.QSystemSemaphore_NewQSystemSemaphore(keyC, C.int(int32(initialValue)), C.longlong(mode)))
 	runtime.SetFinalizer(tmpValue, (*QSystemSemaphore).DestroyQSystemSemaphore)
 	return tmpValue
@@ -36252,8 +37686,11 @@ func (ptr *QSystemSemaphore) Release(n int) bool {
 
 func (ptr *QSystemSemaphore) SetKey(key string, initialValue int, mode QSystemSemaphore__AccessMode) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QSystemSemaphore_SetKey(ptr.Pointer(), keyC, C.int(int32(initialValue)), C.longlong(mode))
 	}
 }
@@ -36330,8 +37767,11 @@ func NewQTemporaryDir() *QTemporaryDir {
 }
 
 func NewQTemporaryDir2(templatePath string) *QTemporaryDir {
-	var templatePathC = C.CString(templatePath)
-	defer C.free(unsafe.Pointer(templatePathC))
+	var templatePathC *C.char
+	if templatePath != "" {
+		templatePathC = C.CString(templatePath)
+		defer C.free(unsafe.Pointer(templatePathC))
+	}
 	var tmpValue = NewQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir2(templatePathC))
 	runtime.SetFinalizer(tmpValue, (*QTemporaryDir).DestroyQTemporaryDir)
 	return tmpValue
@@ -36440,8 +37880,11 @@ func (ptr *QTemporaryFile) CreateNativeFile(file QFile_ITF) *QTemporaryFile {
 }
 
 func QTemporaryFile_CreateNativeFile2(fileName string) *QTemporaryFile {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(fileNameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -36450,8 +37893,11 @@ func QTemporaryFile_CreateNativeFile2(fileName string) *QTemporaryFile {
 }
 
 func (ptr *QTemporaryFile) CreateNativeFile2(fileName string) *QTemporaryFile {
-	var fileNameC = C.CString(fileName)
-	defer C.free(unsafe.Pointer(fileNameC))
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(fileNameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -36476,8 +37922,11 @@ func NewQTemporaryFile3(parent QObject_ITF) *QTemporaryFile {
 }
 
 func NewQTemporaryFile2(templateName string) *QTemporaryFile {
-	var templateNameC = C.CString(templateName)
-	defer C.free(unsafe.Pointer(templateNameC))
+	var templateNameC *C.char
+	if templateName != "" {
+		templateNameC = C.CString(templateName)
+		defer C.free(unsafe.Pointer(templateNameC))
+	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile2(templateNameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -36486,8 +37935,11 @@ func NewQTemporaryFile2(templateName string) *QTemporaryFile {
 }
 
 func NewQTemporaryFile4(templateName string, parent QObject_ITF) *QTemporaryFile {
-	var templateNameC = C.CString(templateName)
-	defer C.free(unsafe.Pointer(templateNameC))
+	var templateNameC *C.char
+	if templateName != "" {
+		templateNameC = C.CString(templateName)
+		defer C.free(unsafe.Pointer(templateNameC))
+	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile4(templateNameC, PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
@@ -36510,8 +37962,11 @@ func (ptr *QTemporaryFile) SetAutoRemove(b bool) {
 
 func (ptr *QTemporaryFile) SetFileTemplate(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QTemporaryFile_SetFileTemplate(ptr.Pointer(), nameC)
 	}
 }
@@ -36607,8 +38062,11 @@ func NewQTextBoundaryFinder() *QTextBoundaryFinder {
 }
 
 func NewQTextBoundaryFinder3(ty QTextBoundaryFinder__BoundaryType, stri string) *QTextBoundaryFinder {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder3(C.longlong(ty), striC))
 	runtime.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
 	return tmpValue
@@ -36831,14 +38289,20 @@ func (ptr *QTextCodec) CodecForName(name QByteArray_ITF) *QTextCodec {
 }
 
 func QTextCodec_CodecForName2(name string) *QTextCodec {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName2(nameC))
 }
 
 func (ptr *QTextCodec) CodecForName2(name string) *QTextCodec {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName2(nameC))
 }
 
@@ -36907,8 +38371,11 @@ func (ptr *QTextCodec) DestroyQTextCodecDefault() {
 
 func (ptr *QTextCodec) FromUnicode(str string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QTextCodec_FromUnicode(ptr.Pointer(), strC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -37018,8 +38485,11 @@ func (ptr *QTextCodec) ToUnicode(a QByteArray_ITF) string {
 
 func (ptr *QTextCodec) ToUnicode2(chars string) string {
 	if ptr.Pointer() != nil {
-		var charsC = C.CString(chars)
-		defer C.free(unsafe.Pointer(charsC))
+		var charsC *C.char
+		if chars != "" {
+			charsC = C.CString(chars)
+			defer C.free(unsafe.Pointer(charsC))
+		}
 		return cGoUnpackString(C.QTextCodec_ToUnicode2(ptr.Pointer(), charsC))
 	}
 	return ""
@@ -37048,8 +38518,11 @@ func (ptr *QTextCodec) CanEncode(ch QChar_ITF) bool {
 
 func (ptr *QTextCodec) CanEncode2(s string) bool {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		return C.QTextCodec_CanEncode2(ptr.Pointer(), sC) != 0
 	}
 	return false
@@ -37186,8 +38659,11 @@ func (ptr *QTextDecoder) ToUnicode2(ba QByteArray_ITF) string {
 
 func (ptr *QTextDecoder) ToUnicode(chars string, len int) string {
 	if ptr.Pointer() != nil {
-		var charsC = C.CString(chars)
-		defer C.free(unsafe.Pointer(charsC))
+		var charsC *C.char
+		if chars != "" {
+			charsC = C.CString(chars)
+			defer C.free(unsafe.Pointer(charsC))
+		}
 		return cGoUnpackString(C.QTextDecoder_ToUnicode(ptr.Pointer(), charsC, C.int(int32(len))))
 	}
 	return ""
@@ -37207,10 +38683,16 @@ func NewQTextDecoder2(codec QTextCodec_ITF, flags QTextCodec__ConversionFlag) *Q
 
 func (ptr *QTextDecoder) ToUnicode3(target string, chars string, len int) {
 	if ptr.Pointer() != nil {
-		var targetC = C.CString(target)
-		defer C.free(unsafe.Pointer(targetC))
-		var charsC = C.CString(chars)
-		defer C.free(unsafe.Pointer(charsC))
+		var targetC *C.char
+		if target != "" {
+			targetC = C.CString(target)
+			defer C.free(unsafe.Pointer(targetC))
+		}
+		var charsC *C.char
+		if chars != "" {
+			charsC = C.CString(chars)
+			defer C.free(unsafe.Pointer(charsC))
+		}
 		C.QTextDecoder_ToUnicode3(ptr.Pointer(), targetC, charsC, C.int(int32(len)))
 	}
 }
@@ -37270,8 +38752,11 @@ func (ptr *QTextEncoder) FromUnicode2(uc QChar_ITF, len int) *QByteArray {
 
 func (ptr *QTextEncoder) FromUnicode(str string) *QByteArray {
 	if ptr.Pointer() != nil {
-		var strC = C.CString(str)
-		defer C.free(unsafe.Pointer(strC))
+		var strC *C.char
+		if str != "" {
+			strC = C.CString(str)
+			defer C.free(unsafe.Pointer(strC))
+		}
 		var tmpValue = NewQByteArrayFromPointer(C.QTextEncoder_FromUnicode(ptr.Pointer(), strC))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
@@ -37414,8 +38899,11 @@ func NewQTextStream2(device QIODevice_ITF) *QTextStream {
 }
 
 func NewQTextStream4(stri string, openMode QIODevice__OpenModeFlag) *QTextStream {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	return NewQTextStreamFromPointer(C.QTextStream_NewQTextStream4(striC, C.longlong(openMode)))
 }
 
@@ -37425,8 +38913,11 @@ func NewQTextStream6(array QByteArray_ITF, openMode QIODevice__OpenModeFlag) *QT
 
 func (ptr *QTextStream) ReadLineInto(line string, maxlen int64) bool {
 	if ptr.Pointer() != nil {
-		var lineC = C.CString(line)
-		defer C.free(unsafe.Pointer(lineC))
+		var lineC *C.char
+		if line != "" {
+			lineC = C.CString(line)
+			defer C.free(unsafe.Pointer(lineC))
+		}
 		return C.QTextStream_ReadLineInto(ptr.Pointer(), lineC, C.longlong(maxlen)) != 0
 	}
 	return false
@@ -37471,8 +38962,11 @@ func (ptr *QTextStream) SetCodec(codec QTextCodec_ITF) {
 
 func (ptr *QTextStream) SetCodec2(codecName string) {
 	if ptr.Pointer() != nil {
-		var codecNameC = C.CString(codecName)
-		defer C.free(unsafe.Pointer(codecNameC))
+		var codecNameC *C.char
+		if codecName != "" {
+			codecNameC = C.CString(codecName)
+			defer C.free(unsafe.Pointer(codecNameC))
+		}
 		C.QTextStream_SetCodec2(ptr.Pointer(), codecNameC)
 	}
 }
@@ -37545,8 +39039,11 @@ func (ptr *QTextStream) SetStatus(status QTextStream__Status) {
 
 func (ptr *QTextStream) SetString(stri string, openMode QIODevice__OpenModeFlag) {
 	if ptr.Pointer() != nil {
-		var striC = C.CString(stri)
-		defer C.free(unsafe.Pointer(striC))
+		var striC *C.char
+		if stri != "" {
+			striC = C.CString(stri)
+			defer C.free(unsafe.Pointer(striC))
+		}
 		C.QTextStream_SetString(ptr.Pointer(), striC, C.longlong(openMode))
 	}
 }
@@ -38386,36 +39883,54 @@ func (ptr *QTime) FromMSecsSinceStartOfDay(msecs int) *QTime {
 }
 
 func QTime_FromString(stri string, format Qt__DateFormat) *QTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString(striC, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
 func (ptr *QTime) FromString(stri string, format Qt__DateFormat) *QTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString(striC, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
 func QTime_FromString2(stri string, format string) *QTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
-	var formatC = C.CString(format)
-	defer C.free(unsafe.Pointer(formatC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
+	var formatC *C.char
+	if format != "" {
+		formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+	}
 	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString2(striC, formatC))
 	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
 }
 
 func (ptr *QTime) FromString2(stri string, format string) *QTime {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
-	var formatC = C.CString(format)
-	defer C.free(unsafe.Pointer(formatC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
+	var formatC *C.char
+	if format != "" {
+		formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+	}
 	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString2(striC, formatC))
 	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
 	return tmpValue
@@ -38470,8 +39985,11 @@ func (ptr *QTime) ToString2(format Qt__DateFormat) string {
 
 func (ptr *QTime) ToString(format string) string {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		return cGoUnpackString(C.QTime_ToString(ptr.Pointer(), formatC))
 	}
 	return ""
@@ -39409,12 +40927,21 @@ func NewQTimeZone2(ianaId QByteArray_ITF) *QTimeZone {
 }
 
 func NewQTimeZone4(ianaId QByteArray_ITF, offsetSeconds int, name string, abbreviation string, country QLocale__Country, comment string) *QTimeZone {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
-	var abbreviationC = C.CString(abbreviation)
-	defer C.free(unsafe.Pointer(abbreviationC))
-	var commentC = C.CString(comment)
-	defer C.free(unsafe.Pointer(commentC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
+	var abbreviationC *C.char
+	if abbreviation != "" {
+		abbreviationC = C.CString(abbreviation)
+		defer C.free(unsafe.Pointer(abbreviationC))
+	}
+	var commentC *C.char
+	if comment != "" {
+		commentC = C.CString(comment)
+		defer C.free(unsafe.Pointer(commentC))
+	}
 	var tmpValue = NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone4(PointerFromQByteArray(ianaId), C.int(int32(offsetSeconds)), nameC, abbreviationC, C.longlong(country), commentC))
 	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
 	return tmpValue
@@ -39706,26 +41233,38 @@ func (ptr *QTimer) SetTimerType(atype Qt__TimerType) {
 }
 
 func QTimer_SingleShot2(msec int, timerType Qt__TimerType, receiver QObject_ITF, member string) {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	C.QTimer_QTimer_SingleShot2(C.int(int32(msec)), C.longlong(timerType), PointerFromQObject(receiver), memberC)
 }
 
 func (ptr *QTimer) SingleShot2(msec int, timerType Qt__TimerType, receiver QObject_ITF, member string) {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	C.QTimer_QTimer_SingleShot2(C.int(int32(msec)), C.longlong(timerType), PointerFromQObject(receiver), memberC)
 }
 
 func QTimer_SingleShot(msec int, receiver QObject_ITF, member string) {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	C.QTimer_QTimer_SingleShot(C.int(int32(msec)), PointerFromQObject(receiver), memberC)
 }
 
 func (ptr *QTimer) SingleShot(msec int, receiver QObject_ITF, member string) {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
 	C.QTimer_QTimer_SingleShot(C.int(int32(msec)), PointerFromQObject(receiver), memberC)
 }
 
@@ -40025,14 +41564,26 @@ func NewQTranslator(parent QObject_ITF) *QTranslator {
 
 func (ptr *QTranslator) Load2(locale QLocale_ITF, filename string, prefix string, directory string, suffix string) bool {
 	if ptr.Pointer() != nil {
-		var filenameC = C.CString(filename)
-		defer C.free(unsafe.Pointer(filenameC))
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
-		var directoryC = C.CString(directory)
-		defer C.free(unsafe.Pointer(directoryC))
-		var suffixC = C.CString(suffix)
-		defer C.free(unsafe.Pointer(suffixC))
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
+		var directoryC *C.char
+		if directory != "" {
+			directoryC = C.CString(directory)
+			defer C.free(unsafe.Pointer(directoryC))
+		}
+		var suffixC *C.char
+		if suffix != "" {
+			suffixC = C.CString(suffix)
+			defer C.free(unsafe.Pointer(suffixC))
+		}
 		return C.QTranslator_Load2(ptr.Pointer(), PointerFromQLocale(locale), filenameC, prefixC, directoryC, suffixC) != 0
 	}
 	return false
@@ -40040,14 +41591,26 @@ func (ptr *QTranslator) Load2(locale QLocale_ITF, filename string, prefix string
 
 func (ptr *QTranslator) Load(filename string, directory string, search_delimiters string, suffix string) bool {
 	if ptr.Pointer() != nil {
-		var filenameC = C.CString(filename)
-		defer C.free(unsafe.Pointer(filenameC))
-		var directoryC = C.CString(directory)
-		defer C.free(unsafe.Pointer(directoryC))
-		var search_delimitersC = C.CString(search_delimiters)
-		defer C.free(unsafe.Pointer(search_delimitersC))
-		var suffixC = C.CString(suffix)
-		defer C.free(unsafe.Pointer(suffixC))
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
+		var directoryC *C.char
+		if directory != "" {
+			directoryC = C.CString(directory)
+			defer C.free(unsafe.Pointer(directoryC))
+		}
+		var search_delimitersC *C.char
+		if search_delimiters != "" {
+			search_delimitersC = C.CString(search_delimiters)
+			defer C.free(unsafe.Pointer(search_delimitersC))
+		}
+		var suffixC *C.char
+		if suffix != "" {
+			suffixC = C.CString(suffix)
+			defer C.free(unsafe.Pointer(suffixC))
+		}
 		return C.QTranslator_Load(ptr.Pointer(), filenameC, directoryC, search_delimitersC, suffixC) != 0
 	}
 	return false
@@ -40055,10 +41618,16 @@ func (ptr *QTranslator) Load(filename string, directory string, search_delimiter
 
 func (ptr *QTranslator) Load3(data string, len int, directory string) bool {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
-		var directoryC = C.CString(directory)
-		defer C.free(unsafe.Pointer(directoryC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
+		var directoryC *C.char
+		if directory != "" {
+			directoryC = C.CString(directory)
+			defer C.free(unsafe.Pointer(directoryC))
+		}
 		return C.QTranslator_Load3(ptr.Pointer(), dataC, C.int(int32(len)), directoryC) != 0
 	}
 	return false
@@ -40097,12 +41666,21 @@ func (ptr *QTranslator) DisconnectTranslate() {
 
 func (ptr *QTranslator) Translate(context string, sourceText string, disambiguation string, n int) string {
 	if ptr.Pointer() != nil {
-		var contextC = C.CString(context)
-		defer C.free(unsafe.Pointer(contextC))
-		var sourceTextC = C.CString(sourceText)
-		defer C.free(unsafe.Pointer(sourceTextC))
-		var disambiguationC = C.CString(disambiguation)
-		defer C.free(unsafe.Pointer(disambiguationC))
+		var contextC *C.char
+		if context != "" {
+			contextC = C.CString(context)
+			defer C.free(unsafe.Pointer(contextC))
+		}
+		var sourceTextC *C.char
+		if sourceText != "" {
+			sourceTextC = C.CString(sourceText)
+			defer C.free(unsafe.Pointer(sourceTextC))
+		}
+		var disambiguationC *C.char
+		if disambiguation != "" {
+			disambiguationC = C.CString(disambiguation)
+			defer C.free(unsafe.Pointer(disambiguationC))
+		}
 		return cGoUnpackString(C.QTranslator_Translate(ptr.Pointer(), contextC, sourceTextC, disambiguationC, C.int(int32(n))))
 	}
 	return ""
@@ -40110,12 +41688,21 @@ func (ptr *QTranslator) Translate(context string, sourceText string, disambiguat
 
 func (ptr *QTranslator) TranslateDefault(context string, sourceText string, disambiguation string, n int) string {
 	if ptr.Pointer() != nil {
-		var contextC = C.CString(context)
-		defer C.free(unsafe.Pointer(contextC))
-		var sourceTextC = C.CString(sourceText)
-		defer C.free(unsafe.Pointer(sourceTextC))
-		var disambiguationC = C.CString(disambiguation)
-		defer C.free(unsafe.Pointer(disambiguationC))
+		var contextC *C.char
+		if context != "" {
+			contextC = C.CString(context)
+			defer C.free(unsafe.Pointer(contextC))
+		}
+		var sourceTextC *C.char
+		if sourceText != "" {
+			sourceTextC = C.CString(sourceText)
+			defer C.free(unsafe.Pointer(sourceTextC))
+		}
+		var disambiguationC *C.char
+		if disambiguation != "" {
+			disambiguationC = C.CString(disambiguation)
+			defer C.free(unsafe.Pointer(disambiguationC))
+		}
 		return cGoUnpackString(C.QTranslator_TranslateDefault(ptr.Pointer(), contextC, sourceTextC, disambiguationC, C.int(int32(n))))
 	}
 	return ""
@@ -40553,32 +42140,44 @@ func (ptr *QUrl) FromEncoded(input QByteArray_ITF, parsingMode QUrl__ParsingMode
 }
 
 func QUrl_ToAce(domain string) *QByteArray {
-	var domainC = C.CString(domain)
-	defer C.free(unsafe.Pointer(domainC))
+	var domainC *C.char
+	if domain != "" {
+		domainC = C.CString(domain)
+		defer C.free(unsafe.Pointer(domainC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QUrl_QUrl_ToAce(domainC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QUrl) ToAce(domain string) *QByteArray {
-	var domainC = C.CString(domain)
-	defer C.free(unsafe.Pointer(domainC))
+	var domainC *C.char
+	if domain != "" {
+		domainC = C.CString(domain)
+		defer C.free(unsafe.Pointer(domainC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QUrl_QUrl_ToAce(domainC))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func QUrl_ToPercentEncoding(input string, exclude QByteArray_ITF, include QByteArray_ITF) *QByteArray {
-	var inputC = C.CString(input)
-	defer C.free(unsafe.Pointer(inputC))
+	var inputC *C.char
+	if input != "" {
+		inputC = C.CString(input)
+		defer C.free(unsafe.Pointer(inputC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QUrl_QUrl_ToPercentEncoding(inputC, PointerFromQByteArray(exclude), PointerFromQByteArray(include)))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
 func (ptr *QUrl) ToPercentEncoding(input string, exclude QByteArray_ITF, include QByteArray_ITF) *QByteArray {
-	var inputC = C.CString(input)
-	defer C.free(unsafe.Pointer(inputC))
+	var inputC *C.char
+	if input != "" {
+		inputC = C.CString(input)
+		defer C.free(unsafe.Pointer(inputC))
+	}
 	var tmpValue = NewQByteArrayFromPointer(C.QUrl_QUrl_ToPercentEncoding(inputC, PointerFromQByteArray(exclude), PointerFromQByteArray(include)))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
@@ -40621,52 +42220,76 @@ func (ptr *QUrl) ToStringList(urls []*QUrl, options QUrl__UrlFormattingOption) [
 }
 
 func QUrl_FromLocalFile(localFile string) *QUrl {
-	var localFileC = C.CString(localFile)
-	defer C.free(unsafe.Pointer(localFileC))
+	var localFileC *C.char
+	if localFile != "" {
+		localFileC = C.CString(localFile)
+		defer C.free(unsafe.Pointer(localFileC))
+	}
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(localFileC))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func (ptr *QUrl) FromLocalFile(localFile string) *QUrl {
-	var localFileC = C.CString(localFile)
-	defer C.free(unsafe.Pointer(localFileC))
+	var localFileC *C.char
+	if localFile != "" {
+		localFileC = C.CString(localFile)
+		defer C.free(unsafe.Pointer(localFileC))
+	}
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(localFileC))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func QUrl_FromUserInput(userInput string) *QUrl {
-	var userInputC = C.CString(userInput)
-	defer C.free(unsafe.Pointer(userInputC))
+	var userInputC *C.char
+	if userInput != "" {
+		userInputC = C.CString(userInput)
+		defer C.free(unsafe.Pointer(userInputC))
+	}
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(userInputC))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func (ptr *QUrl) FromUserInput(userInput string) *QUrl {
-	var userInputC = C.CString(userInput)
-	defer C.free(unsafe.Pointer(userInputC))
+	var userInputC *C.char
+	if userInput != "" {
+		userInputC = C.CString(userInput)
+		defer C.free(unsafe.Pointer(userInputC))
+	}
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(userInputC))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func QUrl_FromUserInput2(userInput string, workingDirectory string, options QUrl__UserInputResolutionOption) *QUrl {
-	var userInputC = C.CString(userInput)
-	defer C.free(unsafe.Pointer(userInputC))
-	var workingDirectoryC = C.CString(workingDirectory)
-	defer C.free(unsafe.Pointer(workingDirectoryC))
+	var userInputC *C.char
+	if userInput != "" {
+		userInputC = C.CString(userInput)
+		defer C.free(unsafe.Pointer(userInputC))
+	}
+	var workingDirectoryC *C.char
+	if workingDirectory != "" {
+		workingDirectoryC = C.CString(workingDirectory)
+		defer C.free(unsafe.Pointer(workingDirectoryC))
+	}
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(userInputC, workingDirectoryC, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
 }
 
 func (ptr *QUrl) FromUserInput2(userInput string, workingDirectory string, options QUrl__UserInputResolutionOption) *QUrl {
-	var userInputC = C.CString(userInput)
-	defer C.free(unsafe.Pointer(userInputC))
-	var workingDirectoryC = C.CString(workingDirectory)
-	defer C.free(unsafe.Pointer(workingDirectoryC))
+	var userInputC *C.char
+	if userInput != "" {
+		userInputC = C.CString(userInput)
+		defer C.free(unsafe.Pointer(userInputC))
+	}
+	var workingDirectoryC *C.char
+	if workingDirectory != "" {
+		workingDirectoryC = C.CString(workingDirectory)
+		defer C.free(unsafe.Pointer(workingDirectoryC))
+	}
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(userInputC, workingDirectoryC, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
@@ -40685,8 +42308,11 @@ func NewQUrl4(other QUrl_ITF) *QUrl {
 }
 
 func NewQUrl3(url string, parsingMode QUrl__ParsingMode) *QUrl {
-	var urlC = C.CString(url)
-	defer C.free(unsafe.Pointer(urlC))
+	var urlC *C.char
+	if url != "" {
+		urlC = C.CString(url)
+		defer C.free(unsafe.Pointer(urlC))
+	}
 	var tmpValue = NewQUrlFromPointer(C.QUrl_NewQUrl3(urlC, C.longlong(parsingMode)))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
 	return tmpValue
@@ -40706,24 +42332,33 @@ func (ptr *QUrl) Clear() {
 
 func (ptr *QUrl) SetAuthority(authority string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var authorityC = C.CString(authority)
-		defer C.free(unsafe.Pointer(authorityC))
+		var authorityC *C.char
+		if authority != "" {
+			authorityC = C.CString(authority)
+			defer C.free(unsafe.Pointer(authorityC))
+		}
 		C.QUrl_SetAuthority(ptr.Pointer(), authorityC, C.longlong(mode))
 	}
 }
 
 func (ptr *QUrl) SetFragment(fragment string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var fragmentC = C.CString(fragment)
-		defer C.free(unsafe.Pointer(fragmentC))
+		var fragmentC *C.char
+		if fragment != "" {
+			fragmentC = C.CString(fragment)
+			defer C.free(unsafe.Pointer(fragmentC))
+		}
 		C.QUrl_SetFragment(ptr.Pointer(), fragmentC, C.longlong(mode))
 	}
 }
 
 func (ptr *QUrl) SetHost(host string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var hostC = C.CString(host)
-		defer C.free(unsafe.Pointer(hostC))
+		var hostC *C.char
+		if host != "" {
+			hostC = C.CString(host)
+			defer C.free(unsafe.Pointer(hostC))
+		}
 		C.QUrl_SetHost(ptr.Pointer(), hostC, C.longlong(mode))
 	}
 }
@@ -40742,16 +42377,22 @@ func (ptr *QUrl) SetIdnWhitelist(list []string) {
 
 func (ptr *QUrl) SetPassword(password string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var passwordC = C.CString(password)
-		defer C.free(unsafe.Pointer(passwordC))
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
 		C.QUrl_SetPassword(ptr.Pointer(), passwordC, C.longlong(mode))
 	}
 }
 
 func (ptr *QUrl) SetPath(path string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QUrl_SetPath(ptr.Pointer(), pathC, C.longlong(mode))
 	}
 }
@@ -40764,8 +42405,11 @@ func (ptr *QUrl) SetPort(port int) {
 
 func (ptr *QUrl) SetQuery(query string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		C.QUrl_SetQuery(ptr.Pointer(), queryC, C.longlong(mode))
 	}
 }
@@ -40778,32 +42422,44 @@ func (ptr *QUrl) SetQuery2(query QUrlQuery_ITF) {
 
 func (ptr *QUrl) SetScheme(scheme string) {
 	if ptr.Pointer() != nil {
-		var schemeC = C.CString(scheme)
-		defer C.free(unsafe.Pointer(schemeC))
+		var schemeC *C.char
+		if scheme != "" {
+			schemeC = C.CString(scheme)
+			defer C.free(unsafe.Pointer(schemeC))
+		}
 		C.QUrl_SetScheme(ptr.Pointer(), schemeC)
 	}
 }
 
 func (ptr *QUrl) SetUrl(url string, parsingMode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var urlC = C.CString(url)
-		defer C.free(unsafe.Pointer(urlC))
+		var urlC *C.char
+		if url != "" {
+			urlC = C.CString(url)
+			defer C.free(unsafe.Pointer(urlC))
+		}
 		C.QUrl_SetUrl(ptr.Pointer(), urlC, C.longlong(parsingMode))
 	}
 }
 
 func (ptr *QUrl) SetUserInfo(userInfo string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var userInfoC = C.CString(userInfo)
-		defer C.free(unsafe.Pointer(userInfoC))
+		var userInfoC *C.char
+		if userInfo != "" {
+			userInfoC = C.CString(userInfo)
+			defer C.free(unsafe.Pointer(userInfoC))
+		}
 		C.QUrl_SetUserInfo(ptr.Pointer(), userInfoC, C.longlong(mode))
 	}
 }
 
 func (ptr *QUrl) SetUserName(userName string, mode QUrl__ParsingMode) {
 	if ptr.Pointer() != nil {
-		var userNameC = C.CString(userName)
-		defer C.free(unsafe.Pointer(userNameC))
+		var userNameC *C.char
+		if userName != "" {
+			userNameC = C.CString(userName)
+			defer C.free(unsafe.Pointer(userNameC))
+		}
 		C.QUrl_SetUserName(ptr.Pointer(), userNameC, C.longlong(mode))
 	}
 }
@@ -41148,8 +42804,11 @@ func NewQUrlQuery() *QUrlQuery {
 }
 
 func NewQUrlQuery3(queryString string) *QUrlQuery {
-	var queryStringC = C.CString(queryString)
-	defer C.free(unsafe.Pointer(queryStringC))
+	var queryStringC *C.char
+	if queryString != "" {
+		queryStringC = C.CString(queryString)
+		defer C.free(unsafe.Pointer(queryStringC))
+	}
 	var tmpValue = NewQUrlQueryFromPointer(C.QUrlQuery_NewQUrlQuery3(queryStringC))
 	runtime.SetFinalizer(tmpValue, (*QUrlQuery).DestroyQUrlQuery)
 	return tmpValue
@@ -41169,10 +42828,16 @@ func NewQUrlQuery4(other QUrlQuery_ITF) *QUrlQuery {
 
 func (ptr *QUrlQuery) AddQueryItem(key string, value string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QUrlQuery_AddQueryItem(ptr.Pointer(), keyC, valueC)
 	}
 }
@@ -41185,24 +42850,33 @@ func (ptr *QUrlQuery) Clear() {
 
 func (ptr *QUrlQuery) RemoveAllQueryItems(key string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QUrlQuery_RemoveAllQueryItems(ptr.Pointer(), keyC)
 	}
 }
 
 func (ptr *QUrlQuery) RemoveQueryItem(key string) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QUrlQuery_RemoveQueryItem(ptr.Pointer(), keyC)
 	}
 }
 
 func (ptr *QUrlQuery) SetQuery(queryString string) {
 	if ptr.Pointer() != nil {
-		var queryStringC = C.CString(queryString)
-		defer C.free(unsafe.Pointer(queryStringC))
+		var queryStringC *C.char
+		if queryString != "" {
+			queryStringC = C.CString(queryString)
+			defer C.free(unsafe.Pointer(queryStringC))
+		}
 		C.QUrlQuery_SetQuery(ptr.Pointer(), queryStringC)
 	}
 }
@@ -41253,8 +42927,11 @@ func (ptr *QUrlQuery) Query(encoding QUrl__ComponentFormattingOption) string {
 
 func (ptr *QUrlQuery) QueryItemValue(key string, encoding QUrl__ComponentFormattingOption) string {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return cGoUnpackString(C.QUrlQuery_QueryItemValue(ptr.Pointer(), keyC, C.longlong(encoding)))
 	}
 	return ""
@@ -41269,8 +42946,11 @@ func (ptr *QUrlQuery) ToString(encoding QUrl__ComponentFormattingOption) string 
 
 func (ptr *QUrlQuery) AllQueryItemValues(key string, encoding QUrl__ComponentFormattingOption) []string {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return strings.Split(cGoUnpackString(C.QUrlQuery_AllQueryItemValues(ptr.Pointer(), keyC, C.longlong(encoding))), "|")
 	}
 	return make([]string, 0)
@@ -41278,8 +42958,11 @@ func (ptr *QUrlQuery) AllQueryItemValues(key string, encoding QUrl__ComponentFor
 
 func (ptr *QUrlQuery) HasQueryItem(key string) bool {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		return C.QUrlQuery_HasQueryItem(ptr.Pointer(), keyC) != 0
 	}
 	return false
@@ -41400,32 +43083,44 @@ func (ptr *QUuid) CreateUuidV5(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
 }
 
 func QUuid_CreateUuidV32(ns QUuid_ITF, baseData string) *QUuid {
-	var baseDataC = C.CString(baseData)
-	defer C.free(unsafe.Pointer(baseDataC))
+	var baseDataC *C.char
+	if baseData != "" {
+		baseDataC = C.CString(baseData)
+		defer C.free(unsafe.Pointer(baseDataC))
+	}
 	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV32(PointerFromQUuid(ns), baseDataC))
 	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) CreateUuidV32(ns QUuid_ITF, baseData string) *QUuid {
-	var baseDataC = C.CString(baseData)
-	defer C.free(unsafe.Pointer(baseDataC))
+	var baseDataC *C.char
+	if baseData != "" {
+		baseDataC = C.CString(baseData)
+		defer C.free(unsafe.Pointer(baseDataC))
+	}
 	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV32(PointerFromQUuid(ns), baseDataC))
 	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func QUuid_CreateUuidV52(ns QUuid_ITF, baseData string) *QUuid {
-	var baseDataC = C.CString(baseData)
-	defer C.free(unsafe.Pointer(baseDataC))
+	var baseDataC *C.char
+	if baseData != "" {
+		baseDataC = C.CString(baseData)
+		defer C.free(unsafe.Pointer(baseDataC))
+	}
 	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV52(PointerFromQUuid(ns), baseDataC))
 	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func (ptr *QUuid) CreateUuidV52(ns QUuid_ITF, baseData string) *QUuid {
-	var baseDataC = C.CString(baseData)
-	defer C.free(unsafe.Pointer(baseDataC))
+	var baseDataC *C.char
+	if baseData != "" {
+		baseDataC = C.CString(baseData)
+		defer C.free(unsafe.Pointer(baseDataC))
+	}
 	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV52(PointerFromQUuid(ns), baseDataC))
 	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
@@ -41456,30 +43151,57 @@ func NewQUuid5(text QByteArray_ITF) *QUuid {
 }
 
 func NewQUuid3(text string) *QUuid {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQUuidFromPointer(C.QUuid_NewQUuid3(textC))
 	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
 
 func NewQUuid2(l uint, w1 uint16, w2 uint16, b1 string, b2 string, b3 string, b4 string, b5 string, b6 string, b7 string, b8 string) *QUuid {
-	var b1C = C.CString(b1)
-	defer C.free(unsafe.Pointer(b1C))
-	var b2C = C.CString(b2)
-	defer C.free(unsafe.Pointer(b2C))
-	var b3C = C.CString(b3)
-	defer C.free(unsafe.Pointer(b3C))
-	var b4C = C.CString(b4)
-	defer C.free(unsafe.Pointer(b4C))
-	var b5C = C.CString(b5)
-	defer C.free(unsafe.Pointer(b5C))
-	var b6C = C.CString(b6)
-	defer C.free(unsafe.Pointer(b6C))
-	var b7C = C.CString(b7)
-	defer C.free(unsafe.Pointer(b7C))
-	var b8C = C.CString(b8)
-	defer C.free(unsafe.Pointer(b8C))
+	var b1C *C.char
+	if b1 != "" {
+		b1C = C.CString(b1)
+		defer C.free(unsafe.Pointer(b1C))
+	}
+	var b2C *C.char
+	if b2 != "" {
+		b2C = C.CString(b2)
+		defer C.free(unsafe.Pointer(b2C))
+	}
+	var b3C *C.char
+	if b3 != "" {
+		b3C = C.CString(b3)
+		defer C.free(unsafe.Pointer(b3C))
+	}
+	var b4C *C.char
+	if b4 != "" {
+		b4C = C.CString(b4)
+		defer C.free(unsafe.Pointer(b4C))
+	}
+	var b5C *C.char
+	if b5 != "" {
+		b5C = C.CString(b5)
+		defer C.free(unsafe.Pointer(b5C))
+	}
+	var b6C *C.char
+	if b6 != "" {
+		b6C = C.CString(b6)
+		defer C.free(unsafe.Pointer(b6C))
+	}
+	var b7C *C.char
+	if b7 != "" {
+		b7C = C.CString(b7)
+		defer C.free(unsafe.Pointer(b7C))
+	}
+	var b8C *C.char
+	if b8 != "" {
+		b8C = C.CString(b8)
+		defer C.free(unsafe.Pointer(b8C))
+	}
 	var tmpValue = NewQUuidFromPointer(C.QUuid_NewQUuid2(C.uint(uint32(l)), C.ushort(w1), C.ushort(w2), b1C, b2C, b3C, b4C, b5C, b6C, b7C, b8C))
 	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
@@ -41850,8 +43572,11 @@ func NewQVariant28(val QSizeF_ITF) *QVariant {
 }
 
 func NewQVariant17(val string) *QVariant {
-	var valC = C.CString(val)
-	defer C.free(unsafe.Pointer(valC))
+	var valC *C.char
+	if val != "" {
+		valC = C.CString(val)
+		defer C.free(unsafe.Pointer(valC))
+	}
 	var tmpValue = NewQVariantFromPointer(C.QVariant_NewQVariant17(valC))
 	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
@@ -41890,8 +43615,11 @@ func NewQVariant5(p QVariant_ITF) *QVariant {
 }
 
 func NewQVariant14(val string) *QVariant {
-	var valC = C.CString(val)
-	defer C.free(unsafe.Pointer(valC))
+	var valC *C.char
+	if val != "" {
+		valC = C.CString(val)
+		defer C.free(unsafe.Pointer(valC))
+	}
 	var tmpValue = NewQVariantFromPointer(C.QVariant_NewQVariant14(valC))
 	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
@@ -42378,8 +44106,11 @@ func (ptr *QVariant) ToObject() *QObject {
 
 func (ptr *QVariant) __QVariant_val_atList26(i string) *QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QVariant___QVariant_val_atList26(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -42389,8 +44120,11 @@ func (ptr *QVariant) __QVariant_val_atList26(i string) *QVariant {
 
 func (ptr *QVariant) __QVariant_val_setList26(key string, i QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QVariant___QVariant_val_setList26(ptr.Pointer(), keyC, PointerFromQVariant(i))
 	}
 }
@@ -42433,8 +44167,11 @@ func (ptr *QVariant) __QVariant_val_newList24() unsafe.Pointer {
 
 func (ptr *QVariant) __QVariant_val_atList25(i string) *QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QVariant___QVariant_val_atList25(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -42444,8 +44181,11 @@ func (ptr *QVariant) __QVariant_val_atList25(i string) *QVariant {
 
 func (ptr *QVariant) __QVariant_val_setList25(key string, i QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QVariant___QVariant_val_setList25(ptr.Pointer(), keyC, PointerFromQVariant(i))
 	}
 }
@@ -42469,8 +44209,11 @@ func (ptr *QVariant) __QVariant_keyList25() []string {
 
 func (ptr *QVariant) __toHash_atList(i string) *QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QVariant___toHash_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -42480,8 +44223,11 @@ func (ptr *QVariant) __toHash_atList(i string) *QVariant {
 
 func (ptr *QVariant) __toHash_setList(key string, i QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QVariant___toHash_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
 	}
 }
@@ -42524,8 +44270,11 @@ func (ptr *QVariant) __toList_newList() unsafe.Pointer {
 
 func (ptr *QVariant) __toMap_atList(i string) *QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = NewQVariantFromPointer(C.QVariant___toMap_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
@@ -42535,8 +44284,11 @@ func (ptr *QVariant) __toMap_atList(i string) *QVariant {
 
 func (ptr *QVariant) __toMap_setList(key string, i QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QVariant___toMap_setList(ptr.Pointer(), keyC, PointerFromQVariant(i))
 	}
 }
@@ -42567,8 +44319,11 @@ func (ptr *QVariant) ____QVariant_keyList_atList26(i int) string {
 
 func (ptr *QVariant) ____QVariant_keyList_setList26(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QVariant_____QVariant_keyList_setList26(ptr.Pointer(), iC)
 	}
 }
@@ -42586,8 +44341,11 @@ func (ptr *QVariant) ____QVariant_keyList_atList25(i int) string {
 
 func (ptr *QVariant) ____QVariant_keyList_setList25(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QVariant_____QVariant_keyList_setList25(ptr.Pointer(), iC)
 	}
 }
@@ -42605,8 +44363,11 @@ func (ptr *QVariant) ____toHash_keyList_atList(i int) string {
 
 func (ptr *QVariant) ____toHash_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QVariant_____toHash_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -42624,8 +44385,11 @@ func (ptr *QVariant) ____toMap_keyList_atList(i int) string {
 
 func (ptr *QVariant) ____toMap_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QVariant_____toMap_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -43080,16 +44844,22 @@ func (ptr *QVersionNumber) CommonPrefix(v1 QVersionNumber_ITF, v2 QVersionNumber
 }
 
 func QVersionNumber_FromString(stri string, suffixIndex int) *QVersionNumber {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString(striC, C.int(int32(suffixIndex))))
 	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
 
 func (ptr *QVersionNumber) FromString(stri string, suffixIndex int) *QVersionNumber {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString(striC, C.int(int32(suffixIndex))))
 	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
@@ -43571,22 +45341,37 @@ func NewQXmlStreamAttribute5(other QXmlStreamAttribute_ITF) *QXmlStreamAttribute
 }
 
 func NewQXmlStreamAttribute3(namespaceUri string, name string, value string) *QXmlStreamAttribute {
-	var namespaceUriC = C.CString(namespaceUri)
-	defer C.free(unsafe.Pointer(namespaceUriC))
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
-	var valueC = C.CString(value)
-	defer C.free(unsafe.Pointer(valueC))
+	var namespaceUriC *C.char
+	if namespaceUri != "" {
+		namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+	}
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
+	var valueC *C.char
+	if value != "" {
+		valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+	}
 	var tmpValue = NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute3(namespaceUriC, nameC, valueC))
 	runtime.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
 	return tmpValue
 }
 
 func NewQXmlStreamAttribute2(qualifiedName string, value string) *QXmlStreamAttribute {
-	var qualifiedNameC = C.CString(qualifiedName)
-	defer C.free(unsafe.Pointer(qualifiedNameC))
-	var valueC = C.CString(value)
-	defer C.free(unsafe.Pointer(valueC))
+	var qualifiedNameC *C.char
+	if qualifiedName != "" {
+		qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+	}
+	var valueC *C.char
+	if value != "" {
+		valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+	}
 	var tmpValue = NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute2(qualifiedNameC, valueC))
 	runtime.SetFinalizer(tmpValue, (*QXmlStreamAttribute).DestroyQXmlStreamAttribute)
 	return tmpValue
@@ -43711,22 +45496,37 @@ func NewQXmlStreamAttributes() *QXmlStreamAttributes {
 
 func (ptr *QXmlStreamAttributes) Append(namespaceUri string, name string, value string) {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlStreamAttributes_Append(ptr.Pointer(), namespaceUriC, nameC, valueC)
 	}
 }
 
 func (ptr *QXmlStreamAttributes) Append2(qualifiedName string, value string) {
 	if ptr.Pointer() != nil {
-		var qualifiedNameC = C.CString(qualifiedName)
-		defer C.free(unsafe.Pointer(qualifiedNameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var qualifiedNameC *C.char
+		if qualifiedName != "" {
+			qualifiedNameC = C.CString(qualifiedName)
+			defer C.free(unsafe.Pointer(qualifiedNameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlStreamAttributes_Append2(ptr.Pointer(), qualifiedNameC, valueC)
 	}
 }
@@ -43751,8 +45551,11 @@ func (ptr *QXmlStreamAttributes) Value5(qualifiedName QLatin1String_ITF) *QStrin
 
 func (ptr *QXmlStreamAttributes) Value2(namespaceUri string, name QLatin1String_ITF) *QStringRef {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
 		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value2(ptr.Pointer(), namespaceUriC, PointerFromQLatin1String(name)))
 		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
@@ -43762,10 +45565,16 @@ func (ptr *QXmlStreamAttributes) Value2(namespaceUri string, name QLatin1String_
 
 func (ptr *QXmlStreamAttributes) Value(namespaceUri string, name string) *QStringRef {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value(ptr.Pointer(), namespaceUriC, nameC))
 		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
@@ -43775,8 +45584,11 @@ func (ptr *QXmlStreamAttributes) Value(namespaceUri string, name string) *QStrin
 
 func (ptr *QXmlStreamAttributes) Value4(qualifiedName string) *QStringRef {
 	if ptr.Pointer() != nil {
-		var qualifiedNameC = C.CString(qualifiedName)
-		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var qualifiedNameC *C.char
+		if qualifiedName != "" {
+			qualifiedNameC = C.CString(qualifiedName)
+			defer C.free(unsafe.Pointer(qualifiedNameC))
+		}
 		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value4(ptr.Pointer(), qualifiedNameC))
 		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
 		return tmpValue
@@ -43793,10 +45605,16 @@ func (ptr *QXmlStreamAttributes) HasAttribute2(qualifiedName QLatin1String_ITF) 
 
 func (ptr *QXmlStreamAttributes) HasAttribute3(namespaceUri string, name string) bool {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QXmlStreamAttributes_HasAttribute3(ptr.Pointer(), namespaceUriC, nameC) != 0
 	}
 	return false
@@ -43804,8 +45622,11 @@ func (ptr *QXmlStreamAttributes) HasAttribute3(namespaceUri string, name string)
 
 func (ptr *QXmlStreamAttributes) HasAttribute(qualifiedName string) bool {
 	if ptr.Pointer() != nil {
-		var qualifiedNameC = C.CString(qualifiedName)
-		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var qualifiedNameC *C.char
+		if qualifiedName != "" {
+			qualifiedNameC = C.CString(qualifiedName)
+			defer C.free(unsafe.Pointer(qualifiedNameC))
+		}
 		return C.QXmlStreamAttributes_HasAttribute(ptr.Pointer(), qualifiedNameC) != 0
 	}
 	return false
@@ -43981,8 +45802,11 @@ func (ptr *QXmlStreamEntityResolver) DisconnectResolveUndeclaredEntity() {
 
 func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) string {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return cGoUnpackString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntity(ptr.Pointer(), nameC))
 	}
 	return ""
@@ -43990,8 +45814,11 @@ func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) string
 
 func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntityDefault(name string) string {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return cGoUnpackString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntityDefault(ptr.Pointer(), nameC))
 	}
 	return ""
@@ -44086,10 +45913,16 @@ func NewQXmlStreamNamespaceDeclaration3(other QXmlStreamNamespaceDeclaration_ITF
 }
 
 func NewQXmlStreamNamespaceDeclaration4(prefix string, namespaceUri string) *QXmlStreamNamespaceDeclaration {
-	var prefixC = C.CString(prefix)
-	defer C.free(unsafe.Pointer(prefixC))
-	var namespaceUriC = C.CString(namespaceUri)
-	defer C.free(unsafe.Pointer(namespaceUriC))
+	var prefixC *C.char
+	if prefix != "" {
+		prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+	}
+	var namespaceUriC *C.char
+	if namespaceUri != "" {
+		namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+	}
 	var tmpValue = NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration4(prefixC, namespaceUriC))
 	runtime.SetFinalizer(tmpValue, (*QXmlStreamNamespaceDeclaration).DestroyQXmlStreamNamespaceDeclaration)
 	return tmpValue
@@ -44319,16 +46152,22 @@ func NewQXmlStreamReader3(data QByteArray_ITF) *QXmlStreamReader {
 }
 
 func NewQXmlStreamReader4(data string) *QXmlStreamReader {
-	var dataC = C.CString(data)
-	defer C.free(unsafe.Pointer(dataC))
+	var dataC *C.char
+	if data != "" {
+		dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+	}
 	var tmpValue = NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader4(dataC))
 	runtime.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
 	return tmpValue
 }
 
 func NewQXmlStreamReader5(data string) *QXmlStreamReader {
-	var dataC = C.CString(data)
-	defer C.free(unsafe.Pointer(dataC))
+	var dataC *C.char
+	if data != "" {
+		dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+	}
 	var tmpValue = NewQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader5(dataC))
 	runtime.SetFinalizer(tmpValue, (*QXmlStreamReader).DestroyQXmlStreamReader)
 	return tmpValue
@@ -44356,16 +46195,22 @@ func (ptr *QXmlStreamReader) AddData(data QByteArray_ITF) {
 
 func (ptr *QXmlStreamReader) AddData2(data string) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		C.QXmlStreamReader_AddData2(ptr.Pointer(), dataC)
 	}
 }
 
 func (ptr *QXmlStreamReader) AddData3(data string) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		C.QXmlStreamReader_AddData3(ptr.Pointer(), dataC)
 	}
 }
@@ -44384,8 +46229,11 @@ func (ptr *QXmlStreamReader) Clear() {
 
 func (ptr *QXmlStreamReader) RaiseError(message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QXmlStreamReader_RaiseError(ptr.Pointer(), messageC)
 	}
 }
@@ -44757,8 +46605,11 @@ func NewQXmlStreamWriter2(device QIODevice_ITF) *QXmlStreamWriter {
 }
 
 func NewQXmlStreamWriter4(stri string) *QXmlStreamWriter {
-	var striC = C.CString(stri)
-	defer C.free(unsafe.Pointer(striC))
+	var striC *C.char
+	if stri != "" {
+		striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+	}
 	var tmpValue = NewQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter4(striC))
 	runtime.SetFinalizer(tmpValue, (*QXmlStreamWriter).DestroyQXmlStreamWriter)
 	return tmpValue
@@ -44784,8 +46635,11 @@ func (ptr *QXmlStreamWriter) SetCodec(codec QTextCodec_ITF) {
 
 func (ptr *QXmlStreamWriter) SetCodec2(codecName string) {
 	if ptr.Pointer() != nil {
-		var codecNameC = C.CString(codecName)
-		defer C.free(unsafe.Pointer(codecNameC))
+		var codecNameC *C.char
+		if codecName != "" {
+			codecNameC = C.CString(codecName)
+			defer C.free(unsafe.Pointer(codecNameC))
+		}
 		C.QXmlStreamWriter_SetCodec2(ptr.Pointer(), codecNameC)
 	}
 }
@@ -44798,22 +46652,37 @@ func (ptr *QXmlStreamWriter) SetDevice(device QIODevice_ITF) {
 
 func (ptr *QXmlStreamWriter) WriteAttribute(namespaceUri string, name string, value string) {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlStreamWriter_WriteAttribute(ptr.Pointer(), namespaceUriC, nameC, valueC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteAttribute2(qualifiedName string, value string) {
 	if ptr.Pointer() != nil {
-		var qualifiedNameC = C.CString(qualifiedName)
-		defer C.free(unsafe.Pointer(qualifiedNameC))
-		var valueC = C.CString(value)
-		defer C.free(unsafe.Pointer(valueC))
+		var qualifiedNameC *C.char
+		if qualifiedName != "" {
+			qualifiedNameC = C.CString(qualifiedName)
+			defer C.free(unsafe.Pointer(qualifiedNameC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
 		C.QXmlStreamWriter_WriteAttribute2(ptr.Pointer(), qualifiedNameC, valueC)
 	}
 }
@@ -44832,24 +46701,33 @@ func (ptr *QXmlStreamWriter) WriteAttributes(attributes QXmlStreamAttributes_ITF
 
 func (ptr *QXmlStreamWriter) WriteCDATA(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QXmlStreamWriter_WriteCDATA(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteCharacters(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QXmlStreamWriter_WriteCharacters(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteComment(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QXmlStreamWriter_WriteComment(ptr.Pointer(), textC)
 	}
 }
@@ -44862,34 +46740,49 @@ func (ptr *QXmlStreamWriter) WriteCurrentToken(reader QXmlStreamReader_ITF) {
 
 func (ptr *QXmlStreamWriter) WriteDTD(dtd string) {
 	if ptr.Pointer() != nil {
-		var dtdC = C.CString(dtd)
-		defer C.free(unsafe.Pointer(dtdC))
+		var dtdC *C.char
+		if dtd != "" {
+			dtdC = C.CString(dtd)
+			defer C.free(unsafe.Pointer(dtdC))
+		}
 		C.QXmlStreamWriter_WriteDTD(ptr.Pointer(), dtdC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteDefaultNamespace(namespaceUri string) {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
 		C.QXmlStreamWriter_WriteDefaultNamespace(ptr.Pointer(), namespaceUriC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteEmptyElement(namespaceUri string, name string) {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlStreamWriter_WriteEmptyElement(ptr.Pointer(), namespaceUriC, nameC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteEmptyElement2(qualifiedName string) {
 	if ptr.Pointer() != nil {
-		var qualifiedNameC = C.CString(qualifiedName)
-		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var qualifiedNameC *C.char
+		if qualifiedName != "" {
+			qualifiedNameC = C.CString(qualifiedName)
+			defer C.free(unsafe.Pointer(qualifiedNameC))
+		}
 		C.QXmlStreamWriter_WriteEmptyElement2(ptr.Pointer(), qualifiedNameC)
 	}
 }
@@ -44908,28 +46801,43 @@ func (ptr *QXmlStreamWriter) WriteEndElement() {
 
 func (ptr *QXmlStreamWriter) WriteEntityReference(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlStreamWriter_WriteEntityReference(ptr.Pointer(), nameC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteNamespace(namespaceUri string, prefix string) {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		C.QXmlStreamWriter_WriteNamespace(ptr.Pointer(), namespaceUriC, prefixC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteProcessingInstruction(target string, data string) {
 	if ptr.Pointer() != nil {
-		var targetC = C.CString(target)
-		defer C.free(unsafe.Pointer(targetC))
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var targetC *C.char
+		if target != "" {
+			targetC = C.CString(target)
+			defer C.free(unsafe.Pointer(targetC))
+		}
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		C.QXmlStreamWriter_WriteProcessingInstruction(ptr.Pointer(), targetC, dataC)
 	}
 }
@@ -44942,56 +46850,86 @@ func (ptr *QXmlStreamWriter) WriteStartDocument2() {
 
 func (ptr *QXmlStreamWriter) WriteStartDocument(version string) {
 	if ptr.Pointer() != nil {
-		var versionC = C.CString(version)
-		defer C.free(unsafe.Pointer(versionC))
+		var versionC *C.char
+		if version != "" {
+			versionC = C.CString(version)
+			defer C.free(unsafe.Pointer(versionC))
+		}
 		C.QXmlStreamWriter_WriteStartDocument(ptr.Pointer(), versionC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteStartDocument3(version string, standalone bool) {
 	if ptr.Pointer() != nil {
-		var versionC = C.CString(version)
-		defer C.free(unsafe.Pointer(versionC))
+		var versionC *C.char
+		if version != "" {
+			versionC = C.CString(version)
+			defer C.free(unsafe.Pointer(versionC))
+		}
 		C.QXmlStreamWriter_WriteStartDocument3(ptr.Pointer(), versionC, C.char(int8(qt.GoBoolToInt(standalone))))
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteStartElement(namespaceUri string, name string) {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QXmlStreamWriter_WriteStartElement(ptr.Pointer(), namespaceUriC, nameC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteStartElement2(qualifiedName string) {
 	if ptr.Pointer() != nil {
-		var qualifiedNameC = C.CString(qualifiedName)
-		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var qualifiedNameC *C.char
+		if qualifiedName != "" {
+			qualifiedNameC = C.CString(qualifiedName)
+			defer C.free(unsafe.Pointer(qualifiedNameC))
+		}
 		C.QXmlStreamWriter_WriteStartElement2(ptr.Pointer(), qualifiedNameC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteTextElement(namespaceUri string, name string, text string) {
 	if ptr.Pointer() != nil {
-		var namespaceUriC = C.CString(namespaceUri)
-		defer C.free(unsafe.Pointer(namespaceUriC))
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var namespaceUriC *C.char
+		if namespaceUri != "" {
+			namespaceUriC = C.CString(namespaceUri)
+			defer C.free(unsafe.Pointer(namespaceUriC))
+		}
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QXmlStreamWriter_WriteTextElement(ptr.Pointer(), namespaceUriC, nameC, textC)
 	}
 }
 
 func (ptr *QXmlStreamWriter) WriteTextElement2(qualifiedName string, text string) {
 	if ptr.Pointer() != nil {
-		var qualifiedNameC = C.CString(qualifiedName)
-		defer C.free(unsafe.Pointer(qualifiedNameC))
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var qualifiedNameC *C.char
+		if qualifiedName != "" {
+			qualifiedNameC = C.CString(qualifiedName)
+			defer C.free(unsafe.Pointer(qualifiedNameC))
+		}
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QXmlStreamWriter_WriteTextElement2(ptr.Pointer(), qualifiedNameC, textC)
 	}
 }
@@ -46805,26 +48743,38 @@ const (
 )
 
 func Qt_ConvertFromPlainText(plain string, mode Qt__WhiteSpaceMode) string {
-	var plainC = C.CString(plain)
-	defer C.free(unsafe.Pointer(plainC))
+	var plainC *C.char
+	if plain != "" {
+		plainC = C.CString(plain)
+		defer C.free(unsafe.Pointer(plainC))
+	}
 	return cGoUnpackString(C.Qt_Qt_ConvertFromPlainText(plainC, C.longlong(mode)))
 }
 
 func (ptr *Qt) ConvertFromPlainText(plain string, mode Qt__WhiteSpaceMode) string {
-	var plainC = C.CString(plain)
-	defer C.free(unsafe.Pointer(plainC))
+	var plainC *C.char
+	if plain != "" {
+		plainC = C.CString(plain)
+		defer C.free(unsafe.Pointer(plainC))
+	}
 	return cGoUnpackString(C.Qt_Qt_ConvertFromPlainText(plainC, C.longlong(mode)))
 }
 
 func Qt_MightBeRichText(text string) bool {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return C.Qt_Qt_MightBeRichText(textC) != 0
 }
 
 func (ptr *Qt) MightBeRichText(text string) bool {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return C.Qt_Qt_MightBeRichText(textC) != 0
 }
 

@@ -150,68 +150,98 @@ func NewQSqlDatabaseFromPointer(ptr unsafe.Pointer) *QSqlDatabase {
 	return n
 }
 func QSqlDatabase_AddDatabase2(driver QSqlDriver_ITF, connectionName string) *QSqlDatabase {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), connectionNameC))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
 func (ptr *QSqlDatabase) AddDatabase2(driver QSqlDriver_ITF, connectionName string) *QSqlDatabase {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), connectionNameC))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
 func QSqlDatabase_AddDatabase(ty string, connectionName string) *QSqlDatabase {
-	var tyC = C.CString(ty)
-	defer C.free(unsafe.Pointer(tyC))
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
+	}
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase(tyC, connectionNameC))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
 func (ptr *QSqlDatabase) AddDatabase(ty string, connectionName string) *QSqlDatabase {
-	var tyC = C.CString(ty)
-	defer C.free(unsafe.Pointer(tyC))
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
+	}
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase(tyC, connectionNameC))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
 func QSqlDatabase_CloneDatabase(other QSqlDatabase_ITF, connectionName string) *QSqlDatabase {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase(PointerFromQSqlDatabase(other), connectionNameC))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
 func (ptr *QSqlDatabase) CloneDatabase(other QSqlDatabase_ITF, connectionName string) *QSqlDatabase {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase(PointerFromQSqlDatabase(other), connectionNameC))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
 func QSqlDatabase_Database(connectionName string, open bool) *QSqlDatabase {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_Database(connectionNameC, C.char(int8(qt.GoBoolToInt(open)))))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
 
 func (ptr *QSqlDatabase) Database(connectionName string, open bool) *QSqlDatabase {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_Database(connectionNameC, C.char(int8(qt.GoBoolToInt(open)))))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
@@ -236,8 +266,11 @@ func NewQSqlDatabase2(other QSqlDatabase_ITF) *QSqlDatabase {
 }
 
 func NewQSqlDatabase3(ty string) *QSqlDatabase {
-	var tyC = C.CString(ty)
-	defer C.free(unsafe.Pointer(tyC))
+	var tyC *C.char
+	if ty != "" {
+		tyC = C.CString(ty)
+		defer C.free(unsafe.Pointer(tyC))
+	}
 	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase3(tyC))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
@@ -267,26 +300,38 @@ func (ptr *QSqlDatabase) Commit() bool {
 }
 
 func QSqlDatabase_Contains(connectionName string) bool {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	return C.QSqlDatabase_QSqlDatabase_Contains(connectionNameC) != 0
 }
 
 func (ptr *QSqlDatabase) Contains(connectionName string) bool {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	return C.QSqlDatabase_QSqlDatabase_Contains(connectionNameC) != 0
 }
 
 func QSqlDatabase_IsDriverAvailable(name string) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(nameC) != 0
 }
 
 func (ptr *QSqlDatabase) IsDriverAvailable(name string) bool {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(nameC) != 0
 }
 
@@ -299,10 +344,16 @@ func (ptr *QSqlDatabase) Open() bool {
 
 func (ptr *QSqlDatabase) Open2(user string, password string) bool {
 	if ptr.Pointer() != nil {
-		var userC = C.CString(user)
-		defer C.free(unsafe.Pointer(userC))
-		var passwordC = C.CString(password)
-		defer C.free(unsafe.Pointer(passwordC))
+		var userC *C.char
+		if user != "" {
+			userC = C.CString(user)
+			defer C.free(unsafe.Pointer(userC))
+		}
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
 		return C.QSqlDatabase_Open2(ptr.Pointer(), userC, passwordC) != 0
 	}
 	return false
@@ -329,49 +380,70 @@ func (ptr *QSqlDatabase) Close() {
 }
 
 func QSqlDatabase_RegisterSqlDriver(name string, creator QSqlDriverCreatorBase_ITF) {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(nameC, PointerFromQSqlDriverCreatorBase(creator))
 }
 
 func (ptr *QSqlDatabase) RegisterSqlDriver(name string, creator QSqlDriverCreatorBase_ITF) {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(nameC, PointerFromQSqlDriverCreatorBase(creator))
 }
 
 func QSqlDatabase_RemoveDatabase(connectionName string) {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	C.QSqlDatabase_QSqlDatabase_RemoveDatabase(connectionNameC)
 }
 
 func (ptr *QSqlDatabase) RemoveDatabase(connectionName string) {
-	var connectionNameC = C.CString(connectionName)
-	defer C.free(unsafe.Pointer(connectionNameC))
+	var connectionNameC *C.char
+	if connectionName != "" {
+		connectionNameC = C.CString(connectionName)
+		defer C.free(unsafe.Pointer(connectionNameC))
+	}
 	C.QSqlDatabase_QSqlDatabase_RemoveDatabase(connectionNameC)
 }
 
 func (ptr *QSqlDatabase) SetConnectOptions(options string) {
 	if ptr.Pointer() != nil {
-		var optionsC = C.CString(options)
-		defer C.free(unsafe.Pointer(optionsC))
+		var optionsC *C.char
+		if options != "" {
+			optionsC = C.CString(options)
+			defer C.free(unsafe.Pointer(optionsC))
+		}
 		C.QSqlDatabase_SetConnectOptions(ptr.Pointer(), optionsC)
 	}
 }
 
 func (ptr *QSqlDatabase) SetDatabaseName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlDatabase_SetDatabaseName(ptr.Pointer(), nameC)
 	}
 }
 
 func (ptr *QSqlDatabase) SetHostName(host string) {
 	if ptr.Pointer() != nil {
-		var hostC = C.CString(host)
-		defer C.free(unsafe.Pointer(hostC))
+		var hostC *C.char
+		if host != "" {
+			hostC = C.CString(host)
+			defer C.free(unsafe.Pointer(hostC))
+		}
 		C.QSqlDatabase_SetHostName(ptr.Pointer(), hostC)
 	}
 }
@@ -384,8 +456,11 @@ func (ptr *QSqlDatabase) SetNumericalPrecisionPolicy(precisionPolicy QSql__Numer
 
 func (ptr *QSqlDatabase) SetPassword(password string) {
 	if ptr.Pointer() != nil {
-		var passwordC = C.CString(password)
-		defer C.free(unsafe.Pointer(passwordC))
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
 		C.QSqlDatabase_SetPassword(ptr.Pointer(), passwordC)
 	}
 }
@@ -398,8 +473,11 @@ func (ptr *QSqlDatabase) SetPort(port int) {
 
 func (ptr *QSqlDatabase) SetUserName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlDatabase_SetUserName(ptr.Pointer(), nameC)
 	}
 }
@@ -440,8 +518,11 @@ func (ptr *QSqlDatabase) LastError() *QSqlError {
 
 func (ptr *QSqlDatabase) PrimaryIndex(tablename string) *QSqlIndex {
 	if ptr.Pointer() != nil {
-		var tablenameC = C.CString(tablename)
-		defer C.free(unsafe.Pointer(tablenameC))
+		var tablenameC *C.char
+		if tablename != "" {
+			tablenameC = C.CString(tablename)
+			defer C.free(unsafe.Pointer(tablenameC))
+		}
 		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDatabase_PrimaryIndex(ptr.Pointer(), tablenameC))
 		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 		return tmpValue
@@ -451,8 +532,11 @@ func (ptr *QSqlDatabase) PrimaryIndex(tablename string) *QSqlIndex {
 
 func (ptr *QSqlDatabase) Exec(query string) *QSqlQuery {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		var tmpValue = NewQSqlQueryFromPointer(C.QSqlDatabase_Exec(ptr.Pointer(), queryC))
 		runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
 		return tmpValue
@@ -462,8 +546,11 @@ func (ptr *QSqlDatabase) Exec(query string) *QSqlQuery {
 
 func (ptr *QSqlDatabase) Record(tablename string) *QSqlRecord {
 	if ptr.Pointer() != nil {
-		var tablenameC = C.CString(tablename)
-		defer C.free(unsafe.Pointer(tablenameC))
+		var tablenameC *C.char
+		if tablename != "" {
+			tablenameC = C.CString(tablename)
+			defer C.free(unsafe.Pointer(tablenameC))
+		}
 		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDatabase_Record(ptr.Pointer(), tablenameC))
 		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
 		return tmpValue
@@ -778,16 +865,31 @@ func (ptr *QSqlDriver) DisconnectOpen() {
 
 func (ptr *QSqlDriver) Open(db string, user string, password string, host string, port int, options string) bool {
 	if ptr.Pointer() != nil {
-		var dbC = C.CString(db)
-		defer C.free(unsafe.Pointer(dbC))
-		var userC = C.CString(user)
-		defer C.free(unsafe.Pointer(userC))
-		var passwordC = C.CString(password)
-		defer C.free(unsafe.Pointer(passwordC))
-		var hostC = C.CString(host)
-		defer C.free(unsafe.Pointer(hostC))
-		var optionsC = C.CString(options)
-		defer C.free(unsafe.Pointer(optionsC))
+		var dbC *C.char
+		if db != "" {
+			dbC = C.CString(db)
+			defer C.free(unsafe.Pointer(dbC))
+		}
+		var userC *C.char
+		if user != "" {
+			userC = C.CString(user)
+			defer C.free(unsafe.Pointer(userC))
+		}
+		var passwordC *C.char
+		if password != "" {
+			passwordC = C.CString(password)
+			defer C.free(unsafe.Pointer(passwordC))
+		}
+		var hostC *C.char
+		if host != "" {
+			hostC = C.CString(host)
+			defer C.free(unsafe.Pointer(hostC))
+		}
+		var optionsC *C.char
+		if options != "" {
+			optionsC = C.CString(options)
+			defer C.free(unsafe.Pointer(optionsC))
+		}
 		return C.QSqlDriver_Open(ptr.Pointer(), dbC, userC, passwordC, hostC, C.int(int32(port)), optionsC) != 0
 	}
 	return false
@@ -855,8 +957,11 @@ func (ptr *QSqlDriver) DisconnectSubscribeToNotification() {
 
 func (ptr *QSqlDriver) SubscribeToNotification(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -864,8 +969,11 @@ func (ptr *QSqlDriver) SubscribeToNotification(name string) bool {
 
 func (ptr *QSqlDriver) SubscribeToNotificationDefault(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlDriver_SubscribeToNotificationDefault(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -896,8 +1004,11 @@ func (ptr *QSqlDriver) DisconnectUnsubscribeFromNotification() {
 
 func (ptr *QSqlDriver) UnsubscribeFromNotification(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -905,8 +1016,11 @@ func (ptr *QSqlDriver) UnsubscribeFromNotification(name string) bool {
 
 func (ptr *QSqlDriver) UnsubscribeFromNotificationDefault(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlDriver_UnsubscribeFromNotificationDefault(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -964,8 +1078,11 @@ func (ptr *QSqlDriver) DisconnectNotification() {
 
 func (ptr *QSqlDriver) Notification(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlDriver_Notification(ptr.Pointer(), nameC)
 	}
 }
@@ -994,8 +1111,11 @@ func (ptr *QSqlDriver) DisconnectNotification2() {
 
 func (ptr *QSqlDriver) Notification2(name string, source QSqlDriver__NotificationSource, payload core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlDriver_Notification2(ptr.Pointer(), nameC, C.longlong(source), core.PointerFromQVariant(payload))
 	}
 }
@@ -1167,8 +1287,11 @@ func (ptr *QSqlDriver) DisconnectPrimaryIndex() {
 
 func (ptr *QSqlDriver) PrimaryIndex(tableName string) *QSqlIndex {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndex(ptr.Pointer(), tableNameC))
 		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 		return tmpValue
@@ -1178,8 +1301,11 @@ func (ptr *QSqlDriver) PrimaryIndex(tableName string) *QSqlIndex {
 
 func (ptr *QSqlDriver) PrimaryIndexDefault(tableName string) *QSqlIndex {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndexDefault(ptr.Pointer(), tableNameC))
 		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 		return tmpValue
@@ -1212,8 +1338,11 @@ func (ptr *QSqlDriver) DisconnectRecord() {
 
 func (ptr *QSqlDriver) Record(tableName string) *QSqlRecord {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDriver_Record(ptr.Pointer(), tableNameC))
 		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
 		return tmpValue
@@ -1223,8 +1352,11 @@ func (ptr *QSqlDriver) Record(tableName string) *QSqlRecord {
 
 func (ptr *QSqlDriver) RecordDefault(tableName string) *QSqlRecord {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDriver_RecordDefault(ptr.Pointer(), tableNameC))
 		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
 		return tmpValue
@@ -1287,8 +1419,11 @@ func (ptr *QSqlDriver) DisconnectEscapeIdentifier() {
 
 func (ptr *QSqlDriver) EscapeIdentifier(identifier string, ty QSqlDriver__IdentifierType) string {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		return cGoUnpackString(C.QSqlDriver_EscapeIdentifier(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
@@ -1296,8 +1431,11 @@ func (ptr *QSqlDriver) EscapeIdentifier(identifier string, ty QSqlDriver__Identi
 
 func (ptr *QSqlDriver) EscapeIdentifierDefault(identifier string, ty QSqlDriver__IdentifierType) string {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		return cGoUnpackString(C.QSqlDriver_EscapeIdentifierDefault(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
@@ -1365,8 +1503,11 @@ func (ptr *QSqlDriver) DisconnectSqlStatement() {
 
 func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		return cGoUnpackString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.longlong(ty), tableNameC, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
 	}
 	return ""
@@ -1374,8 +1515,11 @@ func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName stri
 
 func (ptr *QSqlDriver) SqlStatementDefault(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		return cGoUnpackString(C.QSqlDriver_SqlStatementDefault(ptr.Pointer(), C.longlong(ty), tableNameC, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
 	}
 	return ""
@@ -1406,8 +1550,11 @@ func (ptr *QSqlDriver) DisconnectStripDelimiters() {
 
 func (ptr *QSqlDriver) StripDelimiters(identifier string, ty QSqlDriver__IdentifierType) string {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		return cGoUnpackString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
@@ -1415,8 +1562,11 @@ func (ptr *QSqlDriver) StripDelimiters(identifier string, ty QSqlDriver__Identif
 
 func (ptr *QSqlDriver) StripDelimitersDefault(identifier string, ty QSqlDriver__IdentifierType) string {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		return cGoUnpackString(C.QSqlDriver_StripDelimitersDefault(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
@@ -1592,8 +1742,11 @@ func (ptr *QSqlDriver) DisconnectIsIdentifierEscaped() {
 
 func (ptr *QSqlDriver) IsIdentifierEscaped(identifier string, ty QSqlDriver__IdentifierType) bool {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		return C.QSqlDriver_IsIdentifierEscaped(ptr.Pointer(), identifierC, C.longlong(ty)) != 0
 	}
 	return false
@@ -1601,8 +1754,11 @@ func (ptr *QSqlDriver) IsIdentifierEscaped(identifier string, ty QSqlDriver__Ide
 
 func (ptr *QSqlDriver) IsIdentifierEscapedDefault(identifier string, ty QSqlDriver__IdentifierType) bool {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
-		defer C.free(unsafe.Pointer(identifierC))
+		var identifierC *C.char
+		if identifier != "" {
+			identifierC = C.CString(identifier)
+			defer C.free(unsafe.Pointer(identifierC))
+		}
 		return C.QSqlDriver_IsIdentifierEscapedDefault(ptr.Pointer(), identifierC, C.longlong(ty)) != 0
 	}
 	return false
@@ -2133,8 +2289,11 @@ func (ptr *QSqlDriverPlugin) DisconnectCreate() {
 
 func (ptr *QSqlDriverPlugin) Create(key string) *QSqlDriver {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = NewQSqlDriverFromPointer(C.QSqlDriverPlugin_Create(ptr.Pointer(), keyC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2483,12 +2642,21 @@ func NewQSqlError3(other QSqlError_ITF) *QSqlError {
 }
 
 func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorType, code string) *QSqlError {
-	var driverTextC = C.CString(driverText)
-	defer C.free(unsafe.Pointer(driverTextC))
-	var databaseTextC = C.CString(databaseText)
-	defer C.free(unsafe.Pointer(databaseTextC))
-	var codeC = C.CString(code)
-	defer C.free(unsafe.Pointer(codeC))
+	var driverTextC *C.char
+	if driverText != "" {
+		driverTextC = C.CString(driverText)
+		defer C.free(unsafe.Pointer(driverTextC))
+	}
+	var databaseTextC *C.char
+	if databaseText != "" {
+		databaseTextC = C.CString(databaseText)
+		defer C.free(unsafe.Pointer(databaseTextC))
+	}
+	var codeC *C.char
+	if code != "" {
+		codeC = C.CString(code)
+		defer C.free(unsafe.Pointer(codeC))
+	}
 	var tmpValue = NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError(driverTextC, databaseTextC, C.longlong(ty), codeC))
 	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
 	return tmpValue
@@ -2622,8 +2790,11 @@ func (ptr *QSqlField) SetLength(fieldLength int) {
 
 func (ptr *QSqlField) SetName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlField_SetName(ptr.Pointer(), nameC)
 	}
 }
@@ -2791,10 +2962,16 @@ func NewQSqlIndex2(other QSqlIndex_ITF) *QSqlIndex {
 }
 
 func NewQSqlIndex(cursorname string, name string) *QSqlIndex {
-	var cursornameC = C.CString(cursorname)
-	defer C.free(unsafe.Pointer(cursornameC))
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var cursornameC *C.char
+	if cursorname != "" {
+		cursornameC = C.CString(cursorname)
+		defer C.free(unsafe.Pointer(cursornameC))
+	}
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex(cursornameC, nameC))
 	runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 	return tmpValue
@@ -2808,8 +2985,11 @@ func (ptr *QSqlIndex) Append2(field QSqlField_ITF, desc bool) {
 
 func (ptr *QSqlIndex) SetCursorName(cursorName string) {
 	if ptr.Pointer() != nil {
-		var cursorNameC = C.CString(cursorName)
-		defer C.free(unsafe.Pointer(cursorNameC))
+		var cursorNameC *C.char
+		if cursorName != "" {
+			cursorNameC = C.CString(cursorName)
+			defer C.free(unsafe.Pointer(cursorNameC))
+		}
 		C.QSqlIndex_SetCursorName(ptr.Pointer(), cursorNameC)
 	}
 }
@@ -2822,8 +3002,11 @@ func (ptr *QSqlIndex) SetDescending(i int, desc bool) {
 
 func (ptr *QSqlIndex) SetName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlIndex_SetName(ptr.Pointer(), nameC)
 	}
 }
@@ -2922,8 +3105,11 @@ func NewQSqlQuery4(other QSqlQuery_ITF) *QSqlQuery {
 }
 
 func NewQSqlQuery2(query string, db QSqlDatabase_ITF) *QSqlQuery {
-	var queryC = C.CString(query)
-	defer C.free(unsafe.Pointer(queryC))
+	var queryC *C.char
+	if query != "" {
+		queryC = C.CString(query)
+		defer C.free(unsafe.Pointer(queryC))
+	}
 	var tmpValue = NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery2(queryC, PointerFromQSqlDatabase(db)))
 	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
 	return tmpValue
@@ -2938,8 +3124,11 @@ func (ptr *QSqlQuery) Exec2() bool {
 
 func (ptr *QSqlQuery) Exec(query string) bool {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		return C.QSqlQuery_Exec(ptr.Pointer(), queryC) != 0
 	}
 	return false
@@ -2982,8 +3171,11 @@ func (ptr *QSqlQuery) NextResult() bool {
 
 func (ptr *QSqlQuery) Prepare(query string) bool {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		return C.QSqlQuery_Prepare(ptr.Pointer(), queryC) != 0
 	}
 	return false
@@ -3011,8 +3203,11 @@ func (ptr *QSqlQuery) AddBindValue(val core.QVariant_ITF, paramType QSql__ParamT
 
 func (ptr *QSqlQuery) BindValue(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
 	if ptr.Pointer() != nil {
-		var placeholderC = C.CString(placeholder)
-		defer C.free(unsafe.Pointer(placeholderC))
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
 		C.QSqlQuery_BindValue(ptr.Pointer(), placeholderC, core.PointerFromQVariant(val), C.longlong(paramType))
 	}
 }
@@ -3108,8 +3303,11 @@ func (ptr *QSqlQuery) LastQuery() string {
 
 func (ptr *QSqlQuery) BoundValue(placeholder string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var placeholderC = C.CString(placeholder)
-		defer C.free(unsafe.Pointer(placeholderC))
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery_BoundValue(ptr.Pointer(), placeholderC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3137,8 +3335,11 @@ func (ptr *QSqlQuery) LastInsertId() *core.QVariant {
 
 func (ptr *QSqlQuery) Value2(name string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery_Value2(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3171,8 +3372,11 @@ func (ptr *QSqlQuery) IsForwardOnly() bool {
 
 func (ptr *QSqlQuery) IsNull2(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlQuery_IsNull2(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -3240,8 +3444,11 @@ func (ptr *QSqlQuery) Size() int {
 
 func (ptr *QSqlQuery) __boundValues_atList(i string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery___boundValues_atList(ptr.Pointer(), iC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -3251,8 +3458,11 @@ func (ptr *QSqlQuery) __boundValues_atList(i string) *core.QVariant {
 
 func (ptr *QSqlQuery) __boundValues_setList(key string, i core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QSqlQuery___boundValues_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
 	}
 }
@@ -3283,8 +3493,11 @@ func (ptr *QSqlQuery) ____boundValues_keyList_atList(i int) string {
 
 func (ptr *QSqlQuery) ____boundValues_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QSqlQuery_____boundValues_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -3486,8 +3699,11 @@ func (ptr *QSqlQueryModel) SetQuery(query QSqlQuery_ITF) {
 
 func (ptr *QSqlQueryModel) SetQuery2(query string, db QSqlDatabase_ITF) {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		C.QSqlQueryModel_SetQuery2(ptr.Pointer(), queryC, PointerFromQSqlDatabase(db))
 	}
 }
@@ -5113,8 +5329,11 @@ func (ptr *QSqlRecord) Replace(pos int, field QSqlField_ITF) {
 
 func (ptr *QSqlRecord) SetGenerated(name string, generated bool) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlRecord_SetGenerated(ptr.Pointer(), nameC, C.char(int8(qt.GoBoolToInt(generated))))
 	}
 }
@@ -5127,8 +5346,11 @@ func (ptr *QSqlRecord) SetGenerated2(index int, generated bool) {
 
 func (ptr *QSqlRecord) SetNull2(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlRecord_SetNull2(ptr.Pointer(), nameC)
 	}
 }
@@ -5141,8 +5363,11 @@ func (ptr *QSqlRecord) SetNull(index int) {
 
 func (ptr *QSqlRecord) SetValue2(name string, val core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSqlRecord_SetValue2(ptr.Pointer(), nameC, core.PointerFromQVariant(val))
 	}
 }
@@ -5162,8 +5387,11 @@ func (ptr *QSqlRecord) DestroyQSqlRecord() {
 
 func (ptr *QSqlRecord) Field2(name string) *QSqlField {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = NewQSqlFieldFromPointer(C.QSqlRecord_Field2(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
 		return tmpValue
@@ -5198,8 +5426,11 @@ func (ptr *QSqlRecord) FieldName(index int) string {
 
 func (ptr *QSqlRecord) Value2(name string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QSqlRecord_Value2(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -5218,8 +5449,11 @@ func (ptr *QSqlRecord) Value(index int) *core.QVariant {
 
 func (ptr *QSqlRecord) Contains(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlRecord_Contains(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -5234,8 +5468,11 @@ func (ptr *QSqlRecord) IsEmpty() bool {
 
 func (ptr *QSqlRecord) IsGenerated(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlRecord_IsGenerated(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -5250,8 +5487,11 @@ func (ptr *QSqlRecord) IsGenerated2(index int) bool {
 
 func (ptr *QSqlRecord) IsNull(name string) bool {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return C.QSqlRecord_IsNull(ptr.Pointer(), nameC) != 0
 	}
 	return false
@@ -5273,8 +5513,11 @@ func (ptr *QSqlRecord) Count() int {
 
 func (ptr *QSqlRecord) IndexOf(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QSqlRecord_IndexOf(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -5332,12 +5575,21 @@ func NewQSqlRelation() *QSqlRelation {
 }
 
 func NewQSqlRelation2(tableName string, indexColumn string, displayColumn string) *QSqlRelation {
-	var tableNameC = C.CString(tableName)
-	defer C.free(unsafe.Pointer(tableNameC))
-	var indexColumnC = C.CString(indexColumn)
-	defer C.free(unsafe.Pointer(indexColumnC))
-	var displayColumnC = C.CString(displayColumn)
-	defer C.free(unsafe.Pointer(displayColumnC))
+	var tableNameC *C.char
+	if tableName != "" {
+		tableNameC = C.CString(tableName)
+		defer C.free(unsafe.Pointer(tableNameC))
+	}
+	var indexColumnC *C.char
+	if indexColumn != "" {
+		indexColumnC = C.CString(indexColumn)
+		defer C.free(unsafe.Pointer(indexColumnC))
+	}
+	var displayColumnC *C.char
+	if displayColumn != "" {
+		displayColumnC = C.CString(displayColumn)
+		defer C.free(unsafe.Pointer(displayColumnC))
+	}
 	var tmpValue = NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation2(tableNameC, indexColumnC, displayColumnC))
 	runtime.SetFinalizer(tmpValue, (*QSqlRelation).DestroyQSqlRelation)
 	return tmpValue
@@ -5660,8 +5912,11 @@ func callbackQSqlRelationalDelegate_DrawDisplay(ptr unsafe.Pointer, painter unsa
 
 func (ptr *QSqlRelationalDelegate) DrawDisplayDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QSqlRelationalDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
 	}
 }
@@ -6522,8 +6777,11 @@ func (ptr *QSqlResult) DisconnectPrepare() {
 
 func (ptr *QSqlResult) Prepare(query string) bool {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		return C.QSqlResult_Prepare(ptr.Pointer(), queryC) != 0
 	}
 	return false
@@ -6531,8 +6789,11 @@ func (ptr *QSqlResult) Prepare(query string) bool {
 
 func (ptr *QSqlResult) PrepareDefault(query string) bool {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		return C.QSqlResult_PrepareDefault(ptr.Pointer(), queryC) != 0
 	}
 	return false
@@ -6563,8 +6824,11 @@ func (ptr *QSqlResult) DisconnectReset() {
 
 func (ptr *QSqlResult) Reset(query string) bool {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		return C.QSqlResult_Reset(ptr.Pointer(), queryC) != 0
 	}
 	return false
@@ -6595,8 +6859,11 @@ func (ptr *QSqlResult) DisconnectSavePrepare() {
 
 func (ptr *QSqlResult) SavePrepare(query string) bool {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		return C.QSqlResult_SavePrepare(ptr.Pointer(), queryC) != 0
 	}
 	return false
@@ -6604,8 +6871,11 @@ func (ptr *QSqlResult) SavePrepare(query string) bool {
 
 func (ptr *QSqlResult) SavePrepareDefault(query string) bool {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		return C.QSqlResult_SavePrepareDefault(ptr.Pointer(), queryC) != 0
 	}
 	return false
@@ -6702,16 +6972,22 @@ func (ptr *QSqlResult) DisconnectBindValue2() {
 
 func (ptr *QSqlResult) BindValue2(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
 	if ptr.Pointer() != nil {
-		var placeholderC = C.CString(placeholder)
-		defer C.free(unsafe.Pointer(placeholderC))
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
 		C.QSqlResult_BindValue2(ptr.Pointer(), placeholderC, core.PointerFromQVariant(val), C.longlong(paramType))
 	}
 }
 
 func (ptr *QSqlResult) BindValue2Default(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
 	if ptr.Pointer() != nil {
-		var placeholderC = C.CString(placeholder)
-		defer C.free(unsafe.Pointer(placeholderC))
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
 		C.QSqlResult_BindValue2Default(ptr.Pointer(), placeholderC, core.PointerFromQVariant(val), C.longlong(paramType))
 	}
 }
@@ -6928,16 +7204,22 @@ func (ptr *QSqlResult) DisconnectSetQuery() {
 
 func (ptr *QSqlResult) SetQuery(query string) {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		C.QSqlResult_SetQuery(ptr.Pointer(), queryC)
 	}
 }
 
 func (ptr *QSqlResult) SetQueryDefault(query string) {
 	if ptr.Pointer() != nil {
-		var queryC = C.CString(query)
-		defer C.free(unsafe.Pointer(queryC))
+		var queryC *C.char
+		if query != "" {
+			queryC = C.CString(query)
+			defer C.free(unsafe.Pointer(queryC))
+		}
 		C.QSqlResult_SetQueryDefault(ptr.Pointer(), queryC)
 	}
 }
@@ -7025,8 +7307,11 @@ func (ptr *QSqlResult) BindingSyntax() QSqlResult__BindingSyntax {
 
 func (ptr *QSqlResult) BindValueType2(placeholder string) QSql__ParamTypeFlag {
 	if ptr.Pointer() != nil {
-		var placeholderC = C.CString(placeholder)
-		defer C.free(unsafe.Pointer(placeholderC))
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
 		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType2(ptr.Pointer(), placeholderC))
 	}
 	return 0
@@ -7112,8 +7397,11 @@ func (ptr *QSqlResult) LastQuery() string {
 
 func (ptr *QSqlResult) BoundValue2(placeholder string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var placeholderC = C.CString(placeholder)
-		defer C.free(unsafe.Pointer(placeholderC))
+		var placeholderC *C.char
+		if placeholder != "" {
+			placeholderC = C.CString(placeholder)
+			defer C.free(unsafe.Pointer(placeholderC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QSqlResult_BoundValue2(ptr.Pointer(), placeholderC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -7839,16 +8127,22 @@ func (ptr *QSqlTableModel) DisconnectSetFilter() {
 
 func (ptr *QSqlTableModel) SetFilter(filter string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
 		C.QSqlTableModel_SetFilter(ptr.Pointer(), filterC)
 	}
 }
 
 func (ptr *QSqlTableModel) SetFilterDefault(filter string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
 		C.QSqlTableModel_SetFilterDefault(ptr.Pointer(), filterC)
 	}
 }
@@ -7919,16 +8213,22 @@ func (ptr *QSqlTableModel) DisconnectSetTable() {
 
 func (ptr *QSqlTableModel) SetTable(tableName string) {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		C.QSqlTableModel_SetTable(ptr.Pointer(), tableNameC)
 	}
 }
 
 func (ptr *QSqlTableModel) SetTableDefault(tableName string) {
 	if ptr.Pointer() != nil {
-		var tableNameC = C.CString(tableName)
-		defer C.free(unsafe.Pointer(tableNameC))
+		var tableNameC *C.char
+		if tableName != "" {
+			tableNameC = C.CString(tableName)
+			defer C.free(unsafe.Pointer(tableNameC))
+		}
 		C.QSqlTableModel_SetTableDefault(ptr.Pointer(), tableNameC)
 	}
 }
@@ -8110,8 +8410,11 @@ func (ptr *QSqlTableModel) IsDirty(index core.QModelIndex_ITF) bool {
 
 func (ptr *QSqlTableModel) FieldIndex(fieldName string) int {
 	if ptr.Pointer() != nil {
-		var fieldNameC = C.CString(fieldName)
-		defer C.free(unsafe.Pointer(fieldNameC))
+		var fieldNameC *C.char
+		if fieldName != "" {
+			fieldNameC = C.CString(fieldName)
+			defer C.free(unsafe.Pointer(fieldNameC))
+		}
 		return int(int32(C.QSqlTableModel_FieldIndex(ptr.Pointer(), fieldNameC)))
 	}
 	return 0

@@ -98,10 +98,16 @@ func (ptr *QMacPasteboardMime) DisconnectConvertFromMime() {
 
 func (ptr *QMacPasteboardMime) ConvertFromMime(mime string, data core.QVariant_ITF, flav string) []*core.QByteArray {
 	if ptr.Pointer() != nil {
-		var mimeC = C.CString(mime)
-		defer C.free(unsafe.Pointer(mimeC))
-		var flavC = C.CString(flav)
-		defer C.free(unsafe.Pointer(flavC))
+		var mimeC *C.char
+		if mime != "" {
+			mimeC = C.CString(mime)
+			defer C.free(unsafe.Pointer(mimeC))
+		}
+		var flavC *C.char
+		if flav != "" {
+			flavC = C.CString(flav)
+			defer C.free(unsafe.Pointer(flavC))
+		}
 		return func(l C.struct_QtMacExtras_PackedList) []*core.QByteArray {
 			var out = make([]*core.QByteArray, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -114,8 +120,11 @@ func (ptr *QMacPasteboardMime) ConvertFromMime(mime string, data core.QVariant_I
 }
 
 func NewQMacPasteboardMime(t string) *QMacPasteboardMime {
-	var tC = C.CString(t)
-	defer C.free(unsafe.Pointer(tC))
+	var tC *C.char
+	if t != "" {
+		tC = C.CString(t)
+		defer C.free(unsafe.Pointer(tC))
+	}
 	return NewQMacPasteboardMimeFromPointer(C.QMacPasteboardMime_NewQMacPasteboardMime(tC))
 }
 
@@ -174,8 +183,11 @@ func (ptr *QMacPasteboardMime) DisconnectFlavorFor() {
 
 func (ptr *QMacPasteboardMime) FlavorFor(mime string) string {
 	if ptr.Pointer() != nil {
-		var mimeC = C.CString(mime)
-		defer C.free(unsafe.Pointer(mimeC))
+		var mimeC *C.char
+		if mime != "" {
+			mimeC = C.CString(mime)
+			defer C.free(unsafe.Pointer(mimeC))
+		}
 		return cGoUnpackString(C.QMacPasteboardMime_FlavorFor(ptr.Pointer(), mimeC))
 	}
 	return ""
@@ -206,8 +218,11 @@ func (ptr *QMacPasteboardMime) DisconnectMimeFor() {
 
 func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
 	if ptr.Pointer() != nil {
-		var flavC = C.CString(flav)
-		defer C.free(unsafe.Pointer(flavC))
+		var flavC *C.char
+		if flav != "" {
+			flavC = C.CString(flav)
+			defer C.free(unsafe.Pointer(flavC))
+		}
 		return cGoUnpackString(C.QMacPasteboardMime_MimeFor(ptr.Pointer(), flavC))
 	}
 	return ""
@@ -244,10 +259,16 @@ func (ptr *QMacPasteboardMime) DisconnectConvertToMime() {
 
 func (ptr *QMacPasteboardMime) ConvertToMime(mime string, data []*core.QByteArray, flav string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var mimeC = C.CString(mime)
-		defer C.free(unsafe.Pointer(mimeC))
-		var flavC = C.CString(flav)
-		defer C.free(unsafe.Pointer(flavC))
+		var mimeC *C.char
+		if mime != "" {
+			mimeC = C.CString(mime)
+			defer C.free(unsafe.Pointer(mimeC))
+		}
+		var flavC *C.char
+		if flav != "" {
+			flavC = C.CString(flav)
+			defer C.free(unsafe.Pointer(flavC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QMacPasteboardMime_ConvertToMime(ptr.Pointer(), mimeC, func() unsafe.Pointer {
 			var tmpList = NewQMacPasteboardMimeFromPointer(NewQMacPasteboardMimeFromPointer(nil).__convertToMime_data_newList())
 			for _, v := range data {
@@ -286,10 +307,16 @@ func (ptr *QMacPasteboardMime) DisconnectCanConvert() {
 
 func (ptr *QMacPasteboardMime) CanConvert(mime string, flav string) bool {
 	if ptr.Pointer() != nil {
-		var mimeC = C.CString(mime)
-		defer C.free(unsafe.Pointer(mimeC))
-		var flavC = C.CString(flav)
-		defer C.free(unsafe.Pointer(flavC))
+		var mimeC *C.char
+		if mime != "" {
+			mimeC = C.CString(mime)
+			defer C.free(unsafe.Pointer(mimeC))
+		}
+		var flavC *C.char
+		if flav != "" {
+			flavC = C.CString(flav)
+			defer C.free(unsafe.Pointer(flavC))
+		}
 		return C.QMacPasteboardMime_CanConvert(ptr.Pointer(), mimeC, flavC) != 0
 	}
 	return false
@@ -482,8 +509,11 @@ func NewQMacToolBar(parent core.QObject_ITF) *QMacToolBar {
 }
 
 func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
-	var identifierC = C.CString(identifier)
-	defer C.free(unsafe.Pointer(identifierC))
+	var identifierC *C.char
+	if identifier != "" {
+		identifierC = C.CString(identifier)
+		defer C.free(unsafe.Pointer(identifierC))
+	}
 	var tmpValue = NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(identifierC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -493,8 +523,11 @@ func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
 
 func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -506,8 +539,11 @@ func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToo
 
 func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1054,8 +1090,11 @@ func (ptr *QMacToolBarItem) SetStandardItem(standardItem QMacToolBarItem__Standa
 
 func (ptr *QMacToolBarItem) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QMacToolBarItem_SetText(ptr.Pointer(), textC)
 	}
 }

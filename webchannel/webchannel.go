@@ -174,8 +174,11 @@ func (ptr *QWebChannel) DisconnectFromDefault(transport QWebChannelAbstractTrans
 
 func (ptr *QWebChannel) RegisterObject(id string, object core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		C.QWebChannel_RegisterObject(ptr.Pointer(), idC, core.PointerFromQObject(object))
 	}
 }
@@ -228,8 +231,11 @@ func (ptr *QWebChannel) BlockUpdates() bool {
 
 func (ptr *QWebChannel) __registerObjects_objects_atList(i string) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QWebChannel___registerObjects_objects_atList(ptr.Pointer(), iC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -241,8 +247,11 @@ func (ptr *QWebChannel) __registerObjects_objects_atList(i string) *core.QObject
 
 func (ptr *QWebChannel) __registerObjects_objects_setList(key string, i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QWebChannel___registerObjects_objects_setList(ptr.Pointer(), keyC, core.PointerFromQObject(i))
 	}
 }
@@ -266,8 +275,11 @@ func (ptr *QWebChannel) __registerObjects_keyList() []string {
 
 func (ptr *QWebChannel) __registeredObjects_atList(i string) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QWebChannel___registeredObjects_atList(ptr.Pointer(), iC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -279,8 +291,11 @@ func (ptr *QWebChannel) __registeredObjects_atList(i string) *core.QObject {
 
 func (ptr *QWebChannel) __registeredObjects_setList(key string, i core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		C.QWebChannel___registeredObjects_setList(ptr.Pointer(), keyC, core.PointerFromQObject(i))
 	}
 }
@@ -311,8 +326,11 @@ func (ptr *QWebChannel) ____registerObjects_keyList_atList(i int) string {
 
 func (ptr *QWebChannel) ____registerObjects_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QWebChannel_____registerObjects_keyList_setList(ptr.Pointer(), iC)
 	}
 }
@@ -330,8 +348,11 @@ func (ptr *QWebChannel) ____registeredObjects_keyList_atList(i int) string {
 
 func (ptr *QWebChannel) ____registeredObjects_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
-		var iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
 		C.QWebChannel_____registeredObjects_keyList_setList(ptr.Pointer(), iC)
 	}
 }

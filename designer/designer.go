@@ -125,8 +125,11 @@ func (ptr *QAbstractExtensionManager) DisconnectRegisterExtensions() {
 
 func (ptr *QAbstractExtensionManager) RegisterExtensions(factory QAbstractExtensionFactory_ITF, iid string) {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		C.QAbstractExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
@@ -155,8 +158,11 @@ func (ptr *QAbstractExtensionManager) DisconnectUnregisterExtensions() {
 
 func (ptr *QAbstractExtensionManager) UnregisterExtensions(factory QAbstractExtensionFactory_ITF, iid string) {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		C.QAbstractExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
@@ -225,8 +231,11 @@ func (ptr *QAbstractExtensionManager) DisconnectExtension() {
 
 func (ptr *QAbstractExtensionManager) Extension(object core.QObject_ITF, iid string) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1358,8 +1367,11 @@ func callbackQDesignerActionEditorInterface_SetStyleSheet(ptr unsafe.Pointer, st
 
 func (ptr *QDesignerActionEditorInterface) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QDesignerActionEditorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -1405,8 +1417,11 @@ func callbackQDesignerActionEditorInterface_SetWindowTitle(ptr unsafe.Pointer, v
 
 func (ptr *QDesignerActionEditorInterface) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QDesignerActionEditorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -2896,8 +2911,11 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectAddDynamicProperty(
 
 func (ptr *QDesignerDynamicPropertySheetExtension) AddDynamicProperty(propertyName string, value core.QVariant_ITF) int {
 	if ptr.Pointer() != nil {
-		var propertyNameC = C.CString(propertyName)
-		defer C.free(unsafe.Pointer(propertyNameC))
+		var propertyNameC *C.char
+		if propertyName != "" {
+			propertyNameC = C.CString(propertyName)
+			defer C.free(unsafe.Pointer(propertyNameC))
+		}
 		return int(int32(C.QDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr.Pointer(), propertyNameC, core.PointerFromQVariant(value))))
 	}
 	return 0
@@ -2967,8 +2985,11 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectCanAddDynamicProper
 
 func (ptr *QDesignerDynamicPropertySheetExtension) CanAddDynamicProperty(propertyName string) bool {
 	if ptr.Pointer() != nil {
-		var propertyNameC = C.CString(propertyName)
-		defer C.free(unsafe.Pointer(propertyNameC))
+		var propertyNameC *C.char
+		if propertyName != "" {
+			propertyNameC = C.CString(propertyName)
+			defer C.free(unsafe.Pointer(propertyNameC))
+		}
 		return C.QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr.Pointer(), propertyNameC) != 0
 	}
 	return false
@@ -3625,8 +3646,11 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectResetWidgetProperty() {
 
 func (ptr *QDesignerFormWindowCursorInterface) ResetWidgetProperty(widget widgets.QWidget_ITF, name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDesignerFormWindowCursorInterface_ResetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), nameC)
 	}
 }
@@ -3683,8 +3707,11 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetProperty() {
 
 func (ptr *QDesignerFormWindowCursorInterface) SetProperty(name string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDesignerFormWindowCursorInterface_SetProperty(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
 	}
 }
@@ -3713,8 +3740,11 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetWidgetProperty() {
 
 func (ptr *QDesignerFormWindowCursorInterface) SetWidgetProperty(widget widgets.QWidget_ITF, name string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDesignerFormWindowCursorInterface_SetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), nameC, core.PointerFromQVariant(value))
 	}
 }
@@ -4138,8 +4168,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetContents() {
 
 func (ptr *QDesignerFormWindowInterface) SetContents(device core.QIODevice_ITF, errorMessage string) bool {
 	if ptr.Pointer() != nil {
-		var errorMessageC = C.CString(errorMessage)
-		defer C.free(unsafe.Pointer(errorMessageC))
+		var errorMessageC *C.char
+		if errorMessage != "" {
+			errorMessageC = C.CString(errorMessage)
+			defer C.free(unsafe.Pointer(errorMessageC))
+		}
 		return C.QDesignerFormWindowInterface_SetContents(ptr.Pointer(), core.PointerFromQIODevice(device), errorMessageC) != 0
 	}
 	return false
@@ -4170,8 +4203,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetContents2() {
 
 func (ptr *QDesignerFormWindowInterface) SetContents2(contents string) bool {
 	if ptr.Pointer() != nil {
-		var contentsC = C.CString(contents)
-		defer C.free(unsafe.Pointer(contentsC))
+		var contentsC *C.char
+		if contents != "" {
+			contentsC = C.CString(contents)
+			defer C.free(unsafe.Pointer(contentsC))
+		}
 		return C.QDesignerFormWindowInterface_SetContents2(ptr.Pointer(), contentsC) != 0
 	}
 	return false
@@ -4232,8 +4268,11 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []strin
 	if ptr.Pointer() != nil {
 		var pathsC = C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
-		var errorMessagesC = C.CString(errorMessages)
-		defer C.free(unsafe.Pointer(errorMessagesC))
+		var errorMessagesC *C.char
+		if errorMessages != "" {
+			errorMessagesC = C.CString(errorMessages)
+			defer C.free(unsafe.Pointer(errorMessagesC))
+		}
 		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), pathsC, C.int(int32(errorCount)), errorMessagesC)
 	}
 }
@@ -4242,8 +4281,11 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePathsDefault(paths 
 	if ptr.Pointer() != nil {
 		var pathsC = C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
-		var errorMessagesC = C.CString(errorMessages)
-		defer C.free(unsafe.Pointer(errorMessagesC))
+		var errorMessagesC *C.char
+		if errorMessages != "" {
+			errorMessagesC = C.CString(errorMessages)
+			defer C.free(unsafe.Pointer(errorMessagesC))
+		}
 		C.QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(ptr.Pointer(), pathsC, C.int(int32(errorCount)), errorMessagesC)
 	}
 }
@@ -4300,8 +4342,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectAddResourceFile() {
 
 func (ptr *QDesignerFormWindowInterface) AddResourceFile(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QDesignerFormWindowInterface_AddResourceFile(ptr.Pointer(), pathC)
 	}
 }
@@ -4442,8 +4487,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFileNameChanged() {
 
 func (ptr *QDesignerFormWindowInterface) FileNameChanged(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QDesignerFormWindowInterface_FileNameChanged(ptr.Pointer(), fileNameC)
 	}
 }
@@ -4528,10 +4576,16 @@ func (ptr *QDesignerFormWindowInterface) DisconnectLayoutFunction() {
 
 func (ptr *QDesignerFormWindowInterface) LayoutFunction(margin string, spacing string) {
 	if ptr.Pointer() != nil {
-		var marginC = C.CString(margin)
-		defer C.free(unsafe.Pointer(marginC))
-		var spacingC = C.CString(spacing)
-		defer C.free(unsafe.Pointer(spacingC))
+		var marginC *C.char
+		if margin != "" {
+			marginC = C.CString(margin)
+			defer C.free(unsafe.Pointer(marginC))
+		}
+		var spacingC *C.char
+		if spacing != "" {
+			spacingC = C.CString(spacing)
+			defer C.free(unsafe.Pointer(spacingC))
+		}
 		C.QDesignerFormWindowInterface_LayoutFunction(ptr.Pointer(), marginC, spacingC)
 	}
 }
@@ -4644,8 +4698,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectRemoveResourceFile() {
 
 func (ptr *QDesignerFormWindowInterface) RemoveResourceFile(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QDesignerFormWindowInterface_RemoveResourceFile(ptr.Pointer(), pathC)
 	}
 }
@@ -4758,8 +4815,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetAuthor() {
 
 func (ptr *QDesignerFormWindowInterface) SetAuthor(author string) {
 	if ptr.Pointer() != nil {
-		var authorC = C.CString(author)
-		defer C.free(unsafe.Pointer(authorC))
+		var authorC *C.char
+		if author != "" {
+			authorC = C.CString(author)
+			defer C.free(unsafe.Pointer(authorC))
+		}
 		C.QDesignerFormWindowInterface_SetAuthor(ptr.Pointer(), authorC)
 	}
 }
@@ -4788,8 +4848,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetComment() {
 
 func (ptr *QDesignerFormWindowInterface) SetComment(comment string) {
 	if ptr.Pointer() != nil {
-		var commentC = C.CString(comment)
-		defer C.free(unsafe.Pointer(commentC))
+		var commentC *C.char
+		if comment != "" {
+			commentC = C.CString(comment)
+			defer C.free(unsafe.Pointer(commentC))
+		}
 		C.QDesignerFormWindowInterface_SetComment(ptr.Pointer(), commentC)
 	}
 }
@@ -4846,8 +4909,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetExportMacro() {
 
 func (ptr *QDesignerFormWindowInterface) SetExportMacro(exportMacro string) {
 	if ptr.Pointer() != nil {
-		var exportMacroC = C.CString(exportMacro)
-		defer C.free(unsafe.Pointer(exportMacroC))
+		var exportMacroC *C.char
+		if exportMacro != "" {
+			exportMacroC = C.CString(exportMacro)
+			defer C.free(unsafe.Pointer(exportMacroC))
+		}
 		C.QDesignerFormWindowInterface_SetExportMacro(ptr.Pointer(), exportMacroC)
 	}
 }
@@ -4904,8 +4970,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetFileName() {
 
 func (ptr *QDesignerFormWindowInterface) SetFileName(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QDesignerFormWindowInterface_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
@@ -5020,10 +5089,16 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetLayoutFunction() {
 
 func (ptr *QDesignerFormWindowInterface) SetLayoutFunction(margin string, spacing string) {
 	if ptr.Pointer() != nil {
-		var marginC = C.CString(margin)
-		defer C.free(unsafe.Pointer(marginC))
-		var spacingC = C.CString(spacing)
-		defer C.free(unsafe.Pointer(spacingC))
+		var marginC *C.char
+		if margin != "" {
+			marginC = C.CString(margin)
+			defer C.free(unsafe.Pointer(marginC))
+		}
+		var spacingC *C.char
+		if spacing != "" {
+			spacingC = C.CString(spacing)
+			defer C.free(unsafe.Pointer(spacingC))
+		}
 		C.QDesignerFormWindowInterface_SetLayoutFunction(ptr.Pointer(), marginC, spacingC)
 	}
 }
@@ -5080,8 +5155,11 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetPixmapFunction() {
 
 func (ptr *QDesignerFormWindowInterface) SetPixmapFunction(pixmapFunction string) {
 	if ptr.Pointer() != nil {
-		var pixmapFunctionC = C.CString(pixmapFunction)
-		defer C.free(unsafe.Pointer(pixmapFunctionC))
+		var pixmapFunctionC *C.char
+		if pixmapFunction != "" {
+			pixmapFunctionC = C.CString(pixmapFunction)
+			defer C.free(unsafe.Pointer(pixmapFunctionC))
+		}
 		C.QDesignerFormWindowInterface_SetPixmapFunction(ptr.Pointer(), pixmapFunctionC)
 	}
 }
@@ -6600,8 +6678,11 @@ func callbackQDesignerFormWindowInterface_SetStyleSheet(ptr unsafe.Pointer, styl
 
 func (ptr *QDesignerFormWindowInterface) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QDesignerFormWindowInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -6647,8 +6728,11 @@ func callbackQDesignerFormWindowInterface_SetWindowTitle(ptr unsafe.Pointer, vqs
 
 func (ptr *QDesignerFormWindowInterface) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QDesignerFormWindowInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -8061,8 +8145,11 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectSetMemberGroup() {
 
 func (ptr *QDesignerMemberSheetExtension) SetMemberGroup(index int, group string) {
 	if ptr.Pointer() != nil {
-		var groupC = C.CString(group)
-		defer C.free(unsafe.Pointer(groupC))
+		var groupC *C.char
+		if group != "" {
+			groupC = C.CString(group)
+			defer C.free(unsafe.Pointer(groupC))
+		}
 		C.QDesignerMemberSheetExtension_SetMemberGroup(ptr.Pointer(), C.int(int32(index)), groupC)
 	}
 }
@@ -8525,8 +8612,11 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIndexOf() {
 
 func (ptr *QDesignerMemberSheetExtension) IndexOf(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QDesignerMemberSheetExtension_IndexOf(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -9442,8 +9532,11 @@ func callbackQDesignerObjectInspectorInterface_SetStyleSheet(ptr unsafe.Pointer,
 
 func (ptr *QDesignerObjectInspectorInterface) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QDesignerObjectInspectorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -9489,8 +9582,11 @@ func callbackQDesignerObjectInspectorInterface_SetWindowTitle(ptr unsafe.Pointer
 
 func (ptr *QDesignerObjectInspectorInterface) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QDesignerObjectInspectorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -9989,8 +10085,11 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectPropertyChanged() {
 
 func (ptr *QDesignerPropertyEditorInterface) PropertyChanged(name string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDesignerPropertyEditorInterface_PropertyChanged(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
 	}
 }
@@ -10047,8 +10146,11 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetPropertyValue() {
 
 func (ptr *QDesignerPropertyEditorInterface) SetPropertyValue(name string, value core.QVariant_ITF, changed bool) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QDesignerPropertyEditorInterface_SetPropertyValue(ptr.Pointer(), nameC, core.PointerFromQVariant(value), C.char(int8(qt.GoBoolToInt(changed))))
 	}
 }
@@ -10973,8 +11075,11 @@ func callbackQDesignerPropertyEditorInterface_SetStyleSheet(ptr unsafe.Pointer, 
 
 func (ptr *QDesignerPropertyEditorInterface) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QDesignerPropertyEditorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -11020,8 +11125,11 @@ func callbackQDesignerPropertyEditorInterface_SetWindowTitle(ptr unsafe.Pointer,
 
 func (ptr *QDesignerPropertyEditorInterface) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QDesignerPropertyEditorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -11626,8 +11734,11 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectSetPropertyGroup() {
 
 func (ptr *QDesignerPropertySheetExtension) SetPropertyGroup(index int, group string) {
 	if ptr.Pointer() != nil {
-		var groupC = C.CString(group)
-		defer C.free(unsafe.Pointer(groupC))
+		var groupC *C.char
+		if group != "" {
+			groupC = C.CString(group)
+			defer C.free(unsafe.Pointer(groupC))
+		}
 		C.QDesignerPropertySheetExtension_SetPropertyGroup(ptr.Pointer(), C.int(int32(index)), groupC)
 	}
 }
@@ -12003,8 +12114,11 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIndexOf() {
 
 func (ptr *QDesignerPropertySheetExtension) IndexOf(name string) int {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		return int(int32(C.QDesignerPropertySheetExtension_IndexOf(ptr.Pointer(), nameC)))
 	}
 	return 0
@@ -12324,8 +12438,11 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetFileName() {
 
 func (ptr *QDesignerWidgetBoxInterface) SetFileName(fileName string) {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		C.QDesignerWidgetBoxInterface_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
@@ -13117,8 +13234,11 @@ func callbackQDesignerWidgetBoxInterface_SetStyleSheet(ptr unsafe.Pointer, style
 
 func (ptr *QDesignerWidgetBoxInterface) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QDesignerWidgetBoxInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -13164,8 +13284,11 @@ func callbackQDesignerWidgetBoxInterface_SetWindowTitle(ptr unsafe.Pointer, vqs 
 
 func (ptr *QDesignerWidgetBoxInterface) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QDesignerWidgetBoxInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -13688,8 +13811,11 @@ func (ptr *QExtensionFactory) DisconnectCreateExtension() {
 
 func (ptr *QExtensionFactory) CreateExtension(object core.QObject_ITF, iid string, parent core.QObject_ITF) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -13701,8 +13827,11 @@ func (ptr *QExtensionFactory) CreateExtension(object core.QObject_ITF, iid strin
 
 func (ptr *QExtensionFactory) CreateExtensionDefault(object core.QObject_ITF, iid string, parent core.QObject_ITF) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -13737,8 +13866,11 @@ func (ptr *QExtensionFactory) DisconnectExtension() {
 
 func (ptr *QExtensionFactory) Extension(object core.QObject_ITF, iid string) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -13750,8 +13882,11 @@ func (ptr *QExtensionFactory) Extension(object core.QObject_ITF, iid string) *co
 
 func (ptr *QExtensionFactory) ExtensionDefault(object core.QObject_ITF, iid string) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -14153,16 +14288,22 @@ func (ptr *QExtensionManager) DisconnectRegisterExtensions() {
 
 func (ptr *QExtensionManager) RegisterExtensions(factory QAbstractExtensionFactory_ITF, iid string) {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		C.QExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
 func (ptr *QExtensionManager) RegisterExtensionsDefault(factory QAbstractExtensionFactory_ITF, iid string) {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		C.QExtensionManager_RegisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
@@ -14192,16 +14333,22 @@ func (ptr *QExtensionManager) DisconnectUnregisterExtensions() {
 
 func (ptr *QExtensionManager) UnregisterExtensions(factory QAbstractExtensionFactory_ITF, iid string) {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		C.QExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
 func (ptr *QExtensionManager) UnregisterExtensionsDefault(factory QAbstractExtensionFactory_ITF, iid string) {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		C.QExtensionManager_UnregisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
@@ -14239,8 +14386,11 @@ func (ptr *QExtensionManager) DisconnectExtension() {
 
 func (ptr *QExtensionManager) Extension(object core.QObject_ITF, iid string) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -14252,8 +14402,11 @@ func (ptr *QExtensionManager) Extension(object core.QObject_ITF, iid string) *co
 
 func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid string) *core.QObject {
 	if ptr.Pointer() != nil {
-		var iidC = C.CString(iid)
-		defer C.free(unsafe.Pointer(iidC))
+		var iidC *C.char
+		if iid != "" {
+			iidC = C.CString(iid)
+			defer C.free(unsafe.Pointer(iidC))
+		}
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -14625,8 +14778,11 @@ func NewQFormBuilder() *QFormBuilder {
 
 func (ptr *QFormBuilder) AddPluginPath(pluginPath string) {
 	if ptr.Pointer() != nil {
-		var pluginPathC = C.CString(pluginPath)
-		defer C.free(unsafe.Pointer(pluginPathC))
+		var pluginPathC *C.char
+		if pluginPath != "" {
+			pluginPathC = C.CString(pluginPath)
+			defer C.free(unsafe.Pointer(pluginPathC))
+		}
 		C.QFormBuilder_AddPluginPath(ptr.Pointer(), pluginPathC)
 	}
 }

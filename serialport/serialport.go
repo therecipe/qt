@@ -198,8 +198,11 @@ func NewQSerialPort3(serialPortInfo QSerialPortInfo_ITF, parent core.QObject_ITF
 }
 
 func NewQSerialPort2(name string, parent core.QObject_ITF) *QSerialPort {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(nameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -408,8 +411,11 @@ func callbackQSerialPort_ReadLineData(ptr unsafe.Pointer, data C.struct_QtSerial
 
 func (ptr *QSerialPort) ReadLineDataDefault(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QSerialPort_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -440,8 +446,11 @@ func (ptr *QSerialPort) DisconnectWriteData() {
 
 func (ptr *QSerialPort) WriteData(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QSerialPort_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -449,8 +458,11 @@ func (ptr *QSerialPort) WriteData(data string, maxSize int64) int64 {
 
 func (ptr *QSerialPort) WriteDataDefault(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QSerialPort_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -709,8 +721,11 @@ func (ptr *QSerialPort) SetPort(serialPortInfo QSerialPortInfo_ITF) {
 
 func (ptr *QSerialPort) SetPortName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QSerialPort_SetPortName(ptr.Pointer(), nameC)
 	}
 }
@@ -1398,8 +1413,11 @@ func NewQSerialPortInfo4(other QSerialPortInfo_ITF) *QSerialPortInfo {
 }
 
 func NewQSerialPortInfo3(name string) *QSerialPortInfo {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(nameC))
 	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue

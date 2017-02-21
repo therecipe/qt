@@ -466,8 +466,11 @@ func NewQWebSocketFromPointer(ptr unsafe.Pointer) *QWebSocket {
 	return n
 }
 func NewQWebSocket(origin string, version QWebSocketProtocol__Version, parent core.QObject_ITF) *QWebSocket {
-	var originC = C.CString(origin)
-	defer C.free(unsafe.Pointer(originC))
+	var originC *C.char
+	if origin != "" {
+		originC = C.CString(origin)
+		defer C.free(unsafe.Pointer(originC))
+	}
 	var tmpValue = NewQWebSocketFromPointer(C.QWebSocket_NewQWebSocket(originC, C.longlong(version), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -491,8 +494,11 @@ func (ptr *QWebSocket) SendBinaryMessage(data core.QByteArray_ITF) int64 {
 
 func (ptr *QWebSocket) SendTextMessage(message string) int64 {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		return int64(C.QWebSocket_SendTextMessage(ptr.Pointer(), messageC))
 	}
 	return 0
@@ -641,16 +647,22 @@ func (ptr *QWebSocket) DisconnectClose() {
 
 func (ptr *QWebSocket) Close(closeCode QWebSocketProtocol__CloseCode, reason string) {
 	if ptr.Pointer() != nil {
-		var reasonC = C.CString(reason)
-		defer C.free(unsafe.Pointer(reasonC))
+		var reasonC *C.char
+		if reason != "" {
+			reasonC = C.CString(reason)
+			defer C.free(unsafe.Pointer(reasonC))
+		}
 		C.QWebSocket_Close(ptr.Pointer(), C.longlong(closeCode), reasonC)
 	}
 }
 
 func (ptr *QWebSocket) CloseDefault(closeCode QWebSocketProtocol__CloseCode, reason string) {
 	if ptr.Pointer() != nil {
-		var reasonC = C.CString(reason)
-		defer C.free(unsafe.Pointer(reasonC))
+		var reasonC *C.char
+		if reason != "" {
+			reasonC = C.CString(reason)
+			defer C.free(unsafe.Pointer(reasonC))
+		}
 		C.QWebSocket_CloseDefault(ptr.Pointer(), C.longlong(closeCode), reasonC)
 	}
 }
@@ -1131,8 +1143,11 @@ func (ptr *QWebSocket) DisconnectTextFrameReceived() {
 
 func (ptr *QWebSocket) TextFrameReceived(frame string, isLastFrame bool) {
 	if ptr.Pointer() != nil {
-		var frameC = C.CString(frame)
-		defer C.free(unsafe.Pointer(frameC))
+		var frameC *C.char
+		if frame != "" {
+			frameC = C.CString(frame)
+			defer C.free(unsafe.Pointer(frameC))
+		}
 		C.QWebSocket_TextFrameReceived(ptr.Pointer(), frameC, C.char(int8(qt.GoBoolToInt(isLastFrame))))
 	}
 }
@@ -1161,8 +1176,11 @@ func (ptr *QWebSocket) DisconnectTextMessageReceived() {
 
 func (ptr *QWebSocket) TextMessageReceived(message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QWebSocket_TextMessageReceived(ptr.Pointer(), messageC)
 	}
 }
@@ -1710,8 +1728,11 @@ func NewQWebSocketCorsAuthenticator3(other QWebSocketCorsAuthenticator_ITF) *QWe
 }
 
 func NewQWebSocketCorsAuthenticator(origin string) *QWebSocketCorsAuthenticator {
-	var originC = C.CString(origin)
-	defer C.free(unsafe.Pointer(originC))
+	var originC *C.char
+	if origin != "" {
+		originC = C.CString(origin)
+		defer C.free(unsafe.Pointer(originC))
+	}
 	var tmpValue = NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(originC))
 	runtime.SetFinalizer(tmpValue, (*QWebSocketCorsAuthenticator).DestroyQWebSocketCorsAuthenticator)
 	return tmpValue
@@ -1931,8 +1952,11 @@ func (ptr *QWebSocketServer) NextPendingConnectionDefault() *QWebSocket {
 }
 
 func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode, parent core.QObject_ITF) *QWebSocketServer {
-	var serverNameC = C.CString(serverName)
-	defer C.free(unsafe.Pointer(serverNameC))
+	var serverNameC *C.char
+	if serverName != "" {
+		serverNameC = C.CString(serverName)
+		defer C.free(unsafe.Pointer(serverNameC))
+	}
 	var tmpValue = NewQWebSocketServerFromPointer(C.QWebSocketServer_NewQWebSocketServer(serverNameC, C.longlong(secureMode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2182,8 +2206,11 @@ func (ptr *QWebSocketServer) SetProxy(networkProxy network.QNetworkProxy_ITF) {
 
 func (ptr *QWebSocketServer) SetServerName(serverName string) {
 	if ptr.Pointer() != nil {
-		var serverNameC = C.CString(serverName)
-		defer C.free(unsafe.Pointer(serverNameC))
+		var serverNameC *C.char
+		if serverName != "" {
+			serverNameC = C.CString(serverName)
+			defer C.free(unsafe.Pointer(serverNameC))
+		}
 		C.QWebSocketServer_SetServerName(ptr.Pointer(), serverNameC)
 	}
 }

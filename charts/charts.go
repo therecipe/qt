@@ -672,8 +672,11 @@ func (ptr *QAbstractAxis) SetTitleFont(font gui.QFont_ITF) {
 
 func (ptr *QAbstractAxis) SetTitleText(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QAbstractAxis_SetTitleText(ptr.Pointer(), titleC)
 	}
 }
@@ -916,8 +919,11 @@ func (ptr *QAbstractAxis) DisconnectTitleTextChanged() {
 
 func (ptr *QAbstractAxis) TitleTextChanged(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QAbstractAxis_TitleTextChanged(ptr.Pointer(), textC)
 	}
 }
@@ -1558,8 +1564,11 @@ func (ptr *QAbstractBarSeries) DisconnectLabelsFormatChanged() {
 
 func (ptr *QAbstractBarSeries) LabelsFormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QAbstractBarSeries_LabelsFormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -1690,8 +1699,11 @@ func (ptr *QAbstractBarSeries) SetLabelsAngle(angle float64) {
 
 func (ptr *QAbstractBarSeries) SetLabelsFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QAbstractBarSeries_SetLabelsFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -2042,8 +2054,11 @@ func (ptr *QAbstractSeries) OpacityChanged() {
 
 func (ptr *QAbstractSeries) SetName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QAbstractSeries_SetName(ptr.Pointer(), nameC)
 	}
 }
@@ -2668,8 +2683,11 @@ func (ptr *QAreaSeries) DisconnectPointLabelsFormatChanged() {
 
 func (ptr *QAreaSeries) PointLabelsFormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QAreaSeries_PointLabelsFormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -2808,8 +2826,11 @@ func (ptr *QAreaSeries) SetPointLabelsFont(font gui.QFont_ITF) {
 
 func (ptr *QAreaSeries) SetPointLabelsFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QAreaSeries_SetPointLabelsFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -3024,8 +3045,11 @@ func (ptr *QBarCategoryAxis) Categories() []string {
 
 func (ptr *QBarCategoryAxis) Append2(category string) {
 	if ptr.Pointer() != nil {
-		var categoryC = C.CString(category)
-		defer C.free(unsafe.Pointer(categoryC))
+		var categoryC *C.char
+		if category != "" {
+			categoryC = C.CString(category)
+			defer C.free(unsafe.Pointer(categoryC))
+		}
 		C.QBarCategoryAxis_Append2(ptr.Pointer(), categoryC)
 	}
 }
@@ -3102,8 +3126,11 @@ func (ptr *QBarCategoryAxis) CountChanged() {
 
 func (ptr *QBarCategoryAxis) Insert(index int, category string) {
 	if ptr.Pointer() != nil {
-		var categoryC = C.CString(category)
-		defer C.free(unsafe.Pointer(categoryC))
+		var categoryC *C.char
+		if category != "" {
+			categoryC = C.CString(category)
+			defer C.free(unsafe.Pointer(categoryC))
+		}
 		C.QBarCategoryAxis_Insert(ptr.Pointer(), C.int(int32(index)), categoryC)
 	}
 }
@@ -3132,8 +3159,11 @@ func (ptr *QBarCategoryAxis) DisconnectMaxChanged() {
 
 func (ptr *QBarCategoryAxis) MaxChanged(max string) {
 	if ptr.Pointer() != nil {
-		var maxC = C.CString(max)
-		defer C.free(unsafe.Pointer(maxC))
+		var maxC *C.char
+		if max != "" {
+			maxC = C.CString(max)
+			defer C.free(unsafe.Pointer(maxC))
+		}
 		C.QBarCategoryAxis_MaxChanged(ptr.Pointer(), maxC)
 	}
 }
@@ -3162,8 +3192,11 @@ func (ptr *QBarCategoryAxis) DisconnectMinChanged() {
 
 func (ptr *QBarCategoryAxis) MinChanged(min string) {
 	if ptr.Pointer() != nil {
-		var minC = C.CString(min)
-		defer C.free(unsafe.Pointer(minC))
+		var minC *C.char
+		if min != "" {
+			minC = C.CString(min)
+			defer C.free(unsafe.Pointer(minC))
+		}
 		C.QBarCategoryAxis_MinChanged(ptr.Pointer(), minC)
 	}
 }
@@ -3192,28 +3225,43 @@ func (ptr *QBarCategoryAxis) DisconnectRangeChanged() {
 
 func (ptr *QBarCategoryAxis) RangeChanged(min string, max string) {
 	if ptr.Pointer() != nil {
-		var minC = C.CString(min)
-		defer C.free(unsafe.Pointer(minC))
-		var maxC = C.CString(max)
-		defer C.free(unsafe.Pointer(maxC))
+		var minC *C.char
+		if min != "" {
+			minC = C.CString(min)
+			defer C.free(unsafe.Pointer(minC))
+		}
+		var maxC *C.char
+		if max != "" {
+			maxC = C.CString(max)
+			defer C.free(unsafe.Pointer(maxC))
+		}
 		C.QBarCategoryAxis_RangeChanged(ptr.Pointer(), minC, maxC)
 	}
 }
 
 func (ptr *QBarCategoryAxis) Remove(category string) {
 	if ptr.Pointer() != nil {
-		var categoryC = C.CString(category)
-		defer C.free(unsafe.Pointer(categoryC))
+		var categoryC *C.char
+		if category != "" {
+			categoryC = C.CString(category)
+			defer C.free(unsafe.Pointer(categoryC))
+		}
 		C.QBarCategoryAxis_Remove(ptr.Pointer(), categoryC)
 	}
 }
 
 func (ptr *QBarCategoryAxis) Replace(oldCategory string, newCategory string) {
 	if ptr.Pointer() != nil {
-		var oldCategoryC = C.CString(oldCategory)
-		defer C.free(unsafe.Pointer(oldCategoryC))
-		var newCategoryC = C.CString(newCategory)
-		defer C.free(unsafe.Pointer(newCategoryC))
+		var oldCategoryC *C.char
+		if oldCategory != "" {
+			oldCategoryC = C.CString(oldCategory)
+			defer C.free(unsafe.Pointer(oldCategoryC))
+		}
+		var newCategoryC *C.char
+		if newCategory != "" {
+			newCategoryC = C.CString(newCategory)
+			defer C.free(unsafe.Pointer(newCategoryC))
+		}
 		C.QBarCategoryAxis_Replace(ptr.Pointer(), oldCategoryC, newCategoryC)
 	}
 }
@@ -3228,26 +3276,38 @@ func (ptr *QBarCategoryAxis) SetCategories(categories []string) {
 
 func (ptr *QBarCategoryAxis) SetMax(max string) {
 	if ptr.Pointer() != nil {
-		var maxC = C.CString(max)
-		defer C.free(unsafe.Pointer(maxC))
+		var maxC *C.char
+		if max != "" {
+			maxC = C.CString(max)
+			defer C.free(unsafe.Pointer(maxC))
+		}
 		C.QBarCategoryAxis_SetMax(ptr.Pointer(), maxC)
 	}
 }
 
 func (ptr *QBarCategoryAxis) SetMin(min string) {
 	if ptr.Pointer() != nil {
-		var minC = C.CString(min)
-		defer C.free(unsafe.Pointer(minC))
+		var minC *C.char
+		if min != "" {
+			minC = C.CString(min)
+			defer C.free(unsafe.Pointer(minC))
+		}
 		C.QBarCategoryAxis_SetMin(ptr.Pointer(), minC)
 	}
 }
 
 func (ptr *QBarCategoryAxis) SetRange(minCategory string, maxCategory string) {
 	if ptr.Pointer() != nil {
-		var minCategoryC = C.CString(minCategory)
-		defer C.free(unsafe.Pointer(minCategoryC))
-		var maxCategoryC = C.CString(maxCategory)
-		defer C.free(unsafe.Pointer(maxCategoryC))
+		var minCategoryC *C.char
+		if minCategory != "" {
+			minCategoryC = C.CString(minCategory)
+			defer C.free(unsafe.Pointer(minCategoryC))
+		}
+		var maxCategoryC *C.char
+		if maxCategory != "" {
+			maxCategoryC = C.CString(maxCategory)
+			defer C.free(unsafe.Pointer(maxCategoryC))
+		}
 		C.QBarCategoryAxis_SetRange(ptr.Pointer(), minCategoryC, maxCategoryC)
 	}
 }
@@ -3609,8 +3669,11 @@ func NewQBarSetFromPointer(ptr unsafe.Pointer) *QBarSet {
 	return n
 }
 func NewQBarSet(label string, parent core.QObject_ITF) *QBarSet {
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return NewQBarSetFromPointer(C.QBarSet_NewQBarSet(labelC, core.PointerFromQObject(parent)))
 }
 
@@ -4061,8 +4124,11 @@ func (ptr *QBarSet) SetColor(color gui.QColor_ITF) {
 
 func (ptr *QBarSet) SetLabel(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QBarSet_SetLabel(ptr.Pointer(), labelC)
 	}
 }
@@ -5136,14 +5202,20 @@ const (
 )
 
 func NewQBoxSet(label string, parent core.QObject_ITF) *QBoxSet {
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return NewQBoxSetFromPointer(C.QBoxSet_NewQBoxSet(labelC, core.PointerFromQObject(parent)))
 }
 
 func NewQBoxSet2(le float64, lq float64, m float64, uq float64, ue float64, label string, parent core.QObject_ITF) *QBoxSet {
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return NewQBoxSetFromPointer(C.QBoxSet_NewQBoxSet2(C.double(le), C.double(lq), C.double(m), C.double(uq), C.double(ue), labelC, core.PointerFromQObject(parent)))
 }
 
@@ -5403,8 +5475,11 @@ func (ptr *QBoxSet) SetBrush(brush gui.QBrush_ITF) {
 
 func (ptr *QBoxSet) SetLabel(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QBoxSet_SetLabel(ptr.Pointer(), labelC)
 	}
 }
@@ -7475,8 +7550,11 @@ func (ptr *QCategoryAxis) CategoriesLabels() []string {
 
 func (ptr *QCategoryAxis) Append(categoryLabel string, categoryEndValue float64) {
 	if ptr.Pointer() != nil {
-		var categoryLabelC = C.CString(categoryLabel)
-		defer C.free(unsafe.Pointer(categoryLabelC))
+		var categoryLabelC *C.char
+		if categoryLabel != "" {
+			categoryLabelC = C.CString(categoryLabel)
+			defer C.free(unsafe.Pointer(categoryLabelC))
+		}
 		C.QCategoryAxis_Append(ptr.Pointer(), categoryLabelC, C.double(categoryEndValue))
 	}
 }
@@ -7539,18 +7617,27 @@ func (ptr *QCategoryAxis) LabelsPositionChanged(position QCategoryAxis__AxisLabe
 
 func (ptr *QCategoryAxis) Remove(categoryLabel string) {
 	if ptr.Pointer() != nil {
-		var categoryLabelC = C.CString(categoryLabel)
-		defer C.free(unsafe.Pointer(categoryLabelC))
+		var categoryLabelC *C.char
+		if categoryLabel != "" {
+			categoryLabelC = C.CString(categoryLabel)
+			defer C.free(unsafe.Pointer(categoryLabelC))
+		}
 		C.QCategoryAxis_Remove(ptr.Pointer(), categoryLabelC)
 	}
 }
 
 func (ptr *QCategoryAxis) ReplaceLabel(oldLabel string, newLabel string) {
 	if ptr.Pointer() != nil {
-		var oldLabelC = C.CString(oldLabel)
-		defer C.free(unsafe.Pointer(oldLabelC))
-		var newLabelC = C.CString(newLabel)
-		defer C.free(unsafe.Pointer(newLabelC))
+		var oldLabelC *C.char
+		if oldLabel != "" {
+			oldLabelC = C.CString(oldLabel)
+			defer C.free(unsafe.Pointer(oldLabelC))
+		}
+		var newLabelC *C.char
+		if newLabel != "" {
+			newLabelC = C.CString(newLabel)
+			defer C.free(unsafe.Pointer(newLabelC))
+		}
 		C.QCategoryAxis_ReplaceLabel(ptr.Pointer(), oldLabelC, newLabelC)
 	}
 }
@@ -7591,8 +7678,11 @@ func (ptr *QCategoryAxis) Count() int {
 
 func (ptr *QCategoryAxis) EndValue(categoryLabel string) float64 {
 	if ptr.Pointer() != nil {
-		var categoryLabelC = C.CString(categoryLabel)
-		defer C.free(unsafe.Pointer(categoryLabelC))
+		var categoryLabelC *C.char
+		if categoryLabel != "" {
+			categoryLabelC = C.CString(categoryLabel)
+			defer C.free(unsafe.Pointer(categoryLabelC))
+		}
 		return float64(C.QCategoryAxis_EndValue(ptr.Pointer(), categoryLabelC))
 	}
 	return 0
@@ -7600,8 +7690,11 @@ func (ptr *QCategoryAxis) EndValue(categoryLabel string) float64 {
 
 func (ptr *QCategoryAxis) StartValue(categoryLabel string) float64 {
 	if ptr.Pointer() != nil {
-		var categoryLabelC = C.CString(categoryLabel)
-		defer C.free(unsafe.Pointer(categoryLabelC))
+		var categoryLabelC *C.char
+		if categoryLabel != "" {
+			categoryLabelC = C.CString(categoryLabel)
+			defer C.free(unsafe.Pointer(categoryLabelC))
+		}
 		return float64(C.QCategoryAxis_StartValue(ptr.Pointer(), categoryLabelC))
 	}
 	return 0
@@ -7889,8 +7982,11 @@ func (ptr *QChart) SetTheme(theme QChart__ChartTheme) {
 
 func (ptr *QChart) SetTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QChart_SetTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -10733,8 +10829,11 @@ func callbackQChartView_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_Qt
 
 func (ptr *QChartView) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QChartView_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -10780,8 +10879,11 @@ func callbackQChartView_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtCharts
 
 func (ptr *QChartView) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QChartView_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -11192,8 +11294,11 @@ func (ptr *QDateTimeAxis) DisconnectFormatChanged() {
 
 func (ptr *QDateTimeAxis) FormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QDateTimeAxis_FormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -11284,8 +11389,11 @@ func (ptr *QDateTimeAxis) RangeChanged(min core.QDateTime_ITF, max core.QDateTim
 
 func (ptr *QDateTimeAxis) SetFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QDateTimeAxis_SetFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -15326,8 +15434,11 @@ func (ptr *QLegendMarker) SetFont(font gui.QFont_ITF) {
 
 func (ptr *QLegendMarker) SetLabel(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QLegendMarker_SetLabel(ptr.Pointer(), labelC)
 	}
 }
@@ -15648,8 +15759,11 @@ func (ptr *QLogValueAxis) DisconnectLabelFormatChanged() {
 
 func (ptr *QLogValueAxis) LabelFormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QLogValueAxis_LabelFormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -15746,8 +15860,11 @@ func (ptr *QLogValueAxis) SetBase(base float64) {
 
 func (ptr *QLogValueAxis) SetLabelFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QLogValueAxis_SetLabelFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -16133,8 +16250,11 @@ func NewQPieSeries(parent core.QObject_ITF) *QPieSeries {
 
 func (ptr *QPieSeries) Append3(label string, value float64) *QPieSlice {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		return NewQPieSliceFromPointer(C.QPieSeries_Append3(ptr.Pointer(), labelC, C.double(value)))
 	}
 	return nil
@@ -16819,8 +16939,11 @@ func NewQPieSlice(parent core.QObject_ITF) *QPieSlice {
 }
 
 func NewQPieSlice2(label string, value float64, parent core.QObject_ITF) *QPieSlice {
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return NewQPieSliceFromPointer(C.QPieSlice_NewQPieSlice2(labelC, C.double(value), core.PointerFromQObject(parent)))
 }
 
@@ -17345,8 +17468,11 @@ func (ptr *QPieSlice) SetExploded(exploded bool) {
 
 func (ptr *QPieSlice) SetLabel(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QPieSlice_SetLabel(ptr.Pointer(), labelC)
 	}
 }
@@ -19726,8 +19852,11 @@ func (ptr *QValueAxis) DisconnectLabelFormatChanged() {
 
 func (ptr *QValueAxis) LabelFormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QValueAxis_LabelFormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -19846,8 +19975,11 @@ func (ptr *QValueAxis) RangeChanged(min float64, max float64) {
 
 func (ptr *QValueAxis) SetLabelFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QValueAxis_SetLabelFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -20492,8 +20624,11 @@ func (ptr *QXYSeries) DisconnectPointLabelsFormatChanged() {
 
 func (ptr *QXYSeries) PointLabelsFormatChanged(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QXYSeries_PointLabelsFormatChanged(ptr.Pointer(), formatC)
 	}
 }
@@ -20891,8 +21026,11 @@ func (ptr *QXYSeries) SetPointLabelsFont(font gui.QFont_ITF) {
 
 func (ptr *QXYSeries) SetPointLabelsFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QXYSeries_SetPointLabelsFormat(ptr.Pointer(), formatC)
 	}
 }

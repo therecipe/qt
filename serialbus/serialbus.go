@@ -209,12 +209,21 @@ func (ptr *QCanBus) Instance() *QCanBus {
 
 func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string, errorMessage string) *QCanBusDevice {
 	if ptr.Pointer() != nil {
-		var pluginC = C.CString(plugin)
-		defer C.free(unsafe.Pointer(pluginC))
-		var interfaceNameC = C.CString(interfaceName)
-		defer C.free(unsafe.Pointer(interfaceNameC))
-		var errorMessageC = C.CString(errorMessage)
-		defer C.free(unsafe.Pointer(errorMessageC))
+		var pluginC *C.char
+		if plugin != "" {
+			pluginC = C.CString(plugin)
+			defer C.free(unsafe.Pointer(pluginC))
+		}
+		var interfaceNameC *C.char
+		if interfaceName != "" {
+			interfaceNameC = C.CString(interfaceName)
+			defer C.free(unsafe.Pointer(interfaceNameC))
+		}
+		var errorMessageC *C.char
+		if errorMessage != "" {
+			errorMessageC = C.CString(errorMessage)
+			defer C.free(unsafe.Pointer(errorMessageC))
+		}
 		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBus_CreateDevice(ptr.Pointer(), pluginC, interfaceNameC, errorMessageC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -927,8 +936,11 @@ func (ptr *QCanBusDevice) SetConfigurationParameterDefault(key int, value core.Q
 
 func (ptr *QCanBusDevice) SetError(errorText string, errorId QCanBusDevice__CanBusError) {
 	if ptr.Pointer() != nil {
-		var errorTextC = C.CString(errorText)
-		defer C.free(unsafe.Pointer(errorTextC))
+		var errorTextC *C.char
+		if errorText != "" {
+			errorTextC = C.CString(errorText)
+			defer C.free(unsafe.Pointer(errorTextC))
+		}
 		C.QCanBusDevice_SetError(ptr.Pointer(), errorTextC, C.longlong(errorId))
 	}
 }
@@ -1388,10 +1400,16 @@ func (ptr *QCanBusFactory) DisconnectCreateDevice() {
 
 func (ptr *QCanBusFactory) CreateDevice(interfaceName string, errorMessage string) *QCanBusDevice {
 	if ptr.Pointer() != nil {
-		var interfaceNameC = C.CString(interfaceName)
-		defer C.free(unsafe.Pointer(interfaceNameC))
-		var errorMessageC = C.CString(errorMessage)
-		defer C.free(unsafe.Pointer(errorMessageC))
+		var interfaceNameC *C.char
+		if interfaceName != "" {
+			interfaceNameC = C.CString(interfaceName)
+			defer C.free(unsafe.Pointer(interfaceNameC))
+		}
+		var errorMessageC *C.char
+		if errorMessage != "" {
+			errorMessageC = C.CString(errorMessage)
+			defer C.free(unsafe.Pointer(errorMessageC))
+		}
 		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusFactory_CreateDevice(ptr.Pointer(), interfaceNameC, errorMessageC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2272,8 +2290,11 @@ func (ptr *QModbusDevice) SetConnectionParameter(parameter int, value core.QVari
 
 func (ptr *QModbusDevice) SetError(errorText string, error QModbusDevice__Error) {
 	if ptr.Pointer() != nil {
-		var errorTextC = C.CString(errorText)
-		defer C.free(unsafe.Pointer(errorTextC))
+		var errorTextC *C.char
+		if errorText != "" {
+			errorTextC = C.CString(errorText)
+			defer C.free(unsafe.Pointer(errorTextC))
+		}
 		C.QModbusDevice_SetError(ptr.Pointer(), errorTextC, C.longlong(error))
 	}
 }

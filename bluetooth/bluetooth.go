@@ -231,8 +231,11 @@ func NewQBluetoothAddress4(other QBluetoothAddress_ITF) *QBluetoothAddress {
 }
 
 func NewQBluetoothAddress3(address string) *QBluetoothAddress {
-	var addressC = C.CString(address)
-	defer C.free(unsafe.Pointer(addressC))
+	var addressC *C.char
+	if address != "" {
+		addressC = C.CString(address)
+		defer C.free(unsafe.Pointer(addressC))
+	}
 	var tmpValue = NewQBluetoothAddressFromPointer(C.QBluetoothAddress_NewQBluetoothAddress3(addressC))
 	runtime.SetFinalizer(tmpValue, (*QBluetoothAddress).DestroyQBluetoothAddress)
 	return tmpValue
@@ -1182,8 +1185,11 @@ func NewQBluetoothDeviceInfo() *QBluetoothDeviceInfo {
 }
 
 func NewQBluetoothDeviceInfo2(address QBluetoothAddress_ITF, name string, classOfDevice uint) *QBluetoothDeviceInfo {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo2(PointerFromQBluetoothAddress(address), nameC, C.uint(uint32(classOfDevice))))
 	runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 	return tmpValue
@@ -1196,8 +1202,11 @@ func NewQBluetoothDeviceInfo4(other QBluetoothDeviceInfo_ITF) *QBluetoothDeviceI
 }
 
 func NewQBluetoothDeviceInfo3(uuid QBluetoothUuid_ITF, name string, classOfDevice uint) *QBluetoothDeviceInfo {
-	var nameC = C.CString(name)
-	defer C.free(unsafe.Pointer(nameC))
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
 	var tmpValue = NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo3(PointerFromQBluetoothUuid(uuid), nameC, C.uint(uint32(classOfDevice))))
 	runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
 	return tmpValue
@@ -1422,8 +1431,11 @@ func (ptr *QBluetoothHostInfo) SetAddress(address QBluetoothAddress_ITF) {
 
 func (ptr *QBluetoothHostInfo) SetName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QBluetoothHostInfo_SetName(ptr.Pointer(), nameC)
 	}
 }
@@ -1728,8 +1740,11 @@ func (ptr *QBluetoothLocalDevice) DisconnectPairingDisplayConfirmation() {
 
 func (ptr *QBluetoothLocalDevice) PairingDisplayConfirmation(address QBluetoothAddress_ITF, pin string) {
 	if ptr.Pointer() != nil {
-		var pinC = C.CString(pin)
-		defer C.free(unsafe.Pointer(pinC))
+		var pinC *C.char
+		if pin != "" {
+			pinC = C.CString(pin)
+			defer C.free(unsafe.Pointer(pinC))
+		}
 		C.QBluetoothLocalDevice_PairingDisplayConfirmation(ptr.Pointer(), PointerFromQBluetoothAddress(address), pinC)
 	}
 }
@@ -1758,8 +1773,11 @@ func (ptr *QBluetoothLocalDevice) DisconnectPairingDisplayPinCode() {
 
 func (ptr *QBluetoothLocalDevice) PairingDisplayPinCode(address QBluetoothAddress_ITF, pin string) {
 	if ptr.Pointer() != nil {
-		var pinC = C.CString(pin)
-		defer C.free(unsafe.Pointer(pinC))
+		var pinC *C.char
+		if pin != "" {
+			pinC = C.CString(pin)
+			defer C.free(unsafe.Pointer(pinC))
+		}
 		C.QBluetoothLocalDevice_PairingDisplayPinCode(ptr.Pointer(), PointerFromQBluetoothAddress(address), pinC)
 	}
 }
@@ -2314,8 +2332,11 @@ func (ptr *QBluetoothServer) NewConnection() {
 
 func (ptr *QBluetoothServer) Listen2(uuid QBluetoothUuid_ITF, serviceName string) *QBluetoothServiceInfo {
 	if ptr.Pointer() != nil {
-		var serviceNameC = C.CString(serviceName)
-		defer C.free(unsafe.Pointer(serviceNameC))
+		var serviceNameC *C.char
+		if serviceName != "" {
+			serviceNameC = C.CString(serviceName)
+			defer C.free(unsafe.Pointer(serviceNameC))
+		}
 		var tmpValue = NewQBluetoothServiceInfoFromPointer(C.QBluetoothServer_Listen2(ptr.Pointer(), PointerFromQBluetoothUuid(uuid), serviceNameC))
 		runtime.SetFinalizer(tmpValue, (*QBluetoothServiceInfo).DestroyQBluetoothServiceInfo)
 		return tmpValue
@@ -3507,32 +3528,44 @@ func (ptr *QBluetoothServiceInfo) SetDevice(device QBluetoothDeviceInfo_ITF) {
 
 func (ptr *QBluetoothServiceInfo) SetServiceAvailability(availability string) {
 	if ptr.Pointer() != nil {
-		var availabilityC = C.CString(availability)
-		defer C.free(unsafe.Pointer(availabilityC))
+		var availabilityC *C.char
+		if availability != "" {
+			availabilityC = C.CString(availability)
+			defer C.free(unsafe.Pointer(availabilityC))
+		}
 		C.QBluetoothServiceInfo_SetServiceAvailability(ptr.Pointer(), availabilityC)
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) SetServiceDescription(description string) {
 	if ptr.Pointer() != nil {
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
 		C.QBluetoothServiceInfo_SetServiceDescription(ptr.Pointer(), descriptionC)
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) SetServiceName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QBluetoothServiceInfo_SetServiceName(ptr.Pointer(), nameC)
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) SetServiceProvider(provider string) {
 	if ptr.Pointer() != nil {
-		var providerC = C.CString(provider)
-		defer C.free(unsafe.Pointer(providerC))
+		var providerC *C.char
+		if provider != "" {
+			providerC = C.CString(provider)
+			defer C.free(unsafe.Pointer(providerC))
+		}
 		C.QBluetoothServiceInfo_SetServiceProvider(ptr.Pointer(), providerC)
 	}
 }
@@ -3971,8 +4004,11 @@ func (ptr *QBluetoothSocket) DisconnectWriteData() {
 
 func (ptr *QBluetoothSocket) WriteData(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QBluetoothSocket_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -3980,8 +4016,11 @@ func (ptr *QBluetoothSocket) WriteData(data string, maxSize int64) int64 {
 
 func (ptr *QBluetoothSocket) WriteDataDefault(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QBluetoothSocket_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -4434,8 +4473,11 @@ func callbackQBluetoothSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtB
 
 func (ptr *QBluetoothSocket) ReadLineDataDefault(data string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+		var dataC *C.char
+		if data != "" {
+			dataC = C.CString(data)
+			defer C.free(unsafe.Pointer(dataC))
+		}
 		return int64(C.QBluetoothSocket_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
@@ -6108,8 +6150,11 @@ func NewQBluetoothUuid10(uuid QBluetoothUuid_ITF) *QBluetoothUuid {
 }
 
 func NewQBluetoothUuid9(uuid string) *QBluetoothUuid {
-	var uuidC = C.CString(uuid)
-	defer C.free(unsafe.Pointer(uuidC))
+	var uuidC *C.char
+	if uuid != "" {
+		uuidC = C.CString(uuid)
+		defer C.free(unsafe.Pointer(uuidC))
+	}
 	var tmpValue = NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid9(uuidC))
 	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
 	return tmpValue
@@ -6275,8 +6320,11 @@ func (ptr *QLowEnergyAdvertisingData) SetIncludePowerLevel(doInclude bool) {
 
 func (ptr *QLowEnergyAdvertisingData) SetLocalName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QLowEnergyAdvertisingData_SetLocalName(ptr.Pointer(), nameC)
 	}
 }

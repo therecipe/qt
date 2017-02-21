@@ -93,8 +93,11 @@ func (ptr *QQuickAsyncImageProvider) DisconnectRequestImageResponse() {
 
 func (ptr *QQuickAsyncImageProvider) RequestImageResponse(id string, requestedSize core.QSize_ITF) *QQuickImageResponse {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = NewQQuickImageResponseFromPointer(C.QQuickAsyncImageProvider_RequestImageResponse(ptr.Pointer(), idC, core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -336,8 +339,11 @@ func (ptr *QQuickImageProvider) DisconnectRequestImage() {
 
 func (ptr *QQuickImageProvider) RequestImage(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImage(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
@@ -347,8 +353,11 @@ func (ptr *QQuickImageProvider) RequestImage(id string, size core.QSize_ITF, req
 
 func (ptr *QQuickImageProvider) RequestImageDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImageDefault(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
@@ -381,8 +390,11 @@ func (ptr *QQuickImageProvider) DisconnectRequestPixmap() {
 
 func (ptr *QQuickImageProvider) RequestPixmap(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmap(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
@@ -392,8 +404,11 @@ func (ptr *QQuickImageProvider) RequestPixmap(id string, size core.QSize_ITF, re
 
 func (ptr *QQuickImageProvider) RequestPixmapDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmapDefault(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
@@ -430,8 +445,11 @@ func (ptr *QQuickImageProvider) DisconnectRequestTexture() {
 
 func (ptr *QQuickImageProvider) RequestTexture(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTexture(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -443,8 +461,11 @@ func (ptr *QQuickImageProvider) RequestTexture(id string, size core.QSize_ITF, r
 
 func (ptr *QQuickImageProvider) RequestTextureDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
-		defer C.free(unsafe.Pointer(idC))
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
 		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTextureDefault(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2163,8 +2184,11 @@ func (ptr *QQuickItem) SetSmooth(vbo bool) {
 
 func (ptr *QQuickItem) SetState(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QQuickItem_SetState(ptr.Pointer(), vqsC)
 	}
 }
@@ -3405,8 +3429,11 @@ func (ptr *QQuickItemGrabResult) DestroyQQuickItemGrabResult() {
 
 func (ptr *QQuickItemGrabResult) SaveToFile(fileName string) bool {
 	if ptr.Pointer() != nil {
-		var fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
 		return C.QQuickItemGrabResult_SaveToFile(ptr.Pointer(), fileNameC) != 0
 	}
 	return false
@@ -5804,8 +5831,11 @@ func (ptr *QQuickWidget) DisconnectSceneGraphError() {
 
 func (ptr *QQuickWidget) SceneGraphError(error QQuickWindow__SceneGraphError, message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QQuickWidget_SceneGraphError(ptr.Pointer(), C.longlong(error), messageC)
 	}
 }
@@ -6770,8 +6800,11 @@ func callbackQQuickWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_
 
 func (ptr *QQuickWidget) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QQuickWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -6817,8 +6850,11 @@ func callbackQQuickWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtQuic
 
 func (ptr *QQuickWidget) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QQuickWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -7870,8 +7906,11 @@ func (ptr *QQuickWindow) DisconnectSceneGraphError() {
 
 func (ptr *QQuickWindow) SceneGraphError(error QQuickWindow__SceneGraphError, message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QQuickWindow_SceneGraphError(ptr.Pointer(), C.longlong(error), messageC)
 	}
 }
@@ -7991,14 +8030,20 @@ func (ptr *QQuickWindow) SetSceneGraphBackend(api QSGRendererInterface__Graphics
 }
 
 func QQuickWindow_SetSceneGraphBackend2(backend string) {
-	var backendC = C.CString(backend)
-	defer C.free(unsafe.Pointer(backendC))
+	var backendC *C.char
+	if backend != "" {
+		backendC = C.CString(backend)
+		defer C.free(unsafe.Pointer(backendC))
+	}
 	C.QQuickWindow_QQuickWindow_SetSceneGraphBackend2(backendC)
 }
 
 func (ptr *QQuickWindow) SetSceneGraphBackend2(backend string) {
-	var backendC = C.CString(backend)
-	defer C.free(unsafe.Pointer(backendC))
+	var backendC *C.char
+	if backend != "" {
+		backendC = C.CString(backend)
+		defer C.free(unsafe.Pointer(backendC))
+	}
 	C.QQuickWindow_QQuickWindow_SetSceneGraphBackend2(backendC)
 }
 
@@ -8699,8 +8744,11 @@ func callbackQQuickWindow_SetTitle(ptr unsafe.Pointer, vqs C.struct_QtQuick_Pack
 
 func (ptr *QQuickWindow) SetTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QQuickWindow_SetTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -11826,8 +11874,11 @@ func (ptr *QSGMaterialShader) InitializeDefault() {
 
 func (ptr *QSGMaterialShader) SetShaderSourceFile(ty gui.QOpenGLShader__ShaderTypeBit, sourceFile string) {
 	if ptr.Pointer() != nil {
-		var sourceFileC = C.CString(sourceFile)
-		defer C.free(unsafe.Pointer(sourceFileC))
+		var sourceFileC *C.char
+		if sourceFile != "" {
+			sourceFileC = C.CString(sourceFile)
+			defer C.free(unsafe.Pointer(sourceFileC))
+		}
 		C.QSGMaterialShader_SetShaderSourceFile(ptr.Pointer(), C.longlong(ty), sourceFileC)
 	}
 }
@@ -13198,8 +13249,11 @@ func (ptr *QSGRendererInterface) DisconnectGetResource2() {
 
 func (ptr *QSGRendererInterface) GetResource2(window QQuickWindow_ITF, resource string) unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		var resourceC = C.CString(resource)
-		defer C.free(unsafe.Pointer(resourceC))
+		var resourceC *C.char
+		if resource != "" {
+			resourceC = C.CString(resource)
+			defer C.free(unsafe.Pointer(resourceC))
+		}
 		return unsafe.Pointer(C.QSGRendererInterface_GetResource2(ptr.Pointer(), PointerFromQQuickWindow(window), resourceC))
 	}
 	return nil
@@ -13207,8 +13261,11 @@ func (ptr *QSGRendererInterface) GetResource2(window QQuickWindow_ITF, resource 
 
 func (ptr *QSGRendererInterface) GetResource2Default(window QQuickWindow_ITF, resource string) unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		var resourceC = C.CString(resource)
-		defer C.free(unsafe.Pointer(resourceC))
+		var resourceC *C.char
+		if resource != "" {
+			resourceC = C.CString(resource)
+			defer C.free(unsafe.Pointer(resourceC))
+		}
 		return unsafe.Pointer(C.QSGRendererInterface_GetResource2Default(ptr.Pointer(), PointerFromQQuickWindow(window), resourceC))
 	}
 	return nil

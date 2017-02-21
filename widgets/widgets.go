@@ -442,8 +442,11 @@ func (ptr *QAbstractButton) SetShortcut(key gui.QKeySequence_ITF) {
 
 func (ptr *QAbstractButton) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QAbstractButton_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -2227,16 +2230,22 @@ func (ptr *QAbstractItemView) DisconnectKeyboardSearch() {
 
 func (ptr *QAbstractItemView) KeyboardSearch(search string) {
 	if ptr.Pointer() != nil {
-		var searchC = C.CString(search)
-		defer C.free(unsafe.Pointer(searchC))
+		var searchC *C.char
+		if search != "" {
+			searchC = C.CString(search)
+			defer C.free(unsafe.Pointer(searchC))
+		}
 		C.QAbstractItemView_KeyboardSearch(ptr.Pointer(), searchC)
 	}
 }
 
 func (ptr *QAbstractItemView) KeyboardSearchDefault(search string) {
 	if ptr.Pointer() != nil {
-		var searchC = C.CString(search)
-		defer C.free(unsafe.Pointer(searchC))
+		var searchC *C.char
+		if search != "" {
+			searchC = C.CString(search)
+			defer C.free(unsafe.Pointer(searchC))
+		}
 		C.QAbstractItemView_KeyboardSearchDefault(ptr.Pointer(), searchC)
 	}
 }
@@ -4854,8 +4863,11 @@ func (ptr *QAbstractSpinBox) SetReadOnly(r bool) {
 
 func (ptr *QAbstractSpinBox) SetSpecialValueText(txt string) {
 	if ptr.Pointer() != nil {
-		var txtC = C.CString(txt)
-		defer C.free(unsafe.Pointer(txtC))
+		var txtC *C.char
+		if txt != "" {
+			txtC = C.CString(txt)
+			defer C.free(unsafe.Pointer(txtC))
+		}
 		C.QAbstractSpinBox_SetSpecialValueText(ptr.Pointer(), txtC)
 	}
 }
@@ -5043,8 +5055,11 @@ func (ptr *QAbstractSpinBox) DisconnectValidate() {
 
 func (ptr *QAbstractSpinBox) Validate(input string, pos int) gui.QValidator__State {
 	if ptr.Pointer() != nil {
-		var inputC = C.CString(input)
-		defer C.free(unsafe.Pointer(inputC))
+		var inputC *C.char
+		if input != "" {
+			inputC = C.CString(input)
+			defer C.free(unsafe.Pointer(inputC))
+		}
 		return gui.QValidator__State(C.QAbstractSpinBox_Validate(ptr.Pointer(), inputC, C.int(int32(pos))))
 	}
 	return 0
@@ -5052,8 +5067,11 @@ func (ptr *QAbstractSpinBox) Validate(input string, pos int) gui.QValidator__Sta
 
 func (ptr *QAbstractSpinBox) ValidateDefault(input string, pos int) gui.QValidator__State {
 	if ptr.Pointer() != nil {
-		var inputC = C.CString(input)
-		defer C.free(unsafe.Pointer(inputC))
+		var inputC *C.char
+		if input != "" {
+			inputC = C.CString(input)
+			defer C.free(unsafe.Pointer(inputC))
+		}
 		return gui.QValidator__State(C.QAbstractSpinBox_ValidateDefault(ptr.Pointer(), inputC, C.int(int32(pos))))
 	}
 	return 0
@@ -5177,16 +5195,22 @@ func (ptr *QAbstractSpinBox) DisconnectFixup() {
 
 func (ptr *QAbstractSpinBox) Fixup(input string) {
 	if ptr.Pointer() != nil {
-		var inputC = C.CString(input)
-		defer C.free(unsafe.Pointer(inputC))
+		var inputC *C.char
+		if input != "" {
+			inputC = C.CString(input)
+			defer C.free(unsafe.Pointer(inputC))
+		}
 		C.QAbstractSpinBox_Fixup(ptr.Pointer(), inputC)
 	}
 }
 
 func (ptr *QAbstractSpinBox) FixupDefault(input string) {
 	if ptr.Pointer() != nil {
-		var inputC = C.CString(input)
-		defer C.free(unsafe.Pointer(inputC))
+		var inputC *C.char
+		if input != "" {
+			inputC = C.CString(input)
+			defer C.free(unsafe.Pointer(inputC))
+		}
 		C.QAbstractSpinBox_FixupDefault(ptr.Pointer(), inputC)
 	}
 }
@@ -5278,8 +5302,11 @@ func (ptr *QAccessibleWidget) Interface_castDefault(t gui.QAccessible__Interface
 
 func (ptr *QAccessibleWidget) AddControllingSignal(sign string) {
 	if ptr.Pointer() != nil {
-		var signC = C.CString(sign)
-		defer C.free(unsafe.Pointer(signC))
+		var signC *C.char
+		if sign != "" {
+			signC = C.CString(sign)
+			defer C.free(unsafe.Pointer(signC))
+		}
 		C.QAccessibleWidget_AddControllingSignal(ptr.Pointer(), signC)
 	}
 }
@@ -5309,16 +5336,22 @@ func (ptr *QAccessibleWidget) DisconnectDoAction() {
 
 func (ptr *QAccessibleWidget) DoAction(actionName string) {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		C.QAccessibleWidget_DoAction(ptr.Pointer(), actionNameC)
 	}
 }
 
 func (ptr *QAccessibleWidget) DoActionDefault(actionName string) {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		C.QAccessibleWidget_DoActionDefault(ptr.Pointer(), actionNameC)
 	}
 }
@@ -5712,8 +5745,11 @@ func (ptr *QAccessibleWidget) DisconnectKeyBindingsForAction() {
 
 func (ptr *QAccessibleWidget) KeyBindingsForAction(actionName string) []string {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForAction(ptr.Pointer(), actionNameC)), "|")
 	}
 	return make([]string, 0)
@@ -5721,8 +5757,11 @@ func (ptr *QAccessibleWidget) KeyBindingsForAction(actionName string) []string {
 
 func (ptr *QAccessibleWidget) KeyBindingsForActionDefault(actionName string) []string {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForActionDefault(ptr.Pointer(), actionNameC)), "|")
 	}
 	return make([]string, 0)
@@ -5906,16 +5945,22 @@ func callbackQAccessibleWidget_SetText(ptr unsafe.Pointer, t C.longlong, text C.
 
 func (ptr *QAccessibleWidget) SetText(t gui.QAccessible__Text, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QAccessibleWidget_SetText(ptr.Pointer(), C.longlong(t), textC)
 	}
 }
 
 func (ptr *QAccessibleWidget) SetTextDefault(t gui.QAccessible__Text, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QAccessibleWidget_SetTextDefault(ptr.Pointer(), C.longlong(t), textC)
 	}
 }
@@ -5985,8 +6030,11 @@ func callbackQAccessibleWidget_LocalizedActionDescription(ptr unsafe.Pointer, ac
 
 func (ptr *QAccessibleWidget) LocalizedActionDescription(actionName string) string {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionDescription(ptr.Pointer(), actionNameC))
 	}
 	return ""
@@ -5994,8 +6042,11 @@ func (ptr *QAccessibleWidget) LocalizedActionDescription(actionName string) stri
 
 func (ptr *QAccessibleWidget) LocalizedActionDescriptionDefault(actionName string) string {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionDescriptionDefault(ptr.Pointer(), actionNameC))
 	}
 	return ""
@@ -6012,8 +6063,11 @@ func callbackQAccessibleWidget_LocalizedActionName(ptr unsafe.Pointer, actionNam
 
 func (ptr *QAccessibleWidget) LocalizedActionName(actionName string) string {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionName(ptr.Pointer(), actionNameC))
 	}
 	return ""
@@ -6021,8 +6075,11 @@ func (ptr *QAccessibleWidget) LocalizedActionName(actionName string) string {
 
 func (ptr *QAccessibleWidget) LocalizedActionNameDefault(actionName string) string {
 	if ptr.Pointer() != nil {
-		var actionNameC = C.CString(actionName)
-		defer C.free(unsafe.Pointer(actionNameC))
+		var actionNameC *C.char
+		if actionName != "" {
+			actionNameC = C.CString(actionName)
+			defer C.free(unsafe.Pointer(actionNameC))
+		}
 		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionNameDefault(ptr.Pointer(), actionNameC))
 	}
 	return ""
@@ -6109,8 +6166,11 @@ func NewQAction(parent core.QObject_ITF) *QAction {
 }
 
 func NewQAction3(icon gui.QIcon_ITF, text string, parent core.QObject_ITF) *QAction {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQActionFromPointer(C.QAction_NewQAction3(gui.PointerFromQIcon(icon), textC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -6119,8 +6179,11 @@ func NewQAction3(icon gui.QIcon_ITF, text string, parent core.QObject_ITF) *QAct
 }
 
 func NewQAction2(text string, parent core.QObject_ITF) *QAction {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQActionFromPointer(C.QAction_NewQAction2(textC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -6391,8 +6454,11 @@ func (ptr *QAction) SetIcon(icon gui.QIcon_ITF) {
 
 func (ptr *QAction) SetIconText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QAction_SetIconText(ptr.Pointer(), textC)
 	}
 }
@@ -6459,24 +6525,33 @@ func (ptr *QAction) SetShortcuts(shortcuts []*gui.QKeySequence) {
 
 func (ptr *QAction) SetStatusTip(statusTip string) {
 	if ptr.Pointer() != nil {
-		var statusTipC = C.CString(statusTip)
-		defer C.free(unsafe.Pointer(statusTipC))
+		var statusTipC *C.char
+		if statusTip != "" {
+			statusTipC = C.CString(statusTip)
+			defer C.free(unsafe.Pointer(statusTipC))
+		}
 		C.QAction_SetStatusTip(ptr.Pointer(), statusTipC)
 	}
 }
 
 func (ptr *QAction) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QAction_SetText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QAction) SetToolTip(tip string) {
 	if ptr.Pointer() != nil {
-		var tipC = C.CString(tip)
-		defer C.free(unsafe.Pointer(tipC))
+		var tipC *C.char
+		if tip != "" {
+			tipC = C.CString(tip)
+			defer C.free(unsafe.Pointer(tipC))
+		}
 		C.QAction_SetToolTip(ptr.Pointer(), tipC)
 	}
 }
@@ -6518,8 +6593,11 @@ func (ptr *QAction) SetVisibleDefault(vbo bool) {
 
 func (ptr *QAction) SetWhatsThis(what string) {
 	if ptr.Pointer() != nil {
-		var whatC = C.CString(what)
-		defer C.free(unsafe.Pointer(whatC))
+		var whatC *C.char
+		if what != "" {
+			whatC = C.CString(what)
+			defer C.free(unsafe.Pointer(whatC))
+		}
 		C.QAction_SetWhatsThis(ptr.Pointer(), whatC)
 	}
 }
@@ -7245,8 +7323,11 @@ func (ptr *QActionGroup) AddAction(action QAction_ITF) *QAction {
 
 func (ptr *QActionGroup) AddAction3(icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QActionGroup_AddAction3(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -7258,8 +7339,11 @@ func (ptr *QActionGroup) AddAction3(icon gui.QIcon_ITF, text string) *QAction {
 
 func (ptr *QActionGroup) AddAction2(text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QActionGroup_AddAction2(ptr.Pointer(), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -7901,16 +7985,22 @@ func (ptr *QApplication) Font2(widget QWidget_ITF) *gui.QFont {
 }
 
 func QApplication_Font3(className string) *gui.QFont {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	var tmpValue = gui.NewQFontFromPointer(C.QApplication_QApplication_Font3(classNameC))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
 func (ptr *QApplication) Font3(className string) *gui.QFont {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	var tmpValue = gui.NewQFontFromPointer(C.QApplication_QApplication_Font3(classNameC))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
@@ -7953,16 +8043,22 @@ func (ptr *QApplication) Palette(widget QWidget_ITF) *gui.QPalette {
 }
 
 func QApplication_Palette2(className string) *gui.QPalette {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	var tmpValue = gui.NewQPaletteFromPointer(C.QApplication_QApplication_Palette2(classNameC))
 	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
 }
 
 func (ptr *QApplication) Palette2(className string) *gui.QPalette {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	var tmpValue = gui.NewQPaletteFromPointer(C.QApplication_QApplication_Palette2(classNameC))
 	runtime.SetFinalizer(tmpValue, (*gui.QPalette).DestroyQPalette)
 	return tmpValue
@@ -7981,8 +8077,11 @@ func (ptr *QApplication) GlobalStrut() *core.QSize {
 }
 
 func QApplication_SetStyle2(style string) *QStyle {
-	var styleC = C.CString(style)
-	defer C.free(unsafe.Pointer(styleC))
+	var styleC *C.char
+	if style != "" {
+		styleC = C.CString(style)
+		defer C.free(unsafe.Pointer(styleC))
+	}
 	var tmpValue = NewQStyleFromPointer(C.QApplication_QApplication_SetStyle2(styleC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -7991,8 +8090,11 @@ func QApplication_SetStyle2(style string) *QStyle {
 }
 
 func (ptr *QApplication) SetStyle2(style string) *QStyle {
-	var styleC = C.CString(style)
-	defer C.free(unsafe.Pointer(styleC))
+	var styleC *C.char
+	if style != "" {
+		styleC = C.CString(style)
+		defer C.free(unsafe.Pointer(styleC))
+	}
 	var tmpValue = NewQStyleFromPointer(C.QApplication_QApplication_SetStyle2(styleC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -8454,14 +8556,20 @@ func (ptr *QApplication) SetEffectEnabled(effect core.Qt__UIEffect, enable bool)
 }
 
 func QApplication_SetFont(font gui.QFont_ITF, className string) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	C.QApplication_QApplication_SetFont(gui.PointerFromQFont(font), classNameC)
 }
 
 func (ptr *QApplication) SetFont(font gui.QFont_ITF, className string) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	C.QApplication_QApplication_SetFont(gui.PointerFromQFont(font), classNameC)
 }
 
@@ -8490,14 +8598,20 @@ func (ptr *QApplication) SetNavigationMode(mode core.Qt__NavigationMode) {
 }
 
 func QApplication_SetPalette(palette gui.QPalette_ITF, className string) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	C.QApplication_QApplication_SetPalette(gui.PointerFromQPalette(palette), classNameC)
 }
 
 func (ptr *QApplication) SetPalette(palette gui.QPalette_ITF, className string) {
-	var classNameC = C.CString(className)
-	defer C.free(unsafe.Pointer(classNameC))
+	var classNameC *C.char
+	if className != "" {
+		classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+	}
 	C.QApplication_QApplication_SetPalette(gui.PointerFromQPalette(palette), classNameC)
 }
 
@@ -8550,16 +8664,22 @@ func (ptr *QApplication) DisconnectSetStyleSheet() {
 
 func (ptr *QApplication) SetStyleSheet(sheet string) {
 	if ptr.Pointer() != nil {
-		var sheetC = C.CString(sheet)
-		defer C.free(unsafe.Pointer(sheetC))
+		var sheetC *C.char
+		if sheet != "" {
+			sheetC = C.CString(sheet)
+			defer C.free(unsafe.Pointer(sheetC))
+		}
 		C.QApplication_SetStyleSheet(ptr.Pointer(), sheetC)
 	}
 }
 
 func (ptr *QApplication) SetStyleSheetDefault(sheet string) {
 	if ptr.Pointer() != nil {
-		var sheetC = C.CString(sheet)
-		defer C.free(unsafe.Pointer(sheetC))
+		var sheetC *C.char
+		if sheet != "" {
+			sheetC = C.CString(sheet)
+			defer C.free(unsafe.Pointer(sheetC))
+		}
 		C.QApplication_SetStyleSheetDefault(ptr.Pointer(), sheetC)
 	}
 }
@@ -11030,8 +11150,11 @@ func NewQCheckBox(parent QWidget_ITF) *QCheckBox {
 }
 
 func NewQCheckBox2(text string, parent QWidget_ITF) *QCheckBox {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQCheckBoxFromPointer(C.QCheckBox_NewQCheckBox2(textC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -11204,16 +11327,22 @@ func (ptr *QColorDialog) CustomColor(index int) *gui.QColor {
 }
 
 func QColorDialog_GetColor(initial gui.QColor_ITF, parent QWidget_ITF, title string, options QColorDialog__ColorDialogOption) *gui.QColor {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), titleC, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
 
 func (ptr *QColorDialog) GetColor(initial gui.QColor_ITF, parent QWidget_ITF, title string, options QColorDialog__ColorDialogOption) *gui.QColor {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), titleC, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
@@ -11348,8 +11477,11 @@ func (ptr *QColorDialog) DoneDefault(result int) {
 
 func (ptr *QColorDialog) Open(receiver core.QObject_ITF, member string) {
 	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		C.QColorDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
 	}
 }
@@ -12374,8 +12506,11 @@ func (ptr *QComboBox) DisconnectActivated2() {
 
 func (ptr *QComboBox) Activated2(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_Activated2(ptr.Pointer(), textC)
 	}
 }
@@ -12410,16 +12545,22 @@ func (ptr *QComboBox) Activated(index int) {
 
 func (ptr *QComboBox) AddItem2(icon gui.QIcon_ITF, text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_AddItem2(ptr.Pointer(), gui.PointerFromQIcon(icon), textC, core.PointerFromQVariant(userData))
 	}
 }
 
 func (ptr *QComboBox) AddItem(text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_AddItem(ptr.Pointer(), textC, core.PointerFromQVariant(userData))
 	}
 }
@@ -12526,8 +12667,11 @@ func (ptr *QComboBox) DisconnectCurrentIndexChanged2() {
 
 func (ptr *QComboBox) CurrentIndexChanged2(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_CurrentIndexChanged2(ptr.Pointer(), textC)
 	}
 }
@@ -12584,8 +12728,11 @@ func (ptr *QComboBox) DisconnectCurrentTextChanged() {
 
 func (ptr *QComboBox) CurrentTextChanged(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_CurrentTextChanged(ptr.Pointer(), textC)
 	}
 }
@@ -12614,8 +12761,11 @@ func (ptr *QComboBox) DisconnectEditTextChanged() {
 
 func (ptr *QComboBox) EditTextChanged(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_EditTextChanged(ptr.Pointer(), textC)
 	}
 }
@@ -12679,8 +12829,11 @@ func (ptr *QComboBox) DisconnectHighlighted2() {
 
 func (ptr *QComboBox) Highlighted2(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_Highlighted2(ptr.Pointer(), textC)
 	}
 }
@@ -12715,16 +12868,22 @@ func (ptr *QComboBox) Highlighted(index int) {
 
 func (ptr *QComboBox) InsertItem2(index int, icon gui.QIcon_ITF, text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_InsertItem2(ptr.Pointer(), C.int(int32(index)), gui.PointerFromQIcon(icon), textC, core.PointerFromQVariant(userData))
 	}
 }
 
 func (ptr *QComboBox) InsertItem(index int, text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_InsertItem(ptr.Pointer(), C.int(int32(index)), textC, core.PointerFromQVariant(userData))
 	}
 }
@@ -12815,16 +12974,22 @@ func (ptr *QComboBox) DisconnectSetCurrentText() {
 
 func (ptr *QComboBox) SetCurrentText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_SetCurrentText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QComboBox) SetCurrentTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_SetCurrentTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -12860,16 +13025,22 @@ func (ptr *QComboBox) DisconnectSetEditText() {
 
 func (ptr *QComboBox) SetEditText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_SetEditText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QComboBox) SetEditTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_SetEditTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -12918,8 +13089,11 @@ func (ptr *QComboBox) SetItemIcon(index int, icon gui.QIcon_ITF) {
 
 func (ptr *QComboBox) SetItemText(index int, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QComboBox_SetItemText(ptr.Pointer(), C.int(int32(index)), textC)
 	}
 }
@@ -13210,8 +13384,11 @@ func (ptr *QComboBox) FindData(data core.QVariant_ITF, role int, flags core.Qt__
 
 func (ptr *QComboBox) FindText(text string, flags core.Qt__MatchFlag) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QComboBox_FindText(ptr.Pointer(), textC, C.longlong(flags))))
 	}
 	return 0
@@ -13298,8 +13475,11 @@ func NewQCommandLinkButton(parent QWidget_ITF) *QCommandLinkButton {
 }
 
 func NewQCommandLinkButton2(text string, parent QWidget_ITF) *QCommandLinkButton {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton2(textC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -13308,10 +13488,16 @@ func NewQCommandLinkButton2(text string, parent QWidget_ITF) *QCommandLinkButton
 }
 
 func NewQCommandLinkButton3(text string, description string, parent QWidget_ITF) *QCommandLinkButton {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
-	var descriptionC = C.CString(description)
-	defer C.free(unsafe.Pointer(descriptionC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
+	var descriptionC *C.char
+	if description != "" {
+		descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+	}
 	var tmpValue = NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton3(textC, descriptionC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -13321,8 +13507,11 @@ func NewQCommandLinkButton3(text string, description string, parent QWidget_ITF)
 
 func (ptr *QCommandLinkButton) SetDescription(description string) {
 	if ptr.Pointer() != nil {
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
 		C.QCommandLinkButton_SetDescription(ptr.Pointer(), descriptionC)
 	}
 }
@@ -14057,8 +14246,11 @@ func (ptr *QCompleter) DisconnectActivated() {
 
 func (ptr *QCompleter) Activated(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QCompleter_Activated(ptr.Pointer(), textC)
 	}
 }
@@ -14150,8 +14342,11 @@ func (ptr *QCompleter) DisconnectHighlighted() {
 
 func (ptr *QCompleter) Highlighted(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QCompleter_Highlighted(ptr.Pointer(), textC)
 	}
 }
@@ -14199,16 +14394,22 @@ func (ptr *QCompleter) DisconnectSetCompletionPrefix() {
 
 func (ptr *QCompleter) SetCompletionPrefix(prefix string) {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		C.QCompleter_SetCompletionPrefix(ptr.Pointer(), prefixC)
 	}
 }
 
 func (ptr *QCompleter) SetCompletionPrefixDefault(prefix string) {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		C.QCompleter_SetCompletionPrefixDefault(ptr.Pointer(), prefixC)
 	}
 }
@@ -14430,8 +14631,11 @@ func (ptr *QCompleter) DisconnectSplitPath() {
 
 func (ptr *QCompleter) SplitPath(path string) []string {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		return strings.Split(cGoUnpackString(C.QCompleter_SplitPath(ptr.Pointer(), pathC)), "|")
 	}
 	return make([]string, 0)
@@ -14439,8 +14643,11 @@ func (ptr *QCompleter) SplitPath(path string) []string {
 
 func (ptr *QCompleter) SplitPathDefault(path string) []string {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		return strings.Split(cGoUnpackString(C.QCompleter_SplitPathDefault(ptr.Pointer(), pathC)), "|")
 	}
 	return make([]string, 0)
@@ -15892,8 +16099,11 @@ func (ptr *QDateTimeEdit) SetDateTimeRange(min core.QDateTime_ITF, max core.QDat
 
 func (ptr *QDateTimeEdit) SetDisplayFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QDateTimeEdit_SetDisplayFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -16095,8 +16305,11 @@ func (ptr *QDateTimeEdit) DisconnectDateTimeFromText() {
 
 func (ptr *QDateTimeEdit) DateTimeFromText(text string) *core.QDateTime {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromText(ptr.Pointer(), textC))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
@@ -16106,8 +16319,11 @@ func (ptr *QDateTimeEdit) DateTimeFromText(text string) *core.QDateTime {
 
 func (ptr *QDateTimeEdit) DateTimeFromTextDefault(text string) *core.QDateTime {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromTextDefault(ptr.Pointer(), textC))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
@@ -17250,8 +17466,11 @@ func (ptr *QDialogButtonBox) AddButton3(button QDialogButtonBox__StandardButton)
 
 func (ptr *QDialogButtonBox) AddButton2(text string, role QDialogButtonBox__ButtonRole) *QPushButton {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQPushButtonFromPointer(C.QDialogButtonBox_AddButton2(ptr.Pointer(), textC, C.longlong(role)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -17560,8 +17779,11 @@ func NewQDockWidget2(parent QWidget_ITF, flags core.Qt__WindowType) *QDockWidget
 }
 
 func NewQDockWidget(title string, parent QWidget_ITF, flags core.Qt__WindowType) *QDockWidget {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = NewQDockWidgetFromPointer(C.QDockWidget_NewQDockWidget(titleC, PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -17846,8 +18068,11 @@ func (ptr *QDoubleSpinBox) SetMinimum(min float64) {
 
 func (ptr *QDoubleSpinBox) SetPrefix(prefix string) {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		C.QDoubleSpinBox_SetPrefix(ptr.Pointer(), prefixC)
 	}
 }
@@ -17866,8 +18091,11 @@ func (ptr *QDoubleSpinBox) SetSingleStep(val float64) {
 
 func (ptr *QDoubleSpinBox) SetSuffix(suffix string) {
 	if ptr.Pointer() != nil {
-		var suffixC = C.CString(suffix)
-		defer C.free(unsafe.Pointer(suffixC))
+		var suffixC *C.char
+		if suffix != "" {
+			suffixC = C.CString(suffix)
+			defer C.free(unsafe.Pointer(suffixC))
+		}
 		C.QDoubleSpinBox_SetSuffix(ptr.Pointer(), suffixC)
 	}
 }
@@ -17931,8 +18159,11 @@ func (ptr *QDoubleSpinBox) DisconnectValueChanged2() {
 
 func (ptr *QDoubleSpinBox) ValueChanged2(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QDoubleSpinBox_ValueChanged2(ptr.Pointer(), textC)
 	}
 }
@@ -18084,8 +18315,11 @@ func (ptr *QDoubleSpinBox) DisconnectValueFromText() {
 
 func (ptr *QDoubleSpinBox) ValueFromText(text string) float64 {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return float64(C.QDoubleSpinBox_ValueFromText(ptr.Pointer(), textC))
 	}
 	return 0
@@ -18093,8 +18327,11 @@ func (ptr *QDoubleSpinBox) ValueFromText(text string) float64 {
 
 func (ptr *QDoubleSpinBox) ValueFromTextDefault(text string) float64 {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return float64(C.QDoubleSpinBox_ValueFromTextDefault(ptr.Pointer(), textC))
 	}
 	return 0
@@ -18229,16 +18466,22 @@ func (ptr *QErrorMessage) DisconnectShowMessage() {
 
 func (ptr *QErrorMessage) ShowMessage(message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QErrorMessage_ShowMessage(ptr.Pointer(), messageC)
 	}
 }
 
 func (ptr *QErrorMessage) ShowMessageDefault(message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QErrorMessage_ShowMessageDefault(ptr.Pointer(), messageC)
 	}
 }
@@ -18268,20 +18511,32 @@ func (ptr *QErrorMessage) DisconnectShowMessage2() {
 
 func (ptr *QErrorMessage) ShowMessage2(message string, ty string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
-		var tyC = C.CString(ty)
-		defer C.free(unsafe.Pointer(tyC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		var tyC *C.char
+		if ty != "" {
+			tyC = C.CString(ty)
+			defer C.free(unsafe.Pointer(tyC))
+		}
 		C.QErrorMessage_ShowMessage2(ptr.Pointer(), messageC, tyC)
 	}
 }
 
 func (ptr *QErrorMessage) ShowMessage2Default(message string, ty string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
-		var tyC = C.CString(ty)
-		defer C.free(unsafe.Pointer(tyC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		var tyC *C.char
+		if ty != "" {
+			tyC = C.CString(ty)
+			defer C.free(unsafe.Pointer(tyC))
+		}
 		C.QErrorMessage_ShowMessage2Default(ptr.Pointer(), messageC, tyC)
 	}
 }
@@ -18399,12 +18654,21 @@ func NewQFileDialog(parent QWidget_ITF, flags core.Qt__WindowType) *QFileDialog 
 }
 
 func NewQFileDialog2(parent QWidget_ITF, caption string, directory string, filter string) *QFileDialog {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var directoryC = C.CString(directory)
-	defer C.free(unsafe.Pointer(directoryC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var directoryC *C.char
+	if directory != "" {
+		directoryC = C.CString(directory)
+		defer C.free(unsafe.Pointer(directoryC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
 	var tmpValue = NewQFileDialogFromPointer(C.QFileDialog_NewQFileDialog2(PointerFromQWidget(parent), captionC, directoryC, filterC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -18413,12 +18677,21 @@ func NewQFileDialog2(parent QWidget_ITF, caption string, directory string, filte
 }
 
 func QFileDialog_GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) []*core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
@@ -18431,12 +18704,21 @@ func QFileDialog_GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QU
 }
 
 func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) []*core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
@@ -18449,96 +18731,183 @@ func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir 
 }
 
 func QFileDialog_GetExistingDirectory(parent QWidget_ITF, caption string, dir string, options QFileDialog__Option) string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
 	return cGoUnpackString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), captionC, dirC, C.longlong(options)))
 }
 
 func (ptr *QFileDialog) GetExistingDirectory(parent QWidget_ITF, caption string, dir string, options QFileDialog__Option) string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
 	return cGoUnpackString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), captionC, dirC, C.longlong(options)))
 }
 
 func QFileDialog_GetOpenFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	return cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileName(PointerFromQWidget(parent), captionC, dirC, filterC, selectedFilterC, C.longlong(options)))
 }
 
 func (ptr *QFileDialog) GetOpenFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	return cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileName(PointerFromQWidget(parent), captionC, dirC, filterC, selectedFilterC, C.longlong(options)))
 }
 
 func QFileDialog_GetSaveFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	return cGoUnpackString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), captionC, dirC, filterC, selectedFilterC, C.longlong(options)))
 }
 
 func (ptr *QFileDialog) GetSaveFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	return cGoUnpackString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), captionC, dirC, filterC, selectedFilterC, C.longlong(options)))
 }
 
 func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), captionC, dirC, filterC, selectedFilterC, C.longlong(options))), "|")
 }
 
 func (ptr *QFileDialog) GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var dirC = C.CString(dir)
-	defer C.free(unsafe.Pointer(dirC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var dirC *C.char
+	if dir != "" {
+		dirC = C.CString(dir)
+		defer C.free(unsafe.Pointer(dirC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), captionC, dirC, filterC, selectedFilterC, C.longlong(options))), "|")
 }
 
 func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), captionC, core.PointerFromQUrl(dir), C.longlong(options), supportedSchemesC))
@@ -18547,8 +18916,11 @@ func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir
 }
 
 func (ptr *QFileDialog) GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), captionC, core.PointerFromQUrl(dir), C.longlong(options), supportedSchemesC))
@@ -18557,12 +18929,21 @@ func (ptr *QFileDialog) GetExistingDirectoryUrl(parent QWidget_ITF, caption stri
 }
 
 func QFileDialog_GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), captionC, core.PointerFromQUrl(dir), filterC, selectedFilterC, C.longlong(options), supportedSchemesC))
@@ -18571,12 +18952,21 @@ func QFileDialog_GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 }
 
 func (ptr *QFileDialog) GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), captionC, core.PointerFromQUrl(dir), filterC, selectedFilterC, C.longlong(options), supportedSchemesC))
@@ -18585,12 +18975,21 @@ func (ptr *QFileDialog) GetOpenFileUrl(parent QWidget_ITF, caption string, dir c
 }
 
 func QFileDialog_GetSaveFileUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), captionC, core.PointerFromQUrl(dir), filterC, selectedFilterC, C.longlong(options), supportedSchemesC))
@@ -18599,12 +18998,21 @@ func QFileDialog_GetSaveFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 }
 
 func (ptr *QFileDialog) GetSaveFileUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
-	var captionC = C.CString(caption)
-	defer C.free(unsafe.Pointer(captionC))
-	var filterC = C.CString(filter)
-	defer C.free(unsafe.Pointer(filterC))
-	var selectedFilterC = C.CString(selectedFilter)
-	defer C.free(unsafe.Pointer(selectedFilterC))
+	var captionC *C.char
+	if caption != "" {
+		captionC = C.CString(caption)
+		defer C.free(unsafe.Pointer(captionC))
+	}
+	var filterC *C.char
+	if filter != "" {
+		filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+	}
+	var selectedFilterC *C.char
+	if selectedFilter != "" {
+		selectedFilterC = C.CString(selectedFilter)
+		defer C.free(unsafe.Pointer(selectedFilterC))
+	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), captionC, core.PointerFromQUrl(dir), filterC, selectedFilterC, C.longlong(options), supportedSchemesC))
@@ -18678,8 +19086,11 @@ func (ptr *QFileDialog) DisconnectCurrentChanged() {
 
 func (ptr *QFileDialog) CurrentChanged(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QFileDialog_CurrentChanged(ptr.Pointer(), pathC)
 	}
 }
@@ -18736,8 +19147,11 @@ func (ptr *QFileDialog) DisconnectDirectoryEntered() {
 
 func (ptr *QFileDialog) DirectoryEntered(directory string) {
 	if ptr.Pointer() != nil {
-		var directoryC = C.CString(directory)
-		defer C.free(unsafe.Pointer(directoryC))
+		var directoryC *C.char
+		if directory != "" {
+			directoryC = C.CString(directory)
+			defer C.free(unsafe.Pointer(directoryC))
+		}
 		C.QFileDialog_DirectoryEntered(ptr.Pointer(), directoryC)
 	}
 }
@@ -18829,8 +19243,11 @@ func (ptr *QFileDialog) DisconnectFileSelected() {
 
 func (ptr *QFileDialog) FileSelected(file string) {
 	if ptr.Pointer() != nil {
-		var fileC = C.CString(file)
-		defer C.free(unsafe.Pointer(fileC))
+		var fileC *C.char
+		if file != "" {
+			fileC = C.CString(file)
+			defer C.free(unsafe.Pointer(fileC))
+		}
 		C.QFileDialog_FileSelected(ptr.Pointer(), fileC)
 	}
 }
@@ -18889,40 +19306,55 @@ func (ptr *QFileDialog) DisconnectFilterSelected() {
 
 func (ptr *QFileDialog) FilterSelected(filter string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
 		C.QFileDialog_FilterSelected(ptr.Pointer(), filterC)
 	}
 }
 
 func (ptr *QFileDialog) Open(receiver core.QObject_ITF, member string) {
 	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		C.QFileDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
 	}
 }
 
 func (ptr *QFileDialog) SelectFile(filename string) {
 	if ptr.Pointer() != nil {
-		var filenameC = C.CString(filename)
-		defer C.free(unsafe.Pointer(filenameC))
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
 		C.QFileDialog_SelectFile(ptr.Pointer(), filenameC)
 	}
 }
 
 func (ptr *QFileDialog) SelectMimeTypeFilter(filter string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
 		C.QFileDialog_SelectMimeTypeFilter(ptr.Pointer(), filterC)
 	}
 }
 
 func (ptr *QFileDialog) SelectNameFilter(filter string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
 		C.QFileDialog_SelectNameFilter(ptr.Pointer(), filterC)
 	}
 }
@@ -18947,8 +19379,11 @@ func (ptr *QFileDialog) SetConfirmOverwrite(enabled bool) {
 
 func (ptr *QFileDialog) SetDefaultSuffix(suffix string) {
 	if ptr.Pointer() != nil {
-		var suffixC = C.CString(suffix)
-		defer C.free(unsafe.Pointer(suffixC))
+		var suffixC *C.char
+		if suffix != "" {
+			suffixC = C.CString(suffix)
+			defer C.free(unsafe.Pointer(suffixC))
+		}
 		C.QFileDialog_SetDefaultSuffix(ptr.Pointer(), suffixC)
 	}
 }
@@ -18961,8 +19396,11 @@ func (ptr *QFileDialog) SetDirectory2(directory core.QDir_ITF) {
 
 func (ptr *QFileDialog) SetDirectory(directory string) {
 	if ptr.Pointer() != nil {
-		var directoryC = C.CString(directory)
-		defer C.free(unsafe.Pointer(directoryC))
+		var directoryC *C.char
+		if directory != "" {
+			directoryC = C.CString(directory)
+			defer C.free(unsafe.Pointer(directoryC))
+		}
 		C.QFileDialog_SetDirectory(ptr.Pointer(), directoryC)
 	}
 }
@@ -19007,8 +19445,11 @@ func (ptr *QFileDialog) SetItemDelegate(delegate QAbstractItemDelegate_ITF) {
 
 func (ptr *QFileDialog) SetLabelText(label QFileDialog__DialogLabel, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QFileDialog_SetLabelText(ptr.Pointer(), C.longlong(label), textC)
 	}
 }
@@ -19023,8 +19464,11 @@ func (ptr *QFileDialog) SetMimeTypeFilters(filters []string) {
 
 func (ptr *QFileDialog) SetNameFilter(filter string) {
 	if ptr.Pointer() != nil {
-		var filterC = C.CString(filter)
-		defer C.free(unsafe.Pointer(filterC))
+		var filterC *C.char
+		if filter != "" {
+			filterC = C.CString(filter)
+			defer C.free(unsafe.Pointer(filterC))
+		}
 		C.QFileDialog_SetNameFilter(ptr.Pointer(), filterC)
 	}
 }
@@ -19773,8 +20217,11 @@ func NewQFileSystemModel(parent core.QObject_ITF) *QFileSystemModel {
 
 func (ptr *QFileSystemModel) Mkdir(parent core.QModelIndex_ITF, name string) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_Mkdir(ptr.Pointer(), core.PointerFromQModelIndex(parent), nameC))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
@@ -19784,8 +20231,11 @@ func (ptr *QFileSystemModel) Mkdir(parent core.QModelIndex_ITF, name string) *co
 
 func (ptr *QFileSystemModel) SetRootPath(newPath string) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var newPathC = C.CString(newPath)
-		defer C.free(unsafe.Pointer(newPathC))
+		var newPathC *C.char
+		if newPath != "" {
+			newPathC = C.CString(newPath)
+			defer C.free(unsafe.Pointer(newPathC))
+		}
 		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_SetRootPath(ptr.Pointer(), newPathC))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
@@ -19879,8 +20329,11 @@ func (ptr *QFileSystemModel) DisconnectDirectoryLoaded() {
 
 func (ptr *QFileSystemModel) DirectoryLoaded(path string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		C.QFileSystemModel_DirectoryLoaded(ptr.Pointer(), pathC)
 	}
 }
@@ -19924,12 +20377,21 @@ func (ptr *QFileSystemModel) DisconnectFileRenamed() {
 
 func (ptr *QFileSystemModel) FileRenamed(path string, oldName string, newName string) {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
-		var oldNameC = C.CString(oldName)
-		defer C.free(unsafe.Pointer(oldNameC))
-		var newNameC = C.CString(newName)
-		defer C.free(unsafe.Pointer(newNameC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
+		var oldNameC *C.char
+		if oldName != "" {
+			oldNameC = C.CString(oldName)
+			defer C.free(unsafe.Pointer(oldNameC))
+		}
+		var newNameC *C.char
+		if newName != "" {
+			newNameC = C.CString(newName)
+			defer C.free(unsafe.Pointer(newNameC))
+		}
 		C.QFileSystemModel_FileRenamed(ptr.Pointer(), pathC, oldNameC, newNameC)
 	}
 }
@@ -19958,8 +20420,11 @@ func (ptr *QFileSystemModel) DisconnectRootPathChanged() {
 
 func (ptr *QFileSystemModel) RootPathChanged(newPath string) {
 	if ptr.Pointer() != nil {
-		var newPathC = C.CString(newPath)
-		defer C.free(unsafe.Pointer(newPathC))
+		var newPathC *C.char
+		if newPath != "" {
+			newPathC = C.CString(newPath)
+			defer C.free(unsafe.Pointer(newPathC))
+		}
 		C.QFileSystemModel_RootPathChanged(ptr.Pointer(), newPathC)
 	}
 }
@@ -20130,8 +20595,11 @@ func (ptr *QFileSystemModel) MimeDataDefault(indexes []*core.QModelIndex) *core.
 
 func (ptr *QFileSystemModel) Index2(path string, column int) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var pathC = C.CString(path)
-		defer C.free(unsafe.Pointer(pathC))
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
 		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_Index2(ptr.Pointer(), pathC, C.int(int32(column))))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
@@ -21911,8 +22379,11 @@ const (
 
 func (ptr *QFontDialog) Open(receiver core.QObject_ITF, member string) {
 	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		C.QFontDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
 	}
 }
@@ -21936,16 +22407,22 @@ func (ptr *QFontDialog) GetFont2(ok bool, parent QWidget_ITF) *gui.QFont {
 }
 
 func QFontDialog_GetFont(ok bool, initial gui.QFont_ITF, parent QWidget_ITF, title string, options QFontDialog__FontDialogOption) *gui.QFont {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), titleC, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
 func (ptr *QFontDialog) GetFont(ok bool, initial gui.QFont_ITF, parent QWidget_ITF, title string, options QFontDialog__FontDialogOption) *gui.QFont {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), titleC, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
@@ -22277,16 +22754,22 @@ func (ptr *QFormLayout) AddRow5(widget QWidget_ITF) {
 
 func (ptr *QFormLayout) AddRow4(labelText string, field QLayout_ITF) {
 	if ptr.Pointer() != nil {
-		var labelTextC = C.CString(labelText)
-		defer C.free(unsafe.Pointer(labelTextC))
+		var labelTextC *C.char
+		if labelText != "" {
+			labelTextC = C.CString(labelText)
+			defer C.free(unsafe.Pointer(labelTextC))
+		}
 		C.QFormLayout_AddRow4(ptr.Pointer(), labelTextC, PointerFromQLayout(field))
 	}
 }
 
 func (ptr *QFormLayout) AddRow3(labelText string, field QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		var labelTextC = C.CString(labelText)
-		defer C.free(unsafe.Pointer(labelTextC))
+		var labelTextC *C.char
+		if labelText != "" {
+			labelTextC = C.CString(labelText)
+			defer C.free(unsafe.Pointer(labelTextC))
+		}
 		C.QFormLayout_AddRow3(ptr.Pointer(), labelTextC, PointerFromQWidget(field))
 	}
 }
@@ -22317,16 +22800,22 @@ func (ptr *QFormLayout) InsertRow5(row int, widget QWidget_ITF) {
 
 func (ptr *QFormLayout) InsertRow4(row int, labelText string, field QLayout_ITF) {
 	if ptr.Pointer() != nil {
-		var labelTextC = C.CString(labelText)
-		defer C.free(unsafe.Pointer(labelTextC))
+		var labelTextC *C.char
+		if labelText != "" {
+			labelTextC = C.CString(labelText)
+			defer C.free(unsafe.Pointer(labelTextC))
+		}
 		C.QFormLayout_InsertRow4(ptr.Pointer(), C.int(int32(row)), labelTextC, PointerFromQLayout(field))
 	}
 }
 
 func (ptr *QFormLayout) InsertRow3(row int, labelText string, field QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		var labelTextC = C.CString(labelText)
-		defer C.free(unsafe.Pointer(labelTextC))
+		var labelTextC *C.char
+		if labelText != "" {
+			labelTextC = C.CString(labelText)
+			defer C.free(unsafe.Pointer(labelTextC))
+		}
 		C.QFormLayout_InsertRow3(ptr.Pointer(), C.int(int32(row)), labelTextC, PointerFromQWidget(field))
 	}
 }
@@ -27548,8 +28037,11 @@ func (ptr *QGraphicsItem) SetSelected(selected bool) {
 
 func (ptr *QGraphicsItem) SetToolTip(toolTip string) {
 	if ptr.Pointer() != nil {
-		var toolTipC = C.CString(toolTip)
-		defer C.free(unsafe.Pointer(toolTipC))
+		var toolTipC *C.char
+		if toolTip != "" {
+			toolTipC = C.CString(toolTip)
+			defer C.free(unsafe.Pointer(toolTipC))
+		}
 		C.QGraphicsItem_SetToolTip(ptr.Pointer(), toolTipC)
 	}
 }
@@ -33069,8 +33561,11 @@ func NewQGraphicsScene3(x float64, y float64, width float64, height float64, par
 
 func (ptr *QGraphicsScene) AddSimpleText(text string, font gui.QFont_ITF) *QGraphicsSimpleTextItem {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return NewQGraphicsSimpleTextItemFromPointer(C.QGraphicsScene_AddSimpleText(ptr.Pointer(), textC, gui.PointerFromQFont(font)))
 	}
 	return nil
@@ -33078,8 +33573,11 @@ func (ptr *QGraphicsScene) AddSimpleText(text string, font gui.QFont_ITF) *QGrap
 
 func (ptr *QGraphicsScene) AddText(text string, font gui.QFont_ITF) *QGraphicsTextItem {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQGraphicsTextItemFromPointer(C.QGraphicsScene_AddText(ptr.Pointer(), textC, gui.PointerFromQFont(font)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -35960,8 +36458,11 @@ func NewQGraphicsSimpleTextItem(parent QGraphicsItem_ITF) *QGraphicsSimpleTextIt
 }
 
 func NewQGraphicsSimpleTextItem2(text string, parent QGraphicsItem_ITF) *QGraphicsSimpleTextItem {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return NewQGraphicsSimpleTextItemFromPointer(C.QGraphicsSimpleTextItem_NewQGraphicsSimpleTextItem2(textC, PointerFromQGraphicsItem(parent)))
 }
 
@@ -36008,8 +36509,11 @@ func (ptr *QGraphicsSimpleTextItem) SetFont(font gui.QFont_ITF) {
 
 func (ptr *QGraphicsSimpleTextItem) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QGraphicsSimpleTextItem_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -36126,8 +36630,11 @@ func NewQGraphicsTextItem(parent QGraphicsItem_ITF) *QGraphicsTextItem {
 }
 
 func NewQGraphicsTextItem2(text string, parent QGraphicsItem_ITF) *QGraphicsTextItem {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQGraphicsTextItemFromPointer(C.QGraphicsTextItem_NewQGraphicsTextItem2(textC, PointerFromQGraphicsItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -36165,8 +36672,11 @@ func (ptr *QGraphicsTextItem) DisconnectLinkActivated() {
 
 func (ptr *QGraphicsTextItem) LinkActivated(link string) {
 	if ptr.Pointer() != nil {
-		var linkC = C.CString(link)
-		defer C.free(unsafe.Pointer(linkC))
+		var linkC *C.char
+		if link != "" {
+			linkC = C.CString(link)
+			defer C.free(unsafe.Pointer(linkC))
+		}
 		C.QGraphicsTextItem_LinkActivated(ptr.Pointer(), linkC)
 	}
 }
@@ -36195,8 +36705,11 @@ func (ptr *QGraphicsTextItem) DisconnectLinkHovered() {
 
 func (ptr *QGraphicsTextItem) LinkHovered(link string) {
 	if ptr.Pointer() != nil {
-		var linkC = C.CString(link)
-		defer C.free(unsafe.Pointer(linkC))
+		var linkC *C.char
+		if link != "" {
+			linkC = C.CString(link)
+			defer C.free(unsafe.Pointer(linkC))
+		}
 		C.QGraphicsTextItem_LinkHovered(ptr.Pointer(), linkC)
 	}
 }
@@ -36256,8 +36769,11 @@ func (ptr *QGraphicsTextItem) SetFont(font gui.QFont_ITF) {
 
 func (ptr *QGraphicsTextItem) SetHtml(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QGraphicsTextItem_SetHtml(ptr.Pointer(), textC)
 	}
 }
@@ -36270,8 +36786,11 @@ func (ptr *QGraphicsTextItem) SetOpenExternalLinks(open bool) {
 
 func (ptr *QGraphicsTextItem) SetPlainText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QGraphicsTextItem_SetPlainText(ptr.Pointer(), textC)
 	}
 }
@@ -38590,8 +39109,11 @@ func (ptr *QGraphicsWidget) SetWindowFrameMargins(left float64, top float64, rig
 
 func (ptr *QGraphicsWidget) SetWindowTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QGraphicsWidget_SetWindowTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -39577,8 +40099,11 @@ func NewQGroupBox(parent QWidget_ITF) *QGroupBox {
 }
 
 func NewQGroupBox2(title string, parent QWidget_ITF) *QGroupBox {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = NewQGroupBoxFromPointer(C.QGroupBox_NewQGroupBox2(titleC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -39669,8 +40194,11 @@ func (ptr *QGroupBox) SetFlat(flat bool) {
 
 func (ptr *QGroupBox) SetTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QGroupBox_SetTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -41332,94 +41860,166 @@ func NewQInputDialog(parent QWidget_ITF, flags core.Qt__WindowType) *QInputDialo
 }
 
 func QInputDialog_GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	var itemsC = C.CString(strings.Join(items, "|"))
 	defer C.free(unsafe.Pointer(itemsC))
 	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), titleC, labelC, itemsC, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	var itemsC = C.CString(strings.Join(items, "|"))
 	defer C.free(unsafe.Pointer(itemsC))
 	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), titleC, labelC, itemsC, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), titleC, labelC, textC, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), titleC, labelC, textC, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func QInputDialog_GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), titleC, labelC, C.longlong(mode), textC, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), titleC, labelC, C.longlong(mode), textC, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func QInputDialog_GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType) float64 {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), titleC, labelC, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
 }
 
 func (ptr *QInputDialog) GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType) float64 {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), titleC, labelC, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
 }
 
 func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), titleC, labelC, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
 }
 
 func (ptr *QInputDialog) GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var labelC = C.CString(label)
-	defer C.free(unsafe.Pointer(labelC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
 	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), titleC, labelC, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
 }
 
@@ -41572,16 +42172,22 @@ func (ptr *QInputDialog) IntValueSelected(value int) {
 
 func (ptr *QInputDialog) Open(receiver core.QObject_ITF, member string) {
 	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		C.QInputDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
 	}
 }
 
 func (ptr *QInputDialog) SetCancelButtonText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QInputDialog_SetCancelButtonText(ptr.Pointer(), textC)
 	}
 }
@@ -41668,16 +42274,22 @@ func (ptr *QInputDialog) SetIntValue(value int) {
 
 func (ptr *QInputDialog) SetLabelText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QInputDialog_SetLabelText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QInputDialog) SetOkButtonText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QInputDialog_SetOkButtonText(ptr.Pointer(), textC)
 	}
 }
@@ -41702,8 +42314,11 @@ func (ptr *QInputDialog) SetTextEchoMode(mode QLineEdit__EchoMode) {
 
 func (ptr *QInputDialog) SetTextValue(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QInputDialog_SetTextValue(ptr.Pointer(), textC)
 	}
 }
@@ -41732,8 +42347,11 @@ func (ptr *QInputDialog) DisconnectTextValueChanged() {
 
 func (ptr *QInputDialog) TextValueChanged(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QInputDialog_TextValueChanged(ptr.Pointer(), textC)
 	}
 }
@@ -41762,8 +42380,11 @@ func (ptr *QInputDialog) DisconnectTextValueSelected() {
 
 func (ptr *QInputDialog) TextValueSelected(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QInputDialog_TextValueSelected(ptr.Pointer(), textC)
 	}
 }
@@ -42124,16 +42745,22 @@ func (ptr *QItemDelegate) DisconnectDrawDisplay() {
 
 func (ptr *QItemDelegate) DrawDisplay(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QItemDelegate_DrawDisplay(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
 	}
 }
 
 func (ptr *QItemDelegate) DrawDisplayDefault(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QItemDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
 	}
 }
@@ -43349,16 +43976,22 @@ func (ptr *QLCDNumber) DisconnectDisplay() {
 
 func (ptr *QLCDNumber) Display(s string) {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		C.QLCDNumber_Display(ptr.Pointer(), sC)
 	}
 }
 
 func (ptr *QLCDNumber) DisplayDefault(s string) {
 	if ptr.Pointer() != nil {
-		var sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
 		C.QLCDNumber_DisplayDefault(ptr.Pointer(), sC)
 	}
 }
@@ -43765,8 +44398,11 @@ func NewQLabel(parent QWidget_ITF, f core.Qt__WindowType) *QLabel {
 }
 
 func NewQLabel2(text string, parent QWidget_ITF, f core.Qt__WindowType) *QLabel {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQLabelFromPointer(C.QLabel_NewQLabel2(textC, PointerFromQWidget(parent), C.longlong(f)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -43833,8 +44469,11 @@ func (ptr *QLabel) DisconnectLinkActivated() {
 
 func (ptr *QLabel) LinkActivated(link string) {
 	if ptr.Pointer() != nil {
-		var linkC = C.CString(link)
-		defer C.free(unsafe.Pointer(linkC))
+		var linkC *C.char
+		if link != "" {
+			linkC = C.CString(link)
+			defer C.free(unsafe.Pointer(linkC))
+		}
 		C.QLabel_LinkActivated(ptr.Pointer(), linkC)
 	}
 }
@@ -43863,8 +44502,11 @@ func (ptr *QLabel) DisconnectLinkHovered() {
 
 func (ptr *QLabel) LinkHovered(link string) {
 	if ptr.Pointer() != nil {
-		var linkC = C.CString(link)
-		defer C.free(unsafe.Pointer(linkC))
+		var linkC *C.char
+		if link != "" {
+			linkC = C.CString(link)
+			defer C.free(unsafe.Pointer(linkC))
+		}
 		C.QLabel_LinkHovered(ptr.Pointer(), linkC)
 	}
 }
@@ -44111,16 +44753,22 @@ func (ptr *QLabel) DisconnectSetText() {
 
 func (ptr *QLabel) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QLabel_SetText(ptr.Pointer(), vqsC)
 	}
 }
 
 func (ptr *QLabel) SetTextDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QLabel_SetTextDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -45996,8 +46644,11 @@ func NewQLineEdit(parent QWidget_ITF) *QLineEdit {
 }
 
 func NewQLineEdit2(contents string, parent QWidget_ITF) *QLineEdit {
-	var contentsC = C.CString(contents)
-	defer C.free(unsafe.Pointer(contentsC))
+	var contentsC *C.char
+	if contents != "" {
+		contentsC = C.CString(contents)
+		defer C.free(unsafe.Pointer(contentsC))
+	}
 	var tmpValue = NewQLineEditFromPointer(C.QLineEdit_NewQLineEdit2(contentsC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -46211,8 +46862,11 @@ func (ptr *QLineEdit) Home(mark bool) {
 
 func (ptr *QLineEdit) Insert(newText string) {
 	if ptr.Pointer() != nil {
-		var newTextC = C.CString(newText)
-		defer C.free(unsafe.Pointer(newTextC))
+		var newTextC *C.char
+		if newText != "" {
+			newTextC = C.CString(newText)
+			defer C.free(unsafe.Pointer(newTextC))
+		}
 		C.QLineEdit_Insert(ptr.Pointer(), newTextC)
 	}
 }
@@ -46428,8 +47082,11 @@ func (ptr *QLineEdit) SetFrame(vbo bool) {
 
 func (ptr *QLineEdit) SetInputMask(inputMask string) {
 	if ptr.Pointer() != nil {
-		var inputMaskC = C.CString(inputMask)
-		defer C.free(unsafe.Pointer(inputMaskC))
+		var inputMaskC *C.char
+		if inputMask != "" {
+			inputMaskC = C.CString(inputMask)
+			defer C.free(unsafe.Pointer(inputMaskC))
+		}
 		C.QLineEdit_SetInputMask(ptr.Pointer(), inputMaskC)
 	}
 }
@@ -46448,8 +47105,11 @@ func (ptr *QLineEdit) SetModified(vbo bool) {
 
 func (ptr *QLineEdit) SetPlaceholderText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QLineEdit_SetPlaceholderText(ptr.Pointer(), vqsC)
 	}
 }
@@ -46491,16 +47151,22 @@ func (ptr *QLineEdit) DisconnectSetText() {
 
 func (ptr *QLineEdit) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QLineEdit_SetText(ptr.Pointer(), vqsC)
 	}
 }
 
 func (ptr *QLineEdit) SetTextDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QLineEdit_SetTextDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -46547,8 +47213,11 @@ func (ptr *QLineEdit) DisconnectTextChanged() {
 
 func (ptr *QLineEdit) TextChanged(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QLineEdit_TextChanged(ptr.Pointer(), textC)
 	}
 }
@@ -46577,8 +47246,11 @@ func (ptr *QLineEdit) DisconnectTextEdited() {
 
 func (ptr *QLineEdit) TextEdited(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QLineEdit_TextEdited(ptr.Pointer(), textC)
 	}
 }
@@ -47855,8 +48527,11 @@ func (ptr *QListWidget) AddItem2(item QListWidgetItem_ITF) {
 
 func (ptr *QListWidget) AddItem(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QListWidget_AddItem(ptr.Pointer(), labelC)
 	}
 }
@@ -47990,8 +48665,11 @@ func (ptr *QListWidget) DisconnectCurrentTextChanged() {
 
 func (ptr *QListWidget) CurrentTextChanged(currentText string) {
 	if ptr.Pointer() != nil {
-		var currentTextC = C.CString(currentText)
-		defer C.free(unsafe.Pointer(currentTextC))
+		var currentTextC *C.char
+		if currentText != "" {
+			currentTextC = C.CString(currentText)
+			defer C.free(unsafe.Pointer(currentTextC))
+		}
 		C.QListWidget_CurrentTextChanged(ptr.Pointer(), currentTextC)
 	}
 }
@@ -48010,8 +48688,11 @@ func (ptr *QListWidget) InsertItem(row int, item QListWidgetItem_ITF) {
 
 func (ptr *QListWidget) InsertItem2(row int, label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QListWidget_InsertItem2(ptr.Pointer(), C.int(int32(row)), labelC)
 	}
 }
@@ -48319,8 +49000,11 @@ func (ptr *QListWidget) DestroyQListWidget() {
 
 func (ptr *QListWidget) FindItems(text string, flags core.Qt__MatchFlag) []*QListWidgetItem {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return func(l C.struct_QtWidgets_PackedList) []*QListWidgetItem {
 			var out = make([]*QListWidgetItem, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -48713,14 +49397,20 @@ func NewQListWidgetItem(parent QListWidget_ITF, ty int) *QListWidgetItem {
 }
 
 func NewQListWidgetItem3(icon gui.QIcon_ITF, text string, parent QListWidget_ITF, ty int) *QListWidgetItem {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem3(gui.PointerFromQIcon(icon), textC, PointerFromQListWidget(parent), C.int(int32(ty))))
 }
 
 func NewQListWidgetItem2(text string, parent QListWidget_ITF, ty int) *QListWidgetItem {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem2(textC, PointerFromQListWidget(parent), C.int(int32(ty))))
 }
 
@@ -48854,16 +49544,22 @@ func (ptr *QListWidgetItem) SetSizeHint(size core.QSize_ITF) {
 
 func (ptr *QListWidgetItem) SetStatusTip(statusTip string) {
 	if ptr.Pointer() != nil {
-		var statusTipC = C.CString(statusTip)
-		defer C.free(unsafe.Pointer(statusTipC))
+		var statusTipC *C.char
+		if statusTip != "" {
+			statusTipC = C.CString(statusTip)
+			defer C.free(unsafe.Pointer(statusTipC))
+		}
 		C.QListWidgetItem_SetStatusTip(ptr.Pointer(), statusTipC)
 	}
 }
 
 func (ptr *QListWidgetItem) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QListWidgetItem_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -48876,16 +49572,22 @@ func (ptr *QListWidgetItem) SetTextAlignment(alignment int) {
 
 func (ptr *QListWidgetItem) SetToolTip(toolTip string) {
 	if ptr.Pointer() != nil {
-		var toolTipC = C.CString(toolTip)
-		defer C.free(unsafe.Pointer(toolTipC))
+		var toolTipC *C.char
+		if toolTip != "" {
+			toolTipC = C.CString(toolTip)
+			defer C.free(unsafe.Pointer(toolTipC))
+		}
 		C.QListWidgetItem_SetToolTip(ptr.Pointer(), toolTipC)
 	}
 }
 
 func (ptr *QListWidgetItem) SetWhatsThis(whatsThis string) {
 	if ptr.Pointer() != nil {
-		var whatsThisC = C.CString(whatsThis)
-		defer C.free(unsafe.Pointer(whatsThisC))
+		var whatsThisC *C.char
+		if whatsThis != "" {
+			whatsThisC = C.CString(whatsThis)
+			defer C.free(unsafe.Pointer(whatsThisC))
+		}
 		C.QListWidgetItem_SetWhatsThis(ptr.Pointer(), whatsThisC)
 	}
 }
@@ -49399,8 +50101,11 @@ func (ptr *QMainWindow) CreatePopupMenuDefault() *QMenu {
 
 func (ptr *QMainWindow) AddToolBar3(title string) *QToolBar {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		var tmpValue = NewQToolBarFromPointer(C.QMainWindow_AddToolBar3(ptr.Pointer(), titleC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -50885,8 +51590,11 @@ func NewQMenuFromPointer(ptr unsafe.Pointer) *QMenu {
 }
 func (ptr *QMenu) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -50898,10 +51606,16 @@ func (ptr *QMenu) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 
 func (ptr *QMenu) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObject_ITF, member string, shortcut gui.QKeySequence_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), textC, core.PointerFromQObject(receiver), memberC, gui.PointerFromQKeySequence(shortcut)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -50913,8 +51627,11 @@ func (ptr *QMenu) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObj
 
 func (ptr *QMenu) AddAction(text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction(ptr.Pointer(), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -50926,10 +51643,16 @@ func (ptr *QMenu) AddAction(text string) *QAction {
 
 func (ptr *QMenu) AddAction3(text string, receiver core.QObject_ITF, member string, shortcut gui.QKeySequence_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction3(ptr.Pointer(), textC, core.PointerFromQObject(receiver), memberC, gui.PointerFromQKeySequence(shortcut)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -50952,8 +51675,11 @@ func (ptr *QMenu) AddMenu(menu QMenu_ITF) *QAction {
 
 func (ptr *QMenu) AddSection2(icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_AddSection2(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -50965,8 +51691,11 @@ func (ptr *QMenu) AddSection2(icon gui.QIcon_ITF, text string) *QAction {
 
 func (ptr *QMenu) AddSection(text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_AddSection(ptr.Pointer(), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51050,8 +51779,11 @@ func (ptr *QMenu) InsertMenu(before QAction_ITF, menu QMenu_ITF) *QAction {
 
 func (ptr *QMenu) InsertSection2(before QAction_ITF, icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_InsertSection2(ptr.Pointer(), PointerFromQAction(before), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51063,8 +51795,11 @@ func (ptr *QMenu) InsertSection2(before QAction_ITF, icon gui.QIcon_ITF, text st
 
 func (ptr *QMenu) InsertSection(before QAction_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenu_InsertSection(ptr.Pointer(), PointerFromQAction(before), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51087,8 +51822,11 @@ func (ptr *QMenu) InsertSeparator(before QAction_ITF) *QAction {
 
 func (ptr *QMenu) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		var tmpValue = NewQMenuFromPointer(C.QMenu_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), titleC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51100,8 +51838,11 @@ func (ptr *QMenu) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 
 func (ptr *QMenu) AddMenu2(title string) *QMenu {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		var tmpValue = NewQMenuFromPointer(C.QMenu_AddMenu2(ptr.Pointer(), titleC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51120,8 +51861,11 @@ func NewQMenu(parent QWidget_ITF) *QMenu {
 }
 
 func NewQMenu2(title string, parent QWidget_ITF) *QMenu {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = NewQMenuFromPointer(C.QMenu_NewQMenu2(titleC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51269,8 +52013,11 @@ func (ptr *QMenu) SetTearOffEnabled(vbo bool) {
 
 func (ptr *QMenu) SetTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QMenu_SetTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -51507,8 +52254,11 @@ func NewQMenuBarFromPointer(ptr unsafe.Pointer) *QMenuBar {
 }
 func (ptr *QMenuBar) AddAction(text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenuBar_AddAction(ptr.Pointer(), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51520,10 +52270,16 @@ func (ptr *QMenuBar) AddAction(text string) *QAction {
 
 func (ptr *QMenuBar) AddAction2(text string, receiver core.QObject_ITF, member string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QMenuBar_AddAction2(ptr.Pointer(), textC, core.PointerFromQObject(receiver), memberC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51579,8 +52335,11 @@ func (ptr *QMenuBar) InsertSeparator(before QAction_ITF) *QAction {
 
 func (ptr *QMenuBar) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		var tmpValue = NewQMenuFromPointer(C.QMenuBar_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), titleC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51592,8 +52351,11 @@ func (ptr *QMenuBar) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 
 func (ptr *QMenuBar) AddMenu2(title string) *QMenu {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		var tmpValue = NewQMenuFromPointer(C.QMenuBar_AddMenu2(ptr.Pointer(), titleC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51871,10 +52633,16 @@ var (
 )
 
 func NewQMessageBox2(icon QMessageBox__Icon, title string, text string, buttons QMessageBox__StandardButton, parent QWidget_ITF, f core.Qt__WindowType) *QMessageBox {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQMessageBoxFromPointer(C.QMessageBox_NewQMessageBox2(C.longlong(icon), titleC, textC, C.longlong(buttons), PointerFromQWidget(parent), C.longlong(f)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51903,8 +52671,11 @@ func (ptr *QMessageBox) AddButton3(button QMessageBox__StandardButton) *QPushBut
 
 func (ptr *QMessageBox) AddButton2(text string, role QMessageBox__ButtonRole) *QPushButton {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQPushButtonFromPointer(C.QMessageBox_AddButton2(ptr.Pointer(), textC, C.longlong(role)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -51915,94 +52686,160 @@ func (ptr *QMessageBox) AddButton2(text string, role QMessageBox__ButtonRole) *Q
 }
 
 func QMessageBox_Critical(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Critical(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Critical(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Critical(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_Information(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Information(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Information(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Information(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_Question(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Question(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Question(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Question(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_Warning(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Warning(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Warning(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Warning(PointerFromQWidget(parent), titleC, textC, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_About(parent QWidget_ITF, title string, text string) {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QMessageBox_QMessageBox_About(PointerFromQWidget(parent), titleC, textC)
 }
 
 func (ptr *QMessageBox) About(parent QWidget_ITF, title string, text string) {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QMessageBox_QMessageBox_About(PointerFromQWidget(parent), titleC, textC)
 }
 
 func QMessageBox_AboutQt(parent QWidget_ITF, title string) {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	C.QMessageBox_QMessageBox_AboutQt(PointerFromQWidget(parent), titleC)
 }
 
 func (ptr *QMessageBox) AboutQt(parent QWidget_ITF, title string) {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	C.QMessageBox_QMessageBox_AboutQt(PointerFromQWidget(parent), titleC)
 }
 
@@ -52042,8 +52879,11 @@ func (ptr *QMessageBox) ButtonClicked(button QAbstractButton_ITF) {
 
 func (ptr *QMessageBox) Open(receiver core.QObject_ITF, member string) {
 	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		C.QMessageBox_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
 	}
 }
@@ -52074,8 +52914,11 @@ func (ptr *QMessageBox) SetDefaultButton2(button QMessageBox__StandardButton) {
 
 func (ptr *QMessageBox) SetDetailedText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QMessageBox_SetDetailedText(ptr.Pointer(), textC)
 	}
 }
@@ -52106,8 +52949,11 @@ func (ptr *QMessageBox) SetIconPixmap(pixmap gui.QPixmap_ITF) {
 
 func (ptr *QMessageBox) SetInformativeText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QMessageBox_SetInformativeText(ptr.Pointer(), textC)
 	}
 }
@@ -52120,8 +52966,11 @@ func (ptr *QMessageBox) SetStandardButtons(buttons QMessageBox__StandardButton) 
 
 func (ptr *QMessageBox) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QMessageBox_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -52198,8 +53047,11 @@ func (ptr *QMessageBox) StandardButtons() QMessageBox__StandardButton {
 
 func (ptr *QMessageBox) SetWindowTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QMessageBox_SetWindowTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -53956,8 +54808,11 @@ func NewQPlainTextEdit(parent QWidget_ITF) *QPlainTextEdit {
 }
 
 func NewQPlainTextEdit2(text string, parent QWidget_ITF) *QPlainTextEdit {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQPlainTextEditFromPointer(C.QPlainTextEdit_NewQPlainTextEdit2(textC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -53967,8 +54822,11 @@ func NewQPlainTextEdit2(text string, parent QWidget_ITF) *QPlainTextEdit {
 
 func (ptr *QPlainTextEdit) Find(exp string, options gui.QTextDocument__FindFlag) bool {
 	if ptr.Pointer() != nil {
-		var expC = C.CString(exp)
-		defer C.free(unsafe.Pointer(expC))
+		var expC *C.char
+		if exp != "" {
+			expC = C.CString(exp)
+			defer C.free(unsafe.Pointer(expC))
+		}
 		return C.QPlainTextEdit_Find(ptr.Pointer(), expC, C.longlong(options)) != 0
 	}
 	return false
@@ -53999,16 +54857,22 @@ func (ptr *QPlainTextEdit) DisconnectAppendHtml() {
 
 func (ptr *QPlainTextEdit) AppendHtml(html string) {
 	if ptr.Pointer() != nil {
-		var htmlC = C.CString(html)
-		defer C.free(unsafe.Pointer(htmlC))
+		var htmlC *C.char
+		if html != "" {
+			htmlC = C.CString(html)
+			defer C.free(unsafe.Pointer(htmlC))
+		}
 		C.QPlainTextEdit_AppendHtml(ptr.Pointer(), htmlC)
 	}
 }
 
 func (ptr *QPlainTextEdit) AppendHtmlDefault(html string) {
 	if ptr.Pointer() != nil {
-		var htmlC = C.CString(html)
-		defer C.free(unsafe.Pointer(htmlC))
+		var htmlC *C.char
+		if html != "" {
+			htmlC = C.CString(html)
+			defer C.free(unsafe.Pointer(htmlC))
+		}
 		C.QPlainTextEdit_AppendHtmlDefault(ptr.Pointer(), htmlC)
 	}
 }
@@ -54038,16 +54902,22 @@ func (ptr *QPlainTextEdit) DisconnectAppendPlainText() {
 
 func (ptr *QPlainTextEdit) AppendPlainText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QPlainTextEdit_AppendPlainText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QPlainTextEdit) AppendPlainTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QPlainTextEdit_AppendPlainTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -54342,16 +55212,22 @@ func (ptr *QPlainTextEdit) DisconnectInsertPlainText() {
 
 func (ptr *QPlainTextEdit) InsertPlainText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QPlainTextEdit_InsertPlainText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QPlainTextEdit) InsertPlainTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QPlainTextEdit_InsertPlainTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -54589,8 +55465,11 @@ func (ptr *QPlainTextEdit) SetDocument(document gui.QTextDocument_ITF) {
 
 func (ptr *QPlainTextEdit) SetDocumentTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QPlainTextEdit_SetDocumentTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -54615,8 +55494,11 @@ func (ptr *QPlainTextEdit) SetOverwriteMode(overwrite bool) {
 
 func (ptr *QPlainTextEdit) SetPlaceholderText(placeholderText string) {
 	if ptr.Pointer() != nil {
-		var placeholderTextC = C.CString(placeholderText)
-		defer C.free(unsafe.Pointer(placeholderTextC))
+		var placeholderTextC *C.char
+		if placeholderText != "" {
+			placeholderTextC = C.CString(placeholderText)
+			defer C.free(unsafe.Pointer(placeholderTextC))
+		}
 		C.QPlainTextEdit_SetPlaceholderText(ptr.Pointer(), placeholderTextC)
 	}
 }
@@ -54646,16 +55528,22 @@ func (ptr *QPlainTextEdit) DisconnectSetPlainText() {
 
 func (ptr *QPlainTextEdit) SetPlainText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QPlainTextEdit_SetPlainText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QPlainTextEdit) SetPlainTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QPlainTextEdit_SetPlainTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -55341,8 +56229,11 @@ func (ptr *QProgressBar) SetAlignment(alignment core.Qt__AlignmentFlag) {
 
 func (ptr *QProgressBar) SetFormat(format string) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
-		defer C.free(unsafe.Pointer(formatC))
+		var formatC *C.char
+		if format != "" {
+			formatC = C.CString(format)
+			defer C.free(unsafe.Pointer(formatC))
+		}
 		C.QProgressBar_SetFormat(ptr.Pointer(), formatC)
 	}
 }
@@ -55729,10 +56620,16 @@ func NewQProgressDialog(parent QWidget_ITF, f core.Qt__WindowType) *QProgressDia
 }
 
 func NewQProgressDialog2(labelText string, cancelButtonText string, minimum int, maximum int, parent QWidget_ITF, f core.Qt__WindowType) *QProgressDialog {
-	var labelTextC = C.CString(labelText)
-	defer C.free(unsafe.Pointer(labelTextC))
-	var cancelButtonTextC = C.CString(cancelButtonText)
-	defer C.free(unsafe.Pointer(cancelButtonTextC))
+	var labelTextC *C.char
+	if labelText != "" {
+		labelTextC = C.CString(labelText)
+		defer C.free(unsafe.Pointer(labelTextC))
+	}
+	var cancelButtonTextC *C.char
+	if cancelButtonText != "" {
+		cancelButtonTextC = C.CString(cancelButtonText)
+		defer C.free(unsafe.Pointer(cancelButtonTextC))
+	}
 	var tmpValue = NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog2(labelTextC, cancelButtonTextC, C.int(int32(minimum)), C.int(int32(maximum)), PointerFromQWidget(parent), C.longlong(f)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -55840,8 +56737,11 @@ func (ptr *QProgressDialog) ForceShowDefault() {
 
 func (ptr *QProgressDialog) Open(receiver core.QObject_ITF, member string) {
 	if ptr.Pointer() != nil {
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		C.QProgressDialog_Open(ptr.Pointer(), core.PointerFromQObject(receiver), memberC)
 	}
 }
@@ -55930,16 +56830,22 @@ func (ptr *QProgressDialog) DisconnectSetCancelButtonText() {
 
 func (ptr *QProgressDialog) SetCancelButtonText(cancelButtonText string) {
 	if ptr.Pointer() != nil {
-		var cancelButtonTextC = C.CString(cancelButtonText)
-		defer C.free(unsafe.Pointer(cancelButtonTextC))
+		var cancelButtonTextC *C.char
+		if cancelButtonText != "" {
+			cancelButtonTextC = C.CString(cancelButtonText)
+			defer C.free(unsafe.Pointer(cancelButtonTextC))
+		}
 		C.QProgressDialog_SetCancelButtonText(ptr.Pointer(), cancelButtonTextC)
 	}
 }
 
 func (ptr *QProgressDialog) SetCancelButtonTextDefault(cancelButtonText string) {
 	if ptr.Pointer() != nil {
-		var cancelButtonTextC = C.CString(cancelButtonText)
-		defer C.free(unsafe.Pointer(cancelButtonTextC))
+		var cancelButtonTextC *C.char
+		if cancelButtonText != "" {
+			cancelButtonTextC = C.CString(cancelButtonText)
+			defer C.free(unsafe.Pointer(cancelButtonTextC))
+		}
 		C.QProgressDialog_SetCancelButtonTextDefault(ptr.Pointer(), cancelButtonTextC)
 	}
 }
@@ -55975,16 +56881,22 @@ func (ptr *QProgressDialog) DisconnectSetLabelText() {
 
 func (ptr *QProgressDialog) SetLabelText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QProgressDialog_SetLabelText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QProgressDialog) SetLabelTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QProgressDialog_SetLabelTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -56275,8 +57187,11 @@ func NewQProxyStyle(style QStyle_ITF) *QProxyStyle {
 }
 
 func NewQProxyStyle2(key string) *QProxyStyle {
-	var keyC = C.CString(key)
-	defer C.free(unsafe.Pointer(keyC))
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+	}
 	var tmpValue = NewQProxyStyleFromPointer(C.QProxyStyle_NewQProxyStyle2(keyC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -56397,8 +57312,11 @@ func NewQPushButton(parent QWidget_ITF) *QPushButton {
 }
 
 func NewQPushButton3(icon gui.QIcon_ITF, text string, parent QWidget_ITF) *QPushButton {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQPushButtonFromPointer(C.QPushButton_NewQPushButton3(gui.PointerFromQIcon(icon), textC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -56407,8 +57325,11 @@ func NewQPushButton3(icon gui.QIcon_ITF, text string, parent QWidget_ITF) *QPush
 }
 
 func NewQPushButton2(text string, parent QWidget_ITF) *QPushButton {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQPushButtonFromPointer(C.QPushButton_NewQPushButton2(textC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -56603,8 +57524,11 @@ func NewQRadioButton(parent QWidget_ITF) *QRadioButton {
 }
 
 func NewQRadioButton2(text string, parent QWidget_ITF) *QRadioButton {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQRadioButtonFromPointer(C.QRadioButton_NewQRadioButton2(textC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -57984,10 +58908,16 @@ func NewQShortcut(parent QWidget_ITF) *QShortcut {
 }
 
 func NewQShortcut2(key gui.QKeySequence_ITF, parent QWidget_ITF, member string, ambiguousMember string, context core.Qt__ShortcutContext) *QShortcut {
-	var memberC = C.CString(member)
-	defer C.free(unsafe.Pointer(memberC))
-	var ambiguousMemberC = C.CString(ambiguousMember)
-	defer C.free(unsafe.Pointer(ambiguousMemberC))
+	var memberC *C.char
+	if member != "" {
+		memberC = C.CString(member)
+		defer C.free(unsafe.Pointer(memberC))
+	}
+	var ambiguousMemberC *C.char
+	if ambiguousMember != "" {
+		ambiguousMemberC = C.CString(ambiguousMember)
+		defer C.free(unsafe.Pointer(ambiguousMemberC))
+	}
 	var tmpValue = NewQShortcutFromPointer(C.QShortcut_NewQShortcut2(gui.PointerFromQKeySequence(key), PointerFromQWidget(parent), memberC, ambiguousMemberC, C.longlong(context)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -58077,8 +59007,11 @@ func (ptr *QShortcut) SetKey(key gui.QKeySequence_ITF) {
 
 func (ptr *QShortcut) SetWhatsThis(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QShortcut_SetWhatsThis(ptr.Pointer(), textC)
 	}
 }
@@ -59227,8 +60160,11 @@ func (ptr *QSpinBox) SetMinimum(min int) {
 
 func (ptr *QSpinBox) SetPrefix(prefix string) {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		C.QSpinBox_SetPrefix(ptr.Pointer(), prefixC)
 	}
 }
@@ -59247,8 +60183,11 @@ func (ptr *QSpinBox) SetSingleStep(val int) {
 
 func (ptr *QSpinBox) SetSuffix(suffix string) {
 	if ptr.Pointer() != nil {
-		var suffixC = C.CString(suffix)
-		defer C.free(unsafe.Pointer(suffixC))
+		var suffixC *C.char
+		if suffix != "" {
+			suffixC = C.CString(suffix)
+			defer C.free(unsafe.Pointer(suffixC))
+		}
 		C.QSpinBox_SetSuffix(ptr.Pointer(), suffixC)
 	}
 }
@@ -59312,8 +60251,11 @@ func (ptr *QSpinBox) DisconnectValueChanged2() {
 
 func (ptr *QSpinBox) ValueChanged2(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QSpinBox_ValueChanged2(ptr.Pointer(), textC)
 	}
 }
@@ -59472,8 +60414,11 @@ func (ptr *QSpinBox) DisconnectValueFromText() {
 
 func (ptr *QSpinBox) ValueFromText(text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QSpinBox_ValueFromText(ptr.Pointer(), textC)))
 	}
 	return 0
@@ -59481,8 +60426,11 @@ func (ptr *QSpinBox) ValueFromText(text string) int {
 
 func (ptr *QSpinBox) ValueFromTextDefault(text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QSpinBox_ValueFromTextDefault(ptr.Pointer(), textC)))
 	}
 	return 0
@@ -59642,8 +60590,11 @@ func (ptr *QSplashScreen) DisconnectMessageChanged() {
 
 func (ptr *QSplashScreen) MessageChanged(message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QSplashScreen_MessageChanged(ptr.Pointer(), messageC)
 	}
 }
@@ -59685,16 +60636,22 @@ func (ptr *QSplashScreen) DisconnectShowMessage() {
 
 func (ptr *QSplashScreen) ShowMessage(message string, alignment int, color gui.QColor_ITF) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QSplashScreen_ShowMessage(ptr.Pointer(), messageC, C.int(int32(alignment)), gui.PointerFromQColor(color))
 	}
 }
 
 func (ptr *QSplashScreen) ShowMessageDefault(message string, alignment int, color gui.QColor_ITF) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QSplashScreen_ShowMessageDefault(ptr.Pointer(), messageC, C.int(int32(alignment)), gui.PointerFromQColor(color))
 	}
 }
@@ -61088,8 +62045,11 @@ func (ptr *QStatusBar) DisconnectMessageChanged() {
 
 func (ptr *QStatusBar) MessageChanged(message string) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QStatusBar_MessageChanged(ptr.Pointer(), messageC)
 	}
 }
@@ -61137,16 +62097,22 @@ func (ptr *QStatusBar) DisconnectShowMessage() {
 
 func (ptr *QStatusBar) ShowMessage(message string, timeout int) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QStatusBar_ShowMessage(ptr.Pointer(), messageC, C.int(int32(timeout)))
 	}
 }
 
 func (ptr *QStatusBar) ShowMessageDefault(message string, timeout int) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QStatusBar_ShowMessageDefault(ptr.Pointer(), messageC, C.int(int32(timeout)))
 	}
 }
@@ -62329,8 +63295,11 @@ func (ptr *QStyle) DisconnectItemTextRect() {
 
 func (ptr *QStyle) ItemTextRect(metrics gui.QFontMetrics_ITF, rectangle core.QRect_ITF, alignment int, enabled bool, text string) *core.QRect {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = core.NewQRectFromPointer(C.QStyle_ItemTextRect(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), textC))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
@@ -62340,8 +63309,11 @@ func (ptr *QStyle) ItemTextRect(metrics gui.QFontMetrics_ITF, rectangle core.QRe
 
 func (ptr *QStyle) ItemTextRectDefault(metrics gui.QFontMetrics_ITF, rectangle core.QRect_ITF, alignment int, enabled bool, text string) *core.QRect {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = core.NewQRectFromPointer(C.QStyle_ItemTextRectDefault(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), textC))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
@@ -62699,16 +63671,22 @@ func (ptr *QStyle) DisconnectDrawItemText() {
 
 func (ptr *QStyle) DrawItemText(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, palette gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QStyle_DrawItemText(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), textC, C.longlong(textRole))
 	}
 }
 
 func (ptr *QStyle) DrawItemTextDefault(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, palette gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QStyle_DrawItemTextDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), textC, C.longlong(textRole))
 	}
 }
@@ -63086,8 +64064,11 @@ func (ptr *QStyleFactory) Keys() []string {
 }
 
 func QStyleFactory_Create(key string) *QStyle {
-	var keyC = C.CString(key)
-	defer C.free(unsafe.Pointer(keyC))
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+	}
 	var tmpValue = NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(keyC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -63096,8 +64077,11 @@ func QStyleFactory_Create(key string) *QStyle {
 }
 
 func (ptr *QStyleFactory) Create(key string) *QStyle {
-	var keyC = C.CString(key)
-	defer C.free(unsafe.Pointer(keyC))
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+	}
 	var tmpValue = NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(keyC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -63739,8 +64723,11 @@ func (ptr *QStyleOptionButton) Text() string {
 
 func (ptr *QStyleOptionButton) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionButton_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -63843,8 +64830,11 @@ func (ptr *QStyleOptionComboBox) CurrentText() string {
 
 func (ptr *QStyleOptionComboBox) SetCurrentText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionComboBox_SetCurrentText(ptr.Pointer(), vqsC)
 	}
 }
@@ -64127,8 +65117,11 @@ func (ptr *QStyleOptionDockWidget) Title() string {
 
 func (ptr *QStyleOptionDockWidget) SetTitle(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionDockWidget_SetTitle(ptr.Pointer(), vqsC)
 	}
 }
@@ -64590,8 +65583,11 @@ func (ptr *QStyleOptionGroupBox) Text() string {
 
 func (ptr *QStyleOptionGroupBox) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionGroupBox_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -64832,8 +65828,11 @@ func (ptr *QStyleOptionHeader) Text() string {
 
 func (ptr *QStyleOptionHeader) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionHeader_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -65082,8 +66081,11 @@ func (ptr *QStyleOptionMenuItem) Text() string {
 
 func (ptr *QStyleOptionMenuItem) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionMenuItem_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -65236,8 +66238,11 @@ func (ptr *QStyleOptionProgressBar) Text() string {
 
 func (ptr *QStyleOptionProgressBar) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionProgressBar_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -66072,8 +67077,11 @@ func (ptr *QStyleOptionTab) Text() string {
 
 func (ptr *QStyleOptionTab) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionTab_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -66494,8 +67502,11 @@ func (ptr *QStyleOptionTitleBar) Text() string {
 
 func (ptr *QStyleOptionTitleBar) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionTitleBar_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -66843,8 +67854,11 @@ func (ptr *QStyleOptionToolBox) Text() string {
 
 func (ptr *QStyleOptionToolBox) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionToolBox_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -67031,8 +68045,11 @@ func (ptr *QStyleOptionToolButton) Text() string {
 
 func (ptr *QStyleOptionToolButton) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionToolButton_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -67337,8 +68354,11 @@ func (ptr *QStyleOptionViewItem) Text() string {
 
 func (ptr *QStyleOptionViewItem) SetText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QStyleOptionViewItem_SetText(ptr.Pointer(), vqsC)
 	}
 }
@@ -67478,8 +68498,11 @@ func (ptr *QStylePainter) DrawItemPixmap(rect core.QRect_ITF, flags int, pixmap 
 
 func (ptr *QStylePainter) DrawItemText(rect core.QRect_ITF, flags int, pal gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QStylePainter_DrawItemText(ptr.Pointer(), core.PointerFromQRect(rect), C.int(int32(flags)), gui.PointerFromQPalette(pal), C.char(int8(qt.GoBoolToInt(enabled))), textC, C.longlong(textRole))
 	}
 }
@@ -67679,8 +68702,11 @@ func (ptr *QStylePlugin) DisconnectCreate() {
 
 func (ptr *QStylePlugin) Create(key string) *QStyle {
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
 		var tmpValue = NewQStyleFromPointer(C.QStylePlugin_Create(ptr.Pointer(), keyC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -68481,8 +69507,11 @@ func (ptr *QSystemTrayIcon) SetIcon(icon gui.QIcon_ITF) {
 
 func (ptr *QSystemTrayIcon) SetToolTip(tip string) {
 	if ptr.Pointer() != nil {
-		var tipC = C.CString(tip)
-		defer C.free(unsafe.Pointer(tipC))
+		var tipC *C.char
+		if tip != "" {
+			tipC = C.CString(tip)
+			defer C.free(unsafe.Pointer(tipC))
+		}
 		C.QSystemTrayIcon_SetToolTip(ptr.Pointer(), tipC)
 	}
 }
@@ -68582,20 +69611,32 @@ func (ptr *QSystemTrayIcon) DisconnectShowMessage() {
 
 func (ptr *QSystemTrayIcon) ShowMessage(title string, message string, icon QSystemTrayIcon__MessageIcon, millisecondsTimeoutHint int) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QSystemTrayIcon_ShowMessage(ptr.Pointer(), titleC, messageC, C.longlong(icon), C.int(int32(millisecondsTimeoutHint)))
 	}
 }
 
 func (ptr *QSystemTrayIcon) ShowMessageDefault(title string, message string, icon QSystemTrayIcon__MessageIcon, millisecondsTimeoutHint int) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
-		var messageC = C.CString(message)
-		defer C.free(unsafe.Pointer(messageC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
 		C.QSystemTrayIcon_ShowMessageDefault(ptr.Pointer(), titleC, messageC, C.longlong(icon), C.int(int32(millisecondsTimeoutHint)))
 	}
 }
@@ -68977,8 +70018,11 @@ func NewQTabBar(parent QWidget_ITF) *QTabBar {
 
 func (ptr *QTabBar) AddTab2(icon gui.QIcon_ITF, text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QTabBar_AddTab2(ptr.Pointer(), gui.PointerFromQIcon(icon), textC)))
 	}
 	return 0
@@ -68986,8 +70030,11 @@ func (ptr *QTabBar) AddTab2(icon gui.QIcon_ITF, text string) int {
 
 func (ptr *QTabBar) AddTab(text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QTabBar_AddTab(ptr.Pointer(), textC)))
 	}
 	return 0
@@ -68995,8 +70042,11 @@ func (ptr *QTabBar) AddTab(text string) int {
 
 func (ptr *QTabBar) InsertTab2(index int, icon gui.QIcon_ITF, text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QTabBar_InsertTab2(ptr.Pointer(), C.int(int32(index)), gui.PointerFromQIcon(icon), textC)))
 	}
 	return 0
@@ -69004,8 +70054,11 @@ func (ptr *QTabBar) InsertTab2(index int, icon gui.QIcon_ITF, text string) int {
 
 func (ptr *QTabBar) InsertTab(index int, text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QTabBar_InsertTab(ptr.Pointer(), C.int(int32(index)), textC)))
 	}
 	return 0
@@ -69053,8 +70106,11 @@ func (ptr *QTabBar) RemoveTab(index int) {
 
 func (ptr *QTabBar) SetAccessibleTabName(index int, name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QTabBar_SetAccessibleTabName(ptr.Pointer(), C.int(int32(index)), nameC)
 	}
 }
@@ -69186,8 +70242,11 @@ func (ptr *QTabBar) SetTabIcon(index int, icon gui.QIcon_ITF) {
 
 func (ptr *QTabBar) SetTabText(index int, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTabBar_SetTabText(ptr.Pointer(), C.int(int32(index)), textC)
 	}
 }
@@ -69200,16 +70259,22 @@ func (ptr *QTabBar) SetTabTextColor(index int, color gui.QColor_ITF) {
 
 func (ptr *QTabBar) SetTabToolTip(index int, tip string) {
 	if ptr.Pointer() != nil {
-		var tipC = C.CString(tip)
-		defer C.free(unsafe.Pointer(tipC))
+		var tipC *C.char
+		if tip != "" {
+			tipC = C.CString(tip)
+			defer C.free(unsafe.Pointer(tipC))
+		}
 		C.QTabBar_SetTabToolTip(ptr.Pointer(), C.int(int32(index)), tipC)
 	}
 }
 
 func (ptr *QTabBar) SetTabWhatsThis(index int, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTabBar_SetTabWhatsThis(ptr.Pointer(), C.int(int32(index)), textC)
 	}
 }
@@ -69770,8 +70835,11 @@ const (
 
 func (ptr *QTabWidget) AddTab2(page QWidget_ITF, icon gui.QIcon_ITF, label string) int {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		return int(int32(C.QTabWidget_AddTab2(ptr.Pointer(), PointerFromQWidget(page), gui.PointerFromQIcon(icon), labelC)))
 	}
 	return 0
@@ -69779,8 +70847,11 @@ func (ptr *QTabWidget) AddTab2(page QWidget_ITF, icon gui.QIcon_ITF, label strin
 
 func (ptr *QTabWidget) InsertTab2(index int, page QWidget_ITF, icon gui.QIcon_ITF, label string) int {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		return int(int32(C.QTabWidget_InsertTab2(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(page), gui.PointerFromQIcon(icon), labelC)))
 	}
 	return 0
@@ -69796,8 +70867,11 @@ func NewQTabWidget(parent QWidget_ITF) *QTabWidget {
 
 func (ptr *QTabWidget) AddTab(page QWidget_ITF, label string) int {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		return int(int32(C.QTabWidget_AddTab(ptr.Pointer(), PointerFromQWidget(page), labelC)))
 	}
 	return 0
@@ -69805,8 +70879,11 @@ func (ptr *QTabWidget) AddTab(page QWidget_ITF, label string) int {
 
 func (ptr *QTabWidget) InsertTab(index int, page QWidget_ITF, label string) int {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		return int(int32(C.QTabWidget_InsertTab(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(page), labelC)))
 	}
 	return 0
@@ -69990,24 +71067,33 @@ func (ptr *QTabWidget) SetTabShape(s QTabWidget__TabShape) {
 
 func (ptr *QTabWidget) SetTabText(index int, label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QTabWidget_SetTabText(ptr.Pointer(), C.int(int32(index)), labelC)
 	}
 }
 
 func (ptr *QTabWidget) SetTabToolTip(index int, tip string) {
 	if ptr.Pointer() != nil {
-		var tipC = C.CString(tip)
-		defer C.free(unsafe.Pointer(tipC))
+		var tipC *C.char
+		if tip != "" {
+			tipC = C.CString(tip)
+			defer C.free(unsafe.Pointer(tipC))
+		}
 		C.QTabWidget_SetTabToolTip(ptr.Pointer(), C.int(int32(index)), tipC)
 	}
 }
 
 func (ptr *QTabWidget) SetTabWhatsThis(index int, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTabWidget_SetTabWhatsThis(ptr.Pointer(), C.int(int32(index)), textC)
 	}
 }
@@ -72549,8 +73635,11 @@ func (ptr *QTableWidget) DestroyQTableWidget() {
 
 func (ptr *QTableWidget) FindItems(text string, flags core.Qt__MatchFlag) []*QTableWidgetItem {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return func(l C.struct_QtWidgets_PackedList) []*QTableWidgetItem {
 			var out = make([]*QTableWidgetItem, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -73026,14 +74115,20 @@ func (ptr *QTableWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
 }
 
 func NewQTableWidgetItem3(icon gui.QIcon_ITF, text string, ty int) *QTableWidgetItem {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem3(gui.PointerFromQIcon(icon), textC, C.int(int32(ty))))
 }
 
 func NewQTableWidgetItem2(text string, ty int) *QTableWidgetItem {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem2(textC, C.int(int32(ty))))
 }
 
@@ -73159,16 +74254,22 @@ func (ptr *QTableWidgetItem) SetSizeHint(size core.QSize_ITF) {
 
 func (ptr *QTableWidgetItem) SetStatusTip(statusTip string) {
 	if ptr.Pointer() != nil {
-		var statusTipC = C.CString(statusTip)
-		defer C.free(unsafe.Pointer(statusTipC))
+		var statusTipC *C.char
+		if statusTip != "" {
+			statusTipC = C.CString(statusTip)
+			defer C.free(unsafe.Pointer(statusTipC))
+		}
 		C.QTableWidgetItem_SetStatusTip(ptr.Pointer(), statusTipC)
 	}
 }
 
 func (ptr *QTableWidgetItem) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTableWidgetItem_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -73181,16 +74282,22 @@ func (ptr *QTableWidgetItem) SetTextAlignment(alignment int) {
 
 func (ptr *QTableWidgetItem) SetToolTip(toolTip string) {
 	if ptr.Pointer() != nil {
-		var toolTipC = C.CString(toolTip)
-		defer C.free(unsafe.Pointer(toolTipC))
+		var toolTipC *C.char
+		if toolTip != "" {
+			toolTipC = C.CString(toolTip)
+			defer C.free(unsafe.Pointer(toolTipC))
+		}
 		C.QTableWidgetItem_SetToolTip(ptr.Pointer(), toolTipC)
 	}
 }
 
 func (ptr *QTableWidgetItem) SetWhatsThis(whatsThis string) {
 	if ptr.Pointer() != nil {
-		var whatsThisC = C.CString(whatsThis)
-		defer C.free(unsafe.Pointer(whatsThisC))
+		var whatsThisC *C.char
+		if whatsThis != "" {
+			whatsThisC = C.CString(whatsThis)
+			defer C.free(unsafe.Pointer(whatsThisC))
+		}
 		C.QTableWidgetItem_SetWhatsThis(ptr.Pointer(), whatsThisC)
 	}
 }
@@ -73961,8 +75068,11 @@ func (ptr *QTextBrowser) DisconnectHighlighted2() {
 
 func (ptr *QTextBrowser) Highlighted2(link string) {
 	if ptr.Pointer() != nil {
-		var linkC = C.CString(link)
-		defer C.free(unsafe.Pointer(linkC))
+		var linkC *C.char
+		if link != "" {
+			linkC = C.CString(link)
+			defer C.free(unsafe.Pointer(linkC))
+		}
 		C.QTextBrowser_Highlighted2(ptr.Pointer(), linkC)
 	}
 }
@@ -74367,8 +75477,11 @@ func NewQTextEdit(parent QWidget_ITF) *QTextEdit {
 }
 
 func NewQTextEdit2(text string, parent QWidget_ITF) *QTextEdit {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	var tmpValue = NewQTextEditFromPointer(C.QTextEdit_NewQTextEdit2(textC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -74426,8 +75539,11 @@ func (ptr *QTextEdit) Find2(exp core.QRegExp_ITF, options gui.QTextDocument__Fin
 
 func (ptr *QTextEdit) Find(exp string, options gui.QTextDocument__FindFlag) bool {
 	if ptr.Pointer() != nil {
-		var expC = C.CString(exp)
-		defer C.free(unsafe.Pointer(expC))
+		var expC *C.char
+		if exp != "" {
+			expC = C.CString(exp)
+			defer C.free(unsafe.Pointer(expC))
+		}
 		return C.QTextEdit_Find(ptr.Pointer(), expC, C.longlong(options)) != 0
 	}
 	return false
@@ -74458,16 +75574,22 @@ func (ptr *QTextEdit) DisconnectAppend() {
 
 func (ptr *QTextEdit) Append(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_Append(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QTextEdit) AppendDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_AppendDefault(ptr.Pointer(), textC)
 	}
 }
@@ -74727,16 +75849,22 @@ func (ptr *QTextEdit) DisconnectInsertHtml() {
 
 func (ptr *QTextEdit) InsertHtml(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_InsertHtml(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QTextEdit) InsertHtmlDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_InsertHtmlDefault(ptr.Pointer(), textC)
 	}
 }
@@ -74766,16 +75894,22 @@ func (ptr *QTextEdit) DisconnectInsertPlainText() {
 
 func (ptr *QTextEdit) InsertPlainText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_InsertPlainText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QTextEdit) InsertPlainTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_InsertPlainTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -74915,16 +76049,22 @@ func (ptr *QTextEdit) DisconnectScrollToAnchor() {
 
 func (ptr *QTextEdit) ScrollToAnchor(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QTextEdit_ScrollToAnchor(ptr.Pointer(), nameC)
 	}
 }
 
 func (ptr *QTextEdit) ScrollToAnchorDefault(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QTextEdit_ScrollToAnchorDefault(ptr.Pointer(), nameC)
 	}
 }
@@ -75094,8 +76234,11 @@ func (ptr *QTextEdit) SetDocument(document gui.QTextDocument_ITF) {
 
 func (ptr *QTextEdit) SetDocumentTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QTextEdit_SetDocumentTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -75125,16 +76268,22 @@ func (ptr *QTextEdit) DisconnectSetFontFamily() {
 
 func (ptr *QTextEdit) SetFontFamily(fontFamily string) {
 	if ptr.Pointer() != nil {
-		var fontFamilyC = C.CString(fontFamily)
-		defer C.free(unsafe.Pointer(fontFamilyC))
+		var fontFamilyC *C.char
+		if fontFamily != "" {
+			fontFamilyC = C.CString(fontFamily)
+			defer C.free(unsafe.Pointer(fontFamilyC))
+		}
 		C.QTextEdit_SetFontFamily(ptr.Pointer(), fontFamilyC)
 	}
 }
 
 func (ptr *QTextEdit) SetFontFamilyDefault(fontFamily string) {
 	if ptr.Pointer() != nil {
-		var fontFamilyC = C.CString(fontFamily)
-		defer C.free(unsafe.Pointer(fontFamilyC))
+		var fontFamilyC *C.char
+		if fontFamily != "" {
+			fontFamilyC = C.CString(fontFamily)
+			defer C.free(unsafe.Pointer(fontFamilyC))
+		}
 		C.QTextEdit_SetFontFamilyDefault(ptr.Pointer(), fontFamilyC)
 	}
 }
@@ -75304,16 +76453,22 @@ func (ptr *QTextEdit) DisconnectSetHtml() {
 
 func (ptr *QTextEdit) SetHtml(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_SetHtml(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QTextEdit) SetHtmlDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_SetHtmlDefault(ptr.Pointer(), textC)
 	}
 }
@@ -75338,8 +76493,11 @@ func (ptr *QTextEdit) SetOverwriteMode(overwrite bool) {
 
 func (ptr *QTextEdit) SetPlaceholderText(placeholderText string) {
 	if ptr.Pointer() != nil {
-		var placeholderTextC = C.CString(placeholderText)
-		defer C.free(unsafe.Pointer(placeholderTextC))
+		var placeholderTextC *C.char
+		if placeholderText != "" {
+			placeholderTextC = C.CString(placeholderText)
+			defer C.free(unsafe.Pointer(placeholderTextC))
+		}
 		C.QTextEdit_SetPlaceholderText(ptr.Pointer(), placeholderTextC)
 	}
 }
@@ -75381,16 +76539,22 @@ func (ptr *QTextEdit) DisconnectSetPlainText() {
 
 func (ptr *QTextEdit) SetPlainText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_SetPlainText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QTextEdit) SetPlainTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_SetPlainTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -75426,16 +76590,22 @@ func (ptr *QTextEdit) DisconnectSetText() {
 
 func (ptr *QTextEdit) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_SetText(ptr.Pointer(), textC)
 	}
 }
 
 func (ptr *QTextEdit) SetTextDefault(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTextEdit_SetTextDefault(ptr.Pointer(), textC)
 	}
 }
@@ -76258,8 +77428,11 @@ func NewQToolBarFromPointer(ptr unsafe.Pointer) *QToolBar {
 }
 func (ptr *QToolBar) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -76271,10 +77444,16 @@ func (ptr *QToolBar) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 
 func (ptr *QToolBar) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObject_ITF, member string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), textC, core.PointerFromQObject(receiver), memberC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -76286,8 +77465,11 @@ func (ptr *QToolBar) AddAction4(icon gui.QIcon_ITF, text string, receiver core.Q
 
 func (ptr *QToolBar) AddAction(text string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction(ptr.Pointer(), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -76299,10 +77481,16 @@ func (ptr *QToolBar) AddAction(text string) *QAction {
 
 func (ptr *QToolBar) AddAction3(text string, receiver core.QObject_ITF, member string) *QAction {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-		var memberC = C.CString(member)
-		defer C.free(unsafe.Pointer(memberC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		var memberC *C.char
+		if member != "" {
+			memberC = C.CString(member)
+			defer C.free(unsafe.Pointer(memberC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction3(ptr.Pointer(), textC, core.PointerFromQObject(receiver), memberC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -76365,8 +77553,11 @@ func NewQToolBar2(parent QWidget_ITF) *QToolBar {
 }
 
 func NewQToolBar(title string, parent QWidget_ITF) *QToolBar {
-	var titleC = C.CString(title)
-	defer C.free(unsafe.Pointer(titleC))
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
 	var tmpValue = NewQToolBarFromPointer(C.QToolBar_NewQToolBar(titleC, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -76856,8 +78047,11 @@ func NewQToolBox(parent QWidget_ITF, f core.Qt__WindowType) *QToolBox {
 
 func (ptr *QToolBox) AddItem2(w QWidget_ITF, text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QToolBox_AddItem2(ptr.Pointer(), PointerFromQWidget(w), textC)))
 	}
 	return 0
@@ -76865,8 +78059,11 @@ func (ptr *QToolBox) AddItem2(w QWidget_ITF, text string) int {
 
 func (ptr *QToolBox) AddItem(widget QWidget_ITF, iconSet gui.QIcon_ITF, text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QToolBox_AddItem(ptr.Pointer(), PointerFromQWidget(widget), gui.PointerFromQIcon(iconSet), textC)))
 	}
 	return 0
@@ -76874,8 +78071,11 @@ func (ptr *QToolBox) AddItem(widget QWidget_ITF, iconSet gui.QIcon_ITF, text str
 
 func (ptr *QToolBox) InsertItem(index int, widget QWidget_ITF, icon gui.QIcon_ITF, text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QToolBox_InsertItem(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(widget), gui.PointerFromQIcon(icon), textC)))
 	}
 	return 0
@@ -76883,8 +78083,11 @@ func (ptr *QToolBox) InsertItem(index int, widget QWidget_ITF, icon gui.QIcon_IT
 
 func (ptr *QToolBox) InsertItem2(index int, widget QWidget_ITF, text string) int {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return int(int32(C.QToolBox_InsertItem2(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(widget), textC)))
 	}
 	return 0
@@ -77078,16 +78281,22 @@ func (ptr *QToolBox) SetItemIcon(index int, icon gui.QIcon_ITF) {
 
 func (ptr *QToolBox) SetItemText(index int, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QToolBox_SetItemText(ptr.Pointer(), C.int(int32(index)), textC)
 	}
 }
 
 func (ptr *QToolBox) SetItemToolTip(index int, toolTip string) {
 	if ptr.Pointer() != nil {
-		var toolTipC = C.CString(toolTip)
-		defer C.free(unsafe.Pointer(toolTipC))
+		var toolTipC *C.char
+		if toolTip != "" {
+			toolTipC = C.CString(toolTip)
+			defer C.free(unsafe.Pointer(toolTipC))
+		}
 		C.QToolBox_SetItemToolTip(ptr.Pointer(), C.int(int32(index)), toolTipC)
 	}
 }
@@ -77596,38 +78805,56 @@ func (ptr *QToolTip) SetPalette(palette gui.QPalette_ITF) {
 }
 
 func QToolTip_ShowText2(pos core.QPoint_ITF, text string, w QWidget_ITF) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w))
 }
 
 func (ptr *QToolTip) ShowText2(pos core.QPoint_ITF, text string, w QWidget_ITF) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w))
 }
 
 func QToolTip_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w), core.PointerFromQRect(rect))
 }
 
 func (ptr *QToolTip) ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w), core.PointerFromQRect(rect))
 }
 
 func QToolTip_ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF, msecDisplayTime int) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(int32(msecDisplayTime)))
 }
 
 func (ptr *QToolTip) ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF, msecDisplayTime int) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(int32(msecDisplayTime)))
 }
 
@@ -79826,8 +81053,11 @@ func (ptr *QTreeWidget) SetHeaderItem(item QTreeWidgetItem_ITF) {
 
 func (ptr *QTreeWidget) SetHeaderLabel(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QTreeWidget_SetHeaderLabel(ptr.Pointer(), labelC)
 	}
 }
@@ -79862,8 +81092,11 @@ func (ptr *QTreeWidget) DestroyQTreeWidget() {
 
 func (ptr *QTreeWidget) FindItems(text string, flags core.Qt__MatchFlag, column int) []*QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		return func(l C.struct_QtWidgets_PackedList) []*QTreeWidgetItem {
 			var out = make([]*QTreeWidgetItem, int(l.len))
 			for i := 0; i < int(l.len); i++ {
@@ -80584,16 +81817,22 @@ func (ptr *QTreeWidgetItem) SetSizeHint(column int, size core.QSize_ITF) {
 
 func (ptr *QTreeWidgetItem) SetStatusTip(column int, statusTip string) {
 	if ptr.Pointer() != nil {
-		var statusTipC = C.CString(statusTip)
-		defer C.free(unsafe.Pointer(statusTipC))
+		var statusTipC *C.char
+		if statusTip != "" {
+			statusTipC = C.CString(statusTip)
+			defer C.free(unsafe.Pointer(statusTipC))
+		}
 		C.QTreeWidgetItem_SetStatusTip(ptr.Pointer(), C.int(int32(column)), statusTipC)
 	}
 }
 
 func (ptr *QTreeWidgetItem) SetText(column int, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QTreeWidgetItem_SetText(ptr.Pointer(), C.int(int32(column)), textC)
 	}
 }
@@ -80606,16 +81845,22 @@ func (ptr *QTreeWidgetItem) SetTextAlignment(column int, alignment int) {
 
 func (ptr *QTreeWidgetItem) SetToolTip(column int, toolTip string) {
 	if ptr.Pointer() != nil {
-		var toolTipC = C.CString(toolTip)
-		defer C.free(unsafe.Pointer(toolTipC))
+		var toolTipC *C.char
+		if toolTip != "" {
+			toolTipC = C.CString(toolTip)
+			defer C.free(unsafe.Pointer(toolTipC))
+		}
 		C.QTreeWidgetItem_SetToolTip(ptr.Pointer(), C.int(int32(column)), toolTipC)
 	}
 }
 
 func (ptr *QTreeWidgetItem) SetWhatsThis(column int, whatsThis string) {
 	if ptr.Pointer() != nil {
-		var whatsThisC = C.CString(whatsThis)
-		defer C.free(unsafe.Pointer(whatsThisC))
+		var whatsThisC *C.char
+		if whatsThis != "" {
+			whatsThisC = C.CString(whatsThis)
+			defer C.free(unsafe.Pointer(whatsThisC))
+		}
 		C.QTreeWidgetItem_SetWhatsThis(ptr.Pointer(), C.int(int32(column)), whatsThisC)
 	}
 }
@@ -81125,8 +82370,11 @@ func NewQUndoCommand(parent QUndoCommand_ITF) *QUndoCommand {
 }
 
 func NewQUndoCommand2(text string, parent QUndoCommand_ITF) *QUndoCommand {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	return NewQUndoCommandFromPointer(C.QUndoCommand_NewQUndoCommand2(textC, PointerFromQUndoCommand(parent)))
 }
 
@@ -81204,8 +82452,11 @@ func (ptr *QUndoCommand) RedoDefault() {
 
 func (ptr *QUndoCommand) SetText(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QUndoCommand_SetText(ptr.Pointer(), textC)
 	}
 }
@@ -81600,8 +82851,11 @@ func (ptr *QUndoGroup) DisconnectRedoTextChanged() {
 
 func (ptr *QUndoGroup) RedoTextChanged(redoText string) {
 	if ptr.Pointer() != nil {
-		var redoTextC = C.CString(redoText)
-		defer C.free(unsafe.Pointer(redoTextC))
+		var redoTextC *C.char
+		if redoText != "" {
+			redoTextC = C.CString(redoText)
+			defer C.free(unsafe.Pointer(redoTextC))
+		}
 		C.QUndoGroup_RedoTextChanged(ptr.Pointer(), redoTextC)
 	}
 }
@@ -81706,8 +82960,11 @@ func (ptr *QUndoGroup) DisconnectUndoTextChanged() {
 
 func (ptr *QUndoGroup) UndoTextChanged(undoText string) {
 	if ptr.Pointer() != nil {
-		var undoTextC = C.CString(undoText)
-		defer C.free(unsafe.Pointer(undoTextC))
+		var undoTextC *C.char
+		if undoText != "" {
+			undoTextC = C.CString(undoText)
+			defer C.free(unsafe.Pointer(undoTextC))
+		}
 		C.QUndoGroup_UndoTextChanged(ptr.Pointer(), undoTextC)
 	}
 }
@@ -81722,8 +82979,11 @@ func (ptr *QUndoGroup) DestroyQUndoGroup() {
 
 func (ptr *QUndoGroup) CreateRedoAction(parent core.QObject_ITF, prefix string) *QAction {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QUndoGroup_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), prefixC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -81735,8 +82995,11 @@ func (ptr *QUndoGroup) CreateRedoAction(parent core.QObject_ITF, prefix string) 
 
 func (ptr *QUndoGroup) CreateUndoAction(parent core.QObject_ITF, prefix string) *QAction {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QUndoGroup_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), prefixC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -82133,8 +83396,11 @@ func NewQUndoStack(parent core.QObject_ITF) *QUndoStack {
 
 func (ptr *QUndoStack) BeginMacro(text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QUndoStack_BeginMacro(ptr.Pointer(), textC)
 	}
 }
@@ -82328,8 +83594,11 @@ func (ptr *QUndoStack) DisconnectRedoTextChanged() {
 
 func (ptr *QUndoStack) RedoTextChanged(redoText string) {
 	if ptr.Pointer() != nil {
-		var redoTextC = C.CString(redoText)
-		defer C.free(unsafe.Pointer(redoTextC))
+		var redoTextC *C.char
+		if redoText != "" {
+			redoTextC = C.CString(redoText)
+			defer C.free(unsafe.Pointer(redoTextC))
+		}
 		C.QUndoStack_RedoTextChanged(ptr.Pointer(), redoTextC)
 	}
 }
@@ -82539,8 +83808,11 @@ func (ptr *QUndoStack) DisconnectUndoTextChanged() {
 
 func (ptr *QUndoStack) UndoTextChanged(undoText string) {
 	if ptr.Pointer() != nil {
-		var undoTextC = C.CString(undoText)
-		defer C.free(unsafe.Pointer(undoTextC))
+		var undoTextC *C.char
+		if undoText != "" {
+			undoTextC = C.CString(undoText)
+			defer C.free(unsafe.Pointer(undoTextC))
+		}
 		C.QUndoStack_UndoTextChanged(ptr.Pointer(), undoTextC)
 	}
 }
@@ -82555,8 +83827,11 @@ func (ptr *QUndoStack) DestroyQUndoStack() {
 
 func (ptr *QUndoStack) CreateRedoAction(parent core.QObject_ITF, prefix string) *QAction {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QUndoStack_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), prefixC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -82568,8 +83843,11 @@ func (ptr *QUndoStack) CreateRedoAction(parent core.QObject_ITF, prefix string) 
 
 func (ptr *QUndoStack) CreateUndoAction(parent core.QObject_ITF, prefix string) *QAction {
 	if ptr.Pointer() != nil {
-		var prefixC = C.CString(prefix)
-		defer C.free(unsafe.Pointer(prefixC))
+		var prefixC *C.char
+		if prefix != "" {
+			prefixC = C.CString(prefix)
+			defer C.free(unsafe.Pointer(prefixC))
+		}
 		var tmpValue = NewQActionFromPointer(C.QUndoStack_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), prefixC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -82992,8 +84270,11 @@ func (ptr *QUndoView) SetCleanIcon(icon gui.QIcon_ITF) {
 
 func (ptr *QUndoView) SetEmptyLabel(label string) {
 	if ptr.Pointer() != nil {
-		var labelC = C.CString(label)
-		defer C.free(unsafe.Pointer(labelC))
+		var labelC *C.char
+		if label != "" {
+			labelC = C.CString(label)
+			defer C.free(unsafe.Pointer(labelC))
+		}
 		C.QUndoView_SetEmptyLabel(ptr.Pointer(), labelC)
 	}
 }
@@ -83270,14 +84551,20 @@ func (ptr *QWhatsThis) LeaveWhatsThisMode() {
 }
 
 func QWhatsThis_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w))
 }
 
 func (ptr *QWhatsThis) ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF) {
-	var textC = C.CString(text)
-	defer C.free(unsafe.Pointer(textC))
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
 	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), textC, PointerFromQWidget(w))
 }
 
@@ -84763,16 +86050,22 @@ func (ptr *QWidget) SetAcceptDrops(on bool) {
 
 func (ptr *QWidget) SetAccessibleDescription(description string) {
 	if ptr.Pointer() != nil {
-		var descriptionC = C.CString(description)
-		defer C.free(unsafe.Pointer(descriptionC))
+		var descriptionC *C.char
+		if description != "" {
+			descriptionC = C.CString(description)
+			defer C.free(unsafe.Pointer(descriptionC))
+		}
 		C.QWidget_SetAccessibleDescription(ptr.Pointer(), descriptionC)
 	}
 }
 
 func (ptr *QWidget) SetAccessibleName(name string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QWidget_SetAccessibleName(ptr.Pointer(), nameC)
 	}
 }
@@ -85195,8 +86488,11 @@ func (ptr *QWidget) SetSizePolicy2(horizontal QSizePolicy__Policy, vertical QSiz
 
 func (ptr *QWidget) SetStatusTip(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QWidget_SetStatusTip(ptr.Pointer(), vqsC)
 	}
 }
@@ -85232,16 +86528,22 @@ func (ptr *QWidget) DisconnectSetStyleSheet() {
 
 func (ptr *QWidget) SetStyleSheet(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
 func (ptr *QWidget) SetStyleSheetDefault(styleSheet string) {
 	if ptr.Pointer() != nil {
-		var styleSheetC = C.CString(styleSheet)
-		defer C.free(unsafe.Pointer(styleSheetC))
+		var styleSheetC *C.char
+		if styleSheet != "" {
+			styleSheetC = C.CString(styleSheet)
+			defer C.free(unsafe.Pointer(styleSheetC))
+		}
 		C.QWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
@@ -85256,8 +86558,11 @@ func (ptr *QWidget) SetTabOrder(first QWidget_ITF, second QWidget_ITF) {
 
 func (ptr *QWidget) SetToolTip(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QWidget_SetToolTip(ptr.Pointer(), vqsC)
 	}
 }
@@ -85311,16 +86616,22 @@ func (ptr *QWidget) SetVisibleDefault(visible bool) {
 
 func (ptr *QWidget) SetWhatsThis(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QWidget_SetWhatsThis(ptr.Pointer(), vqsC)
 	}
 }
 
 func (ptr *QWidget) SetWindowFilePath(filePath string) {
 	if ptr.Pointer() != nil {
-		var filePathC = C.CString(filePath)
-		defer C.free(unsafe.Pointer(filePathC))
+		var filePathC *C.char
+		if filePath != "" {
+			filePathC = C.CString(filePath)
+			defer C.free(unsafe.Pointer(filePathC))
+		}
 		C.QWidget_SetWindowFilePath(ptr.Pointer(), filePathC)
 	}
 }
@@ -85339,8 +86650,11 @@ func (ptr *QWidget) SetWindowIcon(icon gui.QIcon_ITF) {
 
 func (ptr *QWidget) SetWindowIconText(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QWidget_SetWindowIconText(ptr.Pointer(), vqsC)
 	}
 }
@@ -85394,8 +86708,11 @@ func (ptr *QWidget) SetWindowOpacity(level float64) {
 
 func (ptr *QWidget) SetWindowRole(role string) {
 	if ptr.Pointer() != nil {
-		var roleC = C.CString(role)
-		defer C.free(unsafe.Pointer(roleC))
+		var roleC *C.char
+		if role != "" {
+			roleC = C.CString(role)
+			defer C.free(unsafe.Pointer(roleC))
+		}
 		C.QWidget_SetWindowRole(ptr.Pointer(), roleC)
 	}
 }
@@ -85431,16 +86748,22 @@ func (ptr *QWidget) DisconnectSetWindowTitle() {
 
 func (ptr *QWidget) SetWindowTitle(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QWidget_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
 func (ptr *QWidget) SetWindowTitleDefault(vqs string) {
 	if ptr.Pointer() != nil {
-		var vqsC = C.CString(vqs)
-		defer C.free(unsafe.Pointer(vqsC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
 		C.QWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
@@ -85907,8 +87230,11 @@ func (ptr *QWidget) DisconnectWindowTitleChanged() {
 
 func (ptr *QWidget) WindowTitleChanged(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QWidget_WindowTitleChanged(ptr.Pointer(), titleC)
 	}
 }
@@ -88492,28 +89818,43 @@ func (ptr *QWizard) SetButton(which QWizard__WizardButton, button QAbstractButto
 
 func (ptr *QWizard) SetButtonText(which QWizard__WizardButton, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QWizard_SetButtonText(ptr.Pointer(), C.longlong(which), textC)
 	}
 }
 
 func (ptr *QWizard) SetDefaultProperty(className string, property string, changedSignal string) {
 	if ptr.Pointer() != nil {
-		var classNameC = C.CString(className)
-		defer C.free(unsafe.Pointer(classNameC))
-		var propertyC = C.CString(property)
-		defer C.free(unsafe.Pointer(propertyC))
-		var changedSignalC = C.CString(changedSignal)
-		defer C.free(unsafe.Pointer(changedSignalC))
+		var classNameC *C.char
+		if className != "" {
+			classNameC = C.CString(className)
+			defer C.free(unsafe.Pointer(classNameC))
+		}
+		var propertyC *C.char
+		if property != "" {
+			propertyC = C.CString(property)
+			defer C.free(unsafe.Pointer(propertyC))
+		}
+		var changedSignalC *C.char
+		if changedSignal != "" {
+			changedSignalC = C.CString(changedSignal)
+			defer C.free(unsafe.Pointer(changedSignalC))
+		}
 		C.QWizard_SetDefaultProperty(ptr.Pointer(), classNameC, propertyC, changedSignalC)
 	}
 }
 
 func (ptr *QWizard) SetField(name string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QWizard_SetField(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
 	}
 }
@@ -88635,8 +89976,11 @@ func (ptr *QWizard) ButtonText(which QWizard__WizardButton) string {
 
 func (ptr *QWizard) Field(name string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QWizard_Field(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -88987,20 +90331,32 @@ func (ptr *QWizardPage) InitializePageDefault() {
 
 func (ptr *QWizardPage) RegisterField(name string, widget QWidget_ITF, property string, changedSignal string) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		var propertyC = C.CString(property)
-		defer C.free(unsafe.Pointer(propertyC))
-		var changedSignalC = C.CString(changedSignal)
-		defer C.free(unsafe.Pointer(changedSignalC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		var propertyC *C.char
+		if property != "" {
+			propertyC = C.CString(property)
+			defer C.free(unsafe.Pointer(propertyC))
+		}
+		var changedSignalC *C.char
+		if changedSignal != "" {
+			changedSignalC = C.CString(changedSignal)
+			defer C.free(unsafe.Pointer(changedSignalC))
+		}
 		C.QWizardPage_RegisterField(ptr.Pointer(), nameC, PointerFromQWidget(widget), propertyC, changedSignalC)
 	}
 }
 
 func (ptr *QWizardPage) SetButtonText(which QWizard__WizardButton, text string) {
 	if ptr.Pointer() != nil {
-		var textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
 		C.QWizardPage_SetButtonText(ptr.Pointer(), C.longlong(which), textC)
 	}
 }
@@ -89013,8 +90369,11 @@ func (ptr *QWizardPage) SetCommitPage(commitPage bool) {
 
 func (ptr *QWizardPage) SetField(name string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		C.QWizardPage_SetField(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
 	}
 }
@@ -89033,16 +90392,22 @@ func (ptr *QWizardPage) SetPixmap(which QWizard__WizardPixmap, pixmap gui.QPixma
 
 func (ptr *QWizardPage) SetSubTitle(subTitle string) {
 	if ptr.Pointer() != nil {
-		var subTitleC = C.CString(subTitle)
-		defer C.free(unsafe.Pointer(subTitleC))
+		var subTitleC *C.char
+		if subTitle != "" {
+			subTitleC = C.CString(subTitle)
+			defer C.free(unsafe.Pointer(subTitleC))
+		}
 		C.QWizardPage_SetSubTitle(ptr.Pointer(), subTitleC)
 	}
 }
 
 func (ptr *QWizardPage) SetTitle(title string) {
 	if ptr.Pointer() != nil {
-		var titleC = C.CString(title)
-		defer C.free(unsafe.Pointer(titleC))
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
 		C.QWizardPage_SetTitle(ptr.Pointer(), titleC)
 	}
 }
@@ -89087,8 +90452,11 @@ func (ptr *QWizardPage) Title() string {
 
 func (ptr *QWizardPage) Field(name string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
 		var tmpValue = core.NewQVariantFromPointer(C.QWizardPage_Field(ptr.Pointer(), nameC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
