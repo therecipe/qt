@@ -14,7 +14,7 @@ import (
 )
 
 func QmakeCgoTemplate(module, mocPath, buildTarget string) {
-	if buildTarget == "" || buildTarget == "desktop" {
+	if buildTarget == "" || buildTarget == "undefined" || buildTarget == "desktop" {
 		buildTarget = runtime.GOOS
 	}
 	qmakeCgo(module, mocPath, buildTarget)
