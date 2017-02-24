@@ -13,6 +13,7 @@ import (
 var State = &struct {
 	ClassMap map[string]*Class
 
+	Rcc     bool
 	Moc     bool
 	Minimal bool
 

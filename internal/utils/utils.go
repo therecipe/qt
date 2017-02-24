@@ -83,7 +83,7 @@ func GoQtPkgPath(s ...string) string {
 }
 
 func RunCmd(cmd *exec.Cmd, name string) string {
-	fields := logrus.Fields{"func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, " ")}
+	fields := logrus.Fields{"func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
 	Log.WithFields(fields).Debug("Execute")
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
@@ -95,7 +95,7 @@ func RunCmd(cmd *exec.Cmd, name string) string {
 }
 
 func RunCmdOptional(cmd *exec.Cmd, name string) string {
-	fields := logrus.Fields{"func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " ")}
+	fields := logrus.Fields{"func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
 	Log.WithFields(fields).Debug("Execute")
 	var out, err = cmd.CombinedOutput()
 	if err != nil {

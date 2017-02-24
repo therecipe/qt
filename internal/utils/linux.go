@@ -97,3 +97,7 @@ func QT_MXE_ARCH() string {
 	}
 	return "386"
 }
+
+func QT_MXE_STATIC() bool {
+	return strings.ToLower(os.Getenv("QT_MXE_STATIC")) == "true"
+}

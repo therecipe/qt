@@ -148,7 +148,7 @@ var LibDeps = map[string][]string{
 	"Svg":           {"Widgets", "Gui", "Core"},
 	"Multimedia":    {"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
 	"Quick":         {"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
-	"Help":          {"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
+	"Help":          {"Sql", "Network", "Widgets", "Gui", "Core"},                 //Sql + CLucene + Network (needed for static linking ios)
 	"Location":      {"Positioning", "Quick", "Gui", "Core"},
 	"ScriptTools":   {"Script", "Widgets", "Core"}, //Script, Widgets
 	"UiTools":       {"Widgets", "Gui", "Core"},

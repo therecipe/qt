@@ -196,7 +196,6 @@ func (m *appMoc) parseGo(path string) error {
 func CleanPath(path string) (err error) {
 	var (
 		tmpFileNames = []string{
-			"moc_cleanup.json",
 			"moc.h", "moc.go", "moc.cpp", "moc_moc.h",
 			"moc_cgo_desktop_darwin_amd64.go", "moc_cgo_desktop_windows_386.go", "moc_cgo_desktop_windows_amd64.go", "moc_cgo_desktop_linux_amd64.go",
 			"moc_cgo_android_linux_arm.go",
@@ -418,7 +417,7 @@ func (m *appMoc) generate() error {
 	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.go"), templater.GoTemplate(parser.MOC, false)); err != nil {
 		return err
 	}
-	templater.CgoTemplate(parser.MOC, m.appPath)
+	templater.CgoTemplate(parser.MOC, m.appPath, m.buildTarget)
 
 	for _, c := range parser.State.ClassMap {
 		if c.Module == parser.MOC {

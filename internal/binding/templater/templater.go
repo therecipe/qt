@@ -7,7 +7,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func GenModule(m string) {
+func GenModule(m, buildTarget string) {
 	if !parser.ShouldBuild(m) {
 		utils.Log.WithField("0_module", m).Debug("skip generation")
 		return
@@ -42,7 +42,7 @@ func GenModule(m string) {
 	}
 
 	if !UseStub() {
-		CgoTemplate(m, "")
+		CgoTemplate(m, "", buildTarget)
 	}
 
 	if parser.State.Minimal {

@@ -22,11 +22,11 @@ func main() {
 			buildTarget = flag.Arg(0)
 			utils.CheckBuildTarget(buildTarget)
 
-		case "prep", "check", "generate", "install", "test", "full":
+		case "prep", "check", "generate", "install", "test", "full", "update", "upgrade":
 			buildMode = flag.Arg(0)
 
 		default:
-			utils.Log.Fatalln("usage:", "qtsetup", "[ prep | check | generate | install | test | full ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows | linux-docker | windows-docker | android-docker ]")
+			utils.Log.Fatalln("usage:", "qtsetup", "[ prep | check | generate | install | test | full | update | upgrade ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows | linux-docker | windows-docker | android-docker ]")
 		}
 
 	case 2:

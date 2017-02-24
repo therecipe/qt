@@ -218,7 +218,7 @@ func Minimal(appPath, buildTarget string) {
 	parser.State.Minimal = true
 	for _, module := range importedPkgs {
 		utils.Log.Debugf("generating minimal qt/%v", strings.ToLower(module))
-		templater.GenModule(strings.Title(module))
+		templater.GenModule(strings.Title(module), buildTarget)
 	}
 }
 

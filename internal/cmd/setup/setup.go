@@ -23,5 +23,11 @@ func Setup(buildMode, buildTarget string) {
 
 	case "test":
 		test(buildTarget)
+
+	case "update":
+		update()
+
+	case "upgrade":
+		upgrade()
 	}
 }

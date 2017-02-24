@@ -7,8 +7,6 @@ import (
 	"runtime"
 	"strings"
 	"sync"
-
-	_ "github.com/therecipe/qt/internal/android/cgo"
 )
 
 var (

@@ -13,7 +13,23 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func CgoTemplate(module, mocPath string) {
+func CgoTemplate(module, mocPath, buildTarget string) {
+
+	switch buildTarget {
+	case "sailfish", "sailfish-emulator", "asteroid",
+		"rpi1", "rpi2", "rpi3":
+		{
+
+		}
+
+	default:
+		{
+			if strings.ToLower(os.Getenv("QT_CGO_QMAKE")) == "true" {
+				QmakeCgoTemplate(module, mocPath, buildTarget)
+				return
+			}
+		}
+	}
 
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module, mocPath)

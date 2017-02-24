@@ -1,6 +1,7 @@
 package rcc
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -9,6 +10,10 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/Sirupsen/logrus"
+
+	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -29,16 +34,16 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 				return *output_dir
 			}
 			return appPath
-		}(), "rrc.go")
+		}(), "rcc.go")
 
-		qmlQrc = filepath.Join(appPath, "rrc.qrc")
+		qmlQrc = filepath.Join(appPath, "rcc.qrc")
 
 		qmlCpp = filepath.Join(func() string {
 			if *output_dir != "" {
 				return *output_dir
 			}
 			return appPath
-		}(), "rrc.cpp")
+		}(), "rcc.cpp")
 	)
 
 	switch runtime.GOOS {
@@ -73,7 +78,7 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 		}
 	}
 
-	utils.Save(qmlGo, qmlHeader(appName))
+	utils.Save(qmlGo, qmlHeader(appName, appPath, buildTarget))
 
 	var rcc = exec.Command(rccPath, "-project", "-o", qmlQrc)
 	rcc.Dir = filepath.Join(appPath, "qml")
@@ -104,7 +109,25 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 }
 
 //TODO: make docker compatible
-func qmlHeader(appName string) string {
+func qmlHeader(appName, appPath, buildTarget string) string {
+
+	switch buildTarget {
+	case "sailfish", "sailfish-emulator", "asteroid",
+		"rpi1", "rpi2", "rpi3":
+		{
+
+		}
+
+	default:
+		{
+			if strings.ToLower(os.Getenv("QT_CGO_QMAKE")) == "true" {
+				parser.State.Rcc = true
+				templater.QmakeCgoTemplate("main", appPath, buildTarget)
+				parser.State.Rcc = false
+				return "package main"
+			}
+		}
+	}
 
 	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
@@ -173,4 +196,56 @@ import "C"`,
 		"${OECORE_TARGET_SYSROOT}", os.Getenv("OECORE_TARGET_SYSROOT"), -1),
 		"${QT_VERSION_MAJOR}", utils.QT_VERSION_MAJOR(), -1),
 		"\\", "/", -1)
+}
+
+func CleanPath(path string) (err error) {
+	var (
+		tmpFileNames = []string{
+			"rcc.qrc", "rcc.go", "rcc.cpp",
+			"rcc_cgo_desktop_darwin_amd64.go", "rcc_cgo_desktop_windows_386.go", "rcc_cgo_desktop_windows_amd64.go", "rcc_cgo_desktop_linux_amd64.go",
+			"rcc_cgo_android_linux_arm.go",
+			"rcc_cgo_ios_simulator_darwin_amd64.go", "rcc_cgo_ios_simulator_darwin_386.go", "rcc_cgo_ios_darwin_arm64.go", "rcc_cgo_ios_darwin_arm.go",
+			"rcc_cgo_sailfish_emulator_linux_386.go", "rcc_cgo_sailfish_linux_arm.go", "rcc_cgo_asteroid_linux_arm.go",
+			"rcc_cgo_rpi1_linux_arm.go", "rcc_cgo_rpi2_linux_arm.go", "rcc_cgo_rpi3_linux_arm.go",
+		}
+
+		fields = logrus.Fields{"func": "CleanPath", "path": path}
+	)
+
+	pathInfo, err := os.Stat(path)
+	if err != nil {
+		utils.Log.WithFields(fields).Error("Invalid path")
+		return err
+	}
+	if !pathInfo.IsDir() {
+		utils.Log.WithFields(fields).Error("Path is not a directory")
+		return errors.New("Path is not a directory")
+	}
+
+	err = filepath.Walk(
+		path,
+
+		utils.WalkOnlyFile(
+			func(path string, info os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
+
+				for _, tFile := range tmpFileNames {
+					if tFile == info.Name() {
+						utils.Log.WithFields(fields).WithField("filename", tFile).Debug("Remove file")
+						return utils.RemoveAll(path)
+					}
+				}
+
+				return nil
+			},
+		),
+	)
+
+	if err != nil {
+		utils.Log.WithFields(fields).WithError(err).Error("Failed to cleanup temp rcc files")
+	}
+
+	return
 }

@@ -38,6 +38,6 @@ func generate(buildTarget string) {
 			}
 			return "full"
 		}(), strings.ToLower(module))
-		templater.GenModule(module)
+		templater.GenModule(module, buildTarget)
 	}
 }

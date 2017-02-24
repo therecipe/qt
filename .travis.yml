@@ -5,7 +5,7 @@ sudo: required
 
 go: 1.7.x
 
-env: DESKTOP=true ANDROID=false
+env: DESKTOP=true ANDROID=false QT_CGO_QMAKE=true
 
 matrix:
   include:

@@ -45,7 +45,7 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 					input = append(input, fmt.Sprintf("var %v *C.char\nif %v != \"\" {\n %v = %v\ndefer C.free(unsafe.Pointer(%v))\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
 				}
 
-			case "*string", "[]string":
+			case "*string", "[]string", "error":
 				{
 					input = append(input, fmt.Sprintf("var %v = %v\ndefer C.free(unsafe.Pointer(%v))\n", name, alloc, name))
 				}

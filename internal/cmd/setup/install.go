@@ -249,28 +249,33 @@ func getEnvAndTagflags(buildTarget string) (env map[string]string, tagFlags stri
 
 	case "windows":
 		{
-			if runtime.GOOS == "linux" {
-				tagFlags = fmt.Sprintf("-tags=\"%v\"", buildTarget)
+			tagFlags = fmt.Sprintf("-tags=\"%v\"", buildTarget)
 
-				env = map[string]string{
-					"PATH":   os.Getenv("PATH"),
-					"GOPATH": utils.MustGoPath(),
-					"GOROOT": runtime.GOROOT(),
+			env = map[string]string{
+				"PATH":   os.Getenv("PATH"),
+				"GOPATH": utils.MustGoPath(),
+				"GOROOT": runtime.GOROOT(),
 
-					"GOOS":   "windows",
-					"GOARCH": utils.QT_MXE_ARCH(),
+				"GOOS":   "windows",
+				"GOARCH": utils.QT_MXE_ARCH(),
 
-					"CGO_ENABLED": "1",
-					"CC":          "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-gcc",
-					"CXX":         "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-g++",
-				}
-				if utils.QT_MXE_ARCH() == "amd64" {
-					env["CC"] = "/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-gcc"
-					env["CXX"] = "/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-g++"
-				}
-			} else {
-				utils.Log.Panicf("failed to install %v on %v", buildTarget, runtime.GOOS)
+				"CGO_ENABLED": "1",
 			}
+
+			var path = func() string {
+				var prefix = "i686"
+				if utils.QT_MXE_ARCH() == "amd64" {
+					prefix = "x86_64"
+				}
+				var suffix = "shared"
+				if utils.QT_MXE_STATIC() {
+					suffix = "static"
+				}
+				return filepath.Join("/usr", "lib", "mxe", "usr", "bin", fmt.Sprintf("%v-w64-mingw32.%v", prefix, suffix))
+			}()
+
+			env["CC"] = path + "-gcc"
+			env["CXX"] = path + "-g++"
 		}
 
 	default:
