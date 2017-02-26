@@ -111,22 +111,11 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 //TODO: make docker compatible
 func qmlHeader(appName, appPath, buildTarget string) string {
 
-	switch buildTarget {
-	case "sailfish", "sailfish-emulator", "asteroid",
-		"rpi1", "rpi2", "rpi3":
-		{
-
-		}
-
-	default:
-		{
-			if strings.ToLower(os.Getenv("QT_CGO_QMAKE")) == "true" {
-				parser.State.Rcc = true
-				templater.QmakeCgoTemplate("main", appPath, buildTarget)
-				parser.State.Rcc = false
-				return "package main"
-			}
-		}
+	if utils.QT_QMAKE_CGO() {
+		parser.State.Rcc = true
+		templater.CgoTemplate("main", appPath, buildTarget)
+		parser.State.Rcc = false
+		return "package main"
 	}
 
 	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
@@ -202,7 +191,7 @@ func CleanPath(path string) (err error) {
 	var (
 		tmpFileNames = []string{
 			"rcc.qrc", "rcc.go", "rcc.cpp",
-			"rcc_cgo_desktop_darwin_amd64.go", "rcc_cgo_desktop_windows_386.go", "rcc_cgo_desktop_windows_amd64.go", "rcc_cgo_desktop_linux_amd64.go",
+			"rcc_cgo_darwin_darwin_amd64.go", "rcc_cgo_windows_windows_386.go", "rcc_cgo_windows_windows_amd64.go", "rcc_cgo_linux_linux_amd64.go",
 			"rcc_cgo_android_linux_arm.go",
 			"rcc_cgo_ios_simulator_darwin_amd64.go", "rcc_cgo_ios_simulator_darwin_386.go", "rcc_cgo_ios_darwin_arm64.go", "rcc_cgo_ios_darwin_arm.go",
 			"rcc_cgo_sailfish_emulator_linux_386.go", "rcc_cgo_sailfish_linux_arm.go", "rcc_cgo_asteroid_linux_arm.go",

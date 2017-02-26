@@ -12,6 +12,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+//qtminimal [ target ] [ path/to/project ] [ docker ]
+
 func main() {
 	cmd.ParseFlags()
 

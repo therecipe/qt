@@ -13,6 +13,10 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+//qtmoc [ path/to/project ] [ docker ]
+
+//qtmoc [ target ] [ path/to/project ] [ docker ]
+
 func main() {
 	cmd.ParseFlags()
 
@@ -36,7 +40,7 @@ func main() {
 		buildDocker = true
 	default:
 		fmt.Println("Only specify one path")
-		fmt.Printf("%s path/to/app\n", os.Args[0])
+		fmt.Printf("%s path/to/app [ docker ]\n", os.Args[0])
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
@@ -59,7 +63,7 @@ func main() {
 		cmd.Docker([]string{"qtmoc", "-debug"}, "linux", appPath)
 	} else {
 		utils.Log.WithFields(fields).Debug("Running...")
-		if err = moc.MocTree(appPath, "undefined"); err != nil { //TODO: allow buildTarget specification
+		if err = moc.MocTree(appPath, "desktop"); err != nil { //TODO: allow buildTarget specification
 			fmt.Println(err.Error())
 			os.Exit(1)
 		}

@@ -11,6 +11,10 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+//qtrcc [ path/to/project ] [ docker ]
+
+//qtrcc [ target ] [ path/to/project ] [ docker ]
+
 func main() {
 	var appPath, _ = os.Getwd()
 	if env_cwd := os.Getenv("QTRCC_CWD"); env_cwd != "" {
@@ -55,12 +59,12 @@ func main() {
 		appPath, _ = utils.Abs(appPath)
 	}
 	if _, err := ioutil.ReadDir(appPath); err != nil {
-		utils.Log.Fatalln("usage:", "qtrcc", filepath.Join("path", "to", "project"))
+		utils.Log.Fatalln("usage:", "qtrcc", filepath.Join("path", "to", "project"), "[ docker ]")
 	}
 
 	if buildDocker {
 		cmd.Docker([]string{"qtrcc", "-debug"}, "linux", appPath)
 	} else {
-		rcc.Rcc(appPath, "undefined", output_dir) //TODO: allow buildTarget specification
+		rcc.Rcc(appPath, "desktop", output_dir) //TODO: allow buildTarget specification
 	}
 }

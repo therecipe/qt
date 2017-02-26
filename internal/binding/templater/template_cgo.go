@@ -15,20 +15,18 @@ import (
 
 func CgoTemplate(module, mocPath, buildTarget string) {
 
-	switch buildTarget {
-	case "sailfish", "sailfish-emulator", "asteroid",
-		"rpi1", "rpi2", "rpi3":
-		{
-
+	if utils.QT_QMAKE_CGO() {
+		switch {
+		case parser.State.Moc:
+			QmakeCgoTemplate(module, mocPath, buildTarget, MOC)
+		case parser.State.Rcc:
+			QmakeCgoTemplate(module, mocPath, buildTarget, RCC)
+		case parser.State.Minimal:
+			QmakeCgoTemplate(module, mocPath, buildTarget, MINIMAL)
+		default:
+			QmakeCgoTemplate(module, mocPath, buildTarget, NONE)
 		}
-
-	default:
-		{
-			if strings.ToLower(os.Getenv("QT_CGO_QMAKE")) == "true" {
-				QmakeCgoTemplate(module, mocPath, buildTarget)
-				return
-			}
-		}
+		return
 	}
 
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
@@ -136,17 +134,17 @@ func cgoDarwin(module, mocPath string) {
 	switch {
 	case parser.State.Moc:
 		{
-			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_darwin_amd64.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_darwin_darwin_amd64.go"), bb.Bytes())
 		}
 
 	case parser.State.Minimal:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_darwin_amd64.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_darwin_darwin_amd64.go"), bb.Bytes())
 		}
 
 	default:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_darwin_amd64.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_darwin_darwin_amd64.go"), bb.Bytes())
 		}
 	}
 }
@@ -209,17 +207,17 @@ func cgoWindows(module, mocPath string) {
 	switch {
 	case parser.State.Moc:
 		{
-			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_windows_windows_386.go"), bb.Bytes())
 		}
 
 	case parser.State.Minimal:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_windows_windows_386.go"), bb.Bytes())
 		}
 
 	default:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_windows_windows_386.go"), bb.Bytes())
 		}
 	}
 }
@@ -285,20 +283,20 @@ func cgoWindowsForLinux(module, mocPath string) {
 	switch {
 	case parser.State.Moc:
 		{
-			utils.Save(filepath.Join(mocPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(filepath.Join(mocPath, "moc_cgo_windows_windows_amd64.go"), tmp64)
+			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_windows_windows_386.go"), bb.Bytes())
 		}
 
 	case parser.State.Minimal:
 		{
-			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_windows_windows_amd64.go"), tmp64)
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_windows_windows_386.go"), bb.Bytes())
 		}
 
 	default:
 		{
-			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_windows_windows_amd64.go"), tmp64)
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_windows_windows_386.go"), bb.Bytes())
 		}
 	}
 }
@@ -365,20 +363,20 @@ func cgoWindowsMsys2(module, mocPath string) {
 	switch {
 	case parser.State.Moc:
 		{
-			utils.Save(filepath.Join(mocPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(filepath.Join(mocPath, "moc_cgo_windows_windows_amd64.go"), tmp64)
+			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_windows_windows_386.go"), bb.Bytes())
 		}
 
 	case parser.State.Minimal:
 		{
-			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_windows_windows_amd64.go"), tmp64)
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_windows_windows_386.go"), bb.Bytes())
 		}
 
 	default:
 		{
-			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_windows_windows_amd64.go"), tmp64)
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_windows_windows_386.go"), bb.Bytes())
 		}
 	}
 }
@@ -441,17 +439,17 @@ func cgoLinux(module, mocPath string) {
 	switch {
 	case parser.State.Moc:
 		{
-			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_linux_linux_amd64.go"), bb.Bytes())
 		}
 
 	case parser.State.Minimal:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_linux_linux_amd64.go"), bb.Bytes())
 		}
 
 	default:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_linux_linux_amd64.go"), bb.Bytes())
 		}
 	}
 }
@@ -518,17 +516,17 @@ func cgoLinuxPkgConfig(module, mocPath string) {
 	switch {
 	case parser.State.Moc:
 		{
-			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_linux_linux_amd64.go"), bb.Bytes())
 		}
 
 	case parser.State.Minimal:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_linux_linux_amd64.go"), bb.Bytes())
 		}
 
 	default:
 		{
-			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_linux_linux_amd64.go"), bb.Bytes())
 		}
 	}
 }

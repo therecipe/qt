@@ -11,7 +11,7 @@ import (
 func main() {
 	cmd.ParseFlags()
 
-	buildMode, buildTarget := "full", "desktop"
+	var buildMode, buildTarget = "full", "desktop"
 
 	switch flag.NArg() {
 	case 1:

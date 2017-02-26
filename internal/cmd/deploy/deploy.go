@@ -488,7 +488,7 @@ func predeploy() {
 				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(depPath, "libgo.so")), "")
 			}
 
-			var out, err = json.Marshal(&struct {
+			var jsonStruct = &struct {
 				Qt                            string `json:"qt"`
 				Sdk                           string `json:"sdk"`
 				SdkBuildToolsRevision         string `json:"sdkBuildToolsRevision"`
@@ -516,7 +516,13 @@ func predeploy() {
 				AndroidPackageSourceDirectory: filepath.Join(appPath, "android"),
 				Qmlrootpath:                   appPath,
 				Applicationbinary:             filepath.Join(depPath, "libgo.so"),
-			})
+			}
+
+			if strings.ToLower(os.Getenv("QT_DOCKER")) == "true" {
+				jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2k", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2k", "libssl.so")
+			}
+
+			var out, err = json.Marshal(jsonStruct)
 			if err != nil {
 				utils.Log.WithError(err).Panicf("failed to create json-config file for androiddeployqt on %v", runtime.GOOS)
 			}

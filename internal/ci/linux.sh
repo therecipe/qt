@@ -10,6 +10,9 @@ du -sh $HOME/*
 #needed for headless qt installation
 export QT_QPA_PLATFORM=minimal
 
+#additional deps for multimedia
+sudo apt-get -y -qq install libpulse-dev
+
 #replace gcc4 with gcc5
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get -qq update

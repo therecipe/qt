@@ -102,3 +102,11 @@ func CheckBuildTarget(buildTarget string) {
 func IsCI() bool {
 	return strings.ToLower(os.Getenv("CI")) == "true"
 }
+
+func QT_QMAKE_DIR() string {
+	return filepath.Clean(os.Getenv("QT_QMAKE_DIR"))
+}
+
+func QT_QMAKE_CGO() bool {
+	return strings.ToLower(os.Getenv("QT_QMAKE_CGO")) == "true"
+}

@@ -4,7 +4,6 @@ machine:
     DESKTOP: true
     ANDROID: true
     QT_WINDOWS_CC: false
-    QT_CGO_QMAKE: true
     GOROOT: /usr/local/go
     GOPATH: /home/ubuntu/.go_project
     JDK_DIR: /usr/lib/jvm/java-8-openjdk-amd64

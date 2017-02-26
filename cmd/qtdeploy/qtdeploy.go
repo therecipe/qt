@@ -12,6 +12,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+//qtdeploy [ mode ] [ target ] [ path/to/project ] [ docker ]
+
 var (
 	appPath                string
 	buildMode, buildTarget string
