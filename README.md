@@ -84,7 +84,7 @@ You should run `qtsetup` after each upgrade.
 
 	1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-		* https://golang.org/doc/install?download=go1.8.0.windows-amd64.msi
+		* https://golang.org/doc/install?download=go1.8.windows-amd64.msi
 
 	2. Install Qt 5.8.0 (with android support)
 
@@ -121,7 +121,7 @@ You should run `qtsetup` after each upgrade.
 
 	1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-		* https://golang.org/doc/install?download=go1.8.0.darwin-amd64.pkg
+		* https://golang.org/doc/install?download=go1.8.darwin-amd64.pkg
 
 	2. Install Qt 5.8.0 (with android/iOS support)
 
@@ -156,7 +156,7 @@ You should run `qtsetup` after each upgrade.
 
 	1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-		* https://golang.org/doc/install?download=go1.8.0.linux-amd64.tar.gz
+		* https://golang.org/doc/install?download=go1.8.linux-amd64.tar.gz
 
 	2. Install Qt 5.8.0 (with android support)
 
