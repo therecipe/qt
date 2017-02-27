@@ -104,7 +104,10 @@ func IsCI() bool {
 }
 
 func QT_QMAKE_DIR() string {
-	return filepath.Clean(os.Getenv("QT_QMAKE_DIR"))
+	if dir := os.Getenv("QT_QMAKE_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	return ""
 }
 
 func QT_QMAKE_CGO() bool {

@@ -43,8 +43,10 @@ func test(buildTarget string) {
 		utils.RunCmd(cmd, "run qtmoc")
 	}
 
+	var buildMode = "test"
 	var examples map[string][]string
 	if utils.IsCI() {
+		buildMode = "build"
 		examples = map[string][]string{
 			"androidextras": []string{"jni", "notification"},
 
@@ -108,7 +110,7 @@ func test(buildTarget string) {
 			utils.Log.Infoln("testing", example)
 
 			deploy.Deploy(&deploy.State{
-				BuildMode:   "test",
+				BuildMode:   buildMode,
 				BuildTarget: strings.TrimSuffix(buildTarget, "-docker"),
 				AppPath:     utils.GoQtPkgPath("internal", "examples", example),
 				BuildDocker: strings.HasSuffix(buildTarget, "-docker"),
