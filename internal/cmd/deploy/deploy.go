@@ -162,7 +162,7 @@ func build() {
 		ldFlags = strings.Split(gLdFlags, " ")
 	}
 
-	if strings.ToLower(os.Getenv("QT_DOCKER")) == "true" {
+	if utils.QT_DOCKER() {
 		tagFlags = append(tagFlags, "docker")
 	}
 
@@ -518,7 +518,7 @@ func predeploy() {
 				Applicationbinary:             filepath.Join(depPath, "libgo.so"),
 			}
 
-			if strings.ToLower(os.Getenv("QT_DOCKER")) == "true" {
+			if utils.QT_DOCKER() {
 				jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2k", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2k", "libssl.so")
 			}
 

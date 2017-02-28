@@ -113,3 +113,7 @@ func QT_QMAKE_DIR() string {
 func QT_QMAKE_CGO() bool {
 	return strings.ToLower(os.Getenv("QT_QMAKE_CGO")) == "true"
 }
+
+func QT_DOCKER() bool {
+	return strings.ToLower(os.Getenv("QT_DOCKER")) == "true"
+}

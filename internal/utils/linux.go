@@ -52,12 +52,12 @@ func QT_MISC_DIR() string {
 
 	switch LinuxDistro() {
 	case "arch":
-			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir")), "qt")
+		return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir")), "qt")
 	case "fedora", "suse", "ubuntu":
-			return strings.TrimSuffix(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
-}
-			Log.Error("failed to detect the Linux distro")
-			return ""
+		return strings.TrimSuffix(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
+	}
+	Log.Error("failed to detect the Linux distro")
+	return ""
 }
 
 func LinuxDistro() string {

@@ -255,13 +255,16 @@ func (m *appMoc) runQtMoc() (err error) {
 	case "darwin":
 		mocPath = filepath.Join(utils.QT_DARWIN_DIR(), "bin", "moc")
 	case "linux":
-		if m.buildTarget == "windows" || os.Getenv("QT_MXE_ARCH") != "" {
-			mocPath = filepath.Join("/usr/lib/mxe/usr/", func() string {
-				if utils.QT_MXE_ARCH() == "386" {
-					return "i686"
-				}
-				return "x86_64"
-			}()+"-w64-mingw32.shared/qt5/bin/moc")
+		if m.buildTarget == "windows" || (utils.QT_DOCKER() && os.Getenv("QT_MXE_ARCH") != "") {
+			var prefix = "i686"
+			if utils.QT_MXE_ARCH() == "amd64" {
+				prefix = "x86_64"
+			}
+			var suffix = "shared"
+			if utils.QT_MXE_STATIC() {
+				suffix = "static"
+			}
+			mocPath = filepath.Join("/usr", "lib", "mxe", "usr", fmt.Sprintf("%v-w64-mingw32.%v", prefix, suffix), "qt5", "bin", "moc")
 		} else if utils.UsePkgConfig() {
 			mocPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "moc.LinuxPkgConfig_hostBins")), "moc")
 		} else {
