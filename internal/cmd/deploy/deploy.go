@@ -889,7 +889,7 @@ func deployInternal() {
 
 					if usesWebEngine {
 						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "libexec"), depPath), fmt.Sprintf("copy libexec content for %v on %v", buildTarget, runtime.GOOS))
-						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "resources"), depPath), fmt.Sprintf("copy resources content for %v on %v", buildTarget, runtime.GOOS))
+						utils.RunCmd(exec.Command("cp", "-R", strings.TrimSuffix(filepath.Join(libraryPath, "resources"), "/"), depPath), fmt.Sprintf("copy resources content for %v on %v", buildTarget, runtime.GOOS))
 						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "translations/qtwebengine_locales/"), depPath), fmt.Sprintf("copy qtwebengine_locales dir for %v on %v", buildTarget, runtime.GOOS))
 					}
 				}
@@ -1135,11 +1135,13 @@ func linuxSH() string {
 		fmt.Fprintf(bb, "export QT_PLUGIN_PATH=$%v\n", filepath.Join(miscDir, "plugins"))
 		fmt.Fprintf(bb, "export QML_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
 		fmt.Fprintf(bb, "export QML2_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
+		fmt.Fprintf(bb, "export QTWEBENGINEPROCESS_PATH=%v\n", filepath.Join(miscDir, "libexec"))
 	} else {
 		fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname/lib\n")
 		fmt.Fprint(bb, "export QT_PLUGIN_PATH=$dirname/plugins\n")
 		fmt.Fprint(bb, "export QML_IMPORT_PATH=$dirname/qml\n")
 		fmt.Fprint(bb, "export QML2_IMPORT_PATH=$dirname/qml\n")
+		fmt.Fprintf(bb, "export QTWEBENGINEPROCESS_PATH=$dirname/libexec\n")
 	}
 	fmt.Fprint(bb, "$dirname/$appname \"$@\"\n")
 
