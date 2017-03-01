@@ -193,6 +193,9 @@ func getEnvAndTagflags(buildTarget string) (env map[string]string, tagFlags stri
 
 					"CGO_ENABLED": "1",
 				}
+				if utils.UseMsys2() {
+					env["GOARCH"] = utils.QT_MSYS2_ARCH()
+				}
 			}
 		}
 
