@@ -834,10 +834,11 @@ func deployInternal() {
 					utils.MkdirAll(filepath.Join(depPath, "lib"))
 
 					var (
-						libraryPath string
-						lddPath     = "ldd"
-						lddExtra    string
-						lddOutput   string
+						libraryPath   string
+						lddPath       = "ldd"
+						lddExtra      string
+						lddOutput     string
+						usesWebEngine bool
 					)
 
 					if strings.HasPrefix(buildTarget, "rpi") {
@@ -866,6 +867,10 @@ func deployInternal() {
 							if utils.ExistsFile(filepath.Join(libraryPath, libName)) {
 								utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, "lib", libName)), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
 							}
+
+							if strings.Contains(dep, "WebEngine") {
+								usesWebEngine = true
+							}
 						}
 					}
 
@@ -881,6 +886,12 @@ func deployInternal() {
 					libraryPath = strings.TrimSuffix(libraryPath, "lib/")
 					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), fmt.Sprintf("copy qml dir for %v on %v", buildTarget, runtime.GOOS))
 					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/"), depPath), fmt.Sprintf("copy plugins dir for %v on %v", buildTarget, runtime.GOOS))
+
+					if usesWebEngine {
+						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "libexec"), depPath), fmt.Sprintf("copy libexec content for %v on %v", buildTarget, runtime.GOOS))
+						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "resources"), depPath), fmt.Sprintf("copy resources content for %v on %v", buildTarget, runtime.GOOS))
+						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "translations/qtwebengine_locales/"), depPath), fmt.Sprintf("copy qtwebengine_locales dir for %v on %v", buildTarget, runtime.GOOS))
+					}
 				}
 			}
 		}
