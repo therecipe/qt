@@ -126,7 +126,14 @@ func callbackQAbstractNetworkCache_Data(ptr unsafe.Pointer, url unsafe.Pointer) 
 func (ptr *QAbstractNetworkCache) ConnectData(f func(url *core.QUrl) *core.QIODevice) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(url *core.QUrl) *core.QIODevice {
+				signal.(func(*core.QUrl))(url)
+				return f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", f)
+		}
 	}
 }
 
@@ -160,7 +167,14 @@ func callbackQAbstractNetworkCache_Prepare(ptr unsafe.Pointer, metaData unsafe.P
 func (ptr *QAbstractNetworkCache) ConnectPrepare(f func(metaData *QNetworkCacheMetaData) *core.QIODevice) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "prepare"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", func(metaData *QNetworkCacheMetaData) *core.QIODevice {
+				signal.(func(*QNetworkCacheMetaData))(metaData)
+				return f(metaData)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", f)
+		}
 	}
 }
 
@@ -194,7 +208,14 @@ func callbackQAbstractNetworkCache_MetaData(ptr unsafe.Pointer, url unsafe.Point
 func (ptr *QAbstractNetworkCache) ConnectMetaData(f func(url *core.QUrl) *QNetworkCacheMetaData) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", func(url *core.QUrl) *QNetworkCacheMetaData {
+				signal.(func(*core.QUrl))(url)
+				return f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", f)
+		}
 	}
 }
 
@@ -226,7 +247,14 @@ func callbackQAbstractNetworkCache_Remove(ptr unsafe.Pointer, url unsafe.Pointer
 func (ptr *QAbstractNetworkCache) ConnectRemove(f func(url *core.QUrl) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "remove"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", func(url *core.QUrl) bool {
+				signal.(func(*core.QUrl))(url)
+				return f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", f)
+		}
 	}
 }
 
@@ -255,7 +283,14 @@ func callbackQAbstractNetworkCache_Clear(ptr unsafe.Pointer) {
 func (ptr *QAbstractNetworkCache) ConnectClear(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "clear"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", f)
+		}
 	}
 }
 
@@ -283,7 +318,14 @@ func callbackQAbstractNetworkCache_Insert(ptr unsafe.Pointer, device unsafe.Poin
 func (ptr *QAbstractNetworkCache) ConnectInsert(f func(device *core.QIODevice)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insert", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "insert"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insert", func(device *core.QIODevice) {
+				signal.(func(*core.QIODevice))(device)
+				f(device)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insert", f)
+		}
 	}
 }
 
@@ -311,7 +353,14 @@ func callbackQAbstractNetworkCache_UpdateMetaData(ptr unsafe.Pointer, metaData u
 func (ptr *QAbstractNetworkCache) ConnectUpdateMetaData(f func(metaData *QNetworkCacheMetaData)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData", func(metaData *QNetworkCacheMetaData) {
+				signal.(func(*QNetworkCacheMetaData))(metaData)
+				f(metaData)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData", f)
+		}
 	}
 }
 
@@ -340,7 +389,14 @@ func callbackQAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr unsafe.Point
 func (ptr *QAbstractNetworkCache) ConnectDestroyQAbstractNetworkCache(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractNetworkCache", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractNetworkCache"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractNetworkCache", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractNetworkCache", f)
+		}
 	}
 }
 
@@ -379,7 +435,14 @@ func callbackQAbstractNetworkCache_CacheSize(ptr unsafe.Pointer) C.longlong {
 func (ptr *QAbstractNetworkCache) ConnectCacheSize(f func() int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cacheSize"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", func() int64 {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", f)
+		}
 	}
 }
 
@@ -816,7 +879,14 @@ func callbackQAbstractSocket_SocketOption(ptr unsafe.Pointer, option C.longlong)
 func (ptr *QAbstractSocket) ConnectSocketOption(f func(option QAbstractSocket__SocketOption) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "socketOption", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "socketOption"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "socketOption", func(option QAbstractSocket__SocketOption) *core.QVariant {
+				signal.(func(QAbstractSocket__SocketOption))(option)
+				return f(option)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "socketOption", f)
+		}
 	}
 }
 
@@ -894,7 +964,14 @@ func callbackQAbstractSocket_WaitForConnected(ptr unsafe.Pointer, msecs C.int) C
 func (ptr *QAbstractSocket) ConnectWaitForConnected(f func(msecs int) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForConnected", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "waitForConnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForConnected", func(msecs int) bool {
+				signal.(func(int))(msecs)
+				return f(msecs)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForConnected", f)
+		}
 	}
 }
 
@@ -931,7 +1008,14 @@ func callbackQAbstractSocket_WaitForDisconnected(ptr unsafe.Pointer, msecs C.int
 func (ptr *QAbstractSocket) ConnectWaitForDisconnected(f func(msecs int) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForDisconnected", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "waitForDisconnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForDisconnected", func(msecs int) bool {
+				signal.(func(int))(msecs)
+				return f(msecs)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForDisconnected", f)
+		}
 	}
 }
 
@@ -993,7 +1077,14 @@ func callbackQAbstractSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwor
 func (ptr *QAbstractSocket) ConnectReadData(f func(data *string, maxSize int64) int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", func(data *string, maxSize int64) int64 {
+				signal.(func(*string, int64))(data, maxSize)
+				return f(data, maxSize)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", f)
+		}
 	}
 }
 
@@ -1063,7 +1154,14 @@ func callbackQAbstractSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwo
 func (ptr *QAbstractSocket) ConnectWriteData(f func(data string, size int64) int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "writeData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", func(data string, size int64) int64 {
+				signal.(func(string, int64))(data, size)
+				return f(data, size)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", f)
+		}
 	}
 }
 
@@ -1131,7 +1229,14 @@ func callbackQAbstractSocket_ConnectToHost2(ptr unsafe.Pointer, address unsafe.P
 func (ptr *QAbstractSocket) ConnectConnectToHost2(f func(address *QHostAddress, port uint16, openMode core.QIODevice__OpenModeFlag)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectToHost2", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connectToHost2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectToHost2", func(address *QHostAddress, port uint16, openMode core.QIODevice__OpenModeFlag) {
+				signal.(func(*QHostAddress, uint16, core.QIODevice__OpenModeFlag))(address, port, openMode)
+				f(address, port, openMode)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectToHost2", f)
+		}
 	}
 }
 
@@ -1166,7 +1271,14 @@ func callbackQAbstractSocket_ConnectToHost(ptr unsafe.Pointer, hostName C.struct
 func (ptr *QAbstractSocket) ConnectConnectToHost(f func(hostName string, port uint16, openMode core.QIODevice__OpenModeFlag, protocol QAbstractSocket__NetworkLayerProtocol)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectToHost", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connectToHost"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectToHost", func(hostName string, port uint16, openMode core.QIODevice__OpenModeFlag, protocol QAbstractSocket__NetworkLayerProtocol) {
+				signal.(func(string, uint16, core.QIODevice__OpenModeFlag, QAbstractSocket__NetworkLayerProtocol))(hostName, port, openMode, protocol)
+				f(hostName, port, openMode, protocol)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectToHost", f)
+		}
 	}
 }
 
@@ -1209,8 +1321,19 @@ func callbackQAbstractSocket_Connected(ptr unsafe.Pointer) {
 
 func (ptr *QAbstractSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectConnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "connected") {
+			C.QAbstractSocket_ConnectConnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+		}
 	}
 }
 
@@ -1239,7 +1362,14 @@ func callbackQAbstractSocket_DisconnectFromHost(ptr unsafe.Pointer) {
 func (ptr *QAbstractSocket) ConnectDisconnectFromHost(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnectFromHost", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnectFromHost"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnectFromHost", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnectFromHost", f)
+		}
 	}
 }
 
@@ -1272,8 +1402,19 @@ func callbackQAbstractSocket_Disconnected(ptr unsafe.Pointer) {
 
 func (ptr *QAbstractSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "disconnected") {
+			C.QAbstractSocket_ConnectDisconnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+		}
 	}
 }
 
@@ -1300,8 +1441,19 @@ func callbackQAbstractSocket_Error2(ptr unsafe.Pointer, socketError C.longlong) 
 
 func (ptr *QAbstractSocket) ConnectError2(f func(socketError QAbstractSocket__SocketError)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QAbstractSocket_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(socketError QAbstractSocket__SocketError) {
+				signal.(func(QAbstractSocket__SocketError))(socketError)
+				f(socketError)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -1328,8 +1480,19 @@ func callbackQAbstractSocket_HostFound(ptr unsafe.Pointer) {
 
 func (ptr *QAbstractSocket) ConnectHostFound(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectHostFound(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hostFound", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "hostFound") {
+			C.QAbstractSocket_ConnectHostFound(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hostFound"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hostFound", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hostFound", f)
+		}
 	}
 }
 
@@ -1356,8 +1519,19 @@ func callbackQAbstractSocket_ProxyAuthenticationRequired(ptr unsafe.Pointer, pro
 
 func (ptr *QAbstractSocket) ConnectProxyAuthenticationRequired(f func(proxy *QNetworkProxy, authenticator *QAuthenticator)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired") {
+			C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired", func(proxy *QNetworkProxy, authenticator *QAuthenticator) {
+				signal.(func(*QNetworkProxy, *QAuthenticator))(proxy, authenticator)
+				f(proxy, authenticator)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired", f)
+		}
 	}
 }
 
@@ -1386,7 +1560,14 @@ func callbackQAbstractSocket_Resume(ptr unsafe.Pointer) {
 func (ptr *QAbstractSocket) ConnectResume(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "resume", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "resume"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "resume", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "resume", f)
+		}
 	}
 }
 
@@ -1468,7 +1649,14 @@ func callbackQAbstractSocket_SetReadBufferSize(ptr unsafe.Pointer, size C.longlo
 func (ptr *QAbstractSocket) ConnectSetReadBufferSize(f func(size int64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize", func(size int64) {
+				signal.(func(int64))(size)
+				f(size)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize", f)
+		}
 	}
 }
 
@@ -1509,7 +1697,14 @@ func callbackQAbstractSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlo
 func (ptr *QAbstractSocket) ConnectSetSocketOption(f func(option QAbstractSocket__SocketOption, value *core.QVariant)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSocketOption", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setSocketOption"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSocketOption", func(option QAbstractSocket__SocketOption, value *core.QVariant) {
+				signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(option, value)
+				f(option, value)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSocketOption", f)
+		}
 	}
 }
 
@@ -1548,8 +1743,19 @@ func callbackQAbstractSocket_StateChanged(ptr unsafe.Pointer, socketState C.long
 
 func (ptr *QAbstractSocket) ConnectStateChanged(f func(socketState QAbstractSocket__SocketState)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractSocket_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "stateChanged") {
+			C.QAbstractSocket_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", func(socketState QAbstractSocket__SocketState) {
+				signal.(func(QAbstractSocket__SocketState))(socketState)
+				f(socketState)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+		}
 	}
 }
 
@@ -1578,7 +1784,14 @@ func callbackQAbstractSocket_DestroyQAbstractSocket(ptr unsafe.Pointer) {
 func (ptr *QAbstractSocket) ConnectDestroyQAbstractSocket(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractSocket", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractSocket"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractSocket", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QAbstractSocket", f)
+		}
 	}
 }
 
@@ -2654,7 +2867,14 @@ func callbackQDnsLookup_Abort(ptr unsafe.Pointer) {
 func (ptr *QDnsLookup) ConnectAbort(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "abort"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		}
 	}
 }
 
@@ -2687,8 +2907,19 @@ func callbackQDnsLookup_Finished(ptr unsafe.Pointer) {
 
 func (ptr *QDnsLookup) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QDnsLookup_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QDnsLookup_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -2717,7 +2948,14 @@ func callbackQDnsLookup_Lookup(ptr unsafe.Pointer) {
 func (ptr *QDnsLookup) ConnectLookup(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "lookup", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "lookup"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "lookup", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "lookup", f)
+		}
 	}
 }
 
@@ -2750,8 +2988,19 @@ func callbackQDnsLookup_NameChanged(ptr unsafe.Pointer, name C.struct_QtNetwork_
 
 func (ptr *QDnsLookup) ConnectNameChanged(f func(name string)) {
 	if ptr.Pointer() != nil {
-		C.QDnsLookup_ConnectNameChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nameChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "nameChanged") {
+			C.QDnsLookup_ConnectNameChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nameChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nameChanged", func(name string) {
+				signal.(func(string))(name)
+				f(name)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nameChanged", f)
+		}
 	}
 }
 
@@ -2783,8 +3032,19 @@ func callbackQDnsLookup_NameserverChanged(ptr unsafe.Pointer, nameserver unsafe.
 
 func (ptr *QDnsLookup) ConnectNameserverChanged(f func(nameserver *QHostAddress)) {
 	if ptr.Pointer() != nil {
-		C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nameserverChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "nameserverChanged") {
+			C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nameserverChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nameserverChanged", func(nameserver *QHostAddress) {
+				signal.(func(*QHostAddress))(nameserver)
+				f(nameserver)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nameserverChanged", f)
+		}
 	}
 }
 
@@ -2834,8 +3094,19 @@ func callbackQDnsLookup_TypeChanged(ptr unsafe.Pointer, ty C.longlong) {
 
 func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
 	if ptr.Pointer() != nil {
-		C.QDnsLookup_ConnectTypeChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "typeChanged") {
+			C.QDnsLookup_ConnectTypeChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "typeChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", func(ty QDnsLookup__Type) {
+				signal.(func(QDnsLookup__Type))(ty)
+				f(ty)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", f)
+		}
 	}
 }
 
@@ -4740,7 +5011,14 @@ func callbackQLocalServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Point
 func (ptr *QLocalServer) ConnectNextPendingConnection(f func() *QLocalSocket) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", func() *QLocalSocket {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", f)
+		}
 	}
 }
 
@@ -4828,7 +5106,14 @@ func callbackQLocalServer_IncomingConnection(ptr unsafe.Pointer, socketDescripto
 func (ptr *QLocalServer) ConnectIncomingConnection(f func(socketDescriptor uintptr)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "incomingConnection", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "incomingConnection"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "incomingConnection", func(socketDescriptor uintptr) {
+				signal.(func(uintptr))(socketDescriptor)
+				f(socketDescriptor)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "incomingConnection", f)
+		}
 	}
 }
 
@@ -4861,8 +5146,19 @@ func callbackQLocalServer_NewConnection(ptr unsafe.Pointer) {
 
 func (ptr *QLocalServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
-		C.QLocalServer_ConnectNewConnection(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "newConnection") {
+			C.QLocalServer_ConnectNewConnection(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newConnection"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+		}
 	}
 }
 
@@ -4946,7 +5242,14 @@ func callbackQLocalServer_HasPendingConnections(ptr unsafe.Pointer) C.char {
 func (ptr *QLocalServer) ConnectHasPendingConnections(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", f)
+		}
 	}
 }
 
@@ -5410,7 +5713,14 @@ func callbackQLocalSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwork_P
 func (ptr *QLocalSocket) ConnectReadData(f func(data *string, c int64) int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", func(data *string, c int64) int64 {
+				signal.(func(*string, int64))(data, c)
+				return f(data, c)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", f)
+		}
 	}
 }
 
@@ -5459,7 +5769,14 @@ func callbackQLocalSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwork_
 func (ptr *QLocalSocket) ConnectWriteData(f func(data string, c int64) int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "writeData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", func(data string, c int64) int64 {
+				signal.(func(string, int64))(data, c)
+				return f(data, c)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", f)
+		}
 	}
 }
 
@@ -5542,8 +5859,19 @@ func callbackQLocalSocket_Connected(ptr unsafe.Pointer) {
 
 func (ptr *QLocalSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QLocalSocket_ConnectConnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "connected") {
+			C.QLocalSocket_ConnectConnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+		}
 	}
 }
 
@@ -5576,8 +5904,19 @@ func callbackQLocalSocket_Disconnected(ptr unsafe.Pointer) {
 
 func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QLocalSocket_ConnectDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "disconnected") {
+			C.QLocalSocket_ConnectDisconnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+		}
 	}
 }
 
@@ -5604,8 +5943,19 @@ func callbackQLocalSocket_Error2(ptr unsafe.Pointer, socketError C.longlong) {
 
 func (ptr *QLocalSocket) ConnectError2(f func(socketError QLocalSocket__LocalSocketError)) {
 	if ptr.Pointer() != nil {
-		C.QLocalSocket_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QLocalSocket_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(socketError QLocalSocket__LocalSocketError) {
+				signal.(func(QLocalSocket__LocalSocketError))(socketError)
+				f(socketError)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -5649,8 +5999,19 @@ func callbackQLocalSocket_StateChanged(ptr unsafe.Pointer, socketState C.longlon
 
 func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__LocalSocketState)) {
 	if ptr.Pointer() != nil {
-		C.QLocalSocket_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "stateChanged") {
+			C.QLocalSocket_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", func(socketState QLocalSocket__LocalSocketState) {
+				signal.(func(QLocalSocket__LocalSocketState))(socketState)
+				f(socketState)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+		}
 	}
 }
 
@@ -6272,7 +6633,14 @@ func callbackQNetworkAccessManager_CreateRequest(ptr unsafe.Pointer, op C.longlo
 func (ptr *QNetworkAccessManager) ConnectCreateRequest(f func(op QNetworkAccessManager__Operation, req *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createRequest", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createRequest"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createRequest", func(op QNetworkAccessManager__Operation, req *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply {
+				signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice))(op, req, outgoingData)
+				return f(op, req, outgoingData)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createRequest", f)
+		}
 	}
 }
 
@@ -6447,8 +6815,19 @@ func callbackQNetworkAccessManager_AuthenticationRequired(ptr unsafe.Pointer, re
 
 func (ptr *QNetworkAccessManager) ConnectAuthenticationRequired(f func(reply *QNetworkReply, authenticator *QAuthenticator)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "authenticationRequired", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "authenticationRequired") {
+			C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "authenticationRequired"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "authenticationRequired", func(reply *QNetworkReply, authenticator *QAuthenticator) {
+				signal.(func(*QNetworkReply, *QAuthenticator))(reply, authenticator)
+				f(reply, authenticator)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "authenticationRequired", f)
+		}
 	}
 }
 
@@ -6503,8 +6882,19 @@ func callbackQNetworkAccessManager_Encrypted(ptr unsafe.Pointer, reply unsafe.Po
 
 func (ptr *QNetworkAccessManager) ConnectEncrypted(f func(reply *QNetworkReply)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "encrypted") {
+			C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "encrypted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", func(reply *QNetworkReply) {
+				signal.(func(*QNetworkReply))(reply)
+				f(reply)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", f)
+		}
 	}
 }
 
@@ -6531,8 +6921,19 @@ func callbackQNetworkAccessManager_Finished(ptr unsafe.Pointer, reply unsafe.Poi
 
 func (ptr *QNetworkAccessManager) ConnectFinished(f func(reply *QNetworkReply)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QNetworkAccessManager_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func(reply *QNetworkReply) {
+				signal.(func(*QNetworkReply))(reply)
+				f(reply)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -6559,8 +6960,19 @@ func callbackQNetworkAccessManager_NetworkAccessibleChanged(ptr unsafe.Pointer, 
 
 func (ptr *QNetworkAccessManager) ConnectNetworkAccessibleChanged(f func(accessible QNetworkAccessManager__NetworkAccessibility)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "networkAccessibleChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "networkAccessibleChanged") {
+			C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "networkAccessibleChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "networkAccessibleChanged", func(accessible QNetworkAccessManager__NetworkAccessibility) {
+				signal.(func(QNetworkAccessManager__NetworkAccessibility))(accessible)
+				f(accessible)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "networkAccessibleChanged", f)
+		}
 	}
 }
 
@@ -6587,8 +6999,19 @@ func callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired(ptr unsafe
 
 func (ptr *QNetworkAccessManager) ConnectPreSharedKeyAuthenticationRequired(f func(reply *QNetworkReply, authenticator *QSslPreSharedKeyAuthenticator)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired") {
+			C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", func(reply *QNetworkReply, authenticator *QSslPreSharedKeyAuthenticator) {
+				signal.(func(*QNetworkReply, *QSslPreSharedKeyAuthenticator))(reply, authenticator)
+				f(reply, authenticator)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+		}
 	}
 }
 
@@ -6615,8 +7038,19 @@ func callbackQNetworkAccessManager_ProxyAuthenticationRequired(ptr unsafe.Pointe
 
 func (ptr *QNetworkAccessManager) ConnectProxyAuthenticationRequired(f func(proxy *QNetworkProxy, authenticator *QAuthenticator)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired") {
+			C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired", func(proxy *QNetworkProxy, authenticator *QAuthenticator) {
+				signal.(func(*QNetworkProxy, *QAuthenticator))(proxy, authenticator)
+				f(proxy, authenticator)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "proxyAuthenticationRequired", f)
+		}
 	}
 }
 
@@ -6685,8 +7119,19 @@ func callbackQNetworkAccessManager_SslErrors(ptr unsafe.Pointer, reply unsafe.Po
 
 func (ptr *QNetworkAccessManager) ConnectSslErrors(f func(reply *QNetworkReply, errors []*QSslError)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkAccessManager_ConnectSslErrors(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "sslErrors") {
+			C.QNetworkAccessManager_ConnectSslErrors(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sslErrors"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors", func(reply *QNetworkReply, errors []*QSslError) {
+				signal.(func(*QNetworkReply, []*QSslError))(reply, errors)
+				f(reply, errors)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors", f)
+		}
 	}
 }
 
@@ -6799,7 +7244,14 @@ func callbackQNetworkAccessManager_SupportedSchemesImplementation(ptr unsafe.Poi
 func (ptr *QNetworkAccessManager) ConnectSupportedSchemesImplementation(f func() []string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedSchemesImplementation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedSchemesImplementation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedSchemesImplementation", func() []string {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedSchemesImplementation", f)
+		}
 	}
 }
 
@@ -7638,8 +8090,19 @@ func callbackQNetworkConfigurationManager_ConfigurationAdded(ptr unsafe.Pointer,
 
 func (ptr *QNetworkConfigurationManager) ConnectConfigurationAdded(f func(config *QNetworkConfiguration)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationAdded", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "configurationAdded") {
+			C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "configurationAdded"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationAdded", func(config *QNetworkConfiguration) {
+				signal.(func(*QNetworkConfiguration))(config)
+				f(config)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationAdded", f)
+		}
 	}
 }
 
@@ -7666,8 +8129,19 @@ func callbackQNetworkConfigurationManager_ConfigurationChanged(ptr unsafe.Pointe
 
 func (ptr *QNetworkConfigurationManager) ConnectConfigurationChanged(f func(config *QNetworkConfiguration)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "configurationChanged") {
+			C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "configurationChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationChanged", func(config *QNetworkConfiguration) {
+				signal.(func(*QNetworkConfiguration))(config)
+				f(config)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationChanged", f)
+		}
 	}
 }
 
@@ -7694,8 +8168,19 @@ func callbackQNetworkConfigurationManager_ConfigurationRemoved(ptr unsafe.Pointe
 
 func (ptr *QNetworkConfigurationManager) ConnectConfigurationRemoved(f func(config *QNetworkConfiguration)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationRemoved", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "configurationRemoved") {
+			C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "configurationRemoved"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationRemoved", func(config *QNetworkConfiguration) {
+				signal.(func(*QNetworkConfiguration))(config)
+				f(config)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "configurationRemoved", f)
+		}
 	}
 }
 
@@ -7722,8 +8207,19 @@ func callbackQNetworkConfigurationManager_OnlineStateChanged(ptr unsafe.Pointer,
 
 func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnline bool)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "onlineStateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "onlineStateChanged") {
+			C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "onlineStateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "onlineStateChanged", func(isOnline bool) {
+				signal.(func(bool))(isOnline)
+				f(isOnline)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "onlineStateChanged", f)
+		}
 	}
 }
 
@@ -7750,8 +8246,19 @@ func callbackQNetworkConfigurationManager_UpdateCompleted(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateCompleted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "updateCompleted") {
+			C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateCompleted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateCompleted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateCompleted", f)
+		}
 	}
 }
 
@@ -7780,7 +8287,14 @@ func callbackQNetworkConfigurationManager_UpdateConfigurations(ptr unsafe.Pointe
 func (ptr *QNetworkConfigurationManager) ConnectUpdateConfigurations(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateConfigurations", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateConfigurations"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateConfigurations", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateConfigurations", f)
+		}
 	}
 }
 
@@ -7815,7 +8329,14 @@ func callbackQNetworkConfigurationManager_DestroyQNetworkConfigurationManager(pt
 func (ptr *QNetworkConfigurationManager) ConnectDestroyQNetworkConfigurationManager(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkConfigurationManager", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkConfigurationManager"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkConfigurationManager", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkConfigurationManager", f)
+		}
 	}
 }
 
@@ -8475,7 +8996,14 @@ func callbackQNetworkCookieJar_DeleteCookie(ptr unsafe.Pointer, cookie unsafe.Po
 func (ptr *QNetworkCookieJar) ConnectDeleteCookie(f func(cookie *QNetworkCookie) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deleteCookie", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deleteCookie"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deleteCookie", func(cookie *QNetworkCookie) bool {
+				signal.(func(*QNetworkCookie))(cookie)
+				return f(cookie)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deleteCookie", f)
+		}
 	}
 }
 
@@ -8512,7 +9040,14 @@ func callbackQNetworkCookieJar_InsertCookie(ptr unsafe.Pointer, cookie unsafe.Po
 func (ptr *QNetworkCookieJar) ConnectInsertCookie(f func(cookie *QNetworkCookie) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insertCookie", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "insertCookie"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insertCookie", func(cookie *QNetworkCookie) bool {
+				signal.(func(*QNetworkCookie))(cookie)
+				return f(cookie)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insertCookie", f)
+		}
 	}
 }
 
@@ -8561,7 +9096,14 @@ func callbackQNetworkCookieJar_SetCookiesFromUrl(ptr unsafe.Pointer, cookieList 
 func (ptr *QNetworkCookieJar) ConnectSetCookiesFromUrl(f func(cookieList []*QNetworkCookie, url *core.QUrl) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setCookiesFromUrl", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setCookiesFromUrl"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setCookiesFromUrl", func(cookieList []*QNetworkCookie, url *core.QUrl) bool {
+				signal.(func([]*QNetworkCookie, *core.QUrl))(cookieList, url)
+				return f(cookieList, url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setCookiesFromUrl", f)
+		}
 	}
 }
 
@@ -8610,7 +9152,14 @@ func callbackQNetworkCookieJar_UpdateCookie(ptr unsafe.Pointer, cookie unsafe.Po
 func (ptr *QNetworkCookieJar) ConnectUpdateCookie(f func(cookie *QNetworkCookie) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateCookie", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateCookie"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateCookie", func(cookie *QNetworkCookie) bool {
+				signal.(func(*QNetworkCookie))(cookie)
+				return f(cookie)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateCookie", f)
+		}
 	}
 }
 
@@ -8659,7 +9208,14 @@ func callbackQNetworkCookieJar_DestroyQNetworkCookieJar(ptr unsafe.Pointer) {
 func (ptr *QNetworkCookieJar) ConnectDestroyQNetworkCookieJar(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkCookieJar", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkCookieJar"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkCookieJar", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkCookieJar", f)
+		}
 	}
 }
 
@@ -8723,7 +9279,14 @@ func callbackQNetworkCookieJar_CookiesForUrl(ptr unsafe.Pointer, url unsafe.Poin
 func (ptr *QNetworkCookieJar) ConnectCookiesForUrl(f func(url *core.QUrl) []*QNetworkCookie) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cookiesForUrl", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cookiesForUrl"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cookiesForUrl", func(url *core.QUrl) []*QNetworkCookie {
+				signal.(func(*core.QUrl))(url)
+				return f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cookiesForUrl", f)
+		}
 	}
 }
 
@@ -8772,7 +9335,14 @@ func callbackQNetworkCookieJar_ValidateCookie(ptr unsafe.Pointer, cookie unsafe.
 func (ptr *QNetworkCookieJar) ConnectValidateCookie(f func(cookie *QNetworkCookie, url *core.QUrl) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "validateCookie", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "validateCookie"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "validateCookie", func(cookie *QNetworkCookie, url *core.QUrl) bool {
+				signal.(func(*QNetworkCookie, *core.QUrl))(cookie, url)
+				return f(cookie, url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "validateCookie", f)
+		}
 	}
 }
 
@@ -9371,7 +9941,14 @@ func callbackQNetworkDiskCache_Data(ptr unsafe.Pointer, url unsafe.Pointer) unsa
 func (ptr *QNetworkDiskCache) ConnectData(f func(url *core.QUrl) *core.QIODevice) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(url *core.QUrl) *core.QIODevice {
+				signal.(func(*core.QUrl))(url)
+				return f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", f)
+		}
 	}
 }
 
@@ -9416,7 +9993,14 @@ func callbackQNetworkDiskCache_Prepare(ptr unsafe.Pointer, metaData unsafe.Point
 func (ptr *QNetworkDiskCache) ConnectPrepare(f func(metaData *QNetworkCacheMetaData) *core.QIODevice) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "prepare"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", func(metaData *QNetworkCacheMetaData) *core.QIODevice {
+				signal.(func(*QNetworkCacheMetaData))(metaData)
+				return f(metaData)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", f)
+		}
 	}
 }
 
@@ -9461,7 +10045,14 @@ func callbackQNetworkDiskCache_MetaData(ptr unsafe.Pointer, url unsafe.Pointer) 
 func (ptr *QNetworkDiskCache) ConnectMetaData(f func(url *core.QUrl) *QNetworkCacheMetaData) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", func(url *core.QUrl) *QNetworkCacheMetaData {
+				signal.(func(*core.QUrl))(url)
+				return f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", f)
+		}
 	}
 }
 
@@ -9510,7 +10101,14 @@ func callbackQNetworkDiskCache_Remove(ptr unsafe.Pointer, url unsafe.Pointer) C.
 func (ptr *QNetworkDiskCache) ConnectRemove(f func(url *core.QUrl) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "remove"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", func(url *core.QUrl) bool {
+				signal.(func(*core.QUrl))(url)
+				return f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", f)
+		}
 	}
 }
 
@@ -9547,7 +10145,14 @@ func callbackQNetworkDiskCache_Expire(ptr unsafe.Pointer) C.longlong {
 func (ptr *QNetworkDiskCache) ConnectExpire(f func() int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "expire", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "expire"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "expire", func() int64 {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "expire", f)
+		}
 	}
 }
 
@@ -9584,7 +10189,14 @@ func callbackQNetworkDiskCache_Clear(ptr unsafe.Pointer) {
 func (ptr *QNetworkDiskCache) ConnectClear(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "clear"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", f)
+		}
 	}
 }
 
@@ -9619,7 +10231,14 @@ func callbackQNetworkDiskCache_Insert(ptr unsafe.Pointer, device unsafe.Pointer)
 func (ptr *QNetworkDiskCache) ConnectInsert(f func(device *core.QIODevice)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insert", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "insert"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insert", func(device *core.QIODevice) {
+				signal.(func(*core.QIODevice))(device)
+				f(device)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insert", f)
+		}
 	}
 }
 
@@ -9671,7 +10290,14 @@ func callbackQNetworkDiskCache_UpdateMetaData(ptr unsafe.Pointer, metaData unsaf
 func (ptr *QNetworkDiskCache) ConnectUpdateMetaData(f func(metaData *QNetworkCacheMetaData)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData", func(metaData *QNetworkCacheMetaData) {
+				signal.(func(*QNetworkCacheMetaData))(metaData)
+				f(metaData)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateMetaData", f)
+		}
 	}
 }
 
@@ -9735,7 +10361,14 @@ func callbackQNetworkDiskCache_CacheSize(ptr unsafe.Pointer) C.longlong {
 func (ptr *QNetworkDiskCache) ConnectCacheSize(f func() int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cacheSize"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", func() int64 {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", f)
+		}
 	}
 }
 
@@ -10443,7 +11076,14 @@ func callbackQNetworkProxyFactory_QueryProxy(ptr unsafe.Pointer, query unsafe.Po
 func (ptr *QNetworkProxyFactory) ConnectQueryProxy(f func(query *QNetworkProxyQuery) []*QNetworkProxy) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProxy", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "queryProxy"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProxy", func(query *QNetworkProxyQuery) []*QNetworkProxy {
+				signal.(func(*QNetworkProxyQuery))(query)
+				return f(query)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProxy", f)
+		}
 	}
 }
 
@@ -10527,7 +11167,14 @@ func callbackQNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr unsafe.Pointer
 func (ptr *QNetworkProxyFactory) ConnectDestroyQNetworkProxyFactory(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkProxyFactory", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkProxyFactory"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkProxyFactory", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkProxyFactory", f)
+		}
 	}
 }
 
@@ -10957,7 +11604,14 @@ func callbackQNetworkReply_Abort(ptr unsafe.Pointer) {
 func (ptr *QNetworkReply) ConnectAbort(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "abort"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		}
 	}
 }
 
@@ -10999,8 +11653,19 @@ func callbackQNetworkReply_DownloadProgress(ptr unsafe.Pointer, bytesReceived C.
 
 func (ptr *QNetworkReply) ConnectDownloadProgress(f func(bytesReceived int64, bytesTotal int64)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "downloadProgress", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "downloadProgress") {
+			C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "downloadProgress"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "downloadProgress", func(bytesReceived int64, bytesTotal int64) {
+				signal.(func(int64, int64))(bytesReceived, bytesTotal)
+				f(bytesReceived, bytesTotal)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "downloadProgress", f)
+		}
 	}
 }
 
@@ -11027,8 +11692,19 @@ func callbackQNetworkReply_Encrypted(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectEncrypted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "encrypted") {
+			C.QNetworkReply_ConnectEncrypted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "encrypted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", f)
+		}
 	}
 }
 
@@ -11055,8 +11731,19 @@ func callbackQNetworkReply_Error2(ptr unsafe.Pointer, code C.longlong) {
 
 func (ptr *QNetworkReply) ConnectError2(f func(code QNetworkReply__NetworkError)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QNetworkReply_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(code QNetworkReply__NetworkError) {
+				signal.(func(QNetworkReply__NetworkError))(code)
+				f(code)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -11083,8 +11770,19 @@ func callbackQNetworkReply_Finished(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QNetworkReply_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -11113,7 +11811,14 @@ func callbackQNetworkReply_IgnoreSslErrors(ptr unsafe.Pointer) {
 func (ptr *QNetworkReply) ConnectIgnoreSslErrors(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors", f)
+		}
 	}
 }
 
@@ -11172,7 +11877,14 @@ func callbackQNetworkReply_IgnoreSslErrorsImplementation(ptr unsafe.Pointer, err
 func (ptr *QNetworkReply) ConnectIgnoreSslErrorsImplementation(f func(errors []*QSslError)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrorsImplementation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrorsImplementation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrorsImplementation", func(errors []*QSslError) {
+				signal.(func([]*QSslError))(errors)
+				f(errors)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrorsImplementation", f)
+		}
 	}
 }
 
@@ -11217,8 +11929,19 @@ func callbackQNetworkReply_MetaDataChanged(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaDataChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "metaDataChanged") {
+			C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaDataChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaDataChanged", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaDataChanged", f)
+		}
 	}
 }
 
@@ -11245,8 +11968,19 @@ func callbackQNetworkReply_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer
 
 func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator *QSslPreSharedKeyAuthenticator)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired") {
+			C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", func(authenticator *QSslPreSharedKeyAuthenticator) {
+				signal.(func(*QSslPreSharedKeyAuthenticator))(authenticator)
+				f(authenticator)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+		}
 	}
 }
 
@@ -11273,8 +12007,19 @@ func callbackQNetworkReply_Redirected(ptr unsafe.Pointer, url unsafe.Pointer) {
 
 func (ptr *QNetworkReply) ConnectRedirected(f func(url *core.QUrl)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectRedirected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "redirected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "redirected") {
+			C.QNetworkReply_ConnectRedirected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "redirected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "redirected", func(url *core.QUrl) {
+				signal.(func(*core.QUrl))(url)
+				f(url)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "redirected", f)
+		}
 	}
 }
 
@@ -11344,7 +12089,14 @@ func callbackQNetworkReply_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong
 func (ptr *QNetworkReply) ConnectSetReadBufferSize(f func(size int64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize", func(size int64) {
+				signal.(func(int64))(size)
+				f(size)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setReadBufferSize", f)
+		}
 	}
 }
 
@@ -11391,7 +12143,14 @@ func callbackQNetworkReply_SetSslConfigurationImplementation(ptr unsafe.Pointer,
 func (ptr *QNetworkReply) ConnectSetSslConfigurationImplementation(f func(configuration *QSslConfiguration)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSslConfigurationImplementation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setSslConfigurationImplementation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSslConfigurationImplementation", func(configuration *QSslConfiguration) {
+				signal.(func(*QSslConfiguration))(configuration)
+				f(configuration)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSslConfigurationImplementation", f)
+		}
 	}
 }
 
@@ -11436,8 +12195,19 @@ func callbackQNetworkReply_SslErrors(ptr unsafe.Pointer, errors C.struct_QtNetwo
 
 func (ptr *QNetworkReply) ConnectSslErrors(f func(errors []*QSslError)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectSslErrors(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "sslErrors") {
+			C.QNetworkReply_ConnectSslErrors(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sslErrors"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors", func(errors []*QSslError) {
+				signal.(func([]*QSslError))(errors)
+				f(errors)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors", f)
+		}
 	}
 }
 
@@ -11470,8 +12240,19 @@ func callbackQNetworkReply_UploadProgress(ptr unsafe.Pointer, bytesSent C.longlo
 
 func (ptr *QNetworkReply) ConnectUploadProgress(f func(bytesSent int64, bytesTotal int64)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectUploadProgress(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uploadProgress", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "uploadProgress") {
+			C.QNetworkReply_ConnectUploadProgress(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "uploadProgress"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uploadProgress", func(bytesSent int64, bytesTotal int64) {
+				signal.(func(int64, int64))(bytesSent, bytesTotal)
+				f(bytesSent, bytesTotal)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uploadProgress", f)
+		}
 	}
 }
 
@@ -11628,7 +12409,14 @@ func callbackQNetworkReply_SslConfigurationImplementation(ptr unsafe.Pointer, co
 func (ptr *QNetworkReply) ConnectSslConfigurationImplementation(f func(configuration *QSslConfiguration)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslConfigurationImplementation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sslConfigurationImplementation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslConfigurationImplementation", func(configuration *QSslConfiguration) {
+				signal.(func(*QSslConfiguration))(configuration)
+				f(configuration)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslConfigurationImplementation", f)
+		}
 	}
 }
 
@@ -12724,7 +13512,14 @@ func callbackQNetworkSession_Accept(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectAccept(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accept", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "accept"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accept", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accept", f)
+		}
 	}
 }
 
@@ -12759,7 +13554,14 @@ func callbackQNetworkSession_Close(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectClose(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "close", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "close"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "close", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "close", f)
+		}
 	}
 }
 
@@ -12792,8 +13594,19 @@ func callbackQNetworkSession_Closed(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkSession) ConnectClosed(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectClosed(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "closed", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "closed") {
+			C.QNetworkSession_ConnectClosed(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "closed"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "closed", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "closed", f)
+		}
 	}
 }
 
@@ -12820,8 +13633,19 @@ func callbackQNetworkSession_Error2(ptr unsafe.Pointer, error C.longlong) {
 
 func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionError)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QNetworkSession_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(error QNetworkSession__SessionError) {
+				signal.(func(QNetworkSession__SessionError))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -12850,7 +13674,14 @@ func callbackQNetworkSession_Ignore(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectIgnore(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignore", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ignore"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignore", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignore", f)
+		}
 	}
 }
 
@@ -12885,7 +13716,14 @@ func callbackQNetworkSession_Migrate(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectMigrate(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "migrate", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "migrate"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "migrate", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "migrate", f)
+		}
 	}
 }
 
@@ -12918,8 +13756,19 @@ func callbackQNetworkSession_NewConfigurationActivated(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkSession) ConnectNewConfigurationActivated(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConfigurationActivated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "newConfigurationActivated") {
+			C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newConfigurationActivated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConfigurationActivated", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConfigurationActivated", f)
+		}
 	}
 }
 
@@ -12948,7 +13797,14 @@ func callbackQNetworkSession_Open(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectOpen(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "open", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "open"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "open", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "open", f)
+		}
 	}
 }
 
@@ -12981,8 +13837,19 @@ func callbackQNetworkSession_Opened(ptr unsafe.Pointer) {
 
 func (ptr *QNetworkSession) ConnectOpened(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectOpened(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "opened", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "opened") {
+			C.QNetworkSession_ConnectOpened(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "opened"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "opened", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "opened", f)
+		}
 	}
 }
 
@@ -13009,8 +13876,19 @@ func callbackQNetworkSession_PreferredConfigurationChanged(ptr unsafe.Pointer, c
 
 func (ptr *QNetworkSession) ConnectPreferredConfigurationChanged(f func(config *QNetworkConfiguration, isSeamless bool)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preferredConfigurationChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "preferredConfigurationChanged") {
+			C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "preferredConfigurationChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preferredConfigurationChanged", func(config *QNetworkConfiguration, isSeamless bool) {
+				signal.(func(*QNetworkConfiguration, bool))(config, isSeamless)
+				f(config, isSeamless)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preferredConfigurationChanged", f)
+		}
 	}
 }
 
@@ -13039,7 +13917,14 @@ func callbackQNetworkSession_Reject(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectReject(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "reject", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "reject"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "reject", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "reject", f)
+		}
 	}
 }
 
@@ -13083,8 +13968,19 @@ func callbackQNetworkSession_StateChanged(ptr unsafe.Pointer, state C.longlong) 
 
 func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__State)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "stateChanged") {
+			C.QNetworkSession_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", func(state QNetworkSession__State) {
+				signal.(func(QNetworkSession__State))(state)
+				f(state)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+		}
 	}
 }
 
@@ -13113,7 +14009,14 @@ func callbackQNetworkSession_Stop(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectStop(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stop"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		}
 	}
 }
 
@@ -13146,8 +14049,19 @@ func callbackQNetworkSession_UsagePoliciesChanged(ptr unsafe.Pointer, usagePolic
 
 func (ptr *QNetworkSession) ConnectUsagePoliciesChanged(f func(usagePolicies QNetworkSession__UsagePolicy)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "usagePoliciesChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "usagePoliciesChanged") {
+			C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "usagePoliciesChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "usagePoliciesChanged", func(usagePolicies QNetworkSession__UsagePolicy) {
+				signal.(func(QNetworkSession__UsagePolicy))(usagePolicies)
+				f(usagePolicies)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "usagePoliciesChanged", f)
+		}
 	}
 }
 
@@ -13176,7 +14090,14 @@ func callbackQNetworkSession_DestroyQNetworkSession(ptr unsafe.Pointer) {
 func (ptr *QNetworkSession) ConnectDestroyQNetworkSession(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkSession", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkSession"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkSession", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNetworkSession", f)
+		}
 	}
 }
 
@@ -16199,8 +17120,19 @@ func callbackQSslSocket_Encrypted(ptr unsafe.Pointer) {
 
 func (ptr *QSslSocket) ConnectEncrypted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSslSocket_ConnectEncrypted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "encrypted") {
+			C.QSslSocket_ConnectEncrypted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "encrypted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encrypted", f)
+		}
 	}
 }
 
@@ -16227,8 +17159,19 @@ func callbackQSslSocket_EncryptedBytesWritten(ptr unsafe.Pointer, written C.long
 
 func (ptr *QSslSocket) ConnectEncryptedBytesWritten(f func(written int64)) {
 	if ptr.Pointer() != nil {
-		C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encryptedBytesWritten", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "encryptedBytesWritten") {
+			C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "encryptedBytesWritten"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encryptedBytesWritten", func(written int64) {
+				signal.(func(int64))(written)
+				f(written)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "encryptedBytesWritten", f)
+		}
 	}
 }
 
@@ -16257,7 +17200,14 @@ func callbackQSslSocket_IgnoreSslErrors(ptr unsafe.Pointer) {
 func (ptr *QSslSocket) ConnectIgnoreSslErrors(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ignoreSslErrors", f)
+		}
 	}
 }
 
@@ -16302,8 +17252,19 @@ func callbackQSslSocket_ModeChanged(ptr unsafe.Pointer, mode C.longlong) {
 
 func (ptr *QSslSocket) ConnectModeChanged(f func(mode QSslSocket__SslMode)) {
 	if ptr.Pointer() != nil {
-		C.QSslSocket_ConnectModeChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "modeChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "modeChanged") {
+			C.QSslSocket_ConnectModeChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "modeChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "modeChanged", func(mode QSslSocket__SslMode) {
+				signal.(func(QSslSocket__SslMode))(mode)
+				f(mode)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "modeChanged", f)
+		}
 	}
 }
 
@@ -16330,8 +17291,19 @@ func callbackQSslSocket_PeerVerifyError(ptr unsafe.Pointer, error unsafe.Pointer
 
 func (ptr *QSslSocket) ConnectPeerVerifyError(f func(error *QSslError)) {
 	if ptr.Pointer() != nil {
-		C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "peerVerifyError", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "peerVerifyError") {
+			C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "peerVerifyError"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "peerVerifyError", func(error *QSslError) {
+				signal.(func(*QSslError))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "peerVerifyError", f)
+		}
 	}
 }
 
@@ -16358,8 +17330,19 @@ func callbackQSslSocket_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, a
 
 func (ptr *QSslSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator *QSslPreSharedKeyAuthenticator)) {
 	if ptr.Pointer() != nil {
-		C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired") {
+			C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", func(authenticator *QSslPreSharedKeyAuthenticator) {
+				signal.(func(*QSslPreSharedKeyAuthenticator))(authenticator)
+				f(authenticator)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+		}
 	}
 }
 
@@ -16473,8 +17456,19 @@ func callbackQSslSocket_SslErrors2(ptr unsafe.Pointer, errors C.struct_QtNetwork
 
 func (ptr *QSslSocket) ConnectSslErrors2(f func(errors []*QSslError)) {
 	if ptr.Pointer() != nil {
-		C.QSslSocket_ConnectSslErrors2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "sslErrors2") {
+			C.QSslSocket_ConnectSslErrors2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sslErrors2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors2", func(errors []*QSslError) {
+				signal.(func([]*QSslError))(errors)
+				f(errors)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sslErrors2", f)
+		}
 	}
 }
 
@@ -16509,7 +17503,14 @@ func callbackQSslSocket_StartClientEncryption(ptr unsafe.Pointer) {
 func (ptr *QSslSocket) ConnectStartClientEncryption(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "startClientEncryption", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "startClientEncryption"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "startClientEncryption", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "startClientEncryption", f)
+		}
 	}
 }
 
@@ -16544,7 +17545,14 @@ func callbackQSslSocket_StartServerEncryption(ptr unsafe.Pointer) {
 func (ptr *QSslSocket) ConnectStartServerEncryption(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "startServerEncryption", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "startServerEncryption"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "startServerEncryption", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "startServerEncryption", f)
+		}
 	}
 }
 
@@ -17122,7 +18130,14 @@ func callbackQTcpServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer
 func (ptr *QTcpServer) ConnectNextPendingConnection(f func() *QTcpSocket) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", func() *QTcpSocket {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", f)
+		}
 	}
 }
 
@@ -17179,8 +18194,19 @@ func callbackQTcpServer_AcceptError(ptr unsafe.Pointer, socketError C.longlong) 
 
 func (ptr *QTcpServer) ConnectAcceptError(f func(socketError QAbstractSocket__SocketError)) {
 	if ptr.Pointer() != nil {
-		C.QTcpServer_ConnectAcceptError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "acceptError", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "acceptError") {
+			C.QTcpServer_ConnectAcceptError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "acceptError"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "acceptError", func(socketError QAbstractSocket__SocketError) {
+				signal.(func(QAbstractSocket__SocketError))(socketError)
+				f(socketError)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "acceptError", f)
+		}
 	}
 }
 
@@ -17219,8 +18245,19 @@ func callbackQTcpServer_NewConnection(ptr unsafe.Pointer) {
 
 func (ptr *QTcpServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
-		C.QTcpServer_ConnectNewConnection(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "newConnection") {
+			C.QTcpServer_ConnectNewConnection(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newConnection"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+		}
 	}
 }
 
@@ -17273,7 +18310,14 @@ func callbackQTcpServer_DestroyQTcpServer(ptr unsafe.Pointer) {
 func (ptr *QTcpServer) ConnectDestroyQTcpServer(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTcpServer", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QTcpServer"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTcpServer", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTcpServer", f)
+		}
 	}
 }
 
@@ -17344,7 +18388,14 @@ func callbackQTcpServer_HasPendingConnections(ptr unsafe.Pointer) C.char {
 func (ptr *QTcpServer) ConnectHasPendingConnections(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", f)
+		}
 	}
 }
 
@@ -17707,7 +18758,14 @@ func callbackQTcpSocket_DestroyQTcpSocket(ptr unsafe.Pointer) {
 func (ptr *QTcpSocket) ConnectDestroyQTcpSocket(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTcpSocket", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QTcpSocket"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTcpSocket", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTcpSocket", f)
+		}
 	}
 }
 
@@ -17873,7 +18931,14 @@ func callbackQUdpSocket_DestroyQUdpSocket(ptr unsafe.Pointer) {
 func (ptr *QUdpSocket) ConnectDestroyQUdpSocket(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QUdpSocket", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QUdpSocket"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QUdpSocket", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QUdpSocket", f)
+		}
 	}
 }
 

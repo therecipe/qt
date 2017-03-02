@@ -121,6 +121,11 @@ func CleanName(name, value string) string {
 				return fmt.Sprintf("v%v", strings.ToLower(v))
 			}
 		}
+
+	case "f":
+		{
+			return "fo"
+		}
 	}
 
 	return name

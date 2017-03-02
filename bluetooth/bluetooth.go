@@ -387,8 +387,19 @@ func callbackQBluetoothDeviceDiscoveryAgent_Canceled(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectCanceled(f func()) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent_ConnectCanceled(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canceled", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "canceled") {
+			C.QBluetoothDeviceDiscoveryAgent_ConnectCanceled(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "canceled"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canceled", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canceled", f)
+		}
 	}
 }
 
@@ -415,8 +426,19 @@ func callbackQBluetoothDeviceDiscoveryAgent_DeviceDiscovered(ptr unsafe.Pointer,
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectDeviceDiscovered(f func(info *QBluetoothDeviceInfo)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent_ConnectDeviceDiscovered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDiscovered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "deviceDiscovered") {
+			C.QBluetoothDeviceDiscoveryAgent_ConnectDeviceDiscovered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deviceDiscovered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDiscovered", func(info *QBluetoothDeviceInfo) {
+				signal.(func(*QBluetoothDeviceInfo))(info)
+				f(info)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDiscovered", f)
+		}
 	}
 }
 
@@ -443,8 +465,19 @@ func callbackQBluetoothDeviceDiscoveryAgent_Error2(ptr unsafe.Pointer, error C.l
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectError2(f func(error QBluetoothDeviceDiscoveryAgent__Error)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QBluetoothDeviceDiscoveryAgent_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(error QBluetoothDeviceDiscoveryAgent__Error) {
+				signal.(func(QBluetoothDeviceDiscoveryAgent__Error))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -471,8 +504,19 @@ func callbackQBluetoothDeviceDiscoveryAgent_Finished(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceDiscoveryAgent_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QBluetoothDeviceDiscoveryAgent_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -513,7 +557,14 @@ func callbackQBluetoothDeviceDiscoveryAgent_Start(ptr unsafe.Pointer) {
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStart(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "start"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", f)
+		}
 	}
 }
 
@@ -548,7 +599,14 @@ func callbackQBluetoothDeviceDiscoveryAgent_Start2(ptr unsafe.Pointer, methods C
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStart2(f func(methods QBluetoothDeviceDiscoveryAgent__DiscoveryMethod)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start2", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "start2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start2", func(methods QBluetoothDeviceDiscoveryAgent__DiscoveryMethod) {
+				signal.(func(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod))(methods)
+				f(methods)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start2", f)
+		}
 	}
 }
 
@@ -583,7 +641,14 @@ func callbackQBluetoothDeviceDiscoveryAgent_Stop(ptr unsafe.Pointer) {
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStop(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stop"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		}
 	}
 }
 
@@ -1579,8 +1644,19 @@ func callbackQBluetoothLocalDevice_DeviceConnected(ptr unsafe.Pointer, address u
 
 func (ptr *QBluetoothLocalDevice) ConnectDeviceConnected(f func(address *QBluetoothAddress)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_ConnectDeviceConnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceConnected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "deviceConnected") {
+			C.QBluetoothLocalDevice_ConnectDeviceConnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deviceConnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceConnected", func(address *QBluetoothAddress) {
+				signal.(func(*QBluetoothAddress))(address)
+				f(address)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceConnected", f)
+		}
 	}
 }
 
@@ -1607,8 +1683,19 @@ func callbackQBluetoothLocalDevice_DeviceDisconnected(ptr unsafe.Pointer, addres
 
 func (ptr *QBluetoothLocalDevice) ConnectDeviceDisconnected(f func(address *QBluetoothAddress)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_ConnectDeviceDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDisconnected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "deviceDisconnected") {
+			C.QBluetoothLocalDevice_ConnectDeviceDisconnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deviceDisconnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDisconnected", func(address *QBluetoothAddress) {
+				signal.(func(*QBluetoothAddress))(address)
+				f(address)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDisconnected", f)
+		}
 	}
 }
 
@@ -1635,8 +1722,19 @@ func callbackQBluetoothLocalDevice_Error(ptr unsafe.Pointer, error C.longlong) {
 
 func (ptr *QBluetoothLocalDevice) ConnectError(f func(error QBluetoothLocalDevice__Error)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_ConnectError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error") {
+			C.QBluetoothLocalDevice_ConnectError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func(error QBluetoothLocalDevice__Error) {
+				signal.(func(QBluetoothLocalDevice__Error))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+		}
 	}
 }
 
@@ -1663,8 +1761,19 @@ func callbackQBluetoothLocalDevice_HostModeStateChanged(ptr unsafe.Pointer, stat
 
 func (ptr *QBluetoothLocalDevice) ConnectHostModeStateChanged(f func(state QBluetoothLocalDevice__HostMode)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_ConnectHostModeStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hostModeStateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "hostModeStateChanged") {
+			C.QBluetoothLocalDevice_ConnectHostModeStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hostModeStateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hostModeStateChanged", func(state QBluetoothLocalDevice__HostMode) {
+				signal.(func(QBluetoothLocalDevice__HostMode))(state)
+				f(state)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hostModeStateChanged", f)
+		}
 	}
 }
 
@@ -1693,7 +1802,14 @@ func callbackQBluetoothLocalDevice_PairingConfirmation(ptr unsafe.Pointer, accep
 func (ptr *QBluetoothLocalDevice) ConnectPairingConfirmation(f func(accept bool)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingConfirmation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "pairingConfirmation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingConfirmation", func(accept bool) {
+				signal.(func(bool))(accept)
+				f(accept)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingConfirmation", f)
+		}
 	}
 }
 
@@ -1726,8 +1842,19 @@ func callbackQBluetoothLocalDevice_PairingDisplayConfirmation(ptr unsafe.Pointer
 
 func (ptr *QBluetoothLocalDevice) ConnectPairingDisplayConfirmation(f func(address *QBluetoothAddress, pin string)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_ConnectPairingDisplayConfirmation(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayConfirmation", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayConfirmation") {
+			C.QBluetoothLocalDevice_ConnectPairingDisplayConfirmation(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayConfirmation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayConfirmation", func(address *QBluetoothAddress, pin string) {
+				signal.(func(*QBluetoothAddress, string))(address, pin)
+				f(address, pin)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayConfirmation", f)
+		}
 	}
 }
 
@@ -1759,8 +1886,19 @@ func callbackQBluetoothLocalDevice_PairingDisplayPinCode(ptr unsafe.Pointer, add
 
 func (ptr *QBluetoothLocalDevice) ConnectPairingDisplayPinCode(f func(address *QBluetoothAddress, pin string)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_ConnectPairingDisplayPinCode(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayPinCode", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayPinCode") {
+			C.QBluetoothLocalDevice_ConnectPairingDisplayPinCode(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayPinCode"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayPinCode", func(address *QBluetoothAddress, pin string) {
+				signal.(func(*QBluetoothAddress, string))(address, pin)
+				f(address, pin)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingDisplayPinCode", f)
+		}
 	}
 }
 
@@ -1792,8 +1930,19 @@ func callbackQBluetoothLocalDevice_PairingFinished(ptr unsafe.Pointer, address u
 
 func (ptr *QBluetoothLocalDevice) ConnectPairingFinished(f func(address *QBluetoothAddress, pairing QBluetoothLocalDevice__Pairing)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothLocalDevice_ConnectPairingFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingFinished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "pairingFinished") {
+			C.QBluetoothLocalDevice_ConnectPairingFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "pairingFinished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingFinished", func(address *QBluetoothAddress, pairing QBluetoothLocalDevice__Pairing) {
+				signal.(func(*QBluetoothAddress, QBluetoothLocalDevice__Pairing))(address, pairing)
+				f(address, pairing)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pairingFinished", f)
+		}
 	}
 }
 
@@ -1840,7 +1989,14 @@ func callbackQBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr unsafe.Point
 func (ptr *QBluetoothLocalDevice) ConnectDestroyQBluetoothLocalDevice(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothLocalDevice", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothLocalDevice"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothLocalDevice", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothLocalDevice", f)
+		}
 	}
 }
 
@@ -2284,8 +2440,19 @@ func callbackQBluetoothServer_Error2(ptr unsafe.Pointer, error C.longlong) {
 
 func (ptr *QBluetoothServer) ConnectError2(f func(error QBluetoothServer__Error)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServer_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QBluetoothServer_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(error QBluetoothServer__Error) {
+				signal.(func(QBluetoothServer__Error))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -2312,8 +2479,19 @@ func callbackQBluetoothServer_NewConnection(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServer_ConnectNewConnection(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "newConnection") {
+			C.QBluetoothServer_ConnectNewConnection(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newConnection"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+		}
 	}
 }
 
@@ -2798,8 +2976,19 @@ func callbackQBluetoothServiceDiscoveryAgent_Canceled(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectCanceled(f func()) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent_ConnectCanceled(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canceled", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "canceled") {
+			C.QBluetoothServiceDiscoveryAgent_ConnectCanceled(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "canceled"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canceled", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canceled", f)
+		}
 	}
 }
 
@@ -2828,7 +3017,14 @@ func callbackQBluetoothServiceDiscoveryAgent_Clear(ptr unsafe.Pointer) {
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectClear(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "clear"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "clear", f)
+		}
 	}
 }
 
@@ -2861,8 +3057,19 @@ func callbackQBluetoothServiceDiscoveryAgent_Error2(ptr unsafe.Pointer, error C.
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectError2(f func(error QBluetoothServiceDiscoveryAgent__Error)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QBluetoothServiceDiscoveryAgent_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(error QBluetoothServiceDiscoveryAgent__Error) {
+				signal.(func(QBluetoothServiceDiscoveryAgent__Error))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -2889,8 +3096,19 @@ func callbackQBluetoothServiceDiscoveryAgent_Finished(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QBluetoothServiceDiscoveryAgent_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -2917,8 +3135,19 @@ func callbackQBluetoothServiceDiscoveryAgent_ServiceDiscovered(ptr unsafe.Pointe
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectServiceDiscovered(f func(info *QBluetoothServiceInfo)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothServiceDiscoveryAgent_ConnectServiceDiscovered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered") {
+			C.QBluetoothServiceDiscoveryAgent_ConnectServiceDiscovered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered", func(info *QBluetoothServiceInfo) {
+				signal.(func(*QBluetoothServiceInfo))(info)
+				f(info)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered", f)
+		}
 	}
 }
 
@@ -2965,7 +3194,14 @@ func callbackQBluetoothServiceDiscoveryAgent_Start(ptr unsafe.Pointer, mode C.lo
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectStart(f func(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "start"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", func(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode) {
+				signal.(func(QBluetoothServiceDiscoveryAgent__DiscoveryMode))(mode)
+				f(mode)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", f)
+		}
 	}
 }
 
@@ -3000,7 +3236,14 @@ func callbackQBluetoothServiceDiscoveryAgent_Stop(ptr unsafe.Pointer) {
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectStop(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stop"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		}
 	}
 }
 
@@ -3796,8 +4039,19 @@ func callbackQBluetoothSocket_Connected(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothSocket) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_ConnectConnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "connected") {
+			C.QBluetoothSocket_ConnectConnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+		}
 	}
 }
 
@@ -3824,8 +4078,19 @@ func callbackQBluetoothSocket_Disconnected(ptr unsafe.Pointer) {
 
 func (ptr *QBluetoothSocket) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_ConnectDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "disconnected") {
+			C.QBluetoothSocket_ConnectDisconnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+		}
 	}
 }
 
@@ -3852,8 +4117,19 @@ func callbackQBluetoothSocket_Error2(ptr unsafe.Pointer, error C.longlong) {
 
 func (ptr *QBluetoothSocket) ConnectError2(f func(error QBluetoothSocket__SocketError)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QBluetoothSocket_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(error QBluetoothSocket__SocketError) {
+				signal.(func(QBluetoothSocket__SocketError))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -3880,8 +4156,19 @@ func callbackQBluetoothSocket_StateChanged(ptr unsafe.Pointer, state C.longlong)
 
 func (ptr *QBluetoothSocket) ConnectStateChanged(f func(state QBluetoothSocket__SocketState)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothSocket_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "stateChanged") {
+			C.QBluetoothSocket_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", func(state QBluetoothSocket__SocketState) {
+				signal.(func(QBluetoothSocket__SocketState))(state)
+				f(state)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+		}
 	}
 }
 
@@ -3942,7 +4229,14 @@ func callbackQBluetoothSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtBluet
 func (ptr *QBluetoothSocket) ConnectReadData(f func(data *string, maxSize int64) int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", func(data *string, maxSize int64) int64 {
+				signal.(func(*string, int64))(data, maxSize)
+				return f(data, maxSize)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", f)
+		}
 	}
 }
 
@@ -3991,7 +4285,14 @@ func callbackQBluetoothSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtBlue
 func (ptr *QBluetoothSocket) ConnectWriteData(f func(data string, maxSize int64) int64) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "writeData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", func(data string, maxSize int64) int64 {
+				signal.(func(string, int64))(data, maxSize)
+				return f(data, maxSize)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", f)
+		}
 	}
 }
 
@@ -4107,7 +4408,14 @@ func callbackQBluetoothSocket_DestroyQBluetoothSocket(ptr unsafe.Pointer) {
 func (ptr *QBluetoothSocket) ConnectDestroyQBluetoothSocket(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothSocket", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothSocket"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothSocket", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QBluetoothSocket", f)
+		}
 	}
 }
 
@@ -4802,8 +5110,19 @@ func callbackQBluetoothTransferManager_Finished(ptr unsafe.Pointer, reply unsafe
 
 func (ptr *QBluetoothTransferManager) ConnectFinished(f func(reply *QBluetoothTransferReply)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferManager_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QBluetoothTransferManager_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func(reply *QBluetoothTransferReply) {
+				signal.(func(*QBluetoothTransferReply))(reply)
+				f(reply)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -5161,7 +5480,14 @@ func callbackQBluetoothTransferReply_Abort(ptr unsafe.Pointer) {
 func (ptr *QBluetoothTransferReply) ConnectAbort(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "abort"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		}
 	}
 }
 
@@ -5194,8 +5520,19 @@ func callbackQBluetoothTransferReply_Error2(ptr unsafe.Pointer, errorType C.long
 
 func (ptr *QBluetoothTransferReply) ConnectError2(f func(errorType QBluetoothTransferReply__TransferError)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QBluetoothTransferReply_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(errorType QBluetoothTransferReply__TransferError) {
+				signal.(func(QBluetoothTransferReply__TransferError))(errorType)
+				f(errorType)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -5222,8 +5559,19 @@ func callbackQBluetoothTransferReply_Finished(ptr unsafe.Pointer, reply unsafe.P
 
 func (ptr *QBluetoothTransferReply) ConnectFinished(f func(reply *QBluetoothTransferReply)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QBluetoothTransferReply_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func(reply *QBluetoothTransferReply) {
+				signal.(func(*QBluetoothTransferReply))(reply)
+				f(reply)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -5262,8 +5610,19 @@ func callbackQBluetoothTransferReply_TransferProgress(ptr unsafe.Pointer, bytesT
 
 func (ptr *QBluetoothTransferReply) ConnectTransferProgress(f func(bytesTransferred int64, bytesTotal int64)) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferReply_ConnectTransferProgress(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "transferProgress", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "transferProgress") {
+			C.QBluetoothTransferReply_ConnectTransferProgress(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "transferProgress"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "transferProgress", func(bytesTransferred int64, bytesTotal int64) {
+				signal.(func(int64, int64))(bytesTransferred, bytesTotal)
+				f(bytesTransferred, bytesTotal)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "transferProgress", f)
+		}
 	}
 }
 
@@ -5320,7 +5679,14 @@ func callbackQBluetoothTransferReply_ErrorString(ptr unsafe.Pointer) *C.char {
 func (ptr *QBluetoothTransferReply) ConnectErrorString(f func() string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "errorString"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", func() string {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", f)
+		}
 	}
 }
 
@@ -5350,7 +5716,14 @@ func callbackQBluetoothTransferReply_Error(ptr unsafe.Pointer) C.longlong {
 func (ptr *QBluetoothTransferReply) ConnectError(f func() QBluetoothTransferReply__TransferError) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func() QBluetoothTransferReply__TransferError {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+		}
 	}
 }
 
@@ -5380,7 +5753,14 @@ func callbackQBluetoothTransferReply_IsFinished(ptr unsafe.Pointer) C.char {
 func (ptr *QBluetoothTransferReply) ConnectIsFinished(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFinished", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFinished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFinished", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFinished", f)
+		}
 	}
 }
 
@@ -5410,7 +5790,14 @@ func callbackQBluetoothTransferReply_IsRunning(ptr unsafe.Pointer) C.char {
 func (ptr *QBluetoothTransferReply) ConnectIsRunning(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isRunning", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isRunning"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isRunning", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isRunning", f)
+		}
 	}
 }
 
@@ -7230,8 +7617,19 @@ func callbackQLowEnergyController_Connected(ptr unsafe.Pointer) {
 
 func (ptr *QLowEnergyController) ConnectConnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_ConnectConnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "connected") {
+			C.QLowEnergyController_ConnectConnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connected", f)
+		}
 	}
 }
 
@@ -7258,8 +7656,19 @@ func callbackQLowEnergyController_ConnectionUpdated(ptr unsafe.Pointer, newParam
 
 func (ptr *QLowEnergyController) ConnectConnectionUpdated(f func(newParameters *QLowEnergyConnectionParameters)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_ConnectConnectionUpdated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectionUpdated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "connectionUpdated") {
+			C.QLowEnergyController_ConnectConnectionUpdated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connectionUpdated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectionUpdated", func(newParameters *QLowEnergyConnectionParameters) {
+				signal.(func(*QLowEnergyConnectionParameters))(newParameters)
+				f(newParameters)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectionUpdated", f)
+		}
 	}
 }
 
@@ -7292,8 +7701,19 @@ func callbackQLowEnergyController_Disconnected(ptr unsafe.Pointer) {
 
 func (ptr *QLowEnergyController) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_ConnectDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "disconnected") {
+			C.QLowEnergyController_ConnectDisconnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+		}
 	}
 }
 
@@ -7326,8 +7746,19 @@ func callbackQLowEnergyController_DiscoveryFinished(ptr unsafe.Pointer) {
 
 func (ptr *QLowEnergyController) ConnectDiscoveryFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_ConnectDiscoveryFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "discoveryFinished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "discoveryFinished") {
+			C.QLowEnergyController_ConnectDiscoveryFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "discoveryFinished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "discoveryFinished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "discoveryFinished", f)
+		}
 	}
 }
 
@@ -7354,8 +7785,19 @@ func callbackQLowEnergyController_Error2(ptr unsafe.Pointer, newError C.longlong
 
 func (ptr *QLowEnergyController) ConnectError2(f func(newError QLowEnergyController__Error)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QLowEnergyController_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(newError QLowEnergyController__Error) {
+				signal.(func(QLowEnergyController__Error))(newError)
+				f(newError)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -7388,8 +7830,19 @@ func callbackQLowEnergyController_ServiceDiscovered(ptr unsafe.Pointer, newServi
 
 func (ptr *QLowEnergyController) ConnectServiceDiscovered(f func(newService *QBluetoothUuid)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_ConnectServiceDiscovered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered") {
+			C.QLowEnergyController_ConnectServiceDiscovered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered", func(newService *QBluetoothUuid) {
+				signal.(func(*QBluetoothUuid))(newService)
+				f(newService)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceDiscovered", f)
+		}
 	}
 }
 
@@ -7428,8 +7881,19 @@ func callbackQLowEnergyController_StateChanged(ptr unsafe.Pointer, state C.longl
 
 func (ptr *QLowEnergyController) ConnectStateChanged(f func(state QLowEnergyController__ControllerState)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyController_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "stateChanged") {
+			C.QLowEnergyController_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", func(state QLowEnergyController__ControllerState) {
+				signal.(func(QLowEnergyController__ControllerState))(state)
+				f(state)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+		}
 	}
 }
 
@@ -8154,8 +8618,19 @@ func callbackQLowEnergyService_CharacteristicChanged(ptr unsafe.Pointer, charact
 
 func (ptr *QLowEnergyService) ConnectCharacteristicChanged(f func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_ConnectCharacteristicChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "characteristicChanged") {
+			C.QLowEnergyService_ConnectCharacteristicChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "characteristicChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicChanged", func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray) {
+				signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(characteristic, newValue)
+				f(characteristic, newValue)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicChanged", f)
+		}
 	}
 }
 
@@ -8182,8 +8657,19 @@ func callbackQLowEnergyService_CharacteristicRead(ptr unsafe.Pointer, characteri
 
 func (ptr *QLowEnergyService) ConnectCharacteristicRead(f func(characteristic *QLowEnergyCharacteristic, value *core.QByteArray)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_ConnectCharacteristicRead(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicRead", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "characteristicRead") {
+			C.QLowEnergyService_ConnectCharacteristicRead(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "characteristicRead"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicRead", func(characteristic *QLowEnergyCharacteristic, value *core.QByteArray) {
+				signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(characteristic, value)
+				f(characteristic, value)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicRead", f)
+		}
 	}
 }
 
@@ -8210,8 +8696,19 @@ func callbackQLowEnergyService_CharacteristicWritten(ptr unsafe.Pointer, charact
 
 func (ptr *QLowEnergyService) ConnectCharacteristicWritten(f func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_ConnectCharacteristicWritten(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicWritten", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "characteristicWritten") {
+			C.QLowEnergyService_ConnectCharacteristicWritten(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "characteristicWritten"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicWritten", func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray) {
+				signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(characteristic, newValue)
+				f(characteristic, newValue)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "characteristicWritten", f)
+		}
 	}
 }
 
@@ -8238,8 +8735,19 @@ func callbackQLowEnergyService_DescriptorRead(ptr unsafe.Pointer, descriptor uns
 
 func (ptr *QLowEnergyService) ConnectDescriptorRead(f func(descriptor *QLowEnergyDescriptor, value *core.QByteArray)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_ConnectDescriptorRead(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "descriptorRead", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "descriptorRead") {
+			C.QLowEnergyService_ConnectDescriptorRead(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "descriptorRead"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "descriptorRead", func(descriptor *QLowEnergyDescriptor, value *core.QByteArray) {
+				signal.(func(*QLowEnergyDescriptor, *core.QByteArray))(descriptor, value)
+				f(descriptor, value)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "descriptorRead", f)
+		}
 	}
 }
 
@@ -8266,8 +8774,19 @@ func callbackQLowEnergyService_DescriptorWritten(ptr unsafe.Pointer, descriptor 
 
 func (ptr *QLowEnergyService) ConnectDescriptorWritten(f func(descriptor *QLowEnergyDescriptor, newValue *core.QByteArray)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_ConnectDescriptorWritten(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "descriptorWritten", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "descriptorWritten") {
+			C.QLowEnergyService_ConnectDescriptorWritten(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "descriptorWritten"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "descriptorWritten", func(descriptor *QLowEnergyDescriptor, newValue *core.QByteArray) {
+				signal.(func(*QLowEnergyDescriptor, *core.QByteArray))(descriptor, newValue)
+				f(descriptor, newValue)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "descriptorWritten", f)
+		}
 	}
 }
 
@@ -8300,8 +8819,19 @@ func callbackQLowEnergyService_Error2(ptr unsafe.Pointer, newError C.longlong) {
 
 func (ptr *QLowEnergyService) ConnectError2(f func(newError QLowEnergyService__ServiceError)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QLowEnergyService_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(newError QLowEnergyService__ServiceError) {
+				signal.(func(QLowEnergyService__ServiceError))(newError)
+				f(newError)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -8340,8 +8870,19 @@ func callbackQLowEnergyService_StateChanged(ptr unsafe.Pointer, newState C.longl
 
 func (ptr *QLowEnergyService) ConnectStateChanged(f func(newState QLowEnergyService__ServiceState)) {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyService_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "stateChanged") {
+			C.QLowEnergyService_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", func(newState QLowEnergyService__ServiceState) {
+				signal.(func(QLowEnergyService__ServiceState))(newState)
+				f(newState)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+		}
 	}
 }
 

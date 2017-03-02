@@ -111,8 +111,19 @@ func callbackQTextToSpeech_LocaleChanged(ptr unsafe.Pointer, locale unsafe.Point
 
 func (ptr *QTextToSpeech) ConnectLocaleChanged(f func(locale *core.QLocale)) {
 	if ptr.Pointer() != nil {
-		C.QTextToSpeech_ConnectLocaleChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "localeChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "localeChanged") {
+			C.QTextToSpeech_ConnectLocaleChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "localeChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "localeChanged", func(locale *core.QLocale) {
+				signal.(func(*core.QLocale))(locale)
+				f(locale)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "localeChanged", f)
+		}
 	}
 }
 
@@ -141,7 +152,14 @@ func callbackQTextToSpeech_Pause(ptr unsafe.Pointer) {
 func (ptr *QTextToSpeech) ConnectPause(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pause", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "pause"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pause", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pause", f)
+		}
 	}
 }
 
@@ -174,8 +192,19 @@ func callbackQTextToSpeech_PitchChanged(ptr unsafe.Pointer, pitch C.double) {
 
 func (ptr *QTextToSpeech) ConnectPitchChanged(f func(pitch float64)) {
 	if ptr.Pointer() != nil {
-		C.QTextToSpeech_ConnectPitchChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pitchChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "pitchChanged") {
+			C.QTextToSpeech_ConnectPitchChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "pitchChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pitchChanged", func(pitch float64) {
+				signal.(func(float64))(pitch)
+				f(pitch)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "pitchChanged", f)
+		}
 	}
 }
 
@@ -202,8 +231,19 @@ func callbackQTextToSpeech_RateChanged(ptr unsafe.Pointer, rate C.double) {
 
 func (ptr *QTextToSpeech) ConnectRateChanged(f func(rate float64)) {
 	if ptr.Pointer() != nil {
-		C.QTextToSpeech_ConnectRateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "rateChanged") {
+			C.QTextToSpeech_ConnectRateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rateChanged", func(rate float64) {
+				signal.(func(float64))(rate)
+				f(rate)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rateChanged", f)
+		}
 	}
 }
 
@@ -232,7 +272,14 @@ func callbackQTextToSpeech_Resume(ptr unsafe.Pointer) {
 func (ptr *QTextToSpeech) ConnectResume(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "resume", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "resume"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "resume", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "resume", f)
+		}
 	}
 }
 
@@ -267,7 +314,14 @@ func callbackQTextToSpeech_Say(ptr unsafe.Pointer, text C.struct_QtSpeech_Packed
 func (ptr *QTextToSpeech) ConnectSay(f func(text string)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "say", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "say"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "say", func(text string) {
+				signal.(func(string))(text)
+				f(text)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "say", f)
+		}
 	}
 }
 
@@ -312,7 +366,14 @@ func callbackQTextToSpeech_SetLocale(ptr unsafe.Pointer, locale unsafe.Pointer) 
 func (ptr *QTextToSpeech) ConnectSetLocale(f func(locale *core.QLocale)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setLocale", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setLocale"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setLocale", func(locale *core.QLocale) {
+				signal.(func(*core.QLocale))(locale)
+				f(locale)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setLocale", f)
+		}
 	}
 }
 
@@ -347,7 +408,14 @@ func callbackQTextToSpeech_SetPitch(ptr unsafe.Pointer, pitch C.double) {
 func (ptr *QTextToSpeech) ConnectSetPitch(f func(pitch float64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setPitch", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setPitch"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setPitch", func(pitch float64) {
+				signal.(func(float64))(pitch)
+				f(pitch)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setPitch", f)
+		}
 	}
 }
 
@@ -382,7 +450,14 @@ func callbackQTextToSpeech_SetRate(ptr unsafe.Pointer, rate C.double) {
 func (ptr *QTextToSpeech) ConnectSetRate(f func(rate float64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setRate", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setRate"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setRate", func(rate float64) {
+				signal.(func(float64))(rate)
+				f(rate)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setRate", f)
+		}
 	}
 }
 
@@ -417,7 +492,14 @@ func callbackQTextToSpeech_SetVolume(ptr unsafe.Pointer, volume C.double) {
 func (ptr *QTextToSpeech) ConnectSetVolume(f func(volume float64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setVolume", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setVolume"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setVolume", func(volume float64) {
+				signal.(func(float64))(volume)
+				f(volume)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setVolume", f)
+		}
 	}
 }
 
@@ -450,8 +532,19 @@ func callbackQTextToSpeech_StateChanged(ptr unsafe.Pointer, state C.longlong) {
 
 func (ptr *QTextToSpeech) ConnectStateChanged(f func(state QTextToSpeech__State)) {
 	if ptr.Pointer() != nil {
-		C.QTextToSpeech_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "stateChanged") {
+			C.QTextToSpeech_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stateChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", func(state QTextToSpeech__State) {
+				signal.(func(QTextToSpeech__State))(state)
+				f(state)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stateChanged", f)
+		}
 	}
 }
 
@@ -480,7 +573,14 @@ func callbackQTextToSpeech_Stop(ptr unsafe.Pointer) {
 func (ptr *QTextToSpeech) ConnectStop(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stop"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stop", f)
+		}
 	}
 }
 
@@ -513,8 +613,19 @@ func callbackQTextToSpeech_VolumeChanged(ptr unsafe.Pointer, volume C.int) {
 
 func (ptr *QTextToSpeech) ConnectVolumeChanged(f func(volume int)) {
 	if ptr.Pointer() != nil {
-		C.QTextToSpeech_ConnectVolumeChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "volumeChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "volumeChanged") {
+			C.QTextToSpeech_ConnectVolumeChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "volumeChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "volumeChanged", func(volume int) {
+				signal.(func(int))(volume)
+				f(volume)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "volumeChanged", f)
+		}
 	}
 }
 
@@ -654,7 +765,14 @@ func callbackQTextToSpeechPlugin_DestroyQTextToSpeechPlugin(ptr unsafe.Pointer) 
 func (ptr *QTextToSpeechPlugin) ConnectDestroyQTextToSpeechPlugin(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTextToSpeechPlugin", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QTextToSpeechPlugin"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTextToSpeechPlugin", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QTextToSpeechPlugin", f)
+		}
 	}
 }
 

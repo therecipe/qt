@@ -162,8 +162,19 @@ func callbackQScriptEngineDebugger_EvaluationResumed(ptr unsafe.Pointer) {
 
 func (ptr *QScriptEngineDebugger) ConnectEvaluationResumed(f func()) {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_ConnectEvaluationResumed(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "evaluationResumed", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "evaluationResumed") {
+			C.QScriptEngineDebugger_ConnectEvaluationResumed(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "evaluationResumed"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "evaluationResumed", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "evaluationResumed", f)
+		}
 	}
 }
 
@@ -190,8 +201,19 @@ func callbackQScriptEngineDebugger_EvaluationSuspended(ptr unsafe.Pointer) {
 
 func (ptr *QScriptEngineDebugger) ConnectEvaluationSuspended(f func()) {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineDebugger_ConnectEvaluationSuspended(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "evaluationSuspended", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "evaluationSuspended") {
+			C.QScriptEngineDebugger_ConnectEvaluationSuspended(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "evaluationSuspended"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "evaluationSuspended", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "evaluationSuspended", f)
+		}
 	}
 }
 

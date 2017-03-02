@@ -19,8 +19,6 @@ func CgoTemplate(module, mocPath, buildTarget string) {
 		switch {
 		case parser.State.Moc:
 			QmakeCgoTemplate(module, mocPath, buildTarget, MOC)
-		case parser.State.Rcc:
-			QmakeCgoTemplate(module, mocPath, buildTarget, RCC)
 		case parser.State.Minimal:
 			QmakeCgoTemplate(module, mocPath, buildTarget, MINIMAL)
 		default:
@@ -226,7 +224,7 @@ func cgoWindowsForLinux(module, mocPath string) {
 	var (
 		bb     = new(bytes.Buffer)
 		libs   = cleanLibs(module)
-		QT_DIR = func() string { return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5" }
+		QT_DIR = func() string { return filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5") }
 	)
 	defer bb.Reset()
 

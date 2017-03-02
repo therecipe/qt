@@ -104,7 +104,14 @@ func callbackQGraphicsSvgItem_Paint(ptr unsafe.Pointer, painter unsafe.Pointer, 
 func (ptr *QGraphicsSvgItem) ConnectPaint(f func(painter *gui.QPainter, option *widgets.QStyleOptionGraphicsItem, widget *widgets.QWidget)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paint", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "paint"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paint", func(painter *gui.QPainter, option *widgets.QStyleOptionGraphicsItem, widget *widgets.QWidget) {
+				signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(painter, option, widget)
+				f(painter, option, widget)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paint", f)
+		}
 	}
 }
 
@@ -162,7 +169,14 @@ func callbackQGraphicsSvgItem_BoundingRect(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QGraphicsSvgItem) ConnectBoundingRect(f func() *core.QRectF) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "boundingRect", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "boundingRect"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "boundingRect", func() *core.QRectF {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "boundingRect", f)
+		}
 	}
 }
 
@@ -1245,7 +1259,14 @@ func callbackQSvgGenerator_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QSvgGenerator) ConnectPaintEngine(f func() *gui.QPaintEngine) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "paintEngine"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", func() *gui.QPaintEngine {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", f)
+		}
 	}
 }
 
@@ -1412,7 +1433,14 @@ func callbackQSvgRenderer_Load3(ptr unsafe.Pointer, contents unsafe.Pointer) C.c
 func (ptr *QSvgRenderer) ConnectLoad3(f func(contents *core.QXmlStreamReader) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load3", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load3"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load3", func(contents *core.QXmlStreamReader) bool {
+				signal.(func(*core.QXmlStreamReader))(contents)
+				return f(contents)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load3", f)
+		}
 	}
 }
 
@@ -1449,7 +1477,14 @@ func callbackQSvgRenderer_Load2(ptr unsafe.Pointer, contents unsafe.Pointer) C.c
 func (ptr *QSvgRenderer) ConnectLoad2(f func(contents *core.QByteArray) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load2", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load2", func(contents *core.QByteArray) bool {
+				signal.(func(*core.QByteArray))(contents)
+				return f(contents)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load2", f)
+		}
 	}
 }
 
@@ -1486,7 +1521,14 @@ func callbackQSvgRenderer_Load(ptr unsafe.Pointer, filename C.struct_QtSvg_Packe
 func (ptr *QSvgRenderer) ConnectLoad(f func(filename string) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load", func(filename string) bool {
+				signal.(func(string))(filename)
+				return f(filename)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load", f)
+		}
 	}
 }
 
@@ -1533,7 +1575,14 @@ func callbackQSvgRenderer_Render(ptr unsafe.Pointer, painter unsafe.Pointer) {
 func (ptr *QSvgRenderer) ConnectRender(f func(painter *gui.QPainter)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "render"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render", func(painter *gui.QPainter) {
+				signal.(func(*gui.QPainter))(painter)
+				f(painter)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render", f)
+		}
 	}
 }
 
@@ -1568,7 +1617,14 @@ func callbackQSvgRenderer_Render2(ptr unsafe.Pointer, painter unsafe.Pointer, bo
 func (ptr *QSvgRenderer) ConnectRender2(f func(painter *gui.QPainter, bounds *core.QRectF)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render2", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "render2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render2", func(painter *gui.QPainter, bounds *core.QRectF) {
+				signal.(func(*gui.QPainter, *core.QRectF))(painter, bounds)
+				f(painter, bounds)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render2", f)
+		}
 	}
 }
 
@@ -1603,7 +1659,14 @@ func callbackQSvgRenderer_Render3(ptr unsafe.Pointer, painter unsafe.Pointer, el
 func (ptr *QSvgRenderer) ConnectRender3(f func(painter *gui.QPainter, elementId string, bounds *core.QRectF)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render3", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "render3"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render3", func(painter *gui.QPainter, elementId string, bounds *core.QRectF) {
+				signal.(func(*gui.QPainter, string, *core.QRectF))(painter, elementId, bounds)
+				f(painter, elementId, bounds)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "render3", f)
+		}
 	}
 }
 
@@ -1646,8 +1709,19 @@ func callbackQSvgRenderer_RepaintNeeded(ptr unsafe.Pointer) {
 
 func (ptr *QSvgRenderer) ConnectRepaintNeeded(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSvgRenderer_ConnectRepaintNeeded(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "repaintNeeded", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "repaintNeeded") {
+			C.QSvgRenderer_ConnectRepaintNeeded(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "repaintNeeded"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "repaintNeeded", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "repaintNeeded", f)
+		}
 	}
 }
 
@@ -2094,7 +2168,14 @@ func callbackQSvgWidget_Load2(ptr unsafe.Pointer, contents unsafe.Pointer) {
 func (ptr *QSvgWidget) ConnectLoad2(f func(contents *core.QByteArray)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load2", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load2", func(contents *core.QByteArray) {
+				signal.(func(*core.QByteArray))(contents)
+				f(contents)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load2", f)
+		}
 	}
 }
 
@@ -2129,7 +2210,14 @@ func callbackQSvgWidget_Load(ptr unsafe.Pointer, file C.struct_QtSvg_PackedStrin
 func (ptr *QSvgWidget) ConnectLoad(f func(file string)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load", func(file string) {
+				signal.(func(string))(file)
+				f(file)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load", f)
+		}
 	}
 }
 

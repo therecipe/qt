@@ -85,7 +85,14 @@ func callbackQMacPasteboardMime_ConvertFromMime(ptr unsafe.Pointer, mime C.struc
 func (ptr *QMacPasteboardMime) ConnectConvertFromMime(f func(mime string, data *core.QVariant, flav string) []*core.QByteArray) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertFromMime", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "convertFromMime"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertFromMime", func(mime string, data *core.QVariant, flav string) []*core.QByteArray {
+				signal.(func(string, *core.QVariant, string))(mime, data, flav)
+				return f(mime, data, flav)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertFromMime", f)
+		}
 	}
 }
 
@@ -140,7 +147,14 @@ func callbackQMacPasteboardMime_ConvertorName(ptr unsafe.Pointer) *C.char {
 func (ptr *QMacPasteboardMime) ConnectConvertorName(f func() string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertorName", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "convertorName"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertorName", func() string {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertorName", f)
+		}
 	}
 }
 
@@ -170,7 +184,14 @@ func callbackQMacPasteboardMime_FlavorFor(ptr unsafe.Pointer, mime C.struct_QtMa
 func (ptr *QMacPasteboardMime) ConnectFlavorFor(f func(mime string) string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flavorFor", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "flavorFor"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flavorFor", func(mime string) string {
+				signal.(func(string))(mime)
+				return f(mime)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flavorFor", f)
+		}
 	}
 }
 
@@ -205,7 +226,14 @@ func callbackQMacPasteboardMime_MimeFor(ptr unsafe.Pointer, flav C.struct_QtMacE
 func (ptr *QMacPasteboardMime) ConnectMimeFor(f func(flav string) string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mimeFor", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mimeFor"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mimeFor", func(flav string) string {
+				signal.(func(string))(flav)
+				return f(flav)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mimeFor", f)
+		}
 	}
 }
 
@@ -246,7 +274,14 @@ func callbackQMacPasteboardMime_ConvertToMime(ptr unsafe.Pointer, mime C.struct_
 func (ptr *QMacPasteboardMime) ConnectConvertToMime(f func(mime string, data []*core.QByteArray, flav string) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertToMime", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "convertToMime"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertToMime", func(mime string, data []*core.QByteArray, flav string) *core.QVariant {
+				signal.(func(string, []*core.QByteArray, string))(mime, data, flav)
+				return f(mime, data, flav)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertToMime", f)
+		}
 	}
 }
 
@@ -294,7 +329,14 @@ func callbackQMacPasteboardMime_CanConvert(ptr unsafe.Pointer, mime C.struct_QtM
 func (ptr *QMacPasteboardMime) ConnectCanConvert(f func(mime string, flav string) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canConvert", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "canConvert"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canConvert", func(mime string, flav string) bool {
+				signal.(func(string, string))(mime, flav)
+				return f(mime, flav)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canConvert", f)
+		}
 	}
 }
 
@@ -334,7 +376,14 @@ func callbackQMacPasteboardMime_Count(ptr unsafe.Pointer, mimeData unsafe.Pointe
 func (ptr *QMacPasteboardMime) ConnectCount(f func(mimeData *core.QMimeData) int) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "count", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "count"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "count", func(mimeData *core.QMimeData) int {
+				signal.(func(*core.QMimeData))(mimeData)
+				return f(mimeData)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "count", f)
+		}
 	}
 }
 
@@ -371,7 +420,14 @@ func callbackQMacPasteboardMime_DestroyQMacPasteboardMime(ptr unsafe.Pointer) {
 func (ptr *QMacPasteboardMime) ConnectDestroyQMacPasteboardMime(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QMacPasteboardMime", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QMacPasteboardMime"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QMacPasteboardMime", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QMacPasteboardMime", f)
+		}
 	}
 }
 
@@ -1013,8 +1069,19 @@ func callbackQMacToolBarItem_Activated(ptr unsafe.Pointer) {
 
 func (ptr *QMacToolBarItem) ConnectActivated(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_ConnectActivated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "activated") {
+			C.QMacToolBarItem_ConnectActivated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "activated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activated", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activated", f)
+		}
 	}
 }
 
@@ -1043,7 +1110,14 @@ func callbackQMacToolBarItem_DestroyQMacToolBarItem(ptr unsafe.Pointer) {
 func (ptr *QMacToolBarItem) ConnectDestroyQMacToolBarItem(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QMacToolBarItem", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QMacToolBarItem"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QMacToolBarItem", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QMacToolBarItem", f)
+		}
 	}
 }
 

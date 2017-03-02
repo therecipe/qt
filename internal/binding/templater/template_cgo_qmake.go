@@ -68,6 +68,9 @@ func QmakeCgoTemplate(module, path, target string, mode int) (o string) {
 		target = runtime.GOOS
 	}
 
+	if isAlreadyCached(module, path, target, mode) {
+		return
+	}
 	createProject(module, path, mode)
 	createMakefile(module, path, target, mode)
 	createCgo(module, path, target, mode)
@@ -76,6 +79,26 @@ func QmakeCgoTemplate(module, path, target string, mode int) (o string) {
 	utils.RemoveAll(filepath.Join(path, "Makefile.Release"))
 
 	return
+}
+
+func isAlreadyCached(module, path, target string, mode int) bool {
+	for _, file := range cgoFileNames(module, path, target, mode) {
+		file = filepath.Join(path, file)
+		if utils.ExistsFile(file) {
+			switch target {
+			case "darwin", "linux", "windows":
+				//TODO msys pkg-config mxe brew
+				return strings.Contains(utils.Load(file), utils.QT_DIR()) || strings.Contains(utils.Load(file), utils.QT_DARWIN_DIR())
+			case "android":
+				return strings.Contains(utils.Load(file), utils.QT_DIR()) && strings.Contains(utils.Load(file), utils.ANDROID_NDK_DIR())
+			case "ios", "ios-simulator":
+				return strings.Contains(utils.Load(file), utils.QT_DIR()) || strings.Contains(utils.Load(file), utils.QT_DARWIN_DIR())
+			case "sailfish", "sailfish-emulator", "asteroid":
+			case "rpi1", "rpi2", "rpi3":
+			}
+		}
+	}
+	return false
 }
 
 func createProject(module, path string, mode int) {
@@ -101,55 +124,7 @@ func createProject(module, path string, mode int) {
 }
 
 func createMakefile(module, path, target string, mode int) {
-	var qmakePath string
-	switch target {
-	case "darwin":
-		qmakePath = filepath.Join(utils.QT_DARWIN_DIR(), "bin", "qmake")
-	case "windows":
-		if runtime.GOOS == target {
-			if utils.UseMsys2() {
-				qmakePath = filepath.Join(utils.QT_MSYS2_DIR(), "bin", "qmake")
-			} else {
-				qmakePath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "qmake")
-			}
-			break
-		}
-		var prefix = "i686"
-		if utils.QT_MXE_ARCH() == "amd64" {
-			prefix = "x86_64"
-		}
-		var suffix = "shared"
-		if utils.QT_MXE_STATIC() {
-			suffix = "static"
-		}
-		qmakePath = filepath.Join("/usr", "lib", "mxe", "usr", fmt.Sprintf("%v-w64-mingw32.%v", prefix, suffix), "qt5", "bin", "qmake")
-	case "linux":
-		if utils.UsePkgConfig() {
-			if utils.QT_QMAKE_CGO() {
-				qmakePath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "qmake")
-			} else {
-				qmakePath = filepath.Join(utils.QT_MISC_DIR(), "bin", "qmake")
-			}
-		} else {
-			qmakePath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "bin", "qmake")
-		}
-	case "ios", "ios-simulator":
-		qmakePath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "ios", "bin", "qmake")
-	case "android":
-		qmakePath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7", "bin", "qmake")
-	case "sailfish":
-		qmakePath = filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", "qmake")
-	case "sailfish-emulator":
-		qmakePath = filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", "qmake")
-	case "asteroid":
-	case "rp1", "rpi2", "rpi3":
-		qmakePath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), target, "bin", "qmake")
-	}
-	if dir := utils.QT_QMAKE_DIR(); dir != "" {
-		qmakePath = filepath.Join(dir, "qmake")
-	}
-
-	var cmd = exec.Command(qmakePath, filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))))
+	var cmd = exec.Command(utils.ToolPath("qmake", target), filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))))
 	cmd.Dir = path
 	switch target {
 	case "darwin":
@@ -164,7 +139,6 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=release", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
 	case "android":
 		cmd.Args = append(cmd.Args, []string{"-spec", "android-g++"}...)
-		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR())}
 	case "sailfish", "sailfish-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 		cmd.Env = []string{
@@ -182,7 +156,17 @@ func createMakefile(module, path, target string, mode int) {
 	case "rpi1", "rpi2", "rpi3":
 	}
 
-	utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
+	if target == "android" && runtime.GOOS == "windows" {
+		//TODO: -->
+		utils.Save(filepath.Join(cmd.Dir, "qmake.bat"), fmt.Sprintf("set ANDROID_NDK_ROOT=%v\r\n%v", utils.ANDROID_NDK_DIR(), strings.Join(cmd.Args, " ")))
+		cmd = exec.Command(".\\qmake.bat")
+		cmd.Dir = path
+		utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
+		utils.RemoveAll(filepath.Join(cmd.Dir, "qmake.bat"))
+		//<--
+	} else {
+		utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
+	}
 
 	utils.RemoveAll(filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))))
 	utils.RemoveAll(filepath.Join(path, ".qmake.stash"))
@@ -285,8 +269,7 @@ func createCgo(module, path, target string, mode int) string {
 			if target == "windows" && !utils.QT_MXE_STATIC() {
 				var pFix = []string{
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
-					filepath.Join("/usr", "lib", "mxe", "usr", "i686-w64-mingw32.shared", "qt5"),
-					filepath.Join("/usr", "lib", "mxe", "usr", "x86_64-w64-mingw32.shared", "qt5"),
+					filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),
 					utils.QT_MSYS2_DIR(),
 				}
 				for _, pFix := range pFix {
@@ -329,6 +312,9 @@ func createCgo(module, path, target string, mode int) string {
 		tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch x86_64", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_LFLAGS)", "", -1)
+	case "android":
+		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", strings.ToLower(module)), "", -1)
+		tmp = strings.Replace(tmp, "-shared", "", -1)
 	}
 
 	for _, variable := range []string{"DEFINES", "SUBLIBS", "EXPORT_QMAKE_XARCH_CFLAGS", "EXPORT_QMAKE_XARCH_LFLAGS", "EXPORT_ARCH_ARGS", "-fvisibility=hidden", "-fembed-bitcode"} {
@@ -349,6 +335,31 @@ func createCgo(module, path, target string, mode int) string {
 		return tmp
 	}
 
+	for _, file := range cgoFileNames(module, path, target, mode) {
+		switch target {
+		case "windows":
+			if utils.UseMsys2() && utils.QT_MSYS2_ARCH() == "amd64" {
+				tmp = strings.Replace(tmp, " -Wa,-mbig-obj ", " ", -1)
+			}
+			if (utils.UseMsys2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
+				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
+			}
+		case "ios":
+			if strings.HasSuffix(file, "darwin_arm.go") {
+				tmp = strings.Replace(tmp, "arm64", "armv7", -1)
+			}
+		case "ios-simulator":
+			if strings.HasSuffix(file, "darwin_386.go") {
+				tmp = strings.Replace(tmp, "x86_64", "i386", -1)
+			}
+		}
+		utils.Save(filepath.Join(path, file), tmp)
+	}
+
+	return ""
+}
+
+func cgoFileNames(module, path, target string, mode int) []string {
 	var pFix string
 	switch mode {
 	case RCC:
@@ -387,26 +398,9 @@ func createCgo(module, path, target string, mode int) string {
 		sFixes = []string{"linux_arm"}
 	}
 
+	var o []string
 	for _, sFix := range sFixes {
-		switch target {
-		case "windows":
-			if utils.UseMsys2() && utils.QT_MSYS2_ARCH() == "amd64" {
-				tmp = strings.Replace(tmp, " -Wa,-mbig-obj ", " ", -1)
-			}
-			if (utils.UseMsys2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
-				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
-			}
-		case "ios":
-			if sFix == "darwin_arm" {
-				tmp = strings.Replace(tmp, "arm64", "armv7", -1)
-			}
-		case "ios-simulator":
-			if sFix == "darwin_386" {
-				tmp = strings.Replace(tmp, "x86_64", "i386", -1)
-			}
-		}
-		utils.Save(filepath.Join(path, fmt.Sprintf("%vcgo_%v_%v.go", pFix, strings.Replace(target, "-", "_", -1), sFix)), tmp)
+		o = append(o, fmt.Sprintf("%vcgo_%v_%v.go", pFix, strings.Replace(target, "-", "_", -1), sFix))
 	}
-
-	return ""
+	return o
 }

@@ -18,6 +18,11 @@ import (
 )
 
 func Rcc(appPath, buildTarget string, output_dir *string) {
+	if utils.QT_QMAKE_CGO() {
+		QmakeRcc(appPath, buildTarget, output_dir)
+		return
+	}
+
 	if output_dir == nil {
 		var toutput_dir string
 		output_dir = &toutput_dir
@@ -28,7 +33,7 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 	utils.MkdirAll(filepath.Join(appPath, "qml"))
 
 	var (
-		rccPath string
+		rccPath = utils.ToolPath("rcc", buildTarget)
 		qmlGo   = filepath.Join(func() string {
 			if *output_dir != "" {
 				return *output_dir
@@ -45,38 +50,6 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 			return appPath
 		}(), "rcc.cpp")
 	)
-
-	switch runtime.GOOS {
-	case "darwin":
-		{
-			rccPath = filepath.Join(utils.QT_DARWIN_DIR(), "bin", "rcc")
-		}
-
-	case "linux":
-		{
-			if buildTarget == "windows" || os.Getenv("QT_MXE_ARCH") != "" {
-				rccPath = filepath.Join("/usr/lib/mxe/usr/", func() string {
-					if utils.QT_MXE_ARCH() == "386" {
-						return "i686"
-					}
-					return "x86_64"
-				}()+"-w64-mingw32.shared/qt5/bin/rcc")
-			} else if utils.UsePkgConfig() {
-				rccPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), fmt.Sprintf("find rccPath with pkg-config on %v", runtime.GOOS))), "rcc")
-			} else {
-				rccPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "bin", "rcc")
-			}
-		}
-
-	case "windows":
-		{
-			if utils.UseMsys2() {
-				rccPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin", "rcc")
-			} else {
-				rccPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "rcc")
-			}
-		}
-	}
 
 	utils.Save(qmlGo, qmlHeader(appName, appPath, buildTarget))
 
@@ -156,16 +129,13 @@ func qmlHeader(appName, appPath, buildTarget string) string {
 */
 import "C"`,
 		"${QT_WINDOWS_DIR}", func() string {
-			if runtime.GOOS == "linux" {
-				if utils.QT_MXE_ARCH() == "amd64" {
-					return "/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/lib"
+			if runtime.GOOS == "windows" {
+				if utils.UseMsys2() {
+					return filepath.Join(utils.QT_MSYS2_DIR(), "lib")
 				}
-				return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/lib"
+				return "${QT_DIR}/${QT_VERSION_MAJOR}/mingw53_32/lib"
 			}
-			if utils.UseMsys2() {
-				return filepath.Join(utils.QT_MSYS2_DIR(), "lib")
-			}
-			return "${QT_DIR}/${QT_VERSION_MAJOR}/mingw53_32/lib"
+			return filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5", "lib")
 		}(), -1),
 		"${QT_DARWIN_DIR}", utils.QT_DARWIN_DIR(), -1),
 		"${QT_LINUX_DIR}", func() string {

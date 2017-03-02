@@ -594,7 +594,14 @@ func callbackQDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr unsafe.Poi
 func (ptr *QDBusAbstractInterface) ConnectDestroyQDBusAbstractInterface(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusAbstractInterface", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QDBusAbstractInterface"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusAbstractInterface", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusAbstractInterface", f)
+		}
 	}
 }
 
@@ -1985,8 +1992,19 @@ func callbackQDBusConnectionInterface_ServiceRegistered(ptr unsafe.Pointer, serv
 
 func (ptr *QDBusConnectionInterface) ConnectServiceRegistered(f func(serviceName string)) {
 	if ptr.Pointer() != nil {
-		C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered") {
+			C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered", func(serviceName string) {
+				signal.(func(string))(serviceName)
+				f(serviceName)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered", f)
+		}
 	}
 }
 
@@ -2018,8 +2036,19 @@ func callbackQDBusConnectionInterface_CallWithCallbackFailed(ptr unsafe.Pointer,
 
 func (ptr *QDBusConnectionInterface) ConnectCallWithCallbackFailed(f func(error *QDBusError, call *QDBusMessage)) {
 	if ptr.Pointer() != nil {
-		C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "callWithCallbackFailed", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "callWithCallbackFailed") {
+			C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "callWithCallbackFailed"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "callWithCallbackFailed", func(error *QDBusError, call *QDBusMessage) {
+				signal.(func(*QDBusError, *QDBusMessage))(error, call)
+				f(error, call)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "callWithCallbackFailed", f)
+		}
 	}
 }
 
@@ -2046,8 +2075,19 @@ func callbackQDBusConnectionInterface_ServiceUnregistered(ptr unsafe.Pointer, se
 
 func (ptr *QDBusConnectionInterface) ConnectServiceUnregistered(f func(serviceName string)) {
 	if ptr.Pointer() != nil {
-		C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered") {
+			C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered", func(serviceName string) {
+				signal.(func(string))(serviceName)
+				f(serviceName)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered", f)
+		}
 	}
 }
 
@@ -3156,8 +3196,19 @@ func callbackQDBusPendingCallWatcher_Finished(ptr unsafe.Pointer, self unsafe.Po
 
 func (ptr *QDBusPendingCallWatcher) ConnectFinished(f func(self *QDBusPendingCallWatcher)) {
 	if ptr.Pointer() != nil {
-		C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func(self *QDBusPendingCallWatcher) {
+				signal.(func(*QDBusPendingCallWatcher))(self)
+				f(self)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -3726,8 +3777,19 @@ func callbackQDBusServer_NewConnection(ptr unsafe.Pointer, connection unsafe.Poi
 
 func (ptr *QDBusServer) ConnectNewConnection(f func(connection *QDBusConnection)) {
 	if ptr.Pointer() != nil {
-		C.QDBusServer_ConnectNewConnection(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "newConnection") {
+			C.QDBusServer_ConnectNewConnection(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newConnection"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", func(connection *QDBusConnection) {
+				signal.(func(*QDBusConnection))(connection)
+				f(connection)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newConnection", f)
+		}
 	}
 }
 
@@ -3762,7 +3824,14 @@ func callbackQDBusServer_DestroyQDBusServer(ptr unsafe.Pointer) {
 func (ptr *QDBusServer) ConnectDestroyQDBusServer(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusServer", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QDBusServer"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusServer", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusServer", f)
+		}
 	}
 }
 
@@ -4137,8 +4206,19 @@ func callbackQDBusServiceWatcher_ServiceRegistered(ptr unsafe.Pointer, serviceNa
 
 func (ptr *QDBusServiceWatcher) ConnectServiceRegistered(f func(serviceName string)) {
 	if ptr.Pointer() != nil {
-		C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered") {
+			C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered", func(serviceName string) {
+				signal.(func(string))(serviceName)
+				f(serviceName)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceRegistered", f)
+		}
 	}
 }
 
@@ -4233,8 +4313,19 @@ func callbackQDBusServiceWatcher_ServiceOwnerChanged(ptr unsafe.Pointer, service
 
 func (ptr *QDBusServiceWatcher) ConnectServiceOwnerChanged(f func(serviceName string, oldOwner string, newOwner string)) {
 	if ptr.Pointer() != nil {
-		C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceOwnerChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "serviceOwnerChanged") {
+			C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceOwnerChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceOwnerChanged", func(serviceName string, oldOwner string, newOwner string) {
+				signal.(func(string, string, string))(serviceName, oldOwner, newOwner)
+				f(serviceName, oldOwner, newOwner)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceOwnerChanged", f)
+		}
 	}
 }
 
@@ -4276,8 +4367,19 @@ func callbackQDBusServiceWatcher_ServiceUnregistered(ptr unsafe.Pointer, service
 
 func (ptr *QDBusServiceWatcher) ConnectServiceUnregistered(f func(serviceName string)) {
 	if ptr.Pointer() != nil {
-		C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered") {
+			C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered", func(serviceName string) {
+				signal.(func(string))(serviceName)
+				f(serviceName)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceUnregistered", f)
+		}
 	}
 }
 
@@ -4942,7 +5044,14 @@ func callbackQDBusVirtualObject_HandleMessage(ptr unsafe.Pointer, message unsafe
 func (ptr *QDBusVirtualObject) ConnectHandleMessage(f func(message *QDBusMessage, connection *QDBusConnection) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleMessage", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "handleMessage"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleMessage", func(message *QDBusMessage, connection *QDBusConnection) bool {
+				signal.(func(*QDBusMessage, *QDBusConnection))(message, connection)
+				return f(message, connection)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleMessage", f)
+		}
 	}
 }
 
@@ -4972,7 +5081,14 @@ func callbackQDBusVirtualObject_DestroyQDBusVirtualObject(ptr unsafe.Pointer) {
 func (ptr *QDBusVirtualObject) ConnectDestroyQDBusVirtualObject(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusVirtualObject", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QDBusVirtualObject"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusVirtualObject", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QDBusVirtualObject", f)
+		}
 	}
 }
 
@@ -5011,7 +5127,14 @@ func callbackQDBusVirtualObject_Introspect(ptr unsafe.Pointer, path C.struct_QtD
 func (ptr *QDBusVirtualObject) ConnectIntrospect(f func(path string) string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "introspect", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "introspect"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "introspect", func(path string) string {
+				signal.(func(string))(path)
+				return f(path)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "introspect", f)
+		}
 	}
 }
 

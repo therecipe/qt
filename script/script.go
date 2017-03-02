@@ -227,7 +227,14 @@ func callbackQScriptClass_NewIterator(ptr unsafe.Pointer, object unsafe.Pointer)
 func (ptr *QScriptClass) ConnectNewIterator(f func(object *QScriptValue) *QScriptClassPropertyIterator) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newIterator", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newIterator"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newIterator", func(object *QScriptValue) *QScriptClassPropertyIterator {
+				signal.(func(*QScriptValue))(object)
+				return f(object)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newIterator", f)
+		}
 	}
 }
 
@@ -264,7 +271,14 @@ func callbackQScriptClass_Property(ptr unsafe.Pointer, object unsafe.Pointer, na
 func (ptr *QScriptClass) ConnectProperty(f func(object *QScriptValue, name *QScriptString, id uint) *QScriptValue) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "property"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", func(object *QScriptValue, name *QScriptString, id uint) *QScriptValue {
+				signal.(func(*QScriptValue, *QScriptString, uint))(object, name, id)
+				return f(object, name, id)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", f)
+		}
 	}
 }
 
@@ -305,7 +319,14 @@ func callbackQScriptClass_PropertyFlags(ptr unsafe.Pointer, object unsafe.Pointe
 func (ptr *QScriptClass) ConnectPropertyFlags(f func(object *QScriptValue, name *QScriptString, id uint) QScriptValue__PropertyFlag) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "propertyFlags", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "propertyFlags"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "propertyFlags", func(object *QScriptValue, name *QScriptString, id uint) QScriptValue__PropertyFlag {
+				signal.(func(*QScriptValue, *QScriptString, uint))(object, name, id)
+				return f(object, name, id)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "propertyFlags", f)
+		}
 	}
 }
 
@@ -342,7 +363,14 @@ func callbackQScriptClass_Extension(ptr unsafe.Pointer, extension C.longlong, ar
 func (ptr *QScriptClass) ConnectExtension(f func(extension QScriptClass__Extension, argument *core.QVariant) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "extension"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", func(extension QScriptClass__Extension, argument *core.QVariant) *core.QVariant {
+				signal.(func(QScriptClass__Extension, *core.QVariant))(extension, argument)
+				return f(extension, argument)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", f)
+		}
 	}
 }
 
@@ -383,7 +411,14 @@ func callbackQScriptClass_QueryProperty(ptr unsafe.Pointer, object unsafe.Pointe
 func (ptr *QScriptClass) ConnectQueryProperty(f func(object *QScriptValue, name *QScriptString, flags QScriptClass__QueryFlag, id uint) QScriptClass__QueryFlag) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProperty", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "queryProperty"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProperty", func(object *QScriptValue, name *QScriptString, flags QScriptClass__QueryFlag, id uint) QScriptClass__QueryFlag {
+				signal.(func(*QScriptValue, *QScriptString, QScriptClass__QueryFlag, uint))(object, name, flags, id)
+				return f(object, name, flags, id)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProperty", f)
+		}
 	}
 }
 
@@ -420,7 +455,14 @@ func callbackQScriptClass_SetProperty(ptr unsafe.Pointer, object unsafe.Pointer,
 func (ptr *QScriptClass) ConnectSetProperty(f func(object *QScriptValue, name *QScriptString, id uint, value *QScriptValue)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setProperty", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setProperty"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setProperty", func(object *QScriptValue, name *QScriptString, id uint, value *QScriptValue) {
+				signal.(func(*QScriptValue, *QScriptString, uint, *QScriptValue))(object, name, id, value)
+				f(object, name, id, value)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setProperty", f)
+		}
 	}
 }
 
@@ -455,7 +497,14 @@ func callbackQScriptClass_DestroyQScriptClass(ptr unsafe.Pointer) {
 func (ptr *QScriptClass) ConnectDestroyQScriptClass(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptClass", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QScriptClass"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptClass", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptClass", f)
+		}
 	}
 }
 
@@ -505,7 +554,14 @@ func callbackQScriptClass_Prototype(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QScriptClass) ConnectPrototype(f func() *QScriptValue) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prototype", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "prototype"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prototype", func() *QScriptValue {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prototype", f)
+		}
 	}
 }
 
@@ -546,7 +602,14 @@ func callbackQScriptClass_Name(ptr unsafe.Pointer) *C.char {
 func (ptr *QScriptClass) ConnectName(f func() string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "name", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "name"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "name", func() string {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "name", f)
+		}
 	}
 }
 
@@ -583,7 +646,14 @@ func callbackQScriptClass_SupportsExtension(ptr unsafe.Pointer, extension C.long
 func (ptr *QScriptClass) ConnectSupportsExtension(f func(extension QScriptClass__Extension) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", func(extension QScriptClass__Extension) bool {
+				signal.(func(QScriptClass__Extension))(extension)
+				return f(extension)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", f)
+		}
 	}
 }
 
@@ -1376,8 +1446,19 @@ func callbackQScriptEngine_SignalHandlerException(ptr unsafe.Pointer, exception 
 
 func (ptr *QScriptEngine) ConnectSignalHandlerException(f func(exception *QScriptValue)) {
 	if ptr.Pointer() != nil {
-		C.QScriptEngine_ConnectSignalHandlerException(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "signalHandlerException", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "signalHandlerException") {
+			C.QScriptEngine_ConnectSignalHandlerException(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "signalHandlerException"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "signalHandlerException", func(exception *QScriptValue) {
+				signal.(func(*QScriptValue))(exception)
+				f(exception)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "signalHandlerException", f)
+		}
 	}
 }
 
@@ -1406,7 +1487,14 @@ func callbackQScriptEngine_DestroyQScriptEngine(ptr unsafe.Pointer) {
 func (ptr *QScriptEngine) ConnectDestroyQScriptEngine(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngine", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngine"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngine", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngine", f)
+		}
 	}
 }
 
@@ -1844,7 +1932,14 @@ func callbackQScriptEngineAgent_Extension(ptr unsafe.Pointer, extension C.longlo
 func (ptr *QScriptEngineAgent) ConnectExtension(f func(extension QScriptEngineAgent__Extension, argument *core.QVariant) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "extension"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", func(extension QScriptEngineAgent__Extension, argument *core.QVariant) *core.QVariant {
+				signal.(func(QScriptEngineAgent__Extension, *core.QVariant))(extension, argument)
+				return f(extension, argument)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", f)
+		}
 	}
 }
 
@@ -1885,7 +1980,14 @@ func callbackQScriptEngineAgent_ContextPop(ptr unsafe.Pointer) {
 func (ptr *QScriptEngineAgent) ConnectContextPop(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contextPop", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "contextPop"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contextPop", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contextPop", f)
+		}
 	}
 }
 
@@ -1920,7 +2022,14 @@ func callbackQScriptEngineAgent_ContextPush(ptr unsafe.Pointer) {
 func (ptr *QScriptEngineAgent) ConnectContextPush(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contextPush", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "contextPush"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contextPush", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contextPush", f)
+		}
 	}
 }
 
@@ -1955,7 +2064,14 @@ func callbackQScriptEngineAgent_ExceptionCatch(ptr unsafe.Pointer, scriptId C.lo
 func (ptr *QScriptEngineAgent) ConnectExceptionCatch(f func(scriptId int64, exception *QScriptValue)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exceptionCatch", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exceptionCatch"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exceptionCatch", func(scriptId int64, exception *QScriptValue) {
+				signal.(func(int64, *QScriptValue))(scriptId, exception)
+				f(scriptId, exception)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exceptionCatch", f)
+		}
 	}
 }
 
@@ -1990,7 +2106,14 @@ func callbackQScriptEngineAgent_ExceptionThrow(ptr unsafe.Pointer, scriptId C.lo
 func (ptr *QScriptEngineAgent) ConnectExceptionThrow(f func(scriptId int64, exception *QScriptValue, hasHandler bool)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exceptionThrow", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exceptionThrow"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exceptionThrow", func(scriptId int64, exception *QScriptValue, hasHandler bool) {
+				signal.(func(int64, *QScriptValue, bool))(scriptId, exception, hasHandler)
+				f(scriptId, exception, hasHandler)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exceptionThrow", f)
+		}
 	}
 }
 
@@ -2025,7 +2148,14 @@ func callbackQScriptEngineAgent_FunctionEntry(ptr unsafe.Pointer, scriptId C.lon
 func (ptr *QScriptEngineAgent) ConnectFunctionEntry(f func(scriptId int64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "functionEntry", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "functionEntry"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "functionEntry", func(scriptId int64) {
+				signal.(func(int64))(scriptId)
+				f(scriptId)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "functionEntry", f)
+		}
 	}
 }
 
@@ -2060,7 +2190,14 @@ func callbackQScriptEngineAgent_FunctionExit(ptr unsafe.Pointer, scriptId C.long
 func (ptr *QScriptEngineAgent) ConnectFunctionExit(f func(scriptId int64, returnValue *QScriptValue)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "functionExit", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "functionExit"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "functionExit", func(scriptId int64, returnValue *QScriptValue) {
+				signal.(func(int64, *QScriptValue))(scriptId, returnValue)
+				f(scriptId, returnValue)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "functionExit", f)
+		}
 	}
 }
 
@@ -2095,7 +2232,14 @@ func callbackQScriptEngineAgent_PositionChange(ptr unsafe.Pointer, scriptId C.lo
 func (ptr *QScriptEngineAgent) ConnectPositionChange(f func(scriptId int64, lineNumber int, columnNumber int)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "positionChange", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "positionChange"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "positionChange", func(scriptId int64, lineNumber int, columnNumber int) {
+				signal.(func(int64, int, int))(scriptId, lineNumber, columnNumber)
+				f(scriptId, lineNumber, columnNumber)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "positionChange", f)
+		}
 	}
 }
 
@@ -2130,7 +2274,14 @@ func callbackQScriptEngineAgent_ScriptLoad(ptr unsafe.Pointer, id C.longlong, pr
 func (ptr *QScriptEngineAgent) ConnectScriptLoad(f func(id int64, program string, fileName string, baseLineNumber int)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scriptLoad", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "scriptLoad"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scriptLoad", func(id int64, program string, fileName string, baseLineNumber int) {
+				signal.(func(int64, string, string, int))(id, program, fileName, baseLineNumber)
+				f(id, program, fileName, baseLineNumber)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scriptLoad", f)
+		}
 	}
 }
 
@@ -2185,7 +2336,14 @@ func callbackQScriptEngineAgent_ScriptUnload(ptr unsafe.Pointer, id C.longlong) 
 func (ptr *QScriptEngineAgent) ConnectScriptUnload(f func(id int64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scriptUnload", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "scriptUnload"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scriptUnload", func(id int64) {
+				signal.(func(int64))(id)
+				f(id)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scriptUnload", f)
+		}
 	}
 }
 
@@ -2220,7 +2378,14 @@ func callbackQScriptEngineAgent_DestroyQScriptEngineAgent(ptr unsafe.Pointer) {
 func (ptr *QScriptEngineAgent) ConnectDestroyQScriptEngineAgent(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngineAgent", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngineAgent"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngineAgent", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QScriptEngineAgent", f)
+		}
 	}
 }
 
@@ -2270,7 +2435,14 @@ func callbackQScriptEngineAgent_SupportsExtension(ptr unsafe.Pointer, extension 
 func (ptr *QScriptEngineAgent) ConnectSupportsExtension(f func(extension QScriptEngineAgent__Extension) bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", func(extension QScriptEngineAgent__Extension) bool {
+				signal.(func(QScriptEngineAgent__Extension))(extension)
+				return f(extension)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", f)
+		}
 	}
 }
 
@@ -2352,7 +2524,14 @@ func callbackQScriptExtensionPlugin_Initialize(ptr unsafe.Pointer, key C.struct_
 func (ptr *QScriptExtensionPlugin) ConnectInitialize(f func(key string, engine *QScriptEngine)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "initialize", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "initialize"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "initialize", func(key string, engine *QScriptEngine) {
+				signal.(func(string, *QScriptEngine))(key, engine)
+				f(key, engine)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "initialize", f)
+		}
 	}
 }
 
@@ -2408,7 +2587,14 @@ func callbackQScriptExtensionPlugin_Keys(ptr unsafe.Pointer) *C.char {
 func (ptr *QScriptExtensionPlugin) ConnectKeys(f func() []string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "keys", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "keys"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "keys", func() []string {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "keys", f)
+		}
 	}
 }
 

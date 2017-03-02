@@ -247,36 +247,10 @@ func CleanPath(path string) (err error) {
 
 func (m *appMoc) runQtMoc() (err error) {
 	var (
-		mocPath string
+		mocPath = utils.ToolPath("moc", m.buildTarget)
 		output  []byte
 		info    os.FileInfo
 	)
-	switch runtime.GOOS {
-	case "darwin":
-		mocPath = filepath.Join(utils.QT_DARWIN_DIR(), "bin", "moc")
-	case "linux":
-		if m.buildTarget == "windows" || (utils.QT_DOCKER() && os.Getenv("QT_MXE_ARCH") != "") {
-			var prefix = "i686"
-			if utils.QT_MXE_ARCH() == "amd64" {
-				prefix = "x86_64"
-			}
-			var suffix = "shared"
-			if utils.QT_MXE_STATIC() {
-				suffix = "static"
-			}
-			mocPath = filepath.Join("/usr", "lib", "mxe", "usr", fmt.Sprintf("%v-w64-mingw32.%v", prefix, suffix), "qt5", "bin", "moc")
-		} else if utils.UsePkgConfig() {
-			mocPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "moc.LinuxPkgConfig_hostBins")), "moc")
-		} else {
-			mocPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "bin", "moc")
-		}
-	case "windows":
-		if utils.UseMsys2() {
-			mocPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin", "moc")
-		} else {
-			mocPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "moc")
-		}
-	}
 
 	if runtime.GOOS != "windows" { //TODO: os.Stat fails on windows
 		if info, err = os.Stat(mocPath); err != nil {

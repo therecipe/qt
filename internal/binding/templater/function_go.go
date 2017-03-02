@@ -96,6 +96,13 @@ func goFunctionBody(function *parser.Function) string {
 	if function.SignalMode == "" || (function.Meta == parser.SIGNAL && function.SignalMode != parser.CALLBACK) {
 
 		//TODO: -->
+		if function.SignalMode == parser.CONNECT {
+			fmt.Fprintf(bb, "\nif !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\") {\n",
+				function.Name,
+				function.OverloadNumber,
+			)
+		}
+
 		var body = converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(function), converter.GoInputParametersForC(function)))
 		fmt.Fprint(bb, func() string {
 			if converter.GoHeaderOutput(function) == "" {
@@ -194,6 +201,10 @@ func goFunctionBody(function *parser.Function) string {
 			}
 
 		}())
+
+		if function.SignalMode == parser.CONNECT {
+			fmt.Fprint(bb, "\n}\n")
+		}
 	}
 	//<--
 
@@ -301,7 +312,60 @@ func goFunctionBody(function *parser.Function) string {
 
 		}
 
-	case parser.CONNECT, parser.DISCONNECT:
+	case parser.CONNECT:
+		{
+			fmt.Fprintf(bb, "\nif signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\"); signal != nil {\n",
+				function.Name,
+				function.OverloadNumber,
+			)
+
+			fmt.Fprintf(bb, "\tqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\", %v)",
+				function.SignalMode,
+				function.Name,
+				function.OverloadNumber,
+				func() string {
+					var bb = new(bytes.Buffer)
+					defer bb.Reset()
+
+					fmt.Fprintf(bb, "%v {\n", strings.TrimPrefix(converter.GoHeaderInput(function), "f "))
+
+					fmt.Fprintf(bb, "signal.(%v)(%v)\n",
+						converter.GoHeaderInputSignalFunction(function),
+						converter.GoGoInput(function),
+					)
+
+					var f = *function
+					f.SignalMode = ""
+					if converter.GoHeaderOutput(&f) != "" {
+						fmt.Fprint(bb, "return ")
+					}
+
+					fmt.Fprintf(bb, "f(%v)\n",
+						converter.GoGoInput(function),
+					)
+
+					fmt.Fprint(bb, "}")
+
+					return bb.String()
+				}())
+
+			fmt.Fprintf(bb, "} else {\n")
+			fmt.Fprintf(bb, "\tqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\"%v)",
+				function.SignalMode,
+				function.Name,
+				function.OverloadNumber,
+				func() string {
+					if function.SignalMode == parser.CONNECT {
+						return ", f"
+					}
+					return ""
+				}(),
+			)
+
+			fmt.Fprintf(bb, "}")
+		}
+
+	case parser.DISCONNECT:
 		{
 			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\"%v)",
 				function.SignalMode,

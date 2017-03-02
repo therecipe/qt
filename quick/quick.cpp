@@ -6059,14 +6059,14 @@ void QSGNode_RemoveChildNode(void* ptr, void* node)
 	static_cast<QSGNode*>(ptr)->removeChildNode(static_cast<QSGNode*>(node));
 }
 
-void QSGNode_SetFlag(void* ptr, long long f, char enabled)
+void QSGNode_SetFlag(void* ptr, long long fo, char enabled)
 {
-	static_cast<QSGNode*>(ptr)->setFlag(static_cast<QSGNode::Flag>(f), enabled != 0);
+	static_cast<QSGNode*>(ptr)->setFlag(static_cast<QSGNode::Flag>(fo), enabled != 0);
 }
 
-void QSGNode_SetFlags(void* ptr, long long f, char enabled)
+void QSGNode_SetFlags(void* ptr, long long fo, char enabled)
 {
-	static_cast<QSGNode*>(ptr)->setFlags(static_cast<QSGNode::Flag>(f), enabled != 0);
+	static_cast<QSGNode*>(ptr)->setFlags(static_cast<QSGNode::Flag>(fo), enabled != 0);
 }
 
 void QSGNode_DestroyQSGNode(void* ptr)

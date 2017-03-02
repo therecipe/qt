@@ -3554,14 +3554,14 @@ void* QByteArray_Replace2(void* ptr, int pos, int len, char* after, int alen)
 	return new QByteArray(static_cast<QByteArray*>(ptr)->replace(pos, len, const_cast<const char*>(after), alen));
 }
 
-void* QByteArray_SetNum8(void* ptr, double n, char* f, int prec)
+void* QByteArray_SetNum8(void* ptr, double n, char* fo, int prec)
 {
-	return new QByteArray(static_cast<QByteArray*>(ptr)->setNum(n, *f, prec));
+	return new QByteArray(static_cast<QByteArray*>(ptr)->setNum(n, *fo, prec));
 }
 
-void* QByteArray_SetNum7(void* ptr, float n, char* f, int prec)
+void* QByteArray_SetNum7(void* ptr, float n, char* fo, int prec)
 {
-	return new QByteArray(static_cast<QByteArray*>(ptr)->setNum(n, *f, prec));
+	return new QByteArray(static_cast<QByteArray*>(ptr)->setNum(n, *fo, prec));
 }
 
 void* QByteArray_SetNum(void* ptr, int n, int base)
@@ -3624,9 +3624,9 @@ void* QByteArray_QByteArray_FromRawData(char* data, int size)
 	return new QByteArray(QByteArray::fromRawData(const_cast<const char*>(data), size));
 }
 
-void* QByteArray_QByteArray_Number5(double n, char* f, int prec)
+void* QByteArray_QByteArray_Number5(double n, char* fo, int prec)
 {
-	return new QByteArray(QByteArray::number(n, *f, prec));
+	return new QByteArray(QByteArray::number(n, *fo, prec));
 }
 
 void* QByteArray_QByteArray_Number(int n, int base)
@@ -10367,14 +10367,14 @@ struct QtCore_PackedString QLocale_ToString11(void* ptr, void* time, char* forma
 	return ({ QByteArray t7e9dfa = static_cast<QLocale*>(ptr)->toString(*static_cast<QTime*>(time), QString(format)).toUtf8(); QtCore_PackedString { const_cast<char*>(t7e9dfa.prepend("WHITESPACE").constData()+10), t7e9dfa.size()-10 }; });
 }
 
-struct QtCore_PackedString QLocale_ToString7(void* ptr, double i, char* f, int prec)
+struct QtCore_PackedString QLocale_ToString7(void* ptr, double i, char* fo, int prec)
 {
-	return ({ QByteArray t0ef931 = static_cast<QLocale*>(ptr)->toString(i, *f, prec).toUtf8(); QtCore_PackedString { const_cast<char*>(t0ef931.prepend("WHITESPACE").constData()+10), t0ef931.size()-10 }; });
+	return ({ QByteArray tb2c8bc = static_cast<QLocale*>(ptr)->toString(i, *fo, prec).toUtf8(); QtCore_PackedString { const_cast<char*>(tb2c8bc.prepend("WHITESPACE").constData()+10), tb2c8bc.size()-10 }; });
 }
 
-struct QtCore_PackedString QLocale_ToString8(void* ptr, float i, char* f, int prec)
+struct QtCore_PackedString QLocale_ToString8(void* ptr, float i, char* fo, int prec)
 {
-	return ({ QByteArray t0ef931 = static_cast<QLocale*>(ptr)->toString(i, *f, prec).toUtf8(); QtCore_PackedString { const_cast<char*>(t0ef931.prepend("WHITESPACE").constData()+10), t0ef931.size()-10 }; });
+	return ({ QByteArray tb2c8bc = static_cast<QLocale*>(ptr)->toString(i, *fo, prec).toUtf8(); QtCore_PackedString { const_cast<char*>(tb2c8bc.prepend("WHITESPACE").constData()+10), tb2c8bc.size()-10 }; });
 }
 
 struct QtCore_PackedString QLocale_ToString5(void* ptr, int i)

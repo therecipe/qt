@@ -94,7 +94,14 @@ func callbackQAndroidActivityResultReceiver_HandleActivityResult(ptr unsafe.Poin
 func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(receiverRequestCode int, resultCode int, data *QAndroidJniObject)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult", func(receiverRequestCode int, resultCode int, data *QAndroidJniObject) {
+				signal.(func(int, int, *QAndroidJniObject))(receiverRequestCode, resultCode, data)
+				f(receiverRequestCode, resultCode, data)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult", f)
+		}
 	}
 }
 

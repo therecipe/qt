@@ -767,7 +767,7 @@ long long QFont_StyleStrategy(void* ptr);
 char QFont_Bold(void* ptr);
 char QFont_ExactMatch(void* ptr);
 char QFont_FixedPitch(void* ptr);
-char QFont_IsCopyOf(void* ptr, void* f);
+char QFont_IsCopyOf(void* ptr, void* fo);
 char QFont_Italic(void* ptr);
 char QFont_Kerning(void* ptr);
 char QFont_Overline(void* ptr);
@@ -3806,7 +3806,7 @@ void* QTextDocument_Find2(void* ptr, char* subString, int position, long long op
 void* QTextDocument_Clone(void* ptr, void* parent);
 void* QTextDocument_RootFrame(void* ptr);
 void* QTextDocument_Object(void* ptr, int objectIndex);
-void* QTextDocument_ObjectForFormat(void* ptr, void* f);
+void* QTextDocument_ObjectForFormat(void* ptr, void* fo);
 void* QTextDocument_DefaultTextOption(void* ptr);
 void* QTextDocument_BaseUrl(void* ptr);
 void* QTextDocument_Resource(void* ptr, int ty, void* name);

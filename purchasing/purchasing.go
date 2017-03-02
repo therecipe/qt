@@ -89,7 +89,14 @@ func callbackQInAppProduct_Purchase(ptr unsafe.Pointer) {
 func (ptr *QInAppProduct) ConnectPurchase(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "purchase", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "purchase"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "purchase", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "purchase", f)
+		}
 	}
 }
 
@@ -456,8 +463,19 @@ func callbackQInAppStore_ProductRegistered(ptr unsafe.Pointer, product unsafe.Po
 
 func (ptr *QInAppStore) ConnectProductRegistered(f func(product *QInAppProduct)) {
 	if ptr.Pointer() != nil {
-		C.QInAppStore_ConnectProductRegistered(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "productRegistered", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "productRegistered") {
+			C.QInAppStore_ConnectProductRegistered(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "productRegistered"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "productRegistered", func(product *QInAppProduct) {
+				signal.(func(*QInAppProduct))(product)
+				f(product)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "productRegistered", f)
+		}
 	}
 }
 
@@ -484,8 +502,19 @@ func callbackQInAppStore_ProductUnknown(ptr unsafe.Pointer, productType C.longlo
 
 func (ptr *QInAppStore) ConnectProductUnknown(f func(productType QInAppProduct__ProductType, identifier string)) {
 	if ptr.Pointer() != nil {
-		C.QInAppStore_ConnectProductUnknown(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "productUnknown", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "productUnknown") {
+			C.QInAppStore_ConnectProductUnknown(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "productUnknown"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "productUnknown", func(productType QInAppProduct__ProductType, identifier string) {
+				signal.(func(QInAppProduct__ProductType, string))(productType, identifier)
+				f(productType, identifier)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "productUnknown", f)
+		}
 	}
 }
 
@@ -550,8 +579,19 @@ func callbackQInAppStore_TransactionReady(ptr unsafe.Pointer, transaction unsafe
 
 func (ptr *QInAppStore) ConnectTransactionReady(f func(transaction *QInAppTransaction)) {
 	if ptr.Pointer() != nil {
-		C.QInAppStore_ConnectTransactionReady(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "transactionReady", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "transactionReady") {
+			C.QInAppStore_ConnectTransactionReady(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "transactionReady"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "transactionReady", func(transaction *QInAppTransaction) {
+				signal.(func(*QInAppTransaction))(transaction)
+				f(transaction)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "transactionReady", f)
+		}
 	}
 }
 
@@ -931,7 +971,14 @@ func callbackQInAppTransaction_ErrorString(ptr unsafe.Pointer) *C.char {
 func (ptr *QInAppTransaction) ConnectErrorString(f func() string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "errorString"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", func() string {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", f)
+		}
 	}
 }
 
@@ -968,7 +1015,14 @@ func callbackQInAppTransaction_OrderId(ptr unsafe.Pointer) *C.char {
 func (ptr *QInAppTransaction) ConnectOrderId(f func() string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orderId", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "orderId"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orderId", func() string {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orderId", f)
+		}
 	}
 }
 
@@ -1004,7 +1058,14 @@ func callbackQInAppTransaction_Finalize(ptr unsafe.Pointer) {
 func (ptr *QInAppTransaction) ConnectFinalize(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finalize", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finalize"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finalize", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finalize", f)
+		}
 	}
 }
 
@@ -1033,7 +1094,14 @@ func callbackQInAppTransaction_FailureReason(ptr unsafe.Pointer) C.longlong {
 func (ptr *QInAppTransaction) ConnectFailureReason(f func() QInAppTransaction__FailureReason) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "failureReason", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "failureReason"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "failureReason", func() QInAppTransaction__FailureReason {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "failureReason", f)
+		}
 	}
 }
 
@@ -1070,7 +1138,14 @@ func callbackQInAppTransaction_Timestamp(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QInAppTransaction) ConnectTimestamp(f func() *core.QDateTime) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "timestamp", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "timestamp"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "timestamp", func() *core.QDateTime {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "timestamp", f)
+		}
 	}
 }
 
@@ -1122,7 +1197,14 @@ func callbackQInAppTransaction_PlatformProperty(ptr unsafe.Pointer, propertyName
 func (ptr *QInAppTransaction) ConnectPlatformProperty(f func(propertyName string) string) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "platformProperty", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "platformProperty"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "platformProperty", func(propertyName string) string {
+				signal.(func(string))(propertyName)
+				return f(propertyName)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "platformProperty", f)
+		}
 	}
 }
 

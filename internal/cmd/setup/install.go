@@ -263,22 +263,9 @@ func getEnvAndTagflags(buildTarget string) (env map[string]string, tagFlags stri
 				"GOARCH": utils.QT_MXE_ARCH(),
 
 				"CGO_ENABLED": "1",
+				"CC":          utils.QT_MXE_BIN("gcc"),
+				"CXX":         utils.QT_MXE_BIN("g++"),
 			}
-
-			var path = func() string {
-				var prefix = "i686"
-				if utils.QT_MXE_ARCH() == "amd64" {
-					prefix = "x86_64"
-				}
-				var suffix = "shared"
-				if utils.QT_MXE_STATIC() {
-					suffix = "static"
-				}
-				return filepath.Join("/usr", "lib", "mxe", "usr", "bin", fmt.Sprintf("%v-w64-mingw32.%v", prefix, suffix))
-			}()
-
-			env["CC"] = path + "-gcc"
-			env["CXX"] = path + "-g++"
 		}
 
 	default:

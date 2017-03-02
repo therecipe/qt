@@ -78,8 +78,19 @@ func callbackQWebChannel_BlockUpdatesChanged(ptr unsafe.Pointer, block C.char) {
 
 func (ptr *QWebChannel) ConnectBlockUpdatesChanged(f func(block bool)) {
 	if ptr.Pointer() != nil {
-		C.QWebChannel_ConnectBlockUpdatesChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "blockUpdatesChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "blockUpdatesChanged") {
+			C.QWebChannel_ConnectBlockUpdatesChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "blockUpdatesChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "blockUpdatesChanged", func(block bool) {
+				signal.(func(bool))(block)
+				f(block)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "blockUpdatesChanged", f)
+		}
 	}
 }
 
@@ -108,7 +119,14 @@ func callbackQWebChannel_ConnectTo(ptr unsafe.Pointer, transport unsafe.Pointer)
 func (ptr *QWebChannel) ConnectConnectTo(f func(transport *QWebChannelAbstractTransport)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectTo", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "connectTo"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectTo", func(transport *QWebChannelAbstractTransport) {
+				signal.(func(*QWebChannelAbstractTransport))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "connectTo", f)
+		}
 	}
 }
 
@@ -149,7 +167,14 @@ func callbackQWebChannel_DisconnectFrom(ptr unsafe.Pointer, transport unsafe.Poi
 func (ptr *QWebChannel) ConnectDisconnectFrom(f func(transport *QWebChannelAbstractTransport)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnectFrom", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnectFrom"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnectFrom", func(transport *QWebChannelAbstractTransport) {
+				signal.(func(*QWebChannelAbstractTransport))(transport)
+				f(transport)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnectFrom", f)
+		}
 	}
 }
 
@@ -676,8 +701,19 @@ func callbackQWebChannelAbstractTransport_MessageReceived(ptr unsafe.Pointer, me
 
 func (ptr *QWebChannelAbstractTransport) ConnectMessageReceived(f func(message *core.QJsonObject, transport *QWebChannelAbstractTransport)) {
 	if ptr.Pointer() != nil {
-		C.QWebChannelAbstractTransport_ConnectMessageReceived(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "messageReceived", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "messageReceived") {
+			C.QWebChannelAbstractTransport_ConnectMessageReceived(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "messageReceived"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "messageReceived", func(message *core.QJsonObject, transport *QWebChannelAbstractTransport) {
+				signal.(func(*core.QJsonObject, *QWebChannelAbstractTransport))(message, transport)
+				f(message, transport)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "messageReceived", f)
+		}
 	}
 }
 
@@ -705,7 +741,14 @@ func callbackQWebChannelAbstractTransport_SendMessage(ptr unsafe.Pointer, messag
 func (ptr *QWebChannelAbstractTransport) ConnectSendMessage(f func(message *core.QJsonObject)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sendMessage", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sendMessage"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sendMessage", func(message *core.QJsonObject) {
+				signal.(func(*core.QJsonObject))(message)
+				f(message)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sendMessage", f)
+		}
 	}
 }
 
@@ -734,7 +777,14 @@ func callbackQWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(pt
 func (ptr *QWebChannelAbstractTransport) ConnectDestroyQWebChannelAbstractTransport(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QWebChannelAbstractTransport", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QWebChannelAbstractTransport"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QWebChannelAbstractTransport", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QWebChannelAbstractTransport", f)
+		}
 	}
 }
 

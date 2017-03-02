@@ -2,6 +2,7 @@ package utils
 
 import (
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -116,4 +117,52 @@ func QT_QMAKE_CGO() bool {
 
 func QT_DOCKER() bool {
 	return strings.ToLower(os.Getenv("QT_DOCKER")) == "true"
+}
+
+func ToolPath(tool, target string) string {
+	//TODO: only temporary
+	if target == "desktop" {
+		target = runtime.GOOS
+	}
+	//
+
+	switch tool {
+	case "qmake":
+		if dir := QT_QMAKE_DIR(); dir != "" {
+			return filepath.Join(dir, tool)
+		}
+	}
+
+	switch target {
+	case "darwin":
+		return filepath.Join(QT_DARWIN_DIR(), "bin", tool)
+	case "windows":
+		if runtime.GOOS == target {
+			if UseMsys2() {
+				return filepath.Join(QT_MSYS2_DIR(), "bin", tool)
+			}
+			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw53_32", "bin", tool)
+		}
+		return filepath.Join(QT_MXE_DIR(), "usr", QT_MXE_TRIPLET(), "qt5", "bin", tool)
+	case "linux":
+		if UsePkgConfig() {
+			if QT_QMAKE_CGO() {
+				return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), tool)
+			}
+			return filepath.Join(QT_MISC_DIR(), "bin", tool)
+		}
+		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "gcc_64", "bin", tool)
+	case "ios", "ios-simulator":
+		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "ios", "bin", tool)
+	case "android":
+		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
+	case "sailfish":
+		return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)
+	case "sailfish-emulator":
+		return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
+	case "asteroid":
+	case "rp1", "rpi2", "rpi3":
+		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), target, "bin", tool)
+	}
+	return ""
 }

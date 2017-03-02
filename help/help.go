@@ -169,8 +169,19 @@ func callbackQHelpContentModel_ContentsCreated(ptr unsafe.Pointer) {
 
 func (ptr *QHelpContentModel) ConnectContentsCreated(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_ConnectContentsCreated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contentsCreated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "contentsCreated") {
+			C.QHelpContentModel_ConnectContentsCreated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "contentsCreated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contentsCreated", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contentsCreated", f)
+		}
 	}
 }
 
@@ -197,8 +208,19 @@ func callbackQHelpContentModel_ContentsCreationStarted(ptr unsafe.Pointer) {
 
 func (ptr *QHelpContentModel) ConnectContentsCreationStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_ConnectContentsCreationStarted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contentsCreationStarted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "contentsCreationStarted") {
+			C.QHelpContentModel_ConnectContentsCreationStarted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "contentsCreationStarted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contentsCreationStarted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contentsCreationStarted", f)
+		}
 	}
 }
 
@@ -253,7 +275,14 @@ func callbackQHelpContentModel_Index(ptr unsafe.Pointer, row C.int, column C.int
 func (ptr *QHelpContentModel) ConnectIndex(f func(row int, column int, parent *core.QModelIndex) *core.QModelIndex) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "index", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "index"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "index", func(row int, column int, parent *core.QModelIndex) *core.QModelIndex {
+				signal.(func(int, int, *core.QModelIndex))(row, column, parent)
+				return f(row, column, parent)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "index", f)
+		}
 	}
 }
 
@@ -294,7 +323,14 @@ func callbackQHelpContentModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) 
 func (ptr *QHelpContentModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "parent", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "parent"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "parent", func(index *core.QModelIndex) *core.QModelIndex {
+				signal.(func(*core.QModelIndex))(index)
+				return f(index)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "parent", f)
+		}
 	}
 }
 
@@ -335,7 +371,14 @@ func callbackQHelpContentModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, ro
 func (ptr *QHelpContentModel) ConnectData(f func(index *core.QModelIndex, role int) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(index *core.QModelIndex, role int) *core.QVariant {
+				signal.(func(*core.QModelIndex, int))(index, role)
+				return f(index, role)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", f)
+		}
 	}
 }
 
@@ -383,7 +426,14 @@ func callbackQHelpContentModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Poi
 func (ptr *QHelpContentModel) ConnectColumnCount(f func(parent *core.QModelIndex) int) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "columnCount", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "columnCount"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "columnCount", func(parent *core.QModelIndex) int {
+				signal.(func(*core.QModelIndex))(parent)
+				return f(parent)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "columnCount", f)
+		}
 	}
 }
 
@@ -420,7 +470,14 @@ func callbackQHelpContentModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointe
 func (ptr *QHelpContentModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rowCount", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rowCount"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rowCount", func(parent *core.QModelIndex) int {
+				signal.(func(*core.QModelIndex))(parent)
+				return f(parent)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rowCount", f)
+		}
 	}
 }
 
@@ -1841,8 +1898,19 @@ func callbackQHelpContentWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Po
 
 func (ptr *QHelpContentWidget) ConnectLinkActivated(f func(link *core.QUrl)) {
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_ConnectLinkActivated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linkActivated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "linkActivated") {
+			C.QHelpContentWidget_ConnectLinkActivated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "linkActivated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linkActivated", func(link *core.QUrl) {
+				signal.(func(*core.QUrl))(link)
+				f(link)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linkActivated", f)
+		}
 	}
 }
 
@@ -4384,8 +4452,19 @@ func callbackQHelpEngineCore_CurrentFilterChanged(ptr unsafe.Pointer, newFilter 
 
 func (ptr *QHelpEngineCore) ConnectCurrentFilterChanged(f func(newFilter string)) {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_ConnectCurrentFilterChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "currentFilterChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "currentFilterChanged") {
+			C.QHelpEngineCore_ConnectCurrentFilterChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "currentFilterChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "currentFilterChanged", func(newFilter string) {
+				signal.(func(string))(newFilter)
+				f(newFilter)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "currentFilterChanged", f)
+		}
 	}
 }
 
@@ -4417,8 +4496,19 @@ func callbackQHelpEngineCore_ReadersAboutToBeInvalidated(ptr unsafe.Pointer) {
 
 func (ptr *QHelpEngineCore) ConnectReadersAboutToBeInvalidated(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_ConnectReadersAboutToBeInvalidated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readersAboutToBeInvalidated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "readersAboutToBeInvalidated") {
+			C.QHelpEngineCore_ConnectReadersAboutToBeInvalidated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readersAboutToBeInvalidated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readersAboutToBeInvalidated", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readersAboutToBeInvalidated", f)
+		}
 	}
 }
 
@@ -4473,8 +4563,19 @@ func callbackQHelpEngineCore_SetupFinished(ptr unsafe.Pointer) {
 
 func (ptr *QHelpEngineCore) ConnectSetupFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_ConnectSetupFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setupFinished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "setupFinished") {
+			C.QHelpEngineCore_ConnectSetupFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setupFinished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setupFinished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setupFinished", f)
+		}
 	}
 }
 
@@ -4501,8 +4602,19 @@ func callbackQHelpEngineCore_SetupStarted(ptr unsafe.Pointer) {
 
 func (ptr *QHelpEngineCore) ConnectSetupStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_ConnectSetupStarted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setupStarted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "setupStarted") {
+			C.QHelpEngineCore_ConnectSetupStarted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setupStarted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setupStarted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setupStarted", f)
+		}
 	}
 }
 
@@ -4529,8 +4641,19 @@ func callbackQHelpEngineCore_Warning(ptr unsafe.Pointer, msg C.struct_QtHelp_Pac
 
 func (ptr *QHelpEngineCore) ConnectWarning(f func(msg string)) {
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_ConnectWarning(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "warning", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "warning") {
+			C.QHelpEngineCore_ConnectWarning(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "warning"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "warning", func(msg string) {
+				signal.(func(string))(msg)
+				f(msg)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "warning", f)
+		}
 	}
 }
 
@@ -4564,7 +4687,14 @@ func callbackQHelpEngineCore_DestroyQHelpEngineCore(ptr unsafe.Pointer) {
 func (ptr *QHelpEngineCore) ConnectDestroyQHelpEngineCore(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QHelpEngineCore", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QHelpEngineCore"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QHelpEngineCore", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QHelpEngineCore", f)
+		}
 	}
 }
 
@@ -5150,8 +5280,19 @@ func callbackQHelpIndexModel_IndexCreated(ptr unsafe.Pointer) {
 
 func (ptr *QHelpIndexModel) ConnectIndexCreated(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_ConnectIndexCreated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexCreated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "indexCreated") {
+			C.QHelpIndexModel_ConnectIndexCreated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "indexCreated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexCreated", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexCreated", f)
+		}
 	}
 }
 
@@ -5178,8 +5319,19 @@ func callbackQHelpIndexModel_IndexCreationStarted(ptr unsafe.Pointer) {
 
 func (ptr *QHelpIndexModel) ConnectIndexCreationStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_ConnectIndexCreationStarted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexCreationStarted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "indexCreationStarted") {
+			C.QHelpIndexModel_ConnectIndexCreationStarted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "indexCreationStarted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexCreationStarted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexCreationStarted", f)
+		}
 	}
 }
 
@@ -6760,7 +6912,14 @@ func callbackQHelpIndexWidget_ActivateCurrentItem(ptr unsafe.Pointer) {
 func (ptr *QHelpIndexWidget) ConnectActivateCurrentItem(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activateCurrentItem", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "activateCurrentItem"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activateCurrentItem", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activateCurrentItem", f)
+		}
 	}
 }
 
@@ -6795,7 +6954,14 @@ func callbackQHelpIndexWidget_FilterIndices(ptr unsafe.Pointer, filter C.struct_
 func (ptr *QHelpIndexWidget) ConnectFilterIndices(f func(filter string, wildcard string)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "filterIndices", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "filterIndices"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "filterIndices", func(filter string, wildcard string) {
+				signal.(func(string, string))(filter, wildcard)
+				f(filter, wildcard)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "filterIndices", f)
+		}
 	}
 }
 
@@ -6848,8 +7014,19 @@ func callbackQHelpIndexWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Poin
 
 func (ptr *QHelpIndexWidget) ConnectLinkActivated(f func(link *core.QUrl, keyword string)) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_ConnectLinkActivated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linkActivated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "linkActivated") {
+			C.QHelpIndexWidget_ConnectLinkActivated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "linkActivated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linkActivated", func(link *core.QUrl, keyword string) {
+				signal.(func(*core.QUrl, string))(link, keyword)
+				f(link, keyword)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linkActivated", f)
+		}
 	}
 }
 
@@ -6887,8 +7064,19 @@ func callbackQHelpIndexWidget_LinksActivated(ptr unsafe.Pointer, links C.struct_
 
 func (ptr *QHelpIndexWidget) ConnectLinksActivated(f func(links map[string]*core.QUrl, keyword string)) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_ConnectLinksActivated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linksActivated", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "linksActivated") {
+			C.QHelpIndexWidget_ConnectLinksActivated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "linksActivated"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linksActivated", func(links map[string]*core.QUrl, keyword string) {
+				signal.(func(map[string]*core.QUrl, string))(links, keyword)
+				f(links, keyword)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "linksActivated", f)
+		}
 	}
 }
 
@@ -9057,7 +9245,14 @@ func callbackQHelpSearchEngine_CancelIndexing(ptr unsafe.Pointer) {
 func (ptr *QHelpSearchEngine) ConnectCancelIndexing(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cancelIndexing", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cancelIndexing"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cancelIndexing", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cancelIndexing", f)
+		}
 	}
 }
 
@@ -9092,7 +9287,14 @@ func callbackQHelpSearchEngine_CancelSearching(ptr unsafe.Pointer) {
 func (ptr *QHelpSearchEngine) ConnectCancelSearching(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cancelSearching", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cancelSearching"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cancelSearching", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cancelSearching", f)
+		}
 	}
 }
 
@@ -9125,8 +9327,19 @@ func callbackQHelpSearchEngine_IndexingFinished(ptr unsafe.Pointer) {
 
 func (ptr *QHelpSearchEngine) ConnectIndexingFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectIndexingFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexingFinished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "indexingFinished") {
+			C.QHelpSearchEngine_ConnectIndexingFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "indexingFinished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexingFinished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexingFinished", f)
+		}
 	}
 }
 
@@ -9153,8 +9366,19 @@ func callbackQHelpSearchEngine_IndexingStarted(ptr unsafe.Pointer) {
 
 func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectIndexingStarted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexingStarted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "indexingStarted") {
+			C.QHelpSearchEngine_ConnectIndexingStarted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "indexingStarted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexingStarted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexingStarted", f)
+		}
 	}
 }
 
@@ -9183,7 +9407,14 @@ func callbackQHelpSearchEngine_ReindexDocumentation(ptr unsafe.Pointer) {
 func (ptr *QHelpSearchEngine) ConnectReindexDocumentation(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "reindexDocumentation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "reindexDocumentation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "reindexDocumentation", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "reindexDocumentation", f)
+		}
 	}
 }
 
@@ -9230,7 +9461,14 @@ func callbackQHelpSearchEngine_Search(ptr unsafe.Pointer, queryList C.struct_QtH
 func (ptr *QHelpSearchEngine) ConnectSearch(f func(queryList []*QHelpSearchQuery)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "search", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "search"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "search", func(queryList []*QHelpSearchQuery) {
+				signal.(func([]*QHelpSearchQuery))(queryList)
+				f(queryList)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "search", f)
+		}
 	}
 }
 
@@ -9275,8 +9513,19 @@ func callbackQHelpSearchEngine_SearchingFinished(ptr unsafe.Pointer, hits C.int)
 
 func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectSearchingFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "searchingFinished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "searchingFinished") {
+			C.QHelpSearchEngine_ConnectSearchingFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "searchingFinished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "searchingFinished", func(hits int) {
+				signal.(func(int))(hits)
+				f(hits)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "searchingFinished", f)
+		}
 	}
 }
 
@@ -9303,8 +9552,19 @@ func callbackQHelpSearchEngine_SearchingStarted(ptr unsafe.Pointer) {
 
 func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectSearchingStarted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "searchingStarted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "searchingStarted") {
+			C.QHelpSearchEngine_ConnectSearchingStarted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "searchingStarted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "searchingStarted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "searchingStarted", f)
+		}
 	}
 }
 
@@ -9801,8 +10061,19 @@ func callbackQHelpSearchQueryWidget_Search(ptr unsafe.Pointer) {
 
 func (ptr *QHelpSearchQueryWidget) ConnectSearch(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_ConnectSearch(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "search", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "search") {
+			C.QHelpSearchQueryWidget_ConnectSearch(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "search"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "search", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "search", f)
+		}
 	}
 }
 
@@ -11138,8 +11409,19 @@ func callbackQHelpSearchResultWidget_RequestShowLink(ptr unsafe.Pointer, link un
 
 func (ptr *QHelpSearchResultWidget) ConnectRequestShowLink(f func(link *core.QUrl)) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_ConnectRequestShowLink(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestShowLink", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "requestShowLink") {
+			C.QHelpSearchResultWidget_ConnectRequestShowLink(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestShowLink"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestShowLink", func(link *core.QUrl) {
+				signal.(func(*core.QUrl))(link)
+				f(link)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestShowLink", f)
+		}
 	}
 }
 

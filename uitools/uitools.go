@@ -75,7 +75,14 @@ func callbackQUiLoader_CreateAction(ptr unsafe.Pointer, parent unsafe.Pointer, n
 func (ptr *QUiLoader) ConnectCreateAction(f func(parent *core.QObject, name string) *widgets.QAction) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createAction", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createAction"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createAction", func(parent *core.QObject, name string) *widgets.QAction {
+				signal.(func(*core.QObject, string))(parent, name)
+				return f(parent, name)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createAction", f)
+		}
 	}
 }
 
@@ -130,7 +137,14 @@ func callbackQUiLoader_CreateActionGroup(ptr unsafe.Pointer, parent unsafe.Point
 func (ptr *QUiLoader) ConnectCreateActionGroup(f func(parent *core.QObject, name string) *widgets.QActionGroup) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createActionGroup", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createActionGroup"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createActionGroup", func(parent *core.QObject, name string) *widgets.QActionGroup {
+				signal.(func(*core.QObject, string))(parent, name)
+				return f(parent, name)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createActionGroup", f)
+		}
 	}
 }
 
@@ -185,7 +199,14 @@ func callbackQUiLoader_CreateLayout(ptr unsafe.Pointer, className C.struct_QtUiT
 func (ptr *QUiLoader) ConnectCreateLayout(f func(className string, parent *core.QObject, name string) *widgets.QLayout) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createLayout", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createLayout"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createLayout", func(className string, parent *core.QObject, name string) *widgets.QLayout {
+				signal.(func(string, *core.QObject, string))(className, parent, name)
+				return f(className, parent, name)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createLayout", f)
+		}
 	}
 }
 
@@ -258,7 +279,14 @@ func callbackQUiLoader_CreateWidget(ptr unsafe.Pointer, className C.struct_QtUiT
 func (ptr *QUiLoader) ConnectCreateWidget(f func(className string, parent *widgets.QWidget, name string) *widgets.QWidget) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createWidget", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createWidget"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createWidget", func(className string, parent *widgets.QWidget, name string) *widgets.QWidget {
+				signal.(func(string, *widgets.QWidget, string))(className, parent, name)
+				return f(className, parent, name)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createWidget", f)
+		}
 	}
 }
 
@@ -363,7 +391,14 @@ func callbackQUiLoader_DestroyQUiLoader(ptr unsafe.Pointer) {
 func (ptr *QUiLoader) ConnectDestroyQUiLoader(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QUiLoader", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QUiLoader"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QUiLoader", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QUiLoader", f)
+		}
 	}
 }
 

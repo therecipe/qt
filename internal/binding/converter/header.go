@@ -234,6 +234,14 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	return bb.String()
 }
 
+func GoGoInput(f *parser.Function) string {
+	var tmp = make([]string, 0)
+	for _, p := range f.Parameters {
+		tmp = append(tmp, parser.CleanName(p.Name, p.Value))
+	}
+	return strings.Join(tmp, ", ")
+}
+
 func CppHeaderInput(f *parser.Function) string {
 	var tmp = make([]string, 0)
 

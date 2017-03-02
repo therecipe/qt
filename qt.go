@@ -27,6 +27,14 @@ func ExistsSignal(name, signal string) bool {
 	return exists
 }
 
+func LendSignal(name, signal string) interface{} {
+	var s interface{}
+	signalsMutex.Lock()
+	s = signals[fmt.Sprintf("%v:%v", name, signal)]
+	signalsMutex.Unlock()
+	return s
+}
+
 func GetSignal(name, signal string) interface{} {
 	if strings.HasSuffix(signal, ":destroyed") || strings.HasSuffix(signal, ":deleteLater") || strings.Contains(signal, ":~") {
 		defer DisconnectAllSignals(name)

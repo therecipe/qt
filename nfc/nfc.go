@@ -1234,8 +1234,19 @@ func callbackQNearFieldManager_TargetDetected(ptr unsafe.Pointer, target unsafe.
 
 func (ptr *QNearFieldManager) ConnectTargetDetected(f func(target *QNearFieldTarget)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldManager_ConnectTargetDetected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "targetDetected") {
+			C.QNearFieldManager_ConnectTargetDetected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "targetDetected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", func(target *QNearFieldTarget) {
+				signal.(func(*QNearFieldTarget))(target)
+				f(target)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", f)
+		}
 	}
 }
 
@@ -1262,8 +1273,19 @@ func callbackQNearFieldManager_TargetLost(ptr unsafe.Pointer, target unsafe.Poin
 
 func (ptr *QNearFieldManager) ConnectTargetLost(f func(target *QNearFieldTarget)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldManager_ConnectTargetLost(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetLost", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "targetLost") {
+			C.QNearFieldManager_ConnectTargetLost(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "targetLost"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetLost", func(target *QNearFieldTarget) {
+				signal.(func(*QNearFieldTarget))(target)
+				f(target)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetLost", f)
+		}
 	}
 }
 
@@ -1652,8 +1674,19 @@ func callbackQNearFieldShareManager_Error(ptr unsafe.Pointer, error C.longlong) 
 
 func (ptr *QNearFieldShareManager) ConnectError(f func(error QNearFieldShareManager__ShareError)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_ConnectError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error") {
+			C.QNearFieldShareManager_ConnectError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func(error QNearFieldShareManager__ShareError) {
+				signal.(func(QNearFieldShareManager__ShareError))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+		}
 	}
 }
 
@@ -1686,8 +1719,19 @@ func callbackQNearFieldShareManager_ShareModesChanged(ptr unsafe.Pointer, modes 
 
 func (ptr *QNearFieldShareManager) ConnectShareModesChanged(f func(modes QNearFieldShareManager__ShareMode)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_ConnectShareModesChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged") {
+			C.QNearFieldShareManager_ConnectShareModesChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged", func(modes QNearFieldShareManager__ShareMode) {
+				signal.(func(QNearFieldShareManager__ShareMode))(modes)
+				f(modes)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged", f)
+		}
 	}
 }
 
@@ -1714,8 +1758,19 @@ func callbackQNearFieldShareManager_TargetDetected(ptr unsafe.Pointer, shareTarg
 
 func (ptr *QNearFieldShareManager) ConnectTargetDetected(f func(shareTarget *QNearFieldShareTarget)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_ConnectTargetDetected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "targetDetected") {
+			C.QNearFieldShareManager_ConnectTargetDetected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "targetDetected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", func(shareTarget *QNearFieldShareTarget) {
+				signal.(func(*QNearFieldShareTarget))(shareTarget)
+				f(shareTarget)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", f)
+		}
 	}
 }
 
@@ -2087,8 +2142,19 @@ func callbackQNearFieldShareTarget_Error(ptr unsafe.Pointer, error C.longlong) {
 
 func (ptr *QNearFieldShareTarget) ConnectError(f func(error QNearFieldShareManager__ShareError)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareTarget_ConnectError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error") {
+			C.QNearFieldShareTarget_ConnectError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func(error QNearFieldShareManager__ShareError) {
+				signal.(func(QNearFieldShareManager__ShareError))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+		}
 	}
 }
 
@@ -2115,8 +2181,19 @@ func callbackQNearFieldShareTarget_ShareFinished(ptr unsafe.Pointer) {
 
 func (ptr *QNearFieldShareTarget) ConnectShareFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareTarget_ConnectShareFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareFinished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "shareFinished") {
+			C.QNearFieldShareTarget_ConnectShareFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shareFinished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareFinished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareFinished", f)
+		}
 	}
 }
 
@@ -2539,7 +2616,14 @@ func callbackQNearFieldTarget_HasNdefMessage(ptr unsafe.Pointer) C.char {
 func (ptr *QNearFieldTarget) ConnectHasNdefMessage(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage", f)
+		}
 	}
 }
 
@@ -2574,8 +2658,19 @@ func callbackQNearFieldTarget_Disconnected(ptr unsafe.Pointer) {
 
 func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "disconnected") {
+			C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnected"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+		}
 	}
 }
 
@@ -2602,8 +2697,19 @@ func callbackQNearFieldTarget_NdefMessageRead(ptr unsafe.Pointer, message unsafe
 
 func (ptr *QNearFieldTarget) ConnectNdefMessageRead(f func(message *QNdefMessage)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_ConnectNdefMessageRead(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead") {
+			C.QNearFieldTarget_ConnectNdefMessageRead(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead", func(message *QNdefMessage) {
+				signal.(func(*QNdefMessage))(message)
+				f(message)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead", f)
+		}
 	}
 }
 
@@ -2630,8 +2736,19 @@ func callbackQNearFieldTarget_NdefMessagesWritten(ptr unsafe.Pointer) {
 
 func (ptr *QNearFieldTarget) ConnectNdefMessagesWritten(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_ConnectNdefMessagesWritten(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten") {
+			C.QNearFieldTarget_ConnectNdefMessagesWritten(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten", f)
+		}
 	}
 }
 
@@ -2660,7 +2777,14 @@ func callbackQNearFieldTarget_DestroyQNearFieldTarget(ptr unsafe.Pointer) {
 func (ptr *QNearFieldTarget) ConnectDestroyQNearFieldTarget(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget", f)
+		}
 	}
 }
 
@@ -2699,7 +2823,14 @@ func callbackQNearFieldTarget_AccessMethods(ptr unsafe.Pointer) C.longlong {
 func (ptr *QNearFieldTarget) ConnectAccessMethods(f func() QNearFieldTarget__AccessMethod) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accessMethods", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "accessMethods"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accessMethods", func() QNearFieldTarget__AccessMethod {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accessMethods", f)
+		}
 	}
 }
 
@@ -2729,7 +2860,14 @@ func callbackQNearFieldTarget_Uid(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QNearFieldTarget) ConnectUid(f func() *core.QByteArray) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uid", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "uid"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uid", func() *core.QByteArray {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uid", f)
+		}
 	}
 }
 
@@ -2761,7 +2899,14 @@ func callbackQNearFieldTarget_Url(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QNearFieldTarget) ConnectUrl(f func() *core.QUrl) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "url", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "url"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "url", func() *core.QUrl {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "url", f)
+		}
 	}
 }
 
@@ -2802,7 +2947,14 @@ func callbackQNearFieldTarget_Type(ptr unsafe.Pointer) C.longlong {
 func (ptr *QNearFieldTarget) ConnectType(f func() QNearFieldTarget__Type) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QNearFieldTarget__Type {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", f)
+		}
 	}
 }
 
@@ -3186,8 +3338,19 @@ func callbackQQmlNdefRecord_RecordChanged(ptr unsafe.Pointer) {
 
 func (ptr *QQmlNdefRecord) ConnectRecordChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQmlNdefRecord_ConnectRecordChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "recordChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "recordChanged") {
+			C.QQmlNdefRecord_ConnectRecordChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "recordChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "recordChanged", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "recordChanged", f)
+		}
 	}
 }
 
@@ -3269,8 +3432,19 @@ func callbackQQmlNdefRecord_TypeChanged(ptr unsafe.Pointer) {
 
 func (ptr *QQmlNdefRecord) ConnectTypeChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQmlNdefRecord_ConnectTypeChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "typeChanged") {
+			C.QQmlNdefRecord_ConnectTypeChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "typeChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", f)
+		}
 	}
 }
 
@@ -3297,8 +3471,19 @@ func callbackQQmlNdefRecord_TypeNameFormatChanged(ptr unsafe.Pointer) {
 
 func (ptr *QQmlNdefRecord) ConnectTypeNameFormatChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQmlNdefRecord_ConnectTypeNameFormatChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged") {
+			C.QQmlNdefRecord_ConnectTypeNameFormatChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged", f)
+		}
 	}
 }
 

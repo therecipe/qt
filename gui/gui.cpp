@@ -4699,9 +4699,9 @@ char QFont_FixedPitch(void* ptr)
 	return static_cast<QFont*>(ptr)->fixedPitch();
 }
 
-char QFont_IsCopyOf(void* ptr, void* f)
+char QFont_IsCopyOf(void* ptr, void* fo)
 {
-	return static_cast<QFont*>(ptr)->isCopyOf(*static_cast<QFont*>(f));
+	return static_cast<QFont*>(ptr)->isCopyOf(*static_cast<QFont*>(fo));
 }
 
 char QFont_Italic(void* ptr)
@@ -21995,9 +21995,9 @@ void* QTextDocument_Object(void* ptr, int objectIndex)
 	return static_cast<QTextDocument*>(ptr)->object(objectIndex);
 }
 
-void* QTextDocument_ObjectForFormat(void* ptr, void* f)
+void* QTextDocument_ObjectForFormat(void* ptr, void* fo)
 {
-	return static_cast<QTextDocument*>(ptr)->objectForFormat(*static_cast<QTextFormat*>(f));
+	return static_cast<QTextDocument*>(ptr)->objectForFormat(*static_cast<QTextFormat*>(fo));
 }
 
 void* QTextDocument_DefaultTextOption(void* ptr)

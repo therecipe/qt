@@ -631,7 +631,14 @@ func callbackQGeoRouteReply_Abort(ptr unsafe.Pointer) {
 func (ptr *QGeoRouteReply) ConnectAbort(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "abort"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		}
 	}
 }
 
@@ -676,8 +683,19 @@ func callbackQGeoRouteReply_Error2(ptr unsafe.Pointer, error C.longlong, errorSt
 
 func (ptr *QGeoRouteReply) ConnectError2(f func(error QGeoRouteReply__Error, errorString string)) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error2") {
+			C.QGeoRouteReply_ConnectError2(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error2"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", func(error QGeoRouteReply__Error, errorString string) {
+				signal.(func(QGeoRouteReply__Error, string))(error, errorString)
+				f(error, errorString)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error2", f)
+		}
 	}
 }
 
@@ -709,8 +727,19 @@ func callbackQGeoRouteReply_Finished(ptr unsafe.Pointer) {
 
 func (ptr *QGeoRouteReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QGeoRouteReply_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -768,7 +797,14 @@ func callbackQGeoRouteReply_DestroyQGeoRouteReply(ptr unsafe.Pointer) {
 func (ptr *QGeoRouteReply) ConnectDestroyQGeoRouteReply(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRouteReply", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRouteReply"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRouteReply", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRouteReply", f)
+		}
 	}
 }
 
@@ -1767,8 +1803,19 @@ func callbackQGeoRoutingManager_Error(ptr unsafe.Pointer, reply unsafe.Pointer, 
 
 func (ptr *QGeoRoutingManager) ConnectError(f func(reply *QGeoRouteReply, error QGeoRouteReply__Error, errorString string)) {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManager_ConnectError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error") {
+			C.QGeoRoutingManager_ConnectError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func(reply *QGeoRouteReply, error QGeoRouteReply__Error, errorString string) {
+				signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(reply, error, errorString)
+				f(reply, error, errorString)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+		}
 	}
 }
 
@@ -1800,8 +1847,19 @@ func callbackQGeoRoutingManager_Finished(ptr unsafe.Pointer, reply unsafe.Pointe
 
 func (ptr *QGeoRoutingManager) ConnectFinished(f func(reply *QGeoRouteReply)) {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManager_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QGeoRoutingManager_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func(reply *QGeoRouteReply) {
+				signal.(func(*QGeoRouteReply))(reply)
+				f(reply)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -2220,7 +2278,14 @@ func callbackQGeoRoutingManagerEngine_CalculateRoute(ptr unsafe.Pointer, request
 func (ptr *QGeoRoutingManagerEngine) ConnectCalculateRoute(f func(request *QGeoRouteRequest) *QGeoRouteReply) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "calculateRoute", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "calculateRoute"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "calculateRoute", func(request *QGeoRouteRequest) *QGeoRouteReply {
+				signal.(func(*QGeoRouteRequest))(request)
+				return f(request)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "calculateRoute", f)
+		}
 	}
 }
 
@@ -2254,7 +2319,14 @@ func callbackQGeoRoutingManagerEngine_UpdateRoute(ptr unsafe.Pointer, route unsa
 func (ptr *QGeoRoutingManagerEngine) ConnectUpdateRoute(f func(route *QGeoRoute, position *positioning.QGeoCoordinate) *QGeoRouteReply) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateRoute", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateRoute"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateRoute", func(route *QGeoRoute, position *positioning.QGeoCoordinate) *QGeoRouteReply {
+				signal.(func(*QGeoRoute, *positioning.QGeoCoordinate))(route, position)
+				return f(route, position)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateRoute", f)
+		}
 	}
 }
 
@@ -2311,8 +2383,19 @@ func callbackQGeoRoutingManagerEngine_Error(ptr unsafe.Pointer, reply unsafe.Poi
 
 func (ptr *QGeoRoutingManagerEngine) ConnectError(f func(reply *QGeoRouteReply, error QGeoRouteReply__Error, errorString string)) {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManagerEngine_ConnectError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error") {
+			C.QGeoRoutingManagerEngine_ConnectError(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func(reply *QGeoRouteReply, error QGeoRouteReply__Error, errorString string) {
+				signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(reply, error, errorString)
+				f(reply, error, errorString)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+		}
 	}
 }
 
@@ -2344,8 +2427,19 @@ func callbackQGeoRoutingManagerEngine_Finished(ptr unsafe.Pointer, reply unsafe.
 
 func (ptr *QGeoRoutingManagerEngine) ConnectFinished(f func(reply *QGeoRouteReply)) {
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManagerEngine_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "finished") {
+			C.QGeoRoutingManagerEngine_ConnectFinished(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "finished"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", func(reply *QGeoRouteReply) {
+				signal.(func(*QGeoRouteReply))(reply)
+				f(reply)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "finished", f)
+		}
 	}
 }
 
@@ -2422,7 +2516,14 @@ func callbackQGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr unsafe
 func (ptr *QGeoRoutingManagerEngine) ConnectDestroyQGeoRoutingManagerEngine(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRoutingManagerEngine", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRoutingManagerEngine"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRoutingManagerEngine", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoRoutingManagerEngine", f)
+		}
 	}
 }
 
@@ -3526,7 +3627,14 @@ func callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr un
 func (ptr *QGeoServiceProviderFactory) ConnectDestroyQGeoServiceProviderFactory(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoServiceProviderFactory", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QGeoServiceProviderFactory"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoServiceProviderFactory", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QGeoServiceProviderFactory", f)
+		}
 	}
 }
 

@@ -10653,9 +10653,9 @@ void QDialog_SetSizeGripEnabled(void* ptr, char vbo)
 	static_cast<QDialog*>(ptr)->setSizeGripEnabled(vbo != 0);
 }
 
-void* QDialog_NewQDialog(void* parent, long long f)
+void* QDialog_NewQDialog(void* parent, long long fo)
 {
-	return new MyQDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 int QDialog_Exec(void* ptr)
@@ -13496,7 +13496,7 @@ class MyQFontComboBox: public QFontComboBox
 public:
 	MyQFontComboBox(QWidget *parent) : QFontComboBox(parent) {};
 	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontComboBox_CurrentFontChanged(this, const_cast<QFont*>(&font)); };
-	void setCurrentFont(const QFont & f) { callbackQFontComboBox_SetCurrentFont(this, const_cast<QFont*>(&f)); };
+	void setCurrentFont(const QFont & fo) { callbackQFontComboBox_SetCurrentFont(this, const_cast<QFont*>(&fo)); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_Activated2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_Activated2(this, textPacked); };
 	void Signal_Activated(int index) { callbackQComboBox_Activated(this, index); };
@@ -13598,14 +13598,14 @@ void QFontComboBox_CurrentFontChanged(void* ptr, void* font)
 	static_cast<QFontComboBox*>(ptr)->currentFontChanged(*static_cast<QFont*>(font));
 }
 
-void QFontComboBox_SetCurrentFont(void* ptr, void* f)
+void QFontComboBox_SetCurrentFont(void* ptr, void* fo)
 {
-	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(f)));
+	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(fo)));
 }
 
-void QFontComboBox_SetCurrentFontDefault(void* ptr, void* f)
+void QFontComboBox_SetCurrentFontDefault(void* ptr, void* fo)
 {
-		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setCurrentFont(*static_cast<QFont*>(f));
+		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setCurrentFont(*static_cast<QFont*>(fo));
 }
 
 void QFontComboBox_SetFontFilters(void* ptr, long long filters)
@@ -14177,9 +14177,9 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
-void* QFrame_NewQFrame(void* parent, long long f)
+void* QFrame_NewQFrame(void* parent, long long fo)
 {
-	return new MyQFrame(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQFrame(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 void QFrame_SetFrameRect(void* ptr, void* vqr)
@@ -29838,14 +29838,14 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
-void* QLabel_NewQLabel(void* parent, long long f)
+void* QLabel_NewQLabel(void* parent, long long fo)
 {
-	return new MyQLabel(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQLabel(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
-void* QLabel_NewQLabel2(char* text, void* parent, long long f)
+void* QLabel_NewQLabel2(char* text, void* parent, long long fo)
 {
-	return new MyQLabel(QString(text), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQLabel(QString(text), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 void QLabel_Clear(void* ptr)
@@ -35083,9 +35083,9 @@ int QMessageBox_ButtonMask_Type()
 	return QMessageBox::ButtonMask;
 }
 
-void* QMessageBox_NewQMessageBox2(long long icon, char* title, char* text, long long buttons, void* parent, long long f)
+void* QMessageBox_NewQMessageBox2(long long icon, char* title, char* text, long long buttons, void* parent, long long fo)
 {
-	return new MyQMessageBox(static_cast<QMessageBox::Icon>(icon), QString(title), QString(text), static_cast<QMessageBox::StandardButton>(buttons), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQMessageBox(static_cast<QMessageBox::Icon>(icon), QString(title), QString(text), static_cast<QMessageBox::StandardButton>(buttons), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 void* QMessageBox_NewQMessageBox(void* parent)
@@ -37202,14 +37202,14 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
-void* QProgressDialog_NewQProgressDialog(void* parent, long long f)
+void* QProgressDialog_NewQProgressDialog(void* parent, long long fo)
 {
-	return new MyQProgressDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQProgressDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
-void* QProgressDialog_NewQProgressDialog2(char* labelText, char* cancelButtonText, int minimum, int maximum, void* parent, long long f)
+void* QProgressDialog_NewQProgressDialog2(char* labelText, char* cancelButtonText, int minimum, int maximum, void* parent, long long fo)
 {
-	return new MyQProgressDialog(QString(labelText), QString(cancelButtonText), minimum, maximum, static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQProgressDialog(QString(labelText), QString(cancelButtonText), minimum, maximum, static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 void QProgressDialog_Cancel(void* ptr)
@@ -39698,14 +39698,14 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
-void* QSplashScreen_NewQSplashScreen2(void* parent, void* pixmap, long long f)
+void* QSplashScreen_NewQSplashScreen2(void* parent, void* pixmap, long long fo)
 {
-	return new MyQSplashScreen(static_cast<QWidget*>(parent), *static_cast<QPixmap*>(pixmap), static_cast<Qt::WindowType>(f));
+	return new MyQSplashScreen(static_cast<QWidget*>(parent), *static_cast<QPixmap*>(pixmap), static_cast<Qt::WindowType>(fo));
 }
 
-void* QSplashScreen_NewQSplashScreen(void* pixmap, long long f)
+void* QSplashScreen_NewQSplashScreen(void* pixmap, long long fo)
 {
-	return new MyQSplashScreen(*static_cast<QPixmap*>(pixmap), static_cast<Qt::WindowType>(f));
+	return new MyQSplashScreen(*static_cast<QPixmap*>(pixmap), static_cast<Qt::WindowType>(fo));
 }
 
 void QSplashScreen_ClearMessage(void* ptr)
@@ -48662,7 +48662,7 @@ public:
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
 	void copy() { callbackQTextEdit_Copy(this); };
 	void Signal_CopyAvailable(bool yes) { callbackQTextEdit_CopyAvailable(this, yes); };
-	void Signal_CurrentCharFormatChanged(const QTextCharFormat & f) { callbackQTextEdit_CurrentCharFormatChanged(this, const_cast<QTextCharFormat*>(&f)); };
+	void Signal_CurrentCharFormatChanged(const QTextCharFormat & fo) { callbackQTextEdit_CurrentCharFormatChanged(this, const_cast<QTextCharFormat*>(&fo)); };
 	void Signal_CursorPositionChanged() { callbackQTextEdit_CursorPositionChanged(this); };
 	void cut() { callbackQTextEdit_Cut(this); };
 	void dragEnterEvent(QDragEnterEvent * e) { callbackQWidget_DragEnterEvent(this, e); };
@@ -48685,7 +48685,7 @@ public:
 	void selectAll() { callbackQTextEdit_SelectAll(this); };
 	void Signal_SelectionChanged() { callbackQTextEdit_SelectionChanged(this); };
 	void setAlignment(Qt::Alignment a) { callbackQTextEdit_SetAlignment(this, a); };
-	void setCurrentFont(const QFont & f) { callbackQTextEdit_SetCurrentFont(this, const_cast<QFont*>(&f)); };
+	void setCurrentFont(const QFont & fo) { callbackQTextEdit_SetCurrentFont(this, const_cast<QFont*>(&fo)); };
 	void setFontFamily(const QString & fontFamily) { QByteArray t5db177 = fontFamily.toUtf8(); QtWidgets_PackedString fontFamilyPacked = { const_cast<char*>(t5db177.prepend("WHITESPACE").constData()+10), t5db177.size()-10 };callbackQTextEdit_SetFontFamily(this, fontFamilyPacked); };
 	void setFontItalic(bool italic) { callbackQTextEdit_SetFontItalic(this, italic); };
 	void setFontPointSize(qreal s) { callbackQTextEdit_SetFontPointSize(this, s); };
@@ -49021,7 +49021,7 @@ public:
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
 	void copy() { callbackQTextEdit_Copy(this); };
 	void Signal_CopyAvailable(bool yes) { callbackQTextEdit_CopyAvailable(this, yes); };
-	void Signal_CurrentCharFormatChanged(const QTextCharFormat & f) { callbackQTextEdit_CurrentCharFormatChanged(this, const_cast<QTextCharFormat*>(&f)); };
+	void Signal_CurrentCharFormatChanged(const QTextCharFormat & fo) { callbackQTextEdit_CurrentCharFormatChanged(this, const_cast<QTextCharFormat*>(&fo)); };
 	void Signal_CursorPositionChanged() { callbackQTextEdit_CursorPositionChanged(this); };
 	void cut() { callbackQTextEdit_Cut(this); };
 	void dragEnterEvent(QDragEnterEvent * e) { callbackQWidget_DragEnterEvent(this, e); };
@@ -49050,7 +49050,7 @@ public:
 	void selectAll() { callbackQTextEdit_SelectAll(this); };
 	void Signal_SelectionChanged() { callbackQTextEdit_SelectionChanged(this); };
 	void setAlignment(Qt::Alignment a) { callbackQTextEdit_SetAlignment(this, a); };
-	void setCurrentFont(const QFont & f) { callbackQTextEdit_SetCurrentFont(this, const_cast<QFont*>(&f)); };
+	void setCurrentFont(const QFont & fo) { callbackQTextEdit_SetCurrentFont(this, const_cast<QFont*>(&fo)); };
 	void setFontFamily(const QString & fontFamily) { QByteArray t5db177 = fontFamily.toUtf8(); QtWidgets_PackedString fontFamilyPacked = { const_cast<char*>(t5db177.prepend("WHITESPACE").constData()+10), t5db177.size()-10 };callbackQTextEdit_SetFontFamily(this, fontFamilyPacked); };
 	void setFontItalic(bool italic) { callbackQTextEdit_SetFontItalic(this, italic); };
 	void setFontPointSize(qreal s) { callbackQTextEdit_SetFontPointSize(this, s); };
@@ -49236,9 +49236,9 @@ void QTextEdit_DisconnectCurrentCharFormatChanged(void* ptr)
 	QObject::disconnect(static_cast<QTextEdit*>(ptr), static_cast<void (QTextEdit::*)(const QTextCharFormat &)>(&QTextEdit::currentCharFormatChanged), static_cast<MyQTextEdit*>(ptr), static_cast<void (MyQTextEdit::*)(const QTextCharFormat &)>(&MyQTextEdit::Signal_CurrentCharFormatChanged));
 }
 
-void QTextEdit_CurrentCharFormatChanged(void* ptr, void* f)
+void QTextEdit_CurrentCharFormatChanged(void* ptr, void* fo)
 {
-	static_cast<QTextEdit*>(ptr)->currentCharFormatChanged(*static_cast<QTextCharFormat*>(f));
+	static_cast<QTextEdit*>(ptr)->currentCharFormatChanged(*static_cast<QTextCharFormat*>(fo));
 }
 
 void QTextEdit_ConnectCursorPositionChanged(void* ptr)
@@ -49442,17 +49442,17 @@ void QTextEdit_SetCurrentCharFormat(void* ptr, void* format)
 	static_cast<QTextEdit*>(ptr)->setCurrentCharFormat(*static_cast<QTextCharFormat*>(format));
 }
 
-void QTextEdit_SetCurrentFont(void* ptr, void* f)
+void QTextEdit_SetCurrentFont(void* ptr, void* fo)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(f)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(fo)));
 }
 
-void QTextEdit_SetCurrentFontDefault(void* ptr, void* f)
+void QTextEdit_SetCurrentFontDefault(void* ptr, void* fo)
 {
 	if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
-		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setCurrentFont(*static_cast<QFont*>(f));
+		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setCurrentFont(*static_cast<QFont*>(fo));
 	} else {
-		static_cast<QTextEdit*>(ptr)->QTextEdit::setCurrentFont(*static_cast<QFont*>(f));
+		static_cast<QTextEdit*>(ptr)->QTextEdit::setCurrentFont(*static_cast<QFont*>(fo));
 	}
 }
 
@@ -50552,9 +50552,9 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
-void* QToolBox_NewQToolBox(void* parent, long long f)
+void* QToolBox_NewQToolBox(void* parent, long long fo)
 {
-	return new MyQToolBox(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQToolBox(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 int QToolBox_AddItem2(void* ptr, void* w, char* text)
@@ -54322,9 +54322,9 @@ void* QWidget_QWidget_MouseGrabber()
 		return QWidget::mouseGrabber();
 }
 
-void* QWidget_NewQWidget(void* parent, long long f)
+void* QWidget_NewQWidget(void* parent, long long fo)
 {
-	return new MyQWidget(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+	return new MyQWidget(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 char QWidget_Close(void* ptr)
@@ -60818,9 +60818,9 @@ void QWidget_SetParent(void* ptr, void* parent)
 		static_cast<QWidget*>(ptr)->setParent(static_cast<QWidget*>(parent));
 }
 
-void QWidget_SetParent2(void* ptr, void* parent, long long f)
+void QWidget_SetParent2(void* ptr, void* parent, long long fo)
 {
-		static_cast<QWidget*>(ptr)->setParent(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+		static_cast<QWidget*>(ptr)->setParent(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
 }
 
 void QWidget_SetShortcutAutoRepeat(void* ptr, int id, char enable)

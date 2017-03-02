@@ -118,7 +118,14 @@ func callbackQAbstractPrintDialog_Exec(ptr unsafe.Pointer) C.int {
 func (ptr *QAbstractPrintDialog) ConnectExec(f func() int) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exec"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", func() int {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", f)
+		}
 	}
 }
 
@@ -1583,7 +1590,14 @@ func callbackQPageSetupDialog_Exec(ptr unsafe.Pointer) C.int {
 func (ptr *QPageSetupDialog) ConnectExec(f func() int) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exec"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", func() int {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", f)
+		}
 	}
 }
 
@@ -1620,7 +1634,14 @@ func callbackQPageSetupDialog_Done(ptr unsafe.Pointer, result C.int) {
 func (ptr *QPageSetupDialog) ConnectDone(f func(result int)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "done"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", func(result int) {
+				signal.(func(int))(result)
+				f(result)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", f)
+		}
 	}
 }
 
@@ -3066,7 +3087,14 @@ func callbackQPrintDialog_Done(ptr unsafe.Pointer, result C.int) {
 func (ptr *QPrintDialog) ConnectDone(f func(result int)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "done"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", func(result int) {
+				signal.(func(int))(result)
+				f(result)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", f)
+		}
 	}
 }
 
@@ -3117,7 +3145,14 @@ func callbackQPrintDialog_Exec(ptr unsafe.Pointer) C.int {
 func (ptr *QPrintDialog) ConnectExec(f func() int) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exec"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", func() int {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", f)
+		}
 	}
 }
 
@@ -3152,8 +3187,19 @@ func callbackQPrintDialog_Accepted(ptr unsafe.Pointer, printer unsafe.Pointer) {
 
 func (ptr *QPrintDialog) ConnectAccepted(f func(printer *QPrinter)) {
 	if ptr.Pointer() != nil {
-		C.QPrintDialog_ConnectAccepted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accepted", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "accepted") {
+			C.QPrintDialog_ConnectAccepted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "accepted"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accepted", func(printer *QPrinter) {
+				signal.(func(*QPrinter))(printer)
+				f(printer)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accepted", f)
+		}
 	}
 }
 
@@ -3304,7 +3350,14 @@ func callbackQPrintEngine_Abort(ptr unsafe.Pointer) C.char {
 func (ptr *QPrintEngine) ConnectAbort(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "abort"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", f)
+		}
 	}
 }
 
@@ -3334,7 +3387,14 @@ func callbackQPrintEngine_NewPage(ptr unsafe.Pointer) C.char {
 func (ptr *QPrintEngine) ConnectNewPage(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newPage"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", f)
+		}
 	}
 }
 
@@ -3363,7 +3423,14 @@ func callbackQPrintEngine_SetProperty(ptr unsafe.Pointer, key C.longlong, value 
 func (ptr *QPrintEngine) ConnectSetProperty(f func(key QPrintEngine__PrintEnginePropertyKey, value *core.QVariant)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setProperty", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setProperty"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setProperty", func(key QPrintEngine__PrintEnginePropertyKey, value *core.QVariant) {
+				signal.(func(QPrintEngine__PrintEnginePropertyKey, *core.QVariant))(key, value)
+				f(key, value)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setProperty", f)
+		}
 	}
 }
 
@@ -3392,7 +3459,14 @@ func callbackQPrintEngine_DestroyQPrintEngine(ptr unsafe.Pointer) {
 func (ptr *QPrintEngine) ConnectDestroyQPrintEngine(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QPrintEngine", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QPrintEngine"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QPrintEngine", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QPrintEngine", f)
+		}
 	}
 }
 
@@ -3431,7 +3505,14 @@ func callbackQPrintEngine_PrinterState(ptr unsafe.Pointer) C.longlong {
 func (ptr *QPrintEngine) ConnectPrinterState(f func() QPrinter__PrinterState) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "printerState", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "printerState"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "printerState", func() QPrinter__PrinterState {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "printerState", f)
+		}
 	}
 }
 
@@ -3461,7 +3542,14 @@ func callbackQPrintEngine_Property(ptr unsafe.Pointer, key C.longlong) unsafe.Po
 func (ptr *QPrintEngine) ConnectProperty(f func(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "property"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", func(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant {
+				signal.(func(QPrintEngine__PrintEnginePropertyKey))(key)
+				return f(key)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", f)
+		}
 	}
 }
 
@@ -3493,7 +3581,14 @@ func callbackQPrintEngine_Metric(ptr unsafe.Pointer, id C.longlong) C.int {
 func (ptr *QPrintEngine) ConnectMetric(f func(id gui.QPaintDevice__PaintDeviceMetric) int) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metric", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metric"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metric", func(id gui.QPaintDevice__PaintDeviceMetric) int {
+				signal.(func(gui.QPaintDevice__PaintDeviceMetric))(id)
+				return f(id)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metric", f)
+		}
 	}
 }
 
@@ -3584,7 +3679,14 @@ func callbackQPrintPreviewDialog_Done(ptr unsafe.Pointer, result C.int) {
 func (ptr *QPrintPreviewDialog) ConnectDone(f func(result int)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "done"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", func(result int) {
+				signal.(func(int))(result)
+				f(result)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "done", f)
+		}
 	}
 }
 
@@ -3617,8 +3719,19 @@ func callbackQPrintPreviewDialog_PaintRequested(ptr unsafe.Pointer, printer unsa
 
 func (ptr *QPrintPreviewDialog) ConnectPaintRequested(f func(printer *QPrinter)) {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewDialog_ConnectPaintRequested(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintRequested", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "paintRequested") {
+			C.QPrintPreviewDialog_ConnectPaintRequested(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "paintRequested"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintRequested", func(printer *QPrinter) {
+				signal.(func(*QPrinter))(printer)
+				f(printer)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintRequested", f)
+		}
 	}
 }
 
@@ -4997,7 +5110,14 @@ func callbackQPrintPreviewWidget_FitInView(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectFitInView(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fitInView", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fitInView"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fitInView", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fitInView", f)
+		}
 	}
 }
 
@@ -5032,7 +5152,14 @@ func callbackQPrintPreviewWidget_FitToWidth(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectFitToWidth(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fitToWidth", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fitToWidth"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fitToWidth", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fitToWidth", f)
+		}
 	}
 }
 
@@ -5065,8 +5192,19 @@ func callbackQPrintPreviewWidget_PaintRequested(ptr unsafe.Pointer, printer unsa
 
 func (ptr *QPrintPreviewWidget) ConnectPaintRequested(f func(printer *QPrinter)) {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ConnectPaintRequested(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintRequested", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "paintRequested") {
+			C.QPrintPreviewWidget_ConnectPaintRequested(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "paintRequested"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintRequested", func(printer *QPrinter) {
+				signal.(func(*QPrinter))(printer)
+				f(printer)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintRequested", f)
+		}
 	}
 }
 
@@ -5093,8 +5231,19 @@ func callbackQPrintPreviewWidget_PreviewChanged(ptr unsafe.Pointer) {
 
 func (ptr *QPrintPreviewWidget) ConnectPreviewChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QPrintPreviewWidget_ConnectPreviewChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "previewChanged", f)
+
+		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "previewChanged") {
+			C.QPrintPreviewWidget_ConnectPreviewChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "previewChanged"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "previewChanged", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "previewChanged", f)
+		}
 	}
 }
 
@@ -5123,7 +5272,14 @@ func callbackQPrintPreviewWidget_Print(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectPrint(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "print", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "print"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "print", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "print", f)
+		}
 	}
 }
 
@@ -5158,7 +5314,14 @@ func callbackQPrintPreviewWidget_SetAllPagesViewMode(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectSetAllPagesViewMode(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setAllPagesViewMode", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setAllPagesViewMode"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setAllPagesViewMode", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setAllPagesViewMode", f)
+		}
 	}
 }
 
@@ -5193,7 +5356,14 @@ func callbackQPrintPreviewWidget_SetCurrentPage(ptr unsafe.Pointer, page C.int) 
 func (ptr *QPrintPreviewWidget) ConnectSetCurrentPage(f func(page int)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setCurrentPage", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setCurrentPage"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setCurrentPage", func(page int) {
+				signal.(func(int))(page)
+				f(page)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setCurrentPage", f)
+		}
 	}
 }
 
@@ -5228,7 +5398,14 @@ func callbackQPrintPreviewWidget_SetFacingPagesViewMode(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectSetFacingPagesViewMode(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setFacingPagesViewMode", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setFacingPagesViewMode"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setFacingPagesViewMode", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setFacingPagesViewMode", f)
+		}
 	}
 }
 
@@ -5263,7 +5440,14 @@ func callbackQPrintPreviewWidget_SetLandscapeOrientation(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectSetLandscapeOrientation(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setLandscapeOrientation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setLandscapeOrientation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setLandscapeOrientation", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setLandscapeOrientation", f)
+		}
 	}
 }
 
@@ -5298,7 +5482,14 @@ func callbackQPrintPreviewWidget_SetOrientation(ptr unsafe.Pointer, orientation 
 func (ptr *QPrintPreviewWidget) ConnectSetOrientation(f func(orientation QPrinter__Orientation)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setOrientation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setOrientation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setOrientation", func(orientation QPrinter__Orientation) {
+				signal.(func(QPrinter__Orientation))(orientation)
+				f(orientation)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setOrientation", f)
+		}
 	}
 }
 
@@ -5333,7 +5524,14 @@ func callbackQPrintPreviewWidget_SetPortraitOrientation(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectSetPortraitOrientation(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setPortraitOrientation", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setPortraitOrientation"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setPortraitOrientation", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setPortraitOrientation", f)
+		}
 	}
 }
 
@@ -5368,7 +5566,14 @@ func callbackQPrintPreviewWidget_SetSinglePageViewMode(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectSetSinglePageViewMode(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSinglePageViewMode", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setSinglePageViewMode"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSinglePageViewMode", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setSinglePageViewMode", f)
+		}
 	}
 }
 
@@ -5403,7 +5608,14 @@ func callbackQPrintPreviewWidget_SetViewMode(ptr unsafe.Pointer, mode C.longlong
 func (ptr *QPrintPreviewWidget) ConnectSetViewMode(f func(mode QPrintPreviewWidget__ViewMode)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setViewMode", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setViewMode"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setViewMode", func(mode QPrintPreviewWidget__ViewMode) {
+				signal.(func(QPrintPreviewWidget__ViewMode))(mode)
+				f(mode)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setViewMode", f)
+		}
 	}
 }
 
@@ -5438,7 +5650,14 @@ func callbackQPrintPreviewWidget_SetVisible(ptr unsafe.Pointer, visible C.char) 
 func (ptr *QPrintPreviewWidget) ConnectSetVisible(f func(visible bool)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setVisible", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setVisible"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setVisible", func(visible bool) {
+				signal.(func(bool))(visible)
+				f(visible)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setVisible", f)
+		}
 	}
 }
 
@@ -5473,7 +5692,14 @@ func callbackQPrintPreviewWidget_SetZoomFactor(ptr unsafe.Pointer, factor C.doub
 func (ptr *QPrintPreviewWidget) ConnectSetZoomFactor(f func(factor float64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setZoomFactor", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setZoomFactor"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setZoomFactor", func(factor float64) {
+				signal.(func(float64))(factor)
+				f(factor)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setZoomFactor", f)
+		}
 	}
 }
 
@@ -5508,7 +5734,14 @@ func callbackQPrintPreviewWidget_SetZoomMode(ptr unsafe.Pointer, zoomMode C.long
 func (ptr *QPrintPreviewWidget) ConnectSetZoomMode(f func(zoomMode QPrintPreviewWidget__ZoomMode)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setZoomMode", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setZoomMode"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setZoomMode", func(zoomMode QPrintPreviewWidget__ZoomMode) {
+				signal.(func(QPrintPreviewWidget__ZoomMode))(zoomMode)
+				f(zoomMode)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setZoomMode", f)
+		}
 	}
 }
 
@@ -5543,7 +5776,14 @@ func callbackQPrintPreviewWidget_UpdatePreview(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) ConnectUpdatePreview(f func()) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updatePreview", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updatePreview"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updatePreview", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updatePreview", f)
+		}
 	}
 }
 
@@ -5578,7 +5818,14 @@ func callbackQPrintPreviewWidget_ZoomIn(ptr unsafe.Pointer, factor C.double) {
 func (ptr *QPrintPreviewWidget) ConnectZoomIn(f func(factor float64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "zoomIn", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "zoomIn"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "zoomIn", func(factor float64) {
+				signal.(func(float64))(factor)
+				f(factor)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "zoomIn", f)
+		}
 	}
 }
 
@@ -5613,7 +5860,14 @@ func callbackQPrintPreviewWidget_ZoomOut(ptr unsafe.Pointer, factor C.double) {
 func (ptr *QPrintPreviewWidget) ConnectZoomOut(f func(factor float64)) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "zoomOut", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "zoomOut"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "zoomOut", func(factor float64) {
+				signal.(func(float64))(factor)
+				f(factor)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "zoomOut", f)
+		}
 	}
 }
 
@@ -7185,7 +7439,14 @@ func callbackQPrinter_NewPage(ptr unsafe.Pointer) C.char {
 func (ptr *QPrinter) ConnectNewPage(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newPage"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", func() bool {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", f)
+		}
 	}
 }
 
@@ -7436,7 +7697,14 @@ func callbackQPrinter_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QPrinter) ConnectPaintEngine(f func() *gui.QPaintEngine) {
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", f)
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "paintEngine"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", func() *gui.QPaintEngine {
+				signal.(func())()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", f)
+		}
 	}
 }
 

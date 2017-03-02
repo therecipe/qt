@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -91,4 +92,27 @@ func QT_MXE_ARCH() string {
 
 func QT_MXE_STATIC() bool {
 	return strings.ToLower(os.Getenv("QT_MXE_STATIC")) == "true"
+}
+
+func QT_MXE_TRIPLET() string {
+	var prefix = "i686"
+	if QT_MXE_ARCH() == "amd64" {
+		prefix = "x86_64"
+	}
+	var suffix = "shared"
+	if QT_MXE_STATIC() {
+		suffix = "static"
+	}
+	return fmt.Sprintf("%v-w64-mingw32.%v", prefix, suffix)
+}
+
+func QT_MXE_DIR() string {
+	if dir := os.Getenv("QT_MXE_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	return filepath.Join("/usr", "lib", "mxe")
+}
+
+func QT_MXE_BIN(tool string) string {
+	return filepath.Join(QT_MXE_DIR(), "usr", "bin", fmt.Sprintf("%v-%v", QT_MXE_TRIPLET(), tool))
 }
