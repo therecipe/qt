@@ -9,18 +9,18 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func HTemplate(m string) []byte {
+func HTemplate(m string, mode int) []byte {
 	utils.Log.WithField("0_module", m).Debug("generating h")
 
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if !parser.State.Moc {
+	if m != parser.MOC {
 		m = "Qt" + m
 	}
 
 	//header
-	fmt.Fprintf(bb, "%v\n\n", buildTags(m, false))
+	fmt.Fprintf(bb, "%v\n\n", buildTags(m, false, mode))
 
 	fmt.Fprint(bb, "#pragma once\n\n")
 
@@ -30,7 +30,7 @@ func HTemplate(m string) []byte {
 	fmt.Fprint(bb, "#include <stdint.h>\n\n")
 
 	fmt.Fprint(bb, "#ifdef __cplusplus\n")
-	if parser.State.Moc {
+	if m == parser.MOC {
 		for _, c := range parser.SortedClassNamesForModule(m, true) {
 			fmt.Fprintf(bb, "class %v;\n", c)
 		}

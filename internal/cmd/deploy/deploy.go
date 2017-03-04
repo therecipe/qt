@@ -108,8 +108,6 @@ func Deploy(s *State) {
 				utils.Log.Debug("qtmoc - start")
 				moc.MocTree(appPath, buildTarget)
 
-				parser.State.Moc = false
-				parser.State.Module = ""
 				utils.Log.Debug("qtmoc - done")
 
 				//minimal
@@ -117,7 +115,6 @@ func Deploy(s *State) {
 				minimal.Minimal(appPath, buildTarget)
 
 				parser.State.Minimal = false
-				parser.State.Module = ""
 
 				for _, c := range parser.State.ClassMap {
 					c.Export = false
@@ -957,6 +954,12 @@ func pastdeploy() {
 
 func cleanup() error {
 	utils.RemoveAll(filepath.Join(appPath, "cgo_main_wrapper.go"))
+
+	if utils.QT_QMAKE_CGO() {
+		rcc.QmakeCleanPath(appPath)
+		moc.QmakeCleanPath(appPath)
+		return nil
+	}
 
 	rcc.CleanPath(appPath)
 	return moc.CleanPath(appPath)

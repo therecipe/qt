@@ -17,36 +17,32 @@ func QmakeRcc(path, target string, output_dir *string) {
 		utils.MkdirAll(dir)
 	}
 
-	var (
-		rccQrc = filepath.Join(path, "rcc.qrc")
+	rccQrc := filepath.Join(path, "rcc.qrc")
 
-		rccCpp = filepath.Join(path, "rcc.cpp")
-	)
+	rccCpp := filepath.Join(path, "rcc.cpp")
 	if output_dir != nil {
 		rccCpp = filepath.Join(*output_dir, "rcc.cpp")
-		templater.QmakeCgoTemplate("main", *output_dir, target, templater.RCC)
+		templater.QmakeCgoTemplate("main", *output_dir, target, templater.RCC, "main")
 	} else {
-		templater.QmakeCgoTemplate("main", path, target, templater.RCC)
+		templater.QmakeCgoTemplate("main", path, target, templater.RCC, "main")
 	}
 
-	var rcc = exec.Command(utils.ToolPath("rcc", target), "-project", "-o", rccQrc)
+	rcc := exec.Command(utils.ToolPath("rcc", target), "-project", "-o", rccQrc)
 	rcc.Dir = filepath.Join(path, "qml")
 	utils.RunCmd(rcc, fmt.Sprintf("execute rcc *.qrc on %v for %v", runtime.GOOS, target))
 
-	var content = utils.Load(rccQrc)
+	content := utils.Load(rccQrc)
 	content = strings.Replace(content, "<file>./", "<file>qml/", -1)
 	if utils.ExistsFile(filepath.Join(path, "qtquickcontrols2.conf")) {
 		content = strings.Replace(content, "<qresource>", "<qresource>\n<file>qtquickcontrols2.conf</file>", -1)
 	}
 	utils.Save(rccQrc, content)
 
-	var (
-		files, err = ioutil.ReadDir(path)
-		fileList   []string
-	)
+	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		utils.Log.WithError(err).Fatal("failed to read dir")
 	}
+	var fileList []string
 	for _, f := range files {
 		if !f.IsDir() && strings.HasSuffix(f.Name(), ".qrc") {
 			fileList = append(fileList, filepath.Join(path, f.Name()))
@@ -59,7 +55,7 @@ func QmakeRcc(path, target string, output_dir *string) {
 }
 
 func QmakeCleanPath(path string) {
-	var files, err = ioutil.ReadDir(path)
+	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		utils.Log.WithError(err).Fatal("failed to read dir")
 	}

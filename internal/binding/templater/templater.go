@@ -7,15 +7,12 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func GenModule(m, buildTarget string) {
+func GenModule(m, buildTarget string, mode int) {
 	if !parser.ShouldBuild(m) {
 		utils.Log.WithField("0_module", m).Debug("skip generation")
 		return
 	}
 	utils.Log.WithField("0_module", m).Debug("generating")
-
-	//prepare state
-	parser.State.Module = m
 
 	var suffix = func() string {
 		switch m {
@@ -36,23 +33,23 @@ func GenModule(m, buildTarget string) {
 		}
 	}()
 
-	if !parser.State.Minimal {
+	if mode != MINIMAL {
 		utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(m)))
 		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 	}
 
-	if !UseStub() {
-		CgoTemplate(m, "", buildTarget)
+	if !UseStub(m, mode) {
+		CgoTemplate(m, "", buildTarget, mode, m)
 	}
 
-	if parser.State.Minimal {
+	if mode == MINIMAL {
 		if suffix != "" {
 			return
 		}
 
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), CppTemplate(m))
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), HTemplate(m))
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), GoTemplate(m, false))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), CppTemplate(m, mode))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), HTemplate(m, mode))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), GoTemplate(m, false, mode, m))
 
 		return
 	}
@@ -61,16 +58,16 @@ func GenModule(m, buildTarget string) {
 		utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-androidextras_android.go"), utils.Load(utils.GoQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
 	}
 
-	if !UseStub() {
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".cpp"), CppTemplate(m))
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".h"), HTemplate(m))
+	if !UseStub(m, mode) {
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".cpp"), CppTemplate(m, mode))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".h"), HTemplate(m, mode))
 	}
 
 	//always generate full
 	if suffix != "" {
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".go"), GoTemplate(m, false))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".go"), GoTemplate(m, false, mode, m))
 	}
 
 	//may generate stub
-	utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+".go"), GoTemplate(m, suffix != ""))
+	utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+".go"), GoTemplate(m, suffix != "", mode, m))
 }

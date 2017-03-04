@@ -12,13 +12,13 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func CppTemplate(module string) []byte {
+func CppTemplate(module string, mode int) []byte {
 	utils.Log.WithField("0_module", module).Debug("generating cpp")
 
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if !parser.State.Moc {
+	if mode != MOC {
 		module = "Qt" + module
 	} else {
 		for _, c := range parser.SortedClassNamesForModule(module, true) {
@@ -69,7 +69,7 @@ func CppTemplate(module string) []byte {
 
 		if class.IsSupported() {
 
-			if class.HasCallbackFunctions() || parser.State.Moc {
+			if class.HasCallbackFunctions() || mode == MOC {
 
 				//TODO: split
 				fmt.Fprintf(bb,
@@ -78,7 +78,7 @@ func CppTemplate(module string) []byte {
 %vpublic:
 `,
 					func() string {
-						if parser.State.Moc {
+						if mode == MOC {
 							return ""
 						}
 						return "My"
@@ -87,14 +87,14 @@ func CppTemplate(module string) []byte {
 					class.Name,
 
 					func() string {
-						if parser.State.Moc {
+						if mode == MOC {
 							return class.GetBases()[0]
 						}
 						return class.Name
 					}(),
 
 					func() string {
-						if parser.State.Moc {
+						if mode == MOC {
 							var bb = new(bytes.Buffer)
 							defer bb.Reset()
 							fmt.Fprintln(bb, "Q_OBJECT")
@@ -135,7 +135,7 @@ func CppTemplate(module string) []byte {
 
 						var out = fmt.Sprintf("\t%v%v(%v) : %v(%v) {};\n",
 							func() string {
-								if parser.State.Moc {
+								if mode == MOC {
 									return ""
 								}
 								return "My"
@@ -146,7 +146,7 @@ func CppTemplate(module string) []byte {
 							strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
 
 							func() string {
-								if parser.State.Moc {
+								if mode == MOC {
 									return class.GetBases()[0]
 								}
 								return function.ClassName()
@@ -193,7 +193,7 @@ func CppTemplate(module string) []byte {
 					}
 				}
 
-				if parser.State.Moc {
+				if mode == MOC {
 					for _, p := range class.Properties {
 
 						var ty = p.Output
@@ -243,17 +243,17 @@ func CppTemplate(module string) []byte {
 
 				fmt.Fprint(bb, "};\n\n")
 			}
-			if parser.State.Moc {
+			if mode == MOC {
 				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n\n", class.Name)
 			}
 		}
 
-		if !parser.State.Moc {
+		if mode != MOC {
 			cTemplate(bb, class, cppEnum, cppFunction, "\n\n", false)
 		}
 	}
 
-	if parser.State.Moc {
+	if mode == MOC {
 		for _, className := range parser.SortedClassNamesForModule(module, true) {
 			var class = parser.State.ClassMap[className]
 
@@ -265,10 +265,10 @@ func CppTemplate(module string) []byte {
 		fmt.Fprintln(bb, "#include \"moc_moc.h\"")
 	}
 
-	return preambleCpp(module, bb.Bytes())
+	return preambleCpp(module, bb.Bytes(), mode)
 }
 
-func preambleCpp(module string, input []byte) []byte {
+func preambleCpp(module string, input []byte, mode int) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
@@ -281,7 +281,7 @@ func preambleCpp(module string, input []byte) []byte {
 #include "_cgo_export.h"
 
 `,
-		buildTags(module, false),
+		buildTags(module, false, mode),
 
 		func() string {
 			switch module {
@@ -297,11 +297,11 @@ func preambleCpp(module string, input []byte) []byte {
 
 			default:
 				{
-					if parser.State.Minimal {
+					if mode == MINIMAL {
 						return fmt.Sprintf("%v-minimal", goModule(module))
 					}
 
-					if parser.State.Moc {
+					if mode == MOC {
 						return "moc"
 					}
 
@@ -356,7 +356,7 @@ func preambleCpp(module string, input []byte) []byte {
 		}
 	}
 
-	if parser.State.Minimal {
+	if mode == MINIMAL {
 		if module == "QtCore" {
 			fmt.Fprint(bb, "#include <QObject>\n")
 		} else if module == "QtNetwork" {

@@ -65,18 +65,16 @@ func (m *appMoc) cleanupClassMap() (size int) {
 	return
 }
 
-func (m *appMoc) parseGo(path string) error {
+func (m *appMoc) parseGo(path string) (string, error) {
 	src, errRead := ioutil.ReadFile(path)
 	if errRead != nil {
-		return errRead
+		return "", errRead
 	}
 
 	file, errParse := goparser.ParseFile(token.NewFileSet(), path, nil, 0)
 	if errParse != nil {
-		return errParse
+		return "", errParse
 	}
-
-	parser.State.Module = file.Name.String()
 
 	for _, d := range file.Decls {
 		typeDecl, ok := d.(*ast.GenDecl)
@@ -190,7 +188,7 @@ func (m *appMoc) parseGo(path string) error {
 			m.module.Namespace.Classes = append(m.module.Namespace.Classes, class)
 		}
 	}
-	return nil
+	return file.Name.String(), nil
 }
 
 func CleanPath(path string) (err error) {
@@ -287,6 +285,7 @@ func (m *appMoc) generate() error {
 		"func": "appMoc.generate",
 	}
 
+	var pkg string
 	for _, info := range files {
 		filename := filepath.Join(m.appPath, info.Name())
 		loopFields := logrus.Fields{"filename": filename}
@@ -306,9 +305,11 @@ func (m *appMoc) generate() error {
 		}
 
 		utils.Log.WithFields(fields).WithFields(loopFields).Debug("Process source")
-		if err = m.parseGo(filename); err != nil {
+		ipkg, err := m.parseGo(filename)
+		if err != nil {
 			return err
 		}
+		pkg = ipkg
 	}
 
 	structsSize := len(m.module.Namespace.Classes)
@@ -383,18 +384,18 @@ func (m *appMoc) generate() error {
 		}
 	}
 
-	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.cpp"), templater.CppTemplate(parser.MOC)); err != nil {
+	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC)); err != nil {
 		return err
 	}
 
-	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.h"), templater.HTemplate(parser.MOC)); err != nil {
+	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC)); err != nil {
 		return err
 	}
 
-	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.go"), templater.GoTemplate(parser.MOC, false)); err != nil {
+	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg)); err != nil {
 		return err
 	}
-	templater.CgoTemplate(parser.MOC, m.appPath, m.buildTarget)
+	templater.CgoTemplate(parser.MOC, m.appPath, m.buildTarget, templater.MOC, pkg)
 
 	for _, c := range parser.State.ClassMap {
 		if c.Module == parser.MOC {
@@ -537,7 +538,10 @@ func getCppTypeFromGoType(f *parser.Function, t string) string {
 
 // MocTree process an application and all it's sub-packages and create moc files
 func MocTree(appPath, buildTarget string) (err error) {
-	parser.State.Moc = true
+	if utils.QT_QMAKE_CGO() {
+		QmakeMoc(appPath, buildTarget)
+		return nil
+	}
 
 	err = filepath.Walk(
 		appPath,

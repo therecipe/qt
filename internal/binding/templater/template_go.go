@@ -10,23 +10,23 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func GoTemplate(module string, stub bool) []byte {
+func GoTemplate(module string, stub bool, mode int, pkg string) []byte {
 	utils.Log.WithField("0_module", module).Debug("generating go")
 
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if !parser.State.Moc {
+	if mode != MOC {
 		module = "Qt" + module
 	}
 
-	if !(UseStub() || stub) {
+	if !(UseStub(module, mode) || stub) {
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if len := int(s.len); len == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
 	if module == "QtAndroidExtras" {
 		fmt.Fprint(bb, "func QAndroidJniEnvironment_ExceptionCatch() error {\n")
-		if !(UseStub() || stub) {
+		if !(UseStub(module, mode) || stub) {
 			fmt.Fprint(bb, "var err error\n")
 			fmt.Fprint(bb, "if QAndroidJniEnvironment_ExceptionCheck() {\nvar tmpExcPtr = QAndroidJniEnvironment_ExceptionOccurred()\nQAndroidJniEnvironment_ExceptionClear()\n")
 			fmt.Fprint(bb, "var tmpExc = NewQAndroidJniObject6(tmpExcPtr)\n")
@@ -38,7 +38,7 @@ func GoTemplate(module string, stub bool) []byte {
 		}
 		fmt.Fprint(bb, "}\n\n")
 
-		if !(UseStub() || stub) {
+		if !(UseStub(module, mode) || stub) {
 			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return QAndroidJniEnvironment_ExceptionCatch() }\n")
 		} else {
 			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return nil }\n")
@@ -47,11 +47,11 @@ func GoTemplate(module string, stub bool) []byte {
 
 	for _, class := range parser.SortedClassesForModule(module, true) {
 
-		class.Stub = UseStub() || stub
+		class.Stub = UseStub(module, mode) || stub
 
-		if !parser.State.Minimal || (parser.State.Minimal && class.Export) {
+		if mode != MINIMAL || (mode == MINIMAL && class.Export) {
 
-			if !parser.State.Moc {
+			if mode != MOC {
 				fmt.Fprintf(bb, "type %v struct {\n%v\n}\n\n",
 
 					class.Name,
@@ -150,7 +150,7 @@ func New%vFromPointer(ptr unsafe.Pointer) *%v {
 `, strings.Title(class.Name), class.Name, class.Name)
 
 			if !class.HasDestructor() {
-				if UseStub() {
+				if UseStub(module, mode) {
 					fmt.Fprintf(bb, `
 			func (ptr *%v) Destroy%v() {}
 			`, class.Name, class.Name)
@@ -176,14 +176,14 @@ func (ptr *%v) Destroy%v() {
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
-	return preambleGo(goModule(module), bb.Bytes(), stub)
+	return preambleGo(goModule(module), bb.Bytes(), stub, mode, pkg)
 }
 
-func preambleGo(module string, input []byte, stub bool) []byte {
+func preambleGo(module string, input []byte, stub bool, mode int, pkg string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if UseStub() {
+	if UseStub(module, mode) {
 		fmt.Fprintf(bb, `// +build !minimal
 
 package %v
@@ -191,8 +191,8 @@ package %v
 import "C"
 import (
 `, func() string {
-			if parser.State.Moc {
-				return parser.State.Module
+			if mode == MOC {
+				return pkg
 			}
 			return module
 		}())
@@ -210,11 +210,11 @@ import "C"
 import (
 `,
 
-			buildTags(module, stub),
+			buildTags(module, stub, mode),
 
 			func() string {
-				if parser.State.Moc {
-					return parser.State.Module
+				if mode == MOC {
+					return pkg
 				}
 				return module
 			}(),
@@ -233,11 +233,11 @@ import (
 
 				default:
 					{
-						if parser.State.Minimal {
+						if mode == MINIMAL {
 							return fmt.Sprintf("%v-minimal", module)
 						}
 
-						if parser.State.Moc {
+						if mode == MOC {
 							return "moc"
 						}
 
@@ -266,7 +266,7 @@ import (
 				{
 					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", m)
 
-					if parser.State.Moc {
+					if mode == MOC {
 						parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], strings.Title(m))
 					}
 				}

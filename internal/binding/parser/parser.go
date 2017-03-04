@@ -13,11 +13,7 @@ import (
 var State = &struct {
 	ClassMap map[string]*Class
 
-	Rcc     bool
-	Moc     bool
-	Minimal bool
-
-	Module string
+	Minimal bool //TODO:
 }{
 	ClassMap: make(map[string]*Class),
 }

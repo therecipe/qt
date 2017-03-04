@@ -289,7 +289,7 @@ func SortedClassNamesForModule(module string, template bool) []string {
 	}
 	sort.Stable(sort.StringSlice(output))
 
-	if State.Moc && template {
+	if module == MOC && template {
 		var items = make(map[string]string)
 
 		for _, cn := range output {

@@ -12,7 +12,8 @@ import (
 
 func goFunction(function *parser.Function) string {
 	var o = fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(function), goFunctionBody(function))
-	if !function.IsSupported() || (UseStub() && function.SignalMode == parser.CALLBACK) {
+	var c, _ = function.Class()
+	if !function.IsSupported() || (UseStub(c.Module, -1) && function.SignalMode == parser.CALLBACK) {
 		return ""
 	}
 	return o

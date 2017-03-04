@@ -20,7 +20,7 @@ const (
 	RCC
 )
 
-func QmakeCgoTemplate(module, path, target string, mode int) (o string) {
+func QmakeCgoTemplate(module, path, target string, mode int, ipkg string) (o string) {
 
 	switch module {
 	case "AndroidExtras":
@@ -73,7 +73,7 @@ func QmakeCgoTemplate(module, path, target string, mode int) (o string) {
 	}
 	createProject(module, path, mode)
 	createMakefile(module, path, target, mode)
-	createCgo(module, path, target, mode)
+	createCgo(module, path, target, mode, ipkg)
 
 	utils.RemoveAll(filepath.Join(path, "Makefile"))
 	utils.RemoveAll(filepath.Join(path, "Makefile.Release"))
@@ -124,7 +124,7 @@ func createProject(module, path string, mode int) {
 }
 
 func createMakefile(module, path, target string, mode int) {
-	var cmd = exec.Command(utils.ToolPath("qmake", target), filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))))
+	cmd := exec.Command(utils.ToolPath("qmake", target), filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))))
 	cmd.Dir = path
 	switch target {
 	case "darwin":
@@ -139,6 +139,7 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=release", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
 	case "android":
 		cmd.Args = append(cmd.Args, []string{"-spec", "android-g++"}...)
+		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR())}
 	case "sailfish", "sailfish-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 		cmd.Env = []string{
@@ -174,7 +175,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "darwin":
 	case "windows":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
-			var pPath = filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
+			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
 			if utils.QT_MXE_STATIC() && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build windows") {
 					utils.Save(pPath, "// +build windows\n"+content)
@@ -190,7 +191,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "linux":
 	case "ios", "ios-simulator":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
-			var pPath = filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
+			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
 			if utils.QT_VERSION_MAJOR() == "5.9" && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build ios") {
 					utils.Save(pPath, "// +build ios\n"+utils.Load(pPath))
@@ -212,11 +213,11 @@ func createMakefile(module, path, target string, mode int) {
 	}
 }
 
-func createCgo(module, path, target string, mode int) string {
-	var bb = new(bytes.Buffer)
+func createCgo(module, path, target string, mode int, ipkg string) string {
+	bb := new(bytes.Buffer)
 	defer bb.Reset()
 
-	var guards = "// +build "
+	guards := "// +build "
 	switch target {
 	case "darwin":
 		guards += "!ios"
@@ -245,19 +246,19 @@ func createCgo(module, path, target string, mode int) string {
 		bb.WriteString(guards + "\n\n")
 	}
 
-	var pkg = strings.ToLower(module)
+	pkg := strings.ToLower(module)
 	if mode == MOC {
-		pkg = parser.State.Module
+		pkg = ipkg
 	}
 	fmt.Fprintf(bb, "package %v\n\n/*\n", pkg)
 
 	//
 
-	var file = "Makefile"
+	file := "Makefile"
 	if target == "windows" {
 		file += ".Release"
 	}
-	var content = utils.Load(filepath.Join(path, file))
+	content := utils.Load(filepath.Join(path, file))
 
 	for _, l := range strings.Split(content, "\n") {
 		switch {
@@ -267,7 +268,7 @@ func createCgo(module, path, target string, mode int) string {
 			fmt.Fprintf(bb, "#cgo CXXFLAGS: %v\n", strings.Split(l, " = ")[1])
 		case strings.HasPrefix(l, "LFLAGS"), strings.HasPrefix(l, "LIBS"):
 			if target == "windows" && !utils.QT_MXE_STATIC() {
-				var pFix = []string{
+				pFix := []string{
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
 					filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),
 					utils.QT_MSYS2_DIR(),
@@ -301,7 +302,7 @@ func createCgo(module, path, target string, mode int) string {
 
 	fmt.Fprint(bb, "*/\nimport \"C\"\n")
 
-	var tmp = bb.String()
+	tmp := bb.String()
 
 	switch target {
 	case "ios":

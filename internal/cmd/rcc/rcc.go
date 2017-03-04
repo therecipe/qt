@@ -12,8 +12,6 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -83,14 +81,6 @@ func Rcc(appPath, buildTarget string, output_dir *string) {
 
 //TODO: make docker compatible
 func qmlHeader(appName, appPath, buildTarget string) string {
-
-	if utils.QT_QMAKE_CGO() {
-		parser.State.Rcc = true
-		templater.CgoTemplate("main", appPath, buildTarget)
-		parser.State.Rcc = false
-		return "package main"
-	}
-
 	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*

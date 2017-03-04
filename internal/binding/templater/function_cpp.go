@@ -55,7 +55,8 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 			if function.Meta == parser.SIGNAL {
 				return fmt.Sprintf("Signal_%v", strings.Title(function.Name))
 			}
-			if strings.HasPrefix(function.Name, parser.TILDE) && !parser.State.Moc {
+			var c, _ = function.Class()
+			if strings.HasPrefix(function.Name, parser.TILDE) && c.Module != parser.MOC {
 				return strings.Replace(function.Name, parser.TILDE, fmt.Sprintf("%vMy", parser.TILDE), -1)
 			}
 			return function.Name
@@ -187,13 +188,14 @@ func cppFunctionBody(function *parser.Function) string {
 
 	var polyinputsSelf []string
 
-	if function.Default && !parser.State.Moc {
+	var c, _ = function.Class()
+	if function.Default && c.Module != parser.MOC {
 		polyinputsSelf, _ = function.PossibleDerivationsReversedAndRemovedPure(true)
 	} else {
 		polyinputsSelf, _ = function.PossiblePolymorphicDerivations(true)
 	}
 
-	if parser.State.Moc {
+	if c.Module == parser.MOC {
 		var fc, ok = function.Class()
 		if !ok {
 			return ""
@@ -326,8 +328,8 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 				}(),
 
 				func() string {
-					var class = parser.State.ClassMap[function.ClassName()]
-					if !parser.State.Moc {
+					var class, _ = function.Class()
+					if class.Module != parser.MOC {
 						if class.HasCallbackFunctions() {
 							return "My"
 						}
@@ -469,7 +471,8 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 
 					func() string {
 						if function.Default {
-							if parser.State.Moc {
+							var c, _ = function.Class()
+							if c.Module == parser.MOC {
 								return fmt.Sprintf("%v::%v", parser.State.ClassMap[function.ClassName()].GetBases()[0], function.Name)
 							} else {
 								return fmt.Sprintf("%v::%v", function.ClassName(), function.Name)
@@ -531,7 +534,8 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 	case parser.SIGNAL:
 		{
 			var my string
-			if !parser.State.Moc {
+			var c, _ = function.Class()
+			if c.Module != parser.MOC {
 				my = "My"
 			}
 			if converter.IsPrivateSignal(function) {

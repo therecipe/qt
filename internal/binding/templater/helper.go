@@ -27,11 +27,14 @@ func goModule(module string) string {
 	return strings.ToLower(strings.TrimPrefix(module, "Qt"))
 }
 
-func UseStub() bool {
-	return utils.QT_STUB() && !parser.State.Minimal && !parser.State.Moc && !(parser.State.Module == "AndroidExtras" || parser.State.Module == "Sailfish")
+func UseStub(module string, mode int) bool {
+	if mode == -1 {
+		//TODO: minimal and moc detection
+	}
+	return utils.QT_STUB() && !parser.State.Minimal && module != parser.MOC && !(module == "QtAndroidExtras" || module == "QtSailfish")
 }
 
-func buildTags(module string, stub bool) string {
+func buildTags(module string, stub bool, mode int) string {
 	switch {
 	case stub:
 		{
@@ -41,12 +44,12 @@ func buildTags(module string, stub bool) string {
 			return "// +build !sailfish,!sailfish_emulator"
 		}
 
-	case parser.State.Minimal:
+	case mode == MINIMAL:
 		{
 			return "// +build minimal"
 		}
 
-	case parser.State.Moc:
+	case mode == MOC:
 		{
 			return ""
 		}
