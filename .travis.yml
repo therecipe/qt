@@ -41,8 +41,8 @@ install:
 
 script:
   - go get -v github.com/therecipe/qt/cmd/...
-  - if [[ "$DESKTOP" == "true" ]]; then $GOPATH/bin/qtsetup; fi
-  - if [[ "$ANDROID" == "true" ]]; then $GOPATH/bin/qtsetup android; fi
-  - if [[ "$IOS" == "true" ]]; then $GOPATH/bin/qtsetup ios; fi
-  - if [[ "$IOS_SIMULATOR" == "true" ]]; then $GOPATH/bin/qtsetup ios-simulator; fi
-  - if [[ "$QT_WINDOWS_CC" == "true" ]]; then $GOPATH/bin/qtsetup windows; fi
+  - if [[ "$DESKTOP" == "true" ]]; then $GOPATH/bin/qtsetup full desktop; fi
+  - if [[ "$ANDROID" == "true" ]]; then $GOPATH/bin/qtsetup full android; fi
+  - if [[ "$IOS" == "true" ]]; then $GOPATH/bin/qtsetup full ios; fi
+  - if [[ "$IOS_SIMULATOR" == "true" ]]; then $GOPATH/bin/qtsetup full ios-simulator; fi
+  - if [[ "$QT_WINDOWS_CC" == "true" ]]; then $GOPATH/bin/qtsetup full windows; fi

@@ -44,6 +44,6 @@ build_script:
 - cmd: >-
     go get -v github.com/therecipe/qt/cmd/...
 
-    %GOPATH%\bin\qtsetup
+    %GOPATH%\bin\qtsetup full desktop
 
-    %GOPATH%\bin\qtsetup android
+    %GOPATH%\bin\qtsetup full android
