@@ -229,7 +229,7 @@ func (ptr *QScriptClass) ConnectNewIterator(f func(object *QScriptValue) *QScrip
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newIterator"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newIterator", func(object *QScriptValue) *QScriptClassPropertyIterator {
-				signal.(func(*QScriptValue))(object)
+				signal.(func(*QScriptValue) *QScriptClassPropertyIterator)(object)
 				return f(object)
 			})
 		} else {
@@ -273,7 +273,7 @@ func (ptr *QScriptClass) ConnectProperty(f func(object *QScriptValue, name *QScr
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "property"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", func(object *QScriptValue, name *QScriptString, id uint) *QScriptValue {
-				signal.(func(*QScriptValue, *QScriptString, uint))(object, name, id)
+				signal.(func(*QScriptValue, *QScriptString, uint) *QScriptValue)(object, name, id)
 				return f(object, name, id)
 			})
 		} else {
@@ -321,7 +321,7 @@ func (ptr *QScriptClass) ConnectPropertyFlags(f func(object *QScriptValue, name 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "propertyFlags"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "propertyFlags", func(object *QScriptValue, name *QScriptString, id uint) QScriptValue__PropertyFlag {
-				signal.(func(*QScriptValue, *QScriptString, uint))(object, name, id)
+				signal.(func(*QScriptValue, *QScriptString, uint) QScriptValue__PropertyFlag)(object, name, id)
 				return f(object, name, id)
 			})
 		} else {
@@ -365,7 +365,7 @@ func (ptr *QScriptClass) ConnectExtension(f func(extension QScriptClass__Extensi
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "extension"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", func(extension QScriptClass__Extension, argument *core.QVariant) *core.QVariant {
-				signal.(func(QScriptClass__Extension, *core.QVariant))(extension, argument)
+				signal.(func(QScriptClass__Extension, *core.QVariant) *core.QVariant)(extension, argument)
 				return f(extension, argument)
 			})
 		} else {
@@ -413,7 +413,7 @@ func (ptr *QScriptClass) ConnectQueryProperty(f func(object *QScriptValue, name 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "queryProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProperty", func(object *QScriptValue, name *QScriptString, flags QScriptClass__QueryFlag, id uint) QScriptClass__QueryFlag {
-				signal.(func(*QScriptValue, *QScriptString, QScriptClass__QueryFlag, uint))(object, name, flags, id)
+				signal.(func(*QScriptValue, *QScriptString, QScriptClass__QueryFlag, uint) QScriptClass__QueryFlag)(object, name, flags, id)
 				return f(object, name, flags, id)
 			})
 		} else {
@@ -556,7 +556,7 @@ func (ptr *QScriptClass) ConnectPrototype(f func() *QScriptValue) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "prototype"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prototype", func() *QScriptValue {
-				signal.(func())()
+				signal.(func() *QScriptValue)()
 				return f()
 			})
 		} else {
@@ -604,7 +604,7 @@ func (ptr *QScriptClass) ConnectName(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "name"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "name", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -648,7 +648,7 @@ func (ptr *QScriptClass) ConnectSupportsExtension(f func(extension QScriptClass_
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", func(extension QScriptClass__Extension) bool {
-				signal.(func(QScriptClass__Extension))(extension)
+				signal.(func(QScriptClass__Extension) bool)(extension)
 				return f(extension)
 			})
 		} else {
@@ -1934,7 +1934,7 @@ func (ptr *QScriptEngineAgent) ConnectExtension(f func(extension QScriptEngineAg
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "extension"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "extension", func(extension QScriptEngineAgent__Extension, argument *core.QVariant) *core.QVariant {
-				signal.(func(QScriptEngineAgent__Extension, *core.QVariant))(extension, argument)
+				signal.(func(QScriptEngineAgent__Extension, *core.QVariant) *core.QVariant)(extension, argument)
 				return f(extension, argument)
 			})
 		} else {
@@ -2437,7 +2437,7 @@ func (ptr *QScriptEngineAgent) ConnectSupportsExtension(f func(extension QScript
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportsExtension", func(extension QScriptEngineAgent__Extension) bool {
-				signal.(func(QScriptEngineAgent__Extension))(extension)
+				signal.(func(QScriptEngineAgent__Extension) bool)(extension)
 				return f(extension)
 			})
 		} else {
@@ -2589,7 +2589,7 @@ func (ptr *QScriptExtensionPlugin) ConnectKeys(f func() []string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "keys"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "keys", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {

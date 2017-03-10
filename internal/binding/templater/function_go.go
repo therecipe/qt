@@ -330,19 +330,21 @@ func goFunctionBody(function *parser.Function) string {
 
 					fmt.Fprintf(bb, "%v {\n", strings.TrimPrefix(converter.GoHeaderInput(function), "f "))
 
-					fmt.Fprintf(bb, "signal.(%v)(%v)\n",
-						converter.GoHeaderInputSignalFunction(function),
-						converter.GoGoInput(function),
-					)
-
 					var f = *function
 					f.SignalMode = ""
+
+					fmt.Fprintf(bb, "signal.(%v%v)(%v)\n",
+						converter.GoHeaderInputSignalFunction(&f),
+						converter.GoHeaderOutput(&f),
+						converter.GoGoInput(&f),
+					)
+
 					if converter.GoHeaderOutput(&f) != "" {
 						fmt.Fprint(bb, "return ")
 					}
 
 					fmt.Fprintf(bb, "f(%v)\n",
-						converter.GoGoInput(function),
+						converter.GoGoInput(&f),
 					)
 
 					fmt.Fprint(bb, "}")

@@ -2618,7 +2618,7 @@ func (ptr *QNearFieldTarget) ConnectHasNdefMessage(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -2825,7 +2825,7 @@ func (ptr *QNearFieldTarget) ConnectAccessMethods(f func() QNearFieldTarget__Acc
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "accessMethods"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accessMethods", func() QNearFieldTarget__AccessMethod {
-				signal.(func())()
+				signal.(func() QNearFieldTarget__AccessMethod)()
 				return f()
 			})
 		} else {
@@ -2862,7 +2862,7 @@ func (ptr *QNearFieldTarget) ConnectUid(f func() *core.QByteArray) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "uid"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uid", func() *core.QByteArray {
-				signal.(func())()
+				signal.(func() *core.QByteArray)()
 				return f()
 			})
 		} else {
@@ -2901,7 +2901,7 @@ func (ptr *QNearFieldTarget) ConnectUrl(f func() *core.QUrl) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "url"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "url", func() *core.QUrl {
-				signal.(func())()
+				signal.(func() *core.QUrl)()
 				return f()
 			})
 		} else {
@@ -2949,7 +2949,7 @@ func (ptr *QNearFieldTarget) ConnectType(f func() QNearFieldTarget__Type) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QNearFieldTarget__Type {
-				signal.(func())()
+				signal.(func() QNearFieldTarget__Type)()
 				return f()
 			})
 		} else {

@@ -259,7 +259,7 @@ func (ptr *QAbstractVideoBuffer) ConnectMap(f func(mode QAbstractVideoBuffer__Ma
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "map"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "map", func(mode QAbstractVideoBuffer__MapMode, numBytes int, bytesPerLine int) string {
-				signal.(func(QAbstractVideoBuffer__MapMode, int, int))(mode, numBytes, bytesPerLine)
+				signal.(func(QAbstractVideoBuffer__MapMode, int, int) string)(mode, numBytes, bytesPerLine)
 				return f(mode, numBytes, bytesPerLine)
 			})
 		} else {
@@ -426,7 +426,7 @@ func (ptr *QAbstractVideoBuffer) ConnectMapMode(f func() QAbstractVideoBuffer__M
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mapMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mapMode", func() QAbstractVideoBuffer__MapMode {
-				signal.(func())()
+				signal.(func() QAbstractVideoBuffer__MapMode)()
 				return f()
 			})
 		} else {
@@ -463,7 +463,7 @@ func (ptr *QAbstractVideoBuffer) ConnectHandle(f func() *core.QVariant) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "handle"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handle", func() *core.QVariant {
-				signal.(func())()
+				signal.(func() *core.QVariant)()
 				return f()
 			})
 		} else {
@@ -579,7 +579,7 @@ func (ptr *QAbstractVideoFilter) ConnectCreateFilterRunnable(f func() *QVideoFil
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createFilterRunnable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createFilterRunnable", func() *QVideoFilterRunnable {
-				signal.(func())()
+				signal.(func() *QVideoFilterRunnable)()
 				return f()
 			})
 		} else {
@@ -1037,7 +1037,7 @@ func (ptr *QAbstractVideoSurface) ConnectPresent(f func(frame *QVideoFrame) bool
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "present"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "present", func(frame *QVideoFrame) bool {
-				signal.(func(*QVideoFrame))(frame)
+				signal.(func(*QVideoFrame) bool)(frame)
 				return f(frame)
 			})
 		} else {
@@ -1074,7 +1074,7 @@ func (ptr *QAbstractVideoSurface) ConnectStart(f func(format *QVideoSurfaceForma
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "start"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", func(format *QVideoSurfaceFormat) bool {
-				signal.(func(*QVideoSurfaceFormat))(format)
+				signal.(func(*QVideoSurfaceFormat) bool)(format)
 				return f(format)
 			})
 		} else {
@@ -1313,7 +1313,7 @@ func (ptr *QAbstractVideoSurface) ConnectSupportedPixelFormats(f func(ty QAbstra
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedPixelFormats"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedPixelFormats", func(ty QAbstractVideoBuffer__HandleType) []QVideoFrame__PixelFormat {
-				signal.(func(QAbstractVideoBuffer__HandleType))(ty)
+				signal.(func(QAbstractVideoBuffer__HandleType) []QVideoFrame__PixelFormat)(ty)
 				return f(ty)
 			})
 		} else {
@@ -1356,7 +1356,7 @@ func (ptr *QAbstractVideoSurface) ConnectNearestFormat(f func(format *QVideoSurf
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nearestFormat"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nearestFormat", func(format *QVideoSurfaceFormat) *QVideoSurfaceFormat {
-				signal.(func(*QVideoSurfaceFormat))(format)
+				signal.(func(*QVideoSurfaceFormat) *QVideoSurfaceFormat)(format)
 				return f(format)
 			})
 		} else {
@@ -1420,7 +1420,7 @@ func (ptr *QAbstractVideoSurface) ConnectIsFormatSupported(f func(format *QVideo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFormatSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFormatSupported", func(format *QVideoSurfaceFormat) bool {
-				signal.(func(*QVideoSurfaceFormat))(format)
+				signal.(func(*QVideoSurfaceFormat) bool)(format)
 				return f(format)
 			})
 		} else {
@@ -2687,7 +2687,7 @@ func (ptr *QAudioDecoderControl) ConnectRead(f func() *QAudioBuffer) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "read"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "read", func() *QAudioBuffer {
-				signal.(func())()
+				signal.(func() *QAudioBuffer)()
 				return f()
 			})
 		} else {
@@ -3278,7 +3278,7 @@ func (ptr *QAudioDecoderControl) ConnectState(f func() QAudioDecoder__State) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "state"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "state", func() QAudioDecoder__State {
-				signal.(func())()
+				signal.(func() QAudioDecoder__State)()
 				return f()
 			})
 		} else {
@@ -3315,7 +3315,7 @@ func (ptr *QAudioDecoderControl) ConnectAudioFormat(f func() *QAudioFormat) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "audioFormat"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "audioFormat", func() *QAudioFormat {
-				signal.(func())()
+				signal.(func() *QAudioFormat)()
 				return f()
 			})
 		} else {
@@ -3354,7 +3354,7 @@ func (ptr *QAudioDecoderControl) ConnectSourceDevice(f func() *core.QIODevice) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sourceDevice"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sourceDevice", func() *core.QIODevice {
-				signal.(func())()
+				signal.(func() *core.QIODevice)()
 				return f()
 			})
 		} else {
@@ -3395,7 +3395,7 @@ func (ptr *QAudioDecoderControl) ConnectSourceFilename(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sourceFilename"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sourceFilename", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -3432,7 +3432,7 @@ func (ptr *QAudioDecoderControl) ConnectBufferAvailable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "bufferAvailable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "bufferAvailable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -3469,7 +3469,7 @@ func (ptr *QAudioDecoderControl) ConnectDuration(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "duration"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "duration", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -3506,7 +3506,7 @@ func (ptr *QAudioDecoderControl) ConnectPosition(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "position"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "position", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -4309,7 +4309,7 @@ func (ptr *QAudioEncoderSettingsControl) ConnectAudioSettings(f func() *QAudioEn
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "audioSettings"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "audioSettings", func() *QAudioEncoderSettings {
-				signal.(func())()
+				signal.(func() *QAudioEncoderSettings)()
 				return f()
 			})
 		} else {
@@ -4360,7 +4360,7 @@ func (ptr *QAudioEncoderSettingsControl) ConnectSupportedSampleRates(f func(sett
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedSampleRates"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedSampleRates", func(settings *QAudioEncoderSettings, continuous bool) []int {
-				signal.(func(*QAudioEncoderSettings, bool))(settings, continuous)
+				signal.(func(*QAudioEncoderSettings, bool) []int)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -4403,7 +4403,7 @@ func (ptr *QAudioEncoderSettingsControl) ConnectCodecDescription(f func(codec st
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "codecDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "codecDescription", func(codec string) string {
-				signal.(func(string))(codec)
+				signal.(func(string) string)(codec)
 				return f(codec)
 			})
 		} else {
@@ -4445,7 +4445,7 @@ func (ptr *QAudioEncoderSettingsControl) ConnectSupportedAudioCodecs(f func() []
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedAudioCodecs"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedAudioCodecs", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -5414,7 +5414,7 @@ func (ptr *QAudioInputSelectorControl) ConnectActiveInput(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "activeInput"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activeInput", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -5451,7 +5451,7 @@ func (ptr *QAudioInputSelectorControl) ConnectDefaultInput(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "defaultInput"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "defaultInput", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -5488,7 +5488,7 @@ func (ptr *QAudioInputSelectorControl) ConnectInputDescription(f func(name strin
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "inputDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "inputDescription", func(name string) string {
-				signal.(func(string))(name)
+				signal.(func(string) string)(name)
 				return f(name)
 			})
 		} else {
@@ -6269,7 +6269,7 @@ func (ptr *QAudioOutputSelectorControl) ConnectActiveOutput(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "activeOutput"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "activeOutput", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -6306,7 +6306,7 @@ func (ptr *QAudioOutputSelectorControl) ConnectDefaultOutput(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "defaultOutput"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "defaultOutput", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -6343,7 +6343,7 @@ func (ptr *QAudioOutputSelectorControl) ConnectOutputDescription(f func(name str
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "outputDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "outputDescription", func(name string) string {
-				signal.(func(string))(name)
+				signal.(func(string) string)(name)
 				return f(name)
 			})
 		} else {
@@ -7207,7 +7207,7 @@ func (ptr *QAudioRoleControl) ConnectAudioRole(f func() QAudio__Role) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "audioRole"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "audioRole", func() QAudio__Role {
-				signal.(func())()
+				signal.(func() QAudio__Role)()
 				return f()
 			})
 		} else {
@@ -7256,7 +7256,7 @@ func (ptr *QAudioRoleControl) ConnectSupportedAudioRoles(f func() []QAudio__Role
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedAudioRoles"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedAudioRoles", func() []QAudio__Role {
-				signal.(func())()
+				signal.(func() []QAudio__Role)()
 				return f()
 			})
 		} else {
@@ -8565,7 +8565,7 @@ func (ptr *QCameraCaptureBufferFormatControl) ConnectSupportedBufferFormats(f fu
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedBufferFormats"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedBufferFormats", func() []QVideoFrame__PixelFormat {
-				signal.(func())()
+				signal.(func() []QVideoFrame__PixelFormat)()
 				return f()
 			})
 		} else {
@@ -8608,7 +8608,7 @@ func (ptr *QCameraCaptureBufferFormatControl) ConnectBufferFormat(f func() QVide
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "bufferFormat"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "bufferFormat", func() QVideoFrame__PixelFormat {
-				signal.(func())()
+				signal.(func() QVideoFrame__PixelFormat)()
 				return f()
 			})
 		} else {
@@ -8790,7 +8790,7 @@ func (ptr *QCameraCaptureDestinationControl) ConnectCaptureDestination(f func() 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "captureDestination"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "captureDestination", func() QCameraImageCapture__CaptureDestination {
-				signal.(func())()
+				signal.(func() QCameraImageCapture__CaptureDestination)()
 				return f()
 			})
 		} else {
@@ -8827,7 +8827,7 @@ func (ptr *QCameraCaptureDestinationControl) ConnectIsCaptureDestinationSupporte
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isCaptureDestinationSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isCaptureDestinationSupported", func(destination QCameraImageCapture__CaptureDestination) bool {
-				signal.(func(QCameraImageCapture__CaptureDestination))(destination)
+				signal.(func(QCameraImageCapture__CaptureDestination) bool)(destination)
 				return f(destination)
 			})
 		} else {
@@ -9162,7 +9162,7 @@ func (ptr *QCameraControl) ConnectCaptureMode(f func() QCamera__CaptureMode) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "captureMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "captureMode", func() QCamera__CaptureMode {
-				signal.(func())()
+				signal.(func() QCamera__CaptureMode)()
 				return f()
 			})
 		} else {
@@ -9199,7 +9199,7 @@ func (ptr *QCameraControl) ConnectState(f func() QCamera__State) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "state"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "state", func() QCamera__State {
-				signal.(func())()
+				signal.(func() QCamera__State)()
 				return f()
 			})
 		} else {
@@ -9236,7 +9236,7 @@ func (ptr *QCameraControl) ConnectStatus(f func() QCamera__Status) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "status"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "status", func() QCamera__Status {
-				signal.(func())()
+				signal.(func() QCamera__Status)()
 				return f()
 			})
 		} else {
@@ -9273,7 +9273,7 @@ func (ptr *QCameraControl) ConnectCanChangeProperty(f func(changeType QCameraCon
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "canChangeProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canChangeProperty", func(changeType QCameraControl__PropertyChangeType, status QCamera__Status) bool {
-				signal.(func(QCameraControl__PropertyChangeType, QCamera__Status))(changeType, status)
+				signal.(func(QCameraControl__PropertyChangeType, QCamera__Status) bool)(changeType, status)
 				return f(changeType, status)
 			})
 		} else {
@@ -9310,7 +9310,7 @@ func (ptr *QCameraControl) ConnectIsCaptureModeSupported(f func(mode QCamera__Ca
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isCaptureModeSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isCaptureModeSupported", func(mode QCamera__CaptureMode) bool {
-				signal.(func(QCamera__CaptureMode))(mode)
+				signal.(func(QCamera__CaptureMode) bool)(mode)
 				return f(mode)
 			})
 		} else {
@@ -10677,7 +10677,7 @@ func (ptr *QCameraExposureControl) ConnectSetValue(f func(parameter QCameraExpos
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setValue", func(parameter QCameraExposureControl__ExposureParameter, value *core.QVariant) bool {
-				signal.(func(QCameraExposureControl__ExposureParameter, *core.QVariant))(parameter, value)
+				signal.(func(QCameraExposureControl__ExposureParameter, *core.QVariant) bool)(parameter, value)
 				return f(parameter, value)
 			})
 		} else {
@@ -10839,7 +10839,7 @@ func (ptr *QCameraExposureControl) ConnectActualValue(f func(parameter QCameraEx
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "actualValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "actualValue", func(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
-				signal.(func(QCameraExposureControl__ExposureParameter))(parameter)
+				signal.(func(QCameraExposureControl__ExposureParameter) *core.QVariant)(parameter)
 				return f(parameter)
 			})
 		} else {
@@ -10878,7 +10878,7 @@ func (ptr *QCameraExposureControl) ConnectRequestedValue(f func(parameter QCamer
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestedValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestedValue", func(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
-				signal.(func(QCameraExposureControl__ExposureParameter))(parameter)
+				signal.(func(QCameraExposureControl__ExposureParameter) *core.QVariant)(parameter)
 				return f(parameter)
 			})
 		} else {
@@ -10929,7 +10929,7 @@ func (ptr *QCameraExposureControl) ConnectSupportedParameterRange(f func(paramet
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedParameterRange"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedParameterRange", func(parameter QCameraExposureControl__ExposureParameter, continuous bool) []*core.QVariant {
-				signal.(func(QCameraExposureControl__ExposureParameter, bool))(parameter, continuous)
+				signal.(func(QCameraExposureControl__ExposureParameter, bool) []*core.QVariant)(parameter, continuous)
 				return f(parameter, continuous)
 			})
 		} else {
@@ -10972,7 +10972,7 @@ func (ptr *QCameraExposureControl) ConnectIsParameterSupported(f func(parameter 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isParameterSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isParameterSupported", func(parameter QCameraExposureControl__ExposureParameter) bool {
-				signal.(func(QCameraExposureControl__ExposureParameter))(parameter)
+				signal.(func(QCameraExposureControl__ExposureParameter) bool)(parameter)
 				return f(parameter)
 			})
 		} else {
@@ -11093,7 +11093,7 @@ func (ptr *QCameraFeedbackControl) ConnectSetEventFeedbackEnabled(f func(event Q
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setEventFeedbackEnabled"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setEventFeedbackEnabled", func(event QCameraFeedbackControl__EventType, enabled bool) bool {
-				signal.(func(QCameraFeedbackControl__EventType, bool))(event, enabled)
+				signal.(func(QCameraFeedbackControl__EventType, bool) bool)(event, enabled)
 				return f(event, enabled)
 			})
 		} else {
@@ -11130,7 +11130,7 @@ func (ptr *QCameraFeedbackControl) ConnectSetEventFeedbackSound(f func(event QCa
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setEventFeedbackSound"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setEventFeedbackSound", func(event QCameraFeedbackControl__EventType, filePath string) bool {
-				signal.(func(QCameraFeedbackControl__EventType, string))(event, filePath)
+				signal.(func(QCameraFeedbackControl__EventType, string) bool)(event, filePath)
 				return f(event, filePath)
 			})
 		} else {
@@ -11215,7 +11215,7 @@ func (ptr *QCameraFeedbackControl) ConnectIsEventFeedbackEnabled(f func(event QC
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isEventFeedbackEnabled"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isEventFeedbackEnabled", func(event QCameraFeedbackControl__EventType) bool {
-				signal.(func(QCameraFeedbackControl__EventType))(event)
+				signal.(func(QCameraFeedbackControl__EventType) bool)(event)
 				return f(event)
 			})
 		} else {
@@ -11252,7 +11252,7 @@ func (ptr *QCameraFeedbackControl) ConnectIsEventFeedbackLocked(f func(event QCa
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isEventFeedbackLocked"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isEventFeedbackLocked", func(event QCameraFeedbackControl__EventType) bool {
-				signal.(func(QCameraFeedbackControl__EventType))(event)
+				signal.(func(QCameraFeedbackControl__EventType) bool)(event)
 				return f(event)
 			})
 		} else {
@@ -11417,7 +11417,7 @@ func (ptr *QCameraFlashControl) ConnectFlashMode(f func() QCameraExposure__Flash
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "flashMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flashMode", func() QCameraExposure__FlashMode {
-				signal.(func())()
+				signal.(func() QCameraExposure__FlashMode)()
 				return f()
 			})
 		} else {
@@ -11454,7 +11454,7 @@ func (ptr *QCameraFlashControl) ConnectIsFlashModeSupported(f func(mode QCameraE
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFlashModeSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFlashModeSupported", func(mode QCameraExposure__FlashMode) bool {
-				signal.(func(QCameraExposure__FlashMode))(mode)
+				signal.(func(QCameraExposure__FlashMode) bool)(mode)
 				return f(mode)
 			})
 		} else {
@@ -11491,7 +11491,7 @@ func (ptr *QCameraFlashControl) ConnectIsFlashReady(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFlashReady"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFlashReady", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -12457,7 +12457,7 @@ func (ptr *QCameraFocusControl) ConnectFocusMode(f func() QCameraFocus__FocusMod
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "focusMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "focusMode", func() QCameraFocus__FocusMode {
-				signal.(func())()
+				signal.(func() QCameraFocus__FocusMode)()
 				return f()
 			})
 		} else {
@@ -12494,7 +12494,7 @@ func (ptr *QCameraFocusControl) ConnectFocusPointMode(f func() QCameraFocus__Foc
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "focusPointMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "focusPointMode", func() QCameraFocus__FocusPointMode {
-				signal.(func())()
+				signal.(func() QCameraFocus__FocusPointMode)()
 				return f()
 			})
 		} else {
@@ -12531,7 +12531,7 @@ func (ptr *QCameraFocusControl) ConnectCustomFocusPoint(f func() *core.QPointF) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "customFocusPoint"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "customFocusPoint", func() *core.QPointF {
-				signal.(func())()
+				signal.(func() *core.QPointF)()
 				return f()
 			})
 		} else {
@@ -12570,7 +12570,7 @@ func (ptr *QCameraFocusControl) ConnectIsFocusModeSupported(f func(mode QCameraF
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFocusModeSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFocusModeSupported", func(mode QCameraFocus__FocusMode) bool {
-				signal.(func(QCameraFocus__FocusMode))(mode)
+				signal.(func(QCameraFocus__FocusMode) bool)(mode)
 				return f(mode)
 			})
 		} else {
@@ -12607,7 +12607,7 @@ func (ptr *QCameraFocusControl) ConnectIsFocusPointModeSupported(f func(mode QCa
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFocusPointModeSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFocusPointModeSupported", func(mode QCameraFocus__FocusPointMode) bool {
-				signal.(func(QCameraFocus__FocusPointMode))(mode)
+				signal.(func(QCameraFocus__FocusPointMode) bool)(mode)
 				return f(mode)
 			})
 		} else {
@@ -12809,7 +12809,7 @@ func (ptr *QCameraImageCapture) ConnectSetMediaObject(f func(mediaObject *QMedia
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject", func(mediaObject *QMediaObject) bool {
-				signal.(func(*QMediaObject))(mediaObject)
+				signal.(func(*QMediaObject) bool)(mediaObject)
 				return f(mediaObject)
 			})
 		} else {
@@ -12853,7 +12853,7 @@ func (ptr *QCameraImageCapture) ConnectCapture(f func(file string) int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "capture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "capture", func(file string) int {
-				signal.(func(string))(file)
+				signal.(func(string) int)(file)
 				return f(file)
 			})
 		} else {
@@ -13390,7 +13390,7 @@ func (ptr *QCameraImageCapture) ConnectMediaObject(f func() *QMediaObject) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaObject", func() *QMediaObject {
-				signal.(func())()
+				signal.(func() *QMediaObject)()
 				return f()
 			})
 		} else {
@@ -13903,7 +13903,7 @@ func (ptr *QCameraImageCaptureControl) ConnectCapture(f func(fileName string) in
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "capture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "capture", func(fileName string) int {
-				signal.(func(string))(fileName)
+				signal.(func(string) int)(fileName)
 				return f(fileName)
 			})
 		} else {
@@ -14311,7 +14311,7 @@ func (ptr *QCameraImageCaptureControl) ConnectDriveMode(f func() QCameraImageCap
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "driveMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "driveMode", func() QCameraImageCapture__DriveMode {
-				signal.(func())()
+				signal.(func() QCameraImageCapture__DriveMode)()
 				return f()
 			})
 		} else {
@@ -14348,7 +14348,7 @@ func (ptr *QCameraImageCaptureControl) ConnectIsReadyForCapture(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isReadyForCapture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isReadyForCapture", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -14961,7 +14961,7 @@ func (ptr *QCameraImageProcessingControl) ConnectParameter(f func(parameter QCam
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "parameter"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "parameter", func(parameter QCameraImageProcessingControl__ProcessingParameter) *core.QVariant {
-				signal.(func(QCameraImageProcessingControl__ProcessingParameter))(parameter)
+				signal.(func(QCameraImageProcessingControl__ProcessingParameter) *core.QVariant)(parameter)
 				return f(parameter)
 			})
 		} else {
@@ -15000,7 +15000,7 @@ func (ptr *QCameraImageProcessingControl) ConnectIsParameterSupported(f func(par
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isParameterSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isParameterSupported", func(parameter QCameraImageProcessingControl__ProcessingParameter) bool {
-				signal.(func(QCameraImageProcessingControl__ProcessingParameter))(parameter)
+				signal.(func(QCameraImageProcessingControl__ProcessingParameter) bool)(parameter)
 				return f(parameter)
 			})
 		} else {
@@ -15037,7 +15037,7 @@ func (ptr *QCameraImageProcessingControl) ConnectIsParameterValueSupported(f fun
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isParameterValueSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isParameterValueSupported", func(parameter QCameraImageProcessingControl__ProcessingParameter, value *core.QVariant) bool {
-				signal.(func(QCameraImageProcessingControl__ProcessingParameter, *core.QVariant))(parameter, value)
+				signal.(func(QCameraImageProcessingControl__ProcessingParameter, *core.QVariant) bool)(parameter, value)
 				return f(parameter, value)
 			})
 		} else {
@@ -15314,7 +15314,7 @@ func (ptr *QCameraInfoControl) ConnectCameraPosition(f func(deviceName string) Q
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cameraPosition"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cameraPosition", func(deviceName string) QCamera__Position {
-				signal.(func(string))(deviceName)
+				signal.(func(string) QCamera__Position)(deviceName)
 				return f(deviceName)
 			})
 		} else {
@@ -15356,7 +15356,7 @@ func (ptr *QCameraInfoControl) ConnectCameraOrientation(f func(deviceName string
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cameraOrientation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cameraOrientation", func(deviceName string) int {
-				signal.(func(string))(deviceName)
+				signal.(func(string) int)(deviceName)
 				return f(deviceName)
 			})
 		} else {
@@ -15561,7 +15561,7 @@ func (ptr *QCameraLocksControl) ConnectLockStatus(f func(lock QCamera__LockType)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "lockStatus"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "lockStatus", func(lock QCamera__LockType) QCamera__LockStatus {
-				signal.(func(QCamera__LockType))(lock)
+				signal.(func(QCamera__LockType) QCamera__LockStatus)(lock)
 				return f(lock)
 			})
 		} else {
@@ -15598,7 +15598,7 @@ func (ptr *QCameraLocksControl) ConnectSupportedLocks(f func() QCamera__LockType
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedLocks"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedLocks", func() QCamera__LockType {
-				signal.(func())()
+				signal.(func() QCamera__LockType)()
 				return f()
 			})
 		} else {
@@ -15681,7 +15681,7 @@ func (ptr *QCameraViewfinder) ConnectSetMediaObject(f func(object *QMediaObject)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject", func(object *QMediaObject) bool {
-				signal.(func(*QMediaObject))(object)
+				signal.(func(*QMediaObject) bool)(object)
 				return f(object)
 			})
 		} else {
@@ -15986,7 +15986,7 @@ func (ptr *QCameraViewfinderSettingsControl) ConnectViewfinderParameter(f func(p
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "viewfinderParameter"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "viewfinderParameter", func(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) *core.QVariant {
-				signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter))(parameter)
+				signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter) *core.QVariant)(parameter)
 				return f(parameter)
 			})
 		} else {
@@ -16025,7 +16025,7 @@ func (ptr *QCameraViewfinderSettingsControl) ConnectIsViewfinderParameterSupport
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isViewfinderParameterSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isViewfinderParameterSupported", func(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) bool {
-				signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter))(parameter)
+				signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter) bool)(parameter)
 				return f(parameter)
 			})
 		} else {
@@ -16189,7 +16189,7 @@ func (ptr *QCameraViewfinderSettingsControl2) ConnectViewfinderSettings(f func()
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "viewfinderSettings"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "viewfinderSettings", func() *QCameraViewfinderSettings {
-				signal.(func())()
+				signal.(func() *QCameraViewfinderSettings)()
 				return f()
 			})
 		} else {
@@ -16240,7 +16240,7 @@ func (ptr *QCameraViewfinderSettingsControl2) ConnectSupportedViewfinderSettings
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedViewfinderSettings"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedViewfinderSettings", func() []*QCameraViewfinderSettings {
-				signal.(func())()
+				signal.(func() []*QCameraViewfinderSettings)()
 				return f()
 			})
 		} else {
@@ -16625,7 +16625,7 @@ func (ptr *QCameraZoomControl) ConnectCurrentDigitalZoom(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "currentDigitalZoom"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "currentDigitalZoom", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -16662,7 +16662,7 @@ func (ptr *QCameraZoomControl) ConnectCurrentOpticalZoom(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "currentOpticalZoom"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "currentOpticalZoom", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -16699,7 +16699,7 @@ func (ptr *QCameraZoomControl) ConnectMaximumDigitalZoom(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "maximumDigitalZoom"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "maximumDigitalZoom", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -16736,7 +16736,7 @@ func (ptr *QCameraZoomControl) ConnectMaximumOpticalZoom(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "maximumOpticalZoom"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "maximumOpticalZoom", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -16773,7 +16773,7 @@ func (ptr *QCameraZoomControl) ConnectRequestedDigitalZoom(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestedDigitalZoom"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestedDigitalZoom", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -16810,7 +16810,7 @@ func (ptr *QCameraZoomControl) ConnectRequestedOpticalZoom(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestedOpticalZoom"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestedOpticalZoom", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -17003,7 +17003,7 @@ func (ptr *QGraphicsVideoItem) ConnectMediaObject(f func() *QMediaObject) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaObject", func() *QMediaObject {
-				signal.(func())()
+				signal.(func() *QMediaObject)()
 				return f()
 			})
 		} else {
@@ -17064,7 +17064,7 @@ func (ptr *QGraphicsVideoItem) ConnectBoundingRect(f func() *core.QRectF) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "boundingRect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "boundingRect", func() *core.QRectF {
-				signal.(func())()
+				signal.(func() *core.QRectF)()
 				return f()
 			})
 		} else {
@@ -18442,7 +18442,7 @@ func (ptr *QImageEncoderControl) ConnectImageSettings(f func() *QImageEncoderSet
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "imageSettings"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "imageSettings", func() *QImageEncoderSettings {
-				signal.(func())()
+				signal.(func() *QImageEncoderSettings)()
 				return f()
 			})
 		} else {
@@ -18493,7 +18493,7 @@ func (ptr *QImageEncoderControl) ConnectSupportedResolutions(f func(settings *QI
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedResolutions"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedResolutions", func(settings *QImageEncoderSettings, continuous bool) []*core.QSize {
-				signal.(func(*QImageEncoderSettings, bool))(settings, continuous)
+				signal.(func(*QImageEncoderSettings, bool) []*core.QSize)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -18536,7 +18536,7 @@ func (ptr *QImageEncoderControl) ConnectImageCodecDescription(f func(codec strin
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "imageCodecDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "imageCodecDescription", func(codec string) string {
-				signal.(func(string))(codec)
+				signal.(func(string) string)(codec)
 				return f(codec)
 			})
 		} else {
@@ -18578,7 +18578,7 @@ func (ptr *QImageEncoderControl) ConnectSupportedImageCodecs(f func() []string) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedImageCodecs"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedImageCodecs", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -19190,7 +19190,7 @@ func (ptr *QMediaAvailabilityControl) ConnectAvailability(f func() QMultimedia__
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "availability"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "availability", func() QMultimedia__AvailabilityStatus {
-				signal.(func())()
+				signal.(func() QMultimedia__AvailabilityStatus)()
 				return f()
 			})
 		} else {
@@ -19265,7 +19265,7 @@ func (ptr *QMediaBindableInterface) ConnectSetMediaObject(f func(object *QMediaO
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject", func(object *QMediaObject) bool {
-				signal.(func(*QMediaObject))(object)
+				signal.(func(*QMediaObject) bool)(object)
 				return f(object)
 			})
 		} else {
@@ -19348,7 +19348,7 @@ func (ptr *QMediaBindableInterface) ConnectMediaObject(f func() *QMediaObject) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaObject", func() *QMediaObject {
-				signal.(func())()
+				signal.(func() *QMediaObject)()
 				return f()
 			})
 		} else {
@@ -19521,7 +19521,7 @@ func (ptr *QMediaContainerControl) ConnectContainerDescription(f func(format str
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "containerDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "containerDescription", func(format string) string {
-				signal.(func(string))(format)
+				signal.(func(string) string)(format)
 				return f(format)
 			})
 		} else {
@@ -19563,7 +19563,7 @@ func (ptr *QMediaContainerControl) ConnectContainerFormat(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "containerFormat"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "containerFormat", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -19600,7 +19600,7 @@ func (ptr *QMediaContainerControl) ConnectSupportedContainers(f func() []string)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedContainers"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedContainers", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -20417,7 +20417,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectNextMedia(f func() *QMediaConten
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextMedia"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextMedia", func() *QMediaContent {
-				signal.(func())()
+				signal.(func() *QMediaContent)()
 				return f()
 			})
 		} else {
@@ -20456,7 +20456,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectIsCrossfadeSupported(f func() bo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isCrossfadeSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isCrossfadeSupported", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -20493,7 +20493,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectCrossfadeTime(f func() float64) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "crossfadeTime"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "crossfadeTime", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -20701,7 +20701,7 @@ func (ptr *QMediaNetworkAccessControl) ConnectCurrentConfiguration(f func() *net
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "currentConfiguration"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "currentConfiguration", func() *network.QNetworkConfiguration {
-				signal.(func())()
+				signal.(func() *network.QNetworkConfiguration)()
 				return f()
 			})
 		} else {
@@ -20805,7 +20805,7 @@ func (ptr *QMediaObject) ConnectBind(f func(object *core.QObject) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "bind"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "bind", func(object *core.QObject) bool {
-				signal.(func(*core.QObject))(object)
+				signal.(func(*core.QObject) bool)(object)
 				return f(object)
 			})
 		} else {
@@ -21156,7 +21156,7 @@ func (ptr *QMediaObject) ConnectService(f func() *QMediaService) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "service"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "service", func() *QMediaService {
-				signal.(func())()
+				signal.(func() *QMediaService)()
 				return f()
 			})
 		} else {
@@ -21208,7 +21208,7 @@ func (ptr *QMediaObject) ConnectAvailability(f func() QMultimedia__AvailabilityS
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "availability"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "availability", func() QMultimedia__AvailabilityStatus {
-				signal.(func())()
+				signal.(func() QMultimedia__AvailabilityStatus)()
 				return f()
 			})
 		} else {
@@ -21273,7 +21273,7 @@ func (ptr *QMediaObject) ConnectIsAvailable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isAvailable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isAvailable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -23890,7 +23890,7 @@ func (ptr *QMediaPlayerControl) ConnectMedia(f func() *QMediaContent) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "media"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "media", func() *QMediaContent {
-				signal.(func())()
+				signal.(func() *QMediaContent)()
 				return f()
 			})
 		} else {
@@ -23929,7 +23929,7 @@ func (ptr *QMediaPlayerControl) ConnectMediaStatus(f func() QMediaPlayer__MediaS
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaStatus"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaStatus", func() QMediaPlayer__MediaStatus {
-				signal.(func())()
+				signal.(func() QMediaPlayer__MediaStatus)()
 				return f()
 			})
 		} else {
@@ -23966,7 +23966,7 @@ func (ptr *QMediaPlayerControl) ConnectState(f func() QMediaPlayer__State) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "state"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "state", func() QMediaPlayer__State {
-				signal.(func())()
+				signal.(func() QMediaPlayer__State)()
 				return f()
 			})
 		} else {
@@ -24003,7 +24003,7 @@ func (ptr *QMediaPlayerControl) ConnectAvailablePlaybackRanges(f func() *QMediaT
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "availablePlaybackRanges"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "availablePlaybackRanges", func() *QMediaTimeRange {
-				signal.(func())()
+				signal.(func() *QMediaTimeRange)()
 				return f()
 			})
 		} else {
@@ -24042,7 +24042,7 @@ func (ptr *QMediaPlayerControl) ConnectIsAudioAvailable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isAudioAvailable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isAudioAvailable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -24079,7 +24079,7 @@ func (ptr *QMediaPlayerControl) ConnectIsMuted(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isMuted"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isMuted", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -24116,7 +24116,7 @@ func (ptr *QMediaPlayerControl) ConnectIsSeekable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isSeekable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isSeekable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -24153,7 +24153,7 @@ func (ptr *QMediaPlayerControl) ConnectIsVideoAvailable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isVideoAvailable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isVideoAvailable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -24190,7 +24190,7 @@ func (ptr *QMediaPlayerControl) ConnectMediaStream(f func() *core.QIODevice) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaStream"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaStream", func() *core.QIODevice {
-				signal.(func())()
+				signal.(func() *core.QIODevice)()
 				return f()
 			})
 		} else {
@@ -24231,7 +24231,7 @@ func (ptr *QMediaPlayerControl) ConnectBufferStatus(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "bufferStatus"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "bufferStatus", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -24268,7 +24268,7 @@ func (ptr *QMediaPlayerControl) ConnectVolume(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "volume"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "volume", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -24305,7 +24305,7 @@ func (ptr *QMediaPlayerControl) ConnectDuration(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "duration"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "duration", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -24342,7 +24342,7 @@ func (ptr *QMediaPlayerControl) ConnectPosition(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "position"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "position", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -24379,7 +24379,7 @@ func (ptr *QMediaPlayerControl) ConnectPlaybackRate(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "playbackRate"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "playbackRate", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -25257,7 +25257,7 @@ func (ptr *QMediaPlaylist) ConnectMediaObject(f func() *QMediaObject) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaObject", func() *QMediaObject {
-				signal.(func())()
+				signal.(func() *QMediaObject)()
 				return f()
 			})
 		} else {
@@ -26660,7 +26660,7 @@ func (ptr *QMediaRecorder) ConnectMediaObject(f func() *QMediaObject) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaObject", func() *QMediaObject {
-				signal.(func())()
+				signal.(func() *QMediaObject)()
 				return f()
 			})
 		} else {
@@ -27334,7 +27334,7 @@ func (ptr *QMediaRecorderControl) ConnectSetOutputLocation(f func(location *core
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setOutputLocation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setOutputLocation", func(location *core.QUrl) bool {
-				signal.(func(*core.QUrl))(location)
+				signal.(func(*core.QUrl) bool)(location)
 				return f(location)
 			})
 		} else {
@@ -27835,7 +27835,7 @@ func (ptr *QMediaRecorderControl) ConnectState(f func() QMediaRecorder__State) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "state"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "state", func() QMediaRecorder__State {
-				signal.(func())()
+				signal.(func() QMediaRecorder__State)()
 				return f()
 			})
 		} else {
@@ -27872,7 +27872,7 @@ func (ptr *QMediaRecorderControl) ConnectStatus(f func() QMediaRecorder__Status)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "status"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "status", func() QMediaRecorder__Status {
-				signal.(func())()
+				signal.(func() QMediaRecorder__Status)()
 				return f()
 			})
 		} else {
@@ -27909,7 +27909,7 @@ func (ptr *QMediaRecorderControl) ConnectOutputLocation(f func() *core.QUrl) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "outputLocation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "outputLocation", func() *core.QUrl {
-				signal.(func())()
+				signal.(func() *core.QUrl)()
 				return f()
 			})
 		} else {
@@ -27948,7 +27948,7 @@ func (ptr *QMediaRecorderControl) ConnectIsMuted(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isMuted"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isMuted", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -27985,7 +27985,7 @@ func (ptr *QMediaRecorderControl) ConnectDuration(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "duration"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "duration", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -28022,7 +28022,7 @@ func (ptr *QMediaRecorderControl) ConnectVolume(f func() float64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "volume"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "volume", func() float64 {
-				signal.(func())()
+				signal.(func() float64)()
 				return f()
 			})
 		} else {
@@ -28348,7 +28348,7 @@ func (ptr *QMediaService) ConnectRequestControl(f func(interfa string) *QMediaCo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestControl"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestControl", func(interfa string) *QMediaControl {
-				signal.(func(string))(interfa)
+				signal.(func(string) *QMediaControl)(interfa)
 				return f(interfa)
 			})
 		} else {
@@ -28799,7 +28799,7 @@ func (ptr *QMediaServiceCameraInfoInterface) ConnectCameraPosition(f func(device
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cameraPosition"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cameraPosition", func(device *core.QByteArray) QCamera__Position {
-				signal.(func(*core.QByteArray))(device)
+				signal.(func(*core.QByteArray) QCamera__Position)(device)
 				return f(device)
 			})
 		} else {
@@ -28836,7 +28836,7 @@ func (ptr *QMediaServiceCameraInfoInterface) ConnectCameraOrientation(f func(dev
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cameraOrientation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cameraOrientation", func(device *core.QByteArray) int {
-				signal.(func(*core.QByteArray))(device)
+				signal.(func(*core.QByteArray) int)(device)
 				return f(device)
 			})
 		} else {
@@ -28957,7 +28957,7 @@ func (ptr *QMediaServiceDefaultDeviceInterface) ConnectDefaultDevice(f func(serv
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "defaultDevice"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "defaultDevice", func(service *core.QByteArray) *core.QByteArray {
-				signal.(func(*core.QByteArray))(service)
+				signal.(func(*core.QByteArray) *core.QByteArray)(service)
 				return f(service)
 			})
 		} else {
@@ -29127,7 +29127,7 @@ func (ptr *QMediaServiceProviderPlugin) ConnectCreate(f func(key string) *QMedia
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "create"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "create", func(key string) *QMediaService {
-				signal.(func(string))(key)
+				signal.(func(string) *QMediaService)(key)
 				return f(key)
 			})
 		} else {
@@ -29505,7 +29505,7 @@ func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDeviceDescription(f fu
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deviceDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDescription", func(service *core.QByteArray, device *core.QByteArray) string {
-				signal.(func(*core.QByteArray, *core.QByteArray))(service, device)
+				signal.(func(*core.QByteArray, *core.QByteArray) string)(service, device)
 				return f(service, device)
 			})
 		} else {
@@ -29600,7 +29600,7 @@ func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDevices(f func(service
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "devices"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "devices", func(service *core.QByteArray) []*core.QByteArray {
-				signal.(func(*core.QByteArray))(service)
+				signal.(func(*core.QByteArray) []*core.QByteArray)(service)
 				return f(service)
 			})
 		} else {
@@ -29746,7 +29746,7 @@ func (ptr *QMediaServiceSupportedFormatsInterface) ConnectHasSupport(f func(mime
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasSupport"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasSupport", func(mimeType string, codecs []string) QMultimedia__SupportEstimate {
-				signal.(func(string, []string))(mimeType, codecs)
+				signal.(func(string, []string) QMultimedia__SupportEstimate)(mimeType, codecs)
 				return f(mimeType, codecs)
 			})
 		} else {
@@ -29790,7 +29790,7 @@ func (ptr *QMediaServiceSupportedFormatsInterface) ConnectSupportedMimeTypes(f f
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedMimeTypes"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedMimeTypes", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -29886,7 +29886,7 @@ func (ptr *QMediaStreamsControl) ConnectMetaData(f func(stream int, key string) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", func(stream int, key string) *core.QVariant {
-				signal.(func(int, string))(stream, key)
+				signal.(func(int, string) *core.QVariant)(stream, key)
 				return f(stream, key)
 			})
 		} else {
@@ -29930,7 +29930,7 @@ func (ptr *QMediaStreamsControl) ConnectStreamType(f func(stream int) QMediaStre
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "streamType"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "streamType", func(stream int) QMediaStreamsControl__StreamType {
-				signal.(func(int))(stream)
+				signal.(func(int) QMediaStreamsControl__StreamType)(stream)
 				return f(stream)
 			})
 		} else {
@@ -29967,7 +29967,7 @@ func (ptr *QMediaStreamsControl) ConnectIsActive(f func(stream int) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isActive"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isActive", func(stream int) bool {
-				signal.(func(int))(stream)
+				signal.(func(int) bool)(stream)
 				return f(stream)
 			})
 		} else {
@@ -30004,7 +30004,7 @@ func (ptr *QMediaStreamsControl) ConnectStreamCount(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "streamCount"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "streamCount", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -30832,7 +30832,7 @@ func (ptr *QMetaDataReaderControl) ConnectAvailableMetaData(f func() []string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "availableMetaData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "availableMetaData", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -30869,7 +30869,7 @@ func (ptr *QMetaDataReaderControl) ConnectMetaData(f func(key string) *core.QVar
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", func(key string) *core.QVariant {
-				signal.(func(string))(key)
+				signal.(func(string) *core.QVariant)(key)
 				return f(key)
 			})
 		} else {
@@ -30913,7 +30913,7 @@ func (ptr *QMetaDataReaderControl) ConnectIsMetaDataAvailable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isMetaDataAvailable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isMetaDataAvailable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -31205,7 +31205,7 @@ func (ptr *QMetaDataWriterControl) ConnectAvailableMetaData(f func() []string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "availableMetaData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "availableMetaData", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -31242,7 +31242,7 @@ func (ptr *QMetaDataWriterControl) ConnectMetaData(f func(key string) *core.QVar
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", func(key string) *core.QVariant {
-				signal.(func(string))(key)
+				signal.(func(string) *core.QVariant)(key)
 				return f(key)
 			})
 		} else {
@@ -31286,7 +31286,7 @@ func (ptr *QMetaDataWriterControl) ConnectIsMetaDataAvailable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isMetaDataAvailable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isMetaDataAvailable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -31323,7 +31323,7 @@ func (ptr *QMetaDataWriterControl) ConnectIsWritable(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isWritable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isWritable", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -31608,7 +31608,7 @@ func (ptr *QRadioData) ConnectSetMediaObject(f func(mediaObject *QMediaObject) b
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setMediaObject", func(mediaObject *QMediaObject) bool {
-				signal.(func(*QMediaObject))(mediaObject)
+				signal.(func(*QMediaObject) bool)(mediaObject)
 				return f(mediaObject)
 			})
 		} else {
@@ -31967,7 +31967,7 @@ func (ptr *QRadioData) ConnectMediaObject(f func() *QMediaObject) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaObject", func() *QMediaObject {
-				signal.(func())()
+				signal.(func() *QMediaObject)()
 				return f()
 			})
 		} else {
@@ -32768,7 +32768,7 @@ func (ptr *QRadioDataControl) ConnectError(f func() QRadioData__Error) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func() QRadioData__Error {
-				signal.(func())()
+				signal.(func() QRadioData__Error)()
 				return f()
 			})
 		} else {
@@ -32805,7 +32805,7 @@ func (ptr *QRadioDataControl) ConnectProgramType(f func() QRadioData__ProgramTyp
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "programType"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "programType", func() QRadioData__ProgramType {
-				signal.(func())()
+				signal.(func() QRadioData__ProgramType)()
 				return f()
 			})
 		} else {
@@ -32842,7 +32842,7 @@ func (ptr *QRadioDataControl) ConnectErrorString(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "errorString"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -32879,7 +32879,7 @@ func (ptr *QRadioDataControl) ConnectProgramTypeName(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "programTypeName"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "programTypeName", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -32916,7 +32916,7 @@ func (ptr *QRadioDataControl) ConnectRadioText(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "radioText"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "radioText", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -32953,7 +32953,7 @@ func (ptr *QRadioDataControl) ConnectStationId(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stationId"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stationId", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -32990,7 +32990,7 @@ func (ptr *QRadioDataControl) ConnectStationName(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stationName"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stationName", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -33027,7 +33027,7 @@ func (ptr *QRadioDataControl) ConnectIsAlternativeFrequenciesEnabled(f func() bo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isAlternativeFrequenciesEnabled"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isAlternativeFrequenciesEnabled", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -35005,7 +35005,7 @@ func (ptr *QRadioTunerControl) ConnectBand(f func() QRadioTuner__Band) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "band"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "band", func() QRadioTuner__Band {
-				signal.(func())()
+				signal.(func() QRadioTuner__Band)()
 				return f()
 			})
 		} else {
@@ -35042,7 +35042,7 @@ func (ptr *QRadioTunerControl) ConnectError(f func() QRadioTuner__Error) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func() QRadioTuner__Error {
-				signal.(func())()
+				signal.(func() QRadioTuner__Error)()
 				return f()
 			})
 		} else {
@@ -35079,7 +35079,7 @@ func (ptr *QRadioTunerControl) ConnectState(f func() QRadioTuner__State) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "state"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "state", func() QRadioTuner__State {
-				signal.(func())()
+				signal.(func() QRadioTuner__State)()
 				return f()
 			})
 		} else {
@@ -35116,7 +35116,7 @@ func (ptr *QRadioTunerControl) ConnectStereoMode(f func() QRadioTuner__StereoMod
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stereoMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stereoMode", func() QRadioTuner__StereoMode {
-				signal.(func())()
+				signal.(func() QRadioTuner__StereoMode)()
 				return f()
 			})
 		} else {
@@ -35153,7 +35153,7 @@ func (ptr *QRadioTunerControl) ConnectErrorString(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "errorString"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -35190,7 +35190,7 @@ func (ptr *QRadioTunerControl) ConnectIsAntennaConnected(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isAntennaConnected"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isAntennaConnected", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -35234,7 +35234,7 @@ func (ptr *QRadioTunerControl) ConnectIsBandSupported(f func(band QRadioTuner__B
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isBandSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isBandSupported", func(band QRadioTuner__Band) bool {
-				signal.(func(QRadioTuner__Band))(band)
+				signal.(func(QRadioTuner__Band) bool)(band)
 				return f(band)
 			})
 		} else {
@@ -35271,7 +35271,7 @@ func (ptr *QRadioTunerControl) ConnectIsMuted(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isMuted"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isMuted", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -35308,7 +35308,7 @@ func (ptr *QRadioTunerControl) ConnectIsSearching(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isSearching"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isSearching", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -35345,7 +35345,7 @@ func (ptr *QRadioTunerControl) ConnectIsStereo(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isStereo"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isStereo", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -35382,7 +35382,7 @@ func (ptr *QRadioTunerControl) ConnectFrequency(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "frequency"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "frequency", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -35419,7 +35419,7 @@ func (ptr *QRadioTunerControl) ConnectFrequencyStep(f func(band QRadioTuner__Ban
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "frequencyStep"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "frequencyStep", func(band QRadioTuner__Band) int {
-				signal.(func(QRadioTuner__Band))(band)
+				signal.(func(QRadioTuner__Band) int)(band)
 				return f(band)
 			})
 		} else {
@@ -35456,7 +35456,7 @@ func (ptr *QRadioTunerControl) ConnectSignalStrength(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "signalStrength"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "signalStrength", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -35493,7 +35493,7 @@ func (ptr *QRadioTunerControl) ConnectVolume(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "volume"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "volume", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -37118,7 +37118,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDeviceDescription(f func(index in
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deviceDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceDescription", func(index int) string {
-				signal.(func(int))(index)
+				signal.(func(int) string)(index)
 				return f(index)
 			})
 		} else {
@@ -37155,7 +37155,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDeviceName(f func(index int) stri
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deviceName"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceName", func(index int) string {
-				signal.(func(int))(index)
+				signal.(func(int) string)(index)
 				return f(index)
 			})
 		} else {
@@ -37192,7 +37192,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDefaultDevice(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "defaultDevice"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "defaultDevice", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -37229,7 +37229,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDeviceCount(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deviceCount"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deviceCount", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -37266,7 +37266,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectSelectedDevice(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "selectedDevice"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "selectedDevice", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -37774,7 +37774,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectSupportedResolutions(f func(sett
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedResolutions"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedResolutions", func(settings *QVideoEncoderSettings, continuous bool) []*core.QSize {
-				signal.(func(*QVideoEncoderSettings, bool))(settings, continuous)
+				signal.(func(*QVideoEncoderSettings, bool) []*core.QSize)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -37829,7 +37829,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectSupportedFrameRates(f func(setti
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedFrameRates"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedFrameRates", func(settings *QVideoEncoderSettings, continuous bool) []float64 {
-				signal.(func(*QVideoEncoderSettings, bool))(settings, continuous)
+				signal.(func(*QVideoEncoderSettings, bool) []float64)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -37872,7 +37872,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectVideoCodecDescription(f func(cod
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "videoCodecDescription"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "videoCodecDescription", func(codec string) string {
-				signal.(func(string))(codec)
+				signal.(func(string) string)(codec)
 				return f(codec)
 			})
 		} else {
@@ -37914,7 +37914,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectSupportedVideoCodecs(f func() []
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedVideoCodecs"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedVideoCodecs", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -37951,7 +37951,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectVideoSettings(f func() *QVideoEn
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "videoSettings"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "videoSettings", func() *QVideoEncoderSettings {
-				signal.(func())()
+				signal.(func() *QVideoEncoderSettings)()
 				return f()
 			})
 		} else {
@@ -38080,7 +38080,7 @@ func (ptr *QVideoFilterRunnable) ConnectRun(f func(input *QVideoFrame, surfaceFo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "run"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "run", func(input *QVideoFrame, surfaceFormat *QVideoSurfaceFormat, flags QVideoFilterRunnable__RunFlag) *QVideoFrame {
-				signal.(func(*QVideoFrame, *QVideoSurfaceFormat, QVideoFilterRunnable__RunFlag))(input, surfaceFormat, flags)
+				signal.(func(*QVideoFrame, *QVideoSurfaceFormat, QVideoFilterRunnable__RunFlag) *QVideoFrame)(input, surfaceFormat, flags)
 				return f(input, surfaceFormat, flags)
 			})
 		} else {
@@ -39054,7 +39054,7 @@ func (ptr *QVideoRendererControl) ConnectSurface(f func() *QAbstractVideoSurface
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "surface"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "surface", func() *QAbstractVideoSurface {
-				signal.(func())()
+				signal.(func() *QAbstractVideoSurface)()
 				return f()
 			})
 		} else {
@@ -39426,7 +39426,7 @@ func (ptr *QVideoWidget) ConnectEvent(f func(event *core.QEvent) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "event"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "event", func(event *core.QEvent) bool {
-				signal.(func(*core.QEvent))(event)
+				signal.(func(*core.QEvent) bool)(event)
 				return f(event)
 			})
 		} else {
@@ -40135,7 +40135,7 @@ func (ptr *QVideoWidget) ConnectMediaObject(f func() *QMediaObject) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mediaObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mediaObject", func() *QMediaObject {
-				signal.(func())()
+				signal.(func() *QMediaObject)()
 				return f()
 			})
 		} else {
@@ -40187,7 +40187,7 @@ func (ptr *QVideoWidget) ConnectSizeHint(f func() *core.QSize) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sizeHint"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sizeHint", func() *core.QSize {
-				signal.(func())()
+				signal.(func() *core.QSize)()
 				return f()
 			})
 		} else {
@@ -41803,7 +41803,7 @@ func (ptr *QVideoWidgetControl) ConnectVideoWidget(f func() *widgets.QWidget) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "videoWidget"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "videoWidget", func() *widgets.QWidget {
-				signal.(func())()
+				signal.(func() *widgets.QWidget)()
 				return f()
 			})
 		} else {
@@ -42295,7 +42295,7 @@ func (ptr *QVideoWidgetControl) ConnectAspectRatioMode(f func() core.Qt__AspectR
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "aspectRatioMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "aspectRatioMode", func() core.Qt__AspectRatioMode {
-				signal.(func())()
+				signal.(func() core.Qt__AspectRatioMode)()
 				return f()
 			})
 		} else {
@@ -42332,7 +42332,7 @@ func (ptr *QVideoWidgetControl) ConnectIsFullScreen(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFullScreen"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFullScreen", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -42369,7 +42369,7 @@ func (ptr *QVideoWidgetControl) ConnectBrightness(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "brightness"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "brightness", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -42406,7 +42406,7 @@ func (ptr *QVideoWidgetControl) ConnectContrast(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "contrast"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contrast", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -42443,7 +42443,7 @@ func (ptr *QVideoWidgetControl) ConnectHue(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hue", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -42480,7 +42480,7 @@ func (ptr *QVideoWidgetControl) ConnectSaturation(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "saturation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "saturation", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -43120,7 +43120,7 @@ func (ptr *QVideoWindowControl) ConnectDisplayRect(f func() *core.QRect) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "displayRect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "displayRect", func() *core.QRect {
-				signal.(func())()
+				signal.(func() *core.QRect)()
 				return f()
 			})
 		} else {
@@ -43159,7 +43159,7 @@ func (ptr *QVideoWindowControl) ConnectNativeSize(f func() *core.QSize) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nativeSize"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nativeSize", func() *core.QSize {
-				signal.(func())()
+				signal.(func() *core.QSize)()
 				return f()
 			})
 		} else {
@@ -43198,7 +43198,7 @@ func (ptr *QVideoWindowControl) ConnectAspectRatioMode(f func() core.Qt__AspectR
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "aspectRatioMode"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "aspectRatioMode", func() core.Qt__AspectRatioMode {
-				signal.(func())()
+				signal.(func() core.Qt__AspectRatioMode)()
 				return f()
 			})
 		} else {
@@ -43235,7 +43235,7 @@ func (ptr *QVideoWindowControl) ConnectWinId(f func() uintptr) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "winId"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "winId", func() uintptr {
-				signal.(func())()
+				signal.(func() uintptr)()
 				return f()
 			})
 		} else {
@@ -43272,7 +43272,7 @@ func (ptr *QVideoWindowControl) ConnectIsFullScreen(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFullScreen"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFullScreen", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -43309,7 +43309,7 @@ func (ptr *QVideoWindowControl) ConnectBrightness(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "brightness"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "brightness", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -43346,7 +43346,7 @@ func (ptr *QVideoWindowControl) ConnectContrast(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "contrast"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contrast", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -43383,7 +43383,7 @@ func (ptr *QVideoWindowControl) ConnectHue(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hue", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -43420,7 +43420,7 @@ func (ptr *QVideoWindowControl) ConnectSaturation(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "saturation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "saturation", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {

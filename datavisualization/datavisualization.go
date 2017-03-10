@@ -6788,7 +6788,7 @@ func (ptr *QAbstract3DGraph) ConnectShadowsSupported(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shadowsSupported"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shadowsSupported", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -18749,7 +18749,7 @@ func (ptr *QValue3DAxisFormatter) ConnectStringForValue(f func(value float64, fo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stringForValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stringForValue", func(value float64, format string) string {
-				signal.(func(float64, string))(value, format)
+				signal.(func(float64, string) string)(value, format)
 				return f(value, format)
 			})
 		} else {
@@ -18817,7 +18817,7 @@ func (ptr *QValue3DAxisFormatter) ConnectCreateNewInstance(f func() *QValue3DAxi
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createNewInstance"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createNewInstance", func() *QValue3DAxisFormatter {
-				signal.(func())()
+				signal.(func() *QValue3DAxisFormatter)()
 				return f()
 			})
 		} else {
@@ -18914,7 +18914,7 @@ func (ptr *QValue3DAxisFormatter) ConnectPositionAt(f func(value float32) float3
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "positionAt"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "positionAt", func(value float32) float32 {
-				signal.(func(float32))(value)
+				signal.(func(float32) float32)(value)
 				return f(value)
 			})
 		} else {
@@ -18958,7 +18958,7 @@ func (ptr *QValue3DAxisFormatter) ConnectValueAt(f func(position float32) float3
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "valueAt"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "valueAt", func(position float32) float32 {
-				signal.(func(float32))(position)
+				signal.(func(float32) float32)(position)
 				return f(position)
 			})
 		} else {

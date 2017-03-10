@@ -77,7 +77,7 @@ func (ptr *QUiLoader) ConnectCreateAction(f func(parent *core.QObject, name stri
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createAction"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createAction", func(parent *core.QObject, name string) *widgets.QAction {
-				signal.(func(*core.QObject, string))(parent, name)
+				signal.(func(*core.QObject, string) *widgets.QAction)(parent, name)
 				return f(parent, name)
 			})
 		} else {
@@ -139,7 +139,7 @@ func (ptr *QUiLoader) ConnectCreateActionGroup(f func(parent *core.QObject, name
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createActionGroup"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createActionGroup", func(parent *core.QObject, name string) *widgets.QActionGroup {
-				signal.(func(*core.QObject, string))(parent, name)
+				signal.(func(*core.QObject, string) *widgets.QActionGroup)(parent, name)
 				return f(parent, name)
 			})
 		} else {
@@ -201,7 +201,7 @@ func (ptr *QUiLoader) ConnectCreateLayout(f func(className string, parent *core.
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createLayout"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createLayout", func(className string, parent *core.QObject, name string) *widgets.QLayout {
-				signal.(func(string, *core.QObject, string))(className, parent, name)
+				signal.(func(string, *core.QObject, string) *widgets.QLayout)(className, parent, name)
 				return f(className, parent, name)
 			})
 		} else {
@@ -281,7 +281,7 @@ func (ptr *QUiLoader) ConnectCreateWidget(f func(className string, parent *widge
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createWidget"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createWidget", func(className string, parent *widgets.QWidget, name string) *widgets.QWidget {
-				signal.(func(string, *widgets.QWidget, string))(className, parent, name)
+				signal.(func(string, *widgets.QWidget, string) *widgets.QWidget)(className, parent, name)
 				return f(className, parent, name)
 			})
 		} else {

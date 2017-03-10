@@ -195,7 +195,7 @@ func (ptr *QScxmlCppDataModel) ConnectSetScxmlProperty(f func(name string, value
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string))(name, value, context)
+				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
 				return f(name, value, context)
 			})
 		} else {
@@ -271,7 +271,7 @@ func (ptr *QScxmlCppDataModel) ConnectSetup(f func(initialDataValues map[string]
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setup"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant))(initialDataValues)
+				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
 				return f(initialDataValues)
 			})
 		} else {
@@ -333,7 +333,7 @@ func (ptr *QScxmlCppDataModel) ConnectScxmlProperty(f func(name string) *core.QV
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string))(name)
+				signal.(func(string) *core.QVariant)(name)
 				return f(name)
 			})
 		} else {
@@ -391,7 +391,7 @@ func (ptr *QScxmlCppDataModel) ConnectHasScxmlProperty(f func(name string) bool)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string))(name)
+				signal.(func(string) bool)(name)
 				return f(name)
 			})
 		} else {
@@ -511,7 +511,7 @@ func (ptr *QScxmlDataModel) ConnectSetScxmlProperty(f func(name string, value *c
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string))(name, value, context)
+				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
 				return f(name, value, context)
 			})
 		} else {
@@ -564,7 +564,7 @@ func (ptr *QScxmlDataModel) ConnectSetup(f func(initialDataValues map[string]*co
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setup"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant))(initialDataValues)
+				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
 				return f(initialDataValues)
 			})
 		} else {
@@ -663,7 +663,7 @@ func (ptr *QScxmlDataModel) ConnectScxmlProperty(f func(name string) *core.QVari
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string))(name)
+				signal.(func(string) *core.QVariant)(name)
 				return f(name)
 			})
 		} else {
@@ -707,7 +707,7 @@ func (ptr *QScxmlDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string))(name)
+				signal.(func(string) bool)(name)
 				return f(name)
 			})
 		} else {
@@ -1119,7 +1119,7 @@ func (ptr *QScxmlDynamicScxmlServiceFactory) ConnectInvoke(f func(parentStateMac
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "invoke"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "invoke", func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				signal.(func(*QScxmlStateMachine))(parentStateMachine)
+				signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(parentStateMachine)
 				return f(parentStateMachine)
 			})
 		} else {
@@ -1234,7 +1234,7 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlProperty(f func(name string
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string))(name, value, context)
+				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
 				return f(name, value, context)
 			})
 		} else {
@@ -1310,7 +1310,7 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectSetup(f func(initialDataValues map[
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setup"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant))(initialDataValues)
+				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
 				return f(initialDataValues)
 			})
 		} else {
@@ -1408,7 +1408,7 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectScxmlProperty(f func(name string) *
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string))(name)
+				signal.(func(string) *core.QVariant)(name)
 				return f(name)
 			})
 		} else {
@@ -1466,7 +1466,7 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectHasScxmlProperty(f func(name string
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string))(name)
+				signal.(func(string) bool)(name)
 				return f(name)
 			})
 		} else {
@@ -1925,7 +1925,7 @@ func (ptr *QScxmlInvokableService) ConnectStart(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "start"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "start", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -2008,7 +2008,7 @@ func (ptr *QScxmlInvokableService) ConnectId(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "id"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "id", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -2045,7 +2045,7 @@ func (ptr *QScxmlInvokableService) ConnectName(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "name"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "name", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -2388,7 +2388,7 @@ func (ptr *QScxmlInvokableServiceFactory) ConnectInvoke(f func(parentStateMachin
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "invoke"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "invoke", func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				signal.(func(*QScxmlStateMachine))(parentStateMachine)
+				signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(parentStateMachine)
 				return f(parentStateMachine)
 			})
 		} else {
@@ -2750,7 +2750,7 @@ func (ptr *QScxmlNullDataModel) ConnectSetScxmlProperty(f func(name string, valu
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string))(name, value, context)
+				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
 				return f(name, value, context)
 			})
 		} else {
@@ -2826,7 +2826,7 @@ func (ptr *QScxmlNullDataModel) ConnectSetup(f func(initialDataValues map[string
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setup"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant))(initialDataValues)
+				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
 				return f(initialDataValues)
 			})
 		} else {
@@ -2932,7 +2932,7 @@ func (ptr *QScxmlNullDataModel) ConnectScxmlProperty(f func(name string) *core.Q
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string))(name)
+				signal.(func(string) *core.QVariant)(name)
 				return f(name)
 			})
 		} else {
@@ -2990,7 +2990,7 @@ func (ptr *QScxmlNullDataModel) ConnectHasScxmlProperty(f func(name string) bool
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string))(name)
+				signal.(func(string) bool)(name)
 				return f(name)
 			})
 		} else {
@@ -3164,7 +3164,7 @@ func (ptr *QScxmlStateMachine) ConnectInit(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "init"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "init", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -4378,7 +4378,7 @@ func (ptr *QScxmlStaticScxmlServiceFactory) ConnectInvoke(f func(parentStateMach
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "invoke"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "invoke", func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				signal.(func(*QScxmlStateMachine))(parentStateMachine)
+				signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(parentStateMachine)
 				return f(parentStateMachine)
 			})
 		} else {
@@ -4522,7 +4522,7 @@ func (ptr *QScxmlTableData) ConnectServiceFactory(f func(id int) *QScxmlInvokabl
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "serviceFactory"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "serviceFactory", func(id int) *QScxmlInvokableServiceFactory {
-				signal.(func(int))(id)
+				signal.(func(int) *QScxmlInvokableServiceFactory)(id)
 				return f(id)
 			})
 		} else {
@@ -4563,7 +4563,7 @@ func (ptr *QScxmlTableData) ConnectName(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "name"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "name", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {

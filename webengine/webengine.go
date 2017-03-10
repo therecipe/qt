@@ -2957,7 +2957,7 @@ func (ptr *QWebEnginePage) ConnectChooseFiles(f func(mode QWebEnginePage__FileSe
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "chooseFiles"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "chooseFiles", func(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string {
-				signal.(func(QWebEnginePage__FileSelectionMode, []string, []string))(mode, oldFiles, acceptedMimeTypes)
+				signal.(func(QWebEnginePage__FileSelectionMode, []string, []string) []string)(mode, oldFiles, acceptedMimeTypes)
 				return f(mode, oldFiles, acceptedMimeTypes)
 			})
 		} else {
@@ -3009,7 +3009,7 @@ func (ptr *QWebEnginePage) ConnectCreateWindow(f func(ty QWebEnginePage__WebWind
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createWindow"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createWindow", func(ty QWebEnginePage__WebWindowType) *QWebEnginePage {
-				signal.(func(QWebEnginePage__WebWindowType))(ty)
+				signal.(func(QWebEnginePage__WebWindowType) *QWebEnginePage)(ty)
 				return f(ty)
 			})
 		} else {
@@ -3077,7 +3077,7 @@ func (ptr *QWebEnginePage) ConnectAcceptNavigationRequest(f func(url *core.QUrl,
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "acceptNavigationRequest"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "acceptNavigationRequest", func(url *core.QUrl, ty QWebEnginePage__NavigationType, isMainFrame bool) bool {
-				signal.(func(*core.QUrl, QWebEnginePage__NavigationType, bool))(url, ty, isMainFrame)
+				signal.(func(*core.QUrl, QWebEnginePage__NavigationType, bool) bool)(url, ty, isMainFrame)
 				return f(url, ty, isMainFrame)
 			})
 		} else {
@@ -3121,7 +3121,7 @@ func (ptr *QWebEnginePage) ConnectCertificateError(f func(certificateError *QWeb
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "certificateError"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "certificateError", func(certificateError *QWebEngineCertificateError) bool {
-				signal.(func(*QWebEngineCertificateError))(certificateError)
+				signal.(func(*QWebEngineCertificateError) bool)(certificateError)
 				return f(certificateError)
 			})
 		} else {
@@ -3181,7 +3181,7 @@ func (ptr *QWebEnginePage) ConnectJavaScriptConfirm(f func(securityOrigin *core.
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "javaScriptConfirm"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "javaScriptConfirm", func(securityOrigin *core.QUrl, msg string) bool {
-				signal.(func(*core.QUrl, string))(securityOrigin, msg)
+				signal.(func(*core.QUrl, string) bool)(securityOrigin, msg)
 				return f(securityOrigin, msg)
 			})
 		} else {
@@ -3235,7 +3235,7 @@ func (ptr *QWebEnginePage) ConnectJavaScriptPrompt(f func(securityOrigin *core.Q
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "javaScriptPrompt"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "javaScriptPrompt", func(securityOrigin *core.QUrl, msg string, defaultValue string, result string) bool {
-				signal.(func(*core.QUrl, string, string, string))(securityOrigin, msg, defaultValue, result)
+				signal.(func(*core.QUrl, string, string, string) bool)(securityOrigin, msg, defaultValue, result)
 				return f(securityOrigin, msg, defaultValue, result)
 			})
 		} else {
@@ -7294,7 +7294,7 @@ func (ptr *QWebEngineView) ConnectCreateWindow(f func(ty QWebEnginePage__WebWind
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createWindow"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createWindow", func(ty QWebEnginePage__WebWindowType) *QWebEngineView {
-				signal.(func(QWebEnginePage__WebWindowType))(ty)
+				signal.(func(QWebEnginePage__WebWindowType) *QWebEngineView)(ty)
 				return f(ty)
 			})
 		} else {

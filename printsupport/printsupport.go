@@ -120,7 +120,7 @@ func (ptr *QAbstractPrintDialog) ConnectExec(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exec"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -1592,7 +1592,7 @@ func (ptr *QPageSetupDialog) ConnectExec(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exec"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -3147,7 +3147,7 @@ func (ptr *QPrintDialog) ConnectExec(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exec"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -3352,7 +3352,7 @@ func (ptr *QPrintEngine) ConnectAbort(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "abort"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "abort", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -3389,7 +3389,7 @@ func (ptr *QPrintEngine) ConnectNewPage(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newPage"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -3507,7 +3507,7 @@ func (ptr *QPrintEngine) ConnectPrinterState(f func() QPrinter__PrinterState) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "printerState"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "printerState", func() QPrinter__PrinterState {
-				signal.(func())()
+				signal.(func() QPrinter__PrinterState)()
 				return f()
 			})
 		} else {
@@ -3544,7 +3544,7 @@ func (ptr *QPrintEngine) ConnectProperty(f func(key QPrintEngine__PrintEnginePro
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "property"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "property", func(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant {
-				signal.(func(QPrintEngine__PrintEnginePropertyKey))(key)
+				signal.(func(QPrintEngine__PrintEnginePropertyKey) *core.QVariant)(key)
 				return f(key)
 			})
 		} else {
@@ -3583,7 +3583,7 @@ func (ptr *QPrintEngine) ConnectMetric(f func(id gui.QPaintDevice__PaintDeviceMe
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metric"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metric", func(id gui.QPaintDevice__PaintDeviceMetric) int {
-				signal.(func(gui.QPaintDevice__PaintDeviceMetric))(id)
+				signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(id)
 				return f(id)
 			})
 		} else {
@@ -7441,7 +7441,7 @@ func (ptr *QPrinter) ConnectNewPage(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "newPage"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "newPage", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -7699,7 +7699,7 @@ func (ptr *QPrinter) ConnectPaintEngine(f func() *gui.QPaintEngine) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "paintEngine"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", func() *gui.QPaintEngine {
-				signal.(func())()
+				signal.(func() *gui.QPaintEngine)()
 				return f()
 			})
 		} else {

@@ -2280,7 +2280,7 @@ func (ptr *QGeoRoutingManagerEngine) ConnectCalculateRoute(f func(request *QGeoR
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "calculateRoute"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "calculateRoute", func(request *QGeoRouteRequest) *QGeoRouteReply {
-				signal.(func(*QGeoRouteRequest))(request)
+				signal.(func(*QGeoRouteRequest) *QGeoRouteReply)(request)
 				return f(request)
 			})
 		} else {
@@ -2321,7 +2321,7 @@ func (ptr *QGeoRoutingManagerEngine) ConnectUpdateRoute(f func(route *QGeoRoute,
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateRoute"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateRoute", func(route *QGeoRoute, position *positioning.QGeoCoordinate) *QGeoRouteReply {
-				signal.(func(*QGeoRoute, *positioning.QGeoCoordinate))(route, position)
+				signal.(func(*QGeoRoute, *positioning.QGeoCoordinate) *QGeoRouteReply)(route, position)
 				return f(route, position)
 			})
 		} else {

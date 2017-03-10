@@ -4231,7 +4231,7 @@ func (ptr *QBluetoothSocket) ConnectReadData(f func(data *string, maxSize int64)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", func(data *string, maxSize int64) int64 {
-				signal.(func(*string, int64))(data, maxSize)
+				signal.(func(*string, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -4287,7 +4287,7 @@ func (ptr *QBluetoothSocket) ConnectWriteData(f func(data string, maxSize int64)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "writeData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", func(data string, maxSize int64) int64 {
-				signal.(func(string, int64))(data, maxSize)
+				signal.(func(string, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -5681,7 +5681,7 @@ func (ptr *QBluetoothTransferReply) ConnectErrorString(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "errorString"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -5718,7 +5718,7 @@ func (ptr *QBluetoothTransferReply) ConnectError(f func() QBluetoothTransferRepl
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func() QBluetoothTransferReply__TransferError {
-				signal.(func())()
+				signal.(func() QBluetoothTransferReply__TransferError)()
 				return f()
 			})
 		} else {
@@ -5755,7 +5755,7 @@ func (ptr *QBluetoothTransferReply) ConnectIsFinished(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isFinished"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isFinished", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -5792,7 +5792,7 @@ func (ptr *QBluetoothTransferReply) ConnectIsRunning(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isRunning"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isRunning", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {

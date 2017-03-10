@@ -128,7 +128,7 @@ func (ptr *QAbstractNetworkCache) ConnectData(f func(url *core.QUrl) *core.QIODe
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(url *core.QUrl) *core.QIODevice {
-				signal.(func(*core.QUrl))(url)
+				signal.(func(*core.QUrl) *core.QIODevice)(url)
 				return f(url)
 			})
 		} else {
@@ -169,7 +169,7 @@ func (ptr *QAbstractNetworkCache) ConnectPrepare(f func(metaData *QNetworkCacheM
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "prepare"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", func(metaData *QNetworkCacheMetaData) *core.QIODevice {
-				signal.(func(*QNetworkCacheMetaData))(metaData)
+				signal.(func(*QNetworkCacheMetaData) *core.QIODevice)(metaData)
 				return f(metaData)
 			})
 		} else {
@@ -210,7 +210,7 @@ func (ptr *QAbstractNetworkCache) ConnectMetaData(f func(url *core.QUrl) *QNetwo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", func(url *core.QUrl) *QNetworkCacheMetaData {
-				signal.(func(*core.QUrl))(url)
+				signal.(func(*core.QUrl) *QNetworkCacheMetaData)(url)
 				return f(url)
 			})
 		} else {
@@ -249,7 +249,7 @@ func (ptr *QAbstractNetworkCache) ConnectRemove(f func(url *core.QUrl) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "remove"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", func(url *core.QUrl) bool {
-				signal.(func(*core.QUrl))(url)
+				signal.(func(*core.QUrl) bool)(url)
 				return f(url)
 			})
 		} else {
@@ -437,7 +437,7 @@ func (ptr *QAbstractNetworkCache) ConnectCacheSize(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cacheSize"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -881,7 +881,7 @@ func (ptr *QAbstractSocket) ConnectSocketOption(f func(option QAbstractSocket__S
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "socketOption"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "socketOption", func(option QAbstractSocket__SocketOption) *core.QVariant {
-				signal.(func(QAbstractSocket__SocketOption))(option)
+				signal.(func(QAbstractSocket__SocketOption) *core.QVariant)(option)
 				return f(option)
 			})
 		} else {
@@ -966,7 +966,7 @@ func (ptr *QAbstractSocket) ConnectWaitForConnected(f func(msecs int) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "waitForConnected"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForConnected", func(msecs int) bool {
-				signal.(func(int))(msecs)
+				signal.(func(int) bool)(msecs)
 				return f(msecs)
 			})
 		} else {
@@ -1010,7 +1010,7 @@ func (ptr *QAbstractSocket) ConnectWaitForDisconnected(f func(msecs int) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "waitForDisconnected"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "waitForDisconnected", func(msecs int) bool {
-				signal.(func(int))(msecs)
+				signal.(func(int) bool)(msecs)
 				return f(msecs)
 			})
 		} else {
@@ -1079,7 +1079,7 @@ func (ptr *QAbstractSocket) ConnectReadData(f func(data *string, maxSize int64) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", func(data *string, maxSize int64) int64 {
-				signal.(func(*string, int64))(data, maxSize)
+				signal.(func(*string, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -1156,7 +1156,7 @@ func (ptr *QAbstractSocket) ConnectWriteData(f func(data string, size int64) int
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "writeData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", func(data string, size int64) int64 {
-				signal.(func(string, int64))(data, size)
+				signal.(func(string, int64) int64)(data, size)
 				return f(data, size)
 			})
 		} else {
@@ -5013,7 +5013,7 @@ func (ptr *QLocalServer) ConnectNextPendingConnection(f func() *QLocalSocket) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", func() *QLocalSocket {
-				signal.(func())()
+				signal.(func() *QLocalSocket)()
 				return f()
 			})
 		} else {
@@ -5244,7 +5244,7 @@ func (ptr *QLocalServer) ConnectHasPendingConnections(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -5715,7 +5715,7 @@ func (ptr *QLocalSocket) ConnectReadData(f func(data *string, c int64) int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", func(data *string, c int64) int64 {
-				signal.(func(*string, int64))(data, c)
+				signal.(func(*string, int64) int64)(data, c)
 				return f(data, c)
 			})
 		} else {
@@ -5771,7 +5771,7 @@ func (ptr *QLocalSocket) ConnectWriteData(f func(data string, c int64) int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "writeData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", func(data string, c int64) int64 {
-				signal.(func(string, int64))(data, c)
+				signal.(func(string, int64) int64)(data, c)
 				return f(data, c)
 			})
 		} else {
@@ -6635,7 +6635,7 @@ func (ptr *QNetworkAccessManager) ConnectCreateRequest(f func(op QNetworkAccessM
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createRequest"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createRequest", func(op QNetworkAccessManager__Operation, req *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply {
-				signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice))(op, req, outgoingData)
+				signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(op, req, outgoingData)
 				return f(op, req, outgoingData)
 			})
 		} else {
@@ -7246,7 +7246,7 @@ func (ptr *QNetworkAccessManager) ConnectSupportedSchemesImplementation(f func()
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "supportedSchemesImplementation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "supportedSchemesImplementation", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -8998,7 +8998,7 @@ func (ptr *QNetworkCookieJar) ConnectDeleteCookie(f func(cookie *QNetworkCookie)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deleteCookie"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deleteCookie", func(cookie *QNetworkCookie) bool {
-				signal.(func(*QNetworkCookie))(cookie)
+				signal.(func(*QNetworkCookie) bool)(cookie)
 				return f(cookie)
 			})
 		} else {
@@ -9042,7 +9042,7 @@ func (ptr *QNetworkCookieJar) ConnectInsertCookie(f func(cookie *QNetworkCookie)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "insertCookie"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insertCookie", func(cookie *QNetworkCookie) bool {
-				signal.(func(*QNetworkCookie))(cookie)
+				signal.(func(*QNetworkCookie) bool)(cookie)
 				return f(cookie)
 			})
 		} else {
@@ -9098,7 +9098,7 @@ func (ptr *QNetworkCookieJar) ConnectSetCookiesFromUrl(f func(cookieList []*QNet
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "setCookiesFromUrl"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "setCookiesFromUrl", func(cookieList []*QNetworkCookie, url *core.QUrl) bool {
-				signal.(func([]*QNetworkCookie, *core.QUrl))(cookieList, url)
+				signal.(func([]*QNetworkCookie, *core.QUrl) bool)(cookieList, url)
 				return f(cookieList, url)
 			})
 		} else {
@@ -9154,7 +9154,7 @@ func (ptr *QNetworkCookieJar) ConnectUpdateCookie(f func(cookie *QNetworkCookie)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateCookie"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateCookie", func(cookie *QNetworkCookie) bool {
-				signal.(func(*QNetworkCookie))(cookie)
+				signal.(func(*QNetworkCookie) bool)(cookie)
 				return f(cookie)
 			})
 		} else {
@@ -9281,7 +9281,7 @@ func (ptr *QNetworkCookieJar) ConnectCookiesForUrl(f func(url *core.QUrl) []*QNe
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cookiesForUrl"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cookiesForUrl", func(url *core.QUrl) []*QNetworkCookie {
-				signal.(func(*core.QUrl))(url)
+				signal.(func(*core.QUrl) []*QNetworkCookie)(url)
 				return f(url)
 			})
 		} else {
@@ -9337,7 +9337,7 @@ func (ptr *QNetworkCookieJar) ConnectValidateCookie(f func(cookie *QNetworkCooki
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "validateCookie"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "validateCookie", func(cookie *QNetworkCookie, url *core.QUrl) bool {
-				signal.(func(*QNetworkCookie, *core.QUrl))(cookie, url)
+				signal.(func(*QNetworkCookie, *core.QUrl) bool)(cookie, url)
 				return f(cookie, url)
 			})
 		} else {
@@ -9943,7 +9943,7 @@ func (ptr *QNetworkDiskCache) ConnectData(f func(url *core.QUrl) *core.QIODevice
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(url *core.QUrl) *core.QIODevice {
-				signal.(func(*core.QUrl))(url)
+				signal.(func(*core.QUrl) *core.QIODevice)(url)
 				return f(url)
 			})
 		} else {
@@ -9995,7 +9995,7 @@ func (ptr *QNetworkDiskCache) ConnectPrepare(f func(metaData *QNetworkCacheMetaD
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "prepare"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", func(metaData *QNetworkCacheMetaData) *core.QIODevice {
-				signal.(func(*QNetworkCacheMetaData))(metaData)
+				signal.(func(*QNetworkCacheMetaData) *core.QIODevice)(metaData)
 				return f(metaData)
 			})
 		} else {
@@ -10047,7 +10047,7 @@ func (ptr *QNetworkDiskCache) ConnectMetaData(f func(url *core.QUrl) *QNetworkCa
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "metaData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "metaData", func(url *core.QUrl) *QNetworkCacheMetaData {
-				signal.(func(*core.QUrl))(url)
+				signal.(func(*core.QUrl) *QNetworkCacheMetaData)(url)
 				return f(url)
 			})
 		} else {
@@ -10103,7 +10103,7 @@ func (ptr *QNetworkDiskCache) ConnectRemove(f func(url *core.QUrl) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "remove"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "remove", func(url *core.QUrl) bool {
-				signal.(func(*core.QUrl))(url)
+				signal.(func(*core.QUrl) bool)(url)
 				return f(url)
 			})
 		} else {
@@ -10147,7 +10147,7 @@ func (ptr *QNetworkDiskCache) ConnectExpire(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "expire"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "expire", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -10363,7 +10363,7 @@ func (ptr *QNetworkDiskCache) ConnectCacheSize(f func() int64) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "cacheSize"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "cacheSize", func() int64 {
-				signal.(func())()
+				signal.(func() int64)()
 				return f()
 			})
 		} else {
@@ -11078,7 +11078,7 @@ func (ptr *QNetworkProxyFactory) ConnectQueryProxy(f func(query *QNetworkProxyQu
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "queryProxy"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "queryProxy", func(query *QNetworkProxyQuery) []*QNetworkProxy {
-				signal.(func(*QNetworkProxyQuery))(query)
+				signal.(func(*QNetworkProxyQuery) []*QNetworkProxy)(query)
 				return f(query)
 			})
 		} else {
@@ -18132,7 +18132,7 @@ func (ptr *QTcpServer) ConnectNextPendingConnection(f func() *QTcpSocket) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", func() *QTcpSocket {
-				signal.(func())()
+				signal.(func() *QTcpSocket)()
 				return f()
 			})
 		} else {
@@ -18390,7 +18390,7 @@ func (ptr *QTcpServer) ConnectHasPendingConnections(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasPendingConnections", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {

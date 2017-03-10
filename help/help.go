@@ -277,7 +277,7 @@ func (ptr *QHelpContentModel) ConnectIndex(f func(row int, column int, parent *c
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "index"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "index", func(row int, column int, parent *core.QModelIndex) *core.QModelIndex {
-				signal.(func(int, int, *core.QModelIndex))(row, column, parent)
+				signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(row, column, parent)
 				return f(row, column, parent)
 			})
 		} else {
@@ -325,7 +325,7 @@ func (ptr *QHelpContentModel) ConnectParent(f func(index *core.QModelIndex) *cor
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "parent"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "parent", func(index *core.QModelIndex) *core.QModelIndex {
-				signal.(func(*core.QModelIndex))(index)
+				signal.(func(*core.QModelIndex) *core.QModelIndex)(index)
 				return f(index)
 			})
 		} else {
@@ -373,7 +373,7 @@ func (ptr *QHelpContentModel) ConnectData(f func(index *core.QModelIndex, role i
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(index *core.QModelIndex, role int) *core.QVariant {
-				signal.(func(*core.QModelIndex, int))(index, role)
+				signal.(func(*core.QModelIndex, int) *core.QVariant)(index, role)
 				return f(index, role)
 			})
 		} else {
@@ -428,7 +428,7 @@ func (ptr *QHelpContentModel) ConnectColumnCount(f func(parent *core.QModelIndex
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "columnCount"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "columnCount", func(parent *core.QModelIndex) int {
-				signal.(func(*core.QModelIndex))(parent)
+				signal.(func(*core.QModelIndex) int)(parent)
 				return f(parent)
 			})
 		} else {
@@ -472,7 +472,7 @@ func (ptr *QHelpContentModel) ConnectRowCount(f func(parent *core.QModelIndex) i
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rowCount"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rowCount", func(parent *core.QModelIndex) int {
-				signal.(func(*core.QModelIndex))(parent)
+				signal.(func(*core.QModelIndex) int)(parent)
 				return f(parent)
 			})
 		} else {

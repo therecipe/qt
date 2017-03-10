@@ -87,7 +87,7 @@ func (ptr *QMacPasteboardMime) ConnectConvertFromMime(f func(mime string, data *
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "convertFromMime"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertFromMime", func(mime string, data *core.QVariant, flav string) []*core.QByteArray {
-				signal.(func(string, *core.QVariant, string))(mime, data, flav)
+				signal.(func(string, *core.QVariant, string) []*core.QByteArray)(mime, data, flav)
 				return f(mime, data, flav)
 			})
 		} else {
@@ -149,7 +149,7 @@ func (ptr *QMacPasteboardMime) ConnectConvertorName(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "convertorName"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertorName", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -186,7 +186,7 @@ func (ptr *QMacPasteboardMime) ConnectFlavorFor(f func(mime string) string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "flavorFor"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flavorFor", func(mime string) string {
-				signal.(func(string))(mime)
+				signal.(func(string) string)(mime)
 				return f(mime)
 			})
 		} else {
@@ -228,7 +228,7 @@ func (ptr *QMacPasteboardMime) ConnectMimeFor(f func(flav string) string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mimeFor"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mimeFor", func(flav string) string {
-				signal.(func(string))(flav)
+				signal.(func(string) string)(flav)
 				return f(flav)
 			})
 		} else {
@@ -276,7 +276,7 @@ func (ptr *QMacPasteboardMime) ConnectConvertToMime(f func(mime string, data []*
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "convertToMime"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "convertToMime", func(mime string, data []*core.QByteArray, flav string) *core.QVariant {
-				signal.(func(string, []*core.QByteArray, string))(mime, data, flav)
+				signal.(func(string, []*core.QByteArray, string) *core.QVariant)(mime, data, flav)
 				return f(mime, data, flav)
 			})
 		} else {
@@ -331,7 +331,7 @@ func (ptr *QMacPasteboardMime) ConnectCanConvert(f func(mime string, flav string
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "canConvert"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "canConvert", func(mime string, flav string) bool {
-				signal.(func(string, string))(mime, flav)
+				signal.(func(string, string) bool)(mime, flav)
 				return f(mime, flav)
 			})
 		} else {
@@ -378,7 +378,7 @@ func (ptr *QMacPasteboardMime) ConnectCount(f func(mimeData *core.QMimeData) int
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "count"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "count", func(mimeData *core.QMimeData) int {
-				signal.(func(*core.QMimeData))(mimeData)
+				signal.(func(*core.QMimeData) int)(mimeData)
 				return f(mimeData)
 			})
 		} else {

@@ -83,7 +83,7 @@ func (ptr *QMaskGenerator) ConnectSeed(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "seed"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "seed", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -120,7 +120,7 @@ func (ptr *QMaskGenerator) ConnectNextMask(f func() uint) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextMask"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextMask", func() uint {
-				signal.(func())()
+				signal.(func() uint)()
 				return f()
 			})
 		} else {
@@ -2148,7 +2148,7 @@ func (ptr *QWebSocketServer) ConnectNextPendingConnection(f func() *QWebSocket) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextPendingConnection", func() *QWebSocket {
-				signal.(func())()
+				signal.(func() *QWebSocket)()
 				return f()
 			})
 		} else {

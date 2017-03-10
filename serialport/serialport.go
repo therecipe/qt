@@ -365,7 +365,7 @@ func (ptr *QSerialPort) ConnectReadData(f func(data *string, maxSize int64) int6
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "readData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "readData", func(data *string, maxSize int64) int64 {
-				signal.(func(*string, int64))(data, maxSize)
+				signal.(func(*string, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -442,7 +442,7 @@ func (ptr *QSerialPort) ConnectWriteData(f func(data string, maxSize int64) int6
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "writeData"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "writeData", func(data string, maxSize int64) int64 {
-				signal.(func(string, int64))(data, maxSize)
+				signal.(func(string, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {

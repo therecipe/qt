@@ -5046,7 +5046,7 @@ func (ptr *QDBusVirtualObject) ConnectHandleMessage(f func(message *QDBusMessage
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "handleMessage"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleMessage", func(message *QDBusMessage, connection *QDBusConnection) bool {
-				signal.(func(*QDBusMessage, *QDBusConnection))(message, connection)
+				signal.(func(*QDBusMessage, *QDBusConnection) bool)(message, connection)
 				return f(message, connection)
 			})
 		} else {
@@ -5129,7 +5129,7 @@ func (ptr *QDBusVirtualObject) ConnectIntrospect(f func(path string) string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "introspect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "introspect", func(path string) string {
-				signal.(func(string))(path)
+				signal.(func(string) string)(path)
 				return f(path)
 			})
 		} else {

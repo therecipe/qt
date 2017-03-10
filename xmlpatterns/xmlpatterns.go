@@ -474,7 +474,7 @@ func (ptr *QAbstractUriResolver) ConnectResolve(f func(relative *core.QUrl, base
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "resolve"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "resolve", func(relative *core.QUrl, baseURI *core.QUrl) *core.QUrl {
-				signal.(func(*core.QUrl, *core.QUrl))(relative, baseURI)
+				signal.(func(*core.QUrl, *core.QUrl) *core.QUrl)(relative, baseURI)
 				return f(relative, baseURI)
 			})
 		} else {
@@ -877,7 +877,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectStringValue(f func(n *QXmlNodeModelInde
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stringValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stringValue", func(n *QXmlNodeModelIndex) string {
-				signal.(func(*QXmlNodeModelIndex))(n)
+				signal.(func(*QXmlNodeModelIndex) string)(n)
 				return f(n)
 			})
 		} else {
@@ -914,7 +914,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectBaseUri(f func(n *QXmlNodeModelIndex) *
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "baseUri"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "baseUri", func(n *QXmlNodeModelIndex) *core.QUrl {
-				signal.(func(*QXmlNodeModelIndex))(n)
+				signal.(func(*QXmlNodeModelIndex) *core.QUrl)(n)
 				return f(n)
 			})
 		} else {
@@ -953,7 +953,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectDocumentUri(f func(n *QXmlNodeModelInde
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "documentUri"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "documentUri", func(n *QXmlNodeModelIndex) *core.QUrl {
-				signal.(func(*QXmlNodeModelIndex))(n)
+				signal.(func(*QXmlNodeModelIndex) *core.QUrl)(n)
 				return f(n)
 			})
 		} else {
@@ -992,7 +992,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIn
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "typedValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typedValue", func(node *QXmlNodeModelIndex) *core.QVariant {
-				signal.(func(*QXmlNodeModelIndex))(node)
+				signal.(func(*QXmlNodeModelIndex) *core.QVariant)(node)
 				return f(node)
 			})
 		} else {
@@ -1043,7 +1043,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectNamespaceBindings(f func(n *QXmlNodeMod
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "namespaceBindings"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "namespaceBindings", func(n *QXmlNodeModelIndex) []*QXmlName {
-				signal.(func(*QXmlNodeModelIndex))(n)
+				signal.(func(*QXmlNodeModelIndex) []*QXmlName)(n)
 				return f(n)
 			})
 		} else {
@@ -1098,7 +1098,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectNodesByIdref(f func(idref *QXmlName) []
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nodesByIdref"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nodesByIdref", func(idref *QXmlName) []*QXmlNodeModelIndex {
-				signal.(func(*QXmlName))(idref)
+				signal.(func(*QXmlName) []*QXmlNodeModelIndex)(idref)
 				return f(idref)
 			})
 		} else {
@@ -1141,7 +1141,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QX
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "name"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "name", func(ni *QXmlNodeModelIndex) *QXmlName {
-				signal.(func(*QXmlNodeModelIndex))(ni)
+				signal.(func(*QXmlNodeModelIndex) *QXmlName)(ni)
 				return f(ni)
 			})
 		} else {
@@ -1207,7 +1207,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlN
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "elementById"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "elementById", func(id *QXmlName) *QXmlNodeModelIndex {
-				signal.(func(*QXmlName))(id)
+				signal.(func(*QXmlName) *QXmlNodeModelIndex)(id)
 				return f(id)
 			})
 		} else {
@@ -1246,7 +1246,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectNextFromSimpleAxis(f func(axis QAbstrac
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nextFromSimpleAxis"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nextFromSimpleAxis", func(axis QAbstractXmlNodeModel__SimpleAxis, origin *QXmlNodeModelIndex) *QXmlNodeModelIndex {
-				signal.(func(QAbstractXmlNodeModel__SimpleAxis, *QXmlNodeModelIndex))(axis, origin)
+				signal.(func(QAbstractXmlNodeModel__SimpleAxis, *QXmlNodeModelIndex) *QXmlNodeModelIndex)(axis, origin)
 				return f(axis, origin)
 			})
 		} else {
@@ -1285,7 +1285,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectRoot(f func(n *QXmlNodeModelIndex) *QXm
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "root"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "root", func(n *QXmlNodeModelIndex) *QXmlNodeModelIndex {
-				signal.(func(*QXmlNodeModelIndex))(n)
+				signal.(func(*QXmlNodeModelIndex) *QXmlNodeModelIndex)(n)
 				return f(n)
 			})
 		} else {
@@ -1324,7 +1324,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectCompareOrder(f func(ni1 *QXmlNodeModelI
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "compareOrder"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "compareOrder", func(ni1 *QXmlNodeModelIndex, ni2 *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder {
-				signal.(func(*QXmlNodeModelIndex, *QXmlNodeModelIndex))(ni1, ni2)
+				signal.(func(*QXmlNodeModelIndex, *QXmlNodeModelIndex) QXmlNodeModelIndex__DocumentOrder)(ni1, ni2)
 				return f(ni1, ni2)
 			})
 		} else {
@@ -1361,7 +1361,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectKind(f func(ni *QXmlNodeModelIndex) QXm
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "kind"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "kind", func(ni *QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind {
-				signal.(func(*QXmlNodeModelIndex))(ni)
+				signal.(func(*QXmlNodeModelIndex) QXmlNodeModelIndex__NodeKind)(ni)
 				return f(ni)
 			})
 		} else {
@@ -2130,7 +2130,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectStringValue(f func(node *QXmlNodeModelInd
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stringValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stringValue", func(node *QXmlNodeModelIndex) string {
-				signal.(func(*QXmlNodeModelIndex))(node)
+				signal.(func(*QXmlNodeModelIndex) string)(node)
 				return f(node)
 			})
 		} else {
@@ -2174,7 +2174,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectBaseUri(f func(node *QXmlNodeModelIndex) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "baseUri"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "baseUri", func(node *QXmlNodeModelIndex) *core.QUrl {
-				signal.(func(*QXmlNodeModelIndex))(node)
+				signal.(func(*QXmlNodeModelIndex) *core.QUrl)(node)
 				return f(node)
 			})
 		} else {
@@ -2234,7 +2234,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectNamespaceBindings(f func(node *QXmlNodeMo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "namespaceBindings"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "namespaceBindings", func(node *QXmlNodeModelIndex) []*QXmlName {
-				signal.(func(*QXmlNodeModelIndex))(node)
+				signal.(func(*QXmlNodeModelIndex) []*QXmlName)(node)
 				return f(node)
 			})
 		} else {
@@ -2302,7 +2302,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectNodesByIdref(f func(idref *QXmlName) []*Q
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "nodesByIdref"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "nodesByIdref", func(idref *QXmlName) []*QXmlNodeModelIndex {
-				signal.(func(*QXmlName))(idref)
+				signal.(func(*QXmlName) []*QXmlNodeModelIndex)(idref)
 				return f(idref)
 			})
 		} else {
@@ -2367,7 +2367,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlNod
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "elementById"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "elementById", func(id *QXmlName) *QXmlNodeModelIndex {
-				signal.(func(*QXmlName))(id)
+				signal.(func(*QXmlName) *QXmlNodeModelIndex)(id)
 				return f(id)
 			})
 		} else {

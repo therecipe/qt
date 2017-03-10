@@ -780,7 +780,7 @@ func (ptr *QSqlDriver) ConnectBeginTransaction(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "beginTransaction"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "beginTransaction", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -824,7 +824,7 @@ func (ptr *QSqlDriver) ConnectCommitTransaction(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "commitTransaction"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "commitTransaction", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -868,7 +868,7 @@ func (ptr *QSqlDriver) ConnectOpen(f func(db string, user string, password strin
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "open"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "open", func(db string, user string, password string, host string, port int, options string) bool {
-				signal.(func(string, string, string, string, int, string))(db, user, password, host, port, options)
+				signal.(func(string, string, string, string, int, string) bool)(db, user, password, host, port, options)
 				return f(db, user, password, host, port, options)
 			})
 		} else {
@@ -930,7 +930,7 @@ func (ptr *QSqlDriver) ConnectRollbackTransaction(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rollbackTransaction"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rollbackTransaction", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -974,7 +974,7 @@ func (ptr *QSqlDriver) ConnectSubscribeToNotification(f func(name string) bool) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "subscribeToNotification"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "subscribeToNotification", func(name string) bool {
-				signal.(func(string))(name)
+				signal.(func(string) bool)(name)
 				return f(name)
 			})
 		} else {
@@ -1028,7 +1028,7 @@ func (ptr *QSqlDriver) ConnectUnsubscribeFromNotification(f func(name string) bo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "unsubscribeFromNotification"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "unsubscribeFromNotification", func(name string) bool {
-				signal.(func(string))(name)
+				signal.(func(string) bool)(name)
 				return f(name)
 			})
 		} else {
@@ -1368,7 +1368,7 @@ func (ptr *QSqlDriver) ConnectPrimaryIndex(f func(tableName string) *QSqlIndex) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "primaryIndex"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "primaryIndex", func(tableName string) *QSqlIndex {
-				signal.(func(string))(tableName)
+				signal.(func(string) *QSqlIndex)(tableName)
 				return f(tableName)
 			})
 		} else {
@@ -1426,7 +1426,7 @@ func (ptr *QSqlDriver) ConnectRecord(f func(tableName string) *QSqlRecord) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "record"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "record", func(tableName string) *QSqlRecord {
-				signal.(func(string))(tableName)
+				signal.(func(string) *QSqlRecord)(tableName)
 				return f(tableName)
 			})
 		} else {
@@ -1484,7 +1484,7 @@ func (ptr *QSqlDriver) ConnectCreateResult(f func() *QSqlResult) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createResult"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createResult", func() *QSqlResult {
-				signal.(func())()
+				signal.(func() *QSqlResult)()
 				return f()
 			})
 		} else {
@@ -1521,7 +1521,7 @@ func (ptr *QSqlDriver) ConnectEscapeIdentifier(f func(identifier string, ty QSql
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "escapeIdentifier"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "escapeIdentifier", func(identifier string, ty QSqlDriver__IdentifierType) string {
-				signal.(func(string, QSqlDriver__IdentifierType))(identifier, ty)
+				signal.(func(string, QSqlDriver__IdentifierType) string)(identifier, ty)
 				return f(identifier, ty)
 			})
 		} else {
@@ -1575,7 +1575,7 @@ func (ptr *QSqlDriver) ConnectFormatValue(f func(field *QSqlField, trimStrings b
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "formatValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "formatValue", func(field *QSqlField, trimStrings bool) string {
-				signal.(func(*QSqlField, bool))(field, trimStrings)
+				signal.(func(*QSqlField, bool) string)(field, trimStrings)
 				return f(field, trimStrings)
 			})
 		} else {
@@ -1619,7 +1619,7 @@ func (ptr *QSqlDriver) ConnectSqlStatement(f func(ty QSqlDriver__StatementType, 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sqlStatement"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sqlStatement", func(ty QSqlDriver__StatementType, tableName string, rec *QSqlRecord, preparedStatement bool) string {
-				signal.(func(QSqlDriver__StatementType, string, *QSqlRecord, bool))(ty, tableName, rec, preparedStatement)
+				signal.(func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(ty, tableName, rec, preparedStatement)
 				return f(ty, tableName, rec, preparedStatement)
 			})
 		} else {
@@ -1673,7 +1673,7 @@ func (ptr *QSqlDriver) ConnectStripDelimiters(f func(identifier string, ty QSqlD
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "stripDelimiters"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "stripDelimiters", func(identifier string, ty QSqlDriver__IdentifierType) string {
-				signal.(func(string, QSqlDriver__IdentifierType))(identifier, ty)
+				signal.(func(string, QSqlDriver__IdentifierType) string)(identifier, ty)
 				return f(identifier, ty)
 			})
 		} else {
@@ -1727,7 +1727,7 @@ func (ptr *QSqlDriver) ConnectSubscribedToNotifications(f func() []string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "subscribedToNotifications"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "subscribedToNotifications", func() []string {
-				signal.(func())()
+				signal.(func() []string)()
 				return f()
 			})
 		} else {
@@ -1771,7 +1771,7 @@ func (ptr *QSqlDriver) ConnectTables(f func(tableType QSql__TableType) []string)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "tables"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "tables", func(tableType QSql__TableType) []string {
-				signal.(func(QSql__TableType))(tableType)
+				signal.(func(QSql__TableType) []string)(tableType)
 				return f(tableType)
 			})
 		} else {
@@ -1815,7 +1815,7 @@ func (ptr *QSqlDriver) ConnectHandle(f func() *core.QVariant) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "handle"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handle", func() *core.QVariant {
-				signal.(func())()
+				signal.(func() *core.QVariant)()
 				return f()
 			})
 		} else {
@@ -1863,7 +1863,7 @@ func (ptr *QSqlDriver) ConnectHasFeature(f func(feature QSqlDriver__DriverFeatur
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasFeature"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasFeature", func(feature QSqlDriver__DriverFeature) bool {
-				signal.(func(QSqlDriver__DriverFeature))(feature)
+				signal.(func(QSqlDriver__DriverFeature) bool)(feature)
 				return f(feature)
 			})
 		} else {
@@ -1900,7 +1900,7 @@ func (ptr *QSqlDriver) ConnectIsIdentifierEscaped(f func(identifier string, ty Q
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isIdentifierEscaped"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isIdentifierEscaped", func(identifier string, ty QSqlDriver__IdentifierType) bool {
-				signal.(func(string, QSqlDriver__IdentifierType))(identifier, ty)
+				signal.(func(string, QSqlDriver__IdentifierType) bool)(identifier, ty)
 				return f(identifier, ty)
 			})
 		} else {
@@ -1954,7 +1954,7 @@ func (ptr *QSqlDriver) ConnectIsOpen(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isOpen"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isOpen", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -2395,7 +2395,7 @@ func (ptr *QSqlDriverCreatorBase) ConnectCreateObject(f func() *QSqlDriver) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createObject"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createObject", func() *QSqlDriver {
-				signal.(func())()
+				signal.(func() *QSqlDriver)()
 				return f()
 			})
 		} else {
@@ -2475,7 +2475,7 @@ func (ptr *QSqlDriverPlugin) ConnectCreate(f func(key string) *QSqlDriver) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "create"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "create", func(key string) *QSqlDriver {
-				signal.(func(string))(key)
+				signal.(func(string) *QSqlDriver)(key)
 				return f(key)
 			})
 		} else {
@@ -3986,7 +3986,7 @@ func (ptr *QSqlQueryModel) ConnectIndexInQuery(f func(item *core.QModelIndex) *c
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "indexInQuery"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "indexInQuery", func(item *core.QModelIndex) *core.QModelIndex {
-				signal.(func(*core.QModelIndex))(item)
+				signal.(func(*core.QModelIndex) *core.QModelIndex)(item)
 				return f(item)
 			})
 		} else {
@@ -4070,7 +4070,7 @@ func (ptr *QSqlQueryModel) ConnectData(f func(item *core.QModelIndex, role int) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(item *core.QModelIndex, role int) *core.QVariant {
-				signal.(func(*core.QModelIndex, int))(item, role)
+				signal.(func(*core.QModelIndex, int) *core.QVariant)(item, role)
 				return f(item, role)
 			})
 		} else {
@@ -4152,7 +4152,7 @@ func (ptr *QSqlQueryModel) ConnectColumnCount(f func(index *core.QModelIndex) in
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "columnCount"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "columnCount", func(index *core.QModelIndex) int {
-				signal.(func(*core.QModelIndex))(index)
+				signal.(func(*core.QModelIndex) int)(index)
 				return f(index)
 			})
 		} else {
@@ -4196,7 +4196,7 @@ func (ptr *QSqlQueryModel) ConnectRowCount(f func(parent *core.QModelIndex) int)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rowCount"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rowCount", func(parent *core.QModelIndex) int {
-				signal.(func(*core.QModelIndex))(parent)
+				signal.(func(*core.QModelIndex) int)(parent)
 				return f(parent)
 			})
 		} else {
@@ -6499,7 +6499,7 @@ func (ptr *QSqlRelationalTableModel) ConnectSelect(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "select"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "select", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -6688,7 +6688,7 @@ func (ptr *QSqlRelationalTableModel) ConnectRelationModel(f func(column int) *QS
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "relationModel"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "relationModel", func(column int) *QSqlTableModel {
-				signal.(func(int))(column)
+				signal.(func(int) *QSqlTableModel)(column)
 				return f(column)
 			})
 		} else {
@@ -6791,7 +6791,7 @@ func (ptr *QSqlResult) ConnectData(f func(index int) *core.QVariant) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "data"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "data", func(index int) *core.QVariant {
-				signal.(func(int))(index)
+				signal.(func(int) *core.QVariant)(index)
 				return f(index)
 			})
 		} else {
@@ -6830,7 +6830,7 @@ func (ptr *QSqlResult) ConnectExec(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "exec"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "exec", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -6874,7 +6874,7 @@ func (ptr *QSqlResult) ConnectFetch(f func(index int) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fetch"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fetch", func(index int) bool {
-				signal.(func(int))(index)
+				signal.(func(int) bool)(index)
 				return f(index)
 			})
 		} else {
@@ -6911,7 +6911,7 @@ func (ptr *QSqlResult) ConnectFetchFirst(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fetchFirst"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fetchFirst", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -6948,7 +6948,7 @@ func (ptr *QSqlResult) ConnectFetchLast(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fetchLast"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fetchLast", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -6985,7 +6985,7 @@ func (ptr *QSqlResult) ConnectFetchNext(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fetchNext"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fetchNext", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -7029,7 +7029,7 @@ func (ptr *QSqlResult) ConnectFetchPrevious(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fetchPrevious"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fetchPrevious", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -7073,7 +7073,7 @@ func (ptr *QSqlResult) ConnectIsNull(f func(index int) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isNull"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isNull", func(index int) bool {
-				signal.(func(int))(index)
+				signal.(func(int) bool)(index)
 				return f(index)
 			})
 		} else {
@@ -7110,7 +7110,7 @@ func (ptr *QSqlResult) ConnectPrepare(f func(query string) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "prepare"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "prepare", func(query string) bool {
-				signal.(func(string))(query)
+				signal.(func(string) bool)(query)
 				return f(query)
 			})
 		} else {
@@ -7164,7 +7164,7 @@ func (ptr *QSqlResult) ConnectReset(f func(query string) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "reset"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "reset", func(query string) bool {
-				signal.(func(string))(query)
+				signal.(func(string) bool)(query)
 				return f(query)
 			})
 		} else {
@@ -7206,7 +7206,7 @@ func (ptr *QSqlResult) ConnectSavePrepare(f func(query string) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "savePrepare"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "savePrepare", func(query string) bool {
-				signal.(func(string))(query)
+				signal.(func(string) bool)(query)
 				return f(query)
 			})
 		} else {
@@ -7260,7 +7260,7 @@ func (ptr *QSqlResult) ConnectNumRowsAffected(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "numRowsAffected"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "numRowsAffected", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -7297,7 +7297,7 @@ func (ptr *QSqlResult) ConnectSize(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "size"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "size", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -7789,7 +7789,7 @@ func (ptr *QSqlResult) ConnectRecord(f func() *QSqlRecord) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "record"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "record", func() *QSqlRecord {
-				signal.(func())()
+				signal.(func() *QSqlRecord)()
 				return f()
 			})
 		} else {
@@ -7881,7 +7881,7 @@ func (ptr *QSqlResult) ConnectHandle(f func() *core.QVariant) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "handle"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handle", func() *core.QVariant {
-				signal.(func())()
+				signal.(func() *core.QVariant)()
 				return f()
 			})
 		} else {
@@ -7929,7 +7929,7 @@ func (ptr *QSqlResult) ConnectLastInsertId(f func() *core.QVariant) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "lastInsertId"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "lastInsertId", func() *core.QVariant {
-				signal.(func())()
+				signal.(func() *core.QVariant)()
 				return f()
 			})
 		} else {
@@ -8126,7 +8126,7 @@ func (ptr *QSqlTableModel) ConnectDeleteRowFromTable(f func(row int) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "deleteRowFromTable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "deleteRowFromTable", func(row int) bool {
-				signal.(func(int))(row)
+				signal.(func(int) bool)(row)
 				return f(row)
 			})
 		} else {
@@ -8177,7 +8177,7 @@ func (ptr *QSqlTableModel) ConnectInsertRowIntoTable(f func(values *QSqlRecord) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "insertRowIntoTable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "insertRowIntoTable", func(values *QSqlRecord) bool {
-				signal.(func(*QSqlRecord))(values)
+				signal.(func(*QSqlRecord) bool)(values)
 				return f(values)
 			})
 		} else {
@@ -8221,7 +8221,7 @@ func (ptr *QSqlTableModel) ConnectSelect(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "select"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "select", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -8265,7 +8265,7 @@ func (ptr *QSqlTableModel) ConnectSelectRow(f func(row int) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "selectRow"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "selectRow", func(row int) bool {
-				signal.(func(int))(row)
+				signal.(func(int) bool)(row)
 				return f(row)
 			})
 		} else {
@@ -8316,7 +8316,7 @@ func (ptr *QSqlTableModel) ConnectSubmitAll(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "submitAll"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "submitAll", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -8360,7 +8360,7 @@ func (ptr *QSqlTableModel) ConnectUpdateRowInTable(f func(row int, values *QSqlR
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateRowInTable"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateRowInTable", func(row int, values *QSqlRecord) bool {
-				signal.(func(int, *QSqlRecord))(row, values)
+				signal.(func(int, *QSqlRecord) bool)(row, values)
 				return f(row, values)
 			})
 		} else {
@@ -8925,7 +8925,7 @@ func (ptr *QSqlTableModel) ConnectOrderByClause(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "orderByClause"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orderByClause", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -8969,7 +8969,7 @@ func (ptr *QSqlTableModel) ConnectSelectStatement(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "selectStatement"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "selectStatement", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {

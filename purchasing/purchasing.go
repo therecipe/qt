@@ -973,7 +973,7 @@ func (ptr *QInAppTransaction) ConnectErrorString(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "errorString"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -1017,7 +1017,7 @@ func (ptr *QInAppTransaction) ConnectOrderId(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "orderId"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orderId", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -1096,7 +1096,7 @@ func (ptr *QInAppTransaction) ConnectFailureReason(f func() QInAppTransaction__F
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "failureReason"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "failureReason", func() QInAppTransaction__FailureReason {
-				signal.(func())()
+				signal.(func() QInAppTransaction__FailureReason)()
 				return f()
 			})
 		} else {
@@ -1140,7 +1140,7 @@ func (ptr *QInAppTransaction) ConnectTimestamp(f func() *core.QDateTime) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "timestamp"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "timestamp", func() *core.QDateTime {
-				signal.(func())()
+				signal.(func() *core.QDateTime)()
 				return f()
 			})
 		} else {
@@ -1199,7 +1199,7 @@ func (ptr *QInAppTransaction) ConnectPlatformProperty(f func(propertyName string
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "platformProperty"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "platformProperty", func(propertyName string) string {
-				signal.(func(string))(propertyName)
+				signal.(func(string) string)(propertyName)
 				return f(propertyName)
 			})
 		} else {

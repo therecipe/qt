@@ -82,7 +82,7 @@ func (ptr *QQuickAsyncImageProvider) ConnectRequestImageResponse(f func(id strin
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestImageResponse"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestImageResponse", func(id string, requestedSize *core.QSize) *QQuickImageResponse {
-				signal.(func(string, *core.QSize))(id, requestedSize)
+				signal.(func(string, *core.QSize) *QQuickImageResponse)(id, requestedSize)
 				return f(id, requestedSize)
 			})
 		} else {
@@ -364,7 +364,7 @@ func (ptr *QQuickImageProvider) ConnectRequestImage(f func(id string, size *core
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestImage"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestImage", func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QImage {
-				signal.(func(string, *core.QSize, *core.QSize))(id, size, requestedSize)
+				signal.(func(string, *core.QSize, *core.QSize) *gui.QImage)(id, size, requestedSize)
 				return f(id, size, requestedSize)
 			})
 		} else {
@@ -422,7 +422,7 @@ func (ptr *QQuickImageProvider) ConnectRequestPixmap(f func(id string, size *cor
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestPixmap"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestPixmap", func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QPixmap {
-				signal.(func(string, *core.QSize, *core.QSize))(id, size, requestedSize)
+				signal.(func(string, *core.QSize, *core.QSize) *gui.QPixmap)(id, size, requestedSize)
 				return f(id, size, requestedSize)
 			})
 		} else {
@@ -484,7 +484,7 @@ func (ptr *QQuickImageProvider) ConnectRequestTexture(f func(id string, size *co
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "requestTexture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "requestTexture", func(id string, size *core.QSize, requestedSize *core.QSize) *QQuickTextureFactory {
-				signal.(func(string, *core.QSize, *core.QSize))(id, size, requestedSize)
+				signal.(func(string, *core.QSize, *core.QSize) *QQuickTextureFactory)(id, size, requestedSize)
 				return f(id, size, requestedSize)
 			})
 		} else {
@@ -592,7 +592,7 @@ func (ptr *QQuickImageProvider) ConnectFlags(f func() qml.QQmlImageProviderBase_
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "flags"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flags", func() qml.QQmlImageProviderBase__Flag {
-				signal.(func())()
+				signal.(func() qml.QQmlImageProviderBase__Flag)()
 				return f()
 			})
 		} else {
@@ -636,7 +636,7 @@ func (ptr *QQuickImageProvider) ConnectImageType(f func() qml.QQmlImageProviderB
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "imageType"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "imageType", func() qml.QQmlImageProviderBase__ImageType {
-				signal.(func())()
+				signal.(func() qml.QQmlImageProviderBase__ImageType)()
 				return f()
 			})
 		} else {
@@ -853,7 +853,7 @@ func (ptr *QQuickImageResponse) ConnectTextureFactory(f func() *QQuickTextureFac
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "textureFactory"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "textureFactory", func() *QQuickTextureFactory {
-				signal.(func())()
+				signal.(func() *QQuickTextureFactory)()
 				return f()
 			})
 		} else {
@@ -894,7 +894,7 @@ func (ptr *QQuickImageResponse) ConnectErrorString(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "errorString"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "errorString", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -1312,7 +1312,7 @@ func (ptr *QQuickItem) ConnectChildMouseEventFilter(f func(item *QQuickItem, eve
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "childMouseEventFilter"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "childMouseEventFilter", func(item *QQuickItem, event *core.QEvent) bool {
-				signal.(func(*QQuickItem, *core.QEvent))(item, event)
+				signal.(func(*QQuickItem, *core.QEvent) bool)(item, event)
 				return f(item, event)
 			})
 		} else {
@@ -1356,7 +1356,7 @@ func (ptr *QQuickItem) ConnectEvent(f func(ev *core.QEvent) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "event"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "event", func(ev *core.QEvent) bool {
-				signal.(func(*core.QEvent))(ev)
+				signal.(func(*core.QEvent) bool)(ev)
 				return f(ev)
 			})
 		} else {
@@ -3015,7 +3015,7 @@ func (ptr *QQuickItem) ConnectTextureProvider(f func() *QSGTextureProvider) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "textureProvider"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "textureProvider", func() *QSGTextureProvider {
-				signal.(func())()
+				signal.(func() *QSGTextureProvider)()
 				return f()
 			})
 		} else {
@@ -3074,7 +3074,7 @@ func (ptr *QQuickItem) ConnectInputMethodQuery(f func(query core.Qt__InputMethod
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "inputMethodQuery"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "inputMethodQuery", func(query core.Qt__InputMethodQuery) *core.QVariant {
-				signal.(func(core.Qt__InputMethodQuery))(query)
+				signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(query)
 				return f(query)
 			})
 		} else {
@@ -3164,7 +3164,7 @@ func (ptr *QQuickItem) ConnectContains(f func(point *core.QPointF) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "contains"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "contains", func(point *core.QPointF) bool {
-				signal.(func(*core.QPointF))(point)
+				signal.(func(*core.QPointF) bool)(point)
 				return f(point)
 			})
 		} else {
@@ -3264,7 +3264,7 @@ func (ptr *QQuickItem) ConnectIsTextureProvider(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isTextureProvider"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isTextureProvider", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -4646,7 +4646,7 @@ func (ptr *QQuickRenderControl) ConnectRenderWindow(f func(offset *core.QPoint) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "renderWindow"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "renderWindow", func(offset *core.QPoint) *gui.QWindow {
-				signal.(func(*core.QPoint))(offset)
+				signal.(func(*core.QPoint) *gui.QWindow)(offset)
 				return f(offset)
 			})
 		} else {
@@ -5529,7 +5529,7 @@ func (ptr *QQuickTextureFactory) ConnectImage(f func() *gui.QImage) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "image"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "image", func() *gui.QImage {
-				signal.(func())()
+				signal.(func() *gui.QImage)()
 				return f()
 			})
 		} else {
@@ -5577,7 +5577,7 @@ func (ptr *QQuickTextureFactory) ConnectCreateTexture(f func(window *QQuickWindo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createTexture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createTexture", func(window *QQuickWindow) *QSGTexture {
-				signal.(func(*QQuickWindow))(window)
+				signal.(func(*QQuickWindow) *QSGTexture)(window)
 				return f(window)
 			})
 		} else {
@@ -5618,7 +5618,7 @@ func (ptr *QQuickTextureFactory) ConnectTextureSize(f func() *core.QSize) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "textureSize"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "textureSize", func() *core.QSize {
-				signal.(func())()
+				signal.(func() *core.QSize)()
 				return f()
 			})
 		} else {
@@ -5657,7 +5657,7 @@ func (ptr *QQuickTextureFactory) ConnectTextureByteCount(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "textureByteCount"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "textureByteCount", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -10619,7 +10619,7 @@ func (ptr *QSGDynamicTexture) ConnectUpdateTexture(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateTexture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateTexture", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -12038,7 +12038,7 @@ func (ptr *QSGImageNode) ConnectRect(f func() *core.QRectF) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rect", func() *core.QRectF {
-				signal.(func())()
+				signal.(func() *core.QRectF)()
 				return f()
 			})
 		} else {
@@ -12077,7 +12077,7 @@ func (ptr *QSGImageNode) ConnectSourceRect(f func() *core.QRectF) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "sourceRect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "sourceRect", func() *core.QRectF {
-				signal.(func())()
+				signal.(func() *core.QRectF)()
 				return f()
 			})
 		} else {
@@ -12116,7 +12116,7 @@ func (ptr *QSGImageNode) ConnectTexture(f func() *QSGTexture) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "texture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "texture", func() *QSGTexture {
-				signal.(func())()
+				signal.(func() *QSGTexture)()
 				return f()
 			})
 		} else {
@@ -12157,7 +12157,7 @@ func (ptr *QSGImageNode) ConnectFiltering(f func() QSGTexture__Filtering) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "filtering"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "filtering", func() QSGTexture__Filtering {
-				signal.(func())()
+				signal.(func() QSGTexture__Filtering)()
 				return f()
 			})
 		} else {
@@ -12194,7 +12194,7 @@ func (ptr *QSGImageNode) ConnectMipmapFiltering(f func() QSGTexture__Filtering) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "mipmapFiltering"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "mipmapFiltering", func() QSGTexture__Filtering {
-				signal.(func())()
+				signal.(func() QSGTexture__Filtering)()
 				return f()
 			})
 		} else {
@@ -12231,7 +12231,7 @@ func (ptr *QSGImageNode) ConnectTextureCoordinatesTransform(f func() QSGImageNod
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "textureCoordinatesTransform"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "textureCoordinatesTransform", func() QSGImageNode__TextureCoordinatesTransformFlag {
-				signal.(func())()
+				signal.(func() QSGImageNode__TextureCoordinatesTransformFlag)()
 				return f()
 			})
 		} else {
@@ -12268,7 +12268,7 @@ func (ptr *QSGImageNode) ConnectOwnsTexture(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ownsTexture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ownsTexture", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -12376,7 +12376,7 @@ func (ptr *QSGMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "createShader"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "createShader", func() *QSGMaterialShader {
-				signal.(func())()
+				signal.(func() *QSGMaterialShader)()
 				return f()
 			})
 		} else {
@@ -12413,7 +12413,7 @@ func (ptr *QSGMaterial) ConnectType(f func() *QSGMaterialType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() *QSGMaterialType {
-				signal.(func())()
+				signal.(func() *QSGMaterialType)()
 				return f()
 			})
 		} else {
@@ -12450,7 +12450,7 @@ func (ptr *QSGMaterial) ConnectCompare(f func(other *QSGMaterial) int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "compare"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "compare", func(other *QSGMaterial) int {
-				signal.(func(*QSGMaterial))(other)
+				signal.(func(*QSGMaterial) int)(other)
 				return f(other)
 			})
 		} else {
@@ -12540,7 +12540,7 @@ func (ptr *QSGMaterialShader) ConnectFragmentShader(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "fragmentShader"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "fragmentShader", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -12584,7 +12584,7 @@ func (ptr *QSGMaterialShader) ConnectVertexShader(f func() string) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "vertexShader"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "vertexShader", func() string {
-				signal.(func())()
+				signal.(func() string)()
 				return f()
 			})
 		} else {
@@ -13151,7 +13151,7 @@ func (ptr *QSGNode) ConnectIsSubtreeBlocked(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isSubtreeBlocked"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isSubtreeBlocked", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -13609,7 +13609,7 @@ func (ptr *QSGRectangleNode) ConnectColor(f func() *gui.QColor) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "color"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "color", func() *gui.QColor {
-				signal.(func())()
+				signal.(func() *gui.QColor)()
 				return f()
 			})
 		} else {
@@ -13648,7 +13648,7 @@ func (ptr *QSGRectangleNode) ConnectRect(f func() *core.QRectF) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rect", func() *core.QRectF {
-				signal.(func())()
+				signal.(func() *core.QRectF)()
 				return f()
 			})
 		} else {
@@ -13801,7 +13801,7 @@ func (ptr *QSGRenderNode) ConnectRect(f func() *core.QRectF) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "rect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "rect", func() *core.QRectF {
-				signal.(func())()
+				signal.(func() *core.QRectF)()
 				return f()
 			})
 		} else {
@@ -13849,7 +13849,7 @@ func (ptr *QSGRenderNode) ConnectFlags(f func() QSGRenderNode__RenderingFlag) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "flags"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flags", func() QSGRenderNode__RenderingFlag {
-				signal.(func())()
+				signal.(func() QSGRenderNode__RenderingFlag)()
 				return f()
 			})
 		} else {
@@ -13893,7 +13893,7 @@ func (ptr *QSGRenderNode) ConnectChangedStates(f func() QSGRenderNode__StateFlag
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "changedStates"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "changedStates", func() QSGRenderNode__StateFlag {
-				signal.(func())()
+				signal.(func() QSGRenderNode__StateFlag)()
 				return f()
 			})
 		} else {
@@ -14093,7 +14093,7 @@ func (ptr *QSGRendererInterface) ConnectGraphicsApi(f func() QSGRendererInterfac
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "graphicsApi"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "graphicsApi", func() QSGRendererInterface__GraphicsApi {
-				signal.(func())()
+				signal.(func() QSGRendererInterface__GraphicsApi)()
 				return f()
 			})
 		} else {
@@ -14130,7 +14130,7 @@ func (ptr *QSGRendererInterface) ConnectShaderCompilationType(f func() QSGRender
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shaderCompilationType"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shaderCompilationType", func() QSGRendererInterface__ShaderCompilationType {
-				signal.(func())()
+				signal.(func() QSGRendererInterface__ShaderCompilationType)()
 				return f()
 			})
 		} else {
@@ -14167,7 +14167,7 @@ func (ptr *QSGRendererInterface) ConnectShaderSourceType(f func() QSGRendererInt
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shaderSourceType"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shaderSourceType", func() QSGRendererInterface__ShaderSourceType {
-				signal.(func())()
+				signal.(func() QSGRendererInterface__ShaderSourceType)()
 				return f()
 			})
 		} else {
@@ -14204,7 +14204,7 @@ func (ptr *QSGRendererInterface) ConnectShaderType(f func() QSGRendererInterface
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shaderType"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shaderType", func() QSGRendererInterface__ShaderType {
-				signal.(func())()
+				signal.(func() QSGRendererInterface__ShaderType)()
 				return f()
 			})
 		} else {
@@ -14241,7 +14241,7 @@ func (ptr *QSGRendererInterface) ConnectGetResource(f func(window *QQuickWindow,
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "getResource"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "getResource", func(window *QQuickWindow, resource QSGRendererInterface__Resource) unsafe.Pointer {
-				signal.(func(*QQuickWindow, QSGRendererInterface__Resource))(window, resource)
+				signal.(func(*QQuickWindow, QSGRendererInterface__Resource) unsafe.Pointer)(window, resource)
 				return f(window, resource)
 			})
 		} else {
@@ -14285,7 +14285,7 @@ func (ptr *QSGRendererInterface) ConnectGetResource2(f func(window *QQuickWindow
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "getResource2"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "getResource2", func(window *QQuickWindow, resource string) unsafe.Pointer {
-				signal.(func(*QQuickWindow, string))(window, resource)
+				signal.(func(*QQuickWindow, string) unsafe.Pointer)(window, resource)
 				return f(window, resource)
 			})
 		} else {
@@ -14581,7 +14581,7 @@ func (ptr *QSGTexture) ConnectNormalizedTextureSubRect(f func() *core.QRectF) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "normalizedTextureSubRect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "normalizedTextureSubRect", func() *core.QRectF {
-				signal.(func())()
+				signal.(func() *core.QRectF)()
 				return f()
 			})
 		} else {
@@ -14629,7 +14629,7 @@ func (ptr *QSGTexture) ConnectRemovedFromAtlas(f func() *QSGTexture) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "removedFromAtlas"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "removedFromAtlas", func() *QSGTexture {
-				signal.(func())()
+				signal.(func() *QSGTexture)()
 				return f()
 			})
 		} else {
@@ -14709,7 +14709,7 @@ func (ptr *QSGTexture) ConnectTextureSize(f func() *core.QSize) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "textureSize"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "textureSize", func() *core.QSize {
-				signal.(func())()
+				signal.(func() *core.QSize)()
 				return f()
 			})
 		} else {
@@ -14748,7 +14748,7 @@ func (ptr *QSGTexture) ConnectHasAlphaChannel(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasAlphaChannel"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasAlphaChannel", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -14785,7 +14785,7 @@ func (ptr *QSGTexture) ConnectHasMipmaps(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasMipmaps"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasMipmaps", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -14822,7 +14822,7 @@ func (ptr *QSGTexture) ConnectIsAtlasTexture(f func() bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "isAtlasTexture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "isAtlasTexture", func() bool {
-				signal.(func())()
+				signal.(func() bool)()
 				return f()
 			})
 		} else {
@@ -14866,7 +14866,7 @@ func (ptr *QSGTexture) ConnectTextureId(f func() int) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "textureId"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "textureId", func() int {
-				signal.(func())()
+				signal.(func() int)()
 				return f()
 			})
 		} else {
@@ -15295,7 +15295,7 @@ func (ptr *QSGTextureProvider) ConnectTexture(f func() *QSGTexture) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "texture"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "texture", func() *QSGTexture {
-				signal.(func())()
+				signal.(func() *QSGTexture)()
 				return f()
 			})
 		} else {

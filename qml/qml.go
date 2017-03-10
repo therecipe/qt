@@ -1076,7 +1076,7 @@ func (ptr *QQmlAbstractUrlInterceptor) ConnectIntercept(f func(url *core.QUrl, t
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "intercept"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "intercept", func(url *core.QUrl, ty QQmlAbstractUrlInterceptor__DataType) *core.QUrl {
-				signal.(func(*core.QUrl, QQmlAbstractUrlInterceptor__DataType))(url, ty)
+				signal.(func(*core.QUrl, QQmlAbstractUrlInterceptor__DataType) *core.QUrl)(url, ty)
 				return f(url, ty)
 			})
 		} else {
@@ -1504,7 +1504,7 @@ func (ptr *QQmlComponent) ConnectBeginCreate(f func(publicContext *QQmlContext) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "beginCreate"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "beginCreate", func(publicContext *QQmlContext) *core.QObject {
-				signal.(func(*QQmlContext))(publicContext)
+				signal.(func(*QQmlContext) *core.QObject)(publicContext)
 				return f(publicContext)
 			})
 		} else {
@@ -1556,7 +1556,7 @@ func (ptr *QQmlComponent) ConnectCreate(f func(context *QQmlContext) *core.QObje
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "create"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "create", func(context *QQmlContext) *core.QObject {
-				signal.(func(*QQmlContext))(context)
+				signal.(func(*QQmlContext) *core.QObject)(context)
 				return f(context)
 			})
 		} else {
@@ -4861,7 +4861,7 @@ func (ptr *QQmlImageProviderBase) ConnectFlags(f func() QQmlImageProviderBase__F
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "flags"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "flags", func() QQmlImageProviderBase__Flag {
-				signal.(func())()
+				signal.(func() QQmlImageProviderBase__Flag)()
 				return f()
 			})
 		} else {
@@ -4898,7 +4898,7 @@ func (ptr *QQmlImageProviderBase) ConnectImageType(f func() QQmlImageProviderBas
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "imageType"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "imageType", func() QQmlImageProviderBase__ImageType {
-				signal.(func())()
+				signal.(func() QQmlImageProviderBase__ImageType)()
 				return f()
 			})
 		} else {
@@ -5547,7 +5547,7 @@ func (ptr *QQmlNetworkAccessManagerFactory) ConnectCreate(f func(parent *core.QO
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "create"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "create", func(parent *core.QObject) *network.QNetworkAccessManager {
-				signal.(func(*core.QObject))(parent)
+				signal.(func(*core.QObject) *network.QNetworkAccessManager)(parent)
 				return f(parent)
 			})
 		} else {
@@ -6209,7 +6209,7 @@ func (ptr *QQmlPropertyMap) ConnectUpdateValue(f func(key string, input *core.QV
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "updateValue"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "updateValue", func(key string, input *core.QVariant) *core.QVariant {
-				signal.(func(string, *core.QVariant))(key, input)
+				signal.(func(string, *core.QVariant) *core.QVariant)(key, input)
 				return f(key, input)
 			})
 		} else {

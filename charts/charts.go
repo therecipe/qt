@@ -1281,7 +1281,7 @@ func (ptr *QAbstractAxis) ConnectType(f func() QAbstractAxis__AxisType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractAxis__AxisType {
-				signal.(func())()
+				signal.(func() QAbstractAxis__AxisType)()
 				return f()
 			})
 		} else {
@@ -2648,7 +2648,7 @@ func (ptr *QAbstractSeries) ConnectType(f func() QAbstractSeries__SeriesType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -2762,7 +2762,7 @@ func (ptr *QAreaLegendMarker) ConnectType(f func() QLegendMarker__LegendMarkerTy
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QLegendMarker__LegendMarkerType {
-				signal.(func())()
+				signal.(func() QLegendMarker__LegendMarkerType)()
 				return f()
 			})
 		} else {
@@ -2806,7 +2806,7 @@ func (ptr *QAreaLegendMarker) ConnectSeries(f func() *QAreaSeries) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "series"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "series", func() *QAreaSeries {
-				signal.(func())()
+				signal.(func() *QAreaSeries)()
 				return f()
 			})
 		} else {
@@ -3500,7 +3500,7 @@ func (ptr *QAreaSeries) ConnectType(f func() QAbstractSeries__SeriesType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -4021,7 +4021,7 @@ func (ptr *QBarCategoryAxis) ConnectType(f func() QAbstractAxis__AxisType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractAxis__AxisType {
-				signal.(func())()
+				signal.(func() QAbstractAxis__AxisType)()
 				return f()
 			})
 		} else {
@@ -4132,7 +4132,7 @@ func (ptr *QBarLegendMarker) ConnectType(f func() QLegendMarker__LegendMarkerTyp
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QLegendMarker__LegendMarkerType {
-				signal.(func())()
+				signal.(func() QLegendMarker__LegendMarkerType)()
 				return f()
 			})
 		} else {
@@ -4176,7 +4176,7 @@ func (ptr *QBarLegendMarker) ConnectSeries(f func() *QAbstractBarSeries) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "series"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "series", func() *QAbstractBarSeries {
-				signal.(func())()
+				signal.(func() *QAbstractBarSeries)()
 				return f()
 			})
 		} else {
@@ -4323,7 +4323,7 @@ func (ptr *QBarSeries) ConnectType(f func() QAbstractSeries__SeriesType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -5319,7 +5319,7 @@ func (ptr *QBoxPlotLegendMarker) ConnectType(f func() QLegendMarker__LegendMarke
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QLegendMarker__LegendMarkerType {
-				signal.(func())()
+				signal.(func() QLegendMarker__LegendMarkerType)()
 				return f()
 			})
 		} else {
@@ -5363,7 +5363,7 @@ func (ptr *QBoxPlotLegendMarker) ConnectSeries(f func() *QBoxPlotSeries) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "series"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "series", func() *QBoxPlotSeries {
-				signal.(func())()
+				signal.(func() *QBoxPlotSeries)()
 				return f()
 			})
 		} else {
@@ -6080,7 +6080,7 @@ func (ptr *QBoxPlotSeries) ConnectType(f func() QAbstractSeries__SeriesType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -6882,7 +6882,7 @@ func (ptr *QCandlestickLegendMarker) ConnectType(f func() QLegendMarker__LegendM
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QLegendMarker__LegendMarkerType {
-				signal.(func())()
+				signal.(func() QLegendMarker__LegendMarkerType)()
 				return f()
 			})
 		} else {
@@ -6926,7 +6926,7 @@ func (ptr *QCandlestickLegendMarker) ConnectSeries(f func() *QCandlestickSeries)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "series"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "series", func() *QCandlestickSeries {
-				signal.(func())()
+				signal.(func() *QCandlestickSeries)()
 				return f()
 			})
 		} else {
@@ -7216,7 +7216,7 @@ func (ptr *QCandlestickModelMapper) ConnectOrientation(f func() core.Qt__Orienta
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "orientation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orientation", func() core.Qt__Orientation {
-				signal.(func())()
+				signal.(func() core.Qt__Orientation)()
 				return f()
 			})
 		} else {
@@ -8198,7 +8198,7 @@ func (ptr *QCandlestickSeries) ConnectType(f func() QAbstractSeries__SeriesType)
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -13136,7 +13136,7 @@ func (ptr *QDateTimeAxis) ConnectType(f func() QAbstractAxis__AxisType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractAxis__AxisType {
-				signal.(func())()
+				signal.(func() QAbstractAxis__AxisType)()
 				return f()
 			})
 		} else {
@@ -14310,7 +14310,7 @@ func (ptr *QHCandlestickModelMapper) ConnectOrientation(f func() core.Qt__Orient
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "orientation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orientation", func() core.Qt__Orientation {
-				signal.(func())()
+				signal.(func() core.Qt__Orientation)()
 				return f()
 			})
 		} else {
@@ -15185,7 +15185,7 @@ func (ptr *QHorizontalBarSeries) ConnectType(f func() QAbstractSeries__SeriesTyp
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -15279,7 +15279,7 @@ func (ptr *QHorizontalPercentBarSeries) ConnectType(f func() QAbstractSeries__Se
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -15373,7 +15373,7 @@ func (ptr *QHorizontalStackedBarSeries) ConnectType(f func() QAbstractSeries__Se
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -17295,7 +17295,7 @@ func (ptr *QLegendMarker) ConnectType(f func() QLegendMarker__LegendMarkerType) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QLegendMarker__LegendMarkerType {
-				signal.(func())()
+				signal.(func() QLegendMarker__LegendMarkerType)()
 				return f()
 			})
 		} else {
@@ -17332,7 +17332,7 @@ func (ptr *QLegendMarker) ConnectSeries(f func() *QAbstractSeries) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "series"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "series", func() *QAbstractSeries {
-				signal.(func())()
+				signal.(func() *QAbstractSeries)()
 				return f()
 			})
 		} else {
@@ -17868,7 +17868,7 @@ func (ptr *QLineSeries) ConnectType(f func() QAbstractSeries__SeriesType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -18197,7 +18197,7 @@ func (ptr *QLogValueAxis) ConnectType(f func() QAbstractAxis__AxisType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractAxis__AxisType {
-				signal.(func())()
+				signal.(func() QAbstractAxis__AxisType)()
 				return f()
 			})
 		} else {
@@ -18319,7 +18319,7 @@ func (ptr *QPercentBarSeries) ConnectType(f func() QAbstractSeries__SeriesType) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -18402,7 +18402,7 @@ func (ptr *QPieLegendMarker) ConnectType(f func() QLegendMarker__LegendMarkerTyp
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QLegendMarker__LegendMarkerType {
-				signal.(func())()
+				signal.(func() QLegendMarker__LegendMarkerType)()
 				return f()
 			})
 		} else {
@@ -18446,7 +18446,7 @@ func (ptr *QPieLegendMarker) ConnectSeries(f func() *QPieSeries) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "series"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "series", func() *QPieSeries {
-				signal.(func())()
+				signal.(func() *QPieSeries)()
 				return f()
 			})
 		} else {
@@ -19113,7 +19113,7 @@ func (ptr *QPieSeries) ConnectType(f func() QAbstractSeries__SeriesType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -20694,7 +20694,7 @@ func (ptr *QScatterSeries) ConnectType(f func() QAbstractSeries__SeriesType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -20845,7 +20845,7 @@ func (ptr *QStackedBarSeries) ConnectType(f func() QAbstractSeries__SeriesType) 
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractSeries__SeriesType {
-				signal.(func())()
+				signal.(func() QAbstractSeries__SeriesType)()
 				return f()
 			})
 		} else {
@@ -21987,7 +21987,7 @@ func (ptr *QVCandlestickModelMapper) ConnectOrientation(f func() core.Qt__Orient
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "orientation"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "orientation", func() core.Qt__Orientation {
-				signal.(func())()
+				signal.(func() core.Qt__Orientation)()
 				return f()
 			})
 		} else {
@@ -23184,7 +23184,7 @@ func (ptr *QValueAxis) ConnectType(f func() QAbstractAxis__AxisType) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QAbstractAxis__AxisType {
-				signal.(func())()
+				signal.(func() QAbstractAxis__AxisType)()
 				return f()
 			})
 		} else {
@@ -23302,7 +23302,7 @@ func (ptr *QXYLegendMarker) ConnectType(f func() QLegendMarker__LegendMarkerType
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QLegendMarker__LegendMarkerType {
-				signal.(func())()
+				signal.(func() QLegendMarker__LegendMarkerType)()
 				return f()
 			})
 		} else {
@@ -23346,7 +23346,7 @@ func (ptr *QXYLegendMarker) ConnectSeries(f func() *QXYSeries) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "series"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "series", func() *QXYSeries {
-				signal.(func())()
+				signal.(func() *QXYSeries)()
 				return f()
 			})
 		} else {
@@ -24434,7 +24434,7 @@ func (ptr *QXYSeries) ConnectColor(f func() *gui.QColor) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "color"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "color", func() *gui.QColor {
-				signal.(func())()
+				signal.(func() *gui.QColor)()
 				return f()
 			})
 		} else {

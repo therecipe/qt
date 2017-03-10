@@ -171,7 +171,7 @@ func (ptr *QGraphicsSvgItem) ConnectBoundingRect(f func() *core.QRectF) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "boundingRect"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "boundingRect", func() *core.QRectF {
-				signal.(func())()
+				signal.(func() *core.QRectF)()
 				return f()
 			})
 		} else {
@@ -1261,7 +1261,7 @@ func (ptr *QSvgGenerator) ConnectPaintEngine(f func() *gui.QPaintEngine) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "paintEngine"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "paintEngine", func() *gui.QPaintEngine {
-				signal.(func())()
+				signal.(func() *gui.QPaintEngine)()
 				return f()
 			})
 		} else {
@@ -1435,7 +1435,7 @@ func (ptr *QSvgRenderer) ConnectLoad3(f func(contents *core.QXmlStreamReader) bo
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load3"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load3", func(contents *core.QXmlStreamReader) bool {
-				signal.(func(*core.QXmlStreamReader))(contents)
+				signal.(func(*core.QXmlStreamReader) bool)(contents)
 				return f(contents)
 			})
 		} else {
@@ -1479,7 +1479,7 @@ func (ptr *QSvgRenderer) ConnectLoad2(f func(contents *core.QByteArray) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load2"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load2", func(contents *core.QByteArray) bool {
-				signal.(func(*core.QByteArray))(contents)
+				signal.(func(*core.QByteArray) bool)(contents)
 				return f(contents)
 			})
 		} else {
@@ -1523,7 +1523,7 @@ func (ptr *QSvgRenderer) ConnectLoad(f func(filename string) bool) {
 
 		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "load"); signal != nil {
 			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "load", func(filename string) bool {
-				signal.(func(string))(filename)
+				signal.(func(string) bool)(filename)
 				return f(filename)
 			})
 		} else {
