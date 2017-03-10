@@ -8,7 +8,11 @@ import (
 	"strings"
 )
 
-func UsePkgConfig() bool {
+func QT_PKG_CONFIG() bool {
+	return usePkgConfig()
+}
+
+func usePkgConfig() bool {
 	return strings.ToLower(os.Getenv("QT_PKG_CONFIG")) == "true"
 }
 
@@ -17,7 +21,7 @@ func QT_DOC_DIR() string {
 		return filepath.Clean(dir)
 	}
 
-	switch LinuxDistro() {
+	switch QT_DISTRO() {
 	case "arch":
 		{
 			return "/usr/share/doc/qt"
@@ -51,7 +55,7 @@ func QT_MISC_DIR() string {
 		return filepath.Clean(dir)
 	}
 
-	switch LinuxDistro() {
+	switch QT_DISTRO() {
 	case "arch":
 		return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir")), "qt")
 	case "fedora", "suse", "ubuntu":
@@ -61,7 +65,10 @@ func QT_MISC_DIR() string {
 	return ""
 }
 
-func LinuxDistro() string {
+func QT_DISTRO() string {
+	if d, ok := os.LookupEnv("QT_DISTRO"); ok {
+		return d
+	}
 
 	if _, err := exec.LookPath("pacman"); err == nil {
 		return "arch"

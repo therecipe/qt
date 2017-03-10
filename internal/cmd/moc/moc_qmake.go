@@ -24,7 +24,7 @@ func QmakeMoc(path, target string) {
 		if err != nil {
 			return err
 		}
-		if path != current && info.IsDir() && !isBlacklistedPath(path, current) {
+		if info.IsDir() && path != current && !isBlacklistedPath(path, current) {
 			QmakeMoc(current, target)
 		}
 		return nil
@@ -153,17 +153,12 @@ func QmakeMoc(path, target string) {
 	utils.Log.Debug("done copy structors")
 
 	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC)); err != nil {
-		utils.Log.WithError(err).Error("failed to run cppTemplate")
 		return
 	}
-
 	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC)); err != nil {
-		utils.Log.WithError(err).Error("failed to run hTemplate")
 		return
 	}
-
 	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg)); err != nil {
-		utils.Log.WithError(err).Error("failed to run goTemplate")
 		return
 	}
 	templater.QmakeCgoTemplate(parser.MOC, path, target, templater.MOC, pkg)
@@ -180,6 +175,7 @@ func QmakeMoc(path, target string) {
 
 func parse(path string) ([]*parser.Class, string, error) {
 	utils.Log.WithField("path", path).Debug("parse")
+
 	src, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, "", err
@@ -239,7 +235,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 						meta = parser.SLOT
 					case strings.HasPrefix(tag, "property:"):
 						meta = parser.PROP
-					case strings.HasPrefix(tag, "constructor:"):
+					case strings.HasPrefix(tag, "constructor:"): //TODO: more advanced constructor support (multiple constructors, custom inputs, error output, custom naming, ...)
 						meta = parser.CONSTRUCTOR
 					default:
 						continue

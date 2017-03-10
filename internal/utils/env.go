@@ -31,7 +31,7 @@ func QT_DIR() string {
 }
 
 func QT_STUB() bool {
-	return strings.ToLower(os.Getenv("QT_STUB")) == "true" || UseMsys2()
+	return strings.ToLower(os.Getenv("QT_STUB")) == "true" || QT_MSYS2()
 }
 
 func QT_DEBUG() bool {
@@ -48,11 +48,7 @@ func CheckBuildTarget(buildTarget string) {
 			switch buildTarget {
 			case "windows":
 				{
-					if runtime.GOOS == "windows" && !buildDocker {
-					} else if runtime.GOOS == "linux" || buildDocker {
-					} else {
-						Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-					}
+
 				}
 
 			case "darwin", "ios", "ios-simulator":
@@ -82,17 +78,17 @@ func CheckBuildTarget(buildTarget string) {
 
 	if buildTarget == "android" || strings.HasPrefix(buildTarget, "ios") {
 		switch {
-		case UseMsys2():
+		case QT_MSYS2():
 			{
 				Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 			}
 
-		case UseHomeBrew():
+		case QT_HOMEBREW():
 			{
 				Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 			}
 
-		case UsePkgConfig():
+		case QT_PKG_CONFIG():
 			{
 				Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 			}
@@ -100,7 +96,7 @@ func CheckBuildTarget(buildTarget string) {
 	}
 }
 
-func IsCI() bool {
+func CI() bool {
 	return strings.ToLower(os.Getenv("CI")) == "true"
 }
 
@@ -121,7 +117,7 @@ func QT_DOCKER() bool {
 
 func ToolPath(tool, target string) string {
 	//TODO: only temporary
-	if target == "desktop" {
+	if target == "desktop" || target == "sailfish" || target == "sailfish-emulator" {
 		target = runtime.GOOS
 	}
 	//
@@ -138,14 +134,14 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_DARWIN_DIR(), "bin", tool)
 	case "windows":
 		if runtime.GOOS == target {
-			if UseMsys2() {
+			if QT_MSYS2() {
 				return filepath.Join(QT_MSYS2_DIR(), "bin", tool)
 			}
 			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw53_32", "bin", tool)
 		}
 		return filepath.Join(QT_MXE_DIR(), "usr", QT_MXE_TRIPLET(), "qt5", "bin", tool)
 	case "linux":
-		if UsePkgConfig() {
+		if QT_PKG_CONFIG() {
 			if QT_QMAKE_CGO() {
 				return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), tool)
 			}
@@ -156,10 +152,12 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "ios", "bin", tool)
 	case "android":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
+/*
 	case "sailfish":
 		return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)
 	case "sailfish-emulator":
 		return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
+*/
 	case "asteroid":
 	case "rp1", "rpi2", "rpi3":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), target, "bin", tool)

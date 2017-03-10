@@ -3,6 +3,7 @@ package templater
 import (
 	"bytes"
 	"fmt"
+	"go/format"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -21,6 +22,7 @@ const (
 )
 
 func QmakeCgoTemplate(module, path, target string, mode int, ipkg string) (o string) {
+	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg)
 
 	switch module {
 	case "AndroidExtras":
@@ -37,43 +39,32 @@ func QmakeCgoTemplate(module, path, target string, mode int, ipkg string) (o str
 		path = utils.GoQtPkgPath(strings.ToLower(module))
 	}
 
-	switch target {
-	case "darwin", "linux":
-		if runtime.GOOS != target {
-			return
-		}
-	case "windows": //can be windows,linux,darwin
-	case "android":
-		switch module {
-		case "DBus", "WebEngine", "Designer":
-			return
-		}
-		if strings.HasSuffix(module, "Extras") && module != "AndroidExtras" {
-			return
-		}
-	case "ios", "ios-simulator":
-		switch module {
-		case "DBus", "WebEngine", "Designer", "SerialPort", "SerialBus":
-			return
-		}
-		if strings.HasSuffix(module, "Extras") {
-			return
-		}
-	case "sailfish", "sailfish-emulator", "asteroid":
-		if !IsWhiteListedSailfishLib(module) {
-			return
-		}
-	case "rpi1", "rpi2", "rpi3":
-	default:
+	if target == "desktop" {
 		target = runtime.GOOS
 	}
 
-	if isAlreadyCached(module, path, target, mode) {
+	if !parser.ShouldBuildForTarget(module, target) ||
+		isAlreadyCached(module, path, target, mode) {
+		utils.Log.Debugf("skipping cgo generation")
 		return
 	}
-	createProject(module, path, mode)
-	createMakefile(module, path, target, mode)
-	createCgo(module, path, target, mode, ipkg)
+
+	switch target {
+	case "rpi1":
+		cgoRaspberryPi1(module, path, mode, ipkg) //TODO:
+	case "rpi2":
+		cgoRaspberryPi2(module, path, mode, ipkg) //TODO:
+	case "rpi3":
+		cgoRaspberryPi3(module, path, mode, ipkg) //TODO:
+	case "sailfish", "sailfish-emulator":
+		cgoSailfish(module, path, mode, ipkg) //TODO:
+	case "asteroid":
+		cgoAsteroid(module, path, mode, ipkg) //TODO:
+	default:
+		createProject(module, path, mode)
+		createMakefile(module, path, target, mode)
+		createCgo(module, path, target, mode, ipkg)
+	}
 
 	utils.RemoveAll(filepath.Join(path, "Makefile"))
 	utils.RemoveAll(filepath.Join(path, "Makefile.Release"))
@@ -85,14 +76,16 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 	for _, file := range cgoFileNames(module, path, target, mode) {
 		file = filepath.Join(path, file)
 		if utils.ExistsFile(file) {
+			file = utils.Load(file)
 			switch target {
 			case "darwin", "linux", "windows":
 				//TODO msys pkg-config mxe brew
-				return strings.Contains(utils.Load(file), utils.QT_DIR()) || strings.Contains(utils.Load(file), utils.QT_DARWIN_DIR())
+				return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR()) ||
+					strings.Contains(file, utils.QT_MSYS2_DIR()) || strings.Contains(file, utils.QT_MXE_TRIPLET())
 			case "android":
-				return strings.Contains(utils.Load(file), utils.QT_DIR()) && strings.Contains(utils.Load(file), utils.ANDROID_NDK_DIR())
+				return strings.Contains(file, utils.QT_DIR()) && strings.Contains(file, utils.ANDROID_NDK_DIR())
 			case "ios", "ios-simulator":
-				return strings.Contains(utils.Load(file), utils.QT_DIR()) || strings.Contains(utils.Load(file), utils.QT_DARWIN_DIR())
+				return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR())
 			case "sailfish", "sailfish-emulator", "asteroid":
 			case "rpi1", "rpi2", "rpi3":
 			}
@@ -181,7 +174,7 @@ func createMakefile(module, path, target string, mode int) {
 					utils.Save(pPath, "// +build windows\n"+content)
 				}
 			}
-			if mode == MOC || mode == RCC {
+			if mode == MOC || mode == RCC || !utils.QT_MXE_STATIC() {
 				utils.RemoveAll(pPath)
 			}
 		}
@@ -302,7 +295,12 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 
 	fmt.Fprint(bb, "*/\nimport \"C\"\n")
 
-	tmp := bb.String()
+	out, err := format.Source(bb.Bytes())
+	if err != nil {
+		utils.Log.WithError(err).Panicln("failed to format:", module)
+	}
+
+	tmp := string(out)
 
 	switch target {
 	case "ios":
@@ -339,10 +337,10 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 	for _, file := range cgoFileNames(module, path, target, mode) {
 		switch target {
 		case "windows":
-			if utils.UseMsys2() && utils.QT_MSYS2_ARCH() == "amd64" {
+			if utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wa,-mbig-obj ", " ", -1)
 			}
-			if (utils.UseMsys2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
+			if (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
 			}
 		case "ios":
@@ -378,7 +376,7 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	case "linux":
 		sFixes = []string{"linux_amd64"}
 	case "windows":
-		if utils.QT_MXE_ARCH() == "amd64" || (utils.UseMsys2() && utils.QT_MSYS2_ARCH() == "amd64") {
+		if utils.QT_MXE_ARCH() == "amd64" || (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") {
 			sFixes = []string{"windows_amd64"}
 		} else {
 			sFixes = []string{"windows_386"}

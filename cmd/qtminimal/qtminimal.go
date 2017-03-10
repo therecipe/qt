@@ -9,13 +9,19 @@ import (
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
-//qtminimal [ target ] [ path/to/project ] [ docker ]
-
 func main() {
-	cmd.ParseFlags()
+	if utils.QT_QMAKE_CGO() == true {
+		qmake_main()
+		return
+	}
+	if cmd.ParseFlags() {
+		flag.PrintDefaults()
+		return
+	}
 
 	var (
 		buildTarget = "desktop"
@@ -43,7 +49,7 @@ func main() {
 		}
 	}
 	if !filepath.IsAbs(appPath) {
-		appPath, _ = utils.Abs(appPath)
+		appPath, _ = filepath.Abs(appPath)
 	}
 	if _, err := ioutil.ReadDir(appPath); err != nil || strings.ContainsAny(buildTarget, "./\\") {
 		utils.Log.Fatalln("usage:", "qtminimal", "[ desktop | android | ... ]", filepath.Join("path", "to", "project"))

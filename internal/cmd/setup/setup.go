@@ -3,31 +3,24 @@ package setup
 func Setup(buildMode, buildTarget string) {
 	switch buildMode {
 	case "full":
-		prep()
-		check(buildTarget)
-		generate(buildTarget)
-		install(buildTarget)
-		test(buildTarget)
-
+		Prep()
+		Check(buildTarget)
+		Generate(buildTarget)
+		Install(buildTarget)
+		Test(buildTarget)
 	case "prep":
-		prep()
-
+		Prep()
 	case "check":
-		check(buildTarget)
-
+		Check(buildTarget)
 	case "generate":
-		generate(buildTarget)
-
+		Generate(buildTarget)
 	case "install":
-		install(buildTarget)
-
+		Install(buildTarget)
 	case "test":
-		test(buildTarget)
-
+		Test(buildTarget)
 	case "update":
-		update()
-
+		Update()
 	case "upgrade":
-		upgrade()
+		Upgrade()
 	}
 }

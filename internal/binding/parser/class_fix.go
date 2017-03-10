@@ -164,7 +164,7 @@ func (c *Class) fixBases() {
 	switch runtime.GOOS {
 	case "windows":
 		{
-			if utils.UseMsys2() {
+			if utils.QT_MSYS2() {
 				prefixPath = utils.QT_MSYS2_DIR()
 			} else {
 				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32")
@@ -180,7 +180,7 @@ func (c *Class) fixBases() {
 
 	case "linux":
 		{
-			if utils.UsePkgConfig() {
+			if utils.QT_PKG_CONFIG() {
 				prefixPath = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
 			} else {
 				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64")
@@ -216,7 +216,7 @@ func (c *Class) fixBases() {
 
 	case "QUiLoader", "QEGLNativeContext", "QWGLNativeContext", "QGLXNativeContext", "QEglFSFunctions", "QWindowsWindowFunctions", "QCocoaNativeContext", "QXcbWindowFunctions", "QCocoaWindowFunctions":
 		{
-			if utils.UsePkgConfig() {
+			if utils.QT_PKG_CONFIG() {
 				c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, c.Module, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			} else {
 				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, "include", c.Module, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
@@ -226,7 +226,7 @@ func (c *Class) fixBases() {
 
 	case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
 		{
-			if utils.UsePkgConfig() {
+			if utils.QT_PKG_CONFIG() {
 				c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, c.Module, utils.QT_VERSION(), c.Module, "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			} else {
 				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, infixPath, c.Module+suffixPath+utils.QT_VERSION(), "QtGui", "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
@@ -238,7 +238,7 @@ func (c *Class) fixBases() {
 		{
 			for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
 				m = fmt.Sprintf("Qt%v", m)
-				if utils.UsePkgConfig() {
+				if utils.QT_PKG_CONFIG() {
 					if utils.ExistsFile(filepath.Join(prefixPath, m, strings.ToLower(c.Name)+".h")) {
 						c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, m, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 						return
@@ -264,7 +264,7 @@ func (c *Class) fixBases() {
 	var found bool
 	for _, m := range libs {
 		m = fmt.Sprintf("Qt%v", m)
-		if utils.UsePkgConfig() {
+		if utils.QT_PKG_CONFIG() {
 			if utils.ExistsFile(filepath.Join(prefixPath, m, c.Name)) {
 
 				var f = utils.LoadOptional(filepath.Join(prefixPath, m, c.Name))

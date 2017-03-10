@@ -22,7 +22,7 @@ func CgoTemplate(module, mocPath, buildTarget string, mode int, pkg string) {
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module, mocPath, mode, pkg)
 		if runtime.GOOS == "windows" {
-			if utils.UseMsys2() {
+			if utils.QT_MSYS2() {
 				cgoWindowsMsys2(module, mocPath, mode, pkg) //TODO: docker
 			} else {
 				cgoWindows(module, mocPath, mode, pkg) //TODO: docker
@@ -30,7 +30,7 @@ func CgoTemplate(module, mocPath, buildTarget string, mode int, pkg string) {
 		} else {
 			cgoWindowsForLinux(module, mocPath, mode, pkg)
 		}
-		if utils.UsePkgConfig() {
+		if utils.QT_PKG_CONFIG() {
 			cgoLinuxPkgConfig(module, mocPath, mode, pkg) //TODO: docker
 		} else {
 			cgoLinux(module, mocPath, mode, pkg)
@@ -804,7 +804,7 @@ func cgoSailfish(module, mocPath string, mode int, pkg string) {
 	fmt.Fprint(bb, "#cgo LDFLAGS: -rdynamic -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lsailfishapp -lmdeclarativecache5")
 	for _, m := range libs {
 		if m != "UiPlugin" {
-			if IsWhiteListedSailfishLib(m) {
+			if parser.IsWhiteListedSailfishLib(m) {
 				fmt.Fprintf(bb, " -lQt5%v", m)
 			}
 		}
@@ -1128,20 +1128,6 @@ func GetiOSClang(buildTarget, buildARM string) []string {
 	return strings.Split(tmp, " ")
 }
 
-func IsWhiteListedSailfishLib(name string) bool {
-	switch name {
-	case "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
-		{
-			return true
-		}
-
-	default:
-		{
-			return false
-		}
-	}
-}
-
 func cgoAsteroid(module, mocPath string, mode int, pkg string) {
 	var (
 		bb   = new(bytes.Buffer)
@@ -1189,7 +1175,7 @@ func cgoAsteroid(module, mocPath string, mode int, pkg string) {
 	fmt.Fprintf(bb, "#cgo LDFLAGS: -rdynamic -L%[1]s/usr/lib -L%[1]s/lib -lmdeclarativecache5", os.Getenv("OECORE_TARGET_SYSROOT"))
 	for _, m := range libs {
 		if m != "UiPlugin" {
-			if IsWhiteListedSailfishLib(m) {
+			if parser.IsWhiteListedSailfishLib(m) {
 				fmt.Fprintf(bb, " -lQt5%v", m)
 			}
 		}

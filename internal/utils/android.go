@@ -39,6 +39,9 @@ func ANDROID_SDK_DIR() string {
 	if dir := os.Getenv("ANDROID_SDK_DIR"); dir != "" {
 		return filepath.Clean(dir)
 	}
+	if dir := os.Getenv("ANDROID_SDK_ROOT"); dir != "" {
+		return filepath.Clean(dir)
+	}
 
 	switch runtime.GOOS {
 	case "windows":
@@ -62,6 +65,10 @@ func ANDROID_NDK_DIR() string {
 	if dir := os.Getenv("ANDROID_NDK_DIR"); dir != "" {
 		return filepath.Clean(dir)
 	}
+	if dir := os.Getenv("ANDROID_NDK_ROOT"); dir != "" {
+		return filepath.Clean(dir)
+	}
+
 	if runtime.GOOS == "windows" {
 		return "C:\\android-ndk-r13b"
 	}

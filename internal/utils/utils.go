@@ -40,6 +40,8 @@ func Save(name, data string) error {
 	var err = ioutil.WriteFile(name, []byte(data), 0777)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to save %v", name)
+	} else {
+		Log.Debugf("saved file len(%v) %v", len(data), name)
 	}
 	return err
 }
@@ -70,18 +72,11 @@ func LoadOptional(name string) string {
 	return string(out)
 }
 
-func Abs(appPath string) (string, error) {
-	var path, err = filepath.Abs(appPath)
-	if err != nil {
-		Log.WithError(err).Panicf("failed to get absolute path for %v", appPath)
-	}
-	return path, err
-}
-
 func GoQtPkgPath(s ...string) string {
 	return filepath.Join(MustGoPath(), "src", "github.com", "therecipe", "qt", filepath.Join(s...))
 }
 
+//TODO: export error
 func RunCmd(cmd *exec.Cmd, name string) string {
 	fields := logrus.Fields{"func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
 	Log.WithFields(fields).Debug("Execute")
@@ -94,6 +89,7 @@ func RunCmd(cmd *exec.Cmd, name string) string {
 	return string(out)
 }
 
+//TODO: export error
 func RunCmdOptional(cmd *exec.Cmd, name string) string {
 	fields := logrus.Fields{"func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
 	Log.WithFields(fields).Debug("Execute")
@@ -103,4 +99,15 @@ func RunCmdOptional(cmd *exec.Cmd, name string) string {
 		println(string(out))
 	}
 	return string(out)
+}
+
+func RunCmdOptionalError(cmd *exec.Cmd, name string) (string, error) {
+	fields := logrus.Fields{"func": "RunCmdOptionalError", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
+	Log.WithFields(fields).Debug("Execute")
+	var out, err = cmd.CombinedOutput()
+	if err != nil {
+		Log.WithError(err).WithFields(fields).Error("failed to run command")
+		println(string(out))
+	}
+	return string(out), err
 }

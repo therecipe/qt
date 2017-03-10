@@ -18,10 +18,12 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
+
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
 	"github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/cmd/rcc"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -49,7 +51,7 @@ func Deploy(s *State) {
 	gLdFlags = s.LdFlags
 
 	if !filepath.IsAbs(appPath) {
-		appPath, _ = utils.Abs(appPath)
+		appPath, _ = filepath.Abs(appPath)
 	}
 	appName = filepath.Base(appPath)
 
@@ -101,19 +103,19 @@ func Deploy(s *State) {
 				if env_output_dir := os.Getenv("QTRCC_OUTPUT_DIR"); env_output_dir != "" {
 					qtrcc_output = &env_output_dir
 				}
+				rcc.QmakeCleanPath(appPath)
 				rcc.Rcc(qtrcc_cwd, buildTarget, qtrcc_output)
 				utils.Log.Debug("qtrcc - done")
 
 				//moc
 				utils.Log.Debug("qtmoc - start")
+				moc.QmakeCleanPath(appPath)
 				moc.MocTree(appPath, buildTarget)
-
 				utils.Log.Debug("qtmoc - done")
 
 				//minimal
 				utils.Log.Debug("qtminimal - start")
 				minimal.Minimal(appPath, buildTarget)
-
 				parser.State.Minimal = false
 
 				for _, c := range parser.State.ClassMap {
@@ -289,7 +291,7 @@ func build() {
 						"CGO_ENABLED": "1",
 					}
 
-					if utils.UseMsys2() {
+					if utils.QT_MSYS2() {
 						env["GOARCH"] = utils.QT_MSYS2_ARCH()
 					}
 				}
@@ -717,10 +719,10 @@ func deployInternal() {
 					}
 				}
 
-			case utils.UseMsys2():
+			case utils.QT_MSYS2():
 				{
 					var copyCmd = "xcopy"
-					if os.Getenv("MSYSTEM") != "" {
+					if utils.MSYSTEM() != "" {
 						copyCmd = "cp"
 					}
 
@@ -744,7 +746,7 @@ func deployInternal() {
 					utils.RunCmdOptional(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("%v.dll", gccDep)), depPath), fmt.Sprintf("copy %v for %v on %v", gccDep, buildTarget, runtime.GOOS))
 
 					libraryPath = filepath.Join(utils.QT_MSYS2_DIR(), "share", "qt5")
-					if os.Getenv("MSYSTEM") != "" {
+					if utils.MSYSTEM() != "" {
 						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/")+"/.", depPath), fmt.Sprintf("copy qml dir for %v on %v", buildTarget, runtime.GOOS))
 						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), fmt.Sprintf("copy plugins dir for %v on %v", buildTarget, runtime.GOOS))
 					} else {
@@ -784,7 +786,7 @@ func deployInternal() {
 
 			case runtime.GOOS == "darwin":
 				{
-					if utils.UseHomeBrew() {
+					if utils.QT_HOMEBREW() {
 						return
 					}
 
@@ -798,7 +800,7 @@ func deployInternal() {
 
 			case runtime.GOOS == "linux":
 				{
-					if utils.UsePkgConfig() {
+					if utils.QT_PKG_CONFIG() {
 						return
 					}
 
@@ -1109,7 +1111,7 @@ func linuxSH() string {
 		fmt.Fprint(bb, "export LD_PRELOAD=\"/opt/vc/lib/libGLESv2.so /opt/vc/lib/libEGL.so\"\n")
 	}
 
-	if utils.UsePkgConfig() {
+	if utils.QT_PKG_CONFIG() {
 		var (
 			libDir  = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), fmt.Sprintf("get lib dir for %v on %v", buildTarget, runtime.GOOS)))
 			miscDir = utils.QT_MISC_DIR()

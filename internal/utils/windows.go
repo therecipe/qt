@@ -8,8 +8,12 @@ import (
 	"strings"
 )
 
-func UseMsys2() bool {
-	return strings.ToLower(os.Getenv("QT_MSYS2")) == "true" || IsMsys2QtDir() || os.Getenv("MSYSTEM") != ""
+func QT_MSYS2() bool {
+	return useMsys2()
+}
+
+func useMsys2() bool {
+	return strings.ToLower(os.Getenv("QT_MSYS2")) == "true" || IsMsys2QtDir() || MSYSTEM() != ""
 }
 
 func QT_MSYS2_DIR() string {
@@ -20,14 +24,15 @@ func QT_MSYS2_DIR() string {
 		return filepath.Join(dir, "mingw32")
 	}
 
-	var prefix = "msys32"
+	prefix := "msys32"
 	if runtime.GOARCH == "amd64" {
 		prefix = "msys64"
 	}
+	suffix := "mingw32"
 	if QT_MSYS2_ARCH() == "amd64" {
-		return fmt.Sprintf("C:\\%v\\mingw64", prefix)
+		suffix = "mingw64"
 	}
-	return fmt.Sprintf("C:\\%v\\mingw32", prefix)
+	return fmt.Sprintf("C:\\%v\\%v", prefix, suffix)
 }
 
 func IsMsys2QtDir() bool {
@@ -35,8 +40,15 @@ func IsMsys2QtDir() bool {
 }
 
 func QT_MSYS2_ARCH() string {
-	if os.Getenv("MSYSTEM") == "MINGW64" {
+	if v, ok := os.LookupEnv("QT_MSYS2_ARCH"); ok {
+		return v
+	}
+	if MSYSTEM() == "MINGW64" {
 		return "amd64"
 	}
 	return "386"
+}
+
+func MSYSTEM() string {
+	return os.Getenv("MSYSTEM")
 }

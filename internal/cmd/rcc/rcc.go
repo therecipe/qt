@@ -120,7 +120,7 @@ func qmlHeader(appName, appPath, buildTarget string) string {
 import "C"`,
 		"${QT_WINDOWS_DIR}", func() string {
 			if runtime.GOOS == "windows" {
-				if utils.UseMsys2() {
+				if utils.QT_MSYS2() {
 					return filepath.Join(utils.QT_MSYS2_DIR(), "lib")
 				}
 				return "${QT_DIR}/${QT_VERSION_MAJOR}/mingw53_32/lib"
@@ -129,7 +129,7 @@ import "C"`,
 		}(), -1),
 		"${QT_DARWIN_DIR}", utils.QT_DARWIN_DIR(), -1),
 		"${QT_LINUX_DIR}", func() string {
-			if utils.UsePkgConfig() {
+			if utils.QT_PKG_CONFIG() {
 				return strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), fmt.Sprintf("find linux pkg-config lib dir on %v", runtime.GOOS)))
 			}
 			return "${QT_DIR}/${QT_VERSION_MAJOR}/gcc_64/lib"

@@ -9,44 +9,50 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/cmd/deploy"
+	"github.com/therecipe/qt/internal/cmd/minimal"
+	"github.com/therecipe/qt/internal/cmd/moc"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func test(buildTarget string) {
+func Test(target string) {
 
-	//TODO: split qtmoc test for windows
-	if utils.IsCI() && runtime.GOOS != "windows" {
-		utils.Log.Infof("running setup/test CI (~2min)")
+	if utils.CI() {
+		if !(runtime.GOOS == "windows" || target == "windows") { //TODO: split test for windows ?
+			utils.Log.Infof("running setup/test %v CI", target)
 
-		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtmoc")
-		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtminimal"), "desktop", utils.GoQtPkgPath("internal", "cmd", "moc", "test")), "run qtminimal")
+			path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 
-		var cmd = exec.Command("go", "test", "-v", "-tags=minimal")
-		cmd.Dir = utils.GoQtPkgPath("internal", "cmd", "moc", "test")
-		if runtime.GOOS == "windows" {
-			for key, value := range map[string]string{
-				"PATH":   os.Getenv("PATH"),
-				"GOPATH": utils.MustGoPath(),
-				"GOROOT": runtime.GOROOT(),
+			moc.QmakeMoc(path, target)
+			minimal.QmakeMinimal(path, target)
 
-				"TMP":  os.Getenv("TMP"),
-				"TEMP": os.Getenv("TEMP"),
+			cmd := exec.Command("go", "test", "-v", "-tags=minimal")
+			cmd.Dir = path
+			if runtime.GOOS == "windows" {
+				for key, value := range map[string]string{
+					"PATH":   os.Getenv("PATH"),
+					"GOPATH": utils.MustGoPath(),
+					"GOROOT": runtime.GOROOT(),
 
-				"GOOS":   runtime.GOOS,
-				"GOARCH": "386",
+					"TMP":  os.Getenv("TMP"),
+					"TEMP": os.Getenv("TEMP"),
 
-				"CGO_ENABLED": "1",
-			} {
-				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+					"GOOS":   runtime.GOOS,
+					"GOARCH": "386",
+
+					"CGO_ENABLED": "1",
+				} {
+					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+				}
 			}
+			utils.RunCmd(cmd, "run qtmoc")
 		}
-		utils.RunCmd(cmd, "run qtmoc")
 	}
 
-	var buildMode = "test"
+	mode := "test"
 	var examples map[string][]string
-	if utils.IsCI() {
-		buildMode = "build"
+	if utils.CI() {
+		mode = "build"
 		examples = map[string][]string{
 			"androidextras": []string{"jni", "notification"},
 
@@ -57,14 +63,14 @@ func test(buildTarget string) {
 				filepath.Join("threejs", "planets"),
 			},
 
-			"charts": []string{"audio"},
+			//"charts": []string{"audio"}, //TODO: ios, ios-simulator
 
 			//"grpc": []string{"hello_world","hello_world2"},
 
 			"gui": []string{"analogclock", "rasterwindow"},
 
 			"qml": []string{"application", "drawer_nav_x", "gallery", "material",
-				"prop", "prop2" /*, "webview"*/},
+				"prop", "prop2" /*"webview"*/},
 
 			"qt3d": []string{"audio-visualizer-qml"},
 
@@ -77,12 +83,12 @@ func test(buildTarget string) {
 
 			"uitools": []string{"calculator"},
 
-			"widgets": []string{"bridge2" /*"dropsite",*/, "graphicsscene", "line_edits", "pixel_editor",
-				/*"renderer",*/ "systray" /*"table",*/, "textedit", filepath.Join("treeview", "treeview_dual"),
-				filepath.Join("treeview", "treeview_filelist"), "video_player"},
+			"widgets": []string{"bridge2" /*"dropsite"*/, "graphicsscene", "line_edits", "pixel_editor",
+				/*"renderer"*/ "systray" /*"table"*/, "textedit", filepath.Join("treeview", "treeview_dual"),
+				filepath.Join("treeview", "treeview_filelist"), "video_player" /*"webengine"*/},
 		}
 	} else {
-		if strings.HasPrefix(buildTarget, "sailfish") {
+		if strings.HasPrefix(target, "sailfish") {
 			examples = map[string][]string{
 				"quick": []string{"sailfish"},
 
@@ -99,21 +105,19 @@ func test(buildTarget string) {
 		}
 	}
 
-	utils.Log.Infof("running setup/test %v (~5min)", buildTarget)
+	utils.Log.Infof("running setup/test %v", target)
 	for cat, list := range examples {
 		for _, example := range list {
-			if buildTarget != "desktop" && example == "textedit" {
+			if target != "desktop" && example == "textedit" {
 				continue
 			}
-			var example = filepath.Join(cat, example)
-
+			example := filepath.Join(cat, example)
 			utils.Log.Infoln("testing", example)
-
 			deploy.Deploy(&deploy.State{
-				BuildMode:   buildMode,
-				BuildTarget: strings.TrimSuffix(buildTarget, "-docker"),
+				BuildMode:   mode,
+				BuildTarget: strings.TrimSuffix(target, "-docker"),
 				AppPath:     utils.GoQtPkgPath("internal", "examples", example),
-				BuildDocker: strings.HasSuffix(buildTarget, "-docker"),
+				BuildDocker: strings.HasSuffix(target, "-docker"),
 			})
 		}
 	}

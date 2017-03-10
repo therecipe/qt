@@ -9,10 +9,9 @@ import (
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/deploy"
+
 	"github.com/therecipe/qt/internal/utils"
 )
-
-//qtdeploy [ mode ] [ target ] [ path/to/project ] [ docker ]
 
 var (
 	appPath                string
@@ -21,9 +20,17 @@ var (
 )
 
 func main() {
+	if utils.QT_QMAKE_CGO() == true {
+		qmake_main()
+		return
+	}
+
 	var ldFlags = flag.String("ldflags", "", "arguments to pass on each go tool link invocation.")
 
-	cmd.ParseFlags()
+	if cmd.ParseFlags() {
+		flag.PrintDefaults()
+		return
+	}
 
 	args()
 
@@ -77,7 +84,7 @@ func args() {
 		}
 	}
 
-	if utils.IsCI() {
+	if utils.CI() {
 		buildMode = "build"
 	}
 

@@ -9,10 +9,13 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/templater"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func QmakeRcc(path, target string, output_dir *string) {
+func QmakeRcc(path, target string, output_dir *string) { //TODO: make output_dir string
+	utils.Log.WithField("path", path).WithField("target", target).Debug("start QmakeRcc")
+
 	if dir := filepath.Join(path, "qml"); !utils.ExistsDir(dir) {
 		utils.MkdirAll(dir)
 	}
@@ -44,7 +47,8 @@ func QmakeRcc(path, target string, output_dir *string) {
 	}
 	var fileList []string
 	for _, f := range files {
-		if !f.IsDir() && strings.HasSuffix(f.Name(), ".qrc") {
+		if !f.IsDir() && filepath.Ext(f.Name()) == ".qrc" {
+			//TODO: check for buildTags
 			fileList = append(fileList, filepath.Join(path, f.Name()))
 		}
 	}

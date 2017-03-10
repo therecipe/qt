@@ -55,17 +55,21 @@ func IPHONESIMULATOR_SDK_DIR() string {
 	return ""
 }
 
-func UseHomeBrew() bool {
-	return strings.ToLower(os.Getenv("QT_HOMEBREW")) == "true" || IsHomeBrewQtDir()
+func QT_HOMEBREW() bool {
+	return useHomeBrew()
 }
 
-func IsHomeBrewQtDir() bool {
+func useHomeBrew() bool {
+	return strings.ToLower(os.Getenv("QT_HOMEBREW")) == "true" || isHomeBrewQtDir()
+}
+
+func isHomeBrewQtDir() bool {
 	return ExistsFile(filepath.Join(QT_DIR(), "INSTALL_RECEIPT.json"))
 }
 
 func QT_DARWIN_DIR() string {
-	if UseHomeBrew() {
-		if IsHomeBrewQtDir() {
+	if useHomeBrew() {
+		if isHomeBrewQtDir() {
 			return QT_DIR()
 		}
 		return "/usr/local/opt/qt5"

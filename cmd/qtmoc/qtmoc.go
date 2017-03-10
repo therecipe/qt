@@ -10,15 +10,19 @@ import (
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/moc"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
-//qtmoc [ path/to/project ] [ docker ]
-
-//qtmoc [ target ] [ path/to/project ] [ docker ]
-
 func main() {
-	cmd.ParseFlags()
+	if utils.QT_QMAKE_CGO() == true {
+		qmake_main()
+		return
+	}
+	if cmd.ParseFlags() {
+		flag.PrintDefaults()
+		return
+	}
 
 	var (
 		appPath     string
@@ -47,7 +51,7 @@ func main() {
 
 	// validate that path is readable and a directory
 	if !filepath.IsAbs(appPath) {
-		appPath, _ = utils.Abs(appPath)
+		appPath, _ = filepath.Abs(appPath)
 	}
 	fields["app_path"] = appPath
 

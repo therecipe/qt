@@ -5,11 +5,19 @@ import (
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/setup"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
-	cmd.ParseFlags()
+	if utils.QT_QMAKE_CGO() == true {
+		qmake_main()
+		return
+	}
+	if cmd.ParseFlags() {
+		flag.PrintDefaults()
+		return
+	}
 
 	var buildMode, buildTarget = "full", "desktop"
 

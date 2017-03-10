@@ -8,32 +8,37 @@ import (
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/rcc"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
-//qtrcc [ path/to/project ] [ docker ]
-
-//qtrcc [ target ] [ path/to/project ] [ docker ]
-
 func main() {
+	if utils.QT_QMAKE_CGO() == true {
+		qmake_main()
+		return
+	}
+
 	var appPath, _ = os.Getwd()
 	if env_cwd := os.Getenv("QTRCC_CWD"); env_cwd != "" {
 		appPath = env_cwd
 	}
 
 	var output_dir = flag.String("o", "", "define alternative output dir")
-	cmd.ParseFlags()
+	if cmd.ParseFlags() {
+		flag.PrintDefaults()
+		return
+	}
 
 	if *output_dir != "" {
 		if !filepath.IsAbs(*output_dir) {
-			var tmp_output_dir, _ = utils.Abs(*output_dir)
+			var tmp_output_dir, _ = filepath.Abs(*output_dir)
 			output_dir = &tmp_output_dir
 		}
 	} else {
 		env_output_dir := os.Getenv("QTRCC_OUTPUT_DIR")
 		if env_output_dir != "" {
 			if !filepath.IsAbs(env_output_dir) {
-				var tmp_output_dir, _ = utils.Abs(env_output_dir)
+				var tmp_output_dir, _ = filepath.Abs(env_output_dir)
 				output_dir = &tmp_output_dir
 			} else {
 				output_dir = &env_output_dir
@@ -56,7 +61,7 @@ func main() {
 		}
 	}
 	if !filepath.IsAbs(appPath) {
-		appPath, _ = utils.Abs(appPath)
+		appPath, _ = filepath.Abs(appPath)
 	}
 	if _, err := ioutil.ReadDir(appPath); err != nil {
 		utils.Log.Fatalln("usage:", "qtrcc", filepath.Join("path", "to", "project"), "[ docker ]")

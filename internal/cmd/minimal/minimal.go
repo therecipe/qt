@@ -11,10 +11,15 @@ import (
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func Minimal(appPath, buildTarget string) {
+	if utils.QT_QMAKE_CGO() {
+		QmakeMinimal(appPath, buildTarget)
+		return
+	}
 
 	var (
 		imported       []string
@@ -170,7 +175,7 @@ func Minimal(appPath, buildTarget string) {
 				delete(parser.State.ClassMap, c.Name)
 			}
 
-			if !IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
+			if !parser.IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
 				delete(parser.State.ClassMap, c.Name)
 			}
 
@@ -349,18 +354,4 @@ func isBlacklisted(appPath, currentPath string) bool {
 	}
 
 	return false
-}
-
-func IsWhiteListedSailfishLib(name string) bool {
-	switch name {
-	case "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
-		{
-			return true
-		}
-
-	default:
-		{
-			return false
-		}
-	}
 }

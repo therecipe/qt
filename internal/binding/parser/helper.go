@@ -240,6 +240,70 @@ func ShouldBuild(module string) bool {
 	return true
 }
 
+func ShouldBuildForTarget(module, target string) bool {
+	if !ShouldBuild(module) {
+		return false
+	}
+
+	switch target {
+	case "windows":
+		if runtime.GOOS == "windows" {
+			return true
+		}
+		switch module {
+		case "WebEngine", "Designer", "Speech", "WebView":
+			return false
+		}
+		if strings.HasSuffix(module, "Extras") && module != "WinExtras" {
+			return false
+		}
+	case "android":
+		switch module {
+		case "DBus", "WebEngine", "Designer", "PrintSupport": //TODO: PrintSupport
+			return false
+		}
+		if strings.HasSuffix(module, "Extras") && module != "AndroidExtras" {
+			return false
+		}
+	case "ios", "ios-simulator":
+		switch module {
+		case "DBus", "WebEngine", "SerialPort", "SerialBus", "Designer", "PrintSupport": //TODO: PrintSupport
+			return false
+		}
+		if strings.HasSuffix(module, "Extras") {
+			return false
+		}
+	case "sailfish", "sailfish-emulator", "asteroid":
+		if !IsWhiteListedSailfishLib(module) {
+			return false
+		}
+	case "rpi1", "rpi2", "rpi3":
+		switch module {
+		case "WebEngine", "Designer":
+			return false
+		}
+		if strings.HasSuffix(module, "Extras") {
+			return false
+		}
+	}
+
+	return true
+}
+
+func IsWhiteListedSailfishLib(name string) bool {
+	switch name {
+	case "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
+		{
+			return true
+		}
+
+	default:
+		{
+			return false
+		}
+	}
+}
+
 func GetLibs() []string {
 	for i := len(Libs) - 1; i >= 0; i-- {
 		switch {
@@ -247,11 +311,6 @@ func GetLibs() []string {
 			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
 			runtime.GOOS != "linux" && Libs[i] == "X11Extras":
-			{
-				Libs = append(Libs[:i], Libs[i+1:]...)
-			}
-
-		case utils.QT_VERSION() != "5.8.0" && Libs[i] == "Speech":
 			{
 				Libs = append(Libs[:i], Libs[i+1:]...)
 			}

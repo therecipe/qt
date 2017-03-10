@@ -240,7 +240,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				if utils.UseHomeBrew() {
+				if utils.QT_HOMEBREW() {
 					fData = utils.LoadOptional(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
 				} else {
 					fData = utils.Load(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
@@ -249,7 +249,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 		case "windows":
 			{
-				if utils.UseMsys2() {
+				if utils.QT_MSYS2() {
 					fData = utils.LoadOptional(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				} else {
 					fData = utils.Load(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
@@ -258,7 +258,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 		case "linux":
 			{
-				if utils.UsePkgConfig() {
+				if utils.QT_PKG_CONFIG() {
 					fData = utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				} else {
 					fData = utils.Load(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
