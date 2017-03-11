@@ -47,7 +47,7 @@ func Minimal(appPath, buildTarget string) {
 					} else {
 						if iPath := strings.Replace(i.Path.Value, "\"", "", -1); iPath != "github.com/therecipe/qt" {
 							var pkg string
-							for _, pkgs := range parser.Libs {
+							for _, pkgs := range parser.GetLibs() {
 								if strings.ToLower(pkgs) == strings.TrimPrefix(iPath, "github.com/therecipe/qt/") {
 									pkg = pkgs
 								}
@@ -91,7 +91,7 @@ func Minimal(appPath, buildTarget string) {
 	}
 
 	var importedPkgs []string
-	for _, dep := range parser.Libs {
+	for _, dep := range parser.GetLibs() {
 		if _, ok := importedPkgMap[dep]; ok {
 			importedPkgs = append(importedPkgs, dep)
 		}

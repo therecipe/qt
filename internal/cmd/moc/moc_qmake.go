@@ -169,6 +169,7 @@ func QmakeMoc(path, target string) {
 			delete(parser.State.ClassMap, c.Name)
 		}
 	}
+	parser.LibDeps[parser.MOC] = make([]string, 0)
 
 	utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
 }

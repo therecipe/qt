@@ -3,7 +3,7 @@ language: go
 dist: trusty
 sudo: required
 
-go: 1.7.x
+go: 1.8.x
 
 env: DESKTOP=true ANDROID=false QT_QMAKE_CGO=true
 

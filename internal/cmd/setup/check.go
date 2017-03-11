@@ -12,7 +12,7 @@ import (
 )
 
 func Check(target string) {
-	utils.Log.Infof("running setup/check %v", target)
+	utils.Log.Infof("running: 'qtsetup check %v'", target)
 
 	hash := "please install git"
 	if _, err := exec.LookPath("git"); err == nil {
@@ -105,10 +105,14 @@ func Check(target string) {
 			set = "*"
 		}
 		utils.Log.Infof("%v:%v%v%v'%v'", v[0], strings.Repeat(" ", 25-len(v[0])), set, strings.Repeat(" ", 3-len(set)), v[1])
-		if strings.HasSuffix(v[0], "_DIR") {
-			if _, err := ioutil.ReadDir(v[1]); err != nil && v[1] != "" {
-				utils.Log.WithError(err).Panicf("failed to find %v (%v)", v[0], v[1])
-			}
+		if !strings.HasSuffix(v[0], "_DIR") {
+			continue
+		}
+		if v[0] == "QT_DIR" && (utils.QT_HOMEBREW() || utils.QT_MSYS2() || utils.QT_PKG_CONFIG()) {
+			continue
+		}
+		if _, err := ioutil.ReadDir(v[1]); err != nil && v[1] != "" {
+			utils.Log.WithError(err).Panicf("failed to find %v (%v)", v[0], v[1])
 		}
 	}
 

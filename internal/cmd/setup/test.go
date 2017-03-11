@@ -16,6 +16,7 @@ import (
 )
 
 func Test(target string) {
+	utils.Log.Infof("running: 'qtsetup test %v'", target)
 
 	if utils.CI() {
 		if !(runtime.GOOS == "windows" || target == "windows") { //TODO: split test for windows ?
@@ -105,7 +106,6 @@ func Test(target string) {
 		}
 	}
 
-	utils.Log.Infof("running setup/test %v", target)
 	for cat, list := range examples {
 		for _, example := range list {
 			if target != "desktop" && example == "textedit" {

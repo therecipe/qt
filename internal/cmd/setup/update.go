@@ -9,6 +9,8 @@ import (
 )
 
 func Update() {
+	utils.Log.Info("running: 'qtsetup update'")
+
 	utils.RunCmd(exec.Command("go", "clean", "-i", "github.com/therecipe/qt/cmd/..."), "run \"go clean cmd\"")
 	utils.RunCmd(exec.Command("go", "clean", "-i", "github.com/therecipe/qt/internal/..."), "run \"go clean internal\"")
 
@@ -28,6 +30,8 @@ func Update() {
 }
 
 func Upgrade() {
+	utils.Log.Info("running: 'qtsetup upgrade'")
+
 	utils.RunCmd(exec.Command("go", "clean", "-i", "github.com/therecipe/qt/..."), "run \"go clean\"")
 	utils.RemoveAll(utils.GoQtPkgPath())
 	utils.RunCmd(exec.Command("go", "get", "-v", fmt.Sprintf("github.com/therecipe/qt/cmd/...")), "run \"go get\"")

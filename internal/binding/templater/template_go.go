@@ -248,13 +248,13 @@ import (
 		)
 	}
 
-	for _, m := range append(parser.Libs, "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors") {
-		m = strings.ToLower(m)
-		if strings.Contains(string(input), fmt.Sprintf("%v.", m)) {
-			switch m {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors") {
+		mlow := strings.ToLower(m)
+		if strings.Contains(string(input), fmt.Sprintf("%v.", mlow)) {
+			switch mlow {
 			case "strings", "unsafe", "log", "runtime", "fmt", "errors":
 				{
-					fmt.Fprintf(bb, "\"%v\"\n", m)
+					fmt.Fprintf(bb, "\"%v\"\n", mlow)
 				}
 
 			case "qt":
@@ -264,10 +264,10 @@ import (
 
 			default:
 				{
-					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", m)
+					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", mlow)
 
 					if mode == MOC {
-						parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], strings.Title(m))
+						parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], m)
 					}
 				}
 			}

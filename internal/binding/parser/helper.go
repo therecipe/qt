@@ -236,14 +236,7 @@ var Libs = []string{
 	"WebView",
 }
 
-func ShouldBuild(module string) bool {
-	return true
-}
-
 func ShouldBuildForTarget(module, target string) bool {
-	if !ShouldBuild(module) {
-		return false
-	}
 
 	switch target {
 	case "windows":

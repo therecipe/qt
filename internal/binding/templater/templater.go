@@ -8,7 +8,7 @@ import (
 )
 
 func GenModule(m, buildTarget string, mode int) {
-	if !parser.ShouldBuild(m) {
+	if !parser.ShouldBuildForTarget(m, buildTarget) {
 		utils.Log.WithField("0_module", m).Debug("skip generation")
 		return
 	}

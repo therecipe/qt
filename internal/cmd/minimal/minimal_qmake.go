@@ -118,7 +118,7 @@ func QmakeMinimal(path, target string) {
 
 	//TODO: cleanup state
 	parser.State.Minimal = true
-	for _, m := range parser.Libs {
+	for _, m := range parser.GetLibs() {
 		templater.GenModule(m, target, templater.MINIMAL)
 	}
 	parser.State.Minimal = false

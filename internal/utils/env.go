@@ -152,12 +152,12 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "ios", "bin", tool)
 	case "android":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
-/*
-	case "sailfish":
-		return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)
-	case "sailfish-emulator":
-		return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
-*/
+		/*
+			case "sailfish":
+				return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)
+			case "sailfish-emulator":
+				return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
+		*/
 	case "asteroid":
 	case "rp1", "rpi2", "rpi3":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), target, "bin", tool)

@@ -12,7 +12,7 @@ import (
 )
 
 func Prep() {
-	utils.Log.Info("running setup/prep")
+	utils.Log.Info("running: 'qtsetup prep'")
 
 	errString := "failed to create %v symlink in your PATH (%v); please use %v instead"
 	sucString := "successfully created %v symlink in your PATH (%v)"

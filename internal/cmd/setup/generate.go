@@ -10,7 +10,7 @@ import (
 )
 
 func Generate(target string) {
-	utils.Log.Info("running setup/generate")
+	utils.Log.Infof("running: 'qtsetup generate %v'", target)
 
 	parser.LoadModules()
 

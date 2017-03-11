@@ -17,7 +17,7 @@ import (
 )
 
 func Install(target string) {
-	utils.Log.Infof("running setup/install %v", target)
+	utils.Log.Infof("running: 'qtsetup install %v'", target)
 
 	env, tagFlags := cmd.EnvAndTagFlags(target)
 
