@@ -768,10 +768,7 @@ func cgoSailfish(module, mocPath string, mode int, pkg string) {
 		if mode == MINIMAL {
 			return ",minimal"
 		}
-		if mode == MOC {
-			return ""
-		}
-		return ",!minimal"
+		return ""
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -803,7 +800,7 @@ func cgoSailfish(module, mocPath string, mode int, pkg string) {
 
 	fmt.Fprint(bb, "#cgo LDFLAGS: -rdynamic -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lsailfishapp -lmdeclarativecache5")
 	for _, m := range libs {
-		if m != "UiPlugin" {
+		if !(m == "UiPlugin" || m == "Sailfish") {
 			if parser.IsWhiteListedSailfishLib(m) {
 				fmt.Fprintf(bb, " -lQt5%v", m)
 			}
@@ -818,6 +815,11 @@ func cgoSailfish(module, mocPath string, mode int, pkg string) {
 	var tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "sailfish_emulator", -1)
 
 	switch {
+	case mode == RCC:
+		{
+			utils.Save(filepath.Join(mocPath, "rcc_cgo_sailfish_emulator_linux_386.go"), tmp)
+		}
+
 	case mode == MOC:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_sailfish_emulator_linux_386.go"), tmp)
@@ -839,6 +841,11 @@ func cgoSailfish(module, mocPath string, mode int, pkg string) {
 	tmp = strings.Replace(tmp, "i486", "armv7hl", -1)
 
 	switch {
+	case mode == RCC:
+		{
+			utils.Save(filepath.Join(mocPath, "rcc_cgo_sailfish_linux_arm.go"), tmp)
+		}
+
 	case mode == MOC:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_sailfish_linux_arm.go"), tmp)

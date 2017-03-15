@@ -176,14 +176,14 @@ func (ptr *%v) Destroy%v() {
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
-	return preambleGo(goModule(module), bb.Bytes(), stub, mode, pkg)
+	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg)
 }
 
-func preambleGo(module string, input []byte, stub bool, mode int, pkg string) []byte {
+func preambleGo(oldModule, module string, input []byte, stub bool, mode int, pkg string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if UseStub(module, mode) {
+	if UseStub(oldModule, mode) {
 		fmt.Fprintf(bb, `// +build !minimal
 
 package %v
@@ -210,7 +210,7 @@ import "C"
 import (
 `,
 
-			buildTags(module, stub, mode),
+			buildTags(oldModule, stub, mode),
 
 			func() string {
 				if mode == MOC {

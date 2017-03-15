@@ -325,8 +325,8 @@ func build() {
 
 				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)), "-o", "deploy/"+buildTarget+"/harbour-"+appName)
 				if errBuild != nil {
-					cleanup()
-					utils.Log.WithError(errBuild).Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
+					println(errBuild.Error())
+					utils.Log.Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
 				}
 			} else {
 
@@ -335,8 +335,8 @@ func build() {
 
 				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", fmt.Sprintf("-installsuffix=%v", buildTarget), "-o", "deploy/"+buildTarget+"/harbour-"+appName)
 				if errBuild != nil {
-					cleanup()
-					utils.Log.WithError(errBuild).Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
+					println(errBuild.Error())
+					utils.Log.Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
 				}
 			}
 
