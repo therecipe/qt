@@ -694,6 +694,7 @@ func sailfish_ssh(port, login string, cmd ...string) error {
 
 	output, err := sess.CombinedOutput(strings.Join(cmd, " "))
 	if err != nil {
+		utils.Log.WithField("cmd", strings.Join(cmd, " ")).Debugf("failed to run ssh cmd for %v on %v", typ, runtime.GOOS)
 		return errors.New(string(output))
 	}
 
