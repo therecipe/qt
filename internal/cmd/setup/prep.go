@@ -32,6 +32,7 @@ func Prep() {
 				dPath = filepath.Join(utils.QT_MSYS2_DIR(), "..", "usr", "bin", fmt.Sprintf("%v.exe", app))
 			}
 			utils.RemoveAll(dPath)
+			//TODO: use os.Link to create a hardlink on windows
 			utils.RunCmdOptional(exec.Command("cmd", "/C", "mklink", "/H", dPath, sPath), fmt.Sprintf(errString, app, dPath, sPath))
 			continue
 		} else {

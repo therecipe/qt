@@ -20,34 +20,34 @@ func GoTemplate(module string, stub bool, mode int, pkg string) []byte {
 		module = "Qt" + module
 	}
 
-	if !(UseStub(module, mode) || stub) {
+	if !UseStub(stub, module, mode) {
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if len := int(s.len); len == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
 	if module == "QtAndroidExtras" {
 		fmt.Fprint(bb, "func QAndroidJniEnvironment_ExceptionCatch() error {\n")
-		if !(UseStub(module, mode) || stub) {
+		if UseStub(stub, module, mode) {
+			fmt.Fprint(bb, "return nil\n")
+		} else {
 			fmt.Fprint(bb, "var err error\n")
 			fmt.Fprint(bb, "if QAndroidJniEnvironment_ExceptionCheck() {\nvar tmpExcPtr = QAndroidJniEnvironment_ExceptionOccurred()\nQAndroidJniEnvironment_ExceptionClear()\n")
 			fmt.Fprint(bb, "var tmpExc = NewQAndroidJniObject6(tmpExcPtr)\n")
 			fmt.Fprint(bb, "err = errors.New(tmpExc.CallMethodString2(\"toString\", \"()Ljava/lang/String;\"))\n")
 			fmt.Fprint(bb, "tmpExc.DestroyQAndroidJniObject()\n")
 			fmt.Fprint(bb, "}\nreturn err\n")
-		} else {
-			fmt.Fprint(bb, "return nil\n")
 		}
 		fmt.Fprint(bb, "}\n\n")
 
-		if !(UseStub(module, mode) || stub) {
-			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return QAndroidJniEnvironment_ExceptionCatch() }\n")
-		} else {
+		if UseStub(stub, module, mode) {
 			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return nil }\n")
+		} else {
+			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return QAndroidJniEnvironment_ExceptionCatch() }\n")
 		}
 	}
 
 	for _, class := range parser.SortedClassesForModule(module, true) {
 
-		class.Stub = UseStub(module, mode) || stub
+		class.Stub = UseStub(stub, module, mode)
 
 		if mode != MINIMAL || (mode == MINIMAL && class.Export) {
 
@@ -150,7 +150,7 @@ func New%vFromPointer(ptr unsafe.Pointer) *%v {
 `, strings.Title(class.Name), class.Name, class.Name)
 
 			if !class.HasDestructor() {
-				if UseStub(module, mode) {
+				if UseStub(stub, module, mode) {
 					fmt.Fprintf(bb, `
 			func (ptr *%v) Destroy%v() {}
 			`, class.Name, class.Name)
@@ -179,23 +179,15 @@ func (ptr *%v) Destroy%v() {
 	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg)
 }
 
-func preambleGo(oldModule, module string, input []byte, stub bool, mode int, pkg string) []byte {
+func preambleGo(oldModule string, module string, input []byte, stub bool, mode int, pkg string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if UseStub(oldModule, mode) {
-		fmt.Fprintf(bb, `// +build !minimal
+	if UseStub(stub, oldModule, mode) {
+		fmt.Fprintf(bb, `%v
 
 package %v
-
-import "C"
-import (
-`, func() string {
-			if mode == MOC {
-				return pkg
-			}
-			return module
-		}())
+`, buildTags(oldModule, stub, mode), module)
 
 	} else {
 		fmt.Fprintf(bb, `%v
@@ -207,7 +199,6 @@ package %v
 //#include <string.h>
 //#include "%v.h"
 import "C"
-import (
 `,
 
 			buildTags(oldModule, stub, mode),
@@ -248,6 +239,7 @@ import (
 		)
 	}
 
+	fmt.Fprint(bb, "import (\n")
 	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(string(input), fmt.Sprintf("%v.", mlow)) {
@@ -273,7 +265,6 @@ import (
 			}
 		}
 	}
-
 	fmt.Fprintln(bb, ")")
 
 	bb.Write(input)

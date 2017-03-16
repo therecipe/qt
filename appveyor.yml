@@ -7,8 +7,6 @@ install:
 
     set GOPATH=C:\work
 
-    set QT_QMAKE_CGO=true
-
 
     set QT=qt-opensource-windows-x86-android-5.8.0.exe
 

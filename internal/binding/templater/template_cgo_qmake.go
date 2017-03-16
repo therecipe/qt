@@ -21,7 +21,7 @@ const (
 	RCC
 )
 
-func QmakeCgoTemplate(module, path, target string, mode int, ipkg string) (o string) {
+func CgoTemplate(module, path, target string, mode int, ipkg string) (o string) {
 	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg)
 
 	switch module {
@@ -39,14 +39,13 @@ func QmakeCgoTemplate(module, path, target string, mode int, ipkg string) (o str
 		path = utils.GoQtPkgPath(strings.ToLower(module))
 	}
 
-	if target == "desktop" {
-		target = runtime.GOOS
-	}
-
-	if !parser.ShouldBuildForTarget(module, target) ||
-		isAlreadyCached(module, path, target, mode) {
-		utils.Log.Debugf("skipping cgo generation")
-		return
+	//TODO:
+	if !(target == "sailfish" || target == "sailfish-emulator") {
+		if !parser.ShouldBuildForTarget(module, target) ||
+			isAlreadyCached(module, path, target, mode) {
+			utils.Log.Debugf("skipping cgo generation")
+			return
+		}
 	}
 
 	switch target {

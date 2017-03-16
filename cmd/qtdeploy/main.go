@@ -14,7 +14,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func qmake_main() {
+func main() {
 	flag.Usage = func() {
 		println("Usage: qtdeploy [-docker] [mode] [target] [path/to/project]\n")
 
@@ -34,6 +34,10 @@ func qmake_main() {
 		}
 		print("\n")
 
+		println("Targets:\n")
+		//TODO:
+		print("\n")
+
 		os.Exit(0)
 	}
 
@@ -41,14 +45,17 @@ func qmake_main() {
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
 	var ldFlags string
-	flag.StringVar(&ldFlags, "ldflags", "", "arguments to pass on each go tool link invocation.")
+	flag.StringVar(&ldFlags, "ldflags", "", "arguments to pass on each go tool link invocation")
+
+	var fast bool
+	flag.BoolVar(&fast, "fast", false, "use cached moc, minimal and dependencies (works for: windows, darwin, linux)")
 
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
 
 	mode := "test"
-	target := "desktop"
+	target := runtime.GOOS
 	path, err := os.Getwd()
 	if err != nil {
 		utils.Log.WithError(err).Debug("failed to get cwd")
@@ -73,8 +80,8 @@ func qmake_main() {
 		flag.Usage()
 	}
 
-	if target == runtime.GOOS {
-		target = "desktop"
+	if target == "desktop" {
+		target = runtime.GOOS
 	}
 
 	if !filepath.IsAbs(path) {
@@ -85,11 +92,9 @@ func qmake_main() {
 	}
 
 	utils.CheckBuildTarget(target)
-	deploy.Deploy(&deploy.State{
-		BuildMode:   mode,
-		BuildTarget: target,
-		AppPath:     path,
-		BuildDocker: docker,
-		LdFlags:     ldFlags,
-	})
+
+	//TODO: check mode here
+
+	fast = fast && (target == "windows" || target == "darwin" || target == "linux")
+	deploy.Deploy(mode, target, path, docker, ldFlags, fast)
 }

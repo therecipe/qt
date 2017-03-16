@@ -5,35 +5,35 @@ sudo: required
 
 go: 1.8.x
 
-env: DESKTOP=true ANDROID=false QT_QMAKE_CGO=true
+env: DESKTOP=true ANDROID=false
 
 matrix:
   include:
     - os: linux
-      env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true PKG_CONFIG_PATH=/opt/qt58/lib/pkgconfig QT_DOC_DIR=/opt/qt58/doc QT_MISC_DIR=/opt/qt58 QT_QMAKE_CGO=true
+      env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true PKG_CONFIG_PATH=/opt/qt58/lib/pkgconfig QT_DOC_DIR=/opt/qt58/doc QT_MISC_DIR=/opt/qt58
 
     - os: linux
-      env: DESKTOP=false ANDROID=true QT_QMAKE_CGO=true
+      env: DESKTOP=false ANDROID=true
 
     - os: osx
       osx_image: xcode8.2
-      env: DESKTOP=true ANDROID=false QT_QMAKE_CGO=true
+      env: DESKTOP=true ANDROID=false
 
     - os: osx
       osx_image: xcode8.2
-      env: DESKTOP=true ANDROID=false QT_HOMEBREW=true QT_QMAKE_CGO=true
+      env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
 
     - os: osx
       osx_image: xcode8.2
-      env: DESKTOP=false ANDROID=true QT_QMAKE_CGO=true
+      env: DESKTOP=false ANDROID=true
 
     - os: osx
       osx_image: xcode8.2
-      env: DESKTOP=false ANDROID=false IOS=true QT_QMAKE_CGO=true
+      env: DESKTOP=false ANDROID=false IOS=true
 
     - os: osx
       osx_image: xcode8.2
-      env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true QT_QMAKE_CGO=true
+      env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi

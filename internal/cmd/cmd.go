@@ -16,8 +16,7 @@ import (
 
 func ParseFlags() bool {
 	var (
-		debug = flag.Bool("debug", false, "print debug logs")
-		//TODO: docker
+		debug      = flag.Bool("debug", false, "print debug logs")
 		help       = flag.Bool("help", false, "print help")
 		p          = flag.Int("p", runtime.NumCPU(), "specify the number of cpu's to be used")
 		qt_dir     = flag.String("qt_dir", utils.QT_DIR(), "export QT_DIR")
@@ -42,270 +41,193 @@ func ParseFlags() bool {
 	return help != nil && *help
 }
 
-func Docker(arg []string, buildTarget, appPath string) {
+func Docker(arg []string, target, path string) {
+	arg = append(arg, target)
 
-	var dockerImage string
-
-	switch buildTarget {
-	case "desktop":
-		{
-			switch runtime.GOOS {
-			case "windows":
-				{
-					dockerImage = "base_windows"
-					if utils.QT_MXE_ARCH() == "amd64" {
-						dockerImage = "base_windows_64"
-					}
-				}
-
-			case "darwin":
-				{
-					utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
-				}
-
-			case "linux":
-				{
-					dockerImage = "base"
-				}
-			}
-		}
-
+	var image string
+	switch target {
 	case "windows":
-		{
-			dockerImage = "base_windows"
-			if utils.QT_MXE_ARCH() == "amd64" {
-				dockerImage = "base_windows_64"
+		if utils.QT_MXE_ARCH() == "386" {
+			if utils.QT_MXE_STATIC() {
+				image = "windows_32_static"
+			} else {
+				image = "windows_32_shared"
 			}
-		}
-
-	case "darwin":
-		{
-			utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
+		} else {
+			if utils.QT_MXE_STATIC() {
+				image = "windows_64_static"
+			} else {
+				image = "windows_64_shared"
+			}
 		}
 
 	case "linux":
-		{
-			dockerImage = "base"
-		}
+		image = "linux"
 
 	case "android":
-		{
-			dockerImage = "base_android"
-		}
+		image = "android"
 
 	default:
-		{
-			utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
-		}
+		utils.Log.Fatalf("%v is currently not supported", target)
 	}
 
-	var (
-		args = []string{"run", "--rm"}
-		path = make([]string, 0)
-	)
+	args := []string{"run", "--rm"}
+	paths := make([]string, 0)
 
 	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
 		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
-		path = append(path, fmt.Sprintf("/media/sf_GOPATH%v", i))
+		paths = append(paths, fmt.Sprintf("/media/sf_GOPATH%v", i))
 	}
 
-	args = append(args, []string{"-e", "GOPATH=" + strings.Join(path, ":")}...)
+	args = append(args, []string{"-e", "GOPATH=" + strings.Join(paths, ":")}...)
 
-	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", dockerImage)}...)
+	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)
 
 	args = append(args, arg...)
 
 	var found bool
 	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
 		gp = filepath.Clean(gp)
-		if strings.HasPrefix(appPath, gp) {
-			args = append(args, strings.Replace(strings.Replace(appPath, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
+		if strings.HasPrefix(path, gp) {
+			args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
 			found = true
 			break
 		}
 	}
 
 	if !found {
-		utils.Log.Panicln("Project needs to be inside GOPATH", appPath, os.Getenv("GOPATH"))
+		utils.Log.Panicln("Project needs to be inside GOPATH", path, os.Getenv("GOPATH"))
 	}
 
-	utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", buildTarget, runtime.GOOS))
+	utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", target, runtime.GOOS))
 }
 
-func EnvAndTagFlags(target string) (env map[string]string, tagFlags string) {
+func BuildEnv(target, name, depPath string) (map[string]string, []string, []string, string) {
+
+	var tags []string
+	var ldFlags []string
+	var out string
+	var env map[string]string
 
 	switch target {
-	case
-		"android":
-		{
-			tagFlags = fmt.Sprintf("-tags=\"%v\"", target)
+	case "android":
+		tags = []string{target}
+		ldFlags = []string{"-s", "-w"}
+		out = filepath.Join(depPath, "libgo_base.so")
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": os.Getenv("GOPATH"),
+			"GOROOT": runtime.GOROOT(),
 
-			switch runtime.GOOS {
-			case "darwin", "linux":
-				{
-					env = map[string]string{
-						"PATH":   os.Getenv("PATH"),
-						"GOPATH": utils.MustGoPath(),
-						"GOROOT": runtime.GOROOT(),
+			"GOOS":   "android",
+			"GOARCH": "arm",
+			"GOARM":  "7",
 
-						"GOOS":   "android",
-						"GOARCH": "arm",
-						"GOARM":  "7",
-
-						"CGO_ENABLED":  "1",
-						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
-						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
-					}
-				}
-
-			case "windows":
-				{
-					env = map[string]string{
-						"PATH":   os.Getenv("PATH"),
-						"GOPATH": utils.MustGoPath(),
-						"GOROOT": runtime.GOROOT(),
-
-						"TMP":  os.Getenv("TMP"),
-						"TEMP": os.Getenv("TEMP"),
-
-						"GOOS":   "android",
-						"GOARCH": "arm",
-						"GOARM":  "7",
-
-						"CGO_ENABLED":  "1",
-						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
-						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
-					}
-				}
-			}
+			"CGO_ENABLED":  "1",
+			"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+			"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
+			"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
+		}
+		if runtime.GOOS == "windows" {
+			env["TMP"] = os.Getenv("TMP")
+			env["TEMP"] = os.Getenv("TEMP")
 		}
 
-	case
-		"ios", "ios-simulator":
-		{
-			tagFlags = "-tags=\"ios\""
+	case "ios", "ios-simulator":
+		tags = []string{"ios"}
+		ldFlags = []string{"-w"}
+		out = filepath.Join(depPath, "libgo.a")
 
-			var ClangDir, ClangPlatform, ClangFlag, ClangArch, GoArch = func() (string, string, string, string, string) {
-				if target == "ios" {
-					return "iPhoneOS", utils.IPHONEOS_SDK_DIR(), "iphoneos", "arm64", "arm64"
-				}
-				return "iPhoneSimulator", utils.IPHONESIMULATOR_SDK_DIR(), "ios-simulator", "x86_64", "amd64"
-			}()
-
-			env = map[string]string{
-				"PATH":   os.Getenv("PATH"),
-				"GOPATH": utils.MustGoPath(),
-				"GOROOT": runtime.GOROOT(),
-
-				"GOOS":   runtime.GOOS,
-				"GOARCH": GoArch,
-
-				"CGO_ENABLED":  "1",
-				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), ClangDir, ClangPlatform, ClangFlag, ClangArch),
-				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), ClangDir, ClangPlatform, ClangFlag, ClangArch),
-			}
+		GOARCH := "amd64"
+		CLANGDIR := "iPhoneSimulator"
+		CLANGPLAT := utils.IPHONESIMULATOR_SDK_DIR()
+		CLANGFLAG := "ios-simulator"
+		CLANGARCH := "x86_64"
+		if target == "ios" {
+			GOARCH = "arm64"
+			CLANGDIR = "iPhoneOS"
+			CLANGPLAT = utils.IPHONEOS_SDK_DIR()
+			CLANGFLAG = "iphoneos"
+			CLANGARCH = "arm64"
 		}
 
-	case
-		"desktop":
-		{
-			if runtime.GOOS == "windows" {
-				env = map[string]string{
-					"PATH":   os.Getenv("PATH"),
-					"GOPATH": utils.MustGoPath(),
-					"GOROOT": runtime.GOROOT(),
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": os.Getenv("GOPATH"),
+			"GOROOT": runtime.GOROOT(),
 
-					"TMP":  os.Getenv("TMP"),
-					"TEMP": os.Getenv("TEMP"),
+			"GOOS":   runtime.GOOS,
+			"GOARCH": GOARCH,
 
-					"GOOS":   runtime.GOOS,
-					"GOARCH": "386",
-
-					"CGO_ENABLED": "1",
-				}
-				if utils.QT_MSYS2() {
-					env["GOARCH"] = utils.QT_MSYS2_ARCH()
-				}
-			}
+			"CGO_ENABLED":  "1",
+			"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR, CLANGPLAT, CLANGFLAG, CLANGARCH),
+			"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR, CLANGPLAT, CLANGFLAG, CLANGARCH),
 		}
 
-	case "sailfish", "sailfish-emulator":
-		{
-			tagFlags = fmt.Sprintf("-tags=\"%v\"", strings.Replace(target, "-", "_", -1))
-
-			env = map[string]string{
-				"PATH":   os.Getenv("PATH"),
-				"GOPATH": utils.MustGoPath(),
-				"GOROOT": runtime.GOROOT(),
-
-				"GOOS":   "linux",
-				"GOARCH": "386",
-			}
-
-			if runtime.GOOS == "windows" {
-				env["TMP"] = os.Getenv("TMP")
-				env["TEMP"] = os.Getenv("TEMP")
-			}
-
-			if target == "sailfish" {
-				env["GOARCH"] = "arm"
-				env["GOARM"] = "7"
-			}
-		}
-
-	case "rpi1", "rpi2", "rpi3":
-		{
-			if runtime.GOOS == "linux" {
-				tagFlags = fmt.Sprintf("-tags=\"%v\"", target)
-
-				env = map[string]string{
-					"PATH":   os.Getenv("PATH"),
-					"GOPATH": utils.MustGoPath(),
-					"GOROOT": runtime.GOROOT(),
-
-					"GOOS":   "linux",
-					"GOARCH": "arm",
-					"GOARM":  "7",
-
-					"CGO_ENABLED": "1",
-					"CC":          fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", utils.RPI_TOOLS_DIR()),
-					"CXX":         fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", utils.RPI_TOOLS_DIR()),
-				}
-
-				if target == "rpi1" {
-					env["GOARM"] = "6"
-				}
-			} else {
-				utils.Log.Panicf("failed to install %v on %v", target, runtime.GOOS)
-			}
-		}
+	case "darwin":
+		ldFlags = []string{"-w", fmt.Sprintf("-r=%v", filepath.Join(utils.QT_DARWIN_DIR(), "lib"))}
+		out = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", name, name))
 
 	case "windows":
-		{
-			tagFlags = fmt.Sprintf("-tags=\"%v\"", target)
+		ldFlags = []string{"-s", "-w", "-H=windowsgui"}
+		if runtime.GOOS != target {
+			tags = []string{"windows"}
+		}
+		out = filepath.Join(depPath, name)
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": os.Getenv("GOPATH"),
+			"GOROOT": runtime.GOROOT(),
 
-			env = map[string]string{
-				"PATH":   os.Getenv("PATH"),
-				"GOPATH": utils.MustGoPath(),
-				"GOROOT": runtime.GOROOT(),
+			"TMP":  os.Getenv("TMP"),
+			"TEMP": os.Getenv("TEMP"),
 
-				"GOOS":   "windows",
-				"GOARCH": utils.QT_MXE_ARCH(),
+			"GOOS":   "windows",
+			"GOARCH": "386",
 
-				"CGO_ENABLED": "1",
-				"CC":          utils.QT_MXE_BIN("gcc"),
-				"CXX":         utils.QT_MXE_BIN("g++"),
-			}
+			"CGO_ENABLED": "1",
 		}
 
-	default:
-		{
-			utils.Log.Panicf("failed to install %v on %v", target, runtime.GOOS)
+		if runtime.GOOS == target {
+			if utils.QT_MSYS2() {
+				env["GOARCH"] = utils.QT_MSYS2_ARCH()
+			}
+		} else {
+			delete(env, "TMP")
+			delete(env, "TEMP")
+
+			env["GOARCH"] = utils.QT_MXE_ARCH()
+			env["CC"] = utils.QT_MXE_BIN("gcc")
+			env["CXX"] = utils.QT_MXE_BIN("g++")
+		}
+
+	case "linux":
+		ldFlags = []string{"-s", "-w"}
+		out = filepath.Join(depPath, name)
+
+	case "rpi1", "rpi2", "rpi3":
+		tags = []string{target}
+		ldFlags = []string{"-s", "-w"}
+		out = filepath.Join(depPath, name)
+
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": os.Getenv("GOPATH"),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   "linux",
+			"GOARCH": "arm",
+			"GOARM":  "7",
+
+			"CGO_ENABLED": "1",
+			"CC":          fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", utils.RPI_TOOLS_DIR()),
+			"CXX":         fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", utils.RPI_TOOLS_DIR()),
+		}
+
+		if target == "rpi1" {
+			env["GOARM"] = "6"
 		}
 	}
-	return
+	return env, tags, ldFlags, out
 }

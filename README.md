@@ -19,7 +19,9 @@ The project is pretty much a WIP and **not** recommended to be used in productio
 
 However it should already contain everything you need to build fully featured Qt applications in Go.
 
-[Screenshots of the Line Edits example](internal/screenshots)
+[An Overview of GUI technologies in Qt](https://www.youtube.com/watch?v=WIRRoPxIerc)
+
+[Screenshots](internal/screenshots)
 
 ## Installation
 

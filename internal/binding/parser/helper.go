@@ -131,6 +131,7 @@ func CleanName(name, value string) string {
 	return name
 }
 
+//TODO: remove global
 var LibDeps = map[string][]string{
 	"Core":          {"Widgets", "Gui", "Svg"}, //Widgets, Gui //Svg (needed because it's more convenient)
 	"AndroidExtras": {"Core"},
@@ -185,57 +186,6 @@ var LibDeps = map[string][]string{
 	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport", "WebView"},
 }
 
-var Libs = []string{
-	"Core",
-	"AndroidExtras",
-	"Gui",
-	"Network",
-	"Xml",
-	"DBus",
-	"Nfc",
-	"Script", //depreached (planned) in 5.6
-	"Sensors",
-	"Positioning",
-	"Widgets",
-	"Sql",
-	"MacExtras",
-	"Qml",
-	"WebSockets",
-	"XmlPatterns",
-	"Bluetooth",
-	"WebChannel",
-	"Svg",
-	"Multimedia",
-	"Quick",
-	"Help",
-	"Location",
-	"ScriptTools", //depreached (planned) in 5.6
-	"UiTools",
-	"X11Extras",
-	"WinExtras",
-	"WebEngine",
-	"TestLib",
-	"SerialPort",
-	"SerialBus",
-	"PrintSupport",
-	//"PlatformHeaders", //missing imports/guards
-	"Designer",
-	"Scxml",
-	"Gamepad",
-
-	"Purchasing",        //GPLv3 & LGPLv3
-	"DataVisualization", //GPLv3
-	"Charts",            //GPLv3
-	//"Quick2DRenderer",   //GPLv3
-
-	//"NetworkAuth",
-	"Speech",
-	"QuickControls2",
-
-	"Sailfish",
-	"WebView",
-}
-
 func ShouldBuildForTarget(module, target string) bool {
 
 	switch target {
@@ -285,7 +235,7 @@ func ShouldBuildForTarget(module, target string) bool {
 
 func IsWhiteListedSailfishLib(name string) bool {
 	switch name {
-	case "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
+	case "Sailfish", "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
 		{
 			return true
 		}
@@ -298,18 +248,70 @@ func IsWhiteListedSailfishLib(name string) bool {
 }
 
 func GetLibs() []string {
-	for i := len(Libs) - 1; i >= 0; i-- {
+	libs := []string{
+		"Core",
+		"AndroidExtras",
+		"Gui",
+		"Network",
+		"Xml",
+		"DBus",
+		"Nfc",
+		"Script", //depreached (planned) in 5.6
+		"Sensors",
+		"Positioning",
+		"Widgets",
+		"Sql",
+		"MacExtras",
+		"Qml",
+		"WebSockets",
+		"XmlPatterns",
+		"Bluetooth",
+		"WebChannel",
+		"Svg",
+		"Multimedia",
+		"Quick",
+		"Help",
+		"Location",
+		"ScriptTools", //depreached (planned) in 5.6
+		"UiTools",
+		//"X11Extras", //TODO:
+		"WinExtras",
+		"WebEngine",
+		"TestLib",
+		"SerialPort",
+		"SerialBus",
+		"PrintSupport",
+		//"PlatformHeaders", //missing imports/guards
+		"Designer",
+		"Scxml",
+		"Gamepad",
+
+		"Purchasing",        //GPLv3 & LGPLv3
+		"DataVisualization", //GPLv3
+		"Charts",            //GPLv3
+		//"Quick2DRenderer",   //GPLv3
+
+		//"NetworkAuth",
+		"Speech",
+		"QuickControls2",
+
+		"Sailfish",
+		"WebView",
+	}
+
+	for i := len(libs) - 1; i >= 0; i-- {
 		switch {
-		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && (Libs[i] == "WebEngine" || Libs[i] == "WebView"),
-			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
-			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
-			runtime.GOOS != "linux" && Libs[i] == "X11Extras":
-			{
-				Libs = append(Libs[:i], Libs[i+1:]...)
-			}
+		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && (libs[i] == "WebEngine" || libs[i] == "WebView"),
+			runtime.GOOS != "windows" && libs[i] == "WinExtras",
+			runtime.GOOS != "darwin" && libs[i] == "MacExtras",
+			runtime.GOOS != "linux" && libs[i] == "X11Extras":
+			libs = append(libs[:i], libs[i+1:]...)
+
+		case utils.QT_VERSION() != "5.8.0" && libs[i] == "Speech":
+			libs = append(libs[:i], libs[i+1:]...)
 		}
 	}
-	return Libs
+	return libs
 }
 
 func Dump() {

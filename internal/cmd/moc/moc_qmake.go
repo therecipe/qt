@@ -17,15 +17,16 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func QmakeMoc(path, target string) {
-	utils.Log.WithField("path", path).WithField("target", target).Debug("start QmakeMoc")
+func Moc(path, target string) {
+	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
+	//TODO: use getImports from qtminimal ?
 	filepath.Walk(path, func(current string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 		if info.IsDir() && path != current && !isBlacklistedPath(path, current) {
-			QmakeMoc(current, target)
+			Moc(current, target)
 		}
 		return nil
 	})
@@ -117,13 +118,13 @@ func QmakeMoc(path, target string) {
 				continue
 			}
 			for _, p := range f.Parameters {
-				p.Value = QmakeGetCppTypeFromGoType(f, p.Value)
+				p.Value = cppTypeFromGoType(f, p.Value)
 			}
-			f.Output = QmakeGetCppTypeFromGoType(f, f.Output)
+			f.Output = cppTypeFromGoType(f, f.Output)
 		}
 		utils.Log.Debug("done converting func types")
 		for _, p := range c.Properties {
-			p.Output = QmakeGetCppTypeFromGoType(nil, p.Output)
+			p.Output = cppTypeFromGoType(nil, p.Output)
 		}
 		utils.Log.Debug("done converting property types")
 
@@ -161,7 +162,7 @@ func QmakeMoc(path, target string) {
 	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg)); err != nil {
 		return
 	}
-	templater.QmakeCgoTemplate(parser.MOC, path, target, templater.MOC, pkg)
+	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg)
 
 	//TODO: cleanup state
 	for _, c := range parser.State.ClassMap {
@@ -253,13 +254,13 @@ func parse(path string) ([]*parser.Class, string, error) {
 							Virtual:       parser.PURE,
 							Signature:     "()",
 							Output:        "void",
-							Parameters:    QmakeGetParameters(typ),
+							Parameters:    parameters(typ),
 							IsMocFunction: true,
 						}
 						if meta == parser.SLOT {
 							out := strings.TrimSpace(strings.Split(typ, ")")[1])
 							if strings.Contains(out, "(") {
-								f.Output = QmakeGetParameters(out + ")")[0].Value
+								f.Output = parameters(out + ")")[0].Value
 							} else {
 								f.Output = out
 							}
@@ -294,7 +295,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 }
 
 func isBlacklistedPath(path, current string) bool {
-	for _, n := range []string{"deploy", "qml", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "node_modules", ".git"} {
+	for _, n := range []string{"deploy", "qml", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "asteroid", "node_modules", ".git"} {
 		if strings.Contains(current, filepath.Join(path, n)) {
 			return true
 		}
@@ -302,7 +303,7 @@ func isBlacklistedPath(path, current string) bool {
 	return false
 }
 
-func QmakeCleanPath(path string) {
+func CleanPath(path string) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		utils.Log.WithError(err).Fatal("failed to read dir")
@@ -314,7 +315,7 @@ func QmakeCleanPath(path string) {
 	}
 }
 
-func QmakeGetParameters(tag string) []*parser.Parameter {
+func parameters(tag string) []*parser.Parameter {
 	if !strings.Contains(tag, "(") {
 		return nil
 	}
@@ -348,19 +349,19 @@ func QmakeGetParameters(tag string) []*parser.Parameter {
 	return ro
 }
 
-func QmakeGetCppTypeFromGoType(f *parser.Function, t string) string {
+func cppTypeFromGoType(f *parser.Function, t string) string {
 	//TODO: var tOld = t (for differentiation of QVariant and *QVariant)
 	t = strings.TrimPrefix(t, "*")
 
 	//TODO: multidimensional array and nested maps
 	if strings.HasPrefix(t, "[]") && t != "[]string" {
-		return fmt.Sprintf("QList<%v>", QmakeGetCppTypeFromGoType(f, strings.TrimPrefix(t, "[]")))
+		return fmt.Sprintf("QList<%v>", cppTypeFromGoType(f, strings.TrimPrefix(t, "[]")))
 	}
 	if strings.HasPrefix(t, "map[") {
 		var head = fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
 		return fmt.Sprintf("QHash<%v, %v>",
-			QmakeGetCppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0]),
-			QmakeGetCppTypeFromGoType(f, strings.TrimPrefix(t, head)),
+			cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0]),
+			cppTypeFromGoType(f, strings.TrimPrefix(t, head)),
 		)
 	}
 

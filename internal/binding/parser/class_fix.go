@@ -148,12 +148,12 @@ func (c *Class) fixBases() {
 		return
 	}
 
-	if utils.QT_VERSION() == "5.8.0" {
-		if c.Name == "QDesignerCustomWidgetInterface" ||
-			c.Name == "QDesignerCustomWidgetCollectionInterface" {
-			return
-		}
+	//if utils.QT_VERSION() == "5.8.0" {
+	if c.Name == "QDesignerCustomWidgetInterface" ||
+		c.Name == "QDesignerCustomWidgetCollectionInterface" {
+		return
 	}
+	//}
 
 	var (
 		prefixPath string

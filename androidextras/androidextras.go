@@ -2,14 +2,7 @@
 
 package androidextras
 
-//#include <stdint.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include "androidextras_android.h"
-import "C"
 import (
-	"fmt"
-	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -57,19 +50,7 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 	return n
 }
 
-func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQAndroidActivityResultReceiver_HandleActivityResult
-func callbackQAndroidActivityResultReceiver_HandleActivityResult(ptr unsafe.Pointer, receiverRequestCode C.int, resultCode C.int, data unsafe.Pointer) {
-
-}
-
+func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {}
 func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(receiverRequestCode int, resultCode int, data *QAndroidJniObject)) {
 
 }
@@ -862,13 +843,7 @@ func NewQtAndroidFromPointer(ptr unsafe.Pointer) *QtAndroid {
 	return n
 }
 
-func (ptr *QtAndroid) DestroyQtAndroid() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
+func (ptr *QtAndroid) DestroyQtAndroid() {}
 func QtAndroid_AndroidActivity() *QAndroidJniObject {
 
 	return nil

@@ -13,7 +13,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func qmake_main() {
+func main() {
 	flag.Usage = func() {
 		println("Usage: qtsetup [-debug] [mode] [target]\n")
 
@@ -38,15 +38,22 @@ func qmake_main() {
 		}
 		print("\n")
 
+		println("Targets:\n")
+		//TODO:
+		print("\n")
+
 		os.Exit(0)
 	}
+
+	var docker bool
+	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
 
 	mode := "full"
-	target := "desktop"
+	target := runtime.GOOS
 
 	switch flag.NArg() {
 	case 0:
@@ -59,11 +66,16 @@ func qmake_main() {
 		flag.Usage()
 	}
 
-	if target == runtime.GOOS {
-		target = "desktop"
+	if target == "desktop" {
+		target = runtime.GOOS
 	}
 
 	utils.CheckBuildTarget(target)
+
+	if docker {
+		setup.Test(target, docker)
+		return
+	}
 
 	switch mode {
 	case "full":
@@ -71,7 +83,7 @@ func qmake_main() {
 		setup.Check(target)
 		setup.Generate(target)
 		setup.Install(target)
-		setup.Test(target)
+		setup.Test(target, false)
 	case "prep":
 		setup.Prep()
 	case "check":
@@ -81,7 +93,7 @@ func qmake_main() {
 	case "install":
 		setup.Install(target)
 	case "test":
-		setup.Test(target)
+		setup.Test(target, false)
 	case "update":
 		setup.Update()
 	case "upgrade":

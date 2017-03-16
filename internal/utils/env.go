@@ -40,7 +40,7 @@ func QT_DEBUG() bool {
 
 func CheckBuildTarget(buildTarget string) {
 	switch buildTarget {
-	case "desktop", "android", "ios", "ios-simulator",
+	case "android", "ios", "ios-simulator",
 		"sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux",
 		"linux-docker", "windows-docker", "android-docker":
 		{
@@ -107,20 +107,14 @@ func QT_QMAKE_DIR() string {
 	return ""
 }
 
-func QT_QMAKE_CGO() bool {
-	return strings.ToLower(os.Getenv("QT_QMAKE_CGO")) == "true"
-}
-
 func QT_DOCKER() bool {
 	return strings.ToLower(os.Getenv("QT_DOCKER")) == "true"
 }
 
 func ToolPath(tool, target string) string {
-	//TODO: only temporary
-	if target == "desktop" || target == "sailfish" || target == "sailfish-emulator" {
+	if target == "sailfish" || target == "sailfish-emulator" {
 		target = runtime.GOOS
 	}
-	//
 
 	switch tool {
 	case "qmake":
@@ -142,10 +136,7 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_MXE_DIR(), "usr", QT_MXE_TRIPLET(), "qt5", "bin", tool)
 	case "linux":
 		if QT_PKG_CONFIG() {
-			if QT_QMAKE_CGO() {
-				return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), tool)
-			}
-			return filepath.Join(QT_MISC_DIR(), "bin", tool)
+			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), tool)
 		}
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "gcc_64", "bin", tool)
 	case "ios", "ios-simulator":

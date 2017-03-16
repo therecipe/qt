@@ -3,8 +3,6 @@ package parser
 import (
 	"fmt"
 	"strings"
-
-	"github.com/therecipe/qt/internal/utils"
 )
 
 type Class struct {
@@ -224,15 +222,15 @@ func (c *Class) IsSupported() bool {
 		return false
 	}
 
-	if utils.QT_VERSION() == "5.8.0" {
-		switch c.Name {
-		case "QSctpServer", "QSctpSocket", "Http2", "QAbstractExtensionFactory":
-			{
-				c.Access = "unsupported_isBlockedClass"
-				return false
-			}
+	//if utils.QT_VERSION() == "5.8.0" {
+	switch c.Name {
+	case "QSctpServer", "QSctpSocket", "Http2", "QAbstractExtensionFactory":
+		{
+			c.Access = "unsupported_isBlockedClass"
+			return false
 		}
 	}
+	//}
 
 	switch c.Name {
 	case

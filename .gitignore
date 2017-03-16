@@ -4,4 +4,6 @@
 */*-minimal.*
 */*_string.go
 /internal/examples/**/deploy
+/internal/examples/**/rcc*
+/internal/examples/**/moc*
 /internal/binding/dump/*

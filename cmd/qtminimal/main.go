@@ -12,12 +12,16 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func qmake_main() {
+func main() {
 	flag.Usage = func() {
 		println("Usage: qtminimal [-docker] [target] [path/to/project]\n")
 
 		println("Flags:\n")
 		flag.PrintDefaults()
+		print("\n")
+
+		println("Targets:\n")
+		//TODO:
 		print("\n")
 
 		os.Exit(0)
@@ -30,7 +34,7 @@ func qmake_main() {
 		flag.Usage()
 	}
 
-	target := "desktop"
+	target := runtime.GOOS
 	path, err := os.Getwd()
 	if err != nil {
 		utils.Log.WithError(err).Debug("failed to get cwd")
@@ -47,8 +51,8 @@ func qmake_main() {
 		flag.Usage()
 	}
 
-	if target == runtime.GOOS {
-		target = "desktop"
+	if target == "desktop" {
+		target = runtime.GOOS
 	}
 
 	if !filepath.IsAbs(path) {
@@ -62,6 +66,6 @@ func qmake_main() {
 	if docker {
 		cmd.Docker([]string{"qtminimal", "-debug"}, target, path)
 	} else {
-		minimal.QmakeMinimal(path, target)
+		minimal.Minimal(path, target)
 	}
 }

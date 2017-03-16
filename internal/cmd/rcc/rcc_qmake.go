@@ -13,8 +13,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func QmakeRcc(path, target string, output_dir *string) { //TODO: make output_dir string
-	utils.Log.WithField("path", path).WithField("target", target).Debug("start QmakeRcc")
+func Rcc(path, target string, output_dir string) {
+	utils.Log.WithField("path", path).WithField("target", target).Debug("start Rcc")
 
 	if dir := filepath.Join(path, "qml"); !utils.ExistsDir(dir) {
 		utils.MkdirAll(dir)
@@ -23,11 +23,11 @@ func QmakeRcc(path, target string, output_dir *string) { //TODO: make output_dir
 	rccQrc := filepath.Join(path, "rcc.qrc")
 
 	rccCpp := filepath.Join(path, "rcc.cpp")
-	if output_dir != nil {
-		rccCpp = filepath.Join(*output_dir, "rcc.cpp")
-		templater.QmakeCgoTemplate("main", *output_dir, target, templater.RCC, "main")
+	if output_dir != "" {
+		rccCpp = filepath.Join(output_dir, "rcc.cpp")
+		templater.CgoTemplate("main", output_dir, target, templater.RCC, "main")
 	} else {
-		templater.QmakeCgoTemplate("main", path, target, templater.RCC, "main")
+		templater.CgoTemplate("main", path, target, templater.RCC, "main")
 	}
 
 	rcc := exec.Command(utils.ToolPath("rcc", target), "-project", "-o", rccQrc)
@@ -58,7 +58,7 @@ func QmakeRcc(path, target string, output_dir *string) { //TODO: make output_dir
 	utils.RunCmd(rcc, fmt.Sprintf("execute rcc *.cpp on %v for %v", runtime.GOOS, target))
 }
 
-func QmakeCleanPath(path string) {
+func CleanPath(path string) {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		utils.Log.WithError(err).Fatal("failed to read dir")

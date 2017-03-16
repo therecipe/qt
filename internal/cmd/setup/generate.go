@@ -1,6 +1,7 @@
 package setup
 
 import (
+	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -26,11 +27,10 @@ func Generate(target string) {
 		}
 		utils.Log.Infof("generating %v qt/%v", mode, strings.ToLower(module))
 
-		if target != "desktop" {
-			templater.CgoTemplate(module, "", target, templater.NONE, "")
-			continue
+		if target == runtime.GOOS {
+			templater.GenModule(module, target, templater.NONE)
+		} else {
+			templater.CgoTemplate(module, "", target, templater.MINIMAL, "")
 		}
-
-		templater.GenModule(module, target, templater.NONE)
 	}
 }

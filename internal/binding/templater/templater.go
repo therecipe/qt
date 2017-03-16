@@ -33,12 +33,12 @@ func GenModule(m, buildTarget string, mode int) {
 		}
 	}()
 
-	if mode != MINIMAL {
+	if mode == NONE {
 		utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(m)))
 		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 	}
 
-	if !UseStub(m, mode) {
+	if !UseStub(false, "Qt"+m, mode) {
 		CgoTemplate(m, "", buildTarget, mode, m)
 	}
 
@@ -58,7 +58,7 @@ func GenModule(m, buildTarget string, mode int) {
 		utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-androidextras_android.go"), utils.Load(utils.GoQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
 	}
 
-	if !UseStub(m, mode) {
+	if !UseStub(false, "Qt"+m, mode) {
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".cpp"), CppTemplate(m, mode))
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".h"), HTemplate(m, mode))
 	}

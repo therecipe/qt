@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/converter"
@@ -16,11 +17,11 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func QmakeMinimal(path, target string) {
-	utils.Log.WithField("path", path).WithField("target", target).Debug("start QmakeMinimal")
+func Minimal(path, target string) {
+	utils.Log.WithField("path", path).WithField("target", target).Debug("start Minimal")
 
 	var files []string
-	for _, path := range append([]string{path}, getAllImports(path, 0)...) {
+	for _, path := range append([]string{path}, getImports(path, 0)...) {
 		fileList, err := ioutil.ReadDir(path)
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read dir")
@@ -48,73 +49,83 @@ func QmakeMinimal(path, target string) {
 		utils.Log.Debug("modules already cached")
 	}
 
+	//TODO: merge sailfish and asteroid
+	switch target {
+	case "sailfish", "sailfish-emulator":
+		for _, bl := range []string{"TestCase", "QQuickWidget", "QLatin1String", "QStringRef"} {
+			if c, ok := parser.State.ClassMap[bl]; ok {
+				c.Export = false
+				delete(parser.State.ClassMap, c.Name)
+			}
+		}
+
+		for _, c := range parser.State.ClassMap {
+			since, err := strconv.ParseFloat(strings.TrimPrefix(c.Since, "Qt "), 64)
+			if err != nil {
+				continue
+			}
+			if since >= 5.3 || !parser.IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
+				c.Export = false
+				delete(parser.State.ClassMap, c.Name)
+			}
+
+			for _, f := range c.Functions {
+				since, err := strconv.ParseFloat(strings.TrimPrefix(f.Since, "Qt "), 64)
+				if err != nil {
+					continue
+				}
+				if since >= 5.3 {
+					f.Export = false
+				}
+			}
+		}
+
+	case "asteroid":
+		for _, bl := range []string{"TestCase", "QQuickWidget"} {
+			if c, ok := parser.State.ClassMap[bl]; ok {
+				c.Export = false
+				delete(parser.State.ClassMap, c.Name)
+			}
+		}
+
+		for _, c := range parser.State.ClassMap {
+			since, err := strconv.ParseFloat(strings.TrimPrefix(c.Since, "Qt "), 64)
+			if err != nil {
+				continue
+			}
+			if since >= 5.7 || !parser.IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
+				c.Export = false
+				delete(parser.State.ClassMap, c.Name)
+			}
+
+			for _, f := range c.Functions {
+				since, err := strconv.ParseFloat(strings.TrimPrefix(f.Since, "Qt "), 64)
+				if err != nil {
+					continue
+				}
+				if since >= 5.7 {
+					f.Export = false
+				}
+			}
+		}
+
+	case "ios", "ios-simulator":
+		for _, bl := range []string{"QProcess", "QProcessEnvironment"} {
+			if c, ok := parser.State.ClassMap[bl]; ok {
+				c.Export = false
+				delete(parser.State.ClassMap, bl)
+			}
+		}
+	}
+
 	for _, f := range files {
 		for _, c := range parser.State.ClassMap {
 			if strings.Contains(f, c.Name) &&
 				strings.Contains(f, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(strings.TrimPrefix(c.Module, "Qt")))) {
-				QmakeExportClass(c, files)
+				exportClass(c, files)
 			}
 		}
 	}
-
-	/* TODO:
-	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" {
-		if _, ok := parser.State.ClassMap["TestCase"]; ok {
-			delete(parser.State.ClassMap, "TestCase")
-		}
-
-		//TODO: use parseFloat
-		for _, c := range parser.State.ClassMap {
-			switch c.Since {
-			case "5.3", "5.4", "5.5", "5.6", "5.7", "5.8":
-				delete(parser.State.ClassMap, c.Name)
-			}
-
-			if !parser.IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
-				delete(parser.State.ClassMap, c.Name)
-			}
-
-			for _, f := range c.Functions {
-				switch f.Since {
-				case "5.3", "5.4", "5.5", "5.6", "5.7", "5.8":
-					f.Export = false
-				}
-			}
-		}
-	}
-
-	if buildTarget == "asteroid" {
-		if _, ok := parser.State.ClassMap["TestCase"]; ok {
-			delete(parser.State.ClassMap, "TestCase")
-		}
-		if _, ok := parser.State.ClassMap["QQuickWidget"]; ok {
-			parser.State.ClassMap["QQuickWidget"].Export = false
-		}
-
-		for k, c := range parser.State.ClassMap {
-			switch c.Since {
-			case "5.7", "5.8":
-				delete(parser.State.ClassMap, c.Name)
-			}
-
-			for _, f := range c.Functions {
-				switch f.Since {
-				case "5.7", "5.8":
-					f.Export = false
-				}
-			}
-
-			if strings.HasPrefix(k, "QAccessible") {
-				delete(parser.State.ClassMap, k)
-			}
-		}
-	}
-
-	if buildTarget == "ios" || buildTarget == "ios-simulator" {
-		parser.State.ClassMap["QProcess"].Export = false
-		parser.State.ClassMap["QProcessEnvironment"].Export = false
-	}
-	*/
 
 	//TODO: cleanup state
 	parser.State.Minimal = true
@@ -130,8 +141,8 @@ func QmakeMinimal(path, target string) {
 	}
 }
 
-func getAllImports(path string, level int) []string {
-	utils.Log.WithField("path", path).WithField("level", level).Debug("getAllImports")
+func getImports(path string, level int) []string {
+	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
 
 	var imports []string
 
@@ -176,7 +187,7 @@ func getAllImports(path string, level int) []string {
 						continue
 					}
 					imports = append(imports, path)
-					for _, path := range getAllImports(path, level) {
+					for _, path := range getImports(path, level) {
 						var has bool
 						for _, i := range imports {
 							if i == path {
@@ -197,7 +208,7 @@ func getAllImports(path string, level int) []string {
 	return imports
 }
 
-func QmakeExportClass(c *parser.Class, files []string) {
+func exportClass(c *parser.Class, files []string) {
 	if c.Export {
 		return
 	}
@@ -211,30 +222,30 @@ func QmakeExportClass(c *parser.Class, files []string) {
 				for _, mode := range []string{parser.CONNECT, parser.DISCONNECT, ""} {
 					f.SignalMode = mode
 					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
-						QmakeExportFunction(f, files)
+						exportFunction(f, files)
 					}
 				}
 
 			default:
 				if f.Static {
 					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
-						QmakeExportFunction(f, files)
+						exportFunction(f, files)
 					}
 					f.Static = false
 					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
-						QmakeExportFunction(f, files)
+						exportFunction(f, files)
 					}
 					f.Static = true
 				} else {
 					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
-						QmakeExportFunction(f, files)
+						exportFunction(f, files)
 					}
 				}
 			}
 
 			if strings.HasPrefix(f.Name, "__") || f.Meta == parser.CONSTRUCTOR ||
 				f.Meta == parser.DESTRUCTOR || f.Virtual == parser.PURE {
-				QmakeExportFunction(f, files)
+				exportFunction(f, files)
 			}
 
 		}
@@ -242,12 +253,12 @@ func QmakeExportClass(c *parser.Class, files []string) {
 
 	for _, b := range c.GetAllBases() {
 		if c, ok := parser.State.ClassMap[b]; ok {
-			QmakeExportClass(c, files)
+			exportClass(c, files)
 		}
 	}
 }
 
-func QmakeExportFunction(f *parser.Function, files []string) {
+func exportFunction(f *parser.Function, files []string) {
 	if f.Export {
 		return
 	}
@@ -255,39 +266,39 @@ func QmakeExportFunction(f *parser.Function, files []string) {
 
 	for _, p := range f.Parameters {
 		if c, ok := parser.State.ClassMap[parser.CleanValue(p.Value)]; ok {
-			QmakeExportClass(c, files)
+			exportClass(c, files)
 		}
 		if parser.IsPackedList(p.Value) {
 			if c, ok := parser.State.ClassMap[parser.UnpackedList(p.Value)]; ok {
-				QmakeExportClass(c, files)
+				exportClass(c, files)
 			}
 		}
 		if parser.IsPackedMap(p.Value) {
 			key, value := parser.UnpackedMap(p.Value)
 			if c, ok := parser.State.ClassMap[key]; ok {
-				QmakeExportClass(c, files)
+				exportClass(c, files)
 			}
 			if c, ok := parser.State.ClassMap[value]; ok {
-				QmakeExportClass(c, files)
+				exportClass(c, files)
 			}
 		}
 	}
 
 	if c, ok := parser.State.ClassMap[parser.CleanValue(f.Output)]; ok {
-		QmakeExportClass(c, files)
+		exportClass(c, files)
 	}
 	if parser.IsPackedList(f.Output) {
 		if c, ok := parser.State.ClassMap[parser.UnpackedList(f.Output)]; ok {
-			QmakeExportClass(c, files)
+			exportClass(c, files)
 		}
 	}
 	if parser.IsPackedMap(f.Output) {
 		key, value := parser.UnpackedMap(f.Output)
 		if c, ok := parser.State.ClassMap[key]; ok {
-			QmakeExportClass(c, files)
+			exportClass(c, files)
 		}
 		if c, ok := parser.State.ClassMap[value]; ok {
-			QmakeExportClass(c, files)
+			exportClass(c, files)
 		}
 	}
 }

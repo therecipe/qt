@@ -15,39 +15,37 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Test(target string) {
+func Test(target string, docker bool) {
 	utils.Log.Infof("running: 'qtsetup test %v'", target)
 
-	if utils.CI() {
-		if !(runtime.GOOS == "windows" || target == "windows") { //TODO: split test for windows ?
-			utils.Log.Infof("running setup/test %v CI", target)
+	if utils.CI() && target == runtime.GOOS && runtime.GOOS != "windows" { //TODO: split test for windows ?
+		utils.Log.Infof("running setup/test %v CI", target)
 
-			path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
+		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 
-			moc.QmakeMoc(path, target)
-			minimal.QmakeMinimal(path, target)
+		moc.Moc(path, target)
+		minimal.Minimal(path, target)
 
-			cmd := exec.Command("go", "test", "-v", "-tags=minimal")
-			cmd.Dir = path
-			if runtime.GOOS == "windows" {
-				for key, value := range map[string]string{
-					"PATH":   os.Getenv("PATH"),
-					"GOPATH": utils.MustGoPath(),
-					"GOROOT": runtime.GOROOT(),
+		cmd := exec.Command("go", "test", "-v", "-tags=minimal")
+		cmd.Dir = path
+		if runtime.GOOS == "windows" {
+			for key, value := range map[string]string{
+				"PATH":   os.Getenv("PATH"),
+				"GOPATH": utils.MustGoPath(),
+				"GOROOT": runtime.GOROOT(),
 
-					"TMP":  os.Getenv("TMP"),
-					"TEMP": os.Getenv("TEMP"),
+				"TMP":  os.Getenv("TMP"),
+				"TEMP": os.Getenv("TEMP"),
 
-					"GOOS":   runtime.GOOS,
-					"GOARCH": "386",
+				"GOOS":   "windows",
+				"GOARCH": "386",
 
-					"CGO_ENABLED": "1",
-				} {
-					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
-				}
+				"CGO_ENABLED": "1",
+			} {
+				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 			}
-			utils.RunCmd(cmd, "run qtmoc")
 		}
+		utils.RunCmd(cmd, "run \"go test\"")
 	}
 
 	mode := "test"
@@ -108,17 +106,19 @@ func Test(target string) {
 
 	for cat, list := range examples {
 		for _, example := range list {
-			if target != "desktop" && example == "textedit" {
+			if target != runtime.GOOS && example == "textedit" {
 				continue
 			}
 			example := filepath.Join(cat, example)
 			utils.Log.Infoln("testing", example)
-			deploy.Deploy(&deploy.State{
-				BuildMode:   mode,
-				BuildTarget: strings.TrimSuffix(target, "-docker"),
-				AppPath:     utils.GoQtPkgPath("internal", "examples", example),
-				BuildDocker: strings.HasSuffix(target, "-docker"),
-			})
+			deploy.Deploy(
+				mode,
+				target,
+				utils.GoQtPkgPath("internal", "examples", example),
+				docker,
+				"",
+				false,
+			)
 		}
 	}
 }

@@ -27,11 +27,8 @@ func goModule(module string) string {
 	return strings.ToLower(strings.TrimPrefix(module, "Qt"))
 }
 
-func UseStub(module string, mode int) bool {
-	if mode == -1 {
-		//TODO: minimal and moc detection
-	}
-	return utils.QT_STUB() && !parser.State.Minimal && module != parser.MOC && !(module == "QtAndroidExtras" || module == "QtSailfish")
+func UseStub(force bool, module string, mode int) bool {
+	return force || (utils.QT_STUB() && mode == NONE && !(module == "QtAndroidExtras" || module == "QtSailfish"))
 }
 
 func buildTags(module string, stub bool, mode int) string {

@@ -2,11 +2,6 @@
 
 package sailfish
 
-//#include <stdint.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include "sailfish_sailfish.h"
-import "C"
 import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -52,13 +47,7 @@ func NewSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
 	return n
 }
 
-func (ptr *SailfishApp) DestroySailfishApp() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
+func (ptr *SailfishApp) DestroySailfishApp() {}
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 
 	return nil
