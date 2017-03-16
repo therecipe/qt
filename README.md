@@ -37,7 +37,7 @@ And you might also need to set `CGO_ENABLED=1` and `GOARCH=386` if you want to u
 
 #### Docker Images
 
-You can also use Docker images from [hub.docker](https://hub.docker.com/r/therecipe/qt/).
+You can also use Docker images from [hub.docker](https://hub.docker.com/r/therecipe/qt).
 
 To cross compile to Windows, Linux and Android.
 
@@ -581,7 +581,7 @@ func main() {
 
 6. Make yourself familiar with the [Qt documentation](https://doc.qt.io/qt-5/classes.html)
 
-7. Join our Slack Channel [#qt-binding](https://gophers.slack.com/messages/qt-binding/details/)
+7. Join our Slack Channel [#qt-binding](https://gophers.slack.com/messages/qt-binding/details) ([invite](https://invite.slack.golangbridge.org))
 
 ## More extensive examples / demos / applications
 

@@ -1,4 +1,4 @@
-FROM therecipe/qt:base
+FROM therecipe/qt:linux
 
 
 ENV JDK_DIR /usr/lib/jvm/java-8-openjdk-amd64
