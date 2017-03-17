@@ -49,18 +49,12 @@ func CgoTemplate(module, path, target string, mode int, ipkg string) (o string) 
 	}
 
 	switch target {
-	case "rpi1":
-		cgoRaspberryPi1(module, path, mode, ipkg) //TODO:
-	case "rpi2":
-		cgoRaspberryPi2(module, path, mode, ipkg) //TODO:
-	case "rpi3":
-		cgoRaspberryPi3(module, path, mode, ipkg) //TODO:
 	case "sailfish", "sailfish-emulator":
 		cgoSailfish(module, path, mode, ipkg) //TODO:
 	case "asteroid":
 		cgoAsteroid(module, path, mode, ipkg) //TODO:
 	default:
-		createProject(module, path, mode)
+		createProject(module, path, target, mode)
 		createMakefile(module, path, target, mode)
 		createCgo(module, path, target, mode, ipkg)
 	}
@@ -71,6 +65,7 @@ func CgoTemplate(module, path, target string, mode int, ipkg string) (o string) 
 	return
 }
 
+//TODO: use qmake props ?
 func isAlreadyCached(module, path, target string, mode int) bool {
 	for _, file := range cgoFileNames(module, path, target, mode) {
 		file = filepath.Join(path, file)
@@ -87,13 +82,14 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 				return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR())
 			case "sailfish", "sailfish-emulator", "asteroid":
 			case "rpi1", "rpi2", "rpi3":
+				return strings.Contains(file, strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS))))
 			}
 		}
 	}
 	return false
 }
 
-func createProject(module, path string, mode int) {
+func createProject(module, path, target string, mode int) {
 	var out []string
 
 	switch {
@@ -103,6 +99,10 @@ func createProject(module, path string, mode int) {
 		out = parser.LibDeps[module]
 	case mode == MINIMAL, mode == NONE:
 		out = append([]string{module}, parser.LibDeps[module]...)
+	}
+
+	if strings.HasPrefix(target, "rpi") && module == "Core" {
+		out = append([]string{module}, []string{"Widgets", "Gui"}...)
 	}
 
 	for i, v := range out {
@@ -146,7 +146,12 @@ func createMakefile(module, path, target string, mode int) {
 			"MER_SSH_USERNAME=mersdk",
 		}
 	case "asteroid":
-	case "rpi1", "rpi2", "rpi3":
+	case "rpi1":
+		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rasp-pi-g++"}...)
+	case "rpi2":
+		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rasp-pi2-g++"}...)
+	case "rpi3":
+		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rpi3-g++"}...)
 	}
 
 	if target == "android" && runtime.GOOS == "windows" {
@@ -220,7 +225,9 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 	case "sailfish", "sailfish-emulator":
 		guards += strings.Replace(target, "-", "_", -1)
 	case "asteroid":
+		guards += target
 	case "rpi1", "rpi2", "rpi3":
+		guards += target
 	}
 	switch mode {
 	case NONE:

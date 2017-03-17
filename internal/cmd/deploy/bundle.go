@@ -86,7 +86,7 @@ func bundle(mode, target, path, name, depPath string) {
 			utils.MkdirAll(filepath.Join(depPath, "lib"))
 
 			var (
-				libraryPath   string
+				libraryPath   = strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS)))
 				lddPath       = "ldd"
 				lddExtra      string
 				lddOutput     string
@@ -94,8 +94,8 @@ func bundle(mode, target, path, name, depPath string) {
 			)
 
 			if strings.HasPrefix(target, "rpi") {
-				libraryPath = fmt.Sprintf("%v/%v/%v/lib/", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), target)
-				lddPath = fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", utils.RPI_TOOLS_DIR())
+				//libraryPath = fmt.Sprintf("%v/%v/%v/lib/", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), target)
+				lddPath = fmt.Sprintf("%v/arm-bcm2708/%v/bin/arm-linux-gnueabihf-ldd", utils.RPI_TOOLS_DIR(), utils.RPI_COMPILER())
 				lddExtra = "--root=/"
 				lddOutput = utils.RunCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, name)), fmt.Sprintf("ldd binary for %v on %v", target, runtime.GOOS))
 			} else {
@@ -135,7 +135,7 @@ func bundle(mode, target, path, name, depPath string) {
 				utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0"), filepath.Join(depPath, "lib", "libqgsttools_p.so.1")), fmt.Sprintf("copy libqgsttools_p.so.1 for %v on %v", target, runtime.GOOS))
 			}
 
-			libraryPath = strings.TrimSuffix(libraryPath, "lib/")
+			libraryPath = filepath.Dir(libraryPath)
 			utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), fmt.Sprintf("copy qml dir for %v on %v", target, runtime.GOOS))
 			utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/"), depPath), fmt.Sprintf("copy plugins dir for %v on %v", target, runtime.GOOS))
 
@@ -373,7 +373,7 @@ func bundle(mode, target, path, name, depPath string) {
 			}
 			utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), "#include \"libgo"+lib+".h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
 			cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_"+t, "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo"+lib)
-			cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t)...)
+			cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t)...) //TODO: parse cached core instead
 			cmd.Dir = depPath
 			utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
 

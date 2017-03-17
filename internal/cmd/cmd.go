@@ -61,11 +61,8 @@ func Docker(arg []string, target, path string) {
 			}
 		}
 
-	case "linux":
-		image = "linux"
-
-	case "android":
-		image = "android"
+	case "linux", "android", "rpi1", "rpi2", "rpi3":
+		image = target
 
 	default:
 		utils.Log.Fatalf("%v is currently not supported", target)
@@ -79,7 +76,7 @@ func Docker(arg []string, target, path string) {
 		paths = append(paths, fmt.Sprintf("/media/sf_GOPATH%v", i))
 	}
 
-	args = append(args, []string{"-e", "GOPATH=" + strings.Join(paths, ":")}...)
+	args = append(args, []string{"-e", "GOPATH=/home/user/work:" + strings.Join(paths, ":")}...)
 
 	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)
 
@@ -221,8 +218,8 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOARM":  "7",
 
 			"CGO_ENABLED": "1",
-			"CC":          fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", utils.RPI_TOOLS_DIR()),
-			"CXX":         fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", utils.RPI_TOOLS_DIR()),
+			"CC":          fmt.Sprintf("%v/arm-bcm2708/%v/bin/arm-linux-gnueabihf-gcc", utils.RPI_TOOLS_DIR(), utils.RPI_COMPILER()),
+			"CXX":         fmt.Sprintf("%v/arm-bcm2708/%v/bin/arm-linux-gnueabihf-g++", utils.RPI_TOOLS_DIR(), utils.RPI_COMPILER()),
 		}
 
 		if target == "rpi1" {

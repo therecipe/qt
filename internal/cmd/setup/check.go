@@ -108,9 +108,7 @@ func Check(target string) {
 	case "rpi1", "rpi2", "rpi3":
 		vars = append(vars, [][]string{
 			{"RPI_TOOLS_DIR", utils.RPI_TOOLS_DIR()},
-			{"RPI1_SYSROOT_DIR", utils.RPI1_SYSROOT_DIR()},
-			{"RPI2_SYSROOT_DIR", utils.RPI2_SYSROOT_DIR()},
-			{"RPI3_SYSROOT_DIR", utils.RPI3_SYSROOT_DIR()},
+			{"RPI_COMPILER", utils.RPI_COMPILER()},
 		}...)
 	}
 

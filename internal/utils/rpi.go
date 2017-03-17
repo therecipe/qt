@@ -5,6 +5,13 @@ import (
 	"path/filepath"
 )
 
+func RPI_COMPILER() string {
+	if name, ok := os.LookupEnv("RPI_COMPILER"); ok {
+		return name
+	}
+	return "arm-rpi-4.9.3-linux-gnueabihf"
+}
+
 func RPI_TOOLS_DIR() string {
 	if dir := os.Getenv("RPI_TOOLS_DIR"); dir != "" {
 		return filepath.Clean(dir)

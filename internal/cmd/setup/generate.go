@@ -30,7 +30,7 @@ func Generate(target string) {
 		if target == runtime.GOOS {
 			templater.GenModule(module, target, templater.NONE)
 		} else {
-			templater.CgoTemplate(module, "", target, templater.MINIMAL, "")
+			templater.CgoTemplate(module, "", target, templater.MINIMAL, "") //TODO: collect errors
 		}
 	}
 }

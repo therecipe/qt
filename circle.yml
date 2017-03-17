@@ -16,7 +16,7 @@ dependencies:
 test:
   pre:
   override:
-    - if [[ "$DESKTOP" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup; fi
-    - if [[ "$ANDROID" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup android; fi
-    - if [[ "$QT_WINDOWS_CC" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup windows; fi
+    - if [[ "$DESKTOP" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup full desktop; fi
+    - if [[ "$ANDROID" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup full android; fi
+    - if [[ "$QT_WINDOWS_CC" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup full windows; fi
   post:

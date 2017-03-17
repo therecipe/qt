@@ -40,58 +40,26 @@ func QT_DEBUG() bool {
 
 func CheckBuildTarget(buildTarget string) {
 	switch buildTarget {
-	case "android", "ios", "ios-simulator",
-		"sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux",
-		"linux-docker", "windows-docker", "android-docker":
-		{
-			var buildDocker = strings.HasSuffix(buildTarget, "-docker")
-			switch buildTarget {
-			case "windows":
-				{
-
-				}
-
-			case "darwin", "ios", "ios-simulator":
-				{
-					if runtime.GOOS == "darwin" && !buildDocker {
-					} else {
-						Log.Fatalf("%v is currently not supported as a deploy target on %v (not even with docker)", buildTarget, runtime.GOOS)
-					}
-				}
-
-			case "linux":
-				{
-					if runtime.GOOS == "linux" && !buildDocker {
-					} else if buildDocker {
-					} else {
-						Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-					}
-				}
-			}
-		}
+	case "android",
+		"ios", "ios-simulator",
+		"sailfish", "sailfish-emulator", "asteroid",
+		"rpi1", "rpi2", "rpi3",
+		"windows", "darwin", "linux":
 
 	default:
-		{
-			Log.Panicf("failed to recognize build target %v", buildTarget)
-		}
+		Log.Panicf("failed to recognize build target %v", buildTarget)
 	}
 
-	if buildTarget == "android" || strings.HasPrefix(buildTarget, "ios") {
+	if buildTarget != runtime.GOOS {
 		switch {
 		case QT_MSYS2():
-			{
-				Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-			}
+			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 
 		case QT_HOMEBREW():
-			{
-				Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-			}
+			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 
 		case QT_PKG_CONFIG():
-			{
-				Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-			}
+			Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		}
 	}
 }
@@ -111,16 +79,14 @@ func QT_DOCKER() bool {
 	return strings.ToLower(os.Getenv("QT_DOCKER")) == "true"
 }
 
+//TODO: use qmake props
 func ToolPath(tool, target string) string {
 	if target == "sailfish" || target == "sailfish-emulator" {
 		target = runtime.GOOS
 	}
 
-	switch tool {
-	case "qmake":
-		if dir := QT_QMAKE_DIR(); dir != "" {
-			return filepath.Join(dir, tool)
-		}
+	if dir := QT_QMAKE_DIR(); dir != "" {
+		return filepath.Join(dir, tool)
 	}
 
 	switch target {

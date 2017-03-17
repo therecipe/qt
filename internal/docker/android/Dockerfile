@@ -12,6 +12,7 @@ RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/andr
 ENV NDK android-ndk-r13b-linux-x86_64.zip
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK && unzip -qq /tmp/$NDK -d $HOME && rm -f /tmp/$NDK
 
+
 ENV OSSL openssl-1.0.2k.tar.gz
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$OSSL https://www.openssl.org/source/$OSSL && tar -xzf /tmp/$OSSL -C $HOME && rm -f /tmp/$OSSL
 
@@ -22,5 +23,6 @@ RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/' $HOME/openssl-1.0.2k/Make
 RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/' $HOME/openssl-1.0.2k/Makefile
 RUN cd $HOME/openssl-1.0.2k && ./Configure shared android-armv7 && make build_libs $HOME/openssl-1.0.2k
 
+
 RUN $GOPATH/bin/qtsetup check android
-RUN $GOPATH/bin/qtsetup generate
+RUN $GOPATH/bin/qtsetup generate android

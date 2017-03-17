@@ -33,6 +33,6 @@ RUN go get -v github.com/therecipe/qt/cmd/...
 
 
 ENV QT_DIR /opt/Qt5.8.0
-RUN $GOPATH/bin/qtsetup prep
-RUN $GOPATH/bin/qtsetup check
-RUN $GOPATH/bin/qtsetup generate
+RUN $GOPATH/bin/qtsetup prep linux
+RUN $GOPATH/bin/qtsetup check linux
+RUN $GOPATH/bin/qtsetup generate linux

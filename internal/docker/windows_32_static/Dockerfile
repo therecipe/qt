@@ -7,4 +7,4 @@ RUN echo "deb http://pkg.mxe.cc/repos/apt/debian jessie main" | tee --append /et
 ENV QT_MXE_ARCH 386
 ENV QT_MXE_STATIC true
 RUN $GOPATH/bin/qtsetup check windows
-RUN $GOPATH/bin/qtsetup generate
+RUN $GOPATH/bin/qtsetup generate windows
