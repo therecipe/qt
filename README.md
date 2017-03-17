@@ -116,6 +116,7 @@ You should run `qtsetup` after each upgrade.
 	6. Create your first [application](#example)
 
 	7. Deploy applications with `%GOPATH%\bin\qtdeploy build desktop path\to\your\project` (MSYS2: run within the MSYS2 MinGW 32-bit or MSYS2 MinGW 64-bit shell)
+
 	</details>
 
 	<details>
@@ -151,6 +152,7 @@ You should run `qtsetup` after each upgrade.
 	6. Create your first [application](#example)
 
 	7. Deploy applications with `$GOPATH/bin/qtdeploy build desktop path/to/your/project`
+
 	</details>
 
 	<details>
@@ -221,6 +223,7 @@ You should run `qtsetup` after each upgrade.
 		* `$GOPATH/bin/qtsetup windows`
 
 	5. Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project`
+
 	</details>
 
 * Mobile
@@ -264,6 +267,7 @@ You should run `qtsetup` after each upgrade.
 	8. Deploy applications with `[GOPATH]/bin/qtdeploy build android path/to/your/project`
 
 	9. [More info for permissions, app icon, java native interface etc](internal/docs/android.md)
+
 	</details>
 
 	<details>
@@ -306,6 +310,7 @@ You should run `qtsetup` after each upgrade.
 	5. Create your first [application](#example)
 
 	6. Deploy applications with `[GOPATH]/bin/qtdeploy build sailfish path/to/your/project` or `[GOPATH]/bin/qtdeploy build sailfish-emulator path/to/your/project`
+
 	</details>
 
 * Embedded
@@ -443,6 +448,7 @@ You should run `qtsetup` after each upgrade.
 	16. Create your first [application](#example)
 
 	17. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3) (use the *.sh file to start your application)
+
 	</details>
 
 * Docker
@@ -489,6 +495,7 @@ You should run `qtsetup` after each upgrade.
 		* `$GOPATH/bin/qtsetup android-docker`
 
 		* Deploy applications with `$GOPATH/bin/qtdeploy build android path/to/your/project docker`
+
 	</details>
 
 ## Code Editor Settings (for code completion)
@@ -530,17 +537,18 @@ You should run `qtsetup` after each upgrade.
 
 	<details>
 	<summary>main.go (click to expand)</summary>
-	```go
-package main
 
-import (
+	```go
+	package main
+
+	import (
 		"os"
 
 		"github.com/therecipe/qt/core"
 		"github.com/therecipe/qt/widgets"
-)
+	)
 
-func main() {
+	func main() {
 		widgets.NewQApplication(len(os.Args), os.Args)
 
 		//create a window
@@ -569,8 +577,9 @@ func main() {
 		window.Show()
 
 		widgets.QApplication_Exec()
-}
+	}
 	```
+
 	</details>
 
 3. Open the terminal in `[GOPATH]/src` and run `[GOPATH]/bin/qtdeploy build desktop ./qtExample`
