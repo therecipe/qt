@@ -99,5 +99,5 @@ func main() {
 	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
 		fast = false
 	}
-	deploy.Deploy(mode, target, path, docker, ldFlags, fast)
+	deploy.Deploy(mode, target, path, docker, ldFlags, fast && !docker)
 }

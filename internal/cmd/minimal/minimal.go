@@ -221,23 +221,23 @@ func exportClass(c *parser.Class, files []string) {
 			case f.Virtual == parser.IMPURE, f.Virtual == parser.PURE, f.Meta == parser.SIGNAL, f.Meta == parser.SLOT:
 				for _, mode := range []string{parser.CONNECT, parser.DISCONNECT, ""} {
 					f.SignalMode = mode
-					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
+					if strings.Contains(file, "."+converter.GoHeaderName(f)) {
 						exportFunction(f, files)
 					}
 				}
 
 			default:
 				if f.Static {
-					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
+					if strings.Contains(file, "."+converter.GoHeaderName(f)) {
 						exportFunction(f, files)
 					}
 					f.Static = false
-					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
+					if strings.Contains(file, "."+converter.GoHeaderName(f)) {
 						exportFunction(f, files)
 					}
 					f.Static = true
 				} else {
-					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
+					if strings.Contains(file, "."+converter.GoHeaderName(f)) {
 						exportFunction(f, files)
 					}
 				}
