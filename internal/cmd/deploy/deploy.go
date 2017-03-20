@@ -48,9 +48,6 @@ func Deploy(mode, target, path string, docker bool, ldFlags string, fast bool) {
 		if !fast {
 			bundle(mode, target, path, name, depPath)
 		}
-
-	default:
-		utils.Log.Errorf("wrong mode: %v", mode) //TODO: check mode in cmd
 	}
 
 	if mode == "run" || mode == "test" {
