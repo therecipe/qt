@@ -12,8 +12,9 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func CppTemplate(module string, mode int) []byte {
+func CppTemplate(module string, mode int, target string) []byte {
 	utils.Log.WithField("0_module", module).Debug("generating cpp")
+	parser.State.Target = target
 
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
@@ -351,7 +352,7 @@ func preambleCpp(module string, input []byte, mode int) []byte {
 
 		c, ok := parser.State.ClassMap[class]
 		if ok && !strings.Contains(strings.Join(parser.LibDeps[strings.TrimPrefix(module, "Qt")], " "), strings.TrimPrefix(c.Module, "Qt")) {
-			utils.Log.Debugf("%v add dependency: %v", c.Module)
+			utils.Log.Debugf("%v add dependency: %v", module, c.Module)
 
 			parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], strings.TrimPrefix(c.Module, "Qt"))
 			switch c.Module {

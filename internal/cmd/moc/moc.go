@@ -153,7 +153,7 @@ func Moc(path, target string) {
 	}
 	utils.Log.Debug("done copy structors")
 
-	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC)); err != nil {
+	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target)); err != nil {
 		return
 	}
 	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC)); err != nil {
