@@ -348,6 +348,21 @@ func preambleCpp(module string, input []byte, mode int) []byte {
 			}
 			fmt.Fprintf(bb, "#include <%v>\n", class)
 		}
+
+		c, ok := parser.State.ClassMap[class]
+		if ok && !strings.Contains(strings.Join(parser.LibDeps[strings.TrimPrefix(module, "Qt")], " "), strings.TrimPrefix(c.Module, "Qt")) {
+			utils.Log.Debugf("%v add dependency: %v", c.Module)
+
+			parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], strings.TrimPrefix(c.Module, "Qt"))
+			switch c.Module {
+			case "QtMultimedia":
+				parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], "MultimediaWidgets")
+			case "QtWebEngine":
+				parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], "WebEngineWidgets")
+			case "QtQuick":
+				parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], "QuickWidgets")
+			}
+		}
 	}
 
 	if module == "QtCore" {

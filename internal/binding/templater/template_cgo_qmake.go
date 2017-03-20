@@ -71,6 +71,13 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 		file = filepath.Join(path, file)
 		if utils.ExistsFile(file) {
 			file = utils.Load(file)
+
+			for _, dep := range parser.LibDeps[module] {
+				if !strings.Contains(strings.ToLower(file), strings.ToLower(dep)) {
+					return false
+				}
+			}
+
 			switch target {
 			case "darwin", "linux", "windows":
 				//TODO msys pkg-config mxe brew

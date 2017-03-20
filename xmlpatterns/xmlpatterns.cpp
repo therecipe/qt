@@ -11,14 +11,32 @@
 #include <QAbstractXmlNodeModel>
 #include <QAbstractXmlReceiver>
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QChildEvent>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
 #include <QEvent>
+#include <QExtensionFactory>
+#include <QExtensionManager>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
 #include <QIODevice>
+#include <QLayout>
 #include <QList>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNetworkAccessManager>
 #include <QObject>
+#include <QOffscreenSurface>
+#include <QPaintDevice>
+#include <QPaintDeviceWindow>
+#include <QPdfWriter>
+#include <QQuickItem>
+#include <QRadioData>
+#include <QSignalSpy>
 #include <QSimpleXmlNodeModel>
 #include <QSourceLocation>
 #include <QString>
@@ -31,6 +49,8 @@
 #include <QUrl>
 #include <QVariant>
 #include <QVector>
+#include <QWidget>
+#include <QWindow>
 #include <QXmlFormatter>
 #include <QXmlItem>
 #include <QXmlName>
@@ -210,7 +230,43 @@ public:
 
 void* QAbstractUriResolver_NewQAbstractUriResolver(void* parent)
 {
-	return new MyQAbstractUriResolver(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractUriResolver(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAbstractUriResolver(static_cast<QObject*>(parent));
+	}
 }
 
 void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr)

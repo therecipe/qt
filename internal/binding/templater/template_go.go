@@ -10,8 +10,9 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func GoTemplate(module string, stub bool, mode int, pkg string) []byte {
+func GoTemplate(module string, stub bool, mode int, pkg, target string) []byte {
 	utils.Log.WithField("0_module", module).Debug("generating go")
+	parser.State.Target = target
 
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()

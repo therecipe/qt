@@ -14,6 +14,7 @@ var State = &struct {
 	ClassMap map[string]*Class
 
 	Minimal bool //TODO:
+	Target  string
 }{
 	ClassMap: make(map[string]*Class),
 }

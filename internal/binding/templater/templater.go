@@ -7,8 +7,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func GenModule(m, buildTarget string, mode int) {
-	if !parser.ShouldBuildForTarget(m, buildTarget) {
+func GenModule(m, target string, mode int) {
+	if !parser.ShouldBuildForTarget(m, target) {
 		utils.Log.WithField("0_module", m).Debug("skip generation")
 		return
 	}
@@ -38,10 +38,6 @@ func GenModule(m, buildTarget string, mode int) {
 		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 	}
 
-	if !UseStub(false, "Qt"+m, mode) {
-		CgoTemplate(m, "", buildTarget, mode, m)
-	}
-
 	if mode == MINIMAL {
 		if suffix != "" {
 			return
@@ -49,7 +45,11 @@ func GenModule(m, buildTarget string, mode int) {
 
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), CppTemplate(m, mode))
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), HTemplate(m, mode))
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), GoTemplate(m, false, mode, m))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), GoTemplate(m, false, mode, m, target))
+
+		if !UseStub(false, "Qt"+m, mode) {
+			CgoTemplate(m, "", target, mode, m)
+		}
 
 		return
 	}
@@ -65,9 +65,13 @@ func GenModule(m, buildTarget string, mode int) {
 
 	//always generate full
 	if suffix != "" {
-		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".go"), GoTemplate(m, false, mode, m))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".go"), GoTemplate(m, false, mode, m, target))
 	}
 
 	//may generate stub
-	utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+".go"), GoTemplate(m, suffix != "", mode, m))
+	utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+".go"), GoTemplate(m, suffix != "", mode, m, target))
+
+	if !UseStub(false, "Qt"+m, mode) {
+		CgoTemplate(m, "", target, mode, m)
+	}
 }

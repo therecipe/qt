@@ -7,20 +7,35 @@
 #include "_cgo_export.h"
 
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QChildEvent>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
 #include <QDate>
 #include <QDateTime>
 #include <QEvent>
+#include <QExtensionFactory>
+#include <QExtensionManager>
 #include <QFile>
 #include <QFileSelector>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
 #include <QJSEngine>
 #include <QJSValue>
 #include <QLatin1String>
+#include <QLayout>
 #include <QList>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNetworkAccessManager>
 #include <QObject>
+#include <QOffscreenSurface>
+#include <QPaintDevice>
+#include <QPaintDeviceWindow>
+#include <QPdfWriter>
 #include <QQmlAbstractUrlInterceptor>
 #include <QQmlApplicationEngine>
 #include <QQmlComponent>
@@ -40,6 +55,9 @@
 #include <QQmlPropertyMap>
 #include <QQmlPropertyValueSource>
 #include <QQmlScriptString>
+#include <QQuickItem>
+#include <QRadioData>
+#include <QSignalSpy>
 #include <QString>
 #include <QStringList>
 #include <QTime>
@@ -47,6 +65,8 @@
 #include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>
+#include <QWidget>
+#include <QWindow>
 
 class MyQJSEngine: public QJSEngine
 {
@@ -74,7 +94,43 @@ void* QJSEngine_NewQJSEngine()
 
 void* QJSEngine_NewQJSEngine2(void* parent)
 {
-	return new MyQJSEngine(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQJSEngine(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQJSEngine(static_cast<QObject*>(parent));
+	}
 }
 
 void* QJSEngine_Evaluate(void* ptr, char* program, char* fileName, int lineNumber)
@@ -647,17 +703,125 @@ struct QtQml_PackedList QQmlApplicationEngine_RootObjects(void* ptr)
 
 void* QQmlApplicationEngine_NewQQmlApplicationEngine(void* parent)
 {
-	return new MyQQmlApplicationEngine(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlApplicationEngine(static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlApplicationEngine_NewQQmlApplicationEngine3(char* filePath, void* parent)
 {
-	return new MyQQmlApplicationEngine(QString(filePath), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlApplicationEngine_NewQQmlApplicationEngine2(void* url, void* parent)
 {
-	return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlApplicationEngine(*static_cast<QUrl*>(url), static_cast<QObject*>(parent));
+	}
 }
 
 void QQmlApplicationEngine_Load2(void* ptr, char* filePath)
@@ -777,27 +941,207 @@ void* QQmlComponent_CreateDefault(void* ptr, void* context)
 
 void* QQmlComponent_NewQQmlComponent(void* engine, void* parent)
 {
-	return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlComponent_NewQQmlComponent4(void* engine, char* fileName, long long mode, void* parent)
 {
-	return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlComponent_NewQQmlComponent3(void* engine, char* fileName, void* parent)
 {
-	return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlComponent_NewQQmlComponent6(void* engine, void* url, long long mode, void* parent)
 {
-	return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlComponent_NewQQmlComponent5(void* engine, void* url, void* parent)
 {
-	return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), *static_cast<QUrl*>(url), static_cast<QObject*>(parent));
+	}
 }
 
 void QQmlComponent_CompleteCreate(void* ptr)
@@ -1086,12 +1430,84 @@ public:
 
 void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent)
 {
-	return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlContext_NewQQmlContext(void* engine, void* parent)
 {
-	return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlContext_ResolvedUrl(void* ptr, void* src)
@@ -1317,7 +1733,43 @@ void* QQmlEngine_QQmlEngine_ContextForObject(void* object)
 
 void* QQmlEngine_NewQQmlEngine(void* parent)
 {
-	return new MyQQmlEngine(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlEngine(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlEngine(static_cast<QObject*>(parent));
+	}
 }
 
 char QQmlEngine_ImportPlugin(void* ptr, char* filePath, char* uri, void* errors)
@@ -1638,12 +2090,84 @@ void* QQmlExpression_NewQQmlExpression()
 
 void* QQmlExpression_NewQQmlExpression2(void* ctxt, void* scope, char* expression, void* parent)
 {
-	return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), QString(expression), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QCameraImageCapture*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QDBusPendingCallWatcher*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QExtensionFactory*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QExtensionManager*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsObject*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsWidget*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QLayout*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QMediaPlaylist*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QMediaRecorder*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QOffscreenSurface*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QPaintDeviceWindow*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QPdfWriter*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QQuickItem*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QRadioData*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QSignalSpy*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QWidget*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QWindow*>(scope), QString(expression), static_cast<QObject*>(parent));
+	} else {
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), QString(expression), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlExpression_NewQQmlExpression3(void* script, void* ctxt, void* scope, void* parent)
 {
-	return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QCameraImageCapture*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QDBusPendingCallWatcher*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QExtensionFactory*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QExtensionManager*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsObject*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsWidget*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QLayout*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QMediaPlaylist*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QMediaRecorder*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QOffscreenSurface*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QPaintDeviceWindow*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QPdfWriter*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QQuickItem*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QRadioData*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QSignalSpy*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QWidget*>(scope), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(scope))) {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QWindow*>(scope), static_cast<QObject*>(parent));
+	} else {
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlExpression_Evaluate(void* ptr, char valueIsUndefined)
@@ -1887,7 +2411,43 @@ public:
 
 void* QQmlExtensionPlugin_NewQQmlExtensionPlugin(void* parent)
 {
-	return new MyQQmlExtensionPlugin(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlExtensionPlugin(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlExtensionPlugin(static_cast<QObject*>(parent));
+	}
 }
 
 void QQmlExtensionPlugin_InitializeEngine(void* ptr, void* engine, char* uri)
@@ -2054,7 +2614,43 @@ void* QQmlFileSelector_QQmlFileSelector_Get(void* engine)
 
 void* QQmlFileSelector_NewQQmlFileSelector(void* engine, void* parent)
 {
-	return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlFileSelector(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	}
 }
 
 void QQmlFileSelector_SetExtraSelectors(void* ptr, char* strin)
@@ -2361,7 +2957,43 @@ void* QQmlListReference_NewQQmlListReference()
 
 void* QQmlListReference_NewQQmlListReference2(void* object, char* property, void* engine)
 {
-	return new QQmlListReference(static_cast<QObject*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QCameraImageCapture*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QDBusPendingCallWatcher*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QExtensionFactory*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QExtensionManager*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QGraphicsObject*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QGraphicsWidget*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QLayout*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QMediaPlaylist*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QMediaRecorder*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QOffscreenSurface*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QPaintDeviceWindow*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QPdfWriter*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QQuickItem*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QRadioData*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QSignalSpy*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QWidget*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
+		return new QQmlListReference(static_cast<QWindow*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	} else {
+		return new QQmlListReference(static_cast<QObject*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
+	}
 }
 
 void* QQmlListReference_At(void* ptr, int index)
@@ -2481,32 +3113,248 @@ void* QQmlProperty_NewQQmlProperty()
 
 void* QQmlProperty_NewQQmlProperty2(void* obj)
 {
-	return new QQmlProperty(static_cast<QObject*>(obj));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QLayout*>(obj));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QQuickItem*>(obj));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QRadioData*>(obj));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWidget*>(obj));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWindow*>(obj));
+	} else {
+		return new QQmlProperty(static_cast<QObject*>(obj));
+	}
 }
 
 void* QQmlProperty_NewQQmlProperty3(void* obj, void* ctxt)
 {
-	return new QQmlProperty(static_cast<QObject*>(obj), static_cast<QQmlContext*>(ctxt));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QLayout*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QRadioData*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWidget*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWindow*>(obj), static_cast<QQmlContext*>(ctxt));
+	} else {
+		return new QQmlProperty(static_cast<QObject*>(obj), static_cast<QQmlContext*>(ctxt));
+	}
 }
 
 void* QQmlProperty_NewQQmlProperty4(void* obj, void* engine)
 {
-	return new QQmlProperty(static_cast<QObject*>(obj), static_cast<QQmlEngine*>(engine));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QLayout*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QRadioData*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWidget*>(obj), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWindow*>(obj), static_cast<QQmlEngine*>(engine));
+	} else {
+		return new QQmlProperty(static_cast<QObject*>(obj), static_cast<QQmlEngine*>(engine));
+	}
 }
 
 void* QQmlProperty_NewQQmlProperty5(void* obj, char* name)
 {
-	return new QQmlProperty(static_cast<QObject*>(obj), QString(name));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString(name));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString(name));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString(name));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString(name));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString(name));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString(name));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QLayout*>(obj), QString(name));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString(name));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString(name));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString(name));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString(name));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString(name));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString(name));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QRadioData*>(obj), QString(name));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString(name));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWidget*>(obj), QString(name));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWindow*>(obj), QString(name));
+	} else {
+		return new QQmlProperty(static_cast<QObject*>(obj), QString(name));
+	}
 }
 
 void* QQmlProperty_NewQQmlProperty6(void* obj, char* name, void* ctxt)
 {
-	return new QQmlProperty(static_cast<QObject*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QLayout*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QRadioData*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWidget*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWindow*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	} else {
+		return new QQmlProperty(static_cast<QObject*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+	}
 }
 
 void* QQmlProperty_NewQQmlProperty7(void* obj, char* name, void* engine)
 {
-	return new QQmlProperty(static_cast<QObject*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QLayout*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QRadioData*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWidget*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
+		return new QQmlProperty(static_cast<QWindow*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	} else {
+		return new QQmlProperty(static_cast<QObject*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+	}
 }
 
 void* QQmlProperty_NewQQmlProperty8(void* other)
@@ -2671,7 +3519,43 @@ public:
 
 void* QQmlPropertyMap_NewQQmlPropertyMap(void* parent)
 {
-	return new MyQQmlPropertyMap(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQmlPropertyMap(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQmlPropertyMap(static_cast<QObject*>(parent));
+	}
 }
 
 void* QQmlPropertyMap_UpdateValue(void* ptr, char* key, void* input)

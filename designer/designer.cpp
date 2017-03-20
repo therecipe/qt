@@ -13,9 +13,13 @@
 #include <QActionEvent>
 #include <QActionGroup>
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
 #include <QDesignerActionEditorInterface>
 #include <QDesignerContainerExtension>
 #include <QDesignerCustomWidgetCollectionInterface>
@@ -42,25 +46,36 @@
 #include <QExtensionManager>
 #include <QFocusEvent>
 #include <QFormBuilder>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
 #include <QHideEvent>
 #include <QIODevice>
 #include <QIcon>
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QLayout>
 #include <QList>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QObject>
+#include <QOffscreenSurface>
 #include <QPaintDevice>
+#include <QPaintDeviceWindow>
 #include <QPaintEngine>
 #include <QPaintEvent>
+#include <QPdfWriter>
 #include <QPixmap>
 #include <QPoint>
+#include <QQuickItem>
+#include <QRadioData>
 #include <QResizeEvent>
 #include <QShowEvent>
+#include <QSignalSpy>
 #include <QSize>
 #include <QString>
 #include <QStringList>
@@ -71,6 +86,7 @@
 #include <QVariant>
 #include <QWheelEvent>
 #include <QWidget>
+#include <QWindow>
 
 class MyQAbstractExtensionManager: public QAbstractExtensionManager
 {
@@ -310,7 +326,7 @@ public:
 
 void* QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(void* parent, long long flags)
 {
-	return new MyQDesignerActionEditorInterface(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
+		return new MyQDesignerActionEditorInterface(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
 void QDesignerActionEditorInterface_ManageAction(void* ptr, void* action)
@@ -1109,7 +1125,43 @@ public:
 
 void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 {
-	return new MyQDesignerFormEditorInterface(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDesignerFormEditorInterface(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQDesignerFormEditorInterface(static_cast<QObject*>(parent));
+	}
 }
 
 void QDesignerFormEditorInterface_SetActionEditor(void* ptr, void* actionEditor)
@@ -3078,7 +3130,7 @@ public:
 
 void* QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(void* parent, long long flags)
 {
-	return new MyQDesignerObjectInspectorInterface(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
+		return new MyQDesignerObjectInspectorInterface(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
 void QDesignerObjectInspectorInterface_SetFormWindow(void* ptr, void* formWindow)
@@ -3662,7 +3714,7 @@ public:
 
 void* QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(void* parent, long long flags)
 {
-	return new MyQDesignerPropertyEditorInterface(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
+		return new MyQDesignerPropertyEditorInterface(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
 void QDesignerPropertyEditorInterface_ConnectPropertyChanged(void* ptr)

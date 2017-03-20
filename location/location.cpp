@@ -7,8 +7,14 @@
 #include "_cgo_export.h"
 
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QChildEvent>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
 #include <QEvent>
+#include <QExtensionFactory>
+#include <QExtensionManager>
 #include <QGeoCoordinate>
 #include <QGeoManeuver>
 #include <QGeoRectangle>
@@ -20,17 +26,31 @@
 #include <QGeoRoutingManagerEngine>
 #include <QGeoServiceProvider>
 #include <QGeoServiceProviderFactory>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
+#include <QLayout>
 #include <QList>
 #include <QLocale>
 #include <QMap>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
+#include <QOffscreenSurface>
+#include <QPaintDevice>
+#include <QPaintDeviceWindow>
+#include <QPdfWriter>
+#include <QQuickItem>
+#include <QRadioData>
+#include <QSignalSpy>
 #include <QString>
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
+#include <QWidget>
+#include <QWindow>
 
 void* QGeoManeuver_NewQGeoManeuver()
 {
@@ -261,12 +281,84 @@ public:
 
 void* QGeoRouteReply_NewQGeoRouteReply(long long error, char* errorString, void* parent)
 {
-	return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QObject*>(parent));
+	}
 }
 
 void* QGeoRouteReply_NewQGeoRouteReply2(void* request, void* parent)
 {
-	return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQGeoRouteReply(*static_cast<QGeoRouteRequest*>(request), static_cast<QObject*>(parent));
+	}
 }
 
 void QGeoRouteReply_Abort(void* ptr)
@@ -1086,7 +1178,43 @@ void* QGeoRoutingManagerEngine_UpdateRouteDefault(void* ptr, void* route, void* 
 
 void* QGeoRoutingManagerEngine_NewQGeoRoutingManagerEngine(void* parameters, void* parent)
 {
-	return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQGeoRoutingManagerEngine(*static_cast<QMap<QString, QVariant>*>(parameters), static_cast<QObject*>(parent));
+	}
 }
 
 void QGeoRoutingManagerEngine_ConnectError(void* ptr)

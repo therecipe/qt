@@ -144,7 +144,7 @@ public:
 
 void* QAbstractPrintDialog_NewQAbstractPrintDialog(void* printer, void* parent)
 {
-	return new MyQAbstractPrintDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
+		return new MyQAbstractPrintDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
 }
 
 int QAbstractPrintDialog_Exec(void* ptr)
@@ -1035,12 +1035,12 @@ public:
 
 void* QPageSetupDialog_NewQPageSetupDialog(void* printer, void* parent)
 {
-	return new MyQPageSetupDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
+		return new MyQPageSetupDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
 }
 
 void* QPageSetupDialog_NewQPageSetupDialog2(void* parent)
 {
-	return new MyQPageSetupDialog(static_cast<QWidget*>(parent));
+		return new MyQPageSetupDialog(static_cast<QWidget*>(parent));
 }
 
 void* QPageSetupDialog_Printer(void* ptr)
@@ -1621,12 +1621,12 @@ void QPrintDialog_DoneDefault(void* ptr, int result)
 
 void* QPrintDialog_NewQPrintDialog(void* printer, void* parent)
 {
-	return new MyQPrintDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
+		return new MyQPrintDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
 }
 
 void* QPrintDialog_NewQPrintDialog2(void* parent)
 {
-	return new MyQPrintDialog(static_cast<QWidget*>(parent));
+		return new MyQPrintDialog(static_cast<QWidget*>(parent));
 }
 
 int QPrintDialog_Exec(void* ptr)
@@ -1823,12 +1823,12 @@ public:
 
 void* QPrintPreviewDialog_NewQPrintPreviewDialog(void* printer, void* parent, long long flags)
 {
-	return new MyQPrintPreviewDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
+		return new MyQPrintPreviewDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
 void* QPrintPreviewDialog_NewQPrintPreviewDialog2(void* parent, long long flags)
 {
-	return new MyQPrintPreviewDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
+		return new MyQPrintPreviewDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
 void* QPrintPreviewDialog_Printer(void* ptr)
@@ -2419,12 +2419,12 @@ public:
 
 void* QPrintPreviewWidget_NewQPrintPreviewWidget(void* printer, void* parent, long long flags)
 {
-	return new MyQPrintPreviewWidget(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
+		return new MyQPrintPreviewWidget(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
 void* QPrintPreviewWidget_NewQPrintPreviewWidget2(void* parent, long long flags)
 {
-	return new MyQPrintPreviewWidget(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
+		return new MyQPrintPreviewWidget(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
 void QPrintPreviewWidget_FitInView(void* ptr)

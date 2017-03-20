@@ -88,17 +88,28 @@ func (f *Function) PossiblePolymorphicDerivations(self bool) ([]string, string) 
 		return f.Parameters
 	}()
 
-	var fc, _ = f.Class()
-
 	for _, p := range params {
 		var c, ok = State.ClassMap[CleanValue(p.Value)]
 		if !ok {
 			continue
 		}
 
-		for _, class := range SortedClassesForModule(fc.Module, false) {
-			if class.IsPolymorphic() && class.IsSubClassOf(c.Name) && class.IsSupported() {
-				out = append(out, class.Name)
+		if f.Meta == CONSTRUCTOR {
+			for _, class := range State.ClassMap {
+				if ShouldBuildForTarget(strings.TrimPrefix(class.Module, "Qt"), State.Target) &&
+					!(class.Name == "QCameraViewfinder" || class.Name == "QGraphicsVideoItem" ||
+						class.Name == "QVideoWidget" || class.Name == "QVideoWidgetControl") {
+					if class.IsPolymorphic() && class.IsSubClassOf(c.Name) && class.IsSupported() {
+						out = append(out, class.Name)
+					}
+				}
+			}
+		} else {
+			var fc, _ = f.Class()
+			for _, class := range SortedClassesForModule(fc.Module, false) {
+				if class.IsPolymorphic() && class.IsSubClassOf(c.Name) && class.IsSupported() {
+					out = append(out, class.Name)
+				}
 			}
 		}
 

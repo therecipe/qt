@@ -220,7 +220,7 @@ func cppFunctionBody(function *parser.Function) string {
 
 	if (len(polyinputsSelf) == 0 && len(polyinputs) == 0) ||
 		function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT ||
-		function.Meta == parser.CONSTRUCTOR || (function.Meta == parser.DESTRUCTOR || strings.HasPrefix(function.Name, parser.TILDE)) {
+		(len(polyinputsSelf) != 0 && function.Meta == parser.CONSTRUCTOR) || (function.Meta == parser.DESTRUCTOR || strings.HasPrefix(function.Name, parser.TILDE)) {
 		return cppFunctionBodyInternal(function)
 	}
 

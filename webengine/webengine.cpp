@@ -10,10 +10,14 @@
 #include <QActionEvent>
 #include <QAuthenticator>
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QColor>
 #include <QContextMenuEvent>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
 #include <QDate>
 #include <QDateTime>
 #include <QDrag>
@@ -22,30 +26,43 @@
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QEvent>
+#include <QExtensionFactory>
+#include <QExtensionManager>
 #include <QFocusEvent>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
 #include <QHideEvent>
 #include <QIODevice>
 #include <QIcon>
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QLayout>
 #include <QList>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QNetworkCookie>
 #include <QObject>
+#include <QOffscreenSurface>
 #include <QPageLayout>
 #include <QPaintDevice>
+#include <QPaintDeviceWindow>
 #include <QPaintEngine>
 #include <QPaintEvent>
+#include <QPdfWriter>
 #include <QPoint>
 #include <QPointF>
+#include <QQuickItem>
 #include <QQuickWebEngineProfile>
+#include <QRadioData>
 #include <QRect>
 #include <QResizeEvent>
 #include <QShowEvent>
+#include <QSignalSpy>
 #include <QSize>
 #include <QSizeF>
 #include <QString>
@@ -76,6 +93,7 @@
 #include <QWebEngineView>
 #include <QWheelEvent>
 #include <QWidget>
+#include <QWindow>
 #include <QtWebEngine>
 
 class MyQQuickWebEngineProfile: public QQuickWebEngineProfile
@@ -113,7 +131,43 @@ void* QQuickWebEngineProfile_QQuickWebEngineProfile_DefaultProfile()
 
 void* QQuickWebEngineProfile_NewQQuickWebEngineProfile(void* parent)
 {
-	return new MyQQuickWebEngineProfile(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineProfile(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQuickWebEngineProfile(static_cast<QObject*>(parent));
+	}
 }
 
 void QQuickWebEngineProfile_ConnectCachePathChanged(void* ptr)
@@ -1365,12 +1419,84 @@ void* QWebEnginePage_CreateWindowDefault(void* ptr, long long ty)
 
 void* QWebEnginePage_NewQWebEnginePage(void* parent)
 {
-	return new MyQWebEnginePage(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQWebEnginePage(static_cast<QObject*>(parent));
+	}
 }
 
 void* QWebEnginePage_NewQWebEnginePage2(void* profile, void* parent)
 {
-	return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QObject*>(parent));
+	}
 }
 
 char QWebEnginePage_AcceptNavigationRequest(void* ptr, void* url, long long ty, char isMainFrame)
@@ -2084,12 +2210,84 @@ void* QWebEngineProfile_QWebEngineProfile_DefaultProfile()
 
 void* QWebEngineProfile_NewQWebEngineProfile(void* parent)
 {
-	return new MyQWebEngineProfile(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQWebEngineProfile(static_cast<QObject*>(parent));
+	}
 }
 
 void* QWebEngineProfile_NewQWebEngineProfile2(char* storageName, void* parent)
 {
-	return new MyQWebEngineProfile(QString(storageName), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQWebEngineProfile(QString(storageName), static_cast<QObject*>(parent));
+	}
 }
 
 void QWebEngineProfile_ClearAllVisitedLinks(void* ptr)
@@ -2707,7 +2905,43 @@ public:
 
 void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(void* p)
 {
-	return new MyQWebEngineUrlRequestInterceptor(static_cast<QObject*>(p));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QCameraImageCapture*>(p));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QDBusPendingCallWatcher*>(p));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QExtensionFactory*>(p));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QExtensionManager*>(p));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QGraphicsObject*>(p));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QGraphicsWidget*>(p));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QLayout*>(p));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QMediaPlaylist*>(p));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QMediaRecorder*>(p));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QOffscreenSurface*>(p));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QPaintDeviceWindow*>(p));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QPdfWriter*>(p));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QQuickItem*>(p));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QRadioData*>(p));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QSignalSpy*>(p));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QWidget*>(p));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(p))) {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QWindow*>(p));
+	} else {
+		return new MyQWebEngineUrlRequestInterceptor(static_cast<QObject*>(p));
+	}
 }
 
 void QWebEngineUrlRequestInterceptor_InterceptRequest(void* ptr, void* info)
@@ -3016,7 +3250,43 @@ public:
 
 void* QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(void* parent)
 {
-	return new MyQWebEngineUrlSchemeHandler(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQWebEngineUrlSchemeHandler(static_cast<QObject*>(parent));
+	}
 }
 
 void QWebEngineUrlSchemeHandler_RequestStarted(void* ptr, void* request)
@@ -3251,7 +3521,7 @@ void* QWebEngineView_CreateWindowDefault(void* ptr, long long ty)
 
 void* QWebEngineView_NewQWebEngineView(void* parent)
 {
-	return new MyQWebEngineView(static_cast<QWidget*>(parent));
+		return new MyQWebEngineView(static_cast<QWidget*>(parent));
 }
 
 char QWebEngineView_EventDefault(void* ptr, void* ev)

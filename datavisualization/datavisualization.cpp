@@ -25,31 +25,49 @@
 #include <QBarDataItem>
 #include <QBarDataProxy>
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QCategory3DAxis>
 #include <QColor>
 #include <QCustom3DItem>
 #include <QCustom3DLabel>
 #include <QCustom3DVolume>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
+#include <QExtensionFactory>
+#include <QExtensionManager>
 #include <QFont>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
 #include <QHeightMapSurfaceDataProxy>
 #include <QImage>
 #include <QItemModelBarDataProxy>
 #include <QItemModelScatterDataProxy>
 #include <QItemModelSurfaceDataProxy>
+#include <QLayout>
 #include <QLine>
 #include <QLinearGradient>
 #include <QList>
 #include <QLocale>
 #include <QLogValue3DAxisFormatter>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMouseEvent>
 #include <QObject>
+#include <QOffscreenSurface>
+#include <QPaintDevice>
+#include <QPaintDeviceWindow>
+#include <QPdfWriter>
 #include <QPoint>
 #include <QQuaternion>
+#include <QQuickItem>
+#include <QRadioData>
 #include <QRect>
 #include <QRegExp>
 #include <QScatter3DSeries>
 #include <QScatterDataItem>
 #include <QScatterDataProxy>
+#include <QSignalSpy>
 #include <QSize>
 #include <QSizeF>
 #include <QString>
@@ -66,6 +84,7 @@
 #include <QVector>
 #include <QVector3D>
 #include <QWheelEvent>
+#include <QWidget>
 #include <QWindow>
 
 typedef QtDataVisualization::Q3DBars Q3DBars;
@@ -123,7 +142,11 @@ public:
 
 void* Q3DBars_NewQ3DBars(void* format, void* parent)
 {
-	return new MyQ3DBars(static_cast<QSurfaceFormat*>(format), static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DBars(static_cast<QSurfaceFormat*>(format), static_cast<QPaintDeviceWindow*>(parent));
+	} else {
+		return new MyQ3DBars(static_cast<QSurfaceFormat*>(format), static_cast<QWindow*>(parent));
+	}
 }
 
 void Q3DBars_AddAxis(void* ptr, void* axis)
@@ -475,7 +498,43 @@ void Q3DCamera_SetTarget(void* ptr, void* target)
 
 void* Q3DCamera_NewQ3DCamera(void* parent)
 {
-	return new MyQ3DCamera(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DCamera(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQ3DCamera(static_cast<QObject*>(parent));
+	}
 }
 
 void Q3DCamera_ConnectCameraPresetChanged(void* ptr)
@@ -735,7 +794,43 @@ public:
 
 void* Q3DInputHandler_NewQ3DInputHandler(void* parent)
 {
-	return new MyQ3DInputHandler(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DInputHandler(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQ3DInputHandler(static_cast<QObject*>(parent));
+	}
 }
 
 void Q3DInputHandler_MouseMoveEvent(void* ptr, void* event, void* mousePos)
@@ -897,7 +992,43 @@ public:
 
 void* Q3DLight_NewQ3DLight(void* parent)
 {
-	return new MyQ3DLight(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DLight(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQ3DLight(static_cast<QObject*>(parent));
+	}
 }
 
 void Q3DLight_DestroyQ3DLight(void* ptr)
@@ -921,7 +1052,43 @@ public:
 
 void* Q3DObject_NewQ3DObject(void* parent)
 {
-	return new MyQ3DObject(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DObject(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQ3DObject(static_cast<QObject*>(parent));
+	}
 }
 
 void* Q3DObject_ParentScene(void* ptr)
@@ -997,7 +1164,11 @@ public:
 
 void* Q3DScatter_NewQ3DScatter(void* format, void* parent)
 {
-	return new MyQ3DScatter(static_cast<QSurfaceFormat*>(format), static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScatter(static_cast<QSurfaceFormat*>(format), static_cast<QPaintDeviceWindow*>(parent));
+	} else {
+		return new MyQ3DScatter(static_cast<QSurfaceFormat*>(format), static_cast<QWindow*>(parent));
+	}
 }
 
 void Q3DScatter_AddAxis(void* ptr, void* axis)
@@ -1184,7 +1355,43 @@ public:
 
 void* Q3DScene_NewQ3DScene(void* parent)
 {
-	return new MyQ3DScene(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DScene(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQ3DScene(static_cast<QObject*>(parent));
+	}
 }
 
 void* Q3DScene_Q3DScene_InvalidSelectionPoint()
@@ -1471,7 +1678,11 @@ public:
 
 void* Q3DSurface_NewQ3DSurface(void* format, void* parent)
 {
-	return new MyQ3DSurface(static_cast<QSurfaceFormat*>(format), static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DSurface(static_cast<QSurfaceFormat*>(format), static_cast<QPaintDeviceWindow*>(parent));
+	} else {
+		return new MyQ3DSurface(static_cast<QSurfaceFormat*>(format), static_cast<QWindow*>(parent));
+	}
 }
 
 void Q3DSurface_AddAxis(void* ptr, void* axis)
@@ -1696,12 +1907,84 @@ public:
 
 void* Q3DTheme_NewQ3DTheme(void* parent)
 {
-	return new MyQ3DTheme(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQ3DTheme(static_cast<QObject*>(parent));
+	}
 }
 
 void* Q3DTheme_NewQ3DTheme2(long long themeType, void* parent)
 {
-	return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQ3DTheme(static_cast<Q3DTheme::Theme>(themeType), static_cast<QObject*>(parent));
+	}
 }
 
 void Q3DTheme_ConnectAmbientLightStrengthChanged(void* ptr)
@@ -3283,7 +3566,43 @@ long long QAbstract3DInputHandler_InputView(void* ptr)
 
 void* QAbstract3DInputHandler_NewQAbstract3DInputHandler(void* parent)
 {
-	return new MyQAbstract3DInputHandler(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstract3DInputHandler(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAbstract3DInputHandler(static_cast<QObject*>(parent));
+	}
 }
 
 void QAbstract3DInputHandler_ConnectInputViewChanged(void* ptr)
@@ -3907,12 +4226,84 @@ public:
 
 void* QBar3DSeries_NewQBar3DSeries2(void* dataProxy, void* parent)
 {
-	return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQBar3DSeries(static_cast<QBarDataProxy*>(dataProxy), static_cast<QObject*>(parent));
+	}
 }
 
 void* QBar3DSeries_NewQBar3DSeries(void* parent)
 {
-	return new MyQBar3DSeries(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQBar3DSeries(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQBar3DSeries(static_cast<QObject*>(parent));
+	}
 }
 
 void* QBar3DSeries_QBar3DSeries_InvalidSelectionPosition()
@@ -4069,7 +4460,43 @@ public:
 
 void* QBarDataProxy_NewQBarDataProxy(void* parent)
 {
-	return new MyQBarDataProxy(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQBarDataProxy(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQBarDataProxy(static_cast<QObject*>(parent));
+	}
 }
 
 void QBarDataProxy_ConnectArrayReset(void* ptr)
@@ -4302,7 +4729,43 @@ public:
 
 void* QCategory3DAxis_NewQCategory3DAxis(void* parent)
 {
-	return new MyQCategory3DAxis(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCategory3DAxis(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQCategory3DAxis(static_cast<QObject*>(parent));
+	}
 }
 
 void QCategory3DAxis_ConnectLabelsChanged(void* ptr)
@@ -4359,12 +4822,84 @@ public:
 
 void* QCustom3DItem_NewQCustom3DItem(void* parent)
 {
-	return new MyQCustom3DItem(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQCustom3DItem(static_cast<QObject*>(parent));
+	}
 }
 
 void* QCustom3DItem_NewQCustom3DItem2(char* meshFile, void* position, void* scaling, void* rotation, void* texture, void* parent)
 {
-	return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQCustom3DItem(QString(meshFile), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), *static_cast<QImage*>(texture), static_cast<QObject*>(parent));
+	}
 }
 
 void* QCustom3DItem_Rotation(void* ptr)
@@ -4629,12 +5164,84 @@ public:
 
 void* QCustom3DLabel_NewQCustom3DLabel(void* parent)
 {
-	return new MyQCustom3DLabel(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQCustom3DLabel(static_cast<QObject*>(parent));
+	}
 }
 
 void* QCustom3DLabel_NewQCustom3DLabel2(char* text, void* font, void* position, void* scaling, void* rotation, void* parent)
 {
-	return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQCustom3DLabel(QString(text), *static_cast<QFont*>(font), *static_cast<QVector3D*>(position), *static_cast<QVector3D*>(scaling), *static_cast<QQuaternion*>(rotation), static_cast<QObject*>(parent));
+	}
 }
 
 void QCustom3DLabel_ConnectBackgroundColorChanged(void* ptr)
@@ -4848,7 +5455,43 @@ public:
 
 void* QCustom3DVolume_NewQCustom3DVolume(void* parent)
 {
-	return new MyQCustom3DVolume(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustom3DVolume(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQCustom3DVolume(static_cast<QObject*>(parent));
+	}
 }
 
 void* QCustom3DVolume_RenderSlice(void* ptr, long long axis, int index)
@@ -5333,17 +5976,125 @@ public:
 
 void* QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy(void* parent)
 {
-	return new MyQHeightMapSurfaceDataProxy(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQHeightMapSurfaceDataProxy(static_cast<QObject*>(parent));
+	}
 }
 
 void* QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy2(void* image, void* parent)
 {
-	return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQHeightMapSurfaceDataProxy(*static_cast<QImage*>(image), static_cast<QObject*>(parent));
+	}
 }
 
 void* QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy3(char* filename, void* parent)
 {
-	return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQHeightMapSurfaceDataProxy(QString(filename), static_cast<QObject*>(parent));
+	}
 }
 
 void QHeightMapSurfaceDataProxy_ConnectHeightMapChanged(void* ptr)
@@ -5545,37 +6296,289 @@ public:
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy2(void* itemModel, void* parent)
 {
-	return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy4(void* itemModel, char* rowRole, char* columnRole, char* valueRole, void* parent)
 {
-	return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy5(void* itemModel, char* rowRole, char* columnRole, char* valueRole, char* rotationRole, void* parent)
 {
-	return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy7(void* itemModel, char* rowRole, char* columnRole, char* valueRole, char* rotationRole, char* rowCategories, char* columnCategories, void* parent)
 {
-	return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rotationRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy6(void* itemModel, char* rowRole, char* columnRole, char* valueRole, char* rowCategories, char* columnCategories, void* parent)
 {
-	return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(valueRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy3(void* itemModel, char* valueRole, void* parent)
 {
-	return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelBarDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(valueRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelBarDataProxy_NewQItemModelBarDataProxy(void* parent)
 {
-	return new MyQItemModelBarDataProxy(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelBarDataProxy(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelBarDataProxy(static_cast<QObject*>(parent));
+	}
 }
 
 int QItemModelBarDataProxy_ColumnCategoryIndex(void* ptr, char* category)
@@ -6103,22 +7106,166 @@ public:
 
 void* QItemModelScatterDataProxy_NewQItemModelScatterDataProxy2(void* itemModel, void* parent)
 {
-	return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelScatterDataProxy_NewQItemModelScatterDataProxy3(void* itemModel, char* xPosRole, char* yPosRole, char* zPosRole, void* parent)
 {
-	return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelScatterDataProxy_NewQItemModelScatterDataProxy4(void* itemModel, char* xPosRole, char* yPosRole, char* zPosRole, char* rotationRole, void* parent)
 {
-	return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelScatterDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rotationRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelScatterDataProxy_NewQItemModelScatterDataProxy(void* parent)
 {
-	return new MyQItemModelScatterDataProxy(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelScatterDataProxy(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelScatterDataProxy(static_cast<QObject*>(parent));
+	}
 }
 
 void QItemModelScatterDataProxy_ConnectItemModelChanged(void* ptr)
@@ -6498,37 +7645,289 @@ public:
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy2(void* itemModel, void* parent)
 {
-	return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy5(void* itemModel, char* rowRole, char* columnRole, char* xPosRole, char* yPosRole, char* zPosRole, void* parent)
 {
-	return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy7(void* itemModel, char* rowRole, char* columnRole, char* xPosRole, char* yPosRole, char* zPosRole, char* rowCategories, char* columnCategories, void* parent)
 {
-	return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(xPosRole), QString(yPosRole), QString(zPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy4(void* itemModel, char* rowRole, char* columnRole, char* yPosRole, void* parent)
 {
-	return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy6(void* itemModel, char* rowRole, char* columnRole, char* yPosRole, char* rowCategories, char* columnCategories, void* parent)
 {
-	return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(rowRole), QString(columnRole), QString(yPosRole), QString(rowCategories).split("|", QString::SkipEmptyParts), QString(columnCategories).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy3(void* itemModel, char* yPosRole, void* parent)
 {
-	return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QAbstractItemModel*>(itemModel), QString(yPosRole), static_cast<QObject*>(parent));
+	}
 }
 
 void* QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy(void* parent)
 {
-	return new MyQItemModelSurfaceDataProxy(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQItemModelSurfaceDataProxy(static_cast<QObject*>(parent));
+	}
 }
 
 int QItemModelSurfaceDataProxy_ColumnCategoryIndex(void* ptr, char* category)
@@ -7118,7 +8517,43 @@ public:
 
 void* QLogValue3DAxisFormatter_NewQLogValue3DAxisFormatter(void* parent)
 {
-	return new MyQLogValue3DAxisFormatter(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLogValue3DAxisFormatter(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQLogValue3DAxisFormatter(static_cast<QObject*>(parent));
+	}
 }
 
 void QLogValue3DAxisFormatter_ConnectAutoSubGridChanged(void* ptr)
@@ -7219,12 +8654,84 @@ public:
 
 void* QScatter3DSeries_NewQScatter3DSeries(void* parent)
 {
-	return new MyQScatter3DSeries(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQScatter3DSeries(static_cast<QObject*>(parent));
+	}
 }
 
 void* QScatter3DSeries_NewQScatter3DSeries2(void* dataProxy, void* parent)
 {
-	return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQScatter3DSeries(static_cast<QScatterDataProxy*>(dataProxy), static_cast<QObject*>(parent));
+	}
 }
 
 int QScatter3DSeries_QScatter3DSeries_InvalidSelectionIndex()
@@ -7408,7 +8915,43 @@ public:
 
 void* QScatterDataProxy_NewQScatterDataProxy(void* parent)
 {
-	return new MyQScatterDataProxy(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQScatterDataProxy(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQScatterDataProxy(static_cast<QObject*>(parent));
+	}
 }
 
 int QScatterDataProxy_AddItem(void* ptr, void* item)
@@ -7603,12 +9146,84 @@ void* QSurface3DSeries_QSurface3DSeries_InvalidSelectionPosition()
 
 void* QSurface3DSeries_NewQSurface3DSeries(void* parent)
 {
-	return new MyQSurface3DSeries(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQSurface3DSeries(static_cast<QObject*>(parent));
+	}
 }
 
 void* QSurface3DSeries_NewQSurface3DSeries2(void* dataProxy, void* parent)
 {
-	return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQSurface3DSeries(static_cast<QSurfaceDataProxy*>(dataProxy), static_cast<QObject*>(parent));
+	}
 }
 
 void QSurface3DSeries_ConnectDataProxyChanged(void* ptr)
@@ -7849,7 +9464,43 @@ public:
 
 void* QSurfaceDataProxy_NewQSurfaceDataProxy(void* parent)
 {
-	return new MyQSurfaceDataProxy(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSurfaceDataProxy(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQSurfaceDataProxy(static_cast<QObject*>(parent));
+	}
 }
 
 void QSurfaceDataProxy_ConnectArrayReset(void* ptr)
@@ -8047,7 +9698,43 @@ public:
 
 void* QTouch3DInputHandler_NewQTouch3DInputHandler(void* parent)
 {
-	return new MyQTouch3DInputHandler(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQTouch3DInputHandler(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQTouch3DInputHandler(static_cast<QObject*>(parent));
+	}
 }
 
 void QTouch3DInputHandler_TouchEvent(void* ptr, void* event)
@@ -8084,7 +9771,43 @@ public:
 
 void* QValue3DAxis_NewQValue3DAxis(void* parent)
 {
-	return new MyQValue3DAxis(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxis(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQValue3DAxis(static_cast<QObject*>(parent));
+	}
 }
 
 void QValue3DAxis_ConnectFormatterChanged(void* ptr)
@@ -8237,7 +9960,43 @@ public:
 
 void* QValue3DAxisFormatter_NewQValue3DAxisFormatter(void* parent)
 {
-	return new MyQValue3DAxisFormatter(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQValue3DAxisFormatter(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQValue3DAxisFormatter(static_cast<QObject*>(parent));
+	}
 }
 
 void QValue3DAxisFormatter_MarkDirty(void* ptr, char labelsChange)

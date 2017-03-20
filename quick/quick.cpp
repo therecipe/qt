@@ -9,11 +9,15 @@
 #include <QAction>
 #include <QActionEvent>
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QColor>
 #include <QContextMenuEvent>
 #include <QCursor>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
 #include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
@@ -21,7 +25,11 @@
 #include <QDropEvent>
 #include <QEvent>
 #include <QExposeEvent>
+#include <QExtensionFactory>
+#include <QExtensionManager>
 #include <QFocusEvent>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
 #include <QHideEvent>
 #include <QHoverEvent>
 #include <QIcon>
@@ -29,20 +37,26 @@
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QLayout>
 #include <QList>
 #include <QMatrix4x4>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QObject>
+#include <QOffscreenSurface>
 #include <QOpenGLContext>
 #include <QOpenGLFramebufferObject>
 #include <QOpenGLShader>
 #include <QPaintDevice>
+#include <QPaintDeviceWindow>
 #include <QPaintEngine>
 #include <QPaintEvent>
 #include <QPainter>
+#include <QPdfWriter>
 #include <QPixmap>
 #include <QPoint>
 #include <QPointF>
@@ -62,6 +76,7 @@
 #include <QQuickView>
 #include <QQuickWidget>
 #include <QQuickWindow>
+#include <QRadioData>
 #include <QRect>
 #include <QRectF>
 #include <QResizeEvent>
@@ -91,6 +106,7 @@
 #include <QSGVertexColorMaterial>
 #include <QScreen>
 #include <QShowEvent>
+#include <QSignalSpy>
 #include <QSize>
 #include <QString>
 #include <QSurface>
@@ -2129,7 +2145,7 @@ public:
 
 void* QQuickPaintedItem_NewQQuickPaintedItem(void* parent)
 {
-	return new MyQQuickPaintedItem(static_cast<QQuickItem*>(parent));
+		return new MyQQuickPaintedItem(static_cast<QQuickItem*>(parent));
 }
 
 void QQuickPaintedItem_ConnectContentsScaleChanged(void* ptr)
@@ -2339,7 +2355,43 @@ void* QQuickRenderControl_Grab(void* ptr)
 
 void* QQuickRenderControl_NewQQuickRenderControl(void* parent)
 {
-	return new MyQQuickRenderControl(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickRenderControl(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQuickRenderControl(static_cast<QObject*>(parent));
+	}
 }
 
 void* QQuickRenderControl_RenderWindow(void* ptr, void* offset)
@@ -2581,7 +2633,7 @@ public:
 
 void* QQuickTextDocument_NewQQuickTextDocument(void* parent)
 {
-	return new MyQQuickTextDocument(static_cast<QQuickItem*>(parent));
+		return new MyQQuickTextDocument(static_cast<QQuickItem*>(parent));
 }
 
 void* QQuickTextDocument_TextDocument(void* ptr)
@@ -3036,17 +3088,29 @@ public:
 
 void* QQuickView_NewQQuickView2(void* engine, void* parent)
 {
-	return new MyQQuickView(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickView(static_cast<QQmlEngine*>(engine), static_cast<QPaintDeviceWindow*>(parent));
+	} else {
+		return new MyQQuickView(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+	}
 }
 
 void* QQuickView_NewQQuickView(void* parent)
 {
-	return new MyQQuickView(static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickView(static_cast<QPaintDeviceWindow*>(parent));
+	} else {
+		return new MyQQuickView(static_cast<QWindow*>(parent));
+	}
 }
 
 void* QQuickView_NewQQuickView3(void* source, void* parent)
 {
-	return new MyQQuickView(*static_cast<QUrl*>(source), static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickView(*static_cast<QUrl*>(source), static_cast<QPaintDeviceWindow*>(parent));
+	} else {
+		return new MyQQuickView(*static_cast<QUrl*>(source), static_cast<QWindow*>(parent));
+	}
 }
 
 void QQuickView_SetResizeMode(void* ptr, long long vre)
@@ -3227,17 +3291,17 @@ public:
 
 void* QQuickWidget_NewQQuickWidget2(void* engine, void* parent)
 {
-	return new MyQQuickWidget(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
+		return new MyQQuickWidget(static_cast<QQmlEngine*>(engine), static_cast<QWidget*>(parent));
 }
 
 void* QQuickWidget_NewQQuickWidget(void* parent)
 {
-	return new MyQQuickWidget(static_cast<QWidget*>(parent));
+		return new MyQQuickWidget(static_cast<QWidget*>(parent));
 }
 
 void* QQuickWidget_NewQQuickWidget3(void* source, void* parent)
 {
-	return new MyQQuickWidget(*static_cast<QUrl*>(source), static_cast<QWidget*>(parent));
+		return new MyQQuickWidget(*static_cast<QUrl*>(source), static_cast<QWidget*>(parent));
 }
 
 void QQuickWidget_ConnectSceneGraphError(void* ptr)
@@ -3936,7 +4000,11 @@ void* QQuickWindow_GrabWindow(void* ptr)
 
 void* QQuickWindow_NewQQuickWindow(void* parent)
 {
-	return new MyQQuickWindow(static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWindow(static_cast<QPaintDeviceWindow*>(parent));
+	} else {
+		return new MyQQuickWindow(static_cast<QWindow*>(parent));
+	}
 }
 
 char QQuickWindow_EventDefault(void* ptr, void* e)
@@ -5305,7 +5373,43 @@ public:
 
 void* QSGEngine_NewQSGEngine(void* parent)
 {
-	return new MyQSGEngine(static_cast<QObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQSGEngine(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQSGEngine(static_cast<QObject*>(parent));
+	}
 }
 
 void QSGEngine_Initialize(void* ptr, void* context)

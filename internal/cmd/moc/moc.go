@@ -159,7 +159,7 @@ func Moc(path, target string) {
 	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC)); err != nil {
 		return
 	}
-	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg)); err != nil {
+	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target)); err != nil {
 		return
 	}
 	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg)
