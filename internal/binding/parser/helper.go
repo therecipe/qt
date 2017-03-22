@@ -3,6 +3,8 @@ package parser
 import (
 	"bytes"
 	"fmt"
+	"os"
+	"path/filepath"
 	"runtime"
 	"sort"
 	"strings"
@@ -314,6 +316,30 @@ func GetLibs() []string {
 	return libs
 }
 
+func GetCustomLibs() []string {
+
+	tmp := make(map[string]struct{})
+	for _, c := range State.ClassMap {
+		if c.Pkg != "" {
+			for _, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
+				gp = filepath.Clean(gp)
+				if strings.HasPrefix(c.Pkg, gp) {
+					tmp[strings.TrimPrefix(c.Pkg, filepath.Join(gp, "src"))] = struct{}{}
+				}
+			}
+		}
+	}
+
+	var out []string
+	for v := range tmp {
+		v = strings.TrimPrefix(v, string(filepath.Separator))
+		v = strings.TrimSuffix(v, string(filepath.Separator))
+		v = strings.Replace(v, "\\", "/", -1)
+		out = append(out, v)
+	}
+	return out
+}
+
 func Dump() {
 	for _, c := range State.ClassMap {
 		var bb = new(bytes.Buffer)
@@ -337,28 +363,28 @@ func Dump() {
 func SortedClassNamesForModule(module string, template bool) []string {
 	var output = make([]string, 0)
 	for _, class := range State.ClassMap {
-		if class.Module == module {
-			output = append(output, class.Name)
+		for _, pm := range strings.Split(module, ",") {
+			if class.Module == pm {
+				output = append(output, class.Name)
+			}
 		}
 	}
 	sort.Stable(sort.StringSlice(output))
 
-	if module == MOC && template {
-		var items = make(map[string]string)
-
+	if (module == MOC || strings.HasPrefix(module, "custom_")) && template {
+		items := make(map[string]string)
 		for _, cn := range output {
 			if class, ok := State.ClassMap[cn]; ok {
 				items[cn] = class.Bases
 			}
 		}
 
-		var tmpOutput = make([]string, 0)
-
+		tmpOutput := make([]string, 0)
 		for len(items) > 0 {
 			for item, dep := range items {
 
-				var c, ok = State.ClassMap[dep]
-				if ok && c.Module != MOC {
+				cd, ok := State.ClassMap[dep]
+				if ok && !(cd.Module == MOC || strings.HasPrefix(cd.Module, "custom_")) || cd.Name == mostBase(items) {
 					tmpOutput = append(tmpOutput, item)
 					delete(items, item)
 					continue
@@ -378,6 +404,22 @@ func SortedClassNamesForModule(module string, template bool) []string {
 	}
 
 	return output
+}
+
+func mostBase(i map[string]string) string {
+	dif := 100
+	var base string
+	for _, v := range i {
+		c, ok := State.ClassMap[v]
+		if !ok {
+			continue
+		}
+		if ndif := len(c.GetAllBases()); ndif < dif {
+			dif = ndif
+			base = v
+		}
+	}
+	return base
 }
 
 func SortedClassesForModule(module string, template bool) []*Class {

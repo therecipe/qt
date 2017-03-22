@@ -74,6 +74,7 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 
 			for _, dep := range parser.LibDeps[module] {
 				if !strings.Contains(strings.ToLower(file), strings.ToLower(dep)) {
+					utils.Log.Debugln("cgo does not contain:", strings.ToLower(dep))
 					return false
 				}
 			}

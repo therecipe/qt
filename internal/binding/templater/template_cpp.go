@@ -174,7 +174,7 @@ func CppTemplate(module string, mode int, target string) []byte {
 							continue
 						}
 
-						if parentClass.Module == parser.MOC && f.Meta == parser.SLOT {
+						if (parentClass.Module == parser.MOC || parentClass.Pkg != "") && f.Meta == parser.SLOT {
 							continue
 						}
 
@@ -325,6 +325,9 @@ func preambleCpp(module string, input []byte, mode int) []byte {
 			fmt.Fprint(bb, "#include <sailfishapp.h>\n")
 		} else {
 			var c, _ = parser.State.ClassMap[class]
+			if strings.HasPrefix(c.Module, "custom_") {
+				continue
+			}
 			switch c.Name {
 			case
 				"Qt",
@@ -352,8 +355,11 @@ func preambleCpp(module string, input []byte, mode int) []byte {
 
 		c, ok := parser.State.ClassMap[class]
 		if ok && !strings.Contains(strings.Join(parser.LibDeps[strings.TrimPrefix(module, "Qt")], " "), strings.TrimPrefix(c.Module, "Qt")) {
-			utils.Log.Debugf("%v add dependency: %v", module, c.Module)
+			if strings.HasPrefix(c.Module, "custom_") {
+				continue
+			}
 
+			utils.Log.Debugf("%v add dependency: %v", module, c.Module)
 			parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], strings.TrimPrefix(c.Module, "Qt"))
 			switch c.Module {
 			case "QtMultimedia":
@@ -385,6 +391,62 @@ func preambleCpp(module string, input []byte, mode int) []byte {
 	}
 
 	fmt.Fprint(bb, "\n")
+
+	if mode == MOC {
+		var libs []string
+		for _, c := range parser.State.ClassMap {
+			if c.Pkg != "" {
+				libs = append(libs, c.Module)
+			}
+		}
+
+		for _, c := range parser.SortedClassesForModule(strings.Join(libs, ","), true) {
+			if c.Pkg != "" && strings.Contains(string(input), c.Name) {
+				if !c.HasConstructor() {
+					continue
+				}
+
+				fmt.Fprintf(bb, "class %v: public %v{\npublic:\n", c.Name, c.GetBases()[0])
+
+				for _, function := range c.Functions {
+					if function.Meta != parser.CONSTRUCTOR || !function.IsSupported() {
+						continue
+					}
+
+					var input = make([]string, len(function.Parameters))
+					for i, p := range function.Parameters {
+						input[i] = p.Name
+					}
+
+					fmt.Fprintf(bb, "\t%v%v(%v) : %v(%v) {};\n",
+						func() string {
+							if mode == MOC {
+								return ""
+							}
+							return "My"
+						}(),
+
+						function.ClassName(),
+
+						strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
+
+						func() string {
+							if mode == MOC {
+								return c.GetBases()[0]
+							}
+							return function.ClassName()
+						}(),
+
+						strings.Join(input, ", "),
+					)
+				}
+
+				fmt.Fprint(bb, "\n};\n")
+			}
+		}
+
+		fmt.Fprint(bb, "\n")
+	}
 
 	bb.Write(input)
 

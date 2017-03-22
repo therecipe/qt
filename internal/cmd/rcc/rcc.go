@@ -57,15 +57,3 @@ func Rcc(path, target string, output_dir string) {
 	rcc.Args = append(rcc.Args, fileList...)
 	utils.RunCmd(rcc, fmt.Sprintf("execute rcc *.cpp on %v for %v", runtime.GOOS, target))
 }
-
-func CleanPath(path string) {
-	files, err := ioutil.ReadDir(path)
-	if err != nil {
-		utils.Log.WithError(err).Fatal("failed to read dir")
-	}
-	for _, f := range files {
-		if !f.IsDir() && strings.HasPrefix(f.Name(), "rcc") {
-			utils.RemoveAll(filepath.Join(path, f.Name()))
-		}
-	}
-}

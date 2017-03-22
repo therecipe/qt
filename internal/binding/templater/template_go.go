@@ -266,6 +266,15 @@ import "C"
 			}
 		}
 	}
+
+	for _, m := range parser.GetCustomLibs() {
+		mlows := strings.Split(m, "/")
+		mlow := mlows[len(mlows)-1]
+		if strings.Contains(string(input), fmt.Sprintf("custom_%v.", mlow)) {
+			fmt.Fprintf(bb, "custom_%v \"%v\"\n", mlow, m)
+		}
+	}
+
 	fmt.Fprintln(bb, ")")
 
 	bb.Write(input)

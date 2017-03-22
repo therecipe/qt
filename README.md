@@ -220,7 +220,7 @@ You should run `qtsetup` after each upgrade.
 
 	4. Generate, install and test (20 min)
 
-		* `$GOPATH/bin/qtsetup windows`
+		* `$GOPATH/bin/qtsetup full windows`
 
 	5. Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project`
 
@@ -256,11 +256,11 @@ You should run `qtsetup` after each upgrade.
 
 	6. Install and test (20 min)
 
-		* `%GOPATH%\bin\qtsetup android`
+		* `%GOPATH%\bin\qtsetup full android`
 
 			or
 
-		* `$GOPATH/bin/qtsetup android`
+		* `$GOPATH/bin/qtsetup full android`
 
 	7. Create your first [application](#example)
 
@@ -277,7 +277,7 @@ You should run `qtsetup` after each upgrade.
 
 	2. Install and test (20 min)
 
-		* `$GOPATH/bin/qtsetup ios && $GOPATH/bin/qtsetup ios-simulator`
+		* `$GOPATH/bin/qtsetup full ios && $GOPATH/bin/qtsetup full ios-simulator`
 
 	3. Create your first [application](#example)
 
@@ -301,11 +301,11 @@ You should run `qtsetup` after each upgrade.
 
 	4. Install and test (20 min)
 
-		* `%GOPATH%\bin\qtsetup sailfish && %GOPATH%\bin\qtsetup sailfish-emulator`
+		* `%GOPATH%\bin\qtsetup full sailfish && %GOPATH%\bin\qtsetup full sailfish-emulator`
 
 			or
 
-		* `$GOPATH/bin/qtsetup sailfish && $GOPATH/bin/qtsetup sailfish-emulator`
+		* `$GOPATH/bin/qtsetup full sailfish && $GOPATH/bin/qtsetup full sailfish-emulator`
 
 	5. Create your first [application](#example)
 
@@ -429,13 +429,13 @@ You should run `qtsetup` after each upgrade.
 	14. Install and test the binding (20 min)
 
 		* Raspberry Pi 1
-			* `$GOPATH/bin/qtsetup rpi1`
+			* `$GOPATH/bin/qtsetup full rpi1`
 
 		* Raspberry Pi 2
-			* `$GOPATH/bin/qtsetup rpi2`
+			* `$GOPATH/bin/qtsetup full rpi2`
 
 		* Raspberry Pi 3
-			* `$GOPATH/bin/qtsetup rpi3`
+			* `$GOPATH/bin/qtsetup full rpi3`
 
 	15. Notes
 
@@ -468,31 +468,37 @@ You should run `qtsetup` after each upgrade.
 
 	* For cross compiling to Windows:
 
-		* `docker pull therecipe/qt:base_windows` (to deploy 32-bit applications)
+		* `docker pull therecipe/qt:windows_32_shared` (to deploy 32-bit dynamically linked applications)
 
-		* `docker pull therecipe/qt:base_windows_64` (to deploy 64-bit applications)
+		* `docker pull therecipe/qt:windows_64_shared` (to deploy 64-bit dynamically linked applications)
+
+		* `docker pull therecipe/qt:windows_32_static` (to deploy 32-bit statically linked applications)
+
+		* `docker pull therecipe/qt:windows_64_static` (to deploy 64-bit statically linked applications)
 
 		* **Optional:** Install [Wine](https://www.winehq.org) to test your applications.
 
 		* define `QT_MXE_ARCH=386` to deploy 32-bit applications or `QT_MXE_ARCH=amd64` to deploy 64-bit applications
 
-		* `$GOPATH/bin/qtsetup windows-docker`
+		* define `QT_MXE_STATIC=true` to deploy statically linked applications
+
+		* `$GOPATH/bin/qtsetup -docker full windows`
 
 		* Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project docker`
 
 	* For cross compiling to Linux:
 
-		* `docker pull therecipe/qt:base`
+		* `docker pull therecipe/qt:linux`
 
-		* `$GOPATH/bin/qtsetup linux-docker`
+		* `$GOPATH/bin/qtsetup -docker full linux`
 
 		* Deploy applications with `$GOPATH/bin/qtdeploy build linux path/to/your/project docker`
 
 	* For cross compiling to Android:
 
-		* `docker pull therecipe/qt:base_android`
+		* `docker pull therecipe/qt:android`
 
-		* `$GOPATH/bin/qtsetup android-docker`
+		* `$GOPATH/bin/qtsetup -docker full android`
 
 		* Deploy applications with `$GOPATH/bin/qtdeploy build android path/to/your/project docker`
 

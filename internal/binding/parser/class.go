@@ -25,15 +25,17 @@ type Class struct {
 	WeakLink  map[string]struct{}
 	Export    bool
 	Fullname  string
+	Pkg       string
 
 	Constructors []string
 	Derivations  []string
 }
 
-func (c *Class) register(m string) {
+func (c *Class) register(m *Module) {
 
 	c.DocModule = c.Module
-	c.Module = m
+	c.Module = m.Project
+	c.Pkg = m.Pkg
 	State.ClassMap[c.Name] = c
 
 	for _, sc := range c.Classes {

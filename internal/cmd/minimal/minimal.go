@@ -2,10 +2,7 @@ package minimal
 
 import (
 	"fmt"
-	goparser "go/parser"
-	"go/token"
 	"io/ioutil"
-	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -14,6 +11,8 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 
+	"github.com/therecipe/qt/internal/cmd"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -21,7 +20,7 @@ func Minimal(path, target string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Minimal")
 
 	var files []string
-	for _, path := range append([]string{path}, getImports(path, 0)...) {
+	for _, path := range append([]string{path}, cmd.GetImports(path, 0)...) {
 		fileList, err := ioutil.ReadDir(path)
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read dir")
@@ -31,8 +30,8 @@ func Minimal(path, target string) {
 		for _, file := range fileList {
 			path := filepath.Join(path, file.Name())
 			if !file.IsDir() && filepath.Ext(path) == ".go" {
-				files = append(files, utils.Load(path))
 				utils.Log.WithField("path", path).Debug("analyse for minimal")
+				files = append(files, utils.Load(path))
 			}
 		}
 	}
@@ -139,73 +138,6 @@ func Minimal(path, target string) {
 			f.Export = false
 		}
 	}
-}
-
-func getImports(path string, level int) []string {
-	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
-
-	var imports []string
-
-	level++
-	if level > 2 {
-		return imports
-	}
-
-	files, err := ioutil.ReadDir(path)
-	if err != nil {
-		utils.Log.WithError(err).Fatal("failed to read dir")
-	}
-	var fileList []string
-	for _, f := range files {
-		if !f.IsDir() && filepath.Ext(f.Name()) == ".go" {
-			fileList = append(fileList, filepath.Join(path, f.Name()))
-		}
-	}
-
-	for _, f := range fileList {
-		file, err := goparser.ParseFile(token.NewFileSet(), f, nil, 0)
-		if err != nil {
-			utils.Log.WithError(err).Debugln("failed to parse", f)
-			continue
-		}
-		for _, i := range file.Imports {
-			if strings.Contains(i.Path.Value, "github.com/therecipe/qt") && !strings.Contains(i.Path.Value, "qt/internal") {
-				continue
-			}
-
-			for _, gopath := range strings.Split(os.Getenv("GOPATH"), string(os.PathListSeparator)) {
-				path := filepath.Join(gopath, "src", strings.Replace(i.Path.Value, "\"", "", -1))
-				if utils.ExistsDir(path) {
-					var has bool
-					for _, i := range imports {
-						if i == path {
-							has = true
-							break
-						}
-					}
-					if has {
-						continue
-					}
-					imports = append(imports, path)
-					for _, path := range getImports(path, level) {
-						var has bool
-						for _, i := range imports {
-							if i == path {
-								has = true
-								break
-							}
-						}
-						if !has {
-							imports = append(imports, path)
-						}
-					}
-				}
-			}
-
-		}
-	}
-
-	return imports
 }
 
 func exportClass(c *parser.Class, files []string) {

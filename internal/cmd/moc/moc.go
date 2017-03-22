@@ -6,7 +6,6 @@ import (
 	goparser "go/parser"
 	"go/token"
 	"io/ioutil"
-	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -14,43 +13,54 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 
+	"github.com/therecipe/qt/internal/cmd"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func Moc(path, target string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
-	//TODO: use getImports from qtminimal ?
-	filepath.Walk(path, func(current string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-		if info.IsDir() && path != current && !isBlacklistedPath(path, current) {
-			Moc(current, target)
-		}
-		return nil
-	})
-
-	fileList, err := ioutil.ReadDir(path)
-	if err != nil {
-		utils.Log.WithError(err).Error("failed to read dir")
-		return
-	}
-
 	var classes []*parser.Class
+	var otherclasses []*parser.Class
 	var pkg string
-	for _, file := range fileList {
-		path := filepath.Join(path, file.Name())
-		if file.IsDir() || filepath.Ext(path) != ".go" {
-			utils.Log.Debugln("skipping", path)
+	for i, path := range append([]string{path}, cmd.GetImports(path, 0)...) {
+		fileList, err := ioutil.ReadDir(path)
+		if err != nil {
+			utils.Log.WithError(err).Error("failed to read dir")
 			continue
 		}
-		cls, ipkg, err := parse(path)
-		pkg = ipkg
-		if err != nil {
-			utils.Log.WithError(err)
-		} else {
-			classes = append(classes, cls...)
+
+		if i > 0 {
+			Moc(path, target)
+		}
+
+		for _, file := range fileList {
+			fpath := filepath.Join(path, file.Name())
+			if !file.IsDir() && filepath.Ext(fpath) == ".go" {
+
+				cls, ipkg, err := parse(fpath)
+				if pkg == "" {
+					pkg = ipkg
+				}
+				if err != nil {
+					utils.Log.WithError(err)
+				} else {
+					if pkg == ipkg {
+						classes = append(classes, cls...)
+					} else {
+
+						m := &parser.Module{
+							Project:   "custom_" + ipkg,
+							Pkg:       path,
+							Namespace: &parser.Namespace{Classes: cls},
+						}
+						m.Prepare()
+
+						otherclasses = append(otherclasses, cls...)
+					}
+				}
+			}
 		}
 	}
 
@@ -70,7 +80,7 @@ func Moc(path, target string) {
 	for _, c := range classes {
 		for _, bc := range c.GetBases() {
 			var has bool
-			for _, c := range classes {
+			for _, c := range append(classes, otherclasses...) {
 				if c.Name == bc {
 					has = true
 					break
@@ -96,6 +106,45 @@ func Moc(path, target string) {
 		Project:   parser.MOC,
 		Namespace: &parser.Namespace{Classes: classes},
 	}
+
+	//copy properties + signals + slots
+	utils.Log.Debug("start copy properties + signals + slots")
+	for _ = range append(m.Namespace.Classes, otherclasses...) {
+		for _, c := range append(m.Namespace.Classes, otherclasses...) {
+			bc, ok := parser.State.ClassMap[c.Bases]
+			if !ok || bc.Pkg == "" {
+				continue
+			}
+
+			for _, bcp := range bc.Properties {
+				var has bool
+				for _, cp := range c.Properties {
+					if cp.Name == bcp.Name {
+						has = true
+						break
+					}
+				}
+				if !has {
+					c.Properties = append(c.Properties, bcp)
+				}
+			}
+
+			for _, bcf := range bc.Functions {
+				if !(bcf.Meta == parser.SIGNAL || bcf.Meta == parser.SLOT) {
+					continue
+				}
+
+				f := *bcf
+				f.Name = strings.Replace(f.Name, bcf.ClassName(), c.Name, -1)
+				f.Fullname = strings.Replace(f.Fullname, bcf.ClassName(), c.Name, -1)
+				if !c.HasFunctionWithNameAndOverloadNumber(f.Name, f.OverloadNumber) {
+					c.Functions = append(c.Functions, &f)
+				}
+			}
+		}
+	}
+	utils.Log.Debug("done copy properties + signals + slots")
+
 	m.Prepare()
 
 	var remaining int
@@ -135,18 +184,21 @@ func Moc(path, target string) {
 
 	//copy constructor and destructor
 	utils.Log.Debug("start copy structors")
-	for _ = range m.Namespace.Classes {
-		for _, c := range m.Namespace.Classes {
-			if bc, ok := parser.State.ClassMap[c.Bases]; ok {
-				for _, bcf := range bc.Functions {
-					if bcf.Meta == parser.CONSTRUCTOR || bcf.Meta == parser.DESTRUCTOR {
-						f := *bcf
-						f.Name = strings.Replace(f.Name, bcf.ClassName(), c.Name, -1)
-						f.Fullname = strings.Replace(f.Fullname, bcf.ClassName(), c.Name, -1)
-						if !c.HasFunctionWithNameAndOverloadNumber(f.Name, f.OverloadNumber) {
-							c.Functions = append(c.Functions, &f)
-						}
-					}
+	for _ = range append(m.Namespace.Classes, otherclasses...) {
+		for _, c := range append(m.Namespace.Classes, otherclasses...) {
+			bc, ok := parser.State.ClassMap[c.Bases]
+			if !ok {
+				continue
+			}
+			for _, bcf := range bc.Functions {
+				if !(bcf.Meta == parser.CONSTRUCTOR || bcf.Meta == parser.DESTRUCTOR) {
+					continue
+				}
+				f := *bcf
+				f.Name = strings.Replace(f.Name, bcf.ClassName(), c.Name, -1)
+				f.Fullname = strings.Replace(f.Fullname, bcf.ClassName(), c.Name, -1)
+				if !c.HasFunctionWithNameAndOverloadNumber(f.Name, f.OverloadNumber) {
+					c.Functions = append(c.Functions, &f)
 				}
 			}
 		}
@@ -292,27 +344,6 @@ func parse(path string) ([]*parser.Class, string, error) {
 	}
 
 	return classes, file.Name.String(), nil
-}
-
-func isBlacklistedPath(path, current string) bool {
-	for _, n := range []string{"deploy", "qml", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "asteroid", "node_modules", ".git"} {
-		if strings.Contains(current, filepath.Join(path, n)) {
-			return true
-		}
-	}
-	return false
-}
-
-func CleanPath(path string) {
-	files, err := ioutil.ReadDir(path)
-	if err != nil {
-		utils.Log.WithError(err).Fatal("failed to read dir")
-	}
-	for _, f := range files {
-		if !f.IsDir() && strings.HasPrefix(f.Name(), "moc") {
-			utils.RemoveAll(filepath.Join(path, f.Name()))
-		}
-	}
 }
 
 func parameters(tag string) []*parser.Parameter {

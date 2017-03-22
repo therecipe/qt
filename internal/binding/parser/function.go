@@ -77,7 +77,6 @@ func (f *Function) register(m string) {
 
 //TODO: multipoly [][]string
 //TODO: connect/disconnect slot functions + add necessary SIGNAL_* functions (check first if really needed)
-
 func (f *Function) PossiblePolymorphicDerivations(self bool) ([]string, string) {
 	var out = make([]string, 0)
 
@@ -96,6 +95,7 @@ func (f *Function) PossiblePolymorphicDerivations(self bool) ([]string, string) 
 
 		if f.Meta == CONSTRUCTOR {
 			for _, class := range State.ClassMap {
+				//TODO: use target to block certain classes
 				if ShouldBuildForTarget(strings.TrimPrefix(class.Module, "Qt"), State.Target) &&
 					!(class.Name == "QCameraViewfinder" || class.Name == "QGraphicsVideoItem" ||
 						class.Name == "QVideoWidget" || class.Name == "QVideoWidgetControl") {

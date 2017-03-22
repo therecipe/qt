@@ -9,6 +9,7 @@ import (
 type Module struct {
 	Namespace *Namespace `xml:"namespace"`
 	Project   string     `xml:"project,attr"`
+	Pkg       string
 }
 
 type Namespace struct {
@@ -31,7 +32,7 @@ func (m *Module) Prepare() error {
 
 	//register classes from namespace
 	for _, c := range m.Namespace.Classes {
-		c.register(m.Project)
+		c.register(m)
 	}
 
 	//register enums and functions from subnamespaces

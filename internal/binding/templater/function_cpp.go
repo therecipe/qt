@@ -211,7 +211,7 @@ func cppFunctionBody(function *parser.Function) string {
 
 			var ff = bc.GetFunction(f.Name)
 			for _, fb := range parser.IsBlockedDefault() {
-				if f.Fullname == fb || (ff != nil && ff.Virtual == parser.PURE && bc.Module != parser.MOC) {
+				if f.Fullname == fb || (ff != nil && ff.Virtual == parser.PURE && (bc.Module != parser.MOC && bc.Pkg == "")) {
 					return ""
 				}
 			}

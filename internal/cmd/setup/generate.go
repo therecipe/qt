@@ -22,7 +22,11 @@ func Generate(target string) {
 		}
 
 		mode := "full"
-		if utils.QT_STUB() {
+		switch {
+		case target != runtime.GOOS:
+			mode = "cgo"
+
+		case utils.QT_STUB():
 			mode = "stub"
 		}
 		utils.Log.Infof("generating %v qt/%v", mode, strings.ToLower(module))

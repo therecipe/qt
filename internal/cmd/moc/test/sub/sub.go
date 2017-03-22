@@ -1,7 +1,11 @@
 package sub
 
-import "github.com/therecipe/qt/gui"
+import "github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub"
 
 type SubTestStruct struct {
-	gui.QWindow
+	subsub.SubSubTestStruct
+
+	_ func(string)        `signal:"someSignal"`
+	_ func(string) string `slot:"someSlot"`
+	_ string              `property:"someProperty"`
 }

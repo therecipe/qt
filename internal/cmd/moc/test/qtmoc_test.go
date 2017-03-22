@@ -13,6 +13,7 @@ import (
 	"github.com/therecipe/qt/widgets"
 
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
+	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub"
 )
 
 //go:generate qtmoc
@@ -303,9 +304,12 @@ type subTestStruct struct {
 	_ func(*subTestStruct) *subTestStruct `slot:"returnTest3"`
 }
 
-type subSubTestStruct struct { //Qt structs from other pkgs will be ignored for now
+type subSubTestStruct struct {
 	sub.SubTestStruct
-	_ func(*sub.SubTestStruct) *sub.SubTestStruct `slot:"returnTest4"`
+
+	_ *sub.SubTestStruct                          `property:"StructPropertyTest"`
+	_ func(*sub.SubTestStruct) *sub.SubTestStruct `slot:"StructSlotTest"`
+	_ func(*sub.SubTestStruct)                    `signal:"StructSignalTest"`
 }
 
 type otherTestStruct struct {
@@ -426,12 +430,13 @@ func TestGeneral(t *testing.T) {
 		NewOtherTestStruct(nil)
 		NewSubTestStruct(nil)
 		sub.NewSubTestStruct(nil)
-		//NewSubSubTestStruct(nil)
+		subsub.NewSubSubTestStruct(nil)
+		NewSubSubTestStruct(nil)
 	}
 }
 
 func TestProperties(t *testing.T) {
-	var test = NewTestStruct(nil)
+	test := NewTestStruct(nil)
 
 	test.ConnectPropBoolChanged(func(propBool bool) {
 		if propBool != b1 {
@@ -650,7 +655,7 @@ func TestProperties(t *testing.T) {
 		t.Fatal("PropError")
 	}
 
-	var sTest = NewOtherTestStruct(nil)
+	sTest := NewOtherTestStruct(nil)
 	sTest.SetObjectName("test")
 	test.ConnectPropReturnTestChanged(func(propReturnTest *otherTestStruct) {
 		if propReturnTest.ObjectName() != sTest.ObjectName() {
@@ -687,7 +692,7 @@ func TestProperties(t *testing.T) {
 }
 
 func TestPropertiesList(t *testing.T) {
-	var test = NewTestStruct(nil)
+	test := NewTestStruct(nil)
 
 	test.ConnectPropListBoolChanged(func(propBool []bool) {
 		if propBool[0] != b1 {
@@ -884,7 +889,7 @@ func TestPropertiesList(t *testing.T) {
 		t.Fatal("PropListError")
 	}
 
-	var sTest = NewOtherTestStruct(nil)
+	sTest := NewOtherTestStruct(nil)
 	sTest.SetObjectName("test")
 	test.ConnectPropListReturnTestChanged(func(propReturnTest []*otherTestStruct) {
 		if propReturnTest[0].ObjectName() != sTest.ObjectName() {
@@ -910,7 +915,7 @@ func TestPropertiesList(t *testing.T) {
 }
 
 func TestPropertiesMap(t *testing.T) {
-	var test = NewTestStruct(nil)
+	test := NewTestStruct(nil)
 
 	test.ConnectPropMapBoolChanged(func(propBool map[int]bool) {
 		if propBool[0] != b1 {
@@ -1129,7 +1134,7 @@ func TestPropertiesMap(t *testing.T) {
 		t.Fatal("PropMapError")
 	}
 
-	var sTest = NewOtherTestStruct(nil)
+	sTest := NewOtherTestStruct(nil)
 	sTest.SetObjectName("test")
 	test.ConnectPropMapReturnTestChanged(func(propReturnTest map[int]*otherTestStruct) {
 		if propReturnTest[0].ObjectName() != sTest.ObjectName() {
@@ -1155,7 +1160,7 @@ func TestPropertiesMap(t *testing.T) {
 }
 
 func TestSignalInput(t *testing.T) {
-	var test = NewTestStruct(nil)
+	test := NewTestStruct(nil)
 
 	test.ConnectBoolSignalInput(func(v0, v1 bool) {
 		if v0 != b0 || v1 != b1 {
@@ -1249,7 +1254,7 @@ func TestSignalInput(t *testing.T) {
 }
 
 func TestSignalListInput(t *testing.T) {
-	var test = NewTestStruct(nil)
+	test := NewTestStruct(nil)
 
 	test.ConnectBoolSignalListInput(func(v0, v1 []bool) {
 		if v0[0] != b0 || v1[0] != b1 {
@@ -1330,7 +1335,7 @@ func TestSignalListInput(t *testing.T) {
 }
 
 func TestSlotInput(t *testing.T) {
-	var test = NewTestStruct(nil)
+	test := NewTestStruct(nil)
 
 	test.ConnectBoolSlotInput(func(v0, v1 bool) {
 		if v0 != b0 || v1 != b1 {
@@ -1424,7 +1429,7 @@ func TestSlotInput(t *testing.T) {
 }
 
 func TestSlotOutput(t *testing.T) {
-	var test = NewTestStruct(nil)
+	test := NewTestStruct(nil)
 
 	test.ConnectBoolSlotOutput(func(v0 bool) bool { return v0 })
 	test.ConnectBoolSlotOutput2(func(v0 bool) bool { return v0 })
@@ -1564,10 +1569,74 @@ func TestSlotOutput(t *testing.T) {
 		t.Fatal("ReturnName2")
 	}
 
-	var sTest = NewSubTestStruct(nil)
+	sTest := NewSubTestStruct(nil)
 	sTest.ConnectReturnTest3(func(v0 *subTestStruct) *subTestStruct { return v0 })
 	sTest.SetObjectName("testSubName")
 	if sTest.ReturnTest3(sTest.ReturnTest3(sTest)).ReturnTest3(sTest).ObjectName() != sTest.ObjectName() {
 		t.Fatal("ReturnName3")
 	}
+}
+
+func TestSubSubStructs(t *testing.T) {
+	sTest := NewSubSubTestStruct(nil)
+	sTest.SetObjectName("testObjectName")
+
+	sTest.ConnectStructPropertyTestChanged(func(StructPropertyTest *sub.SubTestStruct) {
+		if StructPropertyTest.ObjectName() != sTest.ObjectName() {
+			t.Fatal(StructPropertyTest.ObjectName(), "!=", sTest.ObjectName())
+		}
+	})
+
+	sTest.ConnectStructSignalTest(func(v0 *sub.SubTestStruct) {
+		if v0.ObjectName() != sTest.ObjectName() {
+			t.Fatal(v0.ObjectName(), "!=", sTest.ObjectName())
+		}
+	})
+
+	sTest.ConnectStructSlotTest(func(v0 *sub.SubTestStruct) *sub.SubTestStruct {
+		if v0.ObjectName() != sTest.ObjectName() {
+			t.Fatal(v0.ObjectName(), "!=", sTest.ObjectName())
+		}
+		return v0
+	})
+
+	sTest.SetStructPropertyTest(sTest)
+	sTest.StructSignalTest(sTest)
+	sTest.StructSlotTest(sTest)
+
+	//
+
+	sTest.SetSomeProperty(s0)
+	if o := sTest.SomeProperty(); o != s0 {
+		t.Fatal(sTest.SomeProperty(), "!=", s0)
+	}
+	/*
+		if o := sTest.SubTestStruct_PTR().SomeProperty(); o != s0 {
+			t.Fatal(o, len(o), "!=", s0, len(s0))
+		}
+	*/
+
+	sTest.ConnectSomeSignal(func(v0 string) {
+		if v0 != s0 {
+			t.Fatal(v0, "!=", s0)
+		}
+	})
+	sTest.SomeSignal(s0)
+	//sTest.SubTestStruct_PTR().SomeSignal(s0)
+
+	sTest.ConnectSomeSlot(func(v0 string) string {
+		if v0 != s0 {
+			t.Fatal(v0, "!=", s0)
+		}
+		return v0
+	})
+	if o := sTest.SomeSlot(s0); o != s0 {
+		t.Fatal(sTest.SomeSlot(s0), "!=", s0)
+	}
+
+	/*
+		if o := sTest.SubTestStruct_PTR().SomeSlot(s0); o != s0 {
+			t.Fatal(sTest.SomeSlot(s0), "!=", s0)
+		}
+	*/
 }
