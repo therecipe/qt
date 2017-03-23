@@ -18,6 +18,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+var done = make(map[string]struct{})
+
 func Moc(path, target string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
@@ -31,7 +33,8 @@ func Moc(path, target string) {
 			continue
 		}
 
-		if i > 0 {
+		if _, ok := done[path]; !ok && i > 0 {
+			done[path] = struct{}{}
 			Moc(path, target)
 		}
 

@@ -384,6 +384,11 @@ func SortedClassNamesForModule(module string, template bool) []string {
 			for item, dep := range items {
 
 				cd, ok := State.ClassMap[dep]
+				if !ok{
+					delete(items, item)
+					continue
+				}
+
 				if ok && !(cd.Module == MOC || strings.HasPrefix(cd.Module, "custom_")) || cd.Name == mostBase(items) {
 					tmpOutput = append(tmpOutput, item)
 					delete(items, item)

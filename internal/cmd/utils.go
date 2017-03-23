@@ -17,7 +17,7 @@ func GetImports(path string, level int) []string {
 	var imports []string
 
 	level++
-	if level > 5 {
+	if level > 10 {
 		return imports
 	}
 
