@@ -240,7 +240,7 @@ You should run `qtsetup` after each upgrade.
 
 	3. Install the SDK dependencies with `C:\android-sdk-windows\tools\android.bat` or `$HOME/android-sdk-{ macosx | linux }/tools/android`
 		* Tools
-			* Android SDK Build-tools (25.0.2)
+			* Android SDK Build-tools (25.0.4)
 		* Android 7.1.1 (API 25)
 			* SDK Platform
 		* Extras (Windows only)
