@@ -33,7 +33,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags string, fast bool) {
 				args = append(args, "-fast")
 			}
 			args = append(args, []string{"-ldflags=" + ldFlags, "build"}...)
-			cmd.Docker(args, target, path)
+			cmd.Docker(args, target, path, false)
 			break
 		}
 

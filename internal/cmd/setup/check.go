@@ -11,8 +11,14 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Check(target string) {
-	utils.Log.Infof("running: 'qtsetup check %v'", target)
+func Check(target string, docker bool) {
+	utils.Log.Infof("running: 'qtsetup check %v' [docker=%v]", target, docker)
+	if docker {
+		if _, err := exec.LookPath("docker"); err != nil {
+			utils.Log.WithError(err).Fatal("failed to find docker, did you install docker?")
+		}
+		return
+	}
 
 	hash := "please install git"
 	if _, err := exec.LookPath("git"); err == nil {

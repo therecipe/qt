@@ -64,7 +64,7 @@ func main() {
 
 	utils.CheckBuildTarget(target)
 	if docker {
-		cmd.Docker([]string{"qtmoc", "-debug"}, target, path)
+		cmd.Docker([]string{"qtmoc", "-debug"}, target, path, false)
 	} else {
 		moc.Moc(path, target)
 	}

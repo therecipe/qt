@@ -16,7 +16,12 @@ import (
 )
 
 func Test(target string, docker bool) {
-	utils.Log.Infof("running: 'qtsetup test %v'", target)
+	if docker && target == "darwin" {
+		utils.Log.Warn("darwin is currently not supported as a deploy target with docker; testing the linux deployment instead")
+		target = "linux"
+	}
+
+	utils.Log.Infof("running: 'qtsetup test %v' [docker=%v]", target, docker)
 
 	if utils.CI() && target == runtime.GOOS && runtime.GOOS != "windows" { //TODO: split test for windows ?
 		utils.Log.Infof("running setup/test %v CI", target)
@@ -110,11 +115,12 @@ func Test(target string, docker bool) {
 				continue
 			}
 			example := filepath.Join(cat, example)
-			utils.Log.Infoln("testing", example)
+			path := utils.GoQtPkgPath("internal", "examples", example)
+			utils.Log.Infof("testing %v%v(%v)", example, strings.Repeat(" ", 20-len(example)), path)
 			deploy.Deploy(
 				mode,
 				target,
-				utils.GoQtPkgPath("internal", "examples", example),
+				path,
 				docker,
 				"",
 				false,

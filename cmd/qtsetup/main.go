@@ -72,28 +72,23 @@ func main() {
 
 	utils.CheckBuildTarget(target)
 
-	if docker {
-		setup.Test(target, docker)
-		return
-	}
-
 	switch mode {
 	case "full":
 		setup.Prep()
-		setup.Check(target)
-		setup.Generate(target)
-		setup.Install(target)
-		setup.Test(target, false)
+		setup.Check(target, docker)
+		setup.Generate(target, docker)
+		setup.Install(target, docker)
+		setup.Test(target, docker)
 	case "prep":
 		setup.Prep()
 	case "check":
-		setup.Check(target)
+		setup.Check(target, docker)
 	case "generate":
-		setup.Generate(target)
+		setup.Generate(target, docker)
 	case "install":
-		setup.Install(target)
+		setup.Install(target, docker)
 	case "test":
-		setup.Test(target, false)
+		setup.Test(target, docker)
 	case "update":
 		setup.Update()
 	case "upgrade":

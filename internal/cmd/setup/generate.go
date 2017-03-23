@@ -8,10 +8,16 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/utils"
+
+	"github.com/therecipe/qt/internal/cmd"
 )
 
-func Generate(target string) {
-	utils.Log.Infof("running: 'qtsetup generate %v'", target)
+func Generate(target string, docker bool) {
+	utils.Log.Infof("running: 'qtsetup generate %v' [docker=%v]", target, docker)
+	if docker {
+		cmd.Docker([]string{"/home/user/work/bin/qtsetup", "-debug", "generate"}, "linux", "", true)
+		return
+	}
 
 	parser.LoadModules()
 

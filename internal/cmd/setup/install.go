@@ -14,8 +14,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Install(target string) {
-	utils.Log.Infof("running: 'qtsetup install %v'", target)
+func Install(target string, docker bool) {
+	utils.Log.Infof("running: 'qtsetup install %v' [docker=%v]", target, docker)
 
 	if target == "sailfish" || target == "sailfish-emulator" {
 		if _, err := ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386")); err != nil {
@@ -39,7 +39,7 @@ func Install(target string) {
 		}
 
 		mode := "full"
-		if utils.QT_STUB() {
+		if utils.QT_STUB() || docker {
 			mode = "stub"
 		}
 		utils.Log.Infof("installing %v qt/%v", mode, strings.ToLower(module))

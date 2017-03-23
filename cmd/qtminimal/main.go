@@ -64,7 +64,7 @@ func main() {
 
 	utils.CheckBuildTarget(target)
 	if docker {
-		cmd.Docker([]string{"qtminimal", "-debug"}, target, path)
+		cmd.Docker([]string{"qtminimal", "-debug"}, target, path, false)
 	} else {
 		minimal.Minimal(path, target)
 	}

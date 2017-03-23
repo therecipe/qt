@@ -73,7 +73,7 @@ func main() {
 
 	utils.CheckBuildTarget(target)
 	if docker {
-		cmd.Docker([]string{"qtrcc", "-debug"}, target, path)
+		cmd.Docker([]string{"qtrcc", "-debug"}, target, path, false)
 	} else {
 		rcc.Rcc(path, target, output)
 	}

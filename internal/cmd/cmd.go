@@ -41,7 +41,7 @@ func ParseFlags() bool {
 	return help != nil && *help
 }
 
-func Docker(arg []string, target, path string) {
+func Docker(arg []string, target, path string, writeCacheToHost bool) {
 	arg = append(arg, target)
 
 	var image string
@@ -76,7 +76,15 @@ func Docker(arg []string, target, path string) {
 		paths = append(paths, fmt.Sprintf("/media/sf_GOPATH%v", i))
 	}
 
-	args = append(args, []string{"-e", "GOPATH=/home/user/work:" + strings.Join(paths, ":")}...)
+	gpath := strings.Join(paths, ":")
+	if writeCacheToHost {
+		gpath += ":/home/user/work"
+		args = append(args, []string{"-e", "QT_STUB=true"}...)
+	} else {
+		gpath = "/home/user/work:" + gpath
+	}
+
+	args = append(args, []string{"-e", "GOPATH=" + gpath}...)
 
 	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)
 
@@ -92,7 +100,7 @@ func Docker(arg []string, target, path string) {
 		}
 	}
 
-	if !found {
+	if !found && path != "" {
 		utils.Log.Panicln("Project needs to be inside GOPATH", path, os.Getenv("GOPATH"))
 	}
 
