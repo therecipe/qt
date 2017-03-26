@@ -1962,6 +1962,11 @@ int QQmlEngine_QQmlEngine_QmlRegisterSingletonType(void* url, char* uri, int ver
 	return qmlRegisterSingletonType(*static_cast<QUrl*>(url), const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
 }
 
+int QQmlEngine_QQmlEngine_QmlRegisterType(void* url, char* uri, int versionMajor, int versionMinor, char* qmlName)
+{
+	return qmlRegisterType(*static_cast<QUrl*>(url), const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
+}
+
 void* QQmlEngine___importPlugin_errors_atList(void* ptr, int i)
 {
 	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));

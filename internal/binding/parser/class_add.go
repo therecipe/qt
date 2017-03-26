@@ -67,6 +67,27 @@ func (c *Class) addGeneralFuncs() {
 				},
 				Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
 			})
+
+			//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterType-2
+			//int qmlRegisterType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
+			c.Functions = append(c.Functions, &Function{
+				Name:      "qmlRegisterType",
+				Fullname:  fmt.Sprintf("%v::qmlRegisterType", c.Name),
+				Access:    "public",
+				Virtual:   "non",
+				Meta:      PLAIN,
+				NonMember: true,
+				Static:    true,
+				Output:    fmt.Sprintf("int"),
+				Parameters: []*Parameter{
+					{Name: "url", Value: "const QUrl &"},
+					{Name: "uri", Value: "const char *"},
+					{Name: "versionMajor", Value: "int"},
+					{Name: "versionMinor", Value: "int"},
+					{Name: "qmlName", Value: "const char *"},
+				},
+				Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
+			})
 		}
 
 	case "QAndroidJniEnvironment":
@@ -179,4 +200,38 @@ func (c *Class) addMocFuncs() {
 	tmpF2.Parameters = []*Parameter{{Name: "typeName", Value: "const char *"}}
 	tmpF2.Signature = "(const char *typeName)"
 	c.Functions = append(c.Functions, &tmpF2)
+
+	//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterType
+	//int qmlRegisterType()
+	tmpF = &Function{
+		Name:           "qmlRegisterType",
+		Fullname:       fmt.Sprintf("%v::qmlRegisterType", c.Name),
+		Access:         "public",
+		Virtual:        "non",
+		Meta:           PLAIN,
+		NonMember:      true,
+		NoMocDeduce:    true,
+		Static:         true,
+		Output:         fmt.Sprintf("int"),
+		Parameters:     []*Parameter{},
+		Signature:      "()",
+		TemplateModeGo: fmt.Sprintf("%v", c.Name),
+	}
+	c.Functions = append(c.Functions, tmpF)
+
+	/*
+		//TODO:
+		//int qmlRegisterType(const char *uri, int versionMajor, int versionMinor, const char *qmlName)
+		tmpF2 = *tmpF
+		tmpF2.Overload = true
+		tmpF2.OverloadNumber = "2"
+		tmpF2.Parameters = []*Parameter{
+			{Name: "uri", Value: "const char *"},
+			{Name: "versionMajor", Value: "int"},
+			{Name: "versionMinor", Value: "int"},
+			{Name: "qmlName", Value: "const char *"},
+		}
+		tmpF2.Signature = "(const char *uri, int versionMajor, int versionMinor, const char *qmlName)"
+		c.Functions = append(c.Functions, &tmpF2)
+	*/
 }

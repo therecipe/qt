@@ -270,6 +270,7 @@ struct QtQml_PackedString QQmlEngine_PluginPathList(void* ptr);
 void* QQmlEngine_BaseUrl(void* ptr);
 char QQmlEngine_OutputWarningsToStandardError(void* ptr);
 int QQmlEngine_QQmlEngine_QmlRegisterSingletonType(void* url, char* uri, int versionMajor, int versionMinor, char* qmlName);
+int QQmlEngine_QQmlEngine_QmlRegisterType(void* url, char* uri, int versionMajor, int versionMinor, char* qmlName);
 void* QQmlEngine___importPlugin_errors_atList(void* ptr, int i);
 void QQmlEngine___importPlugin_errors_setList(void* ptr, void* i);
 void* QQmlEngine___importPlugin_errors_newList(void* ptr);

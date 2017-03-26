@@ -3281,6 +3281,34 @@ func (ptr *QQmlEngine) QmlRegisterSingletonType(url core.QUrl_ITF, uri string, v
 	return int(int32(C.QQmlEngine_QQmlEngine_QmlRegisterSingletonType(core.PointerFromQUrl(url), uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
 }
 
+func QQmlEngine_QmlRegisterType(url core.QUrl_ITF, uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
+	return int(int32(C.QQmlEngine_QQmlEngine_QmlRegisterType(core.PointerFromQUrl(url), uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
+func (ptr *QQmlEngine) QmlRegisterType(url core.QUrl_ITF, uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC *C.char
+	if uri != "" {
+		uriC = C.CString(uri)
+		defer C.free(unsafe.Pointer(uriC))
+	}
+	var qmlNameC *C.char
+	if qmlName != "" {
+		qmlNameC = C.CString(qmlName)
+		defer C.free(unsafe.Pointer(qmlNameC))
+	}
+	return int(int32(C.QQmlEngine_QQmlEngine_QmlRegisterType(core.PointerFromQUrl(url), uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
 func (ptr *QQmlEngine) __importPlugin_errors_atList(i int) *QQmlError {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlErrorFromPointer(C.QQmlEngine___importPlugin_errors_atList(ptr.Pointer(), C.int(int32(i))))

@@ -3,6 +3,7 @@ package setup
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -20,7 +21,25 @@ func Install(target string, docker bool) {
 	if target == "sailfish" || target == "sailfish-emulator" {
 		if _, err := ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386")); err != nil {
 			build := exec.Command("go", "tool", "dist", "test", "-rebuild", "-run=no_tests")
-			build.Env = append(build.Env, []string{"GOOS=linux", "GOARCH=386"}...)
+
+			env := map[string]string{
+				"PATH":   os.Getenv("PATH"),
+				"GOPATH": os.Getenv("GOPATH"),
+				"GOROOT": runtime.GOROOT(),
+
+				"GOOS":   "linux",
+				"GOARCH": "386",
+			}
+
+			if runtime.GOOS == "windows" {
+				env["TMP"] = os.Getenv("TMP")
+				env["TEMP"] = os.Getenv("TEMP")
+			}
+
+			for k, v := range env {
+				build.Env = append(build.Env, fmt.Sprintf("%v=%v", k, v))
+			}
+
 			utils.RunCmd(build, "setup linux go tools for sailfish")
 		}
 	}
