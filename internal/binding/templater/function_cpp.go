@@ -169,6 +169,11 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 			{
 				return fmt.Sprintf("#ifndef Q_OS_IOS\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}
+
+		case function.Name == "qmlRegisterType" && function.TemplateModeGo != "":
+			{
+				return fmt.Sprintf("#ifdef QT_QML_LIB\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
+			}
 		}
 	}
 

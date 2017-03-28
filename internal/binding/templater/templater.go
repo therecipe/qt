@@ -9,10 +9,10 @@ import (
 
 func GenModule(m, target string, mode int) {
 	if !parser.ShouldBuildForTarget(m, target) {
-		utils.Log.WithField("0_module", m).Debug("skip generation")
+		utils.Log.WithField("module", m).Debug("skip generation")
 		return
 	}
-	utils.Log.WithField("0_module", m).Debug("generating")
+	utils.Log.WithField("module", m).Debug("generating")
 
 	var suffix = func() string {
 		switch m {

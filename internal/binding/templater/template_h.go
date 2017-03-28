@@ -10,7 +10,7 @@ import (
 )
 
 func HTemplate(m string, mode int) []byte {
-	utils.Log.WithField("0_module", m).Debug("generating h")
+	utils.Log.WithField("module", m).Debug("generating h")
 
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()

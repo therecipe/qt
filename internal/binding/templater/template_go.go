@@ -11,7 +11,7 @@ import (
 )
 
 func GoTemplate(module string, stub bool, mode int, pkg, target string) []byte {
-	utils.Log.WithField("0_module", module).Debug("generating go")
+	utils.Log.WithField("module", module).Debug("generating go")
 	parser.State.Target = target
 
 	var bb = new(bytes.Buffer)

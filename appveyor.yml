@@ -30,8 +30,9 @@ install:
 
     echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -t 1,2,3,4,5,6
 
+    echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -a -f -u -t 5
 
-    set NDK=android-ndk-r13b-windows-x86_64.zip
+    set NDK=android-ndk-r14b-windows-x86_64.zip
 
     curl -sL --retry 10 --retry-delay 10 -o %TMP%\%NDK% https://dl.google.com/android/repository/%NDK%
 

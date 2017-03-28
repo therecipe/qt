@@ -8,6 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	iparser "github.com/therecipe/qt/internal/binding/parser"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -41,6 +43,10 @@ func GetImports(path string, level int) []string {
 		for _, i := range file.Imports {
 			if strings.Contains(i.Path.Value, "github.com/therecipe/qt") && !strings.Contains(i.Path.Value, "qt/internal") {
 				continue
+			}
+
+			if strings.Contains(i.Path.Value, "github.com/therecipe/qt/q") {
+				iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
 			}
 
 			for _, gopath := range strings.Split(os.Getenv("GOPATH"), string(os.PathListSeparator)) {

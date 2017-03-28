@@ -27,6 +27,8 @@ func Update() {
 	utils.RunCmd(checkoutInternal, "run \"git checkout internal\"")
 
 	utils.RunCmd(exec.Command("go", "install", "-v", fmt.Sprintf("github.com/therecipe/qt/cmd/...")), "run \"go install\"")
+
+	Prep()
 }
 
 func Upgrade() {

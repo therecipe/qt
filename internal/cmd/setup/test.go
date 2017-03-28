@@ -116,7 +116,7 @@ func Test(target string, docker bool) {
 			}
 			example := filepath.Join(cat, example)
 			path := utils.GoQtPkgPath("internal", "examples", example)
-			utils.Log.Infof("testing %v%v(%v)", example, strings.Repeat(" ", 20-len(example)), path)
+			utils.Log.Infof("testing %v", example)
 			deploy.Deploy(
 				mode,
 				target,

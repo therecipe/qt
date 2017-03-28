@@ -28,7 +28,7 @@ type SubNamespace struct {
 }
 
 func (m *Module) Prepare() error {
-	utils.Log.WithField("0_module", strings.TrimPrefix(m.Project, "Qt")).Debug("prepare")
+	utils.Log.WithField("module", strings.TrimPrefix(m.Project, "Qt")).Debug("prepare")
 
 	//register classes from namespace
 	for _, c := range m.Namespace.Classes {

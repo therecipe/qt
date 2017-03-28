@@ -247,9 +247,9 @@ You should run `qtsetup` after each upgrade.
 			* Google USB Driver
 
 	4. Unzip the Android NDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_NDK_DIR**
-		* https://dl.google.com/android/repository/android-ndk-r13b-windows-x86_64.zip
-		* https://dl.google.com/android/repository/android-ndk-r13b-darwin-x86_64.zip
-		* https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip
+		* https://dl.google.com/android/repository/android-ndk-r14b-windows-x86_64.zip
+		* https://dl.google.com/android/repository/android-ndk-r14b-darwin-x86_64.zip
+		* https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip
 
 	5. Install Java SE Development Kit >= 8 (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
 		* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html

@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER therecipe
+LABEL maintainer therecipe
 
 
 ENV USER user
@@ -30,6 +30,7 @@ ENV GOPATH $HOME/work
 
 
 RUN go get -v github.com/therecipe/qt/cmd/...
+ONBUILD RUN $GOPATH/bin/qtsetup upgrade
 
 
 ENV QT_DIR /opt/Qt5.8.0

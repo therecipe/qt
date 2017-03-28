@@ -13,7 +13,7 @@ import (
 )
 
 func CppTemplate(module string, mode int, target string) []byte {
-	utils.Log.WithField("0_module", module).Debug("generating cpp")
+	utils.Log.WithField("module", module).Debug("generating cpp")
 	parser.State.Target = target
 
 	var bb = new(bytes.Buffer)

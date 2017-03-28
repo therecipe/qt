@@ -60,9 +60,10 @@ rm -f /tmp/$SDK
 #install deps for android sdk
 $HOME/android-sdk-linux/tools/android list sdk
 echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -t 1,2,3,4,5,6
+echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -a -f -u -t 5
 
 #download and install android ndk
-NDK=android-ndk-r13b-linux-x86_64.zip
+NDK=android-ndk-r14b-linux-x86_64.zip
 curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
 unzip -qq /tmp/$NDK -d $HOME
 rm -f /tmp/$NDK

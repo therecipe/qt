@@ -288,7 +288,7 @@ func (c *Class) fixBases() {
 	}
 
 	if !found && c.Name != "SailfishApp" && c.Fullname == "" {
-		utils.Log.WithField("0_module", strings.TrimPrefix(c.Module, "Qt")).WithField("class", c.Name).Debugln("failed to find header file")
+		utils.Log.WithField("module", strings.TrimPrefix(c.Module, "Qt")).WithField("class", c.Name).Debugln("failed to find header file")
 	}
 }
 
@@ -344,7 +344,7 @@ func getBasesFromHeader(f string, n string, m string) string {
 		}
 	}
 
-	utils.Log.WithField("0_module", strings.TrimPrefix(m, "Qt")).WithField("class", n).Debugln("failed to parse header")
+	utils.Log.WithField("module", strings.TrimPrefix(m, "Qt")).WithField("class", n).Debugln("failed to parse header")
 	return ""
 }
 
