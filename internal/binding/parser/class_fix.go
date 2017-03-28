@@ -129,7 +129,7 @@ func (c *Class) fixLinkage() {
 }
 
 func (c *Class) fixBases() {
-	if c.Module == MOC {
+	if c.Module == MOC || c.Pkg != "" {
 		return
 	}
 

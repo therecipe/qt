@@ -73,7 +73,7 @@ func Moc(path, target string) {
 		return
 	}
 
-	if len(parser.State.ClassMap) == 0 {
+	if _, ok := parser.State.ClassMap["QObject"]; !ok {
 		parser.LoadModules()
 	} else {
 		utils.Log.Debug("modules already cached")
@@ -158,7 +158,7 @@ func Moc(path, target string) {
 			remaining++
 		}
 	}
-	utils.Log.WithField("path", path).Debugln("found", c, "remaining moc structs")
+	utils.Log.WithField("path", path).Debugln("found", remaining, "remaining moc structs")
 	if remaining == 0 {
 		return
 	}
