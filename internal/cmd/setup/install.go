@@ -24,7 +24,7 @@ func Install(target string, docker bool) {
 
 			env := map[string]string{
 				"PATH":   os.Getenv("PATH"),
-				"GOPATH": os.Getenv("GOPATH"),
+				"GOPATH": utils.GOPATH(),
 				"GOROOT": runtime.GOROOT(),
 
 				"GOOS":   "linux",

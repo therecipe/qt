@@ -7,7 +7,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	assert "github.com/stretchr/testify/require"
 )
 

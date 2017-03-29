@@ -49,7 +49,7 @@ func GetImports(path string, level int) []string {
 				iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
 			}
 
-			for _, gopath := range strings.Split(os.Getenv("GOPATH"), string(os.PathListSeparator)) {
+			for _, gopath := range strings.Split(utils.GOPATH(), string(os.PathListSeparator)) {
 				path := filepath.Join(gopath, "src", strings.Replace(i.Path.Value, "\"", "", -1))
 				if utils.ExistsDir(path) {
 					var has bool

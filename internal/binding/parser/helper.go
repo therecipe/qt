@@ -3,7 +3,6 @@ package parser
 import (
 	"bytes"
 	"fmt"
-	"os"
 	"path/filepath"
 	"runtime"
 	"sort"
@@ -321,7 +320,7 @@ func GetCustomLibs() []string {
 	tmp := make(map[string]struct{})
 	for _, c := range State.ClassMap {
 		if c.Pkg != "" {
-			for _, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
+			for _, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
 				gp = filepath.Clean(gp)
 				if strings.HasPrefix(c.Pkg, gp) {
 					tmp[strings.TrimPrefix(c.Pkg, filepath.Join(gp, "src"))] = struct{}{}
@@ -384,7 +383,7 @@ func SortedClassNamesForModule(module string, template bool) []string {
 			for item, dep := range items {
 
 				cd, ok := State.ClassMap[dep]
-				if !ok{
+				if !ok {
 					delete(items, item)
 					continue
 				}

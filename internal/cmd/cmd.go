@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -71,7 +71,7 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 	args := []string{"run", "--rm"}
 	paths := make([]string, 0)
 
-	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
+	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
 		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
 		paths = append(paths, fmt.Sprintf("/media/sf_GOPATH%v", i))
 	}
@@ -91,7 +91,7 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 	args = append(args, arg...)
 
 	var found bool
-	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
+	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
 		gp = filepath.Clean(gp)
 		if strings.HasPrefix(path, gp) {
 			args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
@@ -101,7 +101,7 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 	}
 
 	if !found && path != "" {
-		utils.Log.Panicln("Project needs to be inside GOPATH", path, os.Getenv("GOPATH"))
+		utils.Log.Panicln("Project needs to be inside GOPATH", path, utils.GOPATH())
 	}
 
 	utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", target, runtime.GOOS))
@@ -121,7 +121,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		out = filepath.Join(depPath, "libgo_base.so")
 		env = map[string]string{
 			"PATH":   os.Getenv("PATH"),
-			"GOPATH": os.Getenv("GOPATH"),
+			"GOPATH": utils.GOPATH(),
 			"GOROOT": runtime.GOROOT(),
 
 			"GOOS":   "android",
@@ -159,7 +159,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 		env = map[string]string{
 			"PATH":   os.Getenv("PATH"),
-			"GOPATH": os.Getenv("GOPATH"),
+			"GOPATH": utils.GOPATH(),
 			"GOROOT": runtime.GOROOT(),
 
 			"GOOS":   runtime.GOOS,
@@ -182,7 +182,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		out = filepath.Join(depPath, name)
 		env = map[string]string{
 			"PATH":   os.Getenv("PATH"),
-			"GOPATH": os.Getenv("GOPATH"),
+			"GOPATH": utils.GOPATH(),
 			"GOROOT": runtime.GOROOT(),
 
 			"TMP":  os.Getenv("TMP"),
@@ -218,7 +218,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 		env = map[string]string{
 			"PATH":   os.Getenv("PATH"),
-			"GOPATH": os.Getenv("GOPATH"),
+			"GOPATH": utils.GOPATH(),
 			"GOROOT": runtime.GOROOT(),
 
 			"GOOS":   "linux",

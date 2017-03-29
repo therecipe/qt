@@ -83,9 +83,14 @@ func Check(target string, docker bool) {
 		if runtime.GOOS == target {
 			vars = append(vars, [][]string{
 				{"QT_MSYS2", fmt.Sprint(utils.QT_MSYS2())},
-				{"QT_MSYS2_DIR", utils.QT_MSYS2_DIR()},
-				{"QT_MSYS2_ARCH", utils.QT_MSYS2_ARCH()},
 			}...)
+
+			if utils.QT_MSYS2() {
+				vars = append(vars, [][]string{
+					{"QT_MSYS2_DIR", utils.QT_MSYS2_DIR()},
+					{"QT_MSYS2_ARCH", utils.QT_MSYS2_ARCH()},
+				}...)
+			}
 
 			if _, err := exec.LookPath("g++"); err != nil && !utils.QT_MSYS2() {
 				utils.Log.WithError(err).Panic("failed to find g++, did you add the directory that contains g++ to your PATH?")

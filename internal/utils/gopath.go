@@ -37,7 +37,7 @@ func MustGoPath() string {
 
 // GoPath return the GOPATH that holds this package
 func gopath() (goPath string, err error) {
-	var goPaths = os.Getenv("GOPATH")
+	var goPaths = GOPATH()
 	if len(goPaths) == 0 {
 		err = errors.New("GOPATH environment variable is unset")
 		return
@@ -79,4 +79,20 @@ func gopath() (goPath string, err error) {
 		err = fmt.Errorf("failed to find %s in all %d GOPATH, tried %s", packageName, len(tries), strings.Join(tries, " "))
 	}
 	return
+}
+
+func GOPATH() string {
+	if dir, ok := os.LookupEnv("GOPATH"); ok {
+		return dir
+	}
+
+	home := "HOME"
+	if runtime.GOOS == "windows" {
+		home = "USERPROFILE"
+	}
+	if dir, ok := os.LookupEnv(home); ok {
+		return filepath.Join(dir, "go")
+	}
+
+	return ""
 }
