@@ -31,7 +31,7 @@ func Test(target string, docker bool) {
 		moc.Moc(path, target)
 		minimal.Minimal(path, target)
 
-		cmd := exec.Command("go", "test", "-v", "-tags=minimal")
+		cmd := exec.Command("go", "test", "-v", "-tags=minimal", "-ldflags=\"-s\"")
 		cmd.Dir = path
 		if runtime.GOOS == "windows" {
 			for key, value := range map[string]string{

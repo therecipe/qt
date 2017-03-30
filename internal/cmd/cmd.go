@@ -72,6 +72,11 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 	paths := make([]string, 0)
 
 	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
+		if runtime.GOOS == "windows" {
+			gp = "//" + gp
+		}
+		gp = strings.Replace(gp, "\\", "/", -1)
+		gp = strings.Replace(gp, ":", "", -1)
 		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
 		paths = append(paths, fmt.Sprintf("/media/sf_GOPATH%v", i))
 	}

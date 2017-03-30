@@ -1,10 +1,8 @@
 package cmd
 
 import (
-	"go/parser"
-	"go/token"
-	"io/ioutil"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
@@ -16,69 +14,32 @@ import (
 func GetImports(path string, level int) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
 
-	var imports []string
+	importMap := make(map[string]struct{})
 
-	level++
-	if level > 10 {
-		return imports
-	}
+	cmd := exec.Command("go", "list", "-f", "'{{ join .TestImports \"|\" }}':'{{ join .Deps \"|\" }}'")
+	cmd.Dir = path
 
-	files, err := ioutil.ReadDir(path)
-	if err != nil {
-		utils.Log.WithError(err).Fatal("failed to read dir")
-	}
-	var fileList []string
-	for _, f := range files {
-		if !f.IsDir() && filepath.Ext(f.Name()) == ".go" {
-			fileList = append(fileList, filepath.Join(path, f.Name()))
-		}
-	}
-
-	for _, f := range fileList {
-		file, err := parser.ParseFile(token.NewFileSet(), f, nil, 0)
-		if err != nil {
-			utils.Log.WithError(err).Debugln("failed to parse", f)
+	for _, dep := range strings.Split(utils.RunCmd(cmd, "go list deps"), "|") {
+		if strings.Contains(dep, "github.com/therecipe/qt") && !strings.Contains(dep, "qt/internal") {
 			continue
 		}
-		for _, i := range file.Imports {
-			if strings.Contains(i.Path.Value, "github.com/therecipe/qt") && !strings.Contains(i.Path.Value, "qt/internal") {
-				continue
-			}
 
-			if strings.Contains(i.Path.Value, "github.com/therecipe/qt/q") {
-				iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
-			}
-
-			for _, gopath := range strings.Split(utils.GOPATH(), string(os.PathListSeparator)) {
-				path := filepath.Join(gopath, "src", strings.Replace(i.Path.Value, "\"", "", -1))
-				if utils.ExistsDir(path) {
-					var has bool
-					for _, i := range imports {
-						if i == path {
-							has = true
-							break
-						}
-					}
-					if has {
-						continue
-					}
-					imports = append(imports, path)
-					for _, path := range GetImports(path, level) {
-						var has bool
-						for _, i := range imports {
-							if i == path {
-								has = true
-								break
-							}
-						}
-						if !has {
-							imports = append(imports, path)
-						}
-					}
-				}
-			}
-
+		if strings.Contains(dep, "github.com/therecipe/qt/q") {
+			iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
 		}
+
+		for _, gopath := range strings.Split(utils.GOPATH(), string(os.PathListSeparator)) {
+			path := filepath.Join(gopath, "src", strings.Replace(dep, "\"", "", -1))
+			if utils.ExistsDir(path) {
+				importMap[path] = struct{}{}
+			}
+		}
+	}
+
+	var imports []string
+
+	for k := range importMap {
+		imports = append(imports, k)
 	}
 
 	return imports
