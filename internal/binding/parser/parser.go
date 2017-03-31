@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -28,7 +28,7 @@ func LoadModules() {
 func LoadModule(m string) error {
 	var (
 		logName   = "parser.LoadModule"
-		logFields = logrus.Fields{"0_module": m}
+		logFields = logrus.Fields{"module": m}
 	)
 	utils.Log.WithFields(logFields).Debug(logName)
 

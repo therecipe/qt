@@ -3,7 +3,7 @@ package utils
 import (
 	"os"
 
-	"github.com/sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 )
 
 var Log = logrus.New()

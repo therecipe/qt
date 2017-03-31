@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -73,7 +73,7 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 
 	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
 		if runtime.GOOS == "windows" {
-			gp = "//" + gp
+			gp = "//" + strings.ToLower(gp[:1]) + gp[1:]
 		}
 		gp = strings.Replace(gp, "\\", "/", -1)
 		gp = strings.Replace(gp, ":", "", -1)
