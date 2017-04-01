@@ -405,7 +405,7 @@ func bundle(mode, target, path, name, depPath string) {
 
 		err := sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", target)
 		if err != nil {
-			utils.Log.WithError(err).Panicf("failed to cleanup for %v on %v", target, runtime.GOOS)
+			utils.Log.WithError(err).Warnf("failed to cleanup for %v on %v", target, runtime.GOOS)
 		}
 
 		err = sailfish_ssh("2222", "mersdk", "cd", strings.Replace(strings.Replace(path, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", target, "/home/mersdk")
