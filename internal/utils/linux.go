@@ -41,6 +41,10 @@ func QT_DOC_DIR() string {
 		{
 			return "/usr/share/qt5/doc"
 		}
+	case "gentoo":
+		{
+			return "/usr/share/doc/qt-" + QT_VERSION()
+		}
 
 	default:
 		{
@@ -58,7 +62,7 @@ func QT_MISC_DIR() string {
 	switch QT_DISTRO() {
 	case "arch":
 		return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir")), "qt")
-	case "fedora", "suse", "ubuntu":
+	case "fedora", "suse", "ubuntu", "gentoo":
 		return strings.TrimSuffix(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
 	}
 	Log.Error("failed to detect the Linux distro")
@@ -84,6 +88,10 @@ func QT_DISTRO() string {
 
 	if _, err := exec.LookPath("apt-get"); err == nil {
 		return "ubuntu"
+	}
+
+	if _, err := exec.LookPath("emerge"); err == nil {
+		return "gentoo"
 	}
 
 	Log.Error("failed to detect the Linux distro")
