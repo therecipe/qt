@@ -31,6 +31,9 @@ func Prep() {
 				}
 				dPath = filepath.Join(utils.QT_MSYS2_DIR(), "..", "usr", "bin", fmt.Sprintf("%v.exe", app))
 			}
+			if sPath == dPath {
+				continue
+			}
 			utils.RemoveAll(dPath)
 			//TODO: use os.Link to create a hardlink on windows
 			utils.RunCmdOptional(exec.Command("cmd", "/C", "mklink", "/H", dPath, sPath), fmt.Sprintf(errString, app, dPath, sPath))
@@ -41,6 +44,9 @@ func Prep() {
 			var dPath string
 			for _, pdPath := range strings.Split("/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:"+filepath.Join(filepath.Join(runtime.GOROOT(), "bin")), string(os.PathListSeparator)) {
 				dPath = filepath.Join(pdPath, app)
+				if sPath == dPath {
+					continue
+				}
 				utils.RemoveAll(dPath)
 				if err := os.Symlink(sPath, dPath); err == nil {
 					suc = true
