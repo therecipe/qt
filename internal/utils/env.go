@@ -13,6 +13,10 @@ func QT_VERSION() string {
 		return version
 	}
 
+	if QT_PKG_CONFIG() {
+		return strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--modversion", "Qt5Core"), "cgo.LinuxPkgConfig_modVersion"))
+	}
+
 	return "5.8.0"
 }
 
