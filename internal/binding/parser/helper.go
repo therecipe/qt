@@ -3,7 +3,7 @@ package parser
 import (
 	"bytes"
 	"fmt"
-	"path/filepath"
+	"os/exec"
 	"runtime"
 	"sort"
 	"strings"
@@ -319,22 +319,19 @@ func GetCustomLibs() []string {
 
 	tmp := make(map[string]struct{})
 	for _, c := range State.ClassMap {
-		if c.Pkg != "" {
-			for _, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
-				gp = filepath.Clean(gp)
-				if strings.HasPrefix(c.Pkg, gp) {
-					tmp[strings.TrimPrefix(c.Pkg, filepath.Join(gp, "src"))] = struct{}{}
-				}
-			}
+		if c.Pkg == "" || c.PkgImport != "" || !c.IsSubClassOfQObject() {
+			continue
 		}
+
+		cmd := exec.Command("go", "list", "-f", "{{.ImportPath}}")
+		cmd.Dir = c.Pkg
+		c.PkgImport = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
+		tmp[c.PkgImport] = struct{}{}
 	}
 
 	var out []string
-	for v := range tmp {
-		v = strings.TrimPrefix(v, string(filepath.Separator))
-		v = strings.TrimSuffix(v, string(filepath.Separator))
-		v = strings.Replace(v, "\\", "/", -1)
-		out = append(out, v)
+	for k := range tmp {
+		out = append(out, k)
 	}
 	return out
 }

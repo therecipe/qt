@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -49,6 +50,10 @@ func Moc(path, target string) {
 				if err != nil {
 					utils.Log.WithError(err)
 				} else {
+					if cls == nil {
+						continue
+					}
+
 					if pkg == ipkg {
 						classes = append(classes, cls...)
 					} else {
@@ -232,6 +237,10 @@ func Moc(path, target string) {
 
 func parse(path string) ([]*parser.Class, string, error) {
 	utils.Log.WithField("path", path).Debug("parse")
+
+	if strings.HasPrefix(path, runtime.GOROOT()) {
+		return nil, "", nil
+	}
 
 	src, err := ioutil.ReadFile(path)
 	if err != nil {

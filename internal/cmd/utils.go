@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -19,21 +18,24 @@ func GetImports(path string, level int) []string {
 	cmd := exec.Command("go", "list", "-f", "'{{ join .TestImports \"|\" }}':'{{ join .Deps \"|\" }}'")
 	cmd.Dir = path
 
-	for _, dep := range strings.Split(utils.RunCmd(cmd, "go list deps"), "|") {
-		if strings.Contains(dep, "github.com/therecipe/qt") && !strings.Contains(dep, "qt/internal") {
+	out := strings.TrimSpace(utils.RunCmd(cmd, "go list deps"))
+	out = strings.Replace(out, "'", "", -1)
+	out = strings.Replace(out, ":", "|", -1)
+
+	cmd = exec.Command("go", "list", "-e", "-f", "{{.Dir}}")
+	cmd.Args = append(cmd.Args, strings.Split(out, "|")...)
+	cmd.Dir = path
+
+	for _, dep := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list dir")), "\n") {
+		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {
 			continue
 		}
 
-		if strings.Contains(dep, "github.com/therecipe/qt/q") {
+		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt", "q")) {
 			iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
 		}
 
-		for _, gopath := range strings.Split(utils.GOPATH(), string(os.PathListSeparator)) {
-			path := filepath.Join(gopath, "src", strings.Replace(dep, "\"", "", -1))
-			if utils.ExistsDir(path) {
-				importMap[path] = struct{}{}
-			}
-		}
+		importMap[dep] = struct{}{}
 	}
 
 	var imports []string
