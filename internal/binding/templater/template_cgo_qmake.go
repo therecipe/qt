@@ -181,12 +181,12 @@ func createMakefile(module, path, target string, mode int) {
 	case "windows":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
-			if utils.QT_MXE_STATIC() && utils.ExistsFile(pPath) {
+			if (utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build windows") {
 					utils.Save(pPath, "// +build windows\n"+content)
 				}
 			}
-			if mode == MOC || mode == RCC || !utils.QT_MXE_STATIC() {
+			if mode == MOC || mode == RCC || !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) {
 				utils.RemoveAll(pPath)
 			}
 		}
@@ -274,7 +274,7 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 		case strings.HasPrefix(l, "CXXFLAGS"), strings.HasPrefix(l, "INCPATH"):
 			fmt.Fprintf(bb, "#cgo CXXFLAGS: %v\n", strings.Split(l, " = ")[1])
 		case strings.HasPrefix(l, "LFLAGS"), strings.HasPrefix(l, "LIBS"):
-			if target == "windows" && !utils.QT_MXE_STATIC() {
+			if target == "windows" && !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) {
 				pFix := []string{
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
 					filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),

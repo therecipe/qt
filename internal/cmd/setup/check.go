@@ -89,6 +89,7 @@ func Check(target string, docker bool) {
 				vars = append(vars, [][]string{
 					{"QT_MSYS2_DIR", utils.QT_MSYS2_DIR()},
 					{"QT_MSYS2_ARCH", utils.QT_MSYS2_ARCH()},
+					{"QT_MSYS2_STATIC", fmt.Sprint(utils.QT_MSYS2_STATIC())},
 				}...)
 			}
 

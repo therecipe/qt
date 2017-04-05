@@ -194,6 +194,9 @@ func bundle(mode, target, path, name, depPath string) {
 			}
 
 		case utils.QT_MSYS2():
+			if utils.QT_MSYS2_STATIC() {
+				return
+			}
 
 			var copyCmd = "xcopy"
 			if utils.MSYSTEM() != "" {

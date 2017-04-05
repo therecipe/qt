@@ -45,6 +45,10 @@ func QT_MSYS2_ARCH() string {
 	return "386"
 }
 
+func QT_MSYS2_STATIC() bool {
+	return strings.ToLower(os.Getenv("QT_MSYS2_STATIC")) == "true"
+}
+
 func MSYSTEM() string {
 	return os.Getenv("MSYSTEM")
 }
