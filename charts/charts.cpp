@@ -1496,8 +1496,8 @@ void QAreaLegendMarker_DestroyQAreaLegendMarkerDefault(void* ptr)
 class MyQAreaSeries: public QAreaSeries
 {
 public:
-	MyQAreaSeries(QLineSeries *upperSeries, QLineSeries *lowerSeries) : QAreaSeries(upperSeries, lowerSeries) {};
-	MyQAreaSeries(QObject *parent) : QAreaSeries(parent) {};
+	MyQAreaSeries(QLineSeries *upperSeries, QLineSeries *lowerSeries = Q_NULLPTR) : QAreaSeries(upperSeries, lowerSeries) {};
+	MyQAreaSeries(QObject *parent = Q_NULLPTR) : QAreaSeries(parent) {};
 	void Signal_BorderColorChanged(QColor color) { callbackQAreaSeries_BorderColorChanged(this, new QColor(color)); };
 	void Signal_Clicked(const QPointF & point) { callbackQAreaSeries_Clicked(this, const_cast<QPointF*>(&point)); };
 	void Signal_ColorChanged(QColor color) { callbackQAreaSeries_ColorChanged(this, new QColor(color)); };
@@ -1881,7 +1881,7 @@ char QAreaSeries_PointsVisible(void* ptr)
 class MyQBarCategoryAxis: public QBarCategoryAxis
 {
 public:
-	MyQBarCategoryAxis(QObject *parent) : QBarCategoryAxis(parent) {};
+	MyQBarCategoryAxis(QObject *parent = Q_NULLPTR) : QBarCategoryAxis(parent) {};
 	void Signal_CategoriesChanged() { callbackQBarCategoryAxis_CategoriesChanged(this); };
 	void Signal_CountChanged() { callbackQBarCategoryAxis_CountChanged(this); };
 	void Signal_MaxChanged(const QString & max) { QByteArray t070602 = max.toUtf8(); QtCharts_PackedString maxPacked = { const_cast<char*>(t070602.prepend("WHITESPACE").constData()+10), t070602.size()-10 };callbackQBarCategoryAxis_MaxChanged(this, maxPacked); };
@@ -2175,7 +2175,7 @@ void QBarLegendMarker_DestroyQBarLegendMarkerDefault(void* ptr)
 class MyQBarSeries: public QBarSeries
 {
 public:
-	MyQBarSeries(QObject *parent) : QBarSeries(parent) {};
+	MyQBarSeries(QObject *parent = Q_NULLPTR) : QBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -2254,7 +2254,7 @@ long long QBarSeries_TypeDefault(void* ptr)
 class MyQBarSet: public QBarSet
 {
 public:
-	MyQBarSet(const QString label, QObject *parent) : QBarSet(label, parent) {};
+	MyQBarSet(const QString label, QObject *parent = Q_NULLPTR) : QBarSet(label, parent) {};
 	void Signal_BorderColorChanged(QColor color) { callbackQBarSet_BorderColorChanged(this, new QColor(color)); };
 	void Signal_BrushChanged() { callbackQBarSet_BrushChanged(this); };
 	void Signal_Clicked(int index) { callbackQBarSet_Clicked(this, index); };
@@ -2749,7 +2749,7 @@ void QBoxPlotLegendMarker_DestroyQBoxPlotLegendMarkerDefault(void* ptr)
 class MyQBoxPlotSeries: public QBoxPlotSeries
 {
 public:
-	MyQBoxPlotSeries(QObject *parent) : QBoxPlotSeries(parent) {};
+	MyQBoxPlotSeries(QObject *parent = Q_NULLPTR) : QBoxPlotSeries(parent) {};
 	void Signal_BoxOutlineVisibilityChanged() { callbackQBoxPlotSeries_BoxOutlineVisibilityChanged(this); };
 	void Signal_BoxWidthChanged() { callbackQBoxPlotSeries_BoxWidthChanged(this); };
 	void Signal_BoxsetsAdded(QList<QBoxSet *> sets) { callbackQBoxPlotSeries_BoxsetsAdded(this, ({ QList<QBoxSet *>* tmpValue = new QList<QBoxSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -3148,8 +3148,8 @@ void* QBoxPlotSeries___boxSets_newList(void* ptr)
 class MyQBoxSet: public QBoxSet
 {
 public:
-	MyQBoxSet(const QString label, QObject *parent) : QBoxSet(label, parent) {};
-	MyQBoxSet(const qreal le, const qreal lq, const qreal m, const qreal uq, const qreal ue, const QString label, QObject *parent) : QBoxSet(le, lq, m, uq, ue, label, parent) {};
+	MyQBoxSet(const QString label = QString(), QObject *parent = Q_NULLPTR) : QBoxSet(label, parent) {};
+	MyQBoxSet(const qreal le, const qreal lq, const qreal m, const qreal uq, const qreal ue, const QString label = QString(), QObject *parent = Q_NULLPTR) : QBoxSet(le, lq, m, uq, ue, label, parent) {};
 	void Signal_BrushChanged() { callbackQBoxSet_BrushChanged(this); };
 	void Signal_Cleared() { callbackQBoxSet_Cleared(this); };
 	void Signal_Clicked() { callbackQBoxSet_Clicked(this); };
@@ -3529,7 +3529,7 @@ void QCandlestickLegendMarker_DestroyQCandlestickLegendMarkerDefault(void* ptr)
 class MyQCandlestickModelMapper: public QCandlestickModelMapper
 {
 public:
-	MyQCandlestickModelMapper(QObject *parent) : QCandlestickModelMapper(parent) {};
+	MyQCandlestickModelMapper(QObject *parent = nullptr) : QCandlestickModelMapper(parent) {};
 	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
 	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3704,7 +3704,7 @@ int QCandlestickModelMapper_Timestamp(void* ptr)
 class MyQCandlestickSeries: public QCandlestickSeries
 {
 public:
-	MyQCandlestickSeries(QObject *parent) : QCandlestickSeries(parent) {};
+	MyQCandlestickSeries(QObject *parent = nullptr) : QCandlestickSeries(parent) {};
 	void Signal_BodyOutlineVisibilityChanged() { callbackQCandlestickSeries_BodyOutlineVisibilityChanged(this); };
 	void Signal_BodyWidthChanged() { callbackQCandlestickSeries_BodyWidthChanged(this); };
 	void Signal_BrushChanged() { callbackQCandlestickSeries_BrushChanged(this); };
@@ -4279,8 +4279,8 @@ void* QCandlestickSeries___sets_newList(void* ptr)
 class MyQCandlestickSet: public QCandlestickSet
 {
 public:
-	MyQCandlestickSet(qreal open, qreal high, qreal low, qreal close, qreal timestamp, QObject *parent) : QCandlestickSet(open, high, low, close, timestamp, parent) {};
-	MyQCandlestickSet(qreal timestamp, QObject *parent) : QCandlestickSet(timestamp, parent) {};
+	MyQCandlestickSet(qreal open, qreal high, qreal low, qreal close, qreal timestamp = 0.0, QObject *parent = nullptr) : QCandlestickSet(open, high, low, close, timestamp, parent) {};
+	MyQCandlestickSet(qreal timestamp = 0.0, QObject *parent = nullptr) : QCandlestickSet(timestamp, parent) {};
 	void Signal_BrushChanged() { callbackQCandlestickSet_BrushChanged(this); };
 	void Signal_Clicked() { callbackQCandlestickSet_Clicked(this); };
 	void Signal_CloseChanged() { callbackQCandlestickSet_CloseChanged(this); };
@@ -4641,7 +4641,7 @@ double QCandlestickSet_Timestamp(void* ptr)
 class MyQCategoryAxis: public QCategoryAxis
 {
 public:
-	MyQCategoryAxis(QObject *parent) : QCategoryAxis(parent) {};
+	MyQCategoryAxis(QObject *parent = Q_NULLPTR) : QCategoryAxis(parent) {};
 	void Signal_CategoriesChanged() { callbackQCategoryAxis_CategoriesChanged(this); };
 	void Signal_LabelsPositionChanged(QCategoryAxis::AxisLabelsPosition position) { callbackQCategoryAxis_LabelsPositionChanged(this, position); };
 	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQValueAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -4808,7 +4808,7 @@ double QCategoryAxis_StartValue(void* ptr, char* categoryLabel)
 class MyQChart: public QChart
 {
 public:
-	MyQChart(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QChart(parent, wFlags) {};
+	MyQChart(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QChart(parent, wFlags) {};
 	void Signal_PlotAreaChanged(const QRectF & plotArea) { callbackQChart_PlotAreaChanged(this, const_cast<QRectF*>(&plotArea)); };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQChart_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool close() { return callbackQChart_Close(this) != 0; };
@@ -5998,8 +5998,8 @@ char QChart_IsObscuredByDefault(void* ptr, void* item)
 class MyQChartView: public QChartView
 {
 public:
-	MyQChartView(QChart *chart, QWidget *parent) : QChartView(chart, parent) {};
-	MyQChartView(QWidget *parent) : QChartView(parent) {};
+	MyQChartView(QChart *chart, QWidget *parent = Q_NULLPTR) : QChartView(chart, parent) {};
+	MyQChartView(QWidget *parent = Q_NULLPTR) : QChartView(parent) {};
 	void mouseMoveEvent(QMouseEvent * event) { callbackQChartView_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQChartView_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQChartView_MouseReleaseEvent(this, event); };
@@ -6739,7 +6739,7 @@ void* QChartView_MetaObjectDefault(void* ptr)
 class MyQDateTimeAxis: public QDateTimeAxis
 {
 public:
-	MyQDateTimeAxis(QObject *parent) : QDateTimeAxis(parent) {};
+	MyQDateTimeAxis(QObject *parent = Q_NULLPTR) : QDateTimeAxis(parent) {};
 	void Signal_FormatChanged(QString format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQDateTimeAxis_FormatChanged(this, formatPacked); };
 	void Signal_MaxChanged(QDateTime max) { callbackQDateTimeAxis_MaxChanged(this, new QDateTime(max)); };
 	void Signal_MinChanged(QDateTime min) { callbackQDateTimeAxis_MinChanged(this, new QDateTime(min)); };
@@ -6952,7 +6952,7 @@ int QDateTimeAxis_TickCount(void* ptr)
 class MyQHBarModelMapper: public QHBarModelMapper
 {
 public:
-	MyQHBarModelMapper(QObject *parent) : QHBarModelMapper(parent) {};
+	MyQHBarModelMapper(QObject *parent = Q_NULLPTR) : QHBarModelMapper(parent) {};
 	void Signal_ColumnCountChanged() { callbackQHBarModelMapper_ColumnCountChanged(this); };
 	void Signal_FirstBarSetRowChanged() { callbackQHBarModelMapper_FirstBarSetRowChanged(this); };
 	void Signal_FirstColumnChanged() { callbackQHBarModelMapper_FirstColumnChanged(this); };
@@ -7155,7 +7155,7 @@ int QHBarModelMapper_LastBarSetRow(void* ptr)
 class MyQHBoxPlotModelMapper: public QHBoxPlotModelMapper
 {
 public:
-	MyQHBoxPlotModelMapper(QObject *parent) : QHBoxPlotModelMapper(parent) {};
+	MyQHBoxPlotModelMapper(QObject *parent = nullptr) : QHBoxPlotModelMapper(parent) {};
 	void Signal_ColumnCountChanged() { callbackQHBoxPlotModelMapper_ColumnCountChanged(this); };
 	void Signal_FirstBoxSetRowChanged() { callbackQHBoxPlotModelMapper_FirstBoxSetRowChanged(this); };
 	void Signal_FirstColumnChanged() { callbackQHBoxPlotModelMapper_FirstColumnChanged(this); };
@@ -7358,7 +7358,7 @@ int QHBoxPlotModelMapper_LastBoxSetRow(void* ptr)
 class MyQHCandlestickModelMapper: public QHCandlestickModelMapper
 {
 public:
-	MyQHCandlestickModelMapper(QObject *parent) : QHCandlestickModelMapper(parent) {};
+	MyQHCandlestickModelMapper(QObject *parent = nullptr) : QHCandlestickModelMapper(parent) {};
 	void Signal_CloseColumnChanged() { callbackQHCandlestickModelMapper_CloseColumnChanged(this); };
 	void Signal_FirstSetRowChanged() { callbackQHCandlestickModelMapper_FirstSetRowChanged(this); };
 	void Signal_HighColumnChanged() { callbackQHCandlestickModelMapper_HighColumnChanged(this); };
@@ -7600,7 +7600,7 @@ int QHCandlestickModelMapper_TimestampColumn(void* ptr)
 class MyQHPieModelMapper: public QHPieModelMapper
 {
 public:
-	MyQHPieModelMapper(QObject *parent) : QHPieModelMapper(parent) {};
+	MyQHPieModelMapper(QObject *parent = Q_NULLPTR) : QHPieModelMapper(parent) {};
 	void Signal_ColumnCountChanged() { callbackQHPieModelMapper_ColumnCountChanged(this); };
 	void Signal_FirstColumnChanged() { callbackQHPieModelMapper_FirstColumnChanged(this); };
 	void Signal_LabelsRowChanged() { callbackQHPieModelMapper_LabelsRowChanged(this); };
@@ -7803,7 +7803,7 @@ int QHPieModelMapper_ValuesRow(void* ptr)
 class MyQHXYModelMapper: public QHXYModelMapper
 {
 public:
-	MyQHXYModelMapper(QObject *parent) : QHXYModelMapper(parent) {};
+	MyQHXYModelMapper(QObject *parent = Q_NULLPTR) : QHXYModelMapper(parent) {};
 	void Signal_ColumnCountChanged() { callbackQHXYModelMapper_ColumnCountChanged(this); };
 	void Signal_FirstColumnChanged() { callbackQHXYModelMapper_FirstColumnChanged(this); };
 	void Signal_ModelReplaced() { callbackQHXYModelMapper_ModelReplaced(this); };
@@ -8006,7 +8006,7 @@ int QHXYModelMapper_YRow(void* ptr)
 class MyQHorizontalBarSeries: public QHorizontalBarSeries
 {
 public:
-	MyQHorizontalBarSeries(QObject *parent) : QHorizontalBarSeries(parent) {};
+	MyQHorizontalBarSeries(QObject *parent = Q_NULLPTR) : QHorizontalBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -8085,7 +8085,7 @@ long long QHorizontalBarSeries_TypeDefault(void* ptr)
 class MyQHorizontalPercentBarSeries: public QHorizontalPercentBarSeries
 {
 public:
-	MyQHorizontalPercentBarSeries(QObject *parent) : QHorizontalPercentBarSeries(parent) {};
+	MyQHorizontalPercentBarSeries(QObject *parent = Q_NULLPTR) : QHorizontalPercentBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -8164,7 +8164,7 @@ long long QHorizontalPercentBarSeries_TypeDefault(void* ptr)
 class MyQHorizontalStackedBarSeries: public QHorizontalStackedBarSeries
 {
 public:
-	MyQHorizontalStackedBarSeries(QObject *parent) : QHorizontalStackedBarSeries(parent) {};
+	MyQHorizontalStackedBarSeries(QObject *parent = Q_NULLPTR) : QHorizontalStackedBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQHorizontalStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -9286,7 +9286,7 @@ char QLegendMarker_IsVisible(void* ptr)
 class MyQLineSeries: public QLineSeries
 {
 public:
-	MyQLineSeries(QObject *parent) : QLineSeries(parent) {};
+	MyQLineSeries(QObject *parent = Q_NULLPTR) : QLineSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_Clicked(const QPointF & point) { callbackQXYSeries_Clicked(this, const_cast<QPointF*>(&point)); };
 	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
@@ -9378,7 +9378,7 @@ long long QLineSeries_TypeDefault(void* ptr)
 class MyQLogValueAxis: public QLogValueAxis
 {
 public:
-	MyQLogValueAxis(QObject *parent) : QLogValueAxis(parent) {};
+	MyQLogValueAxis(QObject *parent = Q_NULLPTR) : QLogValueAxis(parent) {};
 	void Signal_BaseChanged(qreal base) { callbackQLogValueAxis_BaseChanged(this, base); };
 	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQLogValueAxis_LabelFormatChanged(this, formatPacked); };
 	void Signal_MaxChanged(qreal max) { callbackQLogValueAxis_MaxChanged(this, max); };
@@ -9591,7 +9591,7 @@ double QLogValueAxis_Min(void* ptr)
 class MyQPercentBarSeries: public QPercentBarSeries
 {
 public:
-	MyQPercentBarSeries(QObject *parent) : QPercentBarSeries(parent) {};
+	MyQPercentBarSeries(QObject *parent = Q_NULLPTR) : QPercentBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQPercentBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -9721,7 +9721,7 @@ void QPieLegendMarker_DestroyQPieLegendMarkerDefault(void* ptr)
 class MyQPieSeries: public QPieSeries
 {
 public:
-	MyQPieSeries(QObject *parent) : QPieSeries(parent) {};
+	MyQPieSeries(QObject *parent = Q_NULLPTR) : QPieSeries(parent) {};
 	void Signal_Added(QList<QPieSlice *> slices) { callbackQPieSeries_Added(this, ({ QList<QPieSlice *>* tmpValue = new QList<QPieSlice *>(slices); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_Clicked(QPieSlice * slice) { callbackQPieSeries_Clicked(this, slice); };
 	void Signal_CountChanged() { callbackQPieSeries_CountChanged(this); };
@@ -10123,8 +10123,8 @@ void* QPieSeries___slices_newList(void* ptr)
 class MyQPieSlice: public QPieSlice
 {
 public:
-	MyQPieSlice(QObject *parent) : QPieSlice(parent) {};
-	MyQPieSlice(QString label, qreal value, QObject *parent) : QPieSlice(label, value, parent) {};
+	MyQPieSlice(QObject *parent = Q_NULLPTR) : QPieSlice(parent) {};
+	MyQPieSlice(QString label, qreal value, QObject *parent = Q_NULLPTR) : QPieSlice(label, value, parent) {};
 	void Signal_AngleSpanChanged() { callbackQPieSlice_AngleSpanChanged(this); };
 	void Signal_BorderColorChanged() { callbackQPieSlice_BorderColorChanged(this); };
 	void Signal_BorderWidthChanged() { callbackQPieSlice_BorderWidthChanged(this); };
@@ -10697,7 +10697,7 @@ double QPieSlice_Value(void* ptr)
 class MyQPolarChart: public QPolarChart
 {
 public:
-	MyQPolarChart(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QPolarChart(parent, wFlags) {};
+	MyQPolarChart(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QPolarChart(parent, wFlags) {};
 	void Signal_PlotAreaChanged(const QRectF & plotArea) { callbackQChart_PlotAreaChanged(this, const_cast<QRectF*>(&plotArea)); };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQChart_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool close() { return callbackQChart_Close(this) != 0; };
@@ -10810,7 +10810,7 @@ struct QtCharts_PackedList QPolarChart_Axes(void* ptr, long long polarOrientatio
 class MyQScatterSeries: public QScatterSeries
 {
 public:
-	MyQScatterSeries(QObject *parent) : QScatterSeries(parent) {};
+	MyQScatterSeries(QObject *parent = Q_NULLPTR) : QScatterSeries(parent) {};
 	void Signal_BorderColorChanged(QColor color) { callbackQScatterSeries_BorderColorChanged(this, new QColor(color)); };
 	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
 	void Signal_MarkerShapeChanged(QScatterSeries::MarkerShape shape) { callbackQScatterSeries_MarkerShapeChanged(this, shape); };
@@ -10976,7 +10976,7 @@ double QScatterSeries_MarkerSize(void* ptr)
 class MyQSplineSeries: public QSplineSeries
 {
 public:
-	MyQSplineSeries(QObject *parent) : QSplineSeries(parent) {};
+	MyQSplineSeries(QObject *parent = Q_NULLPTR) : QSplineSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_Clicked(const QPointF & point) { callbackQXYSeries_Clicked(this, const_cast<QPointF*>(&point)); };
 	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
@@ -11054,7 +11054,7 @@ void QSplineSeries_DestroyQSplineSeries(void* ptr)
 class MyQStackedBarSeries: public QStackedBarSeries
 {
 public:
-	MyQStackedBarSeries(QObject *parent) : QStackedBarSeries(parent) {};
+	MyQStackedBarSeries(QObject *parent = Q_NULLPTR) : QStackedBarSeries(parent) {};
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQStackedBarSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_BarsetsAdded(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsAdded(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_BarsetsRemoved(QList<QBarSet *> sets) { callbackQAbstractBarSeries_BarsetsRemoved(this, ({ QList<QBarSet *>* tmpValue = new QList<QBarSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -11133,7 +11133,7 @@ long long QStackedBarSeries_TypeDefault(void* ptr)
 class MyQVBarModelMapper: public QVBarModelMapper
 {
 public:
-	MyQVBarModelMapper(QObject *parent) : QVBarModelMapper(parent) {};
+	MyQVBarModelMapper(QObject *parent = Q_NULLPTR) : QVBarModelMapper(parent) {};
 	void Signal_FirstBarSetColumnChanged() { callbackQVBarModelMapper_FirstBarSetColumnChanged(this); };
 	void Signal_FirstRowChanged() { callbackQVBarModelMapper_FirstRowChanged(this); };
 	void Signal_LastBarSetColumnChanged() { callbackQVBarModelMapper_LastBarSetColumnChanged(this); };
@@ -11336,7 +11336,7 @@ int QVBarModelMapper_RowCount(void* ptr)
 class MyQVBoxPlotModelMapper: public QVBoxPlotModelMapper
 {
 public:
-	MyQVBoxPlotModelMapper(QObject *parent) : QVBoxPlotModelMapper(parent) {};
+	MyQVBoxPlotModelMapper(QObject *parent = Q_NULLPTR) : QVBoxPlotModelMapper(parent) {};
 	void Signal_FirstBoxSetColumnChanged() { callbackQVBoxPlotModelMapper_FirstBoxSetColumnChanged(this); };
 	void Signal_FirstRowChanged() { callbackQVBoxPlotModelMapper_FirstRowChanged(this); };
 	void Signal_LastBoxSetColumnChanged() { callbackQVBoxPlotModelMapper_LastBoxSetColumnChanged(this); };
@@ -11539,7 +11539,7 @@ int QVBoxPlotModelMapper_RowCount(void* ptr)
 class MyQVCandlestickModelMapper: public QVCandlestickModelMapper
 {
 public:
-	MyQVCandlestickModelMapper(QObject *parent) : QVCandlestickModelMapper(parent) {};
+	MyQVCandlestickModelMapper(QObject *parent = nullptr) : QVCandlestickModelMapper(parent) {};
 	void Signal_CloseRowChanged() { callbackQVCandlestickModelMapper_CloseRowChanged(this); };
 	void Signal_FirstSetColumnChanged() { callbackQVCandlestickModelMapper_FirstSetColumnChanged(this); };
 	void Signal_HighRowChanged() { callbackQVCandlestickModelMapper_HighRowChanged(this); };
@@ -11781,7 +11781,7 @@ int QVCandlestickModelMapper_TimestampRow(void* ptr)
 class MyQVPieModelMapper: public QVPieModelMapper
 {
 public:
-	MyQVPieModelMapper(QObject *parent) : QVPieModelMapper(parent) {};
+	MyQVPieModelMapper(QObject *parent = Q_NULLPTR) : QVPieModelMapper(parent) {};
 	void Signal_FirstRowChanged() { callbackQVPieModelMapper_FirstRowChanged(this); };
 	void Signal_LabelsColumnChanged() { callbackQVPieModelMapper_LabelsColumnChanged(this); };
 	void Signal_ModelReplaced() { callbackQVPieModelMapper_ModelReplaced(this); };
@@ -11984,7 +11984,7 @@ int QVPieModelMapper_ValuesColumn(void* ptr)
 class MyQVXYModelMapper: public QVXYModelMapper
 {
 public:
-	MyQVXYModelMapper(QObject *parent) : QVXYModelMapper(parent) {};
+	MyQVXYModelMapper(QObject *parent = Q_NULLPTR) : QVXYModelMapper(parent) {};
 	void Signal_FirstRowChanged() { callbackQVXYModelMapper_FirstRowChanged(this); };
 	void Signal_ModelReplaced() { callbackQVXYModelMapper_ModelReplaced(this); };
 	void Signal_RowCountChanged() { callbackQVXYModelMapper_RowCountChanged(this); };
@@ -12187,7 +12187,7 @@ int QVXYModelMapper_YColumn(void* ptr)
 class MyQValueAxis: public QValueAxis
 {
 public:
-	MyQValueAxis(QObject *parent) : QValueAxis(parent) {};
+	MyQValueAxis(QObject *parent = Q_NULLPTR) : QValueAxis(parent) {};
 	void applyNiceNumbers() { callbackQValueAxis_ApplyNiceNumbers(this); };
 	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQValueAxis_LabelFormatChanged(this, formatPacked); };
 	void Signal_MaxChanged(qreal max) { callbackQValueAxis_MaxChanged(this, max); };

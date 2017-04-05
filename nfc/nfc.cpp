@@ -605,7 +605,7 @@ char QNdefRecord_IsEmpty(void* ptr)
 class MyQNearFieldManager: public QNearFieldManager
 {
 public:
-	MyQNearFieldManager(QObject *parent) : QNearFieldManager(parent) {};
+	MyQNearFieldManager(QObject *parent = Q_NULLPTR) : QNearFieldManager(parent) {};
 	void Signal_TargetDetected(QNearFieldTarget * target) { callbackQNearFieldManager_TargetDetected(this, target); };
 	void Signal_TargetLost(QNearFieldTarget * target) { callbackQNearFieldManager_TargetLost(this, target); };
 	bool event(QEvent * e) { return callbackQNearFieldManager_Event(this, e) != 0; };
@@ -865,7 +865,7 @@ void* QNearFieldManager_MetaObjectDefault(void* ptr)
 class MyQNearFieldShareManager: public QNearFieldShareManager
 {
 public:
-	MyQNearFieldShareManager(QObject *parent) : QNearFieldShareManager(parent) {};
+	MyQNearFieldShareManager(QObject *parent = Q_NULLPTR) : QNearFieldShareManager(parent) {};
 	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareManager_Error(this, error); };
 	void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes) { callbackQNearFieldShareManager_ShareModesChanged(this, modes); };
 	void Signal_TargetDetected(QNearFieldShareTarget * shareTarget) { callbackQNearFieldShareManager_TargetDetected(this, shareTarget); };
@@ -1334,7 +1334,7 @@ void* QNearFieldShareTarget_MetaObjectDefault(void* ptr)
 class MyQNearFieldTarget: public QNearFieldTarget
 {
 public:
-	MyQNearFieldTarget(QObject *parent) : QNearFieldTarget(parent) {};
+	MyQNearFieldTarget(QObject *parent = Q_NULLPTR) : QNearFieldTarget(parent) {};
 	bool hasNdefMessage() { return callbackQNearFieldTarget_HasNdefMessage(this) != 0; };
 	void Signal_Disconnected() { callbackQNearFieldTarget_Disconnected(this); };
 	void Signal_NdefMessageRead(const QNdefMessage & message) { callbackQNearFieldTarget_NdefMessageRead(this, const_cast<QNdefMessage*>(&message)); };
@@ -1646,8 +1646,8 @@ void* QNearFieldTarget_MetaObjectDefault(void* ptr)
 class MyQQmlNdefRecord: public QQmlNdefRecord
 {
 public:
-	MyQQmlNdefRecord(QObject *parent) : QQmlNdefRecord(parent) {};
-	MyQQmlNdefRecord(const QNdefRecord &record, QObject *parent) : QQmlNdefRecord(record, parent) {};
+	MyQQmlNdefRecord(QObject *parent = Q_NULLPTR) : QQmlNdefRecord(parent) {};
+	MyQQmlNdefRecord(const QNdefRecord &record, QObject *parent = Q_NULLPTR) : QQmlNdefRecord(record, parent) {};
 	void Signal_RecordChanged() { callbackQQmlNdefRecord_RecordChanged(this); };
 	void Signal_TypeChanged() { callbackQQmlNdefRecord_TypeChanged(this); };
 	void Signal_TypeNameFormatChanged() { callbackQQmlNdefRecord_TypeNameFormatChanged(this); };

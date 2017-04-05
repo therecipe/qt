@@ -144,7 +144,25 @@ func CppTemplate(module string, mode int, target string) []byte {
 
 							function.ClassName(),
 
-							strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
+							func() string {
+								var input []string
+								for _, p := range function.OgParameters {
+									if p.Default != "" {
+										if strings.HasSuffix(p.Value, "*") || strings.HasSuffix(p.Value, "&") {
+											input = append(input, p.Value+p.Name+" = "+p.Default)
+										} else {
+											input = append(input, p.Value+" "+p.Name+" = "+p.Default)
+										}
+									} else {
+										if strings.HasSuffix(p.Value, "*") || strings.HasSuffix(p.Value, "&") {
+											input = append(input, p.Value+p.Name)
+										} else {
+											input = append(input, p.Value+" "+p.Name)
+										}
+									}
+								}
+								return strings.Join(input, ", ")
+							}(),
 
 							func() string {
 								if mode == MOC {

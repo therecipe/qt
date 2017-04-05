@@ -219,19 +219,16 @@ func (c *Class) addMocFuncs() {
 	}
 	c.Functions = append(c.Functions, tmpF)
 
-	/*
-		//TODO:
-		//int qmlRegisterType(const char *uri, int versionMajor, int versionMinor, const char *qmlName)
-		tmpF2 = *tmpF
-		tmpF2.Overload = true
-		tmpF2.OverloadNumber = "2"
-		tmpF2.Parameters = []*Parameter{
-			{Name: "uri", Value: "const char *"},
-			{Name: "versionMajor", Value: "int"},
-			{Name: "versionMinor", Value: "int"},
-			{Name: "qmlName", Value: "const char *"},
-		}
-		tmpF2.Signature = "(const char *uri, int versionMajor, int versionMinor, const char *qmlName)"
-		c.Functions = append(c.Functions, &tmpF2)
-	*/
+	//int qmlRegisterType(const char *uri, int versionMajor, int versionMinor, const char *qmlName)
+	tmpF2 = *tmpF
+	tmpF2.Overload = true
+	tmpF2.OverloadNumber = "2"
+	tmpF2.Parameters = []*Parameter{
+		{Name: "uri", Value: "const char *"},
+		{Name: "versionMajor", Value: "int"},
+		{Name: "versionMinor", Value: "int"},
+		{Name: "qmlName", Value: "const char *"},
+	}
+	tmpF2.Signature = "(const char *uri, int versionMajor, int versionMinor, const char *qmlName)"
+	c.Functions = append(c.Functions, &tmpF2)
 }

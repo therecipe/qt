@@ -43,8 +43,10 @@ type Function struct {
 }
 
 type Parameter struct {
-	Name  string `xml:"name,attr"`
-	Value string `xml:"left,attr"`
+	Name    string `xml:"name,attr"`
+	Value   string `xml:"left,attr"`
+	Right   string `xml:"right,attr"`
+	Default string `xml:"default,attr"`
 }
 
 func (f *Function) Class() (*Class, bool) {

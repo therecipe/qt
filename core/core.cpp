@@ -202,7 +202,7 @@
 class MyQAbstractAnimation: public QAbstractAnimation
 {
 public:
-	MyQAbstractAnimation(QObject *parent) : QAbstractAnimation(parent) {};
+	MyQAbstractAnimation(QObject *parent = Q_NULLPTR) : QAbstractAnimation(parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void Signal_Finished() { callbackQAbstractAnimation_Finished(this); };
 	void setCurrentTime(int msecs) { callbackQAbstractAnimation_SetCurrentTime(this, msecs); };
@@ -757,7 +757,7 @@ void QAbstractEventDispatcher_DestroyQAbstractEventDispatcher(void* ptr)
 class MyQAbstractItemModel: public QAbstractItemModel
 {
 public:
-	MyQAbstractItemModel(QObject *parent) : QAbstractItemModel(parent) {};
+	MyQAbstractItemModel(QObject *parent = Q_NULLPTR) : QAbstractItemModel(parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -2266,7 +2266,7 @@ void* QAbstractItemModel_____itemData_keyList_newList(void* ptr)
 class MyQAbstractListModel: public QAbstractListModel
 {
 public:
-	MyQAbstractListModel(QObject *parent) : QAbstractListModel(parent) {};
+	MyQAbstractListModel(QObject *parent = Q_NULLPTR) : QAbstractListModel(parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
@@ -2480,7 +2480,7 @@ void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilterDefault(void* p
 class MyQAbstractProxyModel: public QAbstractProxyModel
 {
 public:
-	MyQAbstractProxyModel(QObject *parent) : QAbstractProxyModel(parent) {};
+	MyQAbstractProxyModel(QObject *parent = Q_NULLPTR) : QAbstractProxyModel(parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractItemModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractItemModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
@@ -2787,7 +2787,7 @@ int QAbstractProxyModel_RowCountDefault(void* ptr, void* parent)
 class MyQAbstractState: public QAbstractState
 {
 public:
-	MyQAbstractState(QState *parent) : QAbstractState(parent) {};
+	MyQAbstractState(QState *parent = Q_NULLPTR) : QAbstractState(parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	void Signal_ActiveChanged(bool active) { callbackQAbstractState_ActiveChanged(this, active); };
 	void Signal_Entered() { callbackQAbstractState_Entered(this); };
@@ -2879,7 +2879,7 @@ char QAbstractState_Active(void* ptr)
 class MyQAbstractTableModel: public QAbstractTableModel
 {
 public:
-	MyQAbstractTableModel(QObject *parent) : QAbstractTableModel(parent) {};
+	MyQAbstractTableModel(QObject *parent = Q_NULLPTR) : QAbstractTableModel(parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&idx))); };
@@ -3045,7 +3045,7 @@ int QAbstractTableModel_RowCountDefault(void* ptr, void* parent)
 class MyQAbstractTransition: public QAbstractTransition
 {
 public:
-	MyQAbstractTransition(QState *sourceState) : QAbstractTransition(sourceState) {};
+	MyQAbstractTransition(QState *sourceState = Q_NULLPTR) : QAbstractTransition(sourceState) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventTest(QEvent * event) { return callbackQAbstractTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQAbstractTransition_OnTransition(this, event); };
@@ -3223,7 +3223,7 @@ void* QAbstractTransition___targetStates_newList(void* ptr)
 class MyQAnimationGroup: public QAnimationGroup
 {
 public:
-	MyQAnimationGroup(QObject *parent) : QAnimationGroup(parent) {};
+	MyQAnimationGroup(QObject *parent = Q_NULLPTR) : QAnimationGroup(parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void Signal_Finished() { callbackQAbstractAnimation_Finished(this); };
 	void setCurrentTime(int msecs) { callbackQAbstractAnimation_SetCurrentTime(this, msecs); };
@@ -3522,8 +3522,8 @@ int QBitArray_Size(void* ptr)
 class MyQBuffer: public QBuffer
 {
 public:
-	MyQBuffer(QByteArray *byteArray, QObject *parent) : QBuffer(byteArray, parent) {};
-	MyQBuffer(QObject *parent) : QBuffer(parent) {};
+	MyQBuffer(QByteArray *byteArray, QObject *parent = Q_NULLPTR) : QBuffer(byteArray, parent) {};
+	MyQBuffer(QObject *parent = Q_NULLPTR) : QBuffer(parent) {};
 	bool open(QIODevice::OpenMode flags) { return callbackQIODevice_Open(this, flags) != 0; };
 	bool seek(qint64 pos) { return callbackQIODevice_Seek(this, pos) != 0; };
 	qint64 readData(char * data, qint64 len) { QtCore_PackedString dataPacked = { data, len };return callbackQBuffer_ReadData(this, dataPacked, len); };
@@ -6880,7 +6880,7 @@ void QEvent_SetT(void* ptr, unsigned short vus)
 class MyQEventLoop: public QEventLoop
 {
 public:
-	MyQEventLoop(QObject *parent) : QEventLoop(parent) {};
+	MyQEventLoop(QObject *parent = Q_NULLPTR) : QEventLoop(parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void quit() { callbackQEventLoop_Quit(this); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
@@ -7004,8 +7004,8 @@ void QEventLoopLocker_DestroyQEventLoopLocker(void* ptr)
 class MyQEventTransition: public QEventTransition
 {
 public:
-	MyQEventTransition(QObject *object, QEvent::Type type, QState *sourceState) : QEventTransition(object, type, sourceState) {};
-	MyQEventTransition(QState *sourceState) : QEventTransition(sourceState) {};
+	MyQEventTransition(QObject *object, QEvent::Type type, QState *sourceState = Q_NULLPTR) : QEventTransition(object, type, sourceState) {};
+	MyQEventTransition(QState *sourceState = Q_NULLPTR) : QEventTransition(sourceState) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventTest(QEvent * event) { return callbackQEventTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQEventTransition_OnTransition(this, event); };
@@ -7801,7 +7801,7 @@ unsigned int QFileInfo_OwnerId(void* ptr)
 class MyQFileSelector: public QFileSelector
 {
 public:
-	MyQFileSelector(QObject *parent) : QFileSelector(parent) {};
+	MyQFileSelector(QObject *parent = Q_NULLPTR) : QFileSelector(parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
@@ -7889,8 +7889,8 @@ void* QFileSelector_Select2(void* ptr, void* filePath)
 class MyQFileSystemWatcher: public QFileSystemWatcher
 {
 public:
-	MyQFileSystemWatcher(QObject *parent) : QFileSystemWatcher(parent) {};
-	MyQFileSystemWatcher(const QStringList &paths, QObject *parent) : QFileSystemWatcher(paths, parent) {};
+	MyQFileSystemWatcher(QObject *parent = Q_NULLPTR) : QFileSystemWatcher(parent) {};
+	MyQFileSystemWatcher(const QStringList &paths, QObject *parent = Q_NULLPTR) : QFileSystemWatcher(paths, parent) {};
 	void Signal_DirectoryChanged(const QString & path) { QByteArray t3150ec = path.toUtf8(); QtCore_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };callbackQFileSystemWatcher_DirectoryChanged(this, pathPacked); };
 	void Signal_FileChanged(const QString & path) { QByteArray t3150ec = path.toUtf8(); QtCore_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };callbackQFileSystemWatcher_FileChanged(this, pathPacked); };
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
@@ -8046,7 +8046,7 @@ struct QtCore_PackedString QFileSystemWatcher_Files(void* ptr)
 class MyQFinalState: public QFinalState
 {
 public:
-	MyQFinalState(QState *parent) : QFinalState(parent) {};
+	MyQFinalState(QState *parent = Q_NULLPTR) : QFinalState(parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	void onEntry(QEvent * event) { callbackQFinalState_OnEntry(this, event); };
 	void onExit(QEvent * event) { callbackQFinalState_OnExit(this, event); };
@@ -8138,8 +8138,8 @@ void* QGenericReturnArgument_NewQGenericReturnArgument(char* name, void* data)
 class MyQHistoryState: public QHistoryState
 {
 public:
-	MyQHistoryState(HistoryType type, QState *parent) : QHistoryState(type, parent) {};
-	MyQHistoryState(QState *parent) : QHistoryState(parent) {};
+	MyQHistoryState(HistoryType type, QState *parent = Q_NULLPTR) : QHistoryState(type, parent) {};
+	MyQHistoryState(QState *parent = Q_NULLPTR) : QHistoryState(parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	void Signal_DefaultStateChanged() { callbackQHistoryState_DefaultStateChanged(this); };
 	void Signal_DefaultTransitionChanged() { callbackQHistoryState_DefaultTransitionChanged(this); };
@@ -8924,7 +8924,7 @@ long long QIODevice_SizeDefault(void* ptr)
 class MyQIdentityProxyModel: public QIdentityProxyModel
 {
 public:
-	MyQIdentityProxyModel(QObject *parent) : QIdentityProxyModel(parent) {};
+	MyQIdentityProxyModel(QObject *parent = Q_NULLPTR) : QIdentityProxyModel(parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -9156,7 +9156,7 @@ void* QItemSelection___indexes_newList(void* ptr)
 class MyQItemSelectionModel: public QItemSelectionModel
 {
 public:
-	MyQItemSelectionModel(QAbstractItemModel *model) : QItemSelectionModel(model) {};
+	MyQItemSelectionModel(QAbstractItemModel *model = Q_NULLPTR) : QItemSelectionModel(model) {};
 	MyQItemSelectionModel(QAbstractItemModel *model, QObject *parent) : QItemSelectionModel(model, parent) {};
 	void clear() { callbackQItemSelectionModel_Clear(this); };
 	void clearCurrentIndex() { callbackQItemSelectionModel_ClearCurrentIndex(this); };
@@ -10363,10 +10363,10 @@ int QLatin1String_Size(void* ptr)
 class MyQLibrary: public QLibrary
 {
 public:
-	MyQLibrary(QObject *parent) : QLibrary(parent) {};
-	MyQLibrary(const QString &fileName, QObject *parent) : QLibrary(fileName, parent) {};
-	MyQLibrary(const QString &fileName, const QString &version, QObject *parent) : QLibrary(fileName, version, parent) {};
-	MyQLibrary(const QString &fileName, int verNum, QObject *parent) : QLibrary(fileName, verNum, parent) {};
+	MyQLibrary(QObject *parent = Q_NULLPTR) : QLibrary(parent) {};
+	MyQLibrary(const QString &fileName, QObject *parent = Q_NULLPTR) : QLibrary(fileName, parent) {};
+	MyQLibrary(const QString &fileName, const QString &version, QObject *parent = Q_NULLPTR) : QLibrary(fileName, version, parent) {};
+	MyQLibrary(const QString &fileName, int verNum, QObject *parent = Q_NULLPTR) : QLibrary(fileName, verNum, parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
@@ -12840,7 +12840,7 @@ void* QMutexLocker_Mutex(void* ptr)
 class MyQObject: public QObject
 {
 public:
-	MyQObject(QObject *parent) : QObject(parent) {};
+	MyQObject(QObject *parent = Q_NULLPTR) : QObject(parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
@@ -14149,7 +14149,7 @@ char QObjectCleanupHandler_IsEmpty(void* ptr)
 class MyQParallelAnimationGroup: public QParallelAnimationGroup
 {
 public:
-	MyQParallelAnimationGroup(QObject *parent) : QParallelAnimationGroup(parent) {};
+	MyQParallelAnimationGroup(QObject *parent = Q_NULLPTR) : QParallelAnimationGroup(parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void updateCurrentTime(int currentTime) { callbackQParallelAnimationGroup_UpdateCurrentTime(this, currentTime); };
 	void updateDirection(QAbstractAnimation::Direction direction) { callbackQAbstractAnimation_UpdateDirection(this, direction); };
@@ -14246,8 +14246,8 @@ int QParallelAnimationGroup_DurationDefault(void* ptr)
 class MyQPauseAnimation: public QPauseAnimation
 {
 public:
-	MyQPauseAnimation(QObject *parent) : QPauseAnimation(parent) {};
-	MyQPauseAnimation(int msecs, QObject *parent) : QPauseAnimation(msecs, parent) {};
+	MyQPauseAnimation(QObject *parent = Q_NULLPTR) : QPauseAnimation(parent) {};
+	MyQPauseAnimation(int msecs, QObject *parent = Q_NULLPTR) : QPauseAnimation(msecs, parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	void updateCurrentTime(int vin) { callbackQPauseAnimation_UpdateCurrentTime(this, vin); };
 	int duration() const { return callbackQPauseAnimation_Duration(const_cast<void*>(static_cast<const void*>(this))); };
@@ -14450,8 +14450,8 @@ int QPersistentModelIndex_Row(void* ptr)
 class MyQPluginLoader: public QPluginLoader
 {
 public:
-	MyQPluginLoader(QObject *parent) : QPluginLoader(parent) {};
-	MyQPluginLoader(const QString &fileName, QObject *parent) : QPluginLoader(fileName, parent) {};
+	MyQPluginLoader(QObject *parent = Q_NULLPTR) : QPluginLoader(parent) {};
+	MyQPluginLoader(const QString &fileName, QObject *parent = Q_NULLPTR) : QPluginLoader(fileName, parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
@@ -14755,8 +14755,8 @@ double QPointF_Y(void* ptr)
 class MyQPropertyAnimation: public QPropertyAnimation
 {
 public:
-	MyQPropertyAnimation(QObject *parent) : QPropertyAnimation(parent) {};
-	MyQPropertyAnimation(QObject *target, const QByteArray &propertyName, QObject *parent) : QPropertyAnimation(target, propertyName, parent) {};
+	MyQPropertyAnimation(QObject *parent = Q_NULLPTR) : QPropertyAnimation(parent) {};
+	MyQPropertyAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = Q_NULLPTR) : QPropertyAnimation(target, propertyName, parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void updateCurrentValue(const QVariant & value) { callbackQVariantAnimation_UpdateCurrentValue(this, const_cast<QVariant*>(&value)); };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQAbstractAnimation_UpdateState(this, newState, oldState); };
@@ -16105,7 +16105,7 @@ char QRunnable_AutoDelete(void* ptr)
 class MyQSaveFile: public QSaveFile
 {
 public:
-	MyQSaveFile(QObject *parent) : QSaveFile(parent) {};
+	MyQSaveFile(QObject *parent = Q_NULLPTR) : QSaveFile(parent) {};
 	MyQSaveFile(const QString &name) : QSaveFile(name) {};
 	MyQSaveFile(const QString &name, QObject *parent) : QSaveFile(name, parent) {};
 	bool open(QIODevice::OpenMode mode) { return callbackQIODevice_Open(this, mode) != 0; };
@@ -16302,7 +16302,7 @@ int QSemaphore_Available(void* ptr)
 class MyQSequentialAnimationGroup: public QSequentialAnimationGroup
 {
 public:
-	MyQSequentialAnimationGroup(QObject *parent) : QSequentialAnimationGroup(parent) {};
+	MyQSequentialAnimationGroup(QObject *parent = Q_NULLPTR) : QSequentialAnimationGroup(parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void Signal_CurrentAnimationChanged(QAbstractAnimation * current) { callbackQSequentialAnimationGroup_CurrentAnimationChanged(this, current); };
 	void updateCurrentTime(int currentTime) { callbackQSequentialAnimationGroup_UpdateCurrentTime(this, currentTime); };
@@ -16445,11 +16445,11 @@ int QSequentialIterable_Size(void* ptr)
 class MyQSettings: public QSettings
 {
 public:
-	MyQSettings(Format format, Scope scope, const QString &organization, const QString &application, QObject *parent) : QSettings(format, scope, organization, application, parent) {};
-	MyQSettings(QObject *parent) : QSettings(parent) {};
-	MyQSettings(Scope scope, const QString &organization, const QString &application, QObject *parent) : QSettings(scope, organization, application, parent) {};
-	MyQSettings(const QString &fileName, Format format, QObject *parent) : QSettings(fileName, format, parent) {};
-	MyQSettings(const QString &organization, const QString &application, QObject *parent) : QSettings(organization, application, parent) {};
+	MyQSettings(Format format, Scope scope, const QString &organization, const QString &application = QString(), QObject *parent = Q_NULLPTR) : QSettings(format, scope, organization, application, parent) {};
+	MyQSettings(QObject *parent = Q_NULLPTR) : QSettings(parent) {};
+	MyQSettings(Scope scope, const QString &organization, const QString &application = QString(), QObject *parent = Q_NULLPTR) : QSettings(scope, organization, application, parent) {};
+	MyQSettings(const QString &fileName, Format format, QObject *parent = Q_NULLPTR) : QSettings(fileName, format, parent) {};
+	MyQSettings(const QString &organization, const QString &application = QString(), QObject *parent = Q_NULLPTR) : QSettings(organization, application, parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
@@ -16841,8 +16841,8 @@ void* QSharedData_NewQSharedData2(void* other)
 class MyQSharedMemory: public QSharedMemory
 {
 public:
-	MyQSharedMemory(QObject *parent) : QSharedMemory(parent) {};
-	MyQSharedMemory(const QString &key, QObject *parent) : QSharedMemory(key, parent) {};
+	MyQSharedMemory(QObject *parent = Q_NULLPTR) : QSharedMemory(parent) {};
+	MyQSharedMemory(const QString &key, QObject *parent = Q_NULLPTR) : QSharedMemory(key, parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
@@ -17123,7 +17123,7 @@ void QSignalBlocker_DestroyQSignalBlocker(void* ptr)
 class MyQSignalMapper: public QSignalMapper
 {
 public:
-	MyQSignalMapper(QObject *parent) : QSignalMapper(parent) {};
+	MyQSignalMapper(QObject *parent = Q_NULLPTR) : QSignalMapper(parent) {};
 	void map() { callbackQSignalMapper_Map(this); };
 	void map(QObject * sender) { callbackQSignalMapper_Map2(this, sender); };
 	void Signal_Mapped4(QObject * object) { callbackQSignalMapper_Mapped4(this, object); };
@@ -17317,8 +17317,8 @@ void* QSignalMapper_Mapping(void* ptr, int id)
 class MyQSignalTransition: public QSignalTransition
 {
 public:
-	MyQSignalTransition(QState *sourceState) : QSignalTransition(sourceState) {};
-	MyQSignalTransition(const QObject *sender, const char *signal, QState *sourceState) : QSignalTransition(sender, signal, sourceState) {};
+	MyQSignalTransition(QState *sourceState = Q_NULLPTR) : QSignalTransition(sourceState) {};
+	MyQSignalTransition(const QObject *sender, const char *signal, QState *sourceState = Q_NULLPTR) : QSignalTransition(sender, signal, sourceState) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventTest(QEvent * event) { return callbackQSignalTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQSignalTransition_OnTransition(this, event); };
@@ -17706,7 +17706,7 @@ char QSocketNotifier_IsEnabled(void* ptr)
 class MyQSortFilterProxyModel: public QSortFilterProxyModel
 {
 public:
-	MyQSortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent) {};
+	MyQSortFilterProxyModel(QObject *parent = Q_NULLPTR) : QSortFilterProxyModel(parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -18095,8 +18095,8 @@ void QStandardPaths_QStandardPaths_SetTestModeEnabled(char testMode)
 class MyQState: public QState
 {
 public:
-	MyQState(ChildMode childMode, QState *parent) : QState(childMode, parent) {};
-	MyQState(QState *parent) : QState(parent) {};
+	MyQState(ChildMode childMode, QState *parent = Q_NULLPTR) : QState(childMode, parent) {};
+	MyQState(QState *parent = Q_NULLPTR) : QState(parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	void Signal_ChildModeChanged() { callbackQState_ChildModeChanged(this); };
 	void Signal_ErrorStateChanged() { callbackQState_ErrorStateChanged(this); };
@@ -18291,8 +18291,8 @@ void* QState___transitions_newList(void* ptr)
 class MyQStateMachine: public QStateMachine
 {
 public:
-	MyQStateMachine(QObject *parent) : QStateMachine(parent) {};
-	MyQStateMachine(QState::ChildMode childMode, QObject *parent) : QStateMachine(childMode, parent) {};
+	MyQStateMachine(QObject *parent = Q_NULLPTR) : QStateMachine(parent) {};
+	MyQStateMachine(QState::ChildMode childMode, QObject *parent = Q_NULLPTR) : QStateMachine(childMode, parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void onEntry(QEvent * event) { callbackQState_OnEntry(this, event); };
@@ -18717,8 +18717,8 @@ void* QStorageInfo___mountedVolumes_newList(void* ptr)
 class MyQStringListModel: public QStringListModel
 {
 public:
-	MyQStringListModel(QObject *parent) : QStringListModel(parent) {};
-	MyQStringListModel(const QStringList &strings, QObject *parent) : QStringListModel(strings, parent) {};
+	MyQStringListModel(QObject *parent = Q_NULLPTR) : QStringListModel(parent) {};
+	MyQStringListModel(const QStringList &strings, QObject *parent = Q_NULLPTR) : QStringListModel(strings, parent) {};
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractItemModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
@@ -20392,10 +20392,10 @@ class MyQTextStream: public QTextStream
 {
 public:
 	MyQTextStream() : QTextStream() {};
-	MyQTextStream(QByteArray *array, QIODevice::OpenMode openMode) : QTextStream(array, openMode) {};
+	MyQTextStream(QByteArray *array, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(array, openMode) {};
 	MyQTextStream(QIODevice *device) : QTextStream(device) {};
-	MyQTextStream(QString *string, QIODevice::OpenMode openMode) : QTextStream(string, openMode) {};
-	MyQTextStream(const QByteArray &array, QIODevice::OpenMode openMode) : QTextStream(array, openMode) {};
+	MyQTextStream(QString *string, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(string, openMode) {};
+	MyQTextStream(const QByteArray &array, QIODevice::OpenMode openMode = QIODevice::ReadOnly) : QTextStream(array, openMode) {};
 	 ~MyQTextStream() { callbackQTextStream_DestroyQTextStream(this); };
 };
 
@@ -20637,7 +20637,7 @@ long long QTextStream_Pos(void* ptr)
 class MyQThread: public QThread
 {
 public:
-	MyQThread(QObject *parent) : QThread(parent) {};
+	MyQThread(QObject *parent = Q_NULLPTR) : QThread(parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void Signal_Finished() { callbackQThread_Finished(this); };
 	void quit() { callbackQThread_Quit(this); };
@@ -20871,7 +20871,7 @@ unsigned int QThread_StackSize(void* ptr)
 class MyQThreadPool: public QThreadPool
 {
 public:
-	MyQThreadPool(QObject *parent) : QThreadPool(parent) {};
+	MyQThreadPool(QObject *parent = Q_NULLPTR) : QThreadPool(parent) {};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
@@ -21119,7 +21119,7 @@ int QTime_SecsTo(void* ptr, void* t)
 class MyQTimeLine: public QTimeLine
 {
 public:
-	MyQTimeLine(int duration, QObject *parent) : QTimeLine(duration, parent) {};
+	MyQTimeLine(int duration = 1000, QObject *parent = Q_NULLPTR) : QTimeLine(duration, parent) {};
 	void setCurrentTime(int msec) { callbackQTimeLine_SetCurrentTime(this, msec); };
 	void Signal_Finished() { callbackQTimeLine_Finished(this); };
 	void Signal_FrameChanged(int frame) { callbackQTimeLine_FrameChanged(this, frame); };
@@ -21654,7 +21654,7 @@ void* QTimeZone___windowsIdToIanaIds_newList2(void* ptr)
 class MyQTimer: public QTimer
 {
 public:
-	MyQTimer(QObject *parent) : QTimer(parent) {};
+	MyQTimer(QObject *parent = Q_NULLPTR) : QTimer(parent) {};
 	void start() { callbackQTimer_Start2(this); };
 	void start(int msec) { callbackQTimer_Start(this, msec); };
 	void stop() { callbackQTimer_Stop(this); };
@@ -21842,7 +21842,7 @@ void QTimerEvent_SetId(void* ptr, int vin)
 class MyQTranslator: public QTranslator
 {
 public:
-	MyQTranslator(QObject *parent) : QTranslator(parent) {};
+	MyQTranslator(QObject *parent = Q_NULLPTR) : QTranslator(parent) {};
 	QString translate(const char * context, const char * sourceText, const char * disambiguation, int n) const { QtCore_PackedString contextPacked = { const_cast<char*>(context), n };QtCore_PackedString sourceTextPacked = { const_cast<char*>(sourceText), n };QtCore_PackedString disambiguationPacked = { const_cast<char*>(disambiguation), n };return QString(callbackQTranslator_Translate(const_cast<void*>(static_cast<const void*>(this)), contextPacked, sourceTextPacked, disambiguationPacked, n)); };
 	bool isEmpty() const { return callbackQTranslator_IsEmpty(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
@@ -23162,7 +23162,7 @@ void* QVariant_____toMap_keyList_newList(void* ptr)
 class MyQVariantAnimation: public QVariantAnimation
 {
 public:
-	MyQVariantAnimation(QObject *parent) : QVariantAnimation(parent) {};
+	MyQVariantAnimation(QObject *parent = Q_NULLPTR) : QVariantAnimation(parent) {};
 	bool event(QEvent * event) { return callbackQObject_Event(this, event) != 0; };
 	void updateCurrentTime(int vin) { callbackQVariantAnimation_UpdateCurrentTime(this, vin); };
 	void updateCurrentValue(const QVariant & value) { callbackQVariantAnimation_UpdateCurrentValue(this, const_cast<QVariant*>(&value)); };

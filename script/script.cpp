@@ -914,7 +914,7 @@ char QScriptEngineAgent_SupportsExtensionDefault(void* ptr, long long extension)
 class MyQScriptExtensionPlugin: public QScriptExtensionPlugin
 {
 public:
-	MyQScriptExtensionPlugin(QObject *parent) : QScriptExtensionPlugin(parent) {};
+	MyQScriptExtensionPlugin(QObject *parent = Q_NULLPTR) : QScriptExtensionPlugin(parent) {};
 	void initialize(const QString & key, QScriptEngine * engine) { QByteArray ta62f22 = key.toUtf8(); QtScript_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQScriptExtensionPlugin_Initialize(this, keyPacked, engine); };
 	QStringList keys() const { return QString(callbackQScriptExtensionPlugin_Keys(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
 	bool event(QEvent * e) { return callbackQScriptExtensionPlugin_Event(this, e) != 0; };

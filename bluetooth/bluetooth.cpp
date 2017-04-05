@@ -127,8 +127,8 @@ unsigned long long QBluetoothAddress_ToUInt64(void* ptr)
 class MyQBluetoothDeviceDiscoveryAgent: public QBluetoothDeviceDiscoveryAgent
 {
 public:
-	MyQBluetoothDeviceDiscoveryAgent(QObject *parent) : QBluetoothDeviceDiscoveryAgent(parent) {};
-	MyQBluetoothDeviceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent) : QBluetoothDeviceDiscoveryAgent(deviceAdapter, parent) {};
+	MyQBluetoothDeviceDiscoveryAgent(QObject *parent = Q_NULLPTR) : QBluetoothDeviceDiscoveryAgent(parent) {};
+	MyQBluetoothDeviceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent = Q_NULLPTR) : QBluetoothDeviceDiscoveryAgent(deviceAdapter, parent) {};
 	void Signal_Canceled() { callbackQBluetoothDeviceDiscoveryAgent_Canceled(this); };
 	void Signal_DeviceDiscovered(const QBluetoothDeviceInfo & info) { callbackQBluetoothDeviceDiscoveryAgent_DeviceDiscovered(this, const_cast<QBluetoothDeviceInfo*>(&info)); };
 	void Signal_Error2(QBluetoothDeviceDiscoveryAgent::Error error) { callbackQBluetoothDeviceDiscoveryAgent_Error2(this, error); };
@@ -679,8 +679,8 @@ struct QtBluetooth_PackedString QBluetoothHostInfo_Name(void* ptr)
 class MyQBluetoothLocalDevice: public QBluetoothLocalDevice
 {
 public:
-	MyQBluetoothLocalDevice(QObject *parent) : QBluetoothLocalDevice(parent) {};
-	MyQBluetoothLocalDevice(const QBluetoothAddress &address, QObject *parent) : QBluetoothLocalDevice(address, parent) {};
+	MyQBluetoothLocalDevice(QObject *parent = Q_NULLPTR) : QBluetoothLocalDevice(parent) {};
+	MyQBluetoothLocalDevice(const QBluetoothAddress &address, QObject *parent = Q_NULLPTR) : QBluetoothLocalDevice(address, parent) {};
 	void Signal_DeviceConnected(const QBluetoothAddress & address) { callbackQBluetoothLocalDevice_DeviceConnected(this, const_cast<QBluetoothAddress*>(&address)); };
 	void Signal_DeviceDisconnected(const QBluetoothAddress & address) { callbackQBluetoothLocalDevice_DeviceDisconnected(this, const_cast<QBluetoothAddress*>(&address)); };
 	void Signal_Error(QBluetoothLocalDevice::Error error) { callbackQBluetoothLocalDevice_Error(this, error); };
@@ -1113,7 +1113,7 @@ void* QBluetoothLocalDevice_MetaObjectDefault(void* ptr)
 class MyQBluetoothServer: public QBluetoothServer
 {
 public:
-	MyQBluetoothServer(QBluetoothServiceInfo::Protocol serverType, QObject *parent) : QBluetoothServer(serverType, parent) {};
+	MyQBluetoothServer(QBluetoothServiceInfo::Protocol serverType, QObject *parent = Q_NULLPTR) : QBluetoothServer(serverType, parent) {};
 	void Signal_Error2(QBluetoothServer::Error error) { callbackQBluetoothServer_Error2(this, error); };
 	void Signal_NewConnection() { callbackQBluetoothServer_NewConnection(this); };
 	bool event(QEvent * e) { return callbackQBluetoothServer_Event(this, e) != 0; };
@@ -1398,8 +1398,8 @@ void* QBluetoothServer_MetaObjectDefault(void* ptr)
 class MyQBluetoothServiceDiscoveryAgent: public QBluetoothServiceDiscoveryAgent
 {
 public:
-	MyQBluetoothServiceDiscoveryAgent(QObject *parent) : QBluetoothServiceDiscoveryAgent(parent) {};
-	MyQBluetoothServiceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent) : QBluetoothServiceDiscoveryAgent(deviceAdapter, parent) {};
+	MyQBluetoothServiceDiscoveryAgent(QObject *parent = Q_NULLPTR) : QBluetoothServiceDiscoveryAgent(parent) {};
+	MyQBluetoothServiceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent = Q_NULLPTR) : QBluetoothServiceDiscoveryAgent(deviceAdapter, parent) {};
 	void Signal_Canceled() { callbackQBluetoothServiceDiscoveryAgent_Canceled(this); };
 	void clear() { callbackQBluetoothServiceDiscoveryAgent_Clear(this); };
 	void Signal_Error2(QBluetoothServiceDiscoveryAgent::Error error) { callbackQBluetoothServiceDiscoveryAgent_Error2(this, error); };
@@ -1985,8 +1985,8 @@ void* QBluetoothServiceInfo___serviceClassUuids_newList(void* ptr)
 class MyQBluetoothSocket: public QBluetoothSocket
 {
 public:
-	MyQBluetoothSocket(QBluetoothServiceInfo::Protocol socketType, QObject *parent) : QBluetoothSocket(socketType, parent) {};
-	MyQBluetoothSocket(QObject *parent) : QBluetoothSocket(parent) {};
+	MyQBluetoothSocket(QBluetoothServiceInfo::Protocol socketType, QObject *parent = Q_NULLPTR) : QBluetoothSocket(socketType, parent) {};
+	MyQBluetoothSocket(QObject *parent = Q_NULLPTR) : QBluetoothSocket(parent) {};
 	void Signal_Connected() { callbackQBluetoothSocket_Connected(this); };
 	void Signal_Disconnected() { callbackQBluetoothSocket_Disconnected(this); };
 	void Signal_Error2(QBluetoothSocket::SocketError error) { callbackQBluetoothSocket_Error2(this, error); };
@@ -2497,7 +2497,7 @@ void* QBluetoothSocket_MetaObjectDefault(void* ptr)
 class MyQBluetoothTransferManager: public QBluetoothTransferManager
 {
 public:
-	MyQBluetoothTransferManager(QObject *parent) : QBluetoothTransferManager(parent) {};
+	MyQBluetoothTransferManager(QObject *parent = Q_NULLPTR) : QBluetoothTransferManager(parent) {};
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferManager_Finished(this, reply); };
 	bool event(QEvent * e) { return callbackQBluetoothTransferManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothTransferManager_EventFilter(this, watched, event) != 0; };
@@ -2701,7 +2701,7 @@ void* QBluetoothTransferManager_MetaObjectDefault(void* ptr)
 class MyQBluetoothTransferReply: public QBluetoothTransferReply
 {
 public:
-	MyQBluetoothTransferReply(QObject *parent) : QBluetoothTransferReply(parent) {};
+	MyQBluetoothTransferReply(QObject *parent = Q_NULLPTR) : QBluetoothTransferReply(parent) {};
 	void abort() { callbackQBluetoothTransferReply_Abort(this); };
 	void Signal_Error2(QBluetoothTransferReply::TransferError errorType) { callbackQBluetoothTransferReply_Error2(this, errorType); };
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferReply_Finished(this, reply); };

@@ -213,7 +213,7 @@ void* QInAppProduct_MetaObjectDefault(void* ptr)
 class MyQInAppStore: public QInAppStore
 {
 public:
-	MyQInAppStore(QObject *parent) : QInAppStore(parent) {};
+	MyQInAppStore(QObject *parent = Q_NULLPTR) : QInAppStore(parent) {};
 	void Signal_ProductRegistered(QInAppProduct * product) { callbackQInAppStore_ProductRegistered(this, product); };
 	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { QByteArray tfae9fd = identifier.toUtf8(); QtPurchasing_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };callbackQInAppStore_ProductUnknown(this, productType, identifierPacked); };
 	void Signal_TransactionReady(QInAppTransaction * transaction) { callbackQInAppStore_TransactionReady(this, transaction); };

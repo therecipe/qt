@@ -517,7 +517,7 @@ void* QScxmlDynamicScxmlServiceFactory___QScxmlDynamicScxmlServiceFactory_parame
 class MyQScxmlEcmaScriptDataModel: public QScxmlEcmaScriptDataModel
 {
 public:
-	MyQScxmlEcmaScriptDataModel(QObject *parent) : QScxmlEcmaScriptDataModel(parent) {};
+	MyQScxmlEcmaScriptDataModel(QObject *parent = nullptr) : QScxmlEcmaScriptDataModel(parent) {};
 	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { QByteArray t6ae999 = name.toUtf8(); QtScxml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tec2727 = context.toUtf8(); QtScxml_PackedString contextPacked = { const_cast<char*>(tec2727.prepend("WHITESPACE").constData()+10), tec2727.size()-10 };return callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(this, namePacked, const_cast<QVariant*>(&value), contextPacked) != 0; };
 	bool setup(const QVariantMap & initialDataValues) { return callbackQScxmlEcmaScriptDataModel_Setup(this, ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(initialDataValues); QtScxml_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void setScxmlEvent(const QScxmlEvent & event) { callbackQScxmlEcmaScriptDataModel_SetScxmlEvent(this, const_cast<QScxmlEvent*>(&event)); };
@@ -1188,7 +1188,7 @@ void* QScxmlInvokableServiceFactory_MetaObjectDefault(void* ptr)
 class MyQScxmlNullDataModel: public QScxmlNullDataModel
 {
 public:
-	MyQScxmlNullDataModel(QObject *parent) : QScxmlNullDataModel(parent) {};
+	MyQScxmlNullDataModel(QObject *parent = nullptr) : QScxmlNullDataModel(parent) {};
 	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { QByteArray t6ae999 = name.toUtf8(); QtScxml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tec2727 = context.toUtf8(); QtScxml_PackedString contextPacked = { const_cast<char*>(tec2727.prepend("WHITESPACE").constData()+10), tec2727.size()-10 };return callbackQScxmlNullDataModel_SetScxmlProperty(this, namePacked, const_cast<QVariant*>(&value), contextPacked) != 0; };
 	bool setup(const QVariantMap & initialDataValues) { return callbackQScxmlNullDataModel_Setup(this, ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(initialDataValues); QtScxml_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void setScxmlEvent(const QScxmlEvent & event) { callbackQScxmlNullDataModel_SetScxmlEvent(this, const_cast<QScxmlEvent*>(&event)); };
@@ -1307,7 +1307,7 @@ char QScxmlNullDataModel_HasScxmlPropertyDefault(void* ptr, char* name)
 class MyQScxmlStateMachine: public QScxmlStateMachine
 {
 public:
-	MyQScxmlStateMachine(const QMetaObject *metaObject, QObject *parent) : QScxmlStateMachine(metaObject, parent) {};
+	MyQScxmlStateMachine(const QMetaObject *metaObject, QObject *parent = nullptr) : QScxmlStateMachine(metaObject, parent) {};
 	bool init() { return callbackQScxmlStateMachine_Init(this) != 0; };
 	void Signal_DataModelChanged(QScxmlDataModel * model) { callbackQScxmlStateMachine_DataModelChanged(this, model); };
 	void Signal_Finished() { callbackQScxmlStateMachine_Finished(this); };

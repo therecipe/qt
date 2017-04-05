@@ -44,9 +44,9 @@
 class MyQSerialPort: public QSerialPort
 {
 public:
-	MyQSerialPort(QObject *parent) : QSerialPort(parent) {};
-	MyQSerialPort(const QSerialPortInfo &serialPortInfo, QObject *parent) : QSerialPort(serialPortInfo, parent) {};
-	MyQSerialPort(const QString &name, QObject *parent) : QSerialPort(name, parent) {};
+	MyQSerialPort(QObject *parent = nullptr) : QSerialPort(parent) {};
+	MyQSerialPort(const QSerialPortInfo &serialPortInfo, QObject *parent = nullptr) : QSerialPort(serialPortInfo, parent) {};
+	MyQSerialPort(const QString &name, QObject *parent = nullptr) : QSerialPort(name, parent) {};
 	bool waitForBytesWritten(int msecs) { return callbackQSerialPort_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForReadyRead(int msecs) { return callbackQSerialPort_WaitForReadyRead(this, msecs) != 0; };
 	qint64 readData(char * data, qint64 maxSize) { QtSerialPort_PackedString dataPacked = { data, maxSize };return callbackQSerialPort_ReadData(this, dataPacked, maxSize); };

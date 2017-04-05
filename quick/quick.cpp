@@ -262,7 +262,7 @@ char QQuickFramebufferObject_TextureFollowsItemSize(void* ptr)
 class MyQQuickImageProvider: public QQuickImageProvider
 {
 public:
-	MyQQuickImageProvider(ImageType type, Flags flags) : QQuickImageProvider(type, flags) {};
+	MyQQuickImageProvider(ImageType type, Flags flags = Flags()) : QQuickImageProvider(type, flags) {};
 	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
@@ -576,7 +576,7 @@ void* QQuickImageResponse_MetaObjectDefault(void* ptr)
 class MyQQuickItem: public QQuickItem
 {
 public:
-	MyQQuickItem(QQuickItem *parent) : QQuickItem(parent) {};
+	MyQQuickItem(QQuickItem *parent = Q_NULLPTR) : QQuickItem(parent) {};
 	bool childMouseEventFilter(QQuickItem * item, QEvent * event) { return callbackQQuickItem_ChildMouseEventFilter(this, item, event) != 0; };
 	bool event(QEvent * ev) { return callbackQQuickItem_Event(this, ev) != 0; };
 	void classBegin() { callbackQQuickItem_ClassBegin(this); };
@@ -2090,7 +2090,7 @@ void* QQuickItemGrabResult_MetaObjectDefault(void* ptr)
 class MyQQuickPaintedItem: public QQuickPaintedItem
 {
 public:
-	MyQQuickPaintedItem(QQuickItem *parent) : QQuickPaintedItem(parent) {};
+	MyQQuickPaintedItem(QQuickItem *parent = Q_NULLPTR) : QQuickPaintedItem(parent) {};
 	void Signal_ContentsScaleChanged() { callbackQQuickPaintedItem_ContentsScaleChanged(this); };
 	void Signal_ContentsSizeChanged() { callbackQQuickPaintedItem_ContentsSizeChanged(this); };
 	void Signal_FillColorChanged() { callbackQQuickPaintedItem_FillColorChanged(this); };
@@ -2331,7 +2331,7 @@ double QQuickPaintedItem_ContentsScale(void* ptr)
 class MyQQuickRenderControl: public QQuickRenderControl
 {
 public:
-	MyQQuickRenderControl(QObject *parent) : QQuickRenderControl(parent) {};
+	MyQQuickRenderControl(QObject *parent = Q_NULLPTR) : QQuickRenderControl(parent) {};
 	QWindow * renderWindow(QPoint * offset) { return static_cast<QWindow*>(callbackQQuickRenderControl_RenderWindow(this, offset)); };
 	void Signal_RenderRequested() { callbackQQuickRenderControl_RenderRequested(this); };
 	void Signal_SceneChanged() { callbackQQuickRenderControl_SceneChanged(this); };
@@ -2992,8 +2992,8 @@ class MyQQuickView: public QQuickView
 {
 public:
 	MyQQuickView(QQmlEngine *engine, QWindow *parent) : QQuickView(engine, parent) {};
-	MyQQuickView(QWindow *parent) : QQuickView(parent) {};
-	MyQQuickView(const QUrl &source, QWindow *parent) : QQuickView(source, parent) {};
+	MyQQuickView(QWindow *parent = Q_NULLPTR) : QQuickView(parent) {};
+	MyQQuickView(const QUrl &source, QWindow *parent = Q_NULLPTR) : QQuickView(source, parent) {};
 	void setSource(const QUrl & url) { callbackQQuickView_SetSource(this, const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQuickView::Status status) { callbackQQuickView_StatusChanged(this, status); };
 	 ~MyQQuickView() { callbackQQuickView_DestroyQQuickView(this); };
@@ -3212,8 +3212,8 @@ class MyQQuickWidget: public QQuickWidget
 {
 public:
 	MyQQuickWidget(QQmlEngine *engine, QWidget *parent) : QQuickWidget(engine, parent) {};
-	MyQQuickWidget(QWidget *parent) : QQuickWidget(parent) {};
-	MyQQuickWidget(const QUrl &source, QWidget *parent) : QQuickWidget(source, parent) {};
+	MyQQuickWidget(QWidget *parent = Q_NULLPTR) : QQuickWidget(parent) {};
+	MyQQuickWidget(const QUrl &source, QWidget *parent = Q_NULLPTR) : QQuickWidget(source, parent) {};
 	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQQuickWidget_SceneGraphError(this, error, messagePacked); };
 	void setSource(const QUrl & url) { callbackQQuickWidget_SetSource(this, const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQuickWidget::Status status) { callbackQQuickWidget_StatusChanged(this, status); };
@@ -3902,7 +3902,7 @@ void* QQuickWidget_MetaObjectDefault(void* ptr)
 class MyQQuickWindow: public QQuickWindow
 {
 public:
-	MyQQuickWindow(QWindow *parent) : QQuickWindow(parent) {};
+	MyQQuickWindow(QWindow *parent = Q_NULLPTR) : QQuickWindow(parent) {};
 	bool event(QEvent * e) { return callbackQQuickWindow_Event(this, e) != 0; };
 	void Signal_ActiveFocusItemChanged() { callbackQQuickWindow_ActiveFocusItemChanged(this); };
 	void Signal_AfterAnimating() { callbackQQuickWindow_AfterAnimating(this); };
@@ -5357,7 +5357,7 @@ int QSGDynamicTexture_TextureIdDefault(void* ptr)
 class MyQSGEngine: public QSGEngine
 {
 public:
-	MyQSGEngine(QObject *parent) : QSGEngine(parent) {};
+	MyQSGEngine(QObject *parent = Q_NULLPTR) : QSGEngine(parent) {};
 	bool event(QEvent * e) { return callbackQSGEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGEngine_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSGEngine_ChildEvent(this, event); };

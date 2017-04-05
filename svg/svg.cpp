@@ -89,8 +89,8 @@
 class MyQGraphicsSvgItem: public QGraphicsSvgItem
 {
 public:
-	MyQGraphicsSvgItem(QGraphicsItem *parent) : QGraphicsSvgItem(parent) {};
-	MyQGraphicsSvgItem(const QString &fileName, QGraphicsItem *parent) : QGraphicsSvgItem(fileName, parent) {};
+	MyQGraphicsSvgItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsSvgItem(parent) {};
+	MyQGraphicsSvgItem(const QString &fileName, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsSvgItem(fileName, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsSvgItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQGraphicsSvgItem_BoundingRect(const_cast<void*>(static_cast<const void*>(this)))); };
 	int type() const { return callbackQGraphicsSvgItem_Type(const_cast<void*>(static_cast<const void*>(this))); };
@@ -666,10 +666,10 @@ int QSvgGenerator_Resolution(void* ptr)
 class MyQSvgRenderer: public QSvgRenderer
 {
 public:
-	MyQSvgRenderer(QObject *parent) : QSvgRenderer(parent) {};
-	MyQSvgRenderer(QXmlStreamReader *contents, QObject *parent) : QSvgRenderer(contents, parent) {};
-	MyQSvgRenderer(const QByteArray &contents, QObject *parent) : QSvgRenderer(contents, parent) {};
-	MyQSvgRenderer(const QString &filename, QObject *parent) : QSvgRenderer(filename, parent) {};
+	MyQSvgRenderer(QObject *parent = Q_NULLPTR) : QSvgRenderer(parent) {};
+	MyQSvgRenderer(QXmlStreamReader *contents, QObject *parent = Q_NULLPTR) : QSvgRenderer(contents, parent) {};
+	MyQSvgRenderer(const QByteArray &contents, QObject *parent = Q_NULLPTR) : QSvgRenderer(contents, parent) {};
+	MyQSvgRenderer(const QString &filename, QObject *parent = Q_NULLPTR) : QSvgRenderer(filename, parent) {};
 	bool load(QXmlStreamReader * contents) { return callbackQSvgRenderer_Load3(this, contents) != 0; };
 	bool load(const QByteArray & contents) { return callbackQSvgRenderer_Load2(this, const_cast<QByteArray*>(&contents)) != 0; };
 	bool load(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtSvg_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };return callbackQSvgRenderer_Load(this, filenamePacked) != 0; };
@@ -1118,8 +1118,8 @@ void* QSvgRenderer_MetaObjectDefault(void* ptr)
 class MyQSvgWidget: public QSvgWidget
 {
 public:
-	MyQSvgWidget(QWidget *parent) : QSvgWidget(parent) {};
-	MyQSvgWidget(const QString &file, QWidget *parent) : QSvgWidget(file, parent) {};
+	MyQSvgWidget(QWidget *parent = Q_NULLPTR) : QSvgWidget(parent) {};
+	MyQSvgWidget(const QString &file, QWidget *parent = Q_NULLPTR) : QSvgWidget(file, parent) {};
 	void load(const QByteArray & contents) { callbackQSvgWidget_Load2(this, const_cast<QByteArray*>(&contents)); };
 	void load(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtSvg_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQSvgWidget_Load(this, filePacked); };
 	void paintEvent(QPaintEvent * event) { callbackQSvgWidget_PaintEvent(this, event); };

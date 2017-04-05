@@ -1331,7 +1331,7 @@ int QAccessibleObject_IndexOfChildDefault(void* ptr, void* child)
 class MyQAccessiblePlugin: public QAccessiblePlugin
 {
 public:
-	MyQAccessiblePlugin(QObject *parent) : QAccessiblePlugin(parent) {};
+	MyQAccessiblePlugin(QObject *parent = Q_NULLPTR) : QAccessiblePlugin(parent) {};
 	QAccessibleInterface * create(const QString & key, QObject * object) { QByteArray ta62f22 = key.toUtf8(); QtGui_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QAccessibleInterface*>(callbackQAccessiblePlugin_Create(this, keyPacked, object)); };
 	bool event(QEvent * e) { return callbackQAccessiblePlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAccessiblePlugin_EventFilter(this, watched, event) != 0; };
@@ -2714,7 +2714,7 @@ void* QAccessibleValueInterface_MinimumValue(void* ptr)
 class MyQActionEvent: public QActionEvent
 {
 public:
-	MyQActionEvent(int type, QAction *action, QAction *before) : QActionEvent(type, action, before) {};
+	MyQActionEvent(int type, QAction *action, QAction *before = Q_NULLPTR) : QActionEvent(type, action, before) {};
 };
 
 void* QActionEvent_NewQActionEvent(int ty, void* action, void* before)
@@ -2813,7 +2813,7 @@ public:
 	MyQBitmap(const QBitmap &other) : QBitmap(other) {};
 	MyQBitmap(const QPixmap &pixmap) : QBitmap(pixmap) {};
 	MyQBitmap(const QSize &size) : QBitmap(size) {};
-	MyQBitmap(const QString &fileName, const char *format) : QBitmap(fileName, format) {};
+	MyQBitmap(const QString &fileName, const char *format = Q_NULLPTR) : QBitmap(fileName, format) {};
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPixmap_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
 };
@@ -4050,8 +4050,8 @@ void QDesktopServices_QDesktopServices_UnsetUrlHandler(char* scheme)
 class MyQDoubleValidator: public QDoubleValidator
 {
 public:
-	MyQDoubleValidator(QObject *parent) : QDoubleValidator(parent) {};
-	MyQDoubleValidator(double bottom, double top, int decimals, QObject *parent) : QDoubleValidator(bottom, top, decimals, parent) {};
+	MyQDoubleValidator(QObject *parent = Q_NULLPTR) : QDoubleValidator(parent) {};
+	MyQDoubleValidator(double bottom, double top, int decimals, QObject *parent = Q_NULLPTR) : QDoubleValidator(bottom, top, decimals, parent) {};
 	void setRange(double minimum, double maximum, int decimals) { callbackQDoubleValidator_SetRange(this, minimum, maximum, decimals); };
 	QValidator::State validate(QString & input, int & pos) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };return static_cast<QValidator::State>(callbackQDoubleValidator_Validate(const_cast<void*>(static_cast<const void*>(this)), inputPacked, pos)); };
 	void Signal_Changed() { callbackQValidator_Changed(this); };
@@ -4591,7 +4591,7 @@ void* QDragLeaveEvent_NewQDragLeaveEvent()
 class MyQDragMoveEvent: public QDragMoveEvent
 {
 public:
-	MyQDragMoveEvent(const QPoint &pos, Qt::DropActions actions, const QMimeData *data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Type type) : QDragMoveEvent(pos, actions, data, buttons, modifiers, type) {};
+	MyQDragMoveEvent(const QPoint &pos, Qt::DropActions actions, const QMimeData *data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Type type = DragMove) : QDragMoveEvent(pos, actions, data, buttons, modifiers, type) {};
 };
 
 void* QDragMoveEvent_NewQDragMoveEvent(void* pos, long long actions, void* data, long long buttons, long long modifiers, long long ty)
@@ -4632,7 +4632,7 @@ void QDragMoveEvent_SetRect(void* ptr, void* vqr)
 class MyQDropEvent: public QDropEvent
 {
 public:
-	MyQDropEvent(const QPointF &pos, Qt::DropActions actions, const QMimeData *data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Type type) : QDropEvent(pos, actions, data, buttons, modifiers, type) {};
+	MyQDropEvent(const QPointF &pos, Qt::DropActions actions, const QMimeData *data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Type type = Drop) : QDropEvent(pos, actions, data, buttons, modifiers, type) {};
 };
 
 void* QDropEvent_NewQDropEvent(void* pos, long long actions, void* data, long long buttons, long long modifiers, long long ty)
@@ -4865,7 +4865,7 @@ char QFileOpenEvent_OpenFile(void* ptr, void* file, long long flags)
 class MyQFocusEvent: public QFocusEvent
 {
 public:
-	MyQFocusEvent(Type type, Qt::FocusReason reason) : QFocusEvent(type, reason) {};
+	MyQFocusEvent(Type type, Qt::FocusReason reason = Qt::OtherFocusReason) : QFocusEvent(type, reason) {};
 };
 
 void* QFocusEvent_NewQFocusEvent(long long ty, long long reason)
@@ -5870,7 +5870,7 @@ double QFontMetricsF_XHeight(void* ptr)
 class MyQGenericPlugin: public QGenericPlugin
 {
 public:
-	MyQGenericPlugin(QObject *parent) : QGenericPlugin(parent) {};
+	MyQGenericPlugin(QObject *parent = Q_NULLPTR) : QGenericPlugin(parent) {};
 	QObject * create(const QString & key, const QString & specification) { QByteArray ta62f22 = key.toUtf8(); QtGui_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };QByteArray t03d6a1 = specification.toUtf8(); QtGui_PackedString specificationPacked = { const_cast<char*>(t03d6a1.prepend("WHITESPACE").constData()+10), t03d6a1.size()-10 };return static_cast<QObject*>(callbackQGenericPlugin_Create(this, keyPacked, specificationPacked)); };
 	bool event(QEvent * e) { return callbackQGenericPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGenericPlugin_EventFilter(this, watched, event) != 0; };
@@ -7070,7 +7070,7 @@ void* QHideEvent_NewQHideEvent()
 class MyQHoverEvent: public QHoverEvent
 {
 public:
-	MyQHoverEvent(Type type, const QPointF &pos, const QPointF &oldPos, Qt::KeyboardModifiers modifiers) : QHoverEvent(type, pos, oldPos, modifiers) {};
+	MyQHoverEvent(Type type, const QPointF &pos, const QPointF &oldPos, Qt::KeyboardModifiers modifiers = Qt::NoModifier) : QHoverEvent(type, pos, oldPos, modifiers) {};
 };
 
 void* QHoverEvent_NewQHoverEvent(long long ty, void* pos, void* oldPos, long long modifiers)
@@ -7454,7 +7454,7 @@ void* QIconEngine___availableSizes_newList(void* ptr)
 class MyQIconEnginePlugin: public QIconEnginePlugin
 {
 public:
-	MyQIconEnginePlugin(QObject *parent) : QIconEnginePlugin(parent) {};
+	MyQIconEnginePlugin(QObject *parent = Q_NULLPTR) : QIconEnginePlugin(parent) {};
 	QIconEngine * create(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtGui_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };return static_cast<QIconEngine*>(callbackQIconEnginePlugin_Create(this, filenamePacked)); };
 	bool event(QEvent * e) { return callbackQIconEnginePlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQIconEnginePlugin_EventFilter(this, watched, event) != 0; };
@@ -7697,7 +7697,7 @@ public:
 	MyQImage(QImage &&other) : QImage(other) {};
 	MyQImage(const QImage &image) : QImage(image) {};
 	MyQImage(const QSize &size, Format format) : QImage(size, format) {};
-	MyQImage(const QString &fileName, const char *format) : QImage(fileName, format) {};
+	MyQImage(const QString &fileName, const char *format = Q_NULLPTR) : QImage(fileName, format) {};
 	MyQImage(int width, int height, Format format) : QImage(width, height, format) {};
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQImage_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
@@ -8296,7 +8296,7 @@ void QImageIOHandler_SetFormat2(void* ptr, void* format)
 class MyQImageIOPlugin: public QImageIOPlugin
 {
 public:
-	MyQImageIOPlugin(QObject *parent) : QImageIOPlugin(parent) {};
+	MyQImageIOPlugin(QObject *parent = Q_NULLPTR) : QImageIOPlugin(parent) {};
 	 ~MyQImageIOPlugin() { callbackQImageIOPlugin_DestroyQImageIOPlugin(this); };
 	Capabilities capabilities(QIODevice * device, const QByteArray & format) const { return static_cast<QImageIOPlugin::Capability>(callbackQImageIOPlugin_Capabilities(const_cast<void*>(static_cast<const void*>(this)), device, const_cast<QByteArray*>(&format))); };
 	QImageIOHandler * create(QIODevice * device, const QByteArray & format) const { return static_cast<QImageIOHandler*>(callbackQImageIOPlugin_Create(const_cast<void*>(static_cast<const void*>(this)), device, const_cast<QByteArray*>(&format))); };
@@ -9625,8 +9625,8 @@ long long QInputMethodQueryEvent_Queries(void* ptr)
 class MyQIntValidator: public QIntValidator
 {
 public:
-	MyQIntValidator(QObject *parent) : QIntValidator(parent) {};
-	MyQIntValidator(int minimum, int maximum, QObject *parent) : QIntValidator(minimum, maximum, parent) {};
+	MyQIntValidator(QObject *parent = Q_NULLPTR) : QIntValidator(parent) {};
+	MyQIntValidator(int minimum, int maximum, QObject *parent = Q_NULLPTR) : QIntValidator(minimum, maximum, parent) {};
 	void setRange(int bottom, int top) { callbackQIntValidator_SetRange(this, bottom, top); };
 	QValidator::State validate(QString & input, int & pos) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };return static_cast<QValidator::State>(callbackQIntValidator_Validate(const_cast<void*>(static_cast<const void*>(this)), inputPacked, pos)); };
 	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQValidator_Fixup(const_cast<void*>(static_cast<const void*>(this)), inputPacked); };
@@ -9774,8 +9774,8 @@ int QIntValidator_Top(void* ptr)
 class MyQKeyEvent: public QKeyEvent
 {
 public:
-	MyQKeyEvent(Type type, int key, Qt::KeyboardModifiers modifiers, const QString &text, bool autorep, ushort count) : QKeyEvent(type, key, modifiers, text, autorep, count) {};
-	MyQKeyEvent(Type type, int key, Qt::KeyboardModifiers modifiers, quint32 nativeScanCode, quint32 nativeVirtualKey, quint32 nativeModifiers, const QString &text, bool autorep, ushort count) : QKeyEvent(type, key, modifiers, nativeScanCode, nativeVirtualKey, nativeModifiers, text, autorep, count) {};
+	MyQKeyEvent(Type type, int key, Qt::KeyboardModifiers modifiers, const QString &text = QString(), bool autorep = false, ushort count = 1) : QKeyEvent(type, key, modifiers, text, autorep, count) {};
+	MyQKeyEvent(Type type, int key, Qt::KeyboardModifiers modifiers, quint32 nativeScanCode, quint32 nativeVirtualKey, quint32 nativeModifiers, const QString &text = QString(), bool autorep = false, ushort count = 1) : QKeyEvent(type, key, modifiers, nativeScanCode, nativeVirtualKey, nativeModifiers, text, autorep, count) {};
 };
 
 void* QKeyEvent_NewQKeyEvent(long long ty, int key, long long modifiers, char* text, char autorep, unsigned short count)
@@ -10451,9 +10451,9 @@ void* QMoveEvent_Pos(void* ptr)
 class MyQMovie: public QMovie
 {
 public:
-	MyQMovie(QIODevice *device, const QByteArray &format, QObject *parent) : QMovie(device, format, parent) {};
-	MyQMovie(QObject *parent) : QMovie(parent) {};
-	MyQMovie(const QString &fileName, const QByteArray &format, QObject *parent) : QMovie(fileName, format, parent) {};
+	MyQMovie(QIODevice *device, const QByteArray &format = QByteArray(), QObject *parent = Q_NULLPTR) : QMovie(device, format, parent) {};
+	MyQMovie(QObject *parent = Q_NULLPTR) : QMovie(parent) {};
+	MyQMovie(const QString &fileName, const QByteArray &format = QByteArray(), QObject *parent = Q_NULLPTR) : QMovie(fileName, format, parent) {};
 	bool jumpToNextFrame() { return callbackQMovie_JumpToNextFrame(this) != 0; };
 	void Signal_Error(QImageReader::ImageReaderError error) { callbackQMovie_Error(this, error); };
 	void Signal_Finished() { callbackQMovie_Finished(this); };
@@ -11188,7 +11188,7 @@ void QNativeGestureEvent_SetMWindowPos(void* ptr, void* vqp)
 class MyQOffscreenSurface: public QOffscreenSurface
 {
 public:
-	MyQOffscreenSurface(QScreen *targetScreen) : QOffscreenSurface(targetScreen) {};
+	MyQOffscreenSurface(QScreen *targetScreen = Q_NULLPTR) : QOffscreenSurface(targetScreen) {};
 	void Signal_ScreenChanged(QScreen * screen) { callbackQOffscreenSurface_ScreenChanged(this, screen); };
 	 ~MyQOffscreenSurface() { callbackQOffscreenSurface_DestroyQOffscreenSurface(this); };
 	QSize size() const { return *static_cast<QSize*>(callbackQOffscreenSurface_Size(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -12388,7 +12388,7 @@ void* QPaintDeviceWindow_PaintEngineDefault(void* ptr)
 class MyQPaintEngine: public QPaintEngine
 {
 public:
-	MyQPaintEngine(PaintEngineFeatures caps) : QPaintEngine(caps) {};
+	MyQPaintEngine(PaintEngineFeatures caps = PaintEngineFeatures()) : QPaintEngine(caps) {};
 	bool end() { return callbackQPaintEngine_End(this) != 0; };
 	void drawEllipse(const QRectF & rect) { callbackQPaintEngine_DrawEllipse(this, const_cast<QRectF*>(&rect)); };
 	void drawImage(const QRectF & rectangle, const QImage & image, const QRectF & sr, Qt::ImageConversionFlags flags) { callbackQPaintEngine_DrawImage(this, const_cast<QRectF*>(&rectangle), const_cast<QImage*>(&image), const_cast<QRectF*>(&sr), flags); };
@@ -15055,7 +15055,7 @@ class MyQPicture: public QPicture
 {
 public:
 	MyQPicture(const QPicture &pic) : QPicture(pic) {};
-	MyQPicture(int formatVersion) : QPicture(formatVersion) {};
+	MyQPicture(int formatVersion = -1) : QPicture(formatVersion) {};
 	void setData(const char * data, uint size) { QtGui_PackedString dataPacked = { const_cast<char*>(data), size };callbackQPicture_SetData(this, dataPacked, size); };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPicture_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
@@ -15302,7 +15302,7 @@ public:
 	MyQPixmap() : QPixmap() {};
 	MyQPixmap(const QPixmap &pixmap) : QPixmap(pixmap) {};
 	MyQPixmap(const QSize &size) : QPixmap(size) {};
-	MyQPixmap(const QString &fileName, const char *format, Qt::ImageConversionFlags flags) : QPixmap(fileName, format, flags) {};
+	MyQPixmap(const QString &fileName, const char *format = Q_NULLPTR, Qt::ImageConversionFlags flags = Qt::AutoColor) : QPixmap(fileName, format, flags) {};
 	MyQPixmap(int width, int height) : QPixmap(width, height) {};
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPixmap_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
@@ -16696,7 +16696,7 @@ double QRadialGradient_Radius(void* ptr)
 class MyQRasterWindow: public QRasterWindow
 {
 public:
-	MyQRasterWindow(QWindow *parent) : QRasterWindow(parent) {};
+	MyQRasterWindow(QWindow *parent = Q_NULLPTR) : QRasterWindow(parent) {};
 	void paintEvent(QPaintEvent * event) { callbackQPaintDeviceWindow_PaintEvent(this, event); };
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
@@ -17077,8 +17077,8 @@ void* QRawFont___glyphIndexesForString_newList(void* ptr)
 class MyQRegExpValidator: public QRegExpValidator
 {
 public:
-	MyQRegExpValidator(QObject *parent) : QRegExpValidator(parent) {};
-	MyQRegExpValidator(const QRegExp &rx, QObject *parent) : QRegExpValidator(rx, parent) {};
+	MyQRegExpValidator(QObject *parent = Q_NULLPTR) : QRegExpValidator(parent) {};
+	MyQRegExpValidator(const QRegExp &rx, QObject *parent = Q_NULLPTR) : QRegExpValidator(rx, parent) {};
 	QValidator::State validate(QString & input, int & pos) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };return static_cast<QValidator::State>(callbackQRegExpValidator_Validate(const_cast<void*>(static_cast<const void*>(this)), inputPacked, pos)); };
 	void Signal_Changed() { callbackQValidator_Changed(this); };
 	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQValidator_Fixup(const_cast<void*>(static_cast<const void*>(this)), inputPacked); };
@@ -17360,8 +17360,8 @@ void* QRegion___rects_newList(void* ptr)
 class MyQRegularExpressionValidator: public QRegularExpressionValidator
 {
 public:
-	MyQRegularExpressionValidator(QObject *parent) : QRegularExpressionValidator(parent) {};
-	MyQRegularExpressionValidator(const QRegularExpression &re, QObject *parent) : QRegularExpressionValidator(re, parent) {};
+	MyQRegularExpressionValidator(QObject *parent = Q_NULLPTR) : QRegularExpressionValidator(parent) {};
+	MyQRegularExpressionValidator(const QRegularExpression &re, QObject *parent = Q_NULLPTR) : QRegularExpressionValidator(re, parent) {};
 	void Signal_RegularExpressionChanged(const QRegularExpression & re) { callbackQRegularExpressionValidator_RegularExpressionChanged(this, const_cast<QRegularExpression*>(&re)); };
 	void setRegularExpression(const QRegularExpression & re) { callbackQRegularExpressionValidator_SetRegularExpression(this, const_cast<QRegularExpression*>(&re)); };
 	QValidator::State validate(QString & input, int & pos) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };return static_cast<QValidator::State>(callbackQRegularExpressionValidator_Validate(const_cast<void*>(static_cast<const void*>(this)), inputPacked, pos)); };
@@ -18464,7 +18464,7 @@ void* QSessionManager_MetaObjectDefault(void* ptr)
 class MyQShortcutEvent: public QShortcutEvent
 {
 public:
-	MyQShortcutEvent(const QKeySequence &key, int id, bool ambiguous) : QShortcutEvent(key, id, ambiguous) {};
+	MyQShortcutEvent(const QKeySequence &key, int id, bool ambiguous = false) : QShortcutEvent(key, id, ambiguous) {};
 };
 
 void* QShortcutEvent_NewQShortcutEvent(void* key, int id, char ambiguous)
@@ -18540,7 +18540,7 @@ public:
 	MyQStandardItem(const QIcon &icon, const QString &text) : QStandardItem(icon, text) {};
 	MyQStandardItem(const QStandardItem &other) : QStandardItem(other) {};
 	MyQStandardItem(const QString &text) : QStandardItem(text) {};
-	MyQStandardItem(int rows, int columns) : QStandardItem(rows, columns) {};
+	MyQStandardItem(int rows, int columns = 1) : QStandardItem(rows, columns) {};
 	void read(QDataStream & in) { callbackQStandardItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(const QVariant & value, int role) { callbackQStandardItem_SetData(this, const_cast<QVariant*>(&value), role); };
 	 ~MyQStandardItem() { callbackQStandardItem_DestroyQStandardItem(this); };
@@ -19148,8 +19148,8 @@ void* QStandardItem___insertRows_items_newList(void* ptr)
 class MyQStandardItemModel: public QStandardItemModel
 {
 public:
-	MyQStandardItemModel(QObject *parent) : QStandardItemModel(parent) {};
-	MyQStandardItemModel(int rows, int columns, QObject *parent) : QStandardItemModel(rows, columns, parent) {};
+	MyQStandardItemModel(QObject *parent = Q_NULLPTR) : QStandardItemModel(parent) {};
+	MyQStandardItemModel(int rows, int columns, QObject *parent = Q_NULLPTR) : QStandardItemModel(rows, columns, parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQStandardItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -22549,8 +22549,8 @@ void QTextCursor_SelectedTableCells(void* ptr, int firstRow, int numRows, int fi
 class MyQTextDocument: public QTextDocument
 {
 public:
-	MyQTextDocument(const QString &text, QObject *parent) : QTextDocument(text, parent) {};
-	MyQTextDocument(QObject *parent) : QTextDocument(parent) {};
+	MyQTextDocument(const QString &text, QObject *parent = Q_NULLPTR) : QTextDocument(text, parent) {};
+	MyQTextDocument(QObject *parent = Q_NULLPTR) : QTextDocument(parent) {};
 	QTextObject * createObject(const QTextFormat & format) { return static_cast<QTextObject*>(callbackQTextDocument_CreateObject(this, const_cast<QTextFormat*>(&format))); };
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQTextDocument_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
 	void Signal_BaseUrlChanged(const QUrl & url) { callbackQTextDocument_BaseUrlChanged(this, const_cast<QUrl*>(&url)); };
@@ -26066,7 +26066,7 @@ void QTransform_Map(void* ptr, double x, double y, double tx, double ty)
 class MyQValidator: public QValidator
 {
 public:
-	MyQValidator(QObject *parent) : QValidator(parent) {};
+	MyQValidator(QObject *parent = Q_NULLPTR) : QValidator(parent) {};
 	void Signal_Changed() { callbackQValidator_Changed(this); };
 	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQValidator_Fixup(const_cast<void*>(static_cast<const void*>(this)), inputPacked); };
 	State validate(QString & input, int & pos) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };return static_cast<QValidator::State>(callbackQValidator_Validate(const_cast<void*>(static_cast<const void*>(this)), inputPacked, pos)); };
@@ -27082,7 +27082,7 @@ void QWheelEvent_SetQt4O(void* ptr, long long vqt)
 class MyQWindow: public QWindow
 {
 public:
-	MyQWindow(QScreen *targetScreen) : QWindow(targetScreen) {};
+	MyQWindow(QScreen *targetScreen = Q_NULLPTR) : QWindow(targetScreen) {};
 	MyQWindow(QWindow *parent) : QWindow(parent) {};
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };

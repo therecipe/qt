@@ -126,7 +126,7 @@ typedef QtDataVisualization::QValue3DAxisFormatter QValue3DAxisFormatter;
 class MyQ3DBars: public Q3DBars
 {
 public:
-	MyQ3DBars(const QSurfaceFormat *format, QWindow *parent) : Q3DBars(format, parent) {};
+	MyQ3DBars(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DBars(format, parent) {};
 	void Signal_BarSpacingChanged(const QSizeF & spacing) { callbackQ3DBars_BarSpacingChanged(this, const_cast<QSizeF*>(&spacing)); };
 	void Signal_BarSpacingRelativeChanged(bool relative) { callbackQ3DBars_BarSpacingRelativeChanged(this, relative); };
 	void Signal_BarThicknessChanged(float thicknessRatio) { callbackQ3DBars_BarThicknessChanged(this, thicknessRatio); };
@@ -472,7 +472,7 @@ void* Q3DBars___seriesList_newList(void* ptr)
 class MyQ3DCamera: public Q3DCamera
 {
 public:
-	MyQ3DCamera(QObject *parent) : Q3DCamera(parent) {};
+	MyQ3DCamera(QObject *parent = Q_NULLPTR) : Q3DCamera(parent) {};
 	void Signal_CameraPresetChanged(Q3DCamera::CameraPreset preset) { callbackQ3DCamera_CameraPresetChanged(this, preset); };
 	void copyValuesFrom(const Q3DObject & source) { callbackQ3DCamera_CopyValuesFrom(this, const_cast<Q3DObject*>(&source)); };
 	void Signal_MaxZoomLevelChanged(float zoomLevel) { callbackQ3DCamera_MaxZoomLevelChanged(this, zoomLevel); };
@@ -780,7 +780,7 @@ float Q3DCamera_ZoomLevel(void* ptr)
 class MyQ3DInputHandler: public Q3DInputHandler
 {
 public:
-	MyQ3DInputHandler(QObject *parent) : Q3DInputHandler(parent) {};
+	MyQ3DInputHandler(QObject *parent = Q_NULLPTR) : Q3DInputHandler(parent) {};
 	void mouseMoveEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQ3DInputHandler_MouseMoveEvent(this, event, const_cast<QPoint*>(&mousePos)); };
 	void mousePressEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQ3DInputHandler_MousePressEvent(this, event, const_cast<QPoint*>(&mousePos)); };
 	void mouseReleaseEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQ3DInputHandler_MouseReleaseEvent(this, event, const_cast<QPoint*>(&mousePos)); };
@@ -986,7 +986,7 @@ char Q3DInputHandler_IsZoomEnabled(void* ptr)
 class MyQ3DLight: public Q3DLight
 {
 public:
-	MyQ3DLight(QObject *parent) : Q3DLight(parent) {};
+	MyQ3DLight(QObject *parent = Q_NULLPTR) : Q3DLight(parent) {};
 	 ~MyQ3DLight() { callbackQ3DLight_DestroyQ3DLight(this); };
 };
 
@@ -1044,7 +1044,7 @@ void Q3DLight_DestroyQ3DLightDefault(void* ptr)
 class MyQ3DObject: public Q3DObject
 {
 public:
-	MyQ3DObject(QObject *parent) : Q3DObject(parent) {};
+	MyQ3DObject(QObject *parent = Q_NULLPTR) : Q3DObject(parent) {};
 	void copyValuesFrom(const Q3DObject & source) { callbackQ3DObject_CopyValuesFrom(this, const_cast<Q3DObject*>(&source)); };
 	void Signal_PositionChanged(const QVector3D & position) { callbackQ3DObject_PositionChanged(this, const_cast<QVector3D*>(&position)); };
 	 ~MyQ3DObject() { callbackQ3DObject_DestroyQ3DObject(this); };
@@ -1154,7 +1154,7 @@ char Q3DObject_IsDirty(void* ptr)
 class MyQ3DScatter: public Q3DScatter
 {
 public:
-	MyQ3DScatter(const QSurfaceFormat *format, QWindow *parent) : Q3DScatter(format, parent) {};
+	MyQ3DScatter(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DScatter(format, parent) {};
 	void Signal_AxisXChanged(QValue3DAxis * axis) { callbackQ3DScatter_AxisXChanged(this, axis); };
 	void Signal_AxisYChanged(QValue3DAxis * axis) { callbackQ3DScatter_AxisYChanged(this, axis); };
 	void Signal_AxisZChanged(QValue3DAxis * axis) { callbackQ3DScatter_AxisZChanged(this, axis); };
@@ -1339,7 +1339,7 @@ void* Q3DScatter___axes_newList(void* ptr)
 class MyQ3DScene: public Q3DScene
 {
 public:
-	MyQ3DScene(QObject *parent) : Q3DScene(parent) {};
+	MyQ3DScene(QObject *parent = Q_NULLPTR) : Q3DScene(parent) {};
 	void Signal_ActiveCameraChanged(Q3DCamera * camera) { callbackQ3DScene_ActiveCameraChanged(this, camera); };
 	void Signal_ActiveLightChanged(Q3DLight * light) { callbackQ3DScene_ActiveLightChanged(this, light); };
 	void Signal_DevicePixelRatioChanged(float pixelRatio) { callbackQ3DScene_DevicePixelRatioChanged(this, pixelRatio); };
@@ -1667,7 +1667,7 @@ float Q3DScene_DevicePixelRatio(void* ptr)
 class MyQ3DSurface: public Q3DSurface
 {
 public:
-	MyQ3DSurface(const QSurfaceFormat *format, QWindow *parent) : Q3DSurface(format, parent) {};
+	MyQ3DSurface(const QSurfaceFormat *format = Q_NULLPTR, QWindow *parent = Q_NULLPTR) : Q3DSurface(format, parent) {};
 	void Signal_AxisXChanged(QValue3DAxis * axis) { callbackQ3DSurface_AxisXChanged(this, axis); };
 	void Signal_AxisYChanged(QValue3DAxis * axis) { callbackQ3DSurface_AxisYChanged(this, axis); };
 	void Signal_AxisZChanged(QValue3DAxis * axis) { callbackQ3DSurface_AxisZChanged(this, axis); };
@@ -1878,8 +1878,8 @@ void* Q3DSurface___axes_newList(void* ptr)
 class MyQ3DTheme: public Q3DTheme
 {
 public:
-	MyQ3DTheme(QObject *parent) : Q3DTheme(parent) {};
-	MyQ3DTheme(Theme themeType, QObject *parent) : Q3DTheme(themeType, parent) {};
+	MyQ3DTheme(QObject *parent = Q_NULLPTR) : Q3DTheme(parent) {};
+	MyQ3DTheme(Theme themeType, QObject *parent = Q_NULLPTR) : Q3DTheme(themeType, parent) {};
 	void Signal_AmbientLightStrengthChanged(float strength) { callbackQ3DTheme_AmbientLightStrengthChanged(this, strength); };
 	void Signal_BackgroundColorChanged(const QColor & color) { callbackQ3DTheme_BackgroundColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BackgroundEnabledChanged(bool enabled) { callbackQ3DTheme_BackgroundEnabledChanged(this, enabled); };
@@ -3536,7 +3536,7 @@ void* QAbstract3DGraph___customItems_newList(void* ptr)
 class MyQAbstract3DInputHandler: public QAbstract3DInputHandler
 {
 public:
-	MyQAbstract3DInputHandler(QObject *parent) : QAbstract3DInputHandler(parent) {};
+	MyQAbstract3DInputHandler(QObject *parent = Q_NULLPTR) : QAbstract3DInputHandler(parent) {};
 	void Signal_InputViewChanged(QAbstract3DInputHandler::InputView view) { callbackQAbstract3DInputHandler_InputViewChanged(this, view); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQAbstract3DInputHandler_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event, const QPoint & mousePos) { callbackQAbstract3DInputHandler_MouseMoveEvent(this, event, const_cast<QPoint*>(&mousePos)); };
@@ -4216,8 +4216,8 @@ void QAbstractDataProxy_DestroyQAbstractDataProxyDefault(void* ptr)
 class MyQBar3DSeries: public QBar3DSeries
 {
 public:
-	MyQBar3DSeries(QBarDataProxy *dataProxy, QObject *parent) : QBar3DSeries(dataProxy, parent) {};
-	MyQBar3DSeries(QObject *parent) : QBar3DSeries(parent) {};
+	MyQBar3DSeries(QBarDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QBar3DSeries(dataProxy, parent) {};
+	MyQBar3DSeries(QObject *parent = Q_NULLPTR) : QBar3DSeries(parent) {};
 	void Signal_DataProxyChanged(QBarDataProxy * proxy) { callbackQBar3DSeries_DataProxyChanged(this, proxy); };
 	void Signal_MeshAngleChanged(float angle) { callbackQBar3DSeries_MeshAngleChanged(this, angle); };
 	void Signal_SelectedBarChanged(const QPoint & position) { callbackQBar3DSeries_SelectedBarChanged(this, const_cast<QPoint*>(&position)); };
@@ -4444,7 +4444,7 @@ float QBarDataItem_Value(void* ptr)
 class MyQBarDataProxy: public QBarDataProxy
 {
 public:
-	MyQBarDataProxy(QObject *parent) : QBarDataProxy(parent) {};
+	MyQBarDataProxy(QObject *parent = Q_NULLPTR) : QBarDataProxy(parent) {};
 	void Signal_ArrayReset() { callbackQBarDataProxy_ArrayReset(this); };
 	void Signal_ColumnLabelsChanged() { callbackQBarDataProxy_ColumnLabelsChanged(this); };
 	void Signal_ItemChanged(int rowIndex, int columnIndex) { callbackQBarDataProxy_ItemChanged(this, rowIndex, columnIndex); };
@@ -4722,7 +4722,7 @@ int QBarDataProxy_RowCount(void* ptr)
 class MyQCategory3DAxis: public QCategory3DAxis
 {
 public:
-	MyQCategory3DAxis(QObject *parent) : QCategory3DAxis(parent) {};
+	MyQCategory3DAxis(QObject *parent = Q_NULLPTR) : QCategory3DAxis(parent) {};
 	void Signal_LabelsChanged() { callbackQCategory3DAxis_LabelsChanged(this); };
 	 ~MyQCategory3DAxis() { callbackQCategory3DAxis_DestroyQCategory3DAxis(this); };
 };
@@ -4806,8 +4806,8 @@ struct QtDataVisualization_PackedString QCategory3DAxis_Labels(void* ptr)
 class MyQCustom3DItem: public QCustom3DItem
 {
 public:
-	MyQCustom3DItem(QObject *parent) : QCustom3DItem(parent) {};
-	MyQCustom3DItem(const QString &meshFile, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, const QImage &texture, QObject *parent) : QCustom3DItem(meshFile, position, scaling, rotation, texture, parent) {};
+	MyQCustom3DItem(QObject *parent = Q_NULLPTR) : QCustom3DItem(parent) {};
+	MyQCustom3DItem(const QString &meshFile, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, const QImage &texture, QObject *parent = Q_NULLPTR) : QCustom3DItem(meshFile, position, scaling, rotation, texture, parent) {};
 	void Signal_MeshFileChanged(const QString & meshFile) { QByteArray tdc0aec = meshFile.toUtf8(); QtDataVisualization_PackedString meshFilePacked = { const_cast<char*>(tdc0aec.prepend("WHITESPACE").constData()+10), tdc0aec.size()-10 };callbackQCustom3DItem_MeshFileChanged(this, meshFilePacked); };
 	void Signal_PositionAbsoluteChanged(bool positionAbsolute) { callbackQCustom3DItem_PositionAbsoluteChanged(this, positionAbsolute); };
 	void Signal_PositionChanged(const QVector3D & position) { callbackQCustom3DItem_PositionChanged(this, const_cast<QVector3D*>(&position)); };
@@ -5150,8 +5150,8 @@ char QCustom3DItem_IsVisible(void* ptr)
 class MyQCustom3DLabel: public QCustom3DLabel
 {
 public:
-	MyQCustom3DLabel(QObject *parent) : QCustom3DLabel(parent) {};
-	MyQCustom3DLabel(const QString &text, const QFont &font, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, QObject *parent) : QCustom3DLabel(text, font, position, scaling, rotation, parent) {};
+	MyQCustom3DLabel(QObject *parent = Q_NULLPTR) : QCustom3DLabel(parent) {};
+	MyQCustom3DLabel(const QString &text, const QFont &font, const QVector3D &position, const QVector3D &scaling, const QQuaternion &rotation, QObject *parent = Q_NULLPTR) : QCustom3DLabel(text, font, position, scaling, rotation, parent) {};
 	void Signal_BackgroundColorChanged(const QColor & color) { callbackQCustom3DLabel_BackgroundColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BackgroundEnabledChanged(bool enabled) { callbackQCustom3DLabel_BackgroundEnabledChanged(this, enabled); };
 	void Signal_BorderEnabledChanged(bool enabled) { callbackQCustom3DLabel_BorderEnabledChanged(this, enabled); };
@@ -5432,7 +5432,7 @@ char QCustom3DLabel_IsFacingCamera(void* ptr)
 class MyQCustom3DVolume: public QCustom3DVolume
 {
 public:
-	MyQCustom3DVolume(QObject *parent) : QCustom3DVolume(parent) {};
+	MyQCustom3DVolume(QObject *parent = Q_NULLPTR) : QCustom3DVolume(parent) {};
 	void Signal_AlphaMultiplierChanged(float mult) { callbackQCustom3DVolume_AlphaMultiplierChanged(this, mult); };
 	void Signal_ColorTableChanged() { callbackQCustom3DVolume_ColorTableChanged(this); };
 	void Signal_DrawSliceFramesChanged(bool enabled) { callbackQCustom3DVolume_DrawSliceFramesChanged(this, enabled); };
@@ -5962,9 +5962,9 @@ void* QCustom3DVolume___colorTable_newList(void* ptr)
 class MyQHeightMapSurfaceDataProxy: public QHeightMapSurfaceDataProxy
 {
 public:
-	MyQHeightMapSurfaceDataProxy(QObject *parent) : QHeightMapSurfaceDataProxy(parent) {};
-	MyQHeightMapSurfaceDataProxy(const QImage &image, QObject *parent) : QHeightMapSurfaceDataProxy(image, parent) {};
-	MyQHeightMapSurfaceDataProxy(const QString &filename, QObject *parent) : QHeightMapSurfaceDataProxy(filename, parent) {};
+	MyQHeightMapSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(parent) {};
+	MyQHeightMapSurfaceDataProxy(const QImage &image, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(image, parent) {};
+	MyQHeightMapSurfaceDataProxy(const QString &filename, QObject *parent = Q_NULLPTR) : QHeightMapSurfaceDataProxy(filename, parent) {};
 	void Signal_HeightMapChanged(const QImage & image) { callbackQHeightMapSurfaceDataProxy_HeightMapChanged(this, const_cast<QImage*>(&image)); };
 	void Signal_HeightMapFileChanged(const QString & filename) { QByteArray t08deae = filename.toUtf8(); QtDataVisualization_PackedString filenamePacked = { const_cast<char*>(t08deae.prepend("WHITESPACE").constData()+10), t08deae.size()-10 };callbackQHeightMapSurfaceDataProxy_HeightMapFileChanged(this, filenamePacked); };
 	void Signal_MaxXValueChanged(float value) { callbackQHeightMapSurfaceDataProxy_MaxXValueChanged(this, value); };
@@ -6265,13 +6265,13 @@ float QHeightMapSurfaceDataProxy_MinZValue(void* ptr)
 class MyQItemModelBarDataProxy: public QItemModelBarDataProxy
 {
 public:
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, QObject *parent) : QItemModelBarDataProxy(itemModel, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, QObject *parent) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, QObject *parent) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, rowCategories, columnCategories, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rowCategories, columnCategories, parent) {};
-	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &valueRole, QObject *parent) : QItemModelBarDataProxy(itemModel, valueRole, parent) {};
-	MyQItemModelBarDataProxy(QObject *parent) : QItemModelBarDataProxy(parent) {};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, parent) {};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, parent) {};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, parent) {};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QString &rotationRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rotationRole, rowCategories, columnCategories, parent) {};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &valueRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, rowRole, columnRole, valueRole, rowCategories, columnCategories, parent) {};
+	MyQItemModelBarDataProxy(QAbstractItemModel *itemModel, const QString &valueRole, QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(itemModel, valueRole, parent) {};
+	MyQItemModelBarDataProxy(QObject *parent = Q_NULLPTR) : QItemModelBarDataProxy(parent) {};
 	void Signal_AutoColumnCategoriesChanged(bool enable) { callbackQItemModelBarDataProxy_AutoColumnCategoriesChanged(this, enable); };
 	void Signal_AutoRowCategoriesChanged(bool enable) { callbackQItemModelBarDataProxy_AutoRowCategoriesChanged(this, enable); };
 	void Signal_ColumnCategoriesChanged() { callbackQItemModelBarDataProxy_ColumnCategoriesChanged(this); };
@@ -7084,10 +7084,10 @@ char QItemModelBarDataProxy_UseModelCategories(void* ptr)
 class MyQItemModelScatterDataProxy: public QItemModelScatterDataProxy
 {
 public:
-	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, QObject *parent) : QItemModelScatterDataProxy(itemModel, parent) {};
-	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, parent) {};
-	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QString &rotationRole, QObject *parent) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, rotationRole, parent) {};
-	MyQItemModelScatterDataProxy(QObject *parent) : QItemModelScatterDataProxy(parent) {};
+	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, parent) {};
+	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, parent) {};
+	MyQItemModelScatterDataProxy(QAbstractItemModel *itemModel, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QString &rotationRole, QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(itemModel, xPosRole, yPosRole, zPosRole, rotationRole, parent) {};
+	MyQItemModelScatterDataProxy(QObject *parent = Q_NULLPTR) : QItemModelScatterDataProxy(parent) {};
 	void Signal_ItemModelChanged(const QAbstractItemModel * itemModel) { callbackQItemModelScatterDataProxy_ItemModelChanged(this, const_cast<QAbstractItemModel*>(itemModel)); };
 	void Signal_RotationRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtDataVisualization_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQItemModelScatterDataProxy_RotationRoleChanged(this, rolePacked); };
 	void Signal_RotationRolePatternChanged(const QRegExp & pattern) { callbackQItemModelScatterDataProxy_RotationRolePatternChanged(this, const_cast<QRegExp*>(&pattern)); };
@@ -7611,13 +7611,13 @@ struct QtDataVisualization_PackedString QItemModelScatterDataProxy_ZPosRoleRepla
 class MyQItemModelSurfaceDataProxy: public QItemModelSurfaceDataProxy
 {
 public:
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, QObject *parent) : QItemModelSurfaceDataProxy(itemModel, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, rowCategories, columnCategories, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, QObject *parent) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, rowCategories, columnCategories, parent) {};
-	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &yPosRole, QObject *parent) : QItemModelSurfaceDataProxy(itemModel, yPosRole, parent) {};
-	MyQItemModelSurfaceDataProxy(QObject *parent) : QItemModelSurfaceDataProxy(parent) {};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, parent) {};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, parent) {};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &xPosRole, const QString &yPosRole, const QString &zPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, xPosRole, yPosRole, zPosRole, rowCategories, columnCategories, parent) {};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, parent) {};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &rowRole, const QString &columnRole, const QString &yPosRole, const QStringList &rowCategories, const QStringList &columnCategories, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, rowRole, columnRole, yPosRole, rowCategories, columnCategories, parent) {};
+	MyQItemModelSurfaceDataProxy(QAbstractItemModel *itemModel, const QString &yPosRole, QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(itemModel, yPosRole, parent) {};
+	MyQItemModelSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QItemModelSurfaceDataProxy(parent) {};
 	void Signal_AutoColumnCategoriesChanged(bool enable) { callbackQItemModelSurfaceDataProxy_AutoColumnCategoriesChanged(this, enable); };
 	void Signal_AutoRowCategoriesChanged(bool enable) { callbackQItemModelSurfaceDataProxy_AutoRowCategoriesChanged(this, enable); };
 	void Signal_ColumnCategoriesChanged() { callbackQItemModelSurfaceDataProxy_ColumnCategoriesChanged(this); };
@@ -8508,7 +8508,7 @@ char QItemModelSurfaceDataProxy_UseModelCategories(void* ptr)
 class MyQLogValue3DAxisFormatter: public QLogValue3DAxisFormatter
 {
 public:
-	MyQLogValue3DAxisFormatter(QObject *parent) : QLogValue3DAxisFormatter(parent) {};
+	MyQLogValue3DAxisFormatter(QObject *parent = Q_NULLPTR) : QLogValue3DAxisFormatter(parent) {};
 	void Signal_AutoSubGridChanged(bool enabled) { callbackQLogValue3DAxisFormatter_AutoSubGridChanged(this, enabled); };
 	void Signal_BaseChanged(qreal base) { callbackQLogValue3DAxisFormatter_BaseChanged(this, base); };
 	void Signal_ShowEdgeLabelsChanged(bool enabled) { callbackQLogValue3DAxisFormatter_ShowEdgeLabelsChanged(this, enabled); };
@@ -8644,8 +8644,8 @@ double QLogValue3DAxisFormatter_Base(void* ptr)
 class MyQScatter3DSeries: public QScatter3DSeries
 {
 public:
-	MyQScatter3DSeries(QObject *parent) : QScatter3DSeries(parent) {};
-	MyQScatter3DSeries(QScatterDataProxy *dataProxy, QObject *parent) : QScatter3DSeries(dataProxy, parent) {};
+	MyQScatter3DSeries(QObject *parent = Q_NULLPTR) : QScatter3DSeries(parent) {};
+	MyQScatter3DSeries(QScatterDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QScatter3DSeries(dataProxy, parent) {};
 	void Signal_DataProxyChanged(QScatterDataProxy * proxy) { callbackQScatter3DSeries_DataProxyChanged(this, proxy); };
 	void Signal_ItemSizeChanged(float size) { callbackQScatter3DSeries_ItemSizeChanged(this, size); };
 	void Signal_SelectedItemChanged(int index) { callbackQScatter3DSeries_SelectedItemChanged(this, index); };
@@ -8902,7 +8902,7 @@ float QScatterDataItem_Z(void* ptr)
 class MyQScatterDataProxy: public QScatterDataProxy
 {
 public:
-	MyQScatterDataProxy(QObject *parent) : QScatterDataProxy(parent) {};
+	MyQScatterDataProxy(QObject *parent = Q_NULLPTR) : QScatterDataProxy(parent) {};
 	void Signal_ArrayReset() { callbackQScatterDataProxy_ArrayReset(this); };
 	void Signal_ItemCountChanged(int count) { callbackQScatterDataProxy_ItemCountChanged(this, count); };
 	void Signal_ItemsAdded(int startIndex, int count) { callbackQScatterDataProxy_ItemsAdded(this, startIndex, count); };
@@ -9107,8 +9107,8 @@ int QScatterDataProxy_ItemCount(void* ptr)
 class MyQSurface3DSeries: public QSurface3DSeries
 {
 public:
-	MyQSurface3DSeries(QObject *parent) : QSurface3DSeries(parent) {};
-	MyQSurface3DSeries(QSurfaceDataProxy *dataProxy, QObject *parent) : QSurface3DSeries(dataProxy, parent) {};
+	MyQSurface3DSeries(QObject *parent = Q_NULLPTR) : QSurface3DSeries(parent) {};
+	MyQSurface3DSeries(QSurfaceDataProxy *dataProxy, QObject *parent = Q_NULLPTR) : QSurface3DSeries(dataProxy, parent) {};
 	void Signal_SelectedPointChanged(const QPoint & position) { callbackQSurface3DSeries_SelectedPointChanged(this, const_cast<QPoint*>(&position)); };
 	void Signal_DataProxyChanged(QSurfaceDataProxy * proxy) { callbackQSurface3DSeries_DataProxyChanged(this, proxy); };
 	void Signal_DrawModeChanged(QSurface3DSeries::DrawFlags mode) { callbackQSurface3DSeries_DrawModeChanged(this, mode); };
@@ -9449,7 +9449,7 @@ float QSurfaceDataItem_Z(void* ptr)
 class MyQSurfaceDataProxy: public QSurfaceDataProxy
 {
 public:
-	MyQSurfaceDataProxy(QObject *parent) : QSurfaceDataProxy(parent) {};
+	MyQSurfaceDataProxy(QObject *parent = Q_NULLPTR) : QSurfaceDataProxy(parent) {};
 	void Signal_ArrayReset() { callbackQSurfaceDataProxy_ArrayReset(this); };
 	void Signal_ColumnCountChanged(int count) { callbackQSurfaceDataProxy_ColumnCountChanged(this, count); };
 	void Signal_ItemChanged(int rowIndex, int columnIndex) { callbackQSurfaceDataProxy_ItemChanged(this, rowIndex, columnIndex); };
@@ -9691,7 +9691,7 @@ int QSurfaceDataProxy_RowCount(void* ptr)
 class MyQTouch3DInputHandler: public QTouch3DInputHandler
 {
 public:
-	MyQTouch3DInputHandler(QObject *parent) : QTouch3DInputHandler(parent) {};
+	MyQTouch3DInputHandler(QObject *parent = Q_NULLPTR) : QTouch3DInputHandler(parent) {};
 	void touchEvent(QTouchEvent * event) { callbackQTouch3DInputHandler_TouchEvent(this, event); };
 	 ~MyQTouch3DInputHandler() { callbackQTouch3DInputHandler_DestroyQTouch3DInputHandler(this); };
 };
@@ -9760,7 +9760,7 @@ void QTouch3DInputHandler_DestroyQTouch3DInputHandlerDefault(void* ptr)
 class MyQValue3DAxis: public QValue3DAxis
 {
 public:
-	MyQValue3DAxis(QObject *parent) : QValue3DAxis(parent) {};
+	MyQValue3DAxis(QObject *parent = Q_NULLPTR) : QValue3DAxis(parent) {};
 	void Signal_FormatterChanged(QValue3DAxisFormatter * formatter) { callbackQValue3DAxis_FormatterChanged(this, formatter); };
 	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQValue3DAxis_LabelFormatChanged(this, formatPacked); };
 	void Signal_ReversedChanged(bool enable) { callbackQValue3DAxis_ReversedChanged(this, enable); };
@@ -9948,7 +9948,7 @@ int QValue3DAxis_SubSegmentCount(void* ptr)
 class MyQValue3DAxisFormatter: public QValue3DAxisFormatter
 {
 public:
-	MyQValue3DAxisFormatter(QObject *parent) : QValue3DAxisFormatter(parent) {};
+	MyQValue3DAxisFormatter(QObject *parent = Q_NULLPTR) : QValue3DAxisFormatter(parent) {};
 	void recalculate() { callbackQValue3DAxisFormatter_Recalculate(this); };
 	 ~MyQValue3DAxisFormatter() { callbackQValue3DAxisFormatter_DestroyQValue3DAxisFormatter(this); };
 	QString stringForValue(qreal value, const QString & format) const { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return QString(callbackQValue3DAxisFormatter_StringForValue(const_cast<void*>(static_cast<const void*>(this)), value, formatPacked)); };

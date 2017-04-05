@@ -43,7 +43,7 @@
 class MyQScriptEngineDebugger: public QScriptEngineDebugger
 {
 public:
-	MyQScriptEngineDebugger(QObject *parent) : QScriptEngineDebugger(parent) {};
+	MyQScriptEngineDebugger(QObject *parent = Q_NULLPTR) : QScriptEngineDebugger(parent) {};
 	void Signal_EvaluationResumed() { callbackQScriptEngineDebugger_EvaluationResumed(this); };
 	void Signal_EvaluationSuspended() { callbackQScriptEngineDebugger_EvaluationSuspended(this); };
 	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, e) != 0; };

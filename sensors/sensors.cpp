@@ -106,7 +106,7 @@
 class MyQAccelerometer: public QAccelerometer
 {
 public:
-	MyQAccelerometer(QObject *parent) : QAccelerometer(parent) {};
+	MyQAccelerometer(QObject *parent = Q_NULLPTR) : QAccelerometer(parent) {};
 	void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode) { callbackQAccelerometer_AccelerationModeChanged(this, accelerationMode); };
 	 ~MyQAccelerometer() { callbackQAccelerometer_DestroyQAccelerometer(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -284,7 +284,7 @@ double QAccelerometerReading_Z(void* ptr)
 class MyQAltimeter: public QAltimeter
 {
 public:
-	MyQAltimeter(QObject *parent) : QAltimeter(parent) {};
+	MyQAltimeter(QObject *parent = Q_NULLPTR) : QAltimeter(parent) {};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -447,7 +447,7 @@ long long QAmbientLightReading_LightLevel(void* ptr)
 class MyQAmbientLightSensor: public QAmbientLightSensor
 {
 public:
-	MyQAmbientLightSensor(QObject *parent) : QAmbientLightSensor(parent) {};
+	MyQAmbientLightSensor(QObject *parent = Q_NULLPTR) : QAmbientLightSensor(parent) {};
 	 ~MyQAmbientLightSensor() { callbackQAmbientLightSensor_DestroyQAmbientLightSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -579,7 +579,7 @@ double QAmbientTemperatureReading_Temperature(void* ptr)
 class MyQAmbientTemperatureSensor: public QAmbientTemperatureSensor
 {
 public:
-	MyQAmbientTemperatureSensor(QObject *parent) : QAmbientTemperatureSensor(parent) {};
+	MyQAmbientTemperatureSensor(QObject *parent = Q_NULLPTR) : QAmbientTemperatureSensor(parent) {};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -668,7 +668,7 @@ struct QtSensors_PackedString QAmbientTemperatureSensor_QAmbientTemperatureSenso
 class MyQCompass: public QCompass
 {
 public:
-	MyQCompass(QObject *parent) : QCompass(parent) {};
+	MyQCompass(QObject *parent = Q_NULLPTR) : QCompass(parent) {};
 	 ~MyQCompass() { callbackQCompass_DestroyQCompass(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -847,7 +847,7 @@ double QDistanceReading_Distance(void* ptr)
 class MyQDistanceSensor: public QDistanceSensor
 {
 public:
-	MyQDistanceSensor(QObject *parent) : QDistanceSensor(parent) {};
+	MyQDistanceSensor(QObject *parent = Q_NULLPTR) : QDistanceSensor(parent) {};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -936,7 +936,7 @@ struct QtSensors_PackedString QDistanceSensor_QDistanceSensor_Type()
 class MyQGyroscope: public QGyroscope
 {
 public:
-	MyQGyroscope(QObject *parent) : QGyroscope(parent) {};
+	MyQGyroscope(QObject *parent = Q_NULLPTR) : QGyroscope(parent) {};
 	 ~MyQGyroscope() { callbackQGyroscope_DestroyQGyroscope(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -1125,7 +1125,7 @@ char QHolsterReading_Holstered(void* ptr)
 class MyQHolsterSensor: public QHolsterSensor
 {
 public:
-	MyQHolsterSensor(QObject *parent) : QHolsterSensor(parent) {};
+	MyQHolsterSensor(QObject *parent = Q_NULLPTR) : QHolsterSensor(parent) {};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1251,7 +1251,7 @@ double QIRProximityReading_Reflectance(void* ptr)
 class MyQIRProximitySensor: public QIRProximitySensor
 {
 public:
-	MyQIRProximitySensor(QObject *parent) : QIRProximitySensor(parent) {};
+	MyQIRProximitySensor(QObject *parent = Q_NULLPTR) : QIRProximitySensor(parent) {};
 	 ~MyQIRProximitySensor() { callbackQIRProximitySensor_DestroyQIRProximitySensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -1383,7 +1383,7 @@ double QLightReading_Lux(void* ptr)
 class MyQLightSensor: public QLightSensor
 {
 public:
-	MyQLightSensor(QObject *parent) : QLightSensor(parent) {};
+	MyQLightSensor(QObject *parent = Q_NULLPTR) : QLightSensor(parent) {};
 	void Signal_FieldOfViewChanged(qreal fieldOfView) { callbackQLightSensor_FieldOfViewChanged(this, fieldOfView); };
 	 ~MyQLightSensor() { callbackQLightSensor_DestroyQLightSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -1504,7 +1504,7 @@ struct QtSensors_PackedString QLightSensor_QLightSensor_Type()
 class MyQMagnetometer: public QMagnetometer
 {
 public:
-	MyQMagnetometer(QObject *parent) : QMagnetometer(parent) {};
+	MyQMagnetometer(QObject *parent = Q_NULLPTR) : QMagnetometer(parent) {};
 	void Signal_ReturnGeoValuesChanged(bool returnGeoValues) { callbackQMagnetometer_ReturnGeoValuesChanged(this, returnGeoValues); };
 	 ~MyQMagnetometer() { callbackQMagnetometer_DestroyQMagnetometer(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -1729,7 +1729,7 @@ long long QOrientationReading_Orientation(void* ptr)
 class MyQOrientationSensor: public QOrientationSensor
 {
 public:
-	MyQOrientationSensor(QObject *parent) : QOrientationSensor(parent) {};
+	MyQOrientationSensor(QObject *parent = Q_NULLPTR) : QOrientationSensor(parent) {};
 	 ~MyQOrientationSensor() { callbackQOrientationSensor_DestroyQOrientationSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -1871,7 +1871,7 @@ double QPressureReading_Temperature(void* ptr)
 class MyQPressureSensor: public QPressureSensor
 {
 public:
-	MyQPressureSensor(QObject *parent) : QPressureSensor(parent) {};
+	MyQPressureSensor(QObject *parent = Q_NULLPTR) : QPressureSensor(parent) {};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1997,7 +1997,7 @@ char QProximityReading_Close(void* ptr)
 class MyQProximitySensor: public QProximitySensor
 {
 public:
-	MyQProximitySensor(QObject *parent) : QProximitySensor(parent) {};
+	MyQProximitySensor(QObject *parent = Q_NULLPTR) : QProximitySensor(parent) {};
 	 ~MyQProximitySensor() { callbackQProximitySensor_DestroyQProximitySensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -2139,7 +2139,7 @@ double QRotationReading_Z(void* ptr)
 class MyQRotationSensor: public QRotationSensor
 {
 public:
-	MyQRotationSensor(QObject *parent) : QRotationSensor(parent) {};
+	MyQRotationSensor(QObject *parent = Q_NULLPTR) : QRotationSensor(parent) {};
 	void Signal_HasZChanged(bool hasZ) { callbackQRotationSensor_HasZChanged(this, hasZ); };
 	 ~MyQRotationSensor() { callbackQRotationSensor_DestroyQRotationSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -2260,7 +2260,7 @@ struct QtSensors_PackedString QRotationSensor_QRotationSensor_Type()
 class MyQSensor: public QSensor
 {
 public:
-	MyQSensor(const QByteArray &type, QObject *parent) : QSensor(type, parent) {};
+	MyQSensor(const QByteArray &type, QObject *parent = Q_NULLPTR) : QSensor(type, parent) {};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -3591,7 +3591,7 @@ void QSensorFilter_SetM_sensor(void* ptr, void* vqs)
 class MyQSensorGesture: public QSensorGesture
 {
 public:
-	MyQSensorGesture(const QStringList &ids, QObject *parent) : QSensorGesture(ids, parent) {};
+	MyQSensorGesture(const QStringList &ids, QObject *parent = Q_NULLPTR) : QSensorGesture(ids, parent) {};
 	#ifdef Q_QDOC
 		void Signal_Detected(QString gestureId) { QByteArray t7bc790 = gestureId.toUtf8(); QtSensors_PackedString gestureIdPacked = { const_cast<char*>(t7bc790.prepend("WHITESPACE").constData()+10), t7bc790.size()-10 };callbackQSensorGesture_Detected(this, gestureIdPacked); };
 	#endif
@@ -3828,7 +3828,7 @@ void* QSensorGesture_MetaObjectDefault(void* ptr)
 class MyQSensorGestureManager: public QSensorGestureManager
 {
 public:
-	MyQSensorGestureManager(QObject *parent) : QSensorGestureManager(parent) {};
+	MyQSensorGestureManager(QObject *parent = Q_NULLPTR) : QSensorGestureManager(parent) {};
 	void Signal_NewSensorGestureAvailable() { callbackQSensorGestureManager_NewSensorGestureAvailable(this); };
 	bool event(QEvent * e) { return callbackQSensorGestureManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorGestureManager_EventFilter(this, watched, event) != 0; };
@@ -4102,7 +4102,7 @@ void* QSensorGesturePluginInterface___createRecognizers_newList(void* ptr)
 class MyQSensorGestureRecognizer: public QSensorGestureRecognizer
 {
 public:
-	MyQSensorGestureRecognizer(QObject *parent) : QSensorGestureRecognizer(parent) {};
+	MyQSensorGestureRecognizer(QObject *parent = Q_NULLPTR) : QSensorGestureRecognizer(parent) {};
 	bool isActive() { return callbackQSensorGestureRecognizer_IsActive(this) != 0; };
 	bool start() { return callbackQSensorGestureRecognizer_Start(this) != 0; };
 	bool stop() { return callbackQSensorGestureRecognizer_Stop(this) != 0; };
@@ -4920,7 +4920,7 @@ char QTapReading_IsDoubleTap(void* ptr)
 class MyQTapSensor: public QTapSensor
 {
 public:
-	MyQTapSensor(QObject *parent) : QTapSensor(parent) {};
+	MyQTapSensor(QObject *parent = Q_NULLPTR) : QTapSensor(parent) {};
 	void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents) { callbackQTapSensor_ReturnDoubleTapEventsChanged(this, returnDoubleTapEvents); };
 	 ~MyQTapSensor() { callbackQTapSensor_DestroyQTapSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -5088,7 +5088,7 @@ double QTiltReading_YRotation(void* ptr)
 class MyQTiltSensor: public QTiltSensor
 {
 public:
-	MyQTiltSensor(QObject *parent) : QTiltSensor(parent) {};
+	MyQTiltSensor(QObject *parent = Q_NULLPTR) : QTiltSensor(parent) {};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };

@@ -46,7 +46,7 @@
 class MyQUiLoader: public QUiLoader
 {
 public:
-	MyQUiLoader(QObject *parent) : QUiLoader(parent) {};
+	MyQUiLoader(QObject *parent = Q_NULLPTR) : QUiLoader(parent) {};
 	QAction * createAction(QObject * parent, const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QAction*>(callbackQUiLoader_CreateAction(this, parent, namePacked)); };
 	QActionGroup * createActionGroup(QObject * parent, const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, parent, namePacked)); };
 	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { QByteArray td80a05 = className.toUtf8(); QtUiTools_PackedString classNamePacked = { const_cast<char*>(td80a05.prepend("WHITESPACE").constData()+10), td80a05.size()-10 };QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, classNamePacked, parent, namePacked)); };

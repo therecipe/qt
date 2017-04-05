@@ -212,7 +212,7 @@ void* QCanBus_MetaObjectDefault(void* ptr)
 class MyQCanBusDevice: public QCanBusDevice
 {
 public:
-	MyQCanBusDevice(QObject *parent) : QCanBusDevice(parent) {};
+	MyQCanBusDevice(QObject *parent = nullptr) : QCanBusDevice(parent) {};
 	QString interpretErrorFrame(const QCanBusFrame & frame) { return QString(callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&frame))); };
 	bool open() { return callbackQCanBusDevice_Open(this) != 0; };
 	bool waitForFramesReceived(int msecs) { return callbackQCanBusDevice_WaitForFramesReceived(this, msecs) != 0; };
@@ -752,7 +752,7 @@ unsigned int QCanBusFrame_FrameId(void* ptr)
 class MyQModbusClient: public QModbusClient
 {
 public:
-	MyQModbusClient(QObject *parent) : QModbusClient(parent) {};
+	MyQModbusClient(QObject *parent = nullptr) : QModbusClient(parent) {};
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -1056,7 +1056,7 @@ void* QModbusDataUnit___values_newList(void* ptr)
 class MyQModbusDevice: public QModbusDevice
 {
 public:
-	MyQModbusDevice(QObject *parent) : QModbusDevice(parent) {};
+	MyQModbusDevice(QObject *parent = nullptr) : QModbusDevice(parent) {};
 	bool open() { return callbackQModbusDevice_Open(this) != 0; };
 	void close() { callbackQModbusDevice_Close(this); };
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
@@ -1656,7 +1656,7 @@ void* QModbusPdu___encode_vector_newList2(void* ptr)
 class MyQModbusReply: public QModbusReply
 {
 public:
-	MyQModbusReply(ReplyType type, int serverAddress, QObject *parent) : QModbusReply(type, serverAddress, parent) {};
+	MyQModbusReply(ReplyType type, int serverAddress, QObject *parent = nullptr) : QModbusReply(type, serverAddress, parent) {};
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusReply_ErrorOccurred(this, error); };
 	void Signal_Finished() { callbackQModbusReply_Finished(this); };
 	bool event(QEvent * e) { return callbackQModbusReply_Event(this, e) != 0; };
@@ -1902,7 +1902,7 @@ class MyQModbusRequest: public QModbusRequest
 {
 public:
 	MyQModbusRequest() : QModbusRequest() {};
-	MyQModbusRequest(FunctionCode code, const QByteArray &data) : QModbusRequest(code, data) {};
+	MyQModbusRequest(FunctionCode code, const QByteArray &data = QByteArray()) : QModbusRequest(code, data) {};
 	MyQModbusRequest(const QModbusPdu &pdu) : QModbusRequest(pdu) {};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 };
@@ -1936,7 +1936,7 @@ class MyQModbusResponse: public QModbusResponse
 {
 public:
 	MyQModbusResponse() : QModbusResponse() {};
-	MyQModbusResponse(FunctionCode code, const QByteArray &data) : QModbusResponse(code, data) {};
+	MyQModbusResponse(FunctionCode code, const QByteArray &data = QByteArray()) : QModbusResponse(code, data) {};
 	MyQModbusResponse(const QModbusPdu &pdu) : QModbusResponse(pdu) {};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 };
@@ -1969,7 +1969,7 @@ int QModbusResponse_QModbusResponse_MinimumDataSize(void* response)
 class MyQModbusRtuSerialMaster: public QModbusRtuSerialMaster
 {
 public:
-	MyQModbusRtuSerialMaster(QObject *parent) : QModbusRtuSerialMaster(parent) {};
+	MyQModbusRtuSerialMaster(QObject *parent = nullptr) : QModbusRtuSerialMaster(parent) {};
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -2044,7 +2044,7 @@ int QModbusRtuSerialMaster_InterFrameDelay(void* ptr)
 class MyQModbusRtuSerialSlave: public QModbusRtuSerialSlave
 {
 public:
-	MyQModbusRtuSerialSlave(QObject *parent) : QModbusRtuSerialSlave(parent) {};
+	MyQModbusRtuSerialSlave(QObject *parent = nullptr) : QModbusRtuSerialSlave(parent) {};
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	
@@ -2120,7 +2120,7 @@ void QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(void* ptr)
 class MyQModbusServer: public QModbusServer
 {
 public:
-	MyQModbusServer(QObject *parent) : QModbusServer(parent) {};
+	MyQModbusServer(QObject *parent = nullptr) : QModbusServer(parent) {};
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
@@ -2379,7 +2379,7 @@ void QModbusServer_CloseDefault(void* ptr)
 class MyQModbusTcpClient: public QModbusTcpClient
 {
 public:
-	MyQModbusTcpClient(QObject *parent) : QModbusTcpClient(parent) {};
+	MyQModbusTcpClient(QObject *parent = nullptr) : QModbusTcpClient(parent) {};
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -2449,7 +2449,7 @@ void QModbusTcpClient_DestroyQModbusTcpClient(void* ptr)
 class MyQModbusTcpServer: public QModbusTcpServer
 {
 public:
-	MyQModbusTcpServer(QObject *parent) : QModbusTcpServer(parent) {};
+	MyQModbusTcpServer(QObject *parent = nullptr) : QModbusTcpServer(parent) {};
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };

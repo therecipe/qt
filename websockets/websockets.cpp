@@ -54,7 +54,7 @@
 class MyQMaskGenerator: public QMaskGenerator
 {
 public:
-	MyQMaskGenerator(QObject *parent) : QMaskGenerator(parent) {};
+	MyQMaskGenerator(QObject *parent = Q_NULLPTR) : QMaskGenerator(parent) {};
 	bool seed() { return callbackQMaskGenerator_Seed(this) != 0; };
 	quint32 nextMask() { return callbackQMaskGenerator_NextMask(this); };
 	 ~MyQMaskGenerator() { callbackQMaskGenerator_DestroyQMaskGenerator(this); };
@@ -255,7 +255,7 @@ void* QMaskGenerator_MetaObjectDefault(void* ptr)
 class MyQWebSocket: public QWebSocket
 {
 public:
-	MyQWebSocket(const QString &origin, QWebSocketProtocol::Version version, QObject *parent) : QWebSocket(origin, version, parent) {};
+	MyQWebSocket(const QString &origin = QString(), QWebSocketProtocol::Version version = QWebSocketProtocol::VersionLatest, QObject *parent = Q_NULLPTR) : QWebSocket(origin, version, parent) {};
 	void Signal_AboutToClose() { callbackQWebSocket_AboutToClose(this); };
 	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, const_cast<QByteArray*>(&frame), isLastFrame); };
 	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, const_cast<QByteArray*>(&message)); };
@@ -969,7 +969,7 @@ char QWebSocketCorsAuthenticator_Allowed(void* ptr)
 class MyQWebSocketServer: public QWebSocketServer
 {
 public:
-	MyQWebSocketServer(const QString &serverName, SslMode secureMode, QObject *parent) : QWebSocketServer(serverName, secureMode, parent) {};
+	MyQWebSocketServer(const QString &serverName, SslMode secureMode, QObject *parent = Q_NULLPTR) : QWebSocketServer(serverName, secureMode, parent) {};
 	QWebSocket * nextPendingConnection() { return static_cast<QWebSocket*>(callbackQWebSocketServer_NextPendingConnection(this)); };
 	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQWebSocketServer_AcceptError(this, socketError); };
 	void Signal_Closed() { callbackQWebSocketServer_Closed(this); };

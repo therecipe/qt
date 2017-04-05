@@ -311,7 +311,7 @@ void QAbstractVideoBuffer_SetM_type(void* ptr, long long vha)
 class MyQAbstractVideoFilter: public QAbstractVideoFilter
 {
 public:
-	MyQAbstractVideoFilter(QObject *parent) : QAbstractVideoFilter(parent) {};
+	MyQAbstractVideoFilter(QObject *parent = Q_NULLPTR) : QAbstractVideoFilter(parent) {};
 	QVideoFilterRunnable * createFilterRunnable() { return static_cast<QVideoFilterRunnable*>(callbackQAbstractVideoFilter_CreateFilterRunnable(this)); };
 	void Signal_ActiveChanged() { callbackQAbstractVideoFilter_ActiveChanged(this); };
 	bool event(QEvent * e) { return callbackQAbstractVideoFilter_Event(this, e) != 0; };
@@ -591,7 +591,7 @@ void* QAbstractVideoFilter_MetaObjectDefault(void* ptr)
 class MyQAbstractVideoSurface: public QAbstractVideoSurface
 {
 public:
-	MyQAbstractVideoSurface(QObject *parent) : QAbstractVideoSurface(parent) {};
+	MyQAbstractVideoSurface(QObject *parent = Q_NULLPTR) : QAbstractVideoSurface(parent) {};
 	void stop() { callbackQAbstractVideoSurface_Stop(this); };
 	bool present(const QVideoFrame & frame) { return callbackQAbstractVideoSurface_Present(this, const_cast<QVideoFrame*>(&frame)) != 0; };
 	bool start(const QVideoSurfaceFormat & format) { return callbackQAbstractVideoSurface_Start(this, const_cast<QVideoSurfaceFormat*>(&format)) != 0; };
@@ -1104,7 +1104,7 @@ long long QAudioBuffer_StartTime(void* ptr)
 class MyQAudioDecoder: public QAudioDecoder
 {
 public:
-	MyQAudioDecoder(QObject *parent) : QAudioDecoder(parent) {};
+	MyQAudioDecoder(QObject *parent = Q_NULLPTR) : QAudioDecoder(parent) {};
 	void Signal_BufferAvailableChanged(bool available) { callbackQAudioDecoder_BufferAvailableChanged(this, available); };
 	void Signal_BufferReady() { callbackQAudioDecoder_BufferReady(this); };
 	void Signal_DurationChanged(qint64 duration) { callbackQAudioDecoder_DurationChanged(this, duration); };
@@ -1414,7 +1414,7 @@ long long QAudioDecoder_Position(void* ptr)
 class MyQAudioDecoderControl: public QAudioDecoderControl
 {
 public:
-	MyQAudioDecoderControl(QObject *parent) : QAudioDecoderControl(parent) {};
+	MyQAudioDecoderControl(QObject *parent = Q_NULLPTR) : QAudioDecoderControl(parent) {};
 	QAudioBuffer read() { return *static_cast<QAudioBuffer*>(callbackQAudioDecoderControl_Read(this)); };
 	void Signal_BufferAvailableChanged(bool available) { callbackQAudioDecoderControl_BufferAvailableChanged(this, available); };
 	void Signal_BufferReady() { callbackQAudioDecoderControl_BufferReady(this); };
@@ -2044,7 +2044,7 @@ void* QAudioEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 class MyQAudioEncoderSettingsControl: public QAudioEncoderSettingsControl
 {
 public:
-	MyQAudioEncoderSettingsControl(QObject *parent) : QAudioEncoderSettingsControl(parent) {};
+	MyQAudioEncoderSettingsControl(QObject *parent = Q_NULLPTR) : QAudioEncoderSettingsControl(parent) {};
 	void setAudioSettings(const QAudioEncoderSettings & settings) { callbackQAudioEncoderSettingsControl_SetAudioSettings(this, const_cast<QAudioEncoderSettings*>(&settings)); };
 	 ~MyQAudioEncoderSettingsControl() { callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(this); };
 	QAudioEncoderSettings audioSettings() const { return *static_cast<QAudioEncoderSettings*>(callbackQAudioEncoderSettingsControl_AudioSettings(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -2273,8 +2273,8 @@ long long QAudioFormat_DurationForFrames(void* ptr, int frameCount)
 class MyQAudioInput: public QAudioInput
 {
 public:
-	MyQAudioInput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format, QObject *parent) : QAudioInput(audioDevice, format, parent) {};
-	MyQAudioInput(const QAudioFormat &format, QObject *parent) : QAudioInput(format, parent) {};
+	MyQAudioInput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioInput(audioDevice, format, parent) {};
+	MyQAudioInput(const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioInput(format, parent) {};
 	void Signal_StateChanged(QAudio::State state) { callbackQAudioInput_StateChanged(this, state); };
 	bool event(QEvent * e) { return callbackQAudioInput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioInput_EventFilter(this, watched, event) != 0; };
@@ -2777,8 +2777,8 @@ void* QAudioInputSelectorControl___availableInputs_newList(void* ptr)
 class MyQAudioOutput: public QAudioOutput
 {
 public:
-	MyQAudioOutput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format, QObject *parent) : QAudioOutput(audioDevice, format, parent) {};
-	MyQAudioOutput(const QAudioFormat &format, QObject *parent) : QAudioOutput(format, parent) {};
+	MyQAudioOutput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioOutput(audioDevice, format, parent) {};
+	MyQAudioOutput(const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioOutput(format, parent) {};
 	void Signal_StateChanged(QAudio::State state) { callbackQAudioOutput_StateChanged(this, state); };
 	bool event(QEvent * e) { return callbackQAudioOutput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioOutput_EventFilter(this, watched, event) != 0; };
@@ -3291,7 +3291,7 @@ void* QAudioOutputSelectorControl___availableOutputs_newList(void* ptr)
 class MyQAudioProbe: public QAudioProbe
 {
 public:
-	MyQAudioProbe(QObject *parent) : QAudioProbe(parent) {};
+	MyQAudioProbe(QObject *parent = Q_NULLPTR) : QAudioProbe(parent) {};
 	void Signal_AudioBufferProbed(const QAudioBuffer & buffer) { callbackQAudioProbe_AudioBufferProbed(this, const_cast<QAudioBuffer*>(&buffer)); };
 	void Signal_Flush() { callbackQAudioProbe_Flush(this); };
 	bool event(QEvent * e) { return callbackQAudioProbe_Event(this, e) != 0; };
@@ -3591,7 +3591,7 @@ void* QAudioProbe_MetaObjectDefault(void* ptr)
 class MyQAudioRecorder: public QAudioRecorder
 {
 public:
-	MyQAudioRecorder(QObject *parent) : QAudioRecorder(parent) {};
+	MyQAudioRecorder(QObject *parent = Q_NULLPTR) : QAudioRecorder(parent) {};
 	void Signal_AudioInputChanged(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioRecorder_AudioInputChanged(this, namePacked); };
 	void Signal_AvailableAudioInputsChanged() { callbackQAudioRecorder_AvailableAudioInputsChanged(this); };
 	void setAudioInput(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioRecorder_SetAudioInput(this, namePacked); };
@@ -3737,7 +3737,7 @@ struct QtMultimedia_PackedString QAudioRecorder_AudioInputs(void* ptr)
 class MyQAudioRoleControl: public QAudioRoleControl
 {
 public:
-	MyQAudioRoleControl(QObject *parent) : QAudioRoleControl(parent) {};
+	MyQAudioRoleControl(QObject *parent = Q_NULLPTR) : QAudioRoleControl(parent) {};
 	void Signal_AudioRoleChanged(QAudio::Role role) { callbackQAudioRoleControl_AudioRoleChanged(this, role); };
 	void setAudioRole(QAudio::Role role) { callbackQAudioRoleControl_SetAudioRole(this, role); };
 	 ~MyQAudioRoleControl() { callbackQAudioRoleControl_DestroyQAudioRoleControl(this); };
@@ -3855,10 +3855,10 @@ void* QAudioRoleControl___supportedAudioRoles_newList(void* ptr)
 class MyQCamera: public QCamera
 {
 public:
-	MyQCamera(QCamera::Position position, QObject *parent) : QCamera(position, parent) {};
-	MyQCamera(QObject *parent) : QCamera(parent) {};
-	MyQCamera(const QByteArray &deviceName, QObject *parent) : QCamera(deviceName, parent) {};
-	MyQCamera(const QCameraInfo &cameraInfo, QObject *parent) : QCamera(cameraInfo, parent) {};
+	MyQCamera(QCamera::Position position, QObject *parent = Q_NULLPTR) : QCamera(position, parent) {};
+	MyQCamera(QObject *parent = Q_NULLPTR) : QCamera(parent) {};
+	MyQCamera(const QByteArray &deviceName, QObject *parent = Q_NULLPTR) : QCamera(deviceName, parent) {};
+	MyQCamera(const QCameraInfo &cameraInfo, QObject *parent = Q_NULLPTR) : QCamera(cameraInfo, parent) {};
 	void Signal_CaptureModeChanged(QCamera::CaptureModes mode) { callbackQCamera_CaptureModeChanged(this, mode); };
 	void Signal_Error2(QCamera::Error value) { callbackQCamera_Error2(this, value); };
 	void load() { callbackQCamera_Load(this); };
@@ -4447,7 +4447,7 @@ void* QCamera___supportedViewfinderPixelFormats_newList(void* ptr)
 class MyQCameraCaptureBufferFormatControl: public QCameraCaptureBufferFormatControl
 {
 public:
-	MyQCameraCaptureBufferFormatControl(QObject *parent) : QCameraCaptureBufferFormatControl(parent) {};
+	MyQCameraCaptureBufferFormatControl(QObject *parent = Q_NULLPTR) : QCameraCaptureBufferFormatControl(parent) {};
 	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraCaptureBufferFormatControl_BufferFormatChanged(this, format); };
 	void setBufferFormat(QVideoFrame::PixelFormat format) { callbackQCameraCaptureBufferFormatControl_SetBufferFormat(this, format); };
 	QList<QVideoFrame::PixelFormat> supportedBufferFormats() const { return *static_cast<QList<QVideoFrame::PixelFormat>*>(callbackQCameraCaptureBufferFormatControl_SupportedBufferFormats(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -4559,7 +4559,7 @@ void* QCameraCaptureBufferFormatControl___supportedBufferFormats_newList(void* p
 class MyQCameraCaptureDestinationControl: public QCameraCaptureDestinationControl
 {
 public:
-	MyQCameraCaptureDestinationControl(QObject *parent) : QCameraCaptureDestinationControl(parent) {};
+	MyQCameraCaptureDestinationControl(QObject *parent = Q_NULLPTR) : QCameraCaptureDestinationControl(parent) {};
 	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraCaptureDestinationControl_CaptureDestinationChanged(this, destination); };
 	void setCaptureDestination(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraCaptureDestinationControl_SetCaptureDestination(this, destination); };
 	QCameraImageCapture::CaptureDestinations captureDestination() const { return static_cast<QCameraImageCapture::CaptureDestination>(callbackQCameraCaptureDestinationControl_CaptureDestination(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -4656,7 +4656,7 @@ char QCameraCaptureDestinationControl_IsCaptureDestinationSupported(void* ptr, l
 class MyQCameraControl: public QCameraControl
 {
 public:
-	MyQCameraControl(QObject *parent) : QCameraControl(parent) {};
+	MyQCameraControl(QObject *parent = Q_NULLPTR) : QCameraControl(parent) {};
 	void Signal_CaptureModeChanged(QCamera::CaptureModes mode) { callbackQCameraControl_CaptureModeChanged(this, mode); };
 	void Signal_Error(int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQCameraControl_Error(this, error, errorStringPacked); };
 	void setCaptureMode(QCamera::CaptureModes mode) { callbackQCameraControl_SetCaptureMode(this, mode); };
@@ -5398,7 +5398,7 @@ void* QCameraExposure_MetaObjectDefault(void* ptr)
 class MyQCameraExposureControl: public QCameraExposureControl
 {
 public:
-	MyQCameraExposureControl(QObject *parent) : QCameraExposureControl(parent) {};
+	MyQCameraExposureControl(QObject *parent = Q_NULLPTR) : QCameraExposureControl(parent) {};
 	bool setValue(QCameraExposureControl::ExposureParameter parameter, const QVariant & value) { return callbackQCameraExposureControl_SetValue(this, parameter, const_cast<QVariant*>(&value)) != 0; };
 	void Signal_ActualValueChanged(int parameter) { callbackQCameraExposureControl_ActualValueChanged(this, parameter); };
 	void Signal_ParameterRangeChanged(int parameter) { callbackQCameraExposureControl_ParameterRangeChanged(this, parameter); };
@@ -5554,7 +5554,7 @@ void* QCameraExposureControl___supportedParameterRange_newList(void* ptr)
 class MyQCameraFeedbackControl: public QCameraFeedbackControl
 {
 public:
-	MyQCameraFeedbackControl(QObject *parent) : QCameraFeedbackControl(parent) {};
+	MyQCameraFeedbackControl(QObject *parent = Q_NULLPTR) : QCameraFeedbackControl(parent) {};
 	bool setEventFeedbackEnabled(QCameraFeedbackControl::EventType event, bool enabled) { return callbackQCameraFeedbackControl_SetEventFeedbackEnabled(this, event, enabled) != 0; };
 	bool setEventFeedbackSound(QCameraFeedbackControl::EventType event, const QString & filePath) { QByteArray t7df503 = filePath.toUtf8(); QtMultimedia_PackedString filePathPacked = { const_cast<char*>(t7df503.prepend("WHITESPACE").constData()+10), t7df503.size()-10 };return callbackQCameraFeedbackControl_SetEventFeedbackSound(this, event, filePathPacked) != 0; };
 	void resetEventFeedback(QCameraFeedbackControl::EventType event) { callbackQCameraFeedbackControl_ResetEventFeedback(this, event); };
@@ -5647,7 +5647,7 @@ char QCameraFeedbackControl_IsEventFeedbackLocked(void* ptr, long long event)
 class MyQCameraFlashControl: public QCameraFlashControl
 {
 public:
-	MyQCameraFlashControl(QObject *parent) : QCameraFlashControl(parent) {};
+	MyQCameraFlashControl(QObject *parent = Q_NULLPTR) : QCameraFlashControl(parent) {};
 	void Signal_FlashReady(bool ready) { callbackQCameraFlashControl_FlashReady(this, ready); };
 	void setFlashMode(QCameraExposure::FlashModes mode) { callbackQCameraFlashControl_SetFlashMode(this, mode); };
 	QCameraExposure::FlashModes flashMode() const { return static_cast<QCameraExposure::FlashMode>(callbackQCameraFlashControl_FlashMode(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -6264,7 +6264,7 @@ char QCameraFocusZone_IsValid(void* ptr)
 class MyQCameraImageCapture: public QCameraImageCapture
 {
 public:
-	MyQCameraImageCapture(QMediaObject *mediaObject, QObject *parent) : QCameraImageCapture(mediaObject, parent) {};
+	MyQCameraImageCapture(QMediaObject *mediaObject, QObject *parent = Q_NULLPTR) : QCameraImageCapture(mediaObject, parent) {};
 	bool setMediaObject(QMediaObject * mediaObject) { return callbackQCameraImageCapture_SetMediaObject(this, mediaObject) != 0; };
 	int capture(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtMultimedia_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };return callbackQCameraImageCapture_Capture(this, filePacked); };
 	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraImageCapture_BufferFormatChanged(this, format); };
@@ -6840,7 +6840,7 @@ void* QCameraImageCapture_MetaObjectDefault(void* ptr)
 class MyQCameraImageCaptureControl: public QCameraImageCaptureControl
 {
 public:
-	MyQCameraImageCaptureControl(QObject *parent) : QCameraImageCaptureControl(parent) {};
+	MyQCameraImageCaptureControl(QObject *parent = Q_NULLPTR) : QCameraImageCaptureControl(parent) {};
 	int capture(const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };return callbackQCameraImageCaptureControl_Capture(this, fileNamePacked); };
 	void cancelCapture() { callbackQCameraImageCaptureControl_CancelCapture(this); };
 	void Signal_Error(int id, int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQCameraImageCaptureControl_Error(this, id, error, errorStringPacked); };
@@ -7346,7 +7346,7 @@ void* QCameraImageProcessing_MetaObjectDefault(void* ptr)
 class MyQCameraImageProcessingControl: public QCameraImageProcessingControl
 {
 public:
-	MyQCameraImageProcessingControl(QObject *parent) : QCameraImageProcessingControl(parent) {};
+	MyQCameraImageProcessingControl(QObject *parent = Q_NULLPTR) : QCameraImageProcessingControl(parent) {};
 	void setParameter(QCameraImageProcessingControl::ProcessingParameter parameter, const QVariant & value) { callbackQCameraImageProcessingControl_SetParameter(this, parameter, const_cast<QVariant*>(&value)); };
 	QVariant parameter(QCameraImageProcessingControl::ProcessingParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraImageProcessingControl_Parameter(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
 	bool isParameterSupported(QCameraImageProcessingControl::ProcessingParameter parameter) const { return callbackQCameraImageProcessingControl_IsParameterSupported(const_cast<void*>(static_cast<const void*>(this)), parameter) != 0; };
@@ -7503,7 +7503,7 @@ void* QCameraInfo___availableCameras_newList(void* ptr)
 class MyQCameraInfoControl: public QCameraInfoControl
 {
 public:
-	MyQCameraInfoControl(QObject *parent) : QCameraInfoControl(parent) {};
+	MyQCameraInfoControl(QObject *parent = Q_NULLPTR) : QCameraInfoControl(parent) {};
 	 ~MyQCameraInfoControl() { callbackQCameraInfoControl_DestroyQCameraInfoControl(this); };
 	QCamera::Position cameraPosition(const QString & deviceName) const { QByteArray t0f5a7b = deviceName.toUtf8(); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b.prepend("WHITESPACE").constData()+10), t0f5a7b.size()-10 };return static_cast<QCamera::Position>(callbackQCameraInfoControl_CameraPosition(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked)); };
 	int cameraOrientation(const QString & deviceName) const { QByteArray t0f5a7b = deviceName.toUtf8(); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b.prepend("WHITESPACE").constData()+10), t0f5a7b.size()-10 };return callbackQCameraInfoControl_CameraOrientation(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked); };
@@ -7584,7 +7584,7 @@ int QCameraInfoControl_CameraOrientation(void* ptr, char* deviceName)
 class MyQCameraLocksControl: public QCameraLocksControl
 {
 public:
-	MyQCameraLocksControl(QObject *parent) : QCameraLocksControl(parent) {};
+	MyQCameraLocksControl(QObject *parent = Q_NULLPTR) : QCameraLocksControl(parent) {};
 	void Signal_LockStatusChanged(QCamera::LockType lock, QCamera::LockStatus status, QCamera::LockChangeReason reason) { callbackQCameraLocksControl_LockStatusChanged(this, lock, status, reason); };
 	void searchAndLock(QCamera::LockTypes locks) { callbackQCameraLocksControl_SearchAndLock(this, locks); };
 	void unlock(QCamera::LockTypes locks) { callbackQCameraLocksControl_Unlock(this, locks); };
@@ -7687,7 +7687,7 @@ long long QCameraLocksControl_SupportedLocks(void* ptr)
 class MyQCameraViewfinder: public QCameraViewfinder
 {
 public:
-	MyQCameraViewfinder(QWidget *parent) : QCameraViewfinder(parent) {};
+	MyQCameraViewfinder(QWidget *parent = Q_NULLPTR) : QCameraViewfinder(parent) {};
 	bool setMediaObject(QMediaObject * object) { return callbackQCameraViewfinder_SetMediaObject(this, object) != 0; };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQVideoWidget_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * event) { return callbackQVideoWidget_Event(this, event) != 0; };
@@ -7880,7 +7880,7 @@ double QCameraViewfinderSettings_MinimumFrameRate(void* ptr)
 class MyQCameraViewfinderSettingsControl: public QCameraViewfinderSettingsControl
 {
 public:
-	MyQCameraViewfinderSettingsControl(QObject *parent) : QCameraViewfinderSettingsControl(parent) {};
+	MyQCameraViewfinderSettingsControl(QObject *parent = Q_NULLPTR) : QCameraViewfinderSettingsControl(parent) {};
 	void setViewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter parameter, const QVariant & value) { callbackQCameraViewfinderSettingsControl_SetViewfinderParameter(this, parameter, const_cast<QVariant*>(&value)); };
 	QVariant viewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraViewfinderSettingsControl_ViewfinderParameter(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
 	bool isViewfinderParameterSupported(QCameraViewfinderSettingsControl::ViewfinderParameter parameter) const { return callbackQCameraViewfinderSettingsControl_IsViewfinderParameterSupported(const_cast<void*>(static_cast<const void*>(this)), parameter) != 0; };
@@ -7961,7 +7961,7 @@ char QCameraViewfinderSettingsControl_IsViewfinderParameterSupported(void* ptr, 
 class MyQCameraViewfinderSettingsControl2: public QCameraViewfinderSettingsControl2
 {
 public:
-	MyQCameraViewfinderSettingsControl2(QObject *parent) : QCameraViewfinderSettingsControl2(parent) {};
+	MyQCameraViewfinderSettingsControl2(QObject *parent = Q_NULLPTR) : QCameraViewfinderSettingsControl2(parent) {};
 	void setViewfinderSettings(const QCameraViewfinderSettings & settings) { callbackQCameraViewfinderSettingsControl2_SetViewfinderSettings(this, const_cast<QCameraViewfinderSettings*>(&settings)); };
 	 ~MyQCameraViewfinderSettingsControl2() { callbackQCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(this); };
 	QCameraViewfinderSettings viewfinderSettings() const { return *static_cast<QCameraViewfinderSettings*>(callbackQCameraViewfinderSettingsControl2_ViewfinderSettings(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -8063,7 +8063,7 @@ void* QCameraViewfinderSettingsControl2___supportedViewfinderSettings_newList(vo
 class MyQCameraZoomControl: public QCameraZoomControl
 {
 public:
-	MyQCameraZoomControl(QObject *parent) : QCameraZoomControl(parent) {};
+	MyQCameraZoomControl(QObject *parent = Q_NULLPTR) : QCameraZoomControl(parent) {};
 	void Signal_CurrentDigitalZoomChanged(qreal zoom) { callbackQCameraZoomControl_CurrentDigitalZoomChanged(this, zoom); };
 	void Signal_CurrentOpticalZoomChanged(qreal zoom) { callbackQCameraZoomControl_CurrentOpticalZoomChanged(this, zoom); };
 	void Signal_MaximumDigitalZoomChanged(qreal zoom) { callbackQCameraZoomControl_MaximumDigitalZoomChanged(this, zoom); };
@@ -8264,7 +8264,7 @@ double QCameraZoomControl_RequestedOpticalZoom(void* ptr)
 class MyQGraphicsVideoItem: public QGraphicsVideoItem
 {
 public:
-	MyQGraphicsVideoItem(QGraphicsItem *parent) : QGraphicsVideoItem(parent) {};
+	MyQGraphicsVideoItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsVideoItem(parent) {};
 	void Signal_NativeSizeChanged(const QSizeF & size) { callbackQGraphicsVideoItem_NativeSizeChanged(this, const_cast<QSizeF*>(&size)); };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsVideoItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQGraphicsVideoItem_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -9091,7 +9091,7 @@ char QGraphicsVideoItem_SetMediaObjectDefault(void* ptr, void* object)
 class MyQImageEncoderControl: public QImageEncoderControl
 {
 public:
-	MyQImageEncoderControl(QObject *parent) : QImageEncoderControl(parent) {};
+	MyQImageEncoderControl(QObject *parent = Q_NULLPTR) : QImageEncoderControl(parent) {};
 	void setImageSettings(const QImageEncoderSettings & settings) { callbackQImageEncoderControl_SetImageSettings(this, const_cast<QImageEncoderSettings*>(&settings)); };
 	 ~MyQImageEncoderControl() { callbackQImageEncoderControl_DestroyQImageEncoderControl(this); };
 	QImageEncoderSettings imageSettings() const { return *static_cast<QImageEncoderSettings*>(callbackQImageEncoderControl_ImageSettings(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -9350,7 +9350,7 @@ void* QImageEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 class MyQMediaAudioProbeControl: public QMediaAudioProbeControl
 {
 public:
-	MyQMediaAudioProbeControl(QObject *parent) : QMediaAudioProbeControl(parent) {};
+	MyQMediaAudioProbeControl(QObject *parent = Q_NULLPTR) : QMediaAudioProbeControl(parent) {};
 	void Signal_AudioBufferProbed(const QAudioBuffer & buffer) { callbackQMediaAudioProbeControl_AudioBufferProbed(this, const_cast<QAudioBuffer*>(&buffer)); };
 	void Signal_Flush() { callbackQMediaAudioProbeControl_Flush(this); };
 	 ~MyQMediaAudioProbeControl() { callbackQMediaAudioProbeControl_DestroyQMediaAudioProbeControl(this); };
@@ -9451,7 +9451,7 @@ void QMediaAudioProbeControl_DestroyQMediaAudioProbeControlDefault(void* ptr)
 class MyQMediaAvailabilityControl: public QMediaAvailabilityControl
 {
 public:
-	MyQMediaAvailabilityControl(QObject *parent) : QMediaAvailabilityControl(parent) {};
+	MyQMediaAvailabilityControl(QObject *parent = Q_NULLPTR) : QMediaAvailabilityControl(parent) {};
 	void Signal_AvailabilityChanged(QMultimedia::AvailabilityStatus availability) { callbackQMediaAvailabilityControl_AvailabilityChanged(this, availability); };
 	QMultimedia::AvailabilityStatus availability() const { return static_cast<QMultimedia::AvailabilityStatus>(callbackQMediaAvailabilityControl_Availability(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
@@ -9592,7 +9592,7 @@ void* QMediaBindableInterface_MediaObject(void* ptr)
 class MyQMediaContainerControl: public QMediaContainerControl
 {
 public:
-	MyQMediaContainerControl(QObject *parent) : QMediaContainerControl(parent) {};
+	MyQMediaContainerControl(QObject *parent = Q_NULLPTR) : QMediaContainerControl(parent) {};
 	void setContainerFormat(const QString & format) { QByteArray t785987 = format.toUtf8(); QtMultimedia_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQMediaContainerControl_SetContainerFormat(this, formatPacked); };
 	 ~MyQMediaContainerControl() { callbackQMediaContainerControl_DestroyQMediaContainerControl(this); };
 	QString containerDescription(const QString & format) const { QByteArray t785987 = format.toUtf8(); QtMultimedia_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return QString(callbackQMediaContainerControl_ContainerDescription(const_cast<void*>(static_cast<const void*>(this)), formatPacked)); };
@@ -9785,7 +9785,7 @@ void* QMediaContent___resources_newList(void* ptr)
 class MyQMediaControl: public QMediaControl
 {
 public:
-	MyQMediaControl(QObject *parent) : QMediaControl(parent) {};
+	MyQMediaControl(QObject *parent = Q_NULLPTR) : QMediaControl(parent) {};
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -11272,7 +11272,7 @@ void* QMediaControl_MetaObjectDefault(void* ptr)
 class MyQMediaGaplessPlaybackControl: public QMediaGaplessPlaybackControl
 {
 public:
-	MyQMediaGaplessPlaybackControl(QObject *parent) : QMediaGaplessPlaybackControl(parent) {};
+	MyQMediaGaplessPlaybackControl(QObject *parent = Q_NULLPTR) : QMediaGaplessPlaybackControl(parent) {};
 	void Signal_AdvancedToNextMedia() { callbackQMediaGaplessPlaybackControl_AdvancedToNextMedia(this); };
 	void Signal_CrossfadeTimeChanged(qreal crossfadeTime) { callbackQMediaGaplessPlaybackControl_CrossfadeTimeChanged(this, crossfadeTime); };
 	void Signal_NextMediaChanged(const QMediaContent & media) { callbackQMediaGaplessPlaybackControl_NextMediaChanged(this, const_cast<QMediaContent*>(&media)); };
@@ -12292,7 +12292,7 @@ void* QMediaObject_MetaObjectDefault(void* ptr)
 class MyQMediaPlayer: public QMediaPlayer
 {
 public:
-	MyQMediaPlayer(QObject *parent, Flags flags) : QMediaPlayer(parent, flags) {};
+	MyQMediaPlayer(QObject *parent = Q_NULLPTR, Flags flags = Flags()) : QMediaPlayer(parent, flags) {};
 	void Signal_AudioAvailableChanged(bool available) { callbackQMediaPlayer_AudioAvailableChanged(this, available); };
 	void Signal_AudioRoleChanged(QAudio::Role role) { callbackQMediaPlayer_AudioRoleChanged(this, role); };
 	void Signal_BufferStatusChanged(int percentFilled) { callbackQMediaPlayer_BufferStatusChanged(this, percentFilled); };
@@ -12887,7 +12887,7 @@ void* QMediaPlayer___supportedAudioRoles_newList(void* ptr)
 class MyQMediaPlayerControl: public QMediaPlayerControl
 {
 public:
-	MyQMediaPlayerControl(QObject *parent) : QMediaPlayerControl(parent) {};
+	MyQMediaPlayerControl(QObject *parent = Q_NULLPTR) : QMediaPlayerControl(parent) {};
 	void Signal_AudioAvailableChanged(bool audio) { callbackQMediaPlayerControl_AudioAvailableChanged(this, audio); };
 	void Signal_AvailablePlaybackRangesChanged(const QMediaTimeRange & ranges) { callbackQMediaPlayerControl_AvailablePlaybackRangesChanged(this, const_cast<QMediaTimeRange*>(&ranges)); };
 	void Signal_BufferStatusChanged(int progress) { callbackQMediaPlayerControl_BufferStatusChanged(this, progress); };
@@ -13306,7 +13306,7 @@ double QMediaPlayerControl_PlaybackRate(void* ptr)
 class MyQMediaPlaylist: public QMediaPlaylist
 {
 public:
-	MyQMediaPlaylist(QObject *parent) : QMediaPlaylist(parent) {};
+	MyQMediaPlaylist(QObject *parent = Q_NULLPTR) : QMediaPlaylist(parent) {};
 	void Signal_CurrentIndexChanged(int position) { callbackQMediaPlaylist_CurrentIndexChanged(this, position); };
 	void Signal_CurrentMediaChanged(const QMediaContent & content) { callbackQMediaPlaylist_CurrentMediaChanged(this, const_cast<QMediaContent*>(&content)); };
 	void Signal_LoadFailed() { callbackQMediaPlaylist_LoadFailed(this); };
@@ -13969,7 +13969,7 @@ char QMediaPlaylist_SetMediaObjectDefault(void* ptr, void* object)
 class MyQMediaRecorder: public QMediaRecorder
 {
 public:
-	MyQMediaRecorder(QMediaObject *mediaObject, QObject *parent) : QMediaRecorder(mediaObject, parent) {};
+	MyQMediaRecorder(QMediaObject *mediaObject, QObject *parent = Q_NULLPTR) : QMediaRecorder(mediaObject, parent) {};
 	void Signal_ActualLocationChanged(const QUrl & location) { callbackQMediaRecorder_ActualLocationChanged(this, const_cast<QUrl*>(&location)); };
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaRecorder_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaRecorder_AvailabilityChanged(this, available); };
@@ -14818,7 +14818,7 @@ char QMediaRecorder_SetMediaObjectDefault(void* ptr, void* object)
 class MyQMediaRecorderControl: public QMediaRecorderControl
 {
 public:
-	MyQMediaRecorderControl(QObject *parent) : QMediaRecorderControl(parent) {};
+	MyQMediaRecorderControl(QObject *parent = Q_NULLPTR) : QMediaRecorderControl(parent) {};
 	bool setOutputLocation(const QUrl & location) { return callbackQMediaRecorderControl_SetOutputLocation(this, const_cast<QUrl*>(&location)) != 0; };
 	void Signal_ActualLocationChanged(const QUrl & location) { callbackQMediaRecorderControl_ActualLocationChanged(this, const_cast<QUrl*>(&location)); };
 	void applySettings() { callbackQMediaRecorderControl_ApplySettings(this); };
@@ -15830,7 +15830,7 @@ struct QtMultimedia_PackedString QMediaServiceSupportedFormatsInterface_Supporte
 class MyQMediaStreamsControl: public QMediaStreamsControl
 {
 public:
-	MyQMediaStreamsControl(QObject *parent) : QMediaStreamsControl(parent) {};
+	MyQMediaStreamsControl(QObject *parent = Q_NULLPTR) : QMediaStreamsControl(parent) {};
 	QVariant metaData(int stream, const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMediaStreamsControl_MetaData(this, stream, keyPacked)); };
 	StreamType streamType(int stream) { return static_cast<QMediaStreamsControl::StreamType>(callbackQMediaStreamsControl_StreamType(this, stream)); };
 	bool isActive(int stream) { return callbackQMediaStreamsControl_IsActive(this, stream) != 0; };
@@ -16111,7 +16111,7 @@ void* QMediaTimeRange___intervals_newList(void* ptr)
 class MyQMediaVideoProbeControl: public QMediaVideoProbeControl
 {
 public:
-	MyQMediaVideoProbeControl(QObject *parent) : QMediaVideoProbeControl(parent) {};
+	MyQMediaVideoProbeControl(QObject *parent = Q_NULLPTR) : QMediaVideoProbeControl(parent) {};
 	void Signal_Flush() { callbackQMediaVideoProbeControl_Flush(this); };
 	void Signal_VideoFrameProbed(const QVideoFrame & frame) { callbackQMediaVideoProbeControl_VideoFrameProbed(this, const_cast<QVideoFrame*>(&frame)); };
 	 ~MyQMediaVideoProbeControl() { callbackQMediaVideoProbeControl_DestroyQMediaVideoProbeControl(this); };
@@ -16212,7 +16212,7 @@ void QMediaVideoProbeControl_DestroyQMediaVideoProbeControlDefault(void* ptr)
 class MyQMetaDataReaderControl: public QMetaDataReaderControl
 {
 public:
-	MyQMetaDataReaderControl(QObject *parent) : QMetaDataReaderControl(parent) {};
+	MyQMetaDataReaderControl(QObject *parent = Q_NULLPTR) : QMetaDataReaderControl(parent) {};
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataReaderControl_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMetaDataReaderControl_MetaDataChanged(this); };
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataReaderControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
@@ -16341,7 +16341,7 @@ char QMetaDataReaderControl_IsMetaDataAvailable(void* ptr)
 class MyQMetaDataWriterControl: public QMetaDataWriterControl
 {
 public:
-	MyQMetaDataWriterControl(QObject *parent) : QMetaDataWriterControl(parent) {};
+	MyQMetaDataWriterControl(QObject *parent = Q_NULLPTR) : QMetaDataWriterControl(parent) {};
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataWriterControl_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMetaDataWriterControl_MetaDataChanged(this); };
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataWriterControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
@@ -16498,7 +16498,7 @@ char QMetaDataWriterControl_IsWritable(void* ptr)
 class MyQRadioData: public QRadioData
 {
 public:
-	MyQRadioData(QMediaObject *mediaObject, QObject *parent) : QRadioData(mediaObject, parent) {};
+	MyQRadioData(QMediaObject *mediaObject, QObject *parent = Q_NULLPTR) : QRadioData(mediaObject, parent) {};
 	void setAlternativeFrequenciesEnabled(bool enabled) { callbackQRadioData_SetAlternativeFrequenciesEnabled(this, enabled); };
 	bool setMediaObject(QMediaObject * mediaObject) { return callbackQRadioData_SetMediaObject(this, mediaObject) != 0; };
 	void Signal_AlternativeFrequenciesEnabledChanged(bool enabled) { callbackQRadioData_AlternativeFrequenciesEnabledChanged(this, enabled); };
@@ -16964,7 +16964,7 @@ void* QRadioData_MetaObjectDefault(void* ptr)
 class MyQRadioDataControl: public QRadioDataControl
 {
 public:
-	MyQRadioDataControl(QObject *parent) : QRadioDataControl(parent) {};
+	MyQRadioDataControl(QObject *parent = Q_NULLPTR) : QRadioDataControl(parent) {};
 	void Signal_AlternativeFrequenciesEnabledChanged(bool enabled) { callbackQRadioDataControl_AlternativeFrequenciesEnabledChanged(this, enabled); };
 	void Signal_Error2(QRadioData::Error error) { callbackQRadioDataControl_Error2(this, error); };
 	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioDataControl_ProgramTypeChanged(this, programType); };
@@ -17193,7 +17193,7 @@ char QRadioDataControl_IsAlternativeFrequenciesEnabled(void* ptr)
 class MyQRadioTuner: public QRadioTuner
 {
 public:
-	MyQRadioTuner(QObject *parent) : QRadioTuner(parent) {};
+	MyQRadioTuner(QObject *parent = Q_NULLPTR) : QRadioTuner(parent) {};
 	void Signal_AntennaConnectedChanged(bool connectionStatus) { callbackQRadioTuner_AntennaConnectedChanged(this, connectionStatus); };
 	void Signal_BandChanged(QRadioTuner::Band band) { callbackQRadioTuner_BandChanged(this, band); };
 	void cancelSearch() { callbackQRadioTuner_CancelSearch(this); };
@@ -17985,7 +17985,7 @@ int QRadioTunerControl_Volume(void* ptr)
 class MyQSound: public QSound
 {
 public:
-	MyQSound(const QString &filename, QObject *parent) : QSound(filename, parent) {};
+	MyQSound(const QString &filename, QObject *parent = Q_NULLPTR) : QSound(filename, parent) {};
 	void play() { callbackQSound_Play2(this); };
 	void stop() { callbackQSound_Stop(this); };
 	bool event(QEvent * e) { return callbackQSound_Event(this, e) != 0; };
@@ -18290,7 +18290,7 @@ void* QSound_MetaObjectDefault(void* ptr)
 class MyQSoundEffect: public QSoundEffect
 {
 public:
-	MyQSoundEffect(QObject *parent) : QSoundEffect(parent) {};
+	MyQSoundEffect(QObject *parent = Q_NULLPTR) : QSoundEffect(parent) {};
 	void Signal_CategoryChanged() { callbackQSoundEffect_CategoryChanged(this); };
 	void Signal_LoadedChanged() { callbackQSoundEffect_LoadedChanged(this); };
 	void Signal_LoopCountChanged() { callbackQSoundEffect_LoopCountChanged(this); };
@@ -18784,7 +18784,7 @@ void* QSoundEffect_MetaObjectDefault(void* ptr)
 class MyQVideoDeviceSelectorControl: public QVideoDeviceSelectorControl
 {
 public:
-	MyQVideoDeviceSelectorControl(QObject *parent) : QVideoDeviceSelectorControl(parent) {};
+	MyQVideoDeviceSelectorControl(QObject *parent = Q_NULLPTR) : QVideoDeviceSelectorControl(parent) {};
 	void Signal_DevicesChanged() { callbackQVideoDeviceSelectorControl_DevicesChanged(this); };
 	void Signal_SelectedDeviceChanged2(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQVideoDeviceSelectorControl_SelectedDeviceChanged2(this, namePacked); };
 	void Signal_SelectedDeviceChanged(int index) { callbackQVideoDeviceSelectorControl_SelectedDeviceChanged(this, index); };
@@ -19112,7 +19112,7 @@ void* QVideoEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 class MyQVideoEncoderSettingsControl: public QVideoEncoderSettingsControl
 {
 public:
-	MyQVideoEncoderSettingsControl(QObject *parent) : QVideoEncoderSettingsControl(parent) {};
+	MyQVideoEncoderSettingsControl(QObject *parent = Q_NULLPTR) : QVideoEncoderSettingsControl(parent) {};
 	void setVideoSettings(const QVideoEncoderSettings & settings) { callbackQVideoEncoderSettingsControl_SetVideoSettings(this, const_cast<QVideoEncoderSettings*>(&settings)); };
 	 ~MyQVideoEncoderSettingsControl() { callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(this); };
 	QList<QSize> supportedResolutions(const QVideoEncoderSettings & settings, bool * continuous) const { return *static_cast<QList<QSize>*>(callbackQVideoEncoderSettingsControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), *continuous)); };
@@ -19483,7 +19483,7 @@ void* QVideoFrame_____availableMetaData_keyList_newList(void* ptr)
 class MyQVideoProbe: public QVideoProbe
 {
 public:
-	MyQVideoProbe(QObject *parent) : QVideoProbe(parent) {};
+	MyQVideoProbe(QObject *parent = Q_NULLPTR) : QVideoProbe(parent) {};
 	void Signal_Flush() { callbackQVideoProbe_Flush(this); };
 	void Signal_VideoFrameProbed(const QVideoFrame & frame) { callbackQVideoProbe_VideoFrameProbed(this, const_cast<QVideoFrame*>(&frame)); };
 	bool event(QEvent * e) { return callbackQVideoProbe_Event(this, e) != 0; };
@@ -19783,7 +19783,7 @@ void* QVideoProbe_MetaObjectDefault(void* ptr)
 class MyQVideoRendererControl: public QVideoRendererControl
 {
 public:
-	MyQVideoRendererControl(QObject *parent) : QVideoRendererControl(parent) {};
+	MyQVideoRendererControl(QObject *parent = Q_NULLPTR) : QVideoRendererControl(parent) {};
 	void setSurface(QAbstractVideoSurface * surface) { callbackQVideoRendererControl_SetSurface(this, surface); };
 	QAbstractVideoSurface * surface() const { return static_cast<QAbstractVideoSurface*>(callbackQVideoRendererControl_Surface(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
@@ -20008,7 +20008,7 @@ void* QVideoSurfaceFormat___propertyNames_newList(void* ptr)
 class MyQVideoWidget: public QVideoWidget
 {
 public:
-	MyQVideoWidget(QWidget *parent) : QVideoWidget(parent) {};
+	MyQVideoWidget(QWidget *parent = Q_NULLPTR) : QVideoWidget(parent) {};
 	bool event(QEvent * event) { return callbackQVideoWidget_Event(this, event) != 0; };
 	void Signal_BrightnessChanged(int brightness) { callbackQVideoWidget_BrightnessChanged(this, brightness); };
 	void Signal_ContrastChanged(int contrast) { callbackQVideoWidget_ContrastChanged(this, contrast); };
@@ -21439,7 +21439,7 @@ char QVideoWidget_SetMediaObjectDefault(void* ptr, void* object)
 class MyQVideoWidgetControl: public QVideoWidgetControl
 {
 public:
-	MyQVideoWidgetControl(QObject *parent) : QVideoWidgetControl(parent) {};
+	MyQVideoWidgetControl(QObject *parent = Q_NULLPTR) : QVideoWidgetControl(parent) {};
 	QWidget * videoWidget() { return static_cast<QWidget*>(callbackQVideoWidgetControl_VideoWidget(this)); };
 	void Signal_BrightnessChanged(int brightness) { callbackQVideoWidgetControl_BrightnessChanged(this, brightness); };
 	void Signal_ContrastChanged(int contrast) { callbackQVideoWidgetControl_ContrastChanged(this, contrast); };
@@ -21666,7 +21666,7 @@ int QVideoWidgetControl_Saturation(void* ptr)
 class MyQVideoWindowControl: public QVideoWindowControl
 {
 public:
-	MyQVideoWindowControl(QObject *parent) : QVideoWindowControl(parent) {};
+	MyQVideoWindowControl(QObject *parent = Q_NULLPTR) : QVideoWindowControl(parent) {};
 	void Signal_BrightnessChanged(int brightness) { callbackQVideoWindowControl_BrightnessChanged(this, brightness); };
 	void Signal_ContrastChanged(int contrast) { callbackQVideoWindowControl_ContrastChanged(this, contrast); };
 	void Signal_FullScreenChanged(bool fullScreen) { callbackQVideoWindowControl_FullScreenChanged(this, fullScreen); };

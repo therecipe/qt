@@ -212,7 +212,7 @@ void* QAbstractMessageHandler_MetaObjectDefault(void* ptr)
 class MyQAbstractUriResolver: public QAbstractUriResolver
 {
 public:
-	MyQAbstractUriResolver(QObject *parent) : QAbstractUriResolver(parent) {};
+	MyQAbstractUriResolver(QObject *parent = Q_NULLPTR) : QAbstractUriResolver(parent) {};
 	 ~MyQAbstractUriResolver() { callbackQAbstractUriResolver_DestroyQAbstractUriResolver(this); };
 	QUrl resolve(const QUrl & relative, const QUrl & baseURI) const { return *static_cast<QUrl*>(callbackQAbstractUriResolver_Resolve(const_cast<void*>(static_cast<const void*>(this)), const_cast<QUrl*>(&relative), const_cast<QUrl*>(&baseURI))); };
 	bool event(QEvent * e) { return callbackQAbstractUriResolver_Event(this, e) != 0; };

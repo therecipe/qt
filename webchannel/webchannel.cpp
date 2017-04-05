@@ -45,7 +45,7 @@
 class MyQWebChannel: public QWebChannel
 {
 public:
-	MyQWebChannel(QObject *parent) : QWebChannel(parent) {};
+	MyQWebChannel(QObject *parent = Q_NULLPTR) : QWebChannel(parent) {};
 	void Signal_BlockUpdatesChanged(bool block) { callbackQWebChannel_BlockUpdatesChanged(this, block); };
 	void connectTo(QWebChannelAbstractTransport * transport) { callbackQWebChannel_ConnectTo(this, transport); };
 	void disconnectFrom(QWebChannelAbstractTransport * transport) { callbackQWebChannel_DisconnectFrom(this, transport); };
@@ -366,7 +366,7 @@ void* QWebChannel_MetaObjectDefault(void* ptr)
 class MyQWebChannelAbstractTransport: public QWebChannelAbstractTransport
 {
 public:
-	MyQWebChannelAbstractTransport(QObject *parent) : QWebChannelAbstractTransport(parent) {};
+	MyQWebChannelAbstractTransport(QObject *parent = Q_NULLPTR) : QWebChannelAbstractTransport(parent) {};
 	void Signal_MessageReceived(const QJsonObject & message, QWebChannelAbstractTransport * transport) { callbackQWebChannelAbstractTransport_MessageReceived(this, const_cast<QJsonObject*>(&message), transport); };
 	void sendMessage(const QJsonObject & message) { callbackQWebChannelAbstractTransport_SendMessage(this, const_cast<QJsonObject*>(&message)); };
 	 ~MyQWebChannelAbstractTransport() { callbackQWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(this); };

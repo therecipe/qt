@@ -260,8 +260,8 @@ void* QGeoRoute___path_newList(void* ptr)
 class MyQGeoRouteReply: public QGeoRouteReply
 {
 public:
-	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent) : QGeoRouteReply(error, errorString, parent) {};
-	MyQGeoRouteReply(const QGeoRouteRequest &request, QObject *parent) : QGeoRouteReply(request, parent) {};
+	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent = Q_NULLPTR) : QGeoRouteReply(error, errorString, parent) {};
+	MyQGeoRouteReply(const QGeoRouteRequest &request, QObject *parent = Q_NULLPTR) : QGeoRouteReply(request, parent) {};
 	void abort() { callbackQGeoRouteReply_Abort(this); };
 	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRouteReply_Error2(this, error, errorStringPacked); };
 	void Signal_Finished() { callbackQGeoRouteReply_Finished(this); };
@@ -1142,7 +1142,7 @@ void* QGeoRoutingManager_MetaObjectDefault(void* ptr)
 class MyQGeoRoutingManagerEngine: public QGeoRoutingManagerEngine
 {
 public:
-	MyQGeoRoutingManagerEngine(const QVariantMap &parameters, QObject *parent) : QGeoRoutingManagerEngine(parameters, parent) {};
+	MyQGeoRoutingManagerEngine(const QVariantMap &parameters, QObject *parent = Q_NULLPTR) : QGeoRoutingManagerEngine(parameters, parent) {};
 	QGeoRouteReply * calculateRoute(const QGeoRouteRequest & request) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_CalculateRoute(this, const_cast<QGeoRouteRequest*>(&request))); };
 	QGeoRouteReply * updateRoute(const QGeoRoute & route, const QGeoCoordinate & position) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_UpdateRoute(this, const_cast<QGeoRoute*>(&route), const_cast<QGeoCoordinate*>(&position))); };
 	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRoutingManagerEngine_Error(this, reply, error, errorStringPacked); };
@@ -1505,7 +1505,7 @@ void* QGeoRoutingManagerEngine_MetaObjectDefault(void* ptr)
 class MyQGeoServiceProvider: public QGeoServiceProvider
 {
 public:
-	MyQGeoServiceProvider(const QString &providerName, const QVariantMap &parameters, bool allowExperimental) : QGeoServiceProvider(providerName, parameters, allowExperimental) {};
+	MyQGeoServiceProvider(const QString &providerName, const QVariantMap &parameters = QVariantMap(), bool allowExperimental = false) : QGeoServiceProvider(providerName, parameters, allowExperimental) {};
 	bool event(QEvent * e) { return callbackQGeoServiceProvider_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoServiceProvider_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQGeoServiceProvider_ChildEvent(this, event); };

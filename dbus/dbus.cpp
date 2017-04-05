@@ -1135,7 +1135,7 @@ char QDBusError_IsValid(void* ptr)
 class MyQDBusInterface: public QDBusInterface
 {
 public:
-	MyQDBusInterface(const QString &service, const QString &path, const QString &interface, const QDBusConnection &connection, QObject *parent) : QDBusInterface(service, path, interface, connection, parent) {};
+	MyQDBusInterface(const QString &service, const QString &path, const QString &interface = QString(), const QDBusConnection &connection = QDBusConnection::sessionBus(), QObject *parent = Q_NULLPTR) : QDBusInterface(service, path, interface, connection, parent) {};
 	bool event(QEvent * e) { return callbackQDBusAbstractInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusAbstractInterface_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterface_ChildEvent(this, event); };
@@ -1470,7 +1470,7 @@ void QDBusPendingCall_DestroyQDBusPendingCall(void* ptr)
 class MyQDBusPendingCallWatcher: public QDBusPendingCallWatcher
 {
 public:
-	MyQDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent) : QDBusPendingCallWatcher(call, parent) {};
+	MyQDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent = Q_NULLPTR) : QDBusPendingCallWatcher(call, parent) {};
 	void Signal_Finished(QDBusPendingCallWatcher * self) { callbackQDBusPendingCallWatcher_Finished(this, self); };
 	bool event(QEvent * e) { return callbackQDBusPendingCallWatcher_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusPendingCallWatcher_EventFilter(this, watched, event) != 0; };
@@ -1717,8 +1717,8 @@ int QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(void* vqv)
 class MyQDBusServer: public QDBusServer
 {
 public:
-	MyQDBusServer(QObject *parent) : QDBusServer(parent) {};
-	MyQDBusServer(const QString &address, QObject *parent) : QDBusServer(address, parent) {};
+	MyQDBusServer(QObject *parent = Q_NULLPTR) : QDBusServer(parent) {};
+	MyQDBusServer(const QString &address, QObject *parent = Q_NULLPTR) : QDBusServer(address, parent) {};
 	void Signal_NewConnection(const QDBusConnection & connection) { callbackQDBusServer_NewConnection(this, const_cast<QDBusConnection*>(&connection)); };
 	 ~MyQDBusServer() { callbackQDBusServer_DestroyQDBusServer(this); };
 	bool event(QEvent * e) { return callbackQDBusServer_Event(this, e) != 0; };
@@ -2009,8 +2009,8 @@ void* QDBusServer_MetaObjectDefault(void* ptr)
 class MyQDBusServiceWatcher: public QDBusServiceWatcher
 {
 public:
-	MyQDBusServiceWatcher(QObject *parent) : QDBusServiceWatcher(parent) {};
-	MyQDBusServiceWatcher(const QString &service, const QDBusConnection &connection, WatchMode watchMode, QObject *parent) : QDBusServiceWatcher(service, connection, watchMode, parent) {};
+	MyQDBusServiceWatcher(QObject *parent = Q_NULLPTR) : QDBusServiceWatcher(parent) {};
+	MyQDBusServiceWatcher(const QString &service, const QDBusConnection &connection, WatchMode watchMode = WatchForOwnerChange, QObject *parent = Q_NULLPTR) : QDBusServiceWatcher(service, connection, watchMode, parent) {};
 	void Signal_ServiceRegistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusServiceWatcher_ServiceRegistered(this, serviceNamePacked); };
 	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };QByteArray t9456b1 = oldOwner.toUtf8(); QtDBus_PackedString oldOwnerPacked = { const_cast<char*>(t9456b1.prepend("WHITESPACE").constData()+10), t9456b1.size()-10 };QByteArray t157d45 = newOwner.toUtf8(); QtDBus_PackedString newOwnerPacked = { const_cast<char*>(t157d45.prepend("WHITESPACE").constData()+10), t157d45.size()-10 };callbackQDBusServiceWatcher_ServiceOwnerChanged(this, serviceNamePacked, oldOwnerPacked, newOwnerPacked); };
 	void Signal_ServiceUnregistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusServiceWatcher_ServiceUnregistered(this, serviceNamePacked); };
@@ -2457,7 +2457,7 @@ void* QDBusVariant_Variant(void* ptr)
 class MyQDBusVirtualObject: public QDBusVirtualObject
 {
 public:
-	MyQDBusVirtualObject(QObject *parent) : QDBusVirtualObject(parent) {};
+	MyQDBusVirtualObject(QObject *parent = Q_NULLPTR) : QDBusVirtualObject(parent) {};
 	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, const_cast<QDBusMessage*>(&message), const_cast<QDBusConnection*>(&connection)) != 0; };
 	 ~MyQDBusVirtualObject() { callbackQDBusVirtualObject_DestroyQDBusVirtualObject(this); };
 	QString introspect(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtDBus_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return QString(callbackQDBusVirtualObject_Introspect(const_cast<void*>(static_cast<const void*>(this)), pathPacked)); };

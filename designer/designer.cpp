@@ -247,7 +247,7 @@ void* QAbstractFormBuilder___applyProperties_properties_newList(void* ptr)
 class MyQDesignerActionEditorInterface: public QDesignerActionEditorInterface
 {
 public:
-	MyQDesignerActionEditorInterface(QWidget *parent, Qt::WindowFlags flags) : QDesignerActionEditorInterface(parent, flags) {};
+	MyQDesignerActionEditorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerActionEditorInterface(parent, flags) {};
 	void manageAction(QAction * action) { callbackQDesignerActionEditorInterface_ManageAction(this, action); };
 	void setFormWindow(QDesignerFormWindowInterface * formWindow) { callbackQDesignerActionEditorInterface_SetFormWindow(this, formWindow); };
 	void unmanageAction(QAction * action) { callbackQDesignerActionEditorInterface_UnmanageAction(this, action); };
@@ -1108,7 +1108,7 @@ char QDesignerDynamicPropertySheetExtension_IsDynamicProperty(void* ptr, int ind
 class MyQDesignerFormEditorInterface: public QDesignerFormEditorInterface
 {
 public:
-	MyQDesignerFormEditorInterface(QObject *parent) : QDesignerFormEditorInterface(parent) {};
+	MyQDesignerFormEditorInterface(QObject *parent = Q_NULLPTR) : QDesignerFormEditorInterface(parent) {};
 	 ~MyQDesignerFormEditorInterface() { callbackQDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(this); };
 	bool event(QEvent * e) { return callbackQDesignerFormEditorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormEditorInterface_EventFilter(this, watched, event) != 0; };
@@ -3053,7 +3053,7 @@ void* QDesignerMemberSheetExtension___parameterTypes_newList(void* ptr)
 class MyQDesignerObjectInspectorInterface: public QDesignerObjectInspectorInterface
 {
 public:
-	MyQDesignerObjectInspectorInterface(QWidget *parent, Qt::WindowFlags flags) : QDesignerObjectInspectorInterface(parent, flags) {};
+	MyQDesignerObjectInspectorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerObjectInspectorInterface(parent, flags) {};
 	void setFormWindow(QDesignerFormWindowInterface * formWindow) { callbackQDesignerObjectInspectorInterface_SetFormWindow(this, formWindow); };
 	 ~MyQDesignerObjectInspectorInterface() { callbackQDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(this); };
 	QDesignerFormEditorInterface * core() const { return static_cast<QDesignerFormEditorInterface*>(callbackQDesignerObjectInspectorInterface_Core(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3631,7 +3631,7 @@ void* QDesignerObjectInspectorInterface_MetaObjectDefault(void* ptr)
 class MyQDesignerPropertyEditorInterface: public QDesignerPropertyEditorInterface
 {
 public:
-	MyQDesignerPropertyEditorInterface(QWidget *parent, Qt::WindowFlags flags) : QDesignerPropertyEditorInterface(parent, flags) {};
+	MyQDesignerPropertyEditorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerPropertyEditorInterface(parent, flags) {};
 	void Signal_PropertyChanged(const QString & name, const QVariant & value) { QByteArray t6ae999 = name.toUtf8(); QtDesigner_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQDesignerPropertyEditorInterface_PropertyChanged(this, namePacked, const_cast<QVariant*>(&value)); };
 	void setObject(QObject * object) { callbackQDesignerPropertyEditorInterface_SetObject(this, object); };
 	void setPropertyValue(const QString & name, const QVariant & value, bool changed) { QByteArray t6ae999 = name.toUtf8(); QtDesigner_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQDesignerPropertyEditorInterface_SetPropertyValue(this, namePacked, const_cast<QVariant*>(&value), changed); };
@@ -5004,7 +5004,7 @@ void* QDesignerWidgetBoxInterface_MetaObjectDefault(void* ptr)
 class MyQExtensionFactory: public QExtensionFactory
 {
 public:
-	MyQExtensionFactory(QExtensionManager *parent) : QExtensionFactory(parent) {};
+	MyQExtensionFactory(QExtensionManager *parent = Q_NULLPTR) : QExtensionFactory(parent) {};
 	QObject * createExtension(QObject * object, const QString & iid, QObject * parent) const { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };return static_cast<QObject*>(callbackQExtensionFactory_CreateExtension(const_cast<void*>(static_cast<const void*>(this)), object, iidPacked, parent)); };
 	QObject * extension(QObject * object, const QString & iid) const { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };return static_cast<QObject*>(callbackQExtensionFactory_Extension(const_cast<void*>(static_cast<const void*>(this)), object, iidPacked)); };
 	bool event(QEvent * e) { return callbackQExtensionFactory_Event(this, e) != 0; };
@@ -5278,7 +5278,7 @@ void* QExtensionFactory_MetaObjectDefault(void* ptr)
 class MyQExtensionManager: public QExtensionManager
 {
 public:
-	MyQExtensionManager(QObject *parent) : QExtensionManager(parent) {};
+	MyQExtensionManager(QObject *parent = Q_NULLPTR) : QExtensionManager(parent) {};
 	void registerExtensions(QAbstractExtensionFactory * factory, const QString & iid) { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };callbackQExtensionManager_RegisterExtensions(this, factory, iidPacked); };
 	void unregisterExtensions(QAbstractExtensionFactory * factory, const QString & iid) { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };callbackQExtensionManager_UnregisterExtensions(this, factory, iidPacked); };
 	QObject * extension(QObject * object, const QString & iid) const { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };return static_cast<QObject*>(callbackQExtensionManager_Extension(const_cast<void*>(static_cast<const void*>(this)), object, iidPacked)); };

@@ -42,7 +42,7 @@
 class MyQGamepad: public QGamepad
 {
 public:
-	MyQGamepad(int deviceId, QObject *parent) : QGamepad(deviceId, parent) {};
+	MyQGamepad(int deviceId = 0, QObject *parent = nullptr) : QGamepad(deviceId, parent) {};
 	void Signal_AxisLeftXChanged(double value) { callbackQGamepad_AxisLeftXChanged(this, value); };
 	void Signal_AxisLeftYChanged(double value) { callbackQGamepad_AxisLeftYChanged(this, value); };
 	void Signal_AxisRightXChanged(double value) { callbackQGamepad_AxisRightXChanged(this, value); };

@@ -330,7 +330,7 @@
 class MyQAbstractButton: public QAbstractButton
 {
 public:
-	MyQAbstractButton(QWidget *parent) : QAbstractButton(parent) {};
+	MyQAbstractButton(QWidget *parent = Q_NULLPTR) : QAbstractButton(parent) {};
 	void animateClick(int msec) { callbackQAbstractButton_AnimateClick(this, msec); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void checkStateSet() { callbackQAbstractButton_CheckStateSet(this); };
@@ -773,7 +773,7 @@ int QAbstractButton_AutoRepeatInterval(void* ptr)
 class MyQAbstractGraphicsShapeItem: public QAbstractGraphicsShapeItem
 {
 public:
-	MyQAbstractGraphicsShapeItem(QGraphicsItem *parent) : QAbstractGraphicsShapeItem(parent) {};
+	MyQAbstractGraphicsShapeItem(QGraphicsItem *parent = Q_NULLPTR) : QAbstractGraphicsShapeItem(parent) {};
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQGraphicsItem_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsItem_ItemChange(this, change, const_cast<QVariant*>(&value))); };
@@ -891,7 +891,7 @@ void* QAbstractGraphicsShapeItem_BoundingRectDefault(void* ptr)
 class MyQAbstractItemDelegate: public QAbstractItemDelegate
 {
 public:
-	MyQAbstractItemDelegate(QObject *parent) : QAbstractItemDelegate(parent) {};
+	MyQAbstractItemDelegate(QObject *parent = Q_NULLPTR) : QAbstractItemDelegate(parent) {};
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool helpEvent(QHelpEvent * event, QAbstractItemView * view, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_HelpEvent(this, event, view, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	void Signal_CloseEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemDelegate_CloseEditor(this, editor, hint); };
@@ -1398,7 +1398,7 @@ void* QAbstractItemDelegate_MetaObjectDefault(void* ptr)
 class MyQAbstractItemView: public QAbstractItemView
 {
 public:
-	MyQAbstractItemView(QWidget *parent) : QAbstractItemView(parent) {};
+	MyQAbstractItemView(QWidget *parent = Q_NULLPTR) : QAbstractItemView(parent) {};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQAbstractItemView_MoveCursor(this, cursorAction, modifiers)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQAbstractItemView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -2940,7 +2940,7 @@ void* QAbstractItemView___selectedIndexes_newList(void* ptr)
 class MyQAbstractScrollArea: public QAbstractScrollArea
 {
 public:
-	MyQAbstractScrollArea(QWidget *parent) : QAbstractScrollArea(parent) {};
+	MyQAbstractScrollArea(QWidget *parent = Q_NULLPTR) : QAbstractScrollArea(parent) {};
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQWidget_ContextMenuEvent(this, e); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
@@ -3320,7 +3320,7 @@ void* QAbstractScrollArea___scrollBarWidgets_newList(void* ptr)
 class MyQAbstractSlider: public QAbstractSlider
 {
 public:
-	MyQAbstractSlider(QWidget *parent) : QAbstractSlider(parent) {};
+	MyQAbstractSlider(QWidget *parent = Q_NULLPTR) : QAbstractSlider(parent) {};
 	void Signal_ActionTriggered(int action) { callbackQAbstractSlider_ActionTriggered(this, action); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void keyPressEvent(QKeyEvent * ev) { callbackQWidget_KeyPressEvent(this, ev); };
@@ -3692,7 +3692,7 @@ int QAbstractSlider_Value(void* ptr)
 class MyQAbstractSpinBox: public QAbstractSpinBox
 {
 public:
-	MyQAbstractSpinBox(QWidget *parent) : QAbstractSpinBox(parent) {};
+	MyQAbstractSpinBox(QWidget *parent = Q_NULLPTR) : QAbstractSpinBox(parent) {};
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
 	void clear() { callbackQAbstractSpinBox_Clear(this); };
 	void closeEvent(QCloseEvent * event) { callbackQWidget_CloseEvent(this, event); };
@@ -4371,9 +4371,9 @@ struct QtWidgets_PackedString QAccessibleWidget_LocalizedActionNameDefault(void*
 class MyQAction: public QAction
 {
 public:
-	MyQAction(QObject *parent) : QAction(parent) {};
-	MyQAction(const QIcon &icon, const QString &text, QObject *parent) : QAction(icon, text, parent) {};
-	MyQAction(const QString &text, QObject *parent) : QAction(text, parent) {};
+	MyQAction(QObject *parent = nullptr) : QAction(parent) {};
+	MyQAction(const QIcon &icon, const QString &text, QObject *parent = nullptr) : QAction(icon, text, parent) {};
+	MyQAction(const QString &text, QObject *parent = nullptr) : QAction(text, parent) {};
 	bool event(QEvent * e) { return callbackQAction_Event(this, e) != 0; };
 	void Signal_Changed() { callbackQAction_Changed(this); };
 	void hover() { callbackQAction_Hover(this); };
@@ -6156,7 +6156,7 @@ void* QApplication_MetaObjectDefault(void* ptr)
 class MyQBoxLayout: public QBoxLayout
 {
 public:
-	MyQBoxLayout(Direction dir, QWidget *parent) : QBoxLayout(dir, parent) {};
+	MyQBoxLayout(Direction dir, QWidget *parent = Q_NULLPTR) : QBoxLayout(dir, parent) {};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQBoxLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQBoxLayout_AddItem(this, item); };
 	void invalidate() { callbackQLayoutItem_Invalidate(this); };
@@ -6393,7 +6393,7 @@ int QBoxLayout_Stretch(void* ptr, int index)
 class MyQButtonGroup: public QButtonGroup
 {
 public:
-	MyQButtonGroup(QObject *parent) : QButtonGroup(parent) {};
+	MyQButtonGroup(QObject *parent = Q_NULLPTR) : QButtonGroup(parent) {};
 	void Signal_ButtonClicked(QAbstractButton * button) { callbackQButtonGroup_ButtonClicked(this, button); };
 	void Signal_ButtonClicked2(int id) { callbackQButtonGroup_ButtonClicked2(this, id); };
 	void Signal_ButtonPressed(QAbstractButton * button) { callbackQButtonGroup_ButtonPressed(this, button); };
@@ -6819,7 +6819,7 @@ void* QButtonGroup_MetaObjectDefault(void* ptr)
 class MyQCalendarWidget: public QCalendarWidget
 {
 public:
-	MyQCalendarWidget(QWidget *parent) : QCalendarWidget(parent) {};
+	MyQCalendarWidget(QWidget *parent = Q_NULLPTR) : QCalendarWidget(parent) {};
 	void Signal_Activated(const QDate & date) { callbackQCalendarWidget_Activated(this, const_cast<QDate*>(&date)); };
 	void Signal_Clicked(const QDate & date) { callbackQCalendarWidget_Clicked(this, const_cast<QDate*>(&date)); };
 	void Signal_CurrentPageChanged(int year, int month) { callbackQCalendarWidget_CurrentPageChanged(this, year, month); };
@@ -7285,8 +7285,8 @@ void* QCalendarWidget_____dateTextFormat_keyList_newList(void* ptr)
 class MyQCheckBox: public QCheckBox
 {
 public:
-	MyQCheckBox(QWidget *parent) : QCheckBox(parent) {};
-	MyQCheckBox(const QString &text, QWidget *parent) : QCheckBox(text, parent) {};
+	MyQCheckBox(QWidget *parent = Q_NULLPTR) : QCheckBox(parent) {};
+	MyQCheckBox(const QString &text, QWidget *parent = Q_NULLPTR) : QCheckBox(text, parent) {};
 	void checkStateSet() { callbackQAbstractButton_CheckStateSet(this); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
 	void nextCheckState() { callbackQAbstractButton_NextCheckState(this); };
@@ -7439,8 +7439,8 @@ void QCheckBox_InitStyleOption(void* ptr, void* option)
 class MyQColorDialog: public QColorDialog
 {
 public:
-	MyQColorDialog(QWidget *parent) : QColorDialog(parent) {};
-	MyQColorDialog(const QColor &initial, QWidget *parent) : QColorDialog(initial, parent) {};
+	MyQColorDialog(QWidget *parent = Q_NULLPTR) : QColorDialog(parent) {};
+	MyQColorDialog(const QColor &initial, QWidget *parent = Q_NULLPTR) : QColorDialog(initial, parent) {};
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void Signal_ColorSelected(const QColor & color) { callbackQColorDialog_ColorSelected(this, const_cast<QColor*>(&color)); };
 	void Signal_CurrentColorChanged(const QColor & color) { callbackQColorDialog_CurrentColorChanged(this, const_cast<QColor*>(&color)); };
@@ -7720,7 +7720,7 @@ void* QColormap___colormap_newList(void* ptr)
 class MyQColumnView: public QColumnView
 {
 public:
-	MyQColumnView(QWidget *parent) : QColumnView(parent) {};
+	MyQColumnView(QWidget *parent = Q_NULLPTR) : QColumnView(parent) {};
 	QAbstractItemView * createColumn(const QModelIndex & index) { return static_cast<QAbstractItemView*>(callbackQColumnView_CreateColumn(this, const_cast<QModelIndex*>(&index))); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQColumnView_MoveCursor(this, cursorAction, modifiers)); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQColumnView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
@@ -8074,7 +8074,7 @@ void* QColumnView___columnWidths_newList(void* ptr)
 class MyQComboBox: public QComboBox
 {
 public:
-	MyQComboBox(QWidget *parent) : QComboBox(parent) {};
+	MyQComboBox(QWidget *parent = Q_NULLPTR) : QComboBox(parent) {};
 	void Signal_Activated2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_Activated2(this, textPacked); };
 	void Signal_Activated(int index) { callbackQComboBox_Activated(this, index); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
@@ -8667,9 +8667,9 @@ void QComboBox_InitStyleOption(void* ptr, void* option)
 class MyQCommandLinkButton: public QCommandLinkButton
 {
 public:
-	MyQCommandLinkButton(QWidget *parent) : QCommandLinkButton(parent) {};
-	MyQCommandLinkButton(const QString &text, QWidget *parent) : QCommandLinkButton(text, parent) {};
-	MyQCommandLinkButton(const QString &text, const QString &description, QWidget *parent) : QCommandLinkButton(text, description, parent) {};
+	MyQCommandLinkButton(QWidget *parent = Q_NULLPTR) : QCommandLinkButton(parent) {};
+	MyQCommandLinkButton(const QString &text, QWidget *parent = Q_NULLPTR) : QCommandLinkButton(text, parent) {};
+	MyQCommandLinkButton(const QString &text, const QString &description, QWidget *parent = Q_NULLPTR) : QCommandLinkButton(text, description, parent) {};
 	void paintEvent(QPaintEvent * vqp) { callbackQPushButton_PaintEvent(this, vqp); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -9019,9 +9019,9 @@ void* QCommonStyle_StandardIconDefault(void* ptr, long long standardIcon, void* 
 class MyQCompleter: public QCompleter
 {
 public:
-	MyQCompleter(QAbstractItemModel *model, QObject *parent) : QCompleter(model, parent) {};
-	MyQCompleter(QObject *parent) : QCompleter(parent) {};
-	MyQCompleter(const QStringList &list, QObject *parent) : QCompleter(list, parent) {};
+	MyQCompleter(QAbstractItemModel *model, QObject *parent = Q_NULLPTR) : QCompleter(model, parent) {};
+	MyQCompleter(QObject *parent = Q_NULLPTR) : QCompleter(parent) {};
+	MyQCompleter(const QStringList &list, QObject *parent = Q_NULLPTR) : QCompleter(list, parent) {};
 	bool event(QEvent * ev) { return callbackQCompleter_Event(this, ev) != 0; };
 	bool eventFilter(QObject * o, QEvent * e) { return callbackQCompleter_EventFilter(this, o, e) != 0; };
 	void Signal_Activated2(const QModelIndex & index) { callbackQCompleter_Activated2(this, const_cast<QModelIndex*>(&index)); };
@@ -9595,7 +9595,7 @@ void* QCompleter_MetaObjectDefault(void* ptr)
 class MyQDataWidgetMapper: public QDataWidgetMapper
 {
 public:
-	MyQDataWidgetMapper(QObject *parent) : QDataWidgetMapper(parent) {};
+	MyQDataWidgetMapper(QObject *parent = Q_NULLPTR) : QDataWidgetMapper(parent) {};
 	void setCurrentIndex(int index) { callbackQDataWidgetMapper_SetCurrentIndex(this, index); };
 	bool submit() { return callbackQDataWidgetMapper_Submit(this) != 0; };
 	void Signal_CurrentIndexChanged(int index) { callbackQDataWidgetMapper_CurrentIndexChanged(this, index); };
@@ -10024,8 +10024,8 @@ void* QDataWidgetMapper_MetaObjectDefault(void* ptr)
 class MyQDateEdit: public QDateEdit
 {
 public:
-	MyQDateEdit(QWidget *parent) : QDateEdit(parent) {};
-	MyQDateEdit(const QDate &date, QWidget *parent) : QDateEdit(date, parent) {};
+	MyQDateEdit(QWidget *parent = Q_NULLPTR) : QDateEdit(parent) {};
+	MyQDateEdit(const QDate &date, QWidget *parent = Q_NULLPTR) : QDateEdit(date, parent) {};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void clear() { callbackQDateTimeEdit_Clear(this); };
 	void Signal_DateChanged(const QDate & date) { callbackQDateTimeEdit_DateChanged(this, const_cast<QDate*>(&date)); };
@@ -10132,10 +10132,10 @@ void QDateEdit_DestroyQDateEdit(void* ptr)
 class MyQDateTimeEdit: public QDateTimeEdit
 {
 public:
-	MyQDateTimeEdit(QWidget *parent) : QDateTimeEdit(parent) {};
-	MyQDateTimeEdit(const QDate &date, QWidget *parent) : QDateTimeEdit(date, parent) {};
-	MyQDateTimeEdit(const QDateTime &datetime, QWidget *parent) : QDateTimeEdit(datetime, parent) {};
-	MyQDateTimeEdit(const QTime &time, QWidget *parent) : QDateTimeEdit(time, parent) {};
+	MyQDateTimeEdit(QWidget *parent = Q_NULLPTR) : QDateTimeEdit(parent) {};
+	MyQDateTimeEdit(const QDate &date, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(date, parent) {};
+	MyQDateTimeEdit(const QDateTime &datetime, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(datetime, parent) {};
+	MyQDateTimeEdit(const QTime &time, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(time, parent) {};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void clear() { callbackQDateTimeEdit_Clear(this); };
 	void Signal_DateChanged(const QDate & date) { callbackQDateTimeEdit_DateChanged(this, const_cast<QDate*>(&date)); };
@@ -10796,7 +10796,7 @@ int QDesktopWidget_ScreenNumber(void* ptr, void* widget)
 class MyQDial: public QDial
 {
 public:
-	MyQDial(QWidget *parent) : QDial(parent) {};
+	MyQDial(QWidget *parent = Q_NULLPTR) : QDial(parent) {};
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
 	void mousePressEvent(QMouseEvent * e) { callbackQWidget_MousePressEvent(this, e); };
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQWidget_MouseReleaseEvent(this, e); };
@@ -10943,7 +10943,7 @@ void QDial_InitStyleOption(void* ptr, void* option)
 class MyQDialog: public QDialog
 {
 public:
-	MyQDialog(QWidget *parent, Qt::WindowFlags f) : QDialog(parent, f) {};
+	MyQDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f) {};
 	int exec() { return callbackQDialog_Exec(this); };
 	void accept() { callbackQDialog_Accept(this); };
 	void Signal_Accepted() { callbackQDialog_Accepted(this); };
@@ -11276,10 +11276,10 @@ int QDialog_Result(void* ptr)
 class MyQDialogButtonBox: public QDialogButtonBox
 {
 public:
-	MyQDialogButtonBox(QWidget *parent) : QDialogButtonBox(parent) {};
-	MyQDialogButtonBox(Qt::Orientation orientation, QWidget *parent) : QDialogButtonBox(orientation, parent) {};
-	MyQDialogButtonBox(StandardButtons buttons, QWidget *parent) : QDialogButtonBox(buttons, parent) {};
-	MyQDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation, QWidget *parent) : QDialogButtonBox(buttons, orientation, parent) {};
+	MyQDialogButtonBox(QWidget *parent = Q_NULLPTR) : QDialogButtonBox(parent) {};
+	MyQDialogButtonBox(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(orientation, parent) {};
+	MyQDialogButtonBox(StandardButtons buttons, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(buttons, parent) {};
+	MyQDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(buttons, orientation, parent) {};
 	void Signal_Accepted() { callbackQDialogButtonBox_Accepted(this); };
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
 	void Signal_Clicked(QAbstractButton * button) { callbackQDialogButtonBox_Clicked(this, button); };
@@ -11533,8 +11533,8 @@ void* QDialogButtonBox___buttons_newList(void* ptr)
 class MyQDockWidget: public QDockWidget
 {
 public:
-	MyQDockWidget(QWidget *parent, Qt::WindowFlags flags) : QDockWidget(parent, flags) {};
-	MyQDockWidget(const QString &title, QWidget *parent, Qt::WindowFlags flags) : QDockWidget(title, parent, flags) {};
+	MyQDockWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QDockWidget(parent, flags) {};
+	MyQDockWidget(const QString &title, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QDockWidget(title, parent, flags) {};
 	void Signal_FeaturesChanged(QDockWidget::DockWidgetFeatures features) { callbackQDockWidget_FeaturesChanged(this, features); };
 	void Signal_AllowedAreasChanged(Qt::DockWidgetAreas allowedAreas) { callbackQDockWidget_AllowedAreasChanged(this, allowedAreas); };
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
@@ -11769,7 +11769,7 @@ void QDockWidget_InitStyleOption(void* ptr, void* option)
 class MyQDoubleSpinBox: public QDoubleSpinBox
 {
 public:
-	MyQDoubleSpinBox(QWidget *parent) : QDoubleSpinBox(parent) {};
+	MyQDoubleSpinBox(QWidget *parent = Q_NULLPTR) : QDoubleSpinBox(parent) {};
 	void setValue(double val) { callbackQDoubleSpinBox_SetValue(this, val); };
 	void Signal_ValueChanged2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQDoubleSpinBox_ValueChanged2(this, textPacked); };
 	void Signal_ValueChanged(double d) { callbackQDoubleSpinBox_ValueChanged(this, d); };
@@ -12003,7 +12003,7 @@ int QDoubleSpinBox_Decimals(void* ptr)
 class MyQErrorMessage: public QErrorMessage
 {
 public:
-	MyQErrorMessage(QWidget *parent) : QErrorMessage(parent) {};
+	MyQErrorMessage(QWidget *parent = Q_NULLPTR) : QErrorMessage(parent) {};
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void done(int a) { callbackQErrorMessage_Done(this, a); };
 	void showMessage(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQErrorMessage_ShowMessage(this, messagePacked); };
@@ -12134,7 +12134,7 @@ class MyQFileDialog: public QFileDialog
 {
 public:
 	MyQFileDialog(QWidget *parent, Qt::WindowFlags flags) : QFileDialog(parent, flags) {};
-	MyQFileDialog(QWidget *parent, const QString &caption, const QString &directory, const QString &filter) : QFileDialog(parent, caption, directory, filter) {};
+	MyQFileDialog(QWidget *parent = Q_NULLPTR, const QString &caption = QString(), const QString &directory = QString(), const QString &filter = QString()) : QFileDialog(parent, caption, directory, filter) {};
 	void accept() { callbackQFileDialog_Accept(this); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void Signal_CurrentChanged(const QString & path) { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };callbackQFileDialog_CurrentChanged(this, pathPacked); };
@@ -12866,7 +12866,7 @@ struct QtWidgets_PackedString QFileIconProvider_TypeDefault(void* ptr, void* inf
 class MyQFileSystemModel: public QFileSystemModel
 {
 public:
-	MyQFileSystemModel(QObject *parent) : QFileSystemModel(parent) {};
+	MyQFileSystemModel(QObject *parent = Q_NULLPTR) : QFileSystemModel(parent) {};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQFileSystemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool event(QEvent * event) { return callbackQFileSystemModel_Event(this, event) != 0; };
 	bool setData(const QModelIndex & idx, const QVariant & value, int role) { return callbackQFileSystemModel_SetData(this, const_cast<QModelIndex*>(&idx), const_cast<QVariant*>(&value), role) != 0; };
@@ -13810,7 +13810,7 @@ void* QFileSystemModel_MetaObjectDefault(void* ptr)
 class MyQFocusFrame: public QFocusFrame
 {
 public:
-	MyQFocusFrame(QWidget *parent) : QFocusFrame(parent) {};
+	MyQFocusFrame(QWidget *parent = Q_NULLPTR) : QFocusFrame(parent) {};
 	void paintEvent(QPaintEvent * vqp) { callbackQWidget_PaintEvent(this, vqp); };
 	bool close() { return callbackQWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
@@ -13910,7 +13910,7 @@ void QFocusFrame_InitStyleOption(void* ptr, void* option)
 class MyQFontComboBox: public QFontComboBox
 {
 public:
-	MyQFontComboBox(QWidget *parent) : QFontComboBox(parent) {};
+	MyQFontComboBox(QWidget *parent = Q_NULLPTR) : QFontComboBox(parent) {};
 	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontComboBox_CurrentFontChanged(this, const_cast<QFont*>(&font)); };
 	void setCurrentFont(const QFont & fo) { callbackQFontComboBox_SetCurrentFont(this, const_cast<QFont*>(&fo)); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -14057,8 +14057,8 @@ void* QFontComboBox_CurrentFont(void* ptr)
 class MyQFontDialog: public QFontDialog
 {
 public:
-	MyQFontDialog(QWidget *parent) : QFontDialog(parent) {};
-	MyQFontDialog(const QFont &initial, QWidget *parent) : QFontDialog(initial, parent) {};
+	MyQFontDialog(QWidget *parent = Q_NULLPTR) : QFontDialog(parent) {};
+	MyQFontDialog(const QFont &initial, QWidget *parent = Q_NULLPTR) : QFontDialog(initial, parent) {};
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontDialog_CurrentFontChanged(this, const_cast<QFont*>(&font)); };
 	void done(int result) { callbackQFontDialog_Done(this, result); };
@@ -14253,7 +14253,7 @@ char QFontDialog_TestOption(void* ptr, long long option)
 class MyQFormLayout: public QFormLayout
 {
 public:
-	MyQFormLayout(QWidget *parent) : QFormLayout(parent) {};
+	MyQFormLayout(QWidget *parent = Q_NULLPTR) : QFormLayout(parent) {};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQFormLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQFormLayout_AddItem(this, item); };
 	void invalidate() { callbackQLayoutItem_Invalidate(this); };
@@ -14521,7 +14521,7 @@ int QFormLayout_VerticalSpacing(void* ptr)
 class MyQFrame: public QFrame
 {
 public:
-	MyQFrame(QWidget *parent, Qt::WindowFlags f) : QFrame(parent, f) {};
+	MyQFrame(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QFrame(parent, f) {};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void paintEvent(QPaintEvent * vqp) { callbackQWidget_PaintEvent(this, vqp); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -14676,7 +14676,7 @@ void QFrame_InitStyleOption(void* ptr, void* option)
 class MyQGesture: public QGesture
 {
 public:
-	MyQGesture(QObject *parent) : QGesture(parent) {};
+	MyQGesture(QObject *parent = Q_NULLPTR) : QGesture(parent) {};
 	bool event(QEvent * e) { return callbackQGesture_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGesture_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQGesture_ChildEvent(this, event); };
@@ -15559,7 +15559,7 @@ void* QGraphicsAnchor_MetaObjectDefault(void* ptr)
 class MyQGraphicsAnchorLayout: public QGraphicsAnchorLayout
 {
 public:
-	MyQGraphicsAnchorLayout(QGraphicsLayoutItem *parent) : QGraphicsAnchorLayout(parent) {};
+	MyQGraphicsAnchorLayout(QGraphicsLayoutItem *parent = Q_NULLPTR) : QGraphicsAnchorLayout(parent) {};
 	void invalidate() { callbackQGraphicsLayout_Invalidate(this); };
 	void removeAt(int index) { callbackQGraphicsAnchorLayout_RemoveAt(this, index); };
 	void setGeometry(const QRectF & geom) { callbackQGraphicsLayoutItem_SetGeometry(this, const_cast<QRectF*>(&geom)); };
@@ -15695,7 +15695,7 @@ double QGraphicsAnchorLayout_VerticalSpacing(void* ptr)
 class MyQGraphicsBlurEffect: public QGraphicsBlurEffect
 {
 public:
-	MyQGraphicsBlurEffect(QObject *parent) : QGraphicsBlurEffect(parent) {};
+	MyQGraphicsBlurEffect(QObject *parent = Q_NULLPTR) : QGraphicsBlurEffect(parent) {};
 	void Signal_BlurHintsChanged(QGraphicsBlurEffect::BlurHints hints) { callbackQGraphicsBlurEffect_BlurHintsChanged(this, hints); };
 	void Signal_BlurRadiusChanged(qreal radius) { callbackQGraphicsBlurEffect_BlurRadiusChanged(this, radius); };
 	void setBlurHints(QGraphicsBlurEffect::BlurHints hints) { callbackQGraphicsBlurEffect_SetBlurHints(this, hints); };
@@ -15838,7 +15838,7 @@ void QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(void* ptr)
 class MyQGraphicsColorizeEffect: public QGraphicsColorizeEffect
 {
 public:
-	MyQGraphicsColorizeEffect(QObject *parent) : QGraphicsColorizeEffect(parent) {};
+	MyQGraphicsColorizeEffect(QObject *parent = Q_NULLPTR) : QGraphicsColorizeEffect(parent) {};
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsColorizeEffect_ColorChanged(this, const_cast<QColor*>(&color)); };
 	void draw(QPainter * painter) { callbackQGraphicsColorizeEffect_Draw(this, painter); };
 	void setColor(const QColor & c) { callbackQGraphicsColorizeEffect_SetColor(this, const_cast<QColor*>(&c)); };
@@ -15981,7 +15981,7 @@ double QGraphicsColorizeEffect_Strength(void* ptr)
 class MyQGraphicsDropShadowEffect: public QGraphicsDropShadowEffect
 {
 public:
-	MyQGraphicsDropShadowEffect(QObject *parent) : QGraphicsDropShadowEffect(parent) {};
+	MyQGraphicsDropShadowEffect(QObject *parent = Q_NULLPTR) : QGraphicsDropShadowEffect(parent) {};
 	void Signal_BlurRadiusChanged(qreal blurRadius) { callbackQGraphicsDropShadowEffect_BlurRadiusChanged(this, blurRadius); };
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsDropShadowEffect_ColorChanged(this, const_cast<QColor*>(&color)); };
 	void draw(QPainter * painter) { callbackQGraphicsDropShadowEffect_Draw(this, painter); };
@@ -16210,7 +16210,7 @@ double QGraphicsDropShadowEffect_YOffset(void* ptr)
 class MyQGraphicsEffect: public QGraphicsEffect
 {
 public:
-	MyQGraphicsEffect(QObject *parent) : QGraphicsEffect(parent) {};
+	MyQGraphicsEffect(QObject *parent = Q_NULLPTR) : QGraphicsEffect(parent) {};
 	void Signal_EnabledChanged(bool enabled) { callbackQGraphicsEffect_EnabledChanged(this, enabled); };
 	void setEnabled(bool enable) { callbackQGraphicsEffect_SetEnabled(this, enable); };
 	void draw(QPainter * painter) { callbackQGraphicsEffect_Draw(this, painter); };
@@ -16720,9 +16720,9 @@ void* QGraphicsEffect_MetaObjectDefault(void* ptr)
 class MyQGraphicsEllipseItem: public QGraphicsEllipseItem
 {
 public:
-	MyQGraphicsEllipseItem(QGraphicsItem *parent) : QGraphicsEllipseItem(parent) {};
-	MyQGraphicsEllipseItem(const QRectF &rect, QGraphicsItem *parent) : QGraphicsEllipseItem(rect, parent) {};
-	MyQGraphicsEllipseItem(qreal x, qreal y, qreal width, qreal height, QGraphicsItem *parent) : QGraphicsEllipseItem(x, y, width, height, parent) {};
+	MyQGraphicsEllipseItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsEllipseItem(parent) {};
+	MyQGraphicsEllipseItem(const QRectF &rect, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsEllipseItem(rect, parent) {};
+	MyQGraphicsEllipseItem(qreal x, qreal y, qreal width, qreal height, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsEllipseItem(x, y, width, height, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsEllipseItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -16853,7 +16853,7 @@ int QGraphicsEllipseItem_StartAngle(void* ptr)
 class MyQGraphicsGridLayout: public QGraphicsGridLayout
 {
 public:
-	MyQGraphicsGridLayout(QGraphicsLayoutItem *parent) : QGraphicsGridLayout(parent) {};
+	MyQGraphicsGridLayout(QGraphicsLayoutItem *parent = Q_NULLPTR) : QGraphicsGridLayout(parent) {};
 	void invalidate() { callbackQGraphicsLayout_Invalidate(this); };
 	void removeAt(int index) { callbackQGraphicsGridLayout_RemoveAt(this, index); };
 	void setGeometry(const QRectF & rect) { callbackQGraphicsLayoutItem_SetGeometry(this, const_cast<QRectF*>(&rect)); };
@@ -17132,7 +17132,7 @@ double QGraphicsGridLayout_VerticalSpacing(void* ptr)
 class MyQGraphicsItem: public QGraphicsItem
 {
 public:
-	MyQGraphicsItem(QGraphicsItem *parent) : QGraphicsItem(parent) {};
+	MyQGraphicsItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsItem(parent) {};
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsItem_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool sceneEvent(QEvent * event) { return callbackQGraphicsItem_SceneEvent(this, event) != 0; };
 	bool sceneEventFilter(QGraphicsItem * watched, QEvent * event) { return callbackQGraphicsItem_SceneEventFilter(this, watched, event) != 0; };
@@ -21334,7 +21334,7 @@ void* QGraphicsItem___transformations_newList(void* ptr)
 class MyQGraphicsItemGroup: public QGraphicsItemGroup
 {
 public:
-	MyQGraphicsItemGroup(QGraphicsItem *parent) : QGraphicsItemGroup(parent) {};
+	MyQGraphicsItemGroup(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsItemGroup(parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsItemGroup_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQGraphicsItemGroup_BoundingRect(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -21430,7 +21430,7 @@ void* QGraphicsItemGroup_BoundingRectDefault(void* ptr)
 class MyQGraphicsLayout: public QGraphicsLayout
 {
 public:
-	MyQGraphicsLayout(QGraphicsLayoutItem *parent) : QGraphicsLayout(parent) {};
+	MyQGraphicsLayout(QGraphicsLayoutItem *parent = Q_NULLPTR) : QGraphicsLayout(parent) {};
 	void invalidate() { callbackQGraphicsLayout_Invalidate(this); };
 	void removeAt(int index) { callbackQGraphicsLayout_RemoveAt(this, index); };
 	void updateGeometry() { callbackQGraphicsLayoutItem_UpdateGeometry(this); };
@@ -21552,7 +21552,7 @@ void* QGraphicsLayout_SizeHintDefault(void* ptr, long long which, void* constrai
 class MyQGraphicsLayoutItem: public QGraphicsLayoutItem
 {
 public:
-	MyQGraphicsLayoutItem(QGraphicsLayoutItem *parent, bool isLayout) : QGraphicsLayoutItem(parent, isLayout) {};
+	MyQGraphicsLayoutItem(QGraphicsLayoutItem *parent = Q_NULLPTR, bool isLayout = false) : QGraphicsLayoutItem(parent, isLayout) {};
 	void setGeometry(const QRectF & rect) { callbackQGraphicsLayoutItem_SetGeometry(this, const_cast<QRectF*>(&rect)); };
 	void updateGeometry() { callbackQGraphicsLayoutItem_UpdateGeometry(this); };
 	 ~MyQGraphicsLayoutItem() { callbackQGraphicsLayoutItem_DestroyQGraphicsLayoutItem(this); };
@@ -21997,9 +21997,9 @@ void QGraphicsLayoutItem_GetContentsMarginsDefault(void* ptr, double left, doubl
 class MyQGraphicsLineItem: public QGraphicsLineItem
 {
 public:
-	MyQGraphicsLineItem(QGraphicsItem *parent) : QGraphicsLineItem(parent) {};
-	MyQGraphicsLineItem(const QLineF &line, QGraphicsItem *parent) : QGraphicsLineItem(line, parent) {};
-	MyQGraphicsLineItem(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) : QGraphicsLineItem(x1, y1, x2, y2, parent) {};
+	MyQGraphicsLineItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsLineItem(parent) {};
+	MyQGraphicsLineItem(const QLineF &line, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsLineItem(line, parent) {};
+	MyQGraphicsLineItem(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsLineItem(x1, y1, x2, y2, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsLineItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -22120,8 +22120,8 @@ void* QGraphicsLineItem_BoundingRectDefault(void* ptr)
 class MyQGraphicsLinearLayout: public QGraphicsLinearLayout
 {
 public:
-	MyQGraphicsLinearLayout(QGraphicsLayoutItem *parent) : QGraphicsLinearLayout(parent) {};
-	MyQGraphicsLinearLayout(Qt::Orientation orientation, QGraphicsLayoutItem *parent) : QGraphicsLinearLayout(orientation, parent) {};
+	MyQGraphicsLinearLayout(QGraphicsLayoutItem *parent = Q_NULLPTR) : QGraphicsLinearLayout(parent) {};
+	MyQGraphicsLinearLayout(Qt::Orientation orientation, QGraphicsLayoutItem *parent = Q_NULLPTR) : QGraphicsLinearLayout(orientation, parent) {};
 	void invalidate() { callbackQGraphicsLayout_Invalidate(this); };
 	void removeAt(int index) { callbackQGraphicsLinearLayout_RemoveAt(this, index); };
 	void setGeometry(const QRectF & rect) { callbackQGraphicsLayoutItem_SetGeometry(this, const_cast<QRectF*>(&rect)); };
@@ -22308,7 +22308,7 @@ double QGraphicsLinearLayout_Spacing(void* ptr)
 class MyQGraphicsObject: public QGraphicsObject
 {
 public:
-	MyQGraphicsObject(QGraphicsItem *parent) : QGraphicsObject(parent) {};
+	MyQGraphicsObject(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsObject(parent) {};
 	bool event(QEvent * ev) { return callbackQGraphicsObject_Event(this, ev) != 0; };
 	void Signal_EnabledChanged() { callbackQGraphicsObject_EnabledChanged(this); };
 	void Signal_OpacityChanged() { callbackQGraphicsObject_OpacityChanged(this); };
@@ -23329,7 +23329,7 @@ void* QGraphicsObject_BoundingRectDefault(void* ptr)
 class MyQGraphicsOpacityEffect: public QGraphicsOpacityEffect
 {
 public:
-	MyQGraphicsOpacityEffect(QObject *parent) : QGraphicsOpacityEffect(parent) {};
+	MyQGraphicsOpacityEffect(QObject *parent = Q_NULLPTR) : QGraphicsOpacityEffect(parent) {};
 	void draw(QPainter * painter) { callbackQGraphicsOpacityEffect_Draw(this, painter); };
 	void Signal_OpacityChanged(qreal opacity) { callbackQGraphicsOpacityEffect_OpacityChanged(this, opacity); };
 	void Signal_OpacityMaskChanged(const QBrush & mask) { callbackQGraphicsOpacityEffect_OpacityMaskChanged(this, const_cast<QBrush*>(&mask)); };
@@ -23472,8 +23472,8 @@ double QGraphicsOpacityEffect_Opacity(void* ptr)
 class MyQGraphicsPathItem: public QGraphicsPathItem
 {
 public:
-	MyQGraphicsPathItem(QGraphicsItem *parent) : QGraphicsPathItem(parent) {};
-	MyQGraphicsPathItem(const QPainterPath &path, QGraphicsItem *parent) : QGraphicsPathItem(path, parent) {};
+	MyQGraphicsPathItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsPathItem(parent) {};
+	MyQGraphicsPathItem(const QPainterPath &path, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsPathItem(path, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPathItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -23568,8 +23568,8 @@ void* QGraphicsPathItem_BoundingRectDefault(void* ptr)
 class MyQGraphicsPixmapItem: public QGraphicsPixmapItem
 {
 public:
-	MyQGraphicsPixmapItem(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {};
-	MyQGraphicsPixmapItem(const QPixmap &pixmap, QGraphicsItem *parent) : QGraphicsPixmapItem(pixmap, parent) {};
+	MyQGraphicsPixmapItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsPixmapItem(parent) {};
+	MyQGraphicsPixmapItem(const QPixmap &pixmap, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsPixmapItem(pixmap, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPixmapItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -23699,8 +23699,8 @@ long long QGraphicsPixmapItem_ShapeMode(void* ptr)
 class MyQGraphicsPolygonItem: public QGraphicsPolygonItem
 {
 public:
-	MyQGraphicsPolygonItem(QGraphicsItem *parent) : QGraphicsPolygonItem(parent) {};
-	MyQGraphicsPolygonItem(const QPolygonF &polygon, QGraphicsItem *parent) : QGraphicsPolygonItem(polygon, parent) {};
+	MyQGraphicsPolygonItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsPolygonItem(parent) {};
+	MyQGraphicsPolygonItem(const QPolygonF &polygon, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsPolygonItem(polygon, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPolygonItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -23805,7 +23805,7 @@ long long QGraphicsPolygonItem_FillRule(void* ptr)
 class MyQGraphicsProxyWidget: public QGraphicsProxyWidget
 {
 public:
-	MyQGraphicsProxyWidget(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QGraphicsProxyWidget(parent, wFlags) {};
+	MyQGraphicsProxyWidget(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QGraphicsProxyWidget(parent, wFlags) {};
 	QGraphicsProxyWidget * newProxyWidget(const QWidget * child) { return static_cast<QGraphicsProxyWidget*>(callbackQGraphicsProxyWidget_NewProxyWidget(this, const_cast<QWidget*>(child))); };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsItem_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool event(QEvent * event) { return callbackQGraphicsObject_Event(this, event) != 0; };
@@ -23935,9 +23935,9 @@ void* QGraphicsProxyWidget_Widget(void* ptr)
 class MyQGraphicsRectItem: public QGraphicsRectItem
 {
 public:
-	MyQGraphicsRectItem(QGraphicsItem *parent) : QGraphicsRectItem(parent) {};
-	MyQGraphicsRectItem(const QRectF &rect, QGraphicsItem *parent) : QGraphicsRectItem(rect, parent) {};
-	MyQGraphicsRectItem(qreal x, qreal y, qreal width, qreal height, QGraphicsItem *parent) : QGraphicsRectItem(x, y, width, height, parent) {};
+	MyQGraphicsRectItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsRectItem(parent) {};
+	MyQGraphicsRectItem(const QRectF &rect, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsRectItem(rect, parent) {};
+	MyQGraphicsRectItem(qreal x, qreal y, qreal width, qreal height, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsRectItem(x, y, width, height, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsRectItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -24048,7 +24048,7 @@ void* QGraphicsRectItem_Rect(void* ptr)
 class MyQGraphicsRotation: public QGraphicsRotation
 {
 public:
-	MyQGraphicsRotation(QObject *parent) : QGraphicsRotation(parent) {};
+	MyQGraphicsRotation(QObject *parent = Q_NULLPTR) : QGraphicsRotation(parent) {};
 	void Signal_AngleChanged() { callbackQGraphicsRotation_AngleChanged(this); };
 	void Signal_AxisChanged() { callbackQGraphicsRotation_AxisChanged(this); };
 	void Signal_OriginChanged() { callbackQGraphicsRotation_OriginChanged(this); };
@@ -24206,7 +24206,7 @@ void QGraphicsRotation_ApplyToDefault(void* ptr, void* matrix)
 class MyQGraphicsScale: public QGraphicsScale
 {
 public:
-	MyQGraphicsScale(QObject *parent) : QGraphicsScale(parent) {};
+	MyQGraphicsScale(QObject *parent = Q_NULLPTR) : QGraphicsScale(parent) {};
 	void Signal_OriginChanged() { callbackQGraphicsScale_OriginChanged(this); };
 	void Signal_ScaleChanged() { callbackQGraphicsScale_ScaleChanged(this); };
 	void Signal_XScaleChanged() { callbackQGraphicsScale_XScaleChanged(this); };
@@ -24401,9 +24401,9 @@ void QGraphicsScale_ApplyToDefault(void* ptr, void* matrix)
 class MyQGraphicsScene: public QGraphicsScene
 {
 public:
-	MyQGraphicsScene(QObject *parent) : QGraphicsScene(parent) {};
-	MyQGraphicsScene(const QRectF &sceneRect, QObject *parent) : QGraphicsScene(sceneRect, parent) {};
-	MyQGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent) : QGraphicsScene(x, y, width, height, parent) {};
+	MyQGraphicsScene(QObject *parent = Q_NULLPTR) : QGraphicsScene(parent) {};
+	MyQGraphicsScene(const QRectF &sceneRect, QObject *parent = Q_NULLPTR) : QGraphicsScene(sceneRect, parent) {};
+	MyQGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent = Q_NULLPTR) : QGraphicsScene(x, y, width, height, parent) {};
 	bool event(QEvent * event) { return callbackQGraphicsScene_Event(this, event) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsScene_EventFilter(this, watched, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsScene_FocusNextPrevChild(this, next) != 0; };
@@ -26048,8 +26048,8 @@ int QGraphicsSceneWheelEvent_Delta(void* ptr)
 class MyQGraphicsSimpleTextItem: public QGraphicsSimpleTextItem
 {
 public:
-	MyQGraphicsSimpleTextItem(QGraphicsItem *parent) : QGraphicsSimpleTextItem(parent) {};
-	MyQGraphicsSimpleTextItem(const QString &text, QGraphicsItem *parent) : QGraphicsSimpleTextItem(text, parent) {};
+	MyQGraphicsSimpleTextItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsSimpleTextItem(parent) {};
+	MyQGraphicsSimpleTextItem(const QString &text, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsSimpleTextItem(text, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsSimpleTextItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -26154,8 +26154,8 @@ struct QtWidgets_PackedString QGraphicsSimpleTextItem_Text(void* ptr)
 class MyQGraphicsTextItem: public QGraphicsTextItem
 {
 public:
-	MyQGraphicsTextItem(QGraphicsItem *parent) : QGraphicsTextItem(parent) {};
-	MyQGraphicsTextItem(const QString &text, QGraphicsItem *parent) : QGraphicsTextItem(text, parent) {};
+	MyQGraphicsTextItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsTextItem(parent) {};
+	MyQGraphicsTextItem(const QString &text, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsTextItem(text, parent) {};
 	bool sceneEvent(QEvent * event) { return callbackQGraphicsItem_SceneEvent(this, event) != 0; };
 	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsItem_ContextMenuEvent(this, event); };
 	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItem_DragEnterEvent(this, event); };
@@ -26398,7 +26398,7 @@ double QGraphicsTextItem_TextWidth(void* ptr)
 class MyQGraphicsTransform: public QGraphicsTransform
 {
 public:
-	MyQGraphicsTransform(QObject *parent) : QGraphicsTransform(parent) {};
+	MyQGraphicsTransform(QObject *parent = Q_NULLPTR) : QGraphicsTransform(parent) {};
 	void update() { callbackQGraphicsTransform_Update(this); };
 	void applyTo(QMatrix4x4 * matrix) const { callbackQGraphicsTransform_ApplyTo(const_cast<void*>(static_cast<const void*>(this)), matrix); };
 	bool event(QEvent * e) { return callbackQGraphicsTransform_Event(this, e) != 0; };
@@ -26728,8 +26728,8 @@ void* QGraphicsTransform_MetaObjectDefault(void* ptr)
 class MyQGraphicsView: public QGraphicsView
 {
 public:
-	MyQGraphicsView(QGraphicsScene *scene, QWidget *parent) : QGraphicsView(scene, parent) {};
-	MyQGraphicsView(QWidget *parent) : QGraphicsView(parent) {};
+	MyQGraphicsView(QGraphicsScene *scene, QWidget *parent = Q_NULLPTR) : QGraphicsView(scene, parent) {};
+	MyQGraphicsView(QWidget *parent = Q_NULLPTR) : QGraphicsView(parent) {};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
@@ -27454,7 +27454,7 @@ void* QGraphicsView___items_newList5(void* ptr)
 class MyQGraphicsWidget: public QGraphicsWidget
 {
 public:
-	MyQGraphicsWidget(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QGraphicsWidget(parent, wFlags) {};
+	MyQGraphicsWidget(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QGraphicsWidget(parent, wFlags) {};
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsItem_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool close() { return callbackQGraphicsWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQGraphicsObject_Event(this, event) != 0; };
@@ -28379,8 +28379,8 @@ void QGridLayout_GetItemPosition(void* ptr, int index, int row, int column, int 
 class MyQGroupBox: public QGroupBox
 {
 public:
-	MyQGroupBox(QWidget *parent) : QGroupBox(parent) {};
-	MyQGroupBox(const QString &title, QWidget *parent) : QGroupBox(title, parent) {};
+	MyQGroupBox(QWidget *parent = Q_NULLPTR) : QGroupBox(parent) {};
+	MyQGroupBox(const QString &title, QWidget *parent = Q_NULLPTR) : QGroupBox(title, parent) {};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void Signal_Clicked(bool checked) { callbackQGroupBox_Clicked(this, checked); };
 	void focusInEvent(QFocusEvent * fe) { callbackQWidget_FocusInEvent(this, fe); };
@@ -28616,7 +28616,7 @@ void QHBoxLayout_DestroyQHBoxLayout(void* ptr)
 class MyQHeaderView: public QHeaderView
 {
 public:
-	MyQHeaderView(Qt::Orientation orientation, QWidget *parent) : QHeaderView(orientation, parent) {};
+	MyQHeaderView(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QHeaderView(orientation, parent) {};
 	bool viewportEvent(QEvent * e) { return callbackQAbstractScrollArea_ViewportEvent(this, e) != 0; };
 	void currentChanged(const QModelIndex & current, const QModelIndex & old) { callbackQHeaderView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&old)); };
 	void Signal_GeometriesChanged() { callbackQHeaderView_GeometriesChanged(this); };
@@ -29423,7 +29423,7 @@ char QHeaderView_IsIndexHiddenDefault(void* ptr, void* index)
 class MyQInputDialog: public QInputDialog
 {
 public:
-	MyQInputDialog(QWidget *parent, Qt::WindowFlags flags) : QInputDialog(parent, flags) {};
+	MyQInputDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QInputDialog(parent, flags) {};
 	void done(int result) { callbackQInputDialog_Done(this, result); };
 	void Signal_DoubleValueChanged(double value) { callbackQInputDialog_DoubleValueChanged(this, value); };
 	void Signal_DoubleValueSelected(double value) { callbackQInputDialog_DoubleValueSelected(this, value); };
@@ -29852,7 +29852,7 @@ int QInputDialog_IntValue(void* ptr)
 class MyQItemDelegate: public QItemDelegate
 {
 public:
-	MyQItemDelegate(QObject *parent) : QItemDelegate(parent) {};
+	MyQItemDelegate(QObject *parent = Q_NULLPTR) : QItemDelegate(parent) {};
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQAbstractItemDelegate_EventFilter(this, editor, event) != 0; };
 	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQItemDelegate_SizeHint(const_cast<void*>(static_cast<const void*>(this)), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
@@ -30103,8 +30103,8 @@ void* QItemEditorFactory_CreateEditorDefault(void* ptr, int userType, void* pare
 class MyQKeyEventTransition: public QKeyEventTransition
 {
 public:
-	MyQKeyEventTransition(QObject *object, QEvent::Type type, int key, QState *sourceState) : QKeyEventTransition(object, type, key, sourceState) {};
-	MyQKeyEventTransition(QState *sourceState) : QKeyEventTransition(sourceState) {};
+	MyQKeyEventTransition(QObject *object, QEvent::Type type, int key, QState *sourceState = Q_NULLPTR) : QKeyEventTransition(object, type, key, sourceState) {};
+	MyQKeyEventTransition(QState *sourceState = Q_NULLPTR) : QKeyEventTransition(sourceState) {};
 	bool eventTest(QEvent * event) { return callbackQKeyEventTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQKeyEventTransition_OnTransition(this, event); };
 	bool event(QEvent * e) { return callbackQKeyEventTransition_Event(this, e) != 0; };
@@ -30422,8 +30422,8 @@ void* QKeyEventTransition_MetaObjectDefault(void* ptr)
 class MyQKeySequenceEdit: public QKeySequenceEdit
 {
 public:
-	MyQKeySequenceEdit(QWidget *parent) : QKeySequenceEdit(parent) {};
-	MyQKeySequenceEdit(const QKeySequence &keySequence, QWidget *parent) : QKeySequenceEdit(keySequence, parent) {};
+	MyQKeySequenceEdit(QWidget *parent = Q_NULLPTR) : QKeySequenceEdit(parent) {};
+	MyQKeySequenceEdit(const QKeySequence &keySequence, QWidget *parent = Q_NULLPTR) : QKeySequenceEdit(keySequence, parent) {};
 	void clear() { callbackQKeySequenceEdit_Clear(this); };
 	void Signal_EditingFinished() { callbackQKeySequenceEdit_EditingFinished(this); };
 	void keyPressEvent(QKeyEvent * e) { callbackQWidget_KeyPressEvent(this, e); };
@@ -30572,8 +30572,8 @@ void* QKeySequenceEdit_KeySequence(void* ptr)
 class MyQLCDNumber: public QLCDNumber
 {
 public:
-	MyQLCDNumber(QWidget *parent) : QLCDNumber(parent) {};
-	MyQLCDNumber(uint numDigits, QWidget *parent) : QLCDNumber(numDigits, parent) {};
+	MyQLCDNumber(QWidget *parent = Q_NULLPTR) : QLCDNumber(parent) {};
+	MyQLCDNumber(uint numDigits, QWidget *parent = Q_NULLPTR) : QLCDNumber(numDigits, parent) {};
 	void display(const QString & s) { QByteArray ta0f149 = s.toUtf8(); QtWidgets_PackedString sPacked = { const_cast<char*>(ta0f149.prepend("WHITESPACE").constData()+10), ta0f149.size()-10 };callbackQLCDNumber_Display(this, sPacked); };
 	void display(double num) { callbackQLCDNumber_Display3(this, num); };
 	void display(int num) { callbackQLCDNumber_Display2(this, num); };
@@ -30822,8 +30822,8 @@ int QLCDNumber_IntValue(void* ptr)
 class MyQLabel: public QLabel
 {
 public:
-	MyQLabel(QWidget *parent, Qt::WindowFlags f) : QLabel(parent, f) {};
-	MyQLabel(const QString &text, QWidget *parent, Qt::WindowFlags f) : QLabel(text, parent, f) {};
+	MyQLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(parent, f) {};
+	MyQLabel(const QString &text, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(text, parent, f) {};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void clear() { callbackQLabel_Clear(this); };
@@ -31961,7 +31961,7 @@ void* QLayout_SizeHintDefault(void* ptr)
 class MyQLayoutItem: public QLayoutItem
 {
 public:
-	MyQLayoutItem(Qt::Alignment alignment) : QLayoutItem(alignment) {};
+	MyQLayoutItem(Qt::Alignment alignment = Qt::Alignment()) : QLayoutItem(alignment) {};
 	QLayout * layout() { return static_cast<QLayout*>(callbackQLayoutItem_Layout(this)); };
 	QSpacerItem * spacerItem() { return static_cast<QSpacerItem*>(callbackQLayoutItem_SpacerItem(this)); };
 	QWidget * widget() { return static_cast<QWidget*>(callbackQLayoutItem_Widget(this)); };
@@ -32369,8 +32369,8 @@ void QLayoutItem_SetAlign(void* ptr, long long vqt)
 class MyQLineEdit: public QLineEdit
 {
 public:
-	MyQLineEdit(QWidget *parent) : QLineEdit(parent) {};
-	MyQLineEdit(const QString &contents, QWidget *parent) : QLineEdit(contents, parent) {};
+	MyQLineEdit(QWidget *parent = Q_NULLPTR) : QLineEdit(parent) {};
+	MyQLineEdit(const QString &contents, QWidget *parent = Q_NULLPTR) : QLineEdit(contents, parent) {};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void clear() { callbackQLineEdit_Clear(this); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
@@ -32929,7 +32929,7 @@ void QLineEdit_InitStyleOption(void* ptr, void* option)
 class MyQListView: public QListView
 {
 public:
-	MyQListView(QWidget *parent) : QListView(parent) {};
+	MyQListView(QWidget *parent = Q_NULLPTR) : QListView(parent) {};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
 	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -33471,7 +33471,7 @@ void* QListView___indexesMoved_indexes_newList(void* ptr)
 class MyQListWidget: public QListWidget
 {
 public:
-	MyQListWidget(QWidget *parent) : QListWidget(parent) {};
+	MyQListWidget(QWidget *parent = Q_NULLPTR) : QListWidget(parent) {};
 	bool dropMimeData(int index, const QMimeData * data, Qt::DropAction action) { return callbackQListWidget_DropMimeData(this, index, const_cast<QMimeData*>(data), action) != 0; };
 	void clear() { callbackQListWidget_Clear(this); };
 	void Signal_CurrentItemChanged(QListWidgetItem * current, QListWidgetItem * previous) { callbackQListWidget_CurrentItemChanged(this, current, previous); };
@@ -34054,9 +34054,9 @@ void* QListWidget___mimeData_items_newList(void* ptr)
 class MyQListWidgetItem: public QListWidgetItem
 {
 public:
-	MyQListWidgetItem(QListWidget *parent, int type) : QListWidgetItem(parent, type) {};
-	MyQListWidgetItem(const QIcon &icon, const QString &text, QListWidget *parent, int type) : QListWidgetItem(icon, text, parent, type) {};
-	MyQListWidgetItem(const QString &text, QListWidget *parent, int type) : QListWidgetItem(text, parent, type) {};
+	MyQListWidgetItem(QListWidget *parent = Q_NULLPTR, int type = Type) : QListWidgetItem(parent, type) {};
+	MyQListWidgetItem(const QIcon &icon, const QString &text, QListWidget *parent = Q_NULLPTR, int type = Type) : QListWidgetItem(icon, text, parent, type) {};
+	MyQListWidgetItem(const QString &text, QListWidget *parent = Q_NULLPTR, int type = Type) : QListWidgetItem(text, parent, type) {};
 	MyQListWidgetItem(const QListWidgetItem &other) : QListWidgetItem(other) {};
 	void read(QDataStream & in) { callbackQListWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int role, const QVariant & value) { callbackQListWidgetItem_SetData(this, role, const_cast<QVariant*>(&value)); };
@@ -34465,7 +34465,7 @@ void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr)
 class MyQMainWindow: public QMainWindow
 {
 public:
-	MyQMainWindow(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(parent, flags) {};
+	MyQMainWindow(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QMainWindow(parent, flags) {};
 	QMenu * createPopupMenu() { return static_cast<QMenu*>(callbackQMainWindow_CreatePopupMenu(this)); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
 	void Signal_IconSizeChanged(const QSize & iconSize) { callbackQMainWindow_IconSizeChanged(this, const_cast<QSize*>(&iconSize)); };
@@ -34922,7 +34922,7 @@ void* QMainWindow___tabifiedDockWidgets_newList(void* ptr)
 class MyQMdiArea: public QMdiArea
 {
 public:
-	MyQMdiArea(QWidget *parent) : QMdiArea(parent) {};
+	MyQMdiArea(QWidget *parent = Q_NULLPTR) : QMdiArea(parent) {};
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void activateNextSubWindow() { callbackQMdiArea_ActivateNextSubWindow(this); };
 	void activatePreviousSubWindow() { callbackQMdiArea_ActivatePreviousSubWindow(this); };
@@ -35224,7 +35224,7 @@ void* QMdiArea___subWindowList_newList(void* ptr)
 class MyQMdiSubWindow: public QMdiSubWindow
 {
 public:
-	MyQMdiSubWindow(QWidget *parent, Qt::WindowFlags flags) : QMdiSubWindow(parent, flags) {};
+	MyQMdiSubWindow(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QMdiSubWindow(parent, flags) {};
 	void Signal_AboutToActivate() { callbackQMdiSubWindow_AboutToActivate(this); };
 	void changeEvent(QEvent * changeEvent) { callbackQWidget_ChangeEvent(this, changeEvent); };
 	void closeEvent(QCloseEvent * closeEvent) { callbackQWidget_CloseEvent(this, closeEvent); };
@@ -35423,8 +35423,8 @@ int QMdiSubWindow_KeyboardSingleStep(void* ptr)
 class MyQMenu: public QMenu
 {
 public:
-	MyQMenu(QWidget *parent) : QMenu(parent) {};
-	MyQMenu(const QString &title, QWidget *parent) : QMenu(title, parent) {};
+	MyQMenu(QWidget *parent = Q_NULLPTR) : QMenu(parent) {};
+	MyQMenu(const QString &title, QWidget *parent = Q_NULLPTR) : QMenu(title, parent) {};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void Signal_AboutToHide() { callbackQMenu_AboutToHide(this); };
 	void Signal_AboutToShow() { callbackQMenu_AboutToShow(this); };
@@ -35835,7 +35835,7 @@ void* QMenu___exec_actions_newList3(void* ptr)
 class MyQMenuBar: public QMenuBar
 {
 public:
-	MyQMenuBar(QWidget *parent) : QMenuBar(parent) {};
+	MyQMenuBar(QWidget *parent = Q_NULLPTR) : QMenuBar(parent) {};
 	void actionEvent(QActionEvent * e) { callbackQWidget_ActionEvent(this, e); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void focusInEvent(QFocusEvent * vqf) { callbackQWidget_FocusInEvent(this, vqf); };
@@ -36062,8 +36062,8 @@ void QMenuBar_InitStyleOption(void* ptr, void* option, void* action)
 class MyQMessageBox: public QMessageBox
 {
 public:
-	MyQMessageBox(Icon icon, const QString &title, const QString &text, StandardButtons buttons, QWidget *parent, Qt::WindowFlags f) : QMessageBox(icon, title, text, buttons, parent, f) {};
-	MyQMessageBox(QWidget *parent) : QMessageBox(parent) {};
+	MyQMessageBox(Icon icon, const QString &title, const QString &text, StandardButtons buttons = NoButton, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint) : QMessageBox(icon, title, text, buttons, parent, f) {};
+	MyQMessageBox(QWidget *parent = Q_NULLPTR) : QMessageBox(parent) {};
 	int exec() { return callbackQDialog_Exec(this); };
 	void Signal_ButtonClicked(QAbstractButton * button) { callbackQMessageBox_ButtonClicked(this, button); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
@@ -36412,8 +36412,8 @@ void* QMessageBox___buttons_newList(void* ptr)
 class MyQMouseEventTransition: public QMouseEventTransition
 {
 public:
-	MyQMouseEventTransition(QObject *object, QEvent::Type type, Qt::MouseButton button, QState *sourceState) : QMouseEventTransition(object, type, button, sourceState) {};
-	MyQMouseEventTransition(QState *sourceState) : QMouseEventTransition(sourceState) {};
+	MyQMouseEventTransition(QObject *object, QEvent::Type type, Qt::MouseButton button, QState *sourceState = Q_NULLPTR) : QMouseEventTransition(object, type, button, sourceState) {};
+	MyQMouseEventTransition(QState *sourceState = Q_NULLPTR) : QMouseEventTransition(sourceState) {};
 	bool eventTest(QEvent * event) { return callbackQMouseEventTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQMouseEventTransition_OnTransition(this, event); };
 	bool event(QEvent * e) { return callbackQMouseEventTransition_Event(this, e) != 0; };
@@ -37244,8 +37244,8 @@ void* QPlainTextDocumentLayout_MetaObjectDefault(void* ptr)
 class MyQPlainTextEdit: public QPlainTextEdit
 {
 public:
-	MyQPlainTextEdit(QWidget *parent) : QPlainTextEdit(parent) {};
-	MyQPlainTextEdit(const QString &text, QWidget *parent) : QPlainTextEdit(text, parent) {};
+	MyQPlainTextEdit(QWidget *parent = Q_NULLPTR) : QPlainTextEdit(parent) {};
+	MyQPlainTextEdit(const QString &text, QWidget *parent = Q_NULLPTR) : QPlainTextEdit(text, parent) {};
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQPlainTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void appendHtml(const QString & html) { QByteArray t950a39 = html.toUtf8(); QtWidgets_PackedString htmlPacked = { const_cast<char*>(t950a39.prepend("WHITESPACE").constData()+10), t950a39.size()-10 };callbackQPlainTextEdit_AppendHtml(this, htmlPacked); };
@@ -37954,7 +37954,7 @@ void QPlainTextEdit_Print(void* ptr, void* printer)
 class MyQProgressBar: public QProgressBar
 {
 public:
-	MyQProgressBar(QWidget *parent) : QProgressBar(parent) {};
+	MyQProgressBar(QWidget *parent = Q_NULLPTR) : QProgressBar(parent) {};
 	void paintEvent(QPaintEvent * vqp) { callbackQWidget_PaintEvent(this, vqp); };
 	void reset() { callbackQProgressBar_Reset(this); };
 	void setMaximum(int maximum) { callbackQProgressBar_SetMaximum(this, maximum); };
@@ -38212,8 +38212,8 @@ void QProgressBar_InitStyleOption(void* ptr, void* option)
 class MyQProgressDialog: public QProgressDialog
 {
 public:
-	MyQProgressDialog(QWidget *parent, Qt::WindowFlags f) : QProgressDialog(parent, f) {};
-	MyQProgressDialog(const QString &labelText, const QString &cancelButtonText, int minimum, int maximum, QWidget *parent, Qt::WindowFlags f) : QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, f) {};
+	MyQProgressDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(parent, f) {};
+	MyQProgressDialog(const QString &labelText, const QString &cancelButtonText, int minimum, int maximum, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, f) {};
 	void cancel() { callbackQProgressDialog_Cancel(this); };
 	void Signal_Canceled() { callbackQProgressDialog_Canceled(this); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
@@ -38517,7 +38517,7 @@ int QProgressDialog_Value(void* ptr)
 class MyQProxyStyle: public QProxyStyle
 {
 public:
-	MyQProxyStyle(QStyle *style) : QProxyStyle(style) {};
+	MyQProxyStyle(QStyle *style = Q_NULLPTR) : QProxyStyle(style) {};
 	MyQProxyStyle(const QString &key) : QProxyStyle(key) {};
 	void polish(QApplication * app) { callbackQStyle_Polish3(this, app); };
 	void polish(QPalette & pal) { callbackQStyle_Polish2(this, static_cast<QPalette*>(&pal)); };
@@ -38593,9 +38593,9 @@ void* QProxyStyle_BaseStyle(void* ptr)
 class MyQPushButton: public QPushButton
 {
 public:
-	MyQPushButton(QWidget *parent) : QPushButton(parent) {};
-	MyQPushButton(const QIcon &icon, const QString &text, QWidget *parent) : QPushButton(icon, text, parent) {};
-	MyQPushButton(const QString &text, QWidget *parent) : QPushButton(text, parent) {};
+	MyQPushButton(QWidget *parent = Q_NULLPTR) : QPushButton(parent) {};
+	MyQPushButton(const QIcon &icon, const QString &text, QWidget *parent = Q_NULLPTR) : QPushButton(icon, text, parent) {};
+	MyQPushButton(const QString &text, QWidget *parent = Q_NULLPTR) : QPushButton(text, parent) {};
 	void focusInEvent(QFocusEvent * e) { callbackQWidget_FocusInEvent(this, e); };
 	void focusOutEvent(QFocusEvent * e) { callbackQWidget_FocusOutEvent(this, e); };
 	void keyPressEvent(QKeyEvent * e) { callbackQWidget_KeyPressEvent(this, e); };
@@ -38776,8 +38776,8 @@ void QPushButton_InitStyleOption(void* ptr, void* option)
 class MyQRadioButton: public QRadioButton
 {
 public:
-	MyQRadioButton(QWidget *parent) : QRadioButton(parent) {};
-	MyQRadioButton(const QString &text, QWidget *parent) : QRadioButton(text, parent) {};
+	MyQRadioButton(QWidget *parent = Q_NULLPTR) : QRadioButton(parent) {};
+	MyQRadioButton(const QString &text, QWidget *parent = Q_NULLPTR) : QRadioButton(text, parent) {};
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
 	void paintEvent(QPaintEvent * vqp) { callbackQRadioButton_PaintEvent(this, vqp); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -38894,7 +38894,7 @@ void QRadioButton_InitStyleOption(void* ptr, void* option)
 class MyQRubberBand: public QRubberBand
 {
 public:
-	MyQRubberBand(Shape s, QWidget *p) : QRubberBand(s, p) {};
+	MyQRubberBand(Shape s, QWidget *p = Q_NULLPTR) : QRubberBand(s, p) {};
 	void resizeEvent(QResizeEvent * vqr) { callbackQWidget_ResizeEvent(this, vqr); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void moveEvent(QMoveEvent * vqm) { callbackQWidget_MoveEvent(this, vqm); };
@@ -38989,7 +38989,7 @@ void QRubberBand_InitStyleOption(void* ptr, void* option)
 class MyQScrollArea: public QScrollArea
 {
 public:
-	MyQScrollArea(QWidget *parent) : QScrollArea(parent) {};
+	MyQScrollArea(QWidget *parent = Q_NULLPTR) : QScrollArea(parent) {};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void resizeEvent(QResizeEvent * vqr) { callbackQWidget_ResizeEvent(this, vqr); };
 	void scrollContentsBy(int dx, int dy) { callbackQAbstractScrollArea_ScrollContentsBy(this, dx, dy); };
@@ -39123,8 +39123,8 @@ char QScrollArea_WidgetResizable(void* ptr)
 class MyQScrollBar: public QScrollBar
 {
 public:
-	MyQScrollBar(QWidget *parent) : QScrollBar(parent) {};
-	MyQScrollBar(Qt::Orientation orientation, QWidget *parent) : QScrollBar(orientation, parent) {};
+	MyQScrollBar(QWidget *parent = Q_NULLPTR) : QScrollBar(parent) {};
+	MyQScrollBar(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QScrollBar(orientation, parent) {};
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
 	void hideEvent(QHideEvent * vqh) { callbackQWidget_HideEvent(this, vqh); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
@@ -39762,7 +39762,7 @@ class MyQShortcut: public QShortcut
 {
 public:
 	MyQShortcut(QWidget *parent) : QShortcut(parent) {};
-	MyQShortcut(const QKeySequence &key, QWidget *parent, const char *member, const char *ambiguousMember, Qt::ShortcutContext context) : QShortcut(key, parent, member, ambiguousMember, context) {};
+	MyQShortcut(const QKeySequence &key, QWidget *parent, const char *member = Q_NULLPTR, const char *ambiguousMember = Q_NULLPTR, Qt::ShortcutContext context = Qt::WindowShortcut) : QShortcut(key, parent, member, ambiguousMember, context) {};
 	void Signal_Activated() { callbackQShortcut_Activated(this); };
 	void Signal_ActivatedAmbiguously() { callbackQShortcut_ActivatedAmbiguously(this); };
 	bool event(QEvent * e) { return callbackQShortcut_Event(this, e) != 0; };
@@ -40251,8 +40251,8 @@ int QSizePolicy_VerticalStretch(void* ptr)
 class MyQSlider: public QSlider
 {
 public:
-	MyQSlider(QWidget *parent) : QSlider(parent) {};
-	MyQSlider(Qt::Orientation orientation, QWidget *parent) : QSlider(orientation, parent) {};
+	MyQSlider(QWidget *parent = Q_NULLPTR) : QSlider(parent) {};
+	MyQSlider(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QSlider(orientation, parent) {};
 	void mouseMoveEvent(QMouseEvent * ev) { callbackQWidget_MouseMoveEvent(this, ev); };
 	void mousePressEvent(QMouseEvent * ev) { callbackQWidget_MousePressEvent(this, ev); };
 	void mouseReleaseEvent(QMouseEvent * ev) { callbackQWidget_MouseReleaseEvent(this, ev); };
@@ -40377,7 +40377,7 @@ void QSlider_InitStyleOption(void* ptr, void* option)
 class MyQSpacerItem: public QSpacerItem
 {
 public:
-	MyQSpacerItem(int w, int h, QSizePolicy::Policy hPolicy, QSizePolicy::Policy vPolicy) : QSpacerItem(w, h, hPolicy, vPolicy) {};
+	MyQSpacerItem(int w, int h, QSizePolicy::Policy hPolicy = QSizePolicy::Minimum, QSizePolicy::Policy vPolicy = QSizePolicy::Minimum) : QSpacerItem(w, h, hPolicy, vPolicy) {};
 	QSpacerItem * spacerItem() { return static_cast<QSpacerItem*>(callbackQLayoutItem_SpacerItem(this)); };
 	void setGeometry(const QRect & r) { callbackQSpacerItem_SetGeometry(this, const_cast<QRect*>(&r)); };
 	QRect geometry() const { return *static_cast<QRect*>(callbackQSpacerItem_Geometry(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -40488,7 +40488,7 @@ char QSpacerItem_IsEmptyDefault(void* ptr)
 class MyQSpinBox: public QSpinBox
 {
 public:
-	MyQSpinBox(QWidget *parent) : QSpinBox(parent) {};
+	MyQSpinBox(QWidget *parent = Q_NULLPTR) : QSpinBox(parent) {};
 	void setValue(int val) { callbackQSpinBox_SetValue(this, val); };
 	void Signal_ValueChanged2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSpinBox_ValueChanged2(this, textPacked); };
 	void Signal_ValueChanged(int i) { callbackQSpinBox_ValueChanged(this, i); };
@@ -40722,8 +40722,8 @@ int QSpinBox_ValueFromTextDefault(void* ptr, char* text)
 class MyQSplashScreen: public QSplashScreen
 {
 public:
-	MyQSplashScreen(QWidget *parent, const QPixmap &pixmap, Qt::WindowFlags f) : QSplashScreen(parent, pixmap, f) {};
-	MyQSplashScreen(const QPixmap &pixmap, Qt::WindowFlags f) : QSplashScreen(pixmap, f) {};
+	MyQSplashScreen(QWidget *parent, const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(parent, pixmap, f) {};
+	MyQSplashScreen(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(pixmap, f) {};
 	void clearMessage() { callbackQSplashScreen_ClearMessage(this); };
 	void drawContents(QPainter * painter) { callbackQSplashScreen_DrawContents(this, painter); };
 	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_MessageChanged(this, messagePacked); };
@@ -40893,8 +40893,8 @@ void* QSplashScreen_Pixmap(void* ptr)
 class MyQSplitter: public QSplitter
 {
 public:
-	MyQSplitter(QWidget *parent) : QSplitter(parent) {};
-	MyQSplitter(Qt::Orientation orientation, QWidget *parent) : QSplitter(orientation, parent) {};
+	MyQSplitter(QWidget *parent = Q_NULLPTR) : QSplitter(parent) {};
+	MyQSplitter(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QSplitter(orientation, parent) {};
 	QSplitterHandle * createHandle() { return static_cast<QSplitterHandle*>(callbackQSplitter_CreateHandle(this)); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void resizeEvent(QResizeEvent * vqr) { callbackQWidget_ResizeEvent(this, vqr); };
@@ -41492,7 +41492,7 @@ int QStackedLayout_CurrentIndex(void* ptr)
 class MyQStackedWidget: public QStackedWidget
 {
 public:
-	MyQStackedWidget(QWidget *parent) : QStackedWidget(parent) {};
+	MyQStackedWidget(QWidget *parent = Q_NULLPTR) : QStackedWidget(parent) {};
 	void Signal_CurrentChanged(int index) { callbackQStackedWidget_CurrentChanged(this, index); };
 	void setCurrentIndex(int index) { callbackQStackedWidget_SetCurrentIndex(this, index); };
 	void setCurrentWidget(QWidget * widget) { callbackQStackedWidget_SetCurrentWidget(this, widget); };
@@ -41671,7 +41671,7 @@ int QStackedWidget_IndexOf(void* ptr, void* widget)
 class MyQStatusBar: public QStatusBar
 {
 public:
-	MyQStatusBar(QWidget *parent) : QStatusBar(parent) {};
+	MyQStatusBar(QWidget *parent = Q_NULLPTR) : QStatusBar(parent) {};
 	void clearMessage() { callbackQStatusBar_ClearMessage(this); };
 	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQStatusBar_MessageChanged(this, messagePacked); };
 	void paintEvent(QPaintEvent * event) { callbackQWidget_PaintEvent(this, event); };
@@ -46289,7 +46289,7 @@ void* QStylePainter___drawRects_rectangles_newList2(void* ptr)
 class MyQStylePlugin: public QStylePlugin
 {
 public:
-	MyQStylePlugin(QObject *parent) : QStylePlugin(parent) {};
+	MyQStylePlugin(QObject *parent = Q_NULLPTR) : QStylePlugin(parent) {};
 	QStyle * create(const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtWidgets_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QStyle*>(callbackQStylePlugin_Create(this, keyPacked)); };
 	bool event(QEvent * e) { return callbackQStylePlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStylePlugin_EventFilter(this, watched, event) != 0; };
@@ -46528,7 +46528,7 @@ void* QStylePlugin_MetaObjectDefault(void* ptr)
 class MyQStyledItemDelegate: public QStyledItemDelegate
 {
 public:
-	MyQStyledItemDelegate(QObject *parent) : QStyledItemDelegate(parent) {};
+	MyQStyledItemDelegate(QObject *parent = Q_NULLPTR) : QStyledItemDelegate(parent) {};
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQAbstractItemDelegate_EventFilter(this, editor, event) != 0; };
 	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQStyledItemDelegate_SizeHint(const_cast<void*>(static_cast<const void*>(this)), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
@@ -46696,8 +46696,8 @@ double QSwipeGesture_SwipeAngle(void* ptr)
 class MyQSystemTrayIcon: public QSystemTrayIcon
 {
 public:
-	MyQSystemTrayIcon(QObject *parent) : QSystemTrayIcon(parent) {};
-	MyQSystemTrayIcon(const QIcon &icon, QObject *parent) : QSystemTrayIcon(icon, parent) {};
+	MyQSystemTrayIcon(QObject *parent = Q_NULLPTR) : QSystemTrayIcon(parent) {};
+	MyQSystemTrayIcon(const QIcon &icon, QObject *parent = Q_NULLPTR) : QSystemTrayIcon(icon, parent) {};
 	bool event(QEvent * e) { return callbackQSystemTrayIcon_Event(this, e) != 0; };
 	void Signal_Activated(QSystemTrayIcon::ActivationReason reason) { callbackQSystemTrayIcon_Activated(this, reason); };
 	void hide() { callbackQSystemTrayIcon_Hide(this); };
@@ -47097,7 +47097,7 @@ void* QSystemTrayIcon_MetaObjectDefault(void* ptr)
 class MyQTabBar: public QTabBar
 {
 public:
-	MyQTabBar(QWidget *parent) : QTabBar(parent) {};
+	MyQTabBar(QWidget *parent = Q_NULLPTR) : QTabBar(parent) {};
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
 	void Signal_CurrentChanged(int index) { callbackQTabBar_CurrentChanged(this, index); };
 	void hideEvent(QHideEvent * vqh) { callbackQWidget_HideEvent(this, vqh); };
@@ -47583,7 +47583,7 @@ void QTabBar_InitStyleOption(void* ptr, void* option, int tabIndex)
 class MyQTabWidget: public QTabWidget
 {
 public:
-	MyQTabWidget(QWidget *parent) : QTabWidget(parent) {};
+	MyQTabWidget(QWidget *parent = Q_NULLPTR) : QTabWidget(parent) {};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void Signal_CurrentChanged(int index) { callbackQTabWidget_CurrentChanged(this, index); };
 	void keyPressEvent(QKeyEvent * e) { callbackQWidget_KeyPressEvent(this, e); };
@@ -47986,7 +47986,7 @@ void QTabWidget_InitStyleOption(void* ptr, void* option)
 class MyQTableView: public QTableView
 {
 public:
-	MyQTableView(QWidget *parent) : QTableView(parent) {};
+	MyQTableView(QWidget *parent = Q_NULLPTR) : QTableView(parent) {};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQTableView_MoveCursor(this, cursorAction, modifiers)); };
 	void columnCountChanged(int oldCount, int newCount) { callbackQTableView_ColumnCountChanged(this, oldCount, newCount); };
 	void columnMoved(int column, int oldIndex, int newIndex) { callbackQTableView_ColumnMoved(this, column, oldIndex, newIndex); };
@@ -48705,8 +48705,8 @@ void* QTableView_VisualRegionForSelectionDefault(void* ptr, void* selection)
 class MyQTableWidget: public QTableWidget
 {
 public:
-	MyQTableWidget(QWidget *parent) : QTableWidget(parent) {};
-	MyQTableWidget(int rows, int columns, QWidget *parent) : QTableWidget(rows, columns, parent) {};
+	MyQTableWidget(QWidget *parent = Q_NULLPTR) : QTableWidget(parent) {};
+	MyQTableWidget(int rows, int columns, QWidget *parent = Q_NULLPTR) : QTableWidget(rows, columns, parent) {};
 	bool dropMimeData(int row, int column, const QMimeData * data, Qt::DropAction action) { return callbackQTableWidget_DropMimeData(this, row, column, const_cast<QMimeData*>(data), action) != 0; };
 	void Signal_CellActivated(int row, int column) { callbackQTableWidget_CellActivated(this, row, column); };
 	void Signal_CellChanged(int row, int column) { callbackQTableWidget_CellChanged(this, row, column); };
@@ -49521,10 +49521,10 @@ void* QTableWidget___mimeData_items_newList(void* ptr)
 class MyQTableWidgetItem: public QTableWidgetItem
 {
 public:
-	MyQTableWidgetItem(const QIcon &icon, const QString &text, int type) : QTableWidgetItem(icon, text, type) {};
-	MyQTableWidgetItem(const QString &text, int type) : QTableWidgetItem(text, type) {};
+	MyQTableWidgetItem(const QIcon &icon, const QString &text, int type = Type) : QTableWidgetItem(icon, text, type) {};
+	MyQTableWidgetItem(const QString &text, int type = Type) : QTableWidgetItem(text, type) {};
 	MyQTableWidgetItem(const QTableWidgetItem &other) : QTableWidgetItem(other) {};
-	MyQTableWidgetItem(int type) : QTableWidgetItem(type) {};
+	MyQTableWidgetItem(int type = Type) : QTableWidgetItem(type) {};
 	void read(QDataStream & in) { callbackQTableWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int role, const QVariant & value) { callbackQTableWidgetItem_SetData(this, role, const_cast<QVariant*>(&value)); };
 	 ~MyQTableWidgetItem() { callbackQTableWidgetItem_DestroyQTableWidgetItem(this); };
@@ -49888,7 +49888,7 @@ void* QTapGesture_Position(void* ptr)
 class MyQTextBrowser: public QTextBrowser
 {
 public:
-	MyQTextBrowser(QWidget *parent) : QTextBrowser(parent) {};
+	MyQTextBrowser(QWidget *parent = Q_NULLPTR) : QTextBrowser(parent) {};
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
 	bool event(QEvent * e) { return callbackQWidget_Event(this, e) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -50265,8 +50265,8 @@ void QTextBrowser_SetUndoRedoEnabled(void* ptr, char undoRedoEnabled)
 class MyQTextEdit: public QTextEdit
 {
 public:
-	MyQTextEdit(QWidget *parent) : QTextEdit(parent) {};
-	MyQTextEdit(const QString &text, QWidget *parent) : QTextEdit(text, parent) {};
+	MyQTextEdit(QWidget *parent = Q_NULLPTR) : QTextEdit(parent) {};
+	MyQTextEdit(const QString &text, QWidget *parent = Q_NULLPTR) : QTextEdit(text, parent) {};
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void append(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_Append(this, textPacked); };
@@ -51235,8 +51235,8 @@ void QTileRules_SetVertical(void* ptr, long long vqt)
 class MyQTimeEdit: public QTimeEdit
 {
 public:
-	MyQTimeEdit(QWidget *parent) : QTimeEdit(parent) {};
-	MyQTimeEdit(const QTime &time, QWidget *parent) : QTimeEdit(time, parent) {};
+	MyQTimeEdit(QWidget *parent = Q_NULLPTR) : QTimeEdit(parent) {};
+	MyQTimeEdit(const QTime &time, QWidget *parent = Q_NULLPTR) : QTimeEdit(time, parent) {};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void clear() { callbackQDateTimeEdit_Clear(this); };
 	void Signal_DateChanged(const QDate & date) { callbackQDateTimeEdit_DateChanged(this, const_cast<QDate*>(&date)); };
@@ -51343,8 +51343,8 @@ void QTimeEdit_DestroyQTimeEdit(void* ptr)
 class MyQToolBar: public QToolBar
 {
 public:
-	MyQToolBar(QWidget *parent) : QToolBar(parent) {};
-	MyQToolBar(const QString &title, QWidget *parent) : QToolBar(title, parent) {};
+	MyQToolBar(QWidget *parent = Q_NULLPTR) : QToolBar(parent) {};
+	MyQToolBar(const QString &title, QWidget *parent = Q_NULLPTR) : QToolBar(title, parent) {};
 	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
 	void Signal_ActionTriggered(QAction * action) { callbackQToolBar_ActionTriggered(this, action); };
 	void Signal_AllowedAreasChanged(Qt::ToolBarAreas allowedAreas) { callbackQToolBar_AllowedAreasChanged(this, allowedAreas); };
@@ -51729,7 +51729,7 @@ char QToolBar_IsMovable(void* ptr)
 class MyQToolBox: public QToolBox
 {
 public:
-	MyQToolBox(QWidget *parent, Qt::WindowFlags f) : QToolBox(parent, f) {};
+	MyQToolBox(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QToolBox(parent, f) {};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void Signal_CurrentChanged(int index) { callbackQToolBox_CurrentChanged(this, index); };
 	void itemInserted(int index) { callbackQToolBox_ItemInserted(this, index); };
@@ -51964,7 +51964,7 @@ int QToolBox_IndexOf(void* ptr, void* widget)
 class MyQToolButton: public QToolButton
 {
 public:
-	MyQToolButton(QWidget *parent) : QToolButton(parent) {};
+	MyQToolButton(QWidget *parent = Q_NULLPTR) : QToolButton(parent) {};
 	void paintEvent(QPaintEvent * event) { callbackQToolButton_PaintEvent(this, event); };
 	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
@@ -52225,7 +52225,7 @@ void QToolTip_QToolTip_ShowText3(void* pos, char* text, void* w, void* rect, int
 class MyQTreeView: public QTreeView
 {
 public:
-	MyQTreeView(QWidget *parent) : QTreeView(parent) {};
+	MyQTreeView(QWidget *parent = Q_NULLPTR) : QTreeView(parent) {};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQTreeView_MoveCursor(this, cursorAction, modifiers)); };
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void collapse(const QModelIndex & index) { callbackQTreeView_Collapse(this, const_cast<QModelIndex*>(&index)); };
@@ -53076,7 +53076,7 @@ void QTreeView_DrawTree(void* ptr, void* painter, void* region)
 class MyQTreeWidget: public QTreeWidget
 {
 public:
-	MyQTreeWidget(QWidget *parent) : QTreeWidget(parent) {};
+	MyQTreeWidget(QWidget *parent = Q_NULLPTR) : QTreeWidget(parent) {};
 	bool dropMimeData(QTreeWidgetItem * parent, int index, const QMimeData * data, Qt::DropAction action) { return callbackQTreeWidget_DropMimeData(this, parent, index, const_cast<QMimeData*>(data), action) != 0; };
 	void clear() { callbackQTreeWidget_Clear(this); };
 	void collapseItem(const QTreeWidgetItem * item) { callbackQTreeWidget_CollapseItem(this, const_cast<QTreeWidgetItem*>(item)); };
@@ -53757,15 +53757,15 @@ void* QTreeWidget___mimeData_items_newList(void* ptr)
 class MyQTreeWidgetItem: public QTreeWidgetItem
 {
 public:
-	MyQTreeWidgetItem(QTreeWidget *parent, QTreeWidgetItem *preceding, int type) : QTreeWidgetItem(parent, preceding, type) {};
-	MyQTreeWidgetItem(QTreeWidget *parent, const QStringList &strings, int type) : QTreeWidgetItem(parent, strings, type) {};
-	MyQTreeWidgetItem(QTreeWidget *parent, int type) : QTreeWidgetItem(parent, type) {};
-	MyQTreeWidgetItem(QTreeWidgetItem *parent, QTreeWidgetItem *preceding, int type) : QTreeWidgetItem(parent, preceding, type) {};
-	MyQTreeWidgetItem(QTreeWidgetItem *parent, const QStringList &strings, int type) : QTreeWidgetItem(parent, strings, type) {};
-	MyQTreeWidgetItem(QTreeWidgetItem *parent, int type) : QTreeWidgetItem(parent, type) {};
-	MyQTreeWidgetItem(const QStringList &strings, int type) : QTreeWidgetItem(strings, type) {};
+	MyQTreeWidgetItem(QTreeWidget *parent, QTreeWidgetItem *preceding, int type = Type) : QTreeWidgetItem(parent, preceding, type) {};
+	MyQTreeWidgetItem(QTreeWidget *parent, const QStringList &strings, int type = Type) : QTreeWidgetItem(parent, strings, type) {};
+	MyQTreeWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {};
+	MyQTreeWidgetItem(QTreeWidgetItem *parent, QTreeWidgetItem *preceding, int type = Type) : QTreeWidgetItem(parent, preceding, type) {};
+	MyQTreeWidgetItem(QTreeWidgetItem *parent, const QStringList &strings, int type = Type) : QTreeWidgetItem(parent, strings, type) {};
+	MyQTreeWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {};
+	MyQTreeWidgetItem(const QStringList &strings, int type = Type) : QTreeWidgetItem(strings, type) {};
 	MyQTreeWidgetItem(const QTreeWidgetItem &other) : QTreeWidgetItem(other) {};
-	MyQTreeWidgetItem(int type) : QTreeWidgetItem(type) {};
+	MyQTreeWidgetItem(int type = Type) : QTreeWidgetItem(type) {};
 	void read(QDataStream & in) { callbackQTreeWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int column, int role, const QVariant & value) { callbackQTreeWidgetItem_SetData(this, column, role, const_cast<QVariant*>(&value)); };
 	 ~MyQTreeWidgetItem() { callbackQTreeWidgetItem_DestroyQTreeWidgetItem(this); };
@@ -54187,8 +54187,8 @@ void* QTreeWidgetItem___insertChildren_children_newList(void* ptr)
 class MyQUndoCommand: public QUndoCommand
 {
 public:
-	MyQUndoCommand(QUndoCommand *parent) : QUndoCommand(parent) {};
-	MyQUndoCommand(const QString &text, QUndoCommand *parent) : QUndoCommand(text, parent) {};
+	MyQUndoCommand(QUndoCommand *parent = Q_NULLPTR) : QUndoCommand(parent) {};
+	MyQUndoCommand(const QString &text, QUndoCommand *parent = Q_NULLPTR) : QUndoCommand(text, parent) {};
 	bool mergeWith(const QUndoCommand * command) { return callbackQUndoCommand_MergeWith(this, const_cast<QUndoCommand*>(command)) != 0; };
 	void redo() { callbackQUndoCommand_Redo(this); };
 	void undo() { callbackQUndoCommand_Undo(this); };
@@ -54284,7 +54284,7 @@ int QUndoCommand_IdDefault(void* ptr)
 class MyQUndoGroup: public QUndoGroup
 {
 public:
-	MyQUndoGroup(QObject *parent) : QUndoGroup(parent) {};
+	MyQUndoGroup(QObject *parent = Q_NULLPTR) : QUndoGroup(parent) {};
 	void Signal_ActiveStackChanged(QUndoStack * stack) { callbackQUndoGroup_ActiveStackChanged(this, stack); };
 	void Signal_CanRedoChanged(bool canRedo) { callbackQUndoGroup_CanRedoChanged(this, canRedo); };
 	void Signal_CanUndoChanged(bool canUndo) { callbackQUndoGroup_CanUndoChanged(this, canUndo); };
@@ -54752,7 +54752,7 @@ void* QUndoGroup_MetaObjectDefault(void* ptr)
 class MyQUndoStack: public QUndoStack
 {
 public:
-	MyQUndoStack(QObject *parent) : QUndoStack(parent) {};
+	MyQUndoStack(QObject *parent = Q_NULLPTR) : QUndoStack(parent) {};
 	void Signal_CanRedoChanged(bool canRedo) { callbackQUndoStack_CanRedoChanged(this, canRedo); };
 	void Signal_CanUndoChanged(bool canUndo) { callbackQUndoStack_CanUndoChanged(this, canUndo); };
 	void Signal_CleanChanged(bool clean) { callbackQUndoStack_CleanChanged(this, clean); };
@@ -55262,9 +55262,9 @@ void* QUndoStack_MetaObjectDefault(void* ptr)
 class MyQUndoView: public QUndoView
 {
 public:
-	MyQUndoView(QUndoGroup *group, QWidget *parent) : QUndoView(group, parent) {};
-	MyQUndoView(QUndoStack *stack, QWidget *parent) : QUndoView(stack, parent) {};
-	MyQUndoView(QWidget *parent) : QUndoView(parent) {};
+	MyQUndoView(QUndoGroup *group, QWidget *parent = Q_NULLPTR) : QUndoView(group, parent) {};
+	MyQUndoView(QUndoStack *stack, QWidget *parent = Q_NULLPTR) : QUndoView(stack, parent) {};
+	MyQUndoView(QWidget *parent = Q_NULLPTR) : QUndoView(parent) {};
 	void setGroup(QUndoGroup * group) { callbackQUndoView_SetGroup(this, group); };
 	void setStack(QUndoStack * stack) { callbackQUndoView_SetStack(this, stack); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
@@ -55551,7 +55551,7 @@ void QWhatsThis_QWhatsThis_ShowText(void* pos, char* text, void* w)
 class MyQWidget: public QWidget
 {
 public:
-	MyQWidget(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f) {};
+	MyQWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QWidget(parent, f) {};
 	bool close() { return callbackQWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -69087,7 +69087,7 @@ void QWidgetItem_SetWid(void* ptr, void* vqw)
 class MyQWizard: public QWizard
 {
 public:
-	MyQWizard(QWidget *parent, Qt::WindowFlags flags) : QWizard(parent, flags) {};
+	MyQWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QWizard(parent, flags) {};
 	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
 	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	bool validateCurrentPage() { return callbackQWizard_ValidateCurrentPage(this) != 0; };
@@ -69537,7 +69537,7 @@ void* QWizard___visitedPages_newList(void* ptr)
 class MyQWizardPage: public QWizardPage
 {
 public:
-	MyQWizardPage(QWidget *parent) : QWizardPage(parent) {};
+	MyQWizardPage(QWidget *parent = Q_NULLPTR) : QWizardPage(parent) {};
 	bool validatePage() { return callbackQWizardPage_ValidatePage(this) != 0; };
 	void cleanupPage() { callbackQWizardPage_CleanupPage(this); };
 	void Signal_CompleteChanged() { callbackQWizardPage_CompleteChanged(this); };

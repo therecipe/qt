@@ -62,7 +62,7 @@
 class MyQAbstractPrintDialog: public QAbstractPrintDialog
 {
 public:
-	MyQAbstractPrintDialog(QPrinter *printer, QWidget *parent) : QAbstractPrintDialog(printer, parent) {};
+	MyQAbstractPrintDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QAbstractPrintDialog(printer, parent) {};
 	int exec() { return callbackQAbstractPrintDialog_Exec(this); };
 	void accept() { callbackQAbstractPrintDialog_Accept(this); };
 	void Signal_Accepted() { callbackQAbstractPrintDialog_Accepted(this); };
@@ -952,8 +952,8 @@ void* QAbstractPrintDialog_MetaObjectDefault(void* ptr)
 class MyQPageSetupDialog: public QPageSetupDialog
 {
 public:
-	MyQPageSetupDialog(QPrinter *printer, QWidget *parent) : QPageSetupDialog(printer, parent) {};
-	MyQPageSetupDialog(QWidget *parent) : QPageSetupDialog(parent) {};
+	MyQPageSetupDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QPageSetupDialog(printer, parent) {};
+	MyQPageSetupDialog(QWidget *parent = Q_NULLPTR) : QPageSetupDialog(parent) {};
 	int exec() { return callbackQPageSetupDialog_Exec(this); };
 	void done(int result) { callbackQPageSetupDialog_Done(this, result); };
 	void setVisible(bool visible) { callbackQPageSetupDialog_SetVisible(this, visible); };
@@ -1528,8 +1528,8 @@ void* QPageSetupDialog_MetaObjectDefault(void* ptr)
 class MyQPrintDialog: public QPrintDialog
 {
 public:
-	MyQPrintDialog(QPrinter *printer, QWidget *parent) : QPrintDialog(printer, parent) {};
-	MyQPrintDialog(QWidget *parent) : QPrintDialog(parent) {};
+	MyQPrintDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QPrintDialog(printer, parent) {};
+	MyQPrintDialog(QWidget *parent = Q_NULLPTR) : QPrintDialog(parent) {};
 	void done(int result) { callbackQPrintDialog_Done(this, result); };
 	int exec() { return callbackQPrintDialog_Exec(this); };
 	void Signal_Accepted(QPrinter * printer) { callbackQPrintDialog_Accepted(this, printer); };
@@ -1739,8 +1739,8 @@ int QPrintEngine_Metric(void* ptr, long long id)
 class MyQPrintPreviewDialog: public QPrintPreviewDialog
 {
 public:
-	MyQPrintPreviewDialog(QPrinter *printer, QWidget *parent, Qt::WindowFlags flags) : QPrintPreviewDialog(printer, parent, flags) {};
-	MyQPrintPreviewDialog(QWidget *parent, Qt::WindowFlags flags) : QPrintPreviewDialog(parent, flags) {};
+	MyQPrintPreviewDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewDialog(printer, parent, flags) {};
+	MyQPrintPreviewDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewDialog(parent, flags) {};
 	void done(int result) { callbackQPrintPreviewDialog_Done(this, result); };
 	void Signal_PaintRequested(QPrinter * printer) { callbackQPrintPreviewDialog_PaintRequested(this, printer); };
 	void setVisible(bool visible) { callbackQPrintPreviewDialog_SetVisible(this, visible); };
@@ -2326,8 +2326,8 @@ void* QPrintPreviewDialog_MetaObjectDefault(void* ptr)
 class MyQPrintPreviewWidget: public QPrintPreviewWidget
 {
 public:
-	MyQPrintPreviewWidget(QPrinter *printer, QWidget *parent, Qt::WindowFlags flags) : QPrintPreviewWidget(printer, parent, flags) {};
-	MyQPrintPreviewWidget(QWidget *parent, Qt::WindowFlags flags) : QPrintPreviewWidget(parent, flags) {};
+	MyQPrintPreviewWidget(QPrinter *printer, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewWidget(printer, parent, flags) {};
+	MyQPrintPreviewWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewWidget(parent, flags) {};
 	void fitInView() { callbackQPrintPreviewWidget_FitInView(this); };
 	void fitToWidth() { callbackQPrintPreviewWidget_FitToWidth(this); };
 	void Signal_PaintRequested(QPrinter * printer) { callbackQPrintPreviewWidget_PaintRequested(this, printer); };
@@ -3100,8 +3100,8 @@ void* QPrintPreviewWidget_MetaObjectDefault(void* ptr)
 class MyQPrinter: public QPrinter
 {
 public:
-	MyQPrinter(PrinterMode mode) : QPrinter(mode) {};
-	MyQPrinter(const QPrinterInfo &printer, PrinterMode mode) : QPrinter(printer, mode) {};
+	MyQPrinter(PrinterMode mode = ScreenResolution) : QPrinter(mode) {};
+	MyQPrinter(const QPrinterInfo &printer, PrinterMode mode = ScreenResolution) : QPrinter(printer, mode) {};
 	bool newPage() { return callbackQPrinter_NewPage(this) != 0; };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrinter_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPrinter_SetPageSize2(this, size); };

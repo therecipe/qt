@@ -152,8 +152,8 @@ void* QMacPasteboardMime___convertToMime_data_newList(void* ptr)
 class MyQMacToolBar: public QMacToolBar
 {
 public:
-	MyQMacToolBar(QObject *parent) : QMacToolBar(parent) {};
-	MyQMacToolBar(const QString &identifier, QObject *parent) : QMacToolBar(identifier, parent) {};
+	MyQMacToolBar(QObject *parent = Q_NULLPTR) : QMacToolBar(parent) {};
+	MyQMacToolBar(const QString &identifier, QObject *parent = Q_NULLPTR) : QMacToolBar(identifier, parent) {};
 	bool event(QEvent * e) { return callbackQMacToolBar_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacToolBar_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMacToolBar_ChildEvent(this, event); };
@@ -506,7 +506,7 @@ void* QMacToolBar_MetaObjectDefault(void* ptr)
 class MyQMacToolBarItem: public QMacToolBarItem
 {
 public:
-	MyQMacToolBarItem(QObject *parent) : QMacToolBarItem(parent) {};
+	MyQMacToolBarItem(QObject *parent = Q_NULLPTR) : QMacToolBarItem(parent) {};
 	void Signal_Activated() { callbackQMacToolBarItem_Activated(this); };
 	 ~MyQMacToolBarItem() { callbackQMacToolBarItem_DestroyQMacToolBarItem(this); };
 	bool event(QEvent * e) { return callbackQMacToolBarItem_Event(this, e) != 0; };

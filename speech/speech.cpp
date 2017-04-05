@@ -41,8 +41,8 @@
 class MyQTextToSpeech: public QTextToSpeech
 {
 public:
-	MyQTextToSpeech(QObject *parent) : QTextToSpeech(parent) {};
-	MyQTextToSpeech(const QString &engine, QObject *parent) : QTextToSpeech(engine, parent) {};
+	MyQTextToSpeech(QObject *parent = nullptr) : QTextToSpeech(parent) {};
+	MyQTextToSpeech(const QString &engine, QObject *parent = nullptr) : QTextToSpeech(engine, parent) {};
 	void Signal_LocaleChanged(const QLocale & locale) { callbackQTextToSpeech_LocaleChanged(this, const_cast<QLocale*>(&locale)); };
 	void pause() { callbackQTextToSpeech_Pause(this); };
 	void Signal_PitchChanged(double pitch) { callbackQTextToSpeech_PitchChanged(this, pitch); };
