@@ -43,7 +43,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags string, fast bool) {
 			minimal.Minimal(path, target)
 		}
 
-		build(mode, target, path, ldFlags, name, depPath)
+		build(mode, target, path, ldFlags, name, depPath, fast && !utils.QT_STUB())
 
 		if !fast {
 			bundle(mode, target, path, name, depPath)

@@ -54,8 +54,8 @@ func Check(target string, docker bool) {
 		vars = append(vars, [][]string{
 			{"QT_HOMEBREW", fmt.Sprint(utils.QT_HOMEBREW())},
 			{"XCODE_DIR", utils.XCODE_DIR()},
-			//{"IPHONEOS_SDK_DIR", utils.IPHONEOS_SDK_DIR()},               //TODO: re-add after deploy is done; with absolute path
-			//{"IPHONESIMULATOR_SDK_DIR", utils.IPHONESIMULATOR_SDK_DIR()}, //TODO: re-add after deploy is done; with absolute path
+			//{"IPHONEOS_SDK_DIR", utils.IPHONEOS_SDK_DIR()},               //TODO: re-add with absolute path
+			//{"IPHONESIMULATOR_SDK_DIR", utils.IPHONESIMULATOR_SDK_DIR()}, //TODO: re-add with absolute path
 		}...)
 
 		if _, err := exec.LookPath("clang++"); err != nil {

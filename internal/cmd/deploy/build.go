@@ -14,9 +14,11 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func build(mode, target, path, ldFlagsCustom, name, depPath string) {
+func build(mode, target, path, ldFlagsCustom, name, depPath string, fast bool) {
 	env, tags, ldFlags, out := cmd.BuildEnv(target, name, depPath)
-	tags = append(tags, "minimal")
+	if !fast {
+		tags = append(tags, "minimal")
+	}
 	if ldFlagsCustom != "" {
 		ldFlags = append(ldFlags, strings.Split(ldFlagsCustom, " ")...)
 	}
