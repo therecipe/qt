@@ -92,7 +92,7 @@ If you want to build applications for macOS or iOS, then you need to take the re
 
 -	Pull the linux image: `docker pull therecipe/qt:linux`
 
--	Share your GOPATH with docker if needed (for example on macOS)
+-	Share your **GOPATH** with docker if needed (for example on macOS)
 
 -	Clone the repo: `go get -v github.com/therecipe/qt/cmd/...`
 
@@ -708,8 +708,7 @@ If you want to have your `*.apk` signed automatically, then you need to create a
 
 Or you could sign it manually as well.
 
-Java Native Interface (JNI)
----------------------------
+### Java Native Interface (JNI)
 
 You can call Java functions directly from Go with the help of the [androidextras](androidextras) package.
 
@@ -754,6 +753,12 @@ project_name
 ```
 
 Furthermore you can use the `*.desktop` and `*.spec` files found inside `deploy/sailfish` as a template to build upon.
+
+</details>
+
+<details> <summary>AsteroidOS</summary>
+
+-	**TBA**
 
 </details>
 
@@ -1365,7 +1370,7 @@ The created `*.qml` files can later be used like hand written qml files.
 
 On windows, depending on your editor or IDE you may also need to export `GOARCH=386` to make the code completion work.
 
--	IntelliJ Idea
+-	IntelliJ Idea / Gogland
 
 	Help > Edit Custom Properties
 
