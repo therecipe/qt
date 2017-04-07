@@ -347,9 +347,9 @@ These are some general environmental variables, you can find the target specific
 
 -	Unzip the Android NDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_NDK_DIR**
 
-	-	https://dl.google.com/android/repository/android-ndk-r13b-windows-x86_64.zip
-	-	https://dl.google.com/android/repository/android-ndk-r13b-darwin-x86_64.zip
-	-	https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip
+	-	https://dl.google.com/android/repository/android-ndk-r14b-windows-x86_64.zip
+	-	https://dl.google.com/android/repository/android-ndk-r14b-darwin-x86_64.zip
+	-	https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip
 
 -	Install the JDK >= 8 (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
 
@@ -377,9 +377,9 @@ These are some general environmental variables, you can find the target specific
 
 -	Install VirtualBox; you can also define a custom location with **VIRTUALBOX_DIR**
 
-	-	https://download.virtualbox.org/virtualbox/5.1.14/VirtualBox-5.1.14-112924-Win.exe
-	-	https://download.virtualbox.org/virtualbox/5.1.14/VirtualBox-5.1.14-112924-OSX.dmg
-	-	https://download.virtualbox.org/virtualbox/5.1.14/VirtualBox-5.1.14-112924-Linux_amd64.run
+	-	https://download.virtualbox.org/virtualbox/5.1.18/VirtualBox-5.1.18-114002-Win.exe
+	-	https://download.virtualbox.org/virtualbox/5.1.18/VirtualBox-5.1.18-114002-OSX.dmg
+	-	https://download.virtualbox.org/virtualbox/5.1.18/VirtualBox-5.1.18-114002-Linux_amd64.run
 
 -	Install the Sailfish OS SDK; you can also define a custom location with **SAILFISH_DIR**
 
