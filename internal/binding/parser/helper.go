@@ -108,7 +108,8 @@ func CleanName(name, value string) string {
 		"new",
 		"signal",
 		"ptr",
-		"register":
+		"register",
+		"forever":
 		{
 			return name[:len(name)-2]
 		}
@@ -123,7 +124,7 @@ func CleanName(name, value string) string {
 			}
 		}
 
-	case "f":
+	case "f", "fmt":
 		{
 			return "fo"
 		}
@@ -176,12 +177,14 @@ var LibDeps = map[string][]string{
 	"Charts":            {"Widgets", "Gui", "Core"},
 	//"Quick2DRenderer":   {}, //TODO: uncomment
 
-	//"NetworkAuth":    {"Network", "Gui", "Core"},
 	"Speech":         {"Core"},
 	"QuickControls2": {"Quick", "QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //Quick, QuickWidgets, Widgets, Network, Qml, Gui (needed for static linking ios)
 
 	"Sailfish": {"Core"},
 	"WebView":  {"Core"},
+
+	"NetworkAuth":   {"Network", "Gui", "Core"},
+	"RemoteObjects": {"Network", "Core"},
 
 	MOC:         make([]string, 0),
 	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport", "WebView"},
@@ -292,12 +295,14 @@ func GetLibs() []string {
 		"Charts",            //GPLv3
 		//"Quick2DRenderer",   //GPLv3
 
-		//"NetworkAuth",
 		"Speech",
 		"QuickControls2",
 
 		"Sailfish",
 		"WebView",
+
+		//"NetworkAuth",
+		//"RemoteObjects",
 	}
 
 	for i := len(libs) - 1; i >= 0; i-- {
@@ -308,7 +313,10 @@ func GetLibs() []string {
 			runtime.GOOS != "linux" && libs[i] == "X11Extras":
 			libs = append(libs[:i], libs[i+1:]...)
 
-		case utils.QT_VERSION() != "5.8.0" && libs[i] == "Speech":
+		case !(utils.QT_VERSION() == "5.8.0" || utils.QT_VERSION() == "5.9.0") && libs[i] == "Speech":
+			libs = append(libs[:i], libs[i+1:]...)
+
+		case utils.QT_VERSION() != "5.9.0" && (libs[i] == "NetworkAuth" || libs[i] == "RemoteObjects"):
 			libs = append(libs[:i], libs[i+1:]...)
 		}
 	}

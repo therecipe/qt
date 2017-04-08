@@ -30,6 +30,8 @@ func main() {
 	var docker bool
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
+	//TODO: -fast flag
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}

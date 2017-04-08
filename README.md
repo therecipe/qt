@@ -44,6 +44,33 @@ The following targets are currently supported:
 | SailfishOS-Emulator  |      32       |           system libs            |        No         | Windows/macOS/Linux |
 |      AsteroidOS      |      arm      |           system libs            |        No         |        Linux        |
 
+FAQ
+---
+
+-	What are the system requirements?
+
+	-	2.5gb free ram (only needed during the setup) and at least 5gb free disk space.
+
+-	How long does it take to get started?
+
+	-	It takes 15-30 min to download and install everything.
+
+-	Why is the setup so slow?
+
+	-	The setup spends most of it's time installing the packages to speed up the compilation of your applications later.
+
+-	Can I make the setup faster or lower the system requirements?
+
+	-	Yes, you can export `QT_STUB=true` prior running the setup, and thereby also lower the system requirements.
+
+-	Why is qtdeploy so slow?
+
+	-	qtdeploy is slow, because it is intended to be used for deploying and therefore takes some extra actions that may not be needed during development.
+
+-	Can I make qtdeploy faster?
+
+	-	Yes, you can use the `-fast` flag to skip most of the actions taken otherwise and so drastically reduce the time it takes to compile your application.
+
 Docker
 ------
 
@@ -126,7 +153,7 @@ These are some general environmental variables, you can find the target specific
 
 <details> <summary>Official (with Android support)</summary>
 
--	Install Go: https://golang.org/doc/install?download=go1.8.windows-amd64.msi
+-	Install Go: https://golang.org/doc/install?download=go1.8.1.windows-amd64.msi
 
 -	Clone the repo: `go get -u -v github.com/therecipe/qt/cmd/...`
 
@@ -146,7 +173,7 @@ These are some general environmental variables, you can find the target specific
 
 <details> <summary>MSYS2</summary>
 
--	Install Go: https://golang.org/doc/install?download=go1.8.windows-amd64.msi
+-	Install Go: https://golang.org/doc/install?download=go1.8.1.windows-amd64.msi
 
 -	Clone the repo: `go get -u -v github.com/therecipe/qt/cmd/...`
 
@@ -184,7 +211,7 @@ These are some general environmental variables, you can find the target specific
 
 <details> <summary>Official (with iOS/Android support)</summary>
 
--	Install Go: https://golang.org/doc/install?download=go1.8.darwin-amd64.pkg
+-	Install Go: https://golang.org/doc/install?download=go1.8.1.darwin-amd64.pkg
 
 -	Install Xcode
 
@@ -206,7 +233,7 @@ These are some general environmental variables, you can find the target specific
 
 <details> <summary>HomeBrew (no deployments possible)</summary>
 
--	Install Go: https://golang.org/doc/install?download=go1.8.darwin-amd64.pkg
+-	Install Go: https://golang.org/doc/install?download=go1.8.1.darwin-amd64.pkg
 
 -	Install Xcode
 
@@ -228,7 +255,7 @@ These are some general environmental variables, you can find the target specific
 
 <details> <summary>Official (with Android support)</summary>
 
--	Install Go: https://golang.org/doc/install?download=go1.8.linux-amd64.tar.gz
+-	Install Go: https://golang.org/doc/install?download=go1.8.1.linux-amd64.tar.gz
 
 -	Clone the repo: `go get -u -v github.com/therecipe/qt/cmd/...`
 
@@ -261,7 +288,7 @@ These are some general environmental variables, you can find the target specific
 
 <details> <summary>Pkg-Config (no deployments possible)</summary>
 
--	Install Go: https://golang.org/doc/install?download=go1.8.linux-amd64.tar.gz
+-	Install Go: https://golang.org/doc/install?download=go1.8.1.linux-amd64.tar.gz
 
 -	Clone the repo: `go get -u -v github.com/therecipe/qt/cmd/...`
 
@@ -928,12 +955,10 @@ type exampleStruct struct {
 	//this will let qtmoc know that you want a property called "firstProperty"
 	//there will be helper getter + setter functions and a changed signal created called:
 	//FirstProperty (IsFirstProperty for bools), SetFirstProperty, FirstProperyChanged
-	//the changed signal will be automatically called, when the property changes
 	_ string `property:"firstProperty"`
 }
 
 //this function will be automatically called, when you use the `NewExampleStruct` function
-//because you defined the "init" function as the constructor
 func (s *exampleStruct) init() {
 	//here you can do some initializing
 	s.SetFirstProperty("defaultString")
@@ -979,7 +1004,7 @@ It's recommended to use `qtdeploy -fast build ...` if you want to have your proj
 
 This will skip most of the actions `qtdeploy` would take otherwise, such as running `qtmoc`, `qtminimal` and deploying your project.
 
-Note that this option is only available for the `desktop` target, and on windows it's mandatory to run the normal deployment at least once before using the `-fast` flag.
+Note that this option is only available for the `desktop` target, and it's mandatory to run the normal deployment at least once before using the `-fast` flag.
 
 Beside the option to use the `-fast` flag, you could also just use `qtrcc`, `qtmoc` and `qtminimal` manually with `go build`.
 

@@ -23,7 +23,7 @@ ENV QT_QPA_PLATFORM minimal
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/qt/5.8/5.8.0/$QT && chmod +x /tmp/$QT && curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT_SCRIPT https://raw.githubusercontent.com/therecipe/qt/master/internal/ci/iscript.qs && /tmp/$QT --script /tmp/$QT_SCRIPT && rm -f /tmp/$QT && rm -f /tmp/$QT_SCRIPT
 
 
-ENV GO go1.8.linux-amd64.tar.gz
+ENV GO go1.8.1.linux-amd64.tar.gz
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$GO https://storage.googleapis.com/golang/$GO && tar -xzf /tmp/$GO -C /usr/local && rm -f /tmp/$GO
 ENV PATH $PATH:/usr/local/go/bin
 ENV GOPATH $HOME/work

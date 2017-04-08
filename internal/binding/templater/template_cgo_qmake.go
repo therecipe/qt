@@ -317,6 +317,8 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 	tmp := string(out)
 
 	switch target {
+	case "darwin":
+		tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch x86_64", -1)
 	case "ios":
 		tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch arm64", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)

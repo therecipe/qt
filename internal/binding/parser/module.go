@@ -60,6 +60,7 @@ func (m *Module) Prepare() error {
 					f.ClassName() == "QHighDpi" ||
 					f.ClassName() == "QPdf" ||
 					f.ClassName() == "QPlatformGraphicsBufferHelper" ||
+					f.ClassName() == "QIcu" ||
 					strings.ToLower(f.ClassName()) == f.ClassName() {
 					continue
 				}
