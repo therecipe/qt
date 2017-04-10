@@ -175,7 +175,7 @@ func (c *Class) fixBases() {
 		{
 			prefixPath = utils.QT_DARWIN_DIR()
 			infixPath = "lib"
-			suffixPath = ".framework/Versions/5/Headers/"
+			suffixPath = ".framework/Headers/"
 		}
 
 	case "linux":
@@ -276,7 +276,6 @@ func (c *Class) fixBases() {
 			}
 		} else {
 			if utils.ExistsFile(filepath.Join(prefixPath, infixPath, m+suffixPath+c.Name)) {
-
 				var f = utils.Load(filepath.Join(prefixPath, infixPath, m+suffixPath+c.Name))
 				if f != "" {
 					found = true

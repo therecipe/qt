@@ -352,6 +352,10 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 
 	for _, file := range cgoFileNames(module, path, target, mode) {
 		switch target {
+		case "darwin":
+			for _, lib := range []string{"WebKitWidgets", "WebKit"} {
+				tmp = strings.Replace(tmp, "-lQt5"+lib, "-framework Qt"+lib, -1)
+			}
 		case "windows":
 			if utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wa,-mbig-obj ", " ", -1)

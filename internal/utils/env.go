@@ -125,3 +125,7 @@ func ToolPath(tool, target string) string {
 	}
 	return ""
 }
+
+func QT_WEBKIT() bool {
+	return strings.ToLower(os.Getenv("QT_WEBKIT")) == "true"
+}

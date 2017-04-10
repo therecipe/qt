@@ -313,6 +313,8 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QApplication::autoMaximizeThreshold", f.Fullname == "QApplication::setAutoMaximizeThreshold",
 
+		f.Fullname == "QWebPluginFactory::__plugins_newList",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {

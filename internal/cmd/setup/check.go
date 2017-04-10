@@ -41,6 +41,7 @@ func Check(target string, docker bool) {
 		{"QT_STUB", fmt.Sprint(utils.QT_STUB())},
 		{"QT_DEBUG", fmt.Sprint(utils.QT_DEBUG())},
 		{"QT_QMAKE_DIR", utils.QT_QMAKE_DIR()},
+		{"QT_WEBKIT", fmt.Sprint(utils.QT_WEBKIT())},
 	}
 
 	if utils.CI() {

@@ -21,7 +21,7 @@ import (
 
 var done = make(map[string]struct{})
 
-func Moc(path, target string) {
+func Moc(path, target string, fast bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
 	var classes []*parser.Class
@@ -34,9 +34,9 @@ func Moc(path, target string) {
 			continue
 		}
 
-		if _, ok := done[path]; !ok && i > 0 {
+		if _, ok := done[path]; !ok && i > 0 && !fast {
 			done[path] = struct{}{}
-			Moc(path, target)
+			Moc(path, target, false)
 		}
 
 		for _, file := range fileList {

@@ -186,6 +186,8 @@ var LibDeps = map[string][]string{
 	"NetworkAuth":   {"Network", "Gui", "Core"},
 	"RemoteObjects": {"Network", "Core"},
 
+	"WebKit": {"WebKitWidgets", "Multimedia", "Positioning", "Widgets", "Sql", "Network", "Gui", "Sensors", "Core"},
+
 	MOC:         make([]string, 0),
 	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport", "WebView"},
 }
@@ -303,6 +305,8 @@ func GetLibs() []string {
 
 		//"NetworkAuth",
 		//"RemoteObjects",
+
+		"WebKit",
 	}
 
 	for i := len(libs) - 1; i >= 0; i-- {
@@ -317,6 +321,9 @@ func GetLibs() []string {
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case utils.QT_VERSION() != "5.9.0" && (libs[i] == "NetworkAuth" || libs[i] == "RemoteObjects"):
+			libs = append(libs[:i], libs[i+1:]...)
+
+		case !utils.QT_WEBKIT() && libs[i] == "WebKit":
 			libs = append(libs[:i], libs[i+1:]...)
 		}
 	}

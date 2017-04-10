@@ -28,7 +28,7 @@ func Test(target string, docker bool) {
 
 		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 
-		moc.Moc(path, target)
+		moc.Moc(path, target, false)
 		minimal.Minimal(path, target)
 
 		cmd := exec.Command("go", "test", "-v", "-tags=minimal", "-ldflags=\"-s\"")

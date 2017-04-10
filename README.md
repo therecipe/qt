@@ -574,6 +574,24 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
+##### Additional Modules
+
+<details> <summary>WebKit</summary>
+
+-	Download the WebKit module:
+
+	-	https://github.com/annulen/webkit/releases/download/qtwebkit-tp5/qtwebkit-tp5-qt58-mingw530-x86.zip
+	-	https://github.com/annulen/webkit/releases/download/qtwebkit-tp5/qtwebkit-tp5-qt58-darwin-x64.tar.xz
+	-	https://github.com/annulen/webkit/releases/download/qtwebkit-tp5/qtwebkit-tp5-qt58-linux-x64.tar.xz
+
+-	Extract it inside `QT_DIR/5.8/{mingw53_32|clang_64|gcc_64}`
+
+-	Export `QT_WEBKIT=true`
+
+-	Run the setup
+
+</details>
+
 Target Specific Infos And Settings
 ----------------------------------
 

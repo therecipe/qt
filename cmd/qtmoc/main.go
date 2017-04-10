@@ -30,7 +30,8 @@ func main() {
 	var docker bool
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
-	//TODO: -fast flag
+	var fast bool
+	flag.BoolVar(&fast, "fast", false, "don't run qtmoc for dependencies")
 
 	if cmd.ParseFlags() {
 		flag.Usage()
@@ -68,6 +69,6 @@ func main() {
 	if docker {
 		cmd.Docker([]string{"qtmoc", "-debug"}, target, path, false)
 	} else {
-		moc.Moc(path, target)
+		moc.Moc(path, target, fast)
 	}
 }

@@ -260,6 +260,30 @@ func bundle(mode, target, path, name, depPath string) {
 			utils.MkdirAll(assets)
 			copy(assets+"/", depPath)
 
+			if utils.QT_WEBKIT() {
+				libraryPath := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin")
+				output := utils.RunCmd(exec.Command(filepath.Join("objdump"), "-x", filepath.Join(depPath, name+".exe")), fmt.Sprintf("objdump binary for %v on %v", target, runtime.GOOS))
+				for lib, deps := range parser.LibDeps {
+					if strings.Contains(output, lib) && lib == "WebKit" {
+						for _, lib := range append(deps, lib) {
+							for _, pref := range []string{"lib", ""} {
+								libName := filepath.Join(libraryPath, fmt.Sprintf("%vQt5%v.dll", pref, lib))
+								if utils.ExistsFile(libName) {
+									copy(libName, depPath)
+								}
+							}
+						}
+					}
+				}
+				copy(filepath.Join(libraryPath, "icudt57.dll"), depPath)
+				copy(filepath.Join(libraryPath, "icuin57.dll"), depPath)
+				copy(filepath.Join(libraryPath, "icuuc57.dll"), depPath)
+				copy(filepath.Join(libraryPath, "libxml2-2.dll"), depPath)
+				copy(filepath.Join(libraryPath, "libxslt-1.dll"), depPath)
+				copy(filepath.Join(libraryPath, "Qt5MultimediaWidgets.dll"), depPath)
+				copy(filepath.Join(libraryPath, "Qt5OpenGL.dll"), depPath)
+			}
+
 			dep := exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "windeployqt"))
 			dep.Args = append(dep.Args, filepath.Join(depPath, name+".exe"), "-qmldir="+path)
 			utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
