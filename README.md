@@ -80,9 +80,9 @@ The easiest way to get started is to use the pre-built [docker images](https://h
 |:-----------------:|:---------------:|
 |       linux       |      1 GB       |
 |      android      |      3 GB       |
-| window_32_shared  |      1 GB       |
+| windows_32_shared |      1 GB       |
 | windows_32_static |      2 GB       |
-| window_64_shared  |      1 GB       |
+| windows_64_shared |      1 GB       |
 | windows_64_static |      2 GB       |
 |       rpi1        |      2 GB       |
 |       rpi2        |      2 GB       |
