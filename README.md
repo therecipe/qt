@@ -94,7 +94,7 @@ You can download an image by running: `docker pull therecipe/qt:TAG`
 
 These images contain Go, Qt and all dependencies that may be necessary to deploy to your target.
 
-You can look into the Dockerfiles that are used to create these images [here](internal/docker).
+You can look into the Dockerfiles that are used to create these images [here](https://github.com/therecipe/qt/blob/master/internal/docker).
 
 The images can be used for the following:
 
@@ -151,7 +151,7 @@ These are some general environmental variables, you can find the target specific
 
 ##### Windows
 
-<details> <summary>Official (with Android support)</summary>
+<details markdown="1"> <summary markdown="0">Official (with Android support)</summary>
 
 -	Install Go: https://golang.org/doc/install?download=go1.8.1.windows-amd64.msi
 
@@ -171,7 +171,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>MSYS2</summary>
+<details markdown="1"> <summary markdown="0">MSYS2</summary>
 
 -	Install Go: https://golang.org/doc/install?download=go1.8.1.windows-amd64.msi
 
@@ -205,11 +205,9 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-</details>
-
 ##### macOS
 
-<details> <summary>Official (with iOS/Android support)</summary>
+<details markdown="1"> <summary markdown="0">Official (with iOS/Android support)</summary>
 
 -	Install Go: https://golang.org/doc/install?download=go1.8.1.darwin-amd64.pkg
 
@@ -231,7 +229,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>HomeBrew (no deployments possible)</summary>
+<details markdown="1"> <summary markdown="0">HomeBrew (no deployments possible)</summary>
 
 -	Install Go: https://golang.org/doc/install?download=go1.8.1.darwin-amd64.pkg
 
@@ -249,11 +247,9 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-</details>
-
 #### Linux
 
-<details> <summary>Official (with Android support)</summary>
+<details markdown="1"> <summary markdown="0">Official (with Android support)</summary>
 
 -	Install Go: https://golang.org/doc/install?download=go1.8.1.linux-amd64.tar.gz
 
@@ -286,7 +282,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>Pkg-Config (no deployments possible)</summary>
+<details markdown="1"> <summary markdown="0">Pkg-Config (no deployments possible)</summary>
 
 -	Install Go: https://golang.org/doc/install?download=go1.8.1.linux-amd64.tar.gz
 
@@ -317,7 +313,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>Cross compile to Windows on Debian/Ubuntu</summary>
+<details markdown="1"> <summary markdown="0">Cross compile to Windows on Debian/Ubuntu</summary>
 
 -	Install Wine: `sudo apt-get -y install wine`
 
@@ -349,11 +345,9 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-</details>
-
 #### Mobile
 
-<details> <summary>Android</summary>
+<details markdown="1"> <summary markdown="0">Android</summary>
 
 -	Install the desktop version for Windows, macOS or Linux
 
@@ -388,7 +382,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>iOS</summary>
+<details markdown="1"> <summary markdown="0">iOS</summary>
 
 -	Install the desktop version for macOS
 
@@ -398,7 +392,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>Sailfish OS</summary>
+<details markdown="1"> <summary markdown="0">Sailfish OS</summary>
 
 -	Install the desktop version for Windows, macOS or Linux (**Qt <= 5.7.x required**\)
 
@@ -424,7 +418,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>AsteroidOS</summary>
+<details markdown="1"> <summary markdown="0">AsteroidOS</summary>
 
 -	**TBA**
 
@@ -434,7 +428,7 @@ These are some general environmental variables, you can find the target specific
 
 ##### Raspberry Pi
 
-<details> <summary>Raspbian + pre-built Qt 5.7</summary>
+<details markdown="1"> <summary markdown="0">Raspbian + pre-built Qt 5.7</summary>
 
 -	Install the desktop version for Linux
 
@@ -454,7 +448,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details> <summary>Arch Linux + self-compiled Qt 5.8</summary>
+<details markdown="1"> <summary markdown="0">Arch Linux + self-compiled Qt 5.8</summary>
 
 -	Install the desktop version for Linux
 
@@ -572,11 +566,9 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-</details>
-
 ##### Additional Modules
 
-<details> <summary>WebKit</summary>
+<details markdown="1"> <summary markdown="0">WebKit</summary>
 
 -	Download the WebKit module:
 
@@ -597,7 +589,7 @@ Target Specific Infos And Settings
 
 #### Desktop
 
-<details> <summary>Windows</summary>
+<details markdown="1"> <summary markdown="0">Windows</summary>
 
 ### General
 
@@ -652,7 +644,7 @@ You can find more infos here: https://doc.qt.io/qt-5/appicon.html
 
 </details>
 
-<details> <summary>macOS</summary>
+<details markdown="1"> <summary markdown="0">macOS</summary>
 
 ### Environmental Variables
 
@@ -681,7 +673,7 @@ Furthermore you can use the `Info.plist` found inside `deploy/darwin/project_nam
 
 </details>
 
-<details> <summary>Linux</summary>
+<details markdown="1"> <summary markdown="0">Linux</summary>
 
 ### Environmental Variables
 
@@ -700,7 +692,7 @@ You can use the `linux` folder at the root of your project to let `qtdeploy` aut
 
 #### Mobile
 
-<details> <summary>Android</summary>
+<details markdown="1"> <summary markdown="0">Android</summary>
 
 ### Environmental Variables
 
@@ -755,7 +747,7 @@ Or you could sign it manually as well.
 
 ### Java Native Interface (JNI)
 
-You can call Java functions directly from Go with the help of the [androidextras](androidextras) package.
+You can call Java functions directly from Go with the help of the [androidextras](https://github.com/therecipe/qt/blob/master/androidextras) package.
 
 Callbacks into Go code from Java are also possible (with some manual labor).
 
@@ -763,7 +755,7 @@ Take a look at the [examples](internal/examples/androidextras) to see how it wor
 
 </details>
 
-<details> <summary>iOS</summary>
+<details markdown="1"> <summary markdown="0">iOS</summary>
 
 ### Branding
 
@@ -773,7 +765,7 @@ Furthermore you can sign your app with the help of Xcode.
 
 </details>
 
-<details> <summary>SailfishOS</summary>
+<details markdown="1"> <summary markdown="0">SailfishOS</summary>
 
 ### Environmental Variables
 
@@ -801,7 +793,7 @@ Furthermore you can use the `*.desktop` and `*.spec` files found inside `deploy/
 
 </details>
 
-<details> <summary>AsteroidOS</summary>
+<details markdown="1"> <summary markdown="0">AsteroidOS</summary>
 
 -	**TBA**
 
@@ -809,7 +801,7 @@ Furthermore you can use the `*.desktop` and `*.spec` files found inside `deploy/
 
 #### Embedded
 
-<details> <summary>Raspberry Pi</summary>
+<details markdown="1"> <summary markdown="0">Raspberry Pi</summary>
 
 ### Environmental Variables
 
@@ -831,7 +823,7 @@ The tools can be found either in `$GOPATH/bin` or `$GOBIN` and are symlinked int
 
 If you ran the minimal setup and/or depend on the docker images for the specific target, then you need to use the `-docker` flag when you use them.
 
-<details> <summary>qtsetup</summary>
+<details markdown="1"> <summary markdown="0">qtsetup</summary>
 
 The use of `qtsetup` is rarely necessary after you are done with the inital setup.
 
@@ -845,7 +837,7 @@ Run `qtsetup -help` for more infos.
 
 </details>
 
-<details> <summary>qtdeploy</summary>
+<details markdown="1"> <summary markdown="0">qtdeploy</summary>
 
 `qtdeploy` is used to deploy your applications.
 
@@ -892,7 +884,7 @@ Run `qtdeploy -help` for more infos.
 
 </details>
 
-<details> <summary>qtrcc</summary>
+<details markdown="1"> <summary markdown="0">qtrcc</summary>
 
 `qtrcc` is a wrapper around Qt's [rcc](https://doc.qt.io/qt-5/resources.html) and can be used to bundle resources with your code.
 
@@ -916,7 +908,7 @@ Run `qtrcc -help` for more infos.
 
 </details>
 
-<details> <summary>qtmoc</summary>
+<details markdown="1"> <summary markdown="0">qtmoc</summary>
 
 `qtmoc` is a wrapper around Qt's [moc](https://doc.qt.io/qt-5/moc.html) and can be used to create sub-classes of Qt classes and to extend them with your own constructors, signals, slots and properties.
 
@@ -1000,7 +992,7 @@ Run `qtmoc -help` for more infos.
 
 </details>
 
-<details> <summary>qtminimal</summary>
+<details markdown="1"> <summary markdown="0">qtminimal</summary>
 
 `qtminimal` is not needed to be ran manually, as it is just used to reduce the overall compiled binary size, by analysing your code and re-generating a sub-set of the binding.
 
@@ -1029,13 +1021,13 @@ Beside the option to use the `-fast` flag, you could also just use `qtrcc`, `qtm
 Hello World
 -----------
 
-More examples can be found [here](internal/examples)
+More examples can be found [here](https://github.com/therecipe/qt/blob/master/internal/examples)
 
 Run `qtdeploy test desktop $GOPATH/src/qtexample` to compile, deploy and start the application.
 
 #### Basic
 
-<details> <summary>widgets</summary>
+<details markdown="1"> <summary markdown="0">widgets</summary>
 
 `$GOPATH/src/qtexample/main.go`
 
@@ -1089,7 +1081,7 @@ func main() {
 
 </details>
 
-<details> <summary>qml/quick</summary>
+<details markdown="1"> <summary markdown="0">qml/quick</summary>
 
 `$GOPATH/src/qtexample/main.go`
 
@@ -1178,7 +1170,7 @@ ApplicationWindow {
 
 #### Advanced
 
-<details> <summary>widgets</summary>
+<details markdown="1"> <summary markdown="0">widgets</summary>
 
 `$GOPATH/src/qtexample/main.go`
 
@@ -1262,7 +1254,7 @@ func main() {
 
 </details>
 
-<details> <summary>qml/quick</summary>
+<details markdown="1"> <summary markdown="0">qml/quick</summary>
 
 `$GOPATH/src/qtexample/main.go`
 
@@ -1397,7 +1389,7 @@ Misc
 
 [An Video Overview of GUI technologies in Qt](https://www.youtube.com/watch?v=WIRRoPxIerc)
 
-<details> <summary>Drag & Drop WYSIWYG Editors</summary>
+<details markdown="1"> <summary markdown="0">Drag & Drop WYSIWYG Editors</summary>
 
 -	For the desktop widgets: https://doc.qt.io/qtcreator/creator-using-qt-designer.html
 
@@ -1409,7 +1401,7 @@ The created `*.qml` files can later be used like hand written qml files.
 
 </details>
 
-<details> <summary>Code Editor Settings (for code completion)</summary>
+<details markdown="1"> <summary markdown="0">Code Editor Settings (for code completion)</summary>
 
 On windows, depending on your editor or IDE you may also need to export `GOARCH=386` to make the code completion work.
 
@@ -1444,7 +1436,7 @@ On windows, depending on your editor or IDE you may also need to export `GOARCH=
 
 </details>
 
-<details> <summary>3rd party examples / demos / applications</summary>
+<details markdown="1"> <summary markdown="0">3rd party examples / demos / applications</summary>
 
 -	[5k3105/AM](https://github.com/5k3105/AM)
 -	[5k3105/Pipeline-Editor](https://github.com/5k3105/Pipeline-Editor)
