@@ -16,7 +16,7 @@ import (
 
 func build(mode, target, path, ldFlagsCustom, name, depPath string, fast bool) {
 	env, tags, ldFlags, out := cmd.BuildEnv(target, name, depPath)
-	if !fast {
+	if !fast || utils.QT_STUB() {
 		tags = append(tags, "minimal")
 	}
 	if ldFlagsCustom != "" {
