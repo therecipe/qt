@@ -26,7 +26,6 @@ type Class struct {
 	Export    bool
 	Fullname  string
 	Pkg       string
-	PkgImport string
 
 	Constructors []string
 	Derivations  []string

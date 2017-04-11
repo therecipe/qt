@@ -334,14 +334,13 @@ func GetCustomLibs() []string {
 
 	tmp := make(map[string]struct{})
 	for _, c := range State.ClassMap {
-		if c.Pkg == "" || c.PkgImport != "" || !c.IsSubClassOfQObject() {
+		if c.Pkg == "" || !c.IsSubClassOfQObject() {
 			continue
 		}
 
 		cmd := exec.Command("go", "list", "-f", "{{.ImportPath}}")
 		cmd.Dir = c.Pkg
-		c.PkgImport = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
-		tmp[c.PkgImport] = struct{}{}
+		tmp[strings.TrimSpace(utils.RunCmd(cmd, "get import path"))] = struct{}{}
 	}
 
 	var out []string
