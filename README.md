@@ -1021,7 +1021,7 @@ Beside the option to use the `-fast` flag, you could also just use `qtrcc`, `qtm
 Hello World
 -----------
 
--	Run the [setup](#setup)
+-	Run the [setup](#installation)
 
 -	Choose one of the following examples and manually setup the `$GOPATH/src/qtexample` folder
 
