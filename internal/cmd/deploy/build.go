@@ -50,6 +50,11 @@ func build(mode, target, path, ldFlagsCustom, name, depPath string, fast bool) {
 
 		cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", out+ending)
 		cmd.Dir = path
+
+		if fast && !utils.QT_STUB() {
+			cmd.Args = append(cmd.Args, "-i")
+		}
+
 		cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 
 		if target != runtime.GOOS {

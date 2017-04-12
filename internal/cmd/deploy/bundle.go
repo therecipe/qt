@@ -345,7 +345,7 @@ func bundle(mode, target, path, name, depPath string) {
 
 		if runtime.GOOS == "windows" {
 			//TODO: -->
-			utils.Save(filepath.Join(depPath, "build.bat"), fmt.Sprintf("set JAVA_HOME=%v\r\n%v", utils.JDK_DIR(), strings.Join(dep.Args, " ")))
+			utils.SaveExec(filepath.Join(depPath, "build.bat"), fmt.Sprintf("set JAVA_HOME=%v\r\n%v", utils.JDK_DIR(), strings.Join(dep.Args, " ")))
 			utils.RunCmd(exec.Command(filepath.Join(depPath, "build.bat")), fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 			utils.RemoveAll(filepath.Join(depPath, "build.bat"))
 			//<--

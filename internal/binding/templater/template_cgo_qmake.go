@@ -164,7 +164,7 @@ func createMakefile(module, path, target string, mode int) {
 
 	if target == "android" && runtime.GOOS == "windows" {
 		//TODO: -->
-		utils.Save(filepath.Join(cmd.Dir, "qmake.bat"), fmt.Sprintf("set ANDROID_NDK_ROOT=%v\r\n%v", utils.ANDROID_NDK_DIR(), strings.Join(cmd.Args, " ")))
+		utils.SaveExec(filepath.Join(cmd.Dir, "qmake.bat"), fmt.Sprintf("set ANDROID_NDK_ROOT=%v\r\n%v", utils.ANDROID_NDK_DIR(), strings.Join(cmd.Args, " ")))
 		cmd = exec.Command(".\\qmake.bat")
 		cmd.Dir = path
 		utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
