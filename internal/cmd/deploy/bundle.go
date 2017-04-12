@@ -70,7 +70,7 @@ func bundle(mode, target, path, name, depPath string) {
 	case "linux", "rpi1", "rpi2", "rpi3":
 
 		//copy default assets
-		utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name))
+		utils.SaveExec(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name))
 
 		//copy custom assets
 		assets := filepath.Join(path, target)

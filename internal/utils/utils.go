@@ -21,7 +21,7 @@ func ExistsDir(name string) bool {
 }
 
 func MkdirAll(dir string) error {
-	var err = os.MkdirAll(dir, 0777)
+	var err = os.MkdirAll(dir, 0755)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to create dir %v", dir)
 	}
@@ -37,7 +37,17 @@ func RemoveAll(name string) error {
 }
 
 func Save(name, data string) error {
-	var err = ioutil.WriteFile(name, []byte(data), 0777)
+	var err = ioutil.WriteFile(name, []byte(data), 0644)
+	if err != nil {
+		Log.WithError(err).Panicf("failed to save %v", name)
+	} else {
+		Log.Debugf("saved file len(%v) %v", len(data), name)
+	}
+	return err
+}
+
+func SaveExec(name, data string) error {
+	var err = ioutil.WriteFile(name, []byte(data), 0755)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to save %v", name)
 	} else {
@@ -47,7 +57,7 @@ func Save(name, data string) error {
 }
 
 func SaveBytes(name string, data []byte) error {
-	var err = ioutil.WriteFile(name, data, 0777)
+	var err = ioutil.WriteFile(name, data, 0644)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to save %v", name)
 	}
