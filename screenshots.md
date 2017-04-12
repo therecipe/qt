@@ -115,3 +115,7 @@ SailfishOS
 ![](internal/screenshots/sailfish_portrait.png)
 
 [source](internal/examples/quick/sailfish)
+
+---
+
+More examples can be found [here](https://github.com/therecipe/qt/blob/master/internal/examples)

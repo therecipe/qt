@@ -1021,9 +1021,9 @@ Beside the option to use the `-fast` flag, you could also just use `qtrcc`, `qtm
 Hello World
 -----------
 
-More examples can be found [here](https://github.com/therecipe/qt/blob/master/internal/examples)
+-	Run the [setup](#setup)
 
-Run `qtdeploy test desktop $GOPATH/src/qtexample` to compile, deploy and start the application.
+-	Choose one of the following examples and manually setup the `$GOPATH/src/qtexample` folder
 
 #### Basic
 
@@ -1366,6 +1366,10 @@ ApplicationWindow {
 ```
 
 </details>
+
+-	Run `qtdeploy test desktop $GOPATH/src/qtexample` to compile, deploy and start the application.
+
+-	More examples can be found [here](https://github.com/therecipe/qt/blob/master/internal/examples)
 
 Continuous integration and deployment
 -------------------------------------
