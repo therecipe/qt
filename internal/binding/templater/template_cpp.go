@@ -411,56 +411,58 @@ func preambleCpp(module string, input []byte, mode int) []byte {
 	fmt.Fprint(bb, "\n")
 
 	if mode == MOC {
-		var libs []string
+		libsm := make(map[string]struct{}, 0)
 		for _, c := range parser.State.ClassMap {
-			if c.Pkg != "" {
-				libs = append(libs, c.Module)
+			if c.Pkg != "" && c.IsSubClassOfQObject() {
+				libsm[c.Module] = struct{}{}
 			}
 		}
 
+		var libs []string
+		for k := range libsm {
+			libs = append(libs, k)
+		}
+
 		for _, c := range parser.SortedClassesForModule(strings.Join(libs, ","), true) {
-			if c.Pkg != "" && strings.Contains(string(input), c.Name) {
-				if !c.HasConstructor() {
+			if c.Pkg == "" || !strings.Contains(string(input), c.Name) /*|| !c.HasConstructor()*/ {
+				continue
+			}
+
+			fmt.Fprintf(bb, "class %v: public %v{\npublic:\n", c.Name, c.GetBases()[0])
+
+			for _, function := range c.Functions {
+				if function.Meta != parser.CONSTRUCTOR || !function.IsSupported() {
 					continue
 				}
 
-				fmt.Fprintf(bb, "class %v: public %v{\npublic:\n", c.Name, c.GetBases()[0])
-
-				for _, function := range c.Functions {
-					if function.Meta != parser.CONSTRUCTOR || !function.IsSupported() {
-						continue
-					}
-
-					var input = make([]string, len(function.Parameters))
-					for i, p := range function.Parameters {
-						input[i] = p.Name
-					}
-
-					fmt.Fprintf(bb, "\t%v%v(%v) : %v(%v) {};\n",
-						func() string {
-							if mode == MOC {
-								return ""
-							}
-							return "My"
-						}(),
-
-						function.ClassName(),
-
-						strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
-
-						func() string {
-							if mode == MOC {
-								return c.GetBases()[0]
-							}
-							return function.ClassName()
-						}(),
-
-						strings.Join(input, ", "),
-					)
+				var input = make([]string, len(function.Parameters))
+				for i, p := range function.Parameters {
+					input[i] = p.Name
 				}
 
-				fmt.Fprint(bb, "\n};\n")
+				fmt.Fprintf(bb, "\t%v%v(%v) : %v(%v) {};\n",
+					func() string {
+						if mode == MOC {
+							return ""
+						}
+						return "My"
+					}(),
+
+					function.ClassName(),
+
+					strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
+
+					func() string {
+						if mode == MOC {
+							return c.GetBases()[0]
+						}
+						return function.ClassName()
+					}(),
+
+					strings.Join(input, ", "),
+				)
 			}
+			fmt.Fprint(bb, "\n};\n")
 		}
 
 		fmt.Fprint(bb, "\n")

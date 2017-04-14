@@ -390,21 +390,39 @@ func SortedClassNamesForModule(module string, template bool) []string {
 		}
 
 		tmpOutput := make([]string, 0)
+
+		for item, dep := range items {
+			depClass, ok := State.ClassMap[dep]
+			if !ok {
+				delete(items, item)
+				continue
+			}
+
+			//filter out everything that has no moc dep
+			if !(depClass.Module == MOC || strings.HasPrefix(depClass.Module, "custom_")) {
+				tmpOutput = append(tmpOutput, item)
+				delete(items, item)
+				continue
+			}
+		}
+
 		for len(items) > 0 {
 			for item, dep := range items {
 
-				cd, ok := State.ClassMap[dep]
+				depClass, ok := State.ClassMap[dep]
 				if !ok {
 					delete(items, item)
 					continue
 				}
 
-				if ok && !(cd.Module == MOC || strings.HasPrefix(cd.Module, "custom_")) || cd.Name == mostBase(items) {
+				//filter out everything that has the fewest dependencies
+				if hasFewestDeps(items, depClass.Name) {
 					tmpOutput = append(tmpOutput, item)
 					delete(items, item)
 					continue
 				}
 
+				//filter out everything that has resolved dep
 				for _, key := range tmpOutput {
 					if key == dep {
 						tmpOutput = append(tmpOutput, item)
@@ -421,7 +439,7 @@ func SortedClassNamesForModule(module string, template bool) []string {
 	return output
 }
 
-func mostBase(i map[string]string) string {
+func hasFewestDeps(i map[string]string, check string) bool {
 	dif := 100
 	var base string
 	for _, v := range i {
@@ -434,7 +452,7 @@ func mostBase(i map[string]string) string {
 			base = v
 		}
 	}
-	return base
+	return base == check
 }
 
 func SortedClassesForModule(module string, template bool) []*Class {

@@ -192,7 +192,7 @@ func Moc(path, target string, fast bool) {
 
 	//copy constructor and destructor
 	utils.Log.Debug("start copy structors")
-	for _ = range append(m.Namespace.Classes, otherclasses...) {
+	for !hasStructors(m) {
 		for _, c := range append(m.Namespace.Classes, otherclasses...) {
 			bc, ok := parser.State.ClassMap[c.Bases]
 			if !ok {
@@ -464,4 +464,16 @@ func cppTypeFromGoType(f *parser.Function, t string) string {
 	//TODO: *_ITF support
 
 	return "void"
+}
+
+func hasStructors(m *parser.Module) bool {
+	for _, c := range m.Namespace.Classes {
+		if c.Bases == "" {
+			continue
+		}
+		if !c.HasConstructor() /*|| !c.HasDestructor()*/ {
+			return false
+		}
+	}
+	return true
 }

@@ -751,7 +751,7 @@ You can call Java functions directly from Go with the help of the [androidextras
 
 Callbacks into Go code from Java are also possible (with some manual labor).
 
-Take a look at the [examples](internal/examples/androidextras) to see how it works.
+Take a look at the [examples](https://github.com/therecipe/qt/blob/master/internal/examples/androidextras) to see how it works.
 
 </details>
 
@@ -1064,7 +1064,7 @@ func main() {
 	//create a button and add it to the layout
 	button := widgets.NewQPushButton2("2. click me", nil)
 	button.ConnectClicked(func(checked bool) {
-		widgets.QMessageBox_infos(nil, "OK", input.Text(), widgets.QMessageBox__Ok, widgets.QMessageBox__Ok)
+		widgets.QMessageBox_Information(nil, "OK", input.Text(), widgets.QMessageBox__Ok, widgets.QMessageBox__Ok)
 	})
 	layout.AddWidget(button, 0, 0)
 
@@ -1382,7 +1382,7 @@ There are a few possible ways how you can integrate this dependency into your CI
 
 -	You could use the minimal setup, which only depends on Docker + Go and then use `qtdeploy -docker build ...`
 
--	You could look into the [CI](internal/ci) folder and the `*.yml` files in the root folder of this repo.
+-	You could look into the [CI](https://github.com/therecipe/qt/blob/master/internal/ci) folder and the `*.yml` files in the root folder of this repo.
 
 Misc
 ----
@@ -1397,7 +1397,7 @@ Misc
 
 -	For the desktop widgets: https://doc.qt.io/qtcreator/creator-using-qt-designer.html
 
-[Here](internal/example/uitools) is an example how to load the created `*.ui` files.
+[Here](https://github.com/therecipe/qt/blob/master/internal/example/uitools) is an example how to load the created `*.ui` files.
 
 -	For the qml/quick widgets: https://doc.qt.io/qtcreator/creator-using-qt-quick-designer.html
 
