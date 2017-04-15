@@ -1397,7 +1397,7 @@ Misc
 
 -	For the desktop widgets: https://doc.qt.io/qtcreator/creator-using-qt-designer.html
 
-[Here](https://github.com/therecipe/qt/blob/master/internal/example/uitools) is an example how to load the created `*.ui` files.
+[Here](https://github.com/therecipe/qt/blob/master/internal/examples/uitools) is an example how to load the created `*.ui` files.
 
 -	For the qml/quick widgets: https://doc.qt.io/qtcreator/creator-using-qt-quick-designer.html
 
