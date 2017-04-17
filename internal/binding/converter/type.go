@@ -154,6 +154,9 @@ func goType(f *parser.Function, value string) string {
 
 	case isClass(value):
 		{
+			if strings.Contains(value, ".") {
+				value = strings.Split(value, ".")[1]
+			}
 			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return "unsafe.Pointer"

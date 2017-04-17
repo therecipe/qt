@@ -140,6 +140,9 @@ func goOutput(name, value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
+			if strings.Contains(value, ".") {
+				value = strings.Split(value, ".")[1]
+			}
 			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
@@ -252,6 +255,9 @@ func goOutputFailed(value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
+			if strings.Contains(value, ".") {
+				value = strings.Split(value, ".")[1]
+			}
 			if f.TemplateModeJNI == "String" {
 				return "\"\""
 			}
@@ -377,6 +383,9 @@ func cgoOutput(name, value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
+			if strings.Contains(value, ".") {
+				value = strings.Split(value, ".")[1]
+			}
 			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
@@ -571,6 +580,9 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
+			if strings.Contains(value, ".") {
+				value = strings.Split(value, ".")[1]
+			}
 			if strings.Contains(vOld, "*") {
 				if strings.Contains(vOld, "const") {
 					return fmt.Sprintf("const_cast<%v*>(%v)", value, name)

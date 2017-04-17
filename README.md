@@ -393,7 +393,7 @@ These are some general environmental variables, you can find the target specific
 
 </details>
 
-<details markdown="1"> <summary markdown="0">Sailfish OS</summary>
+<details markdown="1"> <summary markdown="0">SailfishOS</summary>
 
 -	Install the desktop version for Windows, macOS or Linux (**Qt <= 5.7.x required**\)
 
@@ -403,7 +403,7 @@ These are some general environmental variables, you can find the target specific
 	-	https://download.virtualbox.org/virtualbox/5.1.18/VirtualBox-5.1.18-114002-OSX.dmg
 	-	https://download.virtualbox.org/virtualbox/5.1.18/VirtualBox-5.1.18-114002-Linux_amd64.run
 
--	Install the Sailfish OS SDK; you can also define a custom location with **SAILFISH_DIR**
+-	Install the SailfishOS SDK; you can also define a custom location with **SAILFISH_DIR**
 
 	-	https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-windows-offline.exe
 	-	https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-mac-offline.dmg
