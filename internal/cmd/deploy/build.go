@@ -25,7 +25,7 @@ func build(mode, target, path, ldFlagsCustom, name, depPath string, fast bool) {
 
 	var ending string
 	switch target {
-	case "android", "ios", "ios-simulator":
+	case "android", "android-emulator", "ios", "ios-simulator":
 		utils.Save(filepath.Join(path, "cgo_main_wrapper.go"), "package main\nimport \"C\"\n//export go_main_wrapper\nfunc go_main_wrapper() { main() }")
 	case "windows":
 		ending = ".exe"
@@ -62,7 +62,7 @@ func build(mode, target, path, ldFlagsCustom, name, depPath string, fast bool) {
 		}
 
 		switch target {
-		case "android":
+		case "android", "android-emulator":
 			cmd.Args = append(cmd.Args, "-buildmode", "c-shared")
 		case "ios", "ios-simulator":
 			cmd.Args = append(cmd.Args, "-buildmode", "c-archive")

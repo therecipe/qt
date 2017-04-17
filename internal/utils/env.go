@@ -44,7 +44,7 @@ func QT_DEBUG() bool {
 
 func CheckBuildTarget(buildTarget string) {
 	switch buildTarget {
-	case "android",
+	case "android", "android-emulator",
 		"ios", "ios-simulator",
 		"sailfish", "sailfish-emulator", "asteroid",
 		"rpi1", "rpi2", "rpi3",
@@ -113,6 +113,8 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "ios", "bin", tool)
 	case "android":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
+	case "android-emulator":
+		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_x86", "bin", tool)
 		/*
 			case "sailfish":
 				return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)

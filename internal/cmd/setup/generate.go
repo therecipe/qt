@@ -23,7 +23,7 @@ func Generate(target string, docker bool) {
 
 	for _, module := range parser.GetLibs() {
 		if !parser.ShouldBuildForTarget(module, target) {
-			utils.Log.Debug("skipping generation of %v for %v", module, target)
+			utils.Log.Debugf("skipping generation of %v for %v", module, target)
 			continue
 		}
 

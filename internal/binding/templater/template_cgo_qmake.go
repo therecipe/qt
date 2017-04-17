@@ -26,7 +26,7 @@ func CgoTemplate(module, path, target string, mode int, ipkg string) (o string) 
 
 	switch module {
 	case "AndroidExtras":
-		if target != "android" {
+		if !(target == "android" || target == "android-emulator") {
 			return
 		}
 	case "Sailfish":
@@ -84,7 +84,7 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 				//TODO msys pkg-config mxe brew
 				return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR()) ||
 					strings.Contains(file, utils.QT_MSYS2_DIR()) || strings.Contains(file, utils.QT_MXE_TRIPLET())
-			case "android":
+			case "android", "android-emulator":
 				return strings.Contains(file, utils.QT_DIR()) && strings.Contains(file, utils.ANDROID_NDK_DIR())
 			case "ios", "ios-simulator":
 				return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR())
@@ -137,7 +137,7 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=release", "CONFIG+=iphoneos", "CONFIG+=device"}...)
 	case "ios-simulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=release", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
-	case "android":
+	case "android", "android-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "android-g++"}...)
 		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR())}
 	case "sailfish", "sailfish-emulator":
@@ -162,7 +162,7 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rpi3-g++"}...)
 	}
 
-	if target == "android" && runtime.GOOS == "windows" {
+	if (target == "android" || target == "android-emulator") && runtime.GOOS == "windows" {
 		//TODO: -->
 		utils.SaveExec(filepath.Join(cmd.Dir, "qmake.bat"), fmt.Sprintf("set ANDROID_NDK_ROOT=%v\r\n%v", utils.ANDROID_NDK_DIR(), strings.Join(cmd.Args, " ")))
 		cmd = exec.Command(".\\qmake.bat")
@@ -210,7 +210,7 @@ func createMakefile(module, path, target string, mode int) {
 			utils.RemoveAll(filepath.Join(path, n))
 		}
 		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("%v.xcodeproj", strings.ToLower(module))))
-	case "android":
+	case "android", "android-emulator":
 		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("android-lib%v.so-deployment-settings.json", strings.ToLower(module))))
 	case "sailfish", "sailfish-emulator":
 	case "asteroid":
@@ -226,8 +226,8 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 	switch target {
 	case "darwin":
 		guards += "!ios"
-	case "android":
-		guards += "android"
+	case "android", "android-emulator":
+		guards += strings.Replace(target, "-", "_", -1)
 	case "ios", "ios-simulator":
 		guards += "ios"
 	case "sailfish", "sailfish-emulator":
@@ -301,7 +301,7 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 	}
 
 	switch target {
-	case "android":
+	case "android", "android-emulator":
 		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-shlib-undefined\n")
 	case "windows":
 		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")
@@ -327,7 +327,7 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 		tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch x86_64", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_LFLAGS)", "", -1)
-	case "android":
+	case "android", "android-emulator":
 		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", strings.ToLower(module)), "", -1)
 		tmp = strings.Replace(tmp, "-shared", "", -1)
 	}
@@ -403,6 +403,8 @@ func cgoFileNames(module, path, target string, mode int) []string {
 		}
 	case "android":
 		sFixes = []string{"linux_arm"}
+	case "android-emulator":
+		sFixes = []string{"linux_386"}
 	case "ios":
 		sFixes = []string{"darwin_arm64", "darwin_arm"}
 	case "ios-simulator":

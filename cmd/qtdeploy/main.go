@@ -96,7 +96,7 @@ func main() {
 	//TODO: check mode here
 
 	switch target {
-	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
+	case "android", "android-emulator", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
 		fast = false
 	}
 	deploy.Deploy(mode, target, path, docker, ldFlags, fast && !docker)

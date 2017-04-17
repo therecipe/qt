@@ -468,7 +468,7 @@ func cppTypeFromGoType(f *parser.Function, t string) string {
 
 func hasStructors(m *parser.Module) bool {
 	for _, c := range m.Namespace.Classes {
-		if c.Bases == "" {
+		if !c.IsSubClassOfQObject() {
 			continue
 		}
 		if !c.HasConstructor() /*|| !c.HasDestructor()*/ {

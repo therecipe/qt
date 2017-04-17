@@ -56,7 +56,7 @@ func linux_sh(target, name string) string {
 
 //android
 
-func android_config(path, depPath string) string {
+func android_config(target, path, depPath string) string {
 	jsonStruct := &struct {
 		Qt                            string `json:"qt"`
 		Sdk                           string `json:"sdk"`
@@ -82,9 +82,16 @@ func android_config(path, depPath string) string {
 		Ndkhost:                       runtime.GOOS + "-x86_64",
 		Targetarchitecture:            "armeabi-v7a",
 		AndroidExtraLibs:              filepath.Join(depPath, "libgo_base.so"),
-		AndroidPackageSourceDirectory: filepath.Join(path, "android"),
+		AndroidPackageSourceDirectory: filepath.Join(path, target),
 		Qmlrootpath:                   path,
 		Applicationbinary:             filepath.Join(depPath, "libgo.so"),
+	}
+
+	if target == "android-emulator" {
+		jsonStruct.Qt = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_x86")
+		jsonStruct.Toolchainprefix = "x86"
+		jsonStruct.Toolprefix = "i686-linux-android"
+		jsonStruct.Targetarchitecture = "x86"
 	}
 
 	if utils.QT_DOCKER() {
@@ -96,6 +103,14 @@ func android_config(path, depPath string) string {
 		utils.Log.WithError(err).Panicf("failed to create json-config file for androiddeployqt on %v", runtime.GOOS)
 	}
 	return strings.Replace(string(out), `\\`, `/`, -1)
+}
+
+func android_gradle_wrapper() string {
+	return `distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-2.14.1-all.zip`
 }
 
 //darwin

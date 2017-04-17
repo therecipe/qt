@@ -290,12 +290,19 @@ func bundle(mode, target, path, name, depPath string) {
 		}
 		//<--
 
-	case "android":
+	case "android", "android-emulator":
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/", depPath)
+		copy(assets+"/", filepath.Join(depPath, "build"))
+
+		//create default gradle-wrapper.properties
+		if target == "android-emulator" {
+			path := filepath.Join(depPath, "build", "gradle", "wrapper")
+			utils.MkdirAll(path)
+			utils.Save(filepath.Join(path, "gradle-wrapper.properties"), android_gradle_wrapper())
+		}
 
 		//wrap exported go main inside c main
 		env, _, _, _ := cmd.BuildEnv(target, name, depPath)
@@ -304,15 +311,24 @@ func bundle(mode, target, path, name, depPath string) {
 		wrapper := filepath.Join(depPath, "c_main_wrapper.cpp")
 		utils.Save(wrapper, "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
 		cmd := exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm"), "-shared")
+		if target == "android-emulator" {
+			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86"), "-shared")
+		}
 		cmd.Dir = depPath
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v on %v", target, runtime.GOOS))
 		utils.RemoveAll(wrapper)
 
 		strip := exec.Command(filepath.Join(filepath.Dir(compiler), "arm-linux-androideabi-strip"), "libgo.so")
+		if target == "android-emulator" {
+			strip = exec.Command(filepath.Join(filepath.Dir(compiler), "i686-linux-android-strip"), "libgo.so")
+		}
 		strip.Dir = depPath
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 
 		libPath := filepath.Join(depPath, "build", "libs", "armeabi-v7a")
+		if target == "android-emulator" {
+			libPath = filepath.Join(depPath, "build", "libs", "x86")
+		}
 		utils.MkdirAll(libPath)
 
 		os.Rename(filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so"))
@@ -322,10 +338,14 @@ func bundle(mode, target, path, name, depPath string) {
 		copy(filepath.Join(libPath, "libgo_base.so"), depPath)
 		copy(filepath.Join(libPath, "libgo_base.so"), filepath.Join(depPath, "libgo.so"))
 
-		utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), android_config(path, depPath))
+		utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), android_config(target, path, depPath))
 
 		dep := exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7", "bin", "androiddeployqt"))
 		dep.Dir = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7", "bin")
+		if target == "android-emulator" {
+			dep := exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_x86", "bin", "androiddeployqt"))
+			dep.Dir = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_x86", "bin")
+		}
 		dep.Env = append(dep.Env, "JAVA_HOME="+utils.JDK_DIR())
 		dep.Args = append(dep.Args,
 			"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),

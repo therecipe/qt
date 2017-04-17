@@ -247,6 +247,7 @@ import "C"
 			strings.Contains(string(input), fmt.Sprintf("\t%v.", mlow)) ||
 			strings.Contains(string(input), fmt.Sprintf("\r%v.", mlow)) ||
 			strings.Contains(string(input), fmt.Sprintf("\n%v.", mlow)) ||
+			strings.Contains(string(input), fmt.Sprintf("!%v.", mlow)) ||
 			strings.Contains(string(input), fmt.Sprintf("*%v.", mlow)) ||
 			strings.Contains(string(input), fmt.Sprintf("(%v.", mlow)) {
 			switch mlow {

@@ -105,7 +105,7 @@ func Check(target string, docker bool) {
 			}...)
 		}
 
-	case "android":
+	case "android", "android-emulator":
 		vars = append(vars, [][]string{
 			{"JDK_DIR", utils.JDK_DIR()},
 			{"ANDROID_SDK_DIR", utils.ANDROID_SDK_DIR()},

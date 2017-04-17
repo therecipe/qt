@@ -36,7 +36,7 @@ func buildTags(module string, stub bool, mode int) string {
 	case stub:
 		{
 			if module == "QtAndroidExtras" || module == "androidextras" {
-				return "// +build !android"
+				return "// +build !android,!android_emulator"
 			}
 			return "// +build !sailfish,!sailfish_emulator"
 		}
@@ -53,7 +53,7 @@ func buildTags(module string, stub bool, mode int) string {
 
 	case module == "QtAndroidExtras", module == "androidextras":
 		{
-			return "// +build android"
+			return "// +build android android_emulator"
 		}
 
 	case module == "QtSailfish", module == "sailfish":

@@ -35,6 +35,7 @@ The following targets are currently supported:
 |:--------------------:|:-------------:|:--------------------------------:|:-----------------:|:-------------------:|
 |       Windows        |   (32 / 64)   | (dynamic / static / system libs) |        Yes        |         Any         |
 |       Android        |      arm      |             dynamic              |        Yes        |         Any         |
+|   Android-Emulator   |      32       |             dynamic              |        No         | Windows/macOS/Linux |
 |        Linux         |      64       |     (dynamic / system libs)      |        Yes        |         Any         |
 | Raspberry Pi (1/2/3) |      arm      |     (dynamic / system libs)      |        Yes        |         Any         |
 |        macOS         |      64       |     (dynamic / system libs)      |        No         |        macOS        |
@@ -347,7 +348,7 @@ These are some general environmental variables, you can find the target specific
 
 #### Mobile
 
-<details markdown="1"> <summary markdown="0">Android</summary>
+<details markdown="1"> <summary markdown="0">Android / Android-Emulator</summary>
 
 -	Install the desktop version for Windows, macOS or Linux
 
@@ -692,7 +693,7 @@ You can use the `linux` folder at the root of your project to let `qtdeploy` aut
 
 #### Mobile
 
-<details markdown="1"> <summary markdown="0">Android</summary>
+<details markdown="1"> <summary markdown="0">Android / Android-Emulator</summary>
 
 ### Environmental Variables
 
@@ -704,7 +705,7 @@ You can use the `linux` folder at the root of your project to let `qtdeploy` aut
 
 ### Branding
 
-You can use the `android` folder at the root of your project to let `qtdeploy` automatically bundle your assets.
+You can use the `android` or `android-emulator` folder at the root of your project to let `qtdeploy` automatically bundle your assets.
 
 ```
 project_name
@@ -733,7 +734,7 @@ project_name
     └── project.qml
 ```
 
-The content of the `android` folder will be copied prior `gradle` is used to create an `*.apk`.
+The content of the `android` or `android-emulator` folder will be copied prior `gradle` is used to create an `*.apk`.
 
 Furthermore you can use the `AndroidManifest.xml` found inside `deploy/android/build` as a template to build upon.
 
@@ -853,6 +854,7 @@ The other valid targets are:
 |      darwin       |
 |       linux       |
 |      android      |
+| android-emulator  |
 |        ios        |
 |   ios-simulator   |
 |     sailfish      |

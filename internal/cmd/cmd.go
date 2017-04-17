@@ -144,6 +144,29 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["TEMP"] = os.Getenv("TEMP")
 		}
 
+	case "android-emulator":
+		tags = []string{strings.Replace(target, "-", "_", -1)}
+		ldFlags = []string{"-s", "-w"}
+		out = filepath.Join(depPath, "libgo_base.so")
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": utils.GOPATH(),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   "android",
+			"GOARCH": "386",
+
+			"CGO_ENABLED":  "1",
+			"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-gcc"),
+			"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-g++"),
+			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86", "usr", "include")),
+			"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86")),
+		}
+		if runtime.GOOS == "windows" {
+			env["TMP"] = os.Getenv("TMP")
+			env["TEMP"] = os.Getenv("TEMP")
+		}
+
 	case "ios", "ios-simulator":
 		tags = []string{"ios"}
 		ldFlags = []string{"-w"}

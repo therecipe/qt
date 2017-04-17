@@ -1,4 +1,4 @@
-// +build android
+// +build android android_emulator
 
 #define protected public
 #define private public

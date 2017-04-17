@@ -13,8 +13,9 @@ import (
 
 func run(target, name, depPath string) {
 	switch target {
-	case "android":
-		exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", name))).Start()
+	case "android", "android-emulator":
+		exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-debug.apk")).Start()
+		exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-release-signed.apk")).Start()
 
 	case "ios-simulator":
 		//TODO: parse list of available simulators
