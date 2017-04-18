@@ -31,19 +31,19 @@ Targets
 
 The following targets are currently supported:
 
-| Target               | Arch          | Linkage                          | Docker Deployment | Host OS             |
-|:--------------------:|:-------------:|:--------------------------------:|:-----------------:|:-------------------:|
-|       Windows        |   (32 / 64)   | (dynamic / static / system libs) |        Yes        |         Any         |
-|       Android        |      arm      |             dynamic              |        Yes        |         Any         |
-|   Android-Emulator   |      32       |             dynamic              |        No         | Windows/macOS/Linux |
-|        Linux         |      64       |     (dynamic / system libs)      |        Yes        |         Any         |
-| Raspberry Pi (1/2/3) |      arm      |     (dynamic / system libs)      |        Yes        |         Any         |
-|        macOS         |      64       |     (dynamic / system libs)      |        No         |        macOS        |
-|         iOS          | (arm + arm64) |              static              |        No         |        macOS        |
-|    iOS-Simulator     |   (32 + 64)   |              static              |        No         |        macOS        |
-|      SailfishOS      |      arm      |           system libs            |        No         | Windows/macOS/Linux |
-| SailfishOS-Emulator  |      32       |           system libs            |        No         | Windows/macOS/Linux |
-|      AsteroidOS      |      arm      |           system libs            |        No         |        Linux        |
+| Target                   | Arch          | Linkage                          | Docker Deployment | Host OS             |
+|:------------------------:|:-------------:|:--------------------------------:|:-----------------:|:-------------------:|
+|         Windows          |   (32 / 64)   | (dynamic / static / system libs) |        Yes        |         Any         |
+|     Android (+Wear)      |      arm      |             dynamic              |        Yes        |         Any         |
+| Android-Emulator (+Wear) |      32       |             dynamic              |        No         | Windows/macOS/Linux |
+|          Linux           |      64       |     (dynamic / system libs)      |        Yes        |         Any         |
+|   Raspberry Pi (1/2/3)   |      arm      |     (dynamic / system libs)      |        Yes        |         Any         |
+|          macOS           |      64       |     (dynamic / system libs)      |        No         |        macOS        |
+|           iOS            | (arm + arm64) |              static              |        No         |        macOS        |
+|      iOS-Simulator       |   (32 + 64)   |              static              |        No         |        macOS        |
+|        SailfishOS        |      arm      |           system libs            |        No         | Windows/macOS/Linux |
+|   SailfishOS-Emulator    |      32       |           system libs            |        No         | Windows/macOS/Linux |
+|        AsteroidOS        |      arm      |           system libs            |        No         |        Linux        |
 
 FAQ
 ---
@@ -753,6 +753,12 @@ You can call Java functions directly from Go with the help of the [androidextras
 Callbacks into Go code from Java are also possible (with some manual labor).
 
 Take a look at the [examples](https://github.com/therecipe/qt/blob/master/internal/examples/androidextras) to see how it works.
+
+### Android Wear
+
+To get your app working on Android Wear, you just need to add `android:theme="@android:style/Theme.DeviceDefault"` to the `application` node of your custom `AndroidManifest.xml` before running qtdeploy.
+
+You can find a working example [here](https://github.com/therecipe/qt/blob/master/internal/examples/canvas3d/quickitemtexture_wear).
 
 </details>
 
