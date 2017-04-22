@@ -14,15 +14,18 @@ import (
 func run(target, name, depPath string) {
 	switch target {
 	case "android", "android-emulator":
-		exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-debug.apk")).Start()
-		exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-release-signed.apk")).Start()
+		if utils.ExistsFile(filepath.Join(depPath, "build-debug.apk")) {
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-debug.apk")), "install debug app")
+		} else {
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-release-signed.apk")), "install release app")
+		}
 
 	case "ios-simulator":
 		//TODO: parse list of available simulators
-		exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.2)#").Run()
-		exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")).Run()
-		exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")).Run()
-		exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", name)).Run()
+		utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.3)#"), "start simulator")
+		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "uninstall old app")
+		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "install new app")
+		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", name)), "start app")
 
 	case "darwin":
 		exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app", name))).Start()
@@ -38,13 +41,13 @@ func run(target, name, depPath string) {
 		}
 
 	case "sailfish-emulator":
-		exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")).Run()
-		exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount").Run()
+		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), "register vm")
+		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), "mount GOPATH")
 
 		if runtime.GOOS == "windows" {
-			exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator").Run()
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "start emulator")
 		} else {
-			exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator").Run()
+			utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "start emulator")
 		}
 
 		time.Sleep(10 * time.Second)

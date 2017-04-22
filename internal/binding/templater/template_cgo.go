@@ -75,7 +75,7 @@ func cgoIos(module, mocPath string, mode int, pkg string) string {
 
 	case "TestLib":
 		{
-			fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
+			//fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
 		}
 
 	case "Qml", "WebChannel", "Quick", "QuickControls2":
@@ -103,7 +103,7 @@ func cgoIos(module, mocPath string, mode int, pkg string) string {
 
 	if module == "build_ios" {
 		fmt.Fprint(bb, " -lQt5OpenGL")
-		fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
+		//fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
 		fmt.Fprint(bb, " -lQt5Quick -lQt5QuickParticles -lQt5QuickTest -lQt5QuickWidgets")
 		fmt.Fprintf(bb, " -L%v/%v/ios/plugins/qmltooling -lqmldbg_debugger -lqmldbg_inspector -lqmldbg_local -lqmldbg_native -lqmldbg_profiler -lqmldbg_quickprofiler -lqmldbg_server -lQt5PacketProtocol -lqmldbg_tcp", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 

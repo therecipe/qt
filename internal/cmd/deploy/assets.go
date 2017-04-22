@@ -696,7 +696,7 @@ func sailfish_ssh(port, login string, cmd ...string) error {
 		return err
 	}
 
-	client, err := ssh.Dial("tcp", "localhost:"+port, &ssh.ClientConfig{User: login, Auth: []ssh.AuthMethod{ssh.PublicKeys(signer)}})
+	client, err := ssh.Dial("tcp", "localhost:"+port, &ssh.ClientConfig{User: login, Auth: []ssh.AuthMethod{ssh.PublicKeys(signer)}, HostKeyCallback: ssh.InsecureIgnoreHostKey()})
 	if err != nil {
 		return err
 	}
