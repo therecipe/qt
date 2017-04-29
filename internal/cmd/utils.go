@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -12,17 +13,22 @@ import (
 
 var std []string
 
-func GetImports(path string, level int) []string {
+func GetImports(path, target string, level int) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
 
 	if std == nil {
 		std = strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n")
 	}
 
+	env, tags, _, _ := BuildEnv(target, "", "")
+
 	importMap := make(map[string]struct{})
 
-	cmd := exec.Command("go", "list", "-f", "'{{ join .TestImports \"|\" }}':'{{ join .Deps \"|\" }}'")
+	cmd := exec.Command("go", "list", "-f", "'{{ join .TestImports \"|\" }}':'{{ join .Deps \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Dir = path
+	for k, v := range env {
+		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+	}
 
 	out := strings.TrimSpace(utils.RunCmd(cmd, "go list deps"))
 	out = strings.Replace(out, "'", "", -1)
@@ -38,9 +44,12 @@ func GetImports(path string, level int) []string {
 		}
 	}
 
-	cmd = exec.Command("go", "list", "-e", "-f", "{{.Dir}}")
+	cmd = exec.Command("go", "list", "-e", "-f", "{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Args = append(cmd.Args, libs...)
 	cmd.Dir = path
+	for k, v := range env {
+		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+	}
 
 	for _, dep := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list dir")), "\n") {
 		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {

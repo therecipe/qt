@@ -20,7 +20,7 @@ func Minimal(path, target string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Minimal")
 
 	var files []string
-	for _, path := range append([]string{path}, cmd.GetImports(path, 0)...) {
+	for _, path := range append([]string{path}, cmd.GetImports(path, target, 0)...) {
 		fileList, err := ioutil.ReadDir(path)
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read dir")
