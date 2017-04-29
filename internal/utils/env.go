@@ -99,6 +99,9 @@ func ToolPath(tool, target string) string {
 	case "windows":
 		if runtime.GOOS == target {
 			if QT_MSYS2() {
+				if QT_MSYS2_STATIC() {
+					return filepath.Join(QT_MSYS2_DIR(), "qt5-static", "bin", tool)
+				}
 				return filepath.Join(QT_MSYS2_DIR(), "bin", tool)
 			}
 			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw53_32", "bin", tool)
