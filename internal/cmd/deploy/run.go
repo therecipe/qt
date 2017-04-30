@@ -15,9 +15,9 @@ func run(target, name, depPath string) {
 	switch target {
 	case "android", "android-emulator":
 		if utils.ExistsFile(filepath.Join(depPath, "build-debug.apk")) {
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-debug.apk")), "install debug app")
+			exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-debug.apk")).Start()
 		} else {
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-release-signed.apk")), "install release app")
+			exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-release-signed.apk")).Start()
 		}
 
 	case "ios-simulator":

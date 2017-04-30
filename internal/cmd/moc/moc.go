@@ -165,6 +165,14 @@ func Moc(path, target string, fast bool) {
 	}
 	utils.Log.WithField("path", path).Debugln("found", remaining, "remaining moc structs")
 	if remaining == 0 {
+		//TODO: cleanup state -->
+		for _, c := range parser.State.ClassMap {
+			if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") {
+				delete(parser.State.ClassMap, c.Name)
+			}
+		}
+		parser.LibDeps[parser.MOC] = make([]string, 0)
+		//<--
 		return
 	}
 
@@ -224,13 +232,14 @@ func Moc(path, target string, fast bool) {
 	}
 	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg)
 
-	//TODO: cleanup state
+	//TODO: cleanup state -->
 	for _, c := range parser.State.ClassMap {
 		if c.Module == parser.MOC {
 			delete(parser.State.ClassMap, c.Name)
 		}
 	}
 	parser.LibDeps[parser.MOC] = make([]string, 0)
+	//<--
 
 	utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
 }
