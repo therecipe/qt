@@ -50,6 +50,9 @@ func main() {
 	var fast bool
 	flag.BoolVar(&fast, "fast", false, "use cached moc, minimal and dependencies (works for: windows, darwin, linux)")
 
+	var tags string
+	flag.StringVar(&tags, "tags", "", "a list of build tags to consider satisfied during the build")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -99,5 +102,5 @@ func main() {
 	case "android", "android-emulator", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
 		fast = false
 	}
-	deploy.Deploy(mode, target, path, docker, ldFlags, fast && !docker)
+	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !docker)
 }

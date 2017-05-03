@@ -12,7 +12,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Deploy(mode, target, path string, docker bool, ldFlags string, fast bool) {
+func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool) {
 	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).WithField("ldFlags", ldFlags).WithField("fast", fast).Debug("running Deploy")
 	name := filepath.Base(path)
 	depPath := filepath.Join(path, "deploy", target)
@@ -32,7 +32,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags string, fast bool) {
 			if fast {
 				args = append(args, "-fast")
 			}
-			args = append(args, []string{"-ldflags=" + ldFlags, "build"}...)
+			args = append(args, []string{"-ldflags=" + ldFlags, "-tags=" + tags, "build"}...)
 			cmd.Docker(args, target, path, false)
 			break
 		}
@@ -46,7 +46,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags string, fast bool) {
 			minimal.Minimal(path, target)
 		}
 
-		build(mode, target, path, ldFlags, name, depPath, fast)
+		build(mode, target, path, ldFlags, tags, name, depPath, fast)
 
 		if !fast {
 			bundle(mode, target, path, name, depPath)
