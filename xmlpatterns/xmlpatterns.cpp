@@ -1429,7 +1429,7 @@ void QXmlSerializer_AtomicValue(void* ptr, void* value)
 
 void QXmlSerializer_AtomicValueDefault(void* ptr, void* value)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::atomicValue(*static_cast<QVariant*>(value));
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::atomicValue(*static_cast<QVariant*>(value));
@@ -1443,7 +1443,7 @@ void QXmlSerializer_Attribute(void* ptr, void* name, void* value)
 
 void QXmlSerializer_AttributeDefault(void* ptr, void* name, void* value)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
@@ -1457,7 +1457,7 @@ void QXmlSerializer_Characters(void* ptr, void* value)
 
 void QXmlSerializer_CharactersDefault(void* ptr, void* value)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::characters(*static_cast<QStringRef*>(value));
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::characters(*static_cast<QStringRef*>(value));
@@ -1471,7 +1471,7 @@ void QXmlSerializer_Comment(void* ptr, char* value)
 
 void QXmlSerializer_CommentDefault(void* ptr, char* value)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::comment(QString(value));
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::comment(QString(value));
@@ -1485,7 +1485,7 @@ void QXmlSerializer_EndDocument(void* ptr)
 
 void QXmlSerializer_EndDocumentDefault(void* ptr)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::endDocument();
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::endDocument();
@@ -1499,7 +1499,7 @@ void QXmlSerializer_EndElement(void* ptr)
 
 void QXmlSerializer_EndElementDefault(void* ptr)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::endElement();
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::endElement();
@@ -1513,7 +1513,7 @@ void QXmlSerializer_EndOfSequence(void* ptr)
 
 void QXmlSerializer_EndOfSequenceDefault(void* ptr)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::endOfSequence();
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::endOfSequence();
@@ -1527,7 +1527,7 @@ void QXmlSerializer_NamespaceBinding(void* ptr, void* nb)
 
 void QXmlSerializer_NamespaceBindingDefault(void* ptr, void* nb)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::namespaceBinding(*static_cast<QXmlName*>(nb));
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::namespaceBinding(*static_cast<QXmlName*>(nb));
@@ -1541,7 +1541,7 @@ void QXmlSerializer_ProcessingInstruction(void* ptr, void* name, char* value)
 
 void QXmlSerializer_ProcessingInstructionDefault(void* ptr, void* name, char* value)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::processingInstruction(*static_cast<QXmlName*>(name), QString(value));
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::processingInstruction(*static_cast<QXmlName*>(name), QString(value));
@@ -1560,7 +1560,7 @@ void QXmlSerializer_StartDocument(void* ptr)
 
 void QXmlSerializer_StartDocumentDefault(void* ptr)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::startDocument();
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::startDocument();
@@ -1574,7 +1574,7 @@ void QXmlSerializer_StartElement(void* ptr, void* name)
 
 void QXmlSerializer_StartElementDefault(void* ptr, void* name)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::startElement(*static_cast<QXmlName*>(name));
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::startElement(*static_cast<QXmlName*>(name));
@@ -1588,7 +1588,7 @@ void QXmlSerializer_StartOfSequence(void* ptr)
 
 void QXmlSerializer_StartOfSequenceDefault(void* ptr)
 {
-	if (dynamic_cast<QXmlFormatter*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
 		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::startOfSequence();
 	} else {
 		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::startOfSequence();

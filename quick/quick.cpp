@@ -278,7 +278,7 @@ void* QQuickImageProvider_RequestImage(void* ptr, char* id, void* size, void* re
 
 void* QQuickImageProvider_RequestImageDefault(void* ptr, char* id, void* size, void* requestedSize)
 {
-	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
 		return new QImage(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 	} else {
 		return new QImage(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
@@ -292,7 +292,7 @@ void* QQuickImageProvider_RequestPixmap(void* ptr, char* id, void* size, void* r
 
 void* QQuickImageProvider_RequestPixmapDefault(void* ptr, char* id, void* size, void* requestedSize)
 {
-	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
 		return new QPixmap(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 	} else {
 		return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
@@ -311,7 +311,7 @@ void* QQuickImageProvider_RequestTexture(void* ptr, char* id, void* size, void* 
 
 void* QQuickImageProvider_RequestTextureDefault(void* ptr, char* id, void* size, void* requestedSize)
 {
-	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
 		return static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
 	} else {
 		return static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
@@ -335,7 +335,7 @@ long long QQuickImageProvider_Flags(void* ptr)
 
 long long QQuickImageProvider_FlagsDefault(void* ptr)
 {
-	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
 		return static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::flags();
 	} else {
 		return static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::flags();
@@ -349,7 +349,7 @@ long long QQuickImageProvider_ImageType(void* ptr)
 
 long long QQuickImageProvider_ImageTypeDefault(void* ptr)
 {
-	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
 		return static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::imageType();
 	} else {
 		return static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::imageType();
@@ -5987,13 +5987,13 @@ int QSGMaterial_Compare(void* ptr, void* other)
 
 int QSGMaterial_CompareDefault(void* ptr, void* other)
 {
-	if (dynamic_cast<QSGVertexColorMaterial*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QSGVertexColorMaterial*>(static_cast<QSGMaterial*>(ptr))) {
 		return static_cast<QSGVertexColorMaterial*>(ptr)->QSGVertexColorMaterial::compare(static_cast<QSGMaterial*>(other));
-	} else if (dynamic_cast<QSGTextureMaterial*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGTextureMaterial*>(static_cast<QSGMaterial*>(ptr))) {
 		return static_cast<QSGTextureMaterial*>(ptr)->QSGTextureMaterial::compare(static_cast<QSGMaterial*>(other));
-	} else if (dynamic_cast<QSGOpaqueTextureMaterial*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGOpaqueTextureMaterial*>(static_cast<QSGMaterial*>(ptr))) {
 		return static_cast<QSGOpaqueTextureMaterial*>(ptr)->QSGOpaqueTextureMaterial::compare(static_cast<QSGMaterial*>(other));
-	} else if (dynamic_cast<QSGFlatColorMaterial*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGFlatColorMaterial*>(static_cast<QSGMaterial*>(ptr))) {
 		return static_cast<QSGFlatColorMaterial*>(ptr)->QSGFlatColorMaterial::compare(static_cast<QSGMaterial*>(other));
 	} else {
 		return static_cast<QSGMaterial*>(ptr)->QSGMaterial::compare(static_cast<QSGMaterial*>(other));
@@ -6132,21 +6132,21 @@ void QSGNode_Preprocess(void* ptr)
 
 void QSGNode_PreprocessDefault(void* ptr)
 {
-	if (dynamic_cast<QSGRenderNode*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QSGRenderNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGRenderNode*>(ptr)->QSGRenderNode::preprocess();
-	} else if (dynamic_cast<QSGTransformNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGTransformNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGTransformNode*>(ptr)->QSGTransformNode::preprocess();
-	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGOpacityNode*>(ptr)->QSGOpacityNode::preprocess();
-	} else if (dynamic_cast<QSGRectangleNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGRectangleNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGRectangleNode*>(ptr)->QSGRectangleNode::preprocess();
-	} else if (dynamic_cast<QSGImageNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGImageNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGImageNode*>(ptr)->QSGImageNode::preprocess();
-	} else if (dynamic_cast<QSGGeometryNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGGeometryNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGGeometryNode*>(ptr)->QSGGeometryNode::preprocess();
-	} else if (dynamic_cast<QSGClipNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGClipNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGClipNode*>(ptr)->QSGClipNode::preprocess();
-	} else if (dynamic_cast<QSGBasicGeometryNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGBasicGeometryNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGBasicGeometryNode*>(ptr)->QSGBasicGeometryNode::preprocess();
 	} else {
 		static_cast<QSGNode*>(ptr)->QSGNode::preprocess();
@@ -6230,21 +6230,21 @@ char QSGNode_IsSubtreeBlocked(void* ptr)
 
 char QSGNode_IsSubtreeBlockedDefault(void* ptr)
 {
-	if (dynamic_cast<QSGRenderNode*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QSGRenderNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGRenderNode*>(ptr)->QSGRenderNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGTransformNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGTransformNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGTransformNode*>(ptr)->QSGTransformNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGOpacityNode*>(ptr)->QSGOpacityNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGRectangleNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGRectangleNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGRectangleNode*>(ptr)->QSGRectangleNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGImageNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGImageNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGImageNode*>(ptr)->QSGImageNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGGeometryNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGGeometryNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGGeometryNode*>(ptr)->QSGGeometryNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGClipNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGClipNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGClipNode*>(ptr)->QSGClipNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGBasicGeometryNode*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSGBasicGeometryNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGBasicGeometryNode*>(ptr)->QSGBasicGeometryNode::isSubtreeBlocked();
 	} else {
 		return static_cast<QSGNode*>(ptr)->QSGNode::isSubtreeBlocked();
@@ -6365,7 +6365,7 @@ void* QSGOpaqueTextureMaterial_CreateShader(void* ptr)
 
 void* QSGOpaqueTextureMaterial_CreateShaderDefault(void* ptr)
 {
-	if (dynamic_cast<QSGTextureMaterial*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QSGTextureMaterial*>(static_cast<QSGOpaqueTextureMaterial*>(ptr))) {
 		return static_cast<QSGTextureMaterial*>(ptr)->QSGTextureMaterial::createShader();
 	} else {
 		return static_cast<QSGOpaqueTextureMaterial*>(ptr)->QSGOpaqueTextureMaterial::createShader();
@@ -6379,7 +6379,7 @@ void* QSGOpaqueTextureMaterial_Type(void* ptr)
 
 void* QSGOpaqueTextureMaterial_TypeDefault(void* ptr)
 {
-	if (dynamic_cast<QSGTextureMaterial*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QSGTextureMaterial*>(static_cast<QSGOpaqueTextureMaterial*>(ptr))) {
 		return static_cast<QSGTextureMaterial*>(ptr)->QSGTextureMaterial::type();
 	} else {
 		return static_cast<QSGOpaqueTextureMaterial*>(ptr)->QSGOpaqueTextureMaterial::type();

@@ -851,15 +851,15 @@ void QAbstractGraphicsShapeItem_Paint(void* ptr, void* painter, void* option, vo
 
 void QAbstractGraphicsShapeItem_PaintDefault(void* ptr, void* painter, void* option, void* widget)
 {
-	if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 	} else {
 	
@@ -873,15 +873,15 @@ void* QAbstractGraphicsShapeItem_BoundingRect(void* ptr)
 
 void* QAbstractGraphicsShapeItem_BoundingRectDefault(void* ptr)
 {
-	if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		return ({ QRectF tmpValue = static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		return ({ QRectF tmpValue = static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		return ({ QRectF tmpValue = static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		return ({ QRectF tmpValue = static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		return ({ QRectF tmpValue = static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 	} else {
 	
@@ -4302,7 +4302,7 @@ int QAccessibleWidget_ChildCountDefault(void* ptr)
 
 int QAccessibleWidget_IndexOfChild(void* ptr, void* child)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(child))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(child))) {
 		return static_cast<QAccessibleWidget*>(ptr)->indexOfChild(static_cast<QAccessibleWidget*>(child));
 	} else {
 		return static_cast<QAccessibleWidget*>(ptr)->indexOfChild(static_cast<QAccessibleInterface*>(child));
@@ -4311,7 +4311,7 @@ int QAccessibleWidget_IndexOfChild(void* ptr, void* child)
 
 int QAccessibleWidget_IndexOfChildDefault(void* ptr, void* child)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(child))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(child))) {
 		return static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::indexOfChild(static_cast<QAccessibleWidget*>(child));
 	} else {
 		return static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::indexOfChild(static_cast<QAccessibleInterface*>(child));
@@ -17197,7 +17197,7 @@ void* QGraphicsItem_ItemChange(void* ptr, long long change, void* value)
 
 void* QGraphicsItem_ItemChangeDefault(void* ptr, long long change, void* value)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
@@ -17207,21 +17207,21 @@ void* QGraphicsItem_ItemChangeDefault(void* ptr, long long change, void* value)
 		return new QVariant(static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
 	} else {
 		return new QVariant(static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
@@ -17241,7 +17241,7 @@ char QGraphicsItem_SceneEvent(void* ptr, void* event)
 
 char QGraphicsItem_SceneEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::sceneEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::sceneEvent(static_cast<QEvent*>(event));
@@ -17251,21 +17251,21 @@ char QGraphicsItem_SceneEventDefault(void* ptr, void* event)
 		return static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::sceneEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::sceneEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::sceneEvent(static_cast<QEvent*>(event));
 	} else {
 		return static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::sceneEvent(static_cast<QEvent*>(event));
@@ -17303,7 +17303,7 @@ char QGraphicsItem_SceneEventFilter(void* ptr, void* watched, void* event)
 
 char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17343,7 +17343,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17351,7 +17351,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17359,7 +17359,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17367,7 +17367,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17375,7 +17375,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17383,7 +17383,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17391,7 +17391,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17399,7 +17399,7 @@ char QGraphicsItem_SceneEventFilterDefault(void* ptr, void* watched, void* event
 		} else {
 			return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::sceneEventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -17431,7 +17431,7 @@ void QGraphicsItem_Advance(void* ptr, int phase)
 
 void QGraphicsItem_AdvanceDefault(void* ptr, int phase)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::advance(phase);
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::advance(phase);
@@ -17441,21 +17441,21 @@ void QGraphicsItem_AdvanceDefault(void* ptr, int phase)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::advance(phase);
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::advance(phase);
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::advance(phase);
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::advance(phase);
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::advance(phase);
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::advance(phase);
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::advance(phase);
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::advance(phase);
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::advance(phase);
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::advance(phase);
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::advance(phase);
@@ -17486,7 +17486,7 @@ void QGraphicsItem_ContextMenuEvent(void* ptr, void* event)
 
 void QGraphicsItem_ContextMenuEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
@@ -17496,21 +17496,21 @@ void QGraphicsItem_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
@@ -17530,7 +17530,7 @@ void QGraphicsItem_DragEnterEvent(void* ptr, void* event)
 
 void QGraphicsItem_DragEnterEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17540,21 +17540,21 @@ void QGraphicsItem_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17574,7 +17574,7 @@ void QGraphicsItem_DragLeaveEvent(void* ptr, void* event)
 
 void QGraphicsItem_DragLeaveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17584,21 +17584,21 @@ void QGraphicsItem_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17618,7 +17618,7 @@ void QGraphicsItem_DragMoveEvent(void* ptr, void* event)
 
 void QGraphicsItem_DragMoveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17628,21 +17628,21 @@ void QGraphicsItem_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17662,7 +17662,7 @@ void QGraphicsItem_DropEvent(void* ptr, void* event)
 
 void QGraphicsItem_DropEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17672,21 +17672,21 @@ void QGraphicsItem_DropEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -17728,7 +17728,7 @@ void QGraphicsItem_FocusInEvent(void* ptr, void* event)
 
 void QGraphicsItem_FocusInEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::focusInEvent(static_cast<QFocusEvent*>(event));
@@ -17738,21 +17738,21 @@ void QGraphicsItem_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::focusInEvent(static_cast<QFocusEvent*>(event));
@@ -17772,7 +17772,7 @@ void QGraphicsItem_FocusOutEvent(void* ptr, void* event)
 
 void QGraphicsItem_FocusOutEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
@@ -17782,21 +17782,21 @@ void QGraphicsItem_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::focusOutEvent(static_cast<QFocusEvent*>(event));
@@ -17849,7 +17849,7 @@ void QGraphicsItem_HoverEnterEvent(void* ptr, void* event)
 
 void QGraphicsItem_HoverEnterEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
@@ -17859,21 +17859,21 @@ void QGraphicsItem_HoverEnterEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
@@ -17893,7 +17893,7 @@ void QGraphicsItem_HoverLeaveEvent(void* ptr, void* event)
 
 void QGraphicsItem_HoverLeaveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
@@ -17903,21 +17903,21 @@ void QGraphicsItem_HoverLeaveEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
@@ -17937,7 +17937,7 @@ void QGraphicsItem_HoverMoveEvent(void* ptr, void* event)
 
 void QGraphicsItem_HoverMoveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
@@ -17947,21 +17947,21 @@ void QGraphicsItem_HoverMoveEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
@@ -17981,7 +17981,7 @@ void QGraphicsItem_InputMethodEvent(void* ptr, void* event)
 
 void QGraphicsItem_InputMethodEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
@@ -17991,21 +17991,21 @@ void QGraphicsItem_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
@@ -18054,7 +18054,7 @@ void QGraphicsItem_KeyPressEvent(void* ptr, void* event)
 
 void QGraphicsItem_KeyPressEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
@@ -18064,21 +18064,21 @@ void QGraphicsItem_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::keyPressEvent(static_cast<QKeyEvent*>(event));
@@ -18098,7 +18098,7 @@ void QGraphicsItem_KeyReleaseEvent(void* ptr, void* event)
 
 void QGraphicsItem_KeyReleaseEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
@@ -18108,21 +18108,21 @@ void QGraphicsItem_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
@@ -18142,7 +18142,7 @@ void QGraphicsItem_MouseDoubleClickEvent(void* ptr, void* event)
 
 void QGraphicsItem_MouseDoubleClickEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18152,21 +18152,21 @@ void QGraphicsItem_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18186,7 +18186,7 @@ void QGraphicsItem_MouseMoveEvent(void* ptr, void* event)
 
 void QGraphicsItem_MouseMoveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18196,21 +18196,21 @@ void QGraphicsItem_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18230,7 +18230,7 @@ void QGraphicsItem_MousePressEvent(void* ptr, void* event)
 
 void QGraphicsItem_MousePressEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18240,21 +18240,21 @@ void QGraphicsItem_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18274,7 +18274,7 @@ void QGraphicsItem_MouseReleaseEvent(void* ptr, void* event)
 
 void QGraphicsItem_MouseReleaseEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18284,21 +18284,21 @@ void QGraphicsItem_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
@@ -18918,7 +18918,7 @@ void QGraphicsItem_WheelEvent(void* ptr, void* event)
 
 void QGraphicsItem_WheelEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
@@ -18928,21 +18928,21 @@ void QGraphicsItem_WheelEventDefault(void* ptr, void* event)
 		static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 	} else {
 		static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
@@ -19323,7 +19323,7 @@ void* QGraphicsItem_OpaqueArea(void* ptr)
 
 void* QGraphicsItem_OpaqueAreaDefault(void* ptr)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::opaqueArea());
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::opaqueArea());
@@ -19333,21 +19333,21 @@ void* QGraphicsItem_OpaqueAreaDefault(void* ptr)
 		return new QPainterPath(static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::opaqueArea());
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::opaqueArea());
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::opaqueArea());
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::opaqueArea());
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::opaqueArea());
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::opaqueArea());
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::opaqueArea());
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::opaqueArea());
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::opaqueArea());
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::opaqueArea());
 	} else {
 		return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::opaqueArea());
@@ -19367,7 +19367,7 @@ void* QGraphicsItem_Shape(void* ptr)
 
 void* QGraphicsItem_ShapeDefault(void* ptr)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::shape());
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::shape());
@@ -19377,21 +19377,21 @@ void* QGraphicsItem_ShapeDefault(void* ptr)
 		return new QPainterPath(static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::shape());
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::shape());
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::shape());
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::shape());
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::shape());
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::shape());
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::shape());
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::shape());
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::shape());
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QPainterPath(static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::shape());
 	} else {
 		return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::shape());
@@ -20286,7 +20286,7 @@ void* QGraphicsItem_InputMethodQuery(void* ptr, long long query)
 
 void* QGraphicsItem_InputMethodQueryDefault(void* ptr, long long query)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
@@ -20296,21 +20296,21 @@ void* QGraphicsItem_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return new QVariant(static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else {
 		return new QVariant(static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
@@ -20403,7 +20403,7 @@ char QGraphicsItem_CollidesWithItem(void* ptr, void* other, long long mode)
 
 char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mode)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20443,7 +20443,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20451,7 +20451,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20459,7 +20459,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20467,7 +20467,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20475,7 +20475,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20483,7 +20483,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20491,7 +20491,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20499,7 +20499,7 @@ char QGraphicsItem_CollidesWithItemDefault(void* ptr, void* other, long long mod
 		} else {
 			return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		}
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::collidesWithItem(static_cast<QGraphicsObject*>(other), static_cast<Qt::ItemSelectionMode>(mode));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
@@ -20531,7 +20531,7 @@ char QGraphicsItem_CollidesWithPath(void* ptr, void* path, long long mode)
 
 char QGraphicsItem_CollidesWithPathDefault(void* ptr, void* path, long long mode)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
@@ -20541,21 +20541,21 @@ char QGraphicsItem_CollidesWithPathDefault(void* ptr, void* path, long long mode
 		return static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
 	} else {
 		return static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
@@ -20575,7 +20575,7 @@ char QGraphicsItem_Contains(void* ptr, void* point)
 
 char QGraphicsItem_ContainsDefault(void* ptr, void* point)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::contains(*static_cast<QPointF*>(point));
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::contains(*static_cast<QPointF*>(point));
@@ -20585,21 +20585,21 @@ char QGraphicsItem_ContainsDefault(void* ptr, void* point)
 		return static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::contains(*static_cast<QPointF*>(point));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::contains(*static_cast<QPointF*>(point));
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::contains(*static_cast<QPointF*>(point));
 	} else {
 		return static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::contains(*static_cast<QPointF*>(point));
@@ -20754,7 +20754,7 @@ char QGraphicsItem_IsObscuredBy(void* ptr, void* item)
 
 char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20794,7 +20794,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20802,7 +20802,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20810,7 +20810,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20818,7 +20818,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20826,7 +20826,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20834,7 +20834,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20842,7 +20842,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20850,7 +20850,7 @@ char QGraphicsItem_IsObscuredByDefault(void* ptr, void* item)
 		} else {
 			return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::isObscuredBy(static_cast<QGraphicsItem*>(item));
 		}
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
 			return static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::isObscuredBy(static_cast<QGraphicsObject*>(item));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
@@ -20988,7 +20988,7 @@ int QGraphicsItem_Type(void* ptr)
 
 int QGraphicsItem_TypeDefault(void* ptr)
 {
-	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsPixmapItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::type();
 	} else if (dynamic_cast<QGraphicsProxyWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::type();
@@ -20998,21 +20998,21 @@ int QGraphicsItem_TypeDefault(void* ptr)
 		return static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::type();
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::type();
-	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLineItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::type();
-	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsItemGroup*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::type();
-	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsSimpleTextItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::type();
-	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsRectItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::type();
-	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPolygonItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::type();
-	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsPathItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::type();
-	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsEllipseItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::type();
-	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAbstractGraphicsShapeItem*>(static_cast<QGraphicsItem*>(ptr))) {
 		return static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::type();
 	} else {
 		return static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::type();
@@ -21472,11 +21472,11 @@ void QGraphicsLayout_Invalidate(void* ptr)
 
 void QGraphicsLayout_InvalidateDefault(void* ptr)
 {
-	if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		static_cast<QGraphicsLinearLayout*>(ptr)->QGraphicsLinearLayout::invalidate();
-	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		static_cast<QGraphicsGridLayout*>(ptr)->QGraphicsGridLayout::invalidate();
-	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::invalidate();
 	} else {
 		static_cast<QGraphicsLayout*>(ptr)->QGraphicsLayout::invalidate();
@@ -21500,11 +21500,11 @@ void QGraphicsLayout_WidgetEvent(void* ptr, void* e)
 
 void QGraphicsLayout_WidgetEventDefault(void* ptr, void* e)
 {
-	if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		static_cast<QGraphicsLinearLayout*>(ptr)->QGraphicsLinearLayout::widgetEvent(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		static_cast<QGraphicsGridLayout*>(ptr)->QGraphicsGridLayout::widgetEvent(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::widgetEvent(static_cast<QEvent*>(e));
 	} else {
 		static_cast<QGraphicsLayout*>(ptr)->QGraphicsLayout::widgetEvent(static_cast<QEvent*>(e));
@@ -21538,11 +21538,11 @@ void* QGraphicsLayout_SizeHint(void* ptr, long long which, void* constraint)
 
 void* QGraphicsLayout_SizeHintDefault(void* ptr, long long which, void* constraint)
 {
-	if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		return ({ QSizeF tmpValue = static_cast<QGraphicsLinearLayout*>(ptr)->QGraphicsLinearLayout::sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint)); new QSizeF(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		return ({ QSizeF tmpValue = static_cast<QGraphicsGridLayout*>(ptr)->QGraphicsGridLayout::sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint)); new QSizeF(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QGraphicsLayout*>(ptr))) {
 		return ({ QSizeF tmpValue = static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint)); new QSizeF(tmpValue.width(), tmpValue.height()); });
 	} else {
 	
@@ -21580,13 +21580,13 @@ void QGraphicsLayoutItem_SetGeometryDefault(void* ptr, void* rect)
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::setGeometry(*static_cast<QRectF*>(rect));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::setGeometry(*static_cast<QRectF*>(rect));
-	} else if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsLinearLayout*>(ptr)->QGraphicsLinearLayout::setGeometry(*static_cast<QRectF*>(rect));
-	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsGridLayout*>(ptr)->QGraphicsGridLayout::setGeometry(*static_cast<QRectF*>(rect));
-	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::setGeometry(*static_cast<QRectF*>(rect));
-	} else if (dynamic_cast<QGraphicsLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsLayout*>(ptr)->QGraphicsLayout::setGeometry(*static_cast<QRectF*>(rect));
 	} else {
 		static_cast<QGraphicsLayoutItem*>(ptr)->QGraphicsLayoutItem::setGeometry(*static_cast<QRectF*>(rect));
@@ -21781,13 +21781,13 @@ void QGraphicsLayoutItem_UpdateGeometryDefault(void* ptr)
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::updateGeometry();
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::updateGeometry();
-	} else if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsLinearLayout*>(ptr)->QGraphicsLinearLayout::updateGeometry();
-	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsGridLayout*>(ptr)->QGraphicsGridLayout::updateGeometry();
-	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::updateGeometry();
-	} else if (dynamic_cast<QGraphicsLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsLayout*>(ptr)->QGraphicsLayout::updateGeometry();
 	} else {
 		static_cast<QGraphicsLayoutItem*>(ptr)->QGraphicsLayoutItem::updateGeometry();
@@ -21981,13 +21981,13 @@ void QGraphicsLayoutItem_GetContentsMarginsDefault(void* ptr, double left, doubl
 		static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::getContentsMargins(&left, &top, &right, &bottom);
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::getContentsMargins(&left, &top, &right, &bottom);
-	} else if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLinearLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsLinearLayout*>(ptr)->QGraphicsLinearLayout::getContentsMargins(&left, &top, &right, &bottom);
-	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsGridLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsGridLayout*>(ptr)->QGraphicsGridLayout::getContentsMargins(&left, &top, &right, &bottom);
-	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsAnchorLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::getContentsMargins(&left, &top, &right, &bottom);
-	} else if (dynamic_cast<QGraphicsLayout*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QGraphicsLayout*>(static_cast<QGraphicsLayoutItem*>(ptr))) {
 		static_cast<QGraphicsLayout*>(ptr)->QGraphicsLayout::getContentsMargins(&left, &top, &right, &bottom);
 	} else {
 		static_cast<QGraphicsLayoutItem*>(ptr)->QGraphicsLayoutItem::getContentsMargins(&left, &top, &right, &bottom);
@@ -31991,9 +31991,9 @@ void* QLayoutItem_Layout(void* ptr)
 
 void* QLayoutItem_LayoutDefault(void* ptr)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QWidgetItem*>(ptr)->QWidgetItem::layout();
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QSpacerItem*>(ptr)->QSpacerItem::layout();
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStackedLayout*>(ptr)->QStackedLayout::layout();
@@ -32030,9 +32030,9 @@ void* QLayoutItem_SpacerItem(void* ptr)
 
 void* QLayoutItem_SpacerItemDefault(void* ptr)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QWidgetItem*>(ptr)->QWidgetItem::spacerItem();
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QSpacerItem*>(ptr)->QSpacerItem::spacerItem();
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStackedLayout*>(ptr)->QStackedLayout::spacerItem();
@@ -32064,9 +32064,9 @@ void* QLayoutItem_Widget(void* ptr)
 
 void* QLayoutItem_WidgetDefault(void* ptr)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QWidgetItem*>(ptr)->QWidgetItem::widget();
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QSpacerItem*>(ptr)->QSpacerItem::widget();
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStackedLayout*>(ptr)->QStackedLayout::widget();
@@ -32098,9 +32098,9 @@ void QLayoutItem_Invalidate(void* ptr)
 
 void QLayoutItem_InvalidateDefault(void* ptr)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		static_cast<QWidgetItem*>(ptr)->QWidgetItem::invalidate();
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		static_cast<QSpacerItem*>(ptr)->QSpacerItem::invalidate();
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		static_cast<QStackedLayout*>(ptr)->QStackedLayout::invalidate();
@@ -32196,9 +32196,9 @@ long long QLayoutItem_ControlTypes(void* ptr)
 
 long long QLayoutItem_ControlTypesDefault(void* ptr)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QWidgetItem*>(ptr)->QWidgetItem::controlTypes();
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QSpacerItem*>(ptr)->QSpacerItem::controlTypes();
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStackedLayout*>(ptr)->QStackedLayout::controlTypes();
@@ -32248,9 +32248,9 @@ char QLayoutItem_HasHeightForWidth(void* ptr)
 
 char QLayoutItem_HasHeightForWidthDefault(void* ptr)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QWidgetItem*>(ptr)->QWidgetItem::hasHeightForWidth();
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QSpacerItem*>(ptr)->QSpacerItem::hasHeightForWidth();
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStackedLayout*>(ptr)->QStackedLayout::hasHeightForWidth();
@@ -32291,9 +32291,9 @@ int QLayoutItem_HeightForWidth(void* ptr, int w)
 
 int QLayoutItem_HeightForWidthDefault(void* ptr, int w)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QWidgetItem*>(ptr)->QWidgetItem::heightForWidth(w);
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QSpacerItem*>(ptr)->QSpacerItem::heightForWidth(w);
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStackedLayout*>(ptr)->QStackedLayout::heightForWidth(w);
@@ -32325,9 +32325,9 @@ int QLayoutItem_MinimumHeightForWidth(void* ptr, int w)
 
 int QLayoutItem_MinimumHeightForWidthDefault(void* ptr, int w)
 {
-	if (dynamic_cast<QWidgetItem*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWidgetItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QWidgetItem*>(ptr)->QWidgetItem::minimumHeightForWidth(w);
-	} else if (dynamic_cast<QSpacerItem*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSpacerItem*>(static_cast<QLayoutItem*>(ptr))) {
 		return static_cast<QSpacerItem*>(ptr)->QSpacerItem::minimumHeightForWidth(w);
 	} else if (dynamic_cast<QStackedLayout*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStackedLayout*>(ptr)->QStackedLayout::minimumHeightForWidth(w);

@@ -183,7 +183,7 @@ void* QAbstractFormBuilder_Load(void* ptr, void* device, void* parent)
 
 void* QAbstractFormBuilder_LoadDefault(void* ptr, void* device, void* parent)
 {
-	if (dynamic_cast<QFormBuilder*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QFormBuilder*>(static_cast<QAbstractFormBuilder*>(ptr))) {
 		return static_cast<QFormBuilder*>(ptr)->QFormBuilder::load(static_cast<QIODevice*>(device), static_cast<QWidget*>(parent));
 	} else {
 		return static_cast<QAbstractFormBuilder*>(ptr)->QAbstractFormBuilder::load(static_cast<QIODevice*>(device), static_cast<QWidget*>(parent));
@@ -197,7 +197,7 @@ void QAbstractFormBuilder_Save(void* ptr, void* device, void* widget)
 
 void QAbstractFormBuilder_SaveDefault(void* ptr, void* device, void* widget)
 {
-	if (dynamic_cast<QFormBuilder*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QFormBuilder*>(static_cast<QAbstractFormBuilder*>(ptr))) {
 		static_cast<QFormBuilder*>(ptr)->QFormBuilder::save(static_cast<QIODevice*>(device), static_cast<QWidget*>(widget));
 	} else {
 		static_cast<QAbstractFormBuilder*>(ptr)->QAbstractFormBuilder::save(static_cast<QIODevice*>(device), static_cast<QWidget*>(widget));

@@ -1582,11 +1582,11 @@ void QModbusPdu_SetFunctionCode(void* ptr, long long code)
 
 void QModbusPdu_SetFunctionCodeDefault(void* ptr, long long code)
 {
-	if (dynamic_cast<QModbusExceptionResponse*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QModbusExceptionResponse*>(static_cast<QModbusPdu*>(ptr))) {
 		static_cast<QModbusExceptionResponse*>(ptr)->QModbusExceptionResponse::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
-	} else if (dynamic_cast<QModbusResponse*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QModbusResponse*>(static_cast<QModbusPdu*>(ptr))) {
 		static_cast<QModbusResponse*>(ptr)->QModbusResponse::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
-	} else if (dynamic_cast<QModbusRequest*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QModbusRequest*>(static_cast<QModbusPdu*>(ptr))) {
 		static_cast<QModbusRequest*>(ptr)->QModbusRequest::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
 	} else {
 		static_cast<QModbusPdu*>(ptr)->QModbusPdu::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));

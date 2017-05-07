@@ -252,7 +252,7 @@ void QAbstractVideoBuffer_Release(void* ptr)
 
 void QAbstractVideoBuffer_ReleaseDefault(void* ptr)
 {
-	if (dynamic_cast<QAbstractPlanarVideoBuffer*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractPlanarVideoBuffer*>(static_cast<QAbstractVideoBuffer*>(ptr))) {
 		static_cast<QAbstractPlanarVideoBuffer*>(ptr)->QAbstractPlanarVideoBuffer::release();
 	} else {
 		static_cast<QAbstractVideoBuffer*>(ptr)->QAbstractVideoBuffer::release();
@@ -291,7 +291,7 @@ void* QAbstractVideoBuffer_Handle(void* ptr)
 
 void* QAbstractVideoBuffer_HandleDefault(void* ptr)
 {
-	if (dynamic_cast<QAbstractPlanarVideoBuffer*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractPlanarVideoBuffer*>(static_cast<QAbstractVideoBuffer*>(ptr))) {
 		return new QVariant(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->QAbstractPlanarVideoBuffer::handle());
 	} else {
 		return new QVariant(static_cast<QAbstractVideoBuffer*>(ptr)->QAbstractVideoBuffer::handle());

@@ -1265,17 +1265,17 @@ long long QAbstractBarSeries_Type(void* ptr)
 
 long long QAbstractBarSeries_TypeDefault(void* ptr)
 {
-	if (dynamic_cast<QStackedBarSeries*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QStackedBarSeries*>(static_cast<QAbstractBarSeries*>(ptr))) {
 		return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::type();
-	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QAbstractBarSeries*>(ptr))) {
 		return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::type();
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QAbstractBarSeries*>(ptr))) {
 		return static_cast<QBarSeries*>(ptr)->QBarSeries::type();
-	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QAbstractBarSeries*>(ptr))) {
 		return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::type();
-	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QAbstractBarSeries*>(ptr))) {
 		return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::type();
-	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QAbstractBarSeries*>(ptr))) {
 		return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::type();
 	} else {
 	
@@ -9368,7 +9368,7 @@ long long QLineSeries_Type(void* ptr)
 
 long long QLineSeries_TypeDefault(void* ptr)
 {
-	if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QSplineSeries*>(static_cast<QLineSeries*>(ptr))) {
 		return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
 	} else {
 		return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
@@ -12271,7 +12271,7 @@ void QValueAxis_ApplyNiceNumbers(void* ptr)
 
 void QValueAxis_ApplyNiceNumbersDefault(void* ptr)
 {
-	if (dynamic_cast<QCategoryAxis*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCategoryAxis*>(static_cast<QValueAxis*>(ptr))) {
 		static_cast<QCategoryAxis*>(ptr)->QCategoryAxis::applyNiceNumbers();
 	} else {
 		static_cast<QValueAxis*>(ptr)->QValueAxis::applyNiceNumbers();
@@ -12410,7 +12410,7 @@ long long QValueAxis_Type(void* ptr)
 
 long long QValueAxis_TypeDefault(void* ptr)
 {
-	if (dynamic_cast<QCategoryAxis*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCategoryAxis*>(static_cast<QValueAxis*>(ptr))) {
 		return static_cast<QCategoryAxis*>(ptr)->QCategoryAxis::type();
 	} else {
 		return static_cast<QValueAxis*>(ptr)->QValueAxis::type();
@@ -12856,11 +12856,11 @@ void QXYSeries_SetBrush(void* ptr, void* brush)
 
 void QXYSeries_SetBrushDefault(void* ptr, void* brush)
 {
-	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setBrush(*static_cast<QBrush*>(brush));
-	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QSplineSeries*>(ptr)->QSplineSeries::setBrush(*static_cast<QBrush*>(brush));
-	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QLineSeries*>(ptr)->QLineSeries::setBrush(*static_cast<QBrush*>(brush));
 	} else {
 		static_cast<QXYSeries*>(ptr)->QXYSeries::setBrush(*static_cast<QBrush*>(brush));
@@ -12874,11 +12874,11 @@ void QXYSeries_SetColor(void* ptr, void* color)
 
 void QXYSeries_SetColorDefault(void* ptr, void* color)
 {
-	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setColor(*static_cast<QColor*>(color));
-	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QSplineSeries*>(ptr)->QSplineSeries::setColor(*static_cast<QColor*>(color));
-	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QLineSeries*>(ptr)->QLineSeries::setColor(*static_cast<QColor*>(color));
 	} else {
 		static_cast<QXYSeries*>(ptr)->QXYSeries::setColor(*static_cast<QColor*>(color));
@@ -12892,11 +12892,11 @@ void QXYSeries_SetPen(void* ptr, void* pen)
 
 void QXYSeries_SetPenDefault(void* ptr, void* pen)
 {
-	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QScatterSeries*>(ptr)->QScatterSeries::setPen(*static_cast<QPen*>(pen));
-	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QSplineSeries*>(ptr)->QSplineSeries::setPen(*static_cast<QPen*>(pen));
-	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		static_cast<QLineSeries*>(ptr)->QLineSeries::setPen(*static_cast<QPen*>(pen));
 	} else {
 		static_cast<QXYSeries*>(ptr)->QXYSeries::setPen(*static_cast<QPen*>(pen));
@@ -12950,11 +12950,11 @@ void* QXYSeries_Color(void* ptr)
 
 void* QXYSeries_ColorDefault(void* ptr)
 {
-	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QXYSeries*>(ptr))) {
 		return new QColor(static_cast<QScatterSeries*>(ptr)->QScatterSeries::color());
-	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		return new QColor(static_cast<QSplineSeries*>(ptr)->QSplineSeries::color());
-	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		return new QColor(static_cast<QLineSeries*>(ptr)->QLineSeries::color());
 	} else {
 		return new QColor(static_cast<QXYSeries*>(ptr)->QXYSeries::color());
@@ -13098,11 +13098,11 @@ long long QXYSeries_Type(void* ptr)
 
 long long QXYSeries_TypeDefault(void* ptr)
 {
-	if (dynamic_cast<QScatterSeries*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QScatterSeries*>(static_cast<QXYSeries*>(ptr))) {
 		return static_cast<QScatterSeries*>(ptr)->QScatterSeries::type();
-	} else if (dynamic_cast<QSplineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QSplineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		return static_cast<QSplineSeries*>(ptr)->QSplineSeries::type();
-	} else if (dynamic_cast<QLineSeries*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QLineSeries*>(static_cast<QXYSeries*>(ptr))) {
 		return static_cast<QLineSeries*>(ptr)->QLineSeries::type();
 	} else {
 	

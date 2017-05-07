@@ -877,7 +877,7 @@ public:
 
 void* QAccessibleEvent_NewQAccessibleEvent2(void* interfa, long long ty)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(interfa))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(interfa))) {
 		return new MyQAccessibleEvent(static_cast<QAccessibleWidget*>(interfa), static_cast<QAccessible::Event>(ty));
 	} else {
 		return new MyQAccessibleEvent(static_cast<QAccessibleInterface*>(interfa), static_cast<QAccessible::Event>(ty));
@@ -952,21 +952,21 @@ void* QAccessibleEvent_AccessibleInterface(void* ptr)
 
 void* QAccessibleEvent_AccessibleInterfaceDefault(void* ptr)
 {
-	if (dynamic_cast<QAccessibleValueChangeEvent*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAccessibleValueChangeEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleValueChangeEvent*>(ptr)->QAccessibleValueChangeEvent::accessibleInterface();
-	} else if (dynamic_cast<QAccessibleTextUpdateEvent*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAccessibleTextUpdateEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleTextUpdateEvent*>(ptr)->QAccessibleTextUpdateEvent::accessibleInterface();
-	} else if (dynamic_cast<QAccessibleTextSelectionEvent*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAccessibleTextSelectionEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleTextSelectionEvent*>(ptr)->QAccessibleTextSelectionEvent::accessibleInterface();
-	} else if (dynamic_cast<QAccessibleTextRemoveEvent*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAccessibleTextRemoveEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleTextRemoveEvent*>(ptr)->QAccessibleTextRemoveEvent::accessibleInterface();
-	} else if (dynamic_cast<QAccessibleTextInsertEvent*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAccessibleTextInsertEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleTextInsertEvent*>(ptr)->QAccessibleTextInsertEvent::accessibleInterface();
-	} else if (dynamic_cast<QAccessibleTextCursorEvent*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAccessibleTextCursorEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleTextCursorEvent*>(ptr)->QAccessibleTextCursorEvent::accessibleInterface();
-	} else if (dynamic_cast<QAccessibleTableModelChangeEvent*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAccessibleTableModelChangeEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleTableModelChangeEvent*>(ptr)->QAccessibleTableModelChangeEvent::accessibleInterface();
-	} else if (dynamic_cast<QAccessibleStateChangeEvent*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QAccessibleStateChangeEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
 		return static_cast<QAccessibleStateChangeEvent*>(ptr)->QAccessibleStateChangeEvent::accessibleInterface();
 	} else {
 		return static_cast<QAccessibleEvent*>(ptr)->QAccessibleEvent::accessibleInterface();
@@ -1058,7 +1058,7 @@ void* QAccessibleInterface_Interface_cast(void* ptr, long long ty)
 
 void* QAccessibleInterface_Interface_castDefault(void* ptr, long long ty)
 {
-	if (dynamic_cast<QAccessibleObject*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAccessibleObject*>(static_cast<QAccessibleInterface*>(ptr))) {
 		return static_cast<QAccessibleObject*>(ptr)->QAccessibleObject::interface_cast(static_cast<QAccessible::InterfaceType>(ty));
 	} else {
 		return static_cast<QAccessibleInterface*>(ptr)->QAccessibleInterface::interface_cast(static_cast<QAccessible::InterfaceType>(ty));
@@ -1102,7 +1102,7 @@ void* QAccessibleInterface_FocusChild(void* ptr)
 
 void* QAccessibleInterface_FocusChildDefault(void* ptr)
 {
-	if (dynamic_cast<QAccessibleObject*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAccessibleObject*>(static_cast<QAccessibleInterface*>(ptr))) {
 		return static_cast<QAccessibleObject*>(ptr)->QAccessibleObject::focusChild();
 	} else {
 		return static_cast<QAccessibleInterface*>(ptr)->QAccessibleInterface::focusChild();
@@ -1121,7 +1121,7 @@ void* QAccessibleInterface_BackgroundColor(void* ptr)
 
 void* QAccessibleInterface_BackgroundColorDefault(void* ptr)
 {
-	if (dynamic_cast<QAccessibleObject*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAccessibleObject*>(static_cast<QAccessibleInterface*>(ptr))) {
 		return new QColor(static_cast<QAccessibleObject*>(ptr)->QAccessibleObject::backgroundColor());
 	} else {
 		return new QColor(static_cast<QAccessibleInterface*>(ptr)->QAccessibleInterface::backgroundColor());
@@ -1135,7 +1135,7 @@ void* QAccessibleInterface_ForegroundColor(void* ptr)
 
 void* QAccessibleInterface_ForegroundColorDefault(void* ptr)
 {
-	if (dynamic_cast<QAccessibleObject*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAccessibleObject*>(static_cast<QAccessibleInterface*>(ptr))) {
 		return new QColor(static_cast<QAccessibleObject*>(ptr)->QAccessibleObject::foregroundColor());
 	} else {
 		return new QColor(static_cast<QAccessibleInterface*>(ptr)->QAccessibleInterface::foregroundColor());
@@ -1164,7 +1164,7 @@ void* QAccessibleInterface_Window(void* ptr)
 
 void* QAccessibleInterface_WindowDefault(void* ptr)
 {
-	if (dynamic_cast<QAccessibleObject*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAccessibleObject*>(static_cast<QAccessibleInterface*>(ptr))) {
 		return static_cast<QAccessibleObject*>(ptr)->QAccessibleObject::window();
 	} else {
 		return static_cast<QAccessibleInterface*>(ptr)->QAccessibleInterface::window();
@@ -1868,7 +1868,7 @@ public:
 
 void* QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent2(void* iface, long long changeType)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(iface))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(iface))) {
 		return new MyQAccessibleTableModelChangeEvent(static_cast<QAccessibleWidget*>(iface), static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(changeType));
 	} else {
 		return new MyQAccessibleTableModelChangeEvent(static_cast<QAccessibleInterface*>(iface), static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(changeType));
@@ -2026,7 +2026,7 @@ public:
 
 void* QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent2(void* iface, int cursorPos)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(iface))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(iface))) {
 		return new MyQAccessibleTextCursorEvent(static_cast<QAccessibleWidget*>(iface), cursorPos);
 	} else {
 		return new MyQAccessibleTextCursorEvent(static_cast<QAccessibleInterface*>(iface), cursorPos);
@@ -2104,7 +2104,7 @@ public:
 
 void* QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(void* iface, int position, char* text)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(iface))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(iface))) {
 		return new MyQAccessibleTextInsertEvent(static_cast<QAccessibleWidget*>(iface), position, QString(text));
 	} else {
 		return new MyQAccessibleTextInsertEvent(static_cast<QAccessibleInterface*>(iface), position, QString(text));
@@ -2313,7 +2313,7 @@ public:
 
 void* QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(void* iface, int position, char* text)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(iface))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(iface))) {
 		return new MyQAccessibleTextRemoveEvent(static_cast<QAccessibleWidget*>(iface), position, QString(text));
 	} else {
 		return new MyQAccessibleTextRemoveEvent(static_cast<QAccessibleInterface*>(iface), position, QString(text));
@@ -2401,7 +2401,7 @@ public:
 
 void* QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent2(void* iface, int start, int end)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(iface))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(iface))) {
 		return new MyQAccessibleTextSelectionEvent(static_cast<QAccessibleWidget*>(iface), start, end);
 	} else {
 		return new MyQAccessibleTextSelectionEvent(static_cast<QAccessibleInterface*>(iface), start, end);
@@ -2494,7 +2494,7 @@ public:
 
 void* QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(void* iface, int position, char* oldText, char* text)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(iface))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(iface))) {
 		return new MyQAccessibleTextUpdateEvent(static_cast<QAccessibleWidget*>(iface), position, QString(oldText), QString(text));
 	} else {
 		return new MyQAccessibleTextUpdateEvent(static_cast<QAccessibleInterface*>(iface), position, QString(oldText), QString(text));
@@ -2597,7 +2597,7 @@ public:
 
 void* QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent2(void* iface, void* val)
 {
-	if (dynamic_cast<QAccessibleWidget*>(static_cast<QObject*>(iface))) {
+	if (dynamic_cast<QAccessibleWidget*>(static_cast<QAccessibleInterface*>(iface))) {
 		return new MyQAccessibleValueChangeEvent(static_cast<QAccessibleWidget*>(iface), *static_cast<QVariant*>(val));
 	} else {
 		return new MyQAccessibleValueChangeEvent(static_cast<QAccessibleInterface*>(iface), *static_cast<QVariant*>(val));
@@ -12156,19 +12156,19 @@ int QPaintDevice_MetricDefault(void* ptr, long long metric)
 {
 	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-	} else if (dynamic_cast<QPagedPaintDevice*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QPagedPaintDevice*>(static_cast<QPaintDevice*>(ptr))) {
 		return static_cast<QPagedPaintDevice*>(ptr)->QPagedPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 	} else if (dynamic_cast<QRasterWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-	} else if (dynamic_cast<QBitmap*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QBitmap*>(static_cast<QPaintDevice*>(ptr))) {
 		return static_cast<QBitmap*>(ptr)->QBitmap::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-	} else if (dynamic_cast<QPixmap*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QPixmap*>(static_cast<QPaintDevice*>(ptr))) {
 		return static_cast<QPixmap*>(ptr)->QPixmap::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-	} else if (dynamic_cast<QPicture*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QPicture*>(static_cast<QPaintDevice*>(ptr))) {
 		return static_cast<QPicture*>(ptr)->QPicture::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-	} else if (dynamic_cast<QImage*>(static_cast<QObject*>(ptr))) {
+	} else if (dynamic_cast<QImage*>(static_cast<QPaintDevice*>(ptr))) {
 		return static_cast<QImage*>(ptr)->QImage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 	} else {
 		return static_cast<QPaintDevice*>(ptr)->QPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
@@ -15530,7 +15530,7 @@ void* QPixmap_PaintEngine(void* ptr)
 
 void* QPixmap_PaintEngineDefault(void* ptr)
 {
-	if (dynamic_cast<QBitmap*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QBitmap*>(static_cast<QPixmap*>(ptr))) {
 		return static_cast<QBitmap*>(ptr)->QBitmap::paintEngine();
 	} else {
 		return static_cast<QPixmap*>(ptr)->QPixmap::paintEngine();

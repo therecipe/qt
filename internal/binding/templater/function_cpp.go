@@ -246,7 +246,12 @@ func cppFunctionBody(function *parser.Function) string {
 				fmt.Fprint(bb, "\n\t#ifdef Q_OS_OSX\n\t\t")
 			}
 
-			fmt.Fprintf(bb, "if (dynamic_cast<%v*>(static_cast<%v*>(%v))) {\n", polyType, "QObject", polyName)
+			base := input[len(input)-1]
+			if parser.State.ClassMap[polyType].IsSubClassOfQObject() {
+				base = "QObject"
+			}
+
+			fmt.Fprintf(bb, "if (dynamic_cast<%v*>(static_cast<%v*>(%v))) {\n", polyType, base, polyName)
 
 			if strings.HasPrefix(polyType, "QMac") {
 				fmt.Fprint(bb, "\t#else\n\t\tif (false) {\n\t#endif\n")
