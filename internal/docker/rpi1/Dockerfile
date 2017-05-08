@@ -7,3 +7,4 @@ RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT http://www.qtrpi.com/downlo
 
 RUN $GOPATH/bin/qtsetup check rpi1
 RUN $GOPATH/bin/qtsetup generate rpi1
+RUN $GOPATH/bin/qtsetup install rpi1

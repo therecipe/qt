@@ -8,3 +8,4 @@ ENV QT_MXE_ARCH amd64
 ENV QT_MXE_STATIC true
 RUN $GOPATH/bin/qtsetup check windows
 RUN $GOPATH/bin/qtsetup generate windows
+RUN $GOPATH/bin/qtsetup install windows
