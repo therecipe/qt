@@ -13,6 +13,8 @@ import (
 
 var std []string
 
+var imported = make(map[string]string)
+
 func GetImports(path, target string, level int) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
 
@@ -36,12 +38,26 @@ func GetImports(path, target string, level int) []string {
 	libs := strings.Split(out, "|")
 
 	for i := len(libs) - 1; i >= 0; i-- {
+		if dep, ok := imported[libs[i]]; ok {
+			importMap[dep] = struct{}{}
+			libs = append(libs[:i], libs[i+1:]...)
+			continue
+		}
+
 		for _, k := range std {
 			if libs[i] == k {
 				libs = append(libs[:i], libs[i+1:]...)
 				break
 			}
 		}
+	}
+
+	if len(libs) == 0 {
+		var imports []string
+		for k := range importMap {
+			imports = append(imports, k)
+		}
+		return imports
 	}
 
 	cmd = exec.Command("go", "list", "-e", "-f", "{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
@@ -51,7 +67,7 @@ func GetImports(path, target string, level int) []string {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
 
-	for _, dep := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list dir")), "\n") {
+	for i, dep := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list dir")), "\n") {
 		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {
 			continue
 		}
@@ -61,6 +77,8 @@ func GetImports(path, target string, level int) []string {
 		}
 
 		importMap[dep] = struct{}{}
+
+		imported[libs[i]] = dep
 	}
 
 	var imports []string
