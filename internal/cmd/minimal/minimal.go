@@ -19,6 +19,15 @@ import (
 func Minimal(path, target string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Minimal")
 
+	//TODO: cleanup state from moc for minimal first -->
+	for _, c := range parser.State.ClassMap {
+		if c.Module == parser.MOC || strings.HasPrefix(c.Module, "custom_") {
+			delete(parser.State.ClassMap, c.Name)
+		}
+	}
+	parser.LibDeps[parser.MOC] = make([]string, 0)
+	//<--
+
 	var files []string
 	for _, path := range append([]string{path}, cmd.GetImports(path, target, 0)...) {
 		fileList, err := ioutil.ReadDir(path)

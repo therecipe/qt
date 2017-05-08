@@ -330,9 +330,9 @@ func GetLibs() []string {
 	return libs
 }
 
-func GetCustomLibs() []string {
+func GetCustomLibs() map[string]string {
 
-	tmp := make(map[string]struct{})
+	out := make(map[string]string)
 	for _, c := range State.ClassMap {
 		if c.Pkg == "" || !c.IsSubClassOfQObject() {
 			continue
@@ -340,13 +340,9 @@ func GetCustomLibs() []string {
 
 		cmd := exec.Command("go", "list", "-f", "{{.ImportPath}}")
 		cmd.Dir = c.Pkg
-		tmp[strings.TrimSpace(utils.RunCmd(cmd, "get import path"))] = struct{}{}
+		out[c.Module] = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
 	}
 
-	var out []string
-	for k := range tmp {
-		out = append(out, k)
-	}
 	return out
 }
 
