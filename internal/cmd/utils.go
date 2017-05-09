@@ -15,18 +15,23 @@ var std []string
 
 var imported = make(map[string]string)
 
-func GetImports(path, target string, level int) []string {
+func GetImports(path, target string, level int, onlyDirect bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
 
 	if std == nil {
-		std = strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n")
+		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
 	}
 
 	env, tags, _, _ := BuildEnv(target, "", "")
 
 	importMap := make(map[string]struct{})
 
-	cmd := exec.Command("go", "list", "-f", "'{{ join .TestImports \"|\" }}':'{{ join .Deps \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	imp := "Deps"
+	if onlyDirect {
+		imp = "Imports"
+	}
+
+	cmd := exec.Command("go", "list", "-f", "'{{ join .TestImports \"|\" }}':'{{ join ."+imp+" \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Dir = path
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
@@ -38,6 +43,11 @@ func GetImports(path, target string, level int) []string {
 	libs := strings.Split(out, "|")
 
 	for i := len(libs) - 1; i >= 0; i-- {
+		if strings.TrimSpace(libs[i]) == "" {
+			libs = append(libs[:i], libs[i+1:]...)
+			continue
+		}
+
 		if dep, ok := imported[libs[i]]; ok {
 			importMap[dep] = struct{}{}
 			libs = append(libs[:i], libs[i+1:]...)
@@ -52,22 +62,17 @@ func GetImports(path, target string, level int) []string {
 		}
 	}
 
-	if len(libs) == 0 {
-		var imports []string
-		for k := range importMap {
-			imports = append(imports, k)
+	for _, l := range libs {
+		cmd = exec.Command("go", "list", "-e", "-f", "{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")), l)
+		for k, v := range env {
+			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 		}
-		return imports
-	}
 
-	cmd = exec.Command("go", "list", "-e", "-f", "{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
-	cmd.Args = append(cmd.Args, libs...)
-	cmd.Dir = path
-	for k, v := range env {
-		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
-	}
+		dep := strings.TrimSpace(utils.RunCmd(cmd, "go list dir"))
+		if dep == "" {
+			continue
+		}
 
-	for i, dep := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list dir")), "\n") {
 		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {
 			continue
 		}
@@ -77,8 +82,7 @@ func GetImports(path, target string, level int) []string {
 		}
 
 		importMap[dep] = struct{}{}
-
-		imported[libs[i]] = dep
+		imported[l] = dep
 	}
 
 	var imports []string

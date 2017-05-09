@@ -27,7 +27,7 @@ func Moc(path, target string, fast bool) {
 	var classes []*parser.Class
 	var otherclasses []*parser.Class
 	var pkg string
-	for i, path := range append([]string{path}, cmd.GetImports(path, target, 0)...) {
+	for i, path := range append([]string{path}, cmd.GetImports(path, target, 0, true)...) {
 		fileList, err := ioutil.ReadDir(path)
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read dir")
