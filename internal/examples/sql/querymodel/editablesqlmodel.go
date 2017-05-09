@@ -11,7 +11,7 @@ type EditableSqlModel struct {
 }
 
 func newEditableSqlModel(p *core.QObject) *EditableSqlModel {
-	var model = NewEditableSqlModel(p)
+	var model = &EditableSqlModel{*sql.NewQSqlQueryModel(p)}
 
 	model.ConnectFlags(model.flags)
 	model.ConnectSetData(model.setData)

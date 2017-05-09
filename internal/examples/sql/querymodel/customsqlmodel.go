@@ -14,7 +14,7 @@ type CustomSqlModel struct {
 }
 
 func newCustomSqlModel(p *core.QObject) *CustomSqlModel {
-	var model = NewCustomSqlModel(p)
+	var model = &CustomSqlModel{*sql.NewQSqlQueryModel(p)}
 
 	model.ConnectData(model.data)
 
