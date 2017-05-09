@@ -5,13 +5,12 @@ import (
 	"github.com/therecipe/qt/sql"
 )
 
-//go:generate qtmoc
 type EditableSqlModel struct {
-	sql.QSqlQueryModel
+	*sql.QSqlQueryModel
 }
 
 func newEditableSqlModel(p *core.QObject) *EditableSqlModel {
-	var model = &EditableSqlModel{*sql.NewQSqlQueryModel(p)}
+	var model = &EditableSqlModel{sql.NewQSqlQueryModel(p)}
 
 	model.ConnectFlags(model.flags)
 	model.ConnectSetData(model.setData)

@@ -8,13 +8,12 @@ import (
 	"github.com/therecipe/qt/sql"
 )
 
-//go:generate qtmoc
 type CustomSqlModel struct {
-	sql.QSqlQueryModel
+	*sql.QSqlQueryModel
 }
 
 func newCustomSqlModel(p *core.QObject) *CustomSqlModel {
-	var model = &CustomSqlModel{*sql.NewQSqlQueryModel(p)}
+	var model = &CustomSqlModel{sql.NewQSqlQueryModel(p)}
 
 	model.ConnectData(model.data)
 
