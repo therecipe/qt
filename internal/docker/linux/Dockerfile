@@ -2,6 +2,9 @@ FROM ubuntu:14.04
 LABEL maintainer therecipe
 
 
+ONBUILD RUN $GOPATH/bin/qtsetup update
+
+
 ENV USER user
 ENV HOME /home/$USER
 ENV QT_DOCKER true
@@ -30,7 +33,6 @@ ENV GOPATH $HOME/work
 
 
 RUN go get -v github.com/therecipe/qt/cmd/...
-ONBUILD RUN $GOPATH/bin/qtsetup upgrade
 
 
 ENV QT_DIR /opt/Qt5.8.0

@@ -1,7 +1,7 @@
 FROM therecipe/qt:linux
 
 
-ONBUILD RUN $GOPATH/bin/qtsetup upgrade
+ONBUILD RUN $GOPATH/bin/qtsetup update
 
 
 ENV SYSROOT qtrpi-sysroot-minimal-latest.zip

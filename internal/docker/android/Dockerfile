@@ -1,6 +1,9 @@
 FROM therecipe/qt:linux
 
 
+ONBUILD RUN $GOPATH/bin/qtsetup update
+
+
 ENV JDK_DIR /usr/lib/jvm/java-8-openjdk-amd64
 RUN add-apt-repository -y ppa:openjdk-r/ppa && apt-get -qq update && apt-get -y -qq install openjdk-8-jdk && apt-get -qq clean && update-ca-certificates -f
 

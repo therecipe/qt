@@ -1,6 +1,9 @@
 FROM therecipe/qt:rpi
 
 
+ONBUILD RUN $GOPATH/bin/qtsetup update
+
+
 ENV QT qtrpi-rpi3_qt-5.7.0.zip
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT http://www.qtrpi.com/downloads/qtrpi/rpi3/$QT && unzip -qq /tmp/$QT -d /opt/qtrpi && rm -f /tmp/$QT
 
