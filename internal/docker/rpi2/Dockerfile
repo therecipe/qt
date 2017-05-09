@@ -1,7 +1,10 @@
 FROM therecipe/qt:rpi
 
 
+ONBUILD RUN go get -v github.com/Sirupsen/logrus && go get -v golang.org/x/crypto/ssh
 ONBUILD RUN $GOPATH/bin/qtsetup update
+ONBUILD RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/golang.org/
+ONBUILD RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
 
 
 ENV QT qtrpi-rpi2_qt-5.7.0.zip
