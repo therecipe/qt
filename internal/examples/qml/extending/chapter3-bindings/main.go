@@ -1,3 +1,5 @@
+//source: http://doc.qt.io/qt-5/qtqml-tutorials-extending-qml-example.html
+
 package main
 
 import (

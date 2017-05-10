@@ -200,13 +200,14 @@ func CppTemplate(module string, mode int, target string) []byte {
 							continue
 						}
 
+						implementedVirtuals[f.Name+f.OverloadNumber] = struct{}{}
+
 						var f = *f
 						f.SignalMode = parser.CALLBACK
 						f.Fullname = fmt.Sprintf("%v::%v", class.Name, f.Name)
 						f.Fullname = fmt.Sprintf("%v::%v", f.FindDeepestImplementation(), f.Name)
 
 						if f.Meta == parser.SLOT || f.Meta == parser.SIGNAL || f.Virtual == parser.IMPURE || f.Virtual == parser.PURE {
-							implementedVirtuals[f.Name+f.OverloadNumber] = struct{}{}
 							fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&f))
 						}
 					}

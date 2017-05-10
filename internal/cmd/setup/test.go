@@ -73,8 +73,12 @@ func Test(target string, docker bool) {
 
 			"gui": []string{"analogclock", "rasterwindow"},
 
-			"qml": []string{"application", "drawer_nav_x", "gallery", "material",
-				"prop", "prop2" /*"webview"*/},
+			"qml": []string{"adding", "application", "drawer_nav_x",
+				filepath.Join("extending", "chapter1-basics"),
+				filepath.Join("extending", "chapter2-methods"),
+				filepath.Join("extending", "chapter3-bindings"),
+				filepath.Join("extending", "chapter4-customPropertyTypes"),
+				"gallery", "material", "prop", "prop2" /*"todo", "webview"*/},
 
 			"qt3d": []string{"audio-visualizer-qml"},
 
@@ -87,8 +91,10 @@ func Test(target string, docker bool) {
 
 			"uitools": []string{"calculator"},
 
+			"webchannel": []string{"chatserver-go", "standalone" /*"webview"*/},
+
 			"widgets": []string{"bridge2" /*"dropsite"*/, "graphicsscene", "line_edits", "pixel_editor",
-				/*"renderer"*/ "systray" /*"table"*/, "textedit", filepath.Join("treeview", "treeview_dual"),
+				/*"renderer"*/ "share", "systray" /*"table"*/, "textedit", filepath.Join("treeview", "treeview_dual"),
 				filepath.Join("treeview", "treeview_filelist"), "video_player" /*"webengine"*/},
 		}
 	} else {
