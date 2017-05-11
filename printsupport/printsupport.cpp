@@ -130,7 +130,6 @@ public:
 	bool hasHeightForWidth() const { return callbackQAbstractPrintDialog_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int heightForWidth(int w) const { return callbackQAbstractPrintDialog_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQAbstractPrintDialog_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractPrintDialog_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAbstractPrintDialog_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractPrintDialog_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractPrintDialog_CustomEvent(this, event); };
@@ -1021,7 +1020,6 @@ public:
 	bool hasHeightForWidth() const { return callbackQPageSetupDialog_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int heightForWidth(int w) const { return callbackQPageSetupDialog_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQPageSetupDialog_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPageSetupDialog_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQPageSetupDialog_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQPageSetupDialog_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQPageSetupDialog_CustomEvent(this, event); };
@@ -1539,7 +1537,6 @@ public:
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQAbstractPrintDialog_ContextMenuEvent(this, e); };
 	void Signal_Finished(int result) { callbackQAbstractPrintDialog_Finished(this, result); };
 	void keyPressEvent(QKeyEvent * e) { callbackQAbstractPrintDialog_KeyPressEvent(this, e); };
-	void open() { callbackQAbstractPrintDialog_Open(this); };
 	void reject() { callbackQAbstractPrintDialog_Reject(this); };
 	void Signal_Rejected() { callbackQAbstractPrintDialog_Rejected(this); };
 	void resizeEvent(QResizeEvent * vqr) { callbackQAbstractPrintDialog_ResizeEvent(this, vqr); };
@@ -1597,7 +1594,6 @@ public:
 	bool hasHeightForWidth() const { return callbackQAbstractPrintDialog_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int heightForWidth(int w) const { return callbackQAbstractPrintDialog_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQAbstractPrintDialog_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractPrintDialog_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAbstractPrintDialog_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractPrintDialog_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractPrintDialog_CustomEvent(this, event); };
@@ -1809,7 +1805,6 @@ public:
 	bool hasHeightForWidth() const { return callbackQPrintPreviewDialog_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int heightForWidth(int w) const { return callbackQPrintPreviewDialog_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQPrintPreviewDialog_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPrintPreviewDialog_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQPrintPreviewDialog_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQPrintPreviewDialog_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQPrintPreviewDialog_CustomEvent(this, event); };

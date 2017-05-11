@@ -2125,7 +2125,6 @@ public:
 	void mouseUngrabEvent() { callbackQQuickItem_MouseUngrabEvent(this); };
 	void touchEvent(QTouchEvent * event) { callbackQQuickItem_TouchEvent(this, event); };
 	void touchUngrabEvent() { callbackQQuickItem_TouchUngrabEvent(this); };
-	void update() { callbackQQuickItem_Update(this); };
 	void updatePolish() { callbackQQuickItem_UpdatePolish(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQQuickItem_WheelEvent(this, event); };
 	void Signal_WindowChanged(QQuickWindow * window) { callbackQQuickItem_WindowChanged(this, window); };
@@ -3010,12 +3009,7 @@ public:
 	void focusOutEvent(QFocusEvent * ev) { callbackQQuickWindow_FocusOutEvent(this, ev); };
 	void Signal_FrameSwapped() { callbackQQuickWindow_FrameSwapped(this); };
 	void hideEvent(QHideEvent * vqh) { callbackQQuickWindow_HideEvent(this, vqh); };
-	void keyPressEvent(QKeyEvent * e) { callbackQQuickWindow_KeyPressEvent(this, e); };
-	void keyReleaseEvent(QKeyEvent * e) { callbackQQuickWindow_KeyReleaseEvent(this, e); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQQuickWindow_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackQQuickWindow_MouseMoveEvent(this, event); };
-	void mousePressEvent(QMouseEvent * event) { callbackQQuickWindow_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackQQuickWindow_MouseReleaseEvent(this, event); };
 	void Signal_OpenglContextCreated(QOpenGLContext * context) { callbackQQuickWindow_OpenglContextCreated(this, context); };
 	void releaseResources() { callbackQQuickWindow_ReleaseResources(this); };
 	void resizeEvent(QResizeEvent * ev) { callbackQQuickWindow_ResizeEvent(this, ev); };

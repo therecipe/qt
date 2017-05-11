@@ -2962,6 +2962,17 @@ func NewQSqlField2(other QSqlField_ITF) *QSqlField {
 	return tmpValue
 }
 
+func NewQSqlField(fieldName string, ty core.QVariant__Type) *QSqlField {
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField(fieldNameC, C.longlong(ty)))
+	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
+	return tmpValue
+}
+
 func (ptr *QSqlField) Clear() {
 	if ptr.Pointer() != nil {
 		C.QSqlField_Clear(ptr.Pointer())
@@ -3027,6 +3038,12 @@ func (ptr *QSqlField) SetRequiredStatus(required QSqlField__RequiredStatus) {
 	}
 }
 
+func (ptr *QSqlField) SetType(ty core.QVariant__Type) {
+	if ptr.Pointer() != nil {
+		C.QSqlField_SetType(ptr.Pointer(), C.longlong(ty))
+	}
+}
+
 func (ptr *QSqlField) SetValue(value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetValue(ptr.Pointer(), core.PointerFromQVariant(value))
@@ -3063,6 +3080,13 @@ func (ptr *QSqlField) Value() *core.QVariant {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QSqlField) Type() core.QVariant__Type {
+	if ptr.Pointer() != nil {
+		return core.QVariant__Type(C.QSqlField_Type(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSqlField) RequiredStatus() QSqlField__RequiredStatus {

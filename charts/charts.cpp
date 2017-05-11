@@ -6034,7 +6034,6 @@ public:
 	QSize viewportSizeHint() const { return *static_cast<QSize*>(callbackQChartView_ViewportSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	void changeEvent(QEvent * ev) { callbackQChartView_ChangeEvent(this, ev); };
 	bool close() { return callbackQChartView_Close(this) != 0; };
-	bool event(QEvent * event) { return callbackQChartView_Event(this, event) != 0; };
 	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQChartView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQChartView_ActionEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQChartView_CloseEvent(this, event); };

@@ -71,7 +71,7 @@ func Test(target string, docker bool) {
 
 			//"grpc": []string{"hello_world","hello_world2"},
 
-			"gui": []string{"analogclock", "rasterwindow"},
+			//"gui": []string{"analogclock", "rasterwindow"},
 
 			"qml": []string{"adding", "application", "drawer_nav_x",
 				filepath.Join("extending", "chapter1-basics"),
@@ -87,7 +87,7 @@ func Test(target string, docker bool) {
 
 			"sailfish": []string{"listview", "listview_variant"},
 
-			"sql": []string{"querymodel"},
+			"sql": []string{"masterdetail", "querymodel"},
 
 			"uitools": []string{"calculator"},
 

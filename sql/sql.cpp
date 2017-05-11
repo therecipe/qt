@@ -1042,6 +1042,11 @@ void* QSqlField_NewQSqlField2(void* other)
 	return new QSqlField(*static_cast<QSqlField*>(other));
 }
 
+void* QSqlField_NewQSqlField(char* fieldName, long long ty)
+{
+	return new QSqlField(QString(fieldName), static_cast<QVariant::Type>(ty));
+}
+
 void QSqlField_Clear(void* ptr)
 {
 	static_cast<QSqlField*>(ptr)->clear();
@@ -1092,6 +1097,11 @@ void QSqlField_SetRequiredStatus(void* ptr, long long required)
 	static_cast<QSqlField*>(ptr)->setRequiredStatus(static_cast<QSqlField::RequiredStatus>(required));
 }
 
+void QSqlField_SetType(void* ptr, long long ty)
+{
+	static_cast<QSqlField*>(ptr)->setType(static_cast<QVariant::Type>(ty));
+}
+
 void QSqlField_SetValue(void* ptr, void* value)
 {
 	static_cast<QSqlField*>(ptr)->setValue(*static_cast<QVariant*>(value));
@@ -1115,6 +1125,11 @@ void* QSqlField_DefaultValue(void* ptr)
 void* QSqlField_Value(void* ptr)
 {
 	return new QVariant(static_cast<QSqlField*>(ptr)->value());
+}
+
+long long QSqlField_Type(void* ptr)
+{
+	return static_cast<QSqlField*>(ptr)->type();
 }
 
 long long QSqlField_RequiredStatus(void* ptr)

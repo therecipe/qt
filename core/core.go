@@ -26565,6 +26565,13 @@ func (ptr *QMetaProperty) ReadOnGadget(gadget unsafe.Pointer) *QVariant {
 	return nil
 }
 
+func (ptr *QMetaProperty) Type() QVariant__Type {
+	if ptr.Pointer() != nil {
+		return QVariant__Type(C.QMetaProperty_Type(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QMetaProperty) HasNotifySignal() bool {
 	if ptr.Pointer() != nil {
 		return C.QMetaProperty_HasNotifySignal(ptr.Pointer()) != 0
@@ -27265,6 +27272,64 @@ func (ptr *QMimeData) ColorData() *QVariant {
 func (ptr *QMimeData) ImageData() *QVariant {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQVariantFromPointer(C.QMimeData_ImageData(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQMimeData_RetrieveData
+func callbackQMimeData_RetrieveData(ptr unsafe.Pointer, mimeType C.struct_QtCore_PackedString, ty C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "retrieveData"); signal != nil {
+		return PointerFromQVariant(signal.(func(string, QVariant__Type) *QVariant)(cGoUnpackString(mimeType), QVariant__Type(ty)))
+	}
+
+	return PointerFromQVariant(NewQMimeDataFromPointer(ptr).RetrieveDataDefault(cGoUnpackString(mimeType), QVariant__Type(ty)))
+}
+
+func (ptr *QMimeData) ConnectRetrieveData(f func(mimeType string, ty QVariant__Type) *QVariant) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "retrieveData"); signal != nil {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "retrieveData", func(mimeType string, ty QVariant__Type) *QVariant {
+				signal.(func(string, QVariant__Type) *QVariant)(mimeType, ty)
+				return f(mimeType, ty)
+			})
+		} else {
+			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "retrieveData", f)
+		}
+	}
+}
+
+func (ptr *QMimeData) DisconnectRetrieveData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "retrieveData")
+	}
+}
+
+func (ptr *QMimeData) RetrieveData(mimeType string, ty QVariant__Type) *QVariant {
+	if ptr.Pointer() != nil {
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
+		var tmpValue = NewQVariantFromPointer(C.QMimeData_RetrieveData(ptr.Pointer(), mimeTypeC, C.longlong(ty)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMimeData) RetrieveDataDefault(mimeType string, ty QVariant__Type) *QVariant {
+	if ptr.Pointer() != nil {
+		var mimeTypeC *C.char
+		if mimeType != "" {
+			mimeTypeC = C.CString(mimeType)
+			defer C.free(unsafe.Pointer(mimeTypeC))
+		}
+		var tmpValue = NewQVariantFromPointer(C.QMimeData_RetrieveDataDefault(ptr.Pointer(), mimeTypeC, C.longlong(ty)))
 		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -45500,6 +45565,74 @@ func NewQVariantFromPointer(ptr unsafe.Pointer) *QVariant {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QVariant__Type
+//QVariant::Type
+type QVariant__Type int64
+
+const (
+	QVariant__Invalid              QVariant__Type = QVariant__Type(QMetaType__UnknownType)
+	QVariant__Bool                 QVariant__Type = QVariant__Type(QMetaType__Bool)
+	QVariant__Int                  QVariant__Type = QVariant__Type(QMetaType__Int)
+	QVariant__UInt                 QVariant__Type = QVariant__Type(QMetaType__UInt)
+	QVariant__LongLong             QVariant__Type = QVariant__Type(QMetaType__LongLong)
+	QVariant__ULongLong            QVariant__Type = QVariant__Type(QMetaType__ULongLong)
+	QVariant__Double               QVariant__Type = QVariant__Type(QMetaType__Double)
+	QVariant__Char                 QVariant__Type = QVariant__Type(QMetaType__QChar)
+	QVariant__Map                  QVariant__Type = QVariant__Type(QMetaType__QVariantMap)
+	QVariant__List                 QVariant__Type = QVariant__Type(QMetaType__QVariantList)
+	QVariant__String               QVariant__Type = QVariant__Type(QMetaType__QString)
+	QVariant__StringList           QVariant__Type = QVariant__Type(QMetaType__QStringList)
+	QVariant__ByteArray            QVariant__Type = QVariant__Type(QMetaType__QByteArray)
+	QVariant__BitArray             QVariant__Type = QVariant__Type(QMetaType__QBitArray)
+	QVariant__Date                 QVariant__Type = QVariant__Type(QMetaType__QDate)
+	QVariant__Time                 QVariant__Type = QVariant__Type(QMetaType__QTime)
+	QVariant__DateTime             QVariant__Type = QVariant__Type(QMetaType__QDateTime)
+	QVariant__Url                  QVariant__Type = QVariant__Type(QMetaType__QUrl)
+	QVariant__Locale               QVariant__Type = QVariant__Type(QMetaType__QLocale)
+	QVariant__Rect                 QVariant__Type = QVariant__Type(QMetaType__QRect)
+	QVariant__RectF                QVariant__Type = QVariant__Type(QMetaType__QRectF)
+	QVariant__Size                 QVariant__Type = QVariant__Type(QMetaType__QSize)
+	QVariant__SizeF                QVariant__Type = QVariant__Type(QMetaType__QSizeF)
+	QVariant__Line                 QVariant__Type = QVariant__Type(QMetaType__QLine)
+	QVariant__LineF                QVariant__Type = QVariant__Type(QMetaType__QLineF)
+	QVariant__Point                QVariant__Type = QVariant__Type(QMetaType__QPoint)
+	QVariant__PointF               QVariant__Type = QVariant__Type(QMetaType__QPointF)
+	QVariant__RegExp               QVariant__Type = QVariant__Type(QMetaType__QRegExp)
+	QVariant__RegularExpression    QVariant__Type = QVariant__Type(QMetaType__QRegularExpression)
+	QVariant__Hash                 QVariant__Type = QVariant__Type(QMetaType__QVariantHash)
+	QVariant__EasingCurve          QVariant__Type = QVariant__Type(QMetaType__QEasingCurve)
+	QVariant__Uuid                 QVariant__Type = QVariant__Type(QMetaType__QUuid)
+	QVariant__ModelIndex           QVariant__Type = QVariant__Type(QMetaType__QModelIndex)
+	QVariant__PersistentModelIndex QVariant__Type = QVariant__Type(QMetaType__QPersistentModelIndex)
+	QVariant__Font                 QVariant__Type = QVariant__Type(QMetaType__QFont)
+	QVariant__Pixmap               QVariant__Type = QVariant__Type(QMetaType__QPixmap)
+	QVariant__Brush                QVariant__Type = QVariant__Type(QMetaType__QBrush)
+	QVariant__Color                QVariant__Type = QVariant__Type(QMetaType__QColor)
+	QVariant__Palette              QVariant__Type = QVariant__Type(QMetaType__QPalette)
+	QVariant__Image                QVariant__Type = QVariant__Type(QMetaType__QImage)
+	QVariant__Polygon              QVariant__Type = QVariant__Type(QMetaType__QPolygon)
+	QVariant__Region               QVariant__Type = QVariant__Type(QMetaType__QRegion)
+	QVariant__Bitmap               QVariant__Type = QVariant__Type(QMetaType__QBitmap)
+	QVariant__Cursor               QVariant__Type = QVariant__Type(QMetaType__QCursor)
+	QVariant__KeySequence          QVariant__Type = QVariant__Type(QMetaType__QKeySequence)
+	QVariant__Pen                  QVariant__Type = QVariant__Type(QMetaType__QPen)
+	QVariant__TextLength           QVariant__Type = QVariant__Type(QMetaType__QTextLength)
+	QVariant__TextFormat           QVariant__Type = QVariant__Type(QMetaType__QTextFormat)
+	QVariant__Matrix               QVariant__Type = QVariant__Type(QMetaType__QMatrix)
+	QVariant__Transform            QVariant__Type = QVariant__Type(QMetaType__QTransform)
+	QVariant__Matrix4x4            QVariant__Type = QVariant__Type(QMetaType__QMatrix4x4)
+	QVariant__Vector2D             QVariant__Type = QVariant__Type(QMetaType__QVector2D)
+	QVariant__Vector3D             QVariant__Type = QVariant__Type(QMetaType__QVector3D)
+	QVariant__Vector4D             QVariant__Type = QVariant__Type(QMetaType__QVector4D)
+	QVariant__Quaternion           QVariant__Type = QVariant__Type(QMetaType__QQuaternion)
+	QVariant__PolygonF             QVariant__Type = QVariant__Type(QMetaType__QPolygonF)
+	QVariant__Icon                 QVariant__Type = QVariant__Type(QMetaType__QIcon)
+	QVariant__SizePolicy           QVariant__Type = QVariant__Type(QMetaType__QSizePolicy)
+	QVariant__UserType             QVariant__Type = QVariant__Type(QMetaType__User)
+	QVariant__LastType             QVariant__Type = QVariant__Type(0xffffffff)
+)
+
 func NewQVariant20(c QChar_ITF) *QVariant {
 	var tmpValue = NewQVariantFromPointer(C.QVariant_NewQVariant20(PointerFromQChar(c)))
 	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
@@ -45526,6 +45659,12 @@ func NewQVariant18(val QLatin1String_ITF) *QVariant {
 
 func NewQVariant47(other QVariant_ITF) *QVariant {
 	var tmpValue = NewQVariantFromPointer(C.QVariant_NewQVariant47(PointerFromQVariant(other)))
+	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+	return tmpValue
+}
+
+func NewQVariant2(ty QVariant__Type) *QVariant {
+	var tmpValue = NewQVariantFromPointer(C.QVariant_NewQVariant2(C.longlong(ty)))
 	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
 }
@@ -45798,6 +45937,24 @@ func NewQVariant8(val uint) *QVariant {
 	var tmpValue = NewQVariantFromPointer(C.QVariant_NewQVariant8(C.uint(uint32(val))))
 	runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
 	return tmpValue
+}
+
+func QVariant_NameToType(name string) QVariant__Type {
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
+	return QVariant__Type(C.QVariant_QVariant_NameToType(nameC))
+}
+
+func (ptr *QVariant) NameToType(name string) QVariant__Type {
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+	}
+	return QVariant__Type(C.QVariant_QVariant_NameToType(nameC))
 }
 
 func (ptr *QVariant) Convert(targetTypeId int) bool {
@@ -46119,6 +46276,13 @@ func (ptr *QVariant) ToUuid() *QUuid {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QVariant) Type() QVariant__Type {
+	if ptr.Pointer() != nil {
+		return QVariant__Type(C.QVariant_Type(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QVariant) IsNull() bool {

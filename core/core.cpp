@@ -12124,6 +12124,11 @@ void* QMetaProperty_ReadOnGadget(void* ptr, void* gadget)
 	return new QVariant(static_cast<QMetaProperty*>(ptr)->readOnGadget(gadget));
 }
 
+long long QMetaProperty_Type(void* ptr)
+{
+	return static_cast<QMetaProperty*>(ptr)->type();
+}
+
 char QMetaProperty_HasNotifySignal(void* ptr)
 {
 	return static_cast<QMetaProperty*>(ptr)->hasNotifySignal();
@@ -12383,6 +12388,7 @@ class MyQMimeData: public QMimeData
 {
 public:
 	MyQMimeData() : QMimeData() {};
+	QVariant retrieveData(const QString & mimeType, QVariant::Type ty) const { QByteArray t3313b8 = mimeType.toUtf8(); QtCore_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };return *static_cast<QVariant*>(callbackQMimeData_RetrieveData(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked, ty)); };
 	bool hasFormat(const QString & mimeType) const { QByteArray t3313b8 = mimeType.toUtf8(); QtCore_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };return callbackQMimeData_HasFormat(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked) != 0; };
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
@@ -12475,6 +12481,16 @@ void* QMimeData_ColorData(void* ptr)
 void* QMimeData_ImageData(void* ptr)
 {
 	return new QVariant(static_cast<QMimeData*>(ptr)->imageData());
+}
+
+void* QMimeData_RetrieveData(void* ptr, char* mimeType, long long ty)
+{
+	return new QVariant(static_cast<QMimeData*>(ptr)->retrieveData(QString(mimeType), static_cast<QVariant::Type>(ty)));
+}
+
+void* QMimeData_RetrieveDataDefault(void* ptr, char* mimeType, long long ty)
+{
+		return new QVariant(static_cast<QMimeData*>(ptr)->QMimeData::retrieveData(QString(mimeType), static_cast<QVariant::Type>(ty)));
 }
 
 char QMimeData_HasColor(void* ptr)
@@ -19913,7 +19929,6 @@ public:
 	MyQTemporaryFile(const QString &templateName) : QTemporaryFile(templateName) {};
 	MyQTemporaryFile(const QString &templateName, QObject *parent) : QTemporaryFile(templateName, parent) {};
 	QString fileName() const { return QString(callbackQFileDevice_FileName(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool open(QIODevice::OpenMode mode) { return callbackQIODevice_Open(this, mode) != 0; };
 	bool resize(qint64 sz) { return callbackQFileDevice_Resize(this, sz) != 0; };
 	bool setPermissions(QFileDevice::Permissions permissions) { return callbackQFileDevice_SetPermissions(this, permissions) != 0; };
 	Permissions permissions() const { return static_cast<QFileDevice::Permission>(callbackQFileDevice_Permissions(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -22529,6 +22544,11 @@ void* QVariant_NewQVariant47(void* other)
 	return new QVariant(*static_cast<QVariant*>(other));
 }
 
+void* QVariant_NewQVariant2(long long ty)
+{
+	return new QVariant(static_cast<QVariant::Type>(ty));
+}
+
 void* QVariant_NewQVariant11(char val)
 {
 	return new QVariant(val != 0);
@@ -22729,6 +22749,11 @@ void* QVariant_NewQVariant8(unsigned int val)
 	return new QVariant(val);
 }
 
+long long QVariant_QVariant_NameToType(char* name)
+{
+	return QVariant::nameToType(const_cast<const char*>(name));
+}
+
 char QVariant_Convert(void* ptr, int targetTypeId)
 {
 	return static_cast<QVariant*>(ptr)->convert(targetTypeId);
@@ -22907,6 +22932,11 @@ void* QVariant_ToUrl(void* ptr)
 void* QVariant_ToUuid(void* ptr)
 {
 	return new QUuid(static_cast<QVariant*>(ptr)->toUuid());
+}
+
+long long QVariant_Type(void* ptr)
+{
+	return static_cast<QVariant*>(ptr)->type();
 }
 
 char QVariant_IsNull(void* ptr)

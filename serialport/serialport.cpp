@@ -68,7 +68,6 @@ public:
 	bool isSequential() const { return callbackQSerialPort_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	qint64 bytesAvailable() const { return callbackQSerialPort_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
 	qint64 bytesToWrite() const { return callbackQSerialPort_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
-	bool open(QIODevice::OpenMode mode) { return callbackQSerialPort_Open(this, mode) != 0; };
 	bool reset() { return callbackQSerialPort_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQSerialPort_Seek(this, pos) != 0; };
 	void Signal_AboutToClose() { callbackQSerialPort_AboutToClose(this); };
