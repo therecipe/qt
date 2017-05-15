@@ -30,6 +30,9 @@ func main() {
 	var docker bool
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
+	var tags string
+	flag.StringVar(&tags, "tags", "", "a list of build tags to consider satisfied during the build")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -64,8 +67,8 @@ func main() {
 
 	utils.CheckBuildTarget(target)
 	if docker {
-		cmd.Docker([]string{"qtminimal", "-debug"}, target, path, false)
+		cmd.Docker([]string{"qtminimal", "-debug", "-tags=" + tags}, target, path, false)
 	} else {
-		minimal.Minimal(path, target)
+		minimal.Minimal(path, target, tags)
 	}
 }

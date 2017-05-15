@@ -9,7 +9,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func HTemplate(m string, mode int) []byte {
+func HTemplate(m string, mode int, tags string) []byte {
 	utils.Log.WithField("module", m).Debug("generating h")
 
 	var bb = new(bytes.Buffer)
@@ -20,7 +20,7 @@ func HTemplate(m string, mode int) []byte {
 	}
 
 	//header
-	fmt.Fprintf(bb, "%v\n\n", buildTags(m, false, mode))
+	fmt.Fprintf(bb, "%v\n\n", buildTags(m, false, mode, tags))
 
 	fmt.Fprint(bb, "#pragma once\n\n")
 

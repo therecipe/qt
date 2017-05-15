@@ -33,6 +33,9 @@ func main() {
 	var fast bool
 	flag.BoolVar(&fast, "fast", false, "don't run qtmoc for dependencies")
 
+	var tags string
+	flag.StringVar(&tags, "tags", "", "a list of build tags to consider satisfied during the build")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -67,8 +70,8 @@ func main() {
 
 	utils.CheckBuildTarget(target)
 	if docker {
-		cmd.Docker([]string{"qtmoc", "-debug"}, target, path, false)
+		cmd.Docker([]string{"qtmoc", "-debug", "-tags=" + tags}, target, path, false)
 	} else {
-		moc.Moc(path, target, fast)
+		moc.Moc(path, target, tags, fast)
 	}
 }

@@ -39,11 +39,11 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 
 		rcc.Rcc(path, target, os.Getenv("QTRCC_OUTPUT_DIR"))
 		if !fast {
-			moc.Moc(path, target, false)
+			moc.Moc(path, target, tags, false)
 		}
 
 		if !fast || utils.QT_STUB() {
-			minimal.Minimal(path, target)
+			minimal.Minimal(path, target, tags)
 		}
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast)

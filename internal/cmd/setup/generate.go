@@ -40,7 +40,7 @@ func Generate(target string, docker bool) {
 		if target == runtime.GOOS {
 			templater.GenModule(module, target, templater.NONE)
 		} else {
-			templater.CgoTemplate(module, "", target, templater.MINIMAL, "") //TODO: collect errors
+			templater.CgoTemplate(module, "", target, templater.MINIMAL, "", "") //TODO: collect errors
 		}
 	}
 }

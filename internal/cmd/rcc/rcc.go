@@ -25,9 +25,9 @@ func Rcc(path, target string, output_dir string) {
 	rccCpp := filepath.Join(path, "rcc.cpp")
 	if output_dir != "" {
 		rccCpp = filepath.Join(output_dir, "rcc.cpp")
-		templater.CgoTemplate("main", output_dir, target, templater.RCC, "main")
+		templater.CgoTemplate("main", output_dir, target, templater.RCC, "main", "")
 	} else {
-		templater.CgoTemplate("main", path, target, templater.RCC, "main")
+		templater.CgoTemplate("main", path, target, templater.RCC, "main", "")
 	}
 
 	rcc := exec.Command(utils.ToolPath("rcc", target), "-project", "-o", rccQrc)

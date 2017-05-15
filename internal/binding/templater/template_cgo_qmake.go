@@ -21,7 +21,7 @@ const (
 	RCC
 )
 
-func CgoTemplate(module, path, target string, mode int, ipkg string) (o string) {
+func CgoTemplate(module, path, target string, mode int, ipkg, tags string) (o string) {
 	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg)
 
 	switch module {
@@ -56,7 +56,7 @@ func CgoTemplate(module, path, target string, mode int, ipkg string) (o string) 
 	default:
 		createProject(module, path, target, mode)
 		createMakefile(module, path, target, mode)
-		createCgo(module, path, target, mode, ipkg)
+		createCgo(module, path, target, mode, ipkg, tags)
 	}
 
 	utils.RemoveAll(filepath.Join(path, "Makefile"))
@@ -218,9 +218,13 @@ func createMakefile(module, path, target string, mode int) {
 	}
 }
 
-func createCgo(module, path, target string, mode int, ipkg string) string {
+func createCgo(module, path, target string, mode int, ipkg, tags string) string {
 	bb := new(bytes.Buffer)
 	defer bb.Reset()
+
+	if mode == MOC && tags != "" {
+		bb.WriteString("// +build " + tags + "\n")
+	}
 
 	guards := "// +build "
 	switch target {
@@ -237,6 +241,7 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 	case "rpi1", "rpi2", "rpi3":
 		guards += target
 	}
+	//TODO: move "minimal" build tag in separate line -->
 	switch mode {
 	case NONE:
 		if len(guards) > 10 {
@@ -252,6 +257,7 @@ func createCgo(module, path, target string, mode int, ipkg string) string {
 	if len(guards) > 10 {
 		bb.WriteString(guards + "\n\n")
 	}
+	//<--
 
 	pkg := strings.ToLower(module)
 	if mode == MOC {

@@ -15,7 +15,7 @@ var std []string
 
 var imported = make(map[string]string)
 
-func GetImports(path, target string, level int, onlyDirect bool) []string {
+func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
 
 	if std == nil {
@@ -23,6 +23,9 @@ func GetImports(path, target string, level int, onlyDirect bool) []string {
 	}
 
 	env, tags, _, _ := BuildEnv(target, "", "")
+	if tagsCustom != "" {
+		tags = append(tags, strings.Split(tagsCustom, " ")...)
+	}
 
 	importMap := make(map[string]struct{})
 

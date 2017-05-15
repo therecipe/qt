@@ -16,7 +16,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Minimal(path, target string) {
+func Minimal(path, target, tags string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Minimal")
 
 	//TODO: cleanup state from moc for minimal first -->
@@ -29,7 +29,7 @@ func Minimal(path, target string) {
 	//<--
 
 	var files []string
-	for _, path := range append([]string{path}, cmd.GetImports(path, target, 0, false)...) {
+	for _, path := range append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...) {
 		fileList, err := ioutil.ReadDir(path)
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read dir")

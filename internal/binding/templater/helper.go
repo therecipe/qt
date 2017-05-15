@@ -31,7 +31,7 @@ func UseStub(force bool, module string, mode int) bool {
 	return force || (utils.QT_STUB() && mode == NONE && !(module == "QtAndroidExtras" || module == "QtSailfish"))
 }
 
-func buildTags(module string, stub bool, mode int) string {
+func buildTags(module string, stub bool, mode int, tags string) string {
 	switch {
 	case stub:
 		{
@@ -48,6 +48,9 @@ func buildTags(module string, stub bool, mode int) string {
 
 	case mode == MOC:
 		{
+			if tags != "" {
+				return "// +build " + tags
+			}
 			return ""
 		}
 

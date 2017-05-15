@@ -12,7 +12,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func CppTemplate(module string, mode int, target string) []byte {
+func CppTemplate(module string, mode int, target, tags string) []byte {
 	utils.Log.WithField("module", module).Debug("generating cpp")
 	parser.State.Target = target
 
@@ -285,10 +285,10 @@ func CppTemplate(module string, mode int, target string) []byte {
 		fmt.Fprintln(bb, "#include \"moc_moc.h\"")
 	}
 
-	return preambleCpp(module, bb.Bytes(), mode)
+	return preambleCpp(module, bb.Bytes(), mode, tags)
 }
 
-func preambleCpp(module string, input []byte, mode int) []byte {
+func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
@@ -363,7 +363,7 @@ func preambleCpp(module string, input []byte, mode int) []byte {
 #include "_cgo_export.h"
 
 `,
-		buildTags(module, false, mode),
+		buildTags(module, false, mode, tags),
 
 		func() string {
 			switch module {

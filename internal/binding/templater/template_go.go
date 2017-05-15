@@ -10,7 +10,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func GoTemplate(module string, stub bool, mode int, pkg, target string) []byte {
+func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []byte {
 	utils.Log.WithField("module", module).Debug("generating go")
 	parser.State.Target = target
 
@@ -177,10 +177,10 @@ func (ptr *%v) Destroy%v() {
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
-	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg)
+	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg, tags)
 }
 
-func preambleGo(oldModule string, module string, input []byte, stub bool, mode int, pkg string) []byte {
+func preambleGo(oldModule string, module string, input []byte, stub bool, mode int, pkg, tags string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
@@ -188,7 +188,7 @@ func preambleGo(oldModule string, module string, input []byte, stub bool, mode i
 		fmt.Fprintf(bb, `%v
 
 package %v
-`, buildTags(oldModule, stub, mode), module)
+`, buildTags(oldModule, stub, mode, tags), module)
 
 	} else {
 		fmt.Fprintf(bb, `%v
@@ -202,7 +202,7 @@ package %v
 import "C"
 `,
 
-			buildTags(oldModule, stub, mode),
+			buildTags(oldModule, stub, mode, tags),
 
 			func() string {
 				if mode == MOC {

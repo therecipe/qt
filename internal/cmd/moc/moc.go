@@ -21,13 +21,13 @@ import (
 
 var done = make(map[string]struct{})
 
-func Moc(path, target string, fast bool) {
+func Moc(path, target, tags string, fast bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
 	var classes []*parser.Class
 	var otherclasses []*parser.Class
 	var pkg string
-	for i, path := range append([]string{path}, cmd.GetImports(path, target, 0, true)...) {
+	for i, path := range append([]string{path}, cmd.GetImports(path, target, tags, 0, true)...) {
 		fileList, err := ioutil.ReadDir(path)
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read dir")
@@ -36,7 +36,7 @@ func Moc(path, target string, fast bool) {
 
 		if _, ok := done[path]; !ok && i > 0 && !fast {
 			done[path] = struct{}{}
-			Moc(path, target, false)
+			Moc(path, target, tags, false)
 		}
 
 		for _, file := range fileList {
@@ -213,16 +213,16 @@ func Moc(path, target string, fast bool) {
 	}
 	utils.Log.Debug("done copy structors")
 
-	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target)); err != nil {
+	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
 		return
 	}
-	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC)); err != nil {
+	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
 		return
 	}
-	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target)); err != nil {
+	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)); err != nil {
 		return
 	}
-	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg)
+	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg, tags)
 
 	//TODO: cleanup state -->
 	for _, c := range parser.State.ClassMap {
@@ -234,6 +234,9 @@ func Moc(path, target string, fast bool) {
 	//<--
 
 	utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
+	if tags != "" {
+		utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
+	}
 }
 
 func parse(path string) ([]*parser.Class, string, error) {
