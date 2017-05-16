@@ -14,6 +14,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+var buildVersion = "no build version"
+
 func ParseFlags() bool {
 	var (
 		debug      = flag.Bool("debug", false, "print debug logs")
@@ -21,6 +23,7 @@ func ParseFlags() bool {
 		p          = flag.Int("p", runtime.NumCPU(), "specify the number of cpu's to be used")
 		qt_dir     = flag.String("qt_dir", utils.QT_DIR(), "export QT_DIR")
 		qt_version = flag.String("qt_version", utils.QT_VERSION(), "export QT_VERSION")
+		version    = flag.Bool("version", false, "print build version (if available)")
 	)
 	flag.Parse()
 
@@ -36,6 +39,11 @@ func ParseFlags() bool {
 
 	if version := *qt_version; version != utils.QT_VERSION() {
 		os.Setenv("QT_VERSION", version)
+	}
+
+	if *version {
+		println(buildVersion)
+		os.Exit(0)
 	}
 
 	return help != nil && *help

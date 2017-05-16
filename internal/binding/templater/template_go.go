@@ -267,7 +267,7 @@ import "C"
 		}
 	}
 
-	for custom, m := range parser.GetCustomLibs() {
+	for custom, m := range parser.GetCustomLibs(tags) {
 		mlows := strings.Split(m, "/")
 		mlow := mlows[len(mlows)-1]
 		switch {

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
+	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -26,7 +27,14 @@ func Update() {
 	checkoutInternal.Dir = filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt")
 	utils.RunCmd(checkoutInternal, "run \"git checkout internal\"")
 
-	utils.RunCmd(exec.Command("go", "install", "-v", fmt.Sprintf("github.com/therecipe/qt/cmd/...")), "run \"go install\"")
+	hash := "please install git"
+	if _, err := exec.LookPath("git"); err == nil {
+		cmd := exec.Command("git", "rev-parse", "--verify", "HEAD")
+		cmd.Dir = utils.GoQtPkgPath()
+		hash = strings.TrimSpace(utils.RunCmdOptional(cmd, "get git hash"))
+	}
+
+	utils.RunCmd(exec.Command("go", "install", "-v", fmt.Sprintf("-ldflags=\"-X github.com/therecipe/qt/internal/cmd.buildVersion=%v\"", hash), fmt.Sprintf("github.com/therecipe/qt/cmd/...")), "run \"go install\"")
 
 	Prep()
 }
@@ -36,5 +44,13 @@ func Upgrade() {
 
 	utils.RunCmd(exec.Command("go", "clean", "-i", "github.com/therecipe/qt/..."), "run \"go clean\"")
 	utils.RemoveAll(utils.GoQtPkgPath())
-	utils.RunCmd(exec.Command("go", "get", "-v", fmt.Sprintf("github.com/therecipe/qt/cmd/...")), "run \"go get\"")
+
+	hash := "please install git"
+	if _, err := exec.LookPath("git"); err == nil {
+		cmd := exec.Command("git", "rev-parse", "--verify", "HEAD")
+		cmd.Dir = utils.GoQtPkgPath()
+		hash = strings.TrimSpace(utils.RunCmdOptional(cmd, "get git hash"))
+	}
+
+	utils.RunCmd(exec.Command("go", "get", "-v", fmt.Sprintf("-ldflags=\"-X github.com/therecipe/qt/internal/cmd.buildVersion=%v\"", hash), fmt.Sprintf("github.com/therecipe/qt/cmd/...")), "run \"go get\"")
 }
