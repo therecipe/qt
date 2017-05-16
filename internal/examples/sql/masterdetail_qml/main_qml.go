@@ -14,11 +14,11 @@ import (
 var qApp *widgets.QApplication
 
 func main() {
-	path := filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "examples", "sql", "masterdetail", "qml", "main.qml")
+	path := filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "examples", "sql", "masterdetail_qml", "qml", "main.qml")
 
 	qApp = widgets.NewQApplication(len(os.Args), os.Args)
 
-	app := initQmlApplication(path)
+	app := qml.NewQQmlApplicationEngine(nil)
 
 	app.RootContext().SetContextProperty("listModel", NewListModel())
 	app.RootContext().SetContextProperty("viewModel", NewSortFilterModel(NewViewModel()))

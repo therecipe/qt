@@ -8,6 +8,7 @@ ApplicationWindow {
   visible: true
   title: "Music Archive"
   minimumWidth: 850; minimumHeight: 400
+  width: minimumWidth; height: minimumHeight
 
   MessageDialog {
     id: aboutDialog
