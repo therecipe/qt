@@ -1401,6 +1401,32 @@ Misc
 
 [An Video Overview of GUI technologies in Qt](https://www.youtube.com/watch?v=WIRRoPxIerc)
 
+<details markdown="1"> <summary markdown="0">Debugging and Profiling Qml Applications</summary>
+
+-	Export `QT_DEBUG_QML=true`
+
+-	Run `qtdeploy` (`-fast` or `go build/run` won't work)
+
+-	Manually start the created binary with: `-qmljsdebugger=port:8080,block`
+
+-	Open the created `debug.pro`
+
+-	For debugging: Debug > Start Debugging > Attach to QML Port...
+
+	-	https://doc.qt.io/qt-5/qtquick-debugging.html
+
+	-	https://doc.qt.io/qtcreator/creator-debugging-qml.html
+
+	-	https://doc.qt.io/qtcreator/creator-qml-debugging-example.html
+
+-	For profiling: Analyze > QML Profiler (External)
+
+	-	https://doc.qt.io/qtcreator/creator-qml-performance-monitor.html
+
+	-	https://doc.qt.io/qt-5/qtquick-visualcanvas-scenegraph-renderer.html#visualizing-overdraw
+
+</details>
+
 <details markdown="1"> <summary markdown="0">Drag & Drop WYSIWYG Editors</summary>
 
 -	For the desktop widgets: https://doc.qt.io/qtcreator/creator-using-qt-designer.html

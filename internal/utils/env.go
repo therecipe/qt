@@ -42,6 +42,10 @@ func QT_DEBUG() bool {
 	return strings.ToLower(os.Getenv("QT_DEBUG")) == "true"
 }
 
+func QT_DEBUG_QML() bool {
+	return strings.ToLower(os.Getenv("QT_DEBUG_QML")) == "true"
+}
+
 func CheckBuildTarget(buildTarget string) {
 	switch buildTarget {
 	case "android", "android-emulator",

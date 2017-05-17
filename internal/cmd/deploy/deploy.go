@@ -48,7 +48,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast)
 
-		if !fast {
+		if !(fast || utils.QT_DEBUG_QML()) {
 			bundle(mode, target, path, name, depPath)
 		}
 	}

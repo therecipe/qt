@@ -145,6 +145,10 @@ func darwin_plist(name string) string {
 `, name)
 }
 
+func darwin_pkginfo() string {
+	return "APPL????\n"
+}
+
 //ios
 
 func ios_plist(name string) string {

@@ -54,6 +54,9 @@ func bundle(mode, target, path, name, depPath string) {
 
 		//copy default assets
 		utils.Save(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "Info.plist")), darwin_plist(name))
+		utils.Save(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "PkgInfo")), darwin_pkginfo())
+		utils.MkdirAll(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "Resources")))
+		utils.Save(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "Resources", "empty.lproj")), "")
 
 		//copy custom assets
 		assets := filepath.Join(path, target)

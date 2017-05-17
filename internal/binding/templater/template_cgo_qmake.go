@@ -79,6 +79,18 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 				}
 			}
 
+			if utils.QT_DEBUG_QML() {
+				if strings.Contains(file, "-DQT_NO_DEBUG") {
+					utils.Log.Debugln("non debug cgo file, re-creating ...")
+					return false
+				}
+			} else {
+				if strings.Contains(file, "-DQT_QML_DEBUG") || strings.Contains(file, "-DQT_DECLARATIVE_DEBUG") {
+					utils.Log.Debugln("non release cgo file, re-creating ...")
+					return false
+				}
+			}
+
 			switch target {
 			case "darwin", "linux", "windows":
 				//TODO msys pkg-config mxe brew
@@ -134,9 +146,9 @@ func createMakefile(module, path, target string, mode int) {
 	case "linux":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 	case "ios":
-		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=release", "CONFIG+=iphoneos", "CONFIG+=device"}...)
+		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphoneos", "CONFIG+=device"}...)
 	case "ios-simulator":
-		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=release", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
+		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
 	case "android", "android-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "android-g++"}...)
 		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR())}
@@ -160,6 +172,12 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rasp-pi2-g++"}...)
 	case "rpi3":
 		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rpi3-g++"}...)
+	}
+
+	if utils.QT_DEBUG_QML() {
+		cmd.Args = append(cmd.Args, []string{"CONFIG+=debug", "CONFIG+=declarative_debug", "CONFIG+=qml_debug"}...)
+	} else {
+		cmd.Args = append(cmd.Args, "CONFIG+=release")
 	}
 
 	if (target == "android" || target == "android-emulator") && runtime.GOOS == "windows" {

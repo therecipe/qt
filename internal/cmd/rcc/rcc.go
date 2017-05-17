@@ -56,4 +56,8 @@ func Rcc(path, target string, output_dir string) {
 	rcc = exec.Command(utils.ToolPath("rcc", target), "-o", rccCpp)
 	rcc.Args = append(rcc.Args, fileList...)
 	utils.RunCmd(rcc, fmt.Sprintf("execute rcc *.cpp on %v for %v", runtime.GOOS, target))
+
+	if utils.QT_DEBUG_QML() {
+		utils.Save("debug.pro", fmt.Sprintf("RESOURCES += %v", strings.Join(fileList, " ")))
+	}
 }

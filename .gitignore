@@ -1,4 +1,6 @@
 .DS_Store
+*.pro
+*.pro.user
 */cgo_*
 */minimal_*
 */*-minimal.*

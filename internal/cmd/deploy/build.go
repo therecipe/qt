@@ -25,6 +25,9 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	if tagsCustom != "" {
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}
+	if utils.QT_DEBUG_QML() {
+		out = filepath.Join(depPath, name)
+	}
 
 	var ending string
 	switch target {
