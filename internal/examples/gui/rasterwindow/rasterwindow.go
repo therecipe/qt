@@ -5,7 +5,6 @@ import (
 	"github.com/therecipe/qt/gui"
 )
 
-//go:generate qtmoc
 type RasterWindow struct {
 	gui.QWindow
 

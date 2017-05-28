@@ -69,6 +69,8 @@ func Test(target string, docker bool) {
 
 			//"charts": []string{"audio"}, //TODO: ios, ios-simulator
 
+			"common": []string{"qml", "widgets"},
+
 			//"grpc": []string{"hello_world","hello_world2"},
 
 			//"gui": []string{"analogclock", "rasterwindow"},
@@ -78,7 +80,12 @@ func Test(target string, docker bool) {
 				filepath.Join("extending", "chapter2-methods"),
 				filepath.Join("extending", "chapter3-bindings"),
 				filepath.Join("extending", "chapter4-customPropertyTypes"),
-				"gallery", "material", "prop", "prop2" /*"todo", "webview"*/},
+				filepath.Join("extending", "components", "test_go"),
+				filepath.Join("extending", "components", "test_qml"),
+				filepath.Join("extending", "components", "test_qml_go"),
+				"gallery", "material",
+				filepath.Join("printslides", "cmd", "printslides"),
+				"prop", "prop2" /*"quickflux", "webview"*/},
 
 			"qt3d": []string{"audio-visualizer-qml"},
 
@@ -87,7 +94,7 @@ func Test(target string, docker bool) {
 
 			"sailfish": []string{"listview", "listview_variant"},
 
-			"sql": []string{"masterdetail", "querymodel"},
+			"sql": []string{"masterdetail", "masterdetail_qml", "querymodel"},
 
 			"uitools": []string{"calculator"},
 

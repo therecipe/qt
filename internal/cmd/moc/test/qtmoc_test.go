@@ -16,7 +16,6 @@ import (
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub"
 )
 
-//go:generate qtmoc
 type testStruct struct {
 	otherTestStruct
 	testOther otherTestStruct

@@ -33,6 +33,9 @@ func main() {
 	var output string
 	flag.StringVar(&output, "o", os.Getenv("QTRCC_OUTPUT_DIR"), "specify an alternative output dir")
 
+	var tags string
+	flag.StringVar(&tags, "tags", "", "a list of build tags to consider satisfied during the build")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -75,6 +78,6 @@ func main() {
 	if docker {
 		cmd.Docker([]string{"qtrcc", "-debug"}, target, path, false)
 	} else {
-		rcc.Rcc(path, target, output)
+		rcc.Rcc(path, target, tags, output)
 	}
 }

@@ -10,7 +10,6 @@ import (
 	"github.com/therecipe/qt/widgets"
 )
 
-//go:generate qtmoc
 type QmlBridge struct {
 	core.QObject
 

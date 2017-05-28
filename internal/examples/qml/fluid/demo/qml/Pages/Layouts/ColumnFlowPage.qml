@@ -1,0 +1,45 @@
+/*
+ * This file is part of Fluid.
+ *
+ * Copyright (C) 2017 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+ *
+ * $BEGIN_LICENSE:MPL2$
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * $END_LICENSE$
+ */
+
+import QtQuick 2.0
+import QtQuick.Controls 2.0
+import Fluid.Layouts 1.0 as FluidLayouts
+import "../.."
+
+Flickable {
+    clip: true
+    contentHeight: Math.max(layout.implicitHeight, height)
+
+    ScrollBar.vertical: ScrollBar {}
+
+    FluidLayouts.ColumnFlow {
+        id: layout
+
+        anchors.fill: parent
+
+        contentHeight: 100
+
+        model: 250
+        delegate: Rectangle {
+            color: Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0)
+            width: 100
+            height: width
+
+            Text {
+                anchors.centerIn: parent
+                text: index + 1
+            }
+        }
+    }
+}

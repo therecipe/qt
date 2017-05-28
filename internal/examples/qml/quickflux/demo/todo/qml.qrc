@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>actions/AppActions.qml</file>
+        <file>views/Footer.qml</file>
+        <file>views/TodoItem.qml</file>
+        <file>views/TodoList.qml</file>
+        <file>actions/qmldir</file>
+        <file>stores/TodoStore.qml</file>
+        <file>stores/qmldir</file>
+        <file>views/TodoVisualModel.qml</file>
+        <file>views/Header.qml</file>
+        <file>actions/ActionTypes.qml</file>
+        <file>stores/UserPrefsStore.qml</file>
+        <file>stores/RootStore.qml</file>
+        <file>stores/MainStore.qml</file>
+        <file>middlewares/DialogMiddleware.qml</file>
+        <file>MainWindow.qml</file>
+    </qresource>
+</RCC>

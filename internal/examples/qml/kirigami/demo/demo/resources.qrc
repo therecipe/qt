@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="contents/ui/MainPage.qml">../gallery/contents/ui/MainPage.qml</file>
+        <file alias="contents/ui/banner.jpg">../gallery/contents/ui/banner.jpg</file>
+        <file alias="contents/ui/gallery/NonScrollableGallery.qml">../gallery/contents/ui/gallery/NonScrollableGallery.qml</file>
+        <file alias="contents/ui/gallery/RadioButtonGallery.qml">../gallery/contents/ui/gallery/RadioButtonGallery.qml</file>
+        <file alias="contents/ui/gallery/ButtonGallery.qml">../gallery/contents/ui/gallery/ButtonGallery.qml</file>
+        <file alias="contents/ui/gallery/ProgressBarGallery.qml">../gallery/contents/ui/gallery/ProgressBarGallery.qml</file>
+        <file alias="contents/ui/gallery/CheckBoxGallery.qml">../gallery/contents/ui/gallery/CheckBoxGallery.qml</file>
+        <file alias="contents/ui/gallery/SliderGallery.qml">../gallery/contents/ui/gallery/SliderGallery.qml</file>
+        <file alias="contents/ui/gallery/MultipleColumnsGallery.qml">../gallery/contents/ui/gallery/MultipleColumnsGallery.qml</file>
+        <file alias="contents/ui/gallery/MiscGallery.qml">../gallery/contents/ui/gallery/MiscGallery.qml</file>
+        <file alias="contents/ui/gallery/ListViewGallery.qml">../gallery/contents/ui/gallery/ListViewGallery.qml</file>
+        <file alias="contents/ui/gallery/ListViewHeaderItemsGallery.qml">../gallery/contents/ui/gallery/ListViewHeaderItemsGallery.qml</file>
+        <file alias="contents/ui/gallery/SwitchGallery.qml">../gallery/contents/ui/gallery/SwitchGallery.qml</file>
+        <file alias="contents/ui/gallery/TabBarGallery.qml">../gallery/contents/ui/gallery/TabBarGallery.qml</file>
+        <file alias="contents/ui/gallery/TextFieldGallery.qml">../gallery/contents/ui/gallery/TextFieldGallery.qml</file>
+        <file alias="contents/ui/gallery/ColorsGallery.qml">../gallery/contents/ui/gallery/ColorsGallery.qml</file>
+        <file alias="contents/ui/ExampleApp.qml">../gallery/contents/ui/ExampleApp.qml</file>
+        <file alias="metadata.desktop">../gallery/metadata.desktop</file>
+        <file alias="qtquickcontrols2.conf">qtquickcontrols2.conf</file>
+    </qresource>
+</RCC>

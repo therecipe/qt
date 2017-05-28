@@ -27,7 +27,6 @@ var (
 	lightPalette = []string{"#000000", "#FFFFFF", "0.87", "0.54", "0.12", "0.54", "0.26", "black", "0", "#424242", "#424242", "1.0", "0.7", "#323232", "0.75"}
 )
 
-//go:generate qtmoc
 type ApplicationUI struct {
 	core.QObject
 

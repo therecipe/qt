@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>actions/AppActions.qml</file>
+        <file>actions/qmldir</file>
+        <file>stores/PhotoStore.qml</file>
+        <file>stores/qmldir</file>
+        <file>views/ImageViewer.qml</file>
+        <file>scripts/ImagePickerScript.qml</file>
+        <file>actions/ActionTypes.qml</file>
+        <file>views/ImagePreview.qml</file>
+        <file>views/StackView.qml</file>
+    </qresource>
+</RCC>

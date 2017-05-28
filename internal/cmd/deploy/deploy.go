@@ -37,7 +37,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			break
 		}
 
-		rcc.Rcc(path, target, os.Getenv("QTRCC_OUTPUT_DIR"))
+		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"))
 		if !fast {
 			moc.Moc(path, target, tags, false)
 		}

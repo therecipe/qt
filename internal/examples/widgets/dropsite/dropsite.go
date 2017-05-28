@@ -11,7 +11,6 @@ import (
 	"github.com/therecipe/qt/widgets"
 )
 
-//go:generate qtmoc
 type DropSiteWindow struct {
 	widgets.QWidget
 

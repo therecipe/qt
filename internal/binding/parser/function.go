@@ -315,6 +315,8 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QWebPluginFactory::__plugins_newList",
 
+		f.Fullname == "QWebHistoryItem::loadFromMap", f.Fullname == "QWebHistory::loadFromMap",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {

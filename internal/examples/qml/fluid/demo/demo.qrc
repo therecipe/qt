@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/balloon.jpg</file>
+        <file>qml/main.qml</file>
+        <file>qml/BasicComponents.qml</file>
+        <file>qml/CompoundComponents.qml</file>
+        <file>qml/LayoutComponents.qml</file>
+        <file>qml/MaterialComponents.qml</file>
+        <file>qml/NavigationComponents.qml</file>
+        <file>qml/Style.qml</file>
+        <file>qml/StyledRectangle.qml</file>
+        <file>qml/+material/StyledRectangle.qml</file>
+        <file>qml/+universal/StyledRectangle.qml</file>
+        <file>qml/Pages/Basic/BusyIndicatorPage.qml</file>
+        <file>qml/Pages/Basic/ButtonPage.qml</file>
+        <file>qml/Pages/Basic/CheckBoxPage.qml</file>
+        <file>qml/Pages/Basic/ProgressBarPage.qml</file>
+        <file>qml/Pages/Basic/RadioButtonPage.qml</file>
+        <file>qml/Pages/Basic/SliderPage.qml</file>
+        <file>qml/Pages/Basic/SwitchPage.qml</file>
+        <file>qml/Pages/Compound/DialogsPage.qml</file>
+        <file>qml/Pages/Compound/ListItemPage.qml</file>
+        <file>qml/Pages/Compound/SubPage.qml</file>
+        <file>qml/Pages/Compound/CardPage.qml</file>
+        <file>qml/Pages/Compound/InfoBarPage.qml</file>
+        <file>qml/Pages/Style/PalettePage.qml</file>
+        <file>qml/Pages/Style/PaletteSwatch.qml</file>
+        <file>qml/Pages/Style/TypographyPage.qml</file>
+        <file>qml/Pages/Layouts/AutomaticGridPage.qml</file>
+        <file>qml/Pages/Layouts/ColumnFlowPage.qml</file>
+        <file>qml/Pages/Material/ActionButtonPage.qml</file>
+        <file>qml/Pages/Material/BottomSheetPage.qml</file>
+        <file>qml/Pages/Material/WavePage.qml</file>
+        <file>qml/Pages/Navigation/NavDrawerPage.qml</file>
+        <file>qml/Pages/Compound/OverlayPage.qml</file>
+        <file>qml/Pages/Material/Search.qml</file>
+    </qresource>
+</RCC>

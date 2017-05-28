@@ -1,5 +1,0 @@
-#pragma once
-#include <QFAppDispatcher>
-#include <QFKeyTable>
-
-void registerQuickFluxQmlTypes();

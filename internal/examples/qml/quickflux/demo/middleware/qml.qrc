@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>actions/AppActions.qml</file>
+        <file>actions/qmldir</file>
+        <file>stores/qmldir</file>
+        <file>views/ImageViewer.qml</file>
+        <file>actions/ActionTypes.qml</file>
+        <file>views/StackView.qml</file>
+        <file>middlewares/ImagePickerMiddleware.qml</file>
+        <file>middlewares/NavigationMiddleware.qml</file>
+        <file>components/ImagePreview.qml</file>
+        <file>stores/RootStore.qml</file>
+        <file>stores/MainStore.qml</file>
+    </qresource>
+</RCC>

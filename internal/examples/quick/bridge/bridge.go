@@ -97,7 +97,6 @@ func initQmlContext(quickWidget *quick.QQuickWidget) {
 	quickWidget.RootContext().SetContextProperty2("qmlInitContext", core.NewQVariant14(string(b)))
 }
 
-//go:generate qtmoc
 type QmlBridge struct {
 	core.QObject
 

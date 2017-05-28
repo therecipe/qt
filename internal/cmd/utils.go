@@ -34,7 +34,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 		imp = "Imports"
 	}
 
-	cmd := exec.Command("go", "list", "-f", "'{{ join .TestImports \"|\" }}':'{{ join ."+imp+" \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	cmd := exec.Command("go", "list", "-e", "-f", "'{{ join .TestImports \"|\" }}':'{{ join ."+imp+" \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Dir = path
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
@@ -76,12 +76,12 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 			continue
 		}
 
-		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt", "q")) {
-			iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
-		}
-
 		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {
 			continue
+		}
+
+		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt", "q")) {
+			iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
 		}
 
 		importMap[dep] = struct{}{}

@@ -8,7 +8,6 @@ import (
 	"github.com/therecipe/qt/quick"
 )
 
-//go:generate qtmoc
 type HelloClientRPC struct {
 	core.QObject
 

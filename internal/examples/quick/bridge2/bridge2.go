@@ -12,7 +12,6 @@ import (
 	"github.com/therecipe/qt/quick"
 )
 
-//go:generate qtmoc
 type QmlBridge struct {
 	core.QObject
 

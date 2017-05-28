@@ -9,7 +9,6 @@ import (
 	"github.com/therecipe/qt/qml"
 )
 
-//go:generate qtmoc
 type QmlBride struct {
 	core.QObject
 
