@@ -201,6 +201,10 @@ func (c *Class) addMocFuncs() {
 	tmpF2.Signature = "(const char *typeName)"
 	c.Functions = append(c.Functions, &tmpF2)
 
+	if c.IsSubClassOf("QCoreApplication") {
+		return
+	}
+
 	//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterType
 	//int qmlRegisterType()
 	tmpF = &Function{

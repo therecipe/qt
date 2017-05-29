@@ -69,7 +69,7 @@ func Test(target string, docker bool) {
 
 			//"charts": []string{"audio"}, //TODO: ios, ios-simulator
 
-			"common": []string{"qml", "widgets"},
+			"common": []string{"qml_demo", "widgets_demo"},
 
 			//"grpc": []string{"hello_world","hello_world2"},
 
@@ -84,7 +84,7 @@ func Test(target string, docker bool) {
 				filepath.Join("extending", "components", "test_qml"),
 				filepath.Join("extending", "components", "test_qml_go"),
 				"gallery", "material",
-				filepath.Join("printslides", "cmd", "printslides"),
+				//filepath.Join("printslides", "cmd", "printslides"),
 				"prop", "prop2" /*"quickflux", "webview"*/},
 
 			"qt3d": []string{"audio-visualizer-qml"},

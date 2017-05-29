@@ -332,7 +332,7 @@ func (f *Function) IsSupported() bool {
 
 	//generic blocked
 	//TODO: also check _setList _atList _newList _keyList instead ?
-	var genName = strings.TrimPrefix(f.Name, "__")
+	genName := strings.TrimPrefix(f.Name, "__")
 	if strings.HasPrefix(genName, "registeredTimers") || strings.HasPrefix(genName, "countriesForLanguage") ||
 		strings.HasPrefix(genName, "writingSystem") || strings.HasPrefix(genName, "textList") ||
 		strings.HasPrefix(genName, "attributes") || strings.HasPrefix(genName, "additionalFormats") ||
@@ -348,6 +348,11 @@ func (f *Function) IsSupported() bool {
 		strings.HasPrefix(genName, "QCustom3DVolume_textureData") || strings.HasPrefix(genName, "createTextureData") ||
 		strings.Contains(genName, "alternateSubjectNames") || strings.HasPrefix(genName, "fromVariantMap") ||
 		strings.HasPrefix(genName, "QScxmlDataModel") {
+
+		if strings.HasPrefix(genName, "setTabs") || strings.HasPrefix(genName, "tabs") {
+			return !strings.HasPrefix(f.Name, "__")
+		}
+
 		return false
 	}
 

@@ -56369,6 +56369,18 @@ func (ptr *QMdiArea) SetTabShape(shape QTabWidget__TabShape) {
 	}
 }
 
+func (ptr *QMdiArea) SetTabsClosable(closable bool) {
+	if ptr.Pointer() != nil {
+		C.QMdiArea_SetTabsClosable(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closable))))
+	}
+}
+
+func (ptr *QMdiArea) SetTabsMovable(movable bool) {
+	if ptr.Pointer() != nil {
+		C.QMdiArea_SetTabsMovable(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(movable))))
+	}
+}
+
 func (ptr *QMdiArea) SetViewMode(mode QMdiArea__ViewMode) {
 	if ptr.Pointer() != nil {
 		C.QMdiArea_SetViewMode(ptr.Pointer(), C.longlong(mode))
@@ -56581,6 +56593,20 @@ func (ptr *QMdiArea) ActivationOrder() QMdiArea__WindowOrder {
 func (ptr *QMdiArea) DocumentMode() bool {
 	if ptr.Pointer() != nil {
 		return C.QMdiArea_DocumentMode(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QMdiArea) TabsClosable() bool {
+	if ptr.Pointer() != nil {
+		return C.QMdiArea_TabsClosable(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QMdiArea) TabsMovable() bool {
+	if ptr.Pointer() != nil {
+		return C.QMdiArea_TabsMovable(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -76778,6 +76804,12 @@ func (ptr *QTabBar) SetShape(shape QTabBar__Shape) {
 	}
 }
 
+func (ptr *QTabBar) SetTabsClosable(closable bool) {
+	if ptr.Pointer() != nil {
+		C.QTabBar_SetTabsClosable(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closable))))
+	}
+}
+
 func (ptr *QTabBar) SetUsesScrollButtons(useButtons bool) {
 	if ptr.Pointer() != nil {
 		C.QTabBar_SetUsesScrollButtons(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(useButtons))))
@@ -77387,6 +77419,13 @@ func (ptr *QTabBar) IsTabEnabled(index int) bool {
 	return false
 }
 
+func (ptr *QTabBar) TabsClosable() bool {
+	if ptr.Pointer() != nil {
+		return C.QTabBar_TabsClosable(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QTabBar) UsesScrollButtons() bool {
 	if ptr.Pointer() != nil {
 		return C.QTabBar_UsesScrollButtons(ptr.Pointer()) != 0
@@ -77770,6 +77809,12 @@ func (ptr *QTabWidget) SetTabWhatsThis(index int, text string) {
 	}
 }
 
+func (ptr *QTabWidget) SetTabsClosable(closeable bool) {
+	if ptr.Pointer() != nil {
+		C.QTabWidget_SetTabsClosable(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closeable))))
+	}
+}
+
 func (ptr *QTabWidget) SetUsesScrollButtons(useButtons bool) {
 	if ptr.Pointer() != nil {
 		C.QTabWidget_SetUsesScrollButtons(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(useButtons))))
@@ -78113,6 +78158,13 @@ func (ptr *QTabWidget) IsTabEnabled(index int) bool {
 func (ptr *QTabWidget) TabBarAutoHide() bool {
 	if ptr.Pointer() != nil {
 		return C.QTabWidget_TabBarAutoHide(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QTabWidget) TabsClosable() bool {
+	if ptr.Pointer() != nil {
+		return C.QTabWidget_TabsClosable(ptr.Pointer()) != 0
 	}
 	return false
 }

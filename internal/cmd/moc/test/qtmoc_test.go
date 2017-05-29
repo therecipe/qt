@@ -16,6 +16,10 @@ import (
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub"
 )
 
+type Application struct {
+	widgets.QApplication
+}
+
 type testStruct struct {
 	otherTestStruct
 	testOther otherTestStruct

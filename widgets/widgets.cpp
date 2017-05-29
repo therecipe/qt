@@ -35049,6 +35049,16 @@ void QMdiArea_SetTabShape(void* ptr, long long shape)
 	static_cast<QMdiArea*>(ptr)->setTabShape(static_cast<QTabWidget::TabShape>(shape));
 }
 
+void QMdiArea_SetTabsClosable(void* ptr, char closable)
+{
+	static_cast<QMdiArea*>(ptr)->setTabsClosable(closable != 0);
+}
+
+void QMdiArea_SetTabsMovable(void* ptr, char movable)
+{
+	static_cast<QMdiArea*>(ptr)->setTabsMovable(movable != 0);
+}
+
 void QMdiArea_SetViewMode(void* ptr, long long mode)
 {
 	static_cast<QMdiArea*>(ptr)->setViewMode(static_cast<QMdiArea::ViewMode>(mode));
@@ -35137,6 +35147,16 @@ long long QMdiArea_ActivationOrder(void* ptr)
 char QMdiArea_DocumentMode(void* ptr)
 {
 	return static_cast<QMdiArea*>(ptr)->documentMode();
+}
+
+char QMdiArea_TabsClosable(void* ptr)
+{
+	return static_cast<QMdiArea*>(ptr)->tabsClosable();
+}
+
+char QMdiArea_TabsMovable(void* ptr)
+{
+	return static_cast<QMdiArea*>(ptr)->tabsMovable();
 }
 
 char QMdiArea_TestOption(void* ptr, long long option)
@@ -47190,6 +47210,11 @@ void QTabBar_SetShape(void* ptr, long long shape)
 	static_cast<QTabBar*>(ptr)->setShape(static_cast<QTabBar::Shape>(shape));
 }
 
+void QTabBar_SetTabsClosable(void* ptr, char closable)
+{
+	static_cast<QTabBar*>(ptr)->setTabsClosable(closable != 0);
+}
+
 void QTabBar_SetUsesScrollButtons(void* ptr, char useButtons)
 {
 	static_cast<QTabBar*>(ptr)->setUsesScrollButtons(useButtons != 0);
@@ -47450,6 +47475,11 @@ char QTabBar_IsTabEnabled(void* ptr, int index)
 	return static_cast<QTabBar*>(ptr)->isTabEnabled(index);
 }
 
+char QTabBar_TabsClosable(void* ptr)
+{
+	return static_cast<QTabBar*>(ptr)->tabsClosable();
+}
+
 char QTabBar_UsesScrollButtons(void* ptr)
 {
 	return static_cast<QTabBar*>(ptr)->usesScrollButtons();
@@ -47697,6 +47727,11 @@ void QTabWidget_SetTabWhatsThis(void* ptr, int index, char* text)
 	static_cast<QTabWidget*>(ptr)->setTabWhatsThis(index, QString(text));
 }
 
+void QTabWidget_SetTabsClosable(void* ptr, char closeable)
+{
+	static_cast<QTabWidget*>(ptr)->setTabsClosable(closeable != 0);
+}
+
 void QTabWidget_SetUsesScrollButtons(void* ptr, char useButtons)
 {
 	static_cast<QTabWidget*>(ptr)->setUsesScrollButtons(useButtons != 0);
@@ -47850,6 +47885,11 @@ char QTabWidget_IsTabEnabled(void* ptr, int index)
 char QTabWidget_TabBarAutoHide(void* ptr)
 {
 	return static_cast<QTabWidget*>(ptr)->tabBarAutoHide();
+}
+
+char QTabWidget_TabsClosable(void* ptr)
+{
+	return static_cast<QTabWidget*>(ptr)->tabsClosable();
 }
 
 char QTabWidget_UsesScrollButtons(void* ptr)
