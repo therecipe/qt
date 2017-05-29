@@ -40,7 +40,11 @@ func LoadModule(m string) error {
 	var err error
 	switch {
 	case utils.QT_WEBKIT() && m == "WebKit":
-		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_VERSION(), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+		if utils.QT_HOMEBREW() {
+			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.1", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+		} else {
+			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_VERSION(), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+		}
 
 	case utils.QT_HOMEBREW(), utils.QT_MSYS2():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_VERSION(), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
