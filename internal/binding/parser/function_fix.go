@@ -228,11 +228,17 @@ func (f *Function) fixGenericOutput() {
 }
 
 func (f *Function) fixGenericInput() {
-	if len(f.OgParameters) == 0 {
+	var skipOG bool
+	for _, p := range f.Parameters {
+		if strings.HasPrefix(p.Value, "[]") || strings.HasPrefix(p.Value, "map[") {
+			skipOG = true
+			break
+		}
+	}
+
+	if len(f.OgParameters) == 0 && !skipOG {
 		for _, p := range f.Parameters {
-			if !strings.HasPrefix(p.Value, "[]") && !strings.HasPrefix(p.Value, "map[") {
-				f.OgParameters = append(f.OgParameters, *p)
-			}
+			f.OgParameters = append(f.OgParameters, *p)
 		}
 	}
 

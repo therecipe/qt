@@ -300,6 +300,11 @@ type testStruct struct {
 	_ func(a0 map[int]string) (a1 map[int]string)         `slot:"returnMapName"`
 	_ func(a0, a1 map[int]int) (a2 map[int]int)           `slot:"returnMapName2"`
 	_ func() map[int]bool                                 `slot:"otherMap"`
+
+	_ func(*core.QObject, []*core.QObject) `signal:"mixedSignal"`
+	_ func([]*core.QObject, *core.QObject) `signal:"mixedSignal2"`
+	_ func(*core.QObject, []*core.QObject) `signal:"mixedSlot"`
+	_ func([]*core.QObject, *core.QObject) `signal:"mixedSlot2"`
 }
 
 type subTestStruct struct {
