@@ -184,7 +184,7 @@ func (ptr *QAbstractAnimation) SetLoopCount(loopCount int) {
 
 func NewQAbstractAnimation(parent QObject_ITF) *QAbstractAnimation {
 	var tmpValue = NewQAbstractAnimationFromPointer(C.QAbstractAnimation_NewQAbstractAnimation(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -692,7 +692,7 @@ func (ptr *QAbstractAnimation) Direction() QAbstractAnimation__Direction {
 func (ptr *QAbstractAnimation) Group() *QAnimationGroup {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAnimationGroupFromPointer(C.QAbstractAnimation_Group(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -819,7 +819,7 @@ func NewQAbstractEventDispatcherFromPointer(ptr unsafe.Pointer) *QAbstractEventD
 }
 func QAbstractEventDispatcher_Instance(thread QThread_ITF) *QAbstractEventDispatcher {
 	var tmpValue = NewQAbstractEventDispatcherFromPointer(C.QAbstractEventDispatcher_QAbstractEventDispatcher_Instance(PointerFromQThread(thread)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -827,7 +827,7 @@ func QAbstractEventDispatcher_Instance(thread QThread_ITF) *QAbstractEventDispat
 
 func (ptr *QAbstractEventDispatcher) Instance(thread QThread_ITF) *QAbstractEventDispatcher {
 	var tmpValue = NewQAbstractEventDispatcherFromPointer(C.QAbstractEventDispatcher_QAbstractEventDispatcher_Instance(PointerFromQThread(thread)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -1426,7 +1426,7 @@ const (
 
 func NewQAbstractItemModel(parent QObject_ITF) *QAbstractItemModel {
 	var tmpValue = NewQAbstractItemModelFromPointer(C.QAbstractItemModel_NewQAbstractItemModel(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -3147,7 +3147,7 @@ func (ptr *QAbstractItemModel) MimeData(indexes []*QModelIndex) *QMimeData {
 			}
 			return tmpList.Pointer()
 		}()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3164,7 +3164,7 @@ func (ptr *QAbstractItemModel) MimeDataDefault(indexes []*QModelIndex) *QMimeDat
 			}
 			return tmpList.Pointer()
 		}()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -4423,7 +4423,7 @@ func NewQAbstractListModelFromPointer(ptr unsafe.Pointer) *QAbstractListModel {
 }
 func NewQAbstractListModel(parent QObject_ITF) *QAbstractListModel {
 	var tmpValue = NewQAbstractListModelFromPointer(C.QAbstractListModel_NewQAbstractListModel(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -4749,7 +4749,7 @@ func NewQAbstractProxyModelFromPointer(ptr unsafe.Pointer) *QAbstractProxyModel 
 }
 func NewQAbstractProxyModel(parent QObject_ITF) *QAbstractProxyModel {
 	var tmpValue = NewQAbstractProxyModelFromPointer(C.QAbstractProxyModel_NewQAbstractProxyModel(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -4927,7 +4927,7 @@ func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModel() {
 func (ptr *QAbstractProxyModel) SourceModel() *QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractItemModelFromPointer(C.QAbstractProxyModel_SourceModel(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5297,7 +5297,7 @@ func NewQAbstractStateFromPointer(ptr unsafe.Pointer) *QAbstractState {
 }
 func NewQAbstractState(parent QState_ITF) *QAbstractState {
 	var tmpValue = NewQAbstractStateFromPointer(C.QAbstractState_NewQAbstractState(PointerFromQState(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -5489,7 +5489,7 @@ func (ptr *QAbstractState) DestroyQAbstractState() {
 func (ptr *QAbstractState) ParentState() *QState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQStateFromPointer(C.QAbstractState_ParentState(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5500,7 +5500,7 @@ func (ptr *QAbstractState) ParentState() *QState {
 func (ptr *QAbstractState) Machine() *QStateMachine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQStateMachineFromPointer(C.QAbstractState_Machine(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5555,7 +5555,7 @@ func NewQAbstractTableModelFromPointer(ptr unsafe.Pointer) *QAbstractTableModel 
 }
 func NewQAbstractTableModel(parent QObject_ITF) *QAbstractTableModel {
 	var tmpValue = NewQAbstractTableModelFromPointer(C.QAbstractTableModel_NewQAbstractTableModel(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -5767,7 +5767,7 @@ const (
 
 func NewQAbstractTransition(sourceState QState_ITF) *QAbstractTransition {
 	var tmpValue = NewQAbstractTransitionFromPointer(C.QAbstractTransition_NewQAbstractTransition(PointerFromQState(sourceState)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -6029,7 +6029,7 @@ func (ptr *QAbstractTransition) DestroyQAbstractTransitionDefault() {
 func (ptr *QAbstractTransition) TargetState() *QAbstractState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractStateFromPointer(C.QAbstractTransition_TargetState(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6066,7 +6066,7 @@ func (ptr *QAbstractTransition) TargetStates() []*QAbstractState {
 func (ptr *QAbstractTransition) SourceState() *QState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQStateFromPointer(C.QAbstractTransition_SourceState(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6077,7 +6077,7 @@ func (ptr *QAbstractTransition) SourceState() *QState {
 func (ptr *QAbstractTransition) Machine() *QStateMachine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQStateMachineFromPointer(C.QAbstractTransition_Machine(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6095,7 +6095,7 @@ func (ptr *QAbstractTransition) TransitionType() QAbstractTransition__Transition
 func (ptr *QAbstractTransition) __setTargetStates_targets_atList(i int) *QAbstractState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractStateFromPointer(C.QAbstractTransition___setTargetStates_targets_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6116,7 +6116,7 @@ func (ptr *QAbstractTransition) __setTargetStates_targets_newList() unsafe.Point
 func (ptr *QAbstractTransition) __animations_atList(i int) *QAbstractAnimation {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractAnimationFromPointer(C.QAbstractTransition___animations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6137,7 +6137,7 @@ func (ptr *QAbstractTransition) __animations_newList() unsafe.Pointer {
 func (ptr *QAbstractTransition) __targetStates_atList(i int) *QAbstractState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractStateFromPointer(C.QAbstractTransition___targetStates_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6196,7 +6196,7 @@ func NewQAnimationGroupFromPointer(ptr unsafe.Pointer) *QAnimationGroup {
 func (ptr *QAnimationGroup) TakeAnimation(index int) *QAbstractAnimation {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractAnimationFromPointer(C.QAnimationGroup_TakeAnimation(ptr.Pointer(), C.int(int32(index))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6206,7 +6206,7 @@ func (ptr *QAnimationGroup) TakeAnimation(index int) *QAbstractAnimation {
 
 func NewQAnimationGroup(parent QObject_ITF) *QAnimationGroup {
 	var tmpValue = NewQAnimationGroupFromPointer(C.QAnimationGroup_NewQAnimationGroup(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -6247,7 +6247,7 @@ func (ptr *QAnimationGroup) DestroyQAnimationGroup() {
 func (ptr *QAnimationGroup) AnimationAt(index int) *QAbstractAnimation {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractAnimationFromPointer(C.QAnimationGroup_AnimationAt(ptr.Pointer(), C.int(int32(index))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6812,7 +6812,7 @@ func NewQBufferFromPointer(ptr unsafe.Pointer) *QBuffer {
 }
 func NewQBuffer2(byteArray QByteArray_ITF, parent QObject_ITF) *QBuffer {
 	var tmpValue = NewQBufferFromPointer(C.QBuffer_NewQBuffer2(PointerFromQByteArray(byteArray), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -6820,7 +6820,7 @@ func NewQBuffer2(byteArray QByteArray_ITF, parent QObject_ITF) *QBuffer {
 
 func NewQBuffer(parent QObject_ITF) *QBuffer {
 	var tmpValue = NewQBufferFromPointer(C.QBuffer_NewQBuffer(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -9694,7 +9694,7 @@ func NewQChildEvent(ty QEvent__Type, child QObject_ITF) *QChildEvent {
 func (ptr *QChildEvent) Child() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QChildEvent_Child(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -9726,7 +9726,7 @@ func (ptr *QChildEvent) Removed() bool {
 func (ptr *QChildEvent) C() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QChildEvent_C(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -10582,7 +10582,7 @@ func (ptr *QCoreApplication) OrganizationDomain() string {
 
 func QCoreApplication_EventDispatcher() *QAbstractEventDispatcher {
 	var tmpValue = NewQAbstractEventDispatcherFromPointer(C.QCoreApplication_QCoreApplication_EventDispatcher())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -10590,7 +10590,7 @@ func QCoreApplication_EventDispatcher() *QAbstractEventDispatcher {
 
 func (ptr *QCoreApplication) EventDispatcher() *QAbstractEventDispatcher {
 	var tmpValue = NewQAbstractEventDispatcherFromPointer(C.QCoreApplication_QCoreApplication_EventDispatcher())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -10598,7 +10598,7 @@ func (ptr *QCoreApplication) EventDispatcher() *QAbstractEventDispatcher {
 
 func QCoreApplication_Instance() *QCoreApplication {
 	var tmpValue = NewQCoreApplicationFromPointer(C.QCoreApplication_QCoreApplication_Instance())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -10606,7 +10606,7 @@ func QCoreApplication_Instance() *QCoreApplication {
 
 func (ptr *QCoreApplication) Instance() *QCoreApplication {
 	var tmpValue = NewQCoreApplicationFromPointer(C.QCoreApplication_QCoreApplication_Instance())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -10616,7 +10616,7 @@ func NewQCoreApplication(argc int, argv []string) *QCoreApplication {
 	var argvC = C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
 	var tmpValue = NewQCoreApplicationFromPointer(C.QCoreApplication_NewQCoreApplication(C.int(int32(argc)), argvC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -11467,7 +11467,7 @@ func (ptr *QDataStream) FloatingPointPrecision() QDataStream__FloatingPointPreci
 func (ptr *QDataStream) Device() *QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQIODeviceFromPointer(C.QDataStream_Device(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -14502,7 +14502,7 @@ const (
 
 func NewQEventLoop(parent QObject_ITF) *QEventLoop {
 	var tmpValue = NewQEventLoopFromPointer(C.QEventLoop_NewQEventLoop(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -14699,7 +14699,7 @@ func NewQEventTransitionFromPointer(ptr unsafe.Pointer) *QEventTransition {
 }
 func NewQEventTransition2(object QObject_ITF, ty QEvent__Type, sourceState QState_ITF) *QEventTransition {
 	var tmpValue = NewQEventTransitionFromPointer(C.QEventTransition_NewQEventTransition2(PointerFromQObject(object), C.longlong(ty), PointerFromQState(sourceState)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -14707,7 +14707,7 @@ func NewQEventTransition2(object QObject_ITF, ty QEvent__Type, sourceState QStat
 
 func NewQEventTransition(sourceState QState_ITF) *QEventTransition {
 	var tmpValue = NewQEventTransitionFromPointer(C.QEventTransition_NewQEventTransition(PointerFromQState(sourceState)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -14829,7 +14829,7 @@ func (ptr *QEventTransition) EventType() QEvent__Type {
 func (ptr *QEventTransition) EventSource() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QEventTransition_EventSource(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -15001,7 +15001,7 @@ func (ptr *QFile) EncodeName(fileName string) *QByteArray {
 
 func NewQFile() *QFile {
 	var tmpValue = NewQFileFromPointer(C.QFile_NewQFile())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -15009,7 +15009,7 @@ func NewQFile() *QFile {
 
 func NewQFile3(parent QObject_ITF) *QFile {
 	var tmpValue = NewQFileFromPointer(C.QFile_NewQFile3(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -15022,7 +15022,7 @@ func NewQFile2(name string) *QFile {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	var tmpValue = NewQFileFromPointer(C.QFile_NewQFile2(nameC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -15035,7 +15035,7 @@ func NewQFile4(name string, parent QObject_ITF) *QFile {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	var tmpValue = NewQFileFromPointer(C.QFile_NewQFile4(nameC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -16235,7 +16235,7 @@ func NewQFileSelectorFromPointer(ptr unsafe.Pointer) *QFileSelector {
 }
 func NewQFileSelector(parent QObject_ITF) *QFileSelector {
 	var tmpValue = NewQFileSelectorFromPointer(C.QFileSelector_NewQFileSelector(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -16332,7 +16332,7 @@ func NewQFileSystemWatcherFromPointer(ptr unsafe.Pointer) *QFileSystemWatcher {
 }
 func NewQFileSystemWatcher(parent QObject_ITF) *QFileSystemWatcher {
 	var tmpValue = NewQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -16342,7 +16342,7 @@ func NewQFileSystemWatcher2(paths []string, parent QObject_ITF) *QFileSystemWatc
 	var pathsC = C.CString(strings.Join(paths, "|"))
 	defer C.free(unsafe.Pointer(pathsC))
 	var tmpValue = NewQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher2(pathsC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -16518,7 +16518,7 @@ func NewQFinalStateFromPointer(ptr unsafe.Pointer) *QFinalState {
 }
 func NewQFinalState(parent QState_ITF) *QFinalState {
 	var tmpValue = NewQFinalStateFromPointer(C.QFinalState_NewQFinalState(PointerFromQState(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -17202,7 +17202,7 @@ const (
 
 func NewQHistoryState2(ty QHistoryState__HistoryType, parent QState_ITF) *QHistoryState {
 	var tmpValue = NewQHistoryStateFromPointer(C.QHistoryState_NewQHistoryState2(C.longlong(ty), PointerFromQState(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -17210,7 +17210,7 @@ func NewQHistoryState2(ty QHistoryState__HistoryType, parent QState_ITF) *QHisto
 
 func NewQHistoryState(parent QState_ITF) *QHistoryState {
 	var tmpValue = NewQHistoryStateFromPointer(C.QHistoryState_NewQHistoryState(PointerFromQState(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -17435,7 +17435,7 @@ func (ptr *QHistoryState) HistoryType() QHistoryState__HistoryType {
 func (ptr *QHistoryState) DefaultState() *QAbstractState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractStateFromPointer(C.QHistoryState_DefaultState(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17446,7 +17446,7 @@ func (ptr *QHistoryState) DefaultState() *QAbstractState {
 func (ptr *QHistoryState) DefaultTransition() *QAbstractTransition {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractTransitionFromPointer(C.QHistoryState_DefaultTransition(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17597,7 +17597,7 @@ func (ptr *QIODevice) ReadLine2(maxSize int64) *QByteArray {
 
 func NewQIODevice2(parent QObject_ITF) *QIODevice {
 	var tmpValue = NewQIODeviceFromPointer(C.QIODevice_NewQIODevice2(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -17626,7 +17626,7 @@ func (ptr *QIODevice) Peek2(maxSize int64) *QByteArray {
 
 func NewQIODevice() *QIODevice {
 	var tmpValue = NewQIODeviceFromPointer(C.QIODevice_NewQIODevice())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -18886,7 +18886,7 @@ func NewQIdentityProxyModelFromPointer(ptr unsafe.Pointer) *QIdentityProxyModel 
 }
 func NewQIdentityProxyModel(parent QObject_ITF) *QIdentityProxyModel {
 	var tmpValue = NewQIdentityProxyModelFromPointer(C.QIdentityProxyModel_NewQIdentityProxyModel(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -19357,7 +19357,7 @@ const (
 func (ptr *QItemSelectionModel) Model2() *QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractItemModelFromPointer(C.QItemSelectionModel_Model2(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -19367,7 +19367,7 @@ func (ptr *QItemSelectionModel) Model2() *QAbstractItemModel {
 
 func NewQItemSelectionModel(model QAbstractItemModel_ITF) *QItemSelectionModel {
 	var tmpValue = NewQItemSelectionModelFromPointer(C.QItemSelectionModel_NewQItemSelectionModel(PointerFromQAbstractItemModel(model)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -19375,7 +19375,7 @@ func NewQItemSelectionModel(model QAbstractItemModel_ITF) *QItemSelectionModel {
 
 func NewQItemSelectionModel2(model QAbstractItemModel_ITF, parent QObject_ITF) *QItemSelectionModel {
 	var tmpValue = NewQItemSelectionModelFromPointer(C.QItemSelectionModel_NewQItemSelectionModel2(PointerFromQAbstractItemModel(model), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -20021,7 +20021,7 @@ func (ptr *QItemSelectionModel) RowIntersectsSelection(row int, parent QModelInd
 func (ptr *QItemSelectionModel) Model() *QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractItemModelFromPointer(C.QItemSelectionModel_Model(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -20245,7 +20245,7 @@ func (ptr *QItemSelectionRange) IsValid() bool {
 func (ptr *QItemSelectionRange) Model() *QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractItemModelFromPointer(C.QItemSelectionRange_Model(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -21925,7 +21925,7 @@ const (
 
 func NewQLibrary(parent QObject_ITF) *QLibrary {
 	var tmpValue = NewQLibraryFromPointer(C.QLibrary_NewQLibrary(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -21938,7 +21938,7 @@ func NewQLibrary2(fileName string, parent QObject_ITF) *QLibrary {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	var tmpValue = NewQLibraryFromPointer(C.QLibrary_NewQLibrary2(fileNameC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -21956,7 +21956,7 @@ func NewQLibrary4(fileName string, version string, parent QObject_ITF) *QLibrary
 		defer C.free(unsafe.Pointer(versionC))
 	}
 	var tmpValue = NewQLibraryFromPointer(C.QLibrary_NewQLibrary4(fileNameC, versionC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -21969,7 +21969,7 @@ func NewQLibrary3(fileName string, verNum int, parent QObject_ITF) *QLibrary {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	var tmpValue = NewQLibraryFromPointer(C.QLibrary_NewQLibrary3(fileNameC, C.int(int32(verNum)), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -26317,7 +26317,7 @@ func (ptr *QMetaObject) Method(index int) *QMetaMethod {
 func (ptr *QMetaObject) NewInstance(val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QMetaObject_NewInstance(ptr.Pointer(), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -27131,7 +27131,7 @@ func NewQMimeDataFromPointer(ptr unsafe.Pointer) *QMimeData {
 }
 func NewQMimeData() *QMimeData {
 	var tmpValue = NewQMimeDataFromPointer(C.QMimeData_NewQMimeData())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -27957,7 +27957,7 @@ func (ptr *QModelIndex) IsValid() bool {
 func (ptr *QModelIndex) Model() *QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractItemModelFromPointer(C.QModelIndex_Model(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -28556,7 +28556,7 @@ func NewQObjectFromPointer(ptr unsafe.Pointer) *QObject {
 }
 func NewQObject(parent QObject_ITF) *QObject {
 	var tmpValue = NewQObjectFromPointer(C.QObject_NewQObject(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -29229,7 +29229,7 @@ func (ptr *QObject) FindChildren(name string, options Qt__FindChildOption) []*QO
 func (ptr *QObject) Parent() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QObject_Parent(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29240,7 +29240,7 @@ func (ptr *QObject) Parent() *QObject {
 func (ptr *QObject) Sender() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QObject_Sender(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29258,7 +29258,7 @@ func (ptr *QObject) ObjectName() string {
 func (ptr *QObject) Thread() *QThread {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQThreadFromPointer(C.QObject_Thread(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29288,7 +29288,7 @@ func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) *QObject
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		var tmpValue = NewQObjectFromPointer(C.QObject_FindChild(ptr.Pointer(), nameC, C.longlong(options)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29472,7 +29472,7 @@ func (ptr *QObject) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QObject) __findChildren_atList2(i int) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QObject___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29493,7 +29493,7 @@ func (ptr *QObject) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QObject) __findChildren_atList3(i int) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QObject___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29514,7 +29514,7 @@ func (ptr *QObject) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QObject) __findChildren_atList(i int) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QObject___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29535,7 +29535,7 @@ func (ptr *QObject) __findChildren_newList() unsafe.Pointer {
 func (ptr *QObject) __children_atList(i int) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QObject___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29594,7 +29594,7 @@ func NewQObjectCleanupHandlerFromPointer(ptr unsafe.Pointer) *QObjectCleanupHand
 func (ptr *QObjectCleanupHandler) Add(object QObject_ITF) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QObjectCleanupHandler_Add(ptr.Pointer(), PointerFromQObject(object)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29604,7 +29604,7 @@ func (ptr *QObjectCleanupHandler) Add(object QObject_ITF) *QObject {
 
 func NewQObjectCleanupHandler() *QObjectCleanupHandler {
 	var tmpValue = NewQObjectCleanupHandlerFromPointer(C.QObjectCleanupHandler_NewQObjectCleanupHandler())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -29722,7 +29722,7 @@ func NewQParallelAnimationGroupFromPointer(ptr unsafe.Pointer) *QParallelAnimati
 }
 func NewQParallelAnimationGroup(parent QObject_ITF) *QParallelAnimationGroup {
 	var tmpValue = NewQParallelAnimationGroupFromPointer(C.QParallelAnimationGroup_NewQParallelAnimationGroup(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -29862,7 +29862,7 @@ func NewQPauseAnimationFromPointer(ptr unsafe.Pointer) *QPauseAnimation {
 }
 func NewQPauseAnimation(parent QObject_ITF) *QPauseAnimation {
 	var tmpValue = NewQPauseAnimationFromPointer(C.QPauseAnimation_NewQPauseAnimation(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -29870,7 +29870,7 @@ func NewQPauseAnimation(parent QObject_ITF) *QPauseAnimation {
 
 func NewQPauseAnimation2(msecs int, parent QObject_ITF) *QPauseAnimation {
 	var tmpValue = NewQPauseAnimationFromPointer(C.QPauseAnimation_NewQPauseAnimation2(C.int(int32(msecs)), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30089,7 +30089,7 @@ func (ptr *QPersistentModelIndex) IsValid() bool {
 func (ptr *QPersistentModelIndex) Model() *QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractItemModelFromPointer(C.QPersistentModelIndex_Model(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -30152,7 +30152,7 @@ func NewQPluginLoaderFromPointer(ptr unsafe.Pointer) *QPluginLoader {
 func (ptr *QPluginLoader) Instance() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QPluginLoader_Instance(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -30182,7 +30182,7 @@ func (ptr *QPluginLoader) StaticInstances() []*QObject {
 
 func NewQPluginLoader(parent QObject_ITF) *QPluginLoader {
 	var tmpValue = NewQPluginLoaderFromPointer(C.QPluginLoader_NewQPluginLoader(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30195,7 +30195,7 @@ func NewQPluginLoader2(fileName string, parent QObject_ITF) *QPluginLoader {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	var tmpValue = NewQPluginLoaderFromPointer(C.QPluginLoader_NewQPluginLoader2(fileNameC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30280,7 +30280,7 @@ func (ptr *QPluginLoader) IsLoaded() bool {
 func (ptr *QPluginLoader) __staticInstances_atList(i int) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QPluginLoader___staticInstances_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -30778,7 +30778,7 @@ func NewQPropertyAnimationFromPointer(ptr unsafe.Pointer) *QPropertyAnimation {
 }
 func NewQPropertyAnimation(parent QObject_ITF) *QPropertyAnimation {
 	var tmpValue = NewQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30786,7 +30786,7 @@ func NewQPropertyAnimation(parent QObject_ITF) *QPropertyAnimation {
 
 func NewQPropertyAnimation2(target QObject_ITF, propertyName QByteArray_ITF, parent QObject_ITF) *QPropertyAnimation {
 	var tmpValue = NewQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation2(PointerFromQObject(target), PointerFromQByteArray(propertyName), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30824,7 +30824,7 @@ func (ptr *QPropertyAnimation) PropertyName() *QByteArray {
 func (ptr *QPropertyAnimation) TargetObject() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QPropertyAnimation_TargetObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -33279,7 +33279,7 @@ func NewQSaveFileFromPointer(ptr unsafe.Pointer) *QSaveFile {
 }
 func NewQSaveFile2(parent QObject_ITF) *QSaveFile {
 	var tmpValue = NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile2(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -33292,7 +33292,7 @@ func NewQSaveFile(name string) *QSaveFile {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	var tmpValue = NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile(nameC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -33305,7 +33305,7 @@ func NewQSaveFile3(name string, parent QObject_ITF) *QSaveFile {
 		defer C.free(unsafe.Pointer(nameC))
 	}
 	var tmpValue = NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile3(nameC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -33602,7 +33602,7 @@ func NewQSequentialAnimationGroupFromPointer(ptr unsafe.Pointer) *QSequentialAni
 func (ptr *QSequentialAnimationGroup) AddPause(msecs int) *QPauseAnimation {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQPauseAnimationFromPointer(C.QSequentialAnimationGroup_AddPause(ptr.Pointer(), C.int(int32(msecs))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -33613,7 +33613,7 @@ func (ptr *QSequentialAnimationGroup) AddPause(msecs int) *QPauseAnimation {
 func (ptr *QSequentialAnimationGroup) InsertPause(index int, msecs int) *QPauseAnimation {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQPauseAnimationFromPointer(C.QSequentialAnimationGroup_InsertPause(ptr.Pointer(), C.int(int32(index)), C.int(int32(msecs))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -33623,7 +33623,7 @@ func (ptr *QSequentialAnimationGroup) InsertPause(index int, msecs int) *QPauseA
 
 func NewQSequentialAnimationGroup(parent QObject_ITF) *QSequentialAnimationGroup {
 	var tmpValue = NewQSequentialAnimationGroupFromPointer(C.QSequentialAnimationGroup_NewQSequentialAnimationGroup(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -33721,7 +33721,7 @@ func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroup() {
 func (ptr *QSequentialAnimationGroup) CurrentAnimation() *QAbstractAnimation {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractAnimationFromPointer(C.QSequentialAnimationGroup_CurrentAnimation(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -34037,7 +34037,7 @@ func NewQSettings3(format QSettings__Format, scope QSettings__Scope, organizatio
 		defer C.free(unsafe.Pointer(applicationC))
 	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings3(C.longlong(format), C.longlong(scope), organizationC, applicationC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34045,7 +34045,7 @@ func NewQSettings3(format QSettings__Format, scope QSettings__Scope, organizatio
 
 func NewQSettings5(parent QObject_ITF) *QSettings {
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings5(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34063,7 +34063,7 @@ func NewQSettings2(scope QSettings__Scope, organization string, application stri
 		defer C.free(unsafe.Pointer(applicationC))
 	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings2(C.longlong(scope), organizationC, applicationC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34076,7 +34076,7 @@ func NewQSettings4(fileName string, format QSettings__Format, parent QObject_ITF
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings4(fileNameC, C.longlong(format), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34094,7 +34094,7 @@ func NewQSettings(organization string, application string, parent QObject_ITF) *
 		defer C.free(unsafe.Pointer(applicationC))
 	}
 	var tmpValue = NewQSettingsFromPointer(C.QSettings_NewQSettings(organizationC, applicationC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34521,7 +34521,7 @@ const (
 
 func NewQSharedMemory2(parent QObject_ITF) *QSharedMemory {
 	var tmpValue = NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory2(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34534,7 +34534,7 @@ func NewQSharedMemory(key string, parent QObject_ITF) *QSharedMemory {
 		defer C.free(unsafe.Pointer(keyC))
 	}
 	var tmpValue = NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory(keyC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34814,7 +34814,7 @@ func NewQSignalMapperFromPointer(ptr unsafe.Pointer) *QSignalMapper {
 }
 func NewQSignalMapper(parent QObject_ITF) *QSignalMapper {
 	var tmpValue = NewQSignalMapperFromPointer(C.QSignalMapper_NewQSignalMapper(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -35111,7 +35111,7 @@ func (ptr *QSignalMapper) DestroyQSignalMapper() {
 func (ptr *QSignalMapper) Mapping4(object QObject_ITF) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QSignalMapper_Mapping4(ptr.Pointer(), PointerFromQObject(object)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35122,7 +35122,7 @@ func (ptr *QSignalMapper) Mapping4(object QObject_ITF) *QObject {
 func (ptr *QSignalMapper) Mapping3(widget unsafe.Pointer) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QSignalMapper_Mapping3(ptr.Pointer(), widget))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35138,7 +35138,7 @@ func (ptr *QSignalMapper) Mapping2(id string) *QObject {
 			defer C.free(unsafe.Pointer(idC))
 		}
 		var tmpValue = NewQObjectFromPointer(C.QSignalMapper_Mapping2(ptr.Pointer(), idC))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35149,7 +35149,7 @@ func (ptr *QSignalMapper) Mapping2(id string) *QObject {
 func (ptr *QSignalMapper) Mapping(id int) *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QSignalMapper_Mapping(ptr.Pointer(), C.int(int32(id))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35197,7 +35197,7 @@ func NewQSignalTransitionFromPointer(ptr unsafe.Pointer) *QSignalTransition {
 }
 func NewQSignalTransition(sourceState QState_ITF) *QSignalTransition {
 	var tmpValue = NewQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition(PointerFromQState(sourceState)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -35210,7 +35210,7 @@ func NewQSignalTransition2(sender QObject_ITF, sign string, sourceState QState_I
 		defer C.free(unsafe.Pointer(signC))
 	}
 	var tmpValue = NewQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), signC, PointerFromQState(sourceState)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -35400,7 +35400,7 @@ func (ptr *QSignalTransition) Signal() *QByteArray {
 func (ptr *QSignalTransition) SenderObject() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QSignalTransition_SenderObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35971,7 +35971,7 @@ func NewQSortFilterProxyModelFromPointer(ptr unsafe.Pointer) *QSortFilterProxyMo
 }
 func NewQSortFilterProxyModel(parent QObject_ITF) *QSortFilterProxyModel {
 	var tmpValue = NewQSortFilterProxyModelFromPointer(C.QSortFilterProxyModel_NewQSortFilterProxyModel(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -36998,7 +36998,7 @@ const (
 func (ptr *QState) AddTransition4(target QAbstractState_ITF) *QAbstractTransition {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractTransitionFromPointer(C.QState_AddTransition4(ptr.Pointer(), PointerFromQAbstractState(target)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -37014,7 +37014,7 @@ func (ptr *QState) AddTransition2(sender QObject_ITF, sign string, target QAbstr
 			defer C.free(unsafe.Pointer(signC))
 		}
 		var tmpValue = NewQSignalTransitionFromPointer(C.QState_AddTransition2(ptr.Pointer(), PointerFromQObject(sender), signC, PointerFromQAbstractState(target)))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -37024,7 +37024,7 @@ func (ptr *QState) AddTransition2(sender QObject_ITF, sign string, target QAbstr
 
 func NewQState2(childMode QState__ChildMode, parent QState_ITF) *QState {
 	var tmpValue = NewQStateFromPointer(C.QState_NewQState2(C.longlong(childMode), PointerFromQState(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -37032,7 +37032,7 @@ func NewQState2(childMode QState__ChildMode, parent QState_ITF) *QState {
 
 func NewQState(parent QState_ITF) *QState {
 	var tmpValue = NewQStateFromPointer(C.QState_NewQState(PointerFromQState(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -37346,7 +37346,7 @@ func (ptr *QState) ChildMode() QState__ChildMode {
 func (ptr *QState) ErrorState() *QAbstractState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractStateFromPointer(C.QState_ErrorState(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -37357,7 +37357,7 @@ func (ptr *QState) ErrorState() *QAbstractState {
 func (ptr *QState) InitialState() *QAbstractState {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractStateFromPointer(C.QState_InitialState(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -37381,7 +37381,7 @@ func (ptr *QState) Transitions() []*QAbstractTransition {
 func (ptr *QState) __transitions_atList(i int) *QAbstractTransition {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractTransitionFromPointer(C.QState___transitions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -37460,7 +37460,7 @@ const (
 
 func NewQStateMachine(parent QObject_ITF) *QStateMachine {
 	var tmpValue = NewQStateMachineFromPointer(C.QStateMachine_NewQStateMachine(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -37468,7 +37468,7 @@ func NewQStateMachine(parent QObject_ITF) *QStateMachine {
 
 func NewQStateMachine2(childMode QState__ChildMode, parent QObject_ITF) *QStateMachine {
 	var tmpValue = NewQStateMachineFromPointer(C.QStateMachine_NewQStateMachine2(C.longlong(childMode), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -37826,7 +37826,7 @@ func (ptr *QStateMachine) IsRunning() bool {
 func (ptr *QStateMachine) __defaultAnimations_atList(i int) *QAbstractAnimation {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractAnimationFromPointer(C.QStateMachine___defaultAnimations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -37892,7 +37892,7 @@ func (ptr *QStaticPlugin) DestroyQStaticPlugin() {
 func (ptr *QStaticPlugin) Instance() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QStaticPlugin_Instance(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -38323,7 +38323,7 @@ func (ptr *QStringListModel) DestroyQStringListModel() {
 
 func NewQStringListModel(parent QObject_ITF) *QStringListModel {
 	var tmpValue = NewQStringListModelFromPointer(C.QStringListModel_NewQStringListModel(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -38333,7 +38333,7 @@ func NewQStringListModel2(strin []string, parent QObject_ITF) *QStringListModel 
 	var strinC = C.CString(strings.Join(strin, "|"))
 	defer C.free(unsafe.Pointer(strinC))
 	var tmpValue = NewQStringListModelFromPointer(C.QStringListModel_NewQStringListModel2(strinC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39832,7 +39832,7 @@ func NewQTemporaryFileFromPointer(ptr unsafe.Pointer) *QTemporaryFile {
 }
 func QTemporaryFile_CreateNativeFile(file QFile_ITF) *QTemporaryFile {
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile(PointerFromQFile(file)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39840,7 +39840,7 @@ func QTemporaryFile_CreateNativeFile(file QFile_ITF) *QTemporaryFile {
 
 func (ptr *QTemporaryFile) CreateNativeFile(file QFile_ITF) *QTemporaryFile {
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile(PointerFromQFile(file)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39853,7 +39853,7 @@ func QTemporaryFile_CreateNativeFile2(fileName string) *QTemporaryFile {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(fileNameC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39866,7 +39866,7 @@ func (ptr *QTemporaryFile) CreateNativeFile2(fileName string) *QTemporaryFile {
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(fileNameC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39874,7 +39874,7 @@ func (ptr *QTemporaryFile) CreateNativeFile2(fileName string) *QTemporaryFile {
 
 func NewQTemporaryFile() *QTemporaryFile {
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39882,7 +39882,7 @@ func NewQTemporaryFile() *QTemporaryFile {
 
 func NewQTemporaryFile3(parent QObject_ITF) *QTemporaryFile {
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile3(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39895,7 +39895,7 @@ func NewQTemporaryFile2(templateName string) *QTemporaryFile {
 		defer C.free(unsafe.Pointer(templateNameC))
 	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile2(templateNameC))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39908,7 +39908,7 @@ func NewQTemporaryFile4(templateName string, parent QObject_ITF) *QTemporaryFile
 		defer C.free(unsafe.Pointer(templateNameC))
 	}
 	var tmpValue = NewQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile4(templateNameC, PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -41121,7 +41121,7 @@ func (ptr *QTextStream) PadChar() *QChar {
 func (ptr *QTextStream) Device() *QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQIODeviceFromPointer(C.QTextStream_Device(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -41300,7 +41300,7 @@ func (ptr *QThread) SetPriority(priority QThread__Priority) {
 
 func QThread_CurrentThread() *QThread {
 	var tmpValue = NewQThreadFromPointer(C.QThread_QThread_CurrentThread())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -41308,7 +41308,7 @@ func QThread_CurrentThread() *QThread {
 
 func (ptr *QThread) CurrentThread() *QThread {
 	var tmpValue = NewQThreadFromPointer(C.QThread_QThread_CurrentThread())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -41316,7 +41316,7 @@ func (ptr *QThread) CurrentThread() *QThread {
 
 func NewQThread(parent QObject_ITF) *QThread {
 	var tmpValue = NewQThreadFromPointer(C.QThread_NewQThread(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -41637,7 +41637,7 @@ func (ptr *QThread) Priority() QThread__Priority {
 func (ptr *QThread) EventDispatcher() *QAbstractEventDispatcher {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractEventDispatcherFromPointer(C.QThread_EventDispatcher(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -41720,7 +41720,7 @@ func NewQThreadPoolFromPointer(ptr unsafe.Pointer) *QThreadPool {
 }
 func QThreadPool_GlobalInstance() *QThreadPool {
 	var tmpValue = NewQThreadPoolFromPointer(C.QThreadPool_QThreadPool_GlobalInstance())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -41728,7 +41728,7 @@ func QThreadPool_GlobalInstance() *QThreadPool {
 
 func (ptr *QThreadPool) GlobalInstance() *QThreadPool {
 	var tmpValue = NewQThreadPoolFromPointer(C.QThreadPool_QThreadPool_GlobalInstance())
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -41736,7 +41736,7 @@ func (ptr *QThreadPool) GlobalInstance() *QThreadPool {
 
 func NewQThreadPool(parent QObject_ITF) *QThreadPool {
 	var tmpValue = NewQThreadPoolFromPointer(C.QThreadPool_NewQThreadPool(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -42250,7 +42250,7 @@ func (ptr *QTimeLine) SetCurrentTimeDefault(msec int) {
 
 func NewQTimeLine(duration int, parent QObject_ITF) *QTimeLine {
 	var tmpValue = NewQTimeLineFromPointer(C.QTimeLine_NewQTimeLine(C.int(int32(duration)), PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -43360,7 +43360,7 @@ func NewQTimerFromPointer(ptr unsafe.Pointer) *QTimer {
 }
 func NewQTimer(parent QObject_ITF) *QTimer {
 	var tmpValue = NewQTimerFromPointer(C.QTimer_NewQTimer(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -43740,7 +43740,7 @@ func NewQTranslatorFromPointer(ptr unsafe.Pointer) *QTranslator {
 }
 func NewQTranslator(parent QObject_ITF) *QTranslator {
 	var tmpValue = NewQTranslatorFromPointer(C.QTranslator_NewQTranslator(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -46393,7 +46393,7 @@ func (ptr *QVariant) ToImage() unsafe.Pointer {
 func (ptr *QVariant) ToObject() *QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQObjectFromPointer(C.QVariant_ToObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -46747,7 +46747,7 @@ func (ptr *QVariantAnimation) SetStartValue(value QVariant_ITF) {
 
 func NewQVariantAnimation(parent QObject_ITF) *QVariantAnimation {
 	var tmpValue = NewQVariantAnimationFromPointer(C.QVariantAnimation_NewQVariantAnimation(PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -48629,7 +48629,7 @@ func (ptr *QXmlStreamReader) Error() QXmlStreamReader__Error {
 func (ptr *QXmlStreamReader) Device() *QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQIODeviceFromPointer(C.QXmlStreamReader_Device(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -49294,7 +49294,7 @@ func (ptr *QXmlStreamWriter) DestroyQXmlStreamWriter() {
 func (ptr *QXmlStreamWriter) Device() *QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQIODeviceFromPointer(C.QXmlStreamWriter_Device(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue

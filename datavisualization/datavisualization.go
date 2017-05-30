@@ -13353,7 +13353,7 @@ func (ptr *QItemModelBarDataProxy) MultiMatchBehavior() QItemModelBarDataProxy__
 func (ptr *QItemModelBarDataProxy) ItemModel() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QItemModelBarDataProxy_ItemModel(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -14316,7 +14316,7 @@ func (ptr *QItemModelScatterDataProxy) DestroyQItemModelScatterDataProxyDefault(
 func (ptr *QItemModelScatterDataProxy) ItemModel() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QItemModelScatterDataProxy_ItemModel(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -15795,7 +15795,7 @@ func (ptr *QItemModelSurfaceDataProxy) MultiMatchBehavior() QItemModelSurfaceDat
 func (ptr *QItemModelSurfaceDataProxy) ItemModel() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QItemModelSurfaceDataProxy_ItemModel(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue

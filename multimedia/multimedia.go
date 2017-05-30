@@ -559,7 +559,7 @@ func (ptr *QAbstractVideoFilter) DestroyQAbstractVideoFilter() {
 
 func NewQAbstractVideoFilter(parent core.QObject_ITF) *QAbstractVideoFilter {
 	var tmpValue = NewQAbstractVideoFilterFromPointer(C.QAbstractVideoFilter_NewQAbstractVideoFilter(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -676,7 +676,7 @@ func (ptr *QAbstractVideoFilter) __dynamicPropertyNames_newList() unsafe.Pointer
 func (ptr *QAbstractVideoFilter) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -697,7 +697,7 @@ func (ptr *QAbstractVideoFilter) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QAbstractVideoFilter) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -718,7 +718,7 @@ func (ptr *QAbstractVideoFilter) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QAbstractVideoFilter) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -739,7 +739,7 @@ func (ptr *QAbstractVideoFilter) __findChildren_newList() unsafe.Pointer {
 func (ptr *QAbstractVideoFilter) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoFilter___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1017,7 +1017,7 @@ func (ptr *QAbstractVideoSurface) NativeResolution() *core.QSize {
 
 func NewQAbstractVideoSurface(parent core.QObject_ITF) *QAbstractVideoSurface {
 	var tmpValue = NewQAbstractVideoSurfaceFromPointer(C.QAbstractVideoSurface_NewQAbstractVideoSurface(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -1489,7 +1489,7 @@ func (ptr *QAbstractVideoSurface) __dynamicPropertyNames_newList() unsafe.Pointe
 func (ptr *QAbstractVideoSurface) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1510,7 +1510,7 @@ func (ptr *QAbstractVideoSurface) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QAbstractVideoSurface) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1531,7 +1531,7 @@ func (ptr *QAbstractVideoSurface) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QAbstractVideoSurface) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1552,7 +1552,7 @@ func (ptr *QAbstractVideoSurface) __findChildren_newList() unsafe.Pointer {
 func (ptr *QAbstractVideoSurface) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractVideoSurface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -2062,7 +2062,7 @@ const (
 
 func NewQAudioDecoder(parent core.QObject_ITF) *QAudioDecoder {
 	var tmpValue = NewQAudioDecoderFromPointer(C.QAudioDecoder_NewQAudioDecoder(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -2584,7 +2584,7 @@ func (ptr *QAudioDecoder) AudioFormat() *QAudioFormat {
 func (ptr *QAudioDecoder) SourceDevice() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QAudioDecoder_SourceDevice(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -2714,7 +2714,7 @@ func (ptr *QAudioDecoderControl) Read() *QAudioBuffer {
 
 func NewQAudioDecoderControl(parent core.QObject_ITF) *QAudioDecoderControl {
 	var tmpValue = NewQAudioDecoderControlFromPointer(C.QAudioDecoderControl_NewQAudioDecoderControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -3373,7 +3373,7 @@ func (ptr *QAudioDecoderControl) DisconnectSourceDevice() {
 func (ptr *QAudioDecoderControl) SourceDevice() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QAudioDecoderControl_SourceDevice(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -4208,7 +4208,7 @@ func NewQAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncod
 }
 func NewQAudioEncoderSettingsControl(parent core.QObject_ITF) *QAudioEncoderSettingsControl {
 	var tmpValue = NewQAudioEncoderSettingsControlFromPointer(C.QAudioEncoderSettingsControl_NewQAudioEncoderSettingsControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -4741,7 +4741,7 @@ func NewQAudioInputFromPointer(ptr unsafe.Pointer) *QAudioInput {
 }
 func NewQAudioInput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioInput {
 	var tmpValue = NewQAudioInputFromPointer(C.QAudioInput_NewQAudioInput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -4749,7 +4749,7 @@ func NewQAudioInput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF, 
 
 func NewQAudioInput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioInput {
 	var tmpValue = NewQAudioInputFromPointer(C.QAudioInput_NewQAudioInput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -4758,7 +4758,7 @@ func NewQAudioInput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioInp
 func (ptr *QAudioInput) Start2() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QAudioInput_Start2(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -4955,7 +4955,7 @@ func (ptr *QAudioInput) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QAudioInput) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -4976,7 +4976,7 @@ func (ptr *QAudioInput) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QAudioInput) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -4997,7 +4997,7 @@ func (ptr *QAudioInput) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QAudioInput) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5018,7 +5018,7 @@ func (ptr *QAudioInput) __findChildren_newList() unsafe.Pointer {
 func (ptr *QAudioInput) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioInput___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5578,7 +5578,7 @@ func NewQAudioOutputFromPointer(ptr unsafe.Pointer) *QAudioOutput {
 }
 func NewQAudioOutput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioOutput {
 	var tmpValue = NewQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -5586,7 +5586,7 @@ func NewQAudioOutput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF,
 
 func NewQAudioOutput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioOutput {
 	var tmpValue = NewQAudioOutputFromPointer(C.QAudioOutput_NewQAudioOutput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -5595,7 +5595,7 @@ func NewQAudioOutput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioOu
 func (ptr *QAudioOutput) Start2() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QAudioOutput_Start2(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5810,7 +5810,7 @@ func (ptr *QAudioOutput) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QAudioOutput) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5831,7 +5831,7 @@ func (ptr *QAudioOutput) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QAudioOutput) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5852,7 +5852,7 @@ func (ptr *QAudioOutput) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QAudioOutput) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -5873,7 +5873,7 @@ func (ptr *QAudioOutput) __findChildren_newList() unsafe.Pointer {
 func (ptr *QAudioOutput) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioOutput___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6433,7 +6433,7 @@ func NewQAudioProbeFromPointer(ptr unsafe.Pointer) *QAudioProbe {
 }
 func NewQAudioProbe(parent core.QObject_ITF) *QAudioProbe {
 	var tmpValue = NewQAudioProbeFromPointer(C.QAudioProbe_NewQAudioProbe(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -6568,7 +6568,7 @@ func (ptr *QAudioProbe) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QAudioProbe) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6589,7 +6589,7 @@ func (ptr *QAudioProbe) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QAudioProbe) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6610,7 +6610,7 @@ func (ptr *QAudioProbe) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QAudioProbe) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6631,7 +6631,7 @@ func (ptr *QAudioProbe) __findChildren_newList() unsafe.Pointer {
 func (ptr *QAudioProbe) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAudioProbe___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -6845,7 +6845,7 @@ func NewQAudioRecorderFromPointer(ptr unsafe.Pointer) *QAudioRecorder {
 }
 func NewQAudioRecorder(parent core.QObject_ITF) *QAudioRecorder {
 	var tmpValue = NewQAudioRecorderFromPointer(C.QAudioRecorder_NewQAudioRecorder(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -7067,7 +7067,7 @@ func NewQAudioRoleControlFromPointer(ptr unsafe.Pointer) *QAudioRoleControl {
 }
 func NewQAudioRoleControl(parent core.QObject_ITF) *QAudioRoleControl {
 	var tmpValue = NewQAudioRoleControlFromPointer(C.QAudioRoleControl_NewQAudioRoleControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -7434,7 +7434,7 @@ const (
 
 func NewQCamera4(position QCamera__Position, parent core.QObject_ITF) *QCamera {
 	var tmpValue = NewQCameraFromPointer(C.QCamera_NewQCamera4(C.longlong(position), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -7442,7 +7442,7 @@ func NewQCamera4(position QCamera__Position, parent core.QObject_ITF) *QCamera {
 
 func NewQCamera(parent core.QObject_ITF) *QCamera {
 	var tmpValue = NewQCameraFromPointer(C.QCamera_NewQCamera(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -7450,7 +7450,7 @@ func NewQCamera(parent core.QObject_ITF) *QCamera {
 
 func NewQCamera2(deviceName core.QByteArray_ITF, parent core.QObject_ITF) *QCamera {
 	var tmpValue = NewQCameraFromPointer(C.QCamera_NewQCamera2(core.PointerFromQByteArray(deviceName), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -7458,7 +7458,7 @@ func NewQCamera2(deviceName core.QByteArray_ITF, parent core.QObject_ITF) *QCame
 
 func NewQCamera3(cameraInfo QCameraInfo_ITF, parent core.QObject_ITF) *QCamera {
 	var tmpValue = NewQCameraFromPointer(C.QCamera_NewQCamera3(PointerFromQCameraInfo(cameraInfo), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -8231,7 +8231,7 @@ func (ptr *QCamera) SupportedLocks() QCamera__LockType {
 func (ptr *QCamera) Exposure() *QCameraExposure {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQCameraExposureFromPointer(C.QCamera_Exposure(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -8242,7 +8242,7 @@ func (ptr *QCamera) Exposure() *QCameraExposure {
 func (ptr *QCamera) Focus() *QCameraFocus {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQCameraFocusFromPointer(C.QCamera_Focus(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -8253,7 +8253,7 @@ func (ptr *QCamera) Focus() *QCameraFocus {
 func (ptr *QCamera) ImageProcessing() *QCameraImageProcessing {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQCameraImageProcessingFromPointer(C.QCamera_ImageProcessing(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -8451,7 +8451,7 @@ func NewQCameraCaptureBufferFormatControlFromPointer(ptr unsafe.Pointer) *QCamer
 }
 func NewQCameraCaptureBufferFormatControl(parent core.QObject_ITF) *QCameraCaptureBufferFormatControl {
 	var tmpValue = NewQCameraCaptureBufferFormatControlFromPointer(C.QCameraCaptureBufferFormatControl_NewQCameraCaptureBufferFormatControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -8688,7 +8688,7 @@ func NewQCameraCaptureDestinationControlFromPointer(ptr unsafe.Pointer) *QCamera
 }
 func NewQCameraCaptureDestinationControl(parent core.QObject_ITF) *QCameraCaptureDestinationControl {
 	var tmpValue = NewQCameraCaptureDestinationControlFromPointer(C.QCameraCaptureDestinationControl_NewQCameraCaptureDestinationControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -8903,7 +8903,7 @@ const (
 
 func NewQCameraControl(parent core.QObject_ITF) *QCameraControl {
 	var tmpValue = NewQCameraControlFromPointer(C.QCameraControl_NewQCameraControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -10361,7 +10361,7 @@ func (ptr *QCameraExposure) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QCameraExposure) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -10382,7 +10382,7 @@ func (ptr *QCameraExposure) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QCameraExposure) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -10403,7 +10403,7 @@ func (ptr *QCameraExposure) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QCameraExposure) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -10424,7 +10424,7 @@ func (ptr *QCameraExposure) __findChildren_newList() unsafe.Pointer {
 func (ptr *QCameraExposure) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraExposure___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -10657,7 +10657,7 @@ const (
 
 func NewQCameraExposureControl(parent core.QObject_ITF) *QCameraExposureControl {
 	var tmpValue = NewQCameraExposureControlFromPointer(C.QCameraExposureControl_NewQCameraExposureControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -11073,7 +11073,7 @@ const (
 
 func NewQCameraFeedbackControl(parent core.QObject_ITF) *QCameraFeedbackControl {
 	var tmpValue = NewQCameraFeedbackControlFromPointer(C.QCameraFeedbackControl_NewQCameraFeedbackControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -11315,7 +11315,7 @@ func NewQCameraFlashControlFromPointer(ptr unsafe.Pointer) *QCameraFlashControl 
 }
 func NewQCameraFlashControl(parent core.QObject_ITF) *QCameraFlashControl {
 	var tmpValue = NewQCameraFlashControlFromPointer(C.QCameraFlashControl_NewQCameraFlashControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -11898,7 +11898,7 @@ func (ptr *QCameraFocus) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QCameraFocus) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -11919,7 +11919,7 @@ func (ptr *QCameraFocus) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QCameraFocus) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -11940,7 +11940,7 @@ func (ptr *QCameraFocus) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QCameraFocus) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -11961,7 +11961,7 @@ func (ptr *QCameraFocus) __findChildren_newList() unsafe.Pointer {
 func (ptr *QCameraFocus) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraFocus___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -12789,7 +12789,7 @@ const (
 
 func NewQCameraImageCapture(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QCameraImageCapture {
 	var tmpValue = NewQCameraImageCaptureFromPointer(C.QCameraImageCapture_NewQCameraImageCapture(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -13409,7 +13409,7 @@ func (ptr *QCameraImageCapture) DisconnectMediaObject() {
 func (ptr *QCameraImageCapture) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QCameraImageCapture_MediaObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -13420,7 +13420,7 @@ func (ptr *QCameraImageCapture) MediaObject() *QMediaObject {
 func (ptr *QCameraImageCapture) MediaObjectDefault() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QCameraImageCapture_MediaObjectDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -13547,7 +13547,7 @@ func (ptr *QCameraImageCapture) __dynamicPropertyNames_newList() unsafe.Pointer 
 func (ptr *QCameraImageCapture) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -13568,7 +13568,7 @@ func (ptr *QCameraImageCapture) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QCameraImageCapture) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -13589,7 +13589,7 @@ func (ptr *QCameraImageCapture) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QCameraImageCapture) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -13610,7 +13610,7 @@ func (ptr *QCameraImageCapture) __findChildren_newList() unsafe.Pointer {
 func (ptr *QCameraImageCapture) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageCapture___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -13883,7 +13883,7 @@ func NewQCameraImageCaptureControlFromPointer(ptr unsafe.Pointer) *QCameraImageC
 }
 func NewQCameraImageCaptureControl(parent core.QObject_ITF) *QCameraImageCaptureControl {
 	var tmpValue = NewQCameraImageCaptureControlFromPointer(C.QCameraImageCaptureControl_NewQCameraImageCaptureControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -14599,7 +14599,7 @@ func (ptr *QCameraImageProcessing) __dynamicPropertyNames_newList() unsafe.Point
 func (ptr *QCameraImageProcessing) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -14620,7 +14620,7 @@ func (ptr *QCameraImageProcessing) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QCameraImageProcessing) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -14641,7 +14641,7 @@ func (ptr *QCameraImageProcessing) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QCameraImageProcessing) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -14662,7 +14662,7 @@ func (ptr *QCameraImageProcessing) __findChildren_newList() unsafe.Pointer {
 func (ptr *QCameraImageProcessing) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QCameraImageProcessing___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -14898,7 +14898,7 @@ const (
 
 func NewQCameraImageProcessingControl(parent core.QObject_ITF) *QCameraImageProcessingControl {
 	var tmpValue = NewQCameraImageProcessingControlFromPointer(C.QCameraImageProcessingControl_NewQCameraImageProcessingControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -15248,7 +15248,7 @@ func NewQCameraInfoControlFromPointer(ptr unsafe.Pointer) *QCameraInfoControl {
 }
 func NewQCameraInfoControl(parent core.QObject_ITF) *QCameraInfoControl {
 	var tmpValue = NewQCameraInfoControlFromPointer(C.QCameraInfoControl_NewQCameraInfoControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -15424,7 +15424,7 @@ func NewQCameraLocksControlFromPointer(ptr unsafe.Pointer) *QCameraLocksControl 
 }
 func NewQCameraLocksControl(parent core.QObject_ITF) *QCameraLocksControl {
 	var tmpValue = NewQCameraLocksControlFromPointer(C.QCameraLocksControl_NewQCameraLocksControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -15661,7 +15661,7 @@ func NewQCameraViewfinderFromPointer(ptr unsafe.Pointer) *QCameraViewfinder {
 }
 func NewQCameraViewfinder(parent widgets.QWidget_ITF) *QCameraViewfinder {
 	var tmpValue = NewQCameraViewfinderFromPointer(C.QCameraViewfinder_NewQCameraViewfinder(widgets.PointerFromQWidget(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -15923,7 +15923,7 @@ const (
 
 func NewQCameraViewfinderSettingsControl(parent core.QObject_ITF) *QCameraViewfinderSettingsControl {
 	var tmpValue = NewQCameraViewfinderSettingsControlFromPointer(C.QCameraViewfinderSettingsControl_NewQCameraViewfinderSettingsControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -16088,7 +16088,7 @@ func NewQCameraViewfinderSettingsControl2FromPointer(ptr unsafe.Pointer) *QCamer
 }
 func NewQCameraViewfinderSettingsControl2(parent core.QObject_ITF) *QCameraViewfinderSettingsControl2 {
 	var tmpValue = NewQCameraViewfinderSettingsControl2FromPointer(C.QCameraViewfinderSettingsControl2_NewQCameraViewfinderSettingsControl2(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -16328,7 +16328,7 @@ func NewQCameraZoomControlFromPointer(ptr unsafe.Pointer) *QCameraZoomControl {
 }
 func NewQCameraZoomControl(parent core.QObject_ITF) *QCameraZoomControl {
 	var tmpValue = NewQCameraZoomControlFromPointer(C.QCameraZoomControl_NewQCameraZoomControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -16876,7 +16876,7 @@ func NewQGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
 }
 func NewQGraphicsVideoItem(parent widgets.QGraphicsItem_ITF) *QGraphicsVideoItem {
 	var tmpValue = NewQGraphicsVideoItemFromPointer(C.QGraphicsVideoItem_NewQGraphicsVideoItem(widgets.PointerFromQGraphicsItem(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -17022,7 +17022,7 @@ func (ptr *QGraphicsVideoItem) DisconnectMediaObject() {
 func (ptr *QGraphicsVideoItem) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QGraphicsVideoItem_MediaObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17033,7 +17033,7 @@ func (ptr *QGraphicsVideoItem) MediaObject() *QMediaObject {
 func (ptr *QGraphicsVideoItem) MediaObjectDefault() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QGraphicsVideoItem_MediaObjectDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17145,7 +17145,7 @@ func (ptr *QGraphicsVideoItem) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QGraphicsVideoItem) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17166,7 +17166,7 @@ func (ptr *QGraphicsVideoItem) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QGraphicsVideoItem) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17187,7 +17187,7 @@ func (ptr *QGraphicsVideoItem) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QGraphicsVideoItem) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17208,7 +17208,7 @@ func (ptr *QGraphicsVideoItem) __findChildren_newList() unsafe.Pointer {
 func (ptr *QGraphicsVideoItem) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QGraphicsVideoItem___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17229,7 +17229,7 @@ func (ptr *QGraphicsVideoItem) __children_newList() unsafe.Pointer {
 func (ptr *QGraphicsVideoItem) __setTransformations_transformations_atList(i int) *widgets.QGraphicsTransform {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQGraphicsTransformFromPointer(C.QGraphicsVideoItem___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -17284,7 +17284,7 @@ func (ptr *QGraphicsVideoItem) __collidingItems_newList() unsafe.Pointer {
 func (ptr *QGraphicsVideoItem) __transformations_atList(i int) *widgets.QGraphicsTransform {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQGraphicsTransformFromPointer(C.QGraphicsVideoItem___transformations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -18341,7 +18341,7 @@ func NewQImageEncoderControlFromPointer(ptr unsafe.Pointer) *QImageEncoderContro
 }
 func NewQImageEncoderControl(parent core.QObject_ITF) *QImageEncoderControl {
 	var tmpValue = NewQImageEncoderControlFromPointer(C.QImageEncoderControl_NewQImageEncoderControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -18953,7 +18953,7 @@ func NewQMediaAudioProbeControlFromPointer(ptr unsafe.Pointer) *QMediaAudioProbe
 }
 func NewQMediaAudioProbeControl(parent core.QObject_ITF) *QMediaAudioProbeControl {
 	var tmpValue = NewQMediaAudioProbeControlFromPointer(C.QMediaAudioProbeControl_NewQMediaAudioProbeControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -19123,7 +19123,7 @@ func NewQMediaAvailabilityControlFromPointer(ptr unsafe.Pointer) *QMediaAvailabi
 }
 func NewQMediaAvailabilityControl(parent core.QObject_ITF) *QMediaAvailabilityControl {
 	var tmpValue = NewQMediaAvailabilityControlFromPointer(C.QMediaAvailabilityControl_NewQMediaAvailabilityControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -19367,7 +19367,7 @@ func (ptr *QMediaBindableInterface) DisconnectMediaObject() {
 func (ptr *QMediaBindableInterface) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QMediaBindableInterface_MediaObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -19415,7 +19415,7 @@ func NewQMediaContainerControlFromPointer(ptr unsafe.Pointer) *QMediaContainerCo
 }
 func NewQMediaContainerControl(parent core.QObject_ITF) *QMediaContainerControl {
 	var tmpValue = NewQMediaContainerControlFromPointer(C.QMediaContainerControl_NewQMediaContainerControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -19718,7 +19718,7 @@ func (ptr *QMediaContent) DestroyQMediaContent() {
 func (ptr *QMediaContent) Playlist() *QMediaPlaylist {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaPlaylistFromPointer(C.QMediaContent_Playlist(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -19851,7 +19851,7 @@ func NewQMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
 }
 func NewQMediaControl(parent core.QObject_ITF) *QMediaControl {
 	var tmpValue = NewQMediaControlFromPointer(C.QMediaControl_NewQMediaControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -19887,7 +19887,7 @@ func (ptr *QMediaControl) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QMediaControl) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -19908,7 +19908,7 @@ func (ptr *QMediaControl) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QMediaControl) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -19929,7 +19929,7 @@ func (ptr *QMediaControl) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QMediaControl) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -19950,7 +19950,7 @@ func (ptr *QMediaControl) __findChildren_newList() unsafe.Pointer {
 func (ptr *QMediaControl) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaControl___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -20164,7 +20164,7 @@ func NewQMediaGaplessPlaybackControlFromPointer(ptr unsafe.Pointer) *QMediaGaple
 }
 func NewQMediaGaplessPlaybackControl(parent core.QObject_ITF) *QMediaGaplessPlaybackControl {
 	var tmpValue = NewQMediaGaplessPlaybackControlFromPointer(C.QMediaGaplessPlaybackControl_NewQMediaGaplessPlaybackControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -20785,7 +20785,7 @@ func NewQMediaObjectFromPointer(ptr unsafe.Pointer) *QMediaObject {
 }
 func NewQMediaObject(parent core.QObject_ITF, service QMediaService_ITF) *QMediaObject {
 	var tmpValue = NewQMediaObjectFromPointer(C.QMediaObject_NewQMediaObject(core.PointerFromQObject(parent), PointerFromQMediaService(service)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -21175,7 +21175,7 @@ func (ptr *QMediaObject) DisconnectService() {
 func (ptr *QMediaObject) Service() *QMediaService {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaServiceFromPointer(C.QMediaObject_Service(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -21186,7 +21186,7 @@ func (ptr *QMediaObject) Service() *QMediaService {
 func (ptr *QMediaObject) ServiceDefault() *QMediaService {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaServiceFromPointer(C.QMediaObject_ServiceDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -21339,7 +21339,7 @@ func (ptr *QMediaObject) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QMediaObject) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -21360,7 +21360,7 @@ func (ptr *QMediaObject) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QMediaObject) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -21381,7 +21381,7 @@ func (ptr *QMediaObject) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QMediaObject) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -21402,7 +21402,7 @@ func (ptr *QMediaObject) __findChildren_newList() unsafe.Pointer {
 func (ptr *QMediaObject) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaObject___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -21667,7 +21667,7 @@ const (
 
 func NewQMediaPlayer(parent core.QObject_ITF, flags QMediaPlayer__Flag) *QMediaPlayer {
 	var tmpValue = NewQMediaPlayerFromPointer(C.QMediaPlayer_NewQMediaPlayer(core.PointerFromQObject(parent), C.longlong(flags)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -22850,7 +22850,7 @@ func (ptr *QMediaPlayer) Media() *QMediaContent {
 func (ptr *QMediaPlayer) Playlist() *QMediaPlaylist {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaPlaylistFromPointer(C.QMediaPlayer_Playlist(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -22912,7 +22912,7 @@ func (ptr *QMediaPlayer) IsVideoAvailable() bool {
 func (ptr *QMediaPlayer) MediaStream() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QMediaPlayer_MediaStream(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -23031,7 +23031,7 @@ func NewQMediaPlayerControlFromPointer(ptr unsafe.Pointer) *QMediaPlayerControl 
 }
 func NewQMediaPlayerControl(parent core.QObject_ITF) *QMediaPlayerControl {
 	var tmpValue = NewQMediaPlayerControlFromPointer(C.QMediaPlayerControl_NewQMediaPlayerControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -24209,7 +24209,7 @@ func (ptr *QMediaPlayerControl) DisconnectMediaStream() {
 func (ptr *QMediaPlayerControl) MediaStream() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QMediaPlayerControl_MediaStream(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -24470,7 +24470,7 @@ const (
 
 func NewQMediaPlaylist(parent core.QObject_ITF) *QMediaPlaylist {
 	var tmpValue = NewQMediaPlaylistFromPointer(C.QMediaPlaylist_NewQMediaPlaylist(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -25276,7 +25276,7 @@ func (ptr *QMediaPlaylist) DisconnectMediaObject() {
 func (ptr *QMediaPlaylist) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QMediaPlaylist_MediaObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -25287,7 +25287,7 @@ func (ptr *QMediaPlaylist) MediaObject() *QMediaObject {
 func (ptr *QMediaPlaylist) MediaObjectDefault() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QMediaPlaylist_MediaObjectDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -25404,7 +25404,7 @@ func (ptr *QMediaPlaylist) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QMediaPlaylist) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -25425,7 +25425,7 @@ func (ptr *QMediaPlaylist) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QMediaPlaylist) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -25446,7 +25446,7 @@ func (ptr *QMediaPlaylist) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QMediaPlaylist) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -25467,7 +25467,7 @@ func (ptr *QMediaPlaylist) __findChildren_newList() unsafe.Pointer {
 func (ptr *QMediaPlaylist) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaPlaylist___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -25803,7 +25803,7 @@ const (
 
 func NewQMediaRecorder(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QMediaRecorder {
 	var tmpValue = NewQMediaRecorderFromPointer(C.QMediaRecorder_NewQMediaRecorder(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -26679,7 +26679,7 @@ func (ptr *QMediaRecorder) DisconnectMediaObject() {
 func (ptr *QMediaRecorder) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QMediaRecorder_MediaObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -26690,7 +26690,7 @@ func (ptr *QMediaRecorder) MediaObject() *QMediaObject {
 func (ptr *QMediaRecorder) MediaObjectDefault() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QMediaRecorder_MediaObjectDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -26955,7 +26955,7 @@ func (ptr *QMediaRecorder) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QMediaRecorder) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -26976,7 +26976,7 @@ func (ptr *QMediaRecorder) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QMediaRecorder) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -26997,7 +26997,7 @@ func (ptr *QMediaRecorder) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QMediaRecorder) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -27018,7 +27018,7 @@ func (ptr *QMediaRecorder) __findChildren_newList() unsafe.Pointer {
 func (ptr *QMediaRecorder) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaRecorder___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -27314,7 +27314,7 @@ func NewQMediaRecorderControlFromPointer(ptr unsafe.Pointer) *QMediaRecorderCont
 }
 func NewQMediaRecorderControl(parent core.QObject_ITF) *QMediaRecorderControl {
 	var tmpValue = NewQMediaRecorderControlFromPointer(C.QMediaRecorderControl_NewQMediaRecorderControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -28372,7 +28372,7 @@ func (ptr *QMediaService) RequestControl(interfa string) *QMediaControl {
 			defer C.free(unsafe.Pointer(interfaC))
 		}
 		var tmpValue = NewQMediaControlFromPointer(C.QMediaService_RequestControl(ptr.Pointer(), interfaC))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -28382,7 +28382,7 @@ func (ptr *QMediaService) RequestControl(interfa string) *QMediaControl {
 
 func NewQMediaService(parent core.QObject_ITF) *QMediaService {
 	var tmpValue = NewQMediaServiceFromPointer(C.QMediaService_NewQMediaService(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -28391,7 +28391,7 @@ func NewQMediaService(parent core.QObject_ITF) *QMediaService {
 func (ptr *QMediaService) RequestControl2() *QMediaService {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaServiceFromPointer(C.QMediaService_RequestControl2(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -28464,7 +28464,7 @@ func (ptr *QMediaService) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QMediaService) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaService___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -28485,7 +28485,7 @@ func (ptr *QMediaService) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QMediaService) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaService___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -28506,7 +28506,7 @@ func (ptr *QMediaService) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QMediaService) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaService___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -28527,7 +28527,7 @@ func (ptr *QMediaService) __findChildren_newList() unsafe.Pointer {
 func (ptr *QMediaService) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaService___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29151,7 +29151,7 @@ func (ptr *QMediaServiceProviderPlugin) Create(key string) *QMediaService {
 			defer C.free(unsafe.Pointer(keyC))
 		}
 		var tmpValue = NewQMediaServiceFromPointer(C.QMediaServiceProviderPlugin_Create(ptr.Pointer(), keyC))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29216,7 +29216,7 @@ func (ptr *QMediaServiceProviderPlugin) __dynamicPropertyNames_newList() unsafe.
 func (ptr *QMediaServiceProviderPlugin) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29237,7 +29237,7 @@ func (ptr *QMediaServiceProviderPlugin) __findChildren_newList2() unsafe.Pointer
 func (ptr *QMediaServiceProviderPlugin) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29258,7 +29258,7 @@ func (ptr *QMediaServiceProviderPlugin) __findChildren_newList3() unsafe.Pointer
 func (ptr *QMediaServiceProviderPlugin) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29279,7 +29279,7 @@ func (ptr *QMediaServiceProviderPlugin) __findChildren_newList() unsafe.Pointer 
 func (ptr *QMediaServiceProviderPlugin) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -29866,7 +29866,7 @@ const (
 
 func NewQMediaStreamsControl(parent core.QObject_ITF) *QMediaStreamsControl {
 	var tmpValue = NewQMediaStreamsControlFromPointer(C.QMediaStreamsControl_NewQMediaStreamsControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30512,7 +30512,7 @@ func NewQMediaVideoProbeControlFromPointer(ptr unsafe.Pointer) *QMediaVideoProbe
 }
 func NewQMediaVideoProbeControl(parent core.QObject_ITF) *QMediaVideoProbeControl {
 	var tmpValue = NewQMediaVideoProbeControlFromPointer(C.QMediaVideoProbeControl_NewQMediaVideoProbeControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30682,7 +30682,7 @@ func NewQMetaDataReaderControlFromPointer(ptr unsafe.Pointer) *QMetaDataReaderCo
 }
 func NewQMetaDataReaderControl(parent core.QObject_ITF) *QMetaDataReaderControl {
 	var tmpValue = NewQMetaDataReaderControlFromPointer(C.QMetaDataReaderControl_NewQMetaDataReaderControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -30976,7 +30976,7 @@ func NewQMetaDataWriterControlFromPointer(ptr unsafe.Pointer) *QMetaDataWriterCo
 }
 func NewQMetaDataWriterControl(parent core.QObject_ITF) *QMetaDataWriterControl {
 	var tmpValue = NewQMetaDataWriterControlFromPointer(C.QMetaDataWriterControl_NewQMetaDataWriterControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -31588,7 +31588,7 @@ func (ptr *QRadioData) SetAlternativeFrequenciesEnabledDefault(enabled bool) {
 
 func NewQRadioData(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QRadioData {
 	var tmpValue = NewQRadioDataFromPointer(C.QRadioData_NewQRadioData(PointerFromQMediaObject(mediaObject), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -31986,7 +31986,7 @@ func (ptr *QRadioData) DisconnectMediaObject() {
 func (ptr *QRadioData) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QRadioData_MediaObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -31997,7 +31997,7 @@ func (ptr *QRadioData) MediaObject() *QMediaObject {
 func (ptr *QRadioData) MediaObjectDefault() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QRadioData_MediaObjectDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -32076,7 +32076,7 @@ func (ptr *QRadioData) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QRadioData) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QRadioData___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -32097,7 +32097,7 @@ func (ptr *QRadioData) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QRadioData) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QRadioData___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -32118,7 +32118,7 @@ func (ptr *QRadioData) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QRadioData) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QRadioData___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -32139,7 +32139,7 @@ func (ptr *QRadioData) __findChildren_newList() unsafe.Pointer {
 func (ptr *QRadioData) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QRadioData___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -32412,7 +32412,7 @@ func NewQRadioDataControlFromPointer(ptr unsafe.Pointer) *QRadioDataControl {
 }
 func NewQRadioDataControl(parent core.QObject_ITF) *QRadioDataControl {
 	var tmpValue = NewQRadioDataControlFromPointer(C.QRadioDataControl_NewQRadioDataControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -33142,7 +33142,7 @@ const (
 
 func NewQRadioTuner(parent core.QObject_ITF) *QRadioTuner {
 	var tmpValue = NewQRadioTunerFromPointer(C.QRadioTuner_NewQRadioTuner(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -34033,7 +34033,7 @@ func (ptr *QRadioTuner) Error() QRadioTuner__Error {
 func (ptr *QRadioTuner) RadioData() *QRadioData {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQRadioDataFromPointer(C.QRadioTuner_RadioData(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35618,7 +35618,7 @@ func NewQSound(filename string, parent core.QObject_ITF) *QSound {
 		defer C.free(unsafe.Pointer(filenameC))
 	}
 	var tmpValue = NewQSoundFromPointer(C.QSound_NewQSound(filenameC, core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -35742,7 +35742,7 @@ func (ptr *QSound) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QSound) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSound___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35763,7 +35763,7 @@ func (ptr *QSound) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QSound) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSound___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35784,7 +35784,7 @@ func (ptr *QSound) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QSound) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSound___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -35805,7 +35805,7 @@ func (ptr *QSound) __findChildren_newList() unsafe.Pointer {
 func (ptr *QSound) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSound___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -36039,7 +36039,7 @@ const (
 
 func NewQSoundEffect(parent core.QObject_ITF) *QSoundEffect {
 	var tmpValue = NewQSoundEffectFromPointer(C.QSoundEffect_NewQSoundEffect(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -36618,7 +36618,7 @@ func (ptr *QSoundEffect) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QSoundEffect) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -36639,7 +36639,7 @@ func (ptr *QSoundEffect) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QSoundEffect) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -36660,7 +36660,7 @@ func (ptr *QSoundEffect) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QSoundEffect) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -36681,7 +36681,7 @@ func (ptr *QSoundEffect) __findChildren_newList() unsafe.Pointer {
 func (ptr *QSoundEffect) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QSoundEffect___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -36895,7 +36895,7 @@ func NewQVideoDeviceSelectorControlFromPointer(ptr unsafe.Pointer) *QVideoDevice
 }
 func NewQVideoDeviceSelectorControl(parent core.QObject_ITF) *QVideoDeviceSelectorControl {
 	var tmpValue = NewQVideoDeviceSelectorControlFromPointer(C.QVideoDeviceSelectorControl_NewQVideoDeviceSelectorControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -37661,7 +37661,7 @@ func NewQVideoEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QVideoEncod
 }
 func NewQVideoEncoderSettingsControl(parent core.QObject_ITF) *QVideoEncoderSettingsControl {
 	var tmpValue = NewQVideoEncoderSettingsControlFromPointer(C.QVideoEncoderSettingsControl_NewQVideoEncoderSettingsControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -38579,7 +38579,7 @@ func NewQVideoProbeFromPointer(ptr unsafe.Pointer) *QVideoProbe {
 }
 func NewQVideoProbe(parent core.QObject_ITF) *QVideoProbe {
 	var tmpValue = NewQVideoProbeFromPointer(C.QVideoProbe_NewQVideoProbe(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -38714,7 +38714,7 @@ func (ptr *QVideoProbe) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QVideoProbe) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -38735,7 +38735,7 @@ func (ptr *QVideoProbe) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QVideoProbe) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -38756,7 +38756,7 @@ func (ptr *QVideoProbe) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QVideoProbe) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -38777,7 +38777,7 @@ func (ptr *QVideoProbe) __findChildren_newList() unsafe.Pointer {
 func (ptr *QVideoProbe) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoProbe___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -38991,7 +38991,7 @@ func NewQVideoRendererControlFromPointer(ptr unsafe.Pointer) *QVideoRendererCont
 }
 func NewQVideoRendererControl(parent core.QObject_ITF) *QVideoRendererControl {
 	var tmpValue = NewQVideoRendererControlFromPointer(C.QVideoRendererControl_NewQVideoRendererControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -39073,7 +39073,7 @@ func (ptr *QVideoRendererControl) DisconnectSurface() {
 func (ptr *QVideoRendererControl) Surface() *QAbstractVideoSurface {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractVideoSurfaceFromPointer(C.QVideoRendererControl_Surface(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -39406,7 +39406,7 @@ func NewQVideoWidgetFromPointer(ptr unsafe.Pointer) *QVideoWidget {
 }
 func NewQVideoWidget(parent widgets.QWidget_ITF) *QVideoWidget {
 	var tmpValue = NewQVideoWidgetFromPointer(C.QVideoWidget_NewQVideoWidget(widgets.PointerFromQWidget(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -40154,7 +40154,7 @@ func (ptr *QVideoWidget) DisconnectMediaObject() {
 func (ptr *QVideoWidget) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QVideoWidget_MediaObject(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40165,7 +40165,7 @@ func (ptr *QVideoWidget) MediaObject() *QMediaObject {
 func (ptr *QVideoWidget) MediaObjectDefault() *QMediaObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMediaObjectFromPointer(C.QVideoWidget_MediaObjectDefault(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40266,7 +40266,7 @@ func (ptr *QVideoWidget) Saturation() int {
 func (ptr *QVideoWidget) __addActions_actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QVideoWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40287,7 +40287,7 @@ func (ptr *QVideoWidget) __addActions_actions_newList() unsafe.Pointer {
 func (ptr *QVideoWidget) __insertActions_actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QVideoWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40308,7 +40308,7 @@ func (ptr *QVideoWidget) __insertActions_actions_newList() unsafe.Pointer {
 func (ptr *QVideoWidget) __actions_atList(i int) *widgets.QAction {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QVideoWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40348,7 +40348,7 @@ func (ptr *QVideoWidget) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QVideoWidget) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40369,7 +40369,7 @@ func (ptr *QVideoWidget) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QVideoWidget) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40390,7 +40390,7 @@ func (ptr *QVideoWidget) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QVideoWidget) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -40411,7 +40411,7 @@ func (ptr *QVideoWidget) __findChildren_newList() unsafe.Pointer {
 func (ptr *QVideoWidget) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QVideoWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -41783,7 +41783,7 @@ func NewQVideoWidgetControlFromPointer(ptr unsafe.Pointer) *QVideoWidgetControl 
 }
 func NewQVideoWidgetControl(parent core.QObject_ITF) *QVideoWidgetControl {
 	var tmpValue = NewQVideoWidgetControlFromPointer(C.QVideoWidgetControl_NewQVideoWidgetControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -41822,7 +41822,7 @@ func (ptr *QVideoWidgetControl) DisconnectVideoWidget() {
 func (ptr *QVideoWidgetControl) VideoWidget() *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QVideoWidgetControl_VideoWidget(ptr.Pointer()))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -42543,7 +42543,7 @@ func NewQVideoWindowControlFromPointer(ptr unsafe.Pointer) *QVideoWindowControl 
 }
 func NewQVideoWindowControl(parent core.QObject_ITF) *QVideoWindowControl {
 	var tmpValue = NewQVideoWindowControlFromPointer(C.QVideoWindowControl_NewQVideoWindowControl(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue

@@ -22,7 +22,7 @@ func init() { runtime.LockOSThread() }
 
 func ExistsSignal(name, signal string) bool {
 	signalsMutex.Lock()
-	var _, exists = signals[fmt.Sprintf("%v:%v", name, signal)]
+	_, exists := signals[fmt.Sprintf("%v:%v", name, signal)]
 	signalsMutex.Unlock()
 	return exists
 }
@@ -36,14 +36,10 @@ func LendSignal(name, signal string) interface{} {
 }
 
 func GetSignal(name, signal string) interface{} {
-	if strings.HasSuffix(signal, ":destroyed") || strings.HasSuffix(signal, ":deleteLater") || strings.Contains(signal, ":~") {
+	if signal == "destroyed" || signal == "deleteLater" || strings.HasPrefix(signal, "~") {
 		defer DisconnectAllSignals(name)
 	}
-	var s interface{}
-	signalsMutex.Lock()
-	s = signals[fmt.Sprintf("%v:%v", name, signal)]
-	signalsMutex.Unlock()
-	return s
+	return LendSignal(name, signal)
 }
 
 func ConnectSignal(name, signal string, function interface{}) {

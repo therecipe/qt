@@ -161,7 +161,7 @@ func goFunctionBody(function *parser.Function) string {
 
 					fmt.Fprintf(bb, "var tmpValue = %v\n", body)
 
-					fmt.Fprintf(bb, "if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), \"QObject::destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
+					fmt.Fprintf(bb, "if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
 						func() string {
 							if class.Module == "QtCore" {
 								return "*QObject"
