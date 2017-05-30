@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+<file>SomeComponentModule/qmldir</file>
+<file>SomeComponentModule/SomeComponent.qml</file>
+</qresource>
+</RCC>

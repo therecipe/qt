@@ -1,0 +1,2 @@
+module SomeComponentModule
+TheComponent 1.0 SomeComponent.qml
