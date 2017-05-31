@@ -55,13 +55,13 @@ func DisconnectSignal(name, signal string) {
 }
 
 func DisconnectAllSignals(name string) {
+	signalsMutex.Lock()
 	for entry := range signals {
 		if strings.HasPrefix(entry, fmt.Sprintf("%v:", name)) {
-			signalsMutex.Lock()
 			delete(signals, entry)
-			signalsMutex.Unlock()
 		}
 	}
+	signalsMutex.Unlock()
 }
 
 func Identifier() string {
@@ -71,9 +71,11 @@ func Identifier() string {
 
 func DumpSignals() {
 	Debug("##############################\tSIGNALSTABLE_START\t##############################")
+	signalsMutex.Lock()
 	for entry := range signals {
 		Debug(entry)
 	}
+	signalsMutex.Unlock()
 	Debug("##############################\tSIGNALSTABLE_END\t##############################")
 }
 
