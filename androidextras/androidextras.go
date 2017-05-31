@@ -51,6 +51,7 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 }
 
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {}
+
 func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(receiverRequestCode int, resultCode int, data *QAndroidJniObject)) {
 
 }
@@ -844,6 +845,7 @@ func NewQtAndroidFromPointer(ptr unsafe.Pointer) *QtAndroid {
 }
 
 func (ptr *QtAndroid) DestroyQtAndroid() {}
+
 func QtAndroid_AndroidActivity() *QAndroidJniObject {
 
 	return nil

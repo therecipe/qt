@@ -6,11 +6,22 @@ import (
 	"github.com/therecipe/qt/quick"
 )
 
+func init() {
+	PieChart_QmlRegisterType2("Charts", 1, 0, "PieChart")
+}
+
 type PieChart struct {
 	quick.QQuickPaintedItem
 
+	_ func() `constructor:"init"`
+
 	_ string      `property:"name"`
 	_ *gui.QColor `property:"color"`
+}
+
+func (p *PieChart) init() {
+	p.ConnectPaint(p.paint)
+	p.ConnectColorChanged(p.colorChanged)
 }
 
 func (p *PieChart) paint(painter *gui.QPainter) {
@@ -23,21 +34,4 @@ func (p *PieChart) paint(painter *gui.QPainter) {
 
 func (p *PieChart) colorChanged(color *gui.QColor) {
 	p.UpdateDefault() //TODO: why default?
-}
-
-type PieChartFactory struct {
-	core.QObject
-
-	_ func() `constructor:"init"`
-
-	_ func(p *PieChart) `slot:"create"`
-}
-
-func (p *PieChartFactory) init() {
-	p.ConnectCreate(p.create)
-}
-
-func (p *PieChartFactory) create(pie *PieChart) {
-	pie.ConnectPaint(pie.paint)
-	pie.ConnectColorChanged(pie.colorChanged)
 }

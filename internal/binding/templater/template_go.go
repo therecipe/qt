@@ -105,10 +105,10 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 					return bb.String()
 				}(),
 
-				fmt.Sprintf("%v_PTR() *%v\n", class.Name, class.Name),
+				fmt.Sprintf("%[1]v_PTR() *%[1]v\n", class.Name),
 			)
 
-			fmt.Fprintf(bb, "func (ptr *%v) %v_PTR() *%v {\nreturn ptr\n}\n\n", class.Name, class.Name, class.Name)
+			fmt.Fprintf(bb, "func (ptr *%[1]v) %[1]v_PTR() *%[1]v {\nreturn ptr\n}\n\n", class.Name)
 
 			if class.Bases == "" {
 				fmt.Fprintf(bb, "func (ptr *%v) Pointer() unsafe.Pointer {\nif ptr != nil {\nreturn ptr.ptr\n}\nreturn nil\n}\n\n", class.Name)
@@ -134,43 +134,54 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 			}
 
 			fmt.Fprintf(bb, `
-func PointerFrom%v(ptr %v_ITF) unsafe.Pointer {
+func PointerFrom%v(ptr %[2]v_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.%v_PTR().Pointer()
+		return ptr.%[2]v_PTR().Pointer()
 	}
 	return nil
 }
-`, strings.Title(class.Name), class.Name, class.Name)
+`, strings.Title(class.Name), class.Name)
 
 			fmt.Fprintf(bb, `
-func New%vFromPointer(ptr unsafe.Pointer) *%v {
-	var n = new(%v)
+func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
+	var n = new(%[2]v)
 	n.SetPointer(ptr)
 	return n
 }
-`, strings.Title(class.Name), class.Name, class.Name)
+`, strings.Title(class.Name), class.Name)
 
 			if !class.HasDestructor() {
 				if UseStub(stub, module, mode) {
-					fmt.Fprintf(bb, `
-			func (ptr *%v) Destroy%v() {}
-			`, class.Name, class.Name)
+					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
 				} else {
 					fmt.Fprintf(bb, `
-func (ptr *%v) Destroy%v() {
+func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
 		C.free(ptr.Pointer())%v
 		ptr.SetPointer(nil)
 	}
 }
 
-`, class.Name, class.Name, func() string {
+`, class.Name, func() string {
 						if class.HasCallbackFunctions() || class.IsSubClassOfQObject() {
 							return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
 						}
 						return ""
 					}())
 				}
+			}
+
+			if mode == MOC {
+				fmt.Fprintf(bb, `
+//export callback%[1]v_Constructor
+func callback%[1]v_Constructor(ptr unsafe.Pointer) {
+`, class.Name)
+
+				if len(class.Constructors) > 0 {
+					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v()\n", strings.Title(class.Name), class.Constructors[0])
+				}
+
+				fmt.Fprint(bb, "}\n\n")
 			}
 		}
 

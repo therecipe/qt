@@ -169,12 +169,14 @@ func goFunctionBody(function *parser.Function) string {
 							return "*core.QObject"
 						}())
 
+					/* TODO: re-implement for custom constructors
 					var class, _ = function.Class()
 					if class.Module == parser.MOC && function.Meta == parser.CONSTRUCTOR {
 						if len(class.Constructors) > 0 {
 							fmt.Fprintf(bb, "tmpValue.%v()\n", class.Constructors[0])
 						}
 					}
+					*/
 
 					fmt.Fprint(bb, "return tmpValue")
 

@@ -52,16 +52,12 @@ Item {
             id: chartA
             width: 100; height: 100
             color: "red"
-
-            Component.onCompleted: factory.create(chartA)
         }
 
         PieChart {
             id: chartB
             width: 100; height: 100
             color: chartA.color
-
-            Component.onCompleted: factory.create(chartB)
         }
     }
 

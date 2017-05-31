@@ -51,8 +51,6 @@ Item {
         color: "red"
 
         onChartCleared: console.log("The chart has been cleared")
-
-        Component.onCompleted: factory.create(aPieChart)
     }
 
     MouseArea {

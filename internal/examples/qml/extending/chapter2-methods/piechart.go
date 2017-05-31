@@ -6,14 +6,25 @@ import (
 	"github.com/therecipe/qt/quick"
 )
 
+func init() {
+	PieChart_QmlRegisterType2("Charts", 1, 0, "PieChart")
+}
+
 type PieChart struct {
 	quick.QQuickPaintedItem
+
+	_ func() `constructor:"init"`
 
 	_ string      `property:"name"`
 	_ *gui.QColor `property:"color"`
 
 	_ func() `slot:"clearChart"`
 	_ func() `signal:"chartCleared"`
+}
+
+func (p *PieChart) init() {
+	p.ConnectPaint(p.paint)
+	p.ConnectClearChart(p.clearChart)
 }
 
 func (p *PieChart) paint(painter *gui.QPainter) {
@@ -28,21 +39,4 @@ func (p *PieChart) clearChart() {
 	p.SetColor(gui.NewQColor2(core.Qt__transparent))
 	p.UpdateDefault() //TODO: why default?
 	p.ChartCleared()
-}
-
-type PieChartFactory struct {
-	core.QObject
-
-	_ func() `constructor:"init"`
-
-	_ func(p *PieChart) `slot:"create"`
-}
-
-func (p *PieChartFactory) init() {
-	p.ConnectCreate(p.create)
-}
-
-func (p *PieChartFactory) create(pie *PieChart) {
-	pie.ConnectPaint(pie.paint)
-	pie.ConnectClearChart(pie.clearChart)
 }

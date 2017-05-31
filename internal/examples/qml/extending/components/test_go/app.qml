@@ -50,8 +50,6 @@ Item {
         width: 100; height: 100
         name: "A simple pie chart"
         color: "red"
-
-        Component.onCompleted: factory.create(aPieChart)
     }
 
     Text {

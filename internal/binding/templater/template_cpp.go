@@ -134,7 +134,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							input[i] = p.Name
 						}
 
-						var out = fmt.Sprintf("\t%v%v(%v) : %v(%v) {};\n",
+						var out = fmt.Sprintf("\t%v%v(%v) : %v(%v) {%v};\n",
 							func() string {
 								if mode == MOC {
 									return ""
@@ -172,6 +172,13 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							}(),
 
 							strings.Join(input, ", "),
+
+							func() string {
+								if mode != MOC {
+									return ""
+								}
+								return fmt.Sprintf("callback%v_Constructor(this);", className)
+							}(),
 						)
 
 						fmt.Fprint(bb, out)

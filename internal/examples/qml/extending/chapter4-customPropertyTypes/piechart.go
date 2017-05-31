@@ -1,29 +1,25 @@
 package main
 
 import (
-	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 )
+
+func init() {
+	PieChart_QmlRegisterType2("Charts", 1, 0, "PieChart")
+}
 
 type PieChart struct {
 	quick.QQuickPaintedItem
 
+	_ func() `constructor:"init"`
+
 	_ *PieSlice `property:"pieSlice"`
 }
 
-type PieFactory struct {
-	core.QObject
-
-	_ func() `constructor:"init"`
-
-	_ func(*PieSlice, *PieChart) `slot:"createSliceInChart"`
+func (p *PieChart) init() {
+	p.ConnectPieSliceChanged(p.setParentForSlice)
 }
 
-func (p *PieFactory) init() {
-	p.ConnectCreateSliceInChart(p.createSliceInChart)
-}
-
-func (p *PieFactory) createSliceInChart(slice *PieSlice, chart *PieChart) {
-	slice.SetParentItem(chart)
-	slice.ConnectPaint(slice.paint)
+func (p *PieChart) setParentForSlice(slice *PieSlice) {
+	slice.SetParentItem(p)
 }

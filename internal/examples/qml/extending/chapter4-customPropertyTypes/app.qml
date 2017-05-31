@@ -53,8 +53,6 @@ Item {
             id: slice
             anchors.fill: parent
             color: "red"
-
-            Component.onCompleted: factory.createSliceInChart(slice, chart)
         }
     }
 

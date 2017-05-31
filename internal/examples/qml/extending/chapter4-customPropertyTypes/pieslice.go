@@ -6,10 +6,20 @@ import (
 	"github.com/therecipe/qt/quick"
 )
 
+func init() {
+	PieSlice_QmlRegisterType2("Charts", 1, 0, "PieSlice")
+}
+
 type PieSlice struct {
 	quick.QQuickPaintedItem
 
+	_ func() `constructor:"init"`
+
 	_ *gui.QColor `property:"color"`
+}
+
+func (p *PieSlice) init() {
+	p.ConnectPaint(p.paint)
 }
 
 func (p *PieSlice) paint(painter *gui.QPainter) {
