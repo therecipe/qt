@@ -26,7 +26,7 @@ func main() {
 	})
 
 	view.SetResizeMode(quick.QQuickView__SizeViewToRootObject)
-	view.SetSource(core.NewQUrl3("qrc:///qml/view.qml", 0))
+	view.SetSource(core.NewQUrl3("qrc:/qml/view.qml", 0))
 	view.Show()
 
 	if errors := view.Errors(); len(errors) != 0 {

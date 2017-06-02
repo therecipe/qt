@@ -13,7 +13,7 @@ func main() {
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 
 	var view = quick.NewQQuickView(nil)
-	view.SetSource(core.NewQUrl3("qrc:///qml/calc.qml", 0))
+	view.SetSource(core.NewQUrl3("qrc:/qml/calc.qml", 0))
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
 	view.Show()
 

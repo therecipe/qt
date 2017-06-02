@@ -60,7 +60,7 @@ func main() {
 	})
 
 	view.RootContext().SetContextProperty("HelloClientFactory", helloClientFactory)
-	view.SetSource(core.NewQUrl3("qrc:///qml/hello_world.qml", 0))
+	view.SetSource(core.NewQUrl3("qrc:/qml/hello_world.qml", 0))
 
 	view.Show()
 

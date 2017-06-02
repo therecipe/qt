@@ -14,9 +14,9 @@ func main() {
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 
 	view := quick.NewQQuickView(nil)
-	view.Engine().AddImportPath("qrc:///qml")
+	view.Engine().AddImportPath("qrc:/qml")
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
-	view.SetSource(core.NewQUrl3("qrc:///qml/app.qml", 0))
+	view.SetSource(core.NewQUrl3("qrc:/qml/app.qml", 0))
 	view.Show()
 
 	gui.QGuiApplication_Exec()

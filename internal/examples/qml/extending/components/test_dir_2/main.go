@@ -15,7 +15,7 @@ func main() {
 
 	view := quick.NewQQuickView(nil)
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
-	view.SetSource(core.NewQUrl3("qrc:///qml/app.qml", 0))
+	view.SetSource(core.NewQUrl3("qrc:/qml/app.qml", 0))
 	view.Show()
 
 	gui.QGuiApplication_Exec()

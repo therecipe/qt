@@ -14,7 +14,7 @@ var qApp *widgets.QApplication
 func main() {
 	qApp = widgets.NewQApplication(len(os.Args), os.Args)
 
-	albumDetails := core.NewQFile2(":///albumdetails.xml")
+	albumDetails := core.NewQFile2(":/albumdetails.xml")
 	window := NewMainWindow(nil, 0)
 	window.initWith("artists", "albums", albumDetails, nil)
 	window.Show()

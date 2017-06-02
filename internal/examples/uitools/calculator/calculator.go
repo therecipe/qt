@@ -21,7 +21,7 @@ func NewCalculatorForm() *widgets.QWidget {
 	var widget = widgets.NewQWidget(nil, 0)
 
 	var loader = uitools.NewQUiLoader(nil)
-	var file = core.NewQFile2(":///qml/calculatorform.ui")
+	var file = core.NewQFile2(":/qml/calculatorform.ui")
 
 	file.Open(core.QIODevice__ReadOnly)
 	var formWidget = loader.Load(file, widget)

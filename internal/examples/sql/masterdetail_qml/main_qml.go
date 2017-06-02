@@ -24,7 +24,7 @@ func main() {
 	app.RootContext().SetContextProperty("viewModel", NewSortFilterModel(NewViewModel()))
 
 	controller := NewController(nil)
-	controller.initWith(core.NewQFile2(":///albumdetails.xml"))
+	controller.initWith(core.NewQFile2(":/albumdetails.xml"))
 	app.RootContext().SetContextProperty("controller", controller)
 
 	app.Load(core.NewQUrl3(path, 0))

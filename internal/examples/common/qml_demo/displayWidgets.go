@@ -50,7 +50,7 @@ func displayWidgets() {
 	createWidget("Image", `
 	Image {
 		fillMode: Image.PreserveAspectFit
-		source: "qrc:///qml/earth.png"
+		source: "qrc:/qml/earth.png"
 	}`)
 
 	//BusyIndicator

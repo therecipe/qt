@@ -75,7 +75,7 @@ func newQmlWidget() *quick.QQuickWidget {
 	initQmlContext(quickWidget)
 	initQmlBridge(quickWidget)
 
-	quickWidget.SetSource(core.NewQUrl3("qrc:///qml/bridge.qml", 0))
+	quickWidget.SetSource(core.NewQUrl3("qrc:/qml/bridge.qml", 0))
 
 	return quickWidget
 }

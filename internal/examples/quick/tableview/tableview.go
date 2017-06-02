@@ -63,7 +63,7 @@ func main() {
 
 	var view = quick.NewQQuickWidget(nil)
 	view.RootContext().SetContextProperty("QmlBridge", qmlBridge)
-	view.SetSource(core.NewQUrl3("qrc:///qml/tableview.qml", 0))
+	view.SetSource(core.NewQUrl3("qrc:/qml/tableview.qml", 0))
 	view.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	windowLayout.AddWidget(view, 0, 0)
 

@@ -1120,7 +1120,7 @@ func main() {
 	view := qml.NewQQmlApplicationEngine(nil)
 
 	//load the main qml file
-	view.Load(core.NewQUrl3("qrc:///qml/main.qml", 0))
+	view.Load(core.NewQUrl3("qrc:/qml/main.qml", 0))
 
 	//enter the main event loop
 	gui.QGuiApplication_Exec()
@@ -1323,7 +1323,7 @@ func main() {
 	app.RootContext().SetContextProperty("go", bridge)
 
 	//load the main qml file
-	app.Load(core.NewQUrl3("qrc:///qml/main.qml", 0))
+	app.Load(core.NewQUrl3("qrc:/qml/main.qml", 0))
 
 	//enter the main event loop
 	gui.QGuiApplication_Exec()

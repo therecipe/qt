@@ -23,7 +23,7 @@ func main() {
 
 	view.RootContext().SetContextProperty("PersonModel", model)
 
-	view.SetSource(core.NewQUrl3("qrc:///qml/main.qml", 0))
+	view.SetSource(core.NewQUrl3("qrc:/qml/main.qml", 0))
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
 	view.Show()
 

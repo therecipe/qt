@@ -13,7 +13,7 @@ func main() {
 	core.NewQCoreApplication(len(os.Args), os.Args)
 
 	var (
-		component = qml.NewQQmlComponent5(qml.NewQQmlEngine(nil), core.NewQUrl3("qrc:///qml/prop.qml", 0), nil)
+		component = qml.NewQQmlComponent5(qml.NewQQmlEngine(nil), core.NewQUrl3("qrc:/qml/prop.qml", 0), nil)
 		object    = component.Create(nil)
 	)
 

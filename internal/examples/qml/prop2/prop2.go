@@ -56,7 +56,7 @@ func main() {
 	var app = qml.NewQQmlApplicationEngine(nil)
 	app.RootContext().SetContextProperty("bridge", bridge)
 
-	app.Load(core.NewQUrl3("qrc:///qml/prop2.qml", 0))
+	app.Load(core.NewQUrl3("qrc:/qml/prop2.qml", 0))
 
 	gui.QGuiApplication_Exec()
 }

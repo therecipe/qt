@@ -29,9 +29,6 @@ func main() {
 
 	var engine = qml.NewQQmlApplicationEngine(nil)
 	engine.Load(core.NewQUrl3("qrc:/gallery.qml", 0))
-	if len(engine.RootObjects()) == 0 {
-		return
-	}
 
 	gui.QGuiApplication_Exec()
 }
