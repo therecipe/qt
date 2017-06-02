@@ -9,7 +9,7 @@ import (
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/qml"
 
-	_ "github.com/therecipe/qt/internal/examples/qml/quickflux/quickflux"
+	_ "github.com/therecipe/qt/internal/examples/3rdparty/quickflux/quickflux"
 )
 
 func main() {

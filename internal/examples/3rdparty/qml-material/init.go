@@ -46,7 +46,7 @@ func main() {
 
 		ndkPATH, ndkOK := os.LookupEnv("ANDROID_NDK_DIR")
 
-		qCmd := exec.Command(qmake, "../qml-material.pro")
+		qCmd := exec.Command(qmake, "../qml-material.pro", "CONFIG-=android_install")
 		qCmd.Dir = filepath.Join(pwd, "qml-material", target)
 		if ndkOK {
 			qCmd.Env = append(qCmd.Env, "ANDROID_NDK_ROOT="+ndkPATH)

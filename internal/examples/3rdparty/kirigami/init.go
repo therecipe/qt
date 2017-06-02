@@ -29,14 +29,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	pro, proErr := ioutil.ReadFile(filepath.Join(pwd, "kirigami", "kirigami.pro"))
-	if proErr != nil {
-		println("failed to patch kirigami.pro", proErr.Error())
-		os.Exit(1)
-	}
-	ioutil.WriteFile(filepath.Join(pwd, "kirigami", "kirigami.pro"), []byte("CONFIG -= android_install\n"+string(pro)), 0644)
-	println("patched kirigami.pro")
-
 	for _, target := range []string{runtime.GOOS, "android"} {
 		os.MkdirAll(filepath.Join(pwd, "kirigami", target), 0755)
 
@@ -54,7 +46,7 @@ func main() {
 
 		ndkPATH, ndkOK := os.LookupEnv("ANDROID_NDK_DIR")
 
-		qCmd := exec.Command(qmake, "../kirigami.pro")
+		qCmd := exec.Command(qmake, "../kirigami.pro", "CONFIG-=android_install")
 		qCmd.Dir = filepath.Join(pwd, "kirigami", target)
 		if ndkOK {
 			qCmd.Env = append(qCmd.Env, "ANDROID_NDK_ROOT="+ndkPATH)
