@@ -176,7 +176,6 @@ func (ptr *QMaskGenerator) DisconnectDestroyQMaskGenerator() {
 func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGenerator(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -184,7 +183,6 @@ func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
 func (ptr *QMaskGenerator) DestroyQMaskGeneratorDefault() {
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGeneratorDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -381,7 +379,6 @@ func callbackQMaskGenerator_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMaskGenerator) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1439,7 +1436,6 @@ func (ptr *QWebSocket) DisconnectDestroyQWebSocket() {
 func (ptr *QWebSocket) DestroyQWebSocket() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DestroyQWebSocket(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1447,7 +1443,6 @@ func (ptr *QWebSocket) DestroyQWebSocket() {
 func (ptr *QWebSocket) DestroyQWebSocketDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DestroyQWebSocketDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1845,7 +1840,6 @@ func callbackQWebSocket_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2617,7 +2611,6 @@ func (ptr *QWebSocketServer) DisconnectDestroyQWebSocketServer() {
 func (ptr *QWebSocketServer) DestroyQWebSocketServer() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DestroyQWebSocketServer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2625,7 +2618,6 @@ func (ptr *QWebSocketServer) DestroyQWebSocketServer() {
 func (ptr *QWebSocketServer) DestroyQWebSocketServerDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DestroyQWebSocketServerDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2970,7 +2962,6 @@ func callbackQWebSocketServer_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebSocketServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

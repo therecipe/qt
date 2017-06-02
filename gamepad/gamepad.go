@@ -1093,7 +1093,6 @@ func (ptr *QGamepad) SetDeviceIdDefault(number int) {
 func (ptr *QGamepad) DestroyQGamepad() {
 	if ptr.Pointer() != nil {
 		C.QGamepad_DestroyQGamepad(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1465,7 +1464,6 @@ func callbackQGamepad_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGamepad) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGamepad_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

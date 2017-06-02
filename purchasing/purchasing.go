@@ -61,14 +61,6 @@ func NewQInAppProductFromPointer(ptr unsafe.Pointer) *QInAppProduct {
 	return n
 }
 
-func (ptr *QInAppProduct) DestroyQInAppProduct() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 //go:generate stringer -type=QInAppProduct__ProductType
 //QInAppProduct::ProductType
 type QInAppProduct__ProductType int64
@@ -340,7 +332,6 @@ func callbackQInAppProduct_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QInAppProduct) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppProduct_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -611,7 +602,6 @@ func (ptr *QInAppStore) TransactionReady(transaction QInAppTransaction_ITF) {
 func (ptr *QInAppStore) DestroyQInAppStore() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DestroyQInAppStore(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -824,7 +814,6 @@ func callbackQInAppStore_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QInAppStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -928,14 +917,6 @@ func NewQInAppTransactionFromPointer(ptr unsafe.Pointer) *QInAppTransaction {
 	var n = new(QInAppTransaction)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QInAppTransaction) DestroyQInAppTransaction() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QInAppTransaction__FailureReason
@@ -1438,7 +1419,6 @@ func callbackQInAppTransaction_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QInAppTransaction) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppTransaction_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

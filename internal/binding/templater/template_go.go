@@ -153,7 +153,7 @@ func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
 			if !class.HasDestructor() {
 				if UseStub(stub, module, mode) {
 					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
-				} else {
+				} else if !class.IsSubClassOfQObject() {
 					fmt.Fprintf(bb, `
 func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
@@ -163,8 +163,8 @@ func (ptr *%[1]v) Destroy%[1]v() {
 }
 
 `, class.Name, func() string {
-						if class.HasCallbackFunctions() || class.IsSubClassOfQObject() {
-							return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
+						if class.HasCallbackFunctions() {
+							return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), \"\")"
 						}
 						return ""
 					}())

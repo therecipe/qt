@@ -1326,7 +1326,6 @@ func (ptr *QSqlDriver) SetOpenErrorDefault(error bool) {
 func (ptr *QSqlDriver) DestroyQSqlDriver() {
 	if ptr.Pointer() != nil {
 		C.QSqlDriver_DestroyQSqlDriver(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2183,7 +2182,6 @@ func callbackQSqlDriver_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSqlDriver) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlDriver_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2292,7 +2290,7 @@ func NewQSqlDriverCreatorFromPointer(ptr unsafe.Pointer) *QSqlDriverCreator {
 func (ptr *QSqlDriverCreator) DestroyQSqlDriverCreator() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -2368,7 +2366,6 @@ func (ptr *QSqlDriverCreatorBase) DisconnectDestroyQSqlDriverCreatorBase() {
 func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBase() {
 	if ptr.Pointer() != nil {
 		C.QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2376,7 +2373,6 @@ func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBase() {
 func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBaseDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBaseDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2518,7 +2514,6 @@ func NewQSqlDriverPlugin(parent core.QObject_ITF) *QSqlDriverPlugin {
 func (ptr *QSqlDriverPlugin) DestroyQSqlDriverPlugin() {
 	if ptr.Pointer() != nil {
 		C.QSqlDriverPlugin_DestroyQSqlDriverPlugin(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2715,7 +2710,6 @@ func callbackQSqlDriverPlugin_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSqlDriverPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlDriverPlugin_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3983,7 +3977,6 @@ func (ptr *QSqlQueryModel) DisconnectDestroyQSqlQueryModel() {
 func (ptr *QSqlQueryModel) DestroyQSqlQueryModel() {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_DestroyQSqlQueryModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3991,7 +3984,6 @@ func (ptr *QSqlQueryModel) DestroyQSqlQueryModel() {
 func (ptr *QSqlQueryModel) DestroyQSqlQueryModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_DestroyQSqlQueryModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5452,7 +5444,6 @@ func callbackQSqlQueryModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSqlQueryModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5955,7 +5946,6 @@ func NewQSqlRelationalDelegate(parent core.QObject_ITF) *QSqlRelationalDelegate 
 func (ptr *QSqlRelationalDelegate) DestroyQSqlRelationalDelegate() {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6386,7 +6376,6 @@ func callbackQSqlRelationalDelegate_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSqlRelationalDelegate) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalDelegate_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6676,7 +6665,6 @@ func (ptr *QSqlRelationalTableModel) DisconnectDestroyQSqlRelationalTableModel()
 func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModel() {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6684,7 +6672,6 @@ func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModel() {
 func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7751,7 +7738,6 @@ func (ptr *QSqlResult) DisconnectDestroyQSqlResult() {
 func (ptr *QSqlResult) DestroyQSqlResult() {
 	if ptr.Pointer() != nil {
 		C.QSqlResult_DestroyQSqlResult(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7759,7 +7745,6 @@ func (ptr *QSqlResult) DestroyQSqlResult() {
 func (ptr *QSqlResult) DestroyQSqlResultDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlResult_DestroyQSqlResultDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8881,7 +8866,6 @@ func (ptr *QSqlTableModel) DisconnectDestroyQSqlTableModel() {
 func (ptr *QSqlTableModel) DestroyQSqlTableModel() {
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_DestroyQSqlTableModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8889,7 +8873,6 @@ func (ptr *QSqlTableModel) DestroyQSqlTableModel() {
 func (ptr *QSqlTableModel) DestroyQSqlTableModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_DestroyQSqlTableModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

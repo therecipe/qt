@@ -36,8 +36,8 @@ func LendSignal(name, signal string) interface{} {
 }
 
 func GetSignal(name, signal string) interface{} {
-	if signal == "destroyed" || signal == "deleteLater" || strings.HasPrefix(signal, "~") {
-		defer DisconnectAllSignals(name)
+	if signal == "destroyed" || strings.HasPrefix(signal, "~") {
+		defer DisconnectAllSignals(name, signal)
 	}
 	return LendSignal(name, signal)
 }
@@ -54,10 +54,10 @@ func DisconnectSignal(name, signal string) {
 	signalsMutex.Unlock()
 }
 
-func DisconnectAllSignals(name string) {
+func DisconnectAllSignals(name, signal string) {
 	signalsMutex.Lock()
 	for entry := range signals {
-		if strings.HasPrefix(entry, fmt.Sprintf("%v:", name)) {
+		if (signal == "destroyed" || !strings.HasSuffix(entry, fmt.Sprintf(":%v", "destroyed"))) && strings.HasPrefix(entry, fmt.Sprintf("%v:", name)) {
 			delete(signals, entry)
 		}
 	}
@@ -77,6 +77,14 @@ func DumpSignals() {
 	}
 	signalsMutex.Unlock()
 	Debug("##############################\tSIGNALSTABLE_END\t##############################")
+}
+
+func CountSignals() int {
+	var c int
+	signalsMutex.Lock()
+	c = len(signals)
+	signalsMutex.Unlock()
+	return c
 }
 
 func GoBoolToInt(b bool) int {

@@ -214,7 +214,6 @@ func (ptr *QAbstractExtensionManager) DisconnectDestroyQAbstractExtensionManager
 func (ptr *QAbstractExtensionManager) DestroyQAbstractExtensionManager() {
 	if ptr.Pointer() != nil {
 		C.QAbstractExtensionManager_DestroyQAbstractExtensionManager(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -222,7 +221,6 @@ func (ptr *QAbstractExtensionManager) DestroyQAbstractExtensionManager() {
 func (ptr *QAbstractExtensionManager) DestroyQAbstractExtensionManagerDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractExtensionManager_DestroyQAbstractExtensionManagerDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -447,7 +445,6 @@ func (ptr *QAbstractFormBuilder) DisconnectDestroyQAbstractFormBuilder() {
 func (ptr *QAbstractFormBuilder) DestroyQAbstractFormBuilder() {
 	if ptr.Pointer() != nil {
 		C.QAbstractFormBuilder_DestroyQAbstractFormBuilder(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -455,7 +452,6 @@ func (ptr *QAbstractFormBuilder) DestroyQAbstractFormBuilder() {
 func (ptr *QAbstractFormBuilder) DestroyQAbstractFormBuilderDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractFormBuilder_DestroyQAbstractFormBuilderDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -672,7 +668,6 @@ func (ptr *QDesignerActionEditorInterface) DisconnectDestroyQDesignerActionEdito
 func (ptr *QDesignerActionEditorInterface) DestroyQDesignerActionEditorInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -680,7 +675,6 @@ func (ptr *QDesignerActionEditorInterface) DestroyQDesignerActionEditorInterface
 func (ptr *QDesignerActionEditorInterface) DestroyQDesignerActionEditorInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1867,7 +1861,6 @@ func callbackQDesignerActionEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerActionEditorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerActionEditorInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2145,7 +2138,6 @@ func (ptr *QDesignerContainerExtension) DisconnectDestroyQDesignerContainerExten
 func (ptr *QDesignerContainerExtension) DestroyQDesignerContainerExtension() {
 	if ptr.Pointer() != nil {
 		C.QDesignerContainerExtension_DestroyQDesignerContainerExtension(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2153,7 +2145,6 @@ func (ptr *QDesignerContainerExtension) DestroyQDesignerContainerExtension() {
 func (ptr *QDesignerContainerExtension) DestroyQDesignerContainerExtensionDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerContainerExtension_DestroyQDesignerContainerExtensionDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2432,7 +2423,6 @@ func (ptr *QDesignerCustomWidgetCollectionInterface) DisconnectDestroyQDesignerC
 func (ptr *QDesignerCustomWidgetCollectionInterface) DestroyQDesignerCustomWidgetCollectionInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2440,7 +2430,6 @@ func (ptr *QDesignerCustomWidgetCollectionInterface) DestroyQDesignerCustomWidge
 func (ptr *QDesignerCustomWidgetCollectionInterface) DestroyQDesignerCustomWidgetCollectionInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2671,7 +2660,6 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectDestroyQDesignerCustomWidge
 func (ptr *QDesignerCustomWidgetInterface) DestroyQDesignerCustomWidgetInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2679,7 +2667,6 @@ func (ptr *QDesignerCustomWidgetInterface) DestroyQDesignerCustomWidgetInterface
 func (ptr *QDesignerCustomWidgetInterface) DestroyQDesignerCustomWidgetInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3227,7 +3214,6 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectDestroyQDesignerDyn
 func (ptr *QDesignerDynamicPropertySheetExtension) DestroyQDesignerDynamicPropertySheetExtension() {
 	if ptr.Pointer() != nil {
 		C.QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtension(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3235,7 +3221,6 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DestroyQDesignerDynamicProper
 func (ptr *QDesignerDynamicPropertySheetExtension) DestroyQDesignerDynamicPropertySheetExtensionDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtensionDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3459,7 +3444,6 @@ func (ptr *QDesignerFormEditorInterface) DisconnectDestroyQDesignerFormEditorInt
 func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3467,7 +3451,6 @@ func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterface() {
 func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3770,7 +3753,6 @@ func callbackQDesignerFormEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerFormEditorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4125,7 +4107,6 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectDestroyQDesignerFormWin
 func (ptr *QDesignerFormWindowCursorInterface) DestroyQDesignerFormWindowCursorInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4133,7 +4114,6 @@ func (ptr *QDesignerFormWindowCursorInterface) DestroyQDesignerFormWindowCursorI
 func (ptr *QDesignerFormWindowCursorInterface) DestroyQDesignerFormWindowCursorInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6061,7 +6041,6 @@ func (ptr *QDesignerFormWindowInterface) DisconnectDestroyQDesignerFormWindowInt
 func (ptr *QDesignerFormWindowInterface) DestroyQDesignerFormWindowInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6069,7 +6048,6 @@ func (ptr *QDesignerFormWindowInterface) DestroyQDesignerFormWindowInterface() {
 func (ptr *QDesignerFormWindowInterface) DestroyQDesignerFormWindowInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7958,7 +7936,6 @@ func callbackQDesignerFormWindowInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerFormWindowInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8539,7 +8516,6 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectDestroyQDesignerFormWi
 func (ptr *QDesignerFormWindowManagerInterface) DestroyQDesignerFormWindowManagerInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8547,7 +8523,6 @@ func (ptr *QDesignerFormWindowManagerInterface) DestroyQDesignerFormWindowManage
 func (ptr *QDesignerFormWindowManagerInterface) DestroyQDesignerFormWindowManagerInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9029,7 +9004,6 @@ func callbackQDesignerFormWindowManagerInterface_DeleteLater(ptr unsafe.Pointer)
 func (ptr *QDesignerFormWindowManagerInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9242,7 +9216,6 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectDestroyQDesignerMemberSheetE
 func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtension() {
 	if ptr.Pointer() != nil {
 		C.QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9250,7 +9223,6 @@ func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtension()
 func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtensionDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtensionDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9892,7 +9864,6 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectDestroyQDesignerObjectIn
 func (ptr *QDesignerObjectInspectorInterface) DestroyQDesignerObjectInspectorInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9900,7 +9871,6 @@ func (ptr *QDesignerObjectInspectorInterface) DestroyQDesignerObjectInspectorInt
 func (ptr *QDesignerObjectInspectorInterface) DestroyQDesignerObjectInspectorInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11087,7 +11057,6 @@ func callbackQDesignerObjectInspectorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerObjectInspectorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerObjectInspectorInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11387,7 +11356,6 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectDestroyQDesignerPropertyE
 func (ptr *QDesignerPropertyEditorInterface) DestroyQDesignerPropertyEditorInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11395,7 +11363,6 @@ func (ptr *QDesignerPropertyEditorInterface) DestroyQDesignerPropertyEditorInter
 func (ptr *QDesignerPropertyEditorInterface) DestroyQDesignerPropertyEditorInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12697,7 +12664,6 @@ func callbackQDesignerPropertyEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerPropertyEditorInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13052,7 +13018,6 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectDestroyQDesignerPropertySh
 func (ptr *QDesignerPropertySheetExtension) DestroyQDesignerPropertySheetExtension() {
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13060,7 +13025,6 @@ func (ptr *QDesignerPropertySheetExtension) DestroyQDesignerPropertySheetExtensi
 func (ptr *QDesignerPropertySheetExtension) DestroyQDesignerPropertySheetExtensionDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtensionDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13520,7 +13484,6 @@ func (ptr *QDesignerTaskMenuExtension) DisconnectDestroyQDesignerTaskMenuExtensi
 func (ptr *QDesignerTaskMenuExtension) DestroyQDesignerTaskMenuExtension() {
 	if ptr.Pointer() != nil {
 		C.QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13528,7 +13491,6 @@ func (ptr *QDesignerTaskMenuExtension) DestroyQDesignerTaskMenuExtension() {
 func (ptr *QDesignerTaskMenuExtension) DestroyQDesignerTaskMenuExtensionDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtensionDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13847,7 +13809,6 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectDestroyQDesignerWidgetBoxInter
 func (ptr *QDesignerWidgetBoxInterface) DestroyQDesignerWidgetBoxInterface() {
 	if ptr.Pointer() != nil {
 		C.QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13855,7 +13816,6 @@ func (ptr *QDesignerWidgetBoxInterface) DestroyQDesignerWidgetBoxInterface() {
 func (ptr *QDesignerWidgetBoxInterface) DestroyQDesignerWidgetBoxInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15031,7 +14991,6 @@ func callbackQDesignerWidgetBoxInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDesignerWidgetBoxInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDesignerWidgetBoxInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15139,15 +15098,6 @@ func NewQExtensionFactoryFromPointer(ptr unsafe.Pointer) *QExtensionFactory {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QExtensionFactory) DestroyQExtensionFactory() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
 	var tmpValue = NewQExtensionFactoryFromPointer(C.QExtensionFactory_NewQExtensionFactory(PointerFromQExtensionManager(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -15515,7 +15465,6 @@ func callbackQExtensionFactory_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QExtensionFactory) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QExtensionFactory_DeleteLater(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15523,7 +15472,6 @@ func (ptr *QExtensionFactory) DeleteLater() {
 func (ptr *QExtensionFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QExtensionFactory_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15765,7 +15713,6 @@ func (ptr *QExtensionManager) UnregisterExtensionsDefault(factory QAbstractExten
 func (ptr *QExtensionManager) DestroyQExtensionManager() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DestroyQExtensionManager(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16056,7 +16003,6 @@ func callbackQExtensionManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QExtensionManager) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DeleteLater(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16064,7 +16010,6 @@ func (ptr *QExtensionManager) DeleteLater() {
 func (ptr *QExtensionManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16250,7 +16195,6 @@ func (ptr *QFormBuilder) DisconnectDestroyQFormBuilder() {
 func (ptr *QFormBuilder) DestroyQFormBuilder() {
 	if ptr.Pointer() != nil {
 		C.QFormBuilder_DestroyQFormBuilder(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16258,7 +16202,6 @@ func (ptr *QFormBuilder) DestroyQFormBuilder() {
 func (ptr *QFormBuilder) DestroyQFormBuilderDefault() {
 	if ptr.Pointer() != nil {
 		C.QFormBuilder_DestroyQFormBuilderDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

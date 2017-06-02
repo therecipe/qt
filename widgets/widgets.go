@@ -617,7 +617,6 @@ func (ptr *QAbstractButton) Toggled(checked bool) {
 func (ptr *QAbstractButton) DestroyQAbstractButton() {
 	if ptr.Pointer() != nil {
 		C.QAbstractButton_DestroyQAbstractButton(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -817,7 +816,6 @@ func (ptr *QAbstractGraphicsShapeItem) SetPen(pen gui.QPen_ITF) {
 func (ptr *QAbstractGraphicsShapeItem) DestroyQAbstractGraphicsShapeItem() {
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1185,7 +1183,6 @@ func (ptr *QAbstractItemDelegate) DisconnectDestroyQAbstractItemDelegate() {
 func (ptr *QAbstractItemDelegate) DestroyQAbstractItemDelegate() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemDelegate_DestroyQAbstractItemDelegate(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1193,7 +1190,6 @@ func (ptr *QAbstractItemDelegate) DestroyQAbstractItemDelegate() {
 func (ptr *QAbstractItemDelegate) DestroyQAbstractItemDelegateDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemDelegate_DestroyQAbstractItemDelegateDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1701,7 +1697,6 @@ func callbackQAbstractItemDelegate_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractItemDelegate) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemDelegate_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3486,7 +3481,6 @@ func (ptr *QAbstractItemView) ViewportEntered() {
 func (ptr *QAbstractItemView) DestroyQAbstractItemView() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemView_DestroyQAbstractItemView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4505,7 +4499,6 @@ func (ptr *QAbstractScrollArea) SetupViewportDefault(viewport QWidget_ITF) {
 func (ptr *QAbstractScrollArea) DestroyQAbstractScrollArea() {
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_DestroyQAbstractScrollArea(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5206,7 +5199,6 @@ func (ptr *QAbstractSlider) ValueChanged(value int) {
 func (ptr *QAbstractSlider) DestroyQAbstractSlider() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSlider_DestroyQAbstractSlider(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5700,7 +5692,6 @@ func (ptr *QAbstractSpinBox) StepUpDefault() {
 func (ptr *QAbstractSpinBox) DestroyQAbstractSpinBox() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSpinBox_DestroyQAbstractSpinBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6108,7 +6099,6 @@ func (ptr *QAccessibleWidget) DoActionDefault(actionName string) {
 func (ptr *QAccessibleWidget) DestroyQAccessibleWidget() {
 	if ptr.Pointer() != nil {
 		C.QAccessibleWidget_DestroyQAccessibleWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7671,7 +7661,6 @@ func (ptr *QAction) Triggered(checked bool) {
 func (ptr *QAction) DestroyQAction() {
 	if ptr.Pointer() != nil {
 		C.QAction_DestroyQAction(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8145,7 +8134,6 @@ func callbackQAction_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAction) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAction_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8556,7 +8544,6 @@ func (ptr *QActionGroup) Triggered(action QAction_ITF) {
 func (ptr *QActionGroup) DestroyQActionGroup() {
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DestroyQActionGroup(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8819,7 +8806,6 @@ func callbackQActionGroup_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QActionGroup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QActionGroup_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9762,7 +9748,6 @@ func (ptr *QApplication) DisconnectDestroyQApplication() {
 func (ptr *QApplication) DestroyQApplication() {
 	if ptr.Pointer() != nil {
 		C.QApplication_DestroyQApplication(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9770,7 +9755,6 @@ func (ptr *QApplication) DestroyQApplication() {
 func (ptr *QApplication) DestroyQApplicationDefault() {
 	if ptr.Pointer() != nil {
 		C.QApplication_DestroyQApplicationDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10192,7 +10176,6 @@ func callbackQApplication_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QApplication) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QApplication_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10506,7 +10489,6 @@ func (ptr *QBoxLayout) SetStretch(index int, stretch int) {
 func (ptr *QBoxLayout) DestroyQBoxLayout() {
 	if ptr.Pointer() != nil {
 		C.QBoxLayout_DestroyQBoxLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11046,7 +11028,6 @@ func (ptr *QButtonGroup) SetId(button QAbstractButton_ITF, id int) {
 func (ptr *QButtonGroup) DestroyQButtonGroup() {
 	if ptr.Pointer() != nil {
 		C.QButtonGroup_DestroyQButtonGroup(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11320,7 +11301,6 @@ func callbackQButtonGroup_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QButtonGroup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QButtonGroup_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12245,7 +12225,6 @@ func (ptr *QCalendarWidget) UpdateCells() {
 func (ptr *QCalendarWidget) DestroyQCalendarWidget() {
 	if ptr.Pointer() != nil {
 		C.QCalendarWidget_DestroyQCalendarWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12552,7 +12531,6 @@ func (ptr *QCheckBox) StateChanged(state int) {
 func (ptr *QCheckBox) DestroyQCheckBox() {
 	if ptr.Pointer() != nil {
 		C.QCheckBox_DestroyQCheckBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12864,7 +12842,6 @@ func (ptr *QColorDialog) SetStandardColor(index int, color gui.QColor_ITF) {
 func (ptr *QColorDialog) DestroyQColorDialog() {
 	if ptr.Pointer() != nil {
 		C.QColorDialog_DestroyQColorDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13508,7 +13485,6 @@ func (ptr *QColumnView) UpdatePreviewWidget(index core.QModelIndex_ITF) {
 func (ptr *QColumnView) DestroyQColumnView() {
 	if ptr.Pointer() != nil {
 		C.QColumnView_DestroyQColumnView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14783,7 +14759,6 @@ func (ptr *QComboBox) ShowPopupDefault() {
 func (ptr *QComboBox) DestroyQComboBox() {
 	if ptr.Pointer() != nil {
 		C.QComboBox_DestroyQComboBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15106,7 +15081,6 @@ func (ptr *QCommandLinkButton) SetDescription(description string) {
 func (ptr *QCommandLinkButton) DestroyQCommandLinkButton() {
 	if ptr.Pointer() != nil {
 		C.QCommandLinkButton_DestroyQCommandLinkButton(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15167,7 +15141,6 @@ func NewQCommonStyle() *QCommonStyle {
 func (ptr *QCommonStyle) DestroyQCommonStyle() {
 	if ptr.Pointer() != nil {
 		C.QCommonStyle_DestroyQCommonStyle(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16237,7 +16210,6 @@ func (ptr *QCompleter) SetWidget(widget QWidget_ITF) {
 func (ptr *QCompleter) DestroyQCompleter() {
 	if ptr.Pointer() != nil {
 		C.QCompleter_DestroyQCompleter(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16630,7 +16602,6 @@ func callbackQCompleter_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCompleter) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCompleter_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -17187,7 +17158,6 @@ func (ptr *QDataWidgetMapper) ToPreviousDefault() {
 func (ptr *QDataWidgetMapper) DestroyQDataWidgetMapper() {
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_DestroyQDataWidgetMapper(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -17463,7 +17433,6 @@ func callbackQDataWidgetMapper_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDataWidgetMapper) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDataWidgetMapper_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -17587,7 +17556,6 @@ func NewQDateEdit2(date core.QDate_ITF, parent QWidget_ITF) *QDateEdit {
 func (ptr *QDateEdit) DestroyQDateEdit() {
 	if ptr.Pointer() != nil {
 		C.QDateEdit_DestroyQDateEdit(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -18106,7 +18074,6 @@ func (ptr *QDateTimeEdit) TimeChanged(time core.QTime_ITF) {
 func (ptr *QDateTimeEdit) DestroyQDateTimeEdit() {
 	if ptr.Pointer() != nil {
 		C.QDateTimeEdit_DestroyQDateTimeEdit(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -18406,15 +18373,6 @@ func NewQDesktopWidgetFromPointer(ptr unsafe.Pointer) *QDesktopWidget {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QDesktopWidget) DestroyQDesktopWidget() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func (ptr *QDesktopWidget) Screen(screen int) *QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWidgetFromPointer(C.QDesktopWidget_Screen(ptr.Pointer(), C.int(int32(screen))))
@@ -18810,7 +18768,6 @@ func (ptr *QDial) SetWrappingDefault(on bool) {
 func (ptr *QDial) DestroyQDial() {
 	if ptr.Pointer() != nil {
 		C.QDial_DestroyQDial(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19297,7 +19254,6 @@ func (ptr *QDialog) SetVisibleDefault(visible bool) {
 func (ptr *QDialog) DestroyQDialog() {
 	if ptr.Pointer() != nil {
 		C.QDialog_DestroyQDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19666,7 +19622,6 @@ func (ptr *QDialogButtonBox) SetStandardButtons(buttons QDialogButtonBox__Standa
 func (ptr *QDialogButtonBox) DestroyQDialogButtonBox() {
 	if ptr.Pointer() != nil {
 		C.QDialogButtonBox_DestroyQDialogButtonBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20054,7 +20009,6 @@ func (ptr *QDockWidget) VisibilityChanged(visible bool) {
 func (ptr *QDockWidget) DestroyQDockWidget() {
 	if ptr.Pointer() != nil {
 		C.QDockWidget_DestroyQDockWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20352,7 +20306,6 @@ func (ptr *QDoubleSpinBox) ValueChanged(d float64) {
 func (ptr *QDoubleSpinBox) DestroyQDoubleSpinBox() {
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_DestroyQDoubleSpinBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20732,7 +20685,6 @@ func (ptr *QErrorMessage) ShowMessage2Default(message string, ty string) {
 func (ptr *QErrorMessage) DestroyQErrorMessage() {
 	if ptr.Pointer() != nil {
 		C.QErrorMessage_DestroyQErrorMessage(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -21915,7 +21867,6 @@ func (ptr *QFileDialog) UrlsSelected(urls []*core.QUrl) {
 func (ptr *QFileDialog) DestroyQFileDialog() {
 	if ptr.Pointer() != nil {
 		C.QFileDialog_DestroyQFileDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22326,7 +22277,6 @@ func (ptr *QFileIconProvider) DisconnectDestroyQFileIconProvider() {
 func (ptr *QFileIconProvider) DestroyQFileIconProvider() {
 	if ptr.Pointer() != nil {
 		C.QFileIconProvider_DestroyQFileIconProvider(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22334,7 +22284,6 @@ func (ptr *QFileIconProvider) DestroyQFileIconProvider() {
 func (ptr *QFileIconProvider) DestroyQFileIconProviderDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileIconProvider_DestroyQFileIconProviderDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22862,7 +22811,6 @@ func (ptr *QFileSystemModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 func (ptr *QFileSystemModel) DestroyQFileSystemModel() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemModel_DestroyQFileSystemModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24427,7 +24375,6 @@ func callbackQFileSystemModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QFileSystemModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemModel_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24534,7 +24481,6 @@ func (ptr *QFocusFrame) SetWidget(widget QWidget_ITF) {
 func (ptr *QFocusFrame) DestroyQFocusFrame() {
 	if ptr.Pointer() != nil {
 		C.QFocusFrame_DestroyQFocusFrame(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24711,7 +24657,6 @@ func (ptr *QFontComboBox) SetWritingSystem(vqf gui.QFontDatabase__WritingSystem)
 func (ptr *QFontComboBox) DestroyQFontComboBox() {
 	if ptr.Pointer() != nil {
 		C.QFontComboBox_DestroyQFontComboBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24769,14 +24714,6 @@ func NewQFontDialogFromPointer(ptr unsafe.Pointer) *QFontDialog {
 	var n = new(QFontDialog)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QFontDialog) DestroyQFontDialog() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QFontDialog__FontDialogOption
@@ -25353,7 +25290,6 @@ func (ptr *QFormLayout) SetWidget(row int, role QFormLayout__ItemRole, widget QW
 func (ptr *QFormLayout) DestroyQFormLayout() {
 	if ptr.Pointer() != nil {
 		C.QFormLayout_DestroyQFormLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -25640,7 +25576,6 @@ func (ptr *QFrame) SetMidLineWidth(vin int) {
 func (ptr *QFrame) DestroyQFrame() {
 	if ptr.Pointer() != nil {
 		C.QFrame_DestroyQFrame(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -25779,7 +25714,6 @@ func (ptr *QGesture) UnsetHotSpot() {
 func (ptr *QGesture) DestroyQGesture() {
 	if ptr.Pointer() != nil {
 		C.QGesture_DestroyQGesture(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26013,7 +25947,6 @@ func callbackQGesture_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGesture) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGesture_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26167,7 +26100,6 @@ func (ptr *QGestureEvent) SetAccepted2(gestureType core.Qt__GestureType, value b
 func (ptr *QGestureEvent) DestroyQGestureEvent() {
 	if ptr.Pointer() != nil {
 		C.QGestureEvent_DestroyQGestureEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26577,7 +26509,6 @@ func (ptr *QGestureRecognizer) DisconnectDestroyQGestureRecognizer() {
 func (ptr *QGestureRecognizer) DestroyQGestureRecognizer() {
 	if ptr.Pointer() != nil {
 		C.QGestureRecognizer_DestroyQGestureRecognizer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26585,7 +26516,6 @@ func (ptr *QGestureRecognizer) DestroyQGestureRecognizer() {
 func (ptr *QGestureRecognizer) DestroyQGestureRecognizerDefault() {
 	if ptr.Pointer() != nil {
 		C.QGestureRecognizer_DestroyQGestureRecognizerDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26649,7 +26579,6 @@ func (ptr *QGraphicsAnchor) UnsetSpacing() {
 func (ptr *QGraphicsAnchor) DestroyQGraphicsAnchor() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_DestroyQGraphicsAnchor(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26860,7 +26789,6 @@ func callbackQGraphicsAnchor_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsAnchor) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchor_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -27096,7 +27024,6 @@ func (ptr *QGraphicsAnchorLayout) DisconnectDestroyQGraphicsAnchorLayout() {
 func (ptr *QGraphicsAnchorLayout) DestroyQGraphicsAnchorLayout() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -27104,7 +27031,6 @@ func (ptr *QGraphicsAnchorLayout) DestroyQGraphicsAnchorLayout() {
 func (ptr *QGraphicsAnchorLayout) DestroyQGraphicsAnchorLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayoutDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -27537,7 +27463,6 @@ func (ptr *QGraphicsBlurEffect) DrawDefault(painter gui.QPainter_ITF) {
 func (ptr *QGraphicsBlurEffect) DestroyQGraphicsBlurEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -27795,7 +27720,6 @@ func (ptr *QGraphicsColorizeEffect) StrengthChanged(strength float64) {
 func (ptr *QGraphicsColorizeEffect) DestroyQGraphicsColorizeEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsColorizeEffect_DestroyQGraphicsColorizeEffect(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -28318,7 +28242,6 @@ func (ptr *QGraphicsDropShadowEffect) SetYOffsetDefault(dy float64) {
 func (ptr *QGraphicsDropShadowEffect) DestroyQGraphicsDropShadowEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsDropShadowEffect_DestroyQGraphicsDropShadowEffect(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -28675,7 +28598,6 @@ func (ptr *QGraphicsEffect) DisconnectDestroyQGraphicsEffect() {
 func (ptr *QGraphicsEffect) DestroyQGraphicsEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEffect_DestroyQGraphicsEffect(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -28683,7 +28605,6 @@ func (ptr *QGraphicsEffect) DestroyQGraphicsEffect() {
 func (ptr *QGraphicsEffect) DestroyQGraphicsEffectDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEffect_DestroyQGraphicsEffectDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -28969,7 +28890,6 @@ func callbackQGraphicsEffect_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsEffect) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEffect_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -29155,7 +29075,6 @@ func (ptr *QGraphicsEllipseItem) SetStartAngle(angle int) {
 func (ptr *QGraphicsEllipseItem) DestroyQGraphicsEllipseItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsEllipseItem_DestroyQGraphicsEllipseItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -29474,7 +29393,6 @@ func (ptr *QGraphicsGridLayout) DisconnectDestroyQGraphicsGridLayout() {
 func (ptr *QGraphicsGridLayout) DestroyQGraphicsGridLayout() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsGridLayout_DestroyQGraphicsGridLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -29482,7 +29400,6 @@ func (ptr *QGraphicsGridLayout) DestroyQGraphicsGridLayout() {
 func (ptr *QGraphicsGridLayout) DestroyQGraphicsGridLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsGridLayout_DestroyQGraphicsGridLayoutDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -31176,7 +31093,6 @@ func (ptr *QGraphicsItem) DisconnectDestroyQGraphicsItem() {
 func (ptr *QGraphicsItem) DestroyQGraphicsItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItem_DestroyQGraphicsItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -31184,7 +31100,6 @@ func (ptr *QGraphicsItem) DestroyQGraphicsItem() {
 func (ptr *QGraphicsItem) DestroyQGraphicsItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItem_DestroyQGraphicsItemDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -32737,7 +32652,6 @@ func (ptr *QGraphicsItemGroup) RemoveFromGroup(item QGraphicsItem_ITF) {
 func (ptr *QGraphicsItemGroup) DestroyQGraphicsItemGroup() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItemGroup_DestroyQGraphicsItemGroup(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -32972,7 +32886,6 @@ func (ptr *QGraphicsLayout) WidgetEventDefault(e core.QEvent_ITF) {
 func (ptr *QGraphicsLayout) DestroyQGraphicsLayout() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLayout_DestroyQGraphicsLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33345,7 +33258,6 @@ func (ptr *QGraphicsLayoutItem) DisconnectDestroyQGraphicsLayoutItem() {
 func (ptr *QGraphicsLayoutItem) DestroyQGraphicsLayoutItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLayoutItem_DestroyQGraphicsLayoutItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33353,7 +33265,6 @@ func (ptr *QGraphicsLayoutItem) DestroyQGraphicsLayoutItem() {
 func (ptr *QGraphicsLayoutItem) DestroyQGraphicsLayoutItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLayoutItem_DestroyQGraphicsLayoutItemDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33685,7 +33596,6 @@ func (ptr *QGraphicsLineItem) SetPen(pen gui.QPen_ITF) {
 func (ptr *QGraphicsLineItem) DestroyQGraphicsLineItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_DestroyQGraphicsLineItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33937,7 +33847,6 @@ func (ptr *QGraphicsLinearLayout) DisconnectDestroyQGraphicsLinearLayout() {
 func (ptr *QGraphicsLinearLayout) DestroyQGraphicsLinearLayout() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLinearLayout_DestroyQGraphicsLinearLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33945,7 +33854,6 @@ func (ptr *QGraphicsLinearLayout) DestroyQGraphicsLinearLayout() {
 func (ptr *QGraphicsLinearLayout) DestroyQGraphicsLinearLayoutDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsLinearLayout_DestroyQGraphicsLinearLayoutDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -34622,7 +34530,6 @@ func (ptr *QGraphicsObject) ZChanged() {
 func (ptr *QGraphicsObject) DestroyQGraphicsObject() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DestroyQGraphicsObject(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -34996,7 +34903,6 @@ func callbackQGraphicsObject_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsObject) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DeleteLater(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35004,7 +34910,6 @@ func (ptr *QGraphicsObject) DeleteLater() {
 func (ptr *QGraphicsObject) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsObject_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35391,7 +35296,6 @@ func (ptr *QGraphicsOpacityEffect) SetOpacityMaskDefault(mask gui.QBrush_ITF) {
 func (ptr *QGraphicsOpacityEffect) DestroyQGraphicsOpacityEffect() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsOpacityEffect_DestroyQGraphicsOpacityEffect(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35509,7 +35413,6 @@ func (ptr *QGraphicsPathItem) SetPath(path gui.QPainterPath_ITF) {
 func (ptr *QGraphicsPathItem) DestroyQGraphicsPathItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPathItem_DestroyQGraphicsPathItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35703,7 +35606,6 @@ func (ptr *QGraphicsPixmapItem) SetTransformationMode(mode core.Qt__Transformati
 func (ptr *QGraphicsPixmapItem) DestroyQGraphicsPixmapItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPixmapItem_DestroyQGraphicsPixmapItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35891,7 +35793,6 @@ func (ptr *QGraphicsPolygonItem) SetPolygon(polygon gui.QPolygonF_ITF) {
 func (ptr *QGraphicsPolygonItem) DestroyQGraphicsPolygonItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsPolygonItem_DestroyQGraphicsPolygonItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36078,7 +35979,6 @@ func (ptr *QGraphicsProxyWidget) SetWidget(widget QWidget_ITF) {
 func (ptr *QGraphicsProxyWidget) DestroyQGraphicsProxyWidget() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36210,7 +36110,6 @@ func (ptr *QGraphicsRectItem) SetRect2(x float64, y float64, width float64, heig
 func (ptr *QGraphicsRectItem) DestroyQGraphicsRectItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsRectItem_DestroyQGraphicsRectItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36462,7 +36361,6 @@ func (ptr *QGraphicsRotation) SetOrigin(point gui.QVector3D_ITF) {
 func (ptr *QGraphicsRotation) DestroyQGraphicsRotation() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsRotation_DestroyQGraphicsRotation(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36802,7 +36700,6 @@ func (ptr *QGraphicsScale) ZScaleChanged() {
 func (ptr *QGraphicsScale) DestroyQGraphicsScale() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScale_DestroyQGraphicsScale(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -38483,7 +38380,6 @@ func (ptr *QGraphicsScene) DisconnectDestroyQGraphicsScene() {
 func (ptr *QGraphicsScene) DestroyQGraphicsScene() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_DestroyQGraphicsScene(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -38491,7 +38387,6 @@ func (ptr *QGraphicsScene) DestroyQGraphicsScene() {
 func (ptr *QGraphicsScene) DestroyQGraphicsSceneDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_DestroyQGraphicsSceneDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39197,7 +39092,6 @@ func callbackQGraphicsScene_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsScene) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39316,7 +39210,6 @@ const (
 func (ptr *QGraphicsSceneContextMenuEvent) DestroyQGraphicsSceneContextMenuEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneContextMenuEvent_DestroyQGraphicsSceneContextMenuEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39415,7 +39308,6 @@ func (ptr *QGraphicsSceneDragDropEvent) SetDropAction(action core.Qt__DropAction
 func (ptr *QGraphicsSceneDragDropEvent) DestroyQGraphicsSceneDragDropEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneDragDropEvent_DestroyQGraphicsSceneDragDropEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39545,7 +39437,6 @@ func NewQGraphicsSceneEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneEvent 
 func (ptr *QGraphicsSceneEvent) DestroyQGraphicsSceneEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneEvent_DestroyQGraphicsSceneEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39602,7 +39493,6 @@ func NewQGraphicsSceneHelpEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneHe
 func (ptr *QGraphicsSceneHelpEvent) DestroyQGraphicsSceneHelpEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39666,7 +39556,6 @@ func NewQGraphicsSceneHoverEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneH
 func (ptr *QGraphicsSceneHoverEvent) DestroyQGraphicsSceneHoverEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHoverEvent_DestroyQGraphicsSceneHoverEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39773,7 +39662,6 @@ func NewQGraphicsSceneMouseEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneM
 func (ptr *QGraphicsSceneMouseEvent) DestroyQGraphicsSceneMouseEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMouseEvent_DestroyQGraphicsSceneMouseEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -39939,7 +39827,6 @@ func NewQGraphicsSceneMoveEvent() *QGraphicsSceneMoveEvent {
 func (ptr *QGraphicsSceneMoveEvent) DestroyQGraphicsSceneMoveEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -40007,7 +39894,6 @@ func NewQGraphicsSceneResizeEvent() *QGraphicsSceneResizeEvent {
 func (ptr *QGraphicsSceneResizeEvent) DestroyQGraphicsSceneResizeEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -40071,7 +39957,6 @@ func NewQGraphicsSceneWheelEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneW
 func (ptr *QGraphicsSceneWheelEvent) DestroyQGraphicsSceneWheelEvent() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -40244,7 +40129,6 @@ func (ptr *QGraphicsSimpleTextItem) SetText(text string) {
 func (ptr *QGraphicsSimpleTextItem) DestroyQGraphicsSimpleTextItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -40581,7 +40465,6 @@ func (ptr *QGraphicsTextItem) SetTextWidth(width float64) {
 func (ptr *QGraphicsTextItem) DestroyQGraphicsTextItem() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTextItem_DestroyQGraphicsTextItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -40805,7 +40688,6 @@ func (ptr *QGraphicsTransform) UpdateDefault() {
 func (ptr *QGraphicsTransform) DestroyQGraphicsTransform() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTransform_DestroyQGraphicsTransform(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -41037,7 +40919,6 @@ func callbackQGraphicsTransform_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsTransform) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsTransform_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -41739,7 +41620,6 @@ func (ptr *QGraphicsView) UpdateSceneRectDefault(rect core.QRectF_ITF) {
 func (ptr *QGraphicsView) DestroyQGraphicsView() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_DestroyQGraphicsView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -43194,7 +43074,6 @@ func (ptr *QGraphicsWidget) UnsetWindowFrameMargins() {
 func (ptr *QGraphicsWidget) DestroyQGraphicsWidget() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWidget_DestroyQGraphicsWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -43838,7 +43717,6 @@ func (ptr *QGridLayout) SetVerticalSpacing(spacing int) {
 func (ptr *QGridLayout) DestroyQGridLayout() {
 	if ptr.Pointer() != nil {
 		C.QGridLayout_DestroyQGridLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -44275,7 +44153,6 @@ func (ptr *QGroupBox) Toggled(on bool) {
 func (ptr *QGroupBox) DestroyQGroupBox() {
 	if ptr.Pointer() != nil {
 		C.QGroupBox_DestroyQGroupBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -44378,7 +44255,6 @@ func NewQHBoxLayout2(parent QWidget_ITF) *QHBoxLayout {
 func (ptr *QHBoxLayout) DestroyQHBoxLayout() {
 	if ptr.Pointer() != nil {
 		C.QHBoxLayout_DestroyQHBoxLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -45466,7 +45342,6 @@ func (ptr *QHeaderView) DisconnectDestroyQHeaderView() {
 func (ptr *QHeaderView) DestroyQHeaderView() {
 	if ptr.Pointer() != nil {
 		C.QHeaderView_DestroyQHeaderView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -45474,7 +45349,6 @@ func (ptr *QHeaderView) DestroyQHeaderView() {
 func (ptr *QHeaderView) DestroyQHeaderViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QHeaderView_DestroyQHeaderViewDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -46728,7 +46602,6 @@ func (ptr *QInputDialog) TextValueSelected(text string) {
 func (ptr *QInputDialog) DestroyQInputDialog() {
 	if ptr.Pointer() != nil {
 		C.QInputDialog_DestroyQInputDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -46920,7 +46793,6 @@ func (ptr *QItemDelegate) SetItemEditorFactory(factory QItemEditorFactory_ITF) {
 func (ptr *QItemDelegate) DestroyQItemDelegate() {
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_DestroyQItemDelegate(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47255,7 +47127,7 @@ func NewQItemEditorCreatorFromPointer(ptr unsafe.Pointer) *QItemEditorCreator {
 func (ptr *QItemEditorCreator) DestroyQItemEditorCreator() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -47331,7 +47203,6 @@ func (ptr *QItemEditorCreatorBase) DisconnectDestroyQItemEditorCreatorBase() {
 func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBase() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47339,7 +47210,6 @@ func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBase() {
 func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBaseDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorCreatorBase_DestroyQItemEditorCreatorBaseDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47520,7 +47390,6 @@ func (ptr *QItemEditorFactory) DisconnectDestroyQItemEditorFactory() {
 func (ptr *QItemEditorFactory) DestroyQItemEditorFactory() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_DestroyQItemEditorFactory(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47528,7 +47397,6 @@ func (ptr *QItemEditorFactory) DestroyQItemEditorFactory() {
 func (ptr *QItemEditorFactory) DestroyQItemEditorFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_DestroyQItemEditorFactoryDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47733,7 +47601,6 @@ func (ptr *QKeyEventTransition) SetModifierMask(modifierMask core.Qt__KeyboardMo
 func (ptr *QKeyEventTransition) DestroyQKeyEventTransition() {
 	if ptr.Pointer() != nil {
 		C.QKeyEventTransition_DestroyQKeyEventTransition(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48031,7 +47898,6 @@ func callbackQKeyEventTransition_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QKeyEventTransition) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QKeyEventTransition_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48317,7 +48183,6 @@ func (ptr *QKeySequenceEdit) SetKeySequenceDefault(keySequence gui.QKeySequence_
 func (ptr *QKeySequenceEdit) DestroyQKeySequenceEdit() {
 	if ptr.Pointer() != nil {
 		C.QKeySequenceEdit_DestroyQKeySequenceEdit(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48813,7 +48678,6 @@ func (ptr *QLCDNumber) SetSmallDecimalPointDefault(vbo bool) {
 func (ptr *QLCDNumber) DestroyQLCDNumber() {
 	if ptr.Pointer() != nil {
 		C.QLCDNumber_DestroyQLCDNumber(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -49388,7 +49252,6 @@ func (ptr *QLabel) SetWordWrap(on bool) {
 func (ptr *QLabel) DestroyQLabel() {
 	if ptr.Pointer() != nil {
 		C.QLabel_DestroyQLabel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -49553,14 +49416,6 @@ func NewQLayoutFromPointer(ptr unsafe.Pointer) *QLayout {
 	var n = new(QLayout)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QLayout) DestroyQLayout() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QLayout__SizeConstraint
@@ -50489,7 +50344,6 @@ func callbackQLayout_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QLayout) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QLayout_DeleteLater(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -50497,7 +50351,6 @@ func (ptr *QLayout) DeleteLater() {
 func (ptr *QLayout) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLayout_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -50916,7 +50769,6 @@ func (ptr *QLayoutItem) DisconnectDestroyQLayoutItem() {
 func (ptr *QLayoutItem) DestroyQLayoutItem() {
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_DestroyQLayoutItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -50924,7 +50776,6 @@ func (ptr *QLayoutItem) DestroyQLayoutItem() {
 func (ptr *QLayoutItem) DestroyQLayoutItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QLayoutItem_DestroyQLayoutItemDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -52198,7 +52049,6 @@ func (ptr *QLineEdit) UndoDefault() {
 func (ptr *QLineEdit) DestroyQLineEdit() {
 	if ptr.Pointer() != nil {
 		C.QLineEdit_DestroyQLineEdit(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -53037,7 +52887,6 @@ func (ptr *QListView) UpdateGeometriesDefault() {
 func (ptr *QListView) DestroyQListView() {
 	if ptr.Pointer() != nil {
 		C.QListView_DestroyQListView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -54141,7 +53990,6 @@ func (ptr *QListWidget) SortItems(order core.Qt__SortOrder) {
 func (ptr *QListWidget) DestroyQListWidget() {
 	if ptr.Pointer() != nil {
 		C.QListWidget_DestroyQListWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -54808,7 +54656,6 @@ func (ptr *QListWidgetItem) DisconnectDestroyQListWidgetItem() {
 func (ptr *QListWidgetItem) DestroyQListWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_DestroyQListWidgetItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -54816,7 +54663,6 @@ func (ptr *QListWidgetItem) DestroyQListWidgetItem() {
 func (ptr *QListWidgetItem) DestroyQListWidgetItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QListWidgetItem_DestroyQListWidgetItemDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -55153,7 +54999,6 @@ func (ptr *QMacCocoaViewContainer) DisconnectDestroyQMacCocoaViewContainer() {
 func (ptr *QMacCocoaViewContainer) DestroyQMacCocoaViewContainer() {
 	if ptr.Pointer() != nil {
 		C.QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -55161,7 +55006,6 @@ func (ptr *QMacCocoaViewContainer) DestroyQMacCocoaViewContainer() {
 func (ptr *QMacCocoaViewContainer) DestroyQMacCocoaViewContainerDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacCocoaViewContainer_DestroyQMacCocoaViewContainerDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -55207,7 +55051,6 @@ func NewQMacNativeWidgetFromPointer(ptr unsafe.Pointer) *QMacNativeWidget {
 func (ptr *QMacNativeWidget) DestroyQMacNativeWidget() {
 	if ptr.Pointer() != nil {
 		C.QMacNativeWidget_DestroyQMacNativeWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -55767,7 +55610,6 @@ func (ptr *QMainWindow) ToolButtonStyleChanged(toolButtonStyle core.Qt__ToolButt
 func (ptr *QMainWindow) DestroyQMainWindow() {
 	if ptr.Pointer() != nil {
 		C.QMainWindow_DestroyQMainWindow(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -56513,7 +56355,6 @@ func (ptr *QMdiArea) TileSubWindowsDefault() {
 func (ptr *QMdiArea) DestroyQMdiArea() {
 	if ptr.Pointer() != nil {
 		C.QMdiArea_DestroyQMdiArea(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -56892,7 +56733,6 @@ func (ptr *QMdiSubWindow) WindowStateChanged(oldState core.Qt__WindowState, newS
 func (ptr *QMdiSubWindow) DestroyQMdiSubWindow() {
 	if ptr.Pointer() != nil {
 		C.QMdiSubWindow_DestroyQMdiSubWindow(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -57523,7 +57363,6 @@ func (ptr *QMenu) Triggered(action QAction_ITF) {
 func (ptr *QMenu) DestroyQMenu() {
 	if ptr.Pointer() != nil {
 		C.QMenu_DestroyQMenu(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -57936,7 +57775,6 @@ func (ptr *QMenuBar) Triggered(action QAction_ITF) {
 func (ptr *QMenuBar) DestroyQMenuBar() {
 	if ptr.Pointer() != nil {
 		C.QMenuBar_DestroyQMenuBar(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -58544,7 +58382,6 @@ func (ptr *QMessageBox) SetWindowTitle(title string) {
 func (ptr *QMessageBox) DestroyQMessageBox() {
 	if ptr.Pointer() != nil {
 		C.QMessageBox_DestroyQMessageBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -58758,7 +58595,6 @@ func (ptr *QMouseEventTransition) SetModifierMask(modifierMask core.Qt__Keyboard
 func (ptr *QMouseEventTransition) DestroyQMouseEventTransition() {
 	if ptr.Pointer() != nil {
 		C.QMouseEventTransition_DestroyQMouseEventTransition(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -59065,7 +58901,6 @@ func callbackQMouseEventTransition_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMouseEventTransition) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMouseEventTransition_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -59239,7 +59074,6 @@ func (ptr *QPanGesture) SetOffset(value core.QPointF_ITF) {
 func (ptr *QPanGesture) DestroyQPanGesture() {
 	if ptr.Pointer() != nil {
 		C.QPanGesture_DestroyQPanGesture(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -59396,7 +59230,6 @@ func (ptr *QPinchGesture) SetTotalScaleFactor(value float64) {
 func (ptr *QPinchGesture) DestroyQPinchGesture() {
 	if ptr.Pointer() != nil {
 		C.QPinchGesture_DestroyQPinchGesture(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -59629,7 +59462,6 @@ func (ptr *QPlainTextDocumentLayout) SetCursorWidth(width int) {
 func (ptr *QPlainTextDocumentLayout) DestroyQPlainTextDocumentLayout() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -60148,7 +59980,6 @@ func callbackQPlainTextDocumentLayout_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPlainTextDocumentLayout) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -61557,7 +61388,6 @@ func (ptr *QPlainTextEdit) DisconnectDestroyQPlainTextEdit() {
 func (ptr *QPlainTextEdit) DestroyQPlainTextEdit() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextEdit_DestroyQPlainTextEdit(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -61565,7 +61395,6 @@ func (ptr *QPlainTextEdit) DestroyQPlainTextEdit() {
 func (ptr *QPlainTextEdit) DestroyQPlainTextEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextEdit_DestroyQPlainTextEditDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -62281,7 +62110,6 @@ func (ptr *QProgressBar) ValueChanged(value int) {
 func (ptr *QProgressBar) DestroyQProgressBar() {
 	if ptr.Pointer() != nil {
 		C.QProgressBar_DestroyQProgressBar(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -62986,7 +62814,6 @@ func (ptr *QProgressDialog) SetValueDefault(progress int) {
 func (ptr *QProgressDialog) DestroyQProgressDialog() {
 	if ptr.Pointer() != nil {
 		C.QProgressDialog_DestroyQProgressDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63115,7 +62942,6 @@ func (ptr *QProxyStyle) SetBaseStyle(style QStyle_ITF) {
 func (ptr *QProxyStyle) DestroyQProxyStyle() {
 	if ptr.Pointer() != nil {
 		C.QProxyStyle_DestroyQProxyStyle(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63362,7 +63188,6 @@ func (ptr *QPushButton) ShowMenuDefault() {
 func (ptr *QPushButton) DestroyQPushButton() {
 	if ptr.Pointer() != nil {
 		C.QPushButton_DestroyQPushButton(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63509,7 +63334,6 @@ func (ptr *QRadioButton) PaintEventDefault(vqp gui.QPaintEvent_ITF) {
 func (ptr *QRadioButton) DestroyQRadioButton() {
 	if ptr.Pointer() != nil {
 		C.QRadioButton_DestroyQRadioButton(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63579,7 +63403,6 @@ func NewQRubberBand(s QRubberBand__Shape, p QWidget_ITF) *QRubberBand {
 func (ptr *QRubberBand) DestroyQRubberBand() {
 	if ptr.Pointer() != nil {
 		C.QRubberBand_DestroyQRubberBand(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63687,7 +63510,6 @@ func (ptr *QScrollArea) SetWidgetResizable(resizable bool) {
 func (ptr *QScrollArea) DestroyQScrollArea() {
 	if ptr.Pointer() != nil {
 		C.QScrollArea_DestroyQScrollArea(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63774,7 +63596,6 @@ func NewQScrollBar2(orientation core.Qt__Orientation, parent QWidget_ITF) *QScro
 func (ptr *QScrollBar) DestroyQScrollBar() {
 	if ptr.Pointer() != nil {
 		C.QScrollBar_DestroyQScrollBar(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63822,14 +63643,6 @@ func NewQScrollerFromPointer(ptr unsafe.Pointer) *QScroller {
 	var n = new(QScroller)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QScroller) DestroyQScroller() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QScroller__Input
@@ -64628,7 +64441,6 @@ func callbackQScroller_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScroller) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScroller_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -64845,7 +64657,6 @@ func (ptr *QScrollerProperties) DisconnectDestroyQScrollerProperties() {
 func (ptr *QScrollerProperties) DestroyQScrollerProperties() {
 	if ptr.Pointer() != nil {
 		C.QScrollerProperties_DestroyQScrollerProperties(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -64853,7 +64664,6 @@ func (ptr *QScrollerProperties) DestroyQScrollerProperties() {
 func (ptr *QScrollerProperties) DestroyQScrollerPropertiesDefault() {
 	if ptr.Pointer() != nil {
 		C.QScrollerProperties_DestroyQScrollerPropertiesDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -65047,7 +64857,6 @@ func (ptr *QShortcut) SetWhatsThis(text string) {
 func (ptr *QShortcut) DestroyQShortcut() {
 	if ptr.Pointer() != nil {
 		C.QShortcut_DestroyQShortcut(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -65299,7 +65108,6 @@ func callbackQShortcut_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QShortcut) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QShortcut_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -65457,7 +65265,6 @@ func (ptr *QSizeGrip) SetVisibleDefault(visible bool) {
 func (ptr *QSizeGrip) DestroyQSizeGrip() {
 	if ptr.Pointer() != nil {
 		C.QSizeGrip_DestroyQSizeGrip(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -65766,7 +65573,6 @@ func NewQSlider2(orientation core.Qt__Orientation, parent QWidget_ITF) *QSlider 
 func (ptr *QSlider) DestroyQSlider() {
 	if ptr.Pointer() != nil {
 		C.QSlider_DestroyQSlider(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -65884,7 +65690,6 @@ func (ptr *QSpacerItem) SetGeometryDefault(r core.QRect_ITF) {
 func (ptr *QSpacerItem) DestroyQSpacerItem() {
 	if ptr.Pointer() != nil {
 		C.QSpacerItem_DestroyQSpacerItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -66404,7 +66209,6 @@ func (ptr *QSpinBox) ValueChanged(i int) {
 func (ptr *QSpinBox) DestroyQSpinBox() {
 	if ptr.Pointer() != nil {
 		C.QSpinBox_DestroyQSpinBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -66848,7 +66652,6 @@ func (ptr *QSplashScreen) DisconnectDestroyQSplashScreen() {
 func (ptr *QSplashScreen) DestroyQSplashScreen() {
 	if ptr.Pointer() != nil {
 		C.QSplashScreen_DestroyQSplashScreen(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -66856,7 +66659,6 @@ func (ptr *QSplashScreen) DestroyQSplashScreen() {
 func (ptr *QSplashScreen) DestroyQSplashScreenDefault() {
 	if ptr.Pointer() != nil {
 		C.QSplashScreen_DestroyQSplashScreenDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -67117,7 +66919,6 @@ func (ptr *QSplitter) SplitterMoved(pos int, index int) {
 func (ptr *QSplitter) DestroyQSplitter() {
 	if ptr.Pointer() != nil {
 		C.QSplitter_DestroyQSplitter(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -67323,7 +67124,6 @@ func (ptr *QSplitterHandle) SetOrientation(orientation core.Qt__Orientation) {
 func (ptr *QSplitterHandle) DestroyQSplitterHandle() {
 	if ptr.Pointer() != nil {
 		C.QSplitterHandle_DestroyQSplitterHandle(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -67696,7 +67496,6 @@ func (ptr *QStackedLayout) WidgetRemoved(index int) {
 func (ptr *QStackedLayout) DestroyQStackedLayout() {
 	if ptr.Pointer() != nil {
 		C.QStackedLayout_DestroyQStackedLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -68104,7 +67903,6 @@ func (ptr *QStackedWidget) WidgetRemoved(index int) {
 func (ptr *QStackedWidget) DestroyQStackedWidget() {
 	if ptr.Pointer() != nil {
 		C.QStackedWidget_DestroyQStackedWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -68194,7 +67992,7 @@ func NewQStandardItemEditorCreatorFromPointer(ptr unsafe.Pointer) *QStandardItem
 func (ptr *QStandardItemEditorCreator) DestroyQStandardItemEditorCreator() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -68466,7 +68264,6 @@ func (ptr *QStatusBar) DisconnectDestroyQStatusBar() {
 func (ptr *QStatusBar) DestroyQStatusBar() {
 	if ptr.Pointer() != nil {
 		C.QStatusBar_DestroyQStatusBar(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -68474,7 +68271,6 @@ func (ptr *QStatusBar) DestroyQStatusBar() {
 func (ptr *QStatusBar) DestroyQStatusBarDefault() {
 	if ptr.Pointer() != nil {
 		C.QStatusBar_DestroyQStatusBarDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -69476,7 +69272,6 @@ func (ptr *QStyle) DisconnectDestroyQStyle() {
 func (ptr *QStyle) DestroyQStyle() {
 	if ptr.Pointer() != nil {
 		C.QStyle_DestroyQStyle(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -69484,7 +69279,6 @@ func (ptr *QStyle) DestroyQStyle() {
 func (ptr *QStyle) DestroyQStyleDefault() {
 	if ptr.Pointer() != nil {
 		C.QStyle_DestroyQStyleDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -70434,7 +70228,6 @@ func callbackQStyle_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QStyle) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QStyle_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -75225,7 +75018,6 @@ func NewQStylePlugin(parent core.QObject_ITF) *QStylePlugin {
 func (ptr *QStylePlugin) DestroyQStylePlugin() {
 	if ptr.Pointer() != nil {
 		C.QStylePlugin_DestroyQStylePlugin(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -75422,7 +75214,6 @@ func callbackQStylePlugin_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QStylePlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QStylePlugin_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -75544,7 +75335,6 @@ func (ptr *QStyledItemDelegate) SetItemEditorFactory(factory QItemEditorFactory_
 func (ptr *QStyledItemDelegate) DestroyQStyledItemDelegate() {
 	if ptr.Pointer() != nil {
 		C.QStyledItemDelegate_DestroyQStyledItemDelegate(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -75799,7 +75589,6 @@ func (ptr *QSwipeGesture) HorizontalDirection() QSwipeGesture__SwipeDirection {
 func (ptr *QSwipeGesture) DestroyQSwipeGesture() {
 	if ptr.Pointer() != nil {
 		C.QSwipeGesture_DestroyQSwipeGesture(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -76263,7 +76052,6 @@ func (ptr *QSystemTrayIcon) IsVisible() bool {
 func (ptr *QSystemTrayIcon) DestroyQSystemTrayIcon() {
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DestroyQSystemTrayIcon(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -76444,7 +76232,6 @@ func callbackQSystemTrayIcon_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSystemTrayIcon) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -77164,7 +76951,6 @@ func (ptr *QTabBar) TabRemovedDefault(index int) {
 func (ptr *QTabBar) DestroyQTabBar() {
 	if ptr.Pointer() != nil {
 		C.QTabBar_DestroyQTabBar(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -78025,7 +77811,6 @@ func (ptr *QTabWidget) TabRemovedDefault(index int) {
 func (ptr *QTabWidget) DestroyQTabWidget() {
 	if ptr.Pointer() != nil {
 		C.QTabWidget_DestroyQTabWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -79303,7 +79088,6 @@ func (ptr *QTableView) UpdateGeometriesDefault() {
 func (ptr *QTableView) DestroyQTableView() {
 	if ptr.Pointer() != nil {
 		C.QTableView_DestroyQTableView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -80809,7 +80593,6 @@ func (ptr *QTableWidget) SortItems(column int, order core.Qt__SortOrder) {
 func (ptr *QTableWidget) DestroyQTableWidget() {
 	if ptr.Pointer() != nil {
 		C.QTableWidget_DestroyQTableWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -81551,7 +81334,6 @@ func (ptr *QTableWidgetItem) DisconnectDestroyQTableWidgetItem() {
 func (ptr *QTableWidgetItem) DestroyQTableWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_DestroyQTableWidgetItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -81559,7 +81341,6 @@ func (ptr *QTableWidgetItem) DestroyQTableWidgetItem() {
 func (ptr *QTableWidgetItem) DestroyQTableWidgetItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QTableWidgetItem_DestroyQTableWidgetItemDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -81998,7 +81779,6 @@ func (ptr *QTapAndHoldGesture) SetTimeout(msecs int) {
 func (ptr *QTapAndHoldGesture) DestroyQTapAndHoldGesture() {
 	if ptr.Pointer() != nil {
 		C.QTapAndHoldGesture_DestroyQTapAndHoldGesture(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -82059,7 +81839,6 @@ func (ptr *QTapGesture) SetPosition(pos core.QPointF_ITF) {
 func (ptr *QTapGesture) DestroyQTapGesture() {
 	if ptr.Pointer() != nil {
 		C.QTapGesture_DestroyQTapGesture(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -82111,15 +81890,6 @@ func NewQTextBrowserFromPointer(ptr unsafe.Pointer) *QTextBrowser {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QTextBrowser) DestroyQTextBrowser() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQTextBrowser(parent QWidget_ITF) *QTextBrowser {
 	var tmpValue = NewQTextBrowserFromPointer(C.QTextBrowser_NewQTextBrowser(PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -84520,7 +84290,6 @@ func (ptr *QTextEdit) DisconnectDestroyQTextEdit() {
 func (ptr *QTextEdit) DestroyQTextEdit() {
 	if ptr.Pointer() != nil {
 		C.QTextEdit_DestroyQTextEdit(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -84528,7 +84297,6 @@ func (ptr *QTextEdit) DestroyQTextEdit() {
 func (ptr *QTextEdit) DestroyQTextEditDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextEdit_DestroyQTextEditDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -85026,7 +84794,6 @@ func NewQTimeEdit2(time core.QTime_ITF, parent QWidget_ITF) *QTimeEdit {
 func (ptr *QTimeEdit) DestroyQTimeEdit() {
 	if ptr.Pointer() != nil {
 		C.QTimeEdit_DestroyQTimeEdit(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -85637,7 +85404,6 @@ func (ptr *QToolBar) VisibilityChanged(visible bool) {
 func (ptr *QToolBar) DestroyQToolBar() {
 	if ptr.Pointer() != nil {
 		C.QToolBar_DestroyQToolBar(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -86088,7 +85854,6 @@ func (ptr *QToolBox) SetItemToolTip(index int, toolTip string) {
 func (ptr *QToolBox) DestroyQToolBox() {
 	if ptr.Pointer() != nil {
 		C.QToolBox_DestroyQToolBox(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -86457,7 +86222,6 @@ func (ptr *QToolButton) Triggered(action QAction_ITF) {
 func (ptr *QToolButton) DestroyQToolButton() {
 	if ptr.Pointer() != nil {
 		C.QToolButton_DestroyQToolButton(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -87967,7 +87731,6 @@ func (ptr *QTreeView) UpdateGeometriesDefault() {
 func (ptr *QTreeView) DestroyQTreeView() {
 	if ptr.Pointer() != nil {
 		C.QTreeView_DestroyQTreeView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -89299,7 +89062,6 @@ func (ptr *QTreeWidget) SortItems(column int, order core.Qt__SortOrder) {
 func (ptr *QTreeWidget) DestroyQTreeWidget() {
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_DestroyQTreeWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -90153,7 +89915,6 @@ func (ptr *QTreeWidgetItem) DisconnectDestroyQTreeWidgetItem() {
 func (ptr *QTreeWidgetItem) DestroyQTreeWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_DestroyQTreeWidgetItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -90161,7 +89922,6 @@ func (ptr *QTreeWidgetItem) DestroyQTreeWidgetItem() {
 func (ptr *QTreeWidgetItem) DestroyQTreeWidgetItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_DestroyQTreeWidgetItemDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -90827,7 +90587,6 @@ func (ptr *QUndoCommand) DisconnectDestroyQUndoCommand() {
 func (ptr *QUndoCommand) DestroyQUndoCommand() {
 	if ptr.Pointer() != nil {
 		C.QUndoCommand_DestroyQUndoCommand(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -90835,7 +90594,6 @@ func (ptr *QUndoCommand) DestroyQUndoCommand() {
 func (ptr *QUndoCommand) DestroyQUndoCommandDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoCommand_DestroyQUndoCommandDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -91382,7 +91140,6 @@ func (ptr *QUndoGroup) UndoTextChanged(undoText string) {
 func (ptr *QUndoGroup) DestroyQUndoGroup() {
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DestroyQUndoGroup(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -91691,7 +91448,6 @@ func callbackQUndoGroup_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QUndoGroup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoGroup_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -92338,7 +92094,6 @@ func (ptr *QUndoStack) UndoTextChanged(undoText string) {
 func (ptr *QUndoStack) DestroyQUndoStack() {
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DestroyQUndoStack(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -92651,7 +92406,6 @@ func callbackQUndoStack_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QUndoStack) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QUndoStack_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -92884,7 +92638,6 @@ func (ptr *QUndoView) SetStackDefault(stack QUndoStack_ITF) {
 func (ptr *QUndoView) DestroyQUndoView() {
 	if ptr.Pointer() != nil {
 		C.QUndoView_DestroyQUndoView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -92984,7 +92737,6 @@ func NewQVBoxLayout2(parent QWidget_ITF) *QVBoxLayout {
 func (ptr *QVBoxLayout) DestroyQVBoxLayout() {
 	if ptr.Pointer() != nil {
 		C.QVBoxLayout_DestroyQVBoxLayout(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -96150,7 +95902,6 @@ func (ptr *QWidget) WindowTitleChanged(title string) {
 func (ptr *QWidget) DestroyQWidget() {
 	if ptr.Pointer() != nil {
 		C.QWidget_DestroyQWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -97584,7 +97335,6 @@ func callbackQWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWidget) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QWidget_DeleteLater(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -97592,7 +97342,6 @@ func (ptr *QWidget) DeleteLater() {
 func (ptr *QWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWidget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -97875,7 +97624,6 @@ func (ptr *QWidgetAction) DisconnectDestroyQWidgetAction() {
 func (ptr *QWidgetAction) DestroyQWidgetAction() {
 	if ptr.Pointer() != nil {
 		C.QWidgetAction_DestroyQWidgetAction(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -97883,7 +97631,6 @@ func (ptr *QWidgetAction) DestroyQWidgetAction() {
 func (ptr *QWidgetAction) DestroyQWidgetActionDefault() {
 	if ptr.Pointer() != nil {
 		C.QWidgetAction_DestroyQWidgetActionDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -98020,7 +97767,6 @@ func (ptr *QWidgetItem) SetGeometryDefault(rect core.QRect_ITF) {
 func (ptr *QWidgetItem) DestroyQWidgetItem() {
 	if ptr.Pointer() != nil {
 		C.QWidgetItem_DestroyQWidgetItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -99047,7 +98793,6 @@ func (ptr *QWizard) SetTitleFormat(format core.Qt__TextFormat) {
 func (ptr *QWizard) DestroyQWizard() {
 	if ptr.Pointer() != nil {
 		C.QWizard_DestroyQWizard(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -99585,7 +99330,6 @@ func (ptr *QWizardPage) SetTitle(title string) {
 func (ptr *QWizardPage) DestroyQWizardPage() {
 	if ptr.Pointer() != nil {
 		C.QWizardPage_DestroyQWizardPage(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

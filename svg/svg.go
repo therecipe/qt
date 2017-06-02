@@ -62,15 +62,6 @@ func NewQGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QGraphicsSvgItem) DestroyQGraphicsSvgItem() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQGraphicsSvgItem(parent widgets.QGraphicsItem_ITF) *QGraphicsSvgItem {
 	var tmpValue = NewQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem(widgets.PointerFromQGraphicsItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -603,7 +594,6 @@ func callbackQGraphicsSvgItem_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsSvgItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSvgItem_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1231,7 +1221,6 @@ func (ptr *QSvgGenerator) SetViewBox2(viewBox core.QRectF_ITF) {
 func (ptr *QSvgGenerator) DestroyQSvgGenerator() {
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_DestroyQSvgGenerator(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1759,7 +1748,6 @@ func (ptr *QSvgRenderer) SetViewBox2(viewbox core.QRectF_ITF) {
 func (ptr *QSvgRenderer) DestroyQSvgRenderer() {
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DestroyQSvgRenderer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2030,7 +2018,6 @@ func callbackQSvgRenderer_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSvgRenderer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2268,7 +2255,6 @@ func (ptr *QSvgWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
 func (ptr *QSvgWidget) DestroyQSvgWidget() {
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_DestroyQSvgWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3399,7 +3385,6 @@ func callbackQSvgWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QSvgWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

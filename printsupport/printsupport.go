@@ -64,14 +64,6 @@ func NewQAbstractPrintDialogFromPointer(ptr unsafe.Pointer) *QAbstractPrintDialo
 	return n
 }
 
-func (ptr *QAbstractPrintDialog) DestroyQAbstractPrintDialog() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 //go:generate stringer -type=QAbstractPrintDialog__PrintDialogOption
 //QAbstractPrintDialog::PrintDialogOption
 type QAbstractPrintDialog__PrintDialogOption int64
@@ -1450,7 +1442,6 @@ func callbackQAbstractPrintDialog_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractPrintDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1682,7 +1673,6 @@ func (ptr *QPageSetupDialog) SetVisibleDefault(visible bool) {
 func (ptr *QPageSetupDialog) DestroyQPageSetupDialog() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DestroyQPageSetupDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2856,7 +2846,6 @@ func callbackQPageSetupDialog_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPageSetupDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3242,7 +3231,6 @@ func (ptr *QPrintDialog) SetOptions(options QAbstractPrintDialog__PrintDialogOpt
 func (ptr *QPrintDialog) DestroyQPrintDialog() {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_DestroyQPrintDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3480,7 +3468,6 @@ func (ptr *QPrintEngine) DisconnectDestroyQPrintEngine() {
 func (ptr *QPrintEngine) DestroyQPrintEngine() {
 	if ptr.Pointer() != nil {
 		C.QPrintEngine_DestroyQPrintEngine(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3488,7 +3475,6 @@ func (ptr *QPrintEngine) DestroyQPrintEngine() {
 func (ptr *QPrintEngine) DestroyQPrintEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintEngine_DestroyQPrintEngineDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3766,7 +3752,6 @@ func (ptr *QPrintPreviewDialog) SetVisibleDefault(visible bool) {
 func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialog() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DestroyQPrintPreviewDialog(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4956,7 +4941,6 @@ func callbackQPrintPreviewDialog_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5893,7 +5877,6 @@ func (ptr *QPrintPreviewWidget) ZoomOutDefault(factor float64) {
 func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidget() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DestroyQPrintPreviewWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7055,7 +7038,6 @@ func callbackQPrintPreviewWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QPrintPreviewWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7618,7 +7600,6 @@ func (ptr *QPrinter) SetResolution(dpi int) {
 func (ptr *QPrinter) DestroyQPrinter() {
 	if ptr.Pointer() != nil {
 		C.QPrinter_DestroyQPrinter(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

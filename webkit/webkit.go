@@ -1026,7 +1026,6 @@ func (ptr *QGraphicsWebView) WheelEventDefault(ev widgets.QGraphicsSceneWheelEve
 func (ptr *QGraphicsWebView) DestroyQGraphicsWebView() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWebView_DestroyQGraphicsWebView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1883,7 +1882,6 @@ func callbackQGraphicsWebView_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGraphicsWebView) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWebView_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3043,14 +3041,6 @@ func NewQWebFrameFromPointer(ptr unsafe.Pointer) *QWebFrame {
 	return n
 }
 
-func (ptr *QWebFrame) DestroyQWebFrame() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 //go:generate stringer -type=QWebFrame__RenderLayer
 //QWebFrame::RenderLayer
 type QWebFrame__RenderLayer int64
@@ -4194,7 +4184,6 @@ func callbackQWebFrame_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebFrame) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebFrame_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4757,7 +4746,6 @@ func (ptr *QWebHistoryInterface) SetDefaultInterface(defaultInterface QWebHistor
 func (ptr *QWebHistoryInterface) DestroyQWebHistoryInterface() {
 	if ptr.Pointer() != nil {
 		C.QWebHistoryInterface_DestroyQWebHistoryInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4996,7 +4984,6 @@ func callbackQWebHistoryInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebHistoryInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebHistoryInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5658,7 +5645,6 @@ func (ptr *QWebInspector) ShowEventDefault(event gui.QShowEvent_ITF) {
 func (ptr *QWebInspector) DestroyQWebInspector() {
 	if ptr.Pointer() != nil {
 		C.QWebInspector_DestroyQWebInspector(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6728,7 +6714,6 @@ func callbackQWebInspector_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebInspector) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebInspector_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8922,7 +8907,6 @@ func (ptr *QWebPage) WindowCloseRequested() {
 func (ptr *QWebPage) DestroyQWebPage() {
 	if ptr.Pointer() != nil {
 		C.QWebPage_DestroyQWebPage(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9454,7 +9438,6 @@ func callbackQWebPage_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebPage) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebPage_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9635,7 +9618,6 @@ func (ptr *QWebPluginFactory) DisconnectDestroyQWebPluginFactory() {
 func (ptr *QWebPluginFactory) DestroyQWebPluginFactory() {
 	if ptr.Pointer() != nil {
 		C.QWebPluginFactory_DestroyQWebPluginFactory(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9643,7 +9625,6 @@ func (ptr *QWebPluginFactory) DestroyQWebPluginFactory() {
 func (ptr *QWebPluginFactory) DestroyQWebPluginFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebPluginFactory_DestroyQWebPluginFactoryDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9890,7 +9871,6 @@ func callbackQWebPluginFactory_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebPluginFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebPluginFactory_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11749,7 +11729,6 @@ func (ptr *QWebView) WheelEventDefault(ev gui.QWheelEvent_ITF) {
 func (ptr *QWebView) DestroyQWebView() {
 	if ptr.Pointer() != nil {
 		C.QWebView_DestroyQWebView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12734,7 +12713,6 @@ func callbackQWebView_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebView) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebView_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

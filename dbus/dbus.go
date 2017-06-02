@@ -134,7 +134,6 @@ func (ptr *QDBusAbstractAdaptor) SetAutoRelaySignals(enable bool) {
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -338,7 +337,6 @@ func callbackQDBusAbstractAdaptor_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDBusAbstractAdaptor) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -615,7 +613,6 @@ func (ptr *QDBusAbstractInterface) DisconnectDestroyQDBusAbstractInterface() {
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -623,7 +620,6 @@ func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterfaceDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterfaceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -968,7 +964,6 @@ func callbackQDBusAbstractInterface_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDBusAbstractInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1945,14 +1940,6 @@ func NewQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnection
 	return n
 }
 
-func (ptr *QDBusConnectionInterface) DestroyQDBusConnectionInterface() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 //go:generate stringer -type=QDBusConnectionInterface__RegisterServiceReply
 //QDBusConnectionInterface::RegisterServiceReply
 type QDBusConnectionInterface__RegisterServiceReply int64
@@ -2414,7 +2401,6 @@ func NewQDBusInterface(service string, path string, interfa string, connection Q
 func (ptr *QDBusInterface) DestroyQDBusInterface() {
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DestroyQDBusInterface(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3234,7 +3220,6 @@ func (ptr *QDBusPendingCallWatcher) WaitForFinished() {
 func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcher() {
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3470,7 +3455,6 @@ func callbackQDBusPendingCallWatcher_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDBusPendingCallWatcher) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DeleteLater(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3478,7 +3462,6 @@ func (ptr *QDBusPendingCallWatcher) DeleteLater() {
 func (ptr *QDBusPendingCallWatcher) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3845,7 +3828,6 @@ func (ptr *QDBusServer) DisconnectDestroyQDBusServer() {
 func (ptr *QDBusServer) DestroyQDBusServer() {
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DestroyQDBusServer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3853,7 +3835,6 @@ func (ptr *QDBusServer) DestroyQDBusServer() {
 func (ptr *QDBusServer) DestroyQDBusServerDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DestroyQDBusServerDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4080,7 +4061,6 @@ func callbackQDBusServer_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDBusServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4412,7 +4392,6 @@ func (ptr *QDBusServiceWatcher) SetWatchedServices(services []string) {
 func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcher() {
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcher(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4625,7 +4604,6 @@ func callbackQDBusServiceWatcher_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDBusServiceWatcher) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5102,7 +5080,6 @@ func (ptr *QDBusVirtualObject) DisconnectDestroyQDBusVirtualObject() {
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5110,7 +5087,6 @@ func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DestroyQDBusVirtualObjectDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5349,7 +5325,6 @@ func callbackQDBusVirtualObject_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QDBusVirtualObject) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

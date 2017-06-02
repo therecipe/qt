@@ -1014,7 +1014,6 @@ func (ptr *QGeoAreaMonitorSource) DisconnectDestroyQGeoAreaMonitorSource() {
 func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSource() {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1022,7 +1021,6 @@ func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSource() {
 func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSourceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1500,7 +1498,6 @@ func callbackQGeoAreaMonitorSource_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoAreaMonitorSource) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2480,7 +2477,6 @@ func (ptr *QGeoPositionInfoSource) DisconnectDestroyQGeoPositionInfoSource() {
 func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSource() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2488,7 +2484,6 @@ func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSource() {
 func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DestroyQGeoPositionInfoSourceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2856,7 +2851,6 @@ func callbackQGeoPositionInfoSource_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoPositionInfoSource) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3117,7 +3111,6 @@ func (ptr *QGeoPositionInfoSourceFactory) DisconnectDestroyQGeoPositionInfoSourc
 func (ptr *QGeoPositionInfoSourceFactory) DestroyQGeoPositionInfoSourceFactory() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3125,7 +3118,6 @@ func (ptr *QGeoPositionInfoSourceFactory) DestroyQGeoPositionInfoSourceFactory()
 func (ptr *QGeoPositionInfoSourceFactory) DestroyQGeoPositionInfoSourceFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactoryDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3975,7 +3967,6 @@ func (ptr *QGeoSatelliteInfoSource) DisconnectDestroyQGeoSatelliteInfoSource() {
 func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSource() {
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3983,7 +3974,6 @@ func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSource() {
 func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSourceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4306,7 +4296,6 @@ func callbackQGeoSatelliteInfoSource_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoSatelliteInfoSource) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4741,7 +4730,6 @@ func (ptr *QNmeaPositionInfoSource) StopUpdatesDefault() {
 func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

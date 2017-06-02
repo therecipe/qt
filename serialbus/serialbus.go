@@ -182,15 +182,6 @@ func NewQCanBusFromPointer(ptr unsafe.Pointer) *QCanBus {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QCanBus) DestroyQCanBus() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func QCanBus_Instance() *QCanBus {
 	var tmpValue = NewQCanBusFromPointer(C.QCanBus_QCanBus_Instance())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -432,7 +423,6 @@ func callbackQCanBus_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCanBus) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCanBus_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -536,14 +526,6 @@ func NewQCanBusDeviceFromPointer(ptr unsafe.Pointer) *QCanBusDevice {
 	var n = new(QCanBusDevice)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QCanBusDevice) DestroyQCanBusDevice() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QCanBusDevice__CanBusDeviceState
@@ -1355,7 +1337,6 @@ func callbackQCanBusDevice_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QCanBusDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1463,7 +1444,7 @@ func NewQCanBusFactoryFromPointer(ptr unsafe.Pointer) *QCanBusFactory {
 func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -1739,15 +1720,6 @@ func NewQModbusClientFromPointer(ptr unsafe.Pointer) *QModbusClient {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QModbusClient) DestroyQModbusClient() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQModbusClient(parent core.QObject_ITF) *QModbusClient {
 	var tmpValue = NewQModbusClientFromPointer(C.QModbusClient_NewQModbusClient(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -2497,7 +2469,6 @@ func (ptr *QModbusDevice) StateChanged(state QModbusDevice__State) {
 func (ptr *QModbusDevice) DestroyQModbusDevice() {
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DestroyQModbusDevice(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2724,7 +2695,6 @@ func callbackQModbusDevice_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QModbusDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3016,7 +2986,7 @@ func NewQModbusExceptionResponseFromPointer(ptr unsafe.Pointer) *QModbusExceptio
 func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -3216,7 +3186,6 @@ func (ptr *QModbusPdu) DisconnectDestroyQModbusPdu() {
 func (ptr *QModbusPdu) DestroyQModbusPdu() {
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPdu(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3224,7 +3193,6 @@ func (ptr *QModbusPdu) DestroyQModbusPdu() {
 func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPduDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3338,14 +3306,6 @@ func NewQModbusReplyFromPointer(ptr unsafe.Pointer) *QModbusReply {
 	var n = new(QModbusReply)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QModbusReply) DestroyQModbusReply() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QModbusReply__ReplyType
@@ -3688,7 +3648,6 @@ func callbackQModbusReply_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QModbusReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3797,7 +3756,7 @@ func NewQModbusRequestFromPointer(ptr unsafe.Pointer) *QModbusRequest {
 func (ptr *QModbusRequest) DestroyQModbusRequest() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -3872,7 +3831,7 @@ func NewQModbusResponseFromPointer(ptr unsafe.Pointer) *QModbusResponse {
 func (ptr *QModbusResponse) DestroyQModbusResponse() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -3943,15 +3902,6 @@ func NewQModbusRtuSerialMasterFromPointer(ptr unsafe.Pointer) *QModbusRtuSerialM
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QModbusRtuSerialMaster) DestroyQModbusRtuSerialMaster() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQModbusRtuSerialMaster(parent core.QObject_ITF) *QModbusRtuSerialMaster {
 	var tmpValue = NewQModbusRtuSerialMasterFromPointer(C.QModbusRtuSerialMaster_NewQModbusRtuSerialMaster(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -4022,7 +3972,6 @@ func NewQModbusRtuSerialSlave(parent core.QObject_ITF) *QModbusRtuSerialSlave {
 func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4064,14 +4013,6 @@ func NewQModbusServerFromPointer(ptr unsafe.Pointer) *QModbusServer {
 	var n = new(QModbusServer)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QModbusServer) DestroyQModbusServer() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QModbusServer__Option
@@ -4592,7 +4533,6 @@ func NewQModbusTcpClient(parent core.QObject_ITF) *QModbusTcpClient {
 func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DestroyQModbusTcpClient(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4646,7 +4586,6 @@ func NewQModbusTcpServer(parent core.QObject_ITF) *QModbusTcpServer {
 func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DestroyQModbusTcpServer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

@@ -173,14 +173,6 @@ func NewQScxmlCppDataModelFromPointer(ptr unsafe.Pointer) *QScxmlCppDataModel {
 	return n
 }
 
-func (ptr *QScxmlCppDataModel) DestroyQScxmlCppDataModel() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 //export callbackQScxmlCppDataModel_SetScxmlProperty
 func callbackQScxmlCppDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "setScxmlProperty"); signal != nil {
@@ -487,14 +479,6 @@ func NewQScxmlDataModelFromPointer(ptr unsafe.Pointer) *QScxmlDataModel {
 	var n = new(QScxmlDataModel)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QScxmlDataModel) DestroyQScxmlDataModel() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //export callbackQScxmlDataModel_SetScxmlProperty
@@ -991,7 +975,6 @@ func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlDataModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1097,14 +1080,6 @@ func NewQScxmlDynamicScxmlServiceFactoryFromPointer(ptr unsafe.Pointer) *QScxmlD
 	return n
 }
 
-func (ptr *QScxmlDynamicScxmlServiceFactory) DestroyQScxmlDynamicScxmlServiceFactory() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 //export callbackQScxmlDynamicScxmlServiceFactory_Invoke
 func callbackQScxmlDynamicScxmlServiceFactory_Invoke(ptr unsafe.Pointer, parentStateMachine unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "invoke"); signal != nil {
@@ -1203,15 +1178,6 @@ func NewQScxmlEcmaScriptDataModelFromPointer(ptr unsafe.Pointer) *QScxmlEcmaScri
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QScxmlEcmaScriptDataModel) DestroyQScxmlEcmaScriptDataModel() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptDataModel {
 	var tmpValue = NewQScxmlEcmaScriptDataModelFromPointer(C.QScxmlEcmaScriptDataModel_NewQScxmlEcmaScriptDataModel(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -1894,15 +1860,6 @@ func NewQScxmlInvokableServiceFromPointer(ptr unsafe.Pointer) *QScxmlInvokableSe
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QScxmlInvokableService) DestroyQScxmlInvokableService() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQScxmlInvokableService(parentStateMachine QScxmlStateMachine_ITF, parent QScxmlInvokableServiceFactory_ITF) *QScxmlInvokableService {
 	var tmpValue = NewQScxmlInvokableServiceFromPointer(C.QScxmlInvokableService_NewQScxmlInvokableService(PointerFromQScxmlStateMachine(parentStateMachine), PointerFromQScxmlInvokableServiceFactory(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -2260,7 +2217,6 @@ func callbackQScxmlInvokableService_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlInvokableService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableService_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2364,14 +2320,6 @@ func NewQScxmlInvokableServiceFactoryFromPointer(ptr unsafe.Pointer) *QScxmlInvo
 	var n = new(QScxmlInvokableServiceFactory)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QScxmlInvokableServiceFactory) DestroyQScxmlInvokableServiceFactory() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //export callbackQScxmlInvokableServiceFactory_Invoke
@@ -2623,7 +2571,6 @@ func callbackQScxmlInvokableServiceFactory_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlInvokableServiceFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableServiceFactory_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2913,7 +2860,6 @@ func (ptr *QScxmlNullDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3068,15 +3014,6 @@ func NewQScxmlStateMachineFromPointer(ptr unsafe.Pointer) *QScxmlStateMachine {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QScxmlStateMachine) DestroyQScxmlStateMachine() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func QScxmlStateMachine_FromData(data core.QIODevice_ITF, fileName string) *QScxmlStateMachine {
 	var fileNameC *C.char
 	if fileName != "" {
@@ -4250,7 +4187,6 @@ func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4354,14 +4290,6 @@ func NewQScxmlStaticScxmlServiceFactoryFromPointer(ptr unsafe.Pointer) *QScxmlSt
 	var n = new(QScxmlStaticScxmlServiceFactory)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QScxmlStaticScxmlServiceFactory) DestroyQScxmlStaticScxmlServiceFactory() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //export callbackQScxmlStaticScxmlServiceFactory_Invoke
@@ -4495,7 +4423,6 @@ func (ptr *QScxmlTableData) DisconnectDestroyQScxmlTableData() {
 func (ptr *QScxmlTableData) DestroyQScxmlTableData() {
 	if ptr.Pointer() != nil {
 		C.QScxmlTableData_DestroyQScxmlTableData(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4503,7 +4430,6 @@ func (ptr *QScxmlTableData) DestroyQScxmlTableData() {
 func (ptr *QScxmlTableData) DestroyQScxmlTableDataDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlTableData_DestroyQScxmlTableDataDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

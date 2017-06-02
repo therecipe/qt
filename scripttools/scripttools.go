@@ -239,7 +239,6 @@ func (ptr *QScriptEngineDebugger) SetAutoShowStandardWindow(autoShow bool) {
 func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -483,7 +482,6 @@ func callbackQScriptEngineDebugger_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScriptEngineDebugger) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

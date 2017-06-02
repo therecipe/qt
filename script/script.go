@@ -518,7 +518,6 @@ func (ptr *QScriptClass) DisconnectDestroyQScriptClass() {
 func (ptr *QScriptClass) DestroyQScriptClass() {
 	if ptr.Pointer() != nil {
 		C.QScriptClass_DestroyQScriptClass(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -526,7 +525,6 @@ func (ptr *QScriptClass) DestroyQScriptClass() {
 func (ptr *QScriptClass) DestroyQScriptClassDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptClass_DestroyQScriptClassDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1508,7 +1506,6 @@ func (ptr *QScriptEngine) DisconnectDestroyQScriptEngine() {
 func (ptr *QScriptEngine) DestroyQScriptEngine() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DestroyQScriptEngine(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1516,7 +1513,6 @@ func (ptr *QScriptEngine) DestroyQScriptEngine() {
 func (ptr *QScriptEngine) DestroyQScriptEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DestroyQScriptEngineDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1803,7 +1799,6 @@ func callbackQScriptEngine_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScriptEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2399,7 +2394,6 @@ func (ptr *QScriptEngineAgent) DisconnectDestroyQScriptEngineAgent() {
 func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgent() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_DestroyQScriptEngineAgent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2407,7 +2401,6 @@ func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgent() {
 func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgentDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_DestroyQScriptEngineAgentDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2556,7 +2549,6 @@ func (ptr *QScriptExtensionPlugin) Initialize(key string, engine QScriptEngine_I
 func (ptr *QScriptExtensionPlugin) DestroyQScriptExtensionPlugin() {
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2804,7 +2796,6 @@ func callbackQScriptExtensionPlugin_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScriptExtensionPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

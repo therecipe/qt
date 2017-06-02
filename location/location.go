@@ -818,7 +818,6 @@ func (ptr *QGeoRouteReply) DisconnectDestroyQGeoRouteReply() {
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_DestroyQGeoRouteReply(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -826,7 +825,6 @@ func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReplyDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_DestroyQGeoRouteReplyDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1123,7 +1121,6 @@ func callbackQGeoRouteReply_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoRouteReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1891,7 +1888,6 @@ func (ptr *QGeoRoutingManager) SetMeasurementSystem(system core.QLocale__Measure
 func (ptr *QGeoRoutingManager) DestroyQGeoRoutingManager() {
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManager_DestroyQGeoRoutingManager(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2160,7 +2156,6 @@ func callbackQGeoRoutingManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoRoutingManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManager_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2537,7 +2532,6 @@ func (ptr *QGeoRoutingManagerEngine) DisconnectDestroyQGeoRoutingManagerEngine()
 func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngine() {
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2545,7 +2539,6 @@ func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngine() {
 func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngineDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2878,7 +2871,6 @@ func callbackQGeoRoutingManagerEngine_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoRoutingManagerEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3110,7 +3102,6 @@ func (ptr *QGeoServiceProvider) SetParameters(parameters map[string]*core.QVaria
 func (ptr *QGeoServiceProvider) DestroyQGeoServiceProvider() {
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_DestroyQGeoServiceProvider(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3510,7 +3501,6 @@ func callbackQGeoServiceProvider_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QGeoServiceProvider) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3648,7 +3638,6 @@ func (ptr *QGeoServiceProviderFactory) DisconnectDestroyQGeoServiceProviderFacto
 func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactory() {
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3656,7 +3645,6 @@ func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactory() {
 func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

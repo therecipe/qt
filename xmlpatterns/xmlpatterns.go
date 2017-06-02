@@ -96,7 +96,6 @@ func (ptr *QAbstractMessageHandler) DisconnectDestroyQAbstractMessageHandler() {
 func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandler() {
 	if ptr.Pointer() != nil {
 		C.QAbstractMessageHandler_DestroyQAbstractMessageHandler(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -104,7 +103,6 @@ func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandler() {
 func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandlerDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -301,7 +299,6 @@ func callbackQAbstractMessageHandler_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractMessageHandler) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractMessageHandler_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -447,7 +444,6 @@ func (ptr *QAbstractUriResolver) DisconnectDestroyQAbstractUriResolver() {
 func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolver() {
 	if ptr.Pointer() != nil {
 		C.QAbstractUriResolver_DestroyQAbstractUriResolver(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -455,7 +451,6 @@ func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolver() {
 func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolverDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractUriResolver_DestroyQAbstractUriResolverDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -691,7 +686,6 @@ func callbackQAbstractUriResolver_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QAbstractUriResolver) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractUriResolver_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -841,7 +835,6 @@ func (ptr *QAbstractXmlNodeModel) DisconnectDestroyQAbstractXmlNodeModel() {
 func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -849,7 +842,6 @@ func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModel() {
 func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1926,7 +1918,6 @@ func (ptr *QAbstractXmlReceiver) DisconnectDestroyQAbstractXmlReceiver() {
 func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiver() {
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_DestroyQAbstractXmlReceiver(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1934,7 +1925,6 @@ func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiver() {
 func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiverDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractXmlReceiver_DestroyQAbstractXmlReceiverDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2103,7 +2093,6 @@ func (ptr *QSimpleXmlNodeModel) DisconnectDestroyQSimpleXmlNodeModel() {
 func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModel() {
 	if ptr.Pointer() != nil {
 		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2111,7 +2100,6 @@ func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModel() {
 func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2734,7 +2722,7 @@ func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
 func (ptr *QXmlFormatter) DestroyQXmlFormatter() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -3612,7 +3600,6 @@ func (ptr *QXmlResultItems) DisconnectDestroyQXmlResultItems() {
 func (ptr *QXmlResultItems) DestroyQXmlResultItems() {
 	if ptr.Pointer() != nil {
 		C.QXmlResultItems_DestroyQXmlResultItems(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3620,7 +3607,6 @@ func (ptr *QXmlResultItems) DestroyQXmlResultItems() {
 func (ptr *QXmlResultItems) DestroyQXmlResultItemsDefault() {
 	if ptr.Pointer() != nil {
 		C.QXmlResultItems_DestroyQXmlResultItemsDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3988,7 +3974,7 @@ func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) *QXmlSerializer {
 func (ptr *QXmlSerializer) DestroyQXmlSerializer() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }

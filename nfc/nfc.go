@@ -1305,7 +1305,6 @@ func (ptr *QNearFieldManager) TargetLost(target QNearFieldTarget_ITF) {
 func (ptr *QNearFieldManager) DestroyQNearFieldManager() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DestroyQNearFieldManager(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1516,7 +1515,6 @@ func callbackQNearFieldManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1790,7 +1788,6 @@ func (ptr *QNearFieldShareManager) TargetDetected(shareTarget QNearFieldShareTar
 func (ptr *QNearFieldShareManager) DestroyQNearFieldShareManager() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DestroyQNearFieldShareManager(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2001,7 +1998,6 @@ func callbackQNearFieldShareManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldShareManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2213,7 +2209,6 @@ func (ptr *QNearFieldShareTarget) ShareFinished() {
 func (ptr *QNearFieldShareTarget) DestroyQNearFieldShareTarget() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DestroyQNearFieldShareTarget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2450,7 +2445,6 @@ func callbackQNearFieldShareTarget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldShareTarget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2798,7 +2792,6 @@ func (ptr *QNearFieldTarget) DisconnectDestroyQNearFieldTarget() {
 func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2806,7 +2799,6 @@ func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 func (ptr *QNearFieldTarget) DestroyQNearFieldTargetDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DestroyQNearFieldTargetDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3209,7 +3201,6 @@ func callbackQNearFieldTarget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QNearFieldTarget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3503,7 +3494,6 @@ func (ptr *QQmlNdefRecord) TypeNameFormatChanged() {
 func (ptr *QQmlNdefRecord) DestroyQQmlNdefRecord() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DestroyQQmlNdefRecord(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3707,7 +3697,6 @@ func callbackQQmlNdefRecord_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QQmlNdefRecord) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

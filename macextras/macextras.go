@@ -441,7 +441,6 @@ func (ptr *QMacPasteboardMime) DisconnectDestroyQMacPasteboardMime() {
 func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 	if ptr.Pointer() != nil {
 		C.QMacPasteboardMime_DestroyQMacPasteboardMime(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -449,7 +448,6 @@ func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMimeDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -654,7 +652,6 @@ func (ptr *QMacToolBar) SetItems(items []*QMacToolBarItem) {
 func (ptr *QMacToolBar) DestroyQMacToolBar() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DestroyQMacToolBar(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -935,7 +932,6 @@ func callbackQMacToolBar_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMacToolBar) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1131,7 +1127,6 @@ func (ptr *QMacToolBarItem) DisconnectDestroyQMacToolBarItem() {
 func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1139,7 +1134,6 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 func (ptr *QMacToolBarItem) DestroyQMacToolBarItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DestroyQMacToolBarItemDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1395,7 +1389,6 @@ func callbackQMacToolBarItem_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QMacToolBarItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

@@ -229,7 +229,6 @@ func (ptr *QWebChannel) SetBlockUpdates(block bool) {
 func (ptr *QWebChannel) DestroyQWebChannel() {
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DestroyQWebChannel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -578,7 +577,6 @@ func callbackQWebChannel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebChannel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -798,7 +796,6 @@ func (ptr *QWebChannelAbstractTransport) DisconnectDestroyQWebChannelAbstractTra
 func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransport() {
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -806,7 +803,6 @@ func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransport() {
 func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransportDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1003,7 +999,6 @@ func callbackQWebChannelAbstractTransport_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebChannelAbstractTransport) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

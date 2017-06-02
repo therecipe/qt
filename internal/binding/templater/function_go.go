@@ -386,10 +386,7 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if (function.Meta == parser.DESTRUCTOR || function.Name == "deleteLater" || function.Name == "destroyed" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
-		if class.HasCallbackFunctions() || class.IsSubClassOfQObject() {
-			fmt.Fprint(bb, "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))")
-		}
+	if (function.Name == "deleteLater" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
 		fmt.Fprint(bb, "\nptr.SetPointer(nil)")
 	}
 

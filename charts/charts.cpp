@@ -3533,6 +3533,17 @@ public:
 	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
 	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool event(QEvent * e) { return callbackQCandlestickModelMapper_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCandlestickModelMapper_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQCandlestickModelMapper_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQCandlestickModelMapper_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQCandlestickModelMapper_CustomEvent(this, event); };
+	void deleteLater() { callbackQCandlestickModelMapper_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQCandlestickModelMapper_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQCandlestickModelMapper_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCandlestickModelMapper_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCandlestickModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QCandlestickModelMapper_NewQCandlestickModelMapper(void* parent)
@@ -3699,6 +3710,180 @@ int QCandlestickModelMapper_Open(void* ptr)
 int QCandlestickModelMapper_Timestamp(void* ptr)
 {
 	return static_cast<QCandlestickModelMapper*>(ptr)->timestamp();
+}
+
+void* QCandlestickModelMapper___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QCandlestickModelMapper___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QCandlestickModelMapper___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QCandlestickModelMapper___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QCandlestickModelMapper___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QCandlestickModelMapper___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QCandlestickModelMapper___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QCandlestickModelMapper___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QCandlestickModelMapper___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QCandlestickModelMapper___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QCandlestickModelMapper___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QCandlestickModelMapper___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QCandlestickModelMapper___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QCandlestickModelMapper___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QCandlestickModelMapper___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QCandlestickModelMapper_EventDefault(void* ptr, void* e)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::event(static_cast<QEvent*>(e));
+	} else {
+		return static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::event(static_cast<QEvent*>(e));
+	}
+}
+
+char QCandlestickModelMapper_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QCandlestickModelMapper_ChildEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::childEvent(static_cast<QChildEvent*>(event));
+	} else {
+		static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::childEvent(static_cast<QChildEvent*>(event));
+	}
+}
+
+void QCandlestickModelMapper_ConnectNotifyDefault(void* ptr, void* sign)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
+	}
+}
+
+void QCandlestickModelMapper_CustomEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::customEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::customEvent(static_cast<QEvent*>(event));
+	}
+}
+
+void QCandlestickModelMapper_DeleteLaterDefault(void* ptr)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::deleteLater();
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::deleteLater();
+	} else {
+		static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::deleteLater();
+	}
+}
+
+void QCandlestickModelMapper_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	}
+}
+
+void QCandlestickModelMapper_TimerEventDefault(void* ptr, void* event)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::timerEvent(static_cast<QTimerEvent*>(event));
+	} else {
+		static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::timerEvent(static_cast<QTimerEvent*>(event));
+	}
+}
+
+void* QCandlestickModelMapper_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QVCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QVCandlestickModelMapper*>(ptr)->QVCandlestickModelMapper::metaObject());
+	} else if (dynamic_cast<QHCandlestickModelMapper*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QHCandlestickModelMapper*>(ptr)->QHCandlestickModelMapper::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QCandlestickModelMapper*>(ptr)->QCandlestickModelMapper::metaObject());
+	}
 }
 
 class MyQCandlestickSeries: public QCandlestickSeries
@@ -6958,6 +7143,17 @@ public:
 	void Signal_LastBarSetRowChanged() { callbackQHBarModelMapper_LastBarSetRowChanged(this); };
 	void Signal_ModelReplaced() { callbackQHBarModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQHBarModelMapper_SeriesReplaced(this); };
+	bool event(QEvent * e) { return callbackQHBarModelMapper_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHBarModelMapper_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQHBarModelMapper_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHBarModelMapper_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQHBarModelMapper_CustomEvent(this, event); };
+	void deleteLater() { callbackQHBarModelMapper_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQHBarModelMapper_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHBarModelMapper_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHBarModelMapper_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQHBarModelMapper_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHBarModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QHBarModelMapper_NewQHBarModelMapper(void* parent)
@@ -7151,6 +7347,126 @@ int QHBarModelMapper_LastBarSetRow(void* ptr)
 	return static_cast<QHBarModelMapper*>(ptr)->lastBarSetRow();
 }
 
+void* QHBarModelMapper___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QHBarModelMapper___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QHBarModelMapper___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QHBarModelMapper___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHBarModelMapper___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBarModelMapper___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHBarModelMapper___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHBarModelMapper___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBarModelMapper___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHBarModelMapper___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHBarModelMapper___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBarModelMapper___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHBarModelMapper___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QHBarModelMapper___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBarModelMapper___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QHBarModelMapper_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::event(static_cast<QEvent*>(e));
+}
+
+char QHBarModelMapper_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void QHBarModelMapper_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QHBarModelMapper_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QHBarModelMapper_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::customEvent(static_cast<QEvent*>(event));
+}
+
+void QHBarModelMapper_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::deleteLater();
+}
+
+void QHBarModelMapper_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QHBarModelMapper_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QHBarModelMapper_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QHBarModelMapper*>(ptr)->QHBarModelMapper::metaObject());
+}
+
 class MyQHBoxPlotModelMapper: public QHBoxPlotModelMapper
 {
 public:
@@ -7161,6 +7477,17 @@ public:
 	void Signal_LastBoxSetRowChanged() { callbackQHBoxPlotModelMapper_LastBoxSetRowChanged(this); };
 	void Signal_ModelReplaced() { callbackQHBoxPlotModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQHBoxPlotModelMapper_SeriesReplaced(this); };
+	bool event(QEvent * e) { return callbackQHBoxPlotModelMapper_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHBoxPlotModelMapper_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQHBoxPlotModelMapper_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHBoxPlotModelMapper_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQHBoxPlotModelMapper_CustomEvent(this, event); };
+	void deleteLater() { callbackQHBoxPlotModelMapper_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQHBoxPlotModelMapper_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHBoxPlotModelMapper_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHBoxPlotModelMapper_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQHBoxPlotModelMapper_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHBoxPlotModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QHBoxPlotModelMapper_NewQHBoxPlotModelMapper(void* parent)
@@ -7354,6 +7681,126 @@ int QHBoxPlotModelMapper_LastBoxSetRow(void* ptr)
 	return static_cast<QHBoxPlotModelMapper*>(ptr)->lastBoxSetRow();
 }
 
+void* QHBoxPlotModelMapper___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QHBoxPlotModelMapper___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QHBoxPlotModelMapper___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QHBoxPlotModelMapper___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHBoxPlotModelMapper___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBoxPlotModelMapper___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHBoxPlotModelMapper___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHBoxPlotModelMapper___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBoxPlotModelMapper___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHBoxPlotModelMapper___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QHBoxPlotModelMapper___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBoxPlotModelMapper___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QHBoxPlotModelMapper___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QHBoxPlotModelMapper___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QHBoxPlotModelMapper___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QHBoxPlotModelMapper_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::event(static_cast<QEvent*>(e));
+}
+
+char QHBoxPlotModelMapper_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void QHBoxPlotModelMapper_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QHBoxPlotModelMapper_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QHBoxPlotModelMapper_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::customEvent(static_cast<QEvent*>(event));
+}
+
+void QHBoxPlotModelMapper_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::deleteLater();
+}
+
+void QHBoxPlotModelMapper_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QHBoxPlotModelMapper_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QHBoxPlotModelMapper_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QHBoxPlotModelMapper*>(ptr)->QHBoxPlotModelMapper::metaObject());
+}
+
 class MyQHCandlestickModelMapper: public QHCandlestickModelMapper
 {
 public:
@@ -7368,6 +7815,17 @@ public:
 	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQHCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
+	bool event(QEvent * e) { return callbackQCandlestickModelMapper_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCandlestickModelMapper_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQCandlestickModelMapper_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQCandlestickModelMapper_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQCandlestickModelMapper_CustomEvent(this, event); };
+	void deleteLater() { callbackQCandlestickModelMapper_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQCandlestickModelMapper_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQCandlestickModelMapper_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCandlestickModelMapper_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCandlestickModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QHCandlestickModelMapper_NewQHCandlestickModelMapper(void* parent)
@@ -11139,6 +11597,17 @@ public:
 	void Signal_ModelReplaced() { callbackQVBarModelMapper_ModelReplaced(this); };
 	void Signal_RowCountChanged() { callbackQVBarModelMapper_RowCountChanged(this); };
 	void Signal_SeriesReplaced() { callbackQVBarModelMapper_SeriesReplaced(this); };
+	bool event(QEvent * e) { return callbackQVBarModelMapper_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVBarModelMapper_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQVBarModelMapper_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQVBarModelMapper_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQVBarModelMapper_CustomEvent(this, event); };
+	void deleteLater() { callbackQVBarModelMapper_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQVBarModelMapper_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQVBarModelMapper_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVBarModelMapper_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQVBarModelMapper_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVBarModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QVBarModelMapper_NewQVBarModelMapper(void* parent)
@@ -11332,6 +11801,126 @@ int QVBarModelMapper_RowCount(void* ptr)
 	return static_cast<QVBarModelMapper*>(ptr)->rowCount();
 }
 
+void* QVBarModelMapper___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QVBarModelMapper___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QVBarModelMapper___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QVBarModelMapper___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QVBarModelMapper___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBarModelMapper___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QVBarModelMapper___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QVBarModelMapper___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBarModelMapper___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QVBarModelMapper___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QVBarModelMapper___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBarModelMapper___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QVBarModelMapper___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QVBarModelMapper___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBarModelMapper___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QVBarModelMapper_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::event(static_cast<QEvent*>(e));
+}
+
+char QVBarModelMapper_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void QVBarModelMapper_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QVBarModelMapper_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QVBarModelMapper_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::customEvent(static_cast<QEvent*>(event));
+}
+
+void QVBarModelMapper_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::deleteLater();
+}
+
+void QVBarModelMapper_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QVBarModelMapper_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QVBarModelMapper_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVBarModelMapper*>(ptr)->QVBarModelMapper::metaObject());
+}
+
 class MyQVBoxPlotModelMapper: public QVBoxPlotModelMapper
 {
 public:
@@ -11342,6 +11931,17 @@ public:
 	void Signal_ModelReplaced() { callbackQVBoxPlotModelMapper_ModelReplaced(this); };
 	void Signal_RowCountChanged() { callbackQVBoxPlotModelMapper_RowCountChanged(this); };
 	void Signal_SeriesReplaced() { callbackQVBoxPlotModelMapper_SeriesReplaced(this); };
+	bool event(QEvent * e) { return callbackQVBoxPlotModelMapper_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVBoxPlotModelMapper_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQVBoxPlotModelMapper_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQVBoxPlotModelMapper_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQVBoxPlotModelMapper_CustomEvent(this, event); };
+	void deleteLater() { callbackQVBoxPlotModelMapper_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQVBoxPlotModelMapper_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQVBoxPlotModelMapper_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVBoxPlotModelMapper_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQVBoxPlotModelMapper_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVBoxPlotModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QVBoxPlotModelMapper_NewQVBoxPlotModelMapper(void* parent)
@@ -11535,6 +12135,126 @@ int QVBoxPlotModelMapper_RowCount(void* ptr)
 	return static_cast<QVBoxPlotModelMapper*>(ptr)->rowCount();
 }
 
+void* QVBoxPlotModelMapper___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QVBoxPlotModelMapper___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QVBoxPlotModelMapper___dynamicPropertyNames_newList(void* ptr)
+{
+	return new QList<QByteArray>;
+}
+
+void* QVBoxPlotModelMapper___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QVBoxPlotModelMapper___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBoxPlotModelMapper___findChildren_newList2(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QVBoxPlotModelMapper___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QVBoxPlotModelMapper___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBoxPlotModelMapper___findChildren_newList3(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QVBoxPlotModelMapper___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QVBoxPlotModelMapper___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBoxPlotModelMapper___findChildren_newList(void* ptr)
+{
+	return new QList<QObject*>;
+}
+
+void* QVBoxPlotModelMapper___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QVBoxPlotModelMapper___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QVBoxPlotModelMapper___children_newList(void* ptr)
+{
+	return new QList<QObject *>;
+}
+
+char QVBoxPlotModelMapper_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::event(static_cast<QEvent*>(e));
+}
+
+char QVBoxPlotModelMapper_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void QVBoxPlotModelMapper_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QVBoxPlotModelMapper_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QVBoxPlotModelMapper_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::customEvent(static_cast<QEvent*>(event));
+}
+
+void QVBoxPlotModelMapper_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::deleteLater();
+}
+
+void QVBoxPlotModelMapper_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QVBoxPlotModelMapper_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QVBoxPlotModelMapper_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVBoxPlotModelMapper*>(ptr)->QVBoxPlotModelMapper::metaObject());
+}
+
 class MyQVCandlestickModelMapper: public QVCandlestickModelMapper
 {
 public:
@@ -11549,6 +12269,17 @@ public:
 	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQVCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
+	bool event(QEvent * e) { return callbackQCandlestickModelMapper_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCandlestickModelMapper_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQCandlestickModelMapper_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQCandlestickModelMapper_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQCandlestickModelMapper_CustomEvent(this, event); };
+	void deleteLater() { callbackQCandlestickModelMapper_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQCandlestickModelMapper_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQCandlestickModelMapper_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCharts_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCandlestickModelMapper_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCandlestickModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 void* QVCandlestickModelMapper_NewQVCandlestickModelMapper(void* parent)

@@ -669,7 +669,6 @@ func (ptr *QAbstractAnimation) DisconnectDestroyQAbstractAnimation() {
 func (ptr *QAbstractAnimation) DestroyQAbstractAnimation() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimation(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -677,7 +676,6 @@ func (ptr *QAbstractAnimation) DestroyQAbstractAnimation() {
 func (ptr *QAbstractAnimation) DestroyQAbstractAnimationDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimationDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1370,7 +1368,6 @@ func (ptr *QAbstractEventDispatcher) WakeUp() {
 func (ptr *QAbstractEventDispatcher) DestroyQAbstractEventDispatcher() {
 	if ptr.Pointer() != nil {
 		C.QAbstractEventDispatcher_DestroyQAbstractEventDispatcher(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2947,7 +2944,6 @@ func (ptr *QAbstractItemModel) DisconnectDestroyQAbstractItemModel() {
 func (ptr *QAbstractItemModel) DestroyQAbstractItemModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_DestroyQAbstractItemModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2955,7 +2951,6 @@ func (ptr *QAbstractItemModel) DestroyQAbstractItemModel() {
 func (ptr *QAbstractItemModel) DestroyQAbstractItemModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_DestroyQAbstractItemModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4432,7 +4427,6 @@ func NewQAbstractListModel(parent QObject_ITF) *QAbstractListModel {
 func (ptr *QAbstractListModel) DestroyQAbstractListModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractListModel_DestroyQAbstractListModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4696,7 +4690,6 @@ func (ptr *QAbstractNativeEventFilter) DisconnectDestroyQAbstractNativeEventFilt
 func (ptr *QAbstractNativeEventFilter) DestroyQAbstractNativeEventFilter() {
 	if ptr.Pointer() != nil {
 		C.QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4704,7 +4697,6 @@ func (ptr *QAbstractNativeEventFilter) DestroyQAbstractNativeEventFilter() {
 func (ptr *QAbstractNativeEventFilter) DestroyQAbstractNativeEventFilterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4919,7 +4911,6 @@ func (ptr *QAbstractProxyModel) DisconnectSourceModelChanged() {
 func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractProxyModel_DestroyQAbstractProxyModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5481,7 +5472,6 @@ func (ptr *QAbstractState) OnExit(event QEvent_ITF) {
 func (ptr *QAbstractState) DestroyQAbstractState() {
 	if ptr.Pointer() != nil {
 		C.QAbstractState_DestroyQAbstractState(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5564,7 +5554,6 @@ func NewQAbstractTableModel(parent QObject_ITF) *QAbstractTableModel {
 func (ptr *QAbstractTableModel) DestroyQAbstractTableModel() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTableModel_DestroyQAbstractTableModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6013,7 +6002,6 @@ func (ptr *QAbstractTransition) DisconnectDestroyQAbstractTransition() {
 func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransition(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6021,7 +6009,6 @@ func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
 func (ptr *QAbstractTransition) DestroyQAbstractTransitionDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransitionDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6239,7 +6226,6 @@ func (ptr *QAnimationGroup) RemoveAnimation(animation QAbstractAnimation_ITF) {
 func (ptr *QAnimationGroup) DestroyQAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QAnimationGroup_DestroyQAnimationGroup(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6980,7 +6966,6 @@ func (ptr *QBuffer) SetData2(data string, size int) {
 func (ptr *QBuffer) DestroyQBuffer() {
 	if ptr.Pointer() != nil {
 		C.QBuffer_DestroyQBuffer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9682,7 +9667,7 @@ func NewQChildEventFromPointer(ptr unsafe.Pointer) *QChildEvent {
 func (ptr *QChildEvent) DestroyQChildEvent() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -11094,7 +11079,6 @@ func (ptr *QCoreApplication) SetSetuidAllowed(allow bool) {
 func (ptr *QCoreApplication) DestroyQCoreApplication() {
 	if ptr.Pointer() != nil {
 		C.QCoreApplication_DestroyQCoreApplication(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13662,7 +13646,7 @@ func NewQDynamicPropertyChangeEventFromPointer(ptr unsafe.Pointer) *QDynamicProp
 func (ptr *QDynamicPropertyChangeEvent) DestroyQDynamicPropertyChangeEvent() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -14400,7 +14384,6 @@ func (ptr *QEvent) DisconnectDestroyQEvent() {
 func (ptr *QEvent) DestroyQEvent() {
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14408,7 +14391,6 @@ func (ptr *QEvent) DestroyQEvent() {
 func (ptr *QEvent) DestroyQEventDefault() {
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEventDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14585,7 +14567,6 @@ func (ptr *QEventLoop) WakeUp() {
 func (ptr *QEventLoop) DestroyQEventLoop() {
 	if ptr.Pointer() != nil {
 		C.QEventLoop_DestroyQEventLoop(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14814,7 +14795,6 @@ func (ptr *QEventTransition) SetEventType(ty QEvent__Type) {
 func (ptr *QEventTransition) DestroyQEventTransition() {
 	if ptr.Pointer() != nil {
 		C.QEventTransition_DestroyQEventTransition(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14878,7 +14858,7 @@ func NewQExceptionFromPointer(ptr unsafe.Pointer) *QException {
 func (ptr *QException) DestroyQException() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -15305,7 +15285,6 @@ func (ptr *QFile) SetFileName(name string) {
 func (ptr *QFile) DestroyQFile() {
 	if ptr.Pointer() != nil {
 		C.QFile_DestroyQFile(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15664,7 +15643,6 @@ func (ptr *QFileDevice) UnsetError() {
 func (ptr *QFileDevice) DestroyQFileDevice() {
 	if ptr.Pointer() != nil {
 		C.QFileDevice_DestroyQFileDevice(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16252,7 +16230,6 @@ func (ptr *QFileSelector) SetExtraSelectors(list []string) {
 func (ptr *QFileSelector) DestroyQFileSelector() {
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DestroyQFileSelector(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16459,7 +16436,6 @@ func (ptr *QFileSystemWatcher) DisconnectFileChanged() {
 func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcher() {
 	if ptr.Pointer() != nil {
 		C.QFileSystemWatcher_DestroyQFileSystemWatcher(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16611,7 +16587,6 @@ func (ptr *QFinalState) OnExitDefault(event QEvent_ITF) {
 func (ptr *QFinalState) DestroyQFinalState() {
 	if ptr.Pointer() != nil {
 		C.QFinalState_DestroyQFinalState(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -17420,7 +17395,6 @@ func (ptr *QHistoryState) SetHistoryType(ty QHistoryState__HistoryType) {
 func (ptr *QHistoryState) DestroyQHistoryState() {
 	if ptr.Pointer() != nil {
 		C.QHistoryState_DestroyQHistoryState(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -18448,7 +18422,6 @@ func (ptr *QIODevice) DisconnectDestroyQIODevice() {
 func (ptr *QIODevice) DestroyQIODevice() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODevice(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -18456,7 +18429,6 @@ func (ptr *QIODevice) DestroyQIODevice() {
 func (ptr *QIODevice) DestroyQIODeviceDefault() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODeviceDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -18895,7 +18867,6 @@ func NewQIdentityProxyModel(parent QObject_ITF) *QIdentityProxyModel {
 func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QIdentityProxyModel_DestroyQIdentityProxyModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19915,7 +19886,6 @@ func (ptr *QItemSelectionModel) DisconnectDestroyQItemSelectionModel() {
 func (ptr *QItemSelectionModel) DestroyQItemSelectionModel() {
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19923,7 +19893,6 @@ func (ptr *QItemSelectionModel) DestroyQItemSelectionModel() {
 func (ptr *QItemSelectionModel) DestroyQItemSelectionModelDefault() {
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModelDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22054,7 +22023,6 @@ func (ptr *QLibrary) SetLoadHints(hints QLibrary__LoadHint) {
 func (ptr *QLibrary) DestroyQLibrary() {
 	if ptr.Pointer() != nil {
 		C.QLibrary_DestroyQLibrary(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -27214,7 +27182,6 @@ func (ptr *QMimeData) SetUrls(urls []*QUrl) {
 func (ptr *QMimeData) DestroyQMimeData() {
 	if ptr.Pointer() != nil {
 		C.QMimeData_DestroyQMimeData(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -28899,7 +28866,6 @@ func (ptr *QObject) DisconnectDeleteLater() {
 func (ptr *QObject) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QObject_DeleteLater(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -28907,7 +28873,6 @@ func (ptr *QObject) DeleteLater() {
 func (ptr *QObject) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QObject_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -28948,8 +28913,6 @@ func (ptr *QObject) DisconnectDestroyed() {
 func (ptr *QObject) Destroyed(obj QObject_ITF) {
 	if ptr.Pointer() != nil {
 		C.QObject_Destroyed(ptr.Pointer(), PointerFromQObject(obj))
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
 	}
 }
 
@@ -29156,7 +29119,6 @@ func (ptr *QObject) DisconnectDestroyQObject() {
 func (ptr *QObject) DestroyQObject() {
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObject(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -29164,7 +29126,6 @@ func (ptr *QObject) DestroyQObject() {
 func (ptr *QObject) DestroyQObjectDefault() {
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObjectDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -29625,7 +29586,6 @@ func (ptr *QObjectCleanupHandler) Remove(object QObject_ITF) {
 func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandler() {
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DestroyQObjectCleanupHandler(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -29773,7 +29733,6 @@ func (ptr *QParallelAnimationGroup) UpdateCurrentTimeDefault(currentTime int) {
 func (ptr *QParallelAnimationGroup) DestroyQParallelAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QParallelAnimationGroup_DestroyQParallelAnimationGroup(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -29927,7 +29886,6 @@ func (ptr *QPauseAnimation) UpdateCurrentTimeDefault(vin int) {
 func (ptr *QPauseAnimation) DestroyQPauseAnimation() {
 	if ptr.Pointer() != nil {
 		C.QPauseAnimation_DestroyQPauseAnimation(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -30235,7 +30193,6 @@ func (ptr *QPluginLoader) SetLoadHints(loadHints QLibrary__LoadHint) {
 func (ptr *QPluginLoader) DestroyQPluginLoader() {
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DestroyQPluginLoader(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -30807,7 +30764,6 @@ func (ptr *QPropertyAnimation) SetTargetObject(target QObject_ITF) {
 func (ptr *QPropertyAnimation) DestroyQPropertyAnimation() {
 	if ptr.Pointer() != nil {
 		C.QPropertyAnimation_DestroyQPropertyAnimation(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33219,7 +33175,6 @@ func (ptr *QRunnable) DisconnectDestroyQRunnable() {
 func (ptr *QRunnable) DestroyQRunnable() {
 	if ptr.Pointer() != nil {
 		C.QRunnable_DestroyQRunnable(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33227,7 +33182,6 @@ func (ptr *QRunnable) DestroyQRunnable() {
 func (ptr *QRunnable) DestroyQRunnableDefault() {
 	if ptr.Pointer() != nil {
 		C.QRunnable_DestroyQRunnableDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33344,7 +33298,6 @@ func (ptr *QSaveFile) SetFileName(name string) {
 func (ptr *QSaveFile) DestroyQSaveFile() {
 	if ptr.Pointer() != nil {
 		C.QSaveFile_DestroyQSaveFile(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -33713,7 +33666,6 @@ func (ptr *QSequentialAnimationGroup) UpdateCurrentTimeDefault(currentTime int) 
 func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroup() {
 	if ptr.Pointer() != nil {
 		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroup(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -34238,7 +34190,6 @@ func (ptr *QSettings) Sync() {
 func (ptr *QSettings) DestroyQSettings() {
 	if ptr.Pointer() != nil {
 		C.QSettings_DestroyQSettings(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -34607,7 +34558,6 @@ func (ptr *QSharedMemory) SetNativeKey(key string) {
 func (ptr *QSharedMemory) DestroyQSharedMemory() {
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DestroyQSharedMemory(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35103,7 +35053,6 @@ func (ptr *QSignalMapper) SetMapping(sender QObject_ITF, id int) {
 func (ptr *QSignalMapper) DestroyQSignalMapper() {
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_DestroyQSignalMapper(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35383,7 +35332,6 @@ func (ptr *QSignalTransition) DisconnectSignalChanged() {
 func (ptr *QSignalTransition) DestroyQSignalTransition() {
 	if ptr.Pointer() != nil {
 		C.QSignalTransition_DestroyQSignalTransition(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -35912,7 +35860,6 @@ func (ptr *QSocketNotifier) SetEnabledDefault(enable bool) {
 func (ptr *QSocketNotifier) DestroyQSocketNotifier() {
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_DestroyQSocketNotifier(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36232,7 +36179,6 @@ func (ptr *QSortFilterProxyModel) SetSortRole(role int) {
 func (ptr *QSortFilterProxyModel) DestroyQSortFilterProxyModel() {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_DestroyQSortFilterProxyModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -37331,7 +37277,6 @@ func (ptr *QState) SetInitialState(state QAbstractState_ITF) {
 func (ptr *QState) DestroyQState() {
 	if ptr.Pointer() != nil {
 		C.QState_DestroyQState(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -37770,7 +37715,6 @@ func (ptr *QStateMachine) DisconnectStopped() {
 func (ptr *QStateMachine) DestroyQStateMachine() {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_DestroyQStateMachine(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -38312,15 +38256,6 @@ func NewQStringListModelFromPointer(ptr unsafe.Pointer) *QStringListModel {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QStringListModel) DestroyQStringListModel() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQStringListModel(parent QObject_ITF) *QStringListModel {
 	var tmpValue = NewQStringListModelFromPointer(C.QStringListModel_NewQStringListModel(PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -39941,7 +39876,6 @@ func (ptr *QTemporaryFile) SetFileTemplate(name string) {
 func (ptr *QTemporaryFile) DestroyQTemporaryFile() {
 	if ptr.Pointer() != nil {
 		C.QTemporaryFile_DestroyQTemporaryFile(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -40330,7 +40264,6 @@ func (ptr *QTextCodec) DisconnectDestroyQTextCodec() {
 func (ptr *QTextCodec) DestroyQTextCodec() {
 	if ptr.Pointer() != nil {
 		C.QTextCodec_DestroyQTextCodec(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -40338,7 +40271,6 @@ func (ptr *QTextCodec) DestroyQTextCodec() {
 func (ptr *QTextCodec) DestroyQTextCodecDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextCodec_DestroyQTextCodecDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -41082,7 +41014,6 @@ func (ptr *QTextStream) DisconnectDestroyQTextStream() {
 func (ptr *QTextStream) DestroyQTextStream() {
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStream(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -41090,7 +41021,6 @@ func (ptr *QTextStream) DestroyQTextStream() {
 func (ptr *QTextStream) DestroyQTextStreamDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStreamDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -41622,7 +41552,6 @@ func (ptr *QThread) YieldCurrentThread() {
 func (ptr *QThread) DestroyQThread() {
 	if ptr.Pointer() != nil {
 		C.QThread_DestroyQThread(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -41801,7 +41730,6 @@ func (ptr *QThreadPool) Start(runnable QRunnable_ITF, priority int) {
 func (ptr *QThreadPool) DestroyQThreadPool() {
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DestroyQThreadPool(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -42685,7 +42613,6 @@ func (ptr *QTimeLine) DisconnectDestroyQTimeLine() {
 func (ptr *QTimeLine) DestroyQTimeLine() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLine(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -42693,7 +42620,6 @@ func (ptr *QTimeLine) DestroyQTimeLine() {
 func (ptr *QTimeLine) DestroyQTimeLineDefault() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLineDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -43582,7 +43508,6 @@ func (ptr *QTimer) DisconnectTimeout() {
 func (ptr *QTimer) DestroyQTimer() {
 	if ptr.Pointer() != nil {
 		C.QTimer_DestroyQTimer(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -43671,7 +43596,7 @@ func NewQTimerEventFromPointer(ptr unsafe.Pointer) *QTimerEvent {
 func (ptr *QTimerEvent) DestroyQTimerEvent() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -43820,7 +43745,6 @@ func (ptr *QTranslator) Load3(data string, len int, directory string) bool {
 func (ptr *QTranslator) DestroyQTranslator() {
 	if ptr.Pointer() != nil {
 		C.QTranslator_DestroyQTranslator(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -43985,7 +43909,7 @@ func NewQUnhandledExceptionFromPointer(ptr unsafe.Pointer) *QUnhandledException 
 func (ptr *QUnhandledException) DestroyQUnhandledException() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
 	}
 }
@@ -46897,7 +46821,6 @@ func (ptr *QVariantAnimation) ValueChanged(value QVariant_ITF) {
 func (ptr *QVariantAnimation) DestroyQVariantAnimation() {
 	if ptr.Pointer() != nil {
 		C.QVariantAnimation_DestroyQVariantAnimation(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48200,7 +48123,6 @@ func (ptr *QXmlStreamEntityResolver) DisconnectDestroyQXmlStreamEntityResolver()
 func (ptr *QXmlStreamEntityResolver) DestroyQXmlStreamEntityResolver() {
 	if ptr.Pointer() != nil {
 		C.QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48208,7 +48130,6 @@ func (ptr *QXmlStreamEntityResolver) DestroyQXmlStreamEntityResolver() {
 func (ptr *QXmlStreamEntityResolver) DestroyQXmlStreamEntityResolverDefault() {
 	if ptr.Pointer() != nil {
 		C.QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolverDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

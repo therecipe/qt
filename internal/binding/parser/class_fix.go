@@ -150,13 +150,14 @@ func (c *Class) fixBases() {
 
 	switch c.Name {
 	case "QChart", "QLegend":
-		{
-			c.Bases = "QGraphicsWidget"
-		}
+		c.Bases = "QGraphicsWidget"
+
 	case "QChartView":
-		{
-			c.Bases = "QGraphicsView"
-		}
+		c.Bases = "QGraphicsView"
+
+	case "QCandlestickModelMapper", "QHBarModelMapper", "QHBoxPlotModelMapper",
+		"QVBarModelMapper", "QVBoxPlotModelMapper", "QTextToSpeech":
+		c.Bases = "QObject"
 	}
 
 	if c.Module == "QtCharts" {

@@ -66,14 +66,6 @@ func NewQQuickWebEngineProfileFromPointer(ptr unsafe.Pointer) *QQuickWebEnginePr
 	return n
 }
 
-func (ptr *QQuickWebEngineProfile) DestroyQQuickWebEngineProfile() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 //go:generate stringer -type=QQuickWebEngineProfile__HttpCacheType
 //QQuickWebEngineProfile::HttpCacheType
 type QQuickWebEngineProfile__HttpCacheType int64
@@ -967,7 +959,6 @@ func callbackQQuickWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QQuickWebEngineProfile) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1458,7 +1449,6 @@ func (ptr *QWebEngineCookieStore) DisconnectDestroyQWebEngineCookieStore() {
 func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStore() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1466,7 +1456,6 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStore() {
 func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DestroyQWebEngineCookieStoreDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1663,7 +1652,6 @@ func callbackQWebEngineCookieStore_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineCookieStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1767,14 +1755,6 @@ func NewQWebEngineDownloadItemFromPointer(ptr unsafe.Pointer) *QWebEngineDownloa
 	var n = new(QWebEngineDownloadItem)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QWebEngineDownloadItem) DestroyQWebEngineDownloadItem() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QWebEngineDownloadItem__DownloadState
@@ -2293,7 +2273,6 @@ func callbackQWebEngineDownloadItem_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineDownloadItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4380,7 +4359,6 @@ func (ptr *QWebEnginePage) WindowCloseRequested() {
 func (ptr *QWebEnginePage) DestroyQWebEnginePage() {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DestroyQWebEnginePage(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4742,7 +4720,6 @@ func callbackQWebEnginePage_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEnginePage) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4846,14 +4823,6 @@ func NewQWebEngineProfileFromPointer(ptr unsafe.Pointer) *QWebEngineProfile {
 	var n = new(QWebEngineProfile)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QWebEngineProfile__HttpCacheType
@@ -5413,7 +5382,6 @@ func callbackQWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineProfile) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6227,15 +6195,6 @@ func NewQWebEngineUrlRequestInterceptorFromPointer(ptr unsafe.Pointer) *QWebEngi
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QWebEngineUrlRequestInterceptor) DestroyQWebEngineUrlRequestInterceptor() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func NewQWebEngineUrlRequestInterceptor(p core.QObject_ITF) *QWebEngineUrlRequestInterceptor {
 	var tmpValue = NewQWebEngineUrlRequestInterceptorFromPointer(C.QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(core.PointerFromQObject(p)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
@@ -6471,7 +6430,6 @@ func callbackQWebEngineUrlRequestInterceptor_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineUrlRequestInterceptor) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6575,14 +6533,6 @@ func NewQWebEngineUrlRequestJobFromPointer(ptr unsafe.Pointer) *QWebEngineUrlReq
 	var n = new(QWebEngineUrlRequestJob)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QWebEngineUrlRequestJob) DestroyQWebEngineUrlRequestJob() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QWebEngineUrlRequestJob__Error
@@ -6826,7 +6776,6 @@ func callbackQWebEngineUrlRequestJob_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineUrlRequestJob) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6977,7 +6926,6 @@ func (ptr *QWebEngineUrlSchemeHandler) RequestStarted(request QWebEngineUrlReque
 func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandler() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandler(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7174,7 +7122,6 @@ func callbackQWebEngineUrlSchemeHandler_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineUrlSchemeHandler) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8081,7 +8028,6 @@ func (ptr *QWebEngineView) DisconnectDestroyQWebEngineView() {
 func (ptr *QWebEngineView) DestroyQWebEngineView() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DestroyQWebEngineView(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8089,7 +8035,6 @@ func (ptr *QWebEngineView) DestroyQWebEngineView() {
 func (ptr *QWebEngineView) DestroyQWebEngineViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DestroyQWebEngineViewDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9194,7 +9139,6 @@ func callbackQWebEngineView_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QWebEngineView) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

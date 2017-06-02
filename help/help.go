@@ -251,7 +251,6 @@ func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
 func (ptr *QHelpContentModel) DestroyQHelpContentModel() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DestroyQHelpContentModel(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1765,7 +1764,6 @@ func callbackQHelpContentModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpContentModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1870,15 +1868,6 @@ func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QHelpContentWidget) DestroyQHelpContentWidget() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))
@@ -4045,7 +4034,6 @@ func callbackQHelpContentWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpContentWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4184,7 +4172,6 @@ func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
 func (ptr *QHelpEngine) DestroyQHelpEngine() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4708,7 +4695,6 @@ func (ptr *QHelpEngineCore) DisconnectDestroyQHelpEngineCore() {
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCore(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4716,7 +4702,6 @@ func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCoreDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5126,7 +5111,6 @@ func callbackQHelpEngineCore_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpEngineCore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5231,15 +5215,6 @@ func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
 	n.SetPointer(ptr)
 	return n
 }
-
-func (ptr *QHelpIndexModel) DestroyQHelpIndexModel() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var filterC *C.char
@@ -6786,7 +6761,6 @@ func callbackQHelpIndexModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpIndexModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6890,14 +6864,6 @@ func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
 	var n = new(QHelpIndexWidget)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QHelpIndexWidget) DestroyQHelpIndexWidget() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }
 
 //export callbackQHelpIndexWidget_ActivateCurrentItem
@@ -9113,7 +9079,6 @@ func callbackQHelpIndexWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpIndexWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9584,7 +9549,6 @@ func (ptr *QHelpSearchEngine) SearchingStarted() {
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9826,7 +9790,6 @@ func callbackQHelpSearchEngine_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpSearchEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10105,7 +10068,6 @@ func (ptr *QHelpSearchQueryWidget) SetQuery(queryList []*QHelpSearchQuery) {
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11285,7 +11247,6 @@ func callbackQHelpSearchQueryWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpSearchQueryWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11441,7 +11402,6 @@ func (ptr *QHelpSearchResultWidget) RequestShowLink(link core.QUrl_ITF) {
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12576,7 +12536,6 @@ func callbackQHelpSearchResultWidget_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QHelpSearchResultWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DeleteLaterDefault(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
