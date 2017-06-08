@@ -15676,6 +15676,15 @@ func (ptr *QIcon) Paint2(painter QPainter_ITF, x int, y int, w int, h int, align
 	}
 }
 
+func (ptr *QIcon) ToVariant() *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QIcon_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QIcon) __availableSizes_atList(i int) *core.QSize {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QIcon___availableSizes_atList(ptr.Pointer(), C.int(int32(i))))

@@ -7261,6 +7261,11 @@ void QIcon_Paint2(void* ptr, void* painter, int x, int y, int w, int h, long lon
 	static_cast<QIcon*>(ptr)->paint(static_cast<QPainter*>(painter), x, y, w, h, static_cast<Qt::AlignmentFlag>(alignment), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
+void* QIcon_ToVariant(void* ptr)
+{
+	return new QVariant(*static_cast<QIcon*>(ptr));
+}
+
 void* QIcon___availableSizes_atList(void* ptr, int i)
 {
 	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
