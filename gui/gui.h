@@ -1131,6 +1131,7 @@ char QIcon_IsNull(void* ptr);
 long long QIcon_CacheKey(void* ptr);
 void QIcon_Paint(void* ptr, void* painter, void* rect, long long alignment, long long mode, long long state);
 void QIcon_Paint2(void* ptr, void* painter, int x, int y, int w, int h, long long alignment, long long mode, long long state);
+void* QIcon_ToVariant(void* ptr);
 void* QIcon___availableSizes_atList(void* ptr, int i);
 void QIcon___availableSizes_setList(void* ptr, void* i);
 void* QIcon___availableSizes_newList(void* ptr);
