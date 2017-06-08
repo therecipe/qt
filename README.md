@@ -22,6 +22,8 @@ Most of Qt's API is accessible from Go.
 
 It should already contain everything you need to build fully featured applications.
 
+At the moment webengine/webview packages do not work on Windows since they can't be compiled with MinGW.
+
 If you still miss something, please open an issue.
 
 Also there have been no release so far, so please pin the repo to a specific commit that is known to work for you.
