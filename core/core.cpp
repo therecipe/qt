@@ -67,6 +67,7 @@
 #include <QHash>
 #include <QHistoryState>
 #include <QIODevice>
+#include <QIcon>
 #include <QIdentityProxyModel>
 #include <QImage>
 #include <QItemSelection>
@@ -23017,6 +23018,11 @@ void* QVariant_ToImage(void* ptr)
 void* QVariant_ToObject(void* ptr)
 {
 	return qvariant_cast<QObject*>(*static_cast<QVariant*>(ptr));
+}
+
+void* QVariant_ToIcon(void* ptr)
+{
+	return new QIcon(qvariant_cast<QIcon>(*static_cast<QVariant*>(ptr)));
 }
 
 void* QVariant___QVariant_val_atList26(void* ptr, char* i)

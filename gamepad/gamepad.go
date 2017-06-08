@@ -1094,6 +1094,7 @@ func (ptr *QGamepad) DestroyQGamepad() {
 	if ptr.Pointer() != nil {
 		C.QGamepad_DestroyQGamepad(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1465,6 +1466,7 @@ func (ptr *QGamepad) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGamepad_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

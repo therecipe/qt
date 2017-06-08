@@ -65,6 +65,7 @@ func (ptr *Diagnostics) DestroyDiagnostics() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -132,6 +133,7 @@ func (ptr *EncapsulatedInterfaceTransport) DestroyEncapsulatedInterfaceTransport
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -424,6 +426,7 @@ func (ptr *QCanBus) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCanBus_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1338,6 +1341,7 @@ func (ptr *QCanBusDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1446,6 +1450,7 @@ func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1542,6 +1547,7 @@ func (ptr *QCanBusFrame) DestroyQCanBusFrame() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2011,6 +2017,7 @@ func (ptr *QModbusDataUnit) DestroyQModbusDataUnit() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2470,6 +2477,7 @@ func (ptr *QModbusDevice) DestroyQModbusDevice() {
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DestroyQModbusDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2696,6 +2704,7 @@ func (ptr *QModbusDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2803,6 +2812,7 @@ func (ptr *QModbusDeviceIdentification) DestroyQModbusDeviceIdentification() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2988,6 +2998,7 @@ func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3187,6 +3198,7 @@ func (ptr *QModbusPdu) DestroyQModbusPdu() {
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPdu(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3194,6 +3206,7 @@ func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPduDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3649,6 +3662,7 @@ func (ptr *QModbusReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3758,6 +3772,7 @@ func (ptr *QModbusRequest) DestroyQModbusRequest() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3833,6 +3848,7 @@ func (ptr *QModbusResponse) DestroyQModbusResponse() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3973,6 +3989,7 @@ func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4534,6 +4551,7 @@ func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DestroyQModbusTcpClient(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4587,5 +4605,6 @@ func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DestroyQModbusTcpServer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }

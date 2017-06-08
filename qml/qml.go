@@ -191,6 +191,7 @@ func (ptr *QJSEngine) DestroyQJSEngine() {
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -198,6 +199,7 @@ func (ptr *QJSEngine) DestroyQJSEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DestroyQJSEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -403,6 +405,7 @@ func (ptr *QJSEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -669,6 +672,7 @@ func (ptr *QJSValue) DestroyQJSValue() {
 	if ptr.Pointer() != nil {
 		C.QJSValue_DestroyQJSValue(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1132,6 +1136,7 @@ func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
 	if ptr.Pointer() != nil {
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1139,6 +1144,7 @@ func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptorDefault(
 	if ptr.Pointer() != nil {
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1401,6 +1407,7 @@ func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1924,6 +1931,7 @@ func (ptr *QQmlComponent) DestroyQQmlComponent() {
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1931,6 +1939,7 @@ func (ptr *QQmlComponent) DestroyQQmlComponentDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DestroyQQmlComponentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2221,6 +2230,7 @@ func (ptr *QQmlComponent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2417,6 +2427,7 @@ func (ptr *QQmlContext) DestroyQQmlContext() {
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DestroyQQmlContext(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2424,6 +2435,7 @@ func (ptr *QQmlContext) DestroyQQmlContextDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DestroyQQmlContextDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2690,6 +2702,7 @@ func (ptr *QQmlContext) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3144,6 +3157,7 @@ func (ptr *QQmlEngine) DestroyQQmlEngine() {
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3151,6 +3165,7 @@ func (ptr *QQmlEngine) DestroyQQmlEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DestroyQQmlEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3375,6 +3390,7 @@ func (ptr *QQmlError) DestroyQQmlError() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3663,6 +3679,7 @@ func (ptr *QQmlExpression) DestroyQQmlExpression() {
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DestroyQQmlExpression(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3670,6 +3687,7 @@ func (ptr *QQmlExpression) DestroyQQmlExpressionDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DestroyQQmlExpressionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3950,6 +3968,7 @@ func (ptr *QQmlExpression) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4355,6 +4374,7 @@ func (ptr *QQmlExtensionPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4508,6 +4528,7 @@ func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4715,6 +4736,7 @@ func (ptr *QQmlFileSelector) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4823,6 +4845,7 @@ func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4963,6 +4986,7 @@ func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5079,6 +5103,7 @@ func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5330,6 +5355,7 @@ func (ptr *QQmlListProperty) DestroyQQmlListProperty() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5375,6 +5401,7 @@ func (ptr *QQmlListReference) DestroyQQmlListReference() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5664,6 +5691,7 @@ func (ptr *QQmlParserStatus) DestroyQQmlParserStatus() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5779,6 +5807,7 @@ func (ptr *QQmlProperty) DestroyQQmlProperty() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6350,6 +6379,7 @@ func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6357,6 +6387,7 @@ func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMapDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DestroyQQmlPropertyMapDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6607,6 +6638,7 @@ func (ptr *QQmlPropertyMap) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6834,6 +6866,7 @@ func (ptr *QQmlScriptString) DestroyQQmlScriptString() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6933,6 +6966,7 @@ func (ptr *QV4) DestroyQV4() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

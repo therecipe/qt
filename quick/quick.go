@@ -556,6 +556,7 @@ func (ptr *QQuickImageProvider) DestroyQQuickImageProvider() {
 	if ptr.Pointer() != nil {
 		C.QQuickImageProvider_DestroyQQuickImageProvider(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -563,6 +564,7 @@ func (ptr *QQuickImageProvider) DestroyQQuickImageProviderDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickImageProvider_DestroyQQuickImageProviderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -815,6 +817,7 @@ func (ptr *QQuickImageResponse) DestroyQQuickImageResponse() {
 	if ptr.Pointer() != nil {
 		C.QQuickImageResponse_DestroyQQuickImageResponse(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -822,6 +825,7 @@ func (ptr *QQuickImageResponse) DestroyQQuickImageResponseDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickImageResponse_DestroyQQuickImageResponseDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1103,6 +1107,7 @@ func (ptr *QQuickImageResponse) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickImageResponse_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2811,6 +2816,7 @@ func (ptr *QQuickItem) DestroyQQuickItem() {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_DestroyQQuickItem(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2818,6 +2824,7 @@ func (ptr *QQuickItem) DestroyQQuickItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_DestroyQQuickItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3629,6 +3636,7 @@ func (ptr *QQuickItem) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3636,6 +3644,7 @@ func (ptr *QQuickItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4020,6 +4029,7 @@ func (ptr *QQuickItemGrabResult) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickItemGrabResult_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4474,6 +4484,7 @@ func (ptr *QQuickPaintedItem) DestroyQQuickPaintedItem() {
 	if ptr.Pointer() != nil {
 		C.QQuickPaintedItem_DestroyQQuickPaintedItem(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4481,6 +4492,7 @@ func (ptr *QQuickPaintedItem) DestroyQQuickPaintedItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickPaintedItem_DestroyQQuickPaintedItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4788,6 +4800,7 @@ func (ptr *QQuickRenderControl) DestroyQQuickRenderControl() {
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_DestroyQQuickRenderControl(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4984,6 +4997,7 @@ func (ptr *QQuickRenderControl) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5299,6 +5313,7 @@ func (ptr *QQuickTextDocument) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickTextDocument_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5460,6 +5475,7 @@ func (ptr *QQuickTextureFactory) DestroyQQuickTextureFactory() {
 	if ptr.Pointer() != nil {
 		C.QQuickTextureFactory_DestroyQQuickTextureFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5467,6 +5483,7 @@ func (ptr *QQuickTextureFactory) DestroyQQuickTextureFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickTextureFactory_DestroyQQuickTextureFactoryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5828,6 +5845,7 @@ func (ptr *QQuickTextureFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickTextureFactory_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6097,6 +6115,7 @@ func (ptr *QQuickView) DestroyQQuickView() {
 	if ptr.Pointer() != nil {
 		C.QQuickView_DestroyQQuickView(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6104,6 +6123,7 @@ func (ptr *QQuickView) DestroyQQuickViewDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickView_DestroyQQuickViewDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6464,6 +6484,7 @@ func (ptr *QQuickWidget) DestroyQQuickWidget() {
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_DestroyQQuickWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6471,6 +6492,7 @@ func (ptr *QQuickWidget) DestroyQQuickWidgetDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_DestroyQQuickWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7731,6 +7753,7 @@ func (ptr *QQuickWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8816,6 +8839,7 @@ func (ptr *QQuickWindow) DestroyQQuickWindow() {
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_DestroyQQuickWindow(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8823,6 +8847,7 @@ func (ptr *QQuickWindow) DestroyQQuickWindowDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_DestroyQQuickWindowDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9795,6 +9820,7 @@ func (ptr *QQuickWindow) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10232,6 +10258,7 @@ func (ptr *QSGAbstractRenderer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10404,6 +10431,7 @@ func (ptr *QSGBatchRenderer) DestroyQSGBatchRenderer() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10474,6 +10502,7 @@ func (ptr *QSGClipNode) DestroyQSGClipNode() {
 	if ptr.Pointer() != nil {
 		C.QSGClipNode_DestroyQSGClipNode(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10760,6 +10789,7 @@ func (ptr *QSGEngine) DestroyQSGEngine() {
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DestroyQSGEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11010,6 +11040,7 @@ func (ptr *QSGEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11119,6 +11150,7 @@ func (ptr *QSGFlatColorMaterial) DestroyQSGFlatColorMaterial() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11934,6 +11966,7 @@ func (ptr *QSGImageNode) DestroyQSGImageNode() {
 	if ptr.Pointer() != nil {
 		C.QSGImageNode_DestroyQSGImageNode(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11941,6 +11974,7 @@ func (ptr *QSGImageNode) DestroyQSGImageNodeDefault() {
 	if ptr.Pointer() != nil {
 		C.QSGImageNode_DestroyQSGImageNodeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12254,6 +12288,7 @@ func (ptr *QSGMaterial) DestroyQSGMaterial() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12443,6 +12478,7 @@ func (ptr *QSGMaterialShader) DestroyQSGMaterialShader() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12774,6 +12810,7 @@ func (ptr *QSGMaterialType) DestroyQSGMaterialType() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13212,6 +13249,7 @@ func (ptr *QSGOpaqueTextureMaterial) DestroyQSGOpaqueTextureMaterial() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13500,6 +13538,7 @@ func (ptr *QSGRectangleNode) DestroyQSGRectangleNode() {
 	if ptr.Pointer() != nil {
 		C.QSGRectangleNode_DestroyQSGRectangleNode(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13507,6 +13546,7 @@ func (ptr *QSGRectangleNode) DestroyQSGRectangleNodeDefault() {
 	if ptr.Pointer() != nil {
 		C.QSGRectangleNode_DestroyQSGRectangleNodeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13698,6 +13738,7 @@ func (ptr *QSGRenderNode) DestroyQSGRenderNode() {
 	if ptr.Pointer() != nil {
 		C.QSGRenderNode_DestroyQSGRenderNode(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14281,6 +14322,7 @@ func (ptr *QSGSimpleMaterial) DestroyQSGSimpleMaterial() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14328,6 +14370,7 @@ func (ptr *QSGSimpleMaterialShader) DestroyQSGSimpleMaterialShader() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14466,6 +14509,7 @@ func (ptr *QSGTexture) DestroyQSGTexture() {
 	if ptr.Pointer() != nil {
 		C.QSGTexture_DestroyQSGTexture(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14993,6 +15037,7 @@ func (ptr *QSGTexture) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSGTexture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15102,6 +15147,7 @@ func (ptr *QSGTextureMaterial) DestroyQSGTextureMaterial() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15417,6 +15463,7 @@ func (ptr *QSGTextureProvider) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSGTextureProvider_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15588,6 +15635,7 @@ func (ptr *QSGVertexColorMaterial) DestroyQSGVertexColorMaterial() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

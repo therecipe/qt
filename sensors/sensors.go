@@ -65,6 +65,7 @@ func (ptr *AndroidSensors) DestroyAndroidSensors() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -235,6 +236,7 @@ func (ptr *QAccelerometer) DestroyQAccelerometer() {
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_DestroyQAccelerometer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -242,6 +244,7 @@ func (ptr *QAccelerometer) DestroyQAccelerometerDefault() {
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_DestroyQAccelerometerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -308,6 +311,7 @@ func (ptr *QAccelerometerFilter) DestroyQAccelerometerFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -475,6 +479,7 @@ func (ptr *QAltimeter) DestroyQAltimeter() {
 	if ptr.Pointer() != nil {
 		C.QAltimeter_DestroyQAltimeter(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -541,6 +546,7 @@ func (ptr *QAltimeterFilter) DestroyQAltimeterFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -676,6 +682,7 @@ func (ptr *QAmbientLightFilter) DestroyQAmbientLightFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -861,6 +868,7 @@ func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
 	if ptr.Pointer() != nil {
 		C.QAmbientLightSensor_DestroyQAmbientLightSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -868,6 +876,7 @@ func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QAmbientLightSensor_DestroyQAmbientLightSensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -934,6 +943,7 @@ func (ptr *QAmbientTemperatureFilter) DestroyQAmbientTemperatureFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1075,6 +1085,7 @@ func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1177,6 +1188,7 @@ func (ptr *QCompass) DestroyQCompass() {
 	if ptr.Pointer() != nil {
 		C.QCompass_DestroyQCompass(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1184,6 +1196,7 @@ func (ptr *QCompass) DestroyQCompassDefault() {
 	if ptr.Pointer() != nil {
 		C.QCompass_DestroyQCompassDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1250,6 +1263,7 @@ func (ptr *QCompassFilter) DestroyQCompassFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1398,6 +1412,7 @@ func (ptr *QDistanceFilter) DestroyQDistanceFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1539,6 +1554,7 @@ func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
 	if ptr.Pointer() != nil {
 		C.QDistanceSensor_DestroyQDistanceSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1641,6 +1657,7 @@ func (ptr *QGyroscope) DestroyQGyroscope() {
 	if ptr.Pointer() != nil {
 		C.QGyroscope_DestroyQGyroscope(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1648,6 +1665,7 @@ func (ptr *QGyroscope) DestroyQGyroscopeDefault() {
 	if ptr.Pointer() != nil {
 		C.QGyroscope_DestroyQGyroscopeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1714,6 +1732,7 @@ func (ptr *QGyroscopeFilter) DestroyQGyroscopeFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1875,6 +1894,7 @@ func (ptr *QHolsterFilter) DestroyQHolsterFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2016,6 +2036,7 @@ func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
 	if ptr.Pointer() != nil {
 		C.QHolsterSensor_DestroyQHolsterSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2082,6 +2103,7 @@ func (ptr *QIRProximityFilter) DestroyQIRProximityFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2253,6 +2275,7 @@ func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
 	if ptr.Pointer() != nil {
 		C.QIRProximitySensor_DestroyQIRProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2260,6 +2283,7 @@ func (ptr *QIRProximitySensor) DestroyQIRProximitySensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QIRProximitySensor_DestroyQIRProximitySensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2326,6 +2350,7 @@ func (ptr *QLightFilter) DestroyQLightFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2542,6 +2567,7 @@ func (ptr *QLightSensor) DestroyQLightSensor() {
 	if ptr.Pointer() != nil {
 		C.QLightSensor_DestroyQLightSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2549,6 +2575,7 @@ func (ptr *QLightSensor) DestroyQLightSensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QLightSensor_DestroyQLightSensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2703,6 +2730,7 @@ func (ptr *QMagnetometer) DestroyQMagnetometer() {
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_DestroyQMagnetometer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2710,6 +2738,7 @@ func (ptr *QMagnetometer) DestroyQMagnetometerDefault() {
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_DestroyQMagnetometerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2783,6 +2812,7 @@ func (ptr *QMagnetometerFilter) DestroyQMagnetometerFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2957,6 +2987,7 @@ func (ptr *QOrientationFilter) DestroyQOrientationFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3143,6 +3174,7 @@ func (ptr *QOrientationSensor) DestroyQOrientationSensor() {
 	if ptr.Pointer() != nil {
 		C.QOrientationSensor_DestroyQOrientationSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3150,6 +3182,7 @@ func (ptr *QOrientationSensor) DestroyQOrientationSensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QOrientationSensor_DestroyQOrientationSensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3216,6 +3249,7 @@ func (ptr *QPressureFilter) DestroyQPressureFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3370,6 +3404,7 @@ func (ptr *QPressureSensor) DestroyQPressureSensor() {
 	if ptr.Pointer() != nil {
 		C.QPressureSensor_DestroyQPressureSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3436,6 +3471,7 @@ func (ptr *QProximityFilter) DestroyQProximityFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3607,6 +3643,7 @@ func (ptr *QProximitySensor) DestroyQProximitySensor() {
 	if ptr.Pointer() != nil {
 		C.QProximitySensor_DestroyQProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3614,6 +3651,7 @@ func (ptr *QProximitySensor) DestroyQProximitySensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QProximitySensor_DestroyQProximitySensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3680,6 +3718,7 @@ func (ptr *QRotationFilter) DestroyQRotationFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3910,6 +3949,7 @@ func (ptr *QRotationSensor) DestroyQRotationSensor() {
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_DestroyQRotationSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3917,6 +3957,7 @@ func (ptr *QRotationSensor) DestroyQRotationSensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_DestroyQRotationSensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4828,6 +4869,7 @@ func (ptr *QSensor) DestroyQSensor() {
 	if ptr.Pointer() != nil {
 		C.QSensor_DestroyQSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4835,6 +4877,7 @@ func (ptr *QSensor) DestroyQSensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensor_DestroyQSensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5240,6 +5283,7 @@ func (ptr *QSensor) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5725,6 +5769,7 @@ func (ptr *QSensorBackend) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5833,6 +5878,7 @@ func (ptr *QSensorBackendFactory) DestroyQSensorBackendFactory() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5920,6 +5966,7 @@ func (ptr *QSensorChangesInterface) DestroyQSensorChangesInterface() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6209,6 +6256,7 @@ func (ptr *QSensorGesture) DestroyQSensorGesture() {
 	if ptr.Pointer() != nil {
 		C.QSensorGesture_DestroyQSensorGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6426,6 +6474,7 @@ func (ptr *QSensorGesture) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensorGesture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6613,6 +6662,7 @@ func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
 	if ptr.Pointer() != nil {
 		C.QSensorGestureManager_DestroyQSensorGestureManager(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6828,6 +6878,7 @@ func (ptr *QSensorGestureManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensorGestureManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7417,6 +7468,7 @@ func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizer() {
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7424,6 +7476,7 @@ func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizerDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7664,6 +7717,7 @@ func (ptr *QSensorGestureRecognizer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7771,6 +7825,7 @@ func (ptr *QSensorManager) DestroyQSensorManager() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7865,6 +7920,7 @@ func (ptr *QSensorPluginInterface) DestroyQSensorPluginInterface() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8163,6 +8219,7 @@ func (ptr *QSensorReading) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSensorReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8272,6 +8329,7 @@ func (ptr *QTapFilter) DestroyQTapFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8522,6 +8580,7 @@ func (ptr *QTapSensor) DestroyQTapSensor() {
 	if ptr.Pointer() != nil {
 		C.QTapSensor_DestroyQTapSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8529,6 +8588,7 @@ func (ptr *QTapSensor) DestroyQTapSensorDefault() {
 	if ptr.Pointer() != nil {
 		C.QTapSensor_DestroyQTapSensorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8602,6 +8662,7 @@ func (ptr *QTiltFilter) DestroyQTiltFilter() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8762,6 +8823,7 @@ func (ptr *QTiltSensor) DestroyQTiltSensor() {
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_DestroyQTiltSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8826,6 +8888,7 @@ func (ptr *QtMobility) DestroyQtMobility() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

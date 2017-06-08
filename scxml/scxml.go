@@ -92,6 +92,7 @@ func (ptr *QScxmlCompiler) DestroyQScxmlCompiler() {
 	if ptr.Pointer() != nil {
 		C.QScxmlCompiler_DestroyQScxmlCompiler(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -976,6 +977,7 @@ func (ptr *QScxmlDataModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1541,6 +1543,7 @@ func (ptr *QScxmlError) DestroyQScxmlError() {
 	if ptr.Pointer() != nil {
 		C.QScxmlError_DestroyQScxmlError(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1740,6 +1743,7 @@ func (ptr *QScxmlEvent) DestroyQScxmlEvent() {
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_DestroyQScxmlEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2218,6 +2222,7 @@ func (ptr *QScxmlInvokableService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableService_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2572,6 +2577,7 @@ func (ptr *QScxmlInvokableServiceFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableServiceFactory_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2861,6 +2867,7 @@ func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4188,6 +4195,7 @@ func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

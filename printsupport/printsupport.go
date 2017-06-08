@@ -1443,6 +1443,7 @@ func (ptr *QAbstractPrintDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractPrintDialog_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1674,6 +1675,7 @@ func (ptr *QPageSetupDialog) DestroyQPageSetupDialog() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DestroyQPageSetupDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2847,6 +2849,7 @@ func (ptr *QPageSetupDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2954,6 +2957,7 @@ func (ptr *QPrint) DestroyQPrint() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3232,6 +3236,7 @@ func (ptr *QPrintDialog) DestroyQPrintDialog() {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_DestroyQPrintDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3469,6 +3474,7 @@ func (ptr *QPrintEngine) DestroyQPrintEngine() {
 	if ptr.Pointer() != nil {
 		C.QPrintEngine_DestroyQPrintEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3476,6 +3482,7 @@ func (ptr *QPrintEngine) DestroyQPrintEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintEngine_DestroyQPrintEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3753,6 +3760,7 @@ func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialog() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DestroyQPrintPreviewDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4942,6 +4950,7 @@ func (ptr *QPrintPreviewDialog) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5878,6 +5887,7 @@ func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidget() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DestroyQPrintPreviewWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7039,6 +7049,7 @@ func (ptr *QPrintPreviewWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7601,6 +7612,7 @@ func (ptr *QPrinter) DestroyQPrinter() {
 	if ptr.Pointer() != nil {
 		C.QPrinter_DestroyQPrinter(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8032,6 +8044,7 @@ func (ptr *QPrinterInfo) DestroyQPrinterInfo() {
 	if ptr.Pointer() != nil {
 		C.QPrinterInfo_DestroyQPrinterInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

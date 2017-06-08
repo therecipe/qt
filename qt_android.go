@@ -20,9 +20,6 @@ adb logcat GoLog:I *:S
 
 #include <android/log.h>
 #include <string.h>
-
-#define LOG_INFO(...) __android_log_print(ANDROID_LOG_INFO, "Go", __VA_ARGS__)
-#define LOG_FATAL(...) __android_log_print(ANDROID_LOG_FATAL, "Go", __VA_ARGS__)
 */
 import "C"
 

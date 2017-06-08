@@ -67,6 +67,7 @@ func (ptr *SailfishApp) DestroySailfishApp() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

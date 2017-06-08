@@ -8,6 +8,7 @@ package quickcontrols2
 //#include "quickcontrols2.h"
 import "C"
 import (
+	"runtime"
 	"unsafe"
 )
 
@@ -60,6 +61,7 @@ func (ptr *QQuickStyle) DestroyQQuickStyle() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

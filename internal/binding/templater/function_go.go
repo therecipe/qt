@@ -77,6 +77,11 @@ func goFunctionBody(function *parser.Function) string {
 	}
 
 	if class.Name == "QAndroidJniObject" {
+
+		if strings.HasPrefix(function.Name, parser.TILDE) {
+			fmt.Fprint(bb, "qt.DisconnectAllSignals(ptr.ToString(), \"\")\n")
+		}
+
 		for _, parameter := range function.Parameters {
 			if parameter.Value == "..." {
 				for i := 0; i < 10; i++ {
@@ -118,28 +123,34 @@ func goFunctionBody(function *parser.Function) string {
 
 					fmt.Fprintf(bb, "var tmpValue = %v\n", body)
 
-					if class.Name != "QAndroidJniObject" || class.Name == "QAndroidJniObject" && function.TemplateModeJNI == "String" {
-						fmt.Fprintf(bb, "runtime.SetFinalizer(tmpValue, (%v).Destroy%v)\n",
-							func() string {
-								if function.TemplateModeJNI != "" {
-									return fmt.Sprintf("*%v", parser.CleanValue(function.Output))
-								}
-								return converter.GoHeaderOutput(function)
-							}(),
+					if class.Name != "QAndroidJniObject" || class.Name == "QAndroidJniObject" && (function.TemplateModeJNI == "String" || function.Output == "QAndroidJniObject" || function.Meta == parser.CONSTRUCTOR) {
+						if function.TemplateModeJNI == "String" {
+							fmt.Fprint(bb, "tmpValueToString := tmpValue.ToString()\n")
+							fmt.Fprint(bb, "tmpValue.DestroyQAndroidJniObject()\n")
+						} else {
+							class.HasFinalizer = true
+							fmt.Fprintf(bb, "runtime.SetFinalizer(tmpValue, (%v).Destroy%v)\n",
+								func() string {
+									if function.TemplateModeJNI != "" {
+										return fmt.Sprintf("*%v", parser.CleanValue(function.Output))
+									}
+									return converter.GoHeaderOutput(function)
+								}(),
 
-							func() string {
-								if function.Meta == parser.CONSTRUCTOR {
-									return function.Name
-								}
-								return parser.CleanValue(function.Output)
-							}(),
-						)
+								func() string {
+									if function.Meta == parser.CONSTRUCTOR {
+										return function.Name
+									}
+									return parser.CleanValue(function.Output)
+								}(),
+							)
+						}
 					}
 
 					fmt.Fprintf(bb, "return tmpValue%v%v",
 						func() string {
 							if function.TemplateModeJNI == "String" {
-								return ".ToString()"
+								return "ToString"
 							}
 							return ""
 						}(),
@@ -388,6 +399,9 @@ func goFunctionBody(function *parser.Function) string {
 
 	if (function.Name == "deleteLater" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
 		fmt.Fprint(bb, "\nptr.SetPointer(nil)")
+		if class.HasFinalizer {
+			fmt.Fprint(bb, "\nruntime.SetFinalizer(ptr, nil)")
+		}
 	}
 
 	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {

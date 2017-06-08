@@ -65,6 +65,7 @@ func (ptr *QSOperator) DestroyQSOperator() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -152,6 +153,7 @@ func (ptr *QScript) DestroyQScript() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -519,6 +521,7 @@ func (ptr *QScriptClass) DestroyQScriptClass() {
 	if ptr.Pointer() != nil {
 		C.QScriptClass_DestroyQScriptClass(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -526,6 +529,7 @@ func (ptr *QScriptClass) DestroyQScriptClassDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptClass_DestroyQScriptClassDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -827,6 +831,7 @@ func (ptr *QScriptContext) DestroyQScriptContext() {
 	if ptr.Pointer() != nil {
 		C.QScriptContext_DestroyQScriptContext(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -999,6 +1004,7 @@ func (ptr *QScriptContextInfo) DestroyQScriptContextInfo() {
 	if ptr.Pointer() != nil {
 		C.QScriptContextInfo_DestroyQScriptContextInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1507,6 +1513,7 @@ func (ptr *QScriptEngine) DestroyQScriptEngine() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DestroyQScriptEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1514,6 +1521,7 @@ func (ptr *QScriptEngine) DestroyQScriptEngineDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DestroyQScriptEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1800,6 +1808,7 @@ func (ptr *QScriptEngine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2395,6 +2404,7 @@ func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgent() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_DestroyQScriptEngineAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2402,6 +2412,7 @@ func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgentDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_DestroyQScriptEngineAgentDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2550,6 +2561,7 @@ func (ptr *QScriptExtensionPlugin) DestroyQScriptExtensionPlugin() {
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2797,6 +2809,7 @@ func (ptr *QScriptExtensionPlugin) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2931,6 +2944,7 @@ func (ptr *QScriptProgram) DestroyQScriptProgram() {
 	if ptr.Pointer() != nil {
 		C.QScriptProgram_DestroyQScriptProgram(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3015,6 +3029,7 @@ func (ptr *QScriptString) DestroyQScriptString() {
 	if ptr.Pointer() != nil {
 		C.QScriptString_DestroyQScriptString(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3097,6 +3112,7 @@ func (ptr *QScriptSyntaxCheckResult) DestroyQScriptSyntaxCheckResult() {
 	if ptr.Pointer() != nil {
 		C.QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3328,6 +3344,7 @@ func (ptr *QScriptValue) DestroyQScriptValue() {
 	if ptr.Pointer() != nil {
 		C.QScriptValue_DestroyQScriptValue(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3711,6 +3728,7 @@ func (ptr *QScriptable) DestroyQScriptable() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

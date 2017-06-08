@@ -31,8 +31,8 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 			fmt.Fprint(bb, "return nil\n")
 		} else {
 			fmt.Fprint(bb, "var err error\n")
-			fmt.Fprint(bb, "if QAndroidJniEnvironment_ExceptionCheck() {\nvar tmpExcPtr = QAndroidJniEnvironment_ExceptionOccurred()\nQAndroidJniEnvironment_ExceptionClear()\n")
-			fmt.Fprint(bb, "var tmpExc = NewQAndroidJniObject6(tmpExcPtr)\n")
+			fmt.Fprint(bb, "if QAndroidJniEnvironment_ExceptionCheck() {\n tmpExcPtr := QAndroidJniEnvironment_ExceptionOccurred()\nQAndroidJniEnvironment_ExceptionClear()\n")
+			fmt.Fprint(bb, "tmpExc := NewQAndroidJniObject6(tmpExcPtr)\n")
 			fmt.Fprint(bb, "err = errors.New(tmpExc.CallMethodString2(\"toString\", \"()Ljava/lang/String;\"))\n")
 			fmt.Fprint(bb, "tmpExc.DestroyQAndroidJniObject()\n")
 			fmt.Fprint(bb, "}\nreturn err\n")
@@ -159,6 +159,7 @@ func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
 		C.free(ptr.Pointer())%v
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

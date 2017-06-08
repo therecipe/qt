@@ -24,9 +24,9 @@ func cGoUnpackString(s C.struct_QtAndroidExtras_PackedString) string {
 func QAndroidJniEnvironment_ExceptionCatch() error {
 	var err error
 	if QAndroidJniEnvironment_ExceptionCheck() {
-		var tmpExcPtr = QAndroidJniEnvironment_ExceptionOccurred()
+		tmpExcPtr := QAndroidJniEnvironment_ExceptionOccurred()
 		QAndroidJniEnvironment_ExceptionClear()
-		var tmpExc = NewQAndroidJniObject6(tmpExcPtr)
+		tmpExc := NewQAndroidJniObject6(tmpExcPtr)
 		err = errors.New(tmpExc.CallMethodString2("toString", "()Ljava/lang/String;"))
 		tmpExc.DestroyQAndroidJniObject()
 	}
@@ -80,6 +80,7 @@ func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -173,6 +174,7 @@ func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
 	if ptr.Pointer() != nil {
 		C.QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -257,6 +259,7 @@ func QAndroidJniObject_CallStaticObjectMethod(className string, methodName strin
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod(classNameC, methodNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -272,6 +275,7 @@ func QAndroidJniObject_CallStaticObjectMethodCaught(className string, methodName
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethodCaught(classNameC, methodNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -287,8 +291,9 @@ func QAndroidJniObject_CallStaticMethodString(className string, methodName strin
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString(classNameC, methodNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_CallStaticMethodStringCaught(className string, methodName string) (string, error) {
@@ -303,8 +308,9 @@ func QAndroidJniObject_CallStaticMethodStringCaught(className string, methodName
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodStringCaught(classNameC, methodNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticObjectMethod2(className string, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
@@ -364,6 +370,7 @@ func QAndroidJniObject_CallStaticObjectMethod2(className string, methodName stri
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod2(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -424,6 +431,7 @@ func QAndroidJniObject_CallStaticObjectMethod2Caught(className string, methodNam
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod2Caught(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -484,8 +492,9 @@ func QAndroidJniObject_CallStaticMethodString2(className string, methodName stri
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString2(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_CallStaticMethodString2Caught(className string, methodName string, signature string, v ...interface{}) (string, error) {
@@ -545,8 +554,9 @@ func QAndroidJniObject_CallStaticMethodString2Caught(className string, methodNam
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString2Caught(classNameC, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticObjectMethod3(clazz unsafe.Pointer, methodName string) *QAndroidJniObject {
@@ -556,6 +566,7 @@ func QAndroidJniObject_CallStaticObjectMethod3(clazz unsafe.Pointer, methodName 
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod3(clazz, methodNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -566,6 +577,7 @@ func QAndroidJniObject_CallStaticObjectMethod3Caught(clazz unsafe.Pointer, metho
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod3Caught(clazz, methodNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -576,8 +588,9 @@ func QAndroidJniObject_CallStaticMethodString3(clazz unsafe.Pointer, methodName 
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString3(clazz, methodNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_CallStaticMethodString3Caught(clazz unsafe.Pointer, methodName string) (string, error) {
@@ -587,8 +600,9 @@ func QAndroidJniObject_CallStaticMethodString3Caught(clazz unsafe.Pointer, metho
 		defer C.free(unsafe.Pointer(methodNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString3Caught(clazz, methodNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_CallStaticObjectMethod4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
@@ -643,6 +657,7 @@ func QAndroidJniObject_CallStaticObjectMethod4(clazz unsafe.Pointer, methodName 
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -698,6 +713,7 @@ func QAndroidJniObject_CallStaticObjectMethod4Caught(clazz unsafe.Pointer, metho
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4Caught(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -753,8 +769,9 @@ func QAndroidJniObject_CallStaticMethodString4(clazz unsafe.Pointer, methodName 
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_CallStaticMethodString4Caught(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) (string, error) {
@@ -809,17 +826,20 @@ func QAndroidJniObject_CallStaticMethodString4Caught(clazz unsafe.Pointer, metho
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4Caught(clazz, methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromLocalRef(localRef))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
 func (ptr *QAndroidJniObject) FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromLocalRef(localRef))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -830,6 +850,7 @@ func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(striC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -840,6 +861,7 @@ func (ptr *QAndroidJniObject) FromString(stri string) *QAndroidJniObject {
 		defer C.free(unsafe.Pointer(striC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(striC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -855,6 +877,7 @@ func QAndroidJniObject_GetStaticObjectField(className string, fieldName string) 
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField(classNameC, fieldNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -870,6 +893,7 @@ func QAndroidJniObject_GetStaticObjectFieldCaught(className string, fieldName st
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectFieldCaught(classNameC, fieldNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -885,8 +909,9 @@ func QAndroidJniObject_GetStaticFieldString(className string, fieldName string) 
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString(classNameC, fieldNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_GetStaticFieldStringCaught(className string, fieldName string) (string, error) {
@@ -901,8 +926,9 @@ func QAndroidJniObject_GetStaticFieldStringCaught(className string, fieldName st
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldStringCaught(classNameC, fieldNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticObjectField2(className string, fieldName string, signature string) *QAndroidJniObject {
@@ -922,6 +948,7 @@ func QAndroidJniObject_GetStaticObjectField2(className string, fieldName string,
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField2(classNameC, fieldNameC, signatureC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -942,6 +969,7 @@ func QAndroidJniObject_GetStaticObjectField2Caught(className string, fieldName s
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField2Caught(classNameC, fieldNameC, signatureC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -962,8 +990,9 @@ func QAndroidJniObject_GetStaticFieldString2(className string, fieldName string,
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString2(classNameC, fieldNameC, signatureC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_GetStaticFieldString2Caught(className string, fieldName string, signature string) (string, error) {
@@ -983,8 +1012,9 @@ func QAndroidJniObject_GetStaticFieldString2Caught(className string, fieldName s
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString2Caught(classNameC, fieldNameC, signatureC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticObjectField3(clazz unsafe.Pointer, fieldName string) *QAndroidJniObject {
@@ -994,6 +1024,7 @@ func QAndroidJniObject_GetStaticObjectField3(clazz unsafe.Pointer, fieldName str
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField3(clazz, fieldNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -1004,6 +1035,7 @@ func QAndroidJniObject_GetStaticObjectField3Caught(clazz unsafe.Pointer, fieldNa
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField3Caught(clazz, fieldNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -1014,8 +1046,9 @@ func QAndroidJniObject_GetStaticFieldString3(clazz unsafe.Pointer, fieldName str
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString3(clazz, fieldNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_GetStaticFieldString3Caught(clazz unsafe.Pointer, fieldName string) (string, error) {
@@ -1025,8 +1058,9 @@ func QAndroidJniObject_GetStaticFieldString3Caught(clazz unsafe.Pointer, fieldNa
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString3Caught(clazz, fieldNameC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func QAndroidJniObject_GetStaticObjectField4(clazz unsafe.Pointer, fieldName string, signature string) *QAndroidJniObject {
@@ -1041,6 +1075,7 @@ func QAndroidJniObject_GetStaticObjectField4(clazz unsafe.Pointer, fieldName str
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField4(clazz, fieldNameC, signatureC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -1056,6 +1091,7 @@ func QAndroidJniObject_GetStaticObjectField4Caught(clazz unsafe.Pointer, fieldNa
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticObjectField4Caught(clazz, fieldNameC, signatureC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 }
 
@@ -1071,8 +1107,9 @@ func QAndroidJniObject_GetStaticFieldString4(clazz unsafe.Pointer, fieldName str
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString4(clazz, fieldNameC, signatureC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString
 }
 
 func QAndroidJniObject_GetStaticFieldString4Caught(clazz unsafe.Pointer, fieldName string, signature string) (string, error) {
@@ -1087,12 +1124,14 @@ func QAndroidJniObject_GetStaticFieldString4Caught(clazz unsafe.Pointer, fieldNa
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_GetStaticFieldString4Caught(clazz, fieldNameC, signatureC))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+	tmpValueToString := tmpValue.ToString()
+	tmpValue.DestroyQAndroidJniObject()
+	return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 }
 
 func NewQAndroidJniObject() *QAndroidJniObject {
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -1103,6 +1142,7 @@ func NewQAndroidJniObject2(className string) *QAndroidJniObject {
 		defer C.free(unsafe.Pointer(classNameC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject2(classNameC))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -1158,11 +1198,13 @@ func NewQAndroidJniObject3(className string, signature string, v ...interface{})
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject3(classNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
 func NewQAndroidJniObject4(clazz unsafe.Pointer) *QAndroidJniObject {
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject4(clazz))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -1213,11 +1255,13 @@ func NewQAndroidJniObject5(clazz unsafe.Pointer, signature string, v ...interfac
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject5(clazz, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
 func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
 	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject6(object))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
 
@@ -2366,8 +2410,10 @@ func (ptr *QAndroidJniObject) SetStaticField3(clazz unsafe.Pointer, fieldName st
 
 func (ptr *QAndroidJniObject) DestroyQAndroidJniObject() {
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ToString(), "")
 		C.QAndroidJniObject_DestroyQAndroidJniObject(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2379,6 +2425,7 @@ func (ptr *QAndroidJniObject) CallObjectMethod(methodName string) *QAndroidJniOb
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod(ptr.Pointer(), methodNameC))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue
 	}
 	return nil
@@ -2392,6 +2439,7 @@ func (ptr *QAndroidJniObject) CallObjectMethodCaught(methodName string) (*QAndro
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethodCaught(ptr.Pointer(), methodNameC))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return nil, errors.New("*.Pointer() == nil")
@@ -2405,8 +2453,9 @@ func (ptr *QAndroidJniObject) CallMethodString(methodName string) string {
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodString(ptr.Pointer(), methodNameC))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString
 	}
 	return ""
 }
@@ -2419,8 +2468,9 @@ func (ptr *QAndroidJniObject) CallMethodStringCaught(methodName string) (string,
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodStringCaught(ptr.Pointer(), methodNameC))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return "", errors.New("*.Pointer() == nil")
 }
@@ -2478,6 +2528,7 @@ func (ptr *QAndroidJniObject) CallObjectMethod2(methodName string, signature str
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue
 	}
 	return nil
@@ -2536,6 +2587,7 @@ func (ptr *QAndroidJniObject) CallObjectMethod2Caught(methodName string, signatu
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return nil, errors.New("*.Pointer() == nil")
@@ -2594,8 +2646,9 @@ func (ptr *QAndroidJniObject) CallMethodString2(methodName string, signature str
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodString2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString
 	}
 	return ""
 }
@@ -2653,8 +2706,9 @@ func (ptr *QAndroidJniObject) CallMethodString2Caught(methodName string, signatu
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallMethodString2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return "", errors.New("*.Pointer() == nil")
 }
@@ -2667,6 +2721,7 @@ func (ptr *QAndroidJniObject) GetObjectField(fieldName string) *QAndroidJniObjec
 			defer C.free(unsafe.Pointer(fieldNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectField(ptr.Pointer(), fieldNameC))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue
 	}
 	return nil
@@ -2680,6 +2735,7 @@ func (ptr *QAndroidJniObject) GetObjectFieldCaught(fieldName string) (*QAndroidJ
 			defer C.free(unsafe.Pointer(fieldNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectFieldCaught(ptr.Pointer(), fieldNameC))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return nil, errors.New("*.Pointer() == nil")
@@ -2693,8 +2749,9 @@ func (ptr *QAndroidJniObject) GetFieldString(fieldName string) string {
 			defer C.free(unsafe.Pointer(fieldNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldString(ptr.Pointer(), fieldNameC))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString
 	}
 	return ""
 }
@@ -2707,8 +2764,9 @@ func (ptr *QAndroidJniObject) GetFieldStringCaught(fieldName string) (string, er
 			defer C.free(unsafe.Pointer(fieldNameC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldStringCaught(ptr.Pointer(), fieldNameC))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return "", errors.New("*.Pointer() == nil")
 }
@@ -2726,6 +2784,7 @@ func (ptr *QAndroidJniObject) GetObjectField2(fieldName string, signature string
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectField2(ptr.Pointer(), fieldNameC, signatureC))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue
 	}
 	return nil
@@ -2744,6 +2803,7 @@ func (ptr *QAndroidJniObject) GetObjectField2Caught(fieldName string, signature 
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetObjectField2Caught(ptr.Pointer(), fieldNameC, signatureC))
+		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 		return tmpValue, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return nil, errors.New("*.Pointer() == nil")
@@ -2762,8 +2822,9 @@ func (ptr *QAndroidJniObject) GetFieldString2(fieldName string, signature string
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldString2(ptr.Pointer(), fieldNameC, signatureC))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString
 	}
 	return ""
 }
@@ -2781,8 +2842,9 @@ func (ptr *QAndroidJniObject) GetFieldString2Caught(fieldName string, signature 
 			defer C.free(unsafe.Pointer(signatureC))
 		}
 		var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_GetFieldString2Caught(ptr.Pointer(), fieldNameC, signatureC))
-		runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-		return tmpValue.ToString(), QAndroidJniEnvironment_ExceptionCatch()
+		tmpValueToString := tmpValue.ToString()
+		tmpValue.DestroyQAndroidJniObject()
+		return tmpValueToString, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return "", errors.New("*.Pointer() == nil")
 }
@@ -3312,6 +3374,7 @@ func (ptr *QtAndroid) DestroyQtAndroid() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

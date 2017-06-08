@@ -8,6 +8,7 @@ package webview
 //#include "webview.h"
 import "C"
 import (
+	"runtime"
 	"unsafe"
 )
 
@@ -60,6 +61,7 @@ func (ptr *QtWebView) DestroyQtWebView() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

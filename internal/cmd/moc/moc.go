@@ -1,6 +1,7 @@
 package moc
 
 import (
+	"errors"
 	"fmt"
 	"go/ast"
 	goparser "go/parser"
@@ -242,8 +243,8 @@ func Moc(path, target, tags string, fast bool) {
 func parse(path string) ([]*parser.Class, string, error) {
 	utils.Log.WithField("path", path).Debug("parse")
 
-	if strings.HasPrefix(path, runtime.GOROOT()) {
-		return nil, "", nil
+	if strings.HasPrefix(path, filepath.Join(runtime.GOROOT(), "src")) {
+		return nil, "", errors.New("path is in GOROOT/src")
 	}
 
 	src, err := ioutil.ReadFile(path)

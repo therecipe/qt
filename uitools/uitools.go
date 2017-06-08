@@ -413,6 +413,7 @@ func (ptr *QUiLoader) DestroyQUiLoader() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DestroyQUiLoader(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -420,6 +421,7 @@ func (ptr *QUiLoader) DestroyQUiLoaderDefault() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DestroyQUiLoaderDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -660,6 +662,7 @@ func (ptr *QUiLoader) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

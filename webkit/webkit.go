@@ -1027,6 +1027,7 @@ func (ptr *QGraphicsWebView) DestroyQGraphicsWebView() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWebView_DestroyQGraphicsWebView(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1883,6 +1884,7 @@ func (ptr *QGraphicsWebView) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWebView_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2139,6 +2141,7 @@ func (ptr *QWebDatabase) DestroyQWebDatabase() {
 	if ptr.Pointer() != nil {
 		C.QWebDatabase_DestroyQWebDatabase(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2568,6 +2571,7 @@ func (ptr *QWebElement) DestroyQWebElement() {
 	if ptr.Pointer() != nil {
 		C.QWebElement_DestroyQWebElement(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2933,6 +2937,7 @@ func (ptr *QWebElementCollection) DestroyQWebElementCollection() {
 	if ptr.Pointer() != nil {
 		C.QWebElementCollection_DestroyQWebElementCollection(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4185,6 +4190,7 @@ func (ptr *QWebFrame) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebFrame_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4292,6 +4298,7 @@ func (ptr *QWebHistory) DestroyQWebHistory() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4747,6 +4754,7 @@ func (ptr *QWebHistoryInterface) DestroyQWebHistoryInterface() {
 	if ptr.Pointer() != nil {
 		C.QWebHistoryInterface_DestroyQWebHistoryInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4985,6 +4993,7 @@ func (ptr *QWebHistoryInterface) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebHistoryInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5103,6 +5112,7 @@ func (ptr *QWebHistoryItem) DestroyQWebHistoryItem() {
 	if ptr.Pointer() != nil {
 		C.QWebHistoryItem_DestroyQWebHistoryItem(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5359,6 +5369,7 @@ func (ptr *QWebHitTestResult) DestroyQWebHitTestResult() {
 	if ptr.Pointer() != nil {
 		C.QWebHitTestResult_DestroyQWebHitTestResult(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5646,6 +5657,7 @@ func (ptr *QWebInspector) DestroyQWebInspector() {
 	if ptr.Pointer() != nil {
 		C.QWebInspector_DestroyQWebInspector(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6715,6 +6727,7 @@ func (ptr *QWebInspector) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebInspector_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8908,6 +8921,7 @@ func (ptr *QWebPage) DestroyQWebPage() {
 	if ptr.Pointer() != nil {
 		C.QWebPage_DestroyQWebPage(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9439,6 +9453,7 @@ func (ptr *QWebPage) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebPage_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9619,6 +9634,7 @@ func (ptr *QWebPluginFactory) DestroyQWebPluginFactory() {
 	if ptr.Pointer() != nil {
 		C.QWebPluginFactory_DestroyQWebPluginFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9626,6 +9642,7 @@ func (ptr *QWebPluginFactory) DestroyQWebPluginFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebPluginFactory_DestroyQWebPluginFactoryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9872,6 +9889,7 @@ func (ptr *QWebPluginFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebPluginFactory_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10108,6 +10126,7 @@ func (ptr *QWebSecurityOrigin) DestroyQWebSecurityOrigin() {
 	if ptr.Pointer() != nil {
 		C.QWebSecurityOrigin_DestroyQWebSecurityOrigin(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10239,6 +10258,7 @@ func (ptr *QWebSettings) DestroyQWebSettings() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11730,6 +11750,7 @@ func (ptr *QWebView) DestroyQWebView() {
 	if ptr.Pointer() != nil {
 		C.QWebView_DestroyQWebView(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12714,6 +12735,7 @@ func (ptr *QWebView) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QWebView_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

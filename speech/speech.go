@@ -909,6 +909,7 @@ func (ptr *QTextToSpeech) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextToSpeech_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1046,6 +1047,7 @@ func (ptr *QTextToSpeechPlugin) DestroyQTextToSpeechPlugin() {
 	if ptr.Pointer() != nil {
 		C.QTextToSpeechPlugin_DestroyQTextToSpeechPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1053,6 +1055,7 @@ func (ptr *QTextToSpeechPlugin) DestroyQTextToSpeechPluginDefault() {
 	if ptr.Pointer() != nil {
 		C.QTextToSpeechPlugin_DestroyQTextToSpeechPluginDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

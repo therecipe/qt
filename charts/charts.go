@@ -1263,6 +1263,7 @@ func (ptr *QAbstractAxis) DestroyQAbstractAxis() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAxis_DestroyQAbstractAxis(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3476,6 +3477,7 @@ func (ptr *QAreaSeries) DestroyQAreaSeries() {
 	if ptr.Pointer() != nil {
 		C.QAreaSeries_DestroyQAreaSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5162,6 +5164,7 @@ func (ptr *QBarSet) DestroyQBarSet() {
 	if ptr.Pointer() != nil {
 		C.QBarSet_DestroyQBarSet(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5169,6 +5172,7 @@ func (ptr *QBarSet) DestroyQBarSetDefault() {
 	if ptr.Pointer() != nil {
 		C.QBarSet_DestroyQBarSetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6047,6 +6051,7 @@ func (ptr *QBoxPlotSeries) DestroyQBoxPlotSeries() {
 	if ptr.Pointer() != nil {
 		C.QBoxPlotSeries_DestroyQBoxPlotSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6745,6 +6750,7 @@ func (ptr *QBoxSet) DestroyQBoxSet() {
 	if ptr.Pointer() != nil {
 		C.QBoxSet_DestroyQBoxSet(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6752,6 +6758,7 @@ func (ptr *QBoxSet) DestroyQBoxSetDefault() {
 	if ptr.Pointer() != nil {
 		C.QBoxSet_DestroyQBoxSetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7457,6 +7464,7 @@ func (ptr *QCandlestickModelMapper) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QCandlestickModelMapper_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8414,6 +8422,7 @@ func (ptr *QCandlestickSeries) DestroyQCandlestickSeries() {
 	if ptr.Pointer() != nil {
 		C.QCandlestickSeries_DestroyQCandlestickSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9233,6 +9242,7 @@ func (ptr *QCandlestickSet) DestroyQCandlestickSet() {
 	if ptr.Pointer() != nil {
 		C.QCandlestickSet_DestroyQCandlestickSet(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9240,6 +9250,7 @@ func (ptr *QCandlestickSet) DestroyQCandlestickSetDefault() {
 	if ptr.Pointer() != nil {
 		C.QCandlestickSet_DestroyQCandlestickSetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9876,6 +9887,7 @@ func (ptr *QChart) DestroyQChart() {
 	if ptr.Pointer() != nil {
 		C.QChart_DestroyQChart(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11034,6 +11046,7 @@ func (ptr *QChart) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QChart_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11582,6 +11595,7 @@ func (ptr *QChartView) DestroyQChartView() {
 	if ptr.Pointer() != nil {
 		C.QChartView_DestroyQChartView(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12998,6 +13012,7 @@ func (ptr *QChartView) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QChartView_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13344,6 +13359,7 @@ func (ptr *QDateTimeAxis) DestroyQDateTimeAxis() {
 	if ptr.Pointer() != nil {
 		C.QDateTimeAxis_DestroyQDateTimeAxis(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13978,6 +13994,7 @@ func (ptr *QHBarModelMapper) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHBarModelMapper_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14598,6 +14615,7 @@ func (ptr *QHBoxPlotModelMapper) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHBoxPlotModelMapper_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15160,6 +15178,7 @@ func (ptr *QHPieModelMapper) DestroyQHPieModelMapper() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15526,6 +15545,7 @@ func (ptr *QHXYModelMapper) DestroyQHXYModelMapper() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16547,6 +16567,7 @@ func (ptr *QLegend) DestroyQLegend() {
 	if ptr.Pointer() != nil {
 		C.QLegend_DestroyQLegend(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17547,6 +17568,7 @@ func (ptr *QLegend) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLegend_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18465,6 +18487,7 @@ func (ptr *QLegendMarker) DestroyQLegendMarker() {
 	if ptr.Pointer() != nil {
 		C.QLegendMarker_DestroyQLegendMarker(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18472,6 +18495,7 @@ func (ptr *QLegendMarker) DestroyQLegendMarkerDefault() {
 	if ptr.Pointer() != nil {
 		C.QLegendMarker_DestroyQLegendMarkerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18571,6 +18595,7 @@ func (ptr *QLineSeries) DestroyQLineSeries() {
 	if ptr.Pointer() != nil {
 		C.QLineSeries_DestroyQLineSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20974,6 +20999,7 @@ func (ptr *QPieSlice) DestroyQPieSlice() {
 	if ptr.Pointer() != nil {
 		C.QPieSlice_DestroyQPieSlice(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -20981,6 +21007,7 @@ func (ptr *QPieSlice) DestroyQPieSliceDefault() {
 	if ptr.Pointer() != nil {
 		C.QPieSlice_DestroyQPieSliceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21164,6 +21191,7 @@ func (ptr *QPolarChart) DestroyQPolarChart() {
 	if ptr.Pointer() != nil {
 		C.QPolarChart_DestroyQPolarChart(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21380,6 +21408,7 @@ func (ptr *QScatterSeries) DestroyQScatterSeries() {
 	if ptr.Pointer() != nil {
 		C.QScatterSeries_DestroyQScatterSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -21487,6 +21516,7 @@ func (ptr *QSplineSeries) DestroyQSplineSeries() {
 	if ptr.Pointer() != nil {
 		C.QSplineSeries_DestroyQSplineSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22138,6 +22168,7 @@ func (ptr *QVBarModelMapper) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVBarModelMapper_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -22758,6 +22789,7 @@ func (ptr *QVBoxPlotModelMapper) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QVBoxPlotModelMapper_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23320,6 +23352,7 @@ func (ptr *QVPieModelMapper) DestroyQVPieModelMapper() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -23686,6 +23719,7 @@ func (ptr *QVXYModelMapper) DestroyQVXYModelMapper() {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -25615,6 +25649,7 @@ func (ptr *QXYSeries) DestroyQXYSeries() {
 	if ptr.Pointer() != nil {
 		C.QXYSeries_DestroyQXYSeries(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

@@ -20,12 +20,13 @@ type Class struct {
 	Classes    []*Class    `xml:"class"`
 	Since      string      `xml:"since,attr"`
 
-	DocModule string
-	Stub      bool
-	WeakLink  map[string]struct{}
-	Export    bool
-	Fullname  string
-	Pkg       string
+	DocModule    string
+	Stub         bool
+	WeakLink     map[string]struct{}
+	Export       bool
+	Fullname     string
+	Pkg          string
+	HasFinalizer bool
 
 	Constructors []string
 	Derivations  []string

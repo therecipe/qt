@@ -66,6 +66,7 @@ func (ptr *QDomAttr) DestroyQDomAttr() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -172,6 +173,7 @@ func (ptr *QDomCDATASection) DestroyQDomCDATASection() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -230,6 +232,7 @@ func (ptr *QDomCharacterData) DestroyQDomCharacterData() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -366,6 +369,7 @@ func (ptr *QDomComment) DestroyQDomComment() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -750,6 +754,7 @@ func (ptr *QDomDocument) DestroyQDomDocument() {
 	if ptr.Pointer() != nil {
 		C.QDomDocument_DestroyQDomDocument(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -860,6 +865,7 @@ func (ptr *QDomDocumentFragment) DestroyQDomDocumentFragment() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -925,6 +931,7 @@ func (ptr *QDomDocumentType) DestroyQDomDocumentType() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1036,6 +1043,7 @@ func (ptr *QDomElement) DestroyQDomElement() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1497,6 +1505,7 @@ func (ptr *QDomEntity) DestroyQDomEntity() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1583,6 +1592,7 @@ func (ptr *QDomEntityReference) DestroyQDomEntityReference() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1735,6 +1745,7 @@ func (ptr *QDomImplementation) DestroyQDomImplementation() {
 	if ptr.Pointer() != nil {
 		C.QDomImplementation_DestroyQDomImplementation(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1859,6 +1870,7 @@ func (ptr *QDomNamedNodeMap) DestroyQDomNamedNodeMap() {
 	if ptr.Pointer() != nil {
 		C.QDomNamedNodeMap_DestroyQDomNamedNodeMap(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2107,6 +2119,7 @@ func (ptr *QDomNode) DestroyQDomNode() {
 	if ptr.Pointer() != nil {
 		C.QDomNode_DestroyQDomNode(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2613,6 +2626,7 @@ func (ptr *QDomNodeList) DestroyQDomNodeList() {
 	if ptr.Pointer() != nil {
 		C.QDomNodeList_DestroyQDomNodeList(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2705,6 +2719,7 @@ func (ptr *QDomNotation) DestroyQDomNotation() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2784,6 +2799,7 @@ func (ptr *QDomProcessingInstruction) DestroyQDomProcessingInstruction() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2874,6 +2890,7 @@ func (ptr *QDomText) DestroyQDomText() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6629,6 +6646,7 @@ func (ptr *QXmlInputSource) DestroyQXmlInputSource() {
 	if ptr.Pointer() != nil {
 		C.QXmlInputSource_DestroyQXmlInputSource(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6636,6 +6654,7 @@ func (ptr *QXmlInputSource) DestroyQXmlInputSourceDefault() {
 	if ptr.Pointer() != nil {
 		C.QXmlInputSource_DestroyQXmlInputSourceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7347,6 +7366,7 @@ func (ptr *QXmlNamespaceSupport) DestroyQXmlNamespaceSupport() {
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_DestroyQXmlNamespaceSupport(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7503,6 +7523,7 @@ func (ptr *QXmlParseException) DestroyQXmlParseException() {
 	if ptr.Pointer() != nil {
 		C.QXmlParseException_DestroyQXmlParseException(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

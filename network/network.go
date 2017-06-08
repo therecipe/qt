@@ -65,6 +65,7 @@ func (ptr *Http2) DestroyHttp2() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -411,6 +412,7 @@ func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCache() {
 	if ptr.Pointer() != nil {
 		C.QAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -418,6 +420,7 @@ func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCacheDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractNetworkCache_DestroyQAbstractNetworkCacheDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -651,6 +654,7 @@ func (ptr *QAbstractNetworkCache) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractNetworkCache_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1803,6 +1807,7 @@ func (ptr *QAbstractSocket) DestroyQAbstractSocket() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DestroyQAbstractSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1810,6 +1815,7 @@ func (ptr *QAbstractSocket) DestroyQAbstractSocketDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DestroyQAbstractSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2304,6 +2310,7 @@ func (ptr *QAbstractSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2455,6 +2462,7 @@ func (ptr *QAuthenticator) DestroyQAuthenticator() {
 	if ptr.Pointer() != nil {
 		C.QAuthenticator_DestroyQAuthenticator(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2636,6 +2644,7 @@ func (ptr *QDnsDomainNameRecord) DestroyQDnsDomainNameRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2719,6 +2728,7 @@ func (ptr *QDnsHostAddressRecord) DestroyQDnsHostAddressRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3121,6 +3131,7 @@ func (ptr *QDnsLookup) DestroyQDnsLookup() {
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DestroyQDnsLookup(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3585,6 +3596,7 @@ func (ptr *QDnsLookup) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3709,6 +3721,7 @@ func (ptr *QDnsMailExchangeRecord) DestroyQDnsMailExchangeRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3799,6 +3812,7 @@ func (ptr *QDnsServiceRecord) DestroyQDnsServiceRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsServiceRecord_DestroyQDnsServiceRecord(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3903,6 +3917,7 @@ func (ptr *QDnsTextRecord) DestroyQDnsTextRecord() {
 	if ptr.Pointer() != nil {
 		C.QDnsTextRecord_DestroyQDnsTextRecord(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4147,6 +4162,7 @@ func (ptr *QHostAddress) DestroyQHostAddress() {
 	if ptr.Pointer() != nil {
 		C.QHostAddress_DestroyQHostAddress(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4404,6 +4420,7 @@ func (ptr *QHostInfo) DestroyQHostInfo() {
 	if ptr.Pointer() != nil {
 		C.QHostInfo_DestroyQHostInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4574,6 +4591,7 @@ func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_DestroyQHttpMultiPart(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4779,6 +4797,7 @@ func (ptr *QHttpMultiPart) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4927,6 +4946,7 @@ func (ptr *QHttpPart) DestroyQHttpPart() {
 	if ptr.Pointer() != nil {
 		C.QHttpPart_DestroyQHttpPart(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5181,6 +5201,7 @@ func (ptr *QLocalServer) DestroyQLocalServer() {
 	if ptr.Pointer() != nil {
 		C.QLocalServer_DestroyQLocalServer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5470,6 +5491,7 @@ func (ptr *QLocalServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLocalServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6020,6 +6042,7 @@ func (ptr *QLocalSocket) DestroyQLocalSocket() {
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DestroyQLocalSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6471,6 +6494,7 @@ func (ptr *QLocalSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7144,6 +7168,7 @@ func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManager() {
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DestroyQNetworkAccessManager(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7473,6 +7498,7 @@ func (ptr *QNetworkAccessManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7621,6 +7647,7 @@ func (ptr *QNetworkAddressEntry) DestroyQNetworkAddressEntry() {
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_DestroyQNetworkAddressEntry(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7741,6 +7768,7 @@ func (ptr *QNetworkCacheMetaData) DestroyQNetworkCacheMetaData() {
 	if ptr.Pointer() != nil {
 		C.QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7898,6 +7926,7 @@ func (ptr *QNetworkConfiguration) DestroyQNetworkConfiguration() {
 	if ptr.Pointer() != nil {
 		C.QNetworkConfiguration_DestroyQNetworkConfiguration(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8335,6 +8364,7 @@ func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8342,6 +8372,7 @@ func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManagerDefa
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8607,6 +8638,7 @@ func (ptr *QNetworkConfigurationManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8819,6 +8851,7 @@ func (ptr *QNetworkCookie) DestroyQNetworkCookie() {
 	if ptr.Pointer() != nil {
 		C.QNetworkCookie_DestroyQNetworkCookie(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9211,6 +9244,7 @@ func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
 	if ptr.Pointer() != nil {
 		C.QNetworkCookieJar_DestroyQNetworkCookieJar(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9218,6 +9252,7 @@ func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJarDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkCookieJar_DestroyQNetworkCookieJarDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9615,6 +9650,7 @@ func (ptr *QNetworkCookieJar) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkCookieJar_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9787,6 +9823,7 @@ func (ptr *QNetworkDatagram) DestroyQNetworkDatagram() {
 	if ptr.Pointer() != nil {
 		C.QNetworkDatagram_DestroyQNetworkDatagram(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10302,6 +10339,7 @@ func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
 	if ptr.Pointer() != nil {
 		C.QNetworkDiskCache_DestroyQNetworkDiskCache(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10550,6 +10588,7 @@ func (ptr *QNetworkInterface) DestroyQNetworkInterface() {
 	if ptr.Pointer() != nil {
 		C.QNetworkInterface_DestroyQNetworkInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -10856,6 +10895,7 @@ func (ptr *QNetworkProxy) DestroyQNetworkProxy() {
 	if ptr.Pointer() != nil {
 		C.QNetworkProxy_DestroyQNetworkProxy(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11166,6 +11206,7 @@ func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactory() {
 	if ptr.Pointer() != nil {
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11173,6 +11214,7 @@ func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactoryDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactoryDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -11424,6 +11466,7 @@ func (ptr *QNetworkProxyQuery) DestroyQNetworkProxyQuery() {
 	if ptr.Pointer() != nil {
 		C.QNetworkProxyQuery_DestroyQNetworkProxyQuery(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -12248,6 +12291,7 @@ func (ptr *QNetworkReply) DestroyQNetworkReply() {
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DestroyQNetworkReply(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13020,6 +13064,7 @@ func (ptr *QNetworkReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -13272,6 +13317,7 @@ func (ptr *QNetworkRequest) DestroyQNetworkRequest() {
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_DestroyQNetworkRequest(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14085,6 +14131,7 @@ func (ptr *QNetworkSession) DestroyQNetworkSession() {
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DestroyQNetworkSession(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14092,6 +14139,7 @@ func (ptr *QNetworkSession) DestroyQNetworkSessionDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DestroyQNetworkSessionDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14376,6 +14424,7 @@ func (ptr *QNetworkSession) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14561,6 +14610,7 @@ func (ptr *QSsl) DestroyQSsl() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -14857,6 +14907,7 @@ func (ptr *QSslCertificate) DestroyQSslCertificate() {
 	if ptr.Pointer() != nil {
 		C.QSslCertificate_DestroyQSslCertificate(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15322,6 +15373,7 @@ func (ptr *QSslCertificateExtension) DestroyQSslCertificateExtension() {
 	if ptr.Pointer() != nil {
 		C.QSslCertificateExtension_DestroyQSslCertificateExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15443,6 +15495,7 @@ func (ptr *QSslCipher) DestroyQSslCipher() {
 	if ptr.Pointer() != nil {
 		C.QSslCipher_DestroyQSslCipher(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -15753,6 +15806,7 @@ func (ptr *QSslConfiguration) DestroyQSslConfiguration() {
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_DestroyQSslConfiguration(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16336,6 +16390,7 @@ func (ptr *QSslDiffieHellmanParameters) DestroyQSslDiffieHellmanParameters() {
 	if ptr.Pointer() != nil {
 		C.QSslDiffieHellmanParameters_DestroyQSslDiffieHellmanParameters(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16409,6 +16464,7 @@ func (ptr *QSslEllipticCurve) DestroyQSslEllipticCurve() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16595,6 +16651,7 @@ func (ptr *QSslError) DestroyQSslError() {
 	if ptr.Pointer() != nil {
 		C.QSslError_DestroyQSslError(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16698,6 +16755,7 @@ func (ptr *QSslKey) DestroyQSslKey() {
 	if ptr.Pointer() != nil {
 		C.QSslKey_DestroyQSslKey(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -16818,6 +16876,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) DestroyQSslPreSharedKeyAuthenticator()
 	if ptr.Pointer() != nil {
 		C.QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -17549,6 +17608,7 @@ func (ptr *QSslSocket) DestroyQSslSocket() {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DestroyQSslSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18301,6 +18361,7 @@ func (ptr *QTcpServer) DestroyQTcpServer() {
 	if ptr.Pointer() != nil {
 		C.QTcpServer_DestroyQTcpServer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18308,6 +18369,7 @@ func (ptr *QTcpServer) DestroyQTcpServerDefault() {
 	if ptr.Pointer() != nil {
 		C.QTcpServer_DestroyQTcpServerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18601,6 +18663,7 @@ func (ptr *QTcpServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QTcpServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18746,6 +18809,7 @@ func (ptr *QTcpSocket) DestroyQTcpSocket() {
 	if ptr.Pointer() != nil {
 		C.QTcpSocket_DestroyQTcpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18753,6 +18817,7 @@ func (ptr *QTcpSocket) DestroyQTcpSocketDefault() {
 	if ptr.Pointer() != nil {
 		C.QTcpSocket_DestroyQTcpSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18917,6 +18982,7 @@ func (ptr *QUdpSocket) DestroyQUdpSocket() {
 	if ptr.Pointer() != nil {
 		C.QUdpSocket_DestroyQUdpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -18924,6 +18990,7 @@ func (ptr *QUdpSocket) DestroyQUdpSocketDefault() {
 	if ptr.Pointer() != nil {
 		C.QUdpSocket_DestroyQUdpSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

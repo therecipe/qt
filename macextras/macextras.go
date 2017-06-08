@@ -442,6 +442,7 @@ func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 	if ptr.Pointer() != nil {
 		C.QMacPasteboardMime_DestroyQMacPasteboardMime(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -449,6 +450,7 @@ func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMimeDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -653,6 +655,7 @@ func (ptr *QMacToolBar) DestroyQMacToolBar() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DestroyQMacToolBar(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -933,6 +936,7 @@ func (ptr *QMacToolBar) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1128,6 +1132,7 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1135,6 +1140,7 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItemDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DestroyQMacToolBarItemDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1390,6 +1396,7 @@ func (ptr *QMacToolBarItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

@@ -595,6 +595,7 @@ func (ptr *QGraphicsSvgItem) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QGraphicsSvgItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1222,6 +1223,7 @@ func (ptr *QSvgGenerator) DestroyQSvgGenerator() {
 	if ptr.Pointer() != nil {
 		C.QSvgGenerator_DestroyQSvgGenerator(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1749,6 +1751,7 @@ func (ptr *QSvgRenderer) DestroyQSvgRenderer() {
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DestroyQSvgRenderer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2019,6 +2022,7 @@ func (ptr *QSvgRenderer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2256,6 +2260,7 @@ func (ptr *QSvgWidget) DestroyQSvgWidget() {
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_DestroyQSvgWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3386,6 +3391,7 @@ func (ptr *QSvgWidget) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

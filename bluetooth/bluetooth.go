@@ -66,6 +66,7 @@ func (ptr *OSXBluetooth) DestroyOSXBluetooth() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -156,6 +157,7 @@ func (ptr *QBluetooth) DestroyQBluetooth() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -257,6 +259,7 @@ func (ptr *QBluetoothAddress) DestroyQBluetoothAddress() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothAddress_DestroyQBluetoothAddress(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -675,6 +678,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DestroyQBluetoothDeviceDiscoveryAgent
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -938,6 +942,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1315,6 +1320,7 @@ func (ptr *QBluetoothDeviceInfo) DestroyQBluetoothDeviceInfo() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1507,6 +1513,7 @@ func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2009,6 +2016,7 @@ func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2016,6 +2024,7 @@ func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDeviceDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2300,6 +2309,7 @@ func (ptr *QBluetoothLocalDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2557,6 +2567,7 @@ func (ptr *QBluetoothServer) DestroyQBluetoothServer() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_DestroyQBluetoothServer(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -2811,6 +2822,7 @@ func (ptr *QBluetoothServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3263,6 +3275,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DestroyQBluetoothServiceDiscoveryAge
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3572,6 +3585,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -3814,6 +3828,7 @@ func (ptr *QBluetoothServiceInfo) DestroyQBluetoothServiceInfo() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_DestroyQBluetoothServiceInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4421,6 +4436,7 @@ func (ptr *QBluetoothSocket) DestroyQBluetoothSocket() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DestroyQBluetoothSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4428,6 +4444,7 @@ func (ptr *QBluetoothSocket) DestroyQBluetoothSocketDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DestroyQBluetoothSocketDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -4966,6 +4983,7 @@ func (ptr *QBluetoothSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5131,6 +5149,7 @@ func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManager() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferManager_DestroyQBluetoothTransferManager(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5327,6 +5346,7 @@ func (ptr *QBluetoothTransferManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5629,6 +5649,7 @@ func (ptr *QBluetoothTransferReply) DestroyQBluetoothTransferReply() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferReply_DestroyQBluetoothTransferReply(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -5993,6 +6014,7 @@ func (ptr *QBluetoothTransferReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6130,6 +6152,7 @@ func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6585,6 +6608,7 @@ func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothUuid_DestroyQBluetoothUuid(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6734,6 +6758,7 @@ func (ptr *QLowEnergyAdvertisingData) DestroyQLowEnergyAdvertisingData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6927,6 +6952,7 @@ func (ptr *QLowEnergyAdvertisingParameters) DestroyQLowEnergyAdvertisingParamete
 	if ptr.Pointer() != nil {
 		C.QLowEnergyAdvertisingParameters_DestroyQLowEnergyAdvertisingParameters(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7028,6 +7054,7 @@ func (ptr *QLowEnergyCharacteristic) DestroyQLowEnergyCharacteristic() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7224,6 +7251,7 @@ func (ptr *QLowEnergyCharacteristicData) DestroyQLowEnergyCharacteristicData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7415,6 +7443,7 @@ func (ptr *QLowEnergyConnectionParameters) DestroyQLowEnergyConnectionParameters
 	if ptr.Pointer() != nil {
 		C.QLowEnergyConnectionParameters_DestroyQLowEnergyConnectionParameters(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -7904,6 +7933,7 @@ func (ptr *QLowEnergyController) DestroyQLowEnergyController() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DestroyQLowEnergyController(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8201,6 +8231,7 @@ func (ptr *QLowEnergyController) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8319,6 +8350,7 @@ func (ptr *QLowEnergyDescriptor) DestroyQLowEnergyDescriptor() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8450,6 +8482,7 @@ func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -8897,6 +8930,7 @@ func (ptr *QLowEnergyService) DestroyQLowEnergyService() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_DestroyQLowEnergyService(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9217,6 +9251,7 @@ func (ptr *QLowEnergyService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -9399,6 +9434,7 @@ func (ptr *QLowEnergyServiceData) DestroyQLowEnergyServiceData() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyServiceData_DestroyQLowEnergyServiceData(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

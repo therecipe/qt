@@ -535,6 +535,7 @@ func (ptr *QSignalSpy) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -542,6 +543,7 @@ func (ptr *QSignalSpy) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -668,6 +670,7 @@ func (ptr *QTest) DestroyQTest() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -939,6 +942,7 @@ func (ptr *QTestEventList) DestroyQTestEventList() {
 	if ptr.Pointer() != nil {
 		C.QTestEventList_DestroyQTestEventList(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

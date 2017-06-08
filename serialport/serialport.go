@@ -911,6 +911,7 @@ func (ptr *QSerialPort) DestroyQSerialPort() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DestroyQSerialPort(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -918,6 +919,7 @@ func (ptr *QSerialPort) DestroyQSerialPortDefault() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DestroyQSerialPortDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1369,6 +1371,7 @@ func (ptr *QSerialPort) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1550,6 +1553,7 @@ func (ptr *QSerialPortInfo) DestroyQSerialPortInfo() {
 	if ptr.Pointer() != nil {
 		C.QSerialPortInfo_DestroyQSerialPortInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

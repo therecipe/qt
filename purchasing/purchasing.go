@@ -333,6 +333,7 @@ func (ptr *QInAppProduct) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppProduct_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -603,6 +604,7 @@ func (ptr *QInAppStore) DestroyQInAppStore() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DestroyQInAppStore(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -815,6 +817,7 @@ func (ptr *QInAppStore) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppStore_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -1420,6 +1423,7 @@ func (ptr *QInAppTransaction) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QInAppTransaction_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 

@@ -14,8 +14,6 @@ var (
 
 	signals      = make(map[string]interface{})
 	signalsMutex = new(sync.Mutex)
-
-	ids int
 )
 
 func init() { runtime.LockOSThread() }
@@ -64,11 +62,6 @@ func DisconnectAllSignals(name, signal string) {
 	signalsMutex.Unlock()
 }
 
-func Identifier() string {
-	ids++
-	return fmt.Sprint(ids)
-}
-
 func DumpSignals() {
 	Debug("##############################\tSIGNALSTABLE_START\t##############################")
 	signalsMutex.Lock()
@@ -104,4 +97,10 @@ func Debug(fn ...interface{}) {
 	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" {
 		Logger.Println(fn...)
 	}
+}
+
+func ClearSignals() {
+	signalsMutex.Lock()
+	signals = make(map[string]interface{})
+	signalsMutex.Unlock()
 }
