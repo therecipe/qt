@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QSerialPort_QSerialPort_QRegisterMetaType();
 extern "C" {
 #endif
 

@@ -106,7 +106,7 @@
 class MyQAccelerometer: public QAccelerometer
 {
 public:
-	MyQAccelerometer(QObject *parent = Q_NULLPTR) : QAccelerometer(parent) {};
+	MyQAccelerometer(QObject *parent = Q_NULLPTR) : QAccelerometer(parent) {QAccelerometer_QAccelerometer_QRegisterMetaType();};
 	void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode) { callbackQAccelerometer_AccelerationModeChanged(this, accelerationMode); };
 	 ~MyQAccelerometer() { callbackQAccelerometer_DestroyQAccelerometer(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -137,6 +137,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAccelerometer*)
+
+int QAccelerometer_QAccelerometer_QRegisterMetaType(){return qRegisterMetaType<MyQAccelerometer*>();}
 
 void QAccelerometer_ConnectAccelerationModeChanged(void* ptr)
 {
@@ -251,6 +255,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQAccelerometerReading*)
+
+int QAccelerometerReading_QAccelerometerReading_QRegisterMetaType(){return qRegisterMetaType<MyQAccelerometerReading*>();}
+
 void QAccelerometerReading_SetX(void* ptr, double x)
 {
 	static_cast<QAccelerometerReading*>(ptr)->setX(x);
@@ -284,7 +292,7 @@ double QAccelerometerReading_Z(void* ptr)
 class MyQAltimeter: public QAltimeter
 {
 public:
-	MyQAltimeter(QObject *parent = Q_NULLPTR) : QAltimeter(parent) {};
+	MyQAltimeter(QObject *parent = Q_NULLPTR) : QAltimeter(parent) {QAltimeter_QAltimeter_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -313,6 +321,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAltimeter*)
+
+int QAltimeter_QAltimeter_QRegisterMetaType(){return qRegisterMetaType<MyQAltimeter*>();}
 
 void* QAltimeter_NewQAltimeter(void* parent)
 {
@@ -397,6 +409,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQAltimeterReading*)
+
+int QAltimeterReading_QAltimeterReading_QRegisterMetaType(){return qRegisterMetaType<MyQAltimeterReading*>();}
+
 void QAltimeterReading_SetAltitude(void* ptr, double altitude)
 {
 	static_cast<QAltimeterReading*>(ptr)->setAltitude(altitude);
@@ -434,6 +450,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQAmbientLightReading*)
+
+int QAmbientLightReading_QAmbientLightReading_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientLightReading*>();}
+
 void QAmbientLightReading_SetLightLevel(void* ptr, long long lightLevel)
 {
 	static_cast<QAmbientLightReading*>(ptr)->setLightLevel(static_cast<QAmbientLightReading::LightLevel>(lightLevel));
@@ -447,7 +467,7 @@ long long QAmbientLightReading_LightLevel(void* ptr)
 class MyQAmbientLightSensor: public QAmbientLightSensor
 {
 public:
-	MyQAmbientLightSensor(QObject *parent = Q_NULLPTR) : QAmbientLightSensor(parent) {};
+	MyQAmbientLightSensor(QObject *parent = Q_NULLPTR) : QAmbientLightSensor(parent) {QAmbientLightSensor_QAmbientLightSensor_QRegisterMetaType();};
 	 ~MyQAmbientLightSensor() { callbackQAmbientLightSensor_DestroyQAmbientLightSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -477,6 +497,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAmbientLightSensor*)
+
+int QAmbientLightSensor_QAmbientLightSensor_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientLightSensor*>();}
 
 void* QAmbientLightSensor_NewQAmbientLightSensor(void* parent)
 {
@@ -566,6 +590,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQAmbientTemperatureReading*)
+
+int QAmbientTemperatureReading_QAmbientTemperatureReading_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientTemperatureReading*>();}
+
 void QAmbientTemperatureReading_SetTemperature(void* ptr, double temperature)
 {
 	static_cast<QAmbientTemperatureReading*>(ptr)->setTemperature(temperature);
@@ -579,7 +607,7 @@ double QAmbientTemperatureReading_Temperature(void* ptr)
 class MyQAmbientTemperatureSensor: public QAmbientTemperatureSensor
 {
 public:
-	MyQAmbientTemperatureSensor(QObject *parent = Q_NULLPTR) : QAmbientTemperatureSensor(parent) {};
+	MyQAmbientTemperatureSensor(QObject *parent = Q_NULLPTR) : QAmbientTemperatureSensor(parent) {QAmbientTemperatureSensor_QAmbientTemperatureSensor_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -608,6 +636,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAmbientTemperatureSensor*)
+
+int QAmbientTemperatureSensor_QAmbientTemperatureSensor_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientTemperatureSensor*>();}
 
 void* QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(void* parent)
 {
@@ -668,7 +700,7 @@ struct QtSensors_PackedString QAmbientTemperatureSensor_QAmbientTemperatureSenso
 class MyQCompass: public QCompass
 {
 public:
-	MyQCompass(QObject *parent = Q_NULLPTR) : QCompass(parent) {};
+	MyQCompass(QObject *parent = Q_NULLPTR) : QCompass(parent) {QCompass_QCompass_QRegisterMetaType();};
 	 ~MyQCompass() { callbackQCompass_DestroyQCompass(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -698,6 +730,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQCompass*)
+
+int QCompass_QCompass_QRegisterMetaType(){return qRegisterMetaType<MyQCompass*>();}
 
 void* QCompass_NewQCompass(void* parent)
 {
@@ -787,6 +823,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQCompassReading*)
+
+int QCompassReading_QCompassReading_QRegisterMetaType(){return qRegisterMetaType<MyQCompassReading*>();}
+
 void QCompassReading_SetAzimuth(void* ptr, double azimuth)
 {
 	static_cast<QCompassReading*>(ptr)->setAzimuth(azimuth);
@@ -834,6 +874,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQDistanceReading*)
+
+int QDistanceReading_QDistanceReading_QRegisterMetaType(){return qRegisterMetaType<MyQDistanceReading*>();}
+
 void QDistanceReading_SetDistance(void* ptr, double distance)
 {
 	static_cast<QDistanceReading*>(ptr)->setDistance(distance);
@@ -847,7 +891,7 @@ double QDistanceReading_Distance(void* ptr)
 class MyQDistanceSensor: public QDistanceSensor
 {
 public:
-	MyQDistanceSensor(QObject *parent = Q_NULLPTR) : QDistanceSensor(parent) {};
+	MyQDistanceSensor(QObject *parent = Q_NULLPTR) : QDistanceSensor(parent) {QDistanceSensor_QDistanceSensor_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -876,6 +920,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDistanceSensor*)
+
+int QDistanceSensor_QDistanceSensor_QRegisterMetaType(){return qRegisterMetaType<MyQDistanceSensor*>();}
 
 void* QDistanceSensor_NewQDistanceSensor(void* parent)
 {
@@ -936,7 +984,7 @@ struct QtSensors_PackedString QDistanceSensor_QDistanceSensor_Type()
 class MyQGyroscope: public QGyroscope
 {
 public:
-	MyQGyroscope(QObject *parent = Q_NULLPTR) : QGyroscope(parent) {};
+	MyQGyroscope(QObject *parent = Q_NULLPTR) : QGyroscope(parent) {QGyroscope_QGyroscope_QRegisterMetaType();};
 	 ~MyQGyroscope() { callbackQGyroscope_DestroyQGyroscope(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -966,6 +1014,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGyroscope*)
+
+int QGyroscope_QGyroscope_QRegisterMetaType(){return qRegisterMetaType<MyQGyroscope*>();}
 
 void* QGyroscope_NewQGyroscope(void* parent)
 {
@@ -1055,6 +1107,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQGyroscopeReading*)
+
+int QGyroscopeReading_QGyroscopeReading_QRegisterMetaType(){return qRegisterMetaType<MyQGyroscopeReading*>();}
+
 void QGyroscopeReading_SetX(void* ptr, double x)
 {
 	static_cast<QGyroscopeReading*>(ptr)->setX(x);
@@ -1112,6 +1168,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQHolsterReading*)
+
+int QHolsterReading_QHolsterReading_QRegisterMetaType(){return qRegisterMetaType<MyQHolsterReading*>();}
+
 void QHolsterReading_SetHolstered(void* ptr, char holstered)
 {
 	static_cast<QHolsterReading*>(ptr)->setHolstered(holstered != 0);
@@ -1125,7 +1185,7 @@ char QHolsterReading_Holstered(void* ptr)
 class MyQHolsterSensor: public QHolsterSensor
 {
 public:
-	MyQHolsterSensor(QObject *parent = Q_NULLPTR) : QHolsterSensor(parent) {};
+	MyQHolsterSensor(QObject *parent = Q_NULLPTR) : QHolsterSensor(parent) {QHolsterSensor_QHolsterSensor_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1154,6 +1214,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHolsterSensor*)
+
+int QHolsterSensor_QHolsterSensor_QRegisterMetaType(){return qRegisterMetaType<MyQHolsterSensor*>();}
 
 void* QHolsterSensor_NewQHolsterSensor(void* parent)
 {
@@ -1238,6 +1302,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQIRProximityReading*)
+
+int QIRProximityReading_QIRProximityReading_QRegisterMetaType(){return qRegisterMetaType<MyQIRProximityReading*>();}
+
 void QIRProximityReading_SetReflectance(void* ptr, double reflectance)
 {
 	static_cast<QIRProximityReading*>(ptr)->setReflectance(reflectance);
@@ -1251,7 +1319,7 @@ double QIRProximityReading_Reflectance(void* ptr)
 class MyQIRProximitySensor: public QIRProximitySensor
 {
 public:
-	MyQIRProximitySensor(QObject *parent = Q_NULLPTR) : QIRProximitySensor(parent) {};
+	MyQIRProximitySensor(QObject *parent = Q_NULLPTR) : QIRProximitySensor(parent) {QIRProximitySensor_QIRProximitySensor_QRegisterMetaType();};
 	 ~MyQIRProximitySensor() { callbackQIRProximitySensor_DestroyQIRProximitySensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -1281,6 +1349,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQIRProximitySensor*)
+
+int QIRProximitySensor_QIRProximitySensor_QRegisterMetaType(){return qRegisterMetaType<MyQIRProximitySensor*>();}
 
 void* QIRProximitySensor_NewQIRProximitySensor(void* parent)
 {
@@ -1370,6 +1442,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQLightReading*)
+
+int QLightReading_QLightReading_QRegisterMetaType(){return qRegisterMetaType<MyQLightReading*>();}
+
 void QLightReading_SetLux(void* ptr, double lux)
 {
 	static_cast<QLightReading*>(ptr)->setLux(lux);
@@ -1383,7 +1459,7 @@ double QLightReading_Lux(void* ptr)
 class MyQLightSensor: public QLightSensor
 {
 public:
-	MyQLightSensor(QObject *parent = Q_NULLPTR) : QLightSensor(parent) {};
+	MyQLightSensor(QObject *parent = Q_NULLPTR) : QLightSensor(parent) {QLightSensor_QLightSensor_QRegisterMetaType();};
 	void Signal_FieldOfViewChanged(qreal fieldOfView) { callbackQLightSensor_FieldOfViewChanged(this, fieldOfView); };
 	 ~MyQLightSensor() { callbackQLightSensor_DestroyQLightSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -1414,6 +1490,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQLightSensor*)
+
+int QLightSensor_QLightSensor_QRegisterMetaType(){return qRegisterMetaType<MyQLightSensor*>();}
 
 void* QLightSensor_NewQLightSensor(void* parent)
 {
@@ -1504,7 +1584,7 @@ struct QtSensors_PackedString QLightSensor_QLightSensor_Type()
 class MyQMagnetometer: public QMagnetometer
 {
 public:
-	MyQMagnetometer(QObject *parent = Q_NULLPTR) : QMagnetometer(parent) {};
+	MyQMagnetometer(QObject *parent = Q_NULLPTR) : QMagnetometer(parent) {QMagnetometer_QMagnetometer_QRegisterMetaType();};
 	void Signal_ReturnGeoValuesChanged(bool returnGeoValues) { callbackQMagnetometer_ReturnGeoValuesChanged(this, returnGeoValues); };
 	 ~MyQMagnetometer() { callbackQMagnetometer_DestroyQMagnetometer(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -1535,6 +1615,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMagnetometer*)
+
+int QMagnetometer_QMagnetometer_QRegisterMetaType(){return qRegisterMetaType<MyQMagnetometer*>();}
 
 void* QMagnetometer_NewQMagnetometer(void* parent)
 {
@@ -1649,6 +1733,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQMagnetometerReading*)
+
+int QMagnetometerReading_QMagnetometerReading_QRegisterMetaType(){return qRegisterMetaType<MyQMagnetometerReading*>();}
+
 void QMagnetometerReading_SetCalibrationLevel(void* ptr, double calibrationLevel)
 {
 	static_cast<QMagnetometerReading*>(ptr)->setCalibrationLevel(calibrationLevel);
@@ -1716,6 +1804,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQOrientationReading*)
+
+int QOrientationReading_QOrientationReading_QRegisterMetaType(){return qRegisterMetaType<MyQOrientationReading*>();}
+
 void QOrientationReading_SetOrientation(void* ptr, long long orientation)
 {
 	static_cast<QOrientationReading*>(ptr)->setOrientation(static_cast<QOrientationReading::Orientation>(orientation));
@@ -1729,7 +1821,7 @@ long long QOrientationReading_Orientation(void* ptr)
 class MyQOrientationSensor: public QOrientationSensor
 {
 public:
-	MyQOrientationSensor(QObject *parent = Q_NULLPTR) : QOrientationSensor(parent) {};
+	MyQOrientationSensor(QObject *parent = Q_NULLPTR) : QOrientationSensor(parent) {QOrientationSensor_QOrientationSensor_QRegisterMetaType();};
 	 ~MyQOrientationSensor() { callbackQOrientationSensor_DestroyQOrientationSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -1759,6 +1851,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQOrientationSensor*)
+
+int QOrientationSensor_QOrientationSensor_QRegisterMetaType(){return qRegisterMetaType<MyQOrientationSensor*>();}
 
 void* QOrientationSensor_NewQOrientationSensor(void* parent)
 {
@@ -1848,6 +1944,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQPressureReading*)
+
+int QPressureReading_QPressureReading_QRegisterMetaType(){return qRegisterMetaType<MyQPressureReading*>();}
+
 void QPressureReading_SetPressure(void* ptr, double pressure)
 {
 	static_cast<QPressureReading*>(ptr)->setPressure(pressure);
@@ -1871,7 +1971,7 @@ double QPressureReading_Temperature(void* ptr)
 class MyQPressureSensor: public QPressureSensor
 {
 public:
-	MyQPressureSensor(QObject *parent = Q_NULLPTR) : QPressureSensor(parent) {};
+	MyQPressureSensor(QObject *parent = Q_NULLPTR) : QPressureSensor(parent) {QPressureSensor_QPressureSensor_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1900,6 +2000,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPressureSensor*)
+
+int QPressureSensor_QPressureSensor_QRegisterMetaType(){return qRegisterMetaType<MyQPressureSensor*>();}
 
 void* QPressureSensor_NewQPressureSensor(void* parent)
 {
@@ -1984,6 +2088,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQProximityReading*)
+
+int QProximityReading_QProximityReading_QRegisterMetaType(){return qRegisterMetaType<MyQProximityReading*>();}
+
 void QProximityReading_SetClose(void* ptr, char close)
 {
 	static_cast<QProximityReading*>(ptr)->setClose(close != 0);
@@ -1997,7 +2105,7 @@ char QProximityReading_Close(void* ptr)
 class MyQProximitySensor: public QProximitySensor
 {
 public:
-	MyQProximitySensor(QObject *parent = Q_NULLPTR) : QProximitySensor(parent) {};
+	MyQProximitySensor(QObject *parent = Q_NULLPTR) : QProximitySensor(parent) {QProximitySensor_QProximitySensor_QRegisterMetaType();};
 	 ~MyQProximitySensor() { callbackQProximitySensor_DestroyQProximitySensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
@@ -2027,6 +2135,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQProximitySensor*)
+
+int QProximitySensor_QProximitySensor_QRegisterMetaType(){return qRegisterMetaType<MyQProximitySensor*>();}
 
 void* QProximitySensor_NewQProximitySensor(void* parent)
 {
@@ -2116,6 +2228,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQRotationReading*)
+
+int QRotationReading_QRotationReading_QRegisterMetaType(){return qRegisterMetaType<MyQRotationReading*>();}
+
 void QRotationReading_SetFromEuler(void* ptr, double x, double y, double z)
 {
 	static_cast<QRotationReading*>(ptr)->setFromEuler(x, y, z);
@@ -2139,7 +2255,7 @@ double QRotationReading_Z(void* ptr)
 class MyQRotationSensor: public QRotationSensor
 {
 public:
-	MyQRotationSensor(QObject *parent = Q_NULLPTR) : QRotationSensor(parent) {};
+	MyQRotationSensor(QObject *parent = Q_NULLPTR) : QRotationSensor(parent) {QRotationSensor_QRotationSensor_QRegisterMetaType();};
 	void Signal_HasZChanged(bool hasZ) { callbackQRotationSensor_HasZChanged(this, hasZ); };
 	 ~MyQRotationSensor() { callbackQRotationSensor_DestroyQRotationSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -2170,6 +2286,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQRotationSensor*)
+
+int QRotationSensor_QRotationSensor_QRegisterMetaType(){return qRegisterMetaType<MyQRotationSensor*>();}
 
 void* QRotationSensor_NewQRotationSensor(void* parent)
 {
@@ -2260,7 +2380,7 @@ struct QtSensors_PackedString QRotationSensor_QRotationSensor_Type()
 class MyQSensor: public QSensor
 {
 public:
-	MyQSensor(const QByteArray &type, QObject *parent = Q_NULLPTR) : QSensor(type, parent) {};
+	MyQSensor(const QByteArray &type, QObject *parent = Q_NULLPTR) : QSensor(type, parent) {QSensor_QSensor_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -2290,6 +2410,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSensor*)
+
+int QSensor_QSensor_QRegisterMetaType(){return qRegisterMetaType<MyQSensor*>();}
 
 void* QSensor_QSensor_DefaultSensorForType(void* ty)
 {
@@ -3344,6 +3468,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorBackend_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQSensorBackend*)
+
+int QSensorBackend_QSensorBackend_QRegisterMetaType(){return qRegisterMetaType<MyQSensorBackend*>();}
+
 void QSensorBackend_AddDataRate(void* ptr, double min, double max)
 {
 	static_cast<QSensorBackend*>(ptr)->addDataRate(min, max);
@@ -3591,7 +3719,7 @@ void QSensorFilter_SetM_sensor(void* ptr, void* vqs)
 class MyQSensorGesture: public QSensorGesture
 {
 public:
-	MyQSensorGesture(const QStringList &ids, QObject *parent = Q_NULLPTR) : QSensorGesture(ids, parent) {};
+	MyQSensorGesture(const QStringList &ids, QObject *parent = Q_NULLPTR) : QSensorGesture(ids, parent) {QSensorGesture_QSensorGesture_QRegisterMetaType();};
 	#ifdef Q_QDOC
 		void Signal_Detected(QString gestureId) { QByteArray t7bc790 = gestureId.toUtf8(); QtSensors_PackedString gestureIdPacked = { const_cast<char*>(t7bc790.prepend("WHITESPACE").constData()+10), t7bc790.size()-10 };callbackQSensorGesture_Detected(this, gestureIdPacked); };
 	#endif
@@ -3607,6 +3735,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorGesture_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorGesture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSensorGesture*)
+
+int QSensorGesture_QSensorGesture_QRegisterMetaType(){return qRegisterMetaType<MyQSensorGesture*>();}
 
 void* QSensorGesture_NewQSensorGesture(char* ids, void* parent)
 {
@@ -3828,7 +3960,7 @@ void* QSensorGesture_MetaObjectDefault(void* ptr)
 class MyQSensorGestureManager: public QSensorGestureManager
 {
 public:
-	MyQSensorGestureManager(QObject *parent = Q_NULLPTR) : QSensorGestureManager(parent) {};
+	MyQSensorGestureManager(QObject *parent = Q_NULLPTR) : QSensorGestureManager(parent) {QSensorGestureManager_QSensorGestureManager_QRegisterMetaType();};
 	void Signal_NewSensorGestureAvailable() { callbackQSensorGestureManager_NewSensorGestureAvailable(this); };
 	bool event(QEvent * e) { return callbackQSensorGestureManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorGestureManager_EventFilter(this, watched, event) != 0; };
@@ -3842,6 +3974,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorGestureManager_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorGestureManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSensorGestureManager*)
+
+int QSensorGestureManager_QSensorGestureManager_QRegisterMetaType(){return qRegisterMetaType<MyQSensorGestureManager*>();}
 
 void* QSensorGestureManager_NewQSensorGestureManager(void* parent)
 {
@@ -4102,7 +4238,7 @@ void* QSensorGesturePluginInterface___createRecognizers_newList(void* ptr)
 class MyQSensorGestureRecognizer: public QSensorGestureRecognizer
 {
 public:
-	MyQSensorGestureRecognizer(QObject *parent = Q_NULLPTR) : QSensorGestureRecognizer(parent) {};
+	MyQSensorGestureRecognizer(QObject *parent = Q_NULLPTR) : QSensorGestureRecognizer(parent) {QSensorGestureRecognizer_QSensorGestureRecognizer_QRegisterMetaType();};
 	bool isActive() { return callbackQSensorGestureRecognizer_IsActive(this) != 0; };
 	bool start() { return callbackQSensorGestureRecognizer_Start(this) != 0; };
 	bool stop() { return callbackQSensorGestureRecognizer_Stop(this) != 0; };
@@ -4122,6 +4258,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorGestureRecognizer_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorGestureRecognizer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSensorGestureRecognizer*)
+
+int QSensorGestureRecognizer_QSensorGestureRecognizer_QRegisterMetaType(){return qRegisterMetaType<MyQSensorGestureRecognizer*>();}
 
 void* QSensorGestureRecognizer_NewQSensorGestureRecognizer(void* parent)
 {
@@ -4405,6 +4545,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSensorReading*)
+
+int QSensorReading_QSensorReading_QRegisterMetaType(){return qRegisterMetaType<MyQSensorReading*>();}
 
 void QSensorReading_SetTimestamp(void* ptr, unsigned long long timestamp)
 {
@@ -4897,6 +5041,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQTapReading*)
+
+int QTapReading_QTapReading_QRegisterMetaType(){return qRegisterMetaType<MyQTapReading*>();}
+
 void QTapReading_SetDoubleTap(void* ptr, char doubleTap)
 {
 	static_cast<QTapReading*>(ptr)->setDoubleTap(doubleTap != 0);
@@ -4920,7 +5068,7 @@ char QTapReading_IsDoubleTap(void* ptr)
 class MyQTapSensor: public QTapSensor
 {
 public:
-	MyQTapSensor(QObject *parent = Q_NULLPTR) : QTapSensor(parent) {};
+	MyQTapSensor(QObject *parent = Q_NULLPTR) : QTapSensor(parent) {QTapSensor_QTapSensor_QRegisterMetaType();};
 	void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents) { callbackQTapSensor_ReturnDoubleTapEventsChanged(this, returnDoubleTapEvents); };
 	 ~MyQTapSensor() { callbackQTapSensor_DestroyQTapSensor(this); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
@@ -4951,6 +5099,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTapSensor*)
+
+int QTapSensor_QTapSensor_QRegisterMetaType(){return qRegisterMetaType<MyQTapSensor*>();}
 
 void* QTapSensor_NewQTapSensor(void* parent)
 {
@@ -5065,6 +5217,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQTiltReading*)
+
+int QTiltReading_QTiltReading_QRegisterMetaType(){return qRegisterMetaType<MyQTiltReading*>();}
+
 void QTiltReading_SetXRotation(void* ptr, double x)
 {
 	static_cast<QTiltReading*>(ptr)->setXRotation(x);
@@ -5088,7 +5244,7 @@ double QTiltReading_YRotation(void* ptr)
 class MyQTiltSensor: public QTiltSensor
 {
 public:
-	MyQTiltSensor(QObject *parent = Q_NULLPTR) : QTiltSensor(parent) {};
+	MyQTiltSensor(QObject *parent = Q_NULLPTR) : QTiltSensor(parent) {QTiltSensor_QTiltSensor_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -5117,6 +5273,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTiltSensor*)
+
+int QTiltSensor_QTiltSensor_QRegisterMetaType(){return qRegisterMetaType<MyQTiltSensor*>();}
 
 void* QTiltSensor_NewQTiltSensor(void* parent)
 {

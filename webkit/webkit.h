@@ -8,6 +8,13 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QGraphicsWebView_QGraphicsWebView_QRegisterMetaType();
+int QWebFrame_QWebFrame_QRegisterMetaType();
+int QWebHistoryInterface_QWebHistoryInterface_QRegisterMetaType();
+int QWebInspector_QWebInspector_QRegisterMetaType();
+int QWebPage_QWebPage_QRegisterMetaType();
+int QWebPluginFactory_QWebPluginFactory_QRegisterMetaType();
+int QWebView_QWebView_QRegisterMetaType();
 extern "C" {
 #endif
 

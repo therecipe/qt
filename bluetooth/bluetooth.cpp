@@ -127,8 +127,8 @@ unsigned long long QBluetoothAddress_ToUInt64(void* ptr)
 class MyQBluetoothDeviceDiscoveryAgent: public QBluetoothDeviceDiscoveryAgent
 {
 public:
-	MyQBluetoothDeviceDiscoveryAgent(QObject *parent = Q_NULLPTR) : QBluetoothDeviceDiscoveryAgent(parent) {};
-	MyQBluetoothDeviceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent = Q_NULLPTR) : QBluetoothDeviceDiscoveryAgent(deviceAdapter, parent) {};
+	MyQBluetoothDeviceDiscoveryAgent(QObject *parent = Q_NULLPTR) : QBluetoothDeviceDiscoveryAgent(parent) {QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType();};
+	MyQBluetoothDeviceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent = Q_NULLPTR) : QBluetoothDeviceDiscoveryAgent(deviceAdapter, parent) {QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType();};
 	void Signal_Canceled() { callbackQBluetoothDeviceDiscoveryAgent_Canceled(this); };
 	void Signal_DeviceDiscovered(const QBluetoothDeviceInfo & info) { callbackQBluetoothDeviceDiscoveryAgent_DeviceDiscovered(this, const_cast<QBluetoothDeviceInfo*>(&info)); };
 	void Signal_Error2(QBluetoothDeviceDiscoveryAgent::Error error) { callbackQBluetoothDeviceDiscoveryAgent_Error2(this, error); };
@@ -148,6 +148,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothDeviceDiscoveryAgent_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothDeviceDiscoveryAgent_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQBluetoothDeviceDiscoveryAgent*)
+
+int QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothDeviceDiscoveryAgent*>();}
 
 long long QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_SupportedDiscoveryMethods()
 {
@@ -679,8 +683,8 @@ struct QtBluetooth_PackedString QBluetoothHostInfo_Name(void* ptr)
 class MyQBluetoothLocalDevice: public QBluetoothLocalDevice
 {
 public:
-	MyQBluetoothLocalDevice(QObject *parent = Q_NULLPTR) : QBluetoothLocalDevice(parent) {};
-	MyQBluetoothLocalDevice(const QBluetoothAddress &address, QObject *parent = Q_NULLPTR) : QBluetoothLocalDevice(address, parent) {};
+	MyQBluetoothLocalDevice(QObject *parent = Q_NULLPTR) : QBluetoothLocalDevice(parent) {QBluetoothLocalDevice_QBluetoothLocalDevice_QRegisterMetaType();};
+	MyQBluetoothLocalDevice(const QBluetoothAddress &address, QObject *parent = Q_NULLPTR) : QBluetoothLocalDevice(address, parent) {QBluetoothLocalDevice_QBluetoothLocalDevice_QRegisterMetaType();};
 	void Signal_DeviceConnected(const QBluetoothAddress & address) { callbackQBluetoothLocalDevice_DeviceConnected(this, const_cast<QBluetoothAddress*>(&address)); };
 	void Signal_DeviceDisconnected(const QBluetoothAddress & address) { callbackQBluetoothLocalDevice_DeviceDisconnected(this, const_cast<QBluetoothAddress*>(&address)); };
 	void Signal_Error(QBluetoothLocalDevice::Error error) { callbackQBluetoothLocalDevice_Error(this, error); };
@@ -702,6 +706,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothLocalDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothLocalDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQBluetoothLocalDevice*)
+
+int QBluetoothLocalDevice_QBluetoothLocalDevice_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothLocalDevice*>();}
 
 void* QBluetoothLocalDevice_NewQBluetoothLocalDevice(void* parent)
 {
@@ -1113,7 +1121,7 @@ void* QBluetoothLocalDevice_MetaObjectDefault(void* ptr)
 class MyQBluetoothServer: public QBluetoothServer
 {
 public:
-	MyQBluetoothServer(QBluetoothServiceInfo::Protocol serverType, QObject *parent = Q_NULLPTR) : QBluetoothServer(serverType, parent) {};
+	MyQBluetoothServer(QBluetoothServiceInfo::Protocol serverType, QObject *parent = Q_NULLPTR) : QBluetoothServer(serverType, parent) {QBluetoothServer_QBluetoothServer_QRegisterMetaType();};
 	void Signal_Error2(QBluetoothServer::Error error) { callbackQBluetoothServer_Error2(this, error); };
 	void Signal_NewConnection() { callbackQBluetoothServer_NewConnection(this); };
 	bool event(QEvent * e) { return callbackQBluetoothServer_Event(this, e) != 0; };
@@ -1128,6 +1136,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothServer_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQBluetoothServer*)
+
+int QBluetoothServer_QBluetoothServer_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothServer*>();}
 
 void* QBluetoothServer_NewQBluetoothServer(long long serverType, void* parent)
 {
@@ -1398,8 +1410,8 @@ void* QBluetoothServer_MetaObjectDefault(void* ptr)
 class MyQBluetoothServiceDiscoveryAgent: public QBluetoothServiceDiscoveryAgent
 {
 public:
-	MyQBluetoothServiceDiscoveryAgent(QObject *parent = Q_NULLPTR) : QBluetoothServiceDiscoveryAgent(parent) {};
-	MyQBluetoothServiceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent = Q_NULLPTR) : QBluetoothServiceDiscoveryAgent(deviceAdapter, parent) {};
+	MyQBluetoothServiceDiscoveryAgent(QObject *parent = Q_NULLPTR) : QBluetoothServiceDiscoveryAgent(parent) {QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_QRegisterMetaType();};
+	MyQBluetoothServiceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent = Q_NULLPTR) : QBluetoothServiceDiscoveryAgent(deviceAdapter, parent) {QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_QRegisterMetaType();};
 	void Signal_Canceled() { callbackQBluetoothServiceDiscoveryAgent_Canceled(this); };
 	void clear() { callbackQBluetoothServiceDiscoveryAgent_Clear(this); };
 	void Signal_Error2(QBluetoothServiceDiscoveryAgent::Error error) { callbackQBluetoothServiceDiscoveryAgent_Error2(this, error); };
@@ -1419,6 +1431,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothServiceDiscoveryAgent_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothServiceDiscoveryAgent_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQBluetoothServiceDiscoveryAgent*)
+
+int QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothServiceDiscoveryAgent*>();}
 
 void* QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(void* parent)
 {
@@ -1985,8 +2001,8 @@ void* QBluetoothServiceInfo___serviceClassUuids_newList(void* ptr)
 class MyQBluetoothSocket: public QBluetoothSocket
 {
 public:
-	MyQBluetoothSocket(QBluetoothServiceInfo::Protocol socketType, QObject *parent = Q_NULLPTR) : QBluetoothSocket(socketType, parent) {};
-	MyQBluetoothSocket(QObject *parent = Q_NULLPTR) : QBluetoothSocket(parent) {};
+	MyQBluetoothSocket(QBluetoothServiceInfo::Protocol socketType, QObject *parent = Q_NULLPTR) : QBluetoothSocket(socketType, parent) {QBluetoothSocket_QBluetoothSocket_QRegisterMetaType();};
+	MyQBluetoothSocket(QObject *parent = Q_NULLPTR) : QBluetoothSocket(parent) {QBluetoothSocket_QBluetoothSocket_QRegisterMetaType();};
 	void Signal_Connected() { callbackQBluetoothSocket_Connected(this); };
 	void Signal_Disconnected() { callbackQBluetoothSocket_Disconnected(this); };
 	void Signal_Error2(QBluetoothSocket::SocketError error) { callbackQBluetoothSocket_Error2(this, error); };
@@ -2026,6 +2042,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothSocket_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQBluetoothSocket*)
+
+int QBluetoothSocket_QBluetoothSocket_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothSocket*>();}
 
 void QBluetoothSocket_ConnectConnected(void* ptr)
 {
@@ -2497,7 +2517,7 @@ void* QBluetoothSocket_MetaObjectDefault(void* ptr)
 class MyQBluetoothTransferManager: public QBluetoothTransferManager
 {
 public:
-	MyQBluetoothTransferManager(QObject *parent = Q_NULLPTR) : QBluetoothTransferManager(parent) {};
+	MyQBluetoothTransferManager(QObject *parent = Q_NULLPTR) : QBluetoothTransferManager(parent) {QBluetoothTransferManager_QBluetoothTransferManager_QRegisterMetaType();};
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferManager_Finished(this, reply); };
 	bool event(QEvent * e) { return callbackQBluetoothTransferManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothTransferManager_EventFilter(this, watched, event) != 0; };
@@ -2511,6 +2531,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferManager_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothTransferManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQBluetoothTransferManager*)
+
+int QBluetoothTransferManager_QBluetoothTransferManager_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothTransferManager*>();}
 
 void* QBluetoothTransferManager_NewQBluetoothTransferManager(void* parent)
 {
@@ -2701,7 +2725,7 @@ void* QBluetoothTransferManager_MetaObjectDefault(void* ptr)
 class MyQBluetoothTransferReply: public QBluetoothTransferReply
 {
 public:
-	MyQBluetoothTransferReply(QObject *parent = Q_NULLPTR) : QBluetoothTransferReply(parent) {};
+	MyQBluetoothTransferReply(QObject *parent = Q_NULLPTR) : QBluetoothTransferReply(parent) {QBluetoothTransferReply_QBluetoothTransferReply_QRegisterMetaType();};
 	void abort() { callbackQBluetoothTransferReply_Abort(this); };
 	void Signal_Error2(QBluetoothTransferReply::TransferError errorType) { callbackQBluetoothTransferReply_Error2(this, errorType); };
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferReply_Finished(this, reply); };
@@ -2722,6 +2746,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferReply_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothTransferReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQBluetoothTransferReply*)
+
+int QBluetoothTransferReply_QBluetoothTransferReply_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothTransferReply*>();}
 
 void* QBluetoothTransferReply_NewQBluetoothTransferReply(void* parent)
 {
@@ -3552,6 +3580,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLowEnergyController_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQLowEnergyController*)
+
+int QLowEnergyController_QLowEnergyController_QRegisterMetaType(){return qRegisterMetaType<MyQLowEnergyController*>();}
+
 void* QLowEnergyController_QLowEnergyController_CreateCentral(void* remoteDevice, void* parent)
 {
 	return QLowEnergyController::createCentral(*static_cast<QBluetoothDeviceInfo*>(remoteDevice), static_cast<QObject*>(parent));
@@ -4044,6 +4076,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLowEnergyService_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLowEnergyService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQLowEnergyService*)
+
+int QLowEnergyService_QLowEnergyService_QRegisterMetaType(){return qRegisterMetaType<MyQLowEnergyService*>();}
 
 void QLowEnergyService_ConnectCharacteristicChanged(void* ptr)
 {

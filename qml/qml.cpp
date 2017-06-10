@@ -71,8 +71,8 @@
 class MyQJSEngine: public QJSEngine
 {
 public:
-	MyQJSEngine() : QJSEngine() {};
-	MyQJSEngine(QObject *parent) : QJSEngine(parent) {};
+	MyQJSEngine() : QJSEngine() {QJSEngine_QJSEngine_QRegisterMetaType();};
+	MyQJSEngine(QObject *parent) : QJSEngine(parent) {QJSEngine_QJSEngine_QRegisterMetaType();};
 	 ~MyQJSEngine() { callbackQJSEngine_DestroyQJSEngine(this); };
 	bool event(QEvent * e) { return callbackQJSEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, watched, event) != 0; };
@@ -86,6 +86,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQJSEngine*)
+
+int QJSEngine_QJSEngine_QRegisterMetaType(){return qRegisterMetaType<MyQJSEngine*>();}
 
 void* QJSEngine_NewQJSEngine()
 {
@@ -673,9 +677,9 @@ void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(void* p
 class MyQQmlApplicationEngine: public QQmlApplicationEngine
 {
 public:
-	MyQQmlApplicationEngine(QObject *parent = Q_NULLPTR) : QQmlApplicationEngine(parent) {};
-	MyQQmlApplicationEngine(const QString &filePath, QObject *parent = Q_NULLPTR) : QQmlApplicationEngine(filePath, parent) {};
-	MyQQmlApplicationEngine(const QUrl &url, QObject *parent = Q_NULLPTR) : QQmlApplicationEngine(url, parent) {};
+	MyQQmlApplicationEngine(QObject *parent = Q_NULLPTR) : QQmlApplicationEngine(parent) {QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType();};
+	MyQQmlApplicationEngine(const QString &filePath, QObject *parent = Q_NULLPTR) : QQmlApplicationEngine(filePath, parent) {QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType();};
+	MyQQmlApplicationEngine(const QUrl &url, QObject *parent = Q_NULLPTR) : QQmlApplicationEngine(url, parent) {QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType();};
 	void load(const QString & filePath) { QByteArray t7df503 = filePath.toUtf8(); QtQml_PackedString filePathPacked = { const_cast<char*>(t7df503.prepend("WHITESPACE").constData()+10), t7df503.size()-10 };callbackQQmlApplicationEngine_Load2(this, filePathPacked); };
 	void load(const QUrl & url) { callbackQQmlApplicationEngine_Load(this, const_cast<QUrl*>(&url)); };
 	void loadData(const QByteArray & data, const QUrl & url) { callbackQQmlApplicationEngine_LoadData(this, const_cast<QByteArray*>(&data), const_cast<QUrl*>(&url)); };
@@ -695,6 +699,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlApplicationEngine*)
+
+int QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType(){return qRegisterMetaType<MyQQmlApplicationEngine*>();}
 
 struct QtQml_PackedList QQmlApplicationEngine_RootObjects(void* ptr)
 {
@@ -892,11 +900,11 @@ void* QQmlApplicationEngine___rootObjects_newList(void* ptr)
 class MyQQmlComponent: public QQmlComponent
 {
 public:
-	MyQQmlComponent(QQmlEngine *engine, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, parent) {};
-	MyQQmlComponent(QQmlEngine *engine, const QString &fileName, CompilationMode mode, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, fileName, mode, parent) {};
-	MyQQmlComponent(QQmlEngine *engine, const QString &fileName, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, fileName, parent) {};
-	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, CompilationMode mode, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, url, mode, parent) {};
-	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, url, parent) {};
+	MyQQmlComponent(QQmlEngine *engine, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, parent) {QQmlComponent_QQmlComponent_QRegisterMetaType();};
+	MyQQmlComponent(QQmlEngine *engine, const QString &fileName, CompilationMode mode, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, fileName, mode, parent) {QQmlComponent_QQmlComponent_QRegisterMetaType();};
+	MyQQmlComponent(QQmlEngine *engine, const QString &fileName, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, fileName, parent) {QQmlComponent_QQmlComponent_QRegisterMetaType();};
+	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, CompilationMode mode, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, url, mode, parent) {QQmlComponent_QQmlComponent_QRegisterMetaType();};
+	MyQQmlComponent(QQmlEngine *engine, const QUrl &url, QObject *parent = Q_NULLPTR) : QQmlComponent(engine, url, parent) {QQmlComponent_QQmlComponent_QRegisterMetaType();};
 	QObject * beginCreate(QQmlContext * publicContext) { return static_cast<QObject*>(callbackQQmlComponent_BeginCreate(this, publicContext)); };
 	QObject * create(QQmlContext * context) { return static_cast<QObject*>(callbackQQmlComponent_Create(this, context)); };
 	void completeCreate() { callbackQQmlComponent_CompleteCreate(this); };
@@ -918,6 +926,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlComponent_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlComponent_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlComponent*)
+
+int QQmlComponent_QQmlComponent_QRegisterMetaType(){return qRegisterMetaType<MyQQmlComponent*>();}
 
 void* QQmlComponent_BeginCreate(void* ptr, void* publicContext)
 {
@@ -1412,8 +1424,8 @@ void* QQmlComponent_MetaObjectDefault(void* ptr)
 class MyQQmlContext: public QQmlContext
 {
 public:
-	MyQQmlContext(QQmlContext *parentContext, QObject *parent = Q_NULLPTR) : QQmlContext(parentContext, parent) {};
-	MyQQmlContext(QQmlEngine *engine, QObject *parent = Q_NULLPTR) : QQmlContext(engine, parent) {};
+	MyQQmlContext(QQmlContext *parentContext, QObject *parent = Q_NULLPTR) : QQmlContext(parentContext, parent) {QQmlContext_QQmlContext_QRegisterMetaType();};
+	MyQQmlContext(QQmlEngine *engine, QObject *parent = Q_NULLPTR) : QQmlContext(engine, parent) {QQmlContext_QQmlContext_QRegisterMetaType();};
 	 ~MyQQmlContext() { callbackQQmlContext_DestroyQQmlContext(this); };
 	bool event(QEvent * e) { return callbackQQmlContext_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlContext_EventFilter(this, watched, event) != 0; };
@@ -1427,6 +1439,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlContext_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlContext_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlContext*)
+
+int QQmlContext_QQmlContext_QRegisterMetaType(){return qRegisterMetaType<MyQQmlContext*>();}
 
 void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent)
 {
@@ -1703,7 +1719,7 @@ void* QQmlContext_MetaObjectDefault(void* ptr)
 class MyQQmlEngine: public QQmlEngine
 {
 public:
-	MyQQmlEngine(QObject *parent = Q_NULLPTR) : QQmlEngine(parent) {};
+	MyQQmlEngine(QObject *parent = Q_NULLPTR) : QQmlEngine(parent) {QQmlEngine_QQmlEngine_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQJSEngine_Event(this, e) != 0; };
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
@@ -1720,6 +1736,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlEngine*)
+
+int QQmlEngine_QQmlEngine_QRegisterMetaType(){return qRegisterMetaType<MyQQmlEngine*>();}
 
 long long QQmlEngine_QQmlEngine_ObjectOwnership(void* object)
 {
@@ -2070,9 +2090,9 @@ int QQmlError_Line(void* ptr)
 class MyQQmlExpression: public QQmlExpression
 {
 public:
-	MyQQmlExpression() : QQmlExpression() {};
-	MyQQmlExpression(QQmlContext *ctxt, QObject *scope, const QString &expression, QObject *parent = Q_NULLPTR) : QQmlExpression(ctxt, scope, expression, parent) {};
-	MyQQmlExpression(const QQmlScriptString &script, QQmlContext *ctxt = Q_NULLPTR, QObject *scope = Q_NULLPTR, QObject *parent = Q_NULLPTR) : QQmlExpression(script, ctxt, scope, parent) {};
+	MyQQmlExpression() : QQmlExpression() {QQmlExpression_QQmlExpression_QRegisterMetaType();};
+	MyQQmlExpression(QQmlContext *ctxt, QObject *scope, const QString &expression, QObject *parent = Q_NULLPTR) : QQmlExpression(ctxt, scope, expression, parent) {QQmlExpression_QQmlExpression_QRegisterMetaType();};
+	MyQQmlExpression(const QQmlScriptString &script, QQmlContext *ctxt = Q_NULLPTR, QObject *scope = Q_NULLPTR, QObject *parent = Q_NULLPTR) : QQmlExpression(script, ctxt, scope, parent) {QQmlExpression_QQmlExpression_QRegisterMetaType();};
 	void Signal_ValueChanged() { callbackQQmlExpression_ValueChanged(this); };
 	 ~MyQQmlExpression() { callbackQQmlExpression_DestroyQQmlExpression(this); };
 	bool event(QEvent * e) { return callbackQQmlExpression_Event(this, e) != 0; };
@@ -2087,6 +2107,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlExpression_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlExpression_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlExpression*)
+
+int QQmlExpression_QQmlExpression_QRegisterMetaType(){return qRegisterMetaType<MyQQmlExpression*>();}
 
 void* QQmlExpression_NewQQmlExpression()
 {
@@ -2398,7 +2422,7 @@ void* QQmlExpression_MetaObjectDefault(void* ptr)
 class MyQQmlExtensionPlugin: public QQmlExtensionPlugin
 {
 public:
-	MyQQmlExtensionPlugin(QObject *parent = Q_NULLPTR) : QQmlExtensionPlugin(parent) {};
+	MyQQmlExtensionPlugin(QObject *parent = Q_NULLPTR) : QQmlExtensionPlugin(parent) {QQmlExtensionPlugin_QQmlExtensionPlugin_QRegisterMetaType();};
 	void initializeEngine(QQmlEngine * engine, const char * uri) { QtQml_PackedString uriPacked = { const_cast<char*>(uri), -1 };callbackQQmlExtensionPlugin_InitializeEngine(this, engine, uriPacked); };
 	void registerTypes(const char * uri) { QtQml_PackedString uriPacked = { const_cast<char*>(uri), -1 };callbackQQmlExtensionPlugin_RegisterTypes(this, uriPacked); };
 	bool event(QEvent * e) { return callbackQQmlExtensionPlugin_Event(this, e) != 0; };
@@ -2413,6 +2437,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlExtensionPlugin_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlExtensionPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlExtensionPlugin*)
+
+int QQmlExtensionPlugin_QQmlExtensionPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQQmlExtensionPlugin*>();}
 
 void* QQmlExtensionPlugin_NewQQmlExtensionPlugin(void* parent)
 {
@@ -2598,7 +2626,7 @@ void* QQmlExtensionPlugin_MetaObjectDefault(void* ptr)
 class MyQQmlFileSelector: public QQmlFileSelector
 {
 public:
-	MyQQmlFileSelector(QQmlEngine *engine, QObject *parent = Q_NULLPTR) : QQmlFileSelector(engine, parent) {};
+	MyQQmlFileSelector(QQmlEngine *engine, QObject *parent = Q_NULLPTR) : QQmlFileSelector(engine, parent) {QQmlFileSelector_QQmlFileSelector_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQQmlFileSelector_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlFileSelector_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQQmlFileSelector_ChildEvent(this, event); };
@@ -2611,6 +2639,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlFileSelector_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlFileSelector_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlFileSelector*)
+
+int QQmlFileSelector_QQmlFileSelector_QRegisterMetaType(){return qRegisterMetaType<MyQQmlFileSelector*>();}
 
 void* QQmlFileSelector_QQmlFileSelector_Get(void* engine)
 {
@@ -3505,7 +3537,7 @@ int QQmlProperty_PropertyType(void* ptr)
 class MyQQmlPropertyMap: public QQmlPropertyMap
 {
 public:
-	MyQQmlPropertyMap(QObject *parent = Q_NULLPTR) : QQmlPropertyMap(parent) {};
+	MyQQmlPropertyMap(QObject *parent = Q_NULLPTR) : QQmlPropertyMap(parent) {QQmlPropertyMap_QQmlPropertyMap_QRegisterMetaType();};
 	QVariant updateValue(const QString & key, const QVariant & input) { QByteArray ta62f22 = key.toUtf8(); QtQml_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQQmlPropertyMap_UpdateValue(this, keyPacked, const_cast<QVariant*>(&input))); };
 	void Signal_ValueChanged(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtQml_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQQmlPropertyMap_ValueChanged(this, keyPacked, const_cast<QVariant*>(&value)); };
 	 ~MyQQmlPropertyMap() { callbackQQmlPropertyMap_DestroyQQmlPropertyMap(this); };
@@ -3521,6 +3553,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlPropertyMap_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlPropertyMap_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlPropertyMap*)
+
+int QQmlPropertyMap_QQmlPropertyMap_QRegisterMetaType(){return qRegisterMetaType<MyQQmlPropertyMap*>();}
 
 void* QQmlPropertyMap_NewQQmlPropertyMap(void* parent)
 {

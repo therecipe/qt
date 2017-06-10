@@ -8,6 +8,9 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QMaskGenerator_QMaskGenerator_QRegisterMetaType();
+int QWebSocket_QWebSocket_QRegisterMetaType();
+int QWebSocketServer_QWebSocketServer_QRegisterMetaType();
 extern "C" {
 #endif
 

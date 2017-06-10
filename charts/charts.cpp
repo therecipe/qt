@@ -3529,7 +3529,7 @@ void QCandlestickLegendMarker_DestroyQCandlestickLegendMarkerDefault(void* ptr)
 class MyQCandlestickModelMapper: public QCandlestickModelMapper
 {
 public:
-	MyQCandlestickModelMapper(QObject *parent = nullptr) : QCandlestickModelMapper(parent) {};
+	MyQCandlestickModelMapper(QObject *parent = nullptr) : QCandlestickModelMapper(parent) {QCandlestickModelMapper_QCandlestickModelMapper_QRegisterMetaType();};
 	void Signal_ModelReplaced() { callbackQCandlestickModelMapper_ModelReplaced(this); };
 	void Signal_SeriesReplaced() { callbackQCandlestickModelMapper_SeriesReplaced(this); };
 	Qt::Orientation orientation() const { return static_cast<Qt::Orientation>(callbackQCandlestickModelMapper_Orientation(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3545,6 +3545,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCandlestickModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQCandlestickModelMapper*)
+
+int QCandlestickModelMapper_QCandlestickModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQCandlestickModelMapper*>();}
 
 void* QCandlestickModelMapper_NewQCandlestickModelMapper(void* parent)
 {
@@ -4993,7 +4997,7 @@ double QCategoryAxis_StartValue(void* ptr, char* categoryLabel)
 class MyQChart: public QChart
 {
 public:
-	MyQChart(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QChart(parent, wFlags) {};
+	MyQChart(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QChart(parent, wFlags) {QChart_QChart_QRegisterMetaType();};
 	void Signal_PlotAreaChanged(const QRectF & plotArea) { callbackQChart_PlotAreaChanged(this, const_cast<QRectF*>(&plotArea)); };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQChart_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool close() { return callbackQChart_Close(this) != 0; };
@@ -5071,6 +5075,10 @@ public:
 	bool contains(const QPointF & point) const { return callbackQChart_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQChart_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
+
+Q_DECLARE_METATYPE(MyQChart*)
+
+int QChart_QChart_QRegisterMetaType(){return qRegisterMetaType<MyQChart*>();}
 
 void QChart_SetAnimationEasingCurve(void* ptr, void* curve)
 {
@@ -6183,8 +6191,8 @@ char QChart_IsObscuredByDefault(void* ptr, void* item)
 class MyQChartView: public QChartView
 {
 public:
-	MyQChartView(QChart *chart, QWidget *parent = Q_NULLPTR) : QChartView(chart, parent) {};
-	MyQChartView(QWidget *parent = Q_NULLPTR) : QChartView(parent) {};
+	MyQChartView(QChart *chart, QWidget *parent = Q_NULLPTR) : QChartView(chart, parent) {QChartView_QChartView_QRegisterMetaType();};
+	MyQChartView(QWidget *parent = Q_NULLPTR) : QChartView(parent) {QChartView_QChartView_QRegisterMetaType();};
 	void mouseMoveEvent(QMouseEvent * event) { callbackQChartView_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQChartView_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQChartView_MouseReleaseEvent(this, event); };
@@ -6264,6 +6272,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQChartView_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQChartView_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQChartView*)
+
+int QChartView_QChartView_QRegisterMetaType(){return qRegisterMetaType<MyQChartView*>();}
 
 void* QChartView_NewQChartView2(void* chart, void* parent)
 {
@@ -7136,7 +7148,7 @@ int QDateTimeAxis_TickCount(void* ptr)
 class MyQHBarModelMapper: public QHBarModelMapper
 {
 public:
-	MyQHBarModelMapper(QObject *parent = Q_NULLPTR) : QHBarModelMapper(parent) {};
+	MyQHBarModelMapper(QObject *parent = Q_NULLPTR) : QHBarModelMapper(parent) {QHBarModelMapper_QHBarModelMapper_QRegisterMetaType();};
 	void Signal_ColumnCountChanged() { callbackQHBarModelMapper_ColumnCountChanged(this); };
 	void Signal_FirstBarSetRowChanged() { callbackQHBarModelMapper_FirstBarSetRowChanged(this); };
 	void Signal_FirstColumnChanged() { callbackQHBarModelMapper_FirstColumnChanged(this); };
@@ -7155,6 +7167,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHBarModelMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHBarModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHBarModelMapper*)
+
+int QHBarModelMapper_QHBarModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQHBarModelMapper*>();}
 
 void* QHBarModelMapper_NewQHBarModelMapper(void* parent)
 {
@@ -7470,7 +7486,7 @@ void* QHBarModelMapper_MetaObjectDefault(void* ptr)
 class MyQHBoxPlotModelMapper: public QHBoxPlotModelMapper
 {
 public:
-	MyQHBoxPlotModelMapper(QObject *parent = nullptr) : QHBoxPlotModelMapper(parent) {};
+	MyQHBoxPlotModelMapper(QObject *parent = nullptr) : QHBoxPlotModelMapper(parent) {QHBoxPlotModelMapper_QHBoxPlotModelMapper_QRegisterMetaType();};
 	void Signal_ColumnCountChanged() { callbackQHBoxPlotModelMapper_ColumnCountChanged(this); };
 	void Signal_FirstBoxSetRowChanged() { callbackQHBoxPlotModelMapper_FirstBoxSetRowChanged(this); };
 	void Signal_FirstColumnChanged() { callbackQHBoxPlotModelMapper_FirstColumnChanged(this); };
@@ -7489,6 +7505,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHBoxPlotModelMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHBoxPlotModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHBoxPlotModelMapper*)
+
+int QHBoxPlotModelMapper_QHBoxPlotModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQHBoxPlotModelMapper*>();}
 
 void* QHBoxPlotModelMapper_NewQHBoxPlotModelMapper(void* parent)
 {
@@ -7804,7 +7824,7 @@ void* QHBoxPlotModelMapper_MetaObjectDefault(void* ptr)
 class MyQHCandlestickModelMapper: public QHCandlestickModelMapper
 {
 public:
-	MyQHCandlestickModelMapper(QObject *parent = nullptr) : QHCandlestickModelMapper(parent) {};
+	MyQHCandlestickModelMapper(QObject *parent = nullptr) : QHCandlestickModelMapper(parent) {QHCandlestickModelMapper_QHCandlestickModelMapper_QRegisterMetaType();};
 	void Signal_CloseColumnChanged() { callbackQHCandlestickModelMapper_CloseColumnChanged(this); };
 	void Signal_FirstSetRowChanged() { callbackQHCandlestickModelMapper_FirstSetRowChanged(this); };
 	void Signal_HighColumnChanged() { callbackQHCandlestickModelMapper_HighColumnChanged(this); };
@@ -7827,6 +7847,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCandlestickModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHCandlestickModelMapper*)
+
+int QHCandlestickModelMapper_QHCandlestickModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQHCandlestickModelMapper*>();}
 
 void* QHCandlestickModelMapper_NewQHCandlestickModelMapper(void* parent)
 {
@@ -8783,6 +8807,10 @@ public:
 	bool contains(const QPointF & point) const { return callbackQLegend_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQLegend_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
+
+Q_DECLARE_METATYPE(MyQLegend*)
+
+int QLegend_QLegend_QRegisterMetaType(){return qRegisterMetaType<MyQLegend*>();}
 
 void* QLegend_BorderColor(void* ptr)
 {
@@ -11154,7 +11182,7 @@ double QPieSlice_Value(void* ptr)
 class MyQPolarChart: public QPolarChart
 {
 public:
-	MyQPolarChart(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QPolarChart(parent, wFlags) {};
+	MyQPolarChart(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QPolarChart(parent, wFlags) {QPolarChart_QPolarChart_QRegisterMetaType();};
 	void Signal_PlotAreaChanged(const QRectF & plotArea) { callbackQChart_PlotAreaChanged(this, const_cast<QRectF*>(&plotArea)); };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQChart_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool close() { return callbackQChart_Close(this) != 0; };
@@ -11232,6 +11260,10 @@ public:
 	bool contains(const QPointF & point) const { return callbackQChart_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQChart_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
+
+Q_DECLARE_METATYPE(MyQPolarChart*)
+
+int QPolarChart_QPolarChart_QRegisterMetaType(){return qRegisterMetaType<MyQPolarChart*>();}
 
 long long QPolarChart_QPolarChart_AxisPolarOrientation(void* axis)
 {
@@ -11590,7 +11622,7 @@ long long QStackedBarSeries_TypeDefault(void* ptr)
 class MyQVBarModelMapper: public QVBarModelMapper
 {
 public:
-	MyQVBarModelMapper(QObject *parent = Q_NULLPTR) : QVBarModelMapper(parent) {};
+	MyQVBarModelMapper(QObject *parent = Q_NULLPTR) : QVBarModelMapper(parent) {QVBarModelMapper_QVBarModelMapper_QRegisterMetaType();};
 	void Signal_FirstBarSetColumnChanged() { callbackQVBarModelMapper_FirstBarSetColumnChanged(this); };
 	void Signal_FirstRowChanged() { callbackQVBarModelMapper_FirstRowChanged(this); };
 	void Signal_LastBarSetColumnChanged() { callbackQVBarModelMapper_LastBarSetColumnChanged(this); };
@@ -11609,6 +11641,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVBarModelMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVBarModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQVBarModelMapper*)
+
+int QVBarModelMapper_QVBarModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQVBarModelMapper*>();}
 
 void* QVBarModelMapper_NewQVBarModelMapper(void* parent)
 {
@@ -11924,7 +11960,7 @@ void* QVBarModelMapper_MetaObjectDefault(void* ptr)
 class MyQVBoxPlotModelMapper: public QVBoxPlotModelMapper
 {
 public:
-	MyQVBoxPlotModelMapper(QObject *parent = Q_NULLPTR) : QVBoxPlotModelMapper(parent) {};
+	MyQVBoxPlotModelMapper(QObject *parent = Q_NULLPTR) : QVBoxPlotModelMapper(parent) {QVBoxPlotModelMapper_QVBoxPlotModelMapper_QRegisterMetaType();};
 	void Signal_FirstBoxSetColumnChanged() { callbackQVBoxPlotModelMapper_FirstBoxSetColumnChanged(this); };
 	void Signal_FirstRowChanged() { callbackQVBoxPlotModelMapper_FirstRowChanged(this); };
 	void Signal_LastBoxSetColumnChanged() { callbackQVBoxPlotModelMapper_LastBoxSetColumnChanged(this); };
@@ -11943,6 +11979,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQVBoxPlotModelMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVBoxPlotModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQVBoxPlotModelMapper*)
+
+int QVBoxPlotModelMapper_QVBoxPlotModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQVBoxPlotModelMapper*>();}
 
 void* QVBoxPlotModelMapper_NewQVBoxPlotModelMapper(void* parent)
 {
@@ -12258,7 +12298,7 @@ void* QVBoxPlotModelMapper_MetaObjectDefault(void* ptr)
 class MyQVCandlestickModelMapper: public QVCandlestickModelMapper
 {
 public:
-	MyQVCandlestickModelMapper(QObject *parent = nullptr) : QVCandlestickModelMapper(parent) {};
+	MyQVCandlestickModelMapper(QObject *parent = nullptr) : QVCandlestickModelMapper(parent) {QVCandlestickModelMapper_QVCandlestickModelMapper_QRegisterMetaType();};
 	void Signal_CloseRowChanged() { callbackQVCandlestickModelMapper_CloseRowChanged(this); };
 	void Signal_FirstSetColumnChanged() { callbackQVCandlestickModelMapper_FirstSetColumnChanged(this); };
 	void Signal_HighRowChanged() { callbackQVCandlestickModelMapper_HighRowChanged(this); };
@@ -12281,6 +12321,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCandlestickModelMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCandlestickModelMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQVCandlestickModelMapper*)
+
+int QVCandlestickModelMapper_QVCandlestickModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQVCandlestickModelMapper*>();}
 
 void* QVCandlestickModelMapper_NewQVCandlestickModelMapper(void* parent)
 {

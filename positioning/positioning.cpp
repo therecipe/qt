@@ -324,7 +324,7 @@ void* QGeoAreaMonitorInfo_____notificationParameters_keyList_newList(void* ptr)
 class MyQGeoAreaMonitorSource: public QGeoAreaMonitorSource
 {
 public:
-	MyQGeoAreaMonitorSource(QObject *parent) : QGeoAreaMonitorSource(parent) {};
+	MyQGeoAreaMonitorSource(QObject *parent) : QGeoAreaMonitorSource(parent) {QGeoAreaMonitorSource_QGeoAreaMonitorSource_QRegisterMetaType();};
 	bool requestUpdate(const QGeoAreaMonitorInfo & monitor, const char * sign) { QtPositioning_PackedString signPacked = { const_cast<char*>(sign), -1 };return callbackQGeoAreaMonitorSource_RequestUpdate(this, const_cast<QGeoAreaMonitorInfo*>(&monitor), signPacked) != 0; };
 	bool startMonitoring(const QGeoAreaMonitorInfo & monitor) { return callbackQGeoAreaMonitorSource_StartMonitoring(this, const_cast<QGeoAreaMonitorInfo*>(&monitor)) != 0; };
 	bool stopMonitoring(const QGeoAreaMonitorInfo & monitor) { return callbackQGeoAreaMonitorSource_StopMonitoring(this, const_cast<QGeoAreaMonitorInfo*>(&monitor)) != 0; };
@@ -351,6 +351,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoAreaMonitorSource_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoAreaMonitorSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGeoAreaMonitorSource*)
+
+int QGeoAreaMonitorSource_QGeoAreaMonitorSource_QRegisterMetaType(){return qRegisterMetaType<MyQGeoAreaMonitorSource*>();}
 
 void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent)
 {
@@ -891,7 +895,7 @@ double QGeoPositionInfo_Attribute(void* ptr, long long attribute)
 class MyQGeoPositionInfoSource: public QGeoPositionInfoSource
 {
 public:
-	MyQGeoPositionInfoSource(QObject *parent) : QGeoPositionInfoSource(parent) {};
+	MyQGeoPositionInfoSource(QObject *parent) : QGeoPositionInfoSource(parent) {QGeoPositionInfoSource_QGeoPositionInfoSource_QRegisterMetaType();};
 	void Signal_PositionUpdated(const QGeoPositionInfo & update) { callbackQGeoPositionInfoSource_PositionUpdated(this, const_cast<QGeoPositionInfo*>(&update)); };
 	void setUpdateInterval(int msec) { callbackQGeoPositionInfoSource_SetUpdateInterval(this, msec); };
 	void Signal_Error2(QGeoPositionInfoSource::Error positioningError) { callbackQGeoPositionInfoSource_Error2(this, positioningError); };
@@ -917,6 +921,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoPositionInfoSource_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoPositionInfoSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGeoPositionInfoSource*)
+
+int QGeoPositionInfoSource_QGeoPositionInfoSource_QRegisterMetaType(){return qRegisterMetaType<MyQGeoPositionInfoSource*>();}
 
 void QGeoPositionInfoSource_ConnectPositionUpdated(void* ptr)
 {
@@ -1505,7 +1513,7 @@ double QGeoSatelliteInfo_Attribute(void* ptr, long long attribute)
 class MyQGeoSatelliteInfoSource: public QGeoSatelliteInfoSource
 {
 public:
-	MyQGeoSatelliteInfoSource(QObject *parent) : QGeoSatelliteInfoSource(parent) {};
+	MyQGeoSatelliteInfoSource(QObject *parent) : QGeoSatelliteInfoSource(parent) {QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_QRegisterMetaType();};
 	void Signal_Error2(QGeoSatelliteInfoSource::Error satelliteError) { callbackQGeoSatelliteInfoSource_Error2(this, satelliteError); };
 	void Signal_RequestTimeout() { callbackQGeoSatelliteInfoSource_RequestTimeout(this); };
 	void requestUpdate(int timeout) { callbackQGeoSatelliteInfoSource_RequestUpdate(this, timeout); };
@@ -1529,6 +1537,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoSatelliteInfoSource_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoSatelliteInfoSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGeoSatelliteInfoSource*)
+
+int QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_QRegisterMetaType(){return qRegisterMetaType<MyQGeoSatelliteInfoSource*>();}
 
 void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* parent)
 {
@@ -1904,7 +1916,7 @@ char QGeoShape_IsValid(void* ptr)
 class MyQNmeaPositionInfoSource: public QNmeaPositionInfoSource
 {
 public:
-	MyQNmeaPositionInfoSource(UpdateMode updateMode, QObject *parent = Q_NULLPTR) : QNmeaPositionInfoSource(updateMode, parent) {};
+	MyQNmeaPositionInfoSource(UpdateMode updateMode, QObject *parent = Q_NULLPTR) : QNmeaPositionInfoSource(updateMode, parent) {QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType();};
 	bool parsePosInfoFromNmeaData(const char * data, int size, QGeoPositionInfo * posInfo, bool * hasFix) { QtPositioning_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQNmeaPositionInfoSource_ParsePosInfoFromNmeaData(this, dataPacked, size, posInfo, *hasFix) != 0; };
 	void requestUpdate(int msec) { callbackQNmeaPositionInfoSource_RequestUpdate(this, msec); };
 	void setUpdateInterval(int msec) { callbackQGeoPositionInfoSource_SetUpdateInterval(this, msec); };
@@ -1930,6 +1942,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoPositionInfoSource_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoPositionInfoSource_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNmeaPositionInfoSource*)
+
+int QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType(){return qRegisterMetaType<MyQNmeaPositionInfoSource*>();}
 
 void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(long long updateMode, void* parent)
 {

@@ -8,6 +8,15 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType();
+int QBluetoothLocalDevice_QBluetoothLocalDevice_QRegisterMetaType();
+int QBluetoothServer_QBluetoothServer_QRegisterMetaType();
+int QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_QRegisterMetaType();
+int QBluetoothSocket_QBluetoothSocket_QRegisterMetaType();
+int QBluetoothTransferManager_QBluetoothTransferManager_QRegisterMetaType();
+int QBluetoothTransferReply_QBluetoothTransferReply_QRegisterMetaType();
+int QLowEnergyController_QLowEnergyController_QRegisterMetaType();
+int QLowEnergyService_QLowEnergyService_QRegisterMetaType();
 extern "C" {
 #endif
 

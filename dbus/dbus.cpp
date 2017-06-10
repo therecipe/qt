@@ -60,7 +60,7 @@
 class MyQDBusAbstractAdaptor: public QDBusAbstractAdaptor
 {
 public:
-	MyQDBusAbstractAdaptor(QObject *obj) : QDBusAbstractAdaptor(obj) {};
+	MyQDBusAbstractAdaptor(QObject *obj) : QDBusAbstractAdaptor(obj) {QDBusAbstractAdaptor_QDBusAbstractAdaptor_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQDBusAbstractAdaptor_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusAbstractAdaptor_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQDBusAbstractAdaptor_ChildEvent(this, event); };
@@ -73,6 +73,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractAdaptor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusAbstractAdaptor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDBusAbstractAdaptor*)
+
+int QDBusAbstractAdaptor_QDBusAbstractAdaptor_QRegisterMetaType(){return qRegisterMetaType<MyQDBusAbstractAdaptor*>();}
 
 void* QDBusAbstractAdaptor_NewQDBusAbstractAdaptor(void* obj)
 {
@@ -286,6 +290,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusAbstractInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDBusAbstractInterface*)
+
+int QDBusAbstractInterface_QDBusAbstractInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusAbstractInterface*>();}
 
 void* QDBusAbstractInterface_Call2(void* ptr, long long mode, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
@@ -1007,6 +1015,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusAbstractInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQDBusConnectionInterface*)
+
+int QDBusConnectionInterface_QDBusConnectionInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusConnectionInterface*>();}
+
 void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr)
 {
 	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceRegistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceRegistered));
@@ -1135,7 +1147,7 @@ char QDBusError_IsValid(void* ptr)
 class MyQDBusInterface: public QDBusInterface
 {
 public:
-	MyQDBusInterface(const QString &service, const QString &path, const QString &interface = QString(), const QDBusConnection &connection = QDBusConnection::sessionBus(), QObject *parent = Q_NULLPTR) : QDBusInterface(service, path, interface, connection, parent) {};
+	MyQDBusInterface(const QString &service, const QString &path, const QString &interface = QString(), const QDBusConnection &connection = QDBusConnection::sessionBus(), QObject *parent = Q_NULLPTR) : QDBusInterface(service, path, interface, connection, parent) {QDBusInterface_QDBusInterface_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQDBusAbstractInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusAbstractInterface_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterface_ChildEvent(this, event); };
@@ -1148,6 +1160,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusAbstractInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDBusInterface*)
+
+int QDBusInterface_QDBusInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusInterface*>();}
 
 void* QDBusInterface_NewQDBusInterface(char* service, char* path, char* interfa, void* connection, void* parent)
 {
@@ -1470,7 +1486,7 @@ void QDBusPendingCall_DestroyQDBusPendingCall(void* ptr)
 class MyQDBusPendingCallWatcher: public QDBusPendingCallWatcher
 {
 public:
-	MyQDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent = Q_NULLPTR) : QDBusPendingCallWatcher(call, parent) {};
+	MyQDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent = Q_NULLPTR) : QDBusPendingCallWatcher(call, parent) {QDBusPendingCallWatcher_QDBusPendingCallWatcher_QRegisterMetaType();};
 	void Signal_Finished(QDBusPendingCallWatcher * self) { callbackQDBusPendingCallWatcher_Finished(this, self); };
 	bool event(QEvent * e) { return callbackQDBusPendingCallWatcher_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusPendingCallWatcher_EventFilter(this, watched, event) != 0; };
@@ -1484,6 +1500,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusPendingCallWatcher_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusPendingCallWatcher_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDBusPendingCallWatcher*)
+
+int QDBusPendingCallWatcher_QDBusPendingCallWatcher_QRegisterMetaType(){return qRegisterMetaType<MyQDBusPendingCallWatcher*>();}
 
 void* QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(void* call, void* parent)
 {
@@ -1717,8 +1737,8 @@ int QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(void* vqv)
 class MyQDBusServer: public QDBusServer
 {
 public:
-	MyQDBusServer(QObject *parent = Q_NULLPTR) : QDBusServer(parent) {};
-	MyQDBusServer(const QString &address, QObject *parent = Q_NULLPTR) : QDBusServer(address, parent) {};
+	MyQDBusServer(QObject *parent = Q_NULLPTR) : QDBusServer(parent) {QDBusServer_QDBusServer_QRegisterMetaType();};
+	MyQDBusServer(const QString &address, QObject *parent = Q_NULLPTR) : QDBusServer(address, parent) {QDBusServer_QDBusServer_QRegisterMetaType();};
 	void Signal_NewConnection(const QDBusConnection & connection) { callbackQDBusServer_NewConnection(this, const_cast<QDBusConnection*>(&connection)); };
 	 ~MyQDBusServer() { callbackQDBusServer_DestroyQDBusServer(this); };
 	bool event(QEvent * e) { return callbackQDBusServer_Event(this, e) != 0; };
@@ -1733,6 +1753,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusServer_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDBusServer*)
+
+int QDBusServer_QDBusServer_QRegisterMetaType(){return qRegisterMetaType<MyQDBusServer*>();}
 
 void* QDBusServer_NewQDBusServer2(void* parent)
 {
@@ -2009,8 +2033,8 @@ void* QDBusServer_MetaObjectDefault(void* ptr)
 class MyQDBusServiceWatcher: public QDBusServiceWatcher
 {
 public:
-	MyQDBusServiceWatcher(QObject *parent = Q_NULLPTR) : QDBusServiceWatcher(parent) {};
-	MyQDBusServiceWatcher(const QString &service, const QDBusConnection &connection, WatchMode watchMode = WatchForOwnerChange, QObject *parent = Q_NULLPTR) : QDBusServiceWatcher(service, connection, watchMode, parent) {};
+	MyQDBusServiceWatcher(QObject *parent = Q_NULLPTR) : QDBusServiceWatcher(parent) {QDBusServiceWatcher_QDBusServiceWatcher_QRegisterMetaType();};
+	MyQDBusServiceWatcher(const QString &service, const QDBusConnection &connection, WatchMode watchMode = WatchForOwnerChange, QObject *parent = Q_NULLPTR) : QDBusServiceWatcher(service, connection, watchMode, parent) {QDBusServiceWatcher_QDBusServiceWatcher_QRegisterMetaType();};
 	void Signal_ServiceRegistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusServiceWatcher_ServiceRegistered(this, serviceNamePacked); };
 	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };QByteArray t9456b1 = oldOwner.toUtf8(); QtDBus_PackedString oldOwnerPacked = { const_cast<char*>(t9456b1.prepend("WHITESPACE").constData()+10), t9456b1.size()-10 };QByteArray t157d45 = newOwner.toUtf8(); QtDBus_PackedString newOwnerPacked = { const_cast<char*>(t157d45.prepend("WHITESPACE").constData()+10), t157d45.size()-10 };callbackQDBusServiceWatcher_ServiceOwnerChanged(this, serviceNamePacked, oldOwnerPacked, newOwnerPacked); };
 	void Signal_ServiceUnregistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusServiceWatcher_ServiceUnregistered(this, serviceNamePacked); };
@@ -2026,6 +2050,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusServiceWatcher_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusServiceWatcher_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDBusServiceWatcher*)
+
+int QDBusServiceWatcher_QDBusServiceWatcher_QRegisterMetaType(){return qRegisterMetaType<MyQDBusServiceWatcher*>();}
 
 void QDBusServiceWatcher_ConnectServiceRegistered(void* ptr)
 {
@@ -2457,7 +2485,7 @@ void* QDBusVariant_Variant(void* ptr)
 class MyQDBusVirtualObject: public QDBusVirtualObject
 {
 public:
-	MyQDBusVirtualObject(QObject *parent = Q_NULLPTR) : QDBusVirtualObject(parent) {};
+	MyQDBusVirtualObject(QObject *parent = Q_NULLPTR) : QDBusVirtualObject(parent) {QDBusVirtualObject_QDBusVirtualObject_QRegisterMetaType();};
 	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, const_cast<QDBusMessage*>(&message), const_cast<QDBusConnection*>(&connection)) != 0; };
 	 ~MyQDBusVirtualObject() { callbackQDBusVirtualObject_DestroyQDBusVirtualObject(this); };
 	QString introspect(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtDBus_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return QString(callbackQDBusVirtualObject_Introspect(const_cast<void*>(static_cast<const void*>(this)), pathPacked)); };
@@ -2473,6 +2501,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusVirtualObject_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusVirtualObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDBusVirtualObject*)
+
+int QDBusVirtualObject_QDBusVirtualObject_QRegisterMetaType(){return qRegisterMetaType<MyQDBusVirtualObject*>();}
 
 void* QDBusVirtualObject_NewQDBusVirtualObject(void* parent)
 {

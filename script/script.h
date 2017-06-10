@@ -8,6 +8,8 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QScriptEngine_QScriptEngine_QRegisterMetaType();
+int QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType();
 extern "C" {
 #endif
 

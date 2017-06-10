@@ -8,6 +8,22 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QGeoCodeReply_QGeoCodeReply_QRegisterMetaType();
+int QGeoCodingManager_QGeoCodingManager_QRegisterMetaType();
+int QGeoCodingManagerEngine_QGeoCodingManagerEngine_QRegisterMetaType();
+int QGeoRouteReply_QGeoRouteReply_QRegisterMetaType();
+int QGeoRoutingManager_QGeoRoutingManager_QRegisterMetaType();
+int QGeoRoutingManagerEngine_QGeoRoutingManagerEngine_QRegisterMetaType();
+int QGeoServiceProvider_QGeoServiceProvider_QRegisterMetaType();
+int QPlaceContentReply_QPlaceContentReply_QRegisterMetaType();
+int QPlaceDetailsReply_QPlaceDetailsReply_QRegisterMetaType();
+int QPlaceIdReply_QPlaceIdReply_QRegisterMetaType();
+int QPlaceManager_QPlaceManager_QRegisterMetaType();
+int QPlaceManagerEngine_QPlaceManagerEngine_QRegisterMetaType();
+int QPlaceMatchReply_QPlaceMatchReply_QRegisterMetaType();
+int QPlaceReply_QPlaceReply_QRegisterMetaType();
+int QPlaceSearchReply_QPlaceSearchReply_QRegisterMetaType();
+int QPlaceSearchSuggestionReply_QPlaceSearchSuggestionReply_QRegisterMetaType();
 extern "C" {
 #endif
 

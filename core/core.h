@@ -8,6 +8,57 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QAbstractAnimation_QAbstractAnimation_QRegisterMetaType();
+int QAbstractEventDispatcher_QAbstractEventDispatcher_QRegisterMetaType();
+int QAbstractItemModel_QAbstractItemModel_QRegisterMetaType();
+int QAbstractListModel_QAbstractListModel_QRegisterMetaType();
+int QAbstractProxyModel_QAbstractProxyModel_QRegisterMetaType();
+int QAbstractState_QAbstractState_QRegisterMetaType();
+int QAbstractTableModel_QAbstractTableModel_QRegisterMetaType();
+int QAbstractTransition_QAbstractTransition_QRegisterMetaType();
+int QAnimationGroup_QAnimationGroup_QRegisterMetaType();
+int QBuffer_QBuffer_QRegisterMetaType();
+int QCoreApplication_QCoreApplication_QRegisterMetaType();
+int QEventLoop_QEventLoop_QRegisterMetaType();
+int QEventTransition_QEventTransition_QRegisterMetaType();
+int QFile_QFile_QRegisterMetaType();
+int QFileDevice_QFileDevice_QRegisterMetaType();
+int QFileSelector_QFileSelector_QRegisterMetaType();
+int QFileSystemWatcher_QFileSystemWatcher_QRegisterMetaType();
+int QFinalState_QFinalState_QRegisterMetaType();
+int QFutureWatcher_QFutureWatcher_QRegisterMetaType();
+int QHistoryState_QHistoryState_QRegisterMetaType();
+int QIODevice_QIODevice_QRegisterMetaType();
+int QIdentityProxyModel_QIdentityProxyModel_QRegisterMetaType();
+int QItemSelectionModel_QItemSelectionModel_QRegisterMetaType();
+int QLibrary_QLibrary_QRegisterMetaType();
+int QMimeData_QMimeData_QRegisterMetaType();
+int QObject_QObject_QRegisterMetaType();
+int QObjectCleanupHandler_QObjectCleanupHandler_QRegisterMetaType();
+int QParallelAnimationGroup_QParallelAnimationGroup_QRegisterMetaType();
+int QPauseAnimation_QPauseAnimation_QRegisterMetaType();
+int QPluginLoader_QPluginLoader_QRegisterMetaType();
+int QProcess_QProcess_QRegisterMetaType();
+int QPropertyAnimation_QPropertyAnimation_QRegisterMetaType();
+int QSaveFile_QSaveFile_QRegisterMetaType();
+int QSequentialAnimationGroup_QSequentialAnimationGroup_QRegisterMetaType();
+int QSettings_QSettings_QRegisterMetaType();
+int QSharedMemory_QSharedMemory_QRegisterMetaType();
+int QSignalMapper_QSignalMapper_QRegisterMetaType();
+int QSignalTransition_QSignalTransition_QRegisterMetaType();
+int QSocketNotifier_QSocketNotifier_QRegisterMetaType();
+int QSortFilterProxyModel_QSortFilterProxyModel_QRegisterMetaType();
+int QState_QState_QRegisterMetaType();
+int QStateMachine_QStateMachine_QRegisterMetaType();
+int QStringListModel_QStringListModel_QRegisterMetaType();
+int QTemporaryFile_QTemporaryFile_QRegisterMetaType();
+int QThread_QThread_QRegisterMetaType();
+int QThreadPool_QThreadPool_QRegisterMetaType();
+int QTimeLine_QTimeLine_QRegisterMetaType();
+int QTimer_QTimer_QRegisterMetaType();
+int QTranslator_QTranslator_QRegisterMetaType();
+int QVariantAnimation_QVariantAnimation_QRegisterMetaType();
+int QWinEventNotifier_QWinEventNotifier_QRegisterMetaType();
 extern "C" {
 #endif
 

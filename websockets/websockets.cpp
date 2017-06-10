@@ -54,7 +54,7 @@
 class MyQMaskGenerator: public QMaskGenerator
 {
 public:
-	MyQMaskGenerator(QObject *parent = Q_NULLPTR) : QMaskGenerator(parent) {};
+	MyQMaskGenerator(QObject *parent = Q_NULLPTR) : QMaskGenerator(parent) {QMaskGenerator_QMaskGenerator_QRegisterMetaType();};
 	bool seed() { return callbackQMaskGenerator_Seed(this) != 0; };
 	quint32 nextMask() { return callbackQMaskGenerator_NextMask(this); };
 	 ~MyQMaskGenerator() { callbackQMaskGenerator_DestroyQMaskGenerator(this); };
@@ -70,6 +70,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMaskGenerator_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMaskGenerator_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMaskGenerator*)
+
+int QMaskGenerator_QMaskGenerator_QRegisterMetaType(){return qRegisterMetaType<MyQMaskGenerator*>();}
 
 void* QMaskGenerator_NewQMaskGenerator(void* parent)
 {
@@ -255,7 +259,7 @@ void* QMaskGenerator_MetaObjectDefault(void* ptr)
 class MyQWebSocket: public QWebSocket
 {
 public:
-	MyQWebSocket(const QString &origin = QString(), QWebSocketProtocol::Version version = QWebSocketProtocol::VersionLatest, QObject *parent = Q_NULLPTR) : QWebSocket(origin, version, parent) {};
+	MyQWebSocket(const QString &origin = QString(), QWebSocketProtocol::Version version = QWebSocketProtocol::VersionLatest, QObject *parent = Q_NULLPTR) : QWebSocket(origin, version, parent) {QWebSocket_QWebSocket_QRegisterMetaType();};
 	void Signal_AboutToClose() { callbackQWebSocket_AboutToClose(this); };
 	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, const_cast<QByteArray*>(&frame), isLastFrame); };
 	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, const_cast<QByteArray*>(&message)); };
@@ -289,6 +293,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebSocket_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebSocket*)
+
+int QWebSocket_QWebSocket_QRegisterMetaType(){return qRegisterMetaType<MyQWebSocket*>();}
 
 void* QWebSocket_NewQWebSocket(char* origin, long long version, void* parent)
 {
@@ -969,7 +977,7 @@ char QWebSocketCorsAuthenticator_Allowed(void* ptr)
 class MyQWebSocketServer: public QWebSocketServer
 {
 public:
-	MyQWebSocketServer(const QString &serverName, SslMode secureMode, QObject *parent = Q_NULLPTR) : QWebSocketServer(serverName, secureMode, parent) {};
+	MyQWebSocketServer(const QString &serverName, SslMode secureMode, QObject *parent = Q_NULLPTR) : QWebSocketServer(serverName, secureMode, parent) {QWebSocketServer_QWebSocketServer_QRegisterMetaType();};
 	QWebSocket * nextPendingConnection() { return static_cast<QWebSocket*>(callbackQWebSocketServer_NextPendingConnection(this)); };
 	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQWebSocketServer_AcceptError(this, socketError); };
 	void Signal_Closed() { callbackQWebSocketServer_Closed(this); };
@@ -992,6 +1000,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebSocketServer_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebSocketServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebSocketServer*)
+
+int QWebSocketServer_QWebSocketServer_QRegisterMetaType(){return qRegisterMetaType<MyQWebSocketServer*>();}
 
 void* QWebSocketServer_NextPendingConnection(void* ptr)
 {

@@ -8,6 +8,15 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QHelpContentModel_QHelpContentModel_QRegisterMetaType();
+int QHelpContentWidget_QHelpContentWidget_QRegisterMetaType();
+int QHelpEngine_QHelpEngine_QRegisterMetaType();
+int QHelpEngineCore_QHelpEngineCore_QRegisterMetaType();
+int QHelpIndexModel_QHelpIndexModel_QRegisterMetaType();
+int QHelpIndexWidget_QHelpIndexWidget_QRegisterMetaType();
+int QHelpSearchEngine_QHelpSearchEngine_QRegisterMetaType();
+int QHelpSearchQueryWidget_QHelpSearchQueryWidget_QRegisterMetaType();
+int QHelpSearchResultWidget_QHelpSearchResultWidget_QRegisterMetaType();
 extern "C" {
 #endif
 

@@ -42,7 +42,7 @@
 class MyQGamepad: public QGamepad
 {
 public:
-	MyQGamepad(int deviceId = 0, QObject *parent = nullptr) : QGamepad(deviceId, parent) {};
+	MyQGamepad(int deviceId = 0, QObject *parent = nullptr) : QGamepad(deviceId, parent) {QGamepad_QGamepad_QRegisterMetaType();};
 	void Signal_AxisLeftXChanged(double value) { callbackQGamepad_AxisLeftXChanged(this, value); };
 	void Signal_AxisLeftYChanged(double value) { callbackQGamepad_AxisLeftYChanged(this, value); };
 	void Signal_AxisRightXChanged(double value) { callbackQGamepad_AxisRightXChanged(this, value); };
@@ -81,6 +81,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGamepad_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepad_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGamepad*)
+
+int QGamepad_QGamepad_QRegisterMetaType(){return qRegisterMetaType<MyQGamepad*>();}
 
 void* QGamepad_NewQGamepad(int deviceId, void* parent)
 {

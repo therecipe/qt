@@ -25,7 +25,7 @@
 class MyQSignalSpy: public QSignalSpy
 {
 public:
-	MyQSignalSpy(const QObject *object, const char *signal) : QSignalSpy(object, signal) {};
+	MyQSignalSpy(const QObject *object, const char *signal) : QSignalSpy(object, signal) {QSignalSpy_QSignalSpy_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQSignalSpy_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSignalSpy_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSignalSpy_ChildEvent(this, event); };
@@ -38,6 +38,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSignalSpy_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSignalSpy_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSignalSpy*)
+
+int QSignalSpy_QSignalSpy_QRegisterMetaType(){return qRegisterMetaType<MyQSignalSpy*>();}
 
 void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 {

@@ -96,7 +96,7 @@
 class MyQAbstractNetworkCache: public QAbstractNetworkCache
 {
 public:
-	MyQAbstractNetworkCache(QObject *parent = Q_NULLPTR) : QAbstractNetworkCache(parent) {};
+	MyQAbstractNetworkCache(QObject *parent = Q_NULLPTR) : QAbstractNetworkCache(parent) {QAbstractNetworkCache_QAbstractNetworkCache_QRegisterMetaType();};
 	QIODevice * data(const QUrl & url) { return static_cast<QIODevice*>(callbackQAbstractNetworkCache_Data(this, const_cast<QUrl*>(&url))); };
 	QIODevice * prepare(const QNetworkCacheMetaData & metaData) { return static_cast<QIODevice*>(callbackQAbstractNetworkCache_Prepare(this, const_cast<QNetworkCacheMetaData*>(&metaData))); };
 	QNetworkCacheMetaData metaData(const QUrl & url) { return *static_cast<QNetworkCacheMetaData*>(callbackQAbstractNetworkCache_MetaData(this, const_cast<QUrl*>(&url))); };
@@ -118,6 +118,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractNetworkCache_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractNetworkCache_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractNetworkCache*)
+
+int QAbstractNetworkCache_QAbstractNetworkCache_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractNetworkCache*>();}
 
 void* QAbstractNetworkCache_NewQAbstractNetworkCache(void* parent)
 {
@@ -369,7 +373,7 @@ void* QAbstractNetworkCache_MetaObjectDefault(void* ptr)
 class MyQAbstractSocket: public QAbstractSocket
 {
 public:
-	MyQAbstractSocket(SocketType socketType, QObject *parent) : QAbstractSocket(socketType, parent) {};
+	MyQAbstractSocket(SocketType socketType, QObject *parent) : QAbstractSocket(socketType, parent) {QAbstractSocket_QAbstractSocket_QRegisterMetaType();};
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
 	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForConnected(int msecs) { return callbackQAbstractSocket_WaitForConnected(this, msecs) != 0; };
@@ -420,6 +424,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractSocket*)
+
+int QAbstractSocket_QAbstractSocket_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractSocket*>();}
 
 void* QAbstractSocket_NewQAbstractSocket(long long socketType, void* parent)
 {
@@ -1427,9 +1435,9 @@ unsigned int QDnsHostAddressRecord_TimeToLive(void* ptr)
 class MyQDnsLookup: public QDnsLookup
 {
 public:
-	MyQDnsLookup(QObject *parent = Q_NULLPTR) : QDnsLookup(parent) {};
-	MyQDnsLookup(Type type, const QString &name, QObject *parent = Q_NULLPTR) : QDnsLookup(type, name, parent) {};
-	MyQDnsLookup(Type type, const QString &name, const QHostAddress &nameserver, QObject *parent = Q_NULLPTR) : QDnsLookup(type, name, nameserver, parent) {};
+	MyQDnsLookup(QObject *parent = Q_NULLPTR) : QDnsLookup(parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
+	MyQDnsLookup(Type type, const QString &name, QObject *parent = Q_NULLPTR) : QDnsLookup(type, name, parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
+	MyQDnsLookup(Type type, const QString &name, const QHostAddress &nameserver, QObject *parent = Q_NULLPTR) : QDnsLookup(type, name, nameserver, parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
 	void abort() { callbackQDnsLookup_Abort(this); };
 	void Signal_Finished() { callbackQDnsLookup_Finished(this); };
 	void lookup() { callbackQDnsLookup_Lookup(this); };
@@ -1448,6 +1456,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDnsLookup_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDnsLookup_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDnsLookup*)
+
+int QDnsLookup_QDnsLookup_QRegisterMetaType(){return qRegisterMetaType<MyQDnsLookup*>();}
 
 void* QDnsLookup_NewQDnsLookup(void* parent)
 {
@@ -2355,8 +2367,8 @@ void* QHostInfo___addresses_newList(void* ptr)
 class MyQHttpMultiPart: public QHttpMultiPart
 {
 public:
-	MyQHttpMultiPart(ContentType contentType, QObject *parent = Q_NULLPTR) : QHttpMultiPart(contentType, parent) {};
-	MyQHttpMultiPart(QObject *parent = Q_NULLPTR) : QHttpMultiPart(parent) {};
+	MyQHttpMultiPart(ContentType contentType, QObject *parent = Q_NULLPTR) : QHttpMultiPart(contentType, parent) {QHttpMultiPart_QHttpMultiPart_QRegisterMetaType();};
+	MyQHttpMultiPart(QObject *parent = Q_NULLPTR) : QHttpMultiPart(parent) {QHttpMultiPart_QHttpMultiPart_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQHttpMultiPart_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHttpMultiPart_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQHttpMultiPart_ChildEvent(this, event); };
@@ -2369,6 +2381,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHttpMultiPart_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHttpMultiPart_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHttpMultiPart*)
+
+int QHttpMultiPart_QHttpMultiPart_QRegisterMetaType(){return qRegisterMetaType<MyQHttpMultiPart*>();}
 
 void* QHttpMultiPart_NewQHttpMultiPart2(long long contentType, void* parent)
 {
@@ -2640,7 +2656,7 @@ void QHttpPart_DestroyQHttpPart(void* ptr)
 class MyQLocalServer: public QLocalServer
 {
 public:
-	MyQLocalServer(QObject *parent = Q_NULLPTR) : QLocalServer(parent) {};
+	MyQLocalServer(QObject *parent = Q_NULLPTR) : QLocalServer(parent) {QLocalServer_QLocalServer_QRegisterMetaType();};
 	QLocalSocket * nextPendingConnection() { return static_cast<QLocalSocket*>(callbackQLocalServer_NextPendingConnection(this)); };
 	void incomingConnection(quintptr socketDescriptor) { callbackQLocalServer_IncomingConnection(this, socketDescriptor); };
 	void Signal_NewConnection() { callbackQLocalServer_NewConnection(this); };
@@ -2657,6 +2673,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLocalServer_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLocalServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQLocalServer*)
+
+int QLocalServer_QLocalServer_QRegisterMetaType(){return qRegisterMetaType<MyQLocalServer*>();}
 
 void* QLocalServer_NewQLocalServer(void* parent)
 {
@@ -2937,7 +2957,7 @@ void* QLocalServer_MetaObjectDefault(void* ptr)
 class MyQLocalSocket: public QLocalSocket
 {
 public:
-	MyQLocalSocket(QObject *parent = Q_NULLPTR) : QLocalSocket(parent) {};
+	MyQLocalSocket(QObject *parent = Q_NULLPTR) : QLocalSocket(parent) {QLocalSocket_QLocalSocket_QRegisterMetaType();};
 	bool open(QIODevice::OpenMode openMode) { return callbackQLocalSocket_Open(this, openMode) != 0; };
 	bool waitForBytesWritten(int msecs) { return callbackQLocalSocket_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForReadyRead(int msecs) { return callbackQLocalSocket_WaitForReadyRead(this, msecs) != 0; };
@@ -2976,6 +2996,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQLocalSocket_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLocalSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQLocalSocket*)
+
+int QLocalSocket_QLocalSocket_QRegisterMetaType(){return qRegisterMetaType<MyQLocalSocket*>();}
 
 char QLocalSocket_OpenDefault(void* ptr, long long openMode)
 {
@@ -3371,7 +3395,7 @@ void* QLocalSocket_MetaObjectDefault(void* ptr)
 class MyQNetworkAccessManager: public QNetworkAccessManager
 {
 public:
-	MyQNetworkAccessManager(QObject *parent = Q_NULLPTR) : QNetworkAccessManager(parent) {};
+	MyQNetworkAccessManager(QObject *parent = Q_NULLPTR) : QNetworkAccessManager(parent) {QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType();};
 	QNetworkReply * createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest & req, QIODevice * outgoingData) { return static_cast<QNetworkReply*>(callbackQNetworkAccessManager_CreateRequest(this, op, const_cast<QNetworkRequest*>(&req), outgoingData)); };
 	void Signal_AuthenticationRequired(QNetworkReply * reply, QAuthenticator * authenticator) { callbackQNetworkAccessManager_AuthenticationRequired(this, reply, authenticator); };
 	void Signal_Encrypted(QNetworkReply * reply) { callbackQNetworkAccessManager_Encrypted(this, reply); };
@@ -3393,6 +3417,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkAccessManager_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkAccessManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNetworkAccessManager*)
+
+int QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkAccessManager*>();}
 
 void* QNetworkAccessManager_NewQNetworkAccessManager(void* parent)
 {
@@ -4065,7 +4093,7 @@ void* QNetworkConfiguration___children_newList(void* ptr)
 class MyQNetworkConfigurationManager: public QNetworkConfigurationManager
 {
 public:
-	MyQNetworkConfigurationManager(QObject *parent = Q_NULLPTR) : QNetworkConfigurationManager(parent) {};
+	MyQNetworkConfigurationManager(QObject *parent = Q_NULLPTR) : QNetworkConfigurationManager(parent) {QNetworkConfigurationManager_QNetworkConfigurationManager_QRegisterMetaType();};
 	void Signal_ConfigurationAdded(const QNetworkConfiguration & config) { callbackQNetworkConfigurationManager_ConfigurationAdded(this, const_cast<QNetworkConfiguration*>(&config)); };
 	void Signal_ConfigurationChanged(const QNetworkConfiguration & config) { callbackQNetworkConfigurationManager_ConfigurationChanged(this, const_cast<QNetworkConfiguration*>(&config)); };
 	void Signal_ConfigurationRemoved(const QNetworkConfiguration & config) { callbackQNetworkConfigurationManager_ConfigurationRemoved(this, const_cast<QNetworkConfiguration*>(&config)); };
@@ -4085,6 +4113,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkConfigurationManager_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkConfigurationManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNetworkConfigurationManager*)
+
+int QNetworkConfigurationManager_QNetworkConfigurationManager_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkConfigurationManager*>();}
 
 void* QNetworkConfigurationManager_NewQNetworkConfigurationManager(void* parent)
 {
@@ -4515,7 +4547,7 @@ void* QNetworkCookie___parseCookies_newList(void* ptr)
 class MyQNetworkCookieJar: public QNetworkCookieJar
 {
 public:
-	MyQNetworkCookieJar(QObject *parent = Q_NULLPTR) : QNetworkCookieJar(parent) {};
+	MyQNetworkCookieJar(QObject *parent = Q_NULLPTR) : QNetworkCookieJar(parent) {QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType();};
 	bool deleteCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_DeleteCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	bool insertCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_InsertCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	bool setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, const QUrl & url) { return callbackQNetworkCookieJar_SetCookiesFromUrl(this, ({ QList<QNetworkCookie>* tmpValue = const_cast<QList<QNetworkCookie>*>(&cookieList); QtNetwork_PackedList { tmpValue, tmpValue->size() }; }), const_cast<QUrl*>(&url)) != 0; };
@@ -4535,6 +4567,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkCookieJar_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkCookieJar_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNetworkCookieJar*)
+
+int QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkCookieJar*>();}
 
 void* QNetworkCookieJar_NewQNetworkCookieJar(void* parent)
 {
@@ -4950,7 +4986,7 @@ unsigned int QNetworkDatagram_InterfaceIndex(void* ptr)
 class MyQNetworkDiskCache: public QNetworkDiskCache
 {
 public:
-	MyQNetworkDiskCache(QObject *parent = Q_NULLPTR) : QNetworkDiskCache(parent) {};
+	MyQNetworkDiskCache(QObject *parent = Q_NULLPTR) : QNetworkDiskCache(parent) {QNetworkDiskCache_QNetworkDiskCache_QRegisterMetaType();};
 	QIODevice * data(const QUrl & url) { return static_cast<QIODevice*>(callbackQNetworkDiskCache_Data(this, const_cast<QUrl*>(&url))); };
 	QIODevice * prepare(const QNetworkCacheMetaData & metaData) { return static_cast<QIODevice*>(callbackQNetworkDiskCache_Prepare(this, const_cast<QNetworkCacheMetaData*>(&metaData))); };
 	QNetworkCacheMetaData metaData(const QUrl & url) { return *static_cast<QNetworkCacheMetaData*>(callbackQNetworkDiskCache_MetaData(this, const_cast<QUrl*>(&url))); };
@@ -4972,6 +5008,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractNetworkCache_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractNetworkCache_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNetworkDiskCache*)
+
+int QNetworkDiskCache_QNetworkDiskCache_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkDiskCache*>();}
 
 void* QNetworkDiskCache_Data(void* ptr, void* url)
 {
@@ -5635,7 +5675,7 @@ int QNetworkProxyQuery_PeerPort(void* ptr)
 class MyQNetworkReply: public QNetworkReply
 {
 public:
-	MyQNetworkReply(QObject *parent = Q_NULLPTR) : QNetworkReply(parent) {};
+	MyQNetworkReply(QObject *parent = Q_NULLPTR) : QNetworkReply(parent) {QNetworkReply_QNetworkReply_QRegisterMetaType();};
 	void abort() { callbackQNetworkReply_Abort(this); };
 	void close() { callbackQNetworkReply_Close(this); };
 	void Signal_DownloadProgress(qint64 bytesReceived, qint64 bytesTotal) { callbackQNetworkReply_DownloadProgress(this, bytesReceived, bytesTotal); };
@@ -5685,6 +5725,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkReply_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNetworkReply*)
+
+int QNetworkReply_QNetworkReply_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkReply*>();}
 
 void* QNetworkReply_NewQNetworkReply(void* parent)
 {
@@ -6440,7 +6484,7 @@ void* QNetworkRequest___rawHeaderList_newList(void* ptr)
 class MyQNetworkSession: public QNetworkSession
 {
 public:
-	MyQNetworkSession(const QNetworkConfiguration &connectionConfig, QObject *parent = Q_NULLPTR) : QNetworkSession(connectionConfig, parent) {};
+	MyQNetworkSession(const QNetworkConfiguration &connectionConfig, QObject *parent = Q_NULLPTR) : QNetworkSession(connectionConfig, parent) {QNetworkSession_QNetworkSession_QRegisterMetaType();};
 	void accept() { callbackQNetworkSession_Accept(this); };
 	void close() { callbackQNetworkSession_Close(this); };
 	void Signal_Closed() { callbackQNetworkSession_Closed(this); };
@@ -6468,6 +6512,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNetworkSession_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkSession_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNetworkSession*)
+
+int QNetworkSession_QNetworkSession_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkSession*>();}
 
 void* QNetworkSession_NewQNetworkSession(void* connectionConfig, void* parent)
 {
@@ -8078,7 +8126,7 @@ int QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(void* ptr)
 class MyQSslSocket: public QSslSocket
 {
 public:
-	MyQSslSocket(QObject *parent = Q_NULLPTR) : QSslSocket(parent) {};
+	MyQSslSocket(QObject *parent = Q_NULLPTR) : QSslSocket(parent) {QSslSocket_QSslSocket_QRegisterMetaType();};
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
 	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForConnected(int msecs) { return callbackQAbstractSocket_WaitForConnected(this, msecs) != 0; };
@@ -8137,6 +8185,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSslSocket*)
+
+int QSslSocket_QSslSocket_QRegisterMetaType(){return qRegisterMetaType<MyQSslSocket*>();}
 
 void* QSslSocket_NewQSslSocket(void* parent)
 {
@@ -8787,7 +8839,7 @@ void* QSslSocket___sslErrors_newList(void* ptr)
 class MyQTcpServer: public QTcpServer
 {
 public:
-	MyQTcpServer(QObject *parent = Q_NULLPTR) : QTcpServer(parent) {};
+	MyQTcpServer(QObject *parent = Q_NULLPTR) : QTcpServer(parent) {QTcpServer_QTcpServer_QRegisterMetaType();};
 	QTcpSocket * nextPendingConnection() { return static_cast<QTcpSocket*>(callbackQTcpServer_NextPendingConnection(this)); };
 	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQTcpServer_AcceptError(this, socketError); };
 	void Signal_NewConnection() { callbackQTcpServer_NewConnection(this); };
@@ -8805,6 +8857,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQTcpServer_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTcpServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTcpServer*)
+
+int QTcpServer_QTcpServer_QRegisterMetaType(){return qRegisterMetaType<MyQTcpServer*>();}
 
 void* QTcpServer_NewQTcpServer(void* parent)
 {
@@ -9105,7 +9161,7 @@ void* QTcpServer_MetaObjectDefault(void* ptr)
 class MyQTcpSocket: public QTcpSocket
 {
 public:
-	MyQTcpSocket(QObject *parent = Q_NULLPTR) : QTcpSocket(parent) {};
+	MyQTcpSocket(QObject *parent = Q_NULLPTR) : QTcpSocket(parent) {QTcpSocket_QTcpSocket_QRegisterMetaType();};
 	 ~MyQTcpSocket() { callbackQTcpSocket_DestroyQTcpSocket(this); };
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
 	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
@@ -9156,6 +9212,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTcpSocket*)
+
+int QTcpSocket_QTcpSocket_QRegisterMetaType(){return qRegisterMetaType<MyQTcpSocket*>();}
 
 void* QTcpSocket_NewQTcpSocket(void* parent)
 {
@@ -9211,7 +9271,7 @@ void QTcpSocket_DestroyQTcpSocketDefault(void* ptr)
 class MyQUdpSocket: public QUdpSocket
 {
 public:
-	MyQUdpSocket(QObject *parent = Q_NULLPTR) : QUdpSocket(parent) {};
+	MyQUdpSocket(QObject *parent = Q_NULLPTR) : QUdpSocket(parent) {QUdpSocket_QUdpSocket_QRegisterMetaType();};
 	 ~MyQUdpSocket() { callbackQUdpSocket_DestroyQUdpSocket(this); };
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
 	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
@@ -9262,6 +9322,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractSocket_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQUdpSocket*)
+
+int QUdpSocket_QUdpSocket_QRegisterMetaType(){return qRegisterMetaType<MyQUdpSocket*>();}
 
 void* QUdpSocket_ReceiveDatagram(void* ptr, long long maxSize)
 {

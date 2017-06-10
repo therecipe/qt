@@ -250,7 +250,9 @@ func (c *Class) IsSupported() bool {
 		"QPlatformGraphicsBuffer", "QPlatformSystemTrayIcon", "QRasterPaintEngine", "QSupportedWritingSystems", "QGeoLocation", //file not found or QPA API
 		"QAbstractOpenGLFunctions",
 
-		"QProcess", "QProcessEnvironment": //TODO: iOS
+		"QProcess", "QProcessEnvironment", //TODO: iOS
+
+		"QRemoteObjectPackets":
 
 		{
 			c.Access = "unsupported_isBlockedClass"

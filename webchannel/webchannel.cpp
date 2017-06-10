@@ -45,7 +45,7 @@
 class MyQWebChannel: public QWebChannel
 {
 public:
-	MyQWebChannel(QObject *parent = Q_NULLPTR) : QWebChannel(parent) {};
+	MyQWebChannel(QObject *parent = Q_NULLPTR) : QWebChannel(parent) {QWebChannel_QWebChannel_QRegisterMetaType();};
 	void Signal_BlockUpdatesChanged(bool block) { callbackQWebChannel_BlockUpdatesChanged(this, block); };
 	void connectTo(QWebChannelAbstractTransport * transport) { callbackQWebChannel_ConnectTo(this, transport); };
 	void disconnectFrom(QWebChannelAbstractTransport * transport) { callbackQWebChannel_DisconnectFrom(this, transport); };
@@ -61,6 +61,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebChannel_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebChannel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebChannel*)
+
+int QWebChannel_QWebChannel_QRegisterMetaType(){return qRegisterMetaType<MyQWebChannel*>();}
 
 void* QWebChannel_NewQWebChannel(void* parent)
 {
@@ -366,7 +370,7 @@ void* QWebChannel_MetaObjectDefault(void* ptr)
 class MyQWebChannelAbstractTransport: public QWebChannelAbstractTransport
 {
 public:
-	MyQWebChannelAbstractTransport(QObject *parent = Q_NULLPTR) : QWebChannelAbstractTransport(parent) {};
+	MyQWebChannelAbstractTransport(QObject *parent = Q_NULLPTR) : QWebChannelAbstractTransport(parent) {QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType();};
 	void Signal_MessageReceived(const QJsonObject & message, QWebChannelAbstractTransport * transport) { callbackQWebChannelAbstractTransport_MessageReceived(this, const_cast<QJsonObject*>(&message), transport); };
 	void sendMessage(const QJsonObject & message) { callbackQWebChannelAbstractTransport_SendMessage(this, const_cast<QJsonObject*>(&message)); };
 	 ~MyQWebChannelAbstractTransport() { callbackQWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(this); };
@@ -382,6 +386,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebChannelAbstractTransport_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebChannelAbstractTransport_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebChannelAbstractTransport*)
+
+int QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType(){return qRegisterMetaType<MyQWebChannelAbstractTransport*>();}
 
 void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent)
 {

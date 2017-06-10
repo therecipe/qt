@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QTextToSpeech_QTextToSpeech_QRegisterMetaType();
 extern "C" {
 #endif
 

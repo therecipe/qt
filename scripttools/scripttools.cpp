@@ -43,7 +43,7 @@
 class MyQScriptEngineDebugger: public QScriptEngineDebugger
 {
 public:
-	MyQScriptEngineDebugger(QObject *parent = Q_NULLPTR) : QScriptEngineDebugger(parent) {};
+	MyQScriptEngineDebugger(QObject *parent = Q_NULLPTR) : QScriptEngineDebugger(parent) {QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType();};
 	void Signal_EvaluationResumed() { callbackQScriptEngineDebugger_EvaluationResumed(this); };
 	void Signal_EvaluationSuspended() { callbackQScriptEngineDebugger_EvaluationSuspended(this); };
 	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, e) != 0; };
@@ -58,6 +58,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScriptEngineDebugger*)
+
+int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType(){return qRegisterMetaType<MyQScriptEngineDebugger*>();}
 
 void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent)
 {

@@ -247,7 +247,7 @@ void* QAbstractFormBuilder___applyProperties_properties_newList(void* ptr)
 class MyQDesignerActionEditorInterface: public QDesignerActionEditorInterface
 {
 public:
-	MyQDesignerActionEditorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerActionEditorInterface(parent, flags) {};
+	MyQDesignerActionEditorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerActionEditorInterface(parent, flags) {QDesignerActionEditorInterface_QDesignerActionEditorInterface_QRegisterMetaType();};
 	void manageAction(QAction * action) { callbackQDesignerActionEditorInterface_ManageAction(this, action); };
 	void setFormWindow(QDesignerFormWindowInterface * formWindow) { callbackQDesignerActionEditorInterface_SetFormWindow(this, formWindow); };
 	void unmanageAction(QAction * action) { callbackQDesignerActionEditorInterface_UnmanageAction(this, action); };
@@ -323,6 +323,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerActionEditorInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerActionEditorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDesignerActionEditorInterface*)
+
+int QDesignerActionEditorInterface_QDesignerActionEditorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerActionEditorInterface*>();}
 
 void* QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(void* parent, long long flags)
 {
@@ -1108,7 +1112,7 @@ char QDesignerDynamicPropertySheetExtension_IsDynamicProperty(void* ptr, int ind
 class MyQDesignerFormEditorInterface: public QDesignerFormEditorInterface
 {
 public:
-	MyQDesignerFormEditorInterface(QObject *parent = Q_NULLPTR) : QDesignerFormEditorInterface(parent) {};
+	MyQDesignerFormEditorInterface(QObject *parent = Q_NULLPTR) : QDesignerFormEditorInterface(parent) {QDesignerFormEditorInterface_QDesignerFormEditorInterface_QRegisterMetaType();};
 	 ~MyQDesignerFormEditorInterface() { callbackQDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(this); };
 	bool event(QEvent * e) { return callbackQDesignerFormEditorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormEditorInterface_EventFilter(this, watched, event) != 0; };
@@ -1122,6 +1126,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormEditorInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormEditorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDesignerFormEditorInterface*)
+
+int QDesignerFormEditorInterface_QDesignerFormEditorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerFormEditorInterface*>();}
 
 void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 {
@@ -1640,6 +1648,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormWindowInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormWindowInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDesignerFormWindowInterface*)
+
+int QDesignerFormWindowInterface_QDesignerFormWindowInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerFormWindowInterface*>();}
 
 void* QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(void* object)
 {
@@ -2625,6 +2637,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormWindowManagerInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQDesignerFormWindowManagerInterface*)
+
+int QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerFormWindowManagerInterface*>();}
+
 void* QDesignerFormWindowManagerInterface_CreateFormWindow(void* ptr, void* parent, long long flags)
 {
 	return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->createFormWindow(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
@@ -3053,7 +3069,7 @@ void* QDesignerMemberSheetExtension___parameterTypes_newList(void* ptr)
 class MyQDesignerObjectInspectorInterface: public QDesignerObjectInspectorInterface
 {
 public:
-	MyQDesignerObjectInspectorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerObjectInspectorInterface(parent, flags) {};
+	MyQDesignerObjectInspectorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerObjectInspectorInterface(parent, flags) {QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_QRegisterMetaType();};
 	void setFormWindow(QDesignerFormWindowInterface * formWindow) { callbackQDesignerObjectInspectorInterface_SetFormWindow(this, formWindow); };
 	 ~MyQDesignerObjectInspectorInterface() { callbackQDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(this); };
 	QDesignerFormEditorInterface * core() const { return static_cast<QDesignerFormEditorInterface*>(callbackQDesignerObjectInspectorInterface_Core(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3127,6 +3143,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerObjectInspectorInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerObjectInspectorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDesignerObjectInspectorInterface*)
+
+int QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerObjectInspectorInterface*>();}
 
 void* QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(void* parent, long long flags)
 {
@@ -3631,7 +3651,7 @@ void* QDesignerObjectInspectorInterface_MetaObjectDefault(void* ptr)
 class MyQDesignerPropertyEditorInterface: public QDesignerPropertyEditorInterface
 {
 public:
-	MyQDesignerPropertyEditorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerPropertyEditorInterface(parent, flags) {};
+	MyQDesignerPropertyEditorInterface(QWidget *parent, Qt::WindowFlags flags = Qt::WindowFlags()) : QDesignerPropertyEditorInterface(parent, flags) {QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_QRegisterMetaType();};
 	void Signal_PropertyChanged(const QString & name, const QVariant & value) { QByteArray t6ae999 = name.toUtf8(); QtDesigner_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQDesignerPropertyEditorInterface_PropertyChanged(this, namePacked, const_cast<QVariant*>(&value)); };
 	void setObject(QObject * object) { callbackQDesignerPropertyEditorInterface_SetObject(this, object); };
 	void setPropertyValue(const QString & name, const QVariant & value, bool changed) { QByteArray t6ae999 = name.toUtf8(); QtDesigner_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQDesignerPropertyEditorInterface_SetPropertyValue(this, namePacked, const_cast<QVariant*>(&value), changed); };
@@ -3711,6 +3731,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDesignerPropertyEditorInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerPropertyEditorInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDesignerPropertyEditorInterface*)
+
+int QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerPropertyEditorInterface*>();}
 
 void* QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(void* parent, long long flags)
 {
@@ -4496,6 +4520,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerWidgetBoxInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQDesignerWidgetBoxInterface*)
+
+int QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerWidgetBoxInterface*>();}
+
 char QDesignerWidgetBoxInterface_Load(void* ptr)
 {
 	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->load();
@@ -5004,7 +5032,7 @@ void* QDesignerWidgetBoxInterface_MetaObjectDefault(void* ptr)
 class MyQExtensionFactory: public QExtensionFactory
 {
 public:
-	MyQExtensionFactory(QExtensionManager *parent = Q_NULLPTR) : QExtensionFactory(parent) {};
+	MyQExtensionFactory(QExtensionManager *parent = Q_NULLPTR) : QExtensionFactory(parent) {QExtensionFactory_QExtensionFactory_QRegisterMetaType();};
 	QObject * createExtension(QObject * object, const QString & iid, QObject * parent) const { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };return static_cast<QObject*>(callbackQExtensionFactory_CreateExtension(const_cast<void*>(static_cast<const void*>(this)), object, iidPacked, parent)); };
 	QObject * extension(QObject * object, const QString & iid) const { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };return static_cast<QObject*>(callbackQExtensionFactory_Extension(const_cast<void*>(static_cast<const void*>(this)), object, iidPacked)); };
 	bool event(QEvent * e) { return callbackQExtensionFactory_Event(this, e) != 0; };
@@ -5019,6 +5047,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQExtensionFactory_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQExtensionFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQExtensionFactory*)
+
+int QExtensionFactory_QExtensionFactory_QRegisterMetaType(){return qRegisterMetaType<MyQExtensionFactory*>();}
 
 void* QExtensionFactory_NewQExtensionFactory(void* parent)
 {
@@ -5278,7 +5310,7 @@ void* QExtensionFactory_MetaObjectDefault(void* ptr)
 class MyQExtensionManager: public QExtensionManager
 {
 public:
-	MyQExtensionManager(QObject *parent = Q_NULLPTR) : QExtensionManager(parent) {};
+	MyQExtensionManager(QObject *parent = Q_NULLPTR) : QExtensionManager(parent) {QExtensionManager_QExtensionManager_QRegisterMetaType();};
 	void registerExtensions(QAbstractExtensionFactory * factory, const QString & iid) { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };callbackQExtensionManager_RegisterExtensions(this, factory, iidPacked); };
 	void unregisterExtensions(QAbstractExtensionFactory * factory, const QString & iid) { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };callbackQExtensionManager_UnregisterExtensions(this, factory, iidPacked); };
 	QObject * extension(QObject * object, const QString & iid) const { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };return static_cast<QObject*>(callbackQExtensionManager_Extension(const_cast<void*>(static_cast<const void*>(this)), object, iidPacked)); };
@@ -5294,6 +5326,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQExtensionManager_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQExtensionManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQExtensionManager*)
+
+int QExtensionManager_QExtensionManager_QRegisterMetaType(){return qRegisterMetaType<MyQExtensionManager*>();}
 
 void* QExtensionManager_NewQExtensionManager(void* parent)
 {

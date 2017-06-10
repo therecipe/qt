@@ -209,6 +209,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQQuickFramebufferObject*)
+
+int QQuickFramebufferObject_QQuickFramebufferObject_QRegisterMetaType(){return qRegisterMetaType<MyQQuickFramebufferObject*>();}
+
 void QQuickFramebufferObject_ConnectMirrorVerticallyChanged(void* ptr)
 {
 	QObject::connect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::mirrorVerticallyChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_MirrorVerticallyChanged));
@@ -359,7 +363,7 @@ long long QQuickImageProvider_ImageTypeDefault(void* ptr)
 class MyQQuickImageResponse: public QQuickImageResponse
 {
 public:
-	MyQQuickImageResponse() : QQuickImageResponse() {};
+	MyQQuickImageResponse() : QQuickImageResponse() {QQuickImageResponse_QQuickImageResponse_QRegisterMetaType();};
 	void cancel() { callbackQQuickImageResponse_Cancel(this); };
 	void Signal_Finished() { callbackQQuickImageResponse_Finished(this); };
 	 ~MyQQuickImageResponse() { callbackQQuickImageResponse_DestroyQQuickImageResponse(this); };
@@ -377,6 +381,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickImageResponse_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickImageResponse_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickImageResponse*)
+
+int QQuickImageResponse_QQuickImageResponse_QRegisterMetaType(){return qRegisterMetaType<MyQQuickImageResponse*>();}
 
 void* QQuickImageResponse_NewQQuickImageResponse()
 {
@@ -576,7 +584,7 @@ void* QQuickImageResponse_MetaObjectDefault(void* ptr)
 class MyQQuickItem: public QQuickItem
 {
 public:
-	MyQQuickItem(QQuickItem *parent = Q_NULLPTR) : QQuickItem(parent) {};
+	MyQQuickItem(QQuickItem *parent = Q_NULLPTR) : QQuickItem(parent) {QQuickItem_QQuickItem_QRegisterMetaType();};
 	bool childMouseEventFilter(QQuickItem * item, QEvent * event) { return callbackQQuickItem_ChildMouseEventFilter(this, item, event) != 0; };
 	bool event(QEvent * ev) { return callbackQQuickItem_Event(this, ev) != 0; };
 	void classBegin() { callbackQQuickItem_ClassBegin(this); };
@@ -622,6 +630,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickItem*)
+
+int QQuickItem_QQuickItem_QRegisterMetaType(){return qRegisterMetaType<MyQQuickItem*>();}
 
 void* QQuickItem_NextItemInFocusChain(void* ptr, char forward)
 {
@@ -1917,6 +1929,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItemGrabResult_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQQuickItemGrabResult*)
+
+int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType(){return qRegisterMetaType<MyQQuickItemGrabResult*>();}
+
 char QQuickItemGrabResult_SaveToFile(void* ptr, char* fileName)
 {
 	return static_cast<QQuickItemGrabResult*>(ptr)->saveToFile(QString(fileName));
@@ -2090,7 +2106,7 @@ void* QQuickItemGrabResult_MetaObjectDefault(void* ptr)
 class MyQQuickPaintedItem: public QQuickPaintedItem
 {
 public:
-	MyQQuickPaintedItem(QQuickItem *parent = Q_NULLPTR) : QQuickPaintedItem(parent) {};
+	MyQQuickPaintedItem(QQuickItem *parent = Q_NULLPTR) : QQuickPaintedItem(parent) {QQuickPaintedItem_QQuickPaintedItem_QRegisterMetaType();};
 	void Signal_ContentsScaleChanged() { callbackQQuickPaintedItem_ContentsScaleChanged(this); };
 	void Signal_ContentsSizeChanged() { callbackQQuickPaintedItem_ContentsSizeChanged(this); };
 	void Signal_FillColorChanged() { callbackQQuickPaintedItem_FillColorChanged(this); };
@@ -2141,6 +2157,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickPaintedItem*)
+
+int QQuickPaintedItem_QQuickPaintedItem_QRegisterMetaType(){return qRegisterMetaType<MyQQuickPaintedItem*>();}
 
 void* QQuickPaintedItem_NewQQuickPaintedItem(void* parent)
 {
@@ -2330,7 +2350,7 @@ double QQuickPaintedItem_ContentsScale(void* ptr)
 class MyQQuickRenderControl: public QQuickRenderControl
 {
 public:
-	MyQQuickRenderControl(QObject *parent = Q_NULLPTR) : QQuickRenderControl(parent) {};
+	MyQQuickRenderControl(QObject *parent = Q_NULLPTR) : QQuickRenderControl(parent) {QQuickRenderControl_QQuickRenderControl_QRegisterMetaType();};
 	QWindow * renderWindow(QPoint * offset) { return static_cast<QWindow*>(callbackQQuickRenderControl_RenderWindow(this, offset)); };
 	void Signal_RenderRequested() { callbackQQuickRenderControl_RenderRequested(this); };
 	void Signal_SceneChanged() { callbackQQuickRenderControl_SceneChanged(this); };
@@ -2346,6 +2366,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickRenderControl_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickRenderControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickRenderControl*)
+
+int QQuickRenderControl_QQuickRenderControl_QRegisterMetaType(){return qRegisterMetaType<MyQQuickRenderControl*>();}
 
 void* QQuickRenderControl_Grab(void* ptr)
 {
@@ -2616,7 +2640,7 @@ void* QQuickRenderControl_MetaObjectDefault(void* ptr)
 class MyQQuickTextDocument: public QQuickTextDocument
 {
 public:
-	MyQQuickTextDocument(QQuickItem *parent) : QQuickTextDocument(parent) {};
+	MyQQuickTextDocument(QQuickItem *parent) : QQuickTextDocument(parent) {QQuickTextDocument_QQuickTextDocument_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQQuickTextDocument_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickTextDocument_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQQuickTextDocument_ChildEvent(this, event); };
@@ -2629,6 +2653,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickTextDocument_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickTextDocument_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickTextDocument*)
+
+int QQuickTextDocument_QQuickTextDocument_QRegisterMetaType(){return qRegisterMetaType<MyQQuickTextDocument*>();}
 
 void* QQuickTextDocument_NewQQuickTextDocument(void* parent)
 {
@@ -2783,7 +2811,7 @@ void* QQuickTextDocument_MetaObjectDefault(void* ptr)
 class MyQQuickTextureFactory: public QQuickTextureFactory
 {
 public:
-	MyQQuickTextureFactory() : QQuickTextureFactory() {};
+	MyQQuickTextureFactory() : QQuickTextureFactory() {QQuickTextureFactory_QQuickTextureFactory_QRegisterMetaType();};
 	 ~MyQQuickTextureFactory() { callbackQQuickTextureFactory_DestroyQQuickTextureFactory(this); };
 	QImage image() const { return *static_cast<QImage*>(callbackQQuickTextureFactory_Image(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGTexture * createTexture(QQuickWindow * window) const { return static_cast<QSGTexture*>(callbackQQuickTextureFactory_CreateTexture(const_cast<void*>(static_cast<const void*>(this)), window)); };
@@ -2801,6 +2829,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickTextureFactory_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickTextureFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickTextureFactory*)
+
+int QQuickTextureFactory_QQuickTextureFactory_QRegisterMetaType(){return qRegisterMetaType<MyQQuickTextureFactory*>();}
 
 void* QQuickTextureFactory_QQuickTextureFactory_TextureFactoryForImage(void* image)
 {
@@ -2990,9 +3022,9 @@ void* QQuickTextureFactory_MetaObjectDefault(void* ptr)
 class MyQQuickView: public QQuickView
 {
 public:
-	MyQQuickView(QQmlEngine *engine, QWindow *parent) : QQuickView(engine, parent) {};
-	MyQQuickView(QWindow *parent = Q_NULLPTR) : QQuickView(parent) {};
-	MyQQuickView(const QUrl &source, QWindow *parent = Q_NULLPTR) : QQuickView(source, parent) {};
+	MyQQuickView(QQmlEngine *engine, QWindow *parent) : QQuickView(engine, parent) {QQuickView_QQuickView_QRegisterMetaType();};
+	MyQQuickView(QWindow *parent = Q_NULLPTR) : QQuickView(parent) {QQuickView_QQuickView_QRegisterMetaType();};
+	MyQQuickView(const QUrl &source, QWindow *parent = Q_NULLPTR) : QQuickView(source, parent) {QQuickView_QQuickView_QRegisterMetaType();};
 	void setSource(const QUrl & url) { callbackQQuickView_SetSource(this, const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQuickView::Status status) { callbackQQuickView_StatusChanged(this, status); };
 	 ~MyQQuickView() { callbackQQuickView_DestroyQQuickView(this); };
@@ -3079,6 +3111,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWindow_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickView*)
+
+int QQuickView_QQuickView_QRegisterMetaType(){return qRegisterMetaType<MyQQuickView*>();}
 
 void* QQuickView_NewQQuickView2(void* engine, void* parent)
 {
@@ -3205,9 +3241,9 @@ void* QQuickView___errors_newList(void* ptr)
 class MyQQuickWidget: public QQuickWidget
 {
 public:
-	MyQQuickWidget(QQmlEngine *engine, QWidget *parent) : QQuickWidget(engine, parent) {};
-	MyQQuickWidget(QWidget *parent = Q_NULLPTR) : QQuickWidget(parent) {};
-	MyQQuickWidget(const QUrl &source, QWidget *parent = Q_NULLPTR) : QQuickWidget(source, parent) {};
+	MyQQuickWidget(QQmlEngine *engine, QWidget *parent) : QQuickWidget(engine, parent) {QQuickWidget_QQuickWidget_QRegisterMetaType();};
+	MyQQuickWidget(QWidget *parent = Q_NULLPTR) : QQuickWidget(parent) {QQuickWidget_QQuickWidget_QRegisterMetaType();};
+	MyQQuickWidget(const QUrl &source, QWidget *parent = Q_NULLPTR) : QQuickWidget(source, parent) {QQuickWidget_QQuickWidget_QRegisterMetaType();};
 	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQQuickWidget_SceneGraphError(this, error, messagePacked); };
 	void setSource(const QUrl & url) { callbackQQuickWidget_SetSource(this, const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQuickWidget::Status status) { callbackQQuickWidget_StatusChanged(this, status); };
@@ -3282,6 +3318,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickWidget*)
+
+int QQuickWidget_QQuickWidget_QRegisterMetaType(){return qRegisterMetaType<MyQQuickWidget*>();}
 
 void* QQuickWidget_NewQQuickWidget2(void* engine, void* parent)
 {
@@ -3896,7 +3936,7 @@ void* QQuickWidget_MetaObjectDefault(void* ptr)
 class MyQQuickWindow: public QQuickWindow
 {
 public:
-	MyQQuickWindow(QWindow *parent = Q_NULLPTR) : QQuickWindow(parent) {};
+	MyQQuickWindow(QWindow *parent = Q_NULLPTR) : QQuickWindow(parent) {QQuickWindow_QQuickWindow_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQQuickWindow_Event(this, e) != 0; };
 	void Signal_ActiveFocusItemChanged() { callbackQQuickWindow_ActiveFocusItemChanged(this); };
 	void Signal_AfterAnimating() { callbackQQuickWindow_AfterAnimating(this); };
@@ -3986,6 +4026,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWindow_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickWindow*)
+
+int QQuickWindow_QQuickWindow_QRegisterMetaType(){return qRegisterMetaType<MyQQuickWindow*>();}
 
 void* QQuickWindow_GrabWindow(void* ptr)
 {
@@ -4983,6 +5027,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGAbstractRenderer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQSGAbstractRenderer*)
+
+int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType(){return qRegisterMetaType<MyQSGAbstractRenderer*>();}
+
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr)
 {
 	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));
@@ -5293,6 +5341,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGTexture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQSGDynamicTexture*)
+
+int QSGDynamicTexture_QSGDynamicTexture_QRegisterMetaType(){return qRegisterMetaType<MyQSGDynamicTexture*>();}
+
 char QSGDynamicTexture_UpdateTexture(void* ptr)
 {
 	return static_cast<QSGDynamicTexture*>(ptr)->updateTexture();
@@ -5351,7 +5403,7 @@ int QSGDynamicTexture_TextureIdDefault(void* ptr)
 class MyQSGEngine: public QSGEngine
 {
 public:
-	MyQSGEngine(QObject *parent = Q_NULLPTR) : QSGEngine(parent) {};
+	MyQSGEngine(QObject *parent = Q_NULLPTR) : QSGEngine(parent) {QSGEngine_QSGEngine_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQSGEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGEngine_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSGEngine_ChildEvent(this, event); };
@@ -5364,6 +5416,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGEngine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSGEngine*)
+
+int QSGEngine_QSGEngine_QRegisterMetaType(){return qRegisterMetaType<MyQSGEngine*>();}
 
 void* QSGEngine_NewQSGEngine(void* parent)
 {
@@ -6563,7 +6619,7 @@ void* QSGRendererInterface_GetResource2Default(void* ptr, void* window, char* re
 class MyQSGTexture: public QSGTexture
 {
 public:
-	MyQSGTexture() : QSGTexture() {};
+	MyQSGTexture() : QSGTexture() {QSGTexture_QSGTexture_QRegisterMetaType();};
 	void bind() { callbackQSGTexture_Bind(this); };
 	QRectF normalizedTextureSubRect() const { return *static_cast<QRectF*>(callbackQSGTexture_NormalizedTextureSubRect(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGTexture * removedFromAtlas() const { return static_cast<QSGTexture*>(callbackQSGTexture_RemovedFromAtlas(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -6584,6 +6640,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGTexture_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGTexture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSGTexture*)
+
+int QSGTexture_QSGTexture_QRegisterMetaType(){return qRegisterMetaType<MyQSGTexture*>();}
 
 void* QSGTexture_NewQSGTexture()
 {
@@ -6917,6 +6977,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSGTextureProvider_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGTextureProvider_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSGTextureProvider*)
+
+int QSGTextureProvider_QSGTextureProvider_QRegisterMetaType(){return qRegisterMetaType<MyQSGTextureProvider*>();}
 
 void QSGTextureProvider_ConnectTextureChanged(void* ptr)
 {

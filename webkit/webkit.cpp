@@ -114,7 +114,7 @@
 class MyQGraphicsWebView: public QGraphicsWebView
 {
 public:
-	MyQGraphicsWebView(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsWebView(parent) {};
+	MyQGraphicsWebView(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsWebView(parent) {QGraphicsWebView_QGraphicsWebView_QRegisterMetaType();};
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsWebView_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool event(QEvent * event) { return callbackQGraphicsWebView_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsWebView_FocusNextPrevChild(this, next) != 0; };
@@ -202,6 +202,10 @@ public:
 	bool contains(const QPointF & point) const { return callbackQGraphicsWebView_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQGraphicsWebView_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsWebView*)
+
+int QGraphicsWebView_QGraphicsWebView_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsWebView*>();}
 
 void* QGraphicsWebView_NewQGraphicsWebView(void* parent)
 {
@@ -1461,6 +1465,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebFrame_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQWebFrame*)
+
+int QWebFrame_QWebFrame_QRegisterMetaType(){return qRegisterMetaType<MyQWebFrame*>();}
+
 char QWebFrame_EventDefault(void* ptr, void* e)
 {
 		return static_cast<QWebFrame*>(ptr)->QWebFrame::event(static_cast<QEvent*>(e));
@@ -2226,7 +2234,7 @@ void* QWebHistory_____toMap_keyList_newList(void* ptr)
 class MyQWebHistoryInterface: public QWebHistoryInterface
 {
 public:
-	MyQWebHistoryInterface(QObject *parent = Q_NULLPTR) : QWebHistoryInterface(parent) {};
+	MyQWebHistoryInterface(QObject *parent = Q_NULLPTR) : QWebHistoryInterface(parent) {QWebHistoryInterface_QWebHistoryInterface_QRegisterMetaType();};
 	void addHistoryEntry(const QString & url) { QByteArray t817363 = url.toUtf8(); QtWebKit_PackedString urlPacked = { const_cast<char*>(t817363.prepend("WHITESPACE").constData()+10), t817363.size()-10 };callbackQWebHistoryInterface_AddHistoryEntry(this, urlPacked); };
 	bool historyContains(const QString & url) const { QByteArray t817363 = url.toUtf8(); QtWebKit_PackedString urlPacked = { const_cast<char*>(t817363.prepend("WHITESPACE").constData()+10), t817363.size()-10 };return callbackQWebHistoryInterface_HistoryContains(const_cast<void*>(static_cast<const void*>(this)), urlPacked) != 0; };
 	bool event(QEvent * e) { return callbackQWebHistoryInterface_Event(this, e) != 0; };
@@ -2241,6 +2249,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebHistoryInterface_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebHistoryInterface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebHistoryInterface*)
+
+int QWebHistoryInterface_QWebHistoryInterface_QRegisterMetaType(){return qRegisterMetaType<MyQWebHistoryInterface*>();}
 
 void* QWebHistoryInterface_QWebHistoryInterface_DefaultInterface()
 {
@@ -2661,7 +2673,7 @@ char QWebHitTestResult_IsNull(void* ptr)
 class MyQWebInspector: public QWebInspector
 {
 public:
-	MyQWebInspector(QWidget *parent = Q_NULLPTR) : QWebInspector(parent) {};
+	MyQWebInspector(QWidget *parent = Q_NULLPTR) : QWebInspector(parent) {QWebInspector_QWebInspector_QRegisterMetaType();};
 	bool event(QEvent * ev) { return callbackQWebInspector_Event(this, ev) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQWebInspector_CloseEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQWebInspector_HideEvent(this, event); };
@@ -2732,6 +2744,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebInspector_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebInspector_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebInspector*)
+
+int QWebInspector_QWebInspector_QRegisterMetaType(){return qRegisterMetaType<MyQWebInspector*>();}
 
 void* QWebInspector_NewQWebInspector(void* parent)
 {
@@ -3196,7 +3212,7 @@ void* QWebInspector_MetaObjectDefault(void* ptr)
 class MyQWebPage: public QWebPage
 {
 public:
-	MyQWebPage(QObject *parent = Q_NULLPTR) : QWebPage(parent) {};
+	MyQWebPage(QObject *parent = Q_NULLPTR) : QWebPage(parent) {QWebPage_QWebPage_QRegisterMetaType();};
 	QObject * createPlugin(const QString & classid, const QUrl & url, const QStringList & paramNames, const QStringList & paramValues) { QByteArray tecec06 = classid.toUtf8(); QtWebKit_PackedString classidPacked = { const_cast<char*>(tecec06.prepend("WHITESPACE").constData()+10), tecec06.size()-10 };QByteArray te78583 = paramNames.join("|").toUtf8(); QtWebKit_PackedString paramNamesPacked = { const_cast<char*>(te78583.prepend("WHITESPACE").constData()+10), te78583.size()-10 };QByteArray t90393c = paramValues.join("|").toUtf8(); QtWebKit_PackedString paramValuesPacked = { const_cast<char*>(t90393c.prepend("WHITESPACE").constData()+10), t90393c.size()-10 };return static_cast<QObject*>(callbackQWebPage_CreatePlugin(this, classidPacked, const_cast<QUrl*>(&url), paramNamesPacked, paramValuesPacked)); };
 	QString chooseFile(QWebFrame * parentFrame, const QString & suggestedFile) { QByteArray tf87690 = suggestedFile.toUtf8(); QtWebKit_PackedString suggestedFilePacked = { const_cast<char*>(tf87690.prepend("WHITESPACE").constData()+10), tf87690.size()-10 };return QString(callbackQWebPage_ChooseFile(this, parentFrame, suggestedFilePacked)); };
 	QWebPage * createWindow(QWebPage::WebWindowType ty) { return static_cast<QWebPage*>(callbackQWebPage_CreateWindow(this, ty)); };
@@ -3251,6 +3267,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebPage_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebPage_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebPage*)
+
+int QWebPage_QWebPage_QRegisterMetaType(){return qRegisterMetaType<MyQWebPage*>();}
 
 void* QWebPage_CreateStandardContextMenu(void* ptr)
 {
@@ -4232,6 +4252,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebPluginFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQWebPluginFactory*)
+
+int QWebPluginFactory_QWebPluginFactory_QRegisterMetaType(){return qRegisterMetaType<MyQWebPluginFactory*>();}
+
 void QWebPluginFactory_RefreshPlugins(void* ptr)
 {
 	static_cast<QWebPluginFactory*>(ptr)->refreshPlugins();
@@ -4815,7 +4839,7 @@ int QWebSettings_FontSize(void* ptr, long long ty)
 class MyQWebView: public QWebView
 {
 public:
-	MyQWebView(QWidget *parent = Q_NULLPTR) : QWebView(parent) {};
+	MyQWebView(QWidget *parent = Q_NULLPTR) : QWebView(parent) {QWebView_QWebView_QRegisterMetaType();};
 	QWebView * createWindow(QWebPage::WebWindowType ty) { return static_cast<QWebView*>(callbackQWebView_CreateWindow(this, ty)); };
 	bool event(QEvent * e) { return callbackQWebView_Event(this, e) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWebView_FocusNextPrevChild(this, next) != 0; };
@@ -4901,6 +4925,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebView_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebView_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebView*)
+
+int QWebView_QWebView_QRegisterMetaType(){return qRegisterMetaType<MyQWebView*>();}
 
 void* QWebView_CreateWindow(void* ptr, long long ty)
 {

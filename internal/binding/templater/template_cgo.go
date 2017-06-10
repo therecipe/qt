@@ -122,6 +122,13 @@ func cgoIos(module, mocPath string, mode int, pkg string) string {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
+	if utils.QT_VERSION_MAJOR() == "5.9" {
+		tmp := bb.String()
+		bb.Reset()
+		tmp = strings.Replace(tmp, "min=7.0", "min=8.0", -1)
+		bb.WriteString(strings.Replace(tmp, "-lqtpcre", "-lqtpcre2", -1))
+	}
+
 	if module == "build_ios" {
 		return bb.String()
 	}

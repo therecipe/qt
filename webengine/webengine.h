@@ -8,6 +8,15 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QQuickWebEngineProfile_QQuickWebEngineProfile_QRegisterMetaType();
+int QWebEngineCookieStore_QWebEngineCookieStore_QRegisterMetaType();
+int QWebEngineDownloadItem_QWebEngineDownloadItem_QRegisterMetaType();
+int QWebEnginePage_QWebEnginePage_QRegisterMetaType();
+int QWebEngineProfile_QWebEngineProfile_QRegisterMetaType();
+int QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_QRegisterMetaType();
+int QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_QRegisterMetaType();
+int QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_QRegisterMetaType();
+int QWebEngineView_QWebEngineView_QRegisterMetaType();
 extern "C" {
 #endif
 

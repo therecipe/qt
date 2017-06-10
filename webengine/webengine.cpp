@@ -99,7 +99,7 @@
 class MyQQuickWebEngineProfile: public QQuickWebEngineProfile
 {
 public:
-	MyQQuickWebEngineProfile(QObject *parent = Q_NULLPTR) : QQuickWebEngineProfile(parent) {};
+	MyQQuickWebEngineProfile(QObject *parent = Q_NULLPTR) : QQuickWebEngineProfile(parent) {QQuickWebEngineProfile_QQuickWebEngineProfile_QRegisterMetaType();};
 	void Signal_CachePathChanged() { callbackQQuickWebEngineProfile_CachePathChanged(this); };
 	void Signal_HttpAcceptLanguageChanged() { callbackQQuickWebEngineProfile_HttpAcceptLanguageChanged(this); };
 	void Signal_HttpCacheMaximumSizeChanged() { callbackQQuickWebEngineProfile_HttpCacheMaximumSizeChanged(this); };
@@ -123,6 +123,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQuickWebEngineProfile_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWebEngineProfile_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQuickWebEngineProfile*)
+
+int QQuickWebEngineProfile_QQuickWebEngineProfile_QRegisterMetaType(){return qRegisterMetaType<MyQQuickWebEngineProfile*>();}
 
 void* QQuickWebEngineProfile_QQuickWebEngineProfile_DefaultProfile()
 {
@@ -709,6 +713,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineCookieStore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQWebEngineCookieStore*)
+
+int QWebEngineCookieStore_QWebEngineCookieStore_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineCookieStore*>();}
+
 void QWebEngineCookieStore_ConnectCookieAdded(void* ptr)
 {
 	QObject::connect(static_cast<QWebEngineCookieStore*>(ptr), static_cast<void (QWebEngineCookieStore::*)(const QNetworkCookie &)>(&QWebEngineCookieStore::cookieAdded), static_cast<MyQWebEngineCookieStore*>(ptr), static_cast<void (MyQWebEngineCookieStore::*)(const QNetworkCookie &)>(&MyQWebEngineCookieStore::Signal_CookieAdded));
@@ -914,6 +922,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineDownloadItem_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineDownloadItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebEngineDownloadItem*)
+
+int QWebEngineDownloadItem_QWebEngineDownloadItem_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineDownloadItem*>();}
 
 void QWebEngineDownloadItem_Accept(void* ptr)
 {
@@ -1348,8 +1360,8 @@ char QWebEngineHistoryItem_IsValid(void* ptr)
 class MyQWebEnginePage: public QWebEnginePage
 {
 public:
-	MyQWebEnginePage(QObject *parent = Q_NULLPTR) : QWebEnginePage(parent) {};
-	MyQWebEnginePage(QWebEngineProfile *profile, QObject *parent = Q_NULLPTR) : QWebEnginePage(profile, parent) {};
+	MyQWebEnginePage(QObject *parent = Q_NULLPTR) : QWebEnginePage(parent) {QWebEnginePage_QWebEnginePage_QRegisterMetaType();};
+	MyQWebEnginePage(QWebEngineProfile *profile, QObject *parent = Q_NULLPTR) : QWebEnginePage(profile, parent) {QWebEnginePage_QWebEnginePage_QRegisterMetaType();};
 	QStringList chooseFiles(QWebEnginePage::FileSelectionMode mode, const QStringList & oldFiles, const QStringList & acceptedMimeTypes) { QByteArray t76015f = oldFiles.join("|").toUtf8(); QtWebEngine_PackedString oldFilesPacked = { const_cast<char*>(t76015f.prepend("WHITESPACE").constData()+10), t76015f.size()-10 };QByteArray t541092 = acceptedMimeTypes.join("|").toUtf8(); QtWebEngine_PackedString acceptedMimeTypesPacked = { const_cast<char*>(t541092.prepend("WHITESPACE").constData()+10), t541092.size()-10 };return QString(callbackQWebEnginePage_ChooseFiles(this, mode, oldFilesPacked, acceptedMimeTypesPacked)).split("|", QString::SkipEmptyParts); };
 	QWebEnginePage * createWindow(QWebEnginePage::WebWindowType ty) { return static_cast<QWebEnginePage*>(callbackQWebEnginePage_CreateWindow(this, ty)); };
 	bool acceptNavigationRequest(const QUrl & url, QWebEnginePage::NavigationType ty, bool isMainFrame) { return callbackQWebEnginePage_AcceptNavigationRequest(this, const_cast<QUrl*>(&url), ty, isMainFrame) != 0; };
@@ -1391,6 +1403,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEnginePage_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEnginePage_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebEnginePage*)
+
+int QWebEnginePage_QWebEnginePage_QRegisterMetaType(){return qRegisterMetaType<MyQWebEnginePage*>();}
 
 void* QWebEnginePage_CreateStandardContextMenu(void* ptr)
 {
@@ -2182,8 +2198,8 @@ void* QWebEnginePage_MetaObjectDefault(void* ptr)
 class MyQWebEngineProfile: public QWebEngineProfile
 {
 public:
-	MyQWebEngineProfile(QObject *parent = Q_NULLPTR) : QWebEngineProfile(parent) {};
-	MyQWebEngineProfile(const QString &storageName, QObject *parent = Q_NULLPTR) : QWebEngineProfile(storageName, parent) {};
+	MyQWebEngineProfile(QObject *parent = Q_NULLPTR) : QWebEngineProfile(parent) {QWebEngineProfile_QWebEngineProfile_QRegisterMetaType();};
+	MyQWebEngineProfile(const QString &storageName, QObject *parent = Q_NULLPTR) : QWebEngineProfile(storageName, parent) {QWebEngineProfile_QWebEngineProfile_QRegisterMetaType();};
 	void Signal_DownloadRequested(QWebEngineDownloadItem * download) { callbackQWebEngineProfile_DownloadRequested(this, download); };
 	bool event(QEvent * e) { return callbackQWebEngineProfile_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineProfile_EventFilter(this, watched, event) != 0; };
@@ -2197,6 +2213,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineProfile_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineProfile_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebEngineProfile*)
+
+int QWebEngineProfile_QWebEngineProfile_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineProfile*>();}
 
 void* QWebEngineProfile_CookieStore(void* ptr)
 {
@@ -2888,7 +2908,7 @@ long long QWebEngineUrlRequestInfo_ResourceType(void* ptr)
 class MyQWebEngineUrlRequestInterceptor: public QWebEngineUrlRequestInterceptor
 {
 public:
-	MyQWebEngineUrlRequestInterceptor(QObject *p = Q_NULLPTR) : QWebEngineUrlRequestInterceptor(p) {};
+	MyQWebEngineUrlRequestInterceptor(QObject *p = Q_NULLPTR) : QWebEngineUrlRequestInterceptor(p) {QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_QRegisterMetaType();};
 	void interceptRequest(QWebEngineUrlRequestInfo & info) { callbackQWebEngineUrlRequestInterceptor_InterceptRequest(this, static_cast<QWebEngineUrlRequestInfo*>(&info)); };
 	bool event(QEvent * e) { return callbackQWebEngineUrlRequestInterceptor_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlRequestInterceptor_EventFilter(this, watched, event) != 0; };
@@ -2902,6 +2922,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlRequestInterceptor_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlRequestInterceptor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebEngineUrlRequestInterceptor*)
+
+int QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineUrlRequestInterceptor*>();}
 
 void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(void* p)
 {
@@ -3085,6 +3109,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlRequestJob_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQWebEngineUrlRequestJob*)
+
+int QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineUrlRequestJob*>();}
+
 void QWebEngineUrlRequestJob_Fail(void* ptr, long long r)
 {
 	static_cast<QWebEngineUrlRequestJob*>(ptr)->fail(static_cast<QWebEngineUrlRequestJob::Error>(r));
@@ -3233,7 +3261,7 @@ void* QWebEngineUrlRequestJob_MetaObjectDefault(void* ptr)
 class MyQWebEngineUrlSchemeHandler: public QWebEngineUrlSchemeHandler
 {
 public:
-	MyQWebEngineUrlSchemeHandler(QObject *parent = Q_NULLPTR) : QWebEngineUrlSchemeHandler(parent) {};
+	MyQWebEngineUrlSchemeHandler(QObject *parent = Q_NULLPTR) : QWebEngineUrlSchemeHandler(parent) {QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_QRegisterMetaType();};
 	void requestStarted(QWebEngineUrlRequestJob * request) { callbackQWebEngineUrlSchemeHandler_RequestStarted(this, request); };
 	bool event(QEvent * e) { return callbackQWebEngineUrlSchemeHandler_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlSchemeHandler_EventFilter(this, watched, event) != 0; };
@@ -3247,6 +3275,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlSchemeHandler_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlSchemeHandler_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebEngineUrlSchemeHandler*)
+
+int QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineUrlSchemeHandler*>();}
 
 void* QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(void* parent)
 {
@@ -3422,7 +3454,7 @@ void* QWebEngineUrlSchemeHandler_MetaObjectDefault(void* ptr)
 class MyQWebEngineView: public QWebEngineView
 {
 public:
-	MyQWebEngineView(QWidget *parent = Q_NULLPTR) : QWebEngineView(parent) {};
+	MyQWebEngineView(QWidget *parent = Q_NULLPTR) : QWebEngineView(parent) {QWebEngineView_QWebEngineView_QRegisterMetaType();};
 	QWebEngineView * createWindow(QWebEnginePage::WebWindowType ty) { return static_cast<QWebEngineView*>(callbackQWebEngineView_CreateWindow(this, ty)); };
 	bool event(QEvent * ev) { return callbackQWebEngineView_Event(this, ev) != 0; };
 	void back() { callbackQWebEngineView_Back(this); };
@@ -3508,6 +3540,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineView_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineView_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWebEngineView*)
+
+int QWebEngineView_QWebEngineView_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineView*>();}
 
 void* QWebEngineView_CreateWindow(void* ptr, long long ty)
 {

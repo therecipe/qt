@@ -79,6 +79,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractMessageHandler_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQAbstractMessageHandler*)
+
+int QAbstractMessageHandler_QAbstractMessageHandler_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractMessageHandler*>();}
+
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr)
 {
 	static_cast<QAbstractMessageHandler*>(ptr)->~QAbstractMessageHandler();
@@ -212,7 +216,7 @@ void* QAbstractMessageHandler_MetaObjectDefault(void* ptr)
 class MyQAbstractUriResolver: public QAbstractUriResolver
 {
 public:
-	MyQAbstractUriResolver(QObject *parent = Q_NULLPTR) : QAbstractUriResolver(parent) {};
+	MyQAbstractUriResolver(QObject *parent = Q_NULLPTR) : QAbstractUriResolver(parent) {QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType();};
 	 ~MyQAbstractUriResolver() { callbackQAbstractUriResolver_DestroyQAbstractUriResolver(this); };
 	QUrl resolve(const QUrl & relative, const QUrl & baseURI) const { return *static_cast<QUrl*>(callbackQAbstractUriResolver_Resolve(const_cast<void*>(static_cast<const void*>(this)), const_cast<QUrl*>(&relative), const_cast<QUrl*>(&baseURI))); };
 	bool event(QEvent * e) { return callbackQAbstractUriResolver_Event(this, e) != 0; };
@@ -227,6 +231,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractUriResolver_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractUriResolver_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractUriResolver*)
+
+int QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractUriResolver*>();}
 
 void* QAbstractUriResolver_NewQAbstractUriResolver(void* parent)
 {

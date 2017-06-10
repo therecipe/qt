@@ -205,6 +205,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpContentModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQHelpContentModel*)
+
+int QHelpContentModel_QHelpContentModel_QRegisterMetaType(){return qRegisterMetaType<MyQHelpContentModel*>();}
+
 void QHelpContentModel_ConnectContentsCreated(void* ptr)
 {
 	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));
@@ -965,6 +969,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpContentWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpContentWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpContentWidget*)
+
+int QHelpContentWidget_QHelpContentWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpContentWidget*>();}
 
 void* QHelpContentWidget_IndexOf(void* ptr, void* link)
 {
@@ -1741,7 +1749,7 @@ void* QHelpContentWidget_MetaObjectDefault(void* ptr)
 class MyQHelpEngine: public QHelpEngine
 {
 public:
-	MyQHelpEngine(const QString &collectionFile, QObject *parent = Q_NULLPTR) : QHelpEngine(collectionFile, parent) {};
+	MyQHelpEngine(const QString &collectionFile, QObject *parent = Q_NULLPTR) : QHelpEngine(collectionFile, parent) {QHelpEngine_QHelpEngine_QRegisterMetaType();};
 	void Signal_CurrentFilterChanged(const QString & newFilter) { QByteArray t56548b = newFilter.toUtf8(); QtHelp_PackedString newFilterPacked = { const_cast<char*>(t56548b.prepend("WHITESPACE").constData()+10), t56548b.size()-10 };callbackQHelpEngineCore_CurrentFilterChanged(this, newFilterPacked); };
 	void Signal_ReadersAboutToBeInvalidated() { callbackQHelpEngineCore_ReadersAboutToBeInvalidated(this); };
 	void Signal_SetupFinished() { callbackQHelpEngineCore_SetupFinished(this); };
@@ -1759,6 +1767,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpEngineCore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpEngine*)
+
+int QHelpEngine_QHelpEngine_QRegisterMetaType(){return qRegisterMetaType<MyQHelpEngine*>();}
 
 void* QHelpEngine_ContentWidget(void* ptr)
 {
@@ -1834,7 +1846,7 @@ void* QHelpEngine_IndexModel(void* ptr)
 class MyQHelpEngineCore: public QHelpEngineCore
 {
 public:
-	MyQHelpEngineCore(const QString &collectionFile, QObject *parent = Q_NULLPTR) : QHelpEngineCore(collectionFile, parent) {};
+	MyQHelpEngineCore(const QString &collectionFile, QObject *parent = Q_NULLPTR) : QHelpEngineCore(collectionFile, parent) {QHelpEngineCore_QHelpEngineCore_QRegisterMetaType();};
 	void Signal_CurrentFilterChanged(const QString & newFilter) { QByteArray t56548b = newFilter.toUtf8(); QtHelp_PackedString newFilterPacked = { const_cast<char*>(t56548b.prepend("WHITESPACE").constData()+10), t56548b.size()-10 };callbackQHelpEngineCore_CurrentFilterChanged(this, newFilterPacked); };
 	void Signal_ReadersAboutToBeInvalidated() { callbackQHelpEngineCore_ReadersAboutToBeInvalidated(this); };
 	void Signal_SetupFinished() { callbackQHelpEngineCore_SetupFinished(this); };
@@ -1853,6 +1865,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpEngineCore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpEngineCore*)
+
+int QHelpEngineCore_QHelpEngineCore_QRegisterMetaType(){return qRegisterMetaType<MyQHelpEngineCore*>();}
 
 void* QHelpEngineCore_NewQHelpEngineCore(char* collectionFile, void* parent)
 {
@@ -2406,6 +2422,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpIndexModel_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpIndexModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpIndexModel*)
+
+int QHelpIndexModel_QHelpIndexModel_QRegisterMetaType(){return qRegisterMetaType<MyQHelpIndexModel*>();}
 
 void* QHelpIndexModel_Filter(void* ptr, char* filter, char* wildcard)
 {
@@ -3164,6 +3184,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtHelp_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQHelpIndexWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpIndexWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpIndexWidget*)
+
+int QHelpIndexWidget_QHelpIndexWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpIndexWidget*>();}
 
 void QHelpIndexWidget_ActivateCurrentItem(void* ptr)
 {
@@ -3953,7 +3977,7 @@ void* QHelpIndexWidget_MetaObjectDefault(void* ptr)
 class MyQHelpSearchEngine: public QHelpSearchEngine
 {
 public:
-	MyQHelpSearchEngine(QHelpEngineCore *helpEngine, QObject *parent = Q_NULLPTR) : QHelpSearchEngine(helpEngine, parent) {};
+	MyQHelpSearchEngine(QHelpEngineCore *helpEngine, QObject *parent = Q_NULLPTR) : QHelpSearchEngine(helpEngine, parent) {QHelpSearchEngine_QHelpSearchEngine_QRegisterMetaType();};
 	void cancelIndexing() { callbackQHelpSearchEngine_CancelIndexing(this); };
 	void cancelSearching() { callbackQHelpSearchEngine_CancelSearching(this); };
 	void Signal_IndexingFinished() { callbackQHelpSearchEngine_IndexingFinished(this); };
@@ -3974,6 +3998,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchEngine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpSearchEngine*)
+
+int QHelpSearchEngine_QHelpSearchEngine_QRegisterMetaType(){return qRegisterMetaType<MyQHelpSearchEngine*>();}
 
 void* QHelpSearchEngine_NewQHelpSearchEngine(void* helpEngine, void* parent)
 {
@@ -4319,7 +4347,7 @@ void QHelpSearchQuery_SetWordList(void* ptr, char* vqs)
 class MyQHelpSearchQueryWidget: public QHelpSearchQueryWidget
 {
 public:
-	MyQHelpSearchQueryWidget(QWidget *parent = Q_NULLPTR) : QHelpSearchQueryWidget(parent) {};
+	MyQHelpSearchQueryWidget(QWidget *parent = Q_NULLPTR) : QHelpSearchQueryWidget(parent) {QHelpSearchQueryWidget_QHelpSearchQueryWidget_QRegisterMetaType();};
 	void Signal_Search() { callbackQHelpSearchQueryWidget_Search(this); };
 	bool close() { return callbackQHelpSearchQueryWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQHelpSearchQueryWidget_Event(this, event) != 0; };
@@ -4391,6 +4419,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchQueryWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchQueryWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpSearchQueryWidget*)
+
+int QHelpSearchQueryWidget_QHelpSearchQueryWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpSearchQueryWidget*>();}
 
 void* QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(void* parent)
 {
@@ -4981,6 +5013,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchResultWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchResultWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHelpSearchResultWidget*)
+
+int QHelpSearchResultWidget_QHelpSearchResultWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpSearchResultWidget*>();}
 
 void* QHelpSearchResultWidget_LinkAt(void* ptr, void* point)
 {

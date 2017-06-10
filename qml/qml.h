@@ -8,6 +8,15 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QJSEngine_QJSEngine_QRegisterMetaType();
+int QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType();
+int QQmlComponent_QQmlComponent_QRegisterMetaType();
+int QQmlContext_QQmlContext_QRegisterMetaType();
+int QQmlEngine_QQmlEngine_QRegisterMetaType();
+int QQmlExpression_QQmlExpression_QRegisterMetaType();
+int QQmlExtensionPlugin_QQmlExtensionPlugin_QRegisterMetaType();
+int QQmlFileSelector_QQmlFileSelector_QRegisterMetaType();
+int QQmlPropertyMap_QQmlPropertyMap_QRegisterMetaType();
 extern "C" {
 #endif
 

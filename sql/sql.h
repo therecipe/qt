@@ -8,6 +8,12 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QSqlDriver_QSqlDriver_QRegisterMetaType();
+int QSqlDriverPlugin_QSqlDriverPlugin_QRegisterMetaType();
+int QSqlQueryModel_QSqlQueryModel_QRegisterMetaType();
+int QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType();
+int QSqlRelationalTableModel_QSqlRelationalTableModel_QRegisterMetaType();
+int QSqlTableModel_QSqlTableModel_QRegisterMetaType();
 extern "C" {
 #endif
 

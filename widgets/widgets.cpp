@@ -330,7 +330,7 @@
 class MyQAbstractButton: public QAbstractButton
 {
 public:
-	MyQAbstractButton(QWidget *parent = Q_NULLPTR) : QAbstractButton(parent) {};
+	MyQAbstractButton(QWidget *parent = Q_NULLPTR) : QAbstractButton(parent) {QAbstractButton_QAbstractButton_QRegisterMetaType();};
 	void animateClick(int msec) { callbackQAbstractButton_AnimateClick(this, msec); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void checkStateSet() { callbackQAbstractButton_CheckStateSet(this); };
@@ -411,6 +411,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractButton*)
+
+int QAbstractButton_QAbstractButton_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractButton*>();}
 
 void* QAbstractButton_NewQAbstractButton(void* parent)
 {
@@ -889,7 +893,7 @@ void* QAbstractGraphicsShapeItem_BoundingRectDefault(void* ptr)
 class MyQAbstractItemDelegate: public QAbstractItemDelegate
 {
 public:
-	MyQAbstractItemDelegate(QObject *parent = Q_NULLPTR) : QAbstractItemDelegate(parent) {};
+	MyQAbstractItemDelegate(QObject *parent = Q_NULLPTR) : QAbstractItemDelegate(parent) {QAbstractItemDelegate_QAbstractItemDelegate_QRegisterMetaType();};
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool helpEvent(QHelpEvent * event, QAbstractItemView * view, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_HelpEvent(this, event, view, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	void Signal_CloseEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemDelegate_CloseEditor(this, editor, hint); };
@@ -915,6 +919,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemDelegate_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractItemDelegate_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractItemDelegate*)
+
+int QAbstractItemDelegate_QAbstractItemDelegate_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractItemDelegate*>();}
 
 void* QAbstractItemDelegate_NewQAbstractItemDelegate(void* parent)
 {
@@ -1396,7 +1404,7 @@ void* QAbstractItemDelegate_MetaObjectDefault(void* ptr)
 class MyQAbstractItemView: public QAbstractItemView
 {
 public:
-	MyQAbstractItemView(QWidget *parent = Q_NULLPTR) : QAbstractItemView(parent) {};
+	MyQAbstractItemView(QWidget *parent = Q_NULLPTR) : QAbstractItemView(parent) {QAbstractItemView_QAbstractItemView_QRegisterMetaType();};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQAbstractItemView_MoveCursor(this, cursorAction, modifiers)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQAbstractItemView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -1512,6 +1520,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractItemView*)
+
+int QAbstractItemView_QAbstractItemView_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractItemView*>();}
 
 void* QAbstractItemView_NewQAbstractItemView(void* parent)
 {
@@ -2936,7 +2948,7 @@ void* QAbstractItemView___selectedIndexes_newList(void* ptr)
 class MyQAbstractScrollArea: public QAbstractScrollArea
 {
 public:
-	MyQAbstractScrollArea(QWidget *parent = Q_NULLPTR) : QAbstractScrollArea(parent) {};
+	MyQAbstractScrollArea(QWidget *parent = Q_NULLPTR) : QAbstractScrollArea(parent) {QAbstractScrollArea_QAbstractScrollArea_QRegisterMetaType();};
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQWidget_ContextMenuEvent(this, e); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
@@ -3010,6 +3022,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractScrollArea*)
+
+int QAbstractScrollArea_QAbstractScrollArea_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractScrollArea*>();}
 
 void* QAbstractScrollArea_NewQAbstractScrollArea(void* parent)
 {
@@ -3315,7 +3331,7 @@ void* QAbstractScrollArea___scrollBarWidgets_newList(void* ptr)
 class MyQAbstractSlider: public QAbstractSlider
 {
 public:
-	MyQAbstractSlider(QWidget *parent = Q_NULLPTR) : QAbstractSlider(parent) {};
+	MyQAbstractSlider(QWidget *parent = Q_NULLPTR) : QAbstractSlider(parent) {QAbstractSlider_QAbstractSlider_QRegisterMetaType();};
 	void Signal_ActionTriggered(int action) { callbackQAbstractSlider_ActionTriggered(this, action); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void keyPressEvent(QKeyEvent * ev) { callbackQWidget_KeyPressEvent(this, ev); };
@@ -3394,6 +3410,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractSlider*)
+
+int QAbstractSlider_QAbstractSlider_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractSlider*>();}
 
 void* QAbstractSlider_NewQAbstractSlider(void* parent)
 {
@@ -3685,7 +3705,7 @@ int QAbstractSlider_Value(void* ptr)
 class MyQAbstractSpinBox: public QAbstractSpinBox
 {
 public:
-	MyQAbstractSpinBox(QWidget *parent = Q_NULLPTR) : QAbstractSpinBox(parent) {};
+	MyQAbstractSpinBox(QWidget *parent = Q_NULLPTR) : QAbstractSpinBox(parent) {QAbstractSpinBox_QAbstractSpinBox_QRegisterMetaType();};
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
 	void clear() { callbackQAbstractSpinBox_Clear(this); };
 	void closeEvent(QCloseEvent * event) { callbackQWidget_CloseEvent(this, event); };
@@ -3763,6 +3783,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractSpinBox*)
+
+int QAbstractSpinBox_QAbstractSpinBox_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractSpinBox*>();}
 
 void* QAbstractSpinBox_NewQAbstractSpinBox(void* parent)
 {
@@ -4362,9 +4386,9 @@ struct QtWidgets_PackedString QAccessibleWidget_LocalizedActionNameDefault(void*
 class MyQAction: public QAction
 {
 public:
-	MyQAction(QObject *parent = nullptr) : QAction(parent) {};
-	MyQAction(const QIcon &icon, const QString &text, QObject *parent = nullptr) : QAction(icon, text, parent) {};
-	MyQAction(const QString &text, QObject *parent = nullptr) : QAction(text, parent) {};
+	MyQAction(QObject *parent = nullptr) : QAction(parent) {QAction_QAction_QRegisterMetaType();};
+	MyQAction(const QIcon &icon, const QString &text, QObject *parent = nullptr) : QAction(icon, text, parent) {QAction_QAction_QRegisterMetaType();};
+	MyQAction(const QString &text, QObject *parent = nullptr) : QAction(text, parent) {QAction_QAction_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQAction_Event(this, e) != 0; };
 	void Signal_Changed() { callbackQAction_Changed(this); };
 	void hover() { callbackQAction_Hover(this); };
@@ -4388,6 +4412,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAction_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAction_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAction*)
+
+int QAction_QAction_QRegisterMetaType(){return qRegisterMetaType<MyQAction*>();}
 
 void* QAction_NewQAction(void* parent)
 {
@@ -5189,7 +5217,7 @@ void* QAction_MetaObjectDefault(void* ptr)
 class MyQActionGroup: public QActionGroup
 {
 public:
-	MyQActionGroup(QObject *parent) : QActionGroup(parent) {};
+	MyQActionGroup(QObject *parent) : QActionGroup(parent) {QActionGroup_QActionGroup_QRegisterMetaType();};
 	void Signal_Hovered(QAction * action) { callbackQActionGroup_Hovered(this, action); };
 	void setDisabled(bool b) { callbackQActionGroup_SetDisabled(this, b); };
 	void setEnabled(bool vbo) { callbackQActionGroup_SetEnabled(this, vbo); };
@@ -5208,6 +5236,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQActionGroup_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQActionGroup_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQActionGroup*)
+
+int QActionGroup_QActionGroup_QRegisterMetaType(){return qRegisterMetaType<MyQActionGroup*>();}
 
 void* QActionGroup_AddAction(void* ptr, void* action)
 {
@@ -5558,7 +5590,7 @@ void* QActionGroup_MetaObjectDefault(void* ptr)
 class MyQApplication: public QApplication
 {
 public:
-	MyQApplication(int &argc, char **argv) : QApplication(argc, argv) {};
+	MyQApplication(int &argc, char **argv) : QApplication(argc, argv) {QApplication_QApplication_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQApplication_Event(this, e) != 0; };
 	void aboutQt() { callbackQApplication_AboutQt(this); };
 	void closeAllWindows() { callbackQApplication_CloseAllWindows(this); };
@@ -5593,6 +5625,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQApplication_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQApplication_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQApplication*)
+
+int QApplication_QApplication_QRegisterMetaType(){return qRegisterMetaType<MyQApplication*>();}
 
 void* QApplication_NewQApplication(int argc, char* argv)
 {
@@ -6147,7 +6183,7 @@ void* QApplication_MetaObjectDefault(void* ptr)
 class MyQBoxLayout: public QBoxLayout
 {
 public:
-	MyQBoxLayout(Direction dir, QWidget *parent = Q_NULLPTR) : QBoxLayout(dir, parent) {};
+	MyQBoxLayout(Direction dir, QWidget *parent = Q_NULLPTR) : QBoxLayout(dir, parent) {QBoxLayout_QBoxLayout_QRegisterMetaType();};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQBoxLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQBoxLayout_AddItem(this, item); };
 	void invalidate() { callbackQLayoutItem_Invalidate(this); };
@@ -6180,6 +6216,10 @@ public:
 	QSpacerItem * spacerItem() { return static_cast<QSpacerItem*>(callbackQLayoutItem_SpacerItem(this)); };
 	QWidget * widget() { return static_cast<QWidget*>(callbackQLayoutItem_Widget(this)); };
 };
+
+Q_DECLARE_METATYPE(MyQBoxLayout*)
+
+int QBoxLayout_QBoxLayout_QRegisterMetaType(){return qRegisterMetaType<MyQBoxLayout*>();}
 
 void* QBoxLayout_NewQBoxLayout(long long dir, void* parent)
 {
@@ -6384,7 +6424,7 @@ int QBoxLayout_Stretch(void* ptr, int index)
 class MyQButtonGroup: public QButtonGroup
 {
 public:
-	MyQButtonGroup(QObject *parent = Q_NULLPTR) : QButtonGroup(parent) {};
+	MyQButtonGroup(QObject *parent = Q_NULLPTR) : QButtonGroup(parent) {QButtonGroup_QButtonGroup_QRegisterMetaType();};
 	void Signal_ButtonClicked(QAbstractButton * button) { callbackQButtonGroup_ButtonClicked(this, button); };
 	void Signal_ButtonClicked2(int id) { callbackQButtonGroup_ButtonClicked2(this, id); };
 	void Signal_ButtonPressed(QAbstractButton * button) { callbackQButtonGroup_ButtonPressed(this, button); };
@@ -6405,6 +6445,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQButtonGroup_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQButtonGroup_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQButtonGroup*)
+
+int QButtonGroup_QButtonGroup_QRegisterMetaType(){return qRegisterMetaType<MyQButtonGroup*>();}
 
 void* QButtonGroup_NewQButtonGroup(void* parent)
 {
@@ -6810,7 +6854,7 @@ void* QButtonGroup_MetaObjectDefault(void* ptr)
 class MyQCalendarWidget: public QCalendarWidget
 {
 public:
-	MyQCalendarWidget(QWidget *parent = Q_NULLPTR) : QCalendarWidget(parent) {};
+	MyQCalendarWidget(QWidget *parent = Q_NULLPTR) : QCalendarWidget(parent) {QCalendarWidget_QCalendarWidget_QRegisterMetaType();};
 	void Signal_Activated(const QDate & date) { callbackQCalendarWidget_Activated(this, const_cast<QDate*>(&date)); };
 	void Signal_Clicked(const QDate & date) { callbackQCalendarWidget_Clicked(this, const_cast<QDate*>(&date)); };
 	void Signal_CurrentPageChanged(int year, int month) { callbackQCalendarWidget_CurrentPageChanged(this, year, month); };
@@ -6895,6 +6939,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQCalendarWidget*)
+
+int QCalendarWidget_QCalendarWidget_QRegisterMetaType(){return qRegisterMetaType<MyQCalendarWidget*>();}
 
 void* QCalendarWidget_NewQCalendarWidget(void* parent)
 {
@@ -7274,8 +7322,8 @@ void* QCalendarWidget_____dateTextFormat_keyList_newList(void* ptr)
 class MyQCheckBox: public QCheckBox
 {
 public:
-	MyQCheckBox(QWidget *parent = Q_NULLPTR) : QCheckBox(parent) {};
-	MyQCheckBox(const QString &text, QWidget *parent = Q_NULLPTR) : QCheckBox(text, parent) {};
+	MyQCheckBox(QWidget *parent = Q_NULLPTR) : QCheckBox(parent) {QCheckBox_QCheckBox_QRegisterMetaType();};
+	MyQCheckBox(const QString &text, QWidget *parent = Q_NULLPTR) : QCheckBox(text, parent) {QCheckBox_QCheckBox_QRegisterMetaType();};
 	void checkStateSet() { callbackQAbstractButton_CheckStateSet(this); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
 	void nextCheckState() { callbackQAbstractButton_NextCheckState(this); };
@@ -7358,6 +7406,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQCheckBox*)
+
+int QCheckBox_QCheckBox_QRegisterMetaType(){return qRegisterMetaType<MyQCheckBox*>();}
+
 void* QCheckBox_NewQCheckBox(void* parent)
 {
 		return new MyQCheckBox(static_cast<QWidget*>(parent));
@@ -7426,8 +7478,8 @@ void QCheckBox_InitStyleOption(void* ptr, void* option)
 class MyQColorDialog: public QColorDialog
 {
 public:
-	MyQColorDialog(QWidget *parent = Q_NULLPTR) : QColorDialog(parent) {};
-	MyQColorDialog(const QColor &initial, QWidget *parent = Q_NULLPTR) : QColorDialog(initial, parent) {};
+	MyQColorDialog(QWidget *parent = Q_NULLPTR) : QColorDialog(parent) {QColorDialog_QColorDialog_QRegisterMetaType();};
+	MyQColorDialog(const QColor &initial, QWidget *parent = Q_NULLPTR) : QColorDialog(initial, parent) {QColorDialog_QColorDialog_QRegisterMetaType();};
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void Signal_ColorSelected(const QColor & color) { callbackQColorDialog_ColorSelected(this, const_cast<QColor*>(&color)); };
 	void Signal_CurrentColorChanged(const QColor & color) { callbackQColorDialog_CurrentColorChanged(this, const_cast<QColor*>(&color)); };
@@ -7506,6 +7558,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQColorDialog*)
+
+int QColorDialog_QColorDialog_QRegisterMetaType(){return qRegisterMetaType<MyQColorDialog*>();}
 
 void* QColorDialog_QColorDialog_CustomColor(int index)
 {
@@ -7705,7 +7761,7 @@ void* QColormap___colormap_newList(void* ptr)
 class MyQColumnView: public QColumnView
 {
 public:
-	MyQColumnView(QWidget *parent = Q_NULLPTR) : QColumnView(parent) {};
+	MyQColumnView(QWidget *parent = Q_NULLPTR) : QColumnView(parent) {QColumnView_QColumnView_QRegisterMetaType();};
 	QAbstractItemView * createColumn(const QModelIndex & index) { return static_cast<QAbstractItemView*>(callbackQColumnView_CreateColumn(this, const_cast<QModelIndex*>(&index))); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQColumnView_MoveCursor(this, cursorAction, modifiers)); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQColumnView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
@@ -7823,6 +7879,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQColumnView*)
+
+int QColumnView_QColumnView_QRegisterMetaType(){return qRegisterMetaType<MyQColumnView*>();}
 
 void* QColumnView_CreateColumn(void* ptr, void* index)
 {
@@ -8057,7 +8117,7 @@ void* QColumnView___columnWidths_newList(void* ptr)
 class MyQComboBox: public QComboBox
 {
 public:
-	MyQComboBox(QWidget *parent = Q_NULLPTR) : QComboBox(parent) {};
+	MyQComboBox(QWidget *parent = Q_NULLPTR) : QComboBox(parent) {QComboBox_QComboBox_QRegisterMetaType();};
 	void Signal_Activated2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_Activated2(this, textPacked); };
 	void Signal_Activated(int index) { callbackQComboBox_Activated(this, index); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
@@ -8142,6 +8202,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQComboBox*)
+
+int QComboBox_QComboBox_QRegisterMetaType(){return qRegisterMetaType<MyQComboBox*>();}
 
 void* QComboBox_NewQComboBox(void* parent)
 {
@@ -8649,9 +8713,9 @@ void QComboBox_InitStyleOption(void* ptr, void* option)
 class MyQCommandLinkButton: public QCommandLinkButton
 {
 public:
-	MyQCommandLinkButton(QWidget *parent = Q_NULLPTR) : QCommandLinkButton(parent) {};
-	MyQCommandLinkButton(const QString &text, QWidget *parent = Q_NULLPTR) : QCommandLinkButton(text, parent) {};
-	MyQCommandLinkButton(const QString &text, const QString &description, QWidget *parent = Q_NULLPTR) : QCommandLinkButton(text, description, parent) {};
+	MyQCommandLinkButton(QWidget *parent = Q_NULLPTR) : QCommandLinkButton(parent) {QCommandLinkButton_QCommandLinkButton_QRegisterMetaType();};
+	MyQCommandLinkButton(const QString &text, QWidget *parent = Q_NULLPTR) : QCommandLinkButton(text, parent) {QCommandLinkButton_QCommandLinkButton_QRegisterMetaType();};
+	MyQCommandLinkButton(const QString &text, const QString &description, QWidget *parent = Q_NULLPTR) : QCommandLinkButton(text, description, parent) {QCommandLinkButton_QCommandLinkButton_QRegisterMetaType();};
 	void paintEvent(QPaintEvent * vqp) { callbackQPushButton_PaintEvent(this, vqp); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -8734,6 +8798,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQCommandLinkButton*)
+
+int QCommandLinkButton_QCommandLinkButton_QRegisterMetaType(){return qRegisterMetaType<MyQCommandLinkButton*>();}
+
 void* QCommandLinkButton_NewQCommandLinkButton(void* parent)
 {
 		return new MyQCommandLinkButton(static_cast<QWidget*>(parent));
@@ -8767,7 +8835,7 @@ struct QtWidgets_PackedString QCommandLinkButton_Description(void* ptr)
 class MyQCommonStyle: public QCommonStyle
 {
 public:
-	MyQCommonStyle() : QCommonStyle() {};
+	MyQCommonStyle() : QCommonStyle() {QCommonStyle_QCommonStyle_QRegisterMetaType();};
 	void polish(QApplication * app) { callbackQStyle_Polish2(this, app); };
 	void polish(QPalette & pal) { callbackQStyle_Polish(this, static_cast<QPalette*>(&pal)); };
 	void polish(QWidget * widget) { callbackQStyle_Polish3(this, widget); };
@@ -8803,6 +8871,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQStyle_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStyle_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQCommonStyle*)
+
+int QCommonStyle_QCommonStyle_QRegisterMetaType(){return qRegisterMetaType<MyQCommonStyle*>();}
 
 void* QCommonStyle_NewQCommonStyle()
 {
@@ -8999,9 +9071,9 @@ void* QCommonStyle_StandardIconDefault(void* ptr, long long standardIcon, void* 
 class MyQCompleter: public QCompleter
 {
 public:
-	MyQCompleter(QAbstractItemModel *model, QObject *parent = Q_NULLPTR) : QCompleter(model, parent) {};
-	MyQCompleter(QObject *parent = Q_NULLPTR) : QCompleter(parent) {};
-	MyQCompleter(const QStringList &list, QObject *parent = Q_NULLPTR) : QCompleter(list, parent) {};
+	MyQCompleter(QAbstractItemModel *model, QObject *parent = Q_NULLPTR) : QCompleter(model, parent) {QCompleter_QCompleter_QRegisterMetaType();};
+	MyQCompleter(QObject *parent = Q_NULLPTR) : QCompleter(parent) {QCompleter_QCompleter_QRegisterMetaType();};
+	MyQCompleter(const QStringList &list, QObject *parent = Q_NULLPTR) : QCompleter(list, parent) {QCompleter_QCompleter_QRegisterMetaType();};
 	bool event(QEvent * ev) { return callbackQCompleter_Event(this, ev) != 0; };
 	bool eventFilter(QObject * o, QEvent * e) { return callbackQCompleter_EventFilter(this, o, e) != 0; };
 	void Signal_Activated2(const QModelIndex & index) { callbackQCompleter_Activated2(this, const_cast<QModelIndex*>(&index)); };
@@ -9023,6 +9095,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCompleter_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCompleter_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQCompleter*)
+
+int QCompleter_QCompleter_QRegisterMetaType(){return qRegisterMetaType<MyQCompleter*>();}
 
 void* QCompleter_NewQCompleter2(void* model, void* parent)
 {
@@ -9575,7 +9651,7 @@ void* QCompleter_MetaObjectDefault(void* ptr)
 class MyQDataWidgetMapper: public QDataWidgetMapper
 {
 public:
-	MyQDataWidgetMapper(QObject *parent = Q_NULLPTR) : QDataWidgetMapper(parent) {};
+	MyQDataWidgetMapper(QObject *parent = Q_NULLPTR) : QDataWidgetMapper(parent) {QDataWidgetMapper_QDataWidgetMapper_QRegisterMetaType();};
 	void setCurrentIndex(int index) { callbackQDataWidgetMapper_SetCurrentIndex(this, index); };
 	bool submit() { return callbackQDataWidgetMapper_Submit(this) != 0; };
 	void Signal_CurrentIndexChanged(int index) { callbackQDataWidgetMapper_CurrentIndexChanged(this, index); };
@@ -9597,6 +9673,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQDataWidgetMapper_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDataWidgetMapper_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDataWidgetMapper*)
+
+int QDataWidgetMapper_QDataWidgetMapper_QRegisterMetaType(){return qRegisterMetaType<MyQDataWidgetMapper*>();}
 
 void QDataWidgetMapper_SetCurrentIndex(void* ptr, int index)
 {
@@ -10004,8 +10084,8 @@ void* QDataWidgetMapper_MetaObjectDefault(void* ptr)
 class MyQDateEdit: public QDateEdit
 {
 public:
-	MyQDateEdit(QWidget *parent = Q_NULLPTR) : QDateEdit(parent) {};
-	MyQDateEdit(const QDate &date, QWidget *parent = Q_NULLPTR) : QDateEdit(date, parent) {};
+	MyQDateEdit(QWidget *parent = Q_NULLPTR) : QDateEdit(parent) {QDateEdit_QDateEdit_QRegisterMetaType();};
+	MyQDateEdit(const QDate &date, QWidget *parent = Q_NULLPTR) : QDateEdit(date, parent) {QDateEdit_QDateEdit_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void clear() { callbackQDateTimeEdit_Clear(this); };
 	void Signal_DateChanged(const QDate & date) { callbackQDateTimeEdit_DateChanged(this, const_cast<QDate*>(&date)); };
@@ -10091,6 +10171,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDateEdit*)
+
+int QDateEdit_QDateEdit_QRegisterMetaType(){return qRegisterMetaType<MyQDateEdit*>();}
 
 void* QDateEdit_NewQDateEdit(void* parent)
 {
@@ -10110,10 +10194,10 @@ void QDateEdit_DestroyQDateEdit(void* ptr)
 class MyQDateTimeEdit: public QDateTimeEdit
 {
 public:
-	MyQDateTimeEdit(QWidget *parent = Q_NULLPTR) : QDateTimeEdit(parent) {};
-	MyQDateTimeEdit(const QDate &date, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(date, parent) {};
-	MyQDateTimeEdit(const QDateTime &datetime, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(datetime, parent) {};
-	MyQDateTimeEdit(const QTime &time, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(time, parent) {};
+	MyQDateTimeEdit(QWidget *parent = Q_NULLPTR) : QDateTimeEdit(parent) {QDateTimeEdit_QDateTimeEdit_QRegisterMetaType();};
+	MyQDateTimeEdit(const QDate &date, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(date, parent) {QDateTimeEdit_QDateTimeEdit_QRegisterMetaType();};
+	MyQDateTimeEdit(const QDateTime &datetime, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(datetime, parent) {QDateTimeEdit_QDateTimeEdit_QRegisterMetaType();};
+	MyQDateTimeEdit(const QTime &time, QWidget *parent = Q_NULLPTR) : QDateTimeEdit(time, parent) {QDateTimeEdit_QDateTimeEdit_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void clear() { callbackQDateTimeEdit_Clear(this); };
 	void Signal_DateChanged(const QDate & date) { callbackQDateTimeEdit_DateChanged(this, const_cast<QDate*>(&date)); };
@@ -10199,6 +10283,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDateTimeEdit*)
+
+int QDateTimeEdit_QDateTimeEdit_QRegisterMetaType(){return qRegisterMetaType<MyQDateTimeEdit*>();}
 
 void* QDateTimeEdit_NewQDateTimeEdit(void* parent)
 {
@@ -10649,6 +10737,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQDesktopWidget*)
+
+int QDesktopWidget_QDesktopWidget_QRegisterMetaType(){return qRegisterMetaType<MyQDesktopWidget*>();}
+
 void* QDesktopWidget_Screen(void* ptr, int screen)
 {
 	return static_cast<QDesktopWidget*>(ptr)->screen(screen);
@@ -10772,7 +10864,7 @@ int QDesktopWidget_ScreenNumber(void* ptr, void* widget)
 class MyQDial: public QDial
 {
 public:
-	MyQDial(QWidget *parent = Q_NULLPTR) : QDial(parent) {};
+	MyQDial(QWidget *parent = Q_NULLPTR) : QDial(parent) {QDial_QDial_QRegisterMetaType();};
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
 	void mousePressEvent(QMouseEvent * e) { callbackQWidget_MousePressEvent(this, e); };
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQWidget_MouseReleaseEvent(this, e); };
@@ -10854,6 +10946,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQDial*)
+
+int QDial_QDial_QRegisterMetaType(){return qRegisterMetaType<MyQDial*>();}
+
 void* QDial_NewQDial(void* parent)
 {
 		return new MyQDial(static_cast<QWidget*>(parent));
@@ -10917,7 +11013,7 @@ void QDial_InitStyleOption(void* ptr, void* option)
 class MyQDialog: public QDialog
 {
 public:
-	MyQDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f) {};
+	MyQDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f) {QDialog_QDialog_QRegisterMetaType();};
 	int exec() { return callbackQDialog_Exec(this); };
 	void accept() { callbackQDialog_Accept(this); };
 	void Signal_Accepted() { callbackQDialog_Accepted(this); };
@@ -10995,6 +11091,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDialog*)
+
+int QDialog_QDialog_QRegisterMetaType(){return qRegisterMetaType<MyQDialog*>();}
 
 void QDialog_SetModal(void* ptr, char modal)
 {
@@ -11249,10 +11349,10 @@ int QDialog_Result(void* ptr)
 class MyQDialogButtonBox: public QDialogButtonBox
 {
 public:
-	MyQDialogButtonBox(QWidget *parent = Q_NULLPTR) : QDialogButtonBox(parent) {};
-	MyQDialogButtonBox(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(orientation, parent) {};
-	MyQDialogButtonBox(StandardButtons buttons, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(buttons, parent) {};
-	MyQDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(buttons, orientation, parent) {};
+	MyQDialogButtonBox(QWidget *parent = Q_NULLPTR) : QDialogButtonBox(parent) {QDialogButtonBox_QDialogButtonBox_QRegisterMetaType();};
+	MyQDialogButtonBox(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(orientation, parent) {QDialogButtonBox_QDialogButtonBox_QRegisterMetaType();};
+	MyQDialogButtonBox(StandardButtons buttons, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(buttons, parent) {QDialogButtonBox_QDialogButtonBox_QRegisterMetaType();};
+	MyQDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QDialogButtonBox(buttons, orientation, parent) {QDialogButtonBox_QDialogButtonBox_QRegisterMetaType();};
 	void Signal_Accepted() { callbackQDialogButtonBox_Accepted(this); };
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
 	void Signal_Clicked(QAbstractButton * button) { callbackQDialogButtonBox_Clicked(this, button); };
@@ -11326,6 +11426,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDialogButtonBox*)
+
+int QDialogButtonBox_QDialogButtonBox_QRegisterMetaType(){return qRegisterMetaType<MyQDialogButtonBox*>();}
 
 void QDialogButtonBox_ConnectAccepted(void* ptr)
 {
@@ -11505,8 +11609,8 @@ void* QDialogButtonBox___buttons_newList(void* ptr)
 class MyQDockWidget: public QDockWidget
 {
 public:
-	MyQDockWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QDockWidget(parent, flags) {};
-	MyQDockWidget(const QString &title, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QDockWidget(title, parent, flags) {};
+	MyQDockWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QDockWidget(parent, flags) {QDockWidget_QDockWidget_QRegisterMetaType();};
+	MyQDockWidget(const QString &title, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QDockWidget(title, parent, flags) {QDockWidget_QDockWidget_QRegisterMetaType();};
 	void Signal_FeaturesChanged(QDockWidget::DockWidgetFeatures features) { callbackQDockWidget_FeaturesChanged(this, features); };
 	void Signal_AllowedAreasChanged(Qt::DockWidgetAreas allowedAreas) { callbackQDockWidget_AllowedAreasChanged(this, allowedAreas); };
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
@@ -11581,6 +11685,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDockWidget*)
+
+int QDockWidget_QDockWidget_QRegisterMetaType(){return qRegisterMetaType<MyQDockWidget*>();}
 
 void QDockWidget_ConnectFeaturesChanged(void* ptr)
 {
@@ -11740,7 +11848,7 @@ void QDockWidget_InitStyleOption(void* ptr, void* option)
 class MyQDoubleSpinBox: public QDoubleSpinBox
 {
 public:
-	MyQDoubleSpinBox(QWidget *parent = Q_NULLPTR) : QDoubleSpinBox(parent) {};
+	MyQDoubleSpinBox(QWidget *parent = Q_NULLPTR) : QDoubleSpinBox(parent) {QDoubleSpinBox_QDoubleSpinBox_QRegisterMetaType();};
 	void setValue(double val) { callbackQDoubleSpinBox_SetValue(this, val); };
 	void Signal_ValueChanged2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQDoubleSpinBox_ValueChanged2(this, textPacked); };
 	void Signal_ValueChanged(double d) { callbackQDoubleSpinBox_ValueChanged(this, d); };
@@ -11823,6 +11931,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQDoubleSpinBox*)
+
+int QDoubleSpinBox_QDoubleSpinBox_QRegisterMetaType(){return qRegisterMetaType<MyQDoubleSpinBox*>();}
 
 void* QDoubleSpinBox_NewQDoubleSpinBox(void* parent)
 {
@@ -11972,7 +12084,7 @@ int QDoubleSpinBox_Decimals(void* ptr)
 class MyQErrorMessage: public QErrorMessage
 {
 public:
-	MyQErrorMessage(QWidget *parent = Q_NULLPTR) : QErrorMessage(parent) {};
+	MyQErrorMessage(QWidget *parent = Q_NULLPTR) : QErrorMessage(parent) {QErrorMessage_QErrorMessage_QRegisterMetaType();};
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void done(int a) { callbackQErrorMessage_Done(this, a); };
 	void showMessage(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQErrorMessage_ShowMessage(this, messagePacked); };
@@ -12053,6 +12165,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQErrorMessage*)
+
+int QErrorMessage_QErrorMessage_QRegisterMetaType(){return qRegisterMetaType<MyQErrorMessage*>();}
+
 void* QErrorMessage_QErrorMessage_QtHandler()
 {
 	return QErrorMessage::qtHandler();
@@ -12101,8 +12217,8 @@ void QErrorMessage_DestroyQErrorMessage(void* ptr)
 class MyQFileDialog: public QFileDialog
 {
 public:
-	MyQFileDialog(QWidget *parent, Qt::WindowFlags flags) : QFileDialog(parent, flags) {};
-	MyQFileDialog(QWidget *parent = Q_NULLPTR, const QString &caption = QString(), const QString &directory = QString(), const QString &filter = QString()) : QFileDialog(parent, caption, directory, filter) {};
+	MyQFileDialog(QWidget *parent, Qt::WindowFlags flags) : QFileDialog(parent, flags) {QFileDialog_QFileDialog_QRegisterMetaType();};
+	MyQFileDialog(QWidget *parent = Q_NULLPTR, const QString &caption = QString(), const QString &directory = QString(), const QString &filter = QString()) : QFileDialog(parent, caption, directory, filter) {QFileDialog_QFileDialog_QRegisterMetaType();};
 	void accept() { callbackQFileDialog_Accept(this); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void Signal_CurrentChanged(const QString & path) { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };callbackQFileDialog_CurrentChanged(this, pathPacked); };
@@ -12188,6 +12304,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQFileDialog*)
+
+int QFileDialog_QFileDialog_QRegisterMetaType(){return qRegisterMetaType<MyQFileDialog*>();}
 
 void* QFileDialog_NewQFileDialog(void* parent, long long flags)
 {
@@ -12832,7 +12952,7 @@ struct QtWidgets_PackedString QFileIconProvider_TypeDefault(void* ptr, void* inf
 class MyQFileSystemModel: public QFileSystemModel
 {
 public:
-	MyQFileSystemModel(QObject *parent = Q_NULLPTR) : QFileSystemModel(parent) {};
+	MyQFileSystemModel(QObject *parent = Q_NULLPTR) : QFileSystemModel(parent) {QFileSystemModel_QFileSystemModel_QRegisterMetaType();};
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQFileSystemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool event(QEvent * event) { return callbackQFileSystemModel_Event(this, event) != 0; };
 	bool setData(const QModelIndex & idx, const QVariant & value, int role) { return callbackQFileSystemModel_SetData(this, const_cast<QModelIndex*>(&idx), const_cast<QVariant*>(&value), role) != 0; };
@@ -12901,6 +13021,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQFileSystemModel_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFileSystemModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQFileSystemModel*)
+
+int QFileSystemModel_QFileSystemModel_QRegisterMetaType(){return qRegisterMetaType<MyQFileSystemModel*>();}
 
 int QFileSystemModel_FilePathRole_Type()
 {
@@ -13776,7 +13900,7 @@ void* QFileSystemModel_MetaObjectDefault(void* ptr)
 class MyQFocusFrame: public QFocusFrame
 {
 public:
-	MyQFocusFrame(QWidget *parent = Q_NULLPTR) : QFocusFrame(parent) {};
+	MyQFocusFrame(QWidget *parent = Q_NULLPTR) : QFocusFrame(parent) {QFocusFrame_QFocusFrame_QRegisterMetaType();};
 	void paintEvent(QPaintEvent * vqp) { callbackQWidget_PaintEvent(this, vqp); };
 	bool close() { return callbackQWidget_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -13846,6 +13970,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQFocusFrame*)
+
+int QFocusFrame_QFocusFrame_QRegisterMetaType(){return qRegisterMetaType<MyQFocusFrame*>();}
+
 void* QFocusFrame_NewQFocusFrame(void* parent)
 {
 		return new MyQFocusFrame(static_cast<QWidget*>(parent));
@@ -13874,7 +14002,7 @@ void QFocusFrame_InitStyleOption(void* ptr, void* option)
 class MyQFontComboBox: public QFontComboBox
 {
 public:
-	MyQFontComboBox(QWidget *parent = Q_NULLPTR) : QFontComboBox(parent) {};
+	MyQFontComboBox(QWidget *parent = Q_NULLPTR) : QFontComboBox(parent) {QFontComboBox_QFontComboBox_QRegisterMetaType();};
 	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontComboBox_CurrentFontChanged(this, const_cast<QFont*>(&font)); };
 	void setCurrentFont(const QFont & fo) { callbackQFontComboBox_SetCurrentFont(this, const_cast<QFont*>(&fo)); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -13962,6 +14090,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQFontComboBox*)
+
+int QFontComboBox_QFontComboBox_QRegisterMetaType(){return qRegisterMetaType<MyQFontComboBox*>();}
+
 void QFontComboBox_ConnectCurrentFontChanged(void* ptr)
 {
 	QObject::connect(static_cast<QFontComboBox*>(ptr), static_cast<void (QFontComboBox::*)(const QFont &)>(&QFontComboBox::currentFontChanged), static_cast<MyQFontComboBox*>(ptr), static_cast<void (MyQFontComboBox::*)(const QFont &)>(&MyQFontComboBox::Signal_CurrentFontChanged));
@@ -14020,8 +14152,8 @@ void* QFontComboBox_CurrentFont(void* ptr)
 class MyQFontDialog: public QFontDialog
 {
 public:
-	MyQFontDialog(QWidget *parent = Q_NULLPTR) : QFontDialog(parent) {};
-	MyQFontDialog(const QFont &initial, QWidget *parent = Q_NULLPTR) : QFontDialog(initial, parent) {};
+	MyQFontDialog(QWidget *parent = Q_NULLPTR) : QFontDialog(parent) {QFontDialog_QFontDialog_QRegisterMetaType();};
+	MyQFontDialog(const QFont &initial, QWidget *parent = Q_NULLPTR) : QFontDialog(initial, parent) {QFontDialog_QFontDialog_QRegisterMetaType();};
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontDialog_CurrentFontChanged(this, const_cast<QFont*>(&font)); };
 	void done(int result) { callbackQFontDialog_Done(this, result); };
@@ -14100,6 +14232,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQFontDialog*)
+
+int QFontDialog_QFontDialog_QRegisterMetaType(){return qRegisterMetaType<MyQFontDialog*>();}
 
 void QFontDialog_Open(void* ptr, void* receiver, char* member)
 {
@@ -14214,7 +14350,7 @@ char QFontDialog_TestOption(void* ptr, long long option)
 class MyQFormLayout: public QFormLayout
 {
 public:
-	MyQFormLayout(QWidget *parent = Q_NULLPTR) : QFormLayout(parent) {};
+	MyQFormLayout(QWidget *parent = Q_NULLPTR) : QFormLayout(parent) {QFormLayout_QFormLayout_QRegisterMetaType();};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQFormLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQFormLayout_AddItem(this, item); };
 	void invalidate() { callbackQLayoutItem_Invalidate(this); };
@@ -14247,6 +14383,10 @@ public:
 	QWidget * widget() { return static_cast<QWidget*>(callbackQLayoutItem_Widget(this)); };
 	int minimumHeightForWidth(int w) const { return callbackQLayoutItem_MinimumHeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 };
+
+Q_DECLARE_METATYPE(MyQFormLayout*)
+
+int QFormLayout_QFormLayout_QRegisterMetaType(){return qRegisterMetaType<MyQFormLayout*>();}
 
 void* QFormLayout_NewQFormLayout(void* parent)
 {
@@ -14482,7 +14622,7 @@ int QFormLayout_VerticalSpacing(void* ptr)
 class MyQFrame: public QFrame
 {
 public:
-	MyQFrame(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QFrame(parent, f) {};
+	MyQFrame(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QFrame(parent, f) {QFrame_QFrame_QRegisterMetaType();};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void paintEvent(QPaintEvent * vqp) { callbackQWidget_PaintEvent(this, vqp); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -14552,6 +14692,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQFrame*)
+
+int QFrame_QFrame_QRegisterMetaType(){return qRegisterMetaType<MyQFrame*>();}
 
 void* QFrame_NewQFrame(void* parent, long long fo)
 {
@@ -14636,7 +14780,7 @@ void QFrame_InitStyleOption(void* ptr, void* option)
 class MyQGesture: public QGesture
 {
 public:
-	MyQGesture(QObject *parent = Q_NULLPTR) : QGesture(parent) {};
+	MyQGesture(QObject *parent = Q_NULLPTR) : QGesture(parent) {QGesture_QGesture_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQGesture_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGesture_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQGesture_ChildEvent(this, event); };
@@ -14649,6 +14793,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGesture_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGesture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGesture*)
+
+int QGesture_QGesture_QRegisterMetaType(){return qRegisterMetaType<MyQGesture*>();}
 
 void* QGesture_NewQGesture(void* parent)
 {
@@ -15316,6 +15464,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsAnchor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQGraphicsAnchor*)
+
+int QGraphicsAnchor_QGraphicsAnchor_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsAnchor*>();}
+
 void QGraphicsAnchor_SetSizePolicy(void* ptr, long long policy)
 {
 	static_cast<QGraphicsAnchor*>(ptr)->setSizePolicy(static_cast<QSizePolicy::Policy>(policy));
@@ -15655,7 +15807,7 @@ double QGraphicsAnchorLayout_VerticalSpacing(void* ptr)
 class MyQGraphicsBlurEffect: public QGraphicsBlurEffect
 {
 public:
-	MyQGraphicsBlurEffect(QObject *parent = Q_NULLPTR) : QGraphicsBlurEffect(parent) {};
+	MyQGraphicsBlurEffect(QObject *parent = Q_NULLPTR) : QGraphicsBlurEffect(parent) {QGraphicsBlurEffect_QGraphicsBlurEffect_QRegisterMetaType();};
 	void Signal_BlurHintsChanged(QGraphicsBlurEffect::BlurHints hints) { callbackQGraphicsBlurEffect_BlurHintsChanged(this, hints); };
 	void Signal_BlurRadiusChanged(qreal radius) { callbackQGraphicsBlurEffect_BlurRadiusChanged(this, radius); };
 	void setBlurHints(QGraphicsBlurEffect::BlurHints hints) { callbackQGraphicsBlurEffect_SetBlurHints(this, hints); };
@@ -15678,6 +15830,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsEffect_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsBlurEffect*)
+
+int QGraphicsBlurEffect_QGraphicsBlurEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsBlurEffect*>();}
 
 void QGraphicsBlurEffect_ConnectBlurHintsChanged(void* ptr)
 {
@@ -15798,7 +15954,7 @@ void QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(void* ptr)
 class MyQGraphicsColorizeEffect: public QGraphicsColorizeEffect
 {
 public:
-	MyQGraphicsColorizeEffect(QObject *parent = Q_NULLPTR) : QGraphicsColorizeEffect(parent) {};
+	MyQGraphicsColorizeEffect(QObject *parent = Q_NULLPTR) : QGraphicsColorizeEffect(parent) {QGraphicsColorizeEffect_QGraphicsColorizeEffect_QRegisterMetaType();};
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsColorizeEffect_ColorChanged(this, const_cast<QColor*>(&color)); };
 	void draw(QPainter * painter) { callbackQGraphicsColorizeEffect_Draw(this, painter); };
 	void setColor(const QColor & c) { callbackQGraphicsColorizeEffect_SetColor(this, const_cast<QColor*>(&c)); };
@@ -15821,6 +15977,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsEffect_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsColorizeEffect*)
+
+int QGraphicsColorizeEffect_QGraphicsColorizeEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsColorizeEffect*>();}
 
 void* QGraphicsColorizeEffect_NewQGraphicsColorizeEffect(void* parent)
 {
@@ -15941,7 +16101,7 @@ double QGraphicsColorizeEffect_Strength(void* ptr)
 class MyQGraphicsDropShadowEffect: public QGraphicsDropShadowEffect
 {
 public:
-	MyQGraphicsDropShadowEffect(QObject *parent = Q_NULLPTR) : QGraphicsDropShadowEffect(parent) {};
+	MyQGraphicsDropShadowEffect(QObject *parent = Q_NULLPTR) : QGraphicsDropShadowEffect(parent) {QGraphicsDropShadowEffect_QGraphicsDropShadowEffect_QRegisterMetaType();};
 	void Signal_BlurRadiusChanged(qreal blurRadius) { callbackQGraphicsDropShadowEffect_BlurRadiusChanged(this, blurRadius); };
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsDropShadowEffect_ColorChanged(this, const_cast<QColor*>(&color)); };
 	void draw(QPainter * painter) { callbackQGraphicsDropShadowEffect_Draw(this, painter); };
@@ -15970,6 +16130,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsEffect_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsDropShadowEffect*)
+
+int QGraphicsDropShadowEffect_QGraphicsDropShadowEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsDropShadowEffect*>();}
 
 void* QGraphicsDropShadowEffect_NewQGraphicsDropShadowEffect(void* parent)
 {
@@ -16170,7 +16334,7 @@ double QGraphicsDropShadowEffect_YOffset(void* ptr)
 class MyQGraphicsEffect: public QGraphicsEffect
 {
 public:
-	MyQGraphicsEffect(QObject *parent = Q_NULLPTR) : QGraphicsEffect(parent) {};
+	MyQGraphicsEffect(QObject *parent = Q_NULLPTR) : QGraphicsEffect(parent) {QGraphicsEffect_QGraphicsEffect_QRegisterMetaType();};
 	void Signal_EnabledChanged(bool enabled) { callbackQGraphicsEffect_EnabledChanged(this, enabled); };
 	void setEnabled(bool enable) { callbackQGraphicsEffect_SetEnabled(this, enable); };
 	void draw(QPainter * painter) { callbackQGraphicsEffect_Draw(this, painter); };
@@ -16190,6 +16354,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsEffect_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsEffect*)
+
+int QGraphicsEffect_QGraphicsEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsEffect*>();}
 
 void QGraphicsEffect_ConnectEnabledChanged(void* ptr)
 {
@@ -22268,7 +22436,7 @@ double QGraphicsLinearLayout_Spacing(void* ptr)
 class MyQGraphicsObject: public QGraphicsObject
 {
 public:
-	MyQGraphicsObject(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsObject(parent) {};
+	MyQGraphicsObject(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsObject(parent) {QGraphicsObject_QGraphicsObject_QRegisterMetaType();};
 	bool event(QEvent * ev) { return callbackQGraphicsObject_Event(this, ev) != 0; };
 	void Signal_EnabledChanged() { callbackQGraphicsObject_EnabledChanged(this); };
 	void Signal_OpacityChanged() { callbackQGraphicsObject_OpacityChanged(this); };
@@ -22323,6 +22491,10 @@ public:
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQGraphicsItem_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 	int type() const { return callbackQGraphicsItem_Type(const_cast<void*>(static_cast<const void*>(this))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsObject*)
+
+int QGraphicsObject_QGraphicsObject_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsObject*>();}
 
 void* QGraphicsObject_NewQGraphicsObject(void* parent)
 {
@@ -23289,7 +23461,7 @@ void* QGraphicsObject_BoundingRectDefault(void* ptr)
 class MyQGraphicsOpacityEffect: public QGraphicsOpacityEffect
 {
 public:
-	MyQGraphicsOpacityEffect(QObject *parent = Q_NULLPTR) : QGraphicsOpacityEffect(parent) {};
+	MyQGraphicsOpacityEffect(QObject *parent = Q_NULLPTR) : QGraphicsOpacityEffect(parent) {QGraphicsOpacityEffect_QGraphicsOpacityEffect_QRegisterMetaType();};
 	void draw(QPainter * painter) { callbackQGraphicsOpacityEffect_Draw(this, painter); };
 	void Signal_OpacityChanged(qreal opacity) { callbackQGraphicsOpacityEffect_OpacityChanged(this, opacity); };
 	void Signal_OpacityMaskChanged(const QBrush & mask) { callbackQGraphicsOpacityEffect_OpacityMaskChanged(this, const_cast<QBrush*>(&mask)); };
@@ -23312,6 +23484,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsEffect_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsOpacityEffect*)
+
+int QGraphicsOpacityEffect_QGraphicsOpacityEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsOpacityEffect*>();}
 
 void* QGraphicsOpacityEffect_NewQGraphicsOpacityEffect(void* parent)
 {
@@ -23765,7 +23941,7 @@ long long QGraphicsPolygonItem_FillRule(void* ptr)
 class MyQGraphicsProxyWidget: public QGraphicsProxyWidget
 {
 public:
-	MyQGraphicsProxyWidget(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QGraphicsProxyWidget(parent, wFlags) {};
+	MyQGraphicsProxyWidget(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QGraphicsProxyWidget(parent, wFlags) {QGraphicsProxyWidget_QGraphicsProxyWidget_QRegisterMetaType();};
 	QGraphicsProxyWidget * newProxyWidget(const QWidget * child) { return static_cast<QGraphicsProxyWidget*>(callbackQGraphicsProxyWidget_NewProxyWidget(this, const_cast<QWidget*>(child))); };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsItem_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool event(QEvent * event) { return callbackQGraphicsObject_Event(this, event) != 0; };
@@ -23843,6 +24019,10 @@ public:
 	bool contains(const QPointF & point) const { return callbackQGraphicsItem_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQGraphicsItem_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsProxyWidget*)
+
+int QGraphicsProxyWidget_QGraphicsProxyWidget_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsProxyWidget*>();}
 
 void* QGraphicsProxyWidget_CreateProxyForChildWidget(void* ptr, void* child)
 {
@@ -24008,7 +24188,7 @@ void* QGraphicsRectItem_Rect(void* ptr)
 class MyQGraphicsRotation: public QGraphicsRotation
 {
 public:
-	MyQGraphicsRotation(QObject *parent = Q_NULLPTR) : QGraphicsRotation(parent) {};
+	MyQGraphicsRotation(QObject *parent = Q_NULLPTR) : QGraphicsRotation(parent) {QGraphicsRotation_QGraphicsRotation_QRegisterMetaType();};
 	void Signal_AngleChanged() { callbackQGraphicsRotation_AngleChanged(this); };
 	void Signal_AxisChanged() { callbackQGraphicsRotation_AxisChanged(this); };
 	void Signal_OriginChanged() { callbackQGraphicsRotation_OriginChanged(this); };
@@ -24026,6 +24206,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsTransform_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsTransform_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsRotation*)
+
+int QGraphicsRotation_QGraphicsRotation_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsRotation*>();}
 
 void* QGraphicsRotation_NewQGraphicsRotation(void* parent)
 {
@@ -24166,7 +24350,7 @@ void QGraphicsRotation_ApplyToDefault(void* ptr, void* matrix)
 class MyQGraphicsScale: public QGraphicsScale
 {
 public:
-	MyQGraphicsScale(QObject *parent = Q_NULLPTR) : QGraphicsScale(parent) {};
+	MyQGraphicsScale(QObject *parent = Q_NULLPTR) : QGraphicsScale(parent) {QGraphicsScale_QGraphicsScale_QRegisterMetaType();};
 	void Signal_OriginChanged() { callbackQGraphicsScale_OriginChanged(this); };
 	void Signal_ScaleChanged() { callbackQGraphicsScale_ScaleChanged(this); };
 	void Signal_XScaleChanged() { callbackQGraphicsScale_XScaleChanged(this); };
@@ -24186,6 +24370,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsTransform_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsTransform_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsScale*)
+
+int QGraphicsScale_QGraphicsScale_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsScale*>();}
 
 void* QGraphicsScale_NewQGraphicsScale(void* parent)
 {
@@ -24361,9 +24549,9 @@ void QGraphicsScale_ApplyToDefault(void* ptr, void* matrix)
 class MyQGraphicsScene: public QGraphicsScene
 {
 public:
-	MyQGraphicsScene(QObject *parent = Q_NULLPTR) : QGraphicsScene(parent) {};
-	MyQGraphicsScene(const QRectF &sceneRect, QObject *parent = Q_NULLPTR) : QGraphicsScene(sceneRect, parent) {};
-	MyQGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent = Q_NULLPTR) : QGraphicsScene(x, y, width, height, parent) {};
+	MyQGraphicsScene(QObject *parent = Q_NULLPTR) : QGraphicsScene(parent) {QGraphicsScene_QGraphicsScene_QRegisterMetaType();};
+	MyQGraphicsScene(const QRectF &sceneRect, QObject *parent = Q_NULLPTR) : QGraphicsScene(sceneRect, parent) {QGraphicsScene_QGraphicsScene_QRegisterMetaType();};
+	MyQGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent = Q_NULLPTR) : QGraphicsScene(x, y, width, height, parent) {QGraphicsScene_QGraphicsScene_QRegisterMetaType();};
 	bool event(QEvent * event) { return callbackQGraphicsScene_Event(this, event) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsScene_EventFilter(this, watched, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsScene_FocusNextPrevChild(this, next) != 0; };
@@ -24406,6 +24594,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsScene_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsScene_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsScene*)
+
+int QGraphicsScene_QGraphicsScene_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsScene*>();}
 
 void* QGraphicsScene_AddEllipse(void* ptr, void* rect, void* pen, void* brush)
 {
@@ -26114,8 +26306,8 @@ struct QtWidgets_PackedString QGraphicsSimpleTextItem_Text(void* ptr)
 class MyQGraphicsTextItem: public QGraphicsTextItem
 {
 public:
-	MyQGraphicsTextItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsTextItem(parent) {};
-	MyQGraphicsTextItem(const QString &text, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsTextItem(text, parent) {};
+	MyQGraphicsTextItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsTextItem(parent) {QGraphicsTextItem_QGraphicsTextItem_QRegisterMetaType();};
+	MyQGraphicsTextItem(const QString &text, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsTextItem(text, parent) {QGraphicsTextItem_QGraphicsTextItem_QRegisterMetaType();};
 	bool sceneEvent(QEvent * event) { return callbackQGraphicsItem_SceneEvent(this, event) != 0; };
 	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsItem_ContextMenuEvent(this, event); };
 	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItem_DragEnterEvent(this, event); };
@@ -26172,6 +26364,10 @@ public:
 	bool collidesWithItem(const QGraphicsItem * other, Qt::ItemSelectionMode mode) const { return callbackQGraphicsItem_CollidesWithItem(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(other), mode) != 0; };
 	bool collidesWithPath(const QPainterPath & path, Qt::ItemSelectionMode mode) const { return callbackQGraphicsItem_CollidesWithPath(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPainterPath*>(&path), mode) != 0; };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsTextItem*)
+
+int QGraphicsTextItem_QGraphicsTextItem_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsTextItem*>();}
 
 void* QGraphicsTextItem_NewQGraphicsTextItem(void* parent)
 {
@@ -26358,7 +26554,7 @@ double QGraphicsTextItem_TextWidth(void* ptr)
 class MyQGraphicsTransform: public QGraphicsTransform
 {
 public:
-	MyQGraphicsTransform(QObject *parent = Q_NULLPTR) : QGraphicsTransform(parent) {};
+	MyQGraphicsTransform(QObject *parent = Q_NULLPTR) : QGraphicsTransform(parent) {QGraphicsTransform_QGraphicsTransform_QRegisterMetaType();};
 	void update() { callbackQGraphicsTransform_Update(this); };
 	void applyTo(QMatrix4x4 * matrix) const { callbackQGraphicsTransform_ApplyTo(const_cast<void*>(static_cast<const void*>(this)), matrix); };
 	bool event(QEvent * e) { return callbackQGraphicsTransform_Event(this, e) != 0; };
@@ -26373,6 +26569,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsTransform_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsTransform_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsTransform*)
+
+int QGraphicsTransform_QGraphicsTransform_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsTransform*>();}
 
 void* QGraphicsTransform_NewQGraphicsTransform(void* parent)
 {
@@ -26688,8 +26888,8 @@ void* QGraphicsTransform_MetaObjectDefault(void* ptr)
 class MyQGraphicsView: public QGraphicsView
 {
 public:
-	MyQGraphicsView(QGraphicsScene *scene, QWidget *parent = Q_NULLPTR) : QGraphicsView(scene, parent) {};
-	MyQGraphicsView(QWidget *parent = Q_NULLPTR) : QGraphicsView(parent) {};
+	MyQGraphicsView(QGraphicsScene *scene, QWidget *parent = Q_NULLPTR) : QGraphicsView(scene, parent) {QGraphicsView_QGraphicsView_QRegisterMetaType();};
+	MyQGraphicsView(QWidget *parent = Q_NULLPTR) : QGraphicsView(parent) {QGraphicsView_QGraphicsView_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
@@ -26769,6 +26969,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsView*)
+
+int QGraphicsView_QGraphicsView_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsView*>();}
 
 void* QGraphicsView_NewQGraphicsView2(void* scene, void* parent)
 {
@@ -27413,7 +27617,7 @@ void* QGraphicsView___items_newList5(void* ptr)
 class MyQGraphicsWidget: public QGraphicsWidget
 {
 public:
-	MyQGraphicsWidget(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QGraphicsWidget(parent, wFlags) {};
+	MyQGraphicsWidget(QGraphicsItem *parent = Q_NULLPTR, Qt::WindowFlags wFlags = Qt::WindowFlags()) : QGraphicsWidget(parent, wFlags) {QGraphicsWidget_QGraphicsWidget_QRegisterMetaType();};
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsItem_ItemChange(this, change, const_cast<QVariant*>(&value))); };
 	bool close() { return callbackQGraphicsWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQGraphicsObject_Event(this, event) != 0; };
@@ -27490,6 +27694,10 @@ public:
 	bool contains(const QPointF & point) const { return callbackQGraphicsItem_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQGraphicsItem_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
 };
+
+Q_DECLARE_METATYPE(MyQGraphicsWidget*)
+
+int QGraphicsWidget_QGraphicsWidget_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsWidget*>();}
 
 void* QGraphicsWidget_NewQGraphicsWidget(void* parent, long long wFlags)
 {
@@ -28126,8 +28334,8 @@ void* QGraphicsWidget___actions_newList(void* ptr)
 class MyQGridLayout: public QGridLayout
 {
 public:
-	MyQGridLayout() : QGridLayout() {};
-	MyQGridLayout(QWidget *parent) : QGridLayout(parent) {};
+	MyQGridLayout() : QGridLayout() {QGridLayout_QGridLayout_QRegisterMetaType();};
+	MyQGridLayout(QWidget *parent) : QGridLayout(parent) {QGridLayout_QGridLayout_QRegisterMetaType();};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQGridLayout_TakeAt(this, index)); };
 	void invalidate() { callbackQLayoutItem_Invalidate(this); };
 	void setGeometry(const QRect & rect) { callbackQLayout_SetGeometry(this, const_cast<QRect*>(&rect)); };
@@ -28160,6 +28368,10 @@ public:
 	QSpacerItem * spacerItem() { return static_cast<QSpacerItem*>(callbackQLayoutItem_SpacerItem(this)); };
 	QWidget * widget() { return static_cast<QWidget*>(callbackQLayoutItem_Widget(this)); };
 };
+
+Q_DECLARE_METATYPE(MyQGridLayout*)
+
+int QGridLayout_QGridLayout_QRegisterMetaType(){return qRegisterMetaType<MyQGridLayout*>();}
 
 void* QGridLayout_NewQGridLayout2()
 {
@@ -28338,8 +28550,8 @@ void QGridLayout_GetItemPosition(void* ptr, int index, int row, int column, int 
 class MyQGroupBox: public QGroupBox
 {
 public:
-	MyQGroupBox(QWidget *parent = Q_NULLPTR) : QGroupBox(parent) {};
-	MyQGroupBox(const QString &title, QWidget *parent = Q_NULLPTR) : QGroupBox(title, parent) {};
+	MyQGroupBox(QWidget *parent = Q_NULLPTR) : QGroupBox(parent) {QGroupBox_QGroupBox_QRegisterMetaType();};
+	MyQGroupBox(const QString &title, QWidget *parent = Q_NULLPTR) : QGroupBox(title, parent) {QGroupBox_QGroupBox_QRegisterMetaType();};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void Signal_Clicked(bool checked) { callbackQGroupBox_Clicked(this, checked); };
 	void focusInEvent(QFocusEvent * fe) { callbackQWidget_FocusInEvent(this, fe); };
@@ -28411,6 +28623,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGroupBox*)
+
+int QGroupBox_QGroupBox_QRegisterMetaType(){return qRegisterMetaType<MyQGroupBox*>();}
 
 void* QGroupBox_NewQGroupBox(void* parent)
 {
@@ -28520,8 +28736,8 @@ void QGroupBox_InitStyleOption(void* ptr, void* option)
 class MyQHBoxLayout: public QHBoxLayout
 {
 public:
-	MyQHBoxLayout() : QHBoxLayout() {};
-	MyQHBoxLayout(QWidget *parent) : QHBoxLayout(parent) {};
+	MyQHBoxLayout() : QHBoxLayout() {QHBoxLayout_QHBoxLayout_QRegisterMetaType();};
+	MyQHBoxLayout(QWidget *parent) : QHBoxLayout(parent) {QHBoxLayout_QHBoxLayout_QRegisterMetaType();};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQBoxLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQBoxLayout_AddItem(this, item); };
 	void invalidate() { callbackQLayoutItem_Invalidate(this); };
@@ -28555,6 +28771,10 @@ public:
 	QWidget * widget() { return static_cast<QWidget*>(callbackQLayoutItem_Widget(this)); };
 };
 
+Q_DECLARE_METATYPE(MyQHBoxLayout*)
+
+int QHBoxLayout_QHBoxLayout_QRegisterMetaType(){return qRegisterMetaType<MyQHBoxLayout*>();}
+
 void* QHBoxLayout_NewQHBoxLayout()
 {
 	return new MyQHBoxLayout();
@@ -28573,7 +28793,7 @@ void QHBoxLayout_DestroyQHBoxLayout(void* ptr)
 class MyQHeaderView: public QHeaderView
 {
 public:
-	MyQHeaderView(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QHeaderView(orientation, parent) {};
+	MyQHeaderView(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QHeaderView(orientation, parent) {QHeaderView_QHeaderView_QRegisterMetaType();};
 	bool viewportEvent(QEvent * e) { return callbackQAbstractScrollArea_ViewportEvent(this, e) != 0; };
 	void currentChanged(const QModelIndex & current, const QModelIndex & old) { callbackQHeaderView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&old)); };
 	void Signal_GeometriesChanged() { callbackQHeaderView_GeometriesChanged(this); };
@@ -28709,6 +28929,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQHeaderView*)
+
+int QHeaderView_QHeaderView_QRegisterMetaType(){return qRegisterMetaType<MyQHeaderView*>();}
 
 void* QHeaderView_NewQHeaderView(long long orientation, void* parent)
 {
@@ -29378,7 +29602,7 @@ char QHeaderView_IsIndexHiddenDefault(void* ptr, void* index)
 class MyQInputDialog: public QInputDialog
 {
 public:
-	MyQInputDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QInputDialog(parent, flags) {};
+	MyQInputDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QInputDialog(parent, flags) {QInputDialog_QInputDialog_QRegisterMetaType();};
 	void done(int result) { callbackQInputDialog_Done(this, result); };
 	void Signal_DoubleValueChanged(double value) { callbackQInputDialog_DoubleValueChanged(this, value); };
 	void Signal_DoubleValueSelected(double value) { callbackQInputDialog_DoubleValueSelected(this, value); };
@@ -29461,6 +29685,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQInputDialog*)
+
+int QInputDialog_QInputDialog_QRegisterMetaType(){return qRegisterMetaType<MyQInputDialog*>();}
 
 void* QInputDialog_NewQInputDialog(void* parent, long long flags)
 {
@@ -29805,7 +30033,7 @@ int QInputDialog_IntValue(void* ptr)
 class MyQItemDelegate: public QItemDelegate
 {
 public:
-	MyQItemDelegate(QObject *parent = Q_NULLPTR) : QItemDelegate(parent) {};
+	MyQItemDelegate(QObject *parent = Q_NULLPTR) : QItemDelegate(parent) {QItemDelegate_QItemDelegate_QRegisterMetaType();};
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQAbstractItemDelegate_EventFilter(this, editor, event) != 0; };
 	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQItemDelegate_SizeHint(const_cast<void*>(static_cast<const void*>(this)), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
@@ -29834,6 +30062,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemDelegate_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractItemDelegate_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQItemDelegate*)
+
+int QItemDelegate_QItemDelegate_QRegisterMetaType(){return qRegisterMetaType<MyQItemDelegate*>();}
 
 void* QItemDelegate_NewQItemDelegate(void* parent)
 {
@@ -30056,8 +30288,8 @@ void* QItemEditorFactory_CreateEditorDefault(void* ptr, int userType, void* pare
 class MyQKeyEventTransition: public QKeyEventTransition
 {
 public:
-	MyQKeyEventTransition(QObject *object, QEvent::Type type, int key, QState *sourceState = Q_NULLPTR) : QKeyEventTransition(object, type, key, sourceState) {};
-	MyQKeyEventTransition(QState *sourceState = Q_NULLPTR) : QKeyEventTransition(sourceState) {};
+	MyQKeyEventTransition(QObject *object, QEvent::Type type, int key, QState *sourceState = Q_NULLPTR) : QKeyEventTransition(object, type, key, sourceState) {QKeyEventTransition_QKeyEventTransition_QRegisterMetaType();};
+	MyQKeyEventTransition(QState *sourceState = Q_NULLPTR) : QKeyEventTransition(sourceState) {QKeyEventTransition_QKeyEventTransition_QRegisterMetaType();};
 	bool eventTest(QEvent * event) { return callbackQKeyEventTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQKeyEventTransition_OnTransition(this, event); };
 	bool event(QEvent * e) { return callbackQKeyEventTransition_Event(this, e) != 0; };
@@ -30075,6 +30307,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQKeyEventTransition_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQKeyEventTransition_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQKeyEventTransition*)
+
+int QKeyEventTransition_QKeyEventTransition_QRegisterMetaType(){return qRegisterMetaType<MyQKeyEventTransition*>();}
 
 void* QKeyEventTransition_NewQKeyEventTransition2(void* object, long long ty, int key, void* sourceState)
 {
@@ -30375,8 +30611,8 @@ void* QKeyEventTransition_MetaObjectDefault(void* ptr)
 class MyQKeySequenceEdit: public QKeySequenceEdit
 {
 public:
-	MyQKeySequenceEdit(QWidget *parent = Q_NULLPTR) : QKeySequenceEdit(parent) {};
-	MyQKeySequenceEdit(const QKeySequence &keySequence, QWidget *parent = Q_NULLPTR) : QKeySequenceEdit(keySequence, parent) {};
+	MyQKeySequenceEdit(QWidget *parent = Q_NULLPTR) : QKeySequenceEdit(parent) {QKeySequenceEdit_QKeySequenceEdit_QRegisterMetaType();};
+	MyQKeySequenceEdit(const QKeySequence &keySequence, QWidget *parent = Q_NULLPTR) : QKeySequenceEdit(keySequence, parent) {QKeySequenceEdit_QKeySequenceEdit_QRegisterMetaType();};
 	void clear() { callbackQKeySequenceEdit_Clear(this); };
 	void Signal_EditingFinished() { callbackQKeySequenceEdit_EditingFinished(this); };
 	void keyPressEvent(QKeyEvent * e) { callbackQWidget_KeyPressEvent(this, e); };
@@ -30449,6 +30685,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQKeySequenceEdit*)
+
+int QKeySequenceEdit_QKeySequenceEdit_QRegisterMetaType(){return qRegisterMetaType<MyQKeySequenceEdit*>();}
 
 void* QKeySequenceEdit_NewQKeySequenceEdit(void* parent)
 {
@@ -30523,8 +30763,8 @@ void* QKeySequenceEdit_KeySequence(void* ptr)
 class MyQLCDNumber: public QLCDNumber
 {
 public:
-	MyQLCDNumber(QWidget *parent = Q_NULLPTR) : QLCDNumber(parent) {};
-	MyQLCDNumber(uint numDigits, QWidget *parent = Q_NULLPTR) : QLCDNumber(numDigits, parent) {};
+	MyQLCDNumber(QWidget *parent = Q_NULLPTR) : QLCDNumber(parent) {QLCDNumber_QLCDNumber_QRegisterMetaType();};
+	MyQLCDNumber(uint numDigits, QWidget *parent = Q_NULLPTR) : QLCDNumber(numDigits, parent) {QLCDNumber_QLCDNumber_QRegisterMetaType();};
 	void display(const QString & s) { QByteArray ta0f149 = s.toUtf8(); QtWidgets_PackedString sPacked = { const_cast<char*>(ta0f149.prepend("WHITESPACE").constData()+10), ta0f149.size()-10 };callbackQLCDNumber_Display(this, sPacked); };
 	void display(double num) { callbackQLCDNumber_Display3(this, num); };
 	void display(int num) { callbackQLCDNumber_Display2(this, num); };
@@ -30603,6 +30843,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQLCDNumber*)
+
+int QLCDNumber_QLCDNumber_QRegisterMetaType(){return qRegisterMetaType<MyQLCDNumber*>();}
 
 void* QLCDNumber_NewQLCDNumber(void* parent)
 {
@@ -30772,8 +31016,8 @@ int QLCDNumber_IntValue(void* ptr)
 class MyQLabel: public QLabel
 {
 public:
-	MyQLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(parent, f) {};
-	MyQLabel(const QString &text, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(text, parent, f) {};
+	MyQLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(parent, f) {QLabel_QLabel_QRegisterMetaType();};
+	MyQLabel(const QString &text, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(text, parent, f) {QLabel_QLabel_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void clear() { callbackQLabel_Clear(this); };
@@ -30852,6 +31096,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQLabel*)
+
+int QLabel_QLabel_QRegisterMetaType(){return qRegisterMetaType<MyQLabel*>();}
 
 void* QLabel_NewQLabel(void* parent, long long fo)
 {
@@ -31101,8 +31349,8 @@ int QLabel_SelectionStart(void* ptr)
 class MyQLayout: public QLayout
 {
 public:
-	MyQLayout() : QLayout() {};
-	MyQLayout(QWidget *parent) : QLayout(parent) {};
+	MyQLayout() : QLayout() {QLayout_QLayout_QRegisterMetaType();};
+	MyQLayout(QWidget *parent) : QLayout(parent) {QLayout_QLayout_QRegisterMetaType();};
 	QLayout * layout() { return static_cast<QLayout*>(callbackQLayoutItem_Layout(this)); };
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQLayout_AddItem(this, item); };
@@ -31135,6 +31383,10 @@ public:
 	int heightForWidth(int w) const { return callbackQLayoutItem_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 	int minimumHeightForWidth(int w) const { return callbackQLayoutItem_MinimumHeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 };
+
+Q_DECLARE_METATYPE(MyQLayout*)
+
+int QLayout_QLayout_QRegisterMetaType(){return qRegisterMetaType<MyQLayout*>();}
 
 void* QLayout_NewQLayout2()
 {
@@ -32318,8 +32570,8 @@ void QLayoutItem_SetAlign(void* ptr, long long vqt)
 class MyQLineEdit: public QLineEdit
 {
 public:
-	MyQLineEdit(QWidget *parent = Q_NULLPTR) : QLineEdit(parent) {};
-	MyQLineEdit(const QString &contents, QWidget *parent = Q_NULLPTR) : QLineEdit(contents, parent) {};
+	MyQLineEdit(QWidget *parent = Q_NULLPTR) : QLineEdit(parent) {QLineEdit_QLineEdit_QRegisterMetaType();};
+	MyQLineEdit(const QString &contents, QWidget *parent = Q_NULLPTR) : QLineEdit(contents, parent) {QLineEdit_QLineEdit_QRegisterMetaType();};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void clear() { callbackQLineEdit_Clear(this); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
@@ -32403,6 +32655,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQLineEdit*)
+
+int QLineEdit_QLineEdit_QRegisterMetaType(){return qRegisterMetaType<MyQLineEdit*>();}
 
 void* QLineEdit_AddAction2(void* ptr, void* icon, long long position)
 {
@@ -32877,7 +33133,7 @@ void QLineEdit_InitStyleOption(void* ptr, void* option)
 class MyQListView: public QListView
 {
 public:
-	MyQListView(QWidget *parent = Q_NULLPTR) : QListView(parent) {};
+	MyQListView(QWidget *parent = Q_NULLPTR) : QListView(parent) {QListView_QListView_QRegisterMetaType();};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
 	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
@@ -32993,6 +33249,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQListView*)
+
+int QListView_QListView_QRegisterMetaType(){return qRegisterMetaType<MyQListView*>();}
 
 void* QListView_NewQListView(void* parent)
 {
@@ -33417,7 +33677,7 @@ void* QListView___indexesMoved_indexes_newList(void* ptr)
 class MyQListWidget: public QListWidget
 {
 public:
-	MyQListWidget(QWidget *parent = Q_NULLPTR) : QListWidget(parent) {};
+	MyQListWidget(QWidget *parent = Q_NULLPTR) : QListWidget(parent) {QListWidget_QListWidget_QRegisterMetaType();};
 	bool dropMimeData(int index, const QMimeData * data, Qt::DropAction action) { return callbackQListWidget_DropMimeData(this, index, const_cast<QMimeData*>(data), action) != 0; };
 	void clear() { callbackQListWidget_Clear(this); };
 	void Signal_CurrentItemChanged(QListWidgetItem * current, QListWidgetItem * previous) { callbackQListWidget_CurrentItemChanged(this, current, previous); };
@@ -33549,6 +33809,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQListWidget*)
+
+int QListWidget_QListWidget_QRegisterMetaType(){return qRegisterMetaType<MyQListWidget*>();}
 
 void* QListWidget_NewQListWidget(void* parent)
 {
@@ -34315,6 +34579,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQMacCocoaViewContainer*)
+
+int QMacCocoaViewContainer_QMacCocoaViewContainer_QRegisterMetaType(){return qRegisterMetaType<MyQMacCocoaViewContainer*>();}
+
 void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr)
 {
 	static_cast<QMacCocoaViewContainer*>(ptr)->~QMacCocoaViewContainer();
@@ -34400,6 +34668,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQMacNativeWidget*)
+
+int QMacNativeWidget_QMacNativeWidget_QRegisterMetaType(){return qRegisterMetaType<MyQMacNativeWidget*>();}
+
 void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr)
 {
 	static_cast<QMacNativeWidget*>(ptr)->~QMacNativeWidget();
@@ -34408,7 +34680,7 @@ void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr)
 class MyQMainWindow: public QMainWindow
 {
 public:
-	MyQMainWindow(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QMainWindow(parent, flags) {};
+	MyQMainWindow(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QMainWindow(parent, flags) {QMainWindow_QMainWindow_QRegisterMetaType();};
 	QMenu * createPopupMenu() { return static_cast<QMenu*>(callbackQMainWindow_CreatePopupMenu(this)); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
 	void Signal_IconSizeChanged(const QSize & iconSize) { callbackQMainWindow_IconSizeChanged(this, const_cast<QSize*>(&iconSize)); };
@@ -34485,6 +34757,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMainWindow*)
+
+int QMainWindow_QMainWindow_QRegisterMetaType(){return qRegisterMetaType<MyQMainWindow*>();}
 
 void* QMainWindow_NewQMainWindow(void* parent, long long flags)
 {
@@ -34864,7 +35140,7 @@ void* QMainWindow___tabifiedDockWidgets_newList(void* ptr)
 class MyQMdiArea: public QMdiArea
 {
 public:
-	MyQMdiArea(QWidget *parent = Q_NULLPTR) : QMdiArea(parent) {};
+	MyQMdiArea(QWidget *parent = Q_NULLPTR) : QMdiArea(parent) {QMdiArea_QMdiArea_QRegisterMetaType();};
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void activateNextSubWindow() { callbackQMdiArea_ActivateNextSubWindow(this); };
 	void activatePreviousSubWindow() { callbackQMdiArea_ActivatePreviousSubWindow(this); };
@@ -34943,6 +35219,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMdiArea*)
+
+int QMdiArea_QMdiArea_QRegisterMetaType(){return qRegisterMetaType<MyQMdiArea*>();}
 
 void* QMdiArea_NewQMdiArea(void* parent)
 {
@@ -35182,7 +35462,7 @@ void* QMdiArea___subWindowList_newList(void* ptr)
 class MyQMdiSubWindow: public QMdiSubWindow
 {
 public:
-	MyQMdiSubWindow(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QMdiSubWindow(parent, flags) {};
+	MyQMdiSubWindow(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QMdiSubWindow(parent, flags) {QMdiSubWindow_QMdiSubWindow_QRegisterMetaType();};
 	void Signal_AboutToActivate() { callbackQMdiSubWindow_AboutToActivate(this); };
 	void changeEvent(QEvent * changeEvent) { callbackQWidget_ChangeEvent(this, changeEvent); };
 	void closeEvent(QCloseEvent * closeEvent) { callbackQWidget_CloseEvent(this, closeEvent); };
@@ -35253,6 +35533,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMdiSubWindow*)
+
+int QMdiSubWindow_QMdiSubWindow_QRegisterMetaType(){return qRegisterMetaType<MyQMdiSubWindow*>();}
 
 void* QMdiSubWindow_NewQMdiSubWindow(void* parent, long long flags)
 {
@@ -35377,8 +35661,8 @@ int QMdiSubWindow_KeyboardSingleStep(void* ptr)
 class MyQMenu: public QMenu
 {
 public:
-	MyQMenu(QWidget *parent = Q_NULLPTR) : QMenu(parent) {};
-	MyQMenu(const QString &title, QWidget *parent = Q_NULLPTR) : QMenu(title, parent) {};
+	MyQMenu(QWidget *parent = Q_NULLPTR) : QMenu(parent) {QMenu_QMenu_QRegisterMetaType();};
+	MyQMenu(const QString &title, QWidget *parent = Q_NULLPTR) : QMenu(title, parent) {QMenu_QMenu_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void Signal_AboutToHide() { callbackQMenu_AboutToHide(this); };
 	void Signal_AboutToShow() { callbackQMenu_AboutToShow(this); };
@@ -35451,6 +35735,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMenu*)
+
+int QMenu_QMenu_QRegisterMetaType(){return qRegisterMetaType<MyQMenu*>();}
 
 void* QMenu_AddAction2(void* ptr, void* icon, char* text)
 {
@@ -35787,7 +36075,7 @@ void* QMenu___exec_actions_newList3(void* ptr)
 class MyQMenuBar: public QMenuBar
 {
 public:
-	MyQMenuBar(QWidget *parent = Q_NULLPTR) : QMenuBar(parent) {};
+	MyQMenuBar(QWidget *parent = Q_NULLPTR) : QMenuBar(parent) {QMenuBar_QMenuBar_QRegisterMetaType();};
 	void actionEvent(QActionEvent * e) { callbackQWidget_ActionEvent(this, e); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void focusInEvent(QFocusEvent * vqf) { callbackQWidget_FocusInEvent(this, vqf); };
@@ -35857,6 +36145,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMenuBar*)
+
+int QMenuBar_QMenuBar_QRegisterMetaType(){return qRegisterMetaType<MyQMenuBar*>();}
 
 void* QMenuBar_AddAction(void* ptr, char* text)
 {
@@ -36011,8 +36303,8 @@ void QMenuBar_InitStyleOption(void* ptr, void* option, void* action)
 class MyQMessageBox: public QMessageBox
 {
 public:
-	MyQMessageBox(Icon icon, const QString &title, const QString &text, StandardButtons buttons = NoButton, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint) : QMessageBox(icon, title, text, buttons, parent, f) {};
-	MyQMessageBox(QWidget *parent = Q_NULLPTR) : QMessageBox(parent) {};
+	MyQMessageBox(Icon icon, const QString &title, const QString &text, StandardButtons buttons = NoButton, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint) : QMessageBox(icon, title, text, buttons, parent, f) {QMessageBox_QMessageBox_QRegisterMetaType();};
+	MyQMessageBox(QWidget *parent = Q_NULLPTR) : QMessageBox(parent) {QMessageBox_QMessageBox_QRegisterMetaType();};
 	int exec() { return callbackQDialog_Exec(this); };
 	void Signal_ButtonClicked(QAbstractButton * button) { callbackQMessageBox_ButtonClicked(this, button); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
@@ -36088,6 +36380,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMessageBox*)
+
+int QMessageBox_QMessageBox_QRegisterMetaType(){return qRegisterMetaType<MyQMessageBox*>();}
 
 int QMessageBox_ButtonMask_Type()
 {
@@ -36357,8 +36653,8 @@ void* QMessageBox___buttons_newList(void* ptr)
 class MyQMouseEventTransition: public QMouseEventTransition
 {
 public:
-	MyQMouseEventTransition(QObject *object, QEvent::Type type, Qt::MouseButton button, QState *sourceState = Q_NULLPTR) : QMouseEventTransition(object, type, button, sourceState) {};
-	MyQMouseEventTransition(QState *sourceState = Q_NULLPTR) : QMouseEventTransition(sourceState) {};
+	MyQMouseEventTransition(QObject *object, QEvent::Type type, Qt::MouseButton button, QState *sourceState = Q_NULLPTR) : QMouseEventTransition(object, type, button, sourceState) {QMouseEventTransition_QMouseEventTransition_QRegisterMetaType();};
+	MyQMouseEventTransition(QState *sourceState = Q_NULLPTR) : QMouseEventTransition(sourceState) {QMouseEventTransition_QMouseEventTransition_QRegisterMetaType();};
 	bool eventTest(QEvent * event) { return callbackQMouseEventTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQMouseEventTransition_OnTransition(this, event); };
 	bool event(QEvent * e) { return callbackQMouseEventTransition_Event(this, e) != 0; };
@@ -36376,6 +36672,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMouseEventTransition_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMouseEventTransition_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMouseEventTransition*)
+
+int QMouseEventTransition_QMouseEventTransition_QRegisterMetaType(){return qRegisterMetaType<MyQMouseEventTransition*>();}
 
 void* QMouseEventTransition_NewQMouseEventTransition2(void* object, long long ty, long long button, void* sourceState)
 {
@@ -36699,6 +36999,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGesture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQPanGesture*)
+
+int QPanGesture_QPanGesture_QRegisterMetaType(){return qRegisterMetaType<MyQPanGesture*>();}
+
 void QPanGesture_SetAcceleration(void* ptr, double value)
 {
 	static_cast<QPanGesture*>(ptr)->setAcceleration(value);
@@ -36754,6 +37058,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGesture_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGesture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPinchGesture*)
+
+int QPinchGesture_QPinchGesture_QRegisterMetaType(){return qRegisterMetaType<MyQPinchGesture*>();}
 
 void QPinchGesture_SetCenterPoint(void* ptr, void* value)
 {
@@ -36873,7 +37181,7 @@ double QPinchGesture_TotalScaleFactor(void* ptr)
 class MyQPlainTextDocumentLayout: public QPlainTextDocumentLayout
 {
 public:
-	MyQPlainTextDocumentLayout(QTextDocument *document) : QPlainTextDocumentLayout(document) {};
+	MyQPlainTextDocumentLayout(QTextDocument *document) : QPlainTextDocumentLayout(document) {QPlainTextDocumentLayout_QPlainTextDocumentLayout_QRegisterMetaType();};
 	void documentChanged(int from, int charsRemoved, int charsAdded) { callbackQPlainTextDocumentLayout_DocumentChanged(this, from, charsRemoved, charsAdded); };
 	void draw(QPainter * vqp, const PaintContext & vpa) { callbackQPlainTextDocumentLayout_Draw(this, vqp, const_cast<PaintContext*>(&vpa)); };
 	QRectF blockBoundingRect(const QTextBlock & block) const { return *static_cast<QRectF*>(callbackQPlainTextDocumentLayout_BlockBoundingRect(const_cast<void*>(static_cast<const void*>(this)), const_cast<QTextBlock*>(&block))); };
@@ -36900,6 +37208,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPlainTextDocumentLayout_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPlainTextDocumentLayout_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPlainTextDocumentLayout*)
+
+int QPlainTextDocumentLayout_QPlainTextDocumentLayout_QRegisterMetaType(){return qRegisterMetaType<MyQPlainTextDocumentLayout*>();}
 
 void* QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(void* document)
 {
@@ -37189,8 +37501,8 @@ void* QPlainTextDocumentLayout_MetaObjectDefault(void* ptr)
 class MyQPlainTextEdit: public QPlainTextEdit
 {
 public:
-	MyQPlainTextEdit(QWidget *parent = Q_NULLPTR) : QPlainTextEdit(parent) {};
-	MyQPlainTextEdit(const QString &text, QWidget *parent = Q_NULLPTR) : QPlainTextEdit(text, parent) {};
+	MyQPlainTextEdit(QWidget *parent = Q_NULLPTR) : QPlainTextEdit(parent) {QPlainTextEdit_QPlainTextEdit_QRegisterMetaType();};
+	MyQPlainTextEdit(const QString &text, QWidget *parent = Q_NULLPTR) : QPlainTextEdit(text, parent) {QPlainTextEdit_QPlainTextEdit_QRegisterMetaType();};
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQPlainTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void appendHtml(const QString & html) { QByteArray t950a39 = html.toUtf8(); QtWidgets_PackedString htmlPacked = { const_cast<char*>(t950a39.prepend("WHITESPACE").constData()+10), t950a39.size()-10 };callbackQPlainTextEdit_AppendHtml(this, htmlPacked); };
@@ -37292,6 +37604,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPlainTextEdit*)
+
+int QPlainTextEdit_QPlainTextEdit_QRegisterMetaType(){return qRegisterMetaType<MyQPlainTextEdit*>();}
 
 void* QPlainTextEdit_CreateStandardContextMenu(void* ptr)
 {
@@ -37898,7 +38214,7 @@ void QPlainTextEdit_Print(void* ptr, void* printer)
 class MyQProgressBar: public QProgressBar
 {
 public:
-	MyQProgressBar(QWidget *parent = Q_NULLPTR) : QProgressBar(parent) {};
+	MyQProgressBar(QWidget *parent = Q_NULLPTR) : QProgressBar(parent) {QProgressBar_QProgressBar_QRegisterMetaType();};
 	void paintEvent(QPaintEvent * vqp) { callbackQWidget_PaintEvent(this, vqp); };
 	void reset() { callbackQProgressBar_Reset(this); };
 	void setMaximum(int maximum) { callbackQProgressBar_SetMaximum(this, maximum); };
@@ -37976,6 +38292,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQProgressBar*)
+
+int QProgressBar_QProgressBar_QRegisterMetaType(){return qRegisterMetaType<MyQProgressBar*>();}
 
 void* QProgressBar_NewQProgressBar(void* parent)
 {
@@ -38155,8 +38475,8 @@ void QProgressBar_InitStyleOption(void* ptr, void* option)
 class MyQProgressDialog: public QProgressDialog
 {
 public:
-	MyQProgressDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(parent, f) {};
-	MyQProgressDialog(const QString &labelText, const QString &cancelButtonText, int minimum, int maximum, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, f) {};
+	MyQProgressDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(parent, f) {QProgressDialog_QProgressDialog_QRegisterMetaType();};
+	MyQProgressDialog(const QString &labelText, const QString &cancelButtonText, int minimum, int maximum, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, f) {QProgressDialog_QProgressDialog_QRegisterMetaType();};
 	void cancel() { callbackQProgressDialog_Cancel(this); };
 	void Signal_Canceled() { callbackQProgressDialog_Canceled(this); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
@@ -38244,6 +38564,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQProgressDialog*)
+
+int QProgressDialog_QProgressDialog_QRegisterMetaType(){return qRegisterMetaType<MyQProgressDialog*>();}
 
 void* QProgressDialog_NewQProgressDialog(void* parent, long long fo)
 {
@@ -38458,8 +38782,8 @@ int QProgressDialog_Value(void* ptr)
 class MyQProxyStyle: public QProxyStyle
 {
 public:
-	MyQProxyStyle(QStyle *style = Q_NULLPTR) : QProxyStyle(style) {};
-	MyQProxyStyle(const QString &key) : QProxyStyle(key) {};
+	MyQProxyStyle(QStyle *style = Q_NULLPTR) : QProxyStyle(style) {QProxyStyle_QProxyStyle_QRegisterMetaType();};
+	MyQProxyStyle(const QString &key) : QProxyStyle(key) {QProxyStyle_QProxyStyle_QRegisterMetaType();};
 	void polish(QApplication * app) { callbackQStyle_Polish3(this, app); };
 	void polish(QPalette & pal) { callbackQStyle_Polish2(this, static_cast<QPalette*>(&pal)); };
 	void polish(QWidget * widget) { callbackQStyle_Polish(this, widget); };
@@ -38494,6 +38818,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQStyle_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStyle_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQProxyStyle*)
+
+int QProxyStyle_QProxyStyle_QRegisterMetaType(){return qRegisterMetaType<MyQProxyStyle*>();}
 
 void* QProxyStyle_NewQProxyStyle(void* style)
 {
@@ -38533,9 +38861,9 @@ void* QProxyStyle_BaseStyle(void* ptr)
 class MyQPushButton: public QPushButton
 {
 public:
-	MyQPushButton(QWidget *parent = Q_NULLPTR) : QPushButton(parent) {};
-	MyQPushButton(const QIcon &icon, const QString &text, QWidget *parent = Q_NULLPTR) : QPushButton(icon, text, parent) {};
-	MyQPushButton(const QString &text, QWidget *parent = Q_NULLPTR) : QPushButton(text, parent) {};
+	MyQPushButton(QWidget *parent = Q_NULLPTR) : QPushButton(parent) {QPushButton_QPushButton_QRegisterMetaType();};
+	MyQPushButton(const QIcon &icon, const QString &text, QWidget *parent = Q_NULLPTR) : QPushButton(icon, text, parent) {QPushButton_QPushButton_QRegisterMetaType();};
+	MyQPushButton(const QString &text, QWidget *parent = Q_NULLPTR) : QPushButton(text, parent) {QPushButton_QPushButton_QRegisterMetaType();};
 	void focusInEvent(QFocusEvent * e) { callbackQWidget_FocusInEvent(this, e); };
 	void focusOutEvent(QFocusEvent * e) { callbackQWidget_FocusOutEvent(this, e); };
 	void keyPressEvent(QKeyEvent * e) { callbackQWidget_KeyPressEvent(this, e); };
@@ -38617,6 +38945,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPushButton*)
+
+int QPushButton_QPushButton_QRegisterMetaType(){return qRegisterMetaType<MyQPushButton*>();}
 
 void* QPushButton_NewQPushButton(void* parent)
 {
@@ -38714,8 +39046,8 @@ void QPushButton_InitStyleOption(void* ptr, void* option)
 class MyQRadioButton: public QRadioButton
 {
 public:
-	MyQRadioButton(QWidget *parent = Q_NULLPTR) : QRadioButton(parent) {};
-	MyQRadioButton(const QString &text, QWidget *parent = Q_NULLPTR) : QRadioButton(text, parent) {};
+	MyQRadioButton(QWidget *parent = Q_NULLPTR) : QRadioButton(parent) {QRadioButton_QRadioButton_QRegisterMetaType();};
+	MyQRadioButton(const QString &text, QWidget *parent = Q_NULLPTR) : QRadioButton(text, parent) {QRadioButton_QRadioButton_QRegisterMetaType();};
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
 	void paintEvent(QPaintEvent * vqp) { callbackQRadioButton_PaintEvent(this, vqp); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -38797,6 +39129,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQRadioButton*)
+
+int QRadioButton_QRadioButton_QRegisterMetaType(){return qRegisterMetaType<MyQRadioButton*>();}
+
 void* QRadioButton_NewQRadioButton(void* parent)
 {
 		return new MyQRadioButton(static_cast<QWidget*>(parent));
@@ -38830,7 +39166,7 @@ void QRadioButton_InitStyleOption(void* ptr, void* option)
 class MyQRubberBand: public QRubberBand
 {
 public:
-	MyQRubberBand(Shape s, QWidget *p = Q_NULLPTR) : QRubberBand(s, p) {};
+	MyQRubberBand(Shape s, QWidget *p = Q_NULLPTR) : QRubberBand(s, p) {QRubberBand_QRubberBand_QRegisterMetaType();};
 	void resizeEvent(QResizeEvent * vqr) { callbackQWidget_ResizeEvent(this, vqr); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
 	void moveEvent(QMoveEvent * vqm) { callbackQWidget_MoveEvent(this, vqm); };
@@ -38901,6 +39237,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQRubberBand*)
+
+int QRubberBand_QRubberBand_QRegisterMetaType(){return qRegisterMetaType<MyQRubberBand*>();}
+
 void* QRubberBand_NewQRubberBand(long long s, void* p)
 {
 		return new MyQRubberBand(static_cast<QRubberBand::Shape>(s), static_cast<QWidget*>(p));
@@ -38924,7 +39264,7 @@ void QRubberBand_InitStyleOption(void* ptr, void* option)
 class MyQScrollArea: public QScrollArea
 {
 public:
-	MyQScrollArea(QWidget *parent = Q_NULLPTR) : QScrollArea(parent) {};
+	MyQScrollArea(QWidget *parent = Q_NULLPTR) : QScrollArea(parent) {QScrollArea_QScrollArea_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void resizeEvent(QResizeEvent * vqr) { callbackQWidget_ResizeEvent(this, vqr); };
 	void scrollContentsBy(int dx, int dy) { callbackQAbstractScrollArea_ScrollContentsBy(this, dx, dy); };
@@ -38998,6 +39338,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQScrollArea*)
+
+int QScrollArea_QScrollArea_QRegisterMetaType(){return qRegisterMetaType<MyQScrollArea*>();}
+
 void* QScrollArea_NewQScrollArea(void* parent)
 {
 		return new MyQScrollArea(static_cast<QWidget*>(parent));
@@ -39056,8 +39400,8 @@ char QScrollArea_WidgetResizable(void* ptr)
 class MyQScrollBar: public QScrollBar
 {
 public:
-	MyQScrollBar(QWidget *parent = Q_NULLPTR) : QScrollBar(parent) {};
-	MyQScrollBar(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QScrollBar(orientation, parent) {};
+	MyQScrollBar(QWidget *parent = Q_NULLPTR) : QScrollBar(parent) {QScrollBar_QScrollBar_QRegisterMetaType();};
+	MyQScrollBar(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QScrollBar(orientation, parent) {QScrollBar_QScrollBar_QRegisterMetaType();};
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
 	void hideEvent(QHideEvent * vqh) { callbackQWidget_HideEvent(this, vqh); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
@@ -39137,6 +39481,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQScrollBar*)
+
+int QScrollBar_QScrollBar_QRegisterMetaType(){return qRegisterMetaType<MyQScrollBar*>();}
+
 void* QScrollBar_NewQScrollBar(void* parent)
 {
 		return new MyQScrollBar(static_cast<QWidget*>(parent));
@@ -39180,6 +39528,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScroller_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScroller_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScroller*)
+
+int QScroller_QScroller_QRegisterMetaType(){return qRegisterMetaType<MyQScroller*>();}
 
 struct QtWidgets_PackedList QScroller_QScroller_ActiveScrollers()
 {
@@ -39692,8 +40044,8 @@ void* QScrollerProperties_ScrollMetric(void* ptr, long long metric)
 class MyQShortcut: public QShortcut
 {
 public:
-	MyQShortcut(QWidget *parent) : QShortcut(parent) {};
-	MyQShortcut(const QKeySequence &key, QWidget *parent, const char *member = Q_NULLPTR, const char *ambiguousMember = Q_NULLPTR, Qt::ShortcutContext context = Qt::WindowShortcut) : QShortcut(key, parent, member, ambiguousMember, context) {};
+	MyQShortcut(QWidget *parent) : QShortcut(parent) {QShortcut_QShortcut_QRegisterMetaType();};
+	MyQShortcut(const QKeySequence &key, QWidget *parent, const char *member = Q_NULLPTR, const char *ambiguousMember = Q_NULLPTR, Qt::ShortcutContext context = Qt::WindowShortcut) : QShortcut(key, parent, member, ambiguousMember, context) {QShortcut_QShortcut_QRegisterMetaType();};
 	void Signal_Activated() { callbackQShortcut_Activated(this); };
 	void Signal_ActivatedAmbiguously() { callbackQShortcut_ActivatedAmbiguously(this); };
 	bool event(QEvent * e) { return callbackQShortcut_Event(this, e) != 0; };
@@ -39708,6 +40060,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQShortcut_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQShortcut_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQShortcut*)
+
+int QShortcut_QShortcut_QRegisterMetaType(){return qRegisterMetaType<MyQShortcut*>();}
 
 void* QShortcut_NewQShortcut(void* parent)
 {
@@ -39987,7 +40343,7 @@ void* QShortcut_MetaObjectDefault(void* ptr)
 class MyQSizeGrip: public QSizeGrip
 {
 public:
-	MyQSizeGrip(QWidget *parent) : QSizeGrip(parent) {};
+	MyQSizeGrip(QWidget *parent) : QSizeGrip(parent) {QSizeGrip_QSizeGrip_QRegisterMetaType();};
 	void hideEvent(QHideEvent * hideEvent) { callbackQWidget_HideEvent(this, hideEvent); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQWidget_MousePressEvent(this, event); };
@@ -40056,6 +40412,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSizeGrip*)
+
+int QSizeGrip_QSizeGrip_QRegisterMetaType(){return qRegisterMetaType<MyQSizeGrip*>();}
 
 void* QSizeGrip_NewQSizeGrip(void* parent)
 {
@@ -40180,8 +40540,8 @@ int QSizePolicy_VerticalStretch(void* ptr)
 class MyQSlider: public QSlider
 {
 public:
-	MyQSlider(QWidget *parent = Q_NULLPTR) : QSlider(parent) {};
-	MyQSlider(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QSlider(orientation, parent) {};
+	MyQSlider(QWidget *parent = Q_NULLPTR) : QSlider(parent) {QSlider_QSlider_QRegisterMetaType();};
+	MyQSlider(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QSlider(orientation, parent) {QSlider_QSlider_QRegisterMetaType();};
 	void mouseMoveEvent(QMouseEvent * ev) { callbackQWidget_MouseMoveEvent(this, ev); };
 	void mousePressEvent(QMouseEvent * ev) { callbackQWidget_MousePressEvent(this, ev); };
 	void mouseReleaseEvent(QMouseEvent * ev) { callbackQWidget_MouseReleaseEvent(this, ev); };
@@ -40260,6 +40620,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSlider*)
+
+int QSlider_QSlider_QRegisterMetaType(){return qRegisterMetaType<MyQSlider*>();}
 
 void QSlider_SetTickInterval(void* ptr, int ti)
 {
@@ -40415,7 +40779,7 @@ char QSpacerItem_IsEmptyDefault(void* ptr)
 class MyQSpinBox: public QSpinBox
 {
 public:
-	MyQSpinBox(QWidget *parent = Q_NULLPTR) : QSpinBox(parent) {};
+	MyQSpinBox(QWidget *parent = Q_NULLPTR) : QSpinBox(parent) {QSpinBox_QSpinBox_QRegisterMetaType();};
 	void setValue(int val) { callbackQSpinBox_SetValue(this, val); };
 	void Signal_ValueChanged2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSpinBox_ValueChanged2(this, textPacked); };
 	void Signal_ValueChanged(int i) { callbackQSpinBox_ValueChanged(this, i); };
@@ -40498,6 +40862,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSpinBox*)
+
+int QSpinBox_QSpinBox_QRegisterMetaType(){return qRegisterMetaType<MyQSpinBox*>();}
 
 void* QSpinBox_NewQSpinBox(void* parent)
 {
@@ -40647,8 +41015,8 @@ int QSpinBox_ValueFromTextDefault(void* ptr, char* text)
 class MyQSplashScreen: public QSplashScreen
 {
 public:
-	MyQSplashScreen(QWidget *parent, const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(parent, pixmap, f) {};
-	MyQSplashScreen(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(pixmap, f) {};
+	MyQSplashScreen(QWidget *parent, const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(parent, pixmap, f) {QSplashScreen_QSplashScreen_QRegisterMetaType();};
+	MyQSplashScreen(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(pixmap, f) {QSplashScreen_QSplashScreen_QRegisterMetaType();};
 	void clearMessage() { callbackQSplashScreen_ClearMessage(this); };
 	void drawContents(QPainter * painter) { callbackQSplashScreen_DrawContents(this, painter); };
 	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_MessageChanged(this, messagePacked); };
@@ -40722,6 +41090,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSplashScreen*)
+
+int QSplashScreen_QSplashScreen_QRegisterMetaType(){return qRegisterMetaType<MyQSplashScreen*>();}
 
 void* QSplashScreen_NewQSplashScreen2(void* parent, void* pixmap, long long fo)
 {
@@ -40816,8 +41188,8 @@ void* QSplashScreen_Pixmap(void* ptr)
 class MyQSplitter: public QSplitter
 {
 public:
-	MyQSplitter(QWidget *parent = Q_NULLPTR) : QSplitter(parent) {};
-	MyQSplitter(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QSplitter(orientation, parent) {};
+	MyQSplitter(QWidget *parent = Q_NULLPTR) : QSplitter(parent) {QSplitter_QSplitter_QRegisterMetaType();};
+	MyQSplitter(Qt::Orientation orientation, QWidget *parent = Q_NULLPTR) : QSplitter(orientation, parent) {QSplitter_QSplitter_QRegisterMetaType();};
 	QSplitterHandle * createHandle() { return static_cast<QSplitterHandle*>(callbackQSplitter_CreateHandle(this)); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void resizeEvent(QResizeEvent * vqr) { callbackQWidget_ResizeEvent(this, vqr); };
@@ -40888,6 +41260,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSplitter*)
+
+int QSplitter_QSplitter_QRegisterMetaType(){return qRegisterMetaType<MyQSplitter*>();}
 
 void* QSplitter_NewQSplitter(void* parent)
 {
@@ -41092,7 +41468,7 @@ void* QSplitter___sizes_newList(void* ptr)
 class MyQSplitterHandle: public QSplitterHandle
 {
 public:
-	MyQSplitterHandle(Qt::Orientation orientation, QSplitter *parent) : QSplitterHandle(orientation, parent) {};
+	MyQSplitterHandle(Qt::Orientation orientation, QSplitter *parent) : QSplitterHandle(orientation, parent) {QSplitterHandle_QSplitterHandle_QRegisterMetaType();};
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
 	void mousePressEvent(QMouseEvent * e) { callbackQWidget_MousePressEvent(this, e); };
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQWidget_MouseReleaseEvent(this, e); };
@@ -41163,6 +41539,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQSplitterHandle*)
+
+int QSplitterHandle_QSplitterHandle_QRegisterMetaType(){return qRegisterMetaType<MyQSplitterHandle*>();}
+
 void* QSplitterHandle_NewQSplitterHandle(long long orientation, void* parent)
 {
 	return new MyQSplitterHandle(static_cast<Qt::Orientation>(orientation), static_cast<QSplitter*>(parent));
@@ -41206,9 +41586,9 @@ char QSplitterHandle_OpaqueResize(void* ptr)
 class MyQStackedLayout: public QStackedLayout
 {
 public:
-	MyQStackedLayout() : QStackedLayout() {};
-	MyQStackedLayout(QLayout *parentLayout) : QStackedLayout(parentLayout) {};
-	MyQStackedLayout(QWidget *parent) : QStackedLayout(parent) {};
+	MyQStackedLayout() : QStackedLayout() {QStackedLayout_QStackedLayout_QRegisterMetaType();};
+	MyQStackedLayout(QLayout *parentLayout) : QStackedLayout(parentLayout) {QStackedLayout_QStackedLayout_QRegisterMetaType();};
+	MyQStackedLayout(QWidget *parent) : QStackedLayout(parent) {QStackedLayout_QStackedLayout_QRegisterMetaType();};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQStackedLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQStackedLayout_AddItem(this, item); };
 	void Signal_CurrentChanged(int index) { callbackQStackedLayout_CurrentChanged(this, index); };
@@ -41244,6 +41624,10 @@ public:
 	QSpacerItem * spacerItem() { return static_cast<QSpacerItem*>(callbackQLayoutItem_SpacerItem(this)); };
 	int minimumHeightForWidth(int w) const { return callbackQLayoutItem_MinimumHeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 };
+
+Q_DECLARE_METATYPE(MyQStackedLayout*)
+
+int QStackedLayout_QStackedLayout_QRegisterMetaType(){return qRegisterMetaType<MyQStackedLayout*>();}
 
 void* QStackedLayout_TakeAt(void* ptr, int index)
 {
@@ -41411,7 +41795,7 @@ int QStackedLayout_CurrentIndex(void* ptr)
 class MyQStackedWidget: public QStackedWidget
 {
 public:
-	MyQStackedWidget(QWidget *parent = Q_NULLPTR) : QStackedWidget(parent) {};
+	MyQStackedWidget(QWidget *parent = Q_NULLPTR) : QStackedWidget(parent) {QStackedWidget_QStackedWidget_QRegisterMetaType();};
 	void Signal_CurrentChanged(int index) { callbackQStackedWidget_CurrentChanged(this, index); };
 	void setCurrentIndex(int index) { callbackQStackedWidget_SetCurrentIndex(this, index); };
 	void setCurrentWidget(QWidget * widget) { callbackQStackedWidget_SetCurrentWidget(this, widget); };
@@ -41485,6 +41869,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQStackedWidget*)
+
+int QStackedWidget_QStackedWidget_QRegisterMetaType(){return qRegisterMetaType<MyQStackedWidget*>();}
 
 void* QStackedWidget_NewQStackedWidget(void* parent)
 {
@@ -41589,7 +41977,7 @@ int QStackedWidget_IndexOf(void* ptr, void* widget)
 class MyQStatusBar: public QStatusBar
 {
 public:
-	MyQStatusBar(QWidget *parent = Q_NULLPTR) : QStatusBar(parent) {};
+	MyQStatusBar(QWidget *parent = Q_NULLPTR) : QStatusBar(parent) {QStatusBar_QStatusBar_QRegisterMetaType();};
 	void clearMessage() { callbackQStatusBar_ClearMessage(this); };
 	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQStatusBar_MessageChanged(this, messagePacked); };
 	void paintEvent(QPaintEvent * event) { callbackQWidget_PaintEvent(this, event); };
@@ -41663,6 +42051,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQStatusBar*)
+
+int QStatusBar_QStatusBar_QRegisterMetaType(){return qRegisterMetaType<MyQStatusBar*>();}
 
 void* QStatusBar_NewQStatusBar(void* parent)
 {
@@ -41767,7 +42159,7 @@ char QStatusBar_IsSizeGripEnabled(void* ptr)
 class MyQStyle: public QStyle
 {
 public:
-	MyQStyle() : QStyle() {};
+	MyQStyle() : QStyle() {QStyle_QStyle_QRegisterMetaType();};
 	void polish(QApplication * application) { callbackQStyle_Polish2(this, application); };
 	void polish(QPalette & palette) { callbackQStyle_Polish3(this, static_cast<QPalette*>(&palette)); };
 	void polish(QWidget * widget) { callbackQStyle_Polish(this, widget); };
@@ -41804,6 +42196,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQStyle_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStyle_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQStyle*)
+
+int QStyle_QStyle_QRegisterMetaType(){return qRegisterMetaType<MyQStyle*>();}
 
 int QStyle_PM_MdiSubWindowMinimizedWidth_Type()
 {
@@ -46206,7 +46602,7 @@ void* QStylePainter___drawRects_rectangles_newList2(void* ptr)
 class MyQStylePlugin: public QStylePlugin
 {
 public:
-	MyQStylePlugin(QObject *parent = Q_NULLPTR) : QStylePlugin(parent) {};
+	MyQStylePlugin(QObject *parent = Q_NULLPTR) : QStylePlugin(parent) {QStylePlugin_QStylePlugin_QRegisterMetaType();};
 	QStyle * create(const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtWidgets_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QStyle*>(callbackQStylePlugin_Create(this, keyPacked)); };
 	bool event(QEvent * e) { return callbackQStylePlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStylePlugin_EventFilter(this, watched, event) != 0; };
@@ -46220,6 +46616,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQStylePlugin_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStylePlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQStylePlugin*)
+
+int QStylePlugin_QStylePlugin_QRegisterMetaType(){return qRegisterMetaType<MyQStylePlugin*>();}
 
 void* QStylePlugin_Create(void* ptr, char* key)
 {
@@ -46445,7 +46845,7 @@ void* QStylePlugin_MetaObjectDefault(void* ptr)
 class MyQStyledItemDelegate: public QStyledItemDelegate
 {
 public:
-	MyQStyledItemDelegate(QObject *parent = Q_NULLPTR) : QStyledItemDelegate(parent) {};
+	MyQStyledItemDelegate(QObject *parent = Q_NULLPTR) : QStyledItemDelegate(parent) {QStyledItemDelegate_QStyledItemDelegate_QRegisterMetaType();};
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQAbstractItemDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQAbstractItemDelegate_EventFilter(this, editor, event) != 0; };
 	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQStyledItemDelegate_SizeHint(const_cast<void*>(static_cast<const void*>(this)), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
@@ -46472,6 +46872,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemDelegate_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractItemDelegate_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQStyledItemDelegate*)
+
+int QStyledItemDelegate_QStyledItemDelegate_QRegisterMetaType(){return qRegisterMetaType<MyQStyledItemDelegate*>();}
 
 void* QStyledItemDelegate_NewQStyledItemDelegate(void* parent)
 {
@@ -46585,6 +46989,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGesture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQSwipeGesture*)
+
+int QSwipeGesture_QSwipeGesture_QRegisterMetaType(){return qRegisterMetaType<MyQSwipeGesture*>();}
+
 void QSwipeGesture_SetSwipeAngle(void* ptr, double value)
 {
 	static_cast<QSwipeGesture*>(ptr)->setSwipeAngle(value);
@@ -46613,8 +47021,8 @@ double QSwipeGesture_SwipeAngle(void* ptr)
 class MyQSystemTrayIcon: public QSystemTrayIcon
 {
 public:
-	MyQSystemTrayIcon(QObject *parent = Q_NULLPTR) : QSystemTrayIcon(parent) {};
-	MyQSystemTrayIcon(const QIcon &icon, QObject *parent = Q_NULLPTR) : QSystemTrayIcon(icon, parent) {};
+	MyQSystemTrayIcon(QObject *parent = Q_NULLPTR) : QSystemTrayIcon(parent) {QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType();};
+	MyQSystemTrayIcon(const QIcon &icon, QObject *parent = Q_NULLPTR) : QSystemTrayIcon(icon, parent) {QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQSystemTrayIcon_Event(this, e) != 0; };
 	void Signal_Activated(QSystemTrayIcon::ActivationReason reason) { callbackQSystemTrayIcon_Activated(this, reason); };
 	void hide() { callbackQSystemTrayIcon_Hide(this); };
@@ -46633,6 +47041,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSystemTrayIcon_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSystemTrayIcon_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSystemTrayIcon*)
+
+int QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType(){return qRegisterMetaType<MyQSystemTrayIcon*>();}
 
 void* QSystemTrayIcon_NewQSystemTrayIcon(void* parent)
 {
@@ -47014,7 +47426,7 @@ void* QSystemTrayIcon_MetaObjectDefault(void* ptr)
 class MyQTabBar: public QTabBar
 {
 public:
-	MyQTabBar(QWidget *parent = Q_NULLPTR) : QTabBar(parent) {};
+	MyQTabBar(QWidget *parent = Q_NULLPTR) : QTabBar(parent) {QTabBar_QTabBar_QRegisterMetaType();};
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
 	void Signal_CurrentChanged(int index) { callbackQTabBar_CurrentChanged(this, index); };
 	void hideEvent(QHideEvent * vqh) { callbackQWidget_HideEvent(this, vqh); };
@@ -47094,6 +47506,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTabBar*)
+
+int QTabBar_QTabBar_QRegisterMetaType(){return qRegisterMetaType<MyQTabBar*>();}
 
 void* QTabBar_NewQTabBar(void* parent)
 {
@@ -47508,7 +47924,7 @@ void QTabBar_InitStyleOption(void* ptr, void* option, int tabIndex)
 class MyQTabWidget: public QTabWidget
 {
 public:
-	MyQTabWidget(QWidget *parent = Q_NULLPTR) : QTabWidget(parent) {};
+	MyQTabWidget(QWidget *parent = Q_NULLPTR) : QTabWidget(parent) {QTabWidget_QTabWidget_QRegisterMetaType();};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void Signal_CurrentChanged(int index) { callbackQTabWidget_CurrentChanged(this, index); };
 	void keyPressEvent(QKeyEvent * e) { callbackQWidget_KeyPressEvent(this, e); };
@@ -47586,6 +48002,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTabWidget*)
+
+int QTabWidget_QTabWidget_QRegisterMetaType(){return qRegisterMetaType<MyQTabWidget*>();}
 
 int QTabWidget_AddTab2(void* ptr, void* page, void* icon, char* label)
 {
@@ -47920,7 +48340,7 @@ void QTabWidget_InitStyleOption(void* ptr, void* option)
 class MyQTableView: public QTableView
 {
 public:
-	MyQTableView(QWidget *parent = Q_NULLPTR) : QTableView(parent) {};
+	MyQTableView(QWidget *parent = Q_NULLPTR) : QTableView(parent) {QTableView_QTableView_QRegisterMetaType();};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQTableView_MoveCursor(this, cursorAction, modifiers)); };
 	void columnCountChanged(int oldCount, int newCount) { callbackQTableView_ColumnCountChanged(this, oldCount, newCount); };
 	void columnMoved(int column, int oldIndex, int newIndex) { callbackQTableView_ColumnMoved(this, column, oldIndex, newIndex); };
@@ -48053,6 +48473,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTableView*)
+
+int QTableView_QTableView_QRegisterMetaType(){return qRegisterMetaType<MyQTableView*>();}
 
 void* QTableView_MoveCursor(void* ptr, long long cursorAction, long long modifiers)
 {
@@ -48637,8 +49061,8 @@ void* QTableView_VisualRegionForSelectionDefault(void* ptr, void* selection)
 class MyQTableWidget: public QTableWidget
 {
 public:
-	MyQTableWidget(QWidget *parent = Q_NULLPTR) : QTableWidget(parent) {};
-	MyQTableWidget(int rows, int columns, QWidget *parent = Q_NULLPTR) : QTableWidget(rows, columns, parent) {};
+	MyQTableWidget(QWidget *parent = Q_NULLPTR) : QTableWidget(parent) {QTableWidget_QTableWidget_QRegisterMetaType();};
+	MyQTableWidget(int rows, int columns, QWidget *parent = Q_NULLPTR) : QTableWidget(rows, columns, parent) {QTableWidget_QTableWidget_QRegisterMetaType();};
 	bool dropMimeData(int row, int column, const QMimeData * data, Qt::DropAction action) { return callbackQTableWidget_DropMimeData(this, row, column, const_cast<QMimeData*>(data), action) != 0; };
 	void Signal_CellActivated(int row, int column) { callbackQTableWidget_CellActivated(this, row, column); };
 	void Signal_CellChanged(int row, int column) { callbackQTableWidget_CellChanged(this, row, column); };
@@ -48797,6 +49221,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTableWidget*)
+
+int QTableWidget_QTableWidget_QRegisterMetaType(){return qRegisterMetaType<MyQTableWidget*>();}
 
 void* QTableWidget_NewQTableWidget(void* parent)
 {
@@ -49759,6 +50187,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGesture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQTapAndHoldGesture*)
+
+int QTapAndHoldGesture_QTapAndHoldGesture_QRegisterMetaType(){return qRegisterMetaType<MyQTapAndHoldGesture*>();}
+
 int QTapAndHoldGesture_QTapAndHoldGesture_Timeout()
 {
 	return QTapAndHoldGesture::timeout();
@@ -49800,6 +50232,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGesture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQTapGesture*)
+
+int QTapGesture_QTapGesture_QRegisterMetaType(){return qRegisterMetaType<MyQTapGesture*>();}
+
 void QTapGesture_SetPosition(void* ptr, void* pos)
 {
 	static_cast<QTapGesture*>(ptr)->setPosition(*static_cast<QPointF*>(pos));
@@ -49818,7 +50254,7 @@ void* QTapGesture_Position(void* ptr)
 class MyQTextBrowser: public QTextBrowser
 {
 public:
-	MyQTextBrowser(QWidget *parent = Q_NULLPTR) : QTextBrowser(parent) {};
+	MyQTextBrowser(QWidget *parent = Q_NULLPTR) : QTextBrowser(parent) {QTextBrowser_QTextBrowser_QRegisterMetaType();};
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
 	bool event(QEvent * e) { return callbackQWidget_Event(this, e) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -49941,6 +50377,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTextBrowser*)
+
+int QTextBrowser_QTextBrowser_QRegisterMetaType(){return qRegisterMetaType<MyQTextBrowser*>();}
 
 void* QTextBrowser_NewQTextBrowser(void* parent)
 {
@@ -50195,8 +50635,8 @@ void QTextBrowser_SetUndoRedoEnabled(void* ptr, char undoRedoEnabled)
 class MyQTextEdit: public QTextEdit
 {
 public:
-	MyQTextEdit(QWidget *parent = Q_NULLPTR) : QTextEdit(parent) {};
-	MyQTextEdit(const QString &text, QWidget *parent = Q_NULLPTR) : QTextEdit(text, parent) {};
+	MyQTextEdit(QWidget *parent = Q_NULLPTR) : QTextEdit(parent) {QTextEdit_QTextEdit_QRegisterMetaType();};
+	MyQTextEdit(const QString &text, QWidget *parent = Q_NULLPTR) : QTextEdit(text, parent) {QTextEdit_QTextEdit_QRegisterMetaType();};
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void append(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_Append(this, textPacked); };
@@ -50307,6 +50747,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTextEdit*)
+
+int QTextEdit_QTextEdit_QRegisterMetaType(){return qRegisterMetaType<MyQTextEdit*>();}
 
 void* QTextEdit_CreateStandardContextMenu(void* ptr)
 {
@@ -51164,8 +51608,8 @@ void QTileRules_SetVertical(void* ptr, long long vqt)
 class MyQTimeEdit: public QTimeEdit
 {
 public:
-	MyQTimeEdit(QWidget *parent = Q_NULLPTR) : QTimeEdit(parent) {};
-	MyQTimeEdit(const QTime &time, QWidget *parent = Q_NULLPTR) : QTimeEdit(time, parent) {};
+	MyQTimeEdit(QWidget *parent = Q_NULLPTR) : QTimeEdit(parent) {QTimeEdit_QTimeEdit_QRegisterMetaType();};
+	MyQTimeEdit(const QTime &time, QWidget *parent = Q_NULLPTR) : QTimeEdit(time, parent) {QTimeEdit_QTimeEdit_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void clear() { callbackQDateTimeEdit_Clear(this); };
 	void Signal_DateChanged(const QDate & date) { callbackQDateTimeEdit_DateChanged(this, const_cast<QDate*>(&date)); };
@@ -51252,6 +51696,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQTimeEdit*)
+
+int QTimeEdit_QTimeEdit_QRegisterMetaType(){return qRegisterMetaType<MyQTimeEdit*>();}
+
 void* QTimeEdit_NewQTimeEdit(void* parent)
 {
 		return new MyQTimeEdit(static_cast<QWidget*>(parent));
@@ -51270,8 +51718,8 @@ void QTimeEdit_DestroyQTimeEdit(void* ptr)
 class MyQToolBar: public QToolBar
 {
 public:
-	MyQToolBar(QWidget *parent = Q_NULLPTR) : QToolBar(parent) {};
-	MyQToolBar(const QString &title, QWidget *parent = Q_NULLPTR) : QToolBar(title, parent) {};
+	MyQToolBar(QWidget *parent = Q_NULLPTR) : QToolBar(parent) {QToolBar_QToolBar_QRegisterMetaType();};
+	MyQToolBar(const QString &title, QWidget *parent = Q_NULLPTR) : QToolBar(title, parent) {QToolBar_QToolBar_QRegisterMetaType();};
 	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
 	void Signal_ActionTriggered(QAction * action) { callbackQToolBar_ActionTriggered(this, action); };
 	void Signal_AllowedAreasChanged(Qt::ToolBarAreas allowedAreas) { callbackQToolBar_AllowedAreasChanged(this, allowedAreas); };
@@ -51351,6 +51799,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQToolBar*)
+
+int QToolBar_QToolBar_QRegisterMetaType(){return qRegisterMetaType<MyQToolBar*>();}
 
 void* QToolBar_AddAction2(void* ptr, void* icon, char* text)
 {
@@ -51655,7 +52107,7 @@ char QToolBar_IsMovable(void* ptr)
 class MyQToolBox: public QToolBox
 {
 public:
-	MyQToolBox(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QToolBox(parent, f) {};
+	MyQToolBox(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QToolBox(parent, f) {QToolBox_QToolBox_QRegisterMetaType();};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void Signal_CurrentChanged(int index) { callbackQToolBox_CurrentChanged(this, index); };
 	void itemInserted(int index) { callbackQToolBox_ItemInserted(this, index); };
@@ -51730,6 +52182,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQToolBox*)
+
+int QToolBox_QToolBox_QRegisterMetaType(){return qRegisterMetaType<MyQToolBox*>();}
 
 void* QToolBox_NewQToolBox(void* parent, long long fo)
 {
@@ -51889,7 +52345,7 @@ int QToolBox_IndexOf(void* ptr, void* widget)
 class MyQToolButton: public QToolButton
 {
 public:
-	MyQToolButton(QWidget *parent = Q_NULLPTR) : QToolButton(parent) {};
+	MyQToolButton(QWidget *parent = Q_NULLPTR) : QToolButton(parent) {QToolButton_QToolButton_QRegisterMetaType();};
 	void paintEvent(QPaintEvent * event) { callbackQToolButton_PaintEvent(this, event); };
 	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * e) { callbackQWidget_ChangeEvent(this, e); };
@@ -51974,6 +52430,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQToolButton*)
+
+int QToolButton_QToolButton_QRegisterMetaType(){return qRegisterMetaType<MyQToolButton*>();}
 
 void QToolButton_PaintEvent(void* ptr, void* event)
 {
@@ -52148,7 +52608,7 @@ void QToolTip_QToolTip_ShowText3(void* pos, char* text, void* w, void* rect, int
 class MyQTreeView: public QTreeView
 {
 public:
-	MyQTreeView(QWidget *parent = Q_NULLPTR) : QTreeView(parent) {};
+	MyQTreeView(QWidget *parent = Q_NULLPTR) : QTreeView(parent) {QTreeView_QTreeView_QRegisterMetaType();};
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQTreeView_MoveCursor(this, cursorAction, modifiers)); };
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
 	void collapse(const QModelIndex & index) { callbackQTreeView_Collapse(this, const_cast<QModelIndex*>(&index)); };
@@ -52280,6 +52740,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTreeView*)
+
+int QTreeView_QTreeView_QRegisterMetaType(){return qRegisterMetaType<MyQTreeView*>();}
 
 void* QTreeView_MoveCursor(void* ptr, long long cursorAction, long long modifiers)
 {
@@ -52997,7 +53461,7 @@ void QTreeView_DrawTree(void* ptr, void* painter, void* region)
 class MyQTreeWidget: public QTreeWidget
 {
 public:
-	MyQTreeWidget(QWidget *parent = Q_NULLPTR) : QTreeWidget(parent) {};
+	MyQTreeWidget(QWidget *parent = Q_NULLPTR) : QTreeWidget(parent) {QTreeWidget_QTreeWidget_QRegisterMetaType();};
 	bool dropMimeData(QTreeWidgetItem * parent, int index, const QMimeData * data, Qt::DropAction action) { return callbackQTreeWidget_DropMimeData(this, parent, index, const_cast<QMimeData*>(data), action) != 0; };
 	void clear() { callbackQTreeWidget_Clear(this); };
 	void collapseItem(const QTreeWidgetItem * item) { callbackQTreeWidget_CollapseItem(this, const_cast<QTreeWidgetItem*>(item)); };
@@ -53147,6 +53611,10 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTreeWidget*)
+
+int QTreeWidget_QTreeWidget_QRegisterMetaType(){return qRegisterMetaType<MyQTreeWidget*>();}
 
 void* QTreeWidget_NewQTreeWidget(void* parent)
 {
@@ -54203,7 +54671,7 @@ int QUndoCommand_IdDefault(void* ptr)
 class MyQUndoGroup: public QUndoGroup
 {
 public:
-	MyQUndoGroup(QObject *parent = Q_NULLPTR) : QUndoGroup(parent) {};
+	MyQUndoGroup(QObject *parent = Q_NULLPTR) : QUndoGroup(parent) {QUndoGroup_QUndoGroup_QRegisterMetaType();};
 	void Signal_ActiveStackChanged(QUndoStack * stack) { callbackQUndoGroup_ActiveStackChanged(this, stack); };
 	void Signal_CanRedoChanged(bool canRedo) { callbackQUndoGroup_CanRedoChanged(this, canRedo); };
 	void Signal_CanUndoChanged(bool canUndo) { callbackQUndoGroup_CanUndoChanged(this, canUndo); };
@@ -54226,6 +54694,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQUndoGroup_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUndoGroup_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQUndoGroup*)
+
+int QUndoGroup_QUndoGroup_QRegisterMetaType(){return qRegisterMetaType<MyQUndoGroup*>();}
 
 void* QUndoGroup_NewQUndoGroup(void* parent)
 {
@@ -54671,7 +55143,7 @@ void* QUndoGroup_MetaObjectDefault(void* ptr)
 class MyQUndoStack: public QUndoStack
 {
 public:
-	MyQUndoStack(QObject *parent = Q_NULLPTR) : QUndoStack(parent) {};
+	MyQUndoStack(QObject *parent = Q_NULLPTR) : QUndoStack(parent) {QUndoStack_QUndoStack_QRegisterMetaType();};
 	void Signal_CanRedoChanged(bool canRedo) { callbackQUndoStack_CanRedoChanged(this, canRedo); };
 	void Signal_CanUndoChanged(bool canUndo) { callbackQUndoStack_CanUndoChanged(this, canUndo); };
 	void Signal_CleanChanged(bool clean) { callbackQUndoStack_CleanChanged(this, clean); };
@@ -54696,6 +55168,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQUndoStack_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUndoStack_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQUndoStack*)
+
+int QUndoStack_QUndoStack_QRegisterMetaType(){return qRegisterMetaType<MyQUndoStack*>();}
 
 void* QUndoStack_NewQUndoStack(void* parent)
 {
@@ -55181,9 +55657,9 @@ void* QUndoStack_MetaObjectDefault(void* ptr)
 class MyQUndoView: public QUndoView
 {
 public:
-	MyQUndoView(QUndoGroup *group, QWidget *parent = Q_NULLPTR) : QUndoView(group, parent) {};
-	MyQUndoView(QUndoStack *stack, QWidget *parent = Q_NULLPTR) : QUndoView(stack, parent) {};
-	MyQUndoView(QWidget *parent = Q_NULLPTR) : QUndoView(parent) {};
+	MyQUndoView(QUndoGroup *group, QWidget *parent = Q_NULLPTR) : QUndoView(group, parent) {QUndoView_QUndoView_QRegisterMetaType();};
+	MyQUndoView(QUndoStack *stack, QWidget *parent = Q_NULLPTR) : QUndoView(stack, parent) {QUndoView_QUndoView_QRegisterMetaType();};
+	MyQUndoView(QWidget *parent = Q_NULLPTR) : QUndoView(parent) {QUndoView_QUndoView_QRegisterMetaType();};
 	void setGroup(QUndoGroup * group) { callbackQUndoView_SetGroup(this, group); };
 	void setStack(QUndoStack * stack) { callbackQUndoView_SetStack(this, stack); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
@@ -55302,6 +55778,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQUndoView*)
+
+int QUndoView_QUndoView_QRegisterMetaType(){return qRegisterMetaType<MyQUndoView*>();}
+
 void* QUndoView_NewQUndoView3(void* group, void* parent)
 {
 		return new MyQUndoView(static_cast<QUndoGroup*>(group), static_cast<QWidget*>(parent));
@@ -55375,8 +55855,8 @@ void* QUndoView_Stack(void* ptr)
 class MyQVBoxLayout: public QVBoxLayout
 {
 public:
-	MyQVBoxLayout() : QVBoxLayout() {};
-	MyQVBoxLayout(QWidget *parent) : QVBoxLayout(parent) {};
+	MyQVBoxLayout() : QVBoxLayout() {QVBoxLayout_QVBoxLayout_QRegisterMetaType();};
+	MyQVBoxLayout(QWidget *parent) : QVBoxLayout(parent) {QVBoxLayout_QVBoxLayout_QRegisterMetaType();};
 	QLayoutItem * takeAt(int index) { return static_cast<QLayoutItem*>(callbackQBoxLayout_TakeAt(this, index)); };
 	void addItem(QLayoutItem * item) { callbackQBoxLayout_AddItem(this, item); };
 	void invalidate() { callbackQLayoutItem_Invalidate(this); };
@@ -55409,6 +55889,10 @@ public:
 	QSpacerItem * spacerItem() { return static_cast<QSpacerItem*>(callbackQLayoutItem_SpacerItem(this)); };
 	QWidget * widget() { return static_cast<QWidget*>(callbackQLayoutItem_Widget(this)); };
 };
+
+Q_DECLARE_METATYPE(MyQVBoxLayout*)
+
+int QVBoxLayout_QVBoxLayout_QRegisterMetaType(){return qRegisterMetaType<MyQVBoxLayout*>();}
 
 void* QVBoxLayout_NewQVBoxLayout()
 {
@@ -55468,7 +55952,7 @@ void QWhatsThis_QWhatsThis_ShowText(void* pos, char* text, void* w)
 class MyQWidget: public QWidget
 {
 public:
-	MyQWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QWidget(parent, f) {};
+	MyQWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QWidget(parent, f) {QWidget_QWidget_QRegisterMetaType();};
 	bool close() { return callbackQWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -55539,6 +56023,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWidget*)
+
+int QWidget_QWidget_QRegisterMetaType(){return qRegisterMetaType<MyQWidget*>();}
 
 void* QWidget_Grab(void* ptr, void* rectangle)
 {
@@ -68751,7 +69239,7 @@ void* QWidget_MetaObjectDefault(void* ptr)
 class MyQWidgetAction: public QWidgetAction
 {
 public:
-	MyQWidgetAction(QObject *parent) : QWidgetAction(parent) {};
+	MyQWidgetAction(QObject *parent) : QWidgetAction(parent) {QWidgetAction_QWidgetAction_QRegisterMetaType();};
 	QWidget * createWidget(QWidget * parent) { return static_cast<QWidget*>(callbackQWidgetAction_CreateWidget(this, parent)); };
 	bool event(QEvent * event) { return callbackQAction_Event(this, event) != 0; };
 	bool eventFilter(QObject * obj, QEvent * event) { return callbackQAction_EventFilter(this, obj, event) != 0; };
@@ -68778,6 +69266,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAction_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAction_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWidgetAction*)
+
+int QWidgetAction_QWidgetAction_QRegisterMetaType(){return qRegisterMetaType<MyQWidgetAction*>();}
 
 void* QWidgetAction_CreateWidget(void* ptr, void* parent)
 {
@@ -69004,7 +69496,7 @@ void QWidgetItem_SetWid(void* ptr, void* vqw)
 class MyQWizard: public QWizard
 {
 public:
-	MyQWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QWizard(parent, flags) {};
+	MyQWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QWizard(parent, flags) {QWizard_QWizard_QRegisterMetaType();};
 	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
 	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	bool validateCurrentPage() { return callbackQWizard_ValidateCurrentPage(this) != 0; };
@@ -69094,6 +69586,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWizard*)
+
+int QWizard_QWizard_QRegisterMetaType(){return qRegisterMetaType<MyQWizard*>();}
 
 void* QWizard_NewQWizard(void* parent, long long flags)
 {
@@ -69453,7 +69949,7 @@ void* QWizard___visitedPages_newList(void* ptr)
 class MyQWizardPage: public QWizardPage
 {
 public:
-	MyQWizardPage(QWidget *parent = Q_NULLPTR) : QWizardPage(parent) {};
+	MyQWizardPage(QWidget *parent = Q_NULLPTR) : QWizardPage(parent) {QWizardPage_QWizardPage_QRegisterMetaType();};
 	bool validatePage() { return callbackQWizardPage_ValidatePage(this) != 0; };
 	void cleanupPage() { callbackQWizardPage_CleanupPage(this); };
 	void Signal_CompleteChanged() { callbackQWizardPage_CompleteChanged(this); };
@@ -69530,6 +70026,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQWizardPage*)
+
+int QWizardPage_QWizardPage_QRegisterMetaType(){return qRegisterMetaType<MyQWizardPage*>();}
 
 void* QWizardPage_NewQWizardPage(void* parent)
 {

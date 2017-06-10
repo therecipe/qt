@@ -303,8 +303,8 @@ func GetLibs() []string {
 		"Sailfish",
 		"WebView",
 
-		//"NetworkAuth",
-		//"RemoteObjects",
+		//"NetworkAuth", //TODO:
+		"RemoteObjects",
 
 		"WebKit",
 	}
@@ -317,10 +317,10 @@ func GetLibs() []string {
 			runtime.GOOS != "linux" && libs[i] == "X11Extras":
 			libs = append(libs[:i], libs[i+1:]...)
 
-		case !(utils.QT_VERSION() == "5.8.0" || utils.QT_VERSION() == "5.9.0") && libs[i] == "Speech":
+		case !(utils.QT_VERSION_MAJOR() == "5.8" || utils.QT_VERSION_MAJOR() == "5.9") && libs[i] == "Speech":
 			libs = append(libs[:i], libs[i+1:]...)
 
-		case utils.QT_VERSION() != "5.9.0" && (libs[i] == "NetworkAuth" || libs[i] == "RemoteObjects"):
+		case utils.QT_VERSION_MAJOR() != "5.9" && (libs[i] == "NetworkAuth" || libs[i] == "RemoteObjects"):
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case !utils.QT_WEBKIT() && libs[i] == "WebKit":

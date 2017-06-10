@@ -47,8 +47,8 @@
 class MyQTextToSpeech: public QTextToSpeech
 {
 public:
-	MyQTextToSpeech(QObject *parent = nullptr) : QTextToSpeech(parent) {};
-	MyQTextToSpeech(const QString &engine, QObject *parent = nullptr) : QTextToSpeech(engine, parent) {};
+	MyQTextToSpeech(QObject *parent = nullptr) : QTextToSpeech(parent) {QTextToSpeech_QTextToSpeech_QRegisterMetaType();};
+	MyQTextToSpeech(const QString &engine, QObject *parent = nullptr) : QTextToSpeech(engine, parent) {QTextToSpeech_QTextToSpeech_QRegisterMetaType();};
 	void Signal_LocaleChanged(const QLocale & locale) { callbackQTextToSpeech_LocaleChanged(this, const_cast<QLocale*>(&locale)); };
 	void pause() { callbackQTextToSpeech_Pause(this); };
 	void Signal_PitchChanged(double pitch) { callbackQTextToSpeech_PitchChanged(this, pitch); };
@@ -74,6 +74,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQTextToSpeech_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextToSpeech_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQTextToSpeech*)
+
+int QTextToSpeech_QTextToSpeech_QRegisterMetaType(){return qRegisterMetaType<MyQTextToSpeech*>();}
 
 struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_AvailableEngines()
 {

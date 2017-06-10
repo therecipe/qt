@@ -129,6 +129,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlDataModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQScxmlCppDataModel*)
+
+int QScxmlCppDataModel_QScxmlCppDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlCppDataModel*>();}
+
 char QScxmlCppDataModel_SetScxmlProperty(void* ptr, char* name, void* value, char* context)
 {
 	return static_cast<QScxmlCppDataModel*>(ptr)->setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
@@ -204,6 +208,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlDataModel_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlDataModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScxmlDataModel*)
+
+int QScxmlDataModel_QScxmlDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlDataModel*>();}
 
 char QScxmlDataModel_SetScxmlProperty(void* ptr, char* name, void* value, char* context)
 {
@@ -494,6 +502,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlInvokableServiceFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQScxmlDynamicScxmlServiceFactory*)
+
+int QScxmlDynamicScxmlServiceFactory_QScxmlDynamicScxmlServiceFactory_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlDynamicScxmlServiceFactory*>();}
+
 void* QScxmlDynamicScxmlServiceFactory_Invoke(void* ptr, void* parentStateMachine)
 {
 	return static_cast<QScxmlDynamicScxmlServiceFactory*>(ptr)->invoke(static_cast<QScxmlStateMachine*>(parentStateMachine));
@@ -517,7 +529,7 @@ void* QScxmlDynamicScxmlServiceFactory___QScxmlDynamicScxmlServiceFactory_parame
 class MyQScxmlEcmaScriptDataModel: public QScxmlEcmaScriptDataModel
 {
 public:
-	MyQScxmlEcmaScriptDataModel(QObject *parent = nullptr) : QScxmlEcmaScriptDataModel(parent) {};
+	MyQScxmlEcmaScriptDataModel(QObject *parent = nullptr) : QScxmlEcmaScriptDataModel(parent) {QScxmlEcmaScriptDataModel_QScxmlEcmaScriptDataModel_QRegisterMetaType();};
 	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { QByteArray t6ae999 = name.toUtf8(); QtScxml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tec2727 = context.toUtf8(); QtScxml_PackedString contextPacked = { const_cast<char*>(tec2727.prepend("WHITESPACE").constData()+10), tec2727.size()-10 };return callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(this, namePacked, const_cast<QVariant*>(&value), contextPacked) != 0; };
 	bool setup(const QVariantMap & initialDataValues) { return callbackQScxmlEcmaScriptDataModel_Setup(this, ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(initialDataValues); QtScxml_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void setScxmlEvent(const QScxmlEvent & event) { callbackQScxmlEcmaScriptDataModel_SetScxmlEvent(this, const_cast<QScxmlEvent*>(&event)); };
@@ -536,6 +548,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlDataModel_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlDataModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScxmlEcmaScriptDataModel*)
+
+int QScxmlEcmaScriptDataModel_QScxmlEcmaScriptDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlEcmaScriptDataModel*>();}
 
 void* QScxmlEcmaScriptDataModel_NewQScxmlEcmaScriptDataModel(void* parent)
 {
@@ -801,7 +817,7 @@ int QScxmlEvent_Delay(void* ptr)
 class MyQScxmlInvokableService: public QScxmlInvokableService
 {
 public:
-	MyQScxmlInvokableService(QScxmlStateMachine *parentStateMachine, QScxmlInvokableServiceFactory *parent) : QScxmlInvokableService(parentStateMachine, parent) {};
+	MyQScxmlInvokableService(QScxmlStateMachine *parentStateMachine, QScxmlInvokableServiceFactory *parent) : QScxmlInvokableService(parentStateMachine, parent) {QScxmlInvokableService_QScxmlInvokableService_QRegisterMetaType();};
 	bool start() { return callbackQScxmlInvokableService_Start(this) != 0; };
 	void postEvent(QScxmlEvent * event) { callbackQScxmlInvokableService_PostEvent(this, event); };
 	QString id() const { return QString(callbackQScxmlInvokableService_Id(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -818,6 +834,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlInvokableService_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlInvokableService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScxmlInvokableService*)
+
+int QScxmlInvokableService_QScxmlInvokableService_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlInvokableService*>();}
 
 void* QScxmlInvokableService_NewQScxmlInvokableService(void* parentStateMachine, void* parent)
 {
@@ -985,6 +1005,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlInvokableServiceFactory_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlInvokableServiceFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScxmlInvokableServiceFactory*)
+
+int QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlInvokableServiceFactory*>();}
 
 void* QScxmlInvokableServiceFactory_Invoke(void* ptr, void* parentStateMachine)
 {
@@ -1188,7 +1212,7 @@ void* QScxmlInvokableServiceFactory_MetaObjectDefault(void* ptr)
 class MyQScxmlNullDataModel: public QScxmlNullDataModel
 {
 public:
-	MyQScxmlNullDataModel(QObject *parent = nullptr) : QScxmlNullDataModel(parent) {};
+	MyQScxmlNullDataModel(QObject *parent = nullptr) : QScxmlNullDataModel(parent) {QScxmlNullDataModel_QScxmlNullDataModel_QRegisterMetaType();};
 	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { QByteArray t6ae999 = name.toUtf8(); QtScxml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };QByteArray tec2727 = context.toUtf8(); QtScxml_PackedString contextPacked = { const_cast<char*>(tec2727.prepend("WHITESPACE").constData()+10), tec2727.size()-10 };return callbackQScxmlNullDataModel_SetScxmlProperty(this, namePacked, const_cast<QVariant*>(&value), contextPacked) != 0; };
 	bool setup(const QVariantMap & initialDataValues) { return callbackQScxmlNullDataModel_Setup(this, ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(initialDataValues); QtScxml_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void setScxmlEvent(const QScxmlEvent & event) { callbackQScxmlNullDataModel_SetScxmlEvent(this, const_cast<QScxmlEvent*>(&event)); };
@@ -1207,6 +1231,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlDataModel_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlDataModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScxmlNullDataModel*)
+
+int QScxmlNullDataModel_QScxmlNullDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlNullDataModel*>();}
 
 void* QScxmlNullDataModel_NewQScxmlNullDataModel(void* parent)
 {
@@ -1307,7 +1335,7 @@ char QScxmlNullDataModel_HasScxmlPropertyDefault(void* ptr, char* name)
 class MyQScxmlStateMachine: public QScxmlStateMachine
 {
 public:
-	MyQScxmlStateMachine(const QMetaObject *metaObject, QObject *parent = nullptr) : QScxmlStateMachine(metaObject, parent) {};
+	MyQScxmlStateMachine(const QMetaObject *metaObject, QObject *parent = nullptr) : QScxmlStateMachine(metaObject, parent) {QScxmlStateMachine_QScxmlStateMachine_QRegisterMetaType();};
 	bool init() { return callbackQScxmlStateMachine_Init(this) != 0; };
 	void Signal_DataModelChanged(QScxmlDataModel * model) { callbackQScxmlStateMachine_DataModelChanged(this, model); };
 	void Signal_Finished() { callbackQScxmlStateMachine_Finished(this); };
@@ -1331,6 +1359,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlStateMachine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlStateMachine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScxmlStateMachine*)
+
+int QScxmlStateMachine_QScxmlStateMachine_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlStateMachine*>();}
 
 void* QScxmlStateMachine_QScxmlStateMachine_FromData(void* data, char* fileName)
 {
@@ -1936,6 +1968,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScxmlInvokableServiceFactory_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlInvokableServiceFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScxmlStaticScxmlServiceFactory*)
+
+int QScxmlStaticScxmlServiceFactory_QScxmlStaticScxmlServiceFactory_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlStaticScxmlServiceFactory*>();}
 
 void* QScxmlStaticScxmlServiceFactory_Invoke(void* ptr, void* parentStateMachine)
 {

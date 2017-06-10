@@ -74,6 +74,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBus_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQCanBus*)
+
+int QCanBus_QCanBus_QRegisterMetaType(){return qRegisterMetaType<MyQCanBus*>();}
+
 void* QCanBus_QCanBus_Instance()
 {
 	return QCanBus::instance();
@@ -212,7 +216,7 @@ void* QCanBus_MetaObjectDefault(void* ptr)
 class MyQCanBusDevice: public QCanBusDevice
 {
 public:
-	MyQCanBusDevice(QObject *parent = nullptr) : QCanBusDevice(parent) {};
+	MyQCanBusDevice(QObject *parent = nullptr) : QCanBusDevice(parent) {QCanBusDevice_QCanBusDevice_QRegisterMetaType();};
 	QString interpretErrorFrame(const QCanBusFrame & frame) { return QString(callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&frame))); };
 	bool open() { return callbackQCanBusDevice_Open(this) != 0; };
 	bool waitForFramesReceived(int msecs) { return callbackQCanBusDevice_WaitForFramesReceived(this, msecs) != 0; };
@@ -236,6 +240,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQCanBusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQCanBusDevice*)
+
+int QCanBusDevice_QCanBusDevice_QRegisterMetaType(){return qRegisterMetaType<MyQCanBusDevice*>();}
 
 void* QCanBusDevice_NewQCanBusDevice(void* parent)
 {
@@ -752,7 +760,7 @@ unsigned int QCanBusFrame_FrameId(void* ptr)
 class MyQModbusClient: public QModbusClient
 {
 public:
-	MyQModbusClient(QObject *parent = nullptr) : QModbusClient(parent) {};
+	MyQModbusClient(QObject *parent = nullptr) : QModbusClient(parent) {QModbusClient_QModbusClient_QRegisterMetaType();};
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -772,6 +780,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusClient*)
+
+int QModbusClient_QModbusClient_QRegisterMetaType(){return qRegisterMetaType<MyQModbusClient*>();}
 
 void* QModbusClient_NewQModbusClient(void* parent)
 {
@@ -1056,7 +1068,7 @@ void* QModbusDataUnit___values_newList(void* ptr)
 class MyQModbusDevice: public QModbusDevice
 {
 public:
-	MyQModbusDevice(QObject *parent = nullptr) : QModbusDevice(parent) {};
+	MyQModbusDevice(QObject *parent = nullptr) : QModbusDevice(parent) {QModbusDevice_QModbusDevice_QRegisterMetaType();};
 	bool open() { return callbackQModbusDevice_Open(this) != 0; };
 	void close() { callbackQModbusDevice_Close(this); };
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
@@ -1073,6 +1085,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusDevice*)
+
+int QModbusDevice_QModbusDevice_QRegisterMetaType(){return qRegisterMetaType<MyQModbusDevice*>();}
 
 void* QModbusDevice_NewQModbusDevice(void* parent)
 {
@@ -1656,7 +1672,7 @@ void* QModbusPdu___encode_vector_newList2(void* ptr)
 class MyQModbusReply: public QModbusReply
 {
 public:
-	MyQModbusReply(ReplyType type, int serverAddress, QObject *parent = nullptr) : QModbusReply(type, serverAddress, parent) {};
+	MyQModbusReply(ReplyType type, int serverAddress, QObject *parent = nullptr) : QModbusReply(type, serverAddress, parent) {QModbusReply_QModbusReply_QRegisterMetaType();};
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusReply_ErrorOccurred(this, error); };
 	void Signal_Finished() { callbackQModbusReply_Finished(this); };
 	bool event(QEvent * e) { return callbackQModbusReply_Event(this, e) != 0; };
@@ -1671,6 +1687,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusReply_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusReply*)
+
+int QModbusReply_QModbusReply_QRegisterMetaType(){return qRegisterMetaType<MyQModbusReply*>();}
 
 void* QModbusReply_NewQModbusReply(long long ty, int serverAddress, void* parent)
 {
@@ -1969,7 +1989,7 @@ int QModbusResponse_QModbusResponse_MinimumDataSize(void* response)
 class MyQModbusRtuSerialMaster: public QModbusRtuSerialMaster
 {
 public:
-	MyQModbusRtuSerialMaster(QObject *parent = nullptr) : QModbusRtuSerialMaster(parent) {};
+	MyQModbusRtuSerialMaster(QObject *parent = nullptr) : QModbusRtuSerialMaster(parent) {QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType();};
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -1989,6 +2009,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusRtuSerialMaster*)
+
+int QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType(){return qRegisterMetaType<MyQModbusRtuSerialMaster*>();}
 
 void* QModbusRtuSerialMaster_NewQModbusRtuSerialMaster(void* parent)
 {
@@ -2044,7 +2068,7 @@ int QModbusRtuSerialMaster_InterFrameDelay(void* ptr)
 class MyQModbusRtuSerialSlave: public QModbusRtuSerialSlave
 {
 public:
-	MyQModbusRtuSerialSlave(QObject *parent = nullptr) : QModbusRtuSerialSlave(parent) {};
+	MyQModbusRtuSerialSlave(QObject *parent = nullptr) : QModbusRtuSerialSlave(parent) {QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType();};
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	
@@ -2070,6 +2094,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusRtuSerialSlave*)
+
+int QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType(){return qRegisterMetaType<MyQModbusRtuSerialSlave*>();}
 
 void* QModbusRtuSerialSlave_NewQModbusRtuSerialSlave(void* parent)
 {
@@ -2120,7 +2148,7 @@ void QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(void* ptr)
 class MyQModbusServer: public QModbusServer
 {
 public:
-	MyQModbusServer(QObject *parent = nullptr) : QModbusServer(parent) {};
+	MyQModbusServer(QObject *parent = nullptr) : QModbusServer(parent) {QModbusServer_QModbusServer_QRegisterMetaType();};
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
@@ -2145,6 +2173,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusServer*)
+
+int QModbusServer_QModbusServer_QRegisterMetaType(){return qRegisterMetaType<MyQModbusServer*>();}
 
 void* QModbusServer_ProcessPrivateRequest(void* ptr, void* request)
 {
@@ -2379,7 +2411,7 @@ void QModbusServer_CloseDefault(void* ptr)
 class MyQModbusTcpClient: public QModbusTcpClient
 {
 public:
-	MyQModbusTcpClient(QObject *parent = nullptr) : QModbusTcpClient(parent) {};
+	MyQModbusTcpClient(QObject *parent = nullptr) : QModbusTcpClient(parent) {QModbusTcpClient_QModbusTcpClient_QRegisterMetaType();};
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -2399,6 +2431,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusTcpClient*)
+
+int QModbusTcpClient_QModbusTcpClient_QRegisterMetaType(){return qRegisterMetaType<MyQModbusTcpClient*>();}
 
 void* QModbusTcpClient_NewQModbusTcpClient(void* parent)
 {
@@ -2449,7 +2485,7 @@ void QModbusTcpClient_DestroyQModbusTcpClient(void* ptr)
 class MyQModbusTcpServer: public QModbusTcpServer
 {
 public:
-	MyQModbusTcpServer(QObject *parent = nullptr) : QModbusTcpServer(parent) {};
+	MyQModbusTcpServer(QObject *parent = nullptr) : QModbusTcpServer(parent) {QModbusTcpServer_QModbusTcpServer_QRegisterMetaType();};
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
@@ -2474,6 +2510,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQModbusTcpServer*)
+
+int QModbusTcpServer_QModbusTcpServer_QRegisterMetaType(){return qRegisterMetaType<MyQModbusTcpServer*>();}
 
 void* QModbusTcpServer_NewQModbusTcpServer(void* parent)
 {

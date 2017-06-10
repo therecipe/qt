@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QGamepad_QGamepad_QRegisterMetaType();
 extern "C" {
 #endif
 

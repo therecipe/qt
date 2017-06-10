@@ -317,6 +317,11 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QWebHistoryItem::loadFromMap", f.Fullname == "QWebHistory::loadFromMap",
 
+		f.Name == "QCanBusDeviceInfo", f.Fullname == "QRemoteObjectNode::instances" && !f.Overload,
+
+		f.Fullname == "QtROClientFactory::registerType", f.Fullname == "QtROServerFactory::registerType",
+		f.Name == "QtROClientFactory", f.Name == "QtROServerFactory",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
@@ -606,7 +611,7 @@ func (f *Function) FindDeepestImplementation() string {
 }
 
 func (f *Function) Implements() bool {
-	return f.FindDeepestImplementation() == f.ClassName()
+	return f.TemplateModeGo != "" || f.FindDeepestImplementation() == f.ClassName()
 }
 
 func (f *Function) Root() *Function {

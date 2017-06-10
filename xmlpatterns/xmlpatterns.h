@@ -8,6 +8,8 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QAbstractMessageHandler_QAbstractMessageHandler_QRegisterMetaType();
+int QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType();
 extern "C" {
 #endif
 

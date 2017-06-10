@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QUiLoader_QUiLoader_QRegisterMetaType();
 extern "C" {
 #endif
 

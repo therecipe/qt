@@ -8,6 +8,46 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QAccelerometer_QAccelerometer_QRegisterMetaType();
+int QAccelerometerReading_QAccelerometerReading_QRegisterMetaType();
+int QAltimeter_QAltimeter_QRegisterMetaType();
+int QAltimeterReading_QAltimeterReading_QRegisterMetaType();
+int QAmbientLightReading_QAmbientLightReading_QRegisterMetaType();
+int QAmbientLightSensor_QAmbientLightSensor_QRegisterMetaType();
+int QAmbientTemperatureReading_QAmbientTemperatureReading_QRegisterMetaType();
+int QAmbientTemperatureSensor_QAmbientTemperatureSensor_QRegisterMetaType();
+int QCompass_QCompass_QRegisterMetaType();
+int QCompassReading_QCompassReading_QRegisterMetaType();
+int QDistanceReading_QDistanceReading_QRegisterMetaType();
+int QDistanceSensor_QDistanceSensor_QRegisterMetaType();
+int QGyroscope_QGyroscope_QRegisterMetaType();
+int QGyroscopeReading_QGyroscopeReading_QRegisterMetaType();
+int QHolsterReading_QHolsterReading_QRegisterMetaType();
+int QHolsterSensor_QHolsterSensor_QRegisterMetaType();
+int QIRProximityReading_QIRProximityReading_QRegisterMetaType();
+int QIRProximitySensor_QIRProximitySensor_QRegisterMetaType();
+int QLightReading_QLightReading_QRegisterMetaType();
+int QLightSensor_QLightSensor_QRegisterMetaType();
+int QMagnetometer_QMagnetometer_QRegisterMetaType();
+int QMagnetometerReading_QMagnetometerReading_QRegisterMetaType();
+int QOrientationReading_QOrientationReading_QRegisterMetaType();
+int QOrientationSensor_QOrientationSensor_QRegisterMetaType();
+int QPressureReading_QPressureReading_QRegisterMetaType();
+int QPressureSensor_QPressureSensor_QRegisterMetaType();
+int QProximityReading_QProximityReading_QRegisterMetaType();
+int QProximitySensor_QProximitySensor_QRegisterMetaType();
+int QRotationReading_QRotationReading_QRegisterMetaType();
+int QRotationSensor_QRotationSensor_QRegisterMetaType();
+int QSensor_QSensor_QRegisterMetaType();
+int QSensorBackend_QSensorBackend_QRegisterMetaType();
+int QSensorGesture_QSensorGesture_QRegisterMetaType();
+int QSensorGestureManager_QSensorGestureManager_QRegisterMetaType();
+int QSensorGestureRecognizer_QSensorGestureRecognizer_QRegisterMetaType();
+int QSensorReading_QSensorReading_QRegisterMetaType();
+int QTapReading_QTapReading_QRegisterMetaType();
+int QTapSensor_QTapSensor_QRegisterMetaType();
+int QTiltReading_QTiltReading_QRegisterMetaType();
+int QTiltSensor_QTiltSensor_QRegisterMetaType();
 extern "C" {
 #endif
 

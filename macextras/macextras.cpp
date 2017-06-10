@@ -152,8 +152,8 @@ void* QMacPasteboardMime___convertToMime_data_newList(void* ptr)
 class MyQMacToolBar: public QMacToolBar
 {
 public:
-	MyQMacToolBar(QObject *parent = Q_NULLPTR) : QMacToolBar(parent) {};
-	MyQMacToolBar(const QString &identifier, QObject *parent = Q_NULLPTR) : QMacToolBar(identifier, parent) {};
+	MyQMacToolBar(QObject *parent = Q_NULLPTR) : QMacToolBar(parent) {QMacToolBar_QMacToolBar_QRegisterMetaType();};
+	MyQMacToolBar(const QString &identifier, QObject *parent = Q_NULLPTR) : QMacToolBar(identifier, parent) {QMacToolBar_QMacToolBar_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQMacToolBar_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacToolBar_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMacToolBar_ChildEvent(this, event); };
@@ -166,6 +166,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMacToolBar_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBar_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMacToolBar*)
+
+int QMacToolBar_QMacToolBar_QRegisterMetaType(){return qRegisterMetaType<MyQMacToolBar*>();}
 
 struct QtMacExtras_PackedList QMacToolBar_AllowedItems(void* ptr)
 {
@@ -506,7 +510,7 @@ void* QMacToolBar_MetaObjectDefault(void* ptr)
 class MyQMacToolBarItem: public QMacToolBarItem
 {
 public:
-	MyQMacToolBarItem(QObject *parent = Q_NULLPTR) : QMacToolBarItem(parent) {};
+	MyQMacToolBarItem(QObject *parent = Q_NULLPTR) : QMacToolBarItem(parent) {QMacToolBarItem_QMacToolBarItem_QRegisterMetaType();};
 	void Signal_Activated() { callbackQMacToolBarItem_Activated(this); };
 	 ~MyQMacToolBarItem() { callbackQMacToolBarItem_DestroyQMacToolBarItem(this); };
 	bool event(QEvent * e) { return callbackQMacToolBarItem_Event(this, e) != 0; };
@@ -521,6 +525,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItem_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBarItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQMacToolBarItem*)
+
+int QMacToolBarItem_QMacToolBarItem_QRegisterMetaType(){return qRegisterMetaType<MyQMacToolBarItem*>();}
 
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
 {

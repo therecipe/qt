@@ -8,6 +8,22 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QQuickFramebufferObject_QQuickFramebufferObject_QRegisterMetaType();
+int QQuickImageResponse_QQuickImageResponse_QRegisterMetaType();
+int QQuickItem_QQuickItem_QRegisterMetaType();
+int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType();
+int QQuickPaintedItem_QQuickPaintedItem_QRegisterMetaType();
+int QQuickRenderControl_QQuickRenderControl_QRegisterMetaType();
+int QQuickTextDocument_QQuickTextDocument_QRegisterMetaType();
+int QQuickTextureFactory_QQuickTextureFactory_QRegisterMetaType();
+int QQuickView_QQuickView_QRegisterMetaType();
+int QQuickWidget_QQuickWidget_QRegisterMetaType();
+int QQuickWindow_QQuickWindow_QRegisterMetaType();
+int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType();
+int QSGDynamicTexture_QSGDynamicTexture_QRegisterMetaType();
+int QSGEngine_QSGEngine_QRegisterMetaType();
+int QSGTexture_QSGTexture_QRegisterMetaType();
+int QSGTextureProvider_QSGTextureProvider_QRegisterMetaType();
 extern "C" {
 #endif
 

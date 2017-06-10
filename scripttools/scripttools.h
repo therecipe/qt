@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType();
 extern "C" {
 #endif
 

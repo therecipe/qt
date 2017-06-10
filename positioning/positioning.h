@@ -8,6 +8,10 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QGeoAreaMonitorSource_QGeoAreaMonitorSource_QRegisterMetaType();
+int QGeoPositionInfoSource_QGeoPositionInfoSource_QRegisterMetaType();
+int QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_QRegisterMetaType();
+int QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType();
 extern "C" {
 #endif
 

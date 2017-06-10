@@ -605,7 +605,7 @@ char QNdefRecord_IsEmpty(void* ptr)
 class MyQNearFieldManager: public QNearFieldManager
 {
 public:
-	MyQNearFieldManager(QObject *parent = Q_NULLPTR) : QNearFieldManager(parent) {};
+	MyQNearFieldManager(QObject *parent = Q_NULLPTR) : QNearFieldManager(parent) {QNearFieldManager_QNearFieldManager_QRegisterMetaType();};
 	void Signal_TargetDetected(QNearFieldTarget * target) { callbackQNearFieldManager_TargetDetected(this, target); };
 	void Signal_TargetLost(QNearFieldTarget * target) { callbackQNearFieldManager_TargetLost(this, target); };
 	bool event(QEvent * e) { return callbackQNearFieldManager_Event(this, e) != 0; };
@@ -620,6 +620,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldManager_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNearFieldManager*)
+
+int QNearFieldManager_QNearFieldManager_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldManager*>();}
 
 char QNearFieldManager_StartTargetDetection(void* ptr)
 {
@@ -865,7 +869,7 @@ void* QNearFieldManager_MetaObjectDefault(void* ptr)
 class MyQNearFieldShareManager: public QNearFieldShareManager
 {
 public:
-	MyQNearFieldShareManager(QObject *parent = Q_NULLPTR) : QNearFieldShareManager(parent) {};
+	MyQNearFieldShareManager(QObject *parent = Q_NULLPTR) : QNearFieldShareManager(parent) {QNearFieldShareManager_QNearFieldShareManager_QRegisterMetaType();};
 	void Signal_Error(QNearFieldShareManager::ShareError error) { callbackQNearFieldShareManager_Error(this, error); };
 	void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes) { callbackQNearFieldShareManager_ShareModesChanged(this, modes); };
 	void Signal_TargetDetected(QNearFieldShareTarget * shareTarget) { callbackQNearFieldShareManager_TargetDetected(this, shareTarget); };
@@ -881,6 +885,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldShareManager_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldShareManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNearFieldShareManager*)
+
+int QNearFieldShareManager_QNearFieldShareManager_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldShareManager*>();}
 
 void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent)
 {
@@ -1131,6 +1139,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldShareTarget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQNearFieldShareTarget*)
+
+int QNearFieldShareTarget_QNearFieldShareTarget_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldShareTarget*>();}
+
 char QNearFieldShareTarget_Share2(void* ptr, void* files)
 {
 	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QList<QFileInfo>*>(files));
@@ -1334,7 +1346,7 @@ void* QNearFieldShareTarget_MetaObjectDefault(void* ptr)
 class MyQNearFieldTarget: public QNearFieldTarget
 {
 public:
-	MyQNearFieldTarget(QObject *parent = Q_NULLPTR) : QNearFieldTarget(parent) {};
+	MyQNearFieldTarget(QObject *parent = Q_NULLPTR) : QNearFieldTarget(parent) {QNearFieldTarget_QNearFieldTarget_QRegisterMetaType();};
 	bool hasNdefMessage() { return callbackQNearFieldTarget_HasNdefMessage(this) != 0; };
 	void Signal_Disconnected() { callbackQNearFieldTarget_Disconnected(this); };
 	void Signal_NdefMessageRead(const QNdefMessage & message) { callbackQNearFieldTarget_NdefMessageRead(this, const_cast<QNdefMessage*>(&message)); };
@@ -1356,6 +1368,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldTarget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNearFieldTarget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQNearFieldTarget*)
+
+int QNearFieldTarget_QNearFieldTarget_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldTarget*>();}
 
 void* QNearFieldTarget_NewQNearFieldTarget(void* parent)
 {
@@ -1646,8 +1662,8 @@ void* QNearFieldTarget_MetaObjectDefault(void* ptr)
 class MyQQmlNdefRecord: public QQmlNdefRecord
 {
 public:
-	MyQQmlNdefRecord(QObject *parent = Q_NULLPTR) : QQmlNdefRecord(parent) {};
-	MyQQmlNdefRecord(const QNdefRecord &record, QObject *parent = Q_NULLPTR) : QQmlNdefRecord(record, parent) {};
+	MyQQmlNdefRecord(QObject *parent = Q_NULLPTR) : QQmlNdefRecord(parent) {QQmlNdefRecord_QQmlNdefRecord_QRegisterMetaType();};
+	MyQQmlNdefRecord(const QNdefRecord &record, QObject *parent = Q_NULLPTR) : QQmlNdefRecord(record, parent) {QQmlNdefRecord_QQmlNdefRecord_QRegisterMetaType();};
 	void Signal_RecordChanged() { callbackQQmlNdefRecord_RecordChanged(this); };
 	void Signal_TypeChanged() { callbackQQmlNdefRecord_TypeChanged(this); };
 	void Signal_TypeNameFormatChanged() { callbackQQmlNdefRecord_TypeNameFormatChanged(this); };
@@ -1663,6 +1679,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQQmlNdefRecord_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlNdefRecord_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQQmlNdefRecord*)
+
+int QQmlNdefRecord_QQmlNdefRecord_QRegisterMetaType(){return qRegisterMetaType<MyQQmlNdefRecord*>();}
 
 void QQmlNdefRecord_ConnectRecordChanged(void* ptr)
 {

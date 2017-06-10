@@ -8,6 +8,14 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QDBusAbstractAdaptor_QDBusAbstractAdaptor_QRegisterMetaType();
+int QDBusAbstractInterface_QDBusAbstractInterface_QRegisterMetaType();
+int QDBusConnectionInterface_QDBusConnectionInterface_QRegisterMetaType();
+int QDBusInterface_QDBusInterface_QRegisterMetaType();
+int QDBusPendingCallWatcher_QDBusPendingCallWatcher_QRegisterMetaType();
+int QDBusServer_QDBusServer_QRegisterMetaType();
+int QDBusServiceWatcher_QDBusServiceWatcher_QRegisterMetaType();
+int QDBusVirtualObject_QDBusVirtualObject_QRegisterMetaType();
 extern "C" {
 #endif
 

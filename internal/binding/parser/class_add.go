@@ -176,7 +176,7 @@ func (c *Class) addMocFuncs() {
 
 	//http://doc.qt.io/qt-5/qmetatype.html#qRegisterMetaType-1
 	//int qRegisterMetaType()
-	var tmpF = &Function{
+	qRF := &Function{
 		Name:           "qRegisterMetaType",
 		Fullname:       fmt.Sprintf("%v::qRegisterMetaType", c.Name),
 		Access:         "public",
@@ -190,16 +190,16 @@ func (c *Class) addMocFuncs() {
 		Signature:      "()",
 		TemplateModeGo: fmt.Sprintf("%v*", c.Name),
 	}
-	c.Functions = append(c.Functions, tmpF)
+	c.Functions = append(c.Functions, qRF)
 
 	//http://doc.qt.io/qt-5/qmetatype.html#qRegisterMetaType
 	//int qRegisterMetaType(const char *typeName)
-	var tmpF2 = *tmpF
-	tmpF2.Overload = true
-	tmpF2.OverloadNumber = "2"
-	tmpF2.Parameters = []*Parameter{{Name: "typeName", Value: "const char *"}}
-	tmpF2.Signature = "(const char *typeName)"
-	c.Functions = append(c.Functions, &tmpF2)
+	qRF2 := *qRF
+	qRF2.Overload = true
+	qRF2.OverloadNumber = "2"
+	qRF2.Parameters = []*Parameter{{Name: "typeName", Value: "const char *"}}
+	qRF2.Signature = "(const char *typeName)"
+	c.Functions = append(c.Functions, &qRF2)
 
 	if c.IsSubClassOf("QCoreApplication") {
 		return
@@ -207,7 +207,7 @@ func (c *Class) addMocFuncs() {
 
 	//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterType
 	//int qmlRegisterType()
-	tmpF = &Function{
+	qmlF := &Function{
 		Name:           "qmlRegisterType",
 		Fullname:       fmt.Sprintf("%v::qmlRegisterType", c.Name),
 		Access:         "public",
@@ -221,18 +221,18 @@ func (c *Class) addMocFuncs() {
 		Signature:      "()",
 		TemplateModeGo: fmt.Sprintf("%v", c.Name),
 	}
-	c.Functions = append(c.Functions, tmpF)
+	c.Functions = append(c.Functions, qmlF)
 
 	//int qmlRegisterType(const char *uri, int versionMajor, int versionMinor, const char *qmlName)
-	tmpF2 = *tmpF
-	tmpF2.Overload = true
-	tmpF2.OverloadNumber = "2"
-	tmpF2.Parameters = []*Parameter{
+	qmlF2 := *qmlF
+	qmlF2.Overload = true
+	qmlF2.OverloadNumber = "2"
+	qmlF2.Parameters = []*Parameter{
 		{Name: "uri", Value: "const char *"},
 		{Name: "versionMajor", Value: "int"},
 		{Name: "versionMinor", Value: "int"},
 		{Name: "qmlName", Value: "const char *"},
 	}
-	tmpF2.Signature = "(const char *uri, int versionMajor, int versionMinor, const char *qmlName)"
-	c.Functions = append(c.Functions, &tmpF2)
+	qmlF2.Signature = "(const char *uri, int versionMajor, int versionMinor, const char *qmlName)"
+	c.Functions = append(c.Functions, &qmlF2)
 }

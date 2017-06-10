@@ -260,8 +260,8 @@ void* QGeoRoute___path_newList(void* ptr)
 class MyQGeoRouteReply: public QGeoRouteReply
 {
 public:
-	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent = Q_NULLPTR) : QGeoRouteReply(error, errorString, parent) {};
-	MyQGeoRouteReply(const QGeoRouteRequest &request, QObject *parent = Q_NULLPTR) : QGeoRouteReply(request, parent) {};
+	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent = Q_NULLPTR) : QGeoRouteReply(error, errorString, parent) {QGeoRouteReply_QGeoRouteReply_QRegisterMetaType();};
+	MyQGeoRouteReply(const QGeoRouteRequest &request, QObject *parent = Q_NULLPTR) : QGeoRouteReply(request, parent) {QGeoRouteReply_QGeoRouteReply_QRegisterMetaType();};
 	void abort() { callbackQGeoRouteReply_Abort(this); };
 	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRouteReply_Error2(this, error, errorStringPacked); };
 	void Signal_Finished() { callbackQGeoRouteReply_Finished(this); };
@@ -278,6 +278,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoRouteReply_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRouteReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGeoRouteReply*)
+
+int QGeoRouteReply_QGeoRouteReply_QRegisterMetaType(){return qRegisterMetaType<MyQGeoRouteReply*>();}
 
 void* QGeoRouteReply_NewQGeoRouteReply(long long error, char* errorString, void* parent)
 {
@@ -914,6 +918,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQGeoRoutingManager*)
+
+int QGeoRoutingManager_QGeoRoutingManager_QRegisterMetaType(){return qRegisterMetaType<MyQGeoRoutingManager*>();}
+
 void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->calculateRoute(*static_cast<QGeoRouteRequest*>(request));
@@ -1142,7 +1150,7 @@ void* QGeoRoutingManager_MetaObjectDefault(void* ptr)
 class MyQGeoRoutingManagerEngine: public QGeoRoutingManagerEngine
 {
 public:
-	MyQGeoRoutingManagerEngine(const QVariantMap &parameters, QObject *parent = Q_NULLPTR) : QGeoRoutingManagerEngine(parameters, parent) {};
+	MyQGeoRoutingManagerEngine(const QVariantMap &parameters, QObject *parent = Q_NULLPTR) : QGeoRoutingManagerEngine(parameters, parent) {QGeoRoutingManagerEngine_QGeoRoutingManagerEngine_QRegisterMetaType();};
 	QGeoRouteReply * calculateRoute(const QGeoRouteRequest & request) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_CalculateRoute(this, const_cast<QGeoRouteRequest*>(&request))); };
 	QGeoRouteReply * updateRoute(const QGeoRoute & route, const QGeoCoordinate & position) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_UpdateRoute(this, const_cast<QGeoRoute*>(&route), const_cast<QGeoCoordinate*>(&position))); };
 	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRoutingManagerEngine_Error(this, reply, error, errorStringPacked); };
@@ -1160,6 +1168,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManagerEngine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManagerEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGeoRoutingManagerEngine*)
+
+int QGeoRoutingManagerEngine_QGeoRoutingManagerEngine_QRegisterMetaType(){return qRegisterMetaType<MyQGeoRoutingManagerEngine*>();}
 
 void* QGeoRoutingManagerEngine_CalculateRoute(void* ptr, void* request)
 {
@@ -1505,7 +1517,7 @@ void* QGeoRoutingManagerEngine_MetaObjectDefault(void* ptr)
 class MyQGeoServiceProvider: public QGeoServiceProvider
 {
 public:
-	MyQGeoServiceProvider(const QString &providerName, const QVariantMap &parameters = QVariantMap(), bool allowExperimental = false) : QGeoServiceProvider(providerName, parameters, allowExperimental) {};
+	MyQGeoServiceProvider(const QString &providerName, const QVariantMap &parameters = QVariantMap(), bool allowExperimental = false) : QGeoServiceProvider(providerName, parameters, allowExperimental) {QGeoServiceProvider_QGeoServiceProvider_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQGeoServiceProvider_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoServiceProvider_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQGeoServiceProvider_ChildEvent(this, event); };
@@ -1518,6 +1530,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQGeoServiceProvider_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoServiceProvider_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQGeoServiceProvider*)
+
+int QGeoServiceProvider_QGeoServiceProvider_QRegisterMetaType(){return qRegisterMetaType<MyQGeoServiceProvider*>();}
 
 int QGeoServiceProvider_OnlineGeocodingFeature_Type()
 {

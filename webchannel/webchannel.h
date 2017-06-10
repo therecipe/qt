@@ -8,6 +8,8 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QWebChannel_QWebChannel_QRegisterMetaType();
+int QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType();
 extern "C" {
 #endif
 

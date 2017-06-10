@@ -8,6 +8,16 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QCanBus_QCanBus_QRegisterMetaType();
+int QCanBusDevice_QCanBusDevice_QRegisterMetaType();
+int QModbusClient_QModbusClient_QRegisterMetaType();
+int QModbusDevice_QModbusDevice_QRegisterMetaType();
+int QModbusReply_QModbusReply_QRegisterMetaType();
+int QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType();
+int QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType();
+int QModbusServer_QModbusServer_QRegisterMetaType();
+int QModbusTcpClient_QModbusTcpClient_QRegisterMetaType();
+int QModbusTcpServer_QModbusTcpServer_QRegisterMetaType();
 extern "C" {
 #endif
 

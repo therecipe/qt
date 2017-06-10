@@ -8,6 +8,11 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QNearFieldManager_QNearFieldManager_QRegisterMetaType();
+int QNearFieldShareManager_QNearFieldShareManager_QRegisterMetaType();
+int QNearFieldShareTarget_QNearFieldShareTarget_QRegisterMetaType();
+int QNearFieldTarget_QNearFieldTarget_QRegisterMetaType();
+int QQmlNdefRecord_QQmlNdefRecord_QRegisterMetaType();
 extern "C" {
 #endif
 

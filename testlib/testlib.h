@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QSignalSpy_QSignalSpy_QRegisterMetaType();
 extern "C" {
 #endif
 

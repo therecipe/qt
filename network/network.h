@@ -8,6 +8,24 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QAbstractNetworkCache_QAbstractNetworkCache_QRegisterMetaType();
+int QAbstractSocket_QAbstractSocket_QRegisterMetaType();
+int QDnsLookup_QDnsLookup_QRegisterMetaType();
+int QHttpMultiPart_QHttpMultiPart_QRegisterMetaType();
+int QLocalServer_QLocalServer_QRegisterMetaType();
+int QLocalSocket_QLocalSocket_QRegisterMetaType();
+int QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType();
+int QNetworkConfigurationManager_QNetworkConfigurationManager_QRegisterMetaType();
+int QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType();
+int QNetworkDiskCache_QNetworkDiskCache_QRegisterMetaType();
+int QNetworkReply_QNetworkReply_QRegisterMetaType();
+int QNetworkSession_QNetworkSession_QRegisterMetaType();
+int QSctpServer_QSctpServer_QRegisterMetaType();
+int QSctpSocket_QSctpSocket_QRegisterMetaType();
+int QSslSocket_QSslSocket_QRegisterMetaType();
+int QTcpServer_QTcpServer_QRegisterMetaType();
+int QTcpSocket_QTcpSocket_QRegisterMetaType();
+int QUdpSocket_QUdpSocket_QRegisterMetaType();
 extern "C" {
 #endif
 

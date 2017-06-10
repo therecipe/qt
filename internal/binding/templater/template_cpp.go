@@ -109,6 +109,11 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 									ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
 								}
 
+								sp, ok := parser.State.ClassMap[parser.CleanValue(p.Output)]
+								if ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
+									ty = "QObject*"
+								}
+
 								fmt.Fprintf(bb, "Q_PROPERTY(%v %v READ %v WRITE set%v NOTIFY %vChanged)\n", ty, p.Name,
 									func() string {
 										if p.Output == "bool" {
@@ -174,10 +179,14 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							strings.Join(input, ", "),
 
 							func() string {
-								if mode != MOC {
-									return ""
+								var pre string
+								if class.IsSubClassOfQObject() {
+									pre = fmt.Sprintf("%v_%v_QRegisterMetaType();", className, className)
 								}
-								return fmt.Sprintf("callback%v_Constructor(this);", className)
+								if mode != MOC {
+									return pre
+								}
+								return fmt.Sprintf("%vcallback%v_Constructor(this);", pre, className)
 							}(),
 						)
 
@@ -230,6 +239,11 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
 						}
 
+						sp, ok := parser.State.ClassMap[parser.CleanValue(p.Output)]
+						if ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
+							ty = "QObject*"
+						}
+
 						fmt.Fprintf(bb, "\t%v %v() { return _%v; };\n", ty, func() string {
 							if p.Output == "bool" {
 								return "is" + strings.Title(p.Name)
@@ -264,14 +278,29 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
 						}
 
+						sp, ok := parser.State.ClassMap[parser.CleanValue(p.Output)]
+						if ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
+							ty = "QObject*"
+						}
+
 						fmt.Fprintf(bb, "\t%v _%v;\n", ty, p.Name)
 					}
 				}
 
 				fmt.Fprint(bb, "};\n\n")
 			}
-			if mode == MOC {
-				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n\n", class.Name)
+			if class.IsSubClassOfQObject() {
+				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v%v*)\n\n",
+					func() string {
+						if mode != MOC {
+							return "My"
+						}
+						return ""
+					}(), class.Name)
+
+				if mode != MOC {
+					fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+				}
 			}
 		}
 
@@ -433,7 +462,9 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 				"QBluetooth",
 				"PaintContext",
 				"QPlatformGraphicsBuffer",
-				"QDBusPendingReplyTypes":
+				"QDBusPendingReplyTypes",
+				"QRemoteObjectPackets",
+				"QRemoteObjectStringLiterals":
 				{
 					continue
 				}

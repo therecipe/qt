@@ -8,6 +8,9 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QInAppProduct_QInAppProduct_QRegisterMetaType();
+int QInAppStore_QInAppStore_QRegisterMetaType();
+int QInAppTransaction_QInAppTransaction_QRegisterMetaType();
 extern "C" {
 #endif
 

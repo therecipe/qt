@@ -215,12 +215,14 @@ func createMakefile(module, path, target string, mode int) {
 	case "ios", "ios-simulator":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
+			/* TODO:
 			if utils.QT_VERSION_MAJOR() == "5.9" && utils.ExistsFile(pPath) {
-				if content := utils.Load(pPath); !strings.Contains(content, "+build ios") {
-					utils.Save(pPath, "// +build ios\n"+utils.Load(pPath))
+				if content := utils.Load(pPath); !strings.Contains(content, "+build ios,!darwin") {
+					utils.Save(pPath, "// +build ios,!darwin\n"+utils.Load(pPath))
 				}
 			}
-			if utils.QT_VERSION_MAJOR() != "5.9" || mode == MOC || mode == RCC {
+			*/
+			if true /*TODO: utils.QT_VERSION_MAJOR() != "5.9"*/ || mode == MOC || mode == RCC {
 				utils.RemoveAll(pPath)
 			}
 		}

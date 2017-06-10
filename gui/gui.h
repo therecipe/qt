@@ -8,6 +8,48 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_QRegisterMetaType();
+int QAccessiblePlugin_QAccessiblePlugin_QRegisterMetaType();
+int QClipboard_QClipboard_QRegisterMetaType();
+int QDoubleValidator_QDoubleValidator_QRegisterMetaType();
+int QDrag_QDrag_QRegisterMetaType();
+int QGenericPlugin_QGenericPlugin_QRegisterMetaType();
+int QGuiApplication_QGuiApplication_QRegisterMetaType();
+int QIconEnginePlugin_QIconEnginePlugin_QRegisterMetaType();
+int QImageIOPlugin_QImageIOPlugin_QRegisterMetaType();
+int QInputMethod_QInputMethod_QRegisterMetaType();
+int QIntValidator_QIntValidator_QRegisterMetaType();
+int QMovie_QMovie_QRegisterMetaType();
+int QOffscreenSurface_QOffscreenSurface_QRegisterMetaType();
+int QOpenGLContext_QOpenGLContext_QRegisterMetaType();
+int QOpenGLContextGroup_QOpenGLContextGroup_QRegisterMetaType();
+int QOpenGLDebugLogger_QOpenGLDebugLogger_QRegisterMetaType();
+int QOpenGLShader_QOpenGLShader_QRegisterMetaType();
+int QOpenGLShaderProgram_QOpenGLShaderProgram_QRegisterMetaType();
+int QOpenGLTimeMonitor_QOpenGLTimeMonitor_QRegisterMetaType();
+int QOpenGLTimerQuery_QOpenGLTimerQuery_QRegisterMetaType();
+int QOpenGLVertexArrayObject_QOpenGLVertexArrayObject_QRegisterMetaType();
+int QOpenGLWindow_QOpenGLWindow_QRegisterMetaType();
+int QPaintDeviceWindow_QPaintDeviceWindow_QRegisterMetaType();
+int QPdfWriter_QPdfWriter_QRegisterMetaType();
+int QPlatformGraphicsBuffer_QPlatformGraphicsBuffer_QRegisterMetaType();
+int QPlatformSystemTrayIcon_QPlatformSystemTrayIcon_QRegisterMetaType();
+int QRasterWindow_QRasterWindow_QRegisterMetaType();
+int QRegExpValidator_QRegExpValidator_QRegisterMetaType();
+int QRegularExpressionValidator_QRegularExpressionValidator_QRegisterMetaType();
+int QScreen_QScreen_QRegisterMetaType();
+int QSessionManager_QSessionManager_QRegisterMetaType();
+int QStandardItemModel_QStandardItemModel_QRegisterMetaType();
+int QStyleHints_QStyleHints_QRegisterMetaType();
+int QSyntaxHighlighter_QSyntaxHighlighter_QRegisterMetaType();
+int QTextBlockGroup_QTextBlockGroup_QRegisterMetaType();
+int QTextDocument_QTextDocument_QRegisterMetaType();
+int QTextFrame_QTextFrame_QRegisterMetaType();
+int QTextList_QTextList_QRegisterMetaType();
+int QTextObject_QTextObject_QRegisterMetaType();
+int QTextTable_QTextTable_QRegisterMetaType();
+int QValidator_QValidator_QRegisterMetaType();
+int QWindow_QWindow_QRegisterMetaType();
 extern "C" {
 #endif
 

@@ -21,8 +21,9 @@ func run(target, name, depPath string) {
 		}
 
 	case "ios-simulator":
-		//TODO: parse list of available simulators
-		utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.3)#"), "start simulator")
+		out, _ := exec.Command("xcrun", "instruments", "-w", "").Output()
+		lines := strings.Split(string(out), "iPhone")
+		utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus ("+strings.Split(strings.Split(lines[len(lines)-1], "(")[1], ")")[0]+")#"), "start simulator")
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "uninstall old app")
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "install new app")
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", name)), "start app")

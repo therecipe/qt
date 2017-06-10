@@ -73,7 +73,12 @@ func CppInputParametersForSignalConnect(function *parser.Function) string {
 		if isEnum(function.ClassName(), parameter.Value) {
 			input[i] = cppEnum(function, parameter.Value, true)
 		} else {
-			input[i] = parameter.Value
+			sp, ok := parser.State.ClassMap[parser.CleanValue(parameter.Value)]
+			if function.IsMocFunction && ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
+				input[i] = "QObject*"
+			} else {
+				input[i] = parameter.Value
+			}
 		}
 	}
 
@@ -97,7 +102,12 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 				if parser.IsPackedList(parameter.Value) || parser.IsPackedMap(parameter.Value) {
 					input[i] = fmt.Sprintf("%v %v", function.OgParameters[i].Value, parser.CleanName(parameter.Name, parameter.Value))
 				} else {
-					input[i] = fmt.Sprintf("%v %v", parameter.Value, parser.CleanName(parameter.Name, parameter.Value))
+					sp, ok := parser.State.ClassMap[parser.CleanValue(parameter.Value)]
+					if function.IsMocFunction && ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
+						input[i] = fmt.Sprintf("%v %v", "QObject*", parser.CleanName(parameter.Name, parameter.Value))
+					} else {
+						input[i] = fmt.Sprintf("%v %v", parameter.Value, parser.CleanName(parameter.Name, parameter.Value))
+					}
 				}
 			}
 		}

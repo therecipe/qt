@@ -8,6 +8,8 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QMacToolBar_QMacToolBar_QRegisterMetaType();
+int QMacToolBarItem_QMacToolBarItem_QRegisterMetaType();
 extern "C" {
 #endif
 

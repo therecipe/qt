@@ -8,6 +8,15 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QDesignerActionEditorInterface_QDesignerActionEditorInterface_QRegisterMetaType();
+int QDesignerFormEditorInterface_QDesignerFormEditorInterface_QRegisterMetaType();
+int QDesignerFormWindowInterface_QDesignerFormWindowInterface_QRegisterMetaType();
+int QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_QRegisterMetaType();
+int QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_QRegisterMetaType();
+int QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_QRegisterMetaType();
+int QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_QRegisterMetaType();
+int QExtensionFactory_QExtensionFactory_QRegisterMetaType();
+int QExtensionManager_QExtensionManager_QRegisterMetaType();
 extern "C" {
 #endif
 

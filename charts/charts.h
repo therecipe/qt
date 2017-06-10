@@ -8,6 +8,17 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QCandlestickModelMapper_QCandlestickModelMapper_QRegisterMetaType();
+int QChart_QChart_QRegisterMetaType();
+int QChartView_QChartView_QRegisterMetaType();
+int QHBarModelMapper_QHBarModelMapper_QRegisterMetaType();
+int QHBoxPlotModelMapper_QHBoxPlotModelMapper_QRegisterMetaType();
+int QHCandlestickModelMapper_QHCandlestickModelMapper_QRegisterMetaType();
+int QLegend_QLegend_QRegisterMetaType();
+int QPolarChart_QPolarChart_QRegisterMetaType();
+int QVBarModelMapper_QVBarModelMapper_QRegisterMetaType();
+int QVBoxPlotModelMapper_QVBoxPlotModelMapper_QRegisterMetaType();
+int QVCandlestickModelMapper_QVCandlestickModelMapper_QRegisterMetaType();
 extern "C" {
 #endif
 

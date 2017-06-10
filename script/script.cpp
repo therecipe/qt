@@ -345,8 +345,8 @@ long long QScriptContextInfo_ScriptId(void* ptr)
 class MyQScriptEngine: public QScriptEngine
 {
 public:
-	MyQScriptEngine() : QScriptEngine() {};
-	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {};
+	MyQScriptEngine() : QScriptEngine() {QScriptEngine_QScriptEngine_QRegisterMetaType();};
+	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {QScriptEngine_QScriptEngine_QRegisterMetaType();};
 	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngine_SignalHandlerException(this, const_cast<QScriptValue*>(&exception)); };
 	 ~MyQScriptEngine() { callbackQScriptEngine_DestroyQScriptEngine(this); };
 	bool event(QEvent * e) { return callbackQScriptEngine_Event(this, e) != 0; };
@@ -361,6 +361,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngine_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScriptEngine*)
+
+int QScriptEngine_QScriptEngine_QRegisterMetaType(){return qRegisterMetaType<MyQScriptEngine*>();}
 
 void* QScriptEngine_PushContext(void* ptr)
 {
@@ -914,7 +918,7 @@ char QScriptEngineAgent_SupportsExtensionDefault(void* ptr, long long extension)
 class MyQScriptExtensionPlugin: public QScriptExtensionPlugin
 {
 public:
-	MyQScriptExtensionPlugin(QObject *parent = Q_NULLPTR) : QScriptExtensionPlugin(parent) {};
+	MyQScriptExtensionPlugin(QObject *parent = Q_NULLPTR) : QScriptExtensionPlugin(parent) {QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType();};
 	void initialize(const QString & key, QScriptEngine * engine) { QByteArray ta62f22 = key.toUtf8(); QtScript_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQScriptExtensionPlugin_Initialize(this, keyPacked, engine); };
 	QStringList keys() const { return QString(callbackQScriptExtensionPlugin_Keys(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
 	bool event(QEvent * e) { return callbackQScriptExtensionPlugin_Event(this, e) != 0; };
@@ -929,6 +933,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQScriptExtensionPlugin_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptExtensionPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQScriptExtensionPlugin*)
+
+int QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQScriptExtensionPlugin*>();}
 
 void* QScriptExtensionPlugin_NewQScriptExtensionPlugin(void* parent)
 {

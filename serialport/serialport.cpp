@@ -44,9 +44,9 @@
 class MyQSerialPort: public QSerialPort
 {
 public:
-	MyQSerialPort(QObject *parent = nullptr) : QSerialPort(parent) {};
-	MyQSerialPort(const QSerialPortInfo &serialPortInfo, QObject *parent = nullptr) : QSerialPort(serialPortInfo, parent) {};
-	MyQSerialPort(const QString &name, QObject *parent = nullptr) : QSerialPort(name, parent) {};
+	MyQSerialPort(QObject *parent = nullptr) : QSerialPort(parent) {QSerialPort_QSerialPort_QRegisterMetaType();};
+	MyQSerialPort(const QSerialPortInfo &serialPortInfo, QObject *parent = nullptr) : QSerialPort(serialPortInfo, parent) {QSerialPort_QSerialPort_QRegisterMetaType();};
+	MyQSerialPort(const QString &name, QObject *parent = nullptr) : QSerialPort(name, parent) {QSerialPort_QSerialPort_QRegisterMetaType();};
 	bool waitForBytesWritten(int msecs) { return callbackQSerialPort_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForReadyRead(int msecs) { return callbackQSerialPort_WaitForReadyRead(this, msecs) != 0; };
 	qint64 readData(char * data, qint64 maxSize) { QtSerialPort_PackedString dataPacked = { data, maxSize };return callbackQSerialPort_ReadData(this, dataPacked, maxSize); };
@@ -90,6 +90,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQSerialPort_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSerialPort_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQSerialPort*)
+
+int QSerialPort_QSerialPort_QRegisterMetaType(){return qRegisterMetaType<MyQSerialPort*>();}
 
 long long QSerialPort_PinoutSignals(void* ptr)
 {

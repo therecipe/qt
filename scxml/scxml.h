@@ -8,6 +8,15 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+int QScxmlCppDataModel_QScxmlCppDataModel_QRegisterMetaType();
+int QScxmlDataModel_QScxmlDataModel_QRegisterMetaType();
+int QScxmlDynamicScxmlServiceFactory_QScxmlDynamicScxmlServiceFactory_QRegisterMetaType();
+int QScxmlEcmaScriptDataModel_QScxmlEcmaScriptDataModel_QRegisterMetaType();
+int QScxmlInvokableService_QScxmlInvokableService_QRegisterMetaType();
+int QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_QRegisterMetaType();
+int QScxmlNullDataModel_QScxmlNullDataModel_QRegisterMetaType();
+int QScxmlStateMachine_QScxmlStateMachine_QRegisterMetaType();
+int QScxmlStaticScxmlServiceFactory_QScxmlStaticScxmlServiceFactory_QRegisterMetaType();
 extern "C" {
 #endif
 

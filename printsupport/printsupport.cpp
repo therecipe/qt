@@ -62,7 +62,7 @@
 class MyQAbstractPrintDialog: public QAbstractPrintDialog
 {
 public:
-	MyQAbstractPrintDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QAbstractPrintDialog(printer, parent) {};
+	MyQAbstractPrintDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QAbstractPrintDialog(printer, parent) {QAbstractPrintDialog_QAbstractPrintDialog_QRegisterMetaType();};
 	int exec() { return callbackQAbstractPrintDialog_Exec(this); };
 	void accept() { callbackQAbstractPrintDialog_Accept(this); };
 	void Signal_Accepted() { callbackQAbstractPrintDialog_Accepted(this); };
@@ -140,6 +140,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractPrintDialog_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractPrintDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQAbstractPrintDialog*)
+
+int QAbstractPrintDialog_QAbstractPrintDialog_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractPrintDialog*>();}
 
 void* QAbstractPrintDialog_NewQAbstractPrintDialog(void* printer, void* parent)
 {
@@ -951,8 +955,8 @@ void* QAbstractPrintDialog_MetaObjectDefault(void* ptr)
 class MyQPageSetupDialog: public QPageSetupDialog
 {
 public:
-	MyQPageSetupDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QPageSetupDialog(printer, parent) {};
-	MyQPageSetupDialog(QWidget *parent = Q_NULLPTR) : QPageSetupDialog(parent) {};
+	MyQPageSetupDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QPageSetupDialog(printer, parent) {QPageSetupDialog_QPageSetupDialog_QRegisterMetaType();};
+	MyQPageSetupDialog(QWidget *parent = Q_NULLPTR) : QPageSetupDialog(parent) {QPageSetupDialog_QPageSetupDialog_QRegisterMetaType();};
 	int exec() { return callbackQPageSetupDialog_Exec(this); };
 	void done(int result) { callbackQPageSetupDialog_Done(this, result); };
 	void setVisible(bool visible) { callbackQPageSetupDialog_SetVisible(this, visible); };
@@ -1030,6 +1034,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPageSetupDialog_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPageSetupDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPageSetupDialog*)
+
+int QPageSetupDialog_QPageSetupDialog_QRegisterMetaType(){return qRegisterMetaType<MyQPageSetupDialog*>();}
 
 void* QPageSetupDialog_NewQPageSetupDialog(void* printer, void* parent)
 {
@@ -1526,8 +1534,8 @@ void* QPageSetupDialog_MetaObjectDefault(void* ptr)
 class MyQPrintDialog: public QPrintDialog
 {
 public:
-	MyQPrintDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QPrintDialog(printer, parent) {};
-	MyQPrintDialog(QWidget *parent = Q_NULLPTR) : QPrintDialog(parent) {};
+	MyQPrintDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR) : QPrintDialog(printer, parent) {QPrintDialog_QPrintDialog_QRegisterMetaType();};
+	MyQPrintDialog(QWidget *parent = Q_NULLPTR) : QPrintDialog(parent) {QPrintDialog_QPrintDialog_QRegisterMetaType();};
 	void done(int result) { callbackQPrintDialog_Done(this, result); };
 	int exec() { return callbackQPrintDialog_Exec(this); };
 	void Signal_Accepted(QPrinter * printer) { callbackQPrintDialog_Accepted(this, printer); };
@@ -1604,6 +1612,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractPrintDialog_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractPrintDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPrintDialog*)
+
+int QPrintDialog_QPrintDialog_QRegisterMetaType(){return qRegisterMetaType<MyQPrintDialog*>();}
 
 void QPrintDialog_Done(void* ptr, int result)
 {
@@ -1735,8 +1747,8 @@ int QPrintEngine_Metric(void* ptr, long long id)
 class MyQPrintPreviewDialog: public QPrintPreviewDialog
 {
 public:
-	MyQPrintPreviewDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewDialog(printer, parent, flags) {};
-	MyQPrintPreviewDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewDialog(parent, flags) {};
+	MyQPrintPreviewDialog(QPrinter *printer, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewDialog(printer, parent, flags) {QPrintPreviewDialog_QPrintPreviewDialog_QRegisterMetaType();};
+	MyQPrintPreviewDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewDialog(parent, flags) {QPrintPreviewDialog_QPrintPreviewDialog_QRegisterMetaType();};
 	void done(int result) { callbackQPrintPreviewDialog_Done(this, result); };
 	void Signal_PaintRequested(QPrinter * printer) { callbackQPrintPreviewDialog_PaintRequested(this, printer); };
 	void setVisible(bool visible) { callbackQPrintPreviewDialog_SetVisible(this, visible); };
@@ -1815,6 +1827,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPrintPreviewDialog_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPrintPreviewDialog_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPrintPreviewDialog*)
+
+int QPrintPreviewDialog_QPrintPreviewDialog_QRegisterMetaType(){return qRegisterMetaType<MyQPrintPreviewDialog*>();}
 
 void* QPrintPreviewDialog_NewQPrintPreviewDialog(void* printer, void* parent, long long flags)
 {
@@ -2321,8 +2337,8 @@ void* QPrintPreviewDialog_MetaObjectDefault(void* ptr)
 class MyQPrintPreviewWidget: public QPrintPreviewWidget
 {
 public:
-	MyQPrintPreviewWidget(QPrinter *printer, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewWidget(printer, parent, flags) {};
-	MyQPrintPreviewWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewWidget(parent, flags) {};
+	MyQPrintPreviewWidget(QPrinter *printer, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewWidget(printer, parent, flags) {QPrintPreviewWidget_QPrintPreviewWidget_QRegisterMetaType();};
+	MyQPrintPreviewWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = Qt::WindowFlags()) : QPrintPreviewWidget(parent, flags) {QPrintPreviewWidget_QPrintPreviewWidget_QRegisterMetaType();};
 	void fitInView() { callbackQPrintPreviewWidget_FitInView(this); };
 	void fitToWidth() { callbackQPrintPreviewWidget_FitToWidth(this); };
 	void Signal_PaintRequested(QPrinter * printer) { callbackQPrintPreviewWidget_PaintRequested(this, printer); };
@@ -2411,6 +2427,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQPrintPreviewWidget_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPrintPreviewWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQPrintPreviewWidget*)
+
+int QPrintPreviewWidget_QPrintPreviewWidget_QRegisterMetaType(){return qRegisterMetaType<MyQPrintPreviewWidget*>();}
 
 void* QPrintPreviewWidget_NewQPrintPreviewWidget(void* printer, void* parent, long long flags)
 {

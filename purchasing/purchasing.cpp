@@ -60,6 +60,10 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppProduct_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
+Q_DECLARE_METATYPE(MyQInAppProduct*)
+
+int QInAppProduct_QInAppProduct_QRegisterMetaType(){return qRegisterMetaType<MyQInAppProduct*>();}
+
 void QInAppProduct_Purchase(void* ptr)
 {
 	static_cast<QInAppProduct*>(ptr)->purchase();
@@ -213,7 +217,7 @@ void* QInAppProduct_MetaObjectDefault(void* ptr)
 class MyQInAppStore: public QInAppStore
 {
 public:
-	MyQInAppStore(QObject *parent = Q_NULLPTR) : QInAppStore(parent) {};
+	MyQInAppStore(QObject *parent = Q_NULLPTR) : QInAppStore(parent) {QInAppStore_QInAppStore_QRegisterMetaType();};
 	void Signal_ProductRegistered(QInAppProduct * product) { callbackQInAppStore_ProductRegistered(this, product); };
 	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { QByteArray tfae9fd = identifier.toUtf8(); QtPurchasing_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };callbackQInAppStore_ProductUnknown(this, productType, identifierPacked); };
 	void Signal_TransactionReady(QInAppTransaction * transaction) { callbackQInAppStore_TransactionReady(this, transaction); };
@@ -229,6 +233,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQInAppStore_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppStore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQInAppStore*)
+
+int QInAppStore_QInAppStore_QRegisterMetaType(){return qRegisterMetaType<MyQInAppStore*>();}
 
 void* QInAppStore_NewQInAppStore(void* parent)
 {
@@ -482,6 +490,10 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQInAppTransaction_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppTransaction_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
+
+Q_DECLARE_METATYPE(MyQInAppTransaction*)
+
+int QInAppTransaction_QInAppTransaction_QRegisterMetaType(){return qRegisterMetaType<MyQInAppTransaction*>();}
 
 struct QtPurchasing_PackedString QInAppTransaction_ErrorString(void* ptr)
 {
