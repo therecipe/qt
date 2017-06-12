@@ -34581,7 +34581,13 @@ public:
 
 Q_DECLARE_METATYPE(MyQMacCocoaViewContainer*)
 
-int QMacCocoaViewContainer_QMacCocoaViewContainer_QRegisterMetaType(){return qRegisterMetaType<MyQMacCocoaViewContainer*>();}
+int QMacCocoaViewContainer_QMacCocoaViewContainer_QRegisterMetaType(){
+	#ifdef Q_OS_OSX
+		return qRegisterMetaType<MyQMacCocoaViewContainer*>();
+	#else
+		return 0;
+	#endif
+}
 
 void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr)
 {
@@ -34670,7 +34676,13 @@ public:
 
 Q_DECLARE_METATYPE(MyQMacNativeWidget*)
 
-int QMacNativeWidget_QMacNativeWidget_QRegisterMetaType(){return qRegisterMetaType<MyQMacNativeWidget*>();}
+int QMacNativeWidget_QMacNativeWidget_QRegisterMetaType(){
+	#ifdef Q_OS_OSX
+		return qRegisterMetaType<MyQMacNativeWidget*>();
+	#else
+		return 0;
+	#endif
+}
 
 void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr)
 {

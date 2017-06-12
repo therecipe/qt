@@ -125,7 +125,7 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 	if function.Default {
 		switch {
 		case
-			strings.HasPrefix(function.ClassName(), "QMac") && !strings.HasPrefix(parser.State.ClassMap[function.ClassName()].Module, "QMac"):
+			strings.HasPrefix(function.ClassName(), "QMac") && !strings.HasPrefix(parser.State.ClassMap[function.ClassName()].Module, "QtMac"):
 			{
 				return fmt.Sprintf("#ifdef Q_OS_OSX\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}

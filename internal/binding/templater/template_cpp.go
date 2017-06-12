@@ -299,7 +299,11 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					}(), class.Name)
 
 				if mode != MOC {
-					fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+					if strings.HasPrefix(class.Name, "QMac") && !strings.HasPrefix(parser.State.ClassMap[class.Name].Module, "QtMac") {
+						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){\n\t#ifdef Q_OS_OSX\n\t\treturn qRegisterMetaType<My%[1]v*>();\n\t#else\n\t\treturn 0;\n\t#endif\n}\n\n", class.Name)
+					} else {
+						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+					}
 				}
 			}
 		}
