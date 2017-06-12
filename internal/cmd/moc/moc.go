@@ -134,6 +134,7 @@ func Moc(path, target, tags string, fast bool) {
 					}
 				}
 				if !has {
+					bcp.IsMocSynthetic = true
 					c.Properties = append(c.Properties, bcp)
 				}
 			}

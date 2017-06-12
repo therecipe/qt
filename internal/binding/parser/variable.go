@@ -17,6 +17,8 @@ type Variable struct {
 	Brief    string     `xml:"brief,attr"`
 	Getter   []struct{} `xml:"getter"`
 	Setter   []struct{} `xml:"setter"`
+
+	IsMocSynthetic bool
 }
 
 func (v *Variable) Class() (*Class, bool) {
@@ -87,17 +89,23 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 		c.HasFunctionWithName(fmt.Sprintf("has%v", strings.Title(v.Name)))) {
 
 		tmpF := &Function{
-			Name:          v.Name,
-			Fullname:      v.Fullname,
-			Href:          v.Href,
-			Status:        v.Status,
-			Access:        v.Access,
-			Filepath:      v.Filepath,
-			Static:        v.Static,
-			Output:        v.Output,
-			Meta:          PLAIN,
+			Name:     v.Name,
+			Fullname: v.Fullname,
+			Href:     v.Href,
+			Status:   v.Status,
+			Access:   v.Access,
+			Filepath: v.Filepath,
+			Static:   v.Static,
+			Output:   v.Output,
+			Meta: func() string {
+				if c.Module == MOC && !v.IsMocSynthetic {
+					return SLOT
+				}
+				return PLAIN
+			}(),
 			Signature:     "()",
 			IsMocFunction: c.Module == MOC,
+			IsMocProperty: c.Module == MOC,
 		}
 
 		if tmpF.Output == "bool" {
@@ -113,18 +121,24 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 	}
 
 	funcs = append(funcs, &Function{
-		Name:          fmt.Sprintf("set%v", strings.Title(v.Name)),
-		Fullname:      fmt.Sprintf("%v::set%v", v.ClassName(), strings.Title(v.Name)),
-		Href:          v.Href,
-		Status:        v.Status,
-		Access:        v.Access,
-		Filepath:      v.Filepath,
-		Static:        v.Static,
-		Output:        "void",
-		Meta:          PLAIN,
+		Name:     fmt.Sprintf("set%v", strings.Title(v.Name)),
+		Fullname: fmt.Sprintf("%v::set%v", v.ClassName(), strings.Title(v.Name)),
+		Href:     v.Href,
+		Status:   v.Status,
+		Access:   v.Access,
+		Filepath: v.Filepath,
+		Static:   v.Static,
+		Output:   "void",
+		Meta: func() string {
+			if c.Module == MOC && !v.IsMocSynthetic {
+				return SLOT
+			}
+			return PLAIN
+		}(),
 		Parameters:    []*Parameter{{Name: v.Name, Value: v.Output}},
 		Signature:     "()",
 		IsMocFunction: c.Module == MOC,
+		IsMocProperty: c.Module == MOC,
 	})
 
 	if c.Module == MOC {

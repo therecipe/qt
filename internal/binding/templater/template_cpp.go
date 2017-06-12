@@ -244,13 +244,36 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							ty = "QObject*"
 						}
 
-						fmt.Fprintf(bb, "\t%v %v() { return _%v; };\n", ty, func() string {
-							if p.Output == "bool" {
-								return "is" + strings.Title(p.Name)
-							}
-							return p.Name
-						}(), p.Name)
-						fmt.Fprintf(bb, "\tvoid set%v(%v p) { if (p != _%v) { _%v = p; %vChanged(_%v); } };\n", strings.Title(p.Name), ty, p.Name, p.Name, p.Name, p.Name)
+						fmt.Fprintf(bb, "\t%v %v%v() { return _%v; };\n",
+							ty,
+							func() string {
+								if p.Output == "bool" {
+									return "is" + strings.Title(p.Name)
+								}
+								return p.Name
+							}(),
+							func() string {
+								if p.IsMocSynthetic {
+									return ""
+								}
+								return "Default"
+							}(),
+							p.Name,
+						)
+						fmt.Fprintf(bb, "\tvoid set%v%v(%v p) { if (p != _%v) { _%v = p; %vChanged(_%v); } };\n",
+							strings.Title(p.Name),
+							func() string {
+								if p.IsMocSynthetic {
+									return ""
+								}
+								return "Default"
+							}(),
+							ty,
+							p.Name,
+							p.Name,
+							p.Name,
+							p.Name,
+						)
 					}
 
 					fmt.Fprintln(bb, "signals:")

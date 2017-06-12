@@ -483,6 +483,9 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 						if function.Default {
 							var c, _ = function.Class()
 							if c.Module == parser.MOC {
+								if function.IsMocProperty {
+									return fmt.Sprintf("%vDefault", function.Name)
+								}
 								return fmt.Sprintf("%v::%v", parser.State.ClassMap[function.ClassName()].GetBases()[0], function.Name)
 							} else {
 								return fmt.Sprintf("%v::%v", function.ClassName(), function.Name)

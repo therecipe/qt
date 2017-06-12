@@ -40,6 +40,7 @@ type Function struct {
 	IsMap           bool
 	OgParameters    []Parameter
 	IsMocFunction   bool
+	IsMocProperty   bool
 }
 
 type Parameter struct {
