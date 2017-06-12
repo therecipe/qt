@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"os/user"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -77,6 +78,15 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 	}
 
 	args := []string{"run", "--rm"}
+	if runtime.GOOS == "linux" {
+		u, err := user.Current()
+		if err != nil {
+			utils.Log.WithError(err).Error("failed to lookup current user")
+		} else {
+			args = append(args, "-u", fmt.Sprintf("%v:%v", u.Uid, u.Gid))
+		}
+	}
+
 	paths := make([]string, 0)
 
 	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
