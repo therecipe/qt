@@ -142,13 +142,28 @@ func PointerFrom%v(ptr %[2]v_ITF) unsafe.Pointer {
 }
 `, strings.Title(class.Name), class.Name)
 
-			fmt.Fprintf(bb, `
+			if class.Module == parser.MOC {
+				fmt.Fprintf(bb, `
+func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
+	var n *%[2]v
+	if gPtr, ok := qt.Receive(ptr); !ok {
+		n = new(%[2]v)
+		n.SetPointer(ptr)
+	} else {
+		n = gPtr.(*%[2]v)
+	}
+	return n
+}
+`, strings.Title(class.Name), class.Name)
+			} else {
+				fmt.Fprintf(bb, `
 func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
 	var n = new(%[2]v)
 	n.SetPointer(ptr)
 	return n
 }
 `, strings.Title(class.Name), class.Name)
+			}
 
 			if !class.HasDestructor() {
 				if UseStub(stub, module, mode) {
@@ -179,7 +194,7 @@ func callback%[1]v_Constructor(ptr unsafe.Pointer) {
 `, class.Name)
 
 				if len(class.Constructors) > 0 {
-					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v()\n", strings.Title(class.Name), class.Constructors[0])
+					fmt.Fprintf(bb, "gPtr := New%vFromPointer(ptr)\nqt.Register(ptr, gPtr)\ngPtr.%v()\n", strings.Title(class.Name), class.Constructors[0])
 				}
 
 				fmt.Fprint(bb, "}\n\n")

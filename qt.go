@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"strings"
 	"sync"
+	"unsafe"
 )
 
 var (
@@ -14,6 +15,9 @@ var (
 
 	signals      = make(map[string]interface{})
 	signalsMutex = new(sync.Mutex)
+
+	objects      = make(map[string]interface{})
+	objectsMutex = new(sync.Mutex)
 )
 
 func init() { runtime.LockOSThread() }
@@ -60,6 +64,9 @@ func DisconnectAllSignals(name, signal string) {
 		}
 	}
 	signalsMutex.Unlock()
+	if signal == "destroyed" {
+		Unregister(name)
+	}
 }
 
 func DumpSignals() {
@@ -103,4 +110,23 @@ func ClearSignals() {
 	signalsMutex.Lock()
 	signals = make(map[string]interface{})
 	signalsMutex.Unlock()
+}
+
+func Register(cPtr unsafe.Pointer, gPtr interface{}) {
+	objectsMutex.Lock()
+	objects[fmt.Sprint(cPtr)] = gPtr
+	objectsMutex.Unlock()
+}
+
+func Receive(cPtr unsafe.Pointer) (o interface{}, ok bool) {
+	objectsMutex.Lock()
+	o, ok = objects[fmt.Sprint(cPtr)]
+	objectsMutex.Unlock()
+	return
+}
+
+func Unregister(cPtr string) {
+	objectsMutex.Lock()
+	delete(objects, cPtr)
+	objectsMutex.Unlock()
 }
