@@ -19,6 +19,7 @@ type Variable struct {
 	Setter   []struct{} `xml:"setter"`
 
 	IsMocSynthetic bool
+	PureGoType     string
 }
 
 func (v *Variable) Class() (*Class, bool) {
@@ -97,11 +98,12 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 			Filepath: v.Filepath,
 			Static:   v.Static,
 			Output:   v.Output,
-			Meta: func() string {
+			Meta:     PLAIN,
+			Virtual: func() string {
 				if c.Module == MOC && !v.IsMocSynthetic {
-					return SLOT
+					return IMPURE
 				}
-				return PLAIN
+				return ""
 			}(),
 			Signature:     "()",
 			IsMocFunction: c.Module == MOC,
@@ -129,11 +131,12 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 		Filepath: v.Filepath,
 		Static:   v.Static,
 		Output:   "void",
-		Meta: func() string {
+		Meta:     PLAIN,
+		Virtual: func() string {
 			if c.Module == MOC && !v.IsMocSynthetic {
-				return SLOT
+				return IMPURE
 			}
-			return PLAIN
+			return ""
 		}(),
 		Parameters:    []*Parameter{{Name: v.Name, Value: v.Output}},
 		Signature:     "()",

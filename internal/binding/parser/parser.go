@@ -13,10 +13,12 @@ import (
 var State = &struct {
 	ClassMap map[string]*Class
 
-	Minimal bool //TODO:
-	Target  string
+	MocImports map[string]struct{}
+	Minimal    bool //TODO:
+	Target     string
 }{
-	ClassMap: make(map[string]*Class),
+	ClassMap:   make(map[string]*Class),
+	MocImports: make(map[string]struct{}),
 }
 
 func LoadModules() {

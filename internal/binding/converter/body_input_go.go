@@ -17,11 +17,21 @@ func GoInputParametersForC(function *parser.Function) string {
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
-			var alloc = GoInput(parameter.Name, parameter.Value, function)
-			if strings.Contains(alloc, "C.CString") {
-				input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
+			if parameter.PureGoType != "" {
+				input = append(input, GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%v%v))",
+					func() string {
+						if !strings.HasPrefix(parameter.PureGoType, "*") {
+							return "&"
+						}
+						return ""
+					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function))
 			} else {
-				input = append(input, alloc)
+				var alloc = GoInput(parameter.Name, parameter.Value, function)
+				if strings.Contains(alloc, "C.CString") {
+					input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
+				} else {
+					input = append(input, alloc)
+				}
 			}
 		}
 	}
@@ -61,10 +71,14 @@ func GoInputParametersForCallback(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function), "cGoUnpackString") {
-			input[i] = "&retS"
+		if parameter.PureGoType != "" {
+			input[i] = fmt.Sprintf("%vD", parser.CleanName(parameter.Name, parameter.Value))
 		} else {
-			input[i] = cgoOutput(parameter.Name, parameter.Value, function)
+			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function), "cGoUnpackString") {
+				input[i] = "&retS"
+			} else {
+				input[i] = cgoOutput(parameter.Name, parameter.Value, function)
+			}
 		}
 	}
 

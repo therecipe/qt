@@ -2,8 +2,6 @@ package minimal
 
 import (
 	"fmt"
-	"io/ioutil"
-	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -30,18 +28,9 @@ func Minimal(path, target, tags string) {
 
 	var files []string
 	for _, path := range append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...) {
-		fileList, err := ioutil.ReadDir(path)
-		if err != nil {
-			utils.Log.WithError(err).Error("failed to read dir")
-			continue
-		}
-
-		for _, file := range fileList {
-			path := filepath.Join(path, file.Name())
-			if !file.IsDir() && filepath.Ext(path) == ".go" {
-				utils.Log.WithField("path", path).Debug("analyse for minimal")
-				files = append(files, utils.Load(path))
-			}
+		for _, path := range cmd.GetGoFiles(path, target, tags) {
+			utils.Log.WithField("path", path).Debug("analyse for minimal")
+			files = append(files, utils.Load(path))
 		}
 	}
 

@@ -128,6 +128,8 @@ func darwin_plist(name string) string {
 	<string>NSApplication</string>
 	<key>CFBundleIconFile</key>
 	<string>%[1]v.icns</string>
+	<key>CFBundleName</key>
+	<string>%[1]v</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>

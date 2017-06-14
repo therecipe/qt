@@ -305,6 +305,11 @@ import "C"
 		}
 	}
 
+	for i := range parser.State.MocImports {
+		fmt.Fprintf(bb, "%v\n", i)
+	}
+	parser.State.MocImports = make(map[string]struct{})
+
 	fmt.Fprintln(bb, ")")
 
 	bb.Write(input)

@@ -16,7 +16,7 @@ var std []string
 var imported = make(map[string]string)
 
 func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
-	utils.Log.WithField("path", path).WithField("level", level).Debug("imports")
+	utils.Log.WithField("path", path).WithField("level", level).Debug("get imports")
 
 	if std == nil {
 		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
@@ -93,4 +93,36 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 		imports = append(imports, k)
 	}
 	return imports
+}
+
+func GetGoFiles(path, target, tagsCustom string) []string {
+	utils.Log.WithField("path", path).WithField("target", target).WithField("tagsCustom", tagsCustom).Debug("get go files")
+
+	env, tags, _, _ := BuildEnv(target, "", "")
+	if tagsCustom != "" {
+		tags = append(tags, strings.Split(tagsCustom, " ")...)
+	}
+
+	cmd := exec.Command("go", "list", "-e", "-f", "'{{ join .GoFiles \"|\" }}':'{{ join .CgoFiles \"|\" }}':'{{ join .TestGoFiles \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	cmd.Dir = path
+	for k, v := range env {
+		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+	}
+
+	out := strings.TrimSpace(utils.RunCmd(cmd, "go list gofiles"))
+	out = strings.Replace(out, "'", "", -1)
+	out = strings.Replace(out, ":", "|", -1)
+
+	importMap := make(map[string]struct{})
+	for _, v := range strings.Split(out, "|") {
+		if strings.TrimSpace(v) != "" {
+			importMap[v] = struct{}{}
+		}
+	}
+
+	olibs := make([]string, 0)
+	for k := range importMap {
+		olibs = append(olibs, filepath.Join(path, k))
+	}
+	return olibs
 }

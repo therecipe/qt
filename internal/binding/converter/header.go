@@ -102,6 +102,10 @@ func GoHeaderOutput(f *parser.Function) string {
 		}
 	}
 
+	if f.PureGoOutput != "" {
+		return f.PureGoOutput
+	}
+
 	var value = f.Output
 
 	if f.Meta == parser.CONSTRUCTOR && f.Output == "" {
@@ -167,19 +171,23 @@ func GoHeaderInput(f *parser.Function) string {
 
 	var tmp = make([]string, 0)
 	for _, p := range f.Parameters {
-		if v := goType(f, p.Value); v != "" {
-			if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
-				if f.SignalMode == parser.CONNECT {
-					tmp = append(tmp, fmt.Sprintf("%v *%v", parser.CleanName(p.Name, p.Value), v))
+		if p.PureGoType != "" {
+			tmp = append(tmp, fmt.Sprintf("%v %v", parser.CleanName(p.Name, p.Value), p.PureGoType))
+		} else {
+			if v := goType(f, p.Value); v != "" {
+				if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
+					if f.SignalMode == parser.CONNECT {
+						tmp = append(tmp, fmt.Sprintf("%v *%v", parser.CleanName(p.Name, p.Value), v))
+					} else {
+						tmp = append(tmp, fmt.Sprintf("%v %v_ITF", parser.CleanName(p.Name, p.Value), v))
+					}
 				} else {
-					tmp = append(tmp, fmt.Sprintf("%v %v_ITF", parser.CleanName(p.Name, p.Value), v))
+					tmp = append(tmp, fmt.Sprintf("%v %v", parser.CleanName(p.Name, p.Value), v))
 				}
 			} else {
-				tmp = append(tmp, fmt.Sprintf("%v %v", parser.CleanName(p.Name, p.Value), v))
+				f.Access = "unsupported_GoHeaderInput"
+				return f.Access
 			}
-		} else {
-			f.Access = "unsupported_GoHeaderInput"
-			return f.Access
 		}
 	}
 	fmt.Fprint(bb, strings.Join(tmp, ", "))
@@ -187,10 +195,14 @@ func GoHeaderInput(f *parser.Function) string {
 	if f.SignalMode == parser.CONNECT {
 		fmt.Fprint(bb, ")")
 
-		if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
-			fmt.Fprintf(bb, " *%v", goType(f, f.Output))
+		if f.PureGoOutput != "" {
+			fmt.Fprintf(bb, " %v", f.PureGoOutput)
 		} else {
-			fmt.Fprintf(bb, " %v", goType(f, f.Output))
+			if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
+				fmt.Fprintf(bb, " *%v", goType(f, f.Output))
+			} else {
+				fmt.Fprintf(bb, " %v", goType(f, f.Output))
+			}
 		}
 	}
 
@@ -207,15 +219,19 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	var tmp = make([]string, 0)
 
 	for _, p := range f.Parameters {
-		if v := goType(f, p.Value); v != "" {
-			if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
-				tmp = append(tmp, fmt.Sprintf("*%v", v))
-			} else {
-				tmp = append(tmp, v)
-			}
+		if p.PureGoType != "" {
+			tmp = append(tmp, fmt.Sprintf("%v", p.PureGoType))
 		} else {
-			f.Access = "unsupported_GoHeaderInputSignalFunction"
-			return f.Access
+			if v := goType(f, p.Value); v != "" {
+				if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
+					tmp = append(tmp, fmt.Sprintf("*%v", v))
+				} else {
+					tmp = append(tmp, v)
+				}
+			} else {
+				f.Access = "unsupported_GoHeaderInputSignalFunction"
+				return f.Access
+			}
 		}
 	}
 
@@ -224,10 +240,14 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	fmt.Fprint(bb, ")")
 
 	if f.SignalMode == parser.CALLBACK {
-		if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
-			fmt.Fprintf(bb, " *%v", goType(f, f.Output))
+		if f.PureGoOutput != "" {
+			fmt.Fprintf(bb, " %v", f.PureGoOutput)
 		} else {
-			fmt.Fprintf(bb, " %v", goType(f, f.Output))
+			if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
+				fmt.Fprintf(bb, " *%v", goType(f, f.Output))
+			} else {
+				fmt.Fprintf(bb, " %v", goType(f, f.Output))
+			}
 		}
 	}
 

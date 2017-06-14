@@ -2,9 +2,11 @@ package qtmoc
 
 import (
 	"errors"
+	. "math/rand"
 	"os"
 	"strings"
 	"testing"
+	tps "time"
 	"unsafe"
 
 	"github.com/therecipe/qt/core"
@@ -365,6 +367,67 @@ type abstractTestStruct7 struct {
 
 type abstractTestStruct8 struct {
 	widgets.QFileSystemModel
+}
+
+type pureGoTestStruct struct {
+	core.QObject
+
+	_ func(*bool)                         `signal:"goSignal1"`
+	_ func(*int)                          `signal:"goSignal2"`
+	_ func(*string)                       `signal:"goSignal3"`
+	_ func(interface{})                   `signal:"goSignal4"`
+	_ func(func())                        `signal:"goSignal5"`
+	_ func(func(func()))                  `signal:"goSignal6"`
+	_ func(func(func(func())))            `signal:"goSignal7"`
+	_ func(func(func(func(interface{})))) `signal:"goSignal8"`
+	_ func(chan<- bool)                   `signal:"goSignal9"`
+	_ func(<-chan bool)                   `signal:"goSignal10"`
+	_ func(chan bool)                     `signal:"goSignal11"`
+	_ func(a chan<- bool)                 `signal:"goSignal12"`
+	_ func(b <-chan bool)                 `signal:"goSignal13"`
+	_ func(c chan bool)                   `signal:"goSignal14"`
+
+	_ func(*bool)                         `slot:"goSlot1"`
+	_ func(*int)                          `slot:"goSlot2"`
+	_ func(*string)                       `slot:"goSlot3"`
+	_ func(interface{})                   `slot:"goSlot4"`
+	_ func(func())                        `slot:"goSlot5"`
+	_ func(func(func()))                  `slot:"goSlot6"`
+	_ func(func(func(func())))            `slot:"goSlot7"`
+	_ func(func(func(func(interface{})))) `slot:"goSlot8"`
+	_ func(chan<- bool)                   `slot:"goSlot9"`
+
+	_ func(a *bool) *bool                                                 `slot:"goRSlot1"`
+	_ func(a *int) *int                                                   `slot:"goRSlot2"`
+	_ func(a *string) *string                                             `slot:"goRSlot3"`
+	_ func(a interface{}) interface{}                                     `slot:"goRSlot4"`
+	_ func(a func()) func()                                               `slot:"goRSlot5"`
+	_ func(a func(func())) func(func())                                   `slot:"goRSlot6"`
+	_ func(a func(func(func()))) func(func(func()))                       `slot:"goRSlot7"`
+	_ func(a func(func(func(interface{})))) func(func(func(interface{}))) `slot:"goRSlot8"`
+	_ func(a chan<- bool) chan<- bool                                     `slot:"goRSlot9"`
+	_ func(a func(b func(c func()))) (x func(y func(z func())))           `slot:"goRSlot10"`
+	_ func(a func(b func(c func())))                                      `slot:"goRSlot11"`
+	//TODO: _ func(func(b func(c func())))    `slot:"goRSlot12"`
+	_ func(a func(func(c func())))    `slot:"goRSlot13"`
+	_ func(a func(b func(func())))    `slot:"goRSlot14"`
+	_ func(a func(b func(func(int)))) `slot:"goRSlot15"`
+	//TODO: _ func(a func(b func(func(d int)))) `slot:"goRSlot16"`
+	_ func() (x func(y func(z func(int)))) `slot:"goRSlot17"`
+
+	_ func([][]string)                   `slot:"goSlotArray"`
+	_ func(map[string]map[string]string) `slot:"goSlotMap"`
+	_ func(goStruct)                     `slot:"goStruct1"`
+	_ func(*goStruct)                    `slot:"goStruct2"`
+	_ func(func(goStruct)) goStruct      `slot:"goStruct3"`
+	_ func(func(*goStruct)) *goStruct    `slot:"goStruct4"`
+
+	_ func(tps.Duration)   `signal:"goStdSignal1"`
+	_ func(strings.Reader) `signal:"goStdSignal2"`
+	_ func(Rand)           `signal:"goStdSignal3"`
+}
+
+type goStruct struct {
 }
 
 var (

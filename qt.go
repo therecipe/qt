@@ -13,11 +13,14 @@ import (
 var (
 	Logger = log.New(os.Stderr, "", log.Ltime)
 
-	signals      = make(map[string]interface{})
+	signals      = make(map[string]interface{}) //TODO: unsafe.Pointer
 	signalsMutex = new(sync.Mutex)
 
-	objects      = make(map[string]interface{})
+	objects      = make(map[string]interface{}) //TODO: unsafe.Pointer
 	objectsMutex = new(sync.Mutex)
+
+	objectsTemp      = make(map[unsafe.Pointer]interface{})
+	objectsTempMutex = new(sync.Mutex)
 )
 
 func init() { runtime.LockOSThread() }
@@ -129,4 +132,23 @@ func Unregister(cPtr string) {
 	objectsMutex.Lock()
 	delete(objects, cPtr)
 	objectsMutex.Unlock()
+}
+
+func RegisterTemp(cPtr unsafe.Pointer, gPtr interface{}) {
+	objectsTempMutex.Lock()
+	objectsTemp[cPtr] = gPtr
+	objectsTempMutex.Unlock()
+}
+
+func ReceiveTemp(cPtr unsafe.Pointer) (o interface{}, ok bool) {
+	objectsTempMutex.Lock()
+	o, ok = objectsTemp[cPtr]
+	objectsTempMutex.Unlock()
+	return
+}
+
+func UnregisterTemp(cPtr unsafe.Pointer) {
+	objectsTempMutex.Lock()
+	delete(objectsTemp, cPtr)
+	objectsTempMutex.Unlock()
 }

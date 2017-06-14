@@ -41,13 +41,15 @@ type Function struct {
 	OgParameters    []Parameter
 	IsMocFunction   bool
 	IsMocProperty   bool
+	PureGoOutput    string
 }
 
 type Parameter struct {
-	Name    string `xml:"name,attr"`
-	Value   string `xml:"left,attr"`
-	Right   string `xml:"right,attr"`
-	Default string `xml:"default,attr"`
+	Name       string `xml:"name,attr"`
+	Value      string `xml:"left,attr"`
+	Right      string `xml:"right,attr"`
+	Default    string `xml:"default,attr"`
+	PureGoType string
 }
 
 func (f *Function) Class() (*Class, bool) {

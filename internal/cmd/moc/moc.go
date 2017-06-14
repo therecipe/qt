@@ -12,11 +12,12 @@ import (
 	"runtime"
 	"strings"
 
+	"golang.org/x/tools/imports"
+
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd"
-
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -29,45 +30,35 @@ func Moc(path, target, tags string, fast bool) {
 	var otherclasses []*parser.Class
 	var pkg string
 	for i, path := range append([]string{path}, cmd.GetImports(path, target, tags, 0, true)...) {
-		fileList, err := ioutil.ReadDir(path)
-		if err != nil {
-			utils.Log.WithError(err).Error("failed to read dir")
-			continue
-		}
-
 		if _, ok := done[path]; !ok && i > 0 && !fast {
 			done[path] = struct{}{}
 			Moc(path, target, tags, false)
 		}
 
-		for _, file := range fileList {
-			fpath := filepath.Join(path, file.Name())
-			if !file.IsDir() && filepath.Ext(fpath) == ".go" {
-
-				cls, ipkg, err := parse(fpath)
-				if pkg == "" {
-					pkg = ipkg
+		for _, fpath := range cmd.GetGoFiles(path, target, tags) {
+			cls, ipkg, err := parse(fpath)
+			if pkg == "" {
+				pkg = ipkg
+			}
+			if err != nil {
+				utils.Log.WithError(err)
+			} else {
+				if cls == nil {
+					continue
 				}
-				if err != nil {
-					utils.Log.WithError(err)
+
+				if pkg == ipkg {
+					classes = append(classes, cls...)
 				} else {
-					if cls == nil {
-						continue
+
+					m := &parser.Module{
+						Project:   "custom_" + ipkg,
+						Pkg:       path,
+						Namespace: &parser.Namespace{Classes: cls},
 					}
+					m.Prepare()
 
-					if pkg == ipkg {
-						classes = append(classes, cls...)
-					} else {
-
-						m := &parser.Module{
-							Project:   "custom_" + ipkg,
-							Pkg:       path,
-							Namespace: &parser.Namespace{Classes: cls},
-						}
-						m.Prepare()
-
-						otherclasses = append(otherclasses, cls...)
-					}
+					otherclasses = append(otherclasses, cls...)
 				}
 			}
 		}
@@ -177,13 +168,13 @@ func Moc(path, target, tags string, fast bool) {
 				continue
 			}
 			for _, p := range f.Parameters {
-				p.Value = cppTypeFromGoType(f, p.Value)
+				p.Value, p.PureGoType = cppTypeFromGoType(f, p.Value)
 			}
-			f.Output = cppTypeFromGoType(f, f.Output)
+			f.Output, f.PureGoOutput = cppTypeFromGoType(f, f.Output)
 		}
 		utils.Log.Debug("done converting func types")
 		for _, p := range c.Properties {
-			p.Output = cppTypeFromGoType(nil, p.Output)
+			p.Output, p.PureGoType = cppTypeFromGoType(nil, p.Output)
 		}
 		utils.Log.Debug("done converting property types")
 
@@ -215,13 +206,24 @@ func Moc(path, target, tags string, fast bool) {
 	}
 	utils.Log.Debug("done copy structors")
 
+	for _, fpath := range cmd.GetGoFiles(path, target, tags) {
+		if filepath.Base(fpath) != "moc.go" {
+			parseNonMocDeps(fpath)
+		}
+	}
+
 	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
 		return
 	}
 	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
 		return
 	}
-	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)); err != nil {
+	fixed, err := imports.Process(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags), nil)
+	if err != nil {
+		utils.Log.WithError(err).Fatal("failed to fix go imports")
+		return
+	}
+	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fixed); err != nil {
 		return
 	}
 	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg, tags)
@@ -328,11 +330,15 @@ func parse(path string) ([]*parser.Class, string, error) {
 							IsMocFunction: true,
 						}
 						if meta == parser.SLOT {
-							out := strings.TrimSpace(strings.Split(typ, ")")[1])
-							if strings.Contains(out, "(") {
-								f.Output = parameters(out + ")")[0].Value
-							} else {
-								f.Output = out
+							if strings.Contains(typ, ") ") {
+								f.Output = strings.Split(typ, ") ")[1]
+							} else if strings.Contains(typ, ")") {
+								f.Output = strings.Split(typ, ")")[1]
+							}
+							if strings.HasPrefix(f.Output, "(") {
+								f.Output = strings.TrimPrefix(f.Output, "(")
+								f.Output = strings.TrimSuffix(f.Output, ")")
+								f.Output = strings.Join(strings.Split(f.Output, " ")[1:], " ")
 							}
 						}
 						if len(f.Parameters[0].Value) == 0 {
@@ -369,9 +375,31 @@ func parameters(tag string) []*parser.Parameter {
 		return nil
 	}
 
+	tag = strings.TrimPrefix(tag, "func(")
+
+	switch {
+	case strings.Contains(tag, ") ("):
+		tag = strings.Split(tag, ") (")[0]
+
+	case strings.Contains(tag, ") func"):
+		tag = strings.Split(tag, ") func")[0]
+
+	case strings.Contains(tag, ") "):
+		tag = strings.Split(tag, ") ")[0]
+
+	default:
+		tag = strings.TrimSuffix(tag, ")")
+	}
+
+	tag = strings.Replace(tag, " func", ";func", -1)
+	tag = strings.Replace(tag, ";", " ", 1)
+	tag = strings.Replace(tag, "<-chan ", "$RC_", -1)
+	tag = strings.Replace(tag, "chan<- ", "$WC_", -1)
+	tag = strings.Replace(tag, "chan ", "$C_", -1)
+
 	var lv string
 	var o []*parser.Parameter
-	pairs := strings.Split(strings.Split(strings.Split(tag, "(")[1], ")")[0], ",")
+	pairs := strings.Split(tag, ",")
 	for i := len(pairs) - 1; i >= 0; i-- {
 
 		var pOut *parser.Parameter
@@ -392,26 +420,31 @@ func parameters(tag string) []*parser.Parameter {
 
 	var ro []*parser.Parameter
 	for i := len(o) - 1; i >= 0; i-- {
+		o[i].Name = strings.Replace(o[i].Name, ";", " ", -1)
+		o[i].Value = strings.Replace(o[i].Value, ";", " ", -1)
 		ro = append(ro, o[i])
 	}
 
 	return ro
 }
 
-func cppTypeFromGoType(f *parser.Function, t string) string {
-	//TODO: var tOld = t (for differentiation of QVariant and *QVariant)
-	t = strings.TrimPrefix(t, "*")
+func cppTypeFromGoType(f *parser.Function, t string) (string, string) {
+	tOld := t //TODO: also for differentiation of QVariant and *QVariant
+	//t = strings.TrimPrefix(t, "*")
 
-	//TODO: multidimensional array and nested maps
-	if strings.HasPrefix(t, "[]") && t != "[]string" {
-		return fmt.Sprintf("QList<%v>", cppTypeFromGoType(f, strings.TrimPrefix(t, "[]")))
-	}
-	if strings.HasPrefix(t, "map[") {
-		var head = fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
-		return fmt.Sprintf("QHash<%v, %v>",
-			cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0]),
-			cppTypeFromGoType(f, strings.TrimPrefix(t, head)),
-		)
+	if strings.Count(t, "[") == 1 {
+		//TODO: multidimensional array and nested maps
+		if strings.HasPrefix(t, "[]") && t != "[]string" {
+			o, _ := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"))
+			return fmt.Sprintf("QList<%v>", o), ""
+		}
+		if strings.HasPrefix(t, "map[") {
+			var head = fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
+
+			o1, _ := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
+			o2, _ := cppTypeFromGoType(f, strings.TrimPrefix(t, head))
+			return fmt.Sprintf("QHash<%v, %v>", o1, o2), ""
+		}
 	}
 
 	if f != nil && t == "error" {
@@ -420,35 +453,35 @@ func cppTypeFromGoType(f *parser.Function, t string) string {
 
 	switch t {
 	case "string", "error":
-		return "QString"
+		return "QString", ""
 	case "[]string":
-		return "QStringList"
+		return "QStringList", ""
 	case "bool":
-		return "bool"
+		return "bool", ""
 	case "int8":
-		return "qint8"
+		return "qint8", ""
 	case "uint8":
-		return "quint8"
+		return "quint8", ""
 	case "int16":
-		return "qint16"
+		return "qint16", ""
 	case "uint16":
-		return "quint16"
+		return "quint16", ""
 	case "int", "int32":
-		return "qint32"
+		return "qint32", ""
 	case "uint", "uint32":
-		return "quint32"
+		return "quint32", ""
 	case "int64":
-		return "qint64"
+		return "qint64", ""
 	case "uint64":
-		return "quint64"
+		return "quint64", ""
 	case "float32":
-		return "float"
+		return "float", ""
 	case "float64":
-		return "qreal"
+		return "qreal", ""
 	case "uintptr":
-		return "quintptr"
+		return "quintptr", ""
 	case "unsafe.Pointer":
-		return "void*"
+		return "void*", ""
 	}
 
 	if strings.Contains(t, ".") {
@@ -456,20 +489,29 @@ func cppTypeFromGoType(f *parser.Function, t string) string {
 	}
 
 	if strings.Contains(t, "__") {
-		return strings.Replace(t, "_", ":", -1)
+		return strings.Replace(t, "_", ":", -1), ""
 	}
 
 	//TODO: differentiate between QVariant and *QVariant
-	if _, ok := parser.State.ClassMap[t]; ok {
-		if parser.State.ClassMap[t].IsSubClassOfQObject() /*TODO: || f == nil && strings.HasPrefix(tOLD, "*")*/ {
-			return t + "*"
+	ttmp := strings.TrimPrefix(t, "*")
+	if _, ok := parser.State.ClassMap[ttmp]; ok {
+		if parser.State.ClassMap[ttmp].IsSubClassOfQObject() /*TODO: || f == nil && strings.HasPrefix(tOLD, "*")*/ {
+			return ttmp + "*", ""
 		}
-		return t
+		return ttmp, ""
 	}
 
 	//TODO: *_ITF support
 
-	return "void"
+	if tOld == "" || tOld == "void" {
+		return "void", ""
+	}
+
+	tOld = strings.Replace(tOld, "$RC_", "<-chan ", -1)
+	tOld = strings.Replace(tOld, "$WC_", "chan<- ", -1)
+	tOld = strings.Replace(tOld, "$C_", "chan ", -1)
+
+	return "quintptr", tOld
 }
 
 func hasStructors(m *parser.Module) bool {
@@ -482,4 +524,25 @@ func hasStructors(m *parser.Module) bool {
 		}
 	}
 	return true
+}
+
+func parseNonMocDeps(path string) {
+	utils.Log.WithField("path", path).Debug("parseNonMocDeps")
+
+	file, err := goparser.ParseFile(token.NewFileSet(), path, nil, 0)
+	if err != nil {
+		return
+	}
+
+	for _, i := range file.Imports {
+		if i.Path.Value == "\"C\"" {
+			continue
+		}
+
+		if i.Name != nil {
+			parser.State.MocImports[fmt.Sprintf("%v %v", i.Name.String(), i.Path.Value)] = struct{}{}
+		} else {
+			parser.State.MocImports[i.Path.Value] = struct{}{}
+		}
+	}
 }
