@@ -267,16 +267,30 @@ import "C"
 		)
 	}
 
+	inputString := string(input)
+	if mode == MOC {
+		for _, lib := range parser.GetLibs() {
+			mlow := strings.ToLower(lib)
+			for _, pre := range []string{" ", "\t", "\r", "\n", "!", "*", "(", ")"} {
+				for _, past := range []string{"NewQ", "PointerFromQ", "Q"} {
+					inputString = strings.Replace(inputString, fmt.Sprintf("%v%v.%v", pre, mlow, past), fmt.Sprintf("%vstd_%v.%v", pre, mlow, past), -1)
+				}
+			}
+		}
+	}
+
 	fmt.Fprint(bb, "import (\n")
 	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors") {
 		mlow := strings.ToLower(m)
-		if strings.Contains(string(input), fmt.Sprintf(" %v.", mlow)) ||
-			strings.Contains(string(input), fmt.Sprintf("\t%v.", mlow)) ||
-			strings.Contains(string(input), fmt.Sprintf("\r%v.", mlow)) ||
-			strings.Contains(string(input), fmt.Sprintf("\n%v.", mlow)) ||
-			strings.Contains(string(input), fmt.Sprintf("!%v.", mlow)) ||
-			strings.Contains(string(input), fmt.Sprintf("*%v.", mlow)) ||
-			strings.Contains(string(input), fmt.Sprintf("(%v.", mlow)) {
+		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf("\r%v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf("\n%v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf("!%v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf("*%v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf("(%v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf(")%v.", mlow)) ||
+			strings.Contains(inputString, fmt.Sprintf("std_%v.", mlow)) {
 			switch mlow {
 			case "strings", "unsafe", "log", "runtime", "fmt", "errors":
 				fmt.Fprintf(bb, "\"%v\"\n", mlow)
@@ -285,7 +299,11 @@ import "C"
 				fmt.Fprintln(bb, "\"github.com/therecipe/qt\"")
 
 			default:
-				fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", mlow)
+				if mode == MOC {
+					fmt.Fprintf(bb, "std_%[1]v \"github.com/therecipe/qt/%[1]v\"\n", mlow)
+				} else {
+					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", mlow)
+				}
 
 				if mode == MOC {
 					parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], m)
@@ -298,9 +316,9 @@ import "C"
 		mlows := strings.Split(m, "/")
 		mlow := mlows[len(mlows)-1]
 		switch {
-		case strings.Contains(string(input), fmt.Sprintf("custom_%v.", mlow)):
+		case strings.Contains(inputString, fmt.Sprintf("custom_%v.", mlow)):
 			fmt.Fprintf(bb, "custom_%v \"%v\"\n", mlow, m)
-		case strings.Contains(string(input), fmt.Sprintf("%v.", custom)):
+		case strings.Contains(inputString, fmt.Sprintf("%v.", custom)):
 			fmt.Fprintf(bb, "%v \"%v\"\n", custom, m)
 		}
 	}
@@ -312,7 +330,7 @@ import "C"
 
 	fmt.Fprintln(bb, ")")
 
-	bb.Write(input)
+	bb.WriteString(inputString)
 
 	var out, err = format.Source(renameSubClasses(bb.Bytes(), "_"))
 	if err != nil {

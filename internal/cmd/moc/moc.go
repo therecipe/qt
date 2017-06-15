@@ -218,12 +218,16 @@ func Moc(path, target, tags string, fast bool) {
 	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
 		return
 	}
-	fixed, err := imports.Process(filepath.Join(path, "moc.go"), templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags), nil)
-	if err != nil {
-		utils.Log.WithError(err).Fatal("failed to fix go imports")
-		return
+	fix := templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)
+	var err error
+	for i := 0; i < 5; i++ {
+		fix, err = imports.Process(filepath.Join(path, "moc.go"), fix, nil)
+		if err != nil {
+			utils.Log.WithError(err).Fatal("failed to fix go imports")
+			return
+		}
 	}
-	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fixed); err != nil {
+	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
 		return
 	}
 	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg, tags)
