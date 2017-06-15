@@ -214,7 +214,7 @@ func bundle(mode, target, path, name, depPath string) {
 			utils.RunCmd(deploy, fmt.Sprintf("depoy %v on %v", target, runtime.GOOS))
 
 			var libraryPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
-			for _, d := range []string{"libbz2-1", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libicudt57", "libicuin57", "libicuuc57"} {
+			for _, d := range []string{"libbz2-1", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libicudt58", "libicuin58", "libicuuc58"} {
 				utils.RunCmdOptional(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, target, runtime.GOOS))
 			}
 
