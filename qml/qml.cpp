@@ -179,6 +179,7 @@ void QJSEngine_DestroyQJSEngine(void* ptr)
 
 void QJSEngine_DestroyQJSEngineDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -199,6 +200,7 @@ void QJSEngine___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QJSEngine___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -214,6 +216,7 @@ void QJSEngine___findChildren_setList2(void* ptr, void* i)
 
 void* QJSEngine___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -229,6 +232,7 @@ void QJSEngine___findChildren_setList3(void* ptr, void* i)
 
 void* QJSEngine___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -244,6 +248,7 @@ void QJSEngine___findChildren_setList(void* ptr, void* i)
 
 void* QJSEngine___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -259,6 +264,7 @@ void QJSEngine___children_setList(void* ptr, void* i)
 
 void* QJSEngine___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -613,6 +619,7 @@ void QJSValue___call_args_setList(void* ptr, void* i)
 
 void* QJSValue___call_args_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QJSValue>;
 }
 
@@ -628,6 +635,7 @@ void QJSValue___callAsConstructor_args_setList(void* ptr, void* i)
 
 void* QJSValue___callAsConstructor_args_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QJSValue>;
 }
 
@@ -643,6 +651,7 @@ void QJSValue___callWithInstance_args_setList(void* ptr, void* i)
 
 void* QJSValue___callWithInstance_args_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QJSValue>;
 }
 
@@ -671,6 +680,7 @@ void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(void* ptr)
 
 void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -894,6 +904,7 @@ void QQmlApplicationEngine___rootObjects_setList(void* ptr, void* i)
 
 void* QQmlApplicationEngine___rootObjects_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1238,6 +1249,7 @@ void QQmlComponent_DestroyQQmlComponent(void* ptr)
 
 void QQmlComponent_DestroyQQmlComponentDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1298,6 +1310,7 @@ void QQmlComponent___errors_setList(void* ptr, void* i)
 
 void* QQmlComponent___errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QQmlError>;
 }
 
@@ -1313,6 +1326,7 @@ void QQmlComponent___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQmlComponent___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1328,6 +1342,7 @@ void QQmlComponent___findChildren_setList2(void* ptr, void* i)
 
 void* QQmlComponent___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1343,6 +1358,7 @@ void QQmlComponent___findChildren_setList3(void* ptr, void* i)
 
 void* QQmlComponent___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1358,6 +1374,7 @@ void QQmlComponent___findChildren_setList(void* ptr, void* i)
 
 void* QQmlComponent___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1373,6 +1390,7 @@ void QQmlComponent___children_setList(void* ptr, void* i)
 
 void* QQmlComponent___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1558,6 +1576,7 @@ void QQmlContext_DestroyQQmlContext(void* ptr)
 
 void QQmlContext_DestroyQQmlContextDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1608,6 +1627,7 @@ void QQmlContext___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQmlContext___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1623,6 +1643,7 @@ void QQmlContext___findChildren_setList2(void* ptr, void* i)
 
 void* QQmlContext___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1638,6 +1659,7 @@ void QQmlContext___findChildren_setList3(void* ptr, void* i)
 
 void* QQmlContext___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1653,6 +1675,7 @@ void QQmlContext___findChildren_setList(void* ptr, void* i)
 
 void* QQmlContext___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1668,6 +1691,7 @@ void QQmlContext___children_setList(void* ptr, void* i)
 
 void* QQmlContext___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1924,6 +1948,7 @@ void QQmlEngine_DestroyQQmlEngine(void* ptr)
 
 void QQmlEngine_DestroyQQmlEngineDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1999,6 +2024,7 @@ void QQmlEngine___importPlugin_errors_setList(void* ptr, void* i)
 
 void* QQmlEngine___importPlugin_errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QQmlError>;
 }
 
@@ -2014,6 +2040,7 @@ void QQmlEngine___warnings_warnings_setList(void* ptr, void* i)
 
 void* QQmlEngine___warnings_warnings_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QQmlError>;
 }
 
@@ -2201,6 +2228,7 @@ void* QQmlExpression_NewQQmlExpression3(void* script, void* ctxt, void* scope, v
 
 void* QQmlExpression_Evaluate(void* ptr, char valueIsUndefined)
 {
+	Q_UNUSED(valueIsUndefined);
 	return new QVariant(static_cast<QQmlExpression*>(ptr)->evaluate(NULL));
 }
 
@@ -2246,6 +2274,7 @@ void QQmlExpression_DestroyQQmlExpression(void* ptr)
 
 void QQmlExpression_DestroyQQmlExpressionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2311,6 +2340,7 @@ void QQmlExpression___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQmlExpression___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2326,6 +2356,7 @@ void QQmlExpression___findChildren_setList2(void* ptr, void* i)
 
 void* QQmlExpression___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2341,6 +2372,7 @@ void QQmlExpression___findChildren_setList3(void* ptr, void* i)
 
 void* QQmlExpression___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2356,6 +2388,7 @@ void QQmlExpression___findChildren_setList(void* ptr, void* i)
 
 void* QQmlExpression___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2371,6 +2404,7 @@ void QQmlExpression___children_setList(void* ptr, void* i)
 
 void* QQmlExpression___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2515,6 +2549,7 @@ void QQmlExtensionPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQmlExtensionPlugin___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2530,6 +2565,7 @@ void QQmlExtensionPlugin___findChildren_setList2(void* ptr, void* i)
 
 void* QQmlExtensionPlugin___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2545,6 +2581,7 @@ void QQmlExtensionPlugin___findChildren_setList3(void* ptr, void* i)
 
 void* QQmlExtensionPlugin___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2560,6 +2597,7 @@ void QQmlExtensionPlugin___findChildren_setList(void* ptr, void* i)
 
 void* QQmlExtensionPlugin___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2575,6 +2613,7 @@ void QQmlExtensionPlugin___children_setList(void* ptr, void* i)
 
 void* QQmlExtensionPlugin___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2727,6 +2766,7 @@ void QQmlFileSelector___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQmlFileSelector___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2742,6 +2782,7 @@ void QQmlFileSelector___findChildren_setList2(void* ptr, void* i)
 
 void* QQmlFileSelector___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2757,6 +2798,7 @@ void QQmlFileSelector___findChildren_setList3(void* ptr, void* i)
 
 void* QQmlFileSelector___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2772,6 +2814,7 @@ void QQmlFileSelector___findChildren_setList(void* ptr, void* i)
 
 void* QQmlFileSelector___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2787,6 +2830,7 @@ void QQmlFileSelector___children_setList(void* ptr, void* i)
 
 void* QQmlFileSelector___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2984,6 +3028,7 @@ void QQmlIncubator___errors_setList(void* ptr, void* i)
 
 void* QQmlIncubator___errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QQmlError>;
 }
 
@@ -3118,6 +3163,7 @@ void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(void
 
 void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactoryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3641,6 +3687,7 @@ void QQmlPropertyMap_DestroyQQmlPropertyMap(void* ptr)
 
 void QQmlPropertyMap_DestroyQQmlPropertyMapDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3686,6 +3733,7 @@ void QQmlPropertyMap___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQmlPropertyMap___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3701,6 +3749,7 @@ void QQmlPropertyMap___findChildren_setList2(void* ptr, void* i)
 
 void* QQmlPropertyMap___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3716,6 +3765,7 @@ void QQmlPropertyMap___findChildren_setList3(void* ptr, void* i)
 
 void* QQmlPropertyMap___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3731,6 +3781,7 @@ void QQmlPropertyMap___findChildren_setList(void* ptr, void* i)
 
 void* QQmlPropertyMap___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3746,6 +3797,7 @@ void QQmlPropertyMap___children_setList(void* ptr, void* i)
 
 void* QQmlPropertyMap___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3819,6 +3871,7 @@ void QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(void* ptr)
 
 void QQmlPropertyValueSource_DestroyQQmlPropertyValueSourceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3839,6 +3892,7 @@ struct QtQml_PackedString QQmlScriptString_StringLiteral(void* ptr)
 
 char QQmlScriptString_BooleanLiteral(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QQmlScriptString*>(ptr)->booleanLiteral(NULL);
 }
 
@@ -3859,6 +3913,7 @@ char QQmlScriptString_IsUndefinedLiteral(void* ptr)
 
 double QQmlScriptString_NumberLiteral(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QQmlScriptString*>(ptr)->numberLiteral(NULL);
 }
 

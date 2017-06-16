@@ -106,6 +106,7 @@ void QInAppProduct___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QInAppProduct___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -121,6 +122,7 @@ void QInAppProduct___findChildren_setList2(void* ptr, void* i)
 
 void* QInAppProduct___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -136,6 +138,7 @@ void QInAppProduct___findChildren_setList3(void* ptr, void* i)
 
 void* QInAppProduct___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -151,6 +154,7 @@ void QInAppProduct___findChildren_setList(void* ptr, void* i)
 
 void* QInAppProduct___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -166,6 +170,7 @@ void QInAppProduct___children_setList(void* ptr, void* i)
 
 void* QInAppProduct___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -361,6 +366,7 @@ void QInAppStore___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QInAppStore___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -376,6 +382,7 @@ void QInAppStore___findChildren_setList2(void* ptr, void* i)
 
 void* QInAppStore___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -391,6 +398,7 @@ void QInAppStore___findChildren_setList3(void* ptr, void* i)
 
 void* QInAppStore___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -406,6 +414,7 @@ void QInAppStore___findChildren_setList(void* ptr, void* i)
 
 void* QInAppStore___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -421,6 +430,7 @@ void QInAppStore___children_setList(void* ptr, void* i)
 
 void* QInAppStore___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -572,6 +582,7 @@ void QInAppTransaction___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QInAppTransaction___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -587,6 +598,7 @@ void QInAppTransaction___findChildren_setList2(void* ptr, void* i)
 
 void* QInAppTransaction___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -602,6 +614,7 @@ void QInAppTransaction___findChildren_setList3(void* ptr, void* i)
 
 void* QInAppTransaction___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -617,6 +630,7 @@ void QInAppTransaction___findChildren_setList(void* ptr, void* i)
 
 void* QInAppTransaction___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -632,6 +646,7 @@ void QInAppTransaction___children_setList(void* ptr, void* i)
 
 void* QInAppTransaction___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

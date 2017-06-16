@@ -363,11 +363,13 @@ void QTextToSpeech___availableLocales_setList(void* ptr, void* i)
 
 void* QTextToSpeech___availableLocales_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QLocale>;
 }
 
 void* QTextToSpeech___availableVoices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QVoice>;
 }
 
@@ -383,6 +385,7 @@ void QTextToSpeech___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QTextToSpeech___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -398,6 +401,7 @@ void QTextToSpeech___findChildren_setList2(void* ptr, void* i)
 
 void* QTextToSpeech___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -413,6 +417,7 @@ void QTextToSpeech___findChildren_setList3(void* ptr, void* i)
 
 void* QTextToSpeech___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -428,6 +433,7 @@ void QTextToSpeech___findChildren_setList(void* ptr, void* i)
 
 void* QTextToSpeech___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -443,6 +449,7 @@ void QTextToSpeech___children_setList(void* ptr, void* i)
 
 void* QTextToSpeech___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -504,6 +511,7 @@ void QTextToSpeechPlugin_DestroyQTextToSpeechPlugin(void* ptr)
 
 void QTextToSpeechPlugin_DestroyQTextToSpeechPluginDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -519,6 +527,7 @@ void QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(void* ptr
 
 void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -539,6 +548,7 @@ void QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(void* ptr,
 
 void* QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 

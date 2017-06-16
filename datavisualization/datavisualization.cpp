@@ -376,6 +376,7 @@ void Q3DBars_DestroyQ3DBars(void* ptr)
 
 void Q3DBars_DestroyQ3DBarsDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -451,6 +452,7 @@ void Q3DBars___axes_setList(void* ptr, void* i)
 
 void* Q3DBars___axes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstract3DAxis *>;
 }
 
@@ -466,6 +468,7 @@ void Q3DBars___seriesList_setList(void* ptr, void* i)
 
 void* Q3DBars___seriesList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBar3DSeries *>;
 }
 
@@ -729,6 +732,7 @@ void Q3DCamera_DestroyQ3DCamera(void* ptr)
 
 void Q3DCamera_DestroyQ3DCameraDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -960,6 +964,7 @@ void Q3DInputHandler_DestroyQ3DInputHandler(void* ptr)
 
 void Q3DInputHandler_DestroyQ3DInputHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1038,6 +1043,7 @@ void Q3DLight_DestroyQ3DLight(void* ptr)
 
 void Q3DLight_DestroyQ3DLightDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1138,6 +1144,7 @@ void Q3DObject_DestroyQ3DObject(void* ptr)
 
 void Q3DObject_DestroyQ3DObjectDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1273,6 +1280,7 @@ void Q3DScatter_DestroyQ3DScatter(void* ptr)
 
 void Q3DScatter_DestroyQ3DScatterDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1318,6 +1326,7 @@ void Q3DScatter___seriesList_setList(void* ptr, void* i)
 
 void* Q3DScatter___seriesList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QScatter3DSeries *>;
 }
 
@@ -1333,6 +1342,7 @@ void Q3DScatter___axes_setList(void* ptr, void* i)
 
 void* Q3DScatter___axes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QValue3DAxis *>;
 }
 
@@ -1611,6 +1621,7 @@ void Q3DScene_DestroyQ3DScene(void* ptr)
 
 void Q3DScene_DestroyQ3DSceneDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1807,6 +1818,7 @@ void Q3DSurface_DestroyQ3DSurface(void* ptr)
 
 void Q3DSurface_DestroyQ3DSurfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1857,6 +1869,7 @@ void Q3DSurface___seriesList_setList(void* ptr, void* i)
 
 void* Q3DSurface___seriesList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSurface3DSeries *>;
 }
 
@@ -1872,6 +1885,7 @@ void Q3DSurface___axes_setList(void* ptr, void* i)
 
 void* Q3DSurface___axes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QValue3DAxis *>;
 }
 
@@ -2434,6 +2448,7 @@ void Q3DTheme_DestroyQ3DTheme(void* ptr)
 
 void Q3DTheme_DestroyQ3DThemeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2559,6 +2574,7 @@ void Q3DTheme___baseColorsChanged_colors_setList(void* ptr, void* i)
 
 void* Q3DTheme___baseColorsChanged_colors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QColor>;
 }
 
@@ -2574,6 +2590,7 @@ void Q3DTheme___baseGradientsChanged_gradients_setList(void* ptr, void* i)
 
 void* Q3DTheme___baseGradientsChanged_gradients_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLinearGradient>;
 }
 
@@ -2589,6 +2606,7 @@ void Q3DTheme___setBaseColors_colors_setList(void* ptr, void* i)
 
 void* Q3DTheme___setBaseColors_colors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QColor>;
 }
 
@@ -2604,6 +2622,7 @@ void Q3DTheme___setBaseGradients_gradients_setList(void* ptr, void* i)
 
 void* Q3DTheme___setBaseGradients_gradients_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLinearGradient>;
 }
 
@@ -2619,6 +2638,7 @@ void Q3DTheme___baseColors_setList(void* ptr, void* i)
 
 void* Q3DTheme___baseColors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QColor>;
 }
 
@@ -2634,6 +2654,7 @@ void Q3DTheme___baseGradients_setList(void* ptr, void* i)
 
 void* Q3DTheme___baseGradients_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLinearGradient>;
 }
 
@@ -2855,6 +2876,7 @@ void QAbstract3DAxis_DestroyQAbstract3DAxis(void* ptr)
 
 void QAbstract3DAxis_DestroyQAbstract3DAxisDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3340,6 +3362,7 @@ void QAbstract3DGraph_DestroyQAbstract3DGraph(void* ptr)
 
 void QAbstract3DGraph_DestroyQAbstract3DGraphDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3500,6 +3523,7 @@ void QAbstract3DGraph___themes_setList(void* ptr, void* i)
 
 void* QAbstract3DGraph___themes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<Q3DTheme *>;
 }
 
@@ -3515,6 +3539,7 @@ void QAbstract3DGraph___inputHandlers_setList(void* ptr, void* i)
 
 void* QAbstract3DGraph___inputHandlers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstract3DInputHandler *>;
 }
 
@@ -3530,6 +3555,7 @@ void QAbstract3DGraph___customItems_setList(void* ptr, void* i)
 
 void* QAbstract3DGraph___customItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QCustom3DItem *>;
 }
 
@@ -3732,6 +3758,7 @@ void QAbstract3DInputHandler_DestroyQAbstract3DInputHandler(void* ptr)
 
 void QAbstract3DInputHandler_DestroyQAbstract3DInputHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4104,6 +4131,7 @@ void QAbstract3DSeries_DestroyQAbstract3DSeries(void* ptr)
 
 void QAbstract3DSeries_DestroyQAbstract3DSeriesDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4210,6 +4238,7 @@ void QAbstractDataProxy_DestroyQAbstractDataProxy(void* ptr)
 
 void QAbstractDataProxy_DestroyQAbstractDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4378,6 +4407,7 @@ void QBar3DSeries_DestroyQBar3DSeries(void* ptr)
 
 void QBar3DSeries_DestroyQBar3DSeriesDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4686,6 +4716,7 @@ void QBarDataProxy_DestroyQBarDataProxy(void* ptr)
 
 void QBarDataProxy_DestroyQBarDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4795,6 +4826,7 @@ void QCategory3DAxis_DestroyQCategory3DAxis(void* ptr)
 
 void QCategory3DAxis_DestroyQCategory3DAxisDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5104,6 +5136,7 @@ void QCustom3DItem_DestroyQCustom3DItem(void* ptr)
 
 void QCustom3DItem_DestroyQCustom3DItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5391,6 +5424,7 @@ void QCustom3DLabel_DestroyQCustom3DLabel(void* ptr)
 
 void QCustom3DLabel_DestroyQCustom3DLabelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5861,6 +5895,7 @@ void QCustom3DVolume_DestroyQCustom3DVolume(void* ptr)
 
 void QCustom3DVolume_DestroyQCustom3DVolumeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5946,16 +5981,19 @@ int QCustom3DVolume_TextureWidth(void* ptr)
 
 void* QCustom3DVolume___QCustom3DVolume_colorTable_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QRgb>;
 }
 
 void* QCustom3DVolume___setColorTable_colors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QRgb>;
 }
 
 void* QCustom3DVolume___colorTable_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QRgb>;
 }
 
@@ -6229,6 +6267,7 @@ void QHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxy(void* ptr)
 
 void QHeightMapSurfaceDataProxy_DestroyQHeightMapSurfaceDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -6983,6 +7022,7 @@ void QItemModelBarDataProxy_DestroyQItemModelBarDataProxy(void* ptr)
 
 void QItemModelBarDataProxy_DestroyQItemModelBarDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -7540,6 +7580,7 @@ void QItemModelScatterDataProxy_DestroyQItemModelScatterDataProxy(void* ptr)
 
 void QItemModelScatterDataProxy_DestroyQItemModelScatterDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -8392,6 +8433,7 @@ void QItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxy(void* ptr)
 
 void QItemModelSurfaceDataProxy_DestroyQItemModelSurfaceDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -8623,6 +8665,7 @@ void QLogValue3DAxisFormatter_DestroyQLogValue3DAxisFormatter(void* ptr)
 
 void QLogValue3DAxisFormatter_DestroyQLogValue3DAxisFormatterDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -8806,6 +8849,7 @@ void QScatter3DSeries_DestroyQScatter3DSeries(void* ptr)
 
 void QScatter3DSeries_DestroyQScatter3DSeriesDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9086,6 +9130,7 @@ void QScatterDataProxy_DestroyQScatterDataProxy(void* ptr)
 
 void QScatterDataProxy_DestroyQScatterDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9348,6 +9393,7 @@ void QSurface3DSeries_DestroyQSurface3DSeries(void* ptr)
 
 void QSurface3DSeries_DestroyQSurface3DSeriesDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9660,6 +9706,7 @@ void QSurfaceDataProxy_DestroyQSurfaceDataProxy(void* ptr)
 
 void QSurfaceDataProxy_DestroyQSurfaceDataProxyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9754,6 +9801,7 @@ void QTouch3DInputHandler_DestroyQTouch3DInputHandler(void* ptr)
 
 void QTouch3DInputHandler_DestroyQTouch3DInputHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9917,6 +9965,7 @@ void QValue3DAxis_DestroyQValue3DAxis(void* ptr)
 
 void QValue3DAxis_DestroyQValue3DAxisDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -10036,6 +10085,7 @@ void QValue3DAxisFormatter_DestroyQValue3DAxisFormatter(void* ptr)
 
 void QValue3DAxisFormatter_DestroyQValue3DAxisFormatterDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -10141,6 +10191,7 @@ void QValue3DAxisFormatter___gridPositions_setList(void* ptr, float i)
 
 void* QValue3DAxisFormatter___gridPositions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<float>;
 }
 
@@ -10156,6 +10207,7 @@ void QValue3DAxisFormatter___labelPositions_setList(void* ptr, float i)
 
 void* QValue3DAxisFormatter___labelPositions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<float>;
 }
 
@@ -10171,6 +10223,7 @@ void QValue3DAxisFormatter___subGridPositions_setList(void* ptr, float i)
 
 void* QValue3DAxisFormatter___subGridPositions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<float>;
 }
 

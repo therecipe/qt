@@ -98,6 +98,7 @@ void QScxmlCompiler___errors_setList(void* ptr, void* i)
 
 void* QScxmlCompiler___errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlError>;
 }
 
@@ -270,6 +271,7 @@ void QScxmlDataModel___setup_initialDataValues_setList(void* ptr, char* key, voi
 
 void* QScxmlDataModel___setup_initialDataValues_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -290,6 +292,7 @@ void QScxmlDataModel_____setup_keyList_setList(void* ptr, char* i)
 
 void* QScxmlDataModel_____setup_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -305,6 +308,7 @@ void QScxmlDataModel___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QScxmlDataModel___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -320,6 +324,7 @@ void QScxmlDataModel___findChildren_setList2(void* ptr, void* i)
 
 void* QScxmlDataModel___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -335,6 +340,7 @@ void QScxmlDataModel___findChildren_setList3(void* ptr, void* i)
 
 void* QScxmlDataModel___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -350,6 +356,7 @@ void QScxmlDataModel___findChildren_setList(void* ptr, void* i)
 
 void* QScxmlDataModel___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -365,6 +372,7 @@ void QScxmlDataModel___children_setList(void* ptr, void* i)
 
 void* QScxmlDataModel___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -518,11 +526,13 @@ void* QScxmlDynamicScxmlServiceFactory_InvokeDefault(void* ptr, void* parentStat
 
 void* QScxmlDynamicScxmlServiceFactory___QScxmlDynamicScxmlServiceFactory_names_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::StringId>;
 }
 
 void* QScxmlDynamicScxmlServiceFactory___QScxmlDynamicScxmlServiceFactory_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::ParameterInfo>;
 }
 
@@ -881,6 +891,7 @@ void QScxmlInvokableService___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QScxmlInvokableService___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -896,6 +907,7 @@ void QScxmlInvokableService___findChildren_setList2(void* ptr, void* i)
 
 void* QScxmlInvokableService___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -911,6 +923,7 @@ void QScxmlInvokableService___findChildren_setList3(void* ptr, void* i)
 
 void* QScxmlInvokableService___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -926,6 +939,7 @@ void QScxmlInvokableService___findChildren_setList(void* ptr, void* i)
 
 void* QScxmlInvokableService___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -941,6 +955,7 @@ void QScxmlInvokableService___children_setList(void* ptr, void* i)
 
 void* QScxmlInvokableService___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1017,21 +1032,25 @@ void* QScxmlInvokableServiceFactory_Invoke(void* ptr, void* parentStateMachine)
 
 void* QScxmlInvokableServiceFactory___QScxmlInvokableServiceFactory_names_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::StringId>;
 }
 
 void* QScxmlInvokableServiceFactory___QScxmlInvokableServiceFactory_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::ParameterInfo>;
 }
 
 void* QScxmlInvokableServiceFactory___parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::ParameterInfo>;
 }
 
 void* QScxmlInvokableServiceFactory___names_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::StringId>;
 }
 
@@ -1047,6 +1066,7 @@ void QScxmlInvokableServiceFactory___dynamicPropertyNames_setList(void* ptr, voi
 
 void* QScxmlInvokableServiceFactory___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1062,6 +1082,7 @@ void QScxmlInvokableServiceFactory___findChildren_setList2(void* ptr, void* i)
 
 void* QScxmlInvokableServiceFactory___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1077,6 +1098,7 @@ void QScxmlInvokableServiceFactory___findChildren_setList3(void* ptr, void* i)
 
 void* QScxmlInvokableServiceFactory___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1092,6 +1114,7 @@ void QScxmlInvokableServiceFactory___findChildren_setList(void* ptr, void* i)
 
 void* QScxmlInvokableServiceFactory___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1107,6 +1130,7 @@ void QScxmlInvokableServiceFactory___children_setList(void* ptr, void* i)
 
 void* QScxmlInvokableServiceFactory___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1694,6 +1718,7 @@ void QScxmlStateMachine___initialValues_setList(void* ptr, char* key, void* i)
 
 void* QScxmlStateMachine___initialValues_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1714,6 +1739,7 @@ void QScxmlStateMachine___initialValuesChanged_initialValues_setList(void* ptr, 
 
 void* QScxmlStateMachine___initialValuesChanged_initialValues_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1734,6 +1760,7 @@ void QScxmlStateMachine___invokedServicesChanged_invokedServices_setList(void* p
 
 void* QScxmlStateMachine___invokedServicesChanged_invokedServices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlInvokableService *>;
 }
 
@@ -1749,6 +1776,7 @@ void QScxmlStateMachine___setInitialValues_initialValues_setList(void* ptr, char
 
 void* QScxmlStateMachine___setInitialValues_initialValues_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1769,6 +1797,7 @@ void QScxmlStateMachine___parseErrors_setList(void* ptr, void* i)
 
 void* QScxmlStateMachine___parseErrors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlError>;
 }
 
@@ -1784,6 +1813,7 @@ void QScxmlStateMachine___invokedServices_setList(void* ptr, void* i)
 
 void* QScxmlStateMachine___invokedServices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlInvokableService *>;
 }
 
@@ -1799,6 +1829,7 @@ void QScxmlStateMachine_____initialValues_keyList_setList(void* ptr, char* i)
 
 void* QScxmlStateMachine_____initialValues_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1814,6 +1845,7 @@ void QScxmlStateMachine_____initialValuesChanged_keyList_setList(void* ptr, char
 
 void* QScxmlStateMachine_____initialValuesChanged_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1829,6 +1861,7 @@ void QScxmlStateMachine_____setInitialValues_keyList_setList(void* ptr, char* i)
 
 void* QScxmlStateMachine_____setInitialValues_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1844,6 +1877,7 @@ void QScxmlStateMachine___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QScxmlStateMachine___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1859,6 +1893,7 @@ void QScxmlStateMachine___findChildren_setList2(void* ptr, void* i)
 
 void* QScxmlStateMachine___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1874,6 +1909,7 @@ void QScxmlStateMachine___findChildren_setList3(void* ptr, void* i)
 
 void* QScxmlStateMachine___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1889,6 +1925,7 @@ void QScxmlStateMachine___findChildren_setList(void* ptr, void* i)
 
 void* QScxmlStateMachine___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1904,6 +1941,7 @@ void QScxmlStateMachine___children_setList(void* ptr, void* i)
 
 void* QScxmlStateMachine___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1985,11 +2023,13 @@ void* QScxmlStaticScxmlServiceFactory_InvokeDefault(void* ptr, void* parentState
 
 void* QScxmlStaticScxmlServiceFactory___QScxmlStaticScxmlServiceFactory_nameList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::StringId>;
 }
 
 void* QScxmlStaticScxmlServiceFactory___QScxmlStaticScxmlServiceFactory_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QScxmlExecutableContent::ParameterInfo>;
 }
 
@@ -2012,6 +2052,7 @@ void QScxmlTableData_DestroyQScxmlTableData(void* ptr)
 
 void QScxmlTableData_DestroyQScxmlTableDataDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 

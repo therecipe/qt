@@ -146,6 +146,7 @@ void QDBusAbstractAdaptor___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDBusAbstractAdaptor___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -165,6 +166,7 @@ void QDBusAbstractAdaptor___findChildren_setList2(void* ptr, void* i)
 
 void* QDBusAbstractAdaptor___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -184,6 +186,7 @@ void QDBusAbstractAdaptor___findChildren_setList3(void* ptr, void* i)
 
 void* QDBusAbstractAdaptor___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -203,6 +206,7 @@ void QDBusAbstractAdaptor___findChildren_setList(void* ptr, void* i)
 
 void* QDBusAbstractAdaptor___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -222,6 +226,7 @@ void QDBusAbstractAdaptor___children_setList(void* ptr, void* i)
 
 void* QDBusAbstractAdaptor___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -350,6 +355,7 @@ void QDBusAbstractInterface_DestroyQDBusAbstractInterface(void* ptr)
 
 void QDBusAbstractInterface_DestroyQDBusAbstractInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -400,6 +406,7 @@ void QDBusAbstractInterface___callWithArgumentList_args_setList(void* ptr, void*
 
 void* QDBusAbstractInterface___callWithArgumentList_args_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -415,6 +422,7 @@ void QDBusAbstractInterface___asyncCallWithArgumentList_args_setList(void* ptr, 
 
 void* QDBusAbstractInterface___asyncCallWithArgumentList_args_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -430,6 +438,7 @@ void QDBusAbstractInterface___callWithCallback_args_setList(void* ptr, void* i)
 
 void* QDBusAbstractInterface___callWithCallback_args_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -445,6 +454,7 @@ void QDBusAbstractInterface___callWithCallback_args_setList2(void* ptr, void* i)
 
 void* QDBusAbstractInterface___callWithCallback_args_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -460,6 +470,7 @@ void QDBusAbstractInterface___internalConstCall_args_setList(void* ptr, void* i)
 
 void* QDBusAbstractInterface___internalConstCall_args_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -475,6 +486,7 @@ void QDBusAbstractInterface___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDBusAbstractInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -494,6 +506,7 @@ void QDBusAbstractInterface___findChildren_setList2(void* ptr, void* i)
 
 void* QDBusAbstractInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -513,6 +526,7 @@ void QDBusAbstractInterface___findChildren_setList3(void* ptr, void* i)
 
 void* QDBusAbstractInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -532,6 +546,7 @@ void QDBusAbstractInterface___findChildren_setList(void* ptr, void* i)
 
 void* QDBusAbstractInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -551,6 +566,7 @@ void QDBusAbstractInterface___children_setList(void* ptr, void* i)
 
 void* QDBusAbstractInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1373,6 +1389,7 @@ void QDBusMessage___setArguments_arguments_setList(void* ptr, void* i)
 
 void* QDBusMessage___setArguments_arguments_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -1388,6 +1405,7 @@ void QDBusMessage___createReply_arguments_setList(void* ptr, void* i)
 
 void* QDBusMessage___createReply_arguments_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -1403,6 +1421,7 @@ void QDBusMessage___arguments_setList(void* ptr, void* i)
 
 void* QDBusMessage___arguments_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -1552,6 +1571,7 @@ void QDBusPendingCallWatcher___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDBusPendingCallWatcher___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -1571,6 +1591,7 @@ void QDBusPendingCallWatcher___findChildren_setList2(void* ptr, void* i)
 
 void* QDBusPendingCallWatcher___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -1590,6 +1611,7 @@ void QDBusPendingCallWatcher___findChildren_setList3(void* ptr, void* i)
 
 void* QDBusPendingCallWatcher___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -1609,6 +1631,7 @@ void QDBusPendingCallWatcher___findChildren_setList(void* ptr, void* i)
 
 void* QDBusPendingCallWatcher___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -1628,6 +1651,7 @@ void QDBusPendingCallWatcher___children_setList(void* ptr, void* i)
 
 void* QDBusPendingCallWatcher___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -1867,6 +1891,7 @@ void QDBusServer_DestroyQDBusServer(void* ptr)
 
 void QDBusServer_DestroyQDBusServerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1902,6 +1927,7 @@ void QDBusServer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDBusServer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1921,6 +1947,7 @@ void QDBusServer___findChildren_setList2(void* ptr, void* i)
 
 void* QDBusServer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1940,6 +1967,7 @@ void QDBusServer___findChildren_setList3(void* ptr, void* i)
 
 void* QDBusServer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1959,6 +1987,7 @@ void QDBusServer___findChildren_setList(void* ptr, void* i)
 
 void* QDBusServer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1978,6 +2007,7 @@ void QDBusServer___children_setList(void* ptr, void* i)
 
 void* QDBusServer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2239,6 +2269,7 @@ void QDBusServiceWatcher___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDBusServiceWatcher___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2258,6 +2289,7 @@ void QDBusServiceWatcher___findChildren_setList2(void* ptr, void* i)
 
 void* QDBusServiceWatcher___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2277,6 +2309,7 @@ void QDBusServiceWatcher___findChildren_setList3(void* ptr, void* i)
 
 void* QDBusServiceWatcher___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2296,6 +2329,7 @@ void QDBusServiceWatcher___findChildren_setList(void* ptr, void* i)
 
 void* QDBusServiceWatcher___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2315,6 +2349,7 @@ void QDBusServiceWatcher___children_setList(void* ptr, void* i)
 
 void* QDBusServiceWatcher___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2559,6 +2594,7 @@ void QDBusVirtualObject_DestroyQDBusVirtualObject(void* ptr)
 
 void QDBusVirtualObject_DestroyQDBusVirtualObjectDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2579,6 +2615,7 @@ void QDBusVirtualObject___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDBusVirtualObject___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2598,6 +2635,7 @@ void QDBusVirtualObject___findChildren_setList2(void* ptr, void* i)
 
 void* QDBusVirtualObject___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2617,6 +2655,7 @@ void QDBusVirtualObject___findChildren_setList3(void* ptr, void* i)
 
 void* QDBusVirtualObject___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2636,6 +2675,7 @@ void QDBusVirtualObject___findChildren_setList(void* ptr, void* i)
 
 void* QDBusVirtualObject___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2655,6 +2695,7 @@ void QDBusVirtualObject___children_setList(void* ptr, void* i)
 
 void* QDBusVirtualObject___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

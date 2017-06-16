@@ -102,7 +102,7 @@ func Test(target string, docker bool) {
 
 			"uitools": []string{"calculator"},
 
-			"webchannel": []string{"chatserver-go", "standalone" /*"webview"*/},
+			"webchannel": []string{"chatserver-go" /*"standalone" "webview"*/},
 
 			"widgets": []string{"bridge2" /*"dropsite"*/, "graphicsscene", "line_edits", "pixel_editor",
 				/*"renderer"*/ "share", "systray" /*"table"*/, "textedit", filepath.Join("treeview", "treeview_dual"),

@@ -490,6 +490,7 @@ void QSerialPort_DestroyQSerialPort(void* ptr)
 
 void QSerialPort_DestroyQSerialPortDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -575,6 +576,7 @@ void QSerialPort___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSerialPort___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -590,6 +592,7 @@ void QSerialPort___findChildren_setList2(void* ptr, void* i)
 
 void* QSerialPort___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -605,6 +608,7 @@ void QSerialPort___findChildren_setList3(void* ptr, void* i)
 
 void* QSerialPort___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -620,6 +624,7 @@ void QSerialPort___findChildren_setList(void* ptr, void* i)
 
 void* QSerialPort___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -635,6 +640,7 @@ void QSerialPort___children_setList(void* ptr, void* i)
 
 void* QSerialPort___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -810,6 +816,7 @@ void QSerialPortInfo___availablePorts_setList(void* ptr, void* i)
 
 void* QSerialPortInfo___availablePorts_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSerialPortInfo>;
 }
 
@@ -825,6 +832,7 @@ void QSerialPortInfo___standardBaudRates_setList(void* ptr, int i)
 
 void* QSerialPortInfo___standardBaudRates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<qint32>;
 }
 

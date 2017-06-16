@@ -321,6 +321,7 @@ void QHelpContentModel___setItemData_roles_setList(void* ptr, int key, void* i)
 
 void* QHelpContentModel___setItemData_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -341,6 +342,7 @@ void QHelpContentModel___changePersistentIndexList_from_setList(void* ptr, void*
 
 void* QHelpContentModel___changePersistentIndexList_from_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -356,6 +358,7 @@ void QHelpContentModel___changePersistentIndexList_to_setList(void* ptr, void* i
 
 void* QHelpContentModel___changePersistentIndexList_to_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -371,6 +374,7 @@ void QHelpContentModel___dataChanged_roles_setList(void* ptr, int i)
 
 void* QHelpContentModel___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -386,6 +390,7 @@ void QHelpContentModel___layoutAboutToBeChanged_parents_setList(void* ptr, void*
 
 void* QHelpContentModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -401,6 +406,7 @@ void QHelpContentModel___layoutChanged_parents_setList(void* ptr, void* i)
 
 void* QHelpContentModel___layoutChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -416,6 +422,7 @@ void QHelpContentModel___roleNames_setList(void* ptr, int key, void* i)
 
 void* QHelpContentModel___roleNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<int, QByteArray>;
 }
 
@@ -436,6 +443,7 @@ void QHelpContentModel___itemData_setList(void* ptr, int key, void* i)
 
 void* QHelpContentModel___itemData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -456,6 +464,7 @@ void QHelpContentModel___mimeData_indexes_setList(void* ptr, void* i)
 
 void* QHelpContentModel___mimeData_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -471,6 +480,7 @@ void QHelpContentModel___match_setList(void* ptr, void* i)
 
 void* QHelpContentModel___match_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -486,6 +496,7 @@ void QHelpContentModel___persistentIndexList_setList(void* ptr, void* i)
 
 void* QHelpContentModel___persistentIndexList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -501,6 +512,7 @@ void QHelpContentModel_____setItemData_keyList_setList(void* ptr, int i)
 
 void* QHelpContentModel_____setItemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -516,6 +528,7 @@ void QHelpContentModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
 
 void* QHelpContentModel_____doSetRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -531,6 +544,7 @@ void QHelpContentModel_____setRoleNames_keyList_setList(void* ptr, int i)
 
 void* QHelpContentModel_____setRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -546,6 +560,7 @@ void QHelpContentModel_____roleNames_keyList_setList(void* ptr, int i)
 
 void* QHelpContentModel_____roleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -561,6 +576,7 @@ void QHelpContentModel_____itemData_keyList_setList(void* ptr, int i)
 
 void* QHelpContentModel_____itemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -576,6 +592,7 @@ void QHelpContentModel___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpContentModel___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -591,6 +608,7 @@ void QHelpContentModel___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpContentModel___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -606,6 +624,7 @@ void QHelpContentModel___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpContentModel___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -621,6 +640,7 @@ void QHelpContentModel___findChildren_setList(void* ptr, void* i)
 
 void* QHelpContentModel___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -636,6 +656,7 @@ void QHelpContentModel___children_setList(void* ptr, void* i)
 
 void* QHelpContentModel___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1006,6 +1027,7 @@ void QHelpContentWidget___dataChanged_roles_setList(void* ptr, int i)
 
 void* QHelpContentWidget___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -1021,6 +1043,7 @@ void QHelpContentWidget___selectedIndexes_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___selectedIndexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -1036,6 +1059,7 @@ void QHelpContentWidget___scrollBarWidgets_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___scrollBarWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -1051,6 +1075,7 @@ void QHelpContentWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1066,6 +1091,7 @@ void QHelpContentWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1081,6 +1107,7 @@ void QHelpContentWidget___actions_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1096,6 +1123,7 @@ void QHelpContentWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1111,6 +1139,7 @@ void QHelpContentWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpContentWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1126,6 +1155,7 @@ void QHelpContentWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpContentWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1141,6 +1171,7 @@ void QHelpContentWidget___findChildren_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1156,6 +1187,7 @@ void QHelpContentWidget___children_setList(void* ptr, void* i)
 
 void* QHelpContentWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2068,6 +2100,7 @@ void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr)
 
 void QHelpEngineCore_DestroyQHelpEngineCoreDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2143,6 +2176,7 @@ void QHelpEngineCore___files_setList(void* ptr, void* i)
 
 void* QHelpEngineCore___files_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -2158,6 +2192,7 @@ void QHelpEngineCore___filterAttributeSets_setList(void* ptr, char* i)
 
 void* QHelpEngineCore___filterAttributeSets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QStringList>;
 }
 
@@ -2173,6 +2208,7 @@ void QHelpEngineCore___linksForIdentifier_setList(void* ptr, char* key, void* i)
 
 void* QHelpEngineCore___linksForIdentifier_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QUrl>;
 }
 
@@ -2193,6 +2229,7 @@ void QHelpEngineCore_____linksForIdentifier_keyList_setList(void* ptr, char* i)
 
 void* QHelpEngineCore_____linksForIdentifier_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2208,6 +2245,7 @@ void QHelpEngineCore___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpEngineCore___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2223,6 +2261,7 @@ void QHelpEngineCore___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpEngineCore___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2238,6 +2277,7 @@ void QHelpEngineCore___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpEngineCore___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2253,6 +2293,7 @@ void QHelpEngineCore___findChildren_setList(void* ptr, void* i)
 
 void* QHelpEngineCore___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2268,6 +2309,7 @@ void QHelpEngineCore___children_setList(void* ptr, void* i)
 
 void* QHelpEngineCore___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2489,6 +2531,7 @@ void QHelpIndexModel___linksForKeyword_setList(void* ptr, char* key, void* i)
 
 void* QHelpIndexModel___linksForKeyword_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QUrl>;
 }
 
@@ -2509,6 +2552,7 @@ void QHelpIndexModel_____linksForKeyword_keyList_setList(void* ptr, char* i)
 
 void* QHelpIndexModel_____linksForKeyword_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2524,6 +2568,7 @@ void QHelpIndexModel_____setItemData_keyList_setList(void* ptr, int i)
 
 void* QHelpIndexModel_____setItemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2539,6 +2584,7 @@ void QHelpIndexModel_____roleNames_keyList_setList(void* ptr, int i)
 
 void* QHelpIndexModel_____roleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2554,6 +2600,7 @@ void QHelpIndexModel_____itemData_keyList_setList(void* ptr, int i)
 
 void* QHelpIndexModel_____itemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2569,6 +2616,7 @@ void QHelpIndexModel___setItemData_roles_setList(void* ptr, int key, void* i)
 
 void* QHelpIndexModel___setItemData_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -2589,6 +2637,7 @@ void QHelpIndexModel___changePersistentIndexList_from_setList(void* ptr, void* i
 
 void* QHelpIndexModel___changePersistentIndexList_from_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2604,6 +2653,7 @@ void QHelpIndexModel___changePersistentIndexList_to_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___changePersistentIndexList_to_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2619,6 +2669,7 @@ void QHelpIndexModel___dataChanged_roles_setList(void* ptr, int i)
 
 void* QHelpIndexModel___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -2634,6 +2685,7 @@ void QHelpIndexModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i
 
 void* QHelpIndexModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -2649,6 +2701,7 @@ void QHelpIndexModel___layoutChanged_parents_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___layoutChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -2664,6 +2717,7 @@ void QHelpIndexModel___roleNames_setList(void* ptr, int key, void* i)
 
 void* QHelpIndexModel___roleNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<int, QByteArray>;
 }
 
@@ -2684,6 +2738,7 @@ void QHelpIndexModel___itemData_setList(void* ptr, int key, void* i)
 
 void* QHelpIndexModel___itemData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -2704,6 +2759,7 @@ void QHelpIndexModel___mimeData_indexes_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___mimeData_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2719,6 +2775,7 @@ void QHelpIndexModel___match_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___match_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2734,6 +2791,7 @@ void QHelpIndexModel___persistentIndexList_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___persistentIndexList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2749,6 +2807,7 @@ void QHelpIndexModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
 
 void* QHelpIndexModel_____doSetRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2764,6 +2823,7 @@ void QHelpIndexModel_____setRoleNames_keyList_setList(void* ptr, int i)
 
 void* QHelpIndexModel_____setRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2779,6 +2839,7 @@ void QHelpIndexModel___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2794,6 +2855,7 @@ void QHelpIndexModel___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpIndexModel___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2809,6 +2871,7 @@ void QHelpIndexModel___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpIndexModel___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2824,6 +2887,7 @@ void QHelpIndexModel___findChildren_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2839,6 +2903,7 @@ void QHelpIndexModel___children_setList(void* ptr, void* i)
 
 void* QHelpIndexModel___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3251,6 +3316,7 @@ void QHelpIndexWidget___linksActivated_links_setList(void* ptr, char* key, void*
 
 void* QHelpIndexWidget___linksActivated_links_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QUrl>;
 }
 
@@ -3271,6 +3337,7 @@ void QHelpIndexWidget_____linksActivated_keyList_setList(void* ptr, char* i)
 
 void* QHelpIndexWidget_____linksActivated_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -3286,6 +3353,7 @@ void QHelpIndexWidget___dataChanged_roles_setList(void* ptr, int i)
 
 void* QHelpIndexWidget___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -3301,6 +3369,7 @@ void QHelpIndexWidget___indexesMoved_indexes_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___indexesMoved_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -3316,6 +3385,7 @@ void QHelpIndexWidget___selectedIndexes_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___selectedIndexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -3331,6 +3401,7 @@ void QHelpIndexWidget___scrollBarWidgets_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___scrollBarWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -3346,6 +3417,7 @@ void QHelpIndexWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3361,6 +3433,7 @@ void QHelpIndexWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3376,6 +3449,7 @@ void QHelpIndexWidget___actions_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3391,6 +3465,7 @@ void QHelpIndexWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3406,6 +3481,7 @@ void QHelpIndexWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpIndexWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3421,6 +3497,7 @@ void QHelpIndexWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpIndexWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3436,6 +3513,7 @@ void QHelpIndexWidget___findChildren_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3451,6 +3529,7 @@ void QHelpIndexWidget___children_setList(void* ptr, void* i)
 
 void* QHelpIndexWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4176,6 +4255,7 @@ void QHelpSearchEngine___search_queryList_setList(void* ptr, void* i)
 
 void* QHelpSearchEngine___search_queryList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QHelpSearchQuery>;
 }
 
@@ -4191,6 +4271,7 @@ void QHelpSearchEngine___query_setList(void* ptr, void* i)
 
 void* QHelpSearchEngine___query_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QHelpSearchQuery>;
 }
 
@@ -4206,6 +4287,7 @@ void QHelpSearchEngine___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpSearchEngine___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4221,6 +4303,7 @@ void QHelpSearchEngine___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpSearchEngine___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4236,6 +4319,7 @@ void QHelpSearchEngine___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpSearchEngine___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4251,6 +4335,7 @@ void QHelpSearchEngine___findChildren_setList(void* ptr, void* i)
 
 void* QHelpSearchEngine___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4266,6 +4351,7 @@ void QHelpSearchEngine___children_setList(void* ptr, void* i)
 
 void* QHelpSearchEngine___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4481,6 +4567,7 @@ void QHelpSearchQueryWidget___setQuery_queryList_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___setQuery_queryList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QHelpSearchQuery>;
 }
 
@@ -4496,6 +4583,7 @@ void QHelpSearchQueryWidget___query_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___query_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QHelpSearchQuery>;
 }
 
@@ -4511,6 +4599,7 @@ void QHelpSearchQueryWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -4526,6 +4615,7 @@ void QHelpSearchQueryWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -4541,6 +4631,7 @@ void QHelpSearchQueryWidget___actions_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -4556,6 +4647,7 @@ void QHelpSearchQueryWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4571,6 +4663,7 @@ void QHelpSearchQueryWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4586,6 +4679,7 @@ void QHelpSearchQueryWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4601,6 +4695,7 @@ void QHelpSearchQueryWidget___findChildren_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4616,6 +4711,7 @@ void QHelpSearchQueryWidget___children_setList(void* ptr, void* i)
 
 void* QHelpSearchQueryWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5055,6 +5151,7 @@ void QHelpSearchResultWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -5070,6 +5167,7 @@ void QHelpSearchResultWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -5085,6 +5183,7 @@ void QHelpSearchResultWidget___actions_setList(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -5100,6 +5199,7 @@ void QHelpSearchResultWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5115,6 +5215,7 @@ void QHelpSearchResultWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5130,6 +5231,7 @@ void QHelpSearchResultWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5145,6 +5247,7 @@ void QHelpSearchResultWidget___findChildren_setList(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5160,6 +5263,7 @@ void QHelpSearchResultWidget___children_setList(void* ptr, void* i)
 
 void* QHelpSearchResultWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

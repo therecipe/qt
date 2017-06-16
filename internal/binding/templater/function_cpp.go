@@ -105,7 +105,7 @@ func cppFunctionCallbackBody(function *parser.Function) string {
 }
 
 func cppFunction(function *parser.Function) string {
-	var output = fmt.Sprintf("%v\n{\n%v\n}", cppFunctionHeader(function), cppFunctionBodyWithGuards(function))
+	var output = fmt.Sprintf("%v\n{\n%v\n}", cppFunctionHeader(function), cppFunctionUnused(function, cppFunctionBodyWithGuards(function)))
 	if function.IsSupported() {
 		return output
 	}
@@ -118,6 +118,30 @@ func cppFunctionHeader(function *parser.Function) string {
 		return output
 	}
 	return ""
+}
+
+//TODO:
+func cppFunctionUnused(function *parser.Function, body string) string {
+
+	var tmp = make([]string, 0)
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR) {
+		tmp = append(tmp, "ptr")
+	}
+	if function.Meta != parser.SIGNAL {
+		for _, p := range function.Parameters {
+			tmp = append(tmp, parser.CleanName(p.Name, p.Value))
+		}
+	}
+
+	bb := new(bytes.Buffer)
+	defer bb.Reset()
+	for _, p := range tmp {
+		if !strings.Contains(body, p) {
+			fmt.Fprintf(bb, "\tQ_UNUSED(%v);\n", p)
+		}
+	}
+	bb.WriteString(body)
+	return bb.String()
 }
 
 func cppFunctionBodyWithGuards(function *parser.Function) string {
@@ -143,6 +167,12 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 			function.Fullname == "QAbstractEventDispatcher::registerEventNotifier", function.Fullname == "QAbstractEventDispatcher::unregisterEventNotifier":
 			{
 				return fmt.Sprintf("#ifdef Q_OS_WIN\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
+			}
+
+		case
+			function.Fullname == "QScreen::model":
+			{
+				return fmt.Sprintf("#ifndef Q_OS_WIN\n%v\n#endif", cppFunctionBody(function))
 			}
 
 		case

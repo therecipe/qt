@@ -1049,6 +1049,7 @@ void QAbstractItemDelegate_DestroyQAbstractItemDelegate(void* ptr)
 
 void QAbstractItemDelegate_DestroyQAbstractItemDelegateDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1154,6 +1155,7 @@ void QAbstractItemDelegate___paintingRoles_setList(void* ptr, int i)
 
 void* QAbstractItemDelegate___paintingRoles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -1169,6 +1171,7 @@ void QAbstractItemDelegate___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractItemDelegate___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1194,6 +1197,7 @@ void QAbstractItemDelegate___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractItemDelegate___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1219,6 +1223,7 @@ void QAbstractItemDelegate___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractItemDelegate___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1244,6 +1249,7 @@ void QAbstractItemDelegate___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractItemDelegate___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1269,6 +1275,7 @@ void QAbstractItemDelegate___children_setList(void* ptr, void* i)
 
 void* QAbstractItemDelegate___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2927,6 +2934,7 @@ void QAbstractItemView___dataChanged_roles_setList(void* ptr, int i)
 
 void* QAbstractItemView___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -2942,6 +2950,7 @@ void QAbstractItemView___selectedIndexes_setList(void* ptr, void* i)
 
 void* QAbstractItemView___selectedIndexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -3325,6 +3334,7 @@ void QAbstractScrollArea___scrollBarWidgets_setList(void* ptr, void* i)
 
 void* QAbstractScrollArea___scrollBarWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -4959,6 +4969,7 @@ void QAction___setShortcuts_shortcuts_setList(void* ptr, void* i)
 
 void* QAction___setShortcuts_shortcuts_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QKeySequence>;
 }
 
@@ -4974,6 +4985,7 @@ void QAction___associatedGraphicsWidgets_setList(void* ptr, void* i)
 
 void* QAction___associatedGraphicsWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsWidget *>;
 }
 
@@ -4989,6 +5001,7 @@ void QAction___shortcuts_setList(void* ptr, void* i)
 
 void* QAction___shortcuts_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QKeySequence>;
 }
 
@@ -5004,6 +5017,7 @@ void QAction___associatedWidgets_setList(void* ptr, void* i)
 
 void* QAction___associatedWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -5019,6 +5033,7 @@ void QAction___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAction___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5044,6 +5059,7 @@ void QAction___findChildren_setList2(void* ptr, void* i)
 
 void* QAction___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5069,6 +5085,7 @@ void QAction___findChildren_setList3(void* ptr, void* i)
 
 void* QAction___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5094,6 +5111,7 @@ void QAction___findChildren_setList(void* ptr, void* i)
 
 void* QAction___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5119,6 +5137,7 @@ void QAction___children_setList(void* ptr, void* i)
 
 void* QAction___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5414,6 +5433,7 @@ void QActionGroup___actions_setList(void* ptr, void* i)
 
 void* QActionGroup___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -5429,6 +5449,7 @@ void QActionGroup___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QActionGroup___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5454,6 +5475,7 @@ void QActionGroup___findChildren_setList2(void* ptr, void* i)
 
 void* QActionGroup___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5479,6 +5501,7 @@ void QActionGroup___findChildren_setList3(void* ptr, void* i)
 
 void* QActionGroup___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5504,6 +5527,7 @@ void QActionGroup___findChildren_setList(void* ptr, void* i)
 
 void* QActionGroup___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5529,6 +5553,7 @@ void QActionGroup___children_setList(void* ptr, void* i)
 
 void* QActionGroup___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5945,6 +5970,7 @@ void QApplication_DestroyQApplication(void* ptr)
 
 void QApplication_DestroyQApplicationDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5977,6 +6003,7 @@ void QApplication___allWidgets_setList(void* ptr, void* i)
 
 void* QApplication___allWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -5992,6 +6019,7 @@ void QApplication___topLevelWidgets_setList(void* ptr, void* i)
 
 void* QApplication___topLevelWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -6007,6 +6035,7 @@ void QApplication___screens_setList(void* ptr, void* i)
 
 void* QApplication___screens_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QScreen *>;
 }
 
@@ -6022,6 +6051,7 @@ void QApplication___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QApplication___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6047,6 +6077,7 @@ void QApplication___findChildren_setList2(void* ptr, void* i)
 
 void* QApplication___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6072,6 +6103,7 @@ void QApplication___findChildren_setList3(void* ptr, void* i)
 
 void* QApplication___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6097,6 +6129,7 @@ void QApplication___findChildren_setList(void* ptr, void* i)
 
 void* QApplication___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6122,6 +6155,7 @@ void QApplication___children_setList(void* ptr, void* i)
 
 void* QApplication___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -6678,6 +6712,7 @@ void QButtonGroup___buttons_setList(void* ptr, void* i)
 
 void* QButtonGroup___buttons_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractButton *>;
 }
 
@@ -6693,6 +6728,7 @@ void QButtonGroup___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QButtonGroup___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6718,6 +6754,7 @@ void QButtonGroup___findChildren_setList2(void* ptr, void* i)
 
 void* QButtonGroup___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6743,6 +6780,7 @@ void QButtonGroup___findChildren_setList3(void* ptr, void* i)
 
 void* QButtonGroup___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6768,6 +6806,7 @@ void QButtonGroup___findChildren_setList(void* ptr, void* i)
 
 void* QButtonGroup___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6793,6 +6832,7 @@ void QButtonGroup___children_setList(void* ptr, void* i)
 
 void* QButtonGroup___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -7296,6 +7336,7 @@ void QCalendarWidget___dateTextFormat_setList(void* ptr, void* key, void* i)
 
 void* QCalendarWidget___dateTextFormat_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QDate, QTextCharFormat>;
 }
 
@@ -7316,6 +7357,7 @@ void QCalendarWidget_____dateTextFormat_keyList_setList(void* ptr, void* i)
 
 void* QCalendarWidget_____dateTextFormat_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDate>;
 }
 
@@ -7755,6 +7797,7 @@ void QColormap___colormap_setList(void* ptr, void* i)
 
 void* QColormap___colormap_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QColor>;
 }
 
@@ -8096,6 +8139,7 @@ void QColumnView___setColumnWidths_list_setList(void* ptr, int i)
 
 void* QColumnView___setColumnWidths_list_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -8111,6 +8155,7 @@ void QColumnView___columnWidths_setList(void* ptr, int i)
 
 void* QColumnView___columnWidths_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -9510,6 +9555,7 @@ void QCompleter___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QCompleter___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -9535,6 +9581,7 @@ void QCompleter___findChildren_setList2(void* ptr, void* i)
 
 void* QCompleter___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9560,6 +9607,7 @@ void QCompleter___findChildren_setList3(void* ptr, void* i)
 
 void* QCompleter___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9585,6 +9633,7 @@ void QCompleter___findChildren_setList(void* ptr, void* i)
 
 void* QCompleter___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9610,6 +9659,7 @@ void QCompleter___children_setList(void* ptr, void* i)
 
 void* QCompleter___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -9923,6 +9973,7 @@ void QDataWidgetMapper___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDataWidgetMapper___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -9948,6 +9999,7 @@ void QDataWidgetMapper___findChildren_setList2(void* ptr, void* i)
 
 void* QDataWidgetMapper___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9973,6 +10025,7 @@ void QDataWidgetMapper___findChildren_setList3(void* ptr, void* i)
 
 void* QDataWidgetMapper___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9998,6 +10051,7 @@ void QDataWidgetMapper___findChildren_setList(void* ptr, void* i)
 
 void* QDataWidgetMapper___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -10023,6 +10077,7 @@ void QDataWidgetMapper___children_setList(void* ptr, void* i)
 
 void* QDataWidgetMapper___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -11603,6 +11658,7 @@ void QDialogButtonBox___buttons_setList(void* ptr, void* i)
 
 void* QDialogButtonBox___buttons_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractButton *>;
 }
 
@@ -12821,6 +12877,7 @@ void QFileDialog___getOpenFileUrls_setList(void* ptr, void* i)
 
 void* QFileDialog___getOpenFileUrls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -12836,6 +12893,7 @@ void QFileDialog___setSidebarUrls_urls_setList(void* ptr, void* i)
 
 void* QFileDialog___setSidebarUrls_urls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -12851,6 +12909,7 @@ void QFileDialog___urlsSelected_urls_setList(void* ptr, void* i)
 
 void* QFileDialog___urlsSelected_urls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -12866,6 +12925,7 @@ void QFileDialog___selectedUrls_setList(void* ptr, void* i)
 
 void* QFileDialog___selectedUrls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -12881,6 +12941,7 @@ void QFileDialog___sidebarUrls_setList(void* ptr, void* i)
 
 void* QFileDialog___sidebarUrls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -12911,6 +12972,7 @@ void QFileIconProvider_DestroyQFileIconProvider(void* ptr)
 
 void QFileIconProvider_DestroyQFileIconProviderDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -13404,6 +13466,7 @@ void QFileSystemModel___mimeData_indexes_setList(void* ptr, void* i)
 
 void* QFileSystemModel___mimeData_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -13419,6 +13482,7 @@ void QFileSystemModel___setItemData_roles_setList(void* ptr, int key, void* i)
 
 void* QFileSystemModel___setItemData_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -13439,6 +13503,7 @@ void QFileSystemModel___changePersistentIndexList_from_setList(void* ptr, void* 
 
 void* QFileSystemModel___changePersistentIndexList_from_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -13454,6 +13519,7 @@ void QFileSystemModel___changePersistentIndexList_to_setList(void* ptr, void* i)
 
 void* QFileSystemModel___changePersistentIndexList_to_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -13469,6 +13535,7 @@ void QFileSystemModel___dataChanged_roles_setList(void* ptr, int i)
 
 void* QFileSystemModel___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -13484,6 +13551,7 @@ void QFileSystemModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* 
 
 void* QFileSystemModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -13499,6 +13567,7 @@ void QFileSystemModel___layoutChanged_parents_setList(void* ptr, void* i)
 
 void* QFileSystemModel___layoutChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -13514,6 +13583,7 @@ void QFileSystemModel___roleNames_setList(void* ptr, int key, void* i)
 
 void* QFileSystemModel___roleNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<int, QByteArray>;
 }
 
@@ -13534,6 +13604,7 @@ void QFileSystemModel___itemData_setList(void* ptr, int key, void* i)
 
 void* QFileSystemModel___itemData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -13554,6 +13625,7 @@ void QFileSystemModel___match_setList(void* ptr, void* i)
 
 void* QFileSystemModel___match_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -13569,6 +13641,7 @@ void QFileSystemModel___persistentIndexList_setList(void* ptr, void* i)
 
 void* QFileSystemModel___persistentIndexList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -13584,6 +13657,7 @@ void QFileSystemModel_____setItemData_keyList_setList(void* ptr, int i)
 
 void* QFileSystemModel_____setItemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -13599,6 +13673,7 @@ void QFileSystemModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
 
 void* QFileSystemModel_____doSetRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -13614,6 +13689,7 @@ void QFileSystemModel_____setRoleNames_keyList_setList(void* ptr, int i)
 
 void* QFileSystemModel_____setRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -13629,6 +13705,7 @@ void QFileSystemModel_____roleNames_keyList_setList(void* ptr, int i)
 
 void* QFileSystemModel_____roleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -13644,6 +13721,7 @@ void QFileSystemModel_____itemData_keyList_setList(void* ptr, int i)
 
 void* QFileSystemModel_____itemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -13659,6 +13737,7 @@ void QFileSystemModel___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QFileSystemModel___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -13684,6 +13763,7 @@ void QFileSystemModel___findChildren_setList2(void* ptr, void* i)
 
 void* QFileSystemModel___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -13709,6 +13789,7 @@ void QFileSystemModel___findChildren_setList3(void* ptr, void* i)
 
 void* QFileSystemModel___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -13734,6 +13815,7 @@ void QFileSystemModel___findChildren_setList(void* ptr, void* i)
 
 void* QFileSystemModel___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -13759,6 +13841,7 @@ void QFileSystemModel___children_setList(void* ptr, void* i)
 
 void* QFileSystemModel___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -14259,11 +14342,13 @@ void QFontDialog_SetOptions(void* ptr, long long options)
 
 void* QFontDialog_QFontDialog_GetFont2(char ok, void* parent)
 {
+	Q_UNUSED(ok);
 		return new QFont(QFontDialog::getFont(NULL, static_cast<QWidget*>(parent)));
 }
 
 void* QFontDialog_QFontDialog_GetFont(char ok, void* initial, void* parent, char* title, long long options)
 {
+	Q_UNUSED(ok);
 		return new QFont(QFontDialog::getFont(NULL, *static_cast<QFont*>(initial), static_cast<QWidget*>(parent), QString(title), static_cast<QFontDialog::FontDialogOption>(options)));
 }
 
@@ -14896,6 +14981,7 @@ void QGesture___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGesture___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -14921,6 +15007,7 @@ void QGesture___findChildren_setList2(void* ptr, void* i)
 
 void* QGesture___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -14946,6 +15033,7 @@ void QGesture___findChildren_setList3(void* ptr, void* i)
 
 void* QGesture___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -14971,6 +15059,7 @@ void QGesture___findChildren_setList(void* ptr, void* i)
 
 void* QGesture___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -14996,6 +15085,7 @@ void QGesture___children_setList(void* ptr, void* i)
 
 void* QGesture___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -15310,6 +15400,7 @@ void QGestureEvent___QGestureEvent_gestures_setList(void* ptr, void* i)
 
 void* QGestureEvent___QGestureEvent_gestures_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGesture *>;
 }
 
@@ -15325,6 +15416,7 @@ void QGestureEvent___activeGestures_setList(void* ptr, void* i)
 
 void* QGestureEvent___activeGestures_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGesture *>;
 }
 
@@ -15340,6 +15432,7 @@ void QGestureEvent___canceledGestures_setList(void* ptr, void* i)
 
 void* QGestureEvent___canceledGestures_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGesture *>;
 }
 
@@ -15355,6 +15448,7 @@ void QGestureEvent___gestures_setList(void* ptr, void* i)
 
 void* QGestureEvent___gestures_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGesture *>;
 }
 
@@ -15445,6 +15539,7 @@ void QGestureRecognizer_DestroyQGestureRecognizer(void* ptr)
 
 void QGestureRecognizer_DestroyQGestureRecognizerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -15510,6 +15605,7 @@ void QGraphicsAnchor___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGraphicsAnchor___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -15535,6 +15631,7 @@ void QGraphicsAnchor___findChildren_setList2(void* ptr, void* i)
 
 void* QGraphicsAnchor___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15560,6 +15657,7 @@ void QGraphicsAnchor___findChildren_setList3(void* ptr, void* i)
 
 void* QGraphicsAnchor___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15585,6 +15683,7 @@ void QGraphicsAnchor___findChildren_setList(void* ptr, void* i)
 
 void* QGraphicsAnchor___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15610,6 +15709,7 @@ void QGraphicsAnchor___children_setList(void* ptr, void* i)
 
 void* QGraphicsAnchor___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -15761,6 +15861,7 @@ void QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(void* ptr)
 
 void QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayoutDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -16497,6 +16598,7 @@ void QGraphicsEffect_DestroyQGraphicsEffect(void* ptr)
 
 void QGraphicsEffect_DestroyQGraphicsEffectDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -16557,6 +16659,7 @@ void QGraphicsEffect___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGraphicsEffect___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -16582,6 +16685,7 @@ void QGraphicsEffect___findChildren_setList2(void* ptr, void* i)
 
 void* QGraphicsEffect___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -16607,6 +16711,7 @@ void QGraphicsEffect___findChildren_setList3(void* ptr, void* i)
 
 void* QGraphicsEffect___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -16632,6 +16737,7 @@ void QGraphicsEffect___findChildren_setList(void* ptr, void* i)
 
 void* QGraphicsEffect___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -16657,6 +16763,7 @@ void QGraphicsEffect___children_setList(void* ptr, void* i)
 
 void* QGraphicsEffect___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -17141,6 +17248,7 @@ void QGraphicsGridLayout_DestroyQGraphicsGridLayout(void* ptr)
 
 void QGraphicsGridLayout_DestroyQGraphicsGridLayoutDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -19084,6 +19192,7 @@ void QGraphicsItem_DestroyQGraphicsItem(void* ptr)
 
 void QGraphicsItem_DestroyQGraphicsItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -20341,6 +20450,7 @@ void* QGraphicsItem_DeviceTransform(void* ptr, void* viewportTransform)
 
 void* QGraphicsItem_ItemTransform(void* ptr, void* other, char ok)
 {
+	Q_UNUSED(ok);
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
 			return new QTransform(static_cast<QGraphicsObject*>(ptr)->itemTransform(static_cast<QGraphicsObject*>(other), NULL));
@@ -21929,6 +22039,7 @@ void QGraphicsLayoutItem_DestroyQGraphicsLayoutItem(void* ptr)
 
 void QGraphicsLayoutItem_DestroyQGraphicsLayoutItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -22367,6 +22478,7 @@ void QGraphicsLinearLayout_DestroyQGraphicsLinearLayout(void* ptr)
 
 void QGraphicsLinearLayout_DestroyQGraphicsLinearLayoutDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -25287,6 +25399,7 @@ void QGraphicsScene_DestroyQGraphicsScene(void* ptr)
 
 void QGraphicsScene_DestroyQGraphicsSceneDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -25484,6 +25597,7 @@ void QGraphicsScene___createItemGroup_items_setList(void* ptr, void* i)
 
 void* QGraphicsScene___createItemGroup_items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25499,6 +25613,7 @@ void QGraphicsScene___changed_region_setList(void* ptr, void* i)
 
 void* QGraphicsScene___changed_region_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QRectF>;
 }
 
@@ -25520,6 +25635,7 @@ void QGraphicsScene___collidingItems_setList(void* ptr, void* i)
 
 void* QGraphicsScene___collidingItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25541,6 +25657,7 @@ void QGraphicsScene___items_setList(void* ptr, void* i)
 
 void* QGraphicsScene___items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25562,6 +25679,7 @@ void QGraphicsScene___items_setList5(void* ptr, void* i)
 
 void* QGraphicsScene___items_newList5(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25583,6 +25701,7 @@ void QGraphicsScene___items_setList2(void* ptr, void* i)
 
 void* QGraphicsScene___items_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25604,6 +25723,7 @@ void QGraphicsScene___items_setList4(void* ptr, void* i)
 
 void* QGraphicsScene___items_newList4(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25625,6 +25745,7 @@ void QGraphicsScene___items_setList3(void* ptr, void* i)
 
 void* QGraphicsScene___items_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25646,6 +25767,7 @@ void QGraphicsScene___items_setList7(void* ptr, void* i)
 
 void* QGraphicsScene___items_newList7(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25667,6 +25789,7 @@ void QGraphicsScene___selectedItems_setList(void* ptr, void* i)
 
 void* QGraphicsScene___selectedItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -25682,6 +25805,7 @@ void QGraphicsScene___views_setList(void* ptr, void* i)
 
 void* QGraphicsScene___views_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsView *>;
 }
 
@@ -25697,6 +25821,7 @@ void QGraphicsScene___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGraphicsScene___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -25722,6 +25847,7 @@ void QGraphicsScene___findChildren_setList2(void* ptr, void* i)
 
 void* QGraphicsScene___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -25747,6 +25873,7 @@ void QGraphicsScene___findChildren_setList3(void* ptr, void* i)
 
 void* QGraphicsScene___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -25772,6 +25899,7 @@ void QGraphicsScene___findChildren_setList(void* ptr, void* i)
 
 void* QGraphicsScene___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -25797,6 +25925,7 @@ void QGraphicsScene___children_setList(void* ptr, void* i)
 
 void* QGraphicsScene___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -26653,6 +26782,7 @@ void QGraphicsTransform___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGraphicsTransform___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -26678,6 +26808,7 @@ void QGraphicsTransform___findChildren_setList2(void* ptr, void* i)
 
 void* QGraphicsTransform___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -26703,6 +26834,7 @@ void QGraphicsTransform___findChildren_setList3(void* ptr, void* i)
 
 void* QGraphicsTransform___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -26728,6 +26860,7 @@ void QGraphicsTransform___findChildren_setList(void* ptr, void* i)
 
 void* QGraphicsTransform___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -26753,6 +26886,7 @@ void QGraphicsTransform___children_setList(void* ptr, void* i)
 
 void* QGraphicsTransform___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -27464,6 +27598,7 @@ void QGraphicsView___updateScene_rects_setList(void* ptr, void* i)
 
 void* QGraphicsView___updateScene_rects_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QRectF>;
 }
 
@@ -27485,6 +27620,7 @@ void QGraphicsView___items_setList(void* ptr, void* i)
 
 void* QGraphicsView___items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -27506,6 +27642,7 @@ void QGraphicsView___items_setList7(void* ptr, void* i)
 
 void* QGraphicsView___items_newList7(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -27527,6 +27664,7 @@ void QGraphicsView___items_setList2(void* ptr, void* i)
 
 void* QGraphicsView___items_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -27548,6 +27686,7 @@ void QGraphicsView___items_setList6(void* ptr, void* i)
 
 void* QGraphicsView___items_newList6(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -27569,6 +27708,7 @@ void QGraphicsView___items_setList4(void* ptr, void* i)
 
 void* QGraphicsView___items_newList4(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -27590,6 +27730,7 @@ void QGraphicsView___items_setList3(void* ptr, void* i)
 
 void* QGraphicsView___items_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -27611,6 +27752,7 @@ void QGraphicsView___items_setList5(void* ptr, void* i)
 
 void* QGraphicsView___items_newList5(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -28298,6 +28440,7 @@ void QGraphicsWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QGraphicsWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -28313,6 +28456,7 @@ void QGraphicsWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QGraphicsWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -28328,6 +28472,7 @@ void QGraphicsWidget___actions_setList(void* ptr, void* i)
 
 void* QGraphicsWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -29321,6 +29466,7 @@ void QHeaderView_DestroyQHeaderView(void* ptr)
 
 void QHeaderView_DestroyQHeaderViewDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -29697,26 +29843,31 @@ void* QInputDialog_NewQInputDialog(void* parent, long long flags)
 
 struct QtWidgets_PackedString QInputDialog_QInputDialog_GetItem(void* parent, char* title, char* label, char* items, int current, char editable, char ok, long long flags, long long inputMethodHints)
 {
+	Q_UNUSED(ok);
 		return ({ QByteArray t17f816 = QInputDialog::getItem(static_cast<QWidget*>(parent), QString(title), QString(label), QString(items).split("|", QString::SkipEmptyParts), current, editable != 0, NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t17f816.prepend("WHITESPACE").constData()+10), t17f816.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QInputDialog_QInputDialog_GetMultiLineText(void* parent, char* title, char* label, char* text, char ok, long long flags, long long inputMethodHints)
 {
+	Q_UNUSED(ok);
 		return ({ QByteArray t808af0 = QInputDialog::getMultiLineText(static_cast<QWidget*>(parent), QString(title), QString(label), QString(text), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t808af0.prepend("WHITESPACE").constData()+10), t808af0.size()-10 }; });
 }
 
 struct QtWidgets_PackedString QInputDialog_QInputDialog_GetText(void* parent, char* title, char* label, long long mode, char* text, char ok, long long flags, long long inputMethodHints)
 {
+	Q_UNUSED(ok);
 		return ({ QByteArray t06a16f = QInputDialog::getText(static_cast<QWidget*>(parent), QString(title), QString(label), static_cast<QLineEdit::EchoMode>(mode), QString(text), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t06a16f.prepend("WHITESPACE").constData()+10), t06a16f.size()-10 }; });
 }
 
 double QInputDialog_QInputDialog_GetDouble(void* parent, char* title, char* label, double value, double min, double max, int decimals, char ok, long long flags)
 {
+	Q_UNUSED(ok);
 		return QInputDialog::getDouble(static_cast<QWidget*>(parent), QString(title), QString(label), value, min, max, decimals, NULL, static_cast<Qt::WindowType>(flags));
 }
 
 int QInputDialog_QInputDialog_GetInt(void* parent, char* title, char* label, int value, int min, int max, int step, char ok, long long flags)
 {
+	Q_UNUSED(ok);
 		return QInputDialog::getInt(static_cast<QWidget*>(parent), QString(title), QString(label), value, min, max, step, NULL, static_cast<Qt::WindowType>(flags));
 }
 
@@ -30213,6 +30364,7 @@ void QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(void* ptr)
 
 void QItemEditorCreatorBase_DestroyQItemEditorCreatorBaseDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -30262,6 +30414,7 @@ void QItemEditorFactory_DestroyQItemEditorFactory(void* ptr)
 
 void QItemEditorFactory_DestroyQItemEditorFactoryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -30405,6 +30558,7 @@ void QKeyEventTransition___setTargetStates_targets_setList(void* ptr, void* i)
 
 void* QKeyEventTransition___setTargetStates_targets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractState *>;
 }
 
@@ -30420,6 +30574,7 @@ void QKeyEventTransition___animations_setList(void* ptr, void* i)
 
 void* QKeyEventTransition___animations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractAnimation *>;
 }
 
@@ -30435,6 +30590,7 @@ void QKeyEventTransition___targetStates_setList(void* ptr, void* i)
 
 void* QKeyEventTransition___targetStates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractState *>;
 }
 
@@ -30450,6 +30606,7 @@ void QKeyEventTransition___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QKeyEventTransition___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -30475,6 +30632,7 @@ void QKeyEventTransition___findChildren_setList2(void* ptr, void* i)
 
 void* QKeyEventTransition___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -30500,6 +30658,7 @@ void QKeyEventTransition___findChildren_setList3(void* ptr, void* i)
 
 void* QKeyEventTransition___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -30525,6 +30684,7 @@ void QKeyEventTransition___findChildren_setList(void* ptr, void* i)
 
 void* QKeyEventTransition___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -30550,6 +30710,7 @@ void QKeyEventTransition___children_setList(void* ptr, void* i)
 
 void* QKeyEventTransition___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -31760,6 +31921,7 @@ void QLayout___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QLayout___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -31785,6 +31947,7 @@ void QLayout___findChildren_setList2(void* ptr, void* i)
 
 void* QLayout___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -31810,6 +31973,7 @@ void QLayout___findChildren_setList3(void* ptr, void* i)
 
 void* QLayout___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -31835,6 +31999,7 @@ void QLayout___findChildren_setList(void* ptr, void* i)
 
 void* QLayout___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -31860,6 +32025,7 @@ void QLayout___children_setList(void* ptr, void* i)
 
 void* QLayout___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -32137,6 +32303,7 @@ void* QLayout_MetaObjectDefault(void* ptr)
 
 void* QLayout_SizeHint(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -32347,6 +32514,7 @@ void QLayoutItem_DestroyQLayoutItem(void* ptr)
 
 void QLayoutItem_DestroyQLayoutItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -33671,6 +33839,7 @@ void QListView___indexesMoved_indexes_setList(void* ptr, void* i)
 
 void* QListView___indexesMoved_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -34211,6 +34380,7 @@ void QListWidget___findItems_setList(void* ptr, void* i)
 
 void* QListWidget___findItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QListWidgetItem *>;
 }
 
@@ -34226,6 +34396,7 @@ void QListWidget___items_setList(void* ptr, void* i)
 
 void* QListWidget___items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QListWidgetItem *>;
 }
 
@@ -34241,6 +34412,7 @@ void QListWidget___selectedItems_setList(void* ptr, void* i)
 
 void* QListWidget___selectedItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QListWidgetItem *>;
 }
 
@@ -34256,6 +34428,7 @@ void QListWidget___mimeData_items_setList(void* ptr, void* i)
 
 void* QListWidget___mimeData_items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QListWidgetItem *>;
 }
 
@@ -34391,6 +34564,7 @@ void QListWidgetItem_DestroyQListWidgetItem(void* ptr)
 
 void QListWidgetItem_DestroyQListWidgetItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -34596,6 +34770,7 @@ void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr)
 
 void QMacCocoaViewContainer_DestroyQMacCocoaViewContainerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 #ifdef Q_OS_OSX
 
 #endif
@@ -35116,6 +35291,7 @@ void QMainWindow___resizeDocks_docks_setList(void* ptr, void* i)
 
 void* QMainWindow___resizeDocks_docks_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDockWidget *>;
 }
 
@@ -35131,6 +35307,7 @@ void QMainWindow___resizeDocks_sizes_setList(void* ptr, int i)
 
 void* QMainWindow___resizeDocks_sizes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -35146,6 +35323,7 @@ void QMainWindow___tabifiedDockWidgets_setList(void* ptr, void* i)
 
 void* QMainWindow___tabifiedDockWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDockWidget *>;
 }
 
@@ -35468,6 +35646,7 @@ void QMdiArea___subWindowList_setList(void* ptr, void* i)
 
 void* QMdiArea___subWindowList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMdiSubWindow *>;
 }
 
@@ -36081,6 +36260,7 @@ void QMenu___exec_actions_setList3(void* ptr, void* i)
 
 void* QMenu___exec_actions_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -36659,6 +36839,7 @@ void QMessageBox___buttons_setList(void* ptr, void* i)
 
 void* QMessageBox___buttons_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractButton *>;
 }
 
@@ -36792,6 +36973,7 @@ void QMouseEventTransition___setTargetStates_targets_setList(void* ptr, void* i)
 
 void* QMouseEventTransition___setTargetStates_targets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractState *>;
 }
 
@@ -36807,6 +36989,7 @@ void QMouseEventTransition___animations_setList(void* ptr, void* i)
 
 void* QMouseEventTransition___animations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractAnimation *>;
 }
 
@@ -36822,6 +37005,7 @@ void QMouseEventTransition___targetStates_setList(void* ptr, void* i)
 
 void* QMouseEventTransition___targetStates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractState *>;
 }
 
@@ -36837,6 +37021,7 @@ void QMouseEventTransition___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMouseEventTransition___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -36862,6 +37047,7 @@ void QMouseEventTransition___findChildren_setList2(void* ptr, void* i)
 
 void* QMouseEventTransition___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -36887,6 +37073,7 @@ void QMouseEventTransition___findChildren_setList3(void* ptr, void* i)
 
 void* QMouseEventTransition___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -36912,6 +37099,7 @@ void QMouseEventTransition___findChildren_setList(void* ptr, void* i)
 
 void* QMouseEventTransition___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -36937,6 +37125,7 @@ void QMouseEventTransition___children_setList(void* ptr, void* i)
 
 void* QMouseEventTransition___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -37337,6 +37526,7 @@ void QPlainTextDocumentLayout___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QPlainTextDocumentLayout___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -37362,6 +37552,7 @@ void QPlainTextDocumentLayout___findChildren_setList2(void* ptr, void* i)
 
 void* QPlainTextDocumentLayout___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -37387,6 +37578,7 @@ void QPlainTextDocumentLayout___findChildren_setList3(void* ptr, void* i)
 
 void* QPlainTextDocumentLayout___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -37412,6 +37604,7 @@ void QPlainTextDocumentLayout___findChildren_setList(void* ptr, void* i)
 
 void* QPlainTextDocumentLayout___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -37437,6 +37630,7 @@ void QPlainTextDocumentLayout___children_setList(void* ptr, void* i)
 
 void* QPlainTextDocumentLayout___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -38053,6 +38247,7 @@ void QPlainTextEdit_DestroyQPlainTextEdit(void* ptr)
 
 void QPlainTextEdit_DestroyQPlainTextEditDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -39802,6 +39997,7 @@ void QScroller___activeScrollers_setList(void* ptr, void* i)
 
 void* QScroller___activeScrollers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QScroller *>;
 }
 
@@ -39817,6 +40013,7 @@ void QScroller___setSnapPositionsX_positions_setList(void* ptr, double i)
 
 void* QScroller___setSnapPositionsX_positions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<qreal>;
 }
 
@@ -39832,6 +40029,7 @@ void QScroller___setSnapPositionsY_positions_setList(void* ptr, double i)
 
 void* QScroller___setSnapPositionsY_positions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<qreal>;
 }
 
@@ -39847,6 +40045,7 @@ void QScroller___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QScroller___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -39872,6 +40071,7 @@ void QScroller___findChildren_setList2(void* ptr, void* i)
 
 void* QScroller___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -39897,6 +40097,7 @@ void QScroller___findChildren_setList3(void* ptr, void* i)
 
 void* QScroller___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -39922,6 +40123,7 @@ void QScroller___findChildren_setList(void* ptr, void* i)
 
 void* QScroller___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -39947,6 +40149,7 @@ void QScroller___children_setList(void* ptr, void* i)
 
 void* QScroller___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -40045,6 +40248,7 @@ void QScrollerProperties_DestroyQScrollerProperties(void* ptr)
 
 void QScrollerProperties_DestroyQScrollerPropertiesDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -40194,6 +40398,7 @@ void QShortcut___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QShortcut___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -40219,6 +40424,7 @@ void QShortcut___findChildren_setList2(void* ptr, void* i)
 
 void* QShortcut___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -40244,6 +40450,7 @@ void QShortcut___findChildren_setList3(void* ptr, void* i)
 
 void* QShortcut___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -40269,6 +40476,7 @@ void QShortcut___findChildren_setList(void* ptr, void* i)
 
 void* QShortcut___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -40294,6 +40502,7 @@ void QShortcut___children_setList(void* ptr, void* i)
 
 void* QShortcut___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -41184,6 +41393,7 @@ void QSplashScreen_DestroyQSplashScreen(void* ptr)
 
 void QSplashScreen_DestroyQSplashScreenDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -41459,6 +41669,7 @@ void QSplitter___setSizes_list_setList(void* ptr, int i)
 
 void* QSplitter___setSizes_list_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -41474,6 +41685,7 @@ void QSplitter___sizes_setList(void* ptr, int i)
 
 void* QSplitter___sizes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -42155,6 +42367,7 @@ void QStatusBar_DestroyQStatusBar(void* ptr)
 
 void QStatusBar_DestroyQStatusBarDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -44234,6 +44447,7 @@ void QStyle_DestroyQStyle(void* ptr)
 
 void QStyle_DestroyQStyleDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -44404,6 +44618,7 @@ void QStyle___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QStyle___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -44429,6 +44644,7 @@ void QStyle___findChildren_setList2(void* ptr, void* i)
 
 void* QStyle___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -44454,6 +44670,7 @@ void QStyle___findChildren_setList3(void* ptr, void* i)
 
 void* QStyle___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -44479,6 +44696,7 @@ void QStyle___findChildren_setList(void* ptr, void* i)
 
 void* QStyle___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -44504,6 +44722,7 @@ void QStyle___children_setList(void* ptr, void* i)
 
 void* QStyle___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -46533,6 +46752,7 @@ void QStylePainter___drawLines_lines_setList6(void* ptr, void* i)
 
 void* QStylePainter___drawLines_lines_newList6(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QLine>;
 }
 
@@ -46548,6 +46768,7 @@ void QStylePainter___drawLines_lines_setList2(void* ptr, void* i)
 
 void* QStylePainter___drawLines_lines_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QLineF>;
 }
 
@@ -46563,6 +46784,7 @@ void QStylePainter___drawLines_pointPairs_setList8(void* ptr, void* i)
 
 void* QStylePainter___drawLines_pointPairs_newList8(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QPoint>;
 }
 
@@ -46578,6 +46800,7 @@ void QStylePainter___drawLines_pointPairs_setList4(void* ptr, void* i)
 
 void* QStylePainter___drawLines_pointPairs_newList4(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QPointF>;
 }
 
@@ -46593,6 +46816,7 @@ void QStylePainter___drawRects_rectangles_setList4(void* ptr, void* i)
 
 void* QStylePainter___drawRects_rectangles_newList4(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QRect>;
 }
 
@@ -46608,6 +46832,7 @@ void QStylePainter___drawRects_rectangles_setList2(void* ptr, void* i)
 
 void* QStylePainter___drawRects_rectangles_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QRectF>;
 }
 
@@ -46696,6 +46921,7 @@ void QStylePlugin___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QStylePlugin___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -46721,6 +46947,7 @@ void QStylePlugin___findChildren_setList2(void* ptr, void* i)
 
 void* QStylePlugin___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -46746,6 +46973,7 @@ void QStylePlugin___findChildren_setList3(void* ptr, void* i)
 
 void* QStylePlugin___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -46771,6 +46999,7 @@ void QStylePlugin___findChildren_setList(void* ptr, void* i)
 
 void* QStylePlugin___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -46796,6 +47025,7 @@ void QStylePlugin___children_setList(void* ptr, void* i)
 
 void* QStylePlugin___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -47282,6 +47512,7 @@ void QSystemTrayIcon___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSystemTrayIcon___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -47307,6 +47538,7 @@ void QSystemTrayIcon___findChildren_setList2(void* ptr, void* i)
 
 void* QSystemTrayIcon___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -47332,6 +47564,7 @@ void QSystemTrayIcon___findChildren_setList3(void* ptr, void* i)
 
 void* QSystemTrayIcon___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -47357,6 +47590,7 @@ void QSystemTrayIcon___findChildren_setList(void* ptr, void* i)
 
 void* QSystemTrayIcon___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -47382,6 +47616,7 @@ void QSystemTrayIcon___children_setList(void* ptr, void* i)
 
 void* QSystemTrayIcon___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -49825,6 +50060,7 @@ void QTableWidget___findItems_setList(void* ptr, void* i)
 
 void* QTableWidget___findItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTableWidgetItem *>;
 }
 
@@ -49840,6 +50076,7 @@ void QTableWidget___items_setList(void* ptr, void* i)
 
 void* QTableWidget___items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTableWidgetItem *>;
 }
 
@@ -49855,6 +50092,7 @@ void QTableWidget___selectedItems_setList(void* ptr, void* i)
 
 void* QTableWidget___selectedItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTableWidgetItem *>;
 }
 
@@ -49870,6 +50108,7 @@ void QTableWidget___selectedRanges_setList(void* ptr, void* i)
 
 void* QTableWidget___selectedRanges_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTableWidgetSelectionRange>;
 }
 
@@ -49885,6 +50124,7 @@ void QTableWidget___mimeData_items_setList(void* ptr, void* i)
 
 void* QTableWidget___mimeData_items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTableWidgetItem *>;
 }
 
@@ -50015,6 +50255,7 @@ void QTableWidgetItem_DestroyQTableWidgetItem(void* ptr)
 
 void QTableWidgetItem_DestroyQTableWidgetItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -51384,6 +51625,7 @@ void QTextEdit_DestroyQTextEdit(void* ptr)
 
 void QTextEdit_DestroyQTextEditDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -54075,6 +54317,7 @@ void QTreeWidget___addTopLevelItems_items_setList(void* ptr, void* i)
 
 void* QTreeWidget___addTopLevelItems_items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54090,6 +54333,7 @@ void QTreeWidget___insertTopLevelItems_items_setList(void* ptr, void* i)
 
 void* QTreeWidget___insertTopLevelItems_items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54105,6 +54349,7 @@ void QTreeWidget___findItems_setList(void* ptr, void* i)
 
 void* QTreeWidget___findItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54120,6 +54365,7 @@ void QTreeWidget___items_setList(void* ptr, void* i)
 
 void* QTreeWidget___items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54135,6 +54381,7 @@ void QTreeWidget___selectedItems_setList(void* ptr, void* i)
 
 void* QTreeWidget___selectedItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54150,6 +54397,7 @@ void QTreeWidget___mimeData_items_setList(void* ptr, void* i)
 
 void* QTreeWidget___mimeData_items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54380,6 +54628,7 @@ void QTreeWidgetItem_DestroyQTreeWidgetItem(void* ptr)
 
 void QTreeWidgetItem_DestroyQTreeWidgetItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -54550,6 +54799,7 @@ void QTreeWidgetItem___takeChildren_setList(void* ptr, void* i)
 
 void* QTreeWidgetItem___takeChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54565,6 +54815,7 @@ void QTreeWidgetItem___addChildren_children_setList(void* ptr, void* i)
 
 void* QTreeWidgetItem___addChildren_children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54580,6 +54831,7 @@ void QTreeWidgetItem___insertChildren_children_setList(void* ptr, void* i)
 
 void* QTreeWidgetItem___insertChildren_children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QTreeWidgetItem *>;
 }
 
@@ -54647,6 +54899,7 @@ void QUndoCommand_DestroyQUndoCommand(void* ptr)
 
 void QUndoCommand_DestroyQUndoCommandDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -54979,6 +55232,7 @@ void QUndoGroup___stacks_setList(void* ptr, void* i)
 
 void* QUndoGroup___stacks_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUndoStack *>;
 }
 
@@ -54994,6 +55248,7 @@ void QUndoGroup___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QUndoGroup___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -55019,6 +55274,7 @@ void QUndoGroup___findChildren_setList2(void* ptr, void* i)
 
 void* QUndoGroup___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -55044,6 +55300,7 @@ void QUndoGroup___findChildren_setList3(void* ptr, void* i)
 
 void* QUndoGroup___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -55069,6 +55326,7 @@ void QUndoGroup___findChildren_setList(void* ptr, void* i)
 
 void* QUndoGroup___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -55094,6 +55352,7 @@ void QUndoGroup___children_setList(void* ptr, void* i)
 
 void* QUndoGroup___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -55508,6 +55767,7 @@ void QUndoStack___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QUndoStack___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -55533,6 +55793,7 @@ void QUndoStack___findChildren_setList2(void* ptr, void* i)
 
 void* QUndoStack___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -55558,6 +55819,7 @@ void QUndoStack___findChildren_setList3(void* ptr, void* i)
 
 void* QUndoStack___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -55583,6 +55845,7 @@ void QUndoStack___findChildren_setList(void* ptr, void* i)
 
 void* QUndoStack___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -55608,6 +55871,7 @@ void QUndoStack___children_setList(void* ptr, void* i)
 
 void* QUndoStack___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -66948,6 +67212,7 @@ void QWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -66963,6 +67228,7 @@ void QWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -66978,6 +67244,7 @@ void QWidget___actions_setList(void* ptr, void* i)
 
 void* QWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -66993,6 +67260,7 @@ void QWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -67018,6 +67286,7 @@ void QWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -67043,6 +67312,7 @@ void QWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -67068,6 +67338,7 @@ void QWidget___findChildren_setList(void* ptr, void* i)
 
 void* QWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -67093,6 +67364,7 @@ void QWidget___children_setList(void* ptr, void* i)
 
 void* QWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -69366,6 +69638,7 @@ void QWidgetAction_DestroyQWidgetAction(void* ptr)
 
 void QWidgetAction_DestroyQWidgetActionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -69391,6 +69664,7 @@ void QWidgetAction___createdWidgets_setList(void* ptr, void* i)
 
 void* QWidgetAction___createdWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -69940,6 +70214,7 @@ void QWizard___pageIds_setList(void* ptr, int i)
 
 void* QWizard___pageIds_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -69955,6 +70230,7 @@ void QWizard___visitedPages_setList(void* ptr, int i)
 
 void* QWizard___visitedPages_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 

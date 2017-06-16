@@ -76,6 +76,7 @@ void OSXBluetooth___extract_services_uuids_setList(void* ptr, void* i)
 
 void* OSXBluetooth___extract_services_uuids_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -387,6 +388,7 @@ void QBluetoothDeviceDiscoveryAgent___discoveredDevices_setList(void* ptr, void*
 
 void* QBluetoothDeviceDiscoveryAgent___discoveredDevices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothDeviceInfo>;
 }
 
@@ -402,6 +404,7 @@ void QBluetoothDeviceDiscoveryAgent___dynamicPropertyNames_setList(void* ptr, vo
 
 void* QBluetoothDeviceDiscoveryAgent___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -417,6 +420,7 @@ void QBluetoothDeviceDiscoveryAgent___findChildren_setList2(void* ptr, void* i)
 
 void* QBluetoothDeviceDiscoveryAgent___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -432,6 +436,7 @@ void QBluetoothDeviceDiscoveryAgent___findChildren_setList3(void* ptr, void* i)
 
 void* QBluetoothDeviceDiscoveryAgent___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -447,6 +452,7 @@ void QBluetoothDeviceDiscoveryAgent___findChildren_setList(void* ptr, void* i)
 
 void* QBluetoothDeviceDiscoveryAgent___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -462,6 +468,7 @@ void QBluetoothDeviceDiscoveryAgent___children_setList(void* ptr, void* i)
 
 void* QBluetoothDeviceDiscoveryAgent___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -627,6 +634,7 @@ void QBluetoothDeviceInfo___setServiceUuids_uuids_setList(void* ptr, void* i)
 
 void* QBluetoothDeviceInfo___setServiceUuids_uuids_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -642,6 +650,7 @@ void QBluetoothDeviceInfo___serviceUuids_setList(void* ptr, void* i)
 
 void* QBluetoothDeviceInfo___serviceUuids_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -935,6 +944,7 @@ void QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(void* ptr)
 
 void QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -980,6 +990,7 @@ void QBluetoothLocalDevice___allDevices_setList(void* ptr, void* i)
 
 void* QBluetoothLocalDevice___allDevices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothHostInfo>;
 }
 
@@ -995,6 +1006,7 @@ void QBluetoothLocalDevice___connectedDevices_setList(void* ptr, void* i)
 
 void* QBluetoothLocalDevice___connectedDevices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothAddress>;
 }
 
@@ -1010,6 +1022,7 @@ void QBluetoothLocalDevice___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QBluetoothLocalDevice___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1025,6 +1038,7 @@ void QBluetoothLocalDevice___findChildren_setList2(void* ptr, void* i)
 
 void* QBluetoothLocalDevice___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1040,6 +1054,7 @@ void QBluetoothLocalDevice___findChildren_setList3(void* ptr, void* i)
 
 void* QBluetoothLocalDevice___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1055,6 +1070,7 @@ void QBluetoothLocalDevice___findChildren_setList(void* ptr, void* i)
 
 void* QBluetoothLocalDevice___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1070,6 +1086,7 @@ void QBluetoothLocalDevice___children_setList(void* ptr, void* i)
 
 void* QBluetoothLocalDevice___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1299,6 +1316,7 @@ void QBluetoothServer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QBluetoothServer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1314,6 +1332,7 @@ void QBluetoothServer___findChildren_setList2(void* ptr, void* i)
 
 void* QBluetoothServer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1329,6 +1348,7 @@ void QBluetoothServer___findChildren_setList3(void* ptr, void* i)
 
 void* QBluetoothServer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1344,6 +1364,7 @@ void QBluetoothServer___findChildren_setList(void* ptr, void* i)
 
 void* QBluetoothServer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1359,6 +1380,7 @@ void QBluetoothServer___children_setList(void* ptr, void* i)
 
 void* QBluetoothServer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1670,6 +1692,7 @@ void QBluetoothServiceDiscoveryAgent___setUuidFilter_uuids_setList(void* ptr, vo
 
 void* QBluetoothServiceDiscoveryAgent___setUuidFilter_uuids_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -1685,6 +1708,7 @@ void QBluetoothServiceDiscoveryAgent___discoveredServices_setList(void* ptr, voi
 
 void* QBluetoothServiceDiscoveryAgent___discoveredServices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothServiceInfo>;
 }
 
@@ -1700,6 +1724,7 @@ void QBluetoothServiceDiscoveryAgent___uuidFilter_setList(void* ptr, void* i)
 
 void* QBluetoothServiceDiscoveryAgent___uuidFilter_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -1715,6 +1740,7 @@ void QBluetoothServiceDiscoveryAgent___dynamicPropertyNames_setList(void* ptr, v
 
 void* QBluetoothServiceDiscoveryAgent___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1730,6 +1756,7 @@ void QBluetoothServiceDiscoveryAgent___findChildren_setList2(void* ptr, void* i)
 
 void* QBluetoothServiceDiscoveryAgent___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1745,6 +1772,7 @@ void QBluetoothServiceDiscoveryAgent___findChildren_setList3(void* ptr, void* i)
 
 void* QBluetoothServiceDiscoveryAgent___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1760,6 +1788,7 @@ void QBluetoothServiceDiscoveryAgent___findChildren_setList(void* ptr, void* i)
 
 void* QBluetoothServiceDiscoveryAgent___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1775,6 +1804,7 @@ void QBluetoothServiceDiscoveryAgent___children_setList(void* ptr, void* i)
 
 void* QBluetoothServiceDiscoveryAgent___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1995,6 +2025,7 @@ void QBluetoothServiceInfo___serviceClassUuids_setList(void* ptr, void* i)
 
 void* QBluetoothServiceInfo___serviceClassUuids_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -2271,6 +2302,7 @@ void QBluetoothSocket_DestroyQBluetoothSocket(void* ptr)
 
 void QBluetoothSocket_DestroyQBluetoothSocketDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2361,6 +2393,7 @@ void QBluetoothSocket___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QBluetoothSocket___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2376,6 +2409,7 @@ void QBluetoothSocket___findChildren_setList2(void* ptr, void* i)
 
 void* QBluetoothSocket___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2391,6 +2425,7 @@ void QBluetoothSocket___findChildren_setList3(void* ptr, void* i)
 
 void* QBluetoothSocket___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2406,6 +2441,7 @@ void QBluetoothSocket___findChildren_setList(void* ptr, void* i)
 
 void* QBluetoothSocket___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2421,6 +2457,7 @@ void QBluetoothSocket___children_setList(void* ptr, void* i)
 
 void* QBluetoothSocket___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2614,6 +2651,7 @@ void QBluetoothTransferManager___dynamicPropertyNames_setList(void* ptr, void* i
 
 void* QBluetoothTransferManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2629,6 +2667,7 @@ void QBluetoothTransferManager___findChildren_setList2(void* ptr, void* i)
 
 void* QBluetoothTransferManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2644,6 +2683,7 @@ void QBluetoothTransferManager___findChildren_setList3(void* ptr, void* i)
 
 void* QBluetoothTransferManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2659,6 +2699,7 @@ void QBluetoothTransferManager___findChildren_setList(void* ptr, void* i)
 
 void* QBluetoothTransferManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2674,6 +2715,7 @@ void QBluetoothTransferManager___children_setList(void* ptr, void* i)
 
 void* QBluetoothTransferManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2904,6 +2946,7 @@ void QBluetoothTransferReply___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QBluetoothTransferReply___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2919,6 +2962,7 @@ void QBluetoothTransferReply___findChildren_setList2(void* ptr, void* i)
 
 void* QBluetoothTransferReply___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2934,6 +2978,7 @@ void QBluetoothTransferReply___findChildren_setList3(void* ptr, void* i)
 
 void* QBluetoothTransferReply___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2949,6 +2994,7 @@ void QBluetoothTransferReply___findChildren_setList(void* ptr, void* i)
 
 void* QBluetoothTransferReply___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2964,6 +3010,7 @@ void QBluetoothTransferReply___children_setList(void* ptr, void* i)
 
 void* QBluetoothTransferReply___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3124,11 +3171,13 @@ int QBluetoothUuid_MinimumSize(void* ptr)
 
 unsigned short QBluetoothUuid_ToUInt16(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QBluetoothUuid*>(ptr)->toUInt16(NULL);
 }
 
 unsigned int QBluetoothUuid_ToUInt32(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QBluetoothUuid*>(ptr)->toUInt32(NULL);
 }
 
@@ -3234,6 +3283,7 @@ void QLowEnergyAdvertisingData___setServices_services_setList(void* ptr, void* i
 
 void* QLowEnergyAdvertisingData___setServices_services_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -3249,6 +3299,7 @@ void QLowEnergyAdvertisingData___services_setList(void* ptr, void* i)
 
 void* QLowEnergyAdvertisingData___services_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -3364,6 +3415,7 @@ void QLowEnergyCharacteristic___descriptors_setList(void* ptr, void* i)
 
 void* QLowEnergyCharacteristic___descriptors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyDescriptor>;
 }
 
@@ -3484,6 +3536,7 @@ void QLowEnergyCharacteristicData___setDescriptors_descriptors_setList(void* ptr
 
 void* QLowEnergyCharacteristicData___setDescriptors_descriptors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyDescriptorData>;
 }
 
@@ -3499,6 +3552,7 @@ void QLowEnergyCharacteristicData___descriptors_setList(void* ptr, void* i)
 
 void* QLowEnergyCharacteristicData___descriptors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyDescriptorData>;
 }
 
@@ -3811,6 +3865,7 @@ void QLowEnergyController___services_setList(void* ptr, void* i)
 
 void* QLowEnergyController___services_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -3826,6 +3881,7 @@ void QLowEnergyController___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QLowEnergyController___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3841,6 +3897,7 @@ void QLowEnergyController___findChildren_setList2(void* ptr, void* i)
 
 void* QLowEnergyController___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3856,6 +3913,7 @@ void QLowEnergyController___findChildren_setList3(void* ptr, void* i)
 
 void* QLowEnergyController___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3871,6 +3929,7 @@ void QLowEnergyController___findChildren_setList(void* ptr, void* i)
 
 void* QLowEnergyController___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3886,6 +3945,7 @@ void QLowEnergyController___children_setList(void* ptr, void* i)
 
 void* QLowEnergyController___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4278,6 +4338,7 @@ void QLowEnergyService___includedServices_setList(void* ptr, void* i)
 
 void* QLowEnergyService___includedServices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>;
 }
 
@@ -4293,6 +4354,7 @@ void QLowEnergyService___characteristics_setList(void* ptr, void* i)
 
 void* QLowEnergyService___characteristics_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyCharacteristic>;
 }
 
@@ -4308,6 +4370,7 @@ void QLowEnergyService___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QLowEnergyService___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4323,6 +4386,7 @@ void QLowEnergyService___findChildren_setList2(void* ptr, void* i)
 
 void* QLowEnergyService___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4338,6 +4402,7 @@ void QLowEnergyService___findChildren_setList3(void* ptr, void* i)
 
 void* QLowEnergyService___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4353,6 +4418,7 @@ void QLowEnergyService___findChildren_setList(void* ptr, void* i)
 
 void* QLowEnergyService___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4368,6 +4434,7 @@ void QLowEnergyService___children_setList(void* ptr, void* i)
 
 void* QLowEnergyService___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4503,6 +4570,7 @@ void QLowEnergyServiceData___setCharacteristics_characteristics_setList(void* pt
 
 void* QLowEnergyServiceData___setCharacteristics_characteristics_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyCharacteristicData>;
 }
 
@@ -4518,6 +4586,7 @@ void QLowEnergyServiceData___setIncludedServices_services_setList(void* ptr, voi
 
 void* QLowEnergyServiceData___setIncludedServices_services_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyService *>;
 }
 
@@ -4533,6 +4602,7 @@ void QLowEnergyServiceData___characteristics_setList(void* ptr, void* i)
 
 void* QLowEnergyServiceData___characteristics_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyCharacteristicData>;
 }
 
@@ -4548,6 +4618,7 @@ void QLowEnergyServiceData___includedServices_setList(void* ptr, void* i)
 
 void* QLowEnergyServiceData___includedServices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLowEnergyService *>;
 }
 

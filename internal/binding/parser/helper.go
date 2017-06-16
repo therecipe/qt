@@ -330,7 +330,14 @@ func GetLibs() []string {
 	return libs
 }
 
-func GetCustomLibs(tags string) map[string]string {
+func GetCustomLibs(target, tags string) map[string]string {
+
+	/*TODO: cycle dep of cmd.BuildEnv
+	env, tags, _, _ := cmd.BuildEnv(target, "", "")
+	if tagsCustom != "" {
+		tags = append(tags, strings.Split(tagsCustom, " ")...)
+	}
+	*/
 
 	out := make(map[string]string)
 	for _, c := range State.ClassMap {
@@ -338,8 +345,14 @@ func GetCustomLibs(tags string) map[string]string {
 			continue
 		}
 
-		cmd := exec.Command("go", "list", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
+		cmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
 		cmd.Dir = c.Pkg
+		/*TODO: cycle dep of cmd.BuildEnv
+		for k, v := range env {
+			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+		}
+		*/
+
 		out[c.Module] = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
 	}
 

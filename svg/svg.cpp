@@ -239,6 +239,7 @@ void QGraphicsSvgItem___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGraphicsSvgItem___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -254,6 +255,7 @@ void QGraphicsSvgItem___findChildren_setList2(void* ptr, void* i)
 
 void* QGraphicsSvgItem___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -269,6 +271,7 @@ void QGraphicsSvgItem___findChildren_setList3(void* ptr, void* i)
 
 void* QGraphicsSvgItem___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -284,6 +287,7 @@ void QGraphicsSvgItem___findChildren_setList(void* ptr, void* i)
 
 void* QGraphicsSvgItem___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -299,6 +303,7 @@ void QGraphicsSvgItem___children_setList(void* ptr, void* i)
 
 void* QGraphicsSvgItem___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -314,6 +319,7 @@ void QGraphicsSvgItem___setTransformations_transformations_setList(void* ptr, vo
 
 void* QGraphicsSvgItem___setTransformations_transformations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsTransform *>;
 }
 
@@ -329,6 +335,7 @@ void QGraphicsSvgItem___childItems_setList(void* ptr, void* i)
 
 void* QGraphicsSvgItem___childItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -344,6 +351,7 @@ void QGraphicsSvgItem___collidingItems_setList(void* ptr, void* i)
 
 void* QGraphicsSvgItem___collidingItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -359,6 +367,7 @@ void QGraphicsSvgItem___transformations_setList(void* ptr, void* i)
 
 void* QGraphicsSvgItem___transformations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsTransform *>;
 }
 
@@ -1015,6 +1024,7 @@ void QSvgRenderer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSvgRenderer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1030,6 +1040,7 @@ void QSvgRenderer___findChildren_setList2(void* ptr, void* i)
 
 void* QSvgRenderer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1045,6 +1056,7 @@ void QSvgRenderer___findChildren_setList3(void* ptr, void* i)
 
 void* QSvgRenderer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1060,6 +1072,7 @@ void QSvgRenderer___findChildren_setList(void* ptr, void* i)
 
 void* QSvgRenderer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1075,6 +1088,7 @@ void QSvgRenderer___children_setList(void* ptr, void* i)
 
 void* QSvgRenderer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1267,6 +1281,7 @@ void QSvgWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QSvgWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1282,6 +1297,7 @@ void QSvgWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QSvgWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1297,6 +1313,7 @@ void QSvgWidget___actions_setList(void* ptr, void* i)
 
 void* QSvgWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1312,6 +1329,7 @@ void QSvgWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSvgWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1327,6 +1345,7 @@ void QSvgWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QSvgWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1342,6 +1361,7 @@ void QSvgWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QSvgWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1357,6 +1377,7 @@ void QSvgWidget___findChildren_setList(void* ptr, void* i)
 
 void* QSvgWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1372,6 +1393,7 @@ void QSvgWidget___children_setList(void* ptr, void* i)
 
 void* QSvgWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

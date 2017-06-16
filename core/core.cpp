@@ -551,6 +551,7 @@ void QAbstractAnimation_DestroyQAbstractAnimation(void* ptr)
 
 void QAbstractAnimation_DestroyQAbstractAnimationDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1558,6 +1559,7 @@ void QAbstractItemModel_DestroyQAbstractItemModel(void* ptr)
 
 void QAbstractItemModel_DestroyQAbstractItemModelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1978,6 +1980,7 @@ void QAbstractItemModel___setItemData_roles_setList(void* ptr, int key, void* i)
 
 void* QAbstractItemModel___setItemData_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -1998,6 +2001,7 @@ void QAbstractItemModel___changePersistentIndexList_from_setList(void* ptr, void
 
 void* QAbstractItemModel___changePersistentIndexList_from_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2013,6 +2017,7 @@ void QAbstractItemModel___changePersistentIndexList_to_setList(void* ptr, void* 
 
 void* QAbstractItemModel___changePersistentIndexList_to_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2028,6 +2033,7 @@ void QAbstractItemModel___dataChanged_roles_setList(void* ptr, int i)
 
 void* QAbstractItemModel___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -2043,6 +2049,7 @@ void QAbstractItemModel___doSetRoleNames_roleNames_setList(void* ptr, int key, v
 
 void* QAbstractItemModel___doSetRoleNames_roleNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<int, QByteArray>;
 }
 
@@ -2063,6 +2070,7 @@ void QAbstractItemModel___layoutAboutToBeChanged_parents_setList(void* ptr, void
 
 void* QAbstractItemModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -2078,6 +2086,7 @@ void QAbstractItemModel___layoutChanged_parents_setList(void* ptr, void* i)
 
 void* QAbstractItemModel___layoutChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -2093,6 +2102,7 @@ void QAbstractItemModel___setRoleNames_roleNames_setList(void* ptr, int key, voi
 
 void* QAbstractItemModel___setRoleNames_roleNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<int, QByteArray>;
 }
 
@@ -2113,6 +2123,7 @@ void QAbstractItemModel___roleNames_setList(void* ptr, int key, void* i)
 
 void* QAbstractItemModel___roleNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<int, QByteArray>;
 }
 
@@ -2133,6 +2144,7 @@ void QAbstractItemModel___itemData_setList(void* ptr, int key, void* i)
 
 void* QAbstractItemModel___itemData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -2153,6 +2165,7 @@ void QAbstractItemModel___mimeData_indexes_setList(void* ptr, void* i)
 
 void* QAbstractItemModel___mimeData_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2168,6 +2181,7 @@ void QAbstractItemModel___match_setList(void* ptr, void* i)
 
 void* QAbstractItemModel___match_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2183,6 +2197,7 @@ void QAbstractItemModel___persistentIndexList_setList(void* ptr, void* i)
 
 void* QAbstractItemModel___persistentIndexList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2198,6 +2213,7 @@ void QAbstractItemModel___encodeData_indexes_setList(void* ptr, void* i)
 
 void* QAbstractItemModel___encodeData_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2213,6 +2229,7 @@ void QAbstractItemModel_____setItemData_keyList_setList(void* ptr, int i)
 
 void* QAbstractItemModel_____setItemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2228,6 +2245,7 @@ void QAbstractItemModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
 
 void* QAbstractItemModel_____doSetRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2243,6 +2261,7 @@ void QAbstractItemModel_____setRoleNames_keyList_setList(void* ptr, int i)
 
 void* QAbstractItemModel_____setRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2258,6 +2277,7 @@ void QAbstractItemModel_____roleNames_keyList_setList(void* ptr, int i)
 
 void* QAbstractItemModel_____roleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2273,6 +2293,7 @@ void QAbstractItemModel_____itemData_keyList_setList(void* ptr, int i)
 
 void* QAbstractItemModel_____itemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2491,6 +2512,7 @@ void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr)
 
 void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilterDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3048,6 +3070,9 @@ void* QAbstractTableModel_Data(void* ptr, void* index, int role)
 
 void* QAbstractTableModel_DataDefault(void* ptr, void* index, int role)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(index);
+	Q_UNUSED(role);
 	
 }
 
@@ -3058,6 +3083,8 @@ int QAbstractTableModel_ColumnCount(void* ptr, void* parent)
 
 int QAbstractTableModel_ColumnCountDefault(void* ptr, void* parent)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(parent);
 	
 }
 
@@ -3068,6 +3095,8 @@ int QAbstractTableModel_RowCount(void* ptr, void* parent)
 
 int QAbstractTableModel_RowCountDefault(void* ptr, void* parent)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(parent);
 	
 }
 
@@ -3175,6 +3204,7 @@ void QAbstractTransition_DestroyQAbstractTransition(void* ptr)
 
 void QAbstractTransition_DestroyQAbstractTransitionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3220,6 +3250,7 @@ void QAbstractTransition___setTargetStates_targets_setList(void* ptr, void* i)
 
 void* QAbstractTransition___setTargetStates_targets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractState *>;
 }
 
@@ -3235,6 +3266,7 @@ void QAbstractTransition___animations_setList(void* ptr, void* i)
 
 void* QAbstractTransition___animations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractAnimation *>;
 }
 
@@ -3250,6 +3282,7 @@ void QAbstractTransition___targetStates_setList(void* ptr, void* i)
 
 void* QAbstractTransition___targetStates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractState *>;
 }
 
@@ -4244,11 +4277,13 @@ struct QtCore_PackedString QByteArray_Data2(void* ptr)
 
 double QByteArray_ToDouble(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toDouble(NULL);
 }
 
 float QByteArray_ToFloat(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toFloat(NULL);
 }
 
@@ -4329,41 +4364,49 @@ int QByteArray_Size(void* ptr)
 
 int QByteArray_ToInt(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toInt(NULL, base);
 }
 
 long QByteArray_ToLong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toLong(NULL, base);
 }
 
 long long QByteArray_ToLongLong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toLongLong(NULL, base);
 }
 
 unsigned long long QByteArray_ToULongLong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toULongLong(NULL, base);
 }
 
 short QByteArray_ToShort(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toShort(NULL, base);
 }
 
 unsigned int QByteArray_ToUInt(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toUInt(NULL, base);
 }
 
 unsigned long QByteArray_ToULong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toULong(NULL, base);
 }
 
 unsigned short QByteArray_ToUShort(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QByteArray*>(ptr)->toUShort(NULL, base);
 }
 
@@ -4379,6 +4422,7 @@ void QByteArray___split_setList(void* ptr, void* i)
 
 void* QByteArray___split_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5276,6 +5320,7 @@ void QCommandLineParser___addOptions_options_setList(void* ptr, void* i)
 
 void* QCommandLineParser___addOptions_options_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QCommandLineOption>;
 }
 
@@ -6626,6 +6671,7 @@ void QDir___drives_setList(void* ptr, void* i)
 
 void* QDir___drives_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QFileInfo>;
 }
 
@@ -6641,6 +6687,7 @@ void QDir___entryInfoList_setList2(void* ptr, void* i)
 
 void* QDir___entryInfoList_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QFileInfo>;
 }
 
@@ -6656,6 +6703,7 @@ void QDir___entryInfoList_setList(void* ptr, void* i)
 
 void* QDir___entryInfoList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QFileInfo>;
 }
 
@@ -6772,6 +6820,7 @@ void QEasingCurve___cubicBezierSpline_setList(void* ptr, void* i)
 
 void* QEasingCurve___cubicBezierSpline_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPointF>;
 }
 
@@ -6787,6 +6836,7 @@ void QEasingCurve___toCubicSpline_setList(void* ptr, void* i)
 
 void* QEasingCurve___toCubicSpline_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QPointF>;
 }
 
@@ -6894,6 +6944,7 @@ void QEvent_DestroyQEvent(void* ptr)
 
 void QEvent_DestroyQEventDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -8790,6 +8841,7 @@ void QIODevice_DestroyQIODevice(void* ptr)
 
 void QIODevice_DestroyQIODeviceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9235,6 +9287,7 @@ void QItemSelection___indexes_setList(void* ptr, void* i)
 
 void* QItemSelection___indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -9486,6 +9539,7 @@ void QItemSelectionModel_DestroyQItemSelectionModel(void* ptr)
 
 void QItemSelectionModel_DestroyQItemSelectionModelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9561,6 +9615,7 @@ void QItemSelectionModel___selectedColumns_setList(void* ptr, void* i)
 
 void* QItemSelectionModel___selectedColumns_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -9576,6 +9631,7 @@ void QItemSelectionModel___selectedIndexes_setList(void* ptr, void* i)
 
 void* QItemSelectionModel___selectedIndexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -9591,6 +9647,7 @@ void QItemSelectionModel___selectedRows_setList(void* ptr, void* i)
 
 void* QItemSelectionModel___selectedRows_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -9721,6 +9778,7 @@ void QItemSelectionRange___indexes_setList(void* ptr, void* i)
 
 void* QItemSelectionRange___indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -9866,6 +9924,7 @@ void QJsonArray___fromVariantList_list_setList(void* ptr, void* i)
 
 void* QJsonArray___fromVariantList_list_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -9881,6 +9940,7 @@ void QJsonArray___toVariantList_setList(void* ptr, void* i)
 
 void* QJsonArray___toVariantList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -10091,6 +10151,7 @@ void QJsonObject___fromVariantHash_hash_setList(void* ptr, char* key, void* i)
 
 void* QJsonObject___fromVariantHash_hash_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<QString, QVariant>;
 }
 
@@ -10111,6 +10172,7 @@ void QJsonObject___toVariantHash_setList(void* ptr, char* key, void* i)
 
 void* QJsonObject___toVariantHash_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<QString, QVariant>;
 }
 
@@ -10131,6 +10193,7 @@ void QJsonObject___toVariantMap_setList(void* ptr, char* key, void* i)
 
 void* QJsonObject___toVariantMap_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -10151,6 +10214,7 @@ void QJsonObject_____fromVariantHash_keyList_setList(void* ptr, char* i)
 
 void* QJsonObject_____fromVariantHash_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -10166,6 +10230,7 @@ void QJsonObject_____fromVariantMap_keyList_setList(void* ptr, char* i)
 
 void* QJsonObject_____fromVariantMap_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -10181,6 +10246,7 @@ void QJsonObject_____toVariantHash_keyList_setList(void* ptr, char* i)
 
 void* QJsonObject_____toVariantHash_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -10196,6 +10262,7 @@ void QJsonObject_____toVariantMap_keyList_setList(void* ptr, char* i)
 
 void* QJsonObject_____toVariantMap_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -11384,81 +11451,97 @@ long long QLocale_Script(void* ptr)
 
 double QLocale_ToDouble(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toDouble(QString(s), NULL);
 }
 
 double QLocale_ToDouble2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toDouble(*static_cast<QStringRef*>(s), NULL);
 }
 
 float QLocale_ToFloat(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toFloat(QString(s), NULL);
 }
 
 float QLocale_ToFloat2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toFloat(*static_cast<QStringRef*>(s), NULL);
 }
 
 int QLocale_ToInt(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toInt(QString(s), NULL);
 }
 
 int QLocale_ToInt2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toInt(*static_cast<QStringRef*>(s), NULL);
 }
 
 long long QLocale_ToLongLong(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toLongLong(QString(s), NULL);
 }
 
 long long QLocale_ToLongLong2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toLongLong(*static_cast<QStringRef*>(s), NULL);
 }
 
 unsigned long long QLocale_ToULongLong(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toULongLong(QString(s), NULL);
 }
 
 unsigned long long QLocale_ToULongLong2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toULongLong(*static_cast<QStringRef*>(s), NULL);
 }
 
 short QLocale_ToShort(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toShort(QString(s), NULL);
 }
 
 short QLocale_ToShort2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toShort(*static_cast<QStringRef*>(s), NULL);
 }
 
 unsigned int QLocale_ToUInt(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toUInt(QString(s), NULL);
 }
 
 unsigned int QLocale_ToUInt2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toUInt(*static_cast<QStringRef*>(s), NULL);
 }
 
 unsigned short QLocale_ToUShort(void* ptr, char* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toUShort(QString(s), NULL);
 }
 
 unsigned short QLocale_ToUShort2(void* ptr, void* s, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QLocale*>(ptr)->toUShort(*static_cast<QStringRef*>(s), NULL);
 }
 
@@ -11474,6 +11557,7 @@ void QLocale___matchingLocales_setList(void* ptr, void* i)
 
 void* QLocale___matchingLocales_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QLocale>;
 }
 
@@ -11489,6 +11573,7 @@ void QLocale___weekdays_setList(void* ptr, long long i)
 
 void* QLocale___weekdays_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<Qt::DayOfWeek>;
 }
 
@@ -11904,11 +11989,13 @@ int QMetaEnum_KeyCount(void* ptr)
 
 int QMetaEnum_KeyToValue(void* ptr, char* key, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QMetaEnum*>(ptr)->keyToValue(const_cast<const char*>(key), NULL);
 }
 
 int QMetaEnum_KeysToValue(void* ptr, char* keys, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QMetaEnum*>(ptr)->keysToValue(const_cast<const char*>(keys), NULL);
 }
 
@@ -12029,6 +12116,7 @@ void QMetaMethod___parameterNames_setList(void* ptr, void* i)
 
 void* QMetaMethod___parameterNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -12044,6 +12132,7 @@ void QMetaMethod___parameterTypes_setList(void* ptr, void* i)
 
 void* QMetaMethod___parameterTypes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -12637,6 +12726,7 @@ void QMimeData___setUrls_urls_setList(void* ptr, void* i)
 
 void* QMimeData___setUrls_urls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -12652,6 +12742,7 @@ void QMimeData___urls_setList(void* ptr, void* i)
 
 void* QMimeData___urls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -12732,6 +12823,7 @@ void QMimeDatabase___allMimeTypes_setList(void* ptr, void* i)
 
 void* QMimeDatabase___allMimeTypes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMimeType>;
 }
 
@@ -12747,6 +12839,7 @@ void QMimeDatabase___mimeTypesForFileName_setList(void* ptr, void* i)
 
 void* QMimeDatabase___mimeTypesForFileName_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMimeType>;
 }
 
@@ -13927,6 +14020,7 @@ void QObject_DestroyQObject(void* ptr)
 
 void QObject_DestroyQObjectDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -14153,6 +14247,7 @@ void QObject___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QObject___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -14168,6 +14263,7 @@ void QObject___findChildren_setList2(void* ptr, void* i)
 
 void* QObject___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -14183,6 +14279,7 @@ void QObject___findChildren_setList3(void* ptr, void* i)
 
 void* QObject___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -14198,6 +14295,7 @@ void QObject___findChildren_setList(void* ptr, void* i)
 
 void* QObject___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -14213,6 +14311,7 @@ void QObject___children_setList(void* ptr, void* i)
 
 void* QObject___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -14752,6 +14851,7 @@ void QPluginLoader___staticInstances_setList(void* ptr, void* i)
 
 void* QPluginLoader___staticInstances_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -14762,6 +14862,7 @@ void QPluginLoader___staticPlugins_setList(void* ptr, void* i)
 
 void* QPluginLoader___staticPlugins_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QStaticPlugin>;
 }
 
@@ -16231,6 +16332,7 @@ void QRunnable_DestroyQRunnable(void* ptr)
 
 void QRunnable_DestroyQRunnableDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -18458,6 +18560,7 @@ void QState___transitions_setList(void* ptr, void* i)
 
 void* QState___transitions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractTransition *>;
 }
 
@@ -18743,6 +18846,7 @@ void QStateMachine___defaultAnimations_setList(void* ptr, void* i)
 
 void* QStateMachine___defaultAnimations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAbstractAnimation *>;
 }
 
@@ -18888,6 +18992,7 @@ void QStorageInfo___mountedVolumes_setList(void* ptr, void* i)
 
 void* QStorageInfo___mountedVolumes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QStorageInfo>;
 }
 
@@ -19360,11 +19465,13 @@ struct QtCore_PackedString QStringRef_String(void* ptr)
 
 double QStringRef_ToDouble(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toDouble(NULL);
 }
 
 float QStringRef_ToFloat(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toFloat(NULL);
 }
 
@@ -19475,41 +19582,49 @@ int QStringRef_Size(void* ptr)
 
 int QStringRef_ToInt(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toInt(NULL, base);
 }
 
 long QStringRef_ToLong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toLong(NULL, base);
 }
 
 long long QStringRef_ToLongLong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toLongLong(NULL, base);
 }
 
 unsigned long long QStringRef_ToULongLong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toULongLong(NULL, base);
 }
 
 short QStringRef_ToShort(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toShort(NULL, base);
 }
 
 unsigned int QStringRef_ToUInt(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toUInt(NULL, base);
 }
 
 unsigned long QStringRef_ToULong(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toULong(NULL, base);
 }
 
 unsigned short QStringRef_ToUShort(void* ptr, char ok, int base)
 {
+	Q_UNUSED(ok);
 	return static_cast<QStringRef*>(ptr)->toUShort(NULL, base);
 }
 
@@ -19525,6 +19640,7 @@ void QStringRef___split_setList2(void* ptr, void* i)
 
 void* QStringRef___split_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QStringRef>;
 }
 
@@ -19540,6 +19656,7 @@ void QStringRef___split_setList(void* ptr, void* i)
 
 void* QStringRef___split_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QStringRef>;
 }
 
@@ -19555,6 +19672,7 @@ void QStringRef___toUcs4_setList(void* ptr, unsigned int i)
 
 void* QStringRef___toUcs4_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<uint>;
 }
 
@@ -20414,6 +20532,7 @@ void QTextCodec_DestroyQTextCodec(void* ptr)
 
 void QTextCodec_DestroyQTextCodecDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -20484,6 +20603,7 @@ void QTextCodec___availableCodecs_setList(void* ptr, void* i)
 
 void* QTextCodec___availableCodecs_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -20499,6 +20619,7 @@ void QTextCodec___availableMibs_setList(void* ptr, int i)
 
 void* QTextCodec___availableMibs_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -20514,6 +20635,7 @@ void QTextCodec___aliases_setList(void* ptr, void* i)
 
 void* QTextCodec___aliases_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -20735,6 +20857,7 @@ void QTextStream_DestroyQTextStream(void* ptr)
 
 void QTextStream_DestroyQTextStreamDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -21534,6 +21657,7 @@ void QTimeLine_DestroyQTimeLine(void* ptr)
 
 void QTimeLine_DestroyQTimeLineDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -21784,6 +21908,7 @@ void QTimeZone___availableTimeZoneIds_setList(void* ptr, void* i)
 
 void* QTimeZone___availableTimeZoneIds_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -21799,6 +21924,7 @@ void QTimeZone___availableTimeZoneIds_setList2(void* ptr, void* i)
 
 void* QTimeZone___availableTimeZoneIds_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -21814,6 +21940,7 @@ void QTimeZone___availableTimeZoneIds_setList3(void* ptr, void* i)
 
 void* QTimeZone___availableTimeZoneIds_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -21829,6 +21956,7 @@ void QTimeZone___windowsIdToIanaIds_setList(void* ptr, void* i)
 
 void* QTimeZone___windowsIdToIanaIds_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -21844,6 +21972,7 @@ void QTimeZone___windowsIdToIanaIds_setList2(void* ptr, void* i)
 
 void* QTimeZone___windowsIdToIanaIds_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -22455,6 +22584,7 @@ void QUrl___fromStringList_setList(void* ptr, void* i)
 
 void* QUrl___fromStringList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -22470,6 +22600,7 @@ void QUrl___toStringList_urls_setList(void* ptr, void* i)
 
 void* QUrl___toStringList_urls_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QUrl>;
 }
 
@@ -22485,6 +22616,7 @@ void QUrl___allEncodedQueryItemValues_setList(void* ptr, void* i)
 
 void* QUrl___allEncodedQueryItemValues_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -23150,16 +23282,19 @@ struct QtCore_PackedString QVariant_TypeName(void* ptr)
 
 double QVariant_ToDouble(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QVariant*>(ptr)->toDouble(NULL);
 }
 
 float QVariant_ToFloat(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QVariant*>(ptr)->toFloat(NULL);
 }
 
 int QVariant_ToInt(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QVariant*>(ptr)->toInt(NULL);
 }
 
@@ -23170,21 +23305,25 @@ int QVariant_UserType(void* ptr)
 
 long long QVariant_ToLongLong(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QVariant*>(ptr)->toLongLong(NULL);
 }
 
 double QVariant_ToReal(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QVariant*>(ptr)->toReal(NULL);
 }
 
 unsigned long long QVariant_ToULongLong(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QVariant*>(ptr)->toULongLong(NULL);
 }
 
 unsigned int QVariant_ToUInt(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QVariant*>(ptr)->toUInt(NULL);
 }
 
@@ -23225,6 +23364,7 @@ void QVariant___QVariant_val_setList26(void* ptr, char* key, void* i)
 
 void* QVariant___QVariant_val_newList26(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<QString, QVariant>;
 }
 
@@ -23245,6 +23385,7 @@ void QVariant___QVariant_val_setList24(void* ptr, void* i)
 
 void* QVariant___QVariant_val_newList24(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -23260,6 +23401,7 @@ void QVariant___QVariant_val_setList25(void* ptr, char* key, void* i)
 
 void* QVariant___QVariant_val_newList25(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -23280,6 +23422,7 @@ void QVariant___toHash_setList(void* ptr, char* key, void* i)
 
 void* QVariant___toHash_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<QString, QVariant>;
 }
 
@@ -23300,6 +23443,7 @@ void QVariant___toList_setList(void* ptr, void* i)
 
 void* QVariant___toList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -23315,6 +23459,7 @@ void QVariant___toMap_setList(void* ptr, char* key, void* i)
 
 void* QVariant___toMap_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -23335,6 +23480,7 @@ void QVariant_____QVariant_keyList_setList26(void* ptr, char* i)
 
 void* QVariant_____QVariant_keyList_newList26(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -23350,6 +23496,7 @@ void QVariant_____QVariant_keyList_setList25(void* ptr, char* i)
 
 void* QVariant_____QVariant_keyList_newList25(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -23365,6 +23512,7 @@ void QVariant_____toHash_keyList_setList(void* ptr, char* i)
 
 void* QVariant_____toHash_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -23380,6 +23528,7 @@ void QVariant_____toMap_keyList_setList(void* ptr, char* i)
 
 void* QVariant_____toMap_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -23700,6 +23849,7 @@ void QVersionNumber___QVersionNumber_seg_setList3(void* ptr, int i)
 
 void* QVersionNumber___QVersionNumber_seg_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -23715,6 +23865,7 @@ void QVersionNumber___QVersionNumber_seg_setList2(void* ptr, int i)
 
 void* QVersionNumber___QVersionNumber_seg_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -23730,6 +23881,7 @@ void QVersionNumber___segments_setList(void* ptr, int i)
 
 void* QVersionNumber___segments_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -23982,6 +24134,7 @@ void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(void* ptr)
 
 void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolverDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 

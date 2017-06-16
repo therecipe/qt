@@ -144,6 +144,7 @@ void QScriptClass_DestroyQScriptClass(void* ptr)
 
 void QScriptClass_DestroyQScriptClassDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -584,6 +585,7 @@ void QScriptEngine_DestroyQScriptEngine(void* ptr)
 
 void QScriptEngine_DestroyQScriptEngineDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -659,6 +661,7 @@ void QScriptEngine___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QScriptEngine___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -674,6 +677,7 @@ void QScriptEngine___findChildren_setList2(void* ptr, void* i)
 
 void* QScriptEngine___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -689,6 +693,7 @@ void QScriptEngine___findChildren_setList3(void* ptr, void* i)
 
 void* QScriptEngine___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -704,6 +709,7 @@ void QScriptEngine___findChildren_setList(void* ptr, void* i)
 
 void* QScriptEngine___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -719,6 +725,7 @@ void QScriptEngine___children_setList(void* ptr, void* i)
 
 void* QScriptEngine___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -897,6 +904,7 @@ void QScriptEngineAgent_DestroyQScriptEngineAgent(void* ptr)
 
 void QScriptEngineAgent_DestroyQScriptEngineAgentDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1011,6 +1019,7 @@ void QScriptExtensionPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QScriptExtensionPlugin___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1026,6 +1035,7 @@ void QScriptExtensionPlugin___findChildren_setList2(void* ptr, void* i)
 
 void* QScriptExtensionPlugin___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1041,6 +1051,7 @@ void QScriptExtensionPlugin___findChildren_setList3(void* ptr, void* i)
 
 void* QScriptExtensionPlugin___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1056,6 +1067,7 @@ void QScriptExtensionPlugin___findChildren_setList(void* ptr, void* i)
 
 void* QScriptExtensionPlugin___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1071,6 +1083,7 @@ void QScriptExtensionPlugin___children_setList(void* ptr, void* i)
 
 void* QScriptExtensionPlugin___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1186,6 +1199,7 @@ char QScriptString_IsValid(void* ptr)
 
 unsigned int QScriptString_ToArrayIndex(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QScriptString*>(ptr)->toArrayIndex(NULL);
 }
 

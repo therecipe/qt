@@ -677,6 +677,7 @@ void QSqlDriver___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSqlDriver___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -692,6 +693,7 @@ void QSqlDriver___findChildren_setList2(void* ptr, void* i)
 
 void* QSqlDriver___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -707,6 +709,7 @@ void QSqlDriver___findChildren_setList3(void* ptr, void* i)
 
 void* QSqlDriver___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -722,6 +725,7 @@ void QSqlDriver___findChildren_setList(void* ptr, void* i)
 
 void* QSqlDriver___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -737,6 +741,7 @@ void QSqlDriver___children_setList(void* ptr, void* i)
 
 void* QSqlDriver___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -799,6 +804,7 @@ void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(void* ptr)
 
 void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBaseDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -892,6 +898,7 @@ void QSqlDriverPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSqlDriverPlugin___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -907,6 +914,7 @@ void QSqlDriverPlugin___findChildren_setList2(void* ptr, void* i)
 
 void* QSqlDriverPlugin___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -922,6 +930,7 @@ void QSqlDriverPlugin___findChildren_setList3(void* ptr, void* i)
 
 void* QSqlDriverPlugin___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -937,6 +946,7 @@ void QSqlDriverPlugin___findChildren_setList(void* ptr, void* i)
 
 void* QSqlDriverPlugin___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -952,6 +962,7 @@ void QSqlDriverPlugin___children_setList(void* ptr, void* i)
 
 void* QSqlDriverPlugin___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1462,6 +1473,7 @@ void QSqlQuery___boundValues_setList(void* ptr, char* key, void* i)
 
 void* QSqlQuery___boundValues_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1482,6 +1494,7 @@ void QSqlQuery_____boundValues_keyList_setList(void* ptr, char* i)
 
 void* QSqlQuery_____boundValues_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1702,6 +1715,7 @@ void QSqlQueryModel_DestroyQSqlQueryModel(void* ptr)
 
 void QSqlQueryModel_DestroyQSqlQueryModelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1823,6 +1837,7 @@ void QSqlQueryModel_____setItemData_keyList_setList(void* ptr, int i)
 
 void* QSqlQueryModel_____setItemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -1838,6 +1853,7 @@ void QSqlQueryModel_____roleNames_keyList_setList(void* ptr, int i)
 
 void* QSqlQueryModel_____roleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -1853,6 +1869,7 @@ void QSqlQueryModel_____itemData_keyList_setList(void* ptr, int i)
 
 void* QSqlQueryModel_____itemData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -1868,6 +1885,7 @@ void QSqlQueryModel___setItemData_roles_setList(void* ptr, int key, void* i)
 
 void* QSqlQueryModel___setItemData_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -1888,6 +1906,7 @@ void QSqlQueryModel___changePersistentIndexList_from_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___changePersistentIndexList_from_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -1903,6 +1922,7 @@ void QSqlQueryModel___changePersistentIndexList_to_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___changePersistentIndexList_to_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -1918,6 +1938,7 @@ void QSqlQueryModel___dataChanged_roles_setList(void* ptr, int i)
 
 void* QSqlQueryModel___dataChanged_roles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -1933,6 +1954,7 @@ void QSqlQueryModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -1948,6 +1970,7 @@ void QSqlQueryModel___layoutChanged_parents_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___layoutChanged_parents_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPersistentModelIndex>;
 }
 
@@ -1963,6 +1986,7 @@ void QSqlQueryModel___roleNames_setList(void* ptr, int key, void* i)
 
 void* QSqlQueryModel___roleNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<int, QByteArray>;
 }
 
@@ -1983,6 +2007,7 @@ void QSqlQueryModel___itemData_setList(void* ptr, int key, void* i)
 
 void* QSqlQueryModel___itemData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<int, QVariant>;
 }
 
@@ -2003,6 +2028,7 @@ void QSqlQueryModel___mimeData_indexes_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___mimeData_indexes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2018,6 +2044,7 @@ void QSqlQueryModel___match_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___match_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2033,6 +2060,7 @@ void QSqlQueryModel___persistentIndexList_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___persistentIndexList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QModelIndex>;
 }
 
@@ -2048,6 +2076,7 @@ void QSqlQueryModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
 
 void* QSqlQueryModel_____doSetRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2063,6 +2092,7 @@ void QSqlQueryModel_____setRoleNames_keyList_setList(void* ptr, int i)
 
 void* QSqlQueryModel_____setRoleNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2078,6 +2108,7 @@ void QSqlQueryModel___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2093,6 +2124,7 @@ void QSqlQueryModel___findChildren_setList2(void* ptr, void* i)
 
 void* QSqlQueryModel___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2108,6 +2140,7 @@ void QSqlQueryModel___findChildren_setList3(void* ptr, void* i)
 
 void* QSqlQueryModel___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2123,6 +2156,7 @@ void QSqlQueryModel___findChildren_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2138,6 +2172,7 @@ void QSqlQueryModel___children_setList(void* ptr, void* i)
 
 void* QSqlQueryModel___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2811,6 +2846,7 @@ void QSqlRelationalDelegate___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSqlRelationalDelegate___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2826,6 +2862,7 @@ void QSqlRelationalDelegate___findChildren_setList2(void* ptr, void* i)
 
 void* QSqlRelationalDelegate___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2841,6 +2878,7 @@ void QSqlRelationalDelegate___findChildren_setList3(void* ptr, void* i)
 
 void* QSqlRelationalDelegate___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2856,6 +2894,7 @@ void QSqlRelationalDelegate___findChildren_setList(void* ptr, void* i)
 
 void* QSqlRelationalDelegate___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2871,6 +2910,7 @@ void QSqlRelationalDelegate___children_setList(void* ptr, void* i)
 
 void* QSqlRelationalDelegate___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3155,6 +3195,7 @@ void QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(void* ptr)
 
 void QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3401,6 +3442,7 @@ void QSqlResult_DestroyQSqlResult(void* ptr)
 
 void QSqlResult_DestroyQSqlResultDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3536,6 +3578,7 @@ void QSqlResult___boundValues_setList(void* ptr, void* i)
 
 void* QSqlResult___boundValues_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QVariant>;
 }
 
@@ -3932,6 +3975,7 @@ void QSqlTableModel_DestroyQSqlTableModel(void* ptr)
 
 void QSqlTableModel_DestroyQSqlTableModelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 

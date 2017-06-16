@@ -105,6 +105,7 @@ void QCanBus___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QCanBus___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -120,6 +121,7 @@ void QCanBus___findChildren_setList2(void* ptr, void* i)
 
 void* QCanBus___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -135,6 +137,7 @@ void QCanBus___findChildren_setList3(void* ptr, void* i)
 
 void* QCanBus___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -150,6 +153,7 @@ void QCanBus___findChildren_setList(void* ptr, void* i)
 
 void* QCanBus___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -165,6 +169,7 @@ void QCanBus___children_setList(void* ptr, void* i)
 
 void* QCanBus___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -473,6 +478,7 @@ void QCanBusDevice___enqueueReceivedFrames_newFrames_setList(void* ptr, void* i)
 
 void* QCanBusDevice___enqueueReceivedFrames_newFrames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QCanBusFrame>;
 }
 
@@ -488,6 +494,7 @@ void QCanBusDevice___configurationKeys_setList(void* ptr, int i)
 
 void* QCanBusDevice___configurationKeys_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<int>;
 }
 
@@ -503,6 +510,7 @@ void QCanBusDevice___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QCanBusDevice___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -518,6 +526,7 @@ void QCanBusDevice___findChildren_setList2(void* ptr, void* i)
 
 void* QCanBusDevice___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -533,6 +542,7 @@ void QCanBusDevice___findChildren_setList3(void* ptr, void* i)
 
 void* QCanBusDevice___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -548,6 +558,7 @@ void QCanBusDevice___findChildren_setList(void* ptr, void* i)
 
 void* QCanBusDevice___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -563,6 +574,7 @@ void QCanBusDevice___children_setList(void* ptr, void* i)
 
 void* QCanBusDevice___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1032,6 +1044,7 @@ void QModbusDataUnit___QModbusDataUnit_data_setList4(void* ptr, unsigned short i
 
 void* QModbusDataUnit___QModbusDataUnit_data_newList4(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<quint16>;
 }
 
@@ -1047,6 +1060,7 @@ void QModbusDataUnit___setValues_values_setList(void* ptr, unsigned short i)
 
 void* QModbusDataUnit___setValues_values_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<quint16>;
 }
 
@@ -1062,6 +1076,7 @@ void QModbusDataUnit___values_setList(void* ptr, unsigned short i)
 
 void* QModbusDataUnit___values_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<quint16>;
 }
 
@@ -1233,6 +1248,7 @@ void QModbusDevice___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QModbusDevice___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1248,6 +1264,7 @@ void QModbusDevice___findChildren_setList2(void* ptr, void* i)
 
 void* QModbusDevice___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1263,6 +1280,7 @@ void QModbusDevice___findChildren_setList3(void* ptr, void* i)
 
 void* QModbusDevice___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1278,6 +1296,7 @@ void QModbusDevice___findChildren_setList(void* ptr, void* i)
 
 void* QModbusDevice___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1293,6 +1312,7 @@ void QModbusDevice___children_setList(void* ptr, void* i)
 
 void* QModbusDevice___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1529,6 +1549,7 @@ void QModbusDeviceIdentification___objectIds_setList(void* ptr, int i)
 
 void* QModbusDeviceIdentification___objectIds_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -1616,6 +1637,7 @@ void QModbusPdu_DestroyQModbusPdu(void* ptr)
 
 void QModbusPdu_DestroyQModbusPduDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1666,6 +1688,7 @@ void QModbusPdu___encode_vector_setList2(void* ptr, void* i)
 
 void* QModbusPdu___encode_vector_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1810,6 +1833,7 @@ void QModbusReply___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QModbusReply___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1825,6 +1849,7 @@ void QModbusReply___findChildren_setList2(void* ptr, void* i)
 
 void* QModbusReply___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1840,6 +1865,7 @@ void QModbusReply___findChildren_setList3(void* ptr, void* i)
 
 void* QModbusReply___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1855,6 +1881,7 @@ void QModbusReply___findChildren_setList(void* ptr, void* i)
 
 void* QModbusReply___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1870,6 +1897,7 @@ void QModbusReply___children_setList(void* ptr, void* i)
 
 void* QModbusReply___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

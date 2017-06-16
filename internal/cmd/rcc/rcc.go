@@ -17,10 +17,10 @@ import (
 
 var done = make(map[string]struct{})
 
-func Rcc(path, target, tags, output_dir string) {
+func Rcc(path, target, tagsCustom, output_dir string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Rcc")
 
-	for i, path := range append([]string{path}, cmd.GetImports(path, target, tags, 0, true)...) {
+	for i, path := range append([]string{path}, cmd.GetImports(path, target, tagsCustom, 0, true)...) {
 		fileList, err := ioutil.ReadDir(path)
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to read dir")
@@ -45,7 +45,7 @@ func Rcc(path, target, tags, output_dir string) {
 
 		if _, ok := done[path]; !ok && i > 0 {
 			done[path] = struct{}{}
-			Rcc(path, target, tags, path)
+			Rcc(path, target, tagsCustom, path)
 		}
 	}
 
@@ -55,8 +55,17 @@ func Rcc(path, target, tags, output_dir string) {
 
 	rccQrc := filepath.Join(path, "rcc.qrc")
 
-	pkgCmd := exec.Command("go", "list", "-e", "-f", "{{.Name}}")
+	env, tags, _, _ := cmd.BuildEnv(target, "", "")
+	if tagsCustom != "" {
+		tags = append(tags, strings.Split(tagsCustom, " ")...)
+	}
+
+	pkgCmd := exec.Command("go", "list", "-e", "-f", "{{.Name}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	pkgCmd.Dir = path
+	for k, v := range env {
+		pkgCmd.Env = append(pkgCmd.Env, fmt.Sprintf("%v=%v", k, v))
+	}
+
 	pkg := strings.TrimSpace(utils.RunCmd(pkgCmd, "run go list"))
 	if pkg == "" {
 		pkg = filepath.Base(path)
@@ -93,8 +102,12 @@ func Rcc(path, target, tags, output_dir string) {
 		}
 	}
 
-	nameCmd := exec.Command("go", "list", "-f", "{{.ImportPath}}")
+	nameCmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	nameCmd.Dir = path
+	for k, v := range env {
+		nameCmd.Env = append(nameCmd.Env, fmt.Sprintf("%v=%v", k, v))
+	}
+
 	name := strings.TrimSpace(utils.RunCmd(nameCmd, "run go list"))
 
 	rcc = exec.Command(utils.ToolPath("rcc", target), "-name", strings.Replace(name, "/", "_", -1), "-o", rccCpp)

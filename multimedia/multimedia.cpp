@@ -190,6 +190,7 @@ void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(void* ptr)
 
 void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBufferDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -210,6 +211,7 @@ void QAbstractPlanarVideoBuffer_Unmap(void* ptr)
 
 void QAbstractPlanarVideoBuffer_UnmapDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -220,6 +222,7 @@ long long QAbstractPlanarVideoBuffer_MapMode(void* ptr)
 
 long long QAbstractPlanarVideoBuffer_MapModeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -271,6 +274,7 @@ void QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(void* ptr)
 
 void QAbstractVideoBuffer_DestroyQAbstractVideoBufferDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -414,6 +418,7 @@ void QAbstractVideoFilter___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractVideoFilter___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -443,6 +448,7 @@ void QAbstractVideoFilter___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractVideoFilter___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -472,6 +478,7 @@ void QAbstractVideoFilter___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractVideoFilter___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -501,6 +508,7 @@ void QAbstractVideoFilter___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractVideoFilter___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -530,6 +538,7 @@ void QAbstractVideoFilter___children_setList(void* ptr, void* i)
 
 void* QAbstractVideoFilter___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -821,6 +830,7 @@ void QAbstractVideoSurface___supportedPixelFormats_setList(void* ptr, long long 
 
 void* QAbstractVideoSurface___supportedPixelFormats_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVideoFrame::PixelFormat>;
 }
 
@@ -836,6 +846,7 @@ void QAbstractVideoSurface___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractVideoSurface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -865,6 +876,7 @@ void QAbstractVideoSurface___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractVideoSurface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -894,6 +906,7 @@ void QAbstractVideoSurface___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractVideoSurface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -923,6 +936,7 @@ void QAbstractVideoSurface___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractVideoSurface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -952,6 +966,7 @@ void QAbstractVideoSurface___children_setList(void* ptr, void* i)
 
 void* QAbstractVideoSurface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1809,6 +1824,7 @@ void QAudioDeviceInfo___availableDevices_setList(void* ptr, void* i)
 
 void* QAudioDeviceInfo___availableDevices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAudioDeviceInfo>;
 }
 
@@ -1824,6 +1840,7 @@ void QAudioDeviceInfo___supportedByteOrders_setList(void* ptr, long long i)
 
 void* QAudioDeviceInfo___supportedByteOrders_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAudioFormat::Endian>;
 }
 
@@ -1839,6 +1856,7 @@ void QAudioDeviceInfo___supportedSampleTypes_setList(void* ptr, long long i)
 
 void* QAudioDeviceInfo___supportedSampleTypes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAudioFormat::SampleType>;
 }
 
@@ -1854,6 +1872,7 @@ void QAudioDeviceInfo___supportedChannelCounts_setList(void* ptr, int i)
 
 void* QAudioDeviceInfo___supportedChannelCounts_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -1869,6 +1888,7 @@ void QAudioDeviceInfo___supportedSampleRates_setList(void* ptr, int i)
 
 void* QAudioDeviceInfo___supportedSampleRates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -1884,6 +1904,7 @@ void QAudioDeviceInfo___supportedSampleSizes_setList(void* ptr, int i)
 
 void* QAudioDeviceInfo___supportedSampleSizes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -1999,6 +2020,7 @@ void QAudioEncoderSettings___setEncodingOptions_options_setList(void* ptr, char*
 
 void* QAudioEncoderSettings___setEncodingOptions_options_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2019,6 +2041,7 @@ void QAudioEncoderSettings___encodingOptions_setList(void* ptr, char* key, void*
 
 void* QAudioEncoderSettings___encodingOptions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2039,6 +2062,7 @@ void QAudioEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, cha
 
 void* QAudioEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2054,6 +2078,7 @@ void QAudioEncoderSettings_____encodingOptions_keyList_setList(void* ptr, char* 
 
 void* QAudioEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2137,6 +2162,7 @@ void QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(void* ptr)
 
 void QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2147,6 +2173,7 @@ void* QAudioEncoderSettingsControl_AudioSettings(void* ptr)
 
 struct QtMultimedia_PackedList QAudioEncoderSettingsControl_SupportedSampleRates(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedSampleRates(*static_cast<QAudioEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
@@ -2172,6 +2199,7 @@ void QAudioEncoderSettingsControl___supportedSampleRates_setList(void* ptr, int 
 
 void* QAudioEncoderSettingsControl___supportedSampleRates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -2522,6 +2550,7 @@ void QAudioInput___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAudioInput___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2551,6 +2580,7 @@ void QAudioInput___findChildren_setList2(void* ptr, void* i)
 
 void* QAudioInput___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2580,6 +2610,7 @@ void QAudioInput___findChildren_setList3(void* ptr, void* i)
 
 void* QAudioInput___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2609,6 +2640,7 @@ void QAudioInput___findChildren_setList(void* ptr, void* i)
 
 void* QAudioInput___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2638,6 +2670,7 @@ void QAudioInput___children_setList(void* ptr, void* i)
 
 void* QAudioInput___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2769,6 +2802,7 @@ void QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(void* ptr)
 
 void QAudioInputSelectorControl_DestroyQAudioInputSelectorControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2799,6 +2833,7 @@ void QAudioInputSelectorControl___availableInputs_setList(void* ptr, char* i)
 
 void* QAudioInputSelectorControl___availableInputs_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -3044,6 +3079,7 @@ void QAudioOutput___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAudioOutput___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3073,6 +3109,7 @@ void QAudioOutput___findChildren_setList2(void* ptr, void* i)
 
 void* QAudioOutput___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3102,6 +3139,7 @@ void QAudioOutput___findChildren_setList3(void* ptr, void* i)
 
 void* QAudioOutput___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3131,6 +3169,7 @@ void QAudioOutput___findChildren_setList(void* ptr, void* i)
 
 void* QAudioOutput___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3160,6 +3199,7 @@ void QAudioOutput___children_setList(void* ptr, void* i)
 
 void* QAudioOutput___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3291,6 +3331,7 @@ void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(void* ptr)
 
 void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3321,6 +3362,7 @@ void QAudioOutputSelectorControl___availableOutputs_setList(void* ptr, char* i)
 
 void* QAudioOutputSelectorControl___availableOutputs_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -3450,6 +3492,7 @@ void QAudioProbe___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAudioProbe___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3479,6 +3522,7 @@ void QAudioProbe___findChildren_setList2(void* ptr, void* i)
 
 void* QAudioProbe___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3508,6 +3552,7 @@ void QAudioProbe___findChildren_setList3(void* ptr, void* i)
 
 void* QAudioProbe___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3537,6 +3582,7 @@ void QAudioProbe___findChildren_setList(void* ptr, void* i)
 
 void* QAudioProbe___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3566,6 +3612,7 @@ void QAudioProbe___children_setList(void* ptr, void* i)
 
 void* QAudioProbe___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3872,6 +3919,7 @@ void QAudioRoleControl_DestroyQAudioRoleControl(void* ptr)
 
 void QAudioRoleControl_DestroyQAudioRoleControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3897,6 +3945,7 @@ void QAudioRoleControl___supportedAudioRoles_setList(void* ptr, long long i)
 
 void* QAudioRoleControl___supportedAudioRoles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAudio::Role>;
 }
 
@@ -4448,6 +4497,7 @@ void QCamera___availableDevices_setList(void* ptr, void* i)
 
 void* QCamera___availableDevices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4463,6 +4513,7 @@ void QCamera___supportedViewfinderSettings_setList(void* ptr, void* i)
 
 void* QCamera___supportedViewfinderSettings_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QCameraViewfinderSettings>;
 }
 
@@ -4478,6 +4529,7 @@ void QCamera___supportedViewfinderResolutions_setList(void* ptr, void* i)
 
 void* QCamera___supportedViewfinderResolutions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSize>;
 }
 
@@ -4493,6 +4545,7 @@ void QCamera___supportedViewfinderPixelFormats_setList(void* ptr, long long i)
 
 void* QCamera___supportedViewfinderPixelFormats_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVideoFrame::PixelFormat>;
 }
 
@@ -4609,6 +4662,7 @@ void QCameraCaptureBufferFormatControl___supportedBufferFormats_setList(void* pt
 
 void* QCameraCaptureBufferFormatControl___supportedBufferFormats_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVideoFrame::PixelFormat>;
 }
 
@@ -5150,16 +5204,19 @@ long long QCameraExposure_MeteringMode(void* ptr)
 
 struct QtMultimedia_PackedList QCameraExposure_SupportedIsoSensitivities(void* ptr, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QCameraExposure*>(ptr)->supportedIsoSensitivities(NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedList QCameraExposure_SupportedApertures(void* ptr, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QCameraExposure*>(ptr)->supportedApertures(NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedList QCameraExposure_SupportedShutterSpeeds(void* ptr, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QCameraExposure*>(ptr)->supportedShutterSpeeds(NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
@@ -5240,6 +5297,7 @@ void QCameraExposure___supportedIsoSensitivities_setList(void* ptr, int i)
 
 void* QCameraExposure___supportedIsoSensitivities_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -5255,6 +5313,7 @@ void QCameraExposure___supportedApertures_setList(void* ptr, double i)
 
 void* QCameraExposure___supportedApertures_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<qreal>;
 }
 
@@ -5270,6 +5329,7 @@ void QCameraExposure___supportedShutterSpeeds_setList(void* ptr, double i)
 
 void* QCameraExposure___supportedShutterSpeeds_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<qreal>;
 }
 
@@ -5285,6 +5345,7 @@ void QCameraExposure___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QCameraExposure___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5314,6 +5375,7 @@ void QCameraExposure___findChildren_setList2(void* ptr, void* i)
 
 void* QCameraExposure___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5343,6 +5405,7 @@ void QCameraExposure___findChildren_setList3(void* ptr, void* i)
 
 void* QCameraExposure___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5372,6 +5435,7 @@ void QCameraExposure___findChildren_setList(void* ptr, void* i)
 
 void* QCameraExposure___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5401,6 +5465,7 @@ void QCameraExposure___children_setList(void* ptr, void* i)
 
 void* QCameraExposure___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5600,6 +5665,7 @@ void* QCameraExposureControl_RequestedValue(void* ptr, long long parameter)
 
 struct QtMultimedia_PackedList QCameraExposureControl_SupportedParameterRange(void* ptr, long long parameter, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QCameraExposureControl*>(ptr)->supportedParameterRange(static_cast<QCameraExposureControl::ExposureParameter>(parameter), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
@@ -5620,6 +5686,7 @@ void QCameraExposureControl___supportedParameterRange_setList(void* ptr, void* i
 
 void* QCameraExposureControl___supportedParameterRange_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QVariant>;
 }
 
@@ -6009,6 +6076,7 @@ void QCameraFocus___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QCameraFocus___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6038,6 +6106,7 @@ void QCameraFocus___findChildren_setList2(void* ptr, void* i)
 
 void* QCameraFocus___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6067,6 +6136,7 @@ void QCameraFocus___findChildren_setList3(void* ptr, void* i)
 
 void* QCameraFocus___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6096,6 +6166,7 @@ void QCameraFocus___findChildren_setList(void* ptr, void* i)
 
 void* QCameraFocus___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6125,6 +6196,7 @@ void QCameraFocus___children_setList(void* ptr, void* i)
 
 void* QCameraFocus___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -6592,6 +6664,7 @@ void* QCameraImageCapture_EncodingSettings(void* ptr)
 
 struct QtMultimedia_PackedList QCameraImageCapture_SupportedResolutions(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 		return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QCameraImageCapture*>(ptr)->supportedResolutions(*static_cast<QImageEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
@@ -6662,6 +6735,7 @@ void QCameraImageCapture___supportedResolutions_setList(void* ptr, void* i)
 
 void* QCameraImageCapture___supportedResolutions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QSize>;
 }
 
@@ -6677,6 +6751,7 @@ void QCameraImageCapture___supportedBufferFormats_setList(void* ptr, long long i
 
 void* QCameraImageCapture___supportedBufferFormats_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QVideoFrame::PixelFormat>;
 }
 
@@ -6692,6 +6767,7 @@ void QCameraImageCapture___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QCameraImageCapture___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -6721,6 +6797,7 @@ void QCameraImageCapture___findChildren_setList2(void* ptr, void* i)
 
 void* QCameraImageCapture___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -6750,6 +6827,7 @@ void QCameraImageCapture___findChildren_setList3(void* ptr, void* i)
 
 void* QCameraImageCapture___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -6779,6 +6857,7 @@ void QCameraImageCapture___findChildren_setList(void* ptr, void* i)
 
 void* QCameraImageCapture___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -6808,6 +6887,7 @@ void QCameraImageCapture___children_setList(void* ptr, void* i)
 
 void* QCameraImageCapture___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -7265,6 +7345,7 @@ void QCameraImageProcessing___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QCameraImageProcessing___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -7294,6 +7375,7 @@ void QCameraImageProcessing___findChildren_setList2(void* ptr, void* i)
 
 void* QCameraImageProcessing___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -7323,6 +7405,7 @@ void QCameraImageProcessing___findChildren_setList3(void* ptr, void* i)
 
 void* QCameraImageProcessing___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -7352,6 +7435,7 @@ void QCameraImageProcessing___findChildren_setList(void* ptr, void* i)
 
 void* QCameraImageProcessing___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -7381,6 +7465,7 @@ void QCameraImageProcessing___children_setList(void* ptr, void* i)
 
 void* QCameraImageProcessing___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -7601,6 +7686,7 @@ void QCameraInfo___availableCameras_setList(void* ptr, void* i)
 
 void* QCameraInfo___availableCameras_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QCameraInfo>;
 }
 
@@ -7676,6 +7762,7 @@ void QCameraInfoControl_DestroyQCameraInfoControl(void* ptr)
 
 void QCameraInfoControl_DestroyQCameraInfoControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -8156,6 +8243,7 @@ void QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(
 
 void QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2Default(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -8181,6 +8269,7 @@ void QCameraViewfinderSettingsControl2___supportedViewfinderSettings_setList(voi
 
 void* QCameraViewfinderSettingsControl2___supportedViewfinderSettings_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QCameraViewfinderSettings>;
 }
 
@@ -8571,6 +8660,7 @@ void QGraphicsVideoItem___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGraphicsVideoItem___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -8600,6 +8690,7 @@ void QGraphicsVideoItem___findChildren_setList2(void* ptr, void* i)
 
 void* QGraphicsVideoItem___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -8629,6 +8720,7 @@ void QGraphicsVideoItem___findChildren_setList3(void* ptr, void* i)
 
 void* QGraphicsVideoItem___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -8658,6 +8750,7 @@ void QGraphicsVideoItem___findChildren_setList(void* ptr, void* i)
 
 void* QGraphicsVideoItem___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -8687,6 +8780,7 @@ void QGraphicsVideoItem___children_setList(void* ptr, void* i)
 
 void* QGraphicsVideoItem___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -8702,6 +8796,7 @@ void QGraphicsVideoItem___setTransformations_transformations_setList(void* ptr, 
 
 void* QGraphicsVideoItem___setTransformations_transformations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QGraphicsTransform *>;
 }
 
@@ -8721,6 +8816,7 @@ void QGraphicsVideoItem___childItems_setList(void* ptr, void* i)
 
 void* QGraphicsVideoItem___childItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QGraphicsItem *>;
 }
 
@@ -8740,6 +8836,7 @@ void QGraphicsVideoItem___collidingItems_setList(void* ptr, void* i)
 
 void* QGraphicsVideoItem___collidingItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QGraphicsItem *>;
 }
 
@@ -8755,6 +8852,7 @@ void QGraphicsVideoItem___transformations_setList(void* ptr, void* i)
 
 void* QGraphicsVideoItem___transformations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QGraphicsTransform *>;
 }
 
@@ -9300,6 +9398,7 @@ void QImageEncoderControl_DestroyQImageEncoderControl(void* ptr)
 
 void QImageEncoderControl_DestroyQImageEncoderControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9310,6 +9409,7 @@ void* QImageEncoderControl_ImageSettings(void* ptr)
 
 struct QtMultimedia_PackedList QImageEncoderControl_SupportedResolutions(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QImageEncoderControl*>(ptr)->supportedResolutions(*static_cast<QImageEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
@@ -9335,6 +9435,7 @@ void QImageEncoderControl___supportedResolutions_setList(void* ptr, void* i)
 
 void* QImageEncoderControl___supportedResolutions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSize>;
 }
 
@@ -9425,6 +9526,7 @@ void QImageEncoderSettings___setEncodingOptions_options_setList(void* ptr, char*
 
 void* QImageEncoderSettings___setEncodingOptions_options_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -9445,6 +9547,7 @@ void QImageEncoderSettings___encodingOptions_setList(void* ptr, char* key, void*
 
 void* QImageEncoderSettings___encodingOptions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -9465,6 +9568,7 @@ void QImageEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, cha
 
 void* QImageEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -9480,6 +9584,7 @@ void QImageEncoderSettings_____encodingOptions_keyList_setList(void* ptr, char* 
 
 void* QImageEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -9585,6 +9690,7 @@ void QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(void* ptr)
 
 void QMediaAudioProbeControl_DestroyQMediaAudioProbeControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9711,6 +9817,7 @@ void QMediaBindableInterface_DestroyQMediaBindableInterface(void* ptr)
 
 void QMediaBindableInterface_DestroyQMediaBindableInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9812,6 +9919,7 @@ void QMediaContainerControl_DestroyQMediaContainerControl(void* ptr)
 
 void QMediaContainerControl_DestroyQMediaContainerControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9912,6 +10020,7 @@ void QMediaContent___QMediaContent_resources_setList5(void* ptr, void* i)
 
 void* QMediaContent___QMediaContent_resources_newList5(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMediaResource>;
 }
 
@@ -9927,6 +10036,7 @@ void QMediaContent___resources_setList(void* ptr, void* i)
 
 void* QMediaContent___resources_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMediaResource>;
 }
 
@@ -10009,6 +10119,7 @@ void QMediaControl___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMediaControl___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -10038,6 +10149,7 @@ void QMediaControl___findChildren_setList2(void* ptr, void* i)
 
 void* QMediaControl___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -10067,6 +10179,7 @@ void QMediaControl___findChildren_setList3(void* ptr, void* i)
 
 void* QMediaControl___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -10096,6 +10209,7 @@ void QMediaControl___findChildren_setList(void* ptr, void* i)
 
 void* QMediaControl___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -10125,6 +10239,7 @@ void QMediaControl___children_setList(void* ptr, void* i)
 
 void* QMediaControl___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -11554,6 +11669,7 @@ void QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(void* ptr)
 
 void QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -11623,6 +11739,7 @@ void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(void* ptr)
 
 void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -11643,6 +11760,7 @@ void QMediaNetworkAccessControl___setConfigurations_configurations_setList(void*
 
 void* QMediaNetworkAccessControl___setConfigurations_configurations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkConfiguration>;
 }
 
@@ -12129,6 +12247,7 @@ void QMediaObject___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMediaObject___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -12158,6 +12277,7 @@ void QMediaObject___findChildren_setList2(void* ptr, void* i)
 
 void* QMediaObject___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -12187,6 +12307,7 @@ void QMediaObject___findChildren_setList3(void* ptr, void* i)
 
 void* QMediaObject___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -12216,6 +12337,7 @@ void QMediaObject___findChildren_setList(void* ptr, void* i)
 
 void* QMediaObject___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -12245,6 +12367,7 @@ void QMediaObject___children_setList(void* ptr, void* i)
 
 void* QMediaObject___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -13034,6 +13157,7 @@ void QMediaPlayer___setNetworkConfigurations_configurations_setList(void* ptr, v
 
 void* QMediaPlayer___setNetworkConfigurations_configurations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkConfiguration>;
 }
 
@@ -13049,6 +13173,7 @@ void QMediaPlayer___supportedAudioRoles_setList(void* ptr, long long i)
 
 void* QMediaPlayer___supportedAudioRoles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAudio::Role>;
 }
 
@@ -13785,6 +13910,7 @@ void QMediaPlaylist_DestroyQMediaPlaylist(void* ptr)
 
 void QMediaPlaylist_DestroyQMediaPlaylistDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -13865,6 +13991,7 @@ void QMediaPlaylist___addMedia_items_setList2(void* ptr, void* i)
 
 void* QMediaPlaylist___addMedia_items_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QMediaContent>;
 }
 
@@ -13880,6 +14007,7 @@ void QMediaPlaylist___insertMedia_items_setList2(void* ptr, void* i)
 
 void* QMediaPlaylist___insertMedia_items_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QMediaContent>;
 }
 
@@ -13895,6 +14023,7 @@ void QMediaPlaylist___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMediaPlaylist___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -13924,6 +14053,7 @@ void QMediaPlaylist___findChildren_setList2(void* ptr, void* i)
 
 void* QMediaPlaylist___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -13953,6 +14083,7 @@ void QMediaPlaylist___findChildren_setList3(void* ptr, void* i)
 
 void* QMediaPlaylist___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -13982,6 +14113,7 @@ void QMediaPlaylist___findChildren_setList(void* ptr, void* i)
 
 void* QMediaPlaylist___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -14011,6 +14143,7 @@ void QMediaPlaylist___children_setList(void* ptr, void* i)
 
 void* QMediaPlaylist___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -14500,16 +14633,19 @@ void* QMediaRecorder_AudioSettings(void* ptr)
 
 struct QtMultimedia_PackedList QMediaRecorder_SupportedResolutions(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 		return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QMediaRecorder*>(ptr)->supportedResolutions(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedList QMediaRecorder_SupportedAudioSampleRates(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 		return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMediaRecorder*>(ptr)->supportedAudioSampleRates(*static_cast<QAudioEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedList QMediaRecorder_SupportedFrameRates(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 		return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QMediaRecorder*>(ptr)->supportedFrameRates(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
@@ -14649,6 +14785,7 @@ void QMediaRecorder___supportedResolutions_setList(void* ptr, void* i)
 
 void* QMediaRecorder___supportedResolutions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QSize>;
 }
 
@@ -14664,6 +14801,7 @@ void QMediaRecorder___supportedAudioSampleRates_setList(void* ptr, int i)
 
 void* QMediaRecorder___supportedAudioSampleRates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<int>;
 }
 
@@ -14679,6 +14817,7 @@ void QMediaRecorder___supportedFrameRates_setList(void* ptr, double i)
 
 void* QMediaRecorder___supportedFrameRates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<qreal>;
 }
 
@@ -14694,6 +14833,7 @@ void QMediaRecorder___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMediaRecorder___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -14723,6 +14863,7 @@ void QMediaRecorder___findChildren_setList2(void* ptr, void* i)
 
 void* QMediaRecorder___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -14752,6 +14893,7 @@ void QMediaRecorder___findChildren_setList3(void* ptr, void* i)
 
 void* QMediaRecorder___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -14781,6 +14923,7 @@ void QMediaRecorder___findChildren_setList(void* ptr, void* i)
 
 void* QMediaRecorder___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -14810,6 +14953,7 @@ void QMediaRecorder___children_setList(void* ptr, void* i)
 
 void* QMediaRecorder___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -15213,6 +15357,7 @@ void QMediaRecorderControl_DestroyQMediaRecorderControl(void* ptr)
 
 void QMediaRecorderControl_DestroyQMediaRecorderControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -15482,6 +15627,7 @@ void QMediaService___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMediaService___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -15511,6 +15657,7 @@ void QMediaService___findChildren_setList2(void* ptr, void* i)
 
 void* QMediaService___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15540,6 +15687,7 @@ void QMediaService___findChildren_setList3(void* ptr, void* i)
 
 void* QMediaService___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15569,6 +15717,7 @@ void QMediaService___findChildren_setList(void* ptr, void* i)
 
 void* QMediaService___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15598,6 +15747,7 @@ void QMediaService___children_setList(void* ptr, void* i)
 
 void* QMediaService___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -15675,6 +15825,7 @@ void QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(vo
 
 void QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -15702,6 +15853,7 @@ void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterf
 
 void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -15723,6 +15875,7 @@ void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(void* 
 
 void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -15770,6 +15923,7 @@ void QMediaServiceProviderPlugin___dynamicPropertyNames_setList(void* ptr, void*
 
 void* QMediaServiceProviderPlugin___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -15799,6 +15953,7 @@ void QMediaServiceProviderPlugin___findChildren_setList2(void* ptr, void* i)
 
 void* QMediaServiceProviderPlugin___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15828,6 +15983,7 @@ void QMediaServiceProviderPlugin___findChildren_setList3(void* ptr, void* i)
 
 void* QMediaServiceProviderPlugin___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15857,6 +16013,7 @@ void QMediaServiceProviderPlugin___findChildren_setList(void* ptr, void* i)
 
 void* QMediaServiceProviderPlugin___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -15886,6 +16043,7 @@ void QMediaServiceProviderPlugin___children_setList(void* ptr, void* i)
 
 void* QMediaServiceProviderPlugin___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -15968,6 +16126,7 @@ void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevices
 
 void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -15988,6 +16147,7 @@ void QMediaServiceSupportedDevicesInterface___devices_setList(void* ptr, void* i
 
 void* QMediaServiceSupportedDevicesInterface___devices_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -16006,6 +16166,7 @@ void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormats
 
 void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -16151,6 +16312,7 @@ void QMediaStreamsControl_DestroyQMediaStreamsControl(void* ptr)
 
 void QMediaStreamsControl_DestroyQMediaStreamsControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -16301,6 +16463,7 @@ void QMediaTimeRange___intervals_setList(void* ptr, void* i)
 
 void* QMediaTimeRange___intervals_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMediaTimeInterval>;
 }
 
@@ -16406,6 +16569,7 @@ void QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(void* ptr)
 
 void QMediaVideoProbeControl_DestroyQMediaVideoProbeControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -16936,6 +17100,7 @@ void QRadioData___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QRadioData___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -16965,6 +17130,7 @@ void QRadioData___findChildren_setList2(void* ptr, void* i)
 
 void* QRadioData___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -16994,6 +17160,7 @@ void QRadioData___findChildren_setList3(void* ptr, void* i)
 
 void* QRadioData___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -17023,6 +17190,7 @@ void QRadioData___findChildren_setList(void* ptr, void* i)
 
 void* QRadioData___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -17052,6 +17220,7 @@ void QRadioData___children_setList(void* ptr, void* i)
 
 void* QRadioData___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -18337,6 +18506,7 @@ void QSound___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSound___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -18366,6 +18536,7 @@ void QSound___findChildren_setList2(void* ptr, void* i)
 
 void* QSound___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -18395,6 +18566,7 @@ void QSound___findChildren_setList3(void* ptr, void* i)
 
 void* QSound___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -18424,6 +18596,7 @@ void QSound___findChildren_setList(void* ptr, void* i)
 
 void* QSound___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -18453,6 +18626,7 @@ void QSound___children_setList(void* ptr, void* i)
 
 void* QSound___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -18835,6 +19009,7 @@ void QSoundEffect___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSoundEffect___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -18864,6 +19039,7 @@ void QSoundEffect___findChildren_setList2(void* ptr, void* i)
 
 void* QSoundEffect___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -18893,6 +19069,7 @@ void QSoundEffect___findChildren_setList3(void* ptr, void* i)
 
 void* QSoundEffect___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -18922,6 +19099,7 @@ void QSoundEffect___findChildren_setList(void* ptr, void* i)
 
 void* QSoundEffect___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -18951,6 +19129,7 @@ void QSoundEffect___children_setList(void* ptr, void* i)
 
 void* QSoundEffect___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -19142,6 +19321,7 @@ void QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(void* ptr)
 
 void QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -19287,6 +19467,7 @@ void QVideoEncoderSettings___setEncodingOptions_options_setList(void* ptr, char*
 
 void* QVideoEncoderSettings___setEncodingOptions_options_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -19307,6 +19488,7 @@ void QVideoEncoderSettings___encodingOptions_setList(void* ptr, char* key, void*
 
 void* QVideoEncoderSettings___encodingOptions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -19327,6 +19509,7 @@ void QVideoEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, cha
 
 void* QVideoEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -19342,6 +19525,7 @@ void QVideoEncoderSettings_____encodingOptions_keyList_setList(void* ptr, char* 
 
 void* QVideoEncoderSettings_____encodingOptions_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -19426,16 +19610,19 @@ void QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(void* ptr)
 
 void QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
 struct QtMultimedia_PackedList QVideoEncoderSettingsControl_SupportedResolutions(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedResolutions(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedList QVideoEncoderSettingsControl_SupportedFrameRates(void* ptr, void* settings, char continuous)
 {
+	Q_UNUSED(continuous);
 	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedFrameRates(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
@@ -19466,6 +19653,7 @@ void QVideoEncoderSettingsControl___supportedResolutions_setList(void* ptr, void
 
 void* QVideoEncoderSettingsControl___supportedResolutions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSize>;
 }
 
@@ -19481,6 +19669,7 @@ void QVideoEncoderSettingsControl___supportedFrameRates_setList(void* ptr, doubl
 
 void* QVideoEncoderSettingsControl___supportedFrameRates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<qreal>;
 }
 
@@ -19697,6 +19886,7 @@ void QVideoFrame___availableMetaData_setList(void* ptr, char* key, void* i)
 
 void* QVideoFrame___availableMetaData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -19717,6 +19907,7 @@ void QVideoFrame_____availableMetaData_keyList_setList(void* ptr, char* i)
 
 void* QVideoFrame_____availableMetaData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -19846,6 +20037,7 @@ void QVideoProbe___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QVideoProbe___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -19875,6 +20067,7 @@ void QVideoProbe___findChildren_setList2(void* ptr, void* i)
 
 void* QVideoProbe___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -19904,6 +20097,7 @@ void QVideoProbe___findChildren_setList3(void* ptr, void* i)
 
 void* QVideoProbe___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -19933,6 +20127,7 @@ void QVideoProbe___findChildren_setList(void* ptr, void* i)
 
 void* QVideoProbe___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -19962,6 +20157,7 @@ void QVideoProbe___children_setList(void* ptr, void* i)
 
 void* QVideoProbe___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -20250,6 +20446,7 @@ void QVideoSurfaceFormat___propertyNames_setList(void* ptr, void* i)
 
 void* QVideoSurfaceFormat___propertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -20668,6 +20865,7 @@ void QVideoWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QVideoWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -20683,6 +20881,7 @@ void QVideoWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QVideoWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -20698,6 +20897,7 @@ void QVideoWidget___actions_setList(void* ptr, void* i)
 
 void* QVideoWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QAction *>;
 }
 
@@ -20713,6 +20913,7 @@ void QVideoWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QVideoWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -20742,6 +20943,7 @@ void QVideoWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QVideoWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -20771,6 +20973,7 @@ void QVideoWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QVideoWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -20800,6 +21003,7 @@ void QVideoWidget___findChildren_setList(void* ptr, void* i)
 
 void* QVideoWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -20829,6 +21033,7 @@ void QVideoWidget___children_setList(void* ptr, void* i)
 
 void* QVideoWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -21886,6 +22091,7 @@ void QVideoWidgetControl_DestroyQVideoWidgetControl(void* ptr)
 
 void QVideoWidgetControl_DestroyQVideoWidgetControlDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 

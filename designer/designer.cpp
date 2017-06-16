@@ -138,6 +138,7 @@ void QAbstractExtensionManager_DestroyQAbstractExtensionManager(void* ptr)
 
 void QAbstractExtensionManager_DestroyQAbstractExtensionManagerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -216,6 +217,7 @@ void QAbstractFormBuilder_DestroyQAbstractFormBuilder(void* ptr)
 
 void QAbstractFormBuilder_DestroyQAbstractFormBuilderDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -231,16 +233,19 @@ struct QtDesigner_PackedString QAbstractFormBuilder_ErrorString(void* ptr)
 
 void* QAbstractFormBuilder___propertyMap_properties_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<DomProperty *>;
 }
 
 void* QAbstractFormBuilder___computeProperties_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<DomProperty *>;
 }
 
 void* QAbstractFormBuilder___applyProperties_properties_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<DomProperty *>;
 }
 
@@ -355,6 +360,7 @@ void QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterface(void* 
 
 void QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -380,6 +386,7 @@ void QDesignerActionEditorInterface___addActions_actions_setList(void* ptr, void
 
 void* QDesignerActionEditorInterface___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -395,6 +402,7 @@ void QDesignerActionEditorInterface___insertActions_actions_setList(void* ptr, v
 
 void* QDesignerActionEditorInterface___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -410,6 +418,7 @@ void QDesignerActionEditorInterface___actions_setList(void* ptr, void* i)
 
 void* QDesignerActionEditorInterface___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -425,6 +434,7 @@ void QDesignerActionEditorInterface___dynamicPropertyNames_setList(void* ptr, vo
 
 void* QDesignerActionEditorInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -446,6 +456,7 @@ void QDesignerActionEditorInterface___findChildren_setList2(void* ptr, void* i)
 
 void* QDesignerActionEditorInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -467,6 +478,7 @@ void QDesignerActionEditorInterface___findChildren_setList3(void* ptr, void* i)
 
 void* QDesignerActionEditorInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -488,6 +500,7 @@ void QDesignerActionEditorInterface___findChildren_setList(void* ptr, void* i)
 
 void* QDesignerActionEditorInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -509,6 +522,7 @@ void QDesignerActionEditorInterface___children_setList(void* ptr, void* i)
 
 void* QDesignerActionEditorInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -880,6 +894,7 @@ void QDesignerContainerExtension_DestroyQDesignerContainerExtension(void* ptr)
 
 void QDesignerContainerExtension_DestroyQDesignerContainerExtensionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -932,6 +947,7 @@ void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollec
 
 void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -952,6 +968,7 @@ void QDesignerCustomWidgetCollectionInterface___customWidgets_setList(void* ptr,
 
 void* QDesignerCustomWidgetCollectionInterface___customWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDesignerCustomWidgetInterface *>;
 }
 
@@ -995,6 +1012,7 @@ void QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(void* 
 
 void QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1091,6 +1109,7 @@ void QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheet
 
 void QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtensionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1199,6 +1218,7 @@ void QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(void* ptr)
 
 void QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1239,11 +1259,13 @@ void* QDesignerFormEditorInterface_TopLevel(void* ptr)
 
 void* QDesignerFormEditorInterface___setOptionsPages_optionsPages_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDesignerOptionsPageInterface *>;
 }
 
 void* QDesignerFormEditorInterface___optionsPages_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDesignerOptionsPageInterface *>;
 }
 
@@ -1265,6 +1287,7 @@ void QDesignerFormEditorInterface___pluginInstances_setList(void* ptr, void* i)
 
 void* QDesignerFormEditorInterface___pluginInstances_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1280,6 +1303,7 @@ void QDesignerFormEditorInterface___dynamicPropertyNames_setList(void* ptr, void
 
 void* QDesignerFormEditorInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1301,6 +1325,7 @@ void QDesignerFormEditorInterface___findChildren_setList2(void* ptr, void* i)
 
 void* QDesignerFormEditorInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1322,6 +1347,7 @@ void QDesignerFormEditorInterface___findChildren_setList3(void* ptr, void* i)
 
 void* QDesignerFormEditorInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1343,6 +1369,7 @@ void QDesignerFormEditorInterface___findChildren_setList(void* ptr, void* i)
 
 void* QDesignerFormEditorInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1364,6 +1391,7 @@ void QDesignerFormEditorInterface___children_setList(void* ptr, void* i)
 
 void* QDesignerFormEditorInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1469,6 +1497,7 @@ void QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterfac
 
 void QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2009,6 +2038,7 @@ void QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterface(void* ptr)
 
 void QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2129,6 +2159,7 @@ void QDesignerFormWindowInterface___simplifySelection_widgets_setList(void* ptr,
 
 void* QDesignerFormWindowInterface___simplifySelection_widgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -2144,6 +2175,7 @@ void QDesignerFormWindowInterface___addActions_actions_setList(void* ptr, void* 
 
 void* QDesignerFormWindowInterface___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2159,6 +2191,7 @@ void QDesignerFormWindowInterface___insertActions_actions_setList(void* ptr, voi
 
 void* QDesignerFormWindowInterface___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2174,6 +2207,7 @@ void QDesignerFormWindowInterface___actions_setList(void* ptr, void* i)
 
 void* QDesignerFormWindowInterface___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2189,6 +2223,7 @@ void QDesignerFormWindowInterface___dynamicPropertyNames_setList(void* ptr, void
 
 void* QDesignerFormWindowInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2210,6 +2245,7 @@ void QDesignerFormWindowInterface___findChildren_setList2(void* ptr, void* i)
 
 void* QDesignerFormWindowInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2231,6 +2267,7 @@ void QDesignerFormWindowInterface___findChildren_setList3(void* ptr, void* i)
 
 void* QDesignerFormWindowInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2252,6 +2289,7 @@ void QDesignerFormWindowInterface___findChildren_setList(void* ptr, void* i)
 
 void* QDesignerFormWindowInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2273,6 +2311,7 @@ void QDesignerFormWindowInterface___children_setList(void* ptr, void* i)
 
 void* QDesignerFormWindowInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2743,6 +2782,7 @@ void QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterf
 
 void QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2783,6 +2823,7 @@ int QDesignerFormWindowManagerInterface_FormWindowCount(void* ptr)
 
 void* QDesignerFormWindowManagerInterface___dragItems_item_list_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDesignerDnDItemInterface *>;
 }
 
@@ -2798,6 +2839,7 @@ void QDesignerFormWindowManagerInterface___dynamicPropertyNames_setList(void* pt
 
 void* QDesignerFormWindowManagerInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2819,6 +2861,7 @@ void QDesignerFormWindowManagerInterface___findChildren_setList2(void* ptr, void
 
 void* QDesignerFormWindowManagerInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2840,6 +2883,7 @@ void QDesignerFormWindowManagerInterface___findChildren_setList3(void* ptr, void
 
 void* QDesignerFormWindowManagerInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2861,6 +2905,7 @@ void QDesignerFormWindowManagerInterface___findChildren_setList(void* ptr, void*
 
 void* QDesignerFormWindowManagerInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2882,6 +2927,7 @@ void QDesignerFormWindowManagerInterface___children_setList(void* ptr, void* i)
 
 void* QDesignerFormWindowManagerInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2973,6 +3019,7 @@ void QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(void* pt
 
 void QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtensionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3048,6 +3095,7 @@ void QDesignerMemberSheetExtension___parameterNames_setList(void* ptr, void* i)
 
 void* QDesignerMemberSheetExtension___parameterNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3063,6 +3111,7 @@ void QDesignerMemberSheetExtension___parameterTypes_setList(void* ptr, void* i)
 
 void* QDesignerMemberSheetExtension___parameterTypes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3165,6 +3214,7 @@ void QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(
 
 void QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3190,6 +3240,7 @@ void QDesignerObjectInspectorInterface___addActions_actions_setList(void* ptr, v
 
 void* QDesignerObjectInspectorInterface___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3205,6 +3256,7 @@ void QDesignerObjectInspectorInterface___insertActions_actions_setList(void* ptr
 
 void* QDesignerObjectInspectorInterface___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3220,6 +3272,7 @@ void QDesignerObjectInspectorInterface___actions_setList(void* ptr, void* i)
 
 void* QDesignerObjectInspectorInterface___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3235,6 +3288,7 @@ void QDesignerObjectInspectorInterface___dynamicPropertyNames_setList(void* ptr,
 
 void* QDesignerObjectInspectorInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3256,6 +3310,7 @@ void QDesignerObjectInspectorInterface___findChildren_setList2(void* ptr, void* 
 
 void* QDesignerObjectInspectorInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3277,6 +3332,7 @@ void QDesignerObjectInspectorInterface___findChildren_setList3(void* ptr, void* 
 
 void* QDesignerObjectInspectorInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3298,6 +3354,7 @@ void QDesignerObjectInspectorInterface___findChildren_setList(void* ptr, void* i
 
 void* QDesignerObjectInspectorInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3319,6 +3376,7 @@ void QDesignerObjectInspectorInterface___children_setList(void* ptr, void* i)
 
 void* QDesignerObjectInspectorInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3778,6 +3836,7 @@ void QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterface(vo
 
 void QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3818,6 +3877,7 @@ void QDesignerPropertyEditorInterface___addActions_actions_setList(void* ptr, vo
 
 void* QDesignerPropertyEditorInterface___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3833,6 +3893,7 @@ void QDesignerPropertyEditorInterface___insertActions_actions_setList(void* ptr,
 
 void* QDesignerPropertyEditorInterface___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3848,6 +3909,7 @@ void QDesignerPropertyEditorInterface___actions_setList(void* ptr, void* i)
 
 void* QDesignerPropertyEditorInterface___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3863,6 +3925,7 @@ void QDesignerPropertyEditorInterface___dynamicPropertyNames_setList(void* ptr, 
 
 void* QDesignerPropertyEditorInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3884,6 +3947,7 @@ void QDesignerPropertyEditorInterface___findChildren_setList2(void* ptr, void* i
 
 void* QDesignerPropertyEditorInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3905,6 +3969,7 @@ void QDesignerPropertyEditorInterface___findChildren_setList3(void* ptr, void* i
 
 void* QDesignerPropertyEditorInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3926,6 +3991,7 @@ void QDesignerPropertyEditorInterface___findChildren_setList(void* ptr, void* i)
 
 void* QDesignerPropertyEditorInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3947,6 +4013,7 @@ void QDesignerPropertyEditorInterface___children_setList(void* ptr, void* i)
 
 void* QDesignerPropertyEditorInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4335,6 +4402,7 @@ void QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(void
 
 void QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtensionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4408,6 +4476,7 @@ void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(void* ptr)
 
 void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtensionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4438,6 +4507,7 @@ void QDesignerTaskMenuExtension___taskActions_setList(void* ptr, void* i)
 
 void* QDesignerTaskMenuExtension___taskActions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -4546,6 +4616,7 @@ void QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(void* ptr)
 
 void QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4556,6 +4627,7 @@ struct QtDesigner_PackedString QDesignerWidgetBoxInterface_FileName(void* ptr)
 
 void* QDesignerWidgetBoxInterface___dropWidgets_item_list_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDesignerDnDItemInterface *>;
 }
 
@@ -4571,6 +4643,7 @@ void QDesignerWidgetBoxInterface___addActions_actions_setList(void* ptr, void* i
 
 void* QDesignerWidgetBoxInterface___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -4586,6 +4659,7 @@ void QDesignerWidgetBoxInterface___insertActions_actions_setList(void* ptr, void
 
 void* QDesignerWidgetBoxInterface___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -4601,6 +4675,7 @@ void QDesignerWidgetBoxInterface___actions_setList(void* ptr, void* i)
 
 void* QDesignerWidgetBoxInterface___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -4616,6 +4691,7 @@ void QDesignerWidgetBoxInterface___dynamicPropertyNames_setList(void* ptr, void*
 
 void* QDesignerWidgetBoxInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4637,6 +4713,7 @@ void QDesignerWidgetBoxInterface___findChildren_setList2(void* ptr, void* i)
 
 void* QDesignerWidgetBoxInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4658,6 +4735,7 @@ void QDesignerWidgetBoxInterface___findChildren_setList3(void* ptr, void* i)
 
 void* QDesignerWidgetBoxInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4679,6 +4757,7 @@ void QDesignerWidgetBoxInterface___findChildren_setList(void* ptr, void* i)
 
 void* QDesignerWidgetBoxInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4700,6 +4779,7 @@ void QDesignerWidgetBoxInterface___children_setList(void* ptr, void* i)
 
 void* QDesignerWidgetBoxInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5118,6 +5198,7 @@ void QExtensionFactory___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QExtensionFactory___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -5139,6 +5220,7 @@ void QExtensionFactory___findChildren_setList2(void* ptr, void* i)
 
 void* QExtensionFactory___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -5160,6 +5242,7 @@ void QExtensionFactory___findChildren_setList3(void* ptr, void* i)
 
 void* QExtensionFactory___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -5181,6 +5264,7 @@ void QExtensionFactory___findChildren_setList(void* ptr, void* i)
 
 void* QExtensionFactory___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -5202,6 +5286,7 @@ void QExtensionFactory___children_setList(void* ptr, void* i)
 
 void* QExtensionFactory___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -5411,6 +5496,7 @@ void QExtensionManager___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QExtensionManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -5432,6 +5518,7 @@ void QExtensionManager___findChildren_setList2(void* ptr, void* i)
 
 void* QExtensionManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -5453,6 +5540,7 @@ void QExtensionManager___findChildren_setList3(void* ptr, void* i)
 
 void* QExtensionManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -5474,6 +5562,7 @@ void QExtensionManager___findChildren_setList(void* ptr, void* i)
 
 void* QExtensionManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -5495,6 +5584,7 @@ void QExtensionManager___children_setList(void* ptr, void* i)
 
 void* QExtensionManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -5636,6 +5726,7 @@ void QFormBuilder_DestroyQFormBuilder(void* ptr)
 
 void QFormBuilder_DestroyQFormBuilderDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5661,6 +5752,7 @@ void QFormBuilder___customWidgets_setList(void* ptr, void* i)
 
 void* QFormBuilder___customWidgets_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDesignerCustomWidgetInterface *>;
 }
 

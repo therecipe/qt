@@ -322,7 +322,7 @@ These are some general environmental variables, you can find the target specific
 
 -	Install MXE
 
-	-	`echo "deb https://pkg.mxe.cc/repos/apt/debian jessie main" | sudo tee --append /etc/apt/sources.list.d/mxeapt.list > /dev/null`
+	-	`echo "deb https://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee --append /etc/apt/sources.list.d/mxeapt.list > /dev/null`
 
 	-	`sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB`
 

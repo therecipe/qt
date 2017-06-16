@@ -263,6 +263,7 @@ void QGeoAreaMonitorInfo___setNotificationParameters_parameters_setList(void* pt
 
 void* QGeoAreaMonitorInfo___setNotificationParameters_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -283,6 +284,7 @@ void QGeoAreaMonitorInfo___notificationParameters_setList(void* ptr, char* key, 
 
 void* QGeoAreaMonitorInfo___notificationParameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -303,6 +305,7 @@ void QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(void* ptr
 
 void* QGeoAreaMonitorInfo_____setNotificationParameters_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -318,6 +321,7 @@ void QGeoAreaMonitorInfo_____notificationParameters_keyList_setList(void* ptr, c
 
 void* QGeoAreaMonitorInfo_____notificationParameters_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -504,6 +508,7 @@ void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr)
 
 void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSourceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -554,6 +559,7 @@ void QGeoAreaMonitorSource___activeMonitors_setList(void* ptr, void* i)
 
 void* QGeoAreaMonitorSource___activeMonitors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoAreaMonitorInfo>;
 }
 
@@ -569,6 +575,7 @@ void QGeoAreaMonitorSource___activeMonitors_setList2(void* ptr, void* i)
 
 void* QGeoAreaMonitorSource___activeMonitors_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoAreaMonitorInfo>;
 }
 
@@ -584,6 +591,7 @@ void QGeoAreaMonitorSource___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGeoAreaMonitorSource___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -599,6 +607,7 @@ void QGeoAreaMonitorSource___findChildren_setList2(void* ptr, void* i)
 
 void* QGeoAreaMonitorSource___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -614,6 +623,7 @@ void QGeoAreaMonitorSource___findChildren_setList3(void* ptr, void* i)
 
 void* QGeoAreaMonitorSource___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -629,6 +639,7 @@ void QGeoAreaMonitorSource___findChildren_setList(void* ptr, void* i)
 
 void* QGeoAreaMonitorSource___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -644,6 +655,7 @@ void QGeoAreaMonitorSource___children_setList(void* ptr, void* i)
 
 void* QGeoAreaMonitorSource___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1077,6 +1089,7 @@ void QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(void* ptr)
 
 void QGeoPositionInfoSource_DestroyQGeoPositionInfoSourceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1127,6 +1140,7 @@ void QGeoPositionInfoSource___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGeoPositionInfoSource___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1142,6 +1156,7 @@ void QGeoPositionInfoSource___findChildren_setList2(void* ptr, void* i)
 
 void* QGeoPositionInfoSource___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1157,6 +1172,7 @@ void QGeoPositionInfoSource___findChildren_setList3(void* ptr, void* i)
 
 void* QGeoPositionInfoSource___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1172,6 +1188,7 @@ void QGeoPositionInfoSource___findChildren_setList(void* ptr, void* i)
 
 void* QGeoPositionInfoSource___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1187,6 +1204,7 @@ void QGeoPositionInfoSource___children_setList(void* ptr, void* i)
 
 void* QGeoPositionInfoSource___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1302,6 +1320,7 @@ void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(void* pt
 
 void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactoryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1442,6 +1461,7 @@ void QGeoRectangle___QGeoRectangle_coordinates_setList4(void* ptr, void* i)
 
 void* QGeoRectangle___QGeoRectangle_coordinates_newList4(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -1690,6 +1710,7 @@ void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(void* ptr)
 
 void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSourceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1725,6 +1746,7 @@ void QGeoSatelliteInfoSource___satellitesInUseUpdated_satellites_setList(void* p
 
 void* QGeoSatelliteInfoSource___satellitesInUseUpdated_satellites_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoSatelliteInfo>;
 }
 
@@ -1740,6 +1762,7 @@ void QGeoSatelliteInfoSource___satellitesInViewUpdated_satellites_setList(void* 
 
 void* QGeoSatelliteInfoSource___satellitesInViewUpdated_satellites_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoSatelliteInfo>;
 }
 
@@ -1755,6 +1778,7 @@ void QGeoSatelliteInfoSource___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGeoSatelliteInfoSource___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1770,6 +1794,7 @@ void QGeoSatelliteInfoSource___findChildren_setList2(void* ptr, void* i)
 
 void* QGeoSatelliteInfoSource___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1785,6 +1810,7 @@ void QGeoSatelliteInfoSource___findChildren_setList3(void* ptr, void* i)
 
 void* QGeoSatelliteInfoSource___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1800,6 +1826,7 @@ void QGeoSatelliteInfoSource___findChildren_setList(void* ptr, void* i)
 
 void* QGeoSatelliteInfoSource___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1815,6 +1842,7 @@ void QGeoSatelliteInfoSource___children_setList(void* ptr, void* i)
 
 void* QGeoSatelliteInfoSource___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1990,11 +2018,13 @@ void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(long long updateMode, v
 
 char QNmeaPositionInfoSource_ParsePosInfoFromNmeaData(void* ptr, char* data, int size, void* posInfo, char hasFix)
 {
+	Q_UNUSED(hasFix);
 	return static_cast<QNmeaPositionInfoSource*>(ptr)->parsePosInfoFromNmeaData(const_cast<const char*>(data), size, static_cast<QGeoPositionInfo*>(posInfo), NULL);
 }
 
 char QNmeaPositionInfoSource_ParsePosInfoFromNmeaDataDefault(void* ptr, char* data, int size, void* posInfo, char hasFix)
 {
+	Q_UNUSED(hasFix);
 		return static_cast<QNmeaPositionInfoSource*>(ptr)->QNmeaPositionInfoSource::parsePosInfoFromNmeaData(const_cast<const char*>(data), size, static_cast<QGeoPositionInfo*>(posInfo), NULL);
 }
 

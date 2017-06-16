@@ -90,6 +90,7 @@ void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr)
 
 void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -105,6 +106,7 @@ void QAbstractMessageHandler___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractMessageHandler___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -120,6 +122,7 @@ void QAbstractMessageHandler___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractMessageHandler___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -135,6 +138,7 @@ void QAbstractMessageHandler___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractMessageHandler___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -150,6 +154,7 @@ void QAbstractMessageHandler___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractMessageHandler___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -165,6 +170,7 @@ void QAbstractMessageHandler___children_setList(void* ptr, void* i)
 
 void* QAbstractMessageHandler___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -284,6 +290,7 @@ void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr)
 
 void QAbstractUriResolver_DestroyQAbstractUriResolverDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -304,6 +311,7 @@ void QAbstractUriResolver___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractUriResolver___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -319,6 +327,7 @@ void QAbstractUriResolver___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractUriResolver___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -334,6 +343,7 @@ void QAbstractUriResolver___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractUriResolver___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -349,6 +359,7 @@ void QAbstractUriResolver___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractUriResolver___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -364,6 +375,7 @@ void QAbstractUriResolver___children_setList(void* ptr, void* i)
 
 void* QAbstractUriResolver___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -437,6 +449,7 @@ void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(void* ptr)
 
 void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -532,6 +545,7 @@ void QAbstractXmlNodeModel___namespaceBindings_setList(void* ptr, void* i)
 
 void* QAbstractXmlNodeModel___namespaceBindings_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QXmlName>;
 }
 
@@ -547,6 +561,7 @@ void QAbstractXmlNodeModel___nodesByIdref_setList(void* ptr, void* i)
 
 void* QAbstractXmlNodeModel___nodesByIdref_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QXmlNodeModelIndex>;
 }
 
@@ -641,6 +656,7 @@ void QAbstractXmlReceiver_DestroyQAbstractXmlReceiver(void* ptr)
 
 void QAbstractXmlReceiver_DestroyQAbstractXmlReceiverDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -669,6 +685,7 @@ void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr)
 
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -734,6 +751,8 @@ void* QSimpleXmlNodeModel_DocumentUri(void* ptr, void* n)
 
 void* QSimpleXmlNodeModel_DocumentUriDefault(void* ptr, void* n)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(n);
 	
 }
 
@@ -744,6 +763,8 @@ void* QSimpleXmlNodeModel_TypedValue(void* ptr, void* node)
 
 void* QSimpleXmlNodeModel_TypedValueDefault(void* ptr, void* node)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(node);
 	
 }
 
@@ -754,6 +775,8 @@ void* QSimpleXmlNodeModel_Name(void* ptr, void* ni)
 
 void* QSimpleXmlNodeModel_NameDefault(void* ptr, void* ni)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(ni);
 	
 }
 
@@ -764,6 +787,9 @@ void* QSimpleXmlNodeModel_NextFromSimpleAxis(void* ptr, long long axis, void* or
 
 void* QSimpleXmlNodeModel_NextFromSimpleAxisDefault(void* ptr, long long axis, void* origin)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(axis);
+	Q_UNUSED(origin);
 	
 }
 
@@ -774,6 +800,8 @@ void* QSimpleXmlNodeModel_Root(void* ptr, void* n)
 
 void* QSimpleXmlNodeModel_RootDefault(void* ptr, void* n)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(n);
 	
 }
 
@@ -784,6 +812,9 @@ long long QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2)
 
 long long QSimpleXmlNodeModel_CompareOrderDefault(void* ptr, void* ni1, void* ni2)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(ni1);
+	Q_UNUSED(ni2);
 	
 }
 
@@ -794,6 +825,8 @@ long long QSimpleXmlNodeModel_Kind(void* ptr, void* ni)
 
 long long QSimpleXmlNodeModel_KindDefault(void* ptr, void* ni)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(ni);
 	
 }
 
@@ -1042,6 +1075,7 @@ void QXmlNodeModelIndex___namespaceBindings_setList(void* ptr, void* i)
 
 void* QXmlNodeModelIndex___namespaceBindings_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QXmlName>;
 }
 
@@ -1244,6 +1278,7 @@ void QXmlResultItems_DestroyQXmlResultItems(void* ptr)
 
 void QXmlResultItems_DestroyQXmlResultItemsDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 

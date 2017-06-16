@@ -115,6 +115,10 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 		args = append(args, []string{"-e", "QT_DEBUG_QML=true"}...)
 	}
 
+	if utils.CI() {
+		args = append(args, []string{"-e", "CI=true"}...)
+	}
+
 	args = append(args, []string{"-e", "GOPATH=" + gpath}...)
 
 	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)

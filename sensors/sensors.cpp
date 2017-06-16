@@ -215,6 +215,7 @@ void QAccelerometer_DestroyQAccelerometer(void* ptr)
 
 void QAccelerometer_DestroyQAccelerometerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -550,6 +551,7 @@ void QAmbientLightSensor_DestroyQAmbientLightSensor(void* ptr)
 
 void QAmbientLightSensor_DestroyQAmbientLightSensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -783,6 +785,7 @@ void QCompass_DestroyQCompass(void* ptr)
 
 void QCompass_DestroyQCompassDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1067,6 +1070,7 @@ void QGyroscope_DestroyQGyroscope(void* ptr)
 
 void QGyroscope_DestroyQGyroscopeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1402,6 +1406,7 @@ void QIRProximitySensor_DestroyQIRProximitySensor(void* ptr)
 
 void QIRProximitySensor_DestroyQIRProximitySensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1563,6 +1568,7 @@ void QLightSensor_DestroyQLightSensor(void* ptr)
 
 void QLightSensor_DestroyQLightSensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1688,6 +1694,7 @@ void QMagnetometer_DestroyQMagnetometer(void* ptr)
 
 void QMagnetometer_DestroyQMagnetometerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1904,6 +1911,7 @@ void QOrientationSensor_DestroyQOrientationSensor(void* ptr)
 
 void QOrientationSensor_DestroyQOrientationSensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2188,6 +2196,7 @@ void QProximitySensor_DestroyQProximitySensor(void* ptr)
 
 void QProximitySensor_DestroyQProximitySensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2359,6 +2368,7 @@ void QRotationSensor_DestroyQRotationSensor(void* ptr)
 
 void QRotationSensor_DestroyQRotationSensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2857,6 +2867,7 @@ void QSensor_DestroyQSensor(void* ptr)
 
 void QSensor_DestroyQSensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2972,6 +2983,7 @@ void QSensor___sensorTypes_setList(void* ptr, void* i)
 
 void* QSensor___sensorTypes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2987,6 +2999,7 @@ void QSensor___sensorsForType_setList(void* ptr, void* i)
 
 void* QSensor___sensorsForType_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3002,6 +3015,7 @@ void QSensor___filters_setList(void* ptr, void* i)
 
 void* QSensor___filters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSensorFilter *>;
 }
 
@@ -3017,6 +3031,7 @@ void QSensor___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSensor___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3032,6 +3047,7 @@ void QSensor___findChildren_setList2(void* ptr, void* i)
 
 void* QSensor___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3047,6 +3063,7 @@ void QSensor___findChildren_setList3(void* ptr, void* i)
 
 void* QSensor___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3062,6 +3079,7 @@ void QSensor___findChildren_setList(void* ptr, void* i)
 
 void* QSensor___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3077,6 +3095,7 @@ void QSensor___children_setList(void* ptr, void* i)
 
 void* QSensor___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3554,6 +3573,7 @@ void QSensorBackend___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSensorBackend___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3569,6 +3589,7 @@ void QSensorBackend___findChildren_setList2(void* ptr, void* i)
 
 void* QSensorBackend___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3584,6 +3605,7 @@ void QSensorBackend___findChildren_setList3(void* ptr, void* i)
 
 void* QSensorBackend___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3599,6 +3621,7 @@ void QSensorBackend___findChildren_setList(void* ptr, void* i)
 
 void* QSensorBackend___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3614,6 +3637,7 @@ void QSensorBackend___children_setList(void* ptr, void* i)
 
 void* QSensorBackend___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3703,6 +3727,7 @@ void QSensorFilter_DestroyQSensorFilter(void* ptr)
 
 void QSensorFilter_DestroyQSensorFilterDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3849,6 +3874,7 @@ void QSensorGesture___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSensorGesture___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3864,6 +3890,7 @@ void QSensorGesture___findChildren_setList2(void* ptr, void* i)
 
 void* QSensorGesture___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3879,6 +3906,7 @@ void QSensorGesture___findChildren_setList3(void* ptr, void* i)
 
 void* QSensorGesture___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3894,6 +3922,7 @@ void QSensorGesture___findChildren_setList(void* ptr, void* i)
 
 void* QSensorGesture___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3909,6 +3938,7 @@ void QSensorGesture___children_setList(void* ptr, void* i)
 
 void* QSensorGesture___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4072,6 +4102,7 @@ void QSensorGestureManager___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSensorGestureManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4087,6 +4118,7 @@ void QSensorGestureManager___findChildren_setList2(void* ptr, void* i)
 
 void* QSensorGestureManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4102,6 +4134,7 @@ void QSensorGestureManager___findChildren_setList3(void* ptr, void* i)
 
 void* QSensorGestureManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4117,6 +4150,7 @@ void QSensorGestureManager___findChildren_setList(void* ptr, void* i)
 
 void* QSensorGestureManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4132,6 +4166,7 @@ void QSensorGestureManager___children_setList(void* ptr, void* i)
 
 void* QSensorGestureManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4207,6 +4242,7 @@ void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* pt
 
 void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4232,6 +4268,7 @@ void QSensorGesturePluginInterface___createRecognizers_setList(void* ptr, void* 
 
 void* QSensorGesturePluginInterface___createRecognizers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSensorGestureRecognizer *>;
 }
 
@@ -4361,6 +4398,7 @@ void QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(void* ptr)
 
 void QSensorGestureRecognizer_DestroyQSensorGestureRecognizerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4386,6 +4424,7 @@ void QSensorGestureRecognizer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSensorGestureRecognizer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4401,6 +4440,7 @@ void QSensorGestureRecognizer___findChildren_setList2(void* ptr, void* i)
 
 void* QSensorGestureRecognizer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4416,6 +4456,7 @@ void QSensorGestureRecognizer___findChildren_setList3(void* ptr, void* i)
 
 void* QSensorGestureRecognizer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4431,6 +4472,7 @@ void QSensorGestureRecognizer___findChildren_setList(void* ptr, void* i)
 
 void* QSensorGestureRecognizer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4446,6 +4488,7 @@ void QSensorGestureRecognizer___children_setList(void* ptr, void* i)
 
 void* QSensorGestureRecognizer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4582,6 +4625,7 @@ void QSensorReading___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSensorReading___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4597,6 +4641,7 @@ void QSensorReading___findChildren_setList2(void* ptr, void* i)
 
 void* QSensorReading___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4612,6 +4657,7 @@ void QSensorReading___findChildren_setList3(void* ptr, void* i)
 
 void* QSensorReading___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4627,6 +4673,7 @@ void QSensorReading___findChildren_setList(void* ptr, void* i)
 
 void* QSensorReading___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4642,6 +4689,7 @@ void QSensorReading___children_setList(void* ptr, void* i)
 
 void* QSensorReading___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5172,6 +5220,7 @@ void QTapSensor_DestroyQTapSensor(void* ptr)
 
 void QTapSensor_DestroyQTapSensorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 

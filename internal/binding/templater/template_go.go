@@ -204,10 +204,10 @@ func callback%[1]v_Constructor(ptr unsafe.Pointer) {
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
-	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg, tags)
+	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg, target, tags)
 }
 
-func preambleGo(oldModule string, module string, input []byte, stub bool, mode int, pkg, tags string) []byte {
+func preambleGo(oldModule string, module string, input []byte, stub bool, mode int, pkg, target, tags string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
@@ -312,7 +312,7 @@ import "C"
 		}
 	}
 
-	for custom, m := range parser.GetCustomLibs(tags) {
+	for custom, m := range parser.GetCustomLibs(target, tags) {
 		mlows := strings.Split(m, "/")
 		mlow := mlows[len(mlows)-1]
 		switch {

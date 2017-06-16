@@ -154,6 +154,7 @@ void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(void* ptr)
 
 void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProviderDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -329,6 +330,7 @@ void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr)
 
 void QQuickImageProvider_DestroyQQuickImageProviderDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -423,6 +425,7 @@ void QQuickImageResponse_DestroyQQuickImageResponse(void* ptr)
 
 void QQuickImageResponse_DestroyQQuickImageResponseDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -453,6 +456,7 @@ void QQuickImageResponse___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickImageResponse___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -472,6 +476,7 @@ void QQuickImageResponse___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickImageResponse___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -491,6 +496,7 @@ void QQuickImageResponse___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickImageResponse___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -510,6 +516,7 @@ void QQuickImageResponse___findChildren_setList(void* ptr, void* i)
 
 void* QQuickImageResponse___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -529,6 +536,7 @@ void QQuickImageResponse___children_setList(void* ptr, void* i)
 
 void* QQuickImageResponse___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1340,6 +1348,7 @@ void QQuickItem_DestroyQQuickItem(void* ptr)
 
 void QQuickItem_DestroyQQuickItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1659,6 +1668,7 @@ void QQuickItem___grabTouchPoints_ids_setList(void* ptr, int i)
 
 void* QQuickItem___grabTouchPoints_ids_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QVector<int>;
 }
 
@@ -1674,6 +1684,7 @@ void QQuickItem___childItems_setList(void* ptr, void* i)
 
 void* QQuickItem___childItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QQuickItem *>;
 }
 
@@ -1689,6 +1700,7 @@ void QQuickItem___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickItem___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -1708,6 +1720,7 @@ void QQuickItem___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickItem___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -1727,6 +1740,7 @@ void QQuickItem___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickItem___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -1746,6 +1760,7 @@ void QQuickItem___findChildren_setList(void* ptr, void* i)
 
 void* QQuickItem___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -1765,6 +1780,7 @@ void QQuickItem___children_setList(void* ptr, void* i)
 
 void* QQuickItem___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -1975,6 +1991,7 @@ void QQuickItemGrabResult___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickItemGrabResult___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1994,6 +2011,7 @@ void QQuickItemGrabResult___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickItemGrabResult___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2013,6 +2031,7 @@ void QQuickItemGrabResult___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickItemGrabResult___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2032,6 +2051,7 @@ void QQuickItemGrabResult___findChildren_setList(void* ptr, void* i)
 
 void* QQuickItemGrabResult___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2051,6 +2071,7 @@ void QQuickItemGrabResult___children_setList(void* ptr, void* i)
 
 void* QQuickItemGrabResult___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2304,6 +2325,7 @@ void QQuickPaintedItem_DestroyQQuickPaintedItem(void* ptr)
 
 void QQuickPaintedItem_DestroyQQuickPaintedItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2509,6 +2531,7 @@ void QQuickRenderControl___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickRenderControl___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2528,6 +2551,7 @@ void QQuickRenderControl___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickRenderControl___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2547,6 +2571,7 @@ void QQuickRenderControl___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickRenderControl___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2566,6 +2591,7 @@ void QQuickRenderControl___findChildren_setList(void* ptr, void* i)
 
 void* QQuickRenderControl___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2585,6 +2611,7 @@ void QQuickRenderControl___children_setList(void* ptr, void* i)
 
 void* QQuickRenderControl___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2680,6 +2707,7 @@ void QQuickTextDocument___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickTextDocument___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2699,6 +2727,7 @@ void QQuickTextDocument___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickTextDocument___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2718,6 +2747,7 @@ void QQuickTextDocument___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickTextDocument___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2737,6 +2767,7 @@ void QQuickTextDocument___findChildren_setList(void* ptr, void* i)
 
 void* QQuickTextDocument___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2756,6 +2787,7 @@ void QQuickTextDocument___children_setList(void* ptr, void* i)
 
 void* QQuickTextDocument___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2851,6 +2883,7 @@ void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr)
 
 void QQuickTextureFactory_DestroyQQuickTextureFactoryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2891,6 +2924,7 @@ void QQuickTextureFactory___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickTextureFactory___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2910,6 +2944,7 @@ void QQuickTextureFactory___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickTextureFactory___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2929,6 +2964,7 @@ void QQuickTextureFactory___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickTextureFactory___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2948,6 +2984,7 @@ void QQuickTextureFactory___findChildren_setList(void* ptr, void* i)
 
 void* QQuickTextureFactory___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2967,6 +3004,7 @@ void QQuickTextureFactory___children_setList(void* ptr, void* i)
 
 void* QQuickTextureFactory___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3180,6 +3218,7 @@ void QQuickView_DestroyQQuickView(void* ptr)
 
 void QQuickView_DestroyQQuickViewDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3235,6 +3274,7 @@ void QQuickView___errors_setList(void* ptr, void* i)
 
 void* QQuickView___errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QQmlError>;
 }
 
@@ -3400,6 +3440,7 @@ void QQuickWidget_DestroyQQuickWidget(void* ptr)
 
 void QQuickWidget_DestroyQQuickWidgetDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -3470,6 +3511,7 @@ void QQuickWidget___errors_setList(void* ptr, void* i)
 
 void* QQuickWidget___errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QQmlError>;
 }
 
@@ -3485,6 +3527,7 @@ void QQuickWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QQuickWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3500,6 +3543,7 @@ void QQuickWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QQuickWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3515,6 +3559,7 @@ void QQuickWidget___actions_setList(void* ptr, void* i)
 
 void* QQuickWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -3530,6 +3575,7 @@ void QQuickWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3549,6 +3595,7 @@ void QQuickWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3568,6 +3615,7 @@ void QQuickWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3587,6 +3635,7 @@ void QQuickWidget___findChildren_setList(void* ptr, void* i)
 
 void* QQuickWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3606,6 +3655,7 @@ void QQuickWidget___children_setList(void* ptr, void* i)
 
 void* QQuickWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4461,6 +4511,7 @@ void QQuickWindow_DestroyQQuickWindow(void* ptr)
 
 void QQuickWindow_DestroyQQuickWindowDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4581,6 +4632,7 @@ void QQuickWindow___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQuickWindow___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4600,6 +4652,7 @@ void QQuickWindow___findChildren_setList2(void* ptr, void* i)
 
 void* QQuickWindow___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4619,6 +4672,7 @@ void QQuickWindow___findChildren_setList3(void* ptr, void* i)
 
 void* QQuickWindow___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4638,6 +4692,7 @@ void QQuickWindow___findChildren_setList(void* ptr, void* i)
 
 void* QQuickWindow___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4657,6 +4712,7 @@ void QQuickWindow___children_setList(void* ptr, void* i)
 
 void* QQuickWindow___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5123,6 +5179,7 @@ void QSGAbstractRenderer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSGAbstractRenderer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5142,6 +5199,7 @@ void QSGAbstractRenderer___findChildren_setList2(void* ptr, void* i)
 
 void* QSGAbstractRenderer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5161,6 +5219,7 @@ void QSGAbstractRenderer___findChildren_setList3(void* ptr, void* i)
 
 void* QSGAbstractRenderer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5180,6 +5239,7 @@ void QSGAbstractRenderer___findChildren_setList(void* ptr, void* i)
 
 void* QSGAbstractRenderer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5199,6 +5259,7 @@ void QSGAbstractRenderer___children_setList(void* ptr, void* i)
 
 void* QSGAbstractRenderer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5357,6 +5418,7 @@ void QSGDynamicTexture_Bind(void* ptr)
 
 void QSGDynamicTexture_BindDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -5367,6 +5429,7 @@ void* QSGDynamicTexture_TextureSize(void* ptr)
 
 void* QSGDynamicTexture_TextureSizeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -5377,6 +5440,7 @@ char QSGDynamicTexture_HasAlphaChannel(void* ptr)
 
 char QSGDynamicTexture_HasAlphaChannelDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -5387,6 +5451,7 @@ char QSGDynamicTexture_HasMipmaps(void* ptr)
 
 char QSGDynamicTexture_HasMipmapsDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -5397,6 +5462,7 @@ int QSGDynamicTexture_TextureId(void* ptr)
 
 int QSGDynamicTexture_TextureIdDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 	
 }
 
@@ -5519,6 +5585,7 @@ void QSGEngine___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSGEngine___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5538,6 +5605,7 @@ void QSGEngine___findChildren_setList2(void* ptr, void* i)
 
 void* QSGEngine___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5557,6 +5625,7 @@ void QSGEngine___findChildren_setList3(void* ptr, void* i)
 
 void* QSGEngine___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5576,6 +5645,7 @@ void QSGEngine___findChildren_setList(void* ptr, void* i)
 
 void* QSGEngine___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5595,6 +5665,7 @@ void QSGEngine___children_setList(void* ptr, void* i)
 
 void* QSGEngine___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5774,6 +5845,7 @@ void QSGGeometry_DestroyQSGGeometry(void* ptr)
 
 void QSGGeometry_DestroyQSGGeometryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5964,6 +6036,7 @@ void QSGImageNode_DestroyQSGImageNode(void* ptr)
 
 void QSGImageNode_DestroyQSGImageNodeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -6230,6 +6303,7 @@ void QSGNode_DestroyQSGNode(void* ptr)
 
 void QSGNode_DestroyQSGNodeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -6470,6 +6544,7 @@ void QSGRectangleNode_DestroyQSGRectangleNode(void* ptr)
 
 void QSGRectangleNode_DestroyQSGRectangleNodeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -6573,6 +6648,7 @@ void QSGRendererInterface_DestroyQSGRendererInterface(void* ptr)
 
 void QSGRendererInterface_DestroyQSGRendererInterfaceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -6784,6 +6860,7 @@ void QSGTexture___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSGTexture___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6803,6 +6880,7 @@ void QSGTexture___findChildren_setList2(void* ptr, void* i)
 
 void* QSGTexture___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6822,6 +6900,7 @@ void QSGTexture___findChildren_setList3(void* ptr, void* i)
 
 void* QSGTexture___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6841,6 +6920,7 @@ void QSGTexture___findChildren_setList(void* ptr, void* i)
 
 void* QSGTexture___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6860,6 +6940,7 @@ void QSGTexture___children_setList(void* ptr, void* i)
 
 void* QSGTexture___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -7014,6 +7095,7 @@ void QSGTextureProvider___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSGTextureProvider___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -7033,6 +7115,7 @@ void QSGTextureProvider___findChildren_setList2(void* ptr, void* i)
 
 void* QSGTextureProvider___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -7052,6 +7135,7 @@ void QSGTextureProvider___findChildren_setList3(void* ptr, void* i)
 
 void* QSGTextureProvider___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -7071,6 +7155,7 @@ void QSGTextureProvider___findChildren_setList(void* ptr, void* i)
 
 void* QSGTextureProvider___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -7090,6 +7175,7 @@ void QSGTextureProvider___children_setList(void* ptr, void* i)
 
 void* QSGTextureProvider___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

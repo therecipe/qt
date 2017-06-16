@@ -110,6 +110,7 @@ void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr)
 
 void QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -125,6 +126,7 @@ void QMacPasteboardMime___convertFromMime_setList(void* ptr, void* i)
 
 void* QMacPasteboardMime___convertFromMime_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -140,6 +142,7 @@ void QMacPasteboardMime___convertToMime_data_setList(void* ptr, void* i)
 
 void* QMacPasteboardMime___convertToMime_data_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -309,6 +312,7 @@ void QMacToolBar___allowedItems_setList(void* ptr, void* i)
 
 void* QMacToolBar___allowedItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMacToolBarItem *>;
 }
 
@@ -324,6 +328,7 @@ void QMacToolBar___items_setList(void* ptr, void* i)
 
 void* QMacToolBar___items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMacToolBarItem *>;
 }
 
@@ -339,6 +344,7 @@ void QMacToolBar___setAllowedItems_allowedItems_setList(void* ptr, void* i)
 
 void* QMacToolBar___setAllowedItems_allowedItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMacToolBarItem *>;
 }
 
@@ -354,6 +360,7 @@ void QMacToolBar___setItems_items_setList(void* ptr, void* i)
 
 void* QMacToolBar___setItems_items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QMacToolBarItem *>;
 }
 
@@ -369,6 +376,7 @@ void QMacToolBar___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMacToolBar___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -384,6 +392,7 @@ void QMacToolBar___findChildren_setList2(void* ptr, void* i)
 
 void* QMacToolBar___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -399,6 +408,7 @@ void QMacToolBar___findChildren_setList3(void* ptr, void* i)
 
 void* QMacToolBar___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -414,6 +424,7 @@ void QMacToolBar___findChildren_setList(void* ptr, void* i)
 
 void* QMacToolBar___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -429,6 +440,7 @@ void QMacToolBar___children_setList(void* ptr, void* i)
 
 void* QMacToolBar___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -563,6 +575,7 @@ void QMacToolBarItem_DestroyQMacToolBarItem(void* ptr)
 
 void QMacToolBarItem_DestroyQMacToolBarItemDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -618,6 +631,7 @@ void QMacToolBarItem___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMacToolBarItem___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -633,6 +647,7 @@ void QMacToolBarItem___findChildren_setList2(void* ptr, void* i)
 
 void* QMacToolBarItem___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -648,6 +663,7 @@ void QMacToolBarItem___findChildren_setList3(void* ptr, void* i)
 
 void* QMacToolBarItem___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -663,6 +679,7 @@ void QMacToolBarItem___findChildren_setList(void* ptr, void* i)
 
 void* QMacToolBarItem___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -678,6 +695,7 @@ void QMacToolBarItem___children_setList(void* ptr, void* i)
 
 void* QMacToolBarItem___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

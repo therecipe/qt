@@ -134,6 +134,7 @@ void QNdefMessage___QNdefMessage_records_setList4(void* ptr, void* i)
 
 void* QNdefMessage___QNdefMessage_records_newList4(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNdefRecord>;
 }
 
@@ -149,6 +150,7 @@ void QNdefMessage___QList_other_setList3(void* ptr, void* i)
 
 void* QNdefMessage___QList_other_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -164,6 +166,7 @@ void QNdefMessage___QList_other_setList2(void* ptr, void* i)
 
 void* QNdefMessage___QList_other_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -179,6 +182,7 @@ void QNdefMessage___fromSet_setList(void* ptr, void* i)
 
 void* QNdefMessage___fromSet_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -194,6 +198,7 @@ void QNdefMessage___fromStdList_setList(void* ptr, void* i)
 
 void* QNdefMessage___fromStdList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -209,6 +214,7 @@ void QNdefMessage___fromVector_setList(void* ptr, void* i)
 
 void* QNdefMessage___fromVector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -224,6 +230,7 @@ void QNdefMessage___fromVector_vector_setList(void* ptr, void* i)
 
 void* QNdefMessage___fromVector_vector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -239,6 +246,7 @@ void QNdefMessage___append_value_setList2(void* ptr, void* i)
 
 void* QNdefMessage___append_value_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -254,6 +262,7 @@ void QNdefMessage___swap_other_setList(void* ptr, void* i)
 
 void* QNdefMessage___swap_other_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -269,6 +278,7 @@ void QNdefMessage___mid_setList(void* ptr, void* i)
 
 void* QNdefMessage___mid_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -284,6 +294,7 @@ void QNdefMessage___toVector_setList(void* ptr, void* i)
 
 void* QNdefMessage___toVector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -444,6 +455,7 @@ unsigned int QNdefNfcSmartPosterRecord_Size(void* ptr)
 
 void* QNdefNfcSmartPosterRecord___setIcons_icons_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNdefNfcIconRecord>;
 }
 
@@ -459,11 +471,13 @@ void QNdefNfcSmartPosterRecord___setTitles_titles_setList(void* ptr, void* i)
 
 void* QNdefNfcSmartPosterRecord___setTitles_titles_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNdefNfcTextRecord>;
 }
 
 void* QNdefNfcSmartPosterRecord___iconRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNdefNfcIconRecord>;
 }
 
@@ -479,6 +493,7 @@ void QNdefNfcSmartPosterRecord___titleRecords_setList(void* ptr, void* i)
 
 void* QNdefNfcSmartPosterRecord___titleRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNdefNfcTextRecord>;
 }
 
@@ -758,6 +773,7 @@ void QNearFieldManager___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNearFieldManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -773,6 +789,7 @@ void QNearFieldManager___findChildren_setList2(void* ptr, void* i)
 
 void* QNearFieldManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -788,6 +805,7 @@ void QNearFieldManager___findChildren_setList3(void* ptr, void* i)
 
 void* QNearFieldManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -803,6 +821,7 @@ void QNearFieldManager___findChildren_setList(void* ptr, void* i)
 
 void* QNearFieldManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -818,6 +837,7 @@ void QNearFieldManager___children_setList(void* ptr, void* i)
 
 void* QNearFieldManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1013,6 +1033,7 @@ void QNearFieldShareManager___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNearFieldShareManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1028,6 +1049,7 @@ void QNearFieldShareManager___findChildren_setList2(void* ptr, void* i)
 
 void* QNearFieldShareManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1043,6 +1065,7 @@ void QNearFieldShareManager___findChildren_setList3(void* ptr, void* i)
 
 void* QNearFieldShareManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1058,6 +1081,7 @@ void QNearFieldShareManager___findChildren_setList(void* ptr, void* i)
 
 void* QNearFieldShareManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1073,6 +1097,7 @@ void QNearFieldShareManager___children_setList(void* ptr, void* i)
 
 void* QNearFieldShareManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1220,6 +1245,7 @@ void QNearFieldShareTarget___share_files_setList2(void* ptr, void* i)
 
 void* QNearFieldShareTarget___share_files_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QFileInfo>;
 }
 
@@ -1235,6 +1261,7 @@ void QNearFieldShareTarget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNearFieldShareTarget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1250,6 +1277,7 @@ void QNearFieldShareTarget___findChildren_setList2(void* ptr, void* i)
 
 void* QNearFieldShareTarget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1265,6 +1293,7 @@ void QNearFieldShareTarget___findChildren_setList3(void* ptr, void* i)
 
 void* QNearFieldShareTarget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1280,6 +1309,7 @@ void QNearFieldShareTarget___findChildren_setList(void* ptr, void* i)
 
 void* QNearFieldShareTarget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1295,6 +1325,7 @@ void QNearFieldShareTarget___children_setList(void* ptr, void* i)
 
 void* QNearFieldShareTarget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1476,6 +1507,7 @@ void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr)
 
 void QNearFieldTarget_DestroyQNearFieldTargetDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1521,6 +1553,7 @@ void QNearFieldTarget___sendCommands_commands_setList(void* ptr, void* i)
 
 void* QNearFieldTarget___sendCommands_commands_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1536,6 +1569,7 @@ void QNearFieldTarget___writeNdefMessages_messages_setList(void* ptr, void* i)
 
 void* QNearFieldTarget___writeNdefMessages_messages_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNdefMessage>;
 }
 
@@ -1551,6 +1585,7 @@ void QNearFieldTarget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNearFieldTarget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1566,6 +1601,7 @@ void QNearFieldTarget___findChildren_setList2(void* ptr, void* i)
 
 void* QNearFieldTarget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1581,6 +1617,7 @@ void QNearFieldTarget___findChildren_setList3(void* ptr, void* i)
 
 void* QNearFieldTarget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1596,6 +1633,7 @@ void QNearFieldTarget___findChildren_setList(void* ptr, void* i)
 
 void* QNearFieldTarget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1611,6 +1649,7 @@ void QNearFieldTarget___children_setList(void* ptr, void* i)
 
 void* QNearFieldTarget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1858,6 +1897,7 @@ void QQmlNdefRecord___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QQmlNdefRecord___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1873,6 +1913,7 @@ void QQmlNdefRecord___findChildren_setList2(void* ptr, void* i)
 
 void* QQmlNdefRecord___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1888,6 +1929,7 @@ void QQmlNdefRecord___findChildren_setList3(void* ptr, void* i)
 
 void* QQmlNdefRecord___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1903,6 +1945,7 @@ void QQmlNdefRecord___findChildren_setList(void* ptr, void* i)
 
 void* QQmlNdefRecord___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1918,6 +1961,7 @@ void QQmlNdefRecord___children_setList(void* ptr, void* i)
 
 void* QQmlNdefRecord___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

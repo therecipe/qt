@@ -1164,6 +1164,7 @@ void QXmlAttributes_DestroyQXmlAttributes(void* ptr)
 
 void QXmlAttributes_DestroyQXmlAttributesDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1381,6 +1382,7 @@ void QXmlContentHandler_DestroyQXmlContentHandler(void* ptr)
 
 void QXmlContentHandler_DestroyQXmlContentHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1427,6 +1429,7 @@ void QXmlDTDHandler_DestroyQXmlDTDHandler(void* ptr)
 
 void QXmlDTDHandler_DestroyQXmlDTDHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1483,6 +1486,7 @@ void QXmlDeclHandler_DestroyQXmlDeclHandler(void* ptr)
 
 void QXmlDeclHandler_DestroyQXmlDeclHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1801,6 +1805,7 @@ void QXmlDefaultHandler_DestroyQXmlDefaultHandler(void* ptr)
 
 void QXmlDefaultHandler_DestroyQXmlDefaultHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1828,6 +1833,7 @@ void QXmlEntityResolver_DestroyQXmlEntityResolver(void* ptr)
 
 void QXmlEntityResolver_DestroyQXmlEntityResolverDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1884,6 +1890,7 @@ void QXmlErrorHandler_DestroyQXmlErrorHandler(void* ptr)
 
 void QXmlErrorHandler_DestroyQXmlErrorHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1988,6 +1995,7 @@ void QXmlInputSource_DestroyQXmlInputSource(void* ptr)
 
 void QXmlInputSource_DestroyQXmlInputSourceDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2095,6 +2103,7 @@ void QXmlLexicalHandler_DestroyQXmlLexicalHandler(void* ptr)
 
 void QXmlLexicalHandler_DestroyQXmlLexicalHandlerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2128,6 +2137,7 @@ void QXmlLocator_DestroyQXmlLocator(void* ptr)
 
 void QXmlLocator_DestroyQXmlLocatorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2342,6 +2352,7 @@ void QXmlReader_DestroyQXmlReader(void* ptr)
 
 void QXmlReader_DestroyQXmlReaderDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2377,6 +2388,7 @@ void* QXmlReader_LexicalHandler(void* ptr)
 
 char QXmlReader_Feature(void* ptr, char* name, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QXmlReader*>(ptr)->feature(QString(name), NULL);
 }
 
@@ -2392,6 +2404,7 @@ char QXmlReader_HasProperty(void* ptr, char* name)
 
 void* QXmlReader_Property(void* ptr, char* name, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QXmlReader*>(ptr)->property(QString(name), NULL);
 }
 
@@ -2604,6 +2617,7 @@ void QXmlSimpleReader_DestroyQXmlSimpleReader(void* ptr)
 
 void QXmlSimpleReader_DestroyQXmlSimpleReaderDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -2669,11 +2683,13 @@ void* QXmlSimpleReader_LexicalHandlerDefault(void* ptr)
 
 char QXmlSimpleReader_Feature(void* ptr, char* name, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QXmlSimpleReader*>(ptr)->feature(QString(name), NULL);
 }
 
 char QXmlSimpleReader_FeatureDefault(void* ptr, char* name, char ok)
 {
+	Q_UNUSED(ok);
 		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::feature(QString(name), NULL);
 }
 
@@ -2699,11 +2715,13 @@ char QXmlSimpleReader_HasPropertyDefault(void* ptr, char* name)
 
 void* QXmlSimpleReader_Property(void* ptr, char* name, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QXmlSimpleReader*>(ptr)->property(QString(name), NULL);
 }
 
 void* QXmlSimpleReader_PropertyDefault(void* ptr, char* name, char ok)
 {
+	Q_UNUSED(ok);
 		return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::property(QString(name), NULL);
 }
 

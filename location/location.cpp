@@ -239,6 +239,7 @@ void QGeoRoute___setPath_path_setList(void* ptr, void* i)
 
 void* QGeoRoute___setPath_path_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -254,6 +255,7 @@ void QGeoRoute___path_setList(void* ptr, void* i)
 
 void* QGeoRoute___path_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -432,6 +434,7 @@ void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr)
 
 void QGeoRouteReply_DestroyQGeoRouteReplyDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -472,6 +475,7 @@ void QGeoRouteReply___addRoutes_routes_setList(void* ptr, void* i)
 
 void* QGeoRouteReply___addRoutes_routes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoRoute>;
 }
 
@@ -487,6 +491,7 @@ void QGeoRouteReply___setRoutes_routes_setList(void* ptr, void* i)
 
 void* QGeoRouteReply___setRoutes_routes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoRoute>;
 }
 
@@ -502,6 +507,7 @@ void QGeoRouteReply___routes_setList(void* ptr, void* i)
 
 void* QGeoRouteReply___routes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoRoute>;
 }
 
@@ -517,6 +523,7 @@ void QGeoRouteReply___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGeoRouteReply___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -532,6 +539,7 @@ void QGeoRouteReply___findChildren_setList2(void* ptr, void* i)
 
 void* QGeoRouteReply___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -547,6 +555,7 @@ void QGeoRouteReply___findChildren_setList3(void* ptr, void* i)
 
 void* QGeoRouteReply___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -562,6 +571,7 @@ void QGeoRouteReply___findChildren_setList(void* ptr, void* i)
 
 void* QGeoRouteReply___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -577,6 +587,7 @@ void QGeoRouteReply___children_setList(void* ptr, void* i)
 
 void* QGeoRouteReply___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -737,6 +748,7 @@ void QGeoRouteRequest___QGeoRouteRequest_waypoints_setList(void* ptr, void* i)
 
 void* QGeoRouteRequest___QGeoRouteRequest_waypoints_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -752,6 +764,7 @@ void QGeoRouteRequest___setExcludeAreas_areas_setList(void* ptr, void* i)
 
 void* QGeoRouteRequest___setExcludeAreas_areas_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoRectangle>;
 }
 
@@ -767,6 +780,7 @@ void QGeoRouteRequest___setWaypoints_waypoints_setList(void* ptr, void* i)
 
 void* QGeoRouteRequest___setWaypoints_waypoints_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -782,6 +796,7 @@ void QGeoRouteRequest___waypoints_setList(void* ptr, void* i)
 
 void* QGeoRouteRequest___waypoints_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -797,6 +812,7 @@ void QGeoRouteRequest___excludeAreas_setList(void* ptr, void* i)
 
 void* QGeoRouteRequest___excludeAreas_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoRectangle>;
 }
 
@@ -882,6 +898,7 @@ void QGeoRouteSegment___setPath_path_setList(void* ptr, void* i)
 
 void* QGeoRouteSegment___setPath_path_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -897,6 +914,7 @@ void QGeoRouteSegment___path_setList(void* ptr, void* i)
 
 void* QGeoRouteSegment___path_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;
 }
 
@@ -1039,6 +1057,7 @@ void QGeoRoutingManager___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGeoRoutingManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1054,6 +1073,7 @@ void QGeoRoutingManager___findChildren_setList2(void* ptr, void* i)
 
 void* QGeoRoutingManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1069,6 +1089,7 @@ void QGeoRoutingManager___findChildren_setList3(void* ptr, void* i)
 
 void* QGeoRoutingManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1084,6 +1105,7 @@ void QGeoRoutingManager___findChildren_setList(void* ptr, void* i)
 
 void* QGeoRoutingManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1099,6 +1121,7 @@ void QGeoRoutingManager___children_setList(void* ptr, void* i)
 
 void* QGeoRoutingManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1306,6 +1329,7 @@ void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(void* ptr)
 
 void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngineDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1371,6 +1395,7 @@ void QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_setList(void
 
 void* QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1391,6 +1416,7 @@ void QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_setList(void*
 
 void* QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1406,6 +1432,7 @@ void QGeoRoutingManagerEngine___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGeoRoutingManagerEngine___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1421,6 +1448,7 @@ void QGeoRoutingManagerEngine___findChildren_setList2(void* ptr, void* i)
 
 void* QGeoRoutingManagerEngine___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1436,6 +1464,7 @@ void QGeoRoutingManagerEngine___findChildren_setList3(void* ptr, void* i)
 
 void* QGeoRoutingManagerEngine___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1451,6 +1480,7 @@ void QGeoRoutingManagerEngine___findChildren_setList(void* ptr, void* i)
 
 void* QGeoRoutingManagerEngine___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1466,6 +1496,7 @@ void QGeoRoutingManagerEngine___children_setList(void* ptr, void* i)
 
 void* QGeoRoutingManagerEngine___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1762,6 +1793,7 @@ void QGeoServiceProvider___QGeoServiceProvider_parameters_setList(void* ptr, cha
 
 void* QGeoServiceProvider___QGeoServiceProvider_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1782,6 +1814,7 @@ void QGeoServiceProvider___setParameters_parameters_setList(void* ptr, char* key
 
 void* QGeoServiceProvider___setParameters_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1802,6 +1835,7 @@ void QGeoServiceProvider_____QGeoServiceProvider_keyList_setList(void* ptr, char
 
 void* QGeoServiceProvider_____QGeoServiceProvider_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1817,6 +1851,7 @@ void QGeoServiceProvider_____setParameters_keyList_setList(void* ptr, char* i)
 
 void* QGeoServiceProvider_____setParameters_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1832,6 +1867,7 @@ void QGeoServiceProvider___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGeoServiceProvider___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1847,6 +1883,7 @@ void QGeoServiceProvider___findChildren_setList2(void* ptr, void* i)
 
 void* QGeoServiceProvider___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1862,6 +1899,7 @@ void QGeoServiceProvider___findChildren_setList3(void* ptr, void* i)
 
 void* QGeoServiceProvider___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1877,6 +1915,7 @@ void QGeoServiceProvider___findChildren_setList(void* ptr, void* i)
 
 void* QGeoServiceProvider___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1892,6 +1931,7 @@ void QGeoServiceProvider___children_setList(void* ptr, void* i)
 
 void* QGeoServiceProvider___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1953,6 +1993,7 @@ void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr)
 
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1968,6 +2009,7 @@ void QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_setLis
 
 void* QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -1988,6 +2030,7 @@ void QGeoServiceProviderFactory___createMappingManagerEngine_parameters_setList(
 
 void* QGeoServiceProviderFactory___createMappingManagerEngine_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2008,6 +2051,7 @@ void QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_setList(
 
 void* QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2028,6 +2072,7 @@ void QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_setList(vo
 
 void* QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2048,6 +2093,7 @@ void QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_setList
 
 void* QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2063,6 +2109,7 @@ void QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_setList(v
 
 void* QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2078,6 +2125,7 @@ void QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_setList(v
 
 void* QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2093,6 +2141,7 @@ void QGeoServiceProviderFactory_____createPlaceManagerEngine_keyList_setList(voi
 
 void* QGeoServiceProviderFactory_____createPlaceManagerEngine_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 

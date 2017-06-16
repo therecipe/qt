@@ -133,6 +133,7 @@ void QMaskGenerator_DestroyQMaskGenerator(void* ptr)
 
 void QMaskGenerator_DestroyQMaskGeneratorDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -148,6 +149,7 @@ void QMaskGenerator___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QMaskGenerator___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -163,6 +165,7 @@ void QMaskGenerator___findChildren_setList2(void* ptr, void* i)
 
 void* QMaskGenerator___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -178,6 +181,7 @@ void QMaskGenerator___findChildren_setList3(void* ptr, void* i)
 
 void* QMaskGenerator___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -193,6 +197,7 @@ void QMaskGenerator___findChildren_setList(void* ptr, void* i)
 
 void* QMaskGenerator___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -208,6 +213,7 @@ void QMaskGenerator___children_setList(void* ptr, void* i)
 
 void* QMaskGenerator___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -676,6 +682,7 @@ void QWebSocket_DestroyQWebSocket(void* ptr)
 
 void QWebSocket_DestroyQWebSocketDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -796,6 +803,7 @@ void QWebSocket___ignoreSslErrors_errors_setList2(void* ptr, void* i)
 
 void* QWebSocket___ignoreSslErrors_errors_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -811,6 +819,7 @@ void QWebSocket___sslErrors_errors_setList(void* ptr, void* i)
 
 void* QWebSocket___sslErrors_errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -826,6 +835,7 @@ void QWebSocket___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebSocket___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -841,6 +851,7 @@ void QWebSocket___findChildren_setList2(void* ptr, void* i)
 
 void* QWebSocket___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -856,6 +867,7 @@ void QWebSocket___findChildren_setList3(void* ptr, void* i)
 
 void* QWebSocket___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -871,6 +883,7 @@ void QWebSocket___findChildren_setList(void* ptr, void* i)
 
 void* QWebSocket___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -886,6 +899,7 @@ void QWebSocket___children_setList(void* ptr, void* i)
 
 void* QWebSocket___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1228,6 +1242,7 @@ void QWebSocketServer_DestroyQWebSocketServer(void* ptr)
 
 void QWebSocketServer_DestroyQWebSocketServerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1313,6 +1328,7 @@ void QWebSocketServer___sslErrors_errors_setList(void* ptr, void* i)
 
 void* QWebSocketServer___sslErrors_errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -1328,6 +1344,7 @@ void QWebSocketServer___supportedVersions_setList(void* ptr, long long i)
 
 void* QWebSocketServer___supportedVersions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebSocketProtocol::Version>;
 }
 
@@ -1343,6 +1360,7 @@ void QWebSocketServer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebSocketServer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1358,6 +1376,7 @@ void QWebSocketServer___findChildren_setList2(void* ptr, void* i)
 
 void* QWebSocketServer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1373,6 +1392,7 @@ void QWebSocketServer___findChildren_setList3(void* ptr, void* i)
 
 void* QWebSocketServer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1388,6 +1408,7 @@ void QWebSocketServer___findChildren_setList(void* ptr, void* i)
 
 void* QWebSocketServer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1403,6 +1424,7 @@ void QWebSocketServer___children_setList(void* ptr, void* i)
 
 void* QWebSocketServer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

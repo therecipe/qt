@@ -650,6 +650,7 @@ void QGraphicsWebView___addActions_actions_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -665,6 +666,7 @@ void QGraphicsWebView___insertActions_actions_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -680,6 +682,7 @@ void QGraphicsWebView___actions_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -695,6 +698,7 @@ void QGraphicsWebView___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -710,6 +714,7 @@ void QGraphicsWebView___findChildren_setList2(void* ptr, void* i)
 
 void* QGraphicsWebView___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -725,6 +730,7 @@ void QGraphicsWebView___findChildren_setList3(void* ptr, void* i)
 
 void* QGraphicsWebView___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -740,6 +746,7 @@ void QGraphicsWebView___findChildren_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -755,6 +762,7 @@ void QGraphicsWebView___children_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -770,6 +778,7 @@ void QGraphicsWebView___setTransformations_transformations_setList(void* ptr, vo
 
 void* QGraphicsWebView___setTransformations_transformations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsTransform *>;
 }
 
@@ -785,6 +794,7 @@ void QGraphicsWebView___childItems_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___childItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -800,6 +810,7 @@ void QGraphicsWebView___collidingItems_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___collidingItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsItem *>;
 }
 
@@ -815,6 +826,7 @@ void QGraphicsWebView___transformations_setList(void* ptr, void* i)
 
 void* QGraphicsWebView___transformations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QGraphicsTransform *>;
 }
 
@@ -1435,6 +1447,7 @@ void QWebElementCollection___toList_setList(void* ptr, void* i)
 
 void* QWebElementCollection___toList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebElement>;
 }
 
@@ -1873,6 +1886,7 @@ void QWebFrame___childFrames_setList(void* ptr, void* i)
 
 void* QWebFrame___childFrames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebFrame *>;
 }
 
@@ -1888,6 +1902,7 @@ void QWebFrame___metaData_setList(void* ptr, char* key, char* i)
 
 void* QWebFrame___metaData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMultiMap<QString, QString>;
 }
 
@@ -1908,6 +1923,7 @@ void QWebFrame_____metaData_keyList_setList(void* ptr, char* i)
 
 void* QWebFrame_____metaData_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1923,6 +1939,7 @@ void QWebFrame___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebFrame___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1938,6 +1955,7 @@ void QWebFrame___findChildren_setList2(void* ptr, void* i)
 
 void* QWebFrame___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1953,6 +1971,7 @@ void QWebFrame___findChildren_setList3(void* ptr, void* i)
 
 void* QWebFrame___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1968,6 +1987,7 @@ void QWebFrame___findChildren_setList(void* ptr, void* i)
 
 void* QWebFrame___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1983,6 +2003,7 @@ void QWebFrame___children_setList(void* ptr, void* i)
 
 void* QWebFrame___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2128,6 +2149,7 @@ void QWebHistory___loadFromMap_map_setList(void* ptr, char* key, void* i)
 
 void* QWebHistory___loadFromMap_map_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2148,6 +2170,7 @@ void QWebHistory___backItems_setList(void* ptr, void* i)
 
 void* QWebHistory___backItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebHistoryItem>;
 }
 
@@ -2163,6 +2186,7 @@ void QWebHistory___forwardItems_setList(void* ptr, void* i)
 
 void* QWebHistory___forwardItems_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebHistoryItem>;
 }
 
@@ -2178,6 +2202,7 @@ void QWebHistory___items_setList(void* ptr, void* i)
 
 void* QWebHistory___items_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebHistoryItem>;
 }
 
@@ -2193,6 +2218,7 @@ void QWebHistory___toMap_setList(void* ptr, char* key, void* i)
 
 void* QWebHistory___toMap_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2213,6 +2239,7 @@ void QWebHistory_____loadFromMap_keyList_setList(void* ptr, char* i)
 
 void* QWebHistory_____loadFromMap_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2228,6 +2255,7 @@ void QWebHistory_____toMap_keyList_setList(void* ptr, char* i)
 
 void* QWebHistory_____toMap_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2332,6 +2360,7 @@ void QWebHistoryInterface___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebHistoryInterface___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2347,6 +2376,7 @@ void QWebHistoryInterface___findChildren_setList2(void* ptr, void* i)
 
 void* QWebHistoryInterface___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2362,6 +2392,7 @@ void QWebHistoryInterface___findChildren_setList3(void* ptr, void* i)
 
 void* QWebHistoryInterface___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2377,6 +2408,7 @@ void QWebHistoryInterface___findChildren_setList(void* ptr, void* i)
 
 void* QWebHistoryInterface___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2392,6 +2424,7 @@ void QWebHistoryInterface___children_setList(void* ptr, void* i)
 
 void* QWebHistoryInterface___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2507,6 +2540,7 @@ void QWebHistoryItem___loadFromMap_map_setList(void* ptr, char* key, void* i)
 
 void* QWebHistoryItem___loadFromMap_map_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2527,6 +2561,7 @@ void QWebHistoryItem___toMap_setList(void* ptr, char* key, void* i)
 
 void* QWebHistoryItem___toMap_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMap<QString, QVariant>;
 }
 
@@ -2547,6 +2582,7 @@ void QWebHistoryItem_____loadFromMap_keyList_setList(void* ptr, char* i)
 
 void* QWebHistoryItem_____loadFromMap_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2562,6 +2598,7 @@ void QWebHistoryItem_____toMap_keyList_setList(void* ptr, char* i)
 
 void* QWebHistoryItem_____toMap_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -2811,6 +2848,7 @@ void QWebInspector___addActions_actions_setList(void* ptr, void* i)
 
 void* QWebInspector___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2826,6 +2864,7 @@ void QWebInspector___insertActions_actions_setList(void* ptr, void* i)
 
 void* QWebInspector___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2841,6 +2880,7 @@ void QWebInspector___actions_setList(void* ptr, void* i)
 
 void* QWebInspector___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2856,6 +2896,7 @@ void QWebInspector___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebInspector___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2871,6 +2912,7 @@ void QWebInspector___findChildren_setList2(void* ptr, void* i)
 
 void* QWebInspector___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2886,6 +2928,7 @@ void QWebInspector___findChildren_setList3(void* ptr, void* i)
 
 void* QWebInspector___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2901,6 +2944,7 @@ void QWebInspector___findChildren_setList(void* ptr, void* i)
 
 void* QWebInspector___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2916,6 +2960,7 @@ void QWebInspector___children_setList(void* ptr, void* i)
 
 void* QWebInspector___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4130,6 +4175,7 @@ void QWebPage___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebPage___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4145,6 +4191,7 @@ void QWebPage___findChildren_setList2(void* ptr, void* i)
 
 void* QWebPage___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4160,6 +4207,7 @@ void QWebPage___findChildren_setList3(void* ptr, void* i)
 
 void* QWebPage___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4175,6 +4223,7 @@ void QWebPage___findChildren_setList(void* ptr, void* i)
 
 void* QWebPage___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4190,6 +4239,7 @@ void QWebPage___children_setList(void* ptr, void* i)
 
 void* QWebPage___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4273,6 +4323,7 @@ void QWebPluginFactory_DestroyQWebPluginFactory(void* ptr)
 
 void QWebPluginFactory_DestroyQWebPluginFactoryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4293,6 +4344,7 @@ void QWebPluginFactory___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebPluginFactory___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4308,6 +4360,7 @@ void QWebPluginFactory___findChildren_setList2(void* ptr, void* i)
 
 void* QWebPluginFactory___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4323,6 +4376,7 @@ void QWebPluginFactory___findChildren_setList3(void* ptr, void* i)
 
 void* QWebPluginFactory___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4338,6 +4392,7 @@ void QWebPluginFactory___findChildren_setList(void* ptr, void* i)
 
 void* QWebPluginFactory___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4353,6 +4408,7 @@ void QWebPluginFactory___children_setList(void* ptr, void* i)
 
 void* QWebPluginFactory___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4498,6 +4554,7 @@ void QWebSecurityOrigin___allOrigins_setList(void* ptr, void* i)
 
 void* QWebSecurityOrigin___allOrigins_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebSecurityOrigin>;
 }
 
@@ -4513,6 +4570,7 @@ void QWebSecurityOrigin___databases_setList(void* ptr, void* i)
 
 void* QWebSecurityOrigin___databases_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWebDatabase>;
 }
 
@@ -5387,6 +5445,7 @@ void QWebView___addActions_actions_setList(void* ptr, void* i)
 
 void* QWebView___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -5402,6 +5461,7 @@ void QWebView___insertActions_actions_setList(void* ptr, void* i)
 
 void* QWebView___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -5417,6 +5477,7 @@ void QWebView___actions_setList(void* ptr, void* i)
 
 void* QWebView___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -5432,6 +5493,7 @@ void QWebView___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QWebView___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5447,6 +5509,7 @@ void QWebView___findChildren_setList2(void* ptr, void* i)
 
 void* QWebView___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5462,6 +5525,7 @@ void QWebView___findChildren_setList3(void* ptr, void* i)
 
 void* QWebView___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5477,6 +5541,7 @@ void QWebView___findChildren_setList(void* ptr, void* i)
 
 void* QWebView___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -5492,6 +5557,7 @@ void QWebView___children_setList(void* ptr, void* i)
 
 void* QWebView___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

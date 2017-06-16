@@ -206,6 +206,7 @@ void QAbstractNetworkCache_DestroyQAbstractNetworkCache(void* ptr)
 
 void QAbstractNetworkCache_DestroyQAbstractNetworkCacheDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -226,6 +227,7 @@ void QAbstractNetworkCache___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractNetworkCache___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -241,6 +243,7 @@ void QAbstractNetworkCache___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractNetworkCache___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -256,6 +259,7 @@ void QAbstractNetworkCache___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractNetworkCache___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -271,6 +275,7 @@ void QAbstractNetworkCache___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractNetworkCache___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -286,6 +291,7 @@ void QAbstractNetworkCache___children_setList(void* ptr, void* i)
 
 void* QAbstractNetworkCache___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -882,6 +888,7 @@ void QAbstractSocket_DestroyQAbstractSocket(void* ptr)
 
 void QAbstractSocket_DestroyQAbstractSocketDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1022,6 +1029,7 @@ void QAbstractSocket___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractSocket___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1037,6 +1045,7 @@ void QAbstractSocket___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractSocket___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1052,6 +1061,7 @@ void QAbstractSocket___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractSocket___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1067,6 +1077,7 @@ void QAbstractSocket___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractSocket___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1082,6 +1093,7 @@ void QAbstractSocket___children_setList(void* ptr, void* i)
 
 void* QAbstractSocket___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1339,6 +1351,7 @@ void QAuthenticator___options_setList(void* ptr, char* key, void* i)
 
 void* QAuthenticator___options_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QHash<QString, QVariant>;
 }
 
@@ -1359,6 +1372,7 @@ void QAuthenticator_____options_keyList_setList(void* ptr, char* i)
 
 void* QAuthenticator_____options_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QString>;
 }
 
@@ -1761,6 +1775,7 @@ void QDnsLookup___canonicalNameRecords_setList(void* ptr, void* i)
 
 void* QDnsLookup___canonicalNameRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDnsDomainNameRecord>;
 }
 
@@ -1776,6 +1791,7 @@ void QDnsLookup___nameServerRecords_setList(void* ptr, void* i)
 
 void* QDnsLookup___nameServerRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDnsDomainNameRecord>;
 }
 
@@ -1791,6 +1807,7 @@ void QDnsLookup___pointerRecords_setList(void* ptr, void* i)
 
 void* QDnsLookup___pointerRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDnsDomainNameRecord>;
 }
 
@@ -1806,6 +1823,7 @@ void QDnsLookup___hostAddressRecords_setList(void* ptr, void* i)
 
 void* QDnsLookup___hostAddressRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDnsHostAddressRecord>;
 }
 
@@ -1821,6 +1839,7 @@ void QDnsLookup___mailExchangeRecords_setList(void* ptr, void* i)
 
 void* QDnsLookup___mailExchangeRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDnsMailExchangeRecord>;
 }
 
@@ -1836,6 +1855,7 @@ void QDnsLookup___serviceRecords_setList(void* ptr, void* i)
 
 void* QDnsLookup___serviceRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDnsServiceRecord>;
 }
 
@@ -1851,6 +1871,7 @@ void QDnsLookup___textRecords_setList(void* ptr, void* i)
 
 void* QDnsLookup___textRecords_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QDnsTextRecord>;
 }
 
@@ -1866,6 +1887,7 @@ void QDnsLookup___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QDnsLookup___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1881,6 +1903,7 @@ void QDnsLookup___findChildren_setList2(void* ptr, void* i)
 
 void* QDnsLookup___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1896,6 +1919,7 @@ void QDnsLookup___findChildren_setList3(void* ptr, void* i)
 
 void* QDnsLookup___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1911,6 +1935,7 @@ void QDnsLookup___findChildren_setList(void* ptr, void* i)
 
 void* QDnsLookup___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1926,6 +1951,7 @@ void QDnsLookup___children_setList(void* ptr, void* i)
 
 void* QDnsLookup___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2111,6 +2137,7 @@ void QDnsTextRecord___values_setList(void* ptr, void* i)
 
 void* QDnsTextRecord___values_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2241,6 +2268,7 @@ unsigned int QHostAddress_ToIPv4Address(void* ptr)
 
 unsigned int QHostAddress_ToIPv4Address2(void* ptr, char ok)
 {
+	Q_UNUSED(ok);
 	return static_cast<QHostAddress*>(ptr)->toIPv4Address(NULL);
 }
 
@@ -2346,6 +2374,7 @@ void QHostInfo___setAddresses_addresses_setList(void* ptr, void* i)
 
 void* QHostInfo___setAddresses_addresses_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QHostAddress>;
 }
 
@@ -2361,6 +2390,7 @@ void QHostInfo___addresses_setList(void* ptr, void* i)
 
 void* QHostInfo___addresses_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QHostAddress>;
 }
 
@@ -2505,6 +2535,7 @@ void QHttpMultiPart___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QHttpMultiPart___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2520,6 +2551,7 @@ void QHttpMultiPart___findChildren_setList2(void* ptr, void* i)
 
 void* QHttpMultiPart___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2535,6 +2567,7 @@ void QHttpMultiPart___findChildren_setList3(void* ptr, void* i)
 
 void* QHttpMultiPart___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2550,6 +2583,7 @@ void QHttpMultiPart___findChildren_setList(void* ptr, void* i)
 
 void* QHttpMultiPart___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2565,6 +2599,7 @@ void QHttpMultiPart___children_setList(void* ptr, void* i)
 
 void* QHttpMultiPart___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2741,6 +2776,7 @@ char QLocalServer_QLocalServer_RemoveServer(char* name)
 
 char QLocalServer_WaitForNewConnection(void* ptr, int msec, char timedOut)
 {
+	Q_UNUSED(timedOut);
 	return static_cast<QLocalServer*>(ptr)->waitForNewConnection(msec, NULL);
 }
 
@@ -2846,6 +2882,7 @@ void QLocalServer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QLocalServer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2861,6 +2898,7 @@ void QLocalServer___findChildren_setList2(void* ptr, void* i)
 
 void* QLocalServer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2876,6 +2914,7 @@ void QLocalServer___findChildren_setList3(void* ptr, void* i)
 
 void* QLocalServer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2891,6 +2930,7 @@ void QLocalServer___findChildren_setList(void* ptr, void* i)
 
 void* QLocalServer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2906,6 +2946,7 @@ void QLocalServer___children_setList(void* ptr, void* i)
 
 void* QLocalServer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3254,6 +3295,7 @@ void QLocalSocket___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QLocalSocket___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3269,6 +3311,7 @@ void QLocalSocket___findChildren_setList2(void* ptr, void* i)
 
 void* QLocalSocket___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3284,6 +3327,7 @@ void QLocalSocket___findChildren_setList3(void* ptr, void* i)
 
 void* QLocalSocket___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3299,6 +3343,7 @@ void QLocalSocket___findChildren_setList(void* ptr, void* i)
 
 void* QLocalSocket___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3314,6 +3359,7 @@ void QLocalSocket___children_setList(void* ptr, void* i)
 
 void* QLocalSocket___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3752,6 +3798,7 @@ void QNetworkAccessManager___sslErrors_errors_setList(void* ptr, void* i)
 
 void* QNetworkAccessManager___sslErrors_errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -3767,6 +3814,7 @@ void QNetworkAccessManager___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNetworkAccessManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -3782,6 +3830,7 @@ void QNetworkAccessManager___findChildren_setList2(void* ptr, void* i)
 
 void* QNetworkAccessManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3797,6 +3846,7 @@ void QNetworkAccessManager___findChildren_setList3(void* ptr, void* i)
 
 void* QNetworkAccessManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3812,6 +3862,7 @@ void QNetworkAccessManager___findChildren_setList(void* ptr, void* i)
 
 void* QNetworkAccessManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -3827,6 +3878,7 @@ void QNetworkAccessManager___children_setList(void* ptr, void* i)
 
 void* QNetworkAccessManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4087,6 +4139,7 @@ void QNetworkConfiguration___children_setList(void* ptr, void* i)
 
 void* QNetworkConfiguration___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkConfiguration>;
 }
 
@@ -4251,6 +4304,7 @@ void QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(void* ptr)
 
 void QNetworkConfigurationManager_DestroyQNetworkConfigurationManagerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4291,6 +4345,7 @@ void QNetworkConfigurationManager___allConfigurations_setList(void* ptr, void* i
 
 void* QNetworkConfigurationManager___allConfigurations_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkConfiguration>;
 }
 
@@ -4306,6 +4361,7 @@ void QNetworkConfigurationManager___dynamicPropertyNames_setList(void* ptr, void
 
 void* QNetworkConfigurationManager___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4321,6 +4377,7 @@ void QNetworkConfigurationManager___findChildren_setList2(void* ptr, void* i)
 
 void* QNetworkConfigurationManager___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4336,6 +4393,7 @@ void QNetworkConfigurationManager___findChildren_setList3(void* ptr, void* i)
 
 void* QNetworkConfigurationManager___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4351,6 +4409,7 @@ void QNetworkConfigurationManager___findChildren_setList(void* ptr, void* i)
 
 void* QNetworkConfigurationManager___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4366,6 +4425,7 @@ void QNetworkConfigurationManager___children_setList(void* ptr, void* i)
 
 void* QNetworkConfigurationManager___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -4541,6 +4601,7 @@ void QNetworkCookie___parseCookies_setList(void* ptr, void* i)
 
 void* QNetworkCookie___parseCookies_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkCookie>;
 }
 
@@ -4665,6 +4726,7 @@ void QNetworkCookieJar_DestroyQNetworkCookieJar(void* ptr)
 
 void QNetworkCookieJar_DestroyQNetworkCookieJarDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -4705,6 +4767,7 @@ void QNetworkCookieJar___setCookiesFromUrl_cookieList_setList(void* ptr, void* i
 
 void* QNetworkCookieJar___setCookiesFromUrl_cookieList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkCookie>;
 }
 
@@ -4720,6 +4783,7 @@ void QNetworkCookieJar___setAllCookies_cookieList_setList(void* ptr, void* i)
 
 void* QNetworkCookieJar___setAllCookies_cookieList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkCookie>;
 }
 
@@ -4735,6 +4799,7 @@ void QNetworkCookieJar___allCookies_setList(void* ptr, void* i)
 
 void* QNetworkCookieJar___allCookies_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkCookie>;
 }
 
@@ -4750,6 +4815,7 @@ void QNetworkCookieJar___cookiesForUrl_setList(void* ptr, void* i)
 
 void* QNetworkCookieJar___cookiesForUrl_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkCookie>;
 }
 
@@ -4765,6 +4831,7 @@ void QNetworkCookieJar___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNetworkCookieJar___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -4780,6 +4847,7 @@ void QNetworkCookieJar___findChildren_setList2(void* ptr, void* i)
 
 void* QNetworkCookieJar___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4795,6 +4863,7 @@ void QNetworkCookieJar___findChildren_setList3(void* ptr, void* i)
 
 void* QNetworkCookieJar___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4810,6 +4879,7 @@ void QNetworkCookieJar___findChildren_setList(void* ptr, void* i)
 
 void* QNetworkCookieJar___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -4825,6 +4895,7 @@ void QNetworkCookieJar___children_setList(void* ptr, void* i)
 
 void* QNetworkCookieJar___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -5271,6 +5342,7 @@ void QNetworkInterface___allAddresses_setList(void* ptr, void* i)
 
 void* QNetworkInterface___allAddresses_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QHostAddress>;
 }
 
@@ -5286,6 +5358,7 @@ void QNetworkInterface___allInterfaces_setList(void* ptr, void* i)
 
 void* QNetworkInterface___allInterfaces_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkInterface>;
 }
 
@@ -5301,6 +5374,7 @@ void QNetworkInterface___addressEntries_setList(void* ptr, void* i)
 
 void* QNetworkInterface___addressEntries_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkAddressEntry>;
 }
 
@@ -5451,6 +5525,7 @@ void QNetworkProxy___rawHeaderList_setList(void* ptr, void* i)
 
 void* QNetworkProxy___rawHeaderList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -5504,6 +5579,7 @@ void QNetworkProxyFactory_DestroyQNetworkProxyFactory(void* ptr)
 
 void QNetworkProxyFactory_DestroyQNetworkProxyFactoryDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -5519,6 +5595,7 @@ void QNetworkProxyFactory___proxyForQuery_setList(void* ptr, void* i)
 
 void* QNetworkProxyFactory___proxyForQuery_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkProxy>;
 }
 
@@ -5534,6 +5611,7 @@ void QNetworkProxyFactory___queryProxy_setList(void* ptr, void* i)
 
 void* QNetworkProxyFactory___queryProxy_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkProxy>;
 }
 
@@ -5549,6 +5627,7 @@ void QNetworkProxyFactory___systemProxyForQuery_setList(void* ptr, void* i)
 
 void* QNetworkProxyFactory___systemProxyForQuery_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QNetworkProxy>;
 }
 
@@ -6103,6 +6182,7 @@ void QNetworkReply___ignoreSslErrors_errors_setList2(void* ptr, void* i)
 
 void* QNetworkReply___ignoreSslErrors_errors_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -6118,6 +6198,7 @@ void QNetworkReply___ignoreSslErrorsImplementation_errors_setList(void* ptr, voi
 
 void* QNetworkReply___ignoreSslErrorsImplementation_errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -6133,6 +6214,7 @@ void QNetworkReply___sslErrors_errors_setList(void* ptr, void* i)
 
 void* QNetworkReply___sslErrors_errors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -6148,6 +6230,7 @@ void QNetworkReply___rawHeaderList_setList(void* ptr, void* i)
 
 void* QNetworkReply___rawHeaderList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6163,6 +6246,7 @@ void QNetworkReply___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNetworkReply___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6178,6 +6262,7 @@ void QNetworkReply___findChildren_setList2(void* ptr, void* i)
 
 void* QNetworkReply___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6193,6 +6278,7 @@ void QNetworkReply___findChildren_setList3(void* ptr, void* i)
 
 void* QNetworkReply___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6208,6 +6294,7 @@ void QNetworkReply___findChildren_setList(void* ptr, void* i)
 
 void* QNetworkReply___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6223,6 +6310,7 @@ void QNetworkReply___children_setList(void* ptr, void* i)
 
 void* QNetworkReply___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -6258,6 +6346,9 @@ long long QNetworkReply_ReadData(void* ptr, char* data, long long maxSize)
 
 long long QNetworkReply_ReadDataDefault(void* ptr, char* data, long long maxSize)
 {
+	Q_UNUSED(ptr);
+	Q_UNUSED(data);
+	Q_UNUSED(maxSize);
 	
 }
 
@@ -6478,6 +6569,7 @@ void QNetworkRequest___rawHeaderList_setList(void* ptr, void* i)
 
 void* QNetworkRequest___rawHeaderList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6750,6 +6842,7 @@ void QNetworkSession_DestroyQNetworkSession(void* ptr)
 
 void QNetworkSession_DestroyQNetworkSessionDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -6820,6 +6913,7 @@ void QNetworkSession___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QNetworkSession___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -6835,6 +6929,7 @@ void QNetworkSession___findChildren_setList2(void* ptr, void* i)
 
 void* QNetworkSession___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6850,6 +6945,7 @@ void QNetworkSession___findChildren_setList3(void* ptr, void* i)
 
 void* QNetworkSession___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6865,6 +6961,7 @@ void QNetworkSession___findChildren_setList(void* ptr, void* i)
 
 void* QNetworkSession___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -6880,6 +6977,7 @@ void QNetworkSession___children_setList(void* ptr, void* i)
 
 void* QNetworkSession___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -7155,6 +7253,7 @@ void QSslCertificate___fromData_setList(void* ptr, void* i)
 
 void* QSslCertificate___fromData_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7170,6 +7269,7 @@ void QSslCertificate___fromDevice_setList(void* ptr, void* i)
 
 void* QSslCertificate___fromDevice_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7185,6 +7285,7 @@ void QSslCertificate___fromPath_setList(void* ptr, void* i)
 
 void* QSslCertificate___fromPath_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7200,6 +7301,7 @@ void QSslCertificate___verify_setList(void* ptr, void* i)
 
 void* QSslCertificate___verify_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -7215,6 +7317,7 @@ void QSslCertificate___verify_certificateChain_setList(void* ptr, void* i)
 
 void* QSslCertificate___verify_certificateChain_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7230,6 +7333,7 @@ void QSslCertificate___importPkcs12_caCertificates_setList(void* ptr, void* i)
 
 void* QSslCertificate___importPkcs12_caCertificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7245,6 +7349,7 @@ void QSslCertificate___issuerInfoAttributes_setList(void* ptr, void* i)
 
 void* QSslCertificate___issuerInfoAttributes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -7260,6 +7365,7 @@ void QSslCertificate___subjectInfoAttributes_setList(void* ptr, void* i)
 
 void* QSslCertificate___subjectInfoAttributes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -7275,6 +7381,7 @@ void QSslCertificate___extensions_setList(void* ptr, void* i)
 
 void* QSslCertificate___extensions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificateExtension>;
 }
 
@@ -7290,6 +7397,7 @@ void QSslCertificate___subjectAlternativeNames_setList(void* ptr, long long key,
 
 void* QSslCertificate___subjectAlternativeNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QMultiMap<QSsl::AlternativeNameEntryType, QString>;
 }
 
@@ -7310,6 +7418,7 @@ void QSslCertificate_____subjectAlternativeNames_keyList_setList(void* ptr, long
 
 void* QSslCertificate_____subjectAlternativeNames_keyList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSsl::AlternativeNameEntryType>;
 }
 
@@ -7665,6 +7774,7 @@ void QSslConfiguration___systemCaCertificates_setList(void* ptr, void* i)
 
 void* QSslConfiguration___systemCaCertificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7680,6 +7790,7 @@ void QSslConfiguration___supportedCiphers_setList(void* ptr, void* i)
 
 void* QSslConfiguration___supportedCiphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -7695,6 +7806,7 @@ void QSslConfiguration___supportedEllipticCurves_setList(void* ptr, void* i)
 
 void* QSslConfiguration___supportedEllipticCurves_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QSslEllipticCurve>;
 }
 
@@ -7710,6 +7822,7 @@ void QSslConfiguration___setAllowedNextProtocols_protocols_setList(void* ptr, vo
 
 void* QSslConfiguration___setAllowedNextProtocols_protocols_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -7725,6 +7838,7 @@ void QSslConfiguration___setCaCertificates_certificates_setList(void* ptr, void*
 
 void* QSslConfiguration___setCaCertificates_certificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7740,6 +7854,7 @@ void QSslConfiguration___setCiphers_ciphers_setList(void* ptr, void* i)
 
 void* QSslConfiguration___setCiphers_ciphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -7755,6 +7870,7 @@ void QSslConfiguration___setEllipticCurves_curves_setList(void* ptr, void* i)
 
 void* QSslConfiguration___setEllipticCurves_curves_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QSslEllipticCurve>;
 }
 
@@ -7770,6 +7886,7 @@ void QSslConfiguration___setLocalCertificateChain_localChain_setList(void* ptr, 
 
 void* QSslConfiguration___setLocalCertificateChain_localChain_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7785,6 +7902,7 @@ void QSslConfiguration___allowedNextProtocols_setList(void* ptr, void* i)
 
 void* QSslConfiguration___allowedNextProtocols_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -7800,6 +7918,7 @@ void QSslConfiguration___caCertificates_setList(void* ptr, void* i)
 
 void* QSslConfiguration___caCertificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7815,6 +7934,7 @@ void QSslConfiguration___localCertificateChain_setList(void* ptr, void* i)
 
 void* QSslConfiguration___localCertificateChain_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7830,6 +7950,7 @@ void QSslConfiguration___peerCertificateChain_setList(void* ptr, void* i)
 
 void* QSslConfiguration___peerCertificateChain_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -7845,6 +7966,7 @@ void QSslConfiguration___ciphers_setList(void* ptr, void* i)
 
 void* QSslConfiguration___ciphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -7860,6 +7982,7 @@ void QSslConfiguration___ellipticCurves_setList(void* ptr, void* i)
 
 void* QSslConfiguration___ellipticCurves_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QVector<QSslEllipticCurve>;
 }
 
@@ -8578,6 +8701,7 @@ void QSslSocket___defaultCaCertificates_setList(void* ptr, void* i)
 
 void* QSslSocket___defaultCaCertificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8593,6 +8717,7 @@ void QSslSocket___systemCaCertificates_setList(void* ptr, void* i)
 
 void* QSslSocket___systemCaCertificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8608,6 +8733,7 @@ void QSslSocket___defaultCiphers_setList(void* ptr, void* i)
 
 void* QSslSocket___defaultCiphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -8623,6 +8749,7 @@ void QSslSocket___supportedCiphers_setList(void* ptr, void* i)
 
 void* QSslSocket___supportedCiphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -8638,6 +8765,7 @@ void QSslSocket___addCaCertificates_certificates_setList2(void* ptr, void* i)
 
 void* QSslSocket___addCaCertificates_certificates_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8653,6 +8781,7 @@ void QSslSocket___addDefaultCaCertificates_certificates_setList2(void* ptr, void
 
 void* QSslSocket___addDefaultCaCertificates_certificates_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8668,6 +8797,7 @@ void QSslSocket___ignoreSslErrors_errors_setList2(void* ptr, void* i)
 
 void* QSslSocket___ignoreSslErrors_errors_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -8683,6 +8813,7 @@ void QSslSocket___setCaCertificates_certificates_setList(void* ptr, void* i)
 
 void* QSslSocket___setCaCertificates_certificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8698,6 +8829,7 @@ void QSslSocket___setCiphers_ciphers_setList(void* ptr, void* i)
 
 void* QSslSocket___setCiphers_ciphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -8713,6 +8845,7 @@ void QSslSocket___setDefaultCaCertificates_certificates_setList(void* ptr, void*
 
 void* QSslSocket___setDefaultCaCertificates_certificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8728,6 +8861,7 @@ void QSslSocket___setDefaultCiphers_ciphers_setList(void* ptr, void* i)
 
 void* QSslSocket___setDefaultCiphers_ciphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -8743,6 +8877,7 @@ void QSslSocket___setLocalCertificateChain_localChain_setList(void* ptr, void* i
 
 void* QSslSocket___setLocalCertificateChain_localChain_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8758,6 +8893,7 @@ void QSslSocket___sslErrors_errors_setList2(void* ptr, void* i)
 
 void* QSslSocket___sslErrors_errors_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -8773,6 +8909,7 @@ void QSslSocket___caCertificates_setList(void* ptr, void* i)
 
 void* QSslSocket___caCertificates_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8788,6 +8925,7 @@ void QSslSocket___localCertificateChain_setList(void* ptr, void* i)
 
 void* QSslSocket___localCertificateChain_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8803,6 +8941,7 @@ void QSslSocket___peerCertificateChain_setList(void* ptr, void* i)
 
 void* QSslSocket___peerCertificateChain_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCertificate>;
 }
 
@@ -8818,6 +8957,7 @@ void QSslSocket___ciphers_setList(void* ptr, void* i)
 
 void* QSslSocket___ciphers_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslCipher>;
 }
 
@@ -8833,6 +8973,7 @@ void QSslSocket___sslErrors_setList(void* ptr, void* i)
 
 void* QSslSocket___sslErrors_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QSslError>;
 }
 
@@ -8920,6 +9061,7 @@ char QTcpServer_Listen(void* ptr, void* address, unsigned short port)
 
 char QTcpServer_WaitForNewConnection(void* ptr, int msec, char timedOut)
 {
+	Q_UNUSED(timedOut);
 	return static_cast<QTcpServer*>(ptr)->waitForNewConnection(msec, NULL);
 }
 
@@ -8990,6 +9132,7 @@ void QTcpServer_DestroyQTcpServer(void* ptr)
 
 void QTcpServer_DestroyQTcpServerDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9050,6 +9193,7 @@ void QTcpServer___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QTcpServer___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -9065,6 +9209,7 @@ void QTcpServer___findChildren_setList2(void* ptr, void* i)
 
 void* QTcpServer___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9080,6 +9225,7 @@ void QTcpServer___findChildren_setList3(void* ptr, void* i)
 
 void* QTcpServer___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9095,6 +9241,7 @@ void QTcpServer___findChildren_setList(void* ptr, void* i)
 
 void* QTcpServer___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -9110,6 +9257,7 @@ void QTcpServer___children_setList(void* ptr, void* i)
 
 void* QTcpServer___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -9265,6 +9413,7 @@ void QTcpSocket_DestroyQTcpSocket(void* ptr)
 
 void QTcpSocket_DestroyQTcpSocketDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -9425,6 +9574,7 @@ void QUdpSocket_DestroyQUdpSocket(void* ptr)
 
 void QUdpSocket_DestroyQUdpSocketDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 

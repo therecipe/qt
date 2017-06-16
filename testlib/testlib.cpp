@@ -75,6 +75,7 @@ void QSignalSpy___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QSignalSpy___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QByteArray>;
 }
 
@@ -94,6 +95,7 @@ void QSignalSpy___findChildren_setList2(void* ptr, void* i)
 
 void* QSignalSpy___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -113,6 +115,7 @@ void QSignalSpy___findChildren_setList3(void* ptr, void* i)
 
 void* QSignalSpy___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -132,6 +135,7 @@ void QSignalSpy___findChildren_setList(void* ptr, void* i)
 
 void* QSignalSpy___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -151,6 +155,7 @@ void QSignalSpy___children_setList(void* ptr, void* i)
 
 void* QSignalSpy___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject *>;
 }
 
@@ -170,6 +175,7 @@ void QSignalSpy___QList_other_setList3(void* ptr, void* i)
 
 void* QSignalSpy___QList_other_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -189,6 +195,7 @@ void QSignalSpy___QList_other_setList2(void* ptr, void* i)
 
 void* QSignalSpy___QList_other_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -208,6 +215,7 @@ void QSignalSpy___fromSet_setList(void* ptr, void* i)
 
 void* QSignalSpy___fromSet_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -227,6 +235,7 @@ void QSignalSpy___fromStdList_setList(void* ptr, void* i)
 
 void* QSignalSpy___fromStdList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -246,6 +255,7 @@ void QSignalSpy___fromVector_setList(void* ptr, void* i)
 
 void* QSignalSpy___fromVector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -265,6 +275,7 @@ void QSignalSpy___fromVector_vector_setList(void* ptr, void* i)
 
 void* QSignalSpy___fromVector_vector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -284,6 +295,7 @@ void QSignalSpy___append_value_setList2(void* ptr, void* i)
 
 void* QSignalSpy___append_value_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -303,6 +315,7 @@ void QSignalSpy___swap_other_setList(void* ptr, void* i)
 
 void* QSignalSpy___swap_other_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -322,6 +335,7 @@ void QSignalSpy___mid_setList(void* ptr, void* i)
 
 void* QSignalSpy___mid_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -341,6 +355,7 @@ void QSignalSpy___toVector_setList(void* ptr, void* i)
 
 void* QSignalSpy___toVector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 		return new QList<QObject*>;
 }
 
@@ -543,6 +558,7 @@ void QTestEventList___QList_other_setList3(void* ptr, void* i)
 
 void* QTestEventList___QList_other_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -562,6 +578,7 @@ void QTestEventList___QList_other_setList2(void* ptr, void* i)
 
 void* QTestEventList___QList_other_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -581,6 +598,7 @@ void QTestEventList___fromSet_setList(void* ptr, void* i)
 
 void* QTestEventList___fromSet_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -600,6 +618,7 @@ void QTestEventList___fromStdList_setList(void* ptr, void* i)
 
 void* QTestEventList___fromStdList_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -619,6 +638,7 @@ void QTestEventList___fromVector_setList(void* ptr, void* i)
 
 void* QTestEventList___fromVector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -638,6 +658,7 @@ void QTestEventList___fromVector_vector_setList(void* ptr, void* i)
 
 void* QTestEventList___fromVector_vector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -657,6 +678,7 @@ void QTestEventList___append_value_setList2(void* ptr, void* i)
 
 void* QTestEventList___append_value_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -676,6 +698,7 @@ void QTestEventList___swap_other_setList(void* ptr, void* i)
 
 void* QTestEventList___swap_other_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -695,6 +718,7 @@ void QTestEventList___mid_setList(void* ptr, void* i)
 
 void* QTestEventList___mid_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -714,6 +738,7 @@ void QTestEventList___toVector_setList(void* ptr, void* i)
 
 void* QTestEventList___toVector_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 

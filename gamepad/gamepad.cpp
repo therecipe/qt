@@ -654,6 +654,7 @@ void QGamepad___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QGamepad___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -669,6 +670,7 @@ void QGamepad___findChildren_setList2(void* ptr, void* i)
 
 void* QGamepad___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -684,6 +686,7 @@ void QGamepad___findChildren_setList3(void* ptr, void* i)
 
 void* QGamepad___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -699,6 +702,7 @@ void QGamepad___findChildren_setList(void* ptr, void* i)
 
 void* QGamepad___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -714,6 +718,7 @@ void QGamepad___children_setList(void* ptr, void* i)
 
 void* QGamepad___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 

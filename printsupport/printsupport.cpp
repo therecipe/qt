@@ -217,6 +217,7 @@ void QAbstractPrintDialog___setOptionTabs_tabs_setList(void* ptr, void* i)
 
 void* QAbstractPrintDialog___setOptionTabs_tabs_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QWidget *>;
 }
 
@@ -232,6 +233,7 @@ void QAbstractPrintDialog___addActions_actions_setList(void* ptr, void* i)
 
 void* QAbstractPrintDialog___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -247,6 +249,7 @@ void QAbstractPrintDialog___insertActions_actions_setList(void* ptr, void* i)
 
 void* QAbstractPrintDialog___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -262,6 +265,7 @@ void QAbstractPrintDialog___actions_setList(void* ptr, void* i)
 
 void* QAbstractPrintDialog___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -277,6 +281,7 @@ void QAbstractPrintDialog___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QAbstractPrintDialog___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -292,6 +297,7 @@ void QAbstractPrintDialog___findChildren_setList2(void* ptr, void* i)
 
 void* QAbstractPrintDialog___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -307,6 +313,7 @@ void QAbstractPrintDialog___findChildren_setList3(void* ptr, void* i)
 
 void* QAbstractPrintDialog___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -322,6 +329,7 @@ void QAbstractPrintDialog___findChildren_setList(void* ptr, void* i)
 
 void* QAbstractPrintDialog___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -337,6 +345,7 @@ void QAbstractPrintDialog___children_setList(void* ptr, void* i)
 
 void* QAbstractPrintDialog___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1096,6 +1105,7 @@ void QPageSetupDialog___addActions_actions_setList(void* ptr, void* i)
 
 void* QPageSetupDialog___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1111,6 +1121,7 @@ void QPageSetupDialog___insertActions_actions_setList(void* ptr, void* i)
 
 void* QPageSetupDialog___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1126,6 +1137,7 @@ void QPageSetupDialog___actions_setList(void* ptr, void* i)
 
 void* QPageSetupDialog___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1141,6 +1153,7 @@ void QPageSetupDialog___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QPageSetupDialog___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1156,6 +1169,7 @@ void QPageSetupDialog___findChildren_setList2(void* ptr, void* i)
 
 void* QPageSetupDialog___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1171,6 +1185,7 @@ void QPageSetupDialog___findChildren_setList3(void* ptr, void* i)
 
 void* QPageSetupDialog___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1186,6 +1201,7 @@ void QPageSetupDialog___findChildren_setList(void* ptr, void* i)
 
 void* QPageSetupDialog___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1201,6 +1217,7 @@ void QPageSetupDialog___children_setList(void* ptr, void* i)
 
 void* QPageSetupDialog___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -1726,6 +1743,7 @@ void QPrintEngine_DestroyQPrintEngine(void* ptr)
 
 void QPrintEngine_DestroyQPrintEngineDefault(void* ptr)
 {
+	Q_UNUSED(ptr);
 
 }
 
@@ -1894,6 +1912,7 @@ void QPrintPreviewDialog___addActions_actions_setList(void* ptr, void* i)
 
 void* QPrintPreviewDialog___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1909,6 +1928,7 @@ void QPrintPreviewDialog___insertActions_actions_setList(void* ptr, void* i)
 
 void* QPrintPreviewDialog___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1924,6 +1944,7 @@ void QPrintPreviewDialog___actions_setList(void* ptr, void* i)
 
 void* QPrintPreviewDialog___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -1939,6 +1960,7 @@ void QPrintPreviewDialog___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QPrintPreviewDialog___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -1954,6 +1976,7 @@ void QPrintPreviewDialog___findChildren_setList2(void* ptr, void* i)
 
 void* QPrintPreviewDialog___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1969,6 +1992,7 @@ void QPrintPreviewDialog___findChildren_setList3(void* ptr, void* i)
 
 void* QPrintPreviewDialog___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1984,6 +2008,7 @@ void QPrintPreviewDialog___findChildren_setList(void* ptr, void* i)
 
 void* QPrintPreviewDialog___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -1999,6 +2024,7 @@ void QPrintPreviewDialog___children_setList(void* ptr, void* i)
 
 void* QPrintPreviewDialog___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -2689,6 +2715,7 @@ void QPrintPreviewWidget___addActions_actions_setList(void* ptr, void* i)
 
 void* QPrintPreviewWidget___addActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2704,6 +2731,7 @@ void QPrintPreviewWidget___insertActions_actions_setList(void* ptr, void* i)
 
 void* QPrintPreviewWidget___insertActions_actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2719,6 +2747,7 @@ void QPrintPreviewWidget___actions_setList(void* ptr, void* i)
 
 void* QPrintPreviewWidget___actions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QAction *>;
 }
 
@@ -2734,6 +2763,7 @@ void QPrintPreviewWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 
 void* QPrintPreviewWidget___dynamicPropertyNames_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QByteArray>;
 }
 
@@ -2749,6 +2779,7 @@ void QPrintPreviewWidget___findChildren_setList2(void* ptr, void* i)
 
 void* QPrintPreviewWidget___findChildren_newList2(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2764,6 +2795,7 @@ void QPrintPreviewWidget___findChildren_setList3(void* ptr, void* i)
 
 void* QPrintPreviewWidget___findChildren_newList3(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2779,6 +2811,7 @@ void QPrintPreviewWidget___findChildren_setList(void* ptr, void* i)
 
 void* QPrintPreviewWidget___findChildren_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject*>;
 }
 
@@ -2794,6 +2827,7 @@ void QPrintPreviewWidget___children_setList(void* ptr, void* i)
 
 void* QPrintPreviewWidget___children_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QObject *>;
 }
 
@@ -3401,6 +3435,7 @@ void QPrinter___supportedResolutions_setList(void* ptr, int i)
 
 void* QPrinter___supportedResolutions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
@@ -3556,6 +3591,7 @@ void QPrinterInfo___availablePrinters_setList(void* ptr, void* i)
 
 void* QPrinterInfo___availablePrinters_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPrinterInfo>;
 }
 
@@ -3571,6 +3607,7 @@ void QPrinterInfo___supportedPageSizes_setList(void* ptr, void* i)
 
 void* QPrinterInfo___supportedPageSizes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPageSize>;
 }
 
@@ -3586,6 +3623,7 @@ void QPrinterInfo___supportedDuplexModes_setList(void* ptr, long long i)
 
 void* QPrinterInfo___supportedDuplexModes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPrinter::DuplexMode>;
 }
 
@@ -3601,6 +3639,7 @@ void QPrinterInfo___supportedPaperSizes_setList(void* ptr, long long i)
 
 void* QPrinterInfo___supportedPaperSizes_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<QPrinter::PaperSize>;
 }
 
@@ -3616,6 +3655,7 @@ void QPrinterInfo___supportedResolutions_setList(void* ptr, int i)
 
 void* QPrinterInfo___supportedResolutions_newList(void* ptr)
 {
+	Q_UNUSED(ptr);
 	return new QList<int>;
 }
 
