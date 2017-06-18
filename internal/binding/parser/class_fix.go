@@ -182,6 +182,9 @@ func (c *Class) fixBases() {
 		{
 			if utils.QT_MSYS2() {
 				prefixPath = utils.QT_MSYS2_DIR()
+				if utils.QT_MSYS2_STATIC() {
+					prefixPath = filepath.Join(prefixPath, "qt5-static")
+				}
 			} else {
 				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32")
 			}

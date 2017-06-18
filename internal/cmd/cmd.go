@@ -83,7 +83,11 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 		if err != nil {
 			utils.Log.WithError(err).Error("failed to lookup current user")
 		} else {
-			args = append(args, "-u", fmt.Sprintf("%v:%v", u.Uid, u.Gid))
+			if writeCacheToHost {
+				args = append(args, "-u", fmt.Sprintf("%v:%v", u.Uid, u.Gid))
+			} else {
+				args = append(args, "-e", fmt.Sprintf("IDUG=%v:%v", u.Uid, u.Gid))
+			}
 		}
 	}
 

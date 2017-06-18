@@ -3,7 +3,11 @@ LABEL maintainer therecipe
 
 
 ONBUILD RUN go get -v github.com/Sirupsen/logrus && go get -v golang.org/x/crypto/ssh && go get -v golang.org/x/tools/imports
-ONBUILD RUN $GOPATH/bin/qtsetup update
+ONBUILD RUN $GOPATH/bin/qtsetup upgrade
+ONBUILD RUN $GOPATH/bin/qtsetup prep linux
+ONBUILD RUN $GOPATH/bin/qtsetup check linux
+ONBUILD RUN $GOPATH/bin/qtsetup generate linux
+ONBUILD RUN $GOPATH/bin/qtsetup install linux
 ONBUILD RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/golang.org/
 ONBUILD RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
 
@@ -43,3 +47,6 @@ RUN $GOPATH/bin/qtsetup prep linux
 RUN $GOPATH/bin/qtsetup check linux
 RUN $GOPATH/bin/qtsetup generate linux
 RUN $GOPATH/bin/qtsetup install linux
+
+RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/golang.org/
+RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/

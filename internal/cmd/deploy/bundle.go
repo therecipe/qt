@@ -477,4 +477,10 @@ func bundle(mode, target, path, name, depPath string) {
 			utils.Log.WithError(err).Panicf("failed to receive project for %v on %v", target, runtime.GOOS)
 		}
 	}
+
+	if utils.QT_DOCKER() {
+		if idug, ok := os.LookupEnv("IDUG"); ok {
+			utils.RunCmd(exec.Command("chown", "-R", idug, depPath), "chown files to user")
+		}
+	}
 }

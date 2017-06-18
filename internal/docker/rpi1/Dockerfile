@@ -2,7 +2,12 @@ FROM therecipe/qt:rpi
 
 
 ONBUILD RUN go get -v github.com/Sirupsen/logrus && go get -v golang.org/x/crypto/ssh && go get -v golang.org/x/tools/imports
-ONBUILD RUN $GOPATH/bin/qtsetup update
+ONBUILD RUN $GOPATH/bin/qtsetup upgrade
+ONBUILD RUN $GOPATH/bin/qtsetup prep linux
+ONBUILD RUN $GOPATH/bin/qtsetup check linux
+ONBUILD RUN $GOPATH/bin/qtsetup generate linux
+ONBUILD RUN $GOPATH/bin/qtsetup generate rpi1
+ONBUILD RUN $GOPATH/bin/qtsetup install rpi1
 ONBUILD RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/golang.org/
 ONBUILD RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
 
@@ -14,3 +19,6 @@ RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT http://www.qtrpi.com/downlo
 RUN $GOPATH/bin/qtsetup check rpi1
 RUN $GOPATH/bin/qtsetup generate rpi1
 RUN $GOPATH/bin/qtsetup install rpi1
+
+RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/golang.org/
+RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
