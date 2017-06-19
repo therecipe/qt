@@ -1,17 +1,6 @@
 FROM therecipe/qt:linux
 
 
-ONBUILD RUN go get -v github.com/Sirupsen/logrus && go get -v golang.org/x/crypto/ssh && go get -v golang.org/x/tools/imports
-ONBUILD RUN $GOPATH/bin/qtsetup upgrade
-ONBUILD RUN $GOPATH/bin/qtsetup prep linux
-ONBUILD RUN $GOPATH/bin/qtsetup check linux
-ONBUILD RUN $GOPATH/bin/qtsetup generate linux
-ONBUILD RUN $GOPATH/bin/qtsetup generate android
-ONBUILD RUN $GOPATH/bin/qtsetup install android
-ONBUILD RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/golang.org/
-ONBUILD RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
-
-
 ENV JDK_DIR /usr/lib/jvm/java-8-openjdk-amd64
 RUN add-apt-repository -y ppa:openjdk-r/ppa && apt-get -qq update && apt-get -y -qq install openjdk-8-jdk && apt-get -qq clean && update-ca-certificates -f
 
@@ -43,6 +32,3 @@ RUN $GOPATH/bin/qtsetup generate android
 RUN $GOPATH/bin/qtsetup install android
 
 RUN $GOPATH/bin/qtdeploy build android $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni
-
-RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/golang.org/
-RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
