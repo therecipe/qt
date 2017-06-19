@@ -1,3 +1,0 @@
-sut:
-  build: .
-  command: /trigger.sh
