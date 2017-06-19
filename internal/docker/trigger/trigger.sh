@@ -1,5 +1,7 @@
 #!/bin/bash
 
+env
+
 curl -H "Content-Type: application/json" --data '{"docker_tag": "linux"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 curl -H "Content-Type: application/json" --data '{"docker_tag": "android"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_shared"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
