@@ -1,4 +1,8 @@
-FROM appropriate/curl:latest
+FROM ubuntu:14.04
+
+ARG SECRET
+
+RUN apt-get -qq update && apt-get -y -qq install curl && apt-get -qq clean
 
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "linux"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "android"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
