@@ -1,6 +1,6 @@
 // +build boltdb
 
-package main
+package model
 
 import (
 	"encoding/json"
@@ -76,7 +76,7 @@ func getArtistForID(ID int) *Artist {
 	return artist
 }
 
-func getArtistForName(name string) *Artist {
+func GetArtistForName(name string) *Artist {
 	var artist *Artist
 
 	if err := boltdb.View(func(tx *bolt.Tx) error {
@@ -98,7 +98,7 @@ func getArtistForName(name string) *Artist {
 
 		return nil
 	}); err != nil {
-		println("failed to getArtistForName:", err.Error())
+		println("failed to GetArtistForName:", err.Error())
 	}
 
 	return artist
@@ -112,11 +112,11 @@ func getAlbumCount() int {
 	return albumCount
 }
 
-func getAlbumCountForArtist(name string) int {
-	return len(getArtistForName(name).Albums)
+func GetAlbumCountForArtist(name string) int {
+	return len(GetArtistForName(name).Albums)
 }
 
-func deleteAlbum(ID int) {
+func DeleteAlbum(ID int) {
 
 	if err := boltdb.Update(func(tx *bolt.Tx) error {
 
@@ -148,12 +148,12 @@ func deleteAlbum(ID int) {
 
 		return nil
 	}); err != nil {
-		println("failed to getArtistForName:", err.Error())
+		println("failed to GetArtistForName:", err.Error())
 	}
 
 }
 
-func createNewArtist(artistId int, name string) {
+func CreateNewArtist(artistId int, name string) {
 	artist := &Artist{artistId, name, make(map[int]*Album)}
 
 	if err := boltdb.Update(func(tx *bolt.Tx) error {
@@ -172,12 +172,12 @@ func createNewArtist(artistId int, name string) {
 
 		return nil
 	}); err != nil {
-		println("failed to createNewArtist:", err.Error())
+		println("failed to CreateNewArtist:", err.Error())
 	}
 
 }
 
-func createNewAlbum(artistId int, albumId int, title string, year int) {
+func CreateNewAlbum(artistId int, albumId int, title string, year int) {
 	album := &Album{albumId, title, year}
 
 	if err := boltdb.Update(func(tx *bolt.Tx) error {
@@ -203,12 +203,12 @@ func createNewAlbum(artistId int, albumId int, title string, year int) {
 
 		return nil
 	}); err != nil {
-		println("failed to createNewAlbum:", err.Error())
+		println("failed to CreateNewAlbum:", err.Error())
 	}
 
 }
 
-func getNextArtistID() int {
+func GetNextArtistID() int {
 	var highestID int
 
 	if err := boltdb.View(func(tx *bolt.Tx) error {
@@ -231,13 +231,13 @@ func getNextArtistID() int {
 
 		return nil
 	}); err != nil {
-		println("failed to getNextArtistID:", err.Error())
+		println("failed to GetNextArtistID:", err.Error())
 	}
 
 	return highestID + 1
 }
 
-func getNextAlbumID() int {
+func GetNextAlbumID() int {
 	var highestID int
 
 	if err := boltdb.View(func(tx *bolt.Tx) error {
@@ -262,7 +262,7 @@ func getNextAlbumID() int {
 
 		return nil
 	}); err != nil {
-		println("failed to getNextAlbumID:", err.Error())
+		println("failed to GetNextAlbumID:", err.Error())
 	}
 
 	return highestID + 1
@@ -281,7 +281,7 @@ func getModelArray() []*dbArrayStruct {
 
 	o := make([]*dbArrayStruct, 0)
 
-	for i := 0; i <= getNextAlbumID(); i++ {
+	for i := 0; i <= GetNextAlbumID(); i++ {
 		if s, ok := m[i]; ok {
 			o = append(o, s)
 		}

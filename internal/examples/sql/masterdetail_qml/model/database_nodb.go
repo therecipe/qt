@@ -1,6 +1,6 @@
 // +build !boltdb
 
-package main
+package model
 
 func getArtistCount() int {
 	return len(db)
@@ -10,7 +10,7 @@ func getArtistForID(ID int) *Artist {
 	return db[ID]
 }
 
-func getArtistForName(name string) *Artist {
+func GetArtistForName(name string) *Artist {
 	for _, artist := range db {
 		if artist.Name == name {
 			return artist
@@ -27,11 +27,11 @@ func getAlbumCount() int {
 	return albumCount
 }
 
-func getAlbumCountForArtist(name string) int {
-	return len(getArtistForName(name).Albums)
+func GetAlbumCountForArtist(name string) int {
+	return len(GetArtistForName(name).Albums)
 }
 
-func deleteAlbum(ID int) {
+func DeleteAlbum(ID int) {
 	for _, artist := range db {
 		for _, album := range artist.Albums {
 			if album.ID == ID {
@@ -41,15 +41,15 @@ func deleteAlbum(ID int) {
 	}
 }
 
-func createNewArtist(artistId int, name string) {
+func CreateNewArtist(artistId int, name string) {
 	db[artistId] = &Artist{artistId, name, make(map[int]*Album)}
 }
 
-func createNewAlbum(artistId int, albumId int, title string, year int) {
+func CreateNewAlbum(artistId int, albumId int, title string, year int) {
 	db[artistId].Albums[albumId] = &Album{albumId, title, year}
 }
 
-func getNextArtistID() int {
+func GetNextArtistID() int {
 	var highestID int
 	for _, artist := range db {
 		if artist.ID > highestID {
@@ -59,7 +59,7 @@ func getNextArtistID() int {
 	return highestID + 1
 }
 
-func getNextAlbumID() int {
+func GetNextAlbumID() int {
 	var highestID int
 	for _, artist := range db {
 		for _, album := range artist.Albums {
@@ -83,7 +83,7 @@ func getModelArray() []*dbArrayStruct {
 
 	o := make([]*dbArrayStruct, 0)
 
-	for i := 0; i <= getNextAlbumID(); i++ {
+	for i := 0; i <= GetNextAlbumID(); i++ {
 		if s, ok := m[i]; ok {
 			o = append(o, s)
 		}

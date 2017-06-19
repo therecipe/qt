@@ -9,44 +9,42 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/qml"
 	"github.com/therecipe/qt/widgets"
+
+	"github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/controller"
+
+	_ "github.com/therecipe/qt/internal/examples/sql/masterdetail_qml/view"
 )
 
-var qApp *widgets.QApplication
+const PRODUCTION = false
+
+func init() {
+	if !PRODUCTION {
+		os.Setenv("QML_DISABLE_DISK_CACHE", "true")
+	}
+}
 
 func main() {
-	path := filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "examples", "sql", "masterdetail_qml", "qml", "main.qml")
+	var path string
+	if PRODUCTION {
+		path = "qrc:/qml/view.qml"
+	} else {
+		path = filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "examples", "sql", "masterdetail_qml", "view", "qml", "view.qml")
+	}
 
-	qApp = widgets.NewQApplication(len(os.Args), os.Args)
+	qApp := widgets.NewQApplication(len(os.Args), os.Args)
+
+	controller.NewController(nil).InitWith(core.NewQFile2(":/albumdetails.xml"), qApp)
 
 	app := qml.NewQQmlApplicationEngine(nil)
-
-	app.RootContext().SetContextProperty("listModel", NewListModel())
-	app.RootContext().SetContextProperty("viewModel", NewSortFilterModel(NewViewModel()))
-
-	controller := NewController(nil)
-	controller.initWith(core.NewQFile2(":/albumdetails.xml"))
-	app.RootContext().SetContextProperty("controller", controller)
-
+	if PRODUCTION {
+		app.AddImportPath("qrc:/qml/")
+	} else {
+		app.AddImportPath("./view/detail/qml")
+		app.AddImportPath("./view/album/qml")
+		app.AddImportPath("./view/artist/qml")
+		app.AddImportPath("./view/dialog/qml")
+	}
 	app.Load(core.NewQUrl3(path, 0))
 
 	widgets.QApplication_Exec()
-}
-
-func initQmlApplication(path string) *qml.QQmlApplicationEngine {
-
-	app := qml.NewQQmlApplicationEngine(nil)
-
-	watcher := core.NewQFileSystemWatcher2([]string{filepath.Dir(path)}, nil)
-
-	reload := func(p string) {
-		println("changed:", p)
-		app.Load(core.NewQUrl())
-		app.ClearComponentCache()
-		app.Load(core.NewQUrl3(path, 0))
-	}
-
-	//watcher.ConnectFileChanged(reload)
-	watcher.ConnectDirectoryChanged(reload)
-
-	return app
 }
