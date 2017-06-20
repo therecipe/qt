@@ -745,12 +745,12 @@ void QAbstractPrintDialog_SetHiddenDefault(void* ptr, char hidden)
 	}
 }
 
-void QAbstractPrintDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QAbstractPrintDialog_SetStyleSheetDefault(void* ptr, struct QtPrintSupport_PackedString styleSheet)
 {
 	if (dynamic_cast<QPrintDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPrintDialog*>(ptr)->QPrintDialog::setStyleSheet(QString(styleSheet));
+		static_cast<QPrintDialog*>(ptr)->QPrintDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else {
-		static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::setStyleSheet(QString(styleSheet));
+		static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	}
 }
 
@@ -763,12 +763,12 @@ void QAbstractPrintDialog_SetWindowModifiedDefault(void* ptr, char vbo)
 	}
 }
 
-void QAbstractPrintDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+void QAbstractPrintDialog_SetWindowTitleDefault(void* ptr, struct QtPrintSupport_PackedString vqs)
 {
 	if (dynamic_cast<QPrintDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPrintDialog*>(ptr)->QPrintDialog::setWindowTitle(QString(vqs));
+		static_cast<QPrintDialog*>(ptr)->QPrintDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else {
-		static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::setWindowTitle(QString(vqs));
+		static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	}
 }
 
@@ -1428,9 +1428,9 @@ void QPageSetupDialog_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::setHidden(hidden != 0);
 }
 
-void QPageSetupDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QPageSetupDialog_SetStyleSheetDefault(void* ptr, struct QtPrintSupport_PackedString styleSheet)
 {
-		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::setStyleSheet(QString(styleSheet));
+		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QPageSetupDialog_SetWindowModifiedDefault(void* ptr, char vbo)
@@ -1438,9 +1438,9 @@ void QPageSetupDialog_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::setWindowModified(vbo != 0);
 }
 
-void QPageSetupDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+void QPageSetupDialog_SetWindowTitleDefault(void* ptr, struct QtPrintSupport_PackedString vqs)
 {
-		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::setWindowTitle(QString(vqs));
+		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QPageSetupDialog_ShowDefault(void* ptr)
@@ -2240,9 +2240,9 @@ void QPrintPreviewDialog_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::setHidden(hidden != 0);
 }
 
-void QPrintPreviewDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QPrintPreviewDialog_SetStyleSheetDefault(void* ptr, struct QtPrintSupport_PackedString styleSheet)
 {
-		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::setStyleSheet(QString(styleSheet));
+		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QPrintPreviewDialog_SetWindowModifiedDefault(void* ptr, char vbo)
@@ -2250,9 +2250,9 @@ void QPrintPreviewDialog_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::setWindowModified(vbo != 0);
 }
 
-void QPrintPreviewDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+void QPrintPreviewDialog_SetWindowTitleDefault(void* ptr, struct QtPrintSupport_PackedString vqs)
 {
-		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::setWindowTitle(QString(vqs));
+		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QPrintPreviewDialog_ShowDefault(void* ptr)
@@ -3006,9 +3006,9 @@ void QPrintPreviewWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setHidden(hidden != 0);
 }
 
-void QPrintPreviewWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QPrintPreviewWidget_SetStyleSheetDefault(void* ptr, struct QtPrintSupport_PackedString styleSheet)
 {
-		static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setStyleSheet(QString(styleSheet));
+		static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QPrintPreviewWidget_SetWindowModifiedDefault(void* ptr, char vbo)
@@ -3016,9 +3016,9 @@ void QPrintPreviewWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setWindowModified(vbo != 0);
 }
 
-void QPrintPreviewWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+void QPrintPreviewWidget_SetWindowTitleDefault(void* ptr, struct QtPrintSupport_PackedString vqs)
 {
-		static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setWindowTitle(QString(vqs));
+		static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QPrintPreviewWidget_ShowDefault(void* ptr)
@@ -3198,14 +3198,14 @@ void QPrinter_SetCopyCount(void* ptr, int count)
 	static_cast<QPrinter*>(ptr)->setCopyCount(count);
 }
 
-void QPrinter_SetCreator(void* ptr, char* creator)
+void QPrinter_SetCreator(void* ptr, struct QtPrintSupport_PackedString creator)
 {
-	static_cast<QPrinter*>(ptr)->setCreator(QString(creator));
+	static_cast<QPrinter*>(ptr)->setCreator(QString::fromUtf8(creator.data, creator.len));
 }
 
-void QPrinter_SetDocName(void* ptr, char* name)
+void QPrinter_SetDocName(void* ptr, struct QtPrintSupport_PackedString name)
 {
-	static_cast<QPrinter*>(ptr)->setDocName(QString(name));
+	static_cast<QPrinter*>(ptr)->setDocName(QString::fromUtf8(name.data, name.len));
 }
 
 void QPrinter_SetDuplex(void* ptr, long long duplex)
@@ -3233,9 +3233,9 @@ void QPrinter_SetFullPage(void* ptr, char fp)
 	static_cast<QPrinter*>(ptr)->setFullPage(fp != 0);
 }
 
-void QPrinter_SetOutputFileName(void* ptr, char* fileName)
+void QPrinter_SetOutputFileName(void* ptr, struct QtPrintSupport_PackedString fileName)
 {
-	static_cast<QPrinter*>(ptr)->setOutputFileName(QString(fileName));
+	static_cast<QPrinter*>(ptr)->setOutputFileName(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void QPrinter_SetOutputFormat(void* ptr, long long format)
@@ -3253,9 +3253,9 @@ void QPrinter_SetPaperSource(void* ptr, long long source)
 	static_cast<QPrinter*>(ptr)->setPaperSource(static_cast<QPrinter::PaperSource>(source));
 }
 
-void QPrinter_SetPrintProgram(void* ptr, char* printProg)
+void QPrinter_SetPrintProgram(void* ptr, struct QtPrintSupport_PackedString printProg)
 {
-	static_cast<QPrinter*>(ptr)->setPrintProgram(QString(printProg));
+	static_cast<QPrinter*>(ptr)->setPrintProgram(QString::fromUtf8(printProg.data, printProg.len));
 }
 
 void QPrinter_SetPrintRange(void* ptr, long long ran)
@@ -3263,14 +3263,14 @@ void QPrinter_SetPrintRange(void* ptr, long long ran)
 	static_cast<QPrinter*>(ptr)->setPrintRange(static_cast<QPrinter::PrintRange>(ran));
 }
 
-void QPrinter_SetPrinterName(void* ptr, char* name)
+void QPrinter_SetPrinterName(void* ptr, struct QtPrintSupport_PackedString name)
 {
-	static_cast<QPrinter*>(ptr)->setPrinterName(QString(name));
+	static_cast<QPrinter*>(ptr)->setPrinterName(QString::fromUtf8(name.data, name.len));
 }
 
-void QPrinter_SetPrinterSelectionOption(void* ptr, char* option)
+void QPrinter_SetPrinterSelectionOption(void* ptr, struct QtPrintSupport_PackedString option)
 {
-	static_cast<QPrinter*>(ptr)->setPrinterSelectionOption(QString(option));
+	static_cast<QPrinter*>(ptr)->setPrinterSelectionOption(QString::fromUtf8(option.data, option.len));
 }
 
 void QPrinter_SetResolution(void* ptr, int dpi)
@@ -3464,9 +3464,9 @@ void* QPrinterInfo_QPrinterInfo_DefaultPrinter()
 	return new QPrinterInfo(QPrinterInfo::defaultPrinter());
 }
 
-void* QPrinterInfo_QPrinterInfo_PrinterInfo(char* printerName)
+void* QPrinterInfo_QPrinterInfo_PrinterInfo(struct QtPrintSupport_PackedString printerName)
 {
-	return new QPrinterInfo(QPrinterInfo::printerInfo(QString(printerName)));
+	return new QPrinterInfo(QPrinterInfo::printerInfo(QString::fromUtf8(printerName.data, printerName.len)));
 }
 
 void* QPrinterInfo_NewQPrinterInfo()

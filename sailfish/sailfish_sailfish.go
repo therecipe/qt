@@ -125,7 +125,7 @@ func SailfishApp_PathTo(filename string) *core.QUrl {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(filenameC))
+	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{filenameC, C.longlong(len(filename))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -136,7 +136,7 @@ func (ptr *SailfishApp) PathTo(filename string) *core.QUrl {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(filenameC))
+	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{filenameC, C.longlong(len(filename))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }

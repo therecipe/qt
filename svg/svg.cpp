@@ -161,14 +161,14 @@ void* QGraphicsSvgItem_NewQGraphicsSvgItem(void* parent)
 	}
 }
 
-void* QGraphicsSvgItem_NewQGraphicsSvgItem2(char* fileName, void* parent)
+void* QGraphicsSvgItem_NewQGraphicsSvgItem2(struct QtSvg_PackedString fileName, void* parent)
 {
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQGraphicsSvgItem(QString(fileName), static_cast<QGraphicsObject*>(parent));
+		return new MyQGraphicsSvgItem(QString::fromUtf8(fileName.data, fileName.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQGraphicsSvgItem(QString(fileName), static_cast<QGraphicsWidget*>(parent));
+		return new MyQGraphicsSvgItem(QString::fromUtf8(fileName.data, fileName.len), static_cast<QGraphicsWidget*>(parent));
 	} else {
-		return new MyQGraphicsSvgItem(QString(fileName), static_cast<QGraphicsItem*>(parent));
+		return new MyQGraphicsSvgItem(QString::fromUtf8(fileName.data, fileName.len), static_cast<QGraphicsItem*>(parent));
 	}
 }
 
@@ -182,9 +182,9 @@ void QGraphicsSvgItem_PaintDefault(void* ptr, void* painter, void* option, void*
 		static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
-void QGraphicsSvgItem_SetElementId(void* ptr, char* id)
+void QGraphicsSvgItem_SetElementId(void* ptr, struct QtSvg_PackedString id)
 {
-	static_cast<QGraphicsSvgItem*>(ptr)->setElementId(QString(id));
+	static_cast<QGraphicsSvgItem*>(ptr)->setElementId(QString::fromUtf8(id.data, id.len));
 }
 
 void QGraphicsSvgItem_SetMaximumCacheSize(void* ptr, void* size)
@@ -579,14 +579,14 @@ void* QSvgGenerator_NewQSvgGenerator()
 	return new MyQSvgGenerator();
 }
 
-void QSvgGenerator_SetDescription(void* ptr, char* description)
+void QSvgGenerator_SetDescription(void* ptr, struct QtSvg_PackedString description)
 {
-	static_cast<QSvgGenerator*>(ptr)->setDescription(QString(description));
+	static_cast<QSvgGenerator*>(ptr)->setDescription(QString::fromUtf8(description.data, description.len));
 }
 
-void QSvgGenerator_SetFileName(void* ptr, char* fileName)
+void QSvgGenerator_SetFileName(void* ptr, struct QtSvg_PackedString fileName)
 {
-	static_cast<QSvgGenerator*>(ptr)->setFileName(QString(fileName));
+	static_cast<QSvgGenerator*>(ptr)->setFileName(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void QSvgGenerator_SetOutputDevice(void* ptr, void* outputDevice)
@@ -604,9 +604,9 @@ void QSvgGenerator_SetSize(void* ptr, void* size)
 	static_cast<QSvgGenerator*>(ptr)->setSize(*static_cast<QSize*>(size));
 }
 
-void QSvgGenerator_SetTitle(void* ptr, char* title)
+void QSvgGenerator_SetTitle(void* ptr, struct QtSvg_PackedString title)
 {
-	static_cast<QSvgGenerator*>(ptr)->setTitle(QString(title));
+	static_cast<QSvgGenerator*>(ptr)->setTitle(QString::fromUtf8(title.data, title.len));
 }
 
 void QSvgGenerator_SetViewBox(void* ptr, void* viewBox)
@@ -830,44 +830,44 @@ void* QSvgRenderer_NewQSvgRenderer3(void* contents, void* parent)
 	}
 }
 
-void* QSvgRenderer_NewQSvgRenderer2(char* filename, void* parent)
+void* QSvgRenderer_NewQSvgRenderer2(struct QtSvg_PackedString filename, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QCameraImageCapture*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QExtensionFactory*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QExtensionManager*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QGraphicsObject*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QGraphicsWidget*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QLayout*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QMediaPlaylist*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QMediaRecorder*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QOffscreenSurface*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QPdfWriter*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QQuickItem*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QRadioData*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QSignalSpy*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QWidget*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString(filename), static_cast<QWindow*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQSvgRenderer(QString(filename), static_cast<QObject*>(parent));
+		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -895,16 +895,16 @@ char QSvgRenderer_Load2Default(void* ptr, void* contents)
 		return static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::load(*static_cast<QByteArray*>(contents));
 }
 
-char QSvgRenderer_Load(void* ptr, char* filename)
+char QSvgRenderer_Load(void* ptr, struct QtSvg_PackedString filename)
 {
 	bool returnArg;
-	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_RETURN_ARG(bool, returnArg), Q_ARG(QString, QString(filename)));
+	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_RETURN_ARG(bool, returnArg), Q_ARG(QString, QString::fromUtf8(filename.data, filename.len)));
 	return returnArg;
 }
 
-char QSvgRenderer_LoadDefault(void* ptr, char* filename)
+char QSvgRenderer_LoadDefault(void* ptr, struct QtSvg_PackedString filename)
 {
-		return static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::load(QString(filename));
+		return static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::load(QString::fromUtf8(filename.data, filename.len));
 }
 
 void QSvgRenderer_Render(void* ptr, void* painter)
@@ -927,14 +927,14 @@ void QSvgRenderer_Render2Default(void* ptr, void* painter, void* bounds)
 		static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter), *static_cast<QRectF*>(bounds));
 }
 
-void QSvgRenderer_Render3(void* ptr, void* painter, char* elementId, void* bounds)
+void QSvgRenderer_Render3(void* ptr, void* painter, struct QtSvg_PackedString elementId, void* bounds)
 {
-	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "render", Q_ARG(QPainter*, static_cast<QPainter*>(painter)), Q_ARG(QString, QString(elementId)), Q_ARG(QRectF, *static_cast<QRectF*>(bounds)));
+	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "render", Q_ARG(QPainter*, static_cast<QPainter*>(painter)), Q_ARG(QString, QString::fromUtf8(elementId.data, elementId.len)), Q_ARG(QRectF, *static_cast<QRectF*>(bounds)));
 }
 
-void QSvgRenderer_Render3Default(void* ptr, void* painter, char* elementId, void* bounds)
+void QSvgRenderer_Render3Default(void* ptr, void* painter, struct QtSvg_PackedString elementId, void* bounds)
 {
-		static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter), QString(elementId), *static_cast<QRectF*>(bounds));
+		static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter), QString::fromUtf8(elementId.data, elementId.len), *static_cast<QRectF*>(bounds));
 }
 
 void QSvgRenderer_ConnectRepaintNeeded(void* ptr)
@@ -977,9 +977,9 @@ void* QSvgRenderer_ViewBox(void* ptr)
 	return ({ QRect tmpValue = static_cast<QSvgRenderer*>(ptr)->viewBox(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void* QSvgRenderer_BoundsOnElement(void* ptr, char* id)
+void* QSvgRenderer_BoundsOnElement(void* ptr, struct QtSvg_PackedString id)
 {
-	return ({ QRectF tmpValue = static_cast<QSvgRenderer*>(ptr)->boundsOnElement(QString(id)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	return ({ QRectF tmpValue = static_cast<QSvgRenderer*>(ptr)->boundsOnElement(QString::fromUtf8(id.data, id.len)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSvgRenderer_ViewBoxF(void* ptr)
@@ -997,9 +997,9 @@ char QSvgRenderer_Animated(void* ptr)
 	return static_cast<QSvgRenderer*>(ptr)->animated();
 }
 
-char QSvgRenderer_ElementExists(void* ptr, char* id)
+char QSvgRenderer_ElementExists(void* ptr, struct QtSvg_PackedString id)
 {
-	return static_cast<QSvgRenderer*>(ptr)->elementExists(QString(id));
+	return static_cast<QSvgRenderer*>(ptr)->elementExists(QString::fromUtf8(id.data, id.len));
 }
 
 char QSvgRenderer_IsValid(void* ptr)
@@ -1224,9 +1224,9 @@ void* QSvgWidget_NewQSvgWidget(void* parent)
 		return new MyQSvgWidget(static_cast<QWidget*>(parent));
 }
 
-void* QSvgWidget_NewQSvgWidget2(char* file, void* parent)
+void* QSvgWidget_NewQSvgWidget2(struct QtSvg_PackedString file, void* parent)
 {
-		return new MyQSvgWidget(QString(file), static_cast<QWidget*>(parent));
+		return new MyQSvgWidget(QString::fromUtf8(file.data, file.len), static_cast<QWidget*>(parent));
 }
 
 void QSvgWidget_Load2(void* ptr, void* contents)
@@ -1239,14 +1239,14 @@ void QSvgWidget_Load2Default(void* ptr, void* contents)
 		static_cast<QSvgWidget*>(ptr)->QSvgWidget::load(*static_cast<QByteArray*>(contents));
 }
 
-void QSvgWidget_Load(void* ptr, char* file)
+void QSvgWidget_Load(void* ptr, struct QtSvg_PackedString file)
 {
-	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QString, QString(file)));
+	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QString, QString::fromUtf8(file.data, file.len)));
 }
 
-void QSvgWidget_LoadDefault(void* ptr, char* file)
+void QSvgWidget_LoadDefault(void* ptr, struct QtSvg_PackedString file)
 {
-		static_cast<QSvgWidget*>(ptr)->QSvgWidget::load(QString(file));
+		static_cast<QSvgWidget*>(ptr)->QSvgWidget::load(QString::fromUtf8(file.data, file.len));
 }
 
 void QSvgWidget_PaintEventDefault(void* ptr, void* event)
@@ -1567,9 +1567,9 @@ void QSvgWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QSvgWidget*>(ptr)->QSvgWidget::setHidden(hidden != 0);
 }
 
-void QSvgWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QSvgWidget_SetStyleSheetDefault(void* ptr, struct QtSvg_PackedString styleSheet)
 {
-		static_cast<QSvgWidget*>(ptr)->QSvgWidget::setStyleSheet(QString(styleSheet));
+		static_cast<QSvgWidget*>(ptr)->QSvgWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QSvgWidget_SetVisibleDefault(void* ptr, char visible)
@@ -1582,9 +1582,9 @@ void QSvgWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QSvgWidget*>(ptr)->QSvgWidget::setWindowModified(vbo != 0);
 }
 
-void QSvgWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+void QSvgWidget_SetWindowTitleDefault(void* ptr, struct QtSvg_PackedString vqs)
 {
-		static_cast<QSvgWidget*>(ptr)->QSvgWidget::setWindowTitle(QString(vqs));
+		static_cast<QSvgWidget*>(ptr)->QSvgWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QSvgWidget_ShowDefault(void* ptr)

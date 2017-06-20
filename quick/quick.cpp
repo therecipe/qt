@@ -142,9 +142,9 @@ void* QQuickAsyncImageProvider_NewQQuickAsyncImageProvider()
 	return new MyQQuickAsyncImageProvider();
 }
 
-void* QQuickAsyncImageProvider_RequestImageResponse(void* ptr, char* id, void* requestedSize)
+void* QQuickAsyncImageProvider_RequestImageResponse(void* ptr, struct QtQuick_PackedString id, void* requestedSize)
 {
-	return static_cast<QQuickAsyncImageProvider*>(ptr)->requestImageResponse(QString(id), *static_cast<QSize*>(requestedSize));
+	return static_cast<QQuickAsyncImageProvider*>(ptr)->requestImageResponse(QString::fromUtf8(id.data, id.len), *static_cast<QSize*>(requestedSize));
 }
 
 void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(void* ptr)
@@ -276,31 +276,31 @@ public:
 	ImageType imageType() const { return static_cast<QQmlImageProviderBase::ImageType>(callbackQQuickImageProvider_ImageType(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
-void* QQuickImageProvider_RequestImage(void* ptr, char* id, void* size, void* requestedSize)
+void* QQuickImageProvider_RequestImage(void* ptr, struct QtQuick_PackedString id, void* size, void* requestedSize)
 {
-	return new QImage(static_cast<QQuickImageProvider*>(ptr)->requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+	return new QImage(static_cast<QQuickImageProvider*>(ptr)->requestImage(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 }
 
-void* QQuickImageProvider_RequestImageDefault(void* ptr, char* id, void* size, void* requestedSize)
+void* QQuickImageProvider_RequestImageDefault(void* ptr, struct QtQuick_PackedString id, void* size, void* requestedSize)
 {
 	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
-		return new QImage(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+		return new QImage(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestImage(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 	} else {
-		return new QImage(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+		return new QImage(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestImage(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 	}
 }
 
-void* QQuickImageProvider_RequestPixmap(void* ptr, char* id, void* size, void* requestedSize)
+void* QQuickImageProvider_RequestPixmap(void* ptr, struct QtQuick_PackedString id, void* size, void* requestedSize)
 {
-	return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+	return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->requestPixmap(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 }
 
-void* QQuickImageProvider_RequestPixmapDefault(void* ptr, char* id, void* size, void* requestedSize)
+void* QQuickImageProvider_RequestPixmapDefault(void* ptr, struct QtQuick_PackedString id, void* size, void* requestedSize)
 {
 	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
-		return new QPixmap(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+		return new QPixmap(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestPixmap(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 	} else {
-		return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+		return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestPixmap(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
 	}
 }
 
@@ -309,17 +309,17 @@ void* QQuickImageProvider_NewQQuickImageProvider(long long ty, long long flags)
 	return new MyQQuickImageProvider(static_cast<QQmlImageProviderBase::ImageType>(ty), static_cast<QQmlImageProviderBase::Flag>(flags));
 }
 
-void* QQuickImageProvider_RequestTexture(void* ptr, char* id, void* size, void* requestedSize)
+void* QQuickImageProvider_RequestTexture(void* ptr, struct QtQuick_PackedString id, void* size, void* requestedSize)
 {
-	return static_cast<QQuickImageProvider*>(ptr)->requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
+	return static_cast<QQuickImageProvider*>(ptr)->requestTexture(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
 }
 
-void* QQuickImageProvider_RequestTextureDefault(void* ptr, char* id, void* size, void* requestedSize)
+void* QQuickImageProvider_RequestTextureDefault(void* ptr, struct QtQuick_PackedString id, void* size, void* requestedSize)
 {
 	if (dynamic_cast<QQuickAsyncImageProvider*>(static_cast<QQuickImageProvider*>(ptr))) {
-		return static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
+		return static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestTexture(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
 	} else {
-		return static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
+		return static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestTexture(QString::fromUtf8(id.data, id.len), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
 	}
 }
 
@@ -370,7 +370,7 @@ public:
 	void Signal_Finished() { callbackQQuickImageResponse_Finished(this); };
 	 ~MyQQuickImageResponse() { callbackQQuickImageResponse_DestroyQQuickImageResponse(this); };
 	QQuickTextureFactory * textureFactory() const { return static_cast<QQuickTextureFactory*>(callbackQQuickImageResponse_TextureFactory(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString errorString() const { return QString(callbackQQuickImageResponse_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString errorString() const { return ({ QtQuick_PackedString tempVal = callbackQQuickImageResponse_ErrorString(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool event(QEvent * e) { return callbackQQuickImageResponse_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickImageResponse_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQQuickImageResponse_ChildEvent(this, event); };
@@ -1181,9 +1181,9 @@ void QQuickItem_SetSmooth(void* ptr, char vbo)
 		static_cast<QQuickItem*>(ptr)->setSmooth(vbo != 0);
 }
 
-void QQuickItem_SetState(void* ptr, char* vqs)
+void QQuickItem_SetState(void* ptr, struct QtQuick_PackedString vqs)
 {
-		static_cast<QQuickItem*>(ptr)->setState(QString(vqs));
+		static_cast<QQuickItem*>(ptr)->setState(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QQuickItem_SetTransformOrigin(void* ptr, long long vtr)
@@ -1949,9 +1949,9 @@ Q_DECLARE_METATYPE(MyQQuickItemGrabResult*)
 
 int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType(){return qRegisterMetaType<MyQQuickItemGrabResult*>();}
 
-char QQuickItemGrabResult_SaveToFile(void* ptr, char* fileName)
+char QQuickItemGrabResult_SaveToFile(void* ptr, struct QtQuick_PackedString fileName)
 {
-	return static_cast<QQuickItemGrabResult*>(ptr)->saveToFile(QString(fileName));
+	return static_cast<QQuickItemGrabResult*>(ptr)->saveToFile(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void QQuickItemGrabResult_ConnectReady(void* ptr)
@@ -3388,9 +3388,9 @@ void QQuickWidget_DisconnectSceneGraphError(void* ptr)
 	QObject::disconnect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWidget::sceneGraphError), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWidget::Signal_SceneGraphError));
 }
 
-void QQuickWidget_SceneGraphError(void* ptr, long long error, char* message)
+void QQuickWidget_SceneGraphError(void* ptr, long long error, struct QtQuick_PackedString message)
 {
-	static_cast<QQuickWidget*>(ptr)->sceneGraphError(static_cast<QQuickWindow::SceneGraphError>(error), QString(message));
+	static_cast<QQuickWidget*>(ptr)->sceneGraphError(static_cast<QQuickWindow::SceneGraphError>(error), QString::fromUtf8(message.data, message.len));
 }
 
 void QQuickWidget_SetClearColor(void* ptr, void* color)
@@ -3834,9 +3834,9 @@ void QQuickWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::setHidden(hidden != 0);
 }
 
-void QQuickWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QQuickWidget_SetStyleSheetDefault(void* ptr, struct QtQuick_PackedString styleSheet)
 {
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::setStyleSheet(QString(styleSheet));
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QQuickWidget_SetVisibleDefault(void* ptr, char visible)
@@ -3849,9 +3849,9 @@ void QQuickWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::setWindowModified(vbo != 0);
 }
 
-void QQuickWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+void QQuickWidget_SetWindowTitleDefault(void* ptr, struct QtQuick_PackedString vqs)
 {
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::setWindowTitle(QString(vqs));
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QQuickWidget_ShowDefault(void* ptr)
@@ -4387,9 +4387,9 @@ void QQuickWindow_DisconnectSceneGraphError(void* ptr)
 	QObject::disconnect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWindow::sceneGraphError), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWindow::Signal_SceneGraphError));
 }
 
-void QQuickWindow_SceneGraphError(void* ptr, long long error, char* message)
+void QQuickWindow_SceneGraphError(void* ptr, long long error, struct QtQuick_PackedString message)
 {
-	static_cast<QQuickWindow*>(ptr)->sceneGraphError(static_cast<QQuickWindow::SceneGraphError>(error), QString(message));
+	static_cast<QQuickWindow*>(ptr)->sceneGraphError(static_cast<QQuickWindow::SceneGraphError>(error), QString::fromUtf8(message.data, message.len));
 }
 
 void QQuickWindow_ConnectSceneGraphInitialized(void* ptr)
@@ -4467,9 +4467,9 @@ void QQuickWindow_QQuickWindow_SetSceneGraphBackend(long long api)
 	QQuickWindow::setSceneGraphBackend(static_cast<QSGRendererInterface::GraphicsApi>(api));
 }
 
-void QQuickWindow_QQuickWindow_SetSceneGraphBackend2(char* backend)
+void QQuickWindow_QQuickWindow_SetSceneGraphBackend2(struct QtQuick_PackedString backend)
 {
-	QQuickWindow::setSceneGraphBackend(QString(backend));
+	QQuickWindow::setSceneGraphBackend(QString::fromUtf8(backend.data, backend.len));
 }
 
 void QQuickWindow_ShowEventDefault(void* ptr, void* vqs)
@@ -4842,12 +4842,12 @@ void QQuickWindow_SetMinimumWidthDefault(void* ptr, int w)
 	}
 }
 
-void QQuickWindow_SetTitleDefault(void* ptr, char* vqs)
+void QQuickWindow_SetTitleDefault(void* ptr, struct QtQuick_PackedString vqs)
 {
 	if (dynamic_cast<QQuickView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QQuickView*>(ptr)->QQuickView::setTitle(QString(vqs));
+		static_cast<QQuickView*>(ptr)->QQuickView::setTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else {
-		static_cast<QQuickWindow*>(ptr)->QQuickWindow::setTitle(QString(vqs));
+		static_cast<QQuickWindow*>(ptr)->QQuickWindow::setTitle(QString::fromUtf8(vqs.data, vqs.len));
 	}
 }
 
@@ -6199,14 +6199,14 @@ void QSGMaterialShader_InitializeDefault(void* ptr)
 		static_cast<QSGMaterialShader*>(ptr)->QSGMaterialShader::initialize();
 }
 
-void QSGMaterialShader_SetShaderSourceFile(void* ptr, long long ty, char* sourceFile)
+void QSGMaterialShader_SetShaderSourceFile(void* ptr, long long ty, struct QtQuick_PackedString sourceFile)
 {
-	static_cast<QSGMaterialShader*>(ptr)->setShaderSourceFile(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString(sourceFile));
+	static_cast<QSGMaterialShader*>(ptr)->setShaderSourceFile(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString::fromUtf8(sourceFile.data, sourceFile.len));
 }
 
-void QSGMaterialShader_SetShaderSourceFiles(void* ptr, long long ty, char* sourceFiles)
+void QSGMaterialShader_SetShaderSourceFiles(void* ptr, long long ty, struct QtQuick_PackedString sourceFiles)
 {
-	static_cast<QSGMaterialShader*>(ptr)->setShaderSourceFiles(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString(sourceFiles).split("|", QString::SkipEmptyParts));
+	static_cast<QSGMaterialShader*>(ptr)->setShaderSourceFiles(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString::fromUtf8(sourceFiles.data, sourceFiles.len).split("|", QString::SkipEmptyParts));
 }
 
 class MyQSGNode: public QSGNode

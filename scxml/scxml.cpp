@@ -66,9 +66,9 @@ void* QScxmlCompiler_Compile(void* ptr)
 	return static_cast<QScxmlCompiler*>(ptr)->compile();
 }
 
-void QScxmlCompiler_SetFileName(void* ptr, char* fileName)
+void QScxmlCompiler_SetFileName(void* ptr, struct QtScxml_PackedString fileName)
 {
-	static_cast<QScxmlCompiler*>(ptr)->setFileName(QString(fileName));
+	static_cast<QScxmlCompiler*>(ptr)->setFileName(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void QScxmlCompiler_DestroyQScxmlCompiler(void* ptr)
@@ -134,14 +134,14 @@ Q_DECLARE_METATYPE(MyQScxmlCppDataModel*)
 
 int QScxmlCppDataModel_QScxmlCppDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlCppDataModel*>();}
 
-char QScxmlCppDataModel_SetScxmlProperty(void* ptr, char* name, void* value, char* context)
+char QScxmlCppDataModel_SetScxmlProperty(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
-	return static_cast<QScxmlCppDataModel*>(ptr)->setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+	return static_cast<QScxmlCppDataModel*>(ptr)->setScxmlProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), QString::fromUtf8(context.data, context.len));
 }
 
-char QScxmlCppDataModel_SetScxmlPropertyDefault(void* ptr, char* name, void* value, char* context)
+char QScxmlCppDataModel_SetScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
-		return static_cast<QScxmlCppDataModel*>(ptr)->QScxmlCppDataModel::setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+		return static_cast<QScxmlCppDataModel*>(ptr)->QScxmlCppDataModel::setScxmlProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), QString::fromUtf8(context.data, context.len));
 }
 
 char QScxmlCppDataModel_Setup(void* ptr, void* initialDataValues)
@@ -159,29 +159,29 @@ void QScxmlCppDataModel_SetScxmlEvent(void* ptr, void* event)
 	static_cast<QScxmlCppDataModel*>(ptr)->setScxmlEvent(*static_cast<QScxmlEvent*>(event));
 }
 
-void* QScxmlCppDataModel_ScxmlProperty(void* ptr, char* name)
+void* QScxmlCppDataModel_ScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return new QVariant(static_cast<QScxmlCppDataModel*>(ptr)->scxmlProperty(QString(name)));
+	return new QVariant(static_cast<QScxmlCppDataModel*>(ptr)->scxmlProperty(QString::fromUtf8(name.data, name.len)));
 }
 
-void* QScxmlCppDataModel_ScxmlPropertyDefault(void* ptr, char* name)
+void* QScxmlCppDataModel_ScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name)
 {
-		return new QVariant(static_cast<QScxmlCppDataModel*>(ptr)->QScxmlCppDataModel::scxmlProperty(QString(name)));
+		return new QVariant(static_cast<QScxmlCppDataModel*>(ptr)->QScxmlCppDataModel::scxmlProperty(QString::fromUtf8(name.data, name.len)));
 }
 
-char QScxmlCppDataModel_HasScxmlProperty(void* ptr, char* name)
+char QScxmlCppDataModel_HasScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return static_cast<QScxmlCppDataModel*>(ptr)->hasScxmlProperty(QString(name));
+	return static_cast<QScxmlCppDataModel*>(ptr)->hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
-char QScxmlCppDataModel_HasScxmlPropertyDefault(void* ptr, char* name)
+char QScxmlCppDataModel_HasScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name)
 {
-		return static_cast<QScxmlCppDataModel*>(ptr)->QScxmlCppDataModel::hasScxmlProperty(QString(name));
+		return static_cast<QScxmlCppDataModel*>(ptr)->QScxmlCppDataModel::hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
-char QScxmlCppDataModel_InState(void* ptr, char* stateName)
+char QScxmlCppDataModel_InState(void* ptr, struct QtScxml_PackedString stateName)
 {
-	return static_cast<QScxmlCppDataModel*>(ptr)->inState(QString(stateName));
+	return static_cast<QScxmlCppDataModel*>(ptr)->inState(QString::fromUtf8(stateName.data, stateName.len));
 }
 
 void* QScxmlCppDataModel_ScxmlEvent(void* ptr)
@@ -214,9 +214,9 @@ Q_DECLARE_METATYPE(MyQScxmlDataModel*)
 
 int QScxmlDataModel_QScxmlDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlDataModel*>();}
 
-char QScxmlDataModel_SetScxmlProperty(void* ptr, char* name, void* value, char* context)
+char QScxmlDataModel_SetScxmlProperty(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
-	return static_cast<QScxmlDataModel*>(ptr)->setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+	return static_cast<QScxmlDataModel*>(ptr)->setScxmlProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), QString::fromUtf8(context.data, context.len));
 }
 
 char QScxmlDataModel_Setup(void* ptr, void* initialDataValues)
@@ -249,24 +249,24 @@ void* QScxmlDataModel_StateMachine(void* ptr)
 	return static_cast<QScxmlDataModel*>(ptr)->stateMachine();
 }
 
-void* QScxmlDataModel_ScxmlProperty(void* ptr, char* name)
+void* QScxmlDataModel_ScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return new QVariant(static_cast<QScxmlDataModel*>(ptr)->scxmlProperty(QString(name)));
+	return new QVariant(static_cast<QScxmlDataModel*>(ptr)->scxmlProperty(QString::fromUtf8(name.data, name.len)));
 }
 
-char QScxmlDataModel_HasScxmlProperty(void* ptr, char* name)
+char QScxmlDataModel_HasScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return static_cast<QScxmlDataModel*>(ptr)->hasScxmlProperty(QString(name));
+	return static_cast<QScxmlDataModel*>(ptr)->hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
-void* QScxmlDataModel___setup_initialDataValues_atList(void* ptr, char* i)
+void* QScxmlDataModel___setup_initialDataValues_atList(void* ptr, struct QtScxml_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QScxmlDataModel___setup_initialDataValues_setList(void* ptr, char* key, void* i)
+void QScxmlDataModel___setup_initialDataValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlDataModel___setup_initialDataValues_newList(void* ptr)
@@ -285,9 +285,9 @@ struct QtScxml_PackedString QScxmlDataModel_____setup_keyList_atList(void* ptr, 
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtScxml_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QScxmlDataModel_____setup_keyList_setList(void* ptr, char* i)
+void QScxmlDataModel_____setup_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlDataModel_____setup_keyList_newList(void* ptr)
@@ -604,14 +604,14 @@ void* QScxmlEcmaScriptDataModel_NewQScxmlEcmaScriptDataModel(void* parent)
 	}
 }
 
-char QScxmlEcmaScriptDataModel_SetScxmlProperty(void* ptr, char* name, void* value, char* context)
+char QScxmlEcmaScriptDataModel_SetScxmlProperty(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
-	return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+	return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->setScxmlProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), QString::fromUtf8(context.data, context.len));
 }
 
-char QScxmlEcmaScriptDataModel_SetScxmlPropertyDefault(void* ptr, char* name, void* value, char* context)
+char QScxmlEcmaScriptDataModel_SetScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
-		return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+		return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::setScxmlProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), QString::fromUtf8(context.data, context.len));
 }
 
 char QScxmlEcmaScriptDataModel_Setup(void* ptr, void* initialDataValues)
@@ -634,24 +634,24 @@ void QScxmlEcmaScriptDataModel_SetScxmlEventDefault(void* ptr, void* event)
 		static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::setScxmlEvent(*static_cast<QScxmlEvent*>(event));
 }
 
-void* QScxmlEcmaScriptDataModel_ScxmlProperty(void* ptr, char* name)
+void* QScxmlEcmaScriptDataModel_ScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return new QVariant(static_cast<QScxmlEcmaScriptDataModel*>(ptr)->scxmlProperty(QString(name)));
+	return new QVariant(static_cast<QScxmlEcmaScriptDataModel*>(ptr)->scxmlProperty(QString::fromUtf8(name.data, name.len)));
 }
 
-void* QScxmlEcmaScriptDataModel_ScxmlPropertyDefault(void* ptr, char* name)
+void* QScxmlEcmaScriptDataModel_ScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name)
 {
-		return new QVariant(static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::scxmlProperty(QString(name)));
+		return new QVariant(static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::scxmlProperty(QString::fromUtf8(name.data, name.len)));
 }
 
-char QScxmlEcmaScriptDataModel_HasScxmlProperty(void* ptr, char* name)
+char QScxmlEcmaScriptDataModel_HasScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->hasScxmlProperty(QString(name));
+	return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
-char QScxmlEcmaScriptDataModel_HasScxmlPropertyDefault(void* ptr, char* name)
+char QScxmlEcmaScriptDataModel_HasScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name)
 {
-		return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::hasScxmlProperty(QString(name));
+		return static_cast<QScxmlEcmaScriptDataModel*>(ptr)->QScxmlEcmaScriptDataModel::hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
 void* QScxmlError_NewQScxmlError()
@@ -664,9 +664,9 @@ void* QScxmlError_NewQScxmlError3(void* other)
 	return new QScxmlError(*static_cast<QScxmlError*>(other));
 }
 
-void* QScxmlError_NewQScxmlError2(char* fileName, int line, int column, char* description)
+void* QScxmlError_NewQScxmlError2(struct QtScxml_PackedString fileName, int line, int column, struct QtScxml_PackedString description)
 {
-	return new QScxmlError(QString(fileName), line, column, QString(description));
+	return new QScxmlError(QString::fromUtf8(fileName.data, fileName.len), line, column, QString::fromUtf8(description.data, description.len));
 }
 
 void QScxmlError_DestroyQScxmlError(void* ptr)
@@ -729,9 +729,9 @@ void QScxmlEvent_SetDelay(void* ptr, int delayInMiliSecs)
 	static_cast<QScxmlEvent*>(ptr)->setDelay(delayInMiliSecs);
 }
 
-void QScxmlEvent_SetErrorMessage(void* ptr, char* message)
+void QScxmlEvent_SetErrorMessage(void* ptr, struct QtScxml_PackedString message)
 {
-	static_cast<QScxmlEvent*>(ptr)->setErrorMessage(QString(message));
+	static_cast<QScxmlEvent*>(ptr)->setErrorMessage(QString::fromUtf8(message.data, message.len));
 }
 
 void QScxmlEvent_SetEventType(void* ptr, long long ty)
@@ -739,29 +739,29 @@ void QScxmlEvent_SetEventType(void* ptr, long long ty)
 	static_cast<QScxmlEvent*>(ptr)->setEventType(static_cast<QScxmlEvent::EventType>(ty));
 }
 
-void QScxmlEvent_SetInvokeId(void* ptr, char* invokeid)
+void QScxmlEvent_SetInvokeId(void* ptr, struct QtScxml_PackedString invokeid)
 {
-	static_cast<QScxmlEvent*>(ptr)->setInvokeId(QString(invokeid));
+	static_cast<QScxmlEvent*>(ptr)->setInvokeId(QString::fromUtf8(invokeid.data, invokeid.len));
 }
 
-void QScxmlEvent_SetName(void* ptr, char* name)
+void QScxmlEvent_SetName(void* ptr, struct QtScxml_PackedString name)
 {
-	static_cast<QScxmlEvent*>(ptr)->setName(QString(name));
+	static_cast<QScxmlEvent*>(ptr)->setName(QString::fromUtf8(name.data, name.len));
 }
 
-void QScxmlEvent_SetOrigin(void* ptr, char* origin)
+void QScxmlEvent_SetOrigin(void* ptr, struct QtScxml_PackedString origin)
 {
-	static_cast<QScxmlEvent*>(ptr)->setOrigin(QString(origin));
+	static_cast<QScxmlEvent*>(ptr)->setOrigin(QString::fromUtf8(origin.data, origin.len));
 }
 
-void QScxmlEvent_SetOriginType(void* ptr, char* origintype)
+void QScxmlEvent_SetOriginType(void* ptr, struct QtScxml_PackedString origintype)
 {
-	static_cast<QScxmlEvent*>(ptr)->setOriginType(QString(origintype));
+	static_cast<QScxmlEvent*>(ptr)->setOriginType(QString::fromUtf8(origintype.data, origintype.len));
 }
 
-void QScxmlEvent_SetSendId(void* ptr, char* sendid)
+void QScxmlEvent_SetSendId(void* ptr, struct QtScxml_PackedString sendid)
 {
-	static_cast<QScxmlEvent*>(ptr)->setSendId(QString(sendid));
+	static_cast<QScxmlEvent*>(ptr)->setSendId(QString::fromUtf8(sendid.data, sendid.len));
 }
 
 void QScxmlEvent_DestroyQScxmlEvent(void* ptr)
@@ -830,8 +830,8 @@ public:
 	MyQScxmlInvokableService(QScxmlStateMachine *parentStateMachine, QScxmlInvokableServiceFactory *parent) : QScxmlInvokableService(parentStateMachine, parent) {QScxmlInvokableService_QScxmlInvokableService_QRegisterMetaType();};
 	bool start() { return callbackQScxmlInvokableService_Start(this) != 0; };
 	void postEvent(QScxmlEvent * event) { callbackQScxmlInvokableService_PostEvent(this, event); };
-	QString id() const { return QString(callbackQScxmlInvokableService_Id(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString name() const { return QString(callbackQScxmlInvokableService_Name(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString id() const { return ({ QtScxml_PackedString tempVal = callbackQScxmlInvokableService_Id(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString name() const { return ({ QtScxml_PackedString tempVal = callbackQScxmlInvokableService_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool event(QEvent * e) { return callbackQScxmlInvokableService_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScxmlInvokableService_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQScxmlInvokableService_ChildEvent(this, event); };
@@ -1301,14 +1301,14 @@ void* QScxmlNullDataModel_NewQScxmlNullDataModel(void* parent)
 	}
 }
 
-char QScxmlNullDataModel_SetScxmlProperty(void* ptr, char* name, void* value, char* context)
+char QScxmlNullDataModel_SetScxmlProperty(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
-	return static_cast<QScxmlNullDataModel*>(ptr)->setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+	return static_cast<QScxmlNullDataModel*>(ptr)->setScxmlProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), QString::fromUtf8(context.data, context.len));
 }
 
-char QScxmlNullDataModel_SetScxmlPropertyDefault(void* ptr, char* name, void* value, char* context)
+char QScxmlNullDataModel_SetScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
-		return static_cast<QScxmlNullDataModel*>(ptr)->QScxmlNullDataModel::setScxmlProperty(QString(name), *static_cast<QVariant*>(value), QString(context));
+		return static_cast<QScxmlNullDataModel*>(ptr)->QScxmlNullDataModel::setScxmlProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), QString::fromUtf8(context.data, context.len));
 }
 
 char QScxmlNullDataModel_Setup(void* ptr, void* initialDataValues)
@@ -1336,24 +1336,24 @@ void QScxmlNullDataModel_DestroyQScxmlNullDataModel(void* ptr)
 	static_cast<QScxmlNullDataModel*>(ptr)->~QScxmlNullDataModel();
 }
 
-void* QScxmlNullDataModel_ScxmlProperty(void* ptr, char* name)
+void* QScxmlNullDataModel_ScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return new QVariant(static_cast<QScxmlNullDataModel*>(ptr)->scxmlProperty(QString(name)));
+	return new QVariant(static_cast<QScxmlNullDataModel*>(ptr)->scxmlProperty(QString::fromUtf8(name.data, name.len)));
 }
 
-void* QScxmlNullDataModel_ScxmlPropertyDefault(void* ptr, char* name)
+void* QScxmlNullDataModel_ScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name)
 {
-		return new QVariant(static_cast<QScxmlNullDataModel*>(ptr)->QScxmlNullDataModel::scxmlProperty(QString(name)));
+		return new QVariant(static_cast<QScxmlNullDataModel*>(ptr)->QScxmlNullDataModel::scxmlProperty(QString::fromUtf8(name.data, name.len)));
 }
 
-char QScxmlNullDataModel_HasScxmlProperty(void* ptr, char* name)
+char QScxmlNullDataModel_HasScxmlProperty(void* ptr, struct QtScxml_PackedString name)
 {
-	return static_cast<QScxmlNullDataModel*>(ptr)->hasScxmlProperty(QString(name));
+	return static_cast<QScxmlNullDataModel*>(ptr)->hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
-char QScxmlNullDataModel_HasScxmlPropertyDefault(void* ptr, char* name)
+char QScxmlNullDataModel_HasScxmlPropertyDefault(void* ptr, struct QtScxml_PackedString name)
 {
-		return static_cast<QScxmlNullDataModel*>(ptr)->QScxmlNullDataModel::hasScxmlProperty(QString(name));
+		return static_cast<QScxmlNullDataModel*>(ptr)->QScxmlNullDataModel::hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
 class MyQScxmlStateMachine: public QScxmlStateMachine
@@ -1388,14 +1388,14 @@ Q_DECLARE_METATYPE(MyQScxmlStateMachine*)
 
 int QScxmlStateMachine_QScxmlStateMachine_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlStateMachine*>();}
 
-void* QScxmlStateMachine_QScxmlStateMachine_FromData(void* data, char* fileName)
+void* QScxmlStateMachine_QScxmlStateMachine_FromData(void* data, struct QtScxml_PackedString fileName)
 {
-	return QScxmlStateMachine::fromData(static_cast<QIODevice*>(data), QString(fileName));
+	return QScxmlStateMachine::fromData(static_cast<QIODevice*>(data), QString::fromUtf8(fileName.data, fileName.len));
 }
 
-void* QScxmlStateMachine_QScxmlStateMachine_FromFile(char* fileName)
+void* QScxmlStateMachine_QScxmlStateMachine_FromFile(struct QtScxml_PackedString fileName)
 {
-	return QScxmlStateMachine::fromFile(QString(fileName));
+	return QScxmlStateMachine::fromFile(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void* QScxmlStateMachine_NewQScxmlStateMachine(void* metaObject, void* parent)
@@ -1456,9 +1456,9 @@ char QScxmlStateMachine_InitDefault(void* ptr)
 		return static_cast<QScxmlStateMachine*>(ptr)->QScxmlStateMachine::init();
 }
 
-void QScxmlStateMachine_CancelDelayedEvent(void* ptr, char* sendId)
+void QScxmlStateMachine_CancelDelayedEvent(void* ptr, struct QtScxml_PackedString sendId)
 {
-	static_cast<QScxmlStateMachine*>(ptr)->cancelDelayedEvent(QString(sendId));
+	static_cast<QScxmlStateMachine*>(ptr)->cancelDelayedEvent(QString::fromUtf8(sendId.data, sendId.len));
 }
 
 void QScxmlStateMachine_ConnectDataModelChanged(void* ptr)
@@ -1531,9 +1531,9 @@ void QScxmlStateMachine_DisconnectLog(void* ptr)
 	QObject::disconnect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)(const QString &, const QString &)>(&QScxmlStateMachine::log), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)(const QString &, const QString &)>(&MyQScxmlStateMachine::Signal_Log));
 }
 
-void QScxmlStateMachine_Log(void* ptr, char* label, char* msg)
+void QScxmlStateMachine_Log(void* ptr, struct QtScxml_PackedString label, struct QtScxml_PackedString msg)
 {
-	static_cast<QScxmlStateMachine*>(ptr)->log(QString(label), QString(msg));
+	static_cast<QScxmlStateMachine*>(ptr)->log(QString::fromUtf8(label.data, label.len), QString::fromUtf8(msg.data, msg.len));
 }
 
 void QScxmlStateMachine_ConnectReachedStableState(void* ptr)
@@ -1611,14 +1611,14 @@ void QScxmlStateMachine_SubmitEvent(void* ptr, void* event)
 	static_cast<QScxmlStateMachine*>(ptr)->submitEvent(static_cast<QScxmlEvent*>(event));
 }
 
-void QScxmlStateMachine_SubmitEvent2(void* ptr, char* eventName)
+void QScxmlStateMachine_SubmitEvent2(void* ptr, struct QtScxml_PackedString eventName)
 {
-	static_cast<QScxmlStateMachine*>(ptr)->submitEvent(QString(eventName));
+	static_cast<QScxmlStateMachine*>(ptr)->submitEvent(QString::fromUtf8(eventName.data, eventName.len));
 }
 
-void QScxmlStateMachine_SubmitEvent3(void* ptr, char* eventName, void* data)
+void QScxmlStateMachine_SubmitEvent3(void* ptr, struct QtScxml_PackedString eventName, void* data)
 {
-	static_cast<QScxmlStateMachine*>(ptr)->submitEvent(QString(eventName), *static_cast<QVariant*>(data));
+	static_cast<QScxmlStateMachine*>(ptr)->submitEvent(QString::fromUtf8(eventName.data, eventName.len), *static_cast<QVariant*>(data));
 }
 
 void QScxmlStateMachine_ConnectTableDataChanged(void* ptr)
@@ -1676,9 +1676,9 @@ struct QtScxml_PackedList QScxmlStateMachine_InvokedServices(void* ptr)
 	return ({ QVector<QScxmlInvokableService *>* tmpValue = new QVector<QScxmlInvokableService *>(static_cast<QScxmlStateMachine*>(ptr)->invokedServices()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-char QScxmlStateMachine_IsActive(void* ptr, char* scxmlStateName)
+char QScxmlStateMachine_IsActive(void* ptr, struct QtScxml_PackedString scxmlStateName)
 {
-	return static_cast<QScxmlStateMachine*>(ptr)->isActive(QString(scxmlStateName));
+	return static_cast<QScxmlStateMachine*>(ptr)->isActive(QString::fromUtf8(scxmlStateName.data, scxmlStateName.len));
 }
 
 char QScxmlStateMachine_IsActive2(void* ptr, int stateIndex)
@@ -1686,9 +1686,9 @@ char QScxmlStateMachine_IsActive2(void* ptr, int stateIndex)
 	return static_cast<QScxmlStateMachine*>(ptr)->isActive(stateIndex);
 }
 
-char QScxmlStateMachine_IsDispatchableTarget(void* ptr, char* target)
+char QScxmlStateMachine_IsDispatchableTarget(void* ptr, struct QtScxml_PackedString target)
 {
-	return static_cast<QScxmlStateMachine*>(ptr)->isDispatchableTarget(QString(target));
+	return static_cast<QScxmlStateMachine*>(ptr)->isDispatchableTarget(QString::fromUtf8(target.data, target.len));
 }
 
 char QScxmlStateMachine_IsInitialized(void* ptr)
@@ -1706,14 +1706,14 @@ char QScxmlStateMachine_IsRunning(void* ptr)
 	return static_cast<QScxmlStateMachine*>(ptr)->isRunning();
 }
 
-void* QScxmlStateMachine___initialValues_atList(void* ptr, char* i)
+void* QScxmlStateMachine___initialValues_atList(void* ptr, struct QtScxml_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QScxmlStateMachine___initialValues_setList(void* ptr, char* key, void* i)
+void QScxmlStateMachine___initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlStateMachine___initialValues_newList(void* ptr)
@@ -1727,14 +1727,14 @@ struct QtScxml_PackedList QScxmlStateMachine___initialValues_keyList(void* ptr)
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QScxmlStateMachine___initialValuesChanged_initialValues_atList(void* ptr, char* i)
+void* QScxmlStateMachine___initialValuesChanged_initialValues_atList(void* ptr, struct QtScxml_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QScxmlStateMachine___initialValuesChanged_initialValues_setList(void* ptr, char* key, void* i)
+void QScxmlStateMachine___initialValuesChanged_initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlStateMachine___initialValuesChanged_initialValues_newList(void* ptr)
@@ -1764,14 +1764,14 @@ void* QScxmlStateMachine___invokedServicesChanged_invokedServices_newList(void* 
 	return new QVector<QScxmlInvokableService *>;
 }
 
-void* QScxmlStateMachine___setInitialValues_initialValues_atList(void* ptr, char* i)
+void* QScxmlStateMachine___setInitialValues_initialValues_atList(void* ptr, struct QtScxml_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QScxmlStateMachine___setInitialValues_initialValues_setList(void* ptr, char* key, void* i)
+void QScxmlStateMachine___setInitialValues_initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlStateMachine___setInitialValues_initialValues_newList(void* ptr)
@@ -1822,9 +1822,9 @@ struct QtScxml_PackedString QScxmlStateMachine_____initialValues_keyList_atList(
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtScxml_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QScxmlStateMachine_____initialValues_keyList_setList(void* ptr, char* i)
+void QScxmlStateMachine_____initialValues_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlStateMachine_____initialValues_keyList_newList(void* ptr)
@@ -1838,9 +1838,9 @@ struct QtScxml_PackedString QScxmlStateMachine_____initialValuesChanged_keyList_
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtScxml_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QScxmlStateMachine_____initialValuesChanged_keyList_setList(void* ptr, char* i)
+void QScxmlStateMachine_____initialValuesChanged_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlStateMachine_____initialValuesChanged_keyList_newList(void* ptr)
@@ -1854,9 +1854,9 @@ struct QtScxml_PackedString QScxmlStateMachine_____setInitialValues_keyList_atLi
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtScxml_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QScxmlStateMachine_____setInitialValues_keyList_setList(void* ptr, char* i)
+void QScxmlStateMachine_____setInitialValues_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlStateMachine_____setInitialValues_keyList_newList(void* ptr)
@@ -2041,7 +2041,7 @@ public:
 	
 	
 	QScxmlInvokableServiceFactory * serviceFactory(int id) const { return static_cast<QScxmlInvokableServiceFactory*>(callbackQScxmlTableData_ServiceFactory(const_cast<void*>(static_cast<const void*>(this)), id)); };
-	QString name() const { return QString(callbackQScxmlTableData_Name(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString name() const { return ({ QtScxml_PackedString tempVal = callbackQScxmlTableData_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	
 };
 

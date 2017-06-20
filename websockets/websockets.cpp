@@ -304,44 +304,44 @@ Q_DECLARE_METATYPE(MyQWebSocket*)
 
 int QWebSocket_QWebSocket_QRegisterMetaType(){return qRegisterMetaType<MyQWebSocket*>();}
 
-void* QWebSocket_NewQWebSocket(char* origin, long long version, void* parent)
+void* QWebSocket_NewQWebSocket(struct QtWebSockets_PackedString origin, long long version, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QCameraImageCapture*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QExtensionFactory*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QExtensionManager*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QGraphicsObject*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QGraphicsWidget*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QLayout*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QMediaPlaylist*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QMediaRecorder*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QOffscreenSurface*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QPdfWriter*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QQuickItem*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QRadioData*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QSignalSpy*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QWidget*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QWindow*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QObject*>(parent));
+		return new MyQWebSocket(QString::fromUtf8(origin.data, origin.len), static_cast<QWebSocketProtocol::Version>(version), static_cast<QObject*>(parent));
 	}
 }
 
@@ -355,9 +355,9 @@ long long QWebSocket_SendBinaryMessage(void* ptr, void* data)
 	return static_cast<QWebSocket*>(ptr)->sendBinaryMessage(*static_cast<QByteArray*>(data));
 }
 
-long long QWebSocket_SendTextMessage(void* ptr, char* message)
+long long QWebSocket_SendTextMessage(void* ptr, struct QtWebSockets_PackedString message)
 {
-	return static_cast<QWebSocket*>(ptr)->sendTextMessage(QString(message));
+	return static_cast<QWebSocket*>(ptr)->sendTextMessage(QString::fromUtf8(message.data, message.len));
 }
 
 void QWebSocket_Abort(void* ptr)
@@ -425,14 +425,14 @@ void QWebSocket_BytesWritten(void* ptr, long long bytes)
 	static_cast<QWebSocket*>(ptr)->bytesWritten(bytes);
 }
 
-void QWebSocket_Close(void* ptr, long long closeCode, char* reason)
+void QWebSocket_Close(void* ptr, long long closeCode, struct QtWebSockets_PackedString reason)
 {
-	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "close", Q_ARG(QWebSocketProtocol::CloseCode, static_cast<QWebSocketProtocol::CloseCode>(closeCode)), Q_ARG(QString, QString(reason)));
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "close", Q_ARG(QWebSocketProtocol::CloseCode, static_cast<QWebSocketProtocol::CloseCode>(closeCode)), Q_ARG(QString, QString::fromUtf8(reason.data, reason.len)));
 }
 
-void QWebSocket_CloseDefault(void* ptr, long long closeCode, char* reason)
+void QWebSocket_CloseDefault(void* ptr, long long closeCode, struct QtWebSockets_PackedString reason)
 {
-		static_cast<QWebSocket*>(ptr)->QWebSocket::close(static_cast<QWebSocketProtocol::CloseCode>(closeCode), QString(reason));
+		static_cast<QWebSocket*>(ptr)->QWebSocket::close(static_cast<QWebSocketProtocol::CloseCode>(closeCode), QString::fromUtf8(reason.data, reason.len));
 }
 
 void QWebSocket_ConnectConnected(void* ptr)
@@ -655,9 +655,9 @@ void QWebSocket_DisconnectTextFrameReceived(void* ptr)
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &, bool)>(&QWebSocket::textFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &, bool)>(&MyQWebSocket::Signal_TextFrameReceived));
 }
 
-void QWebSocket_TextFrameReceived(void* ptr, char* frame, char isLastFrame)
+void QWebSocket_TextFrameReceived(void* ptr, struct QtWebSockets_PackedString frame, char isLastFrame)
 {
-	static_cast<QWebSocket*>(ptr)->textFrameReceived(QString(frame), isLastFrame != 0);
+	static_cast<QWebSocket*>(ptr)->textFrameReceived(QString::fromUtf8(frame.data, frame.len), isLastFrame != 0);
 }
 
 void QWebSocket_ConnectTextMessageReceived(void* ptr)
@@ -670,9 +670,9 @@ void QWebSocket_DisconnectTextMessageReceived(void* ptr)
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QString &)>(&QWebSocket::textMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QString &)>(&MyQWebSocket::Signal_TextMessageReceived));
 }
 
-void QWebSocket_TextMessageReceived(void* ptr, char* message)
+void QWebSocket_TextMessageReceived(void* ptr, struct QtWebSockets_PackedString message)
 {
-	static_cast<QWebSocket*>(ptr)->textMessageReceived(QString(message));
+	static_cast<QWebSocket*>(ptr)->textMessageReceived(QString::fromUtf8(message.data, message.len));
 }
 
 void QWebSocket_DestroyQWebSocket(void* ptr)
@@ -953,9 +953,9 @@ void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator3(void* other)
 	return new QWebSocketCorsAuthenticator(*static_cast<QWebSocketCorsAuthenticator*>(other));
 }
 
-void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(char* origin)
+void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(struct QtWebSockets_PackedString origin)
 {
-	return new QWebSocketCorsAuthenticator(QString(origin));
+	return new QWebSocketCorsAuthenticator(QString::fromUtf8(origin.data, origin.len));
 }
 
 void* QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator2(void* other)
@@ -1029,44 +1029,44 @@ void* QWebSocketServer_NextPendingConnectionDefault(void* ptr)
 		return static_cast<QWebSocketServer*>(ptr)->QWebSocketServer::nextPendingConnection();
 }
 
-void* QWebSocketServer_NewQWebSocketServer(char* serverName, long long secureMode, void* parent)
+void* QWebSocketServer_NewQWebSocketServer(struct QtWebSockets_PackedString serverName, long long secureMode, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QCameraImageCapture*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QExtensionFactory*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QExtensionManager*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QGraphicsObject*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QGraphicsWidget*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QLayout*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QMediaPlaylist*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QMediaRecorder*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QOffscreenSurface*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QPdfWriter*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QQuickItem*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QRadioData*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QSignalSpy*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QWidget*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QWindow*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQWebSocketServer(QString(serverName), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QObject*>(parent));
+		return new MyQWebSocketServer(QString::fromUtf8(serverName.data, serverName.len), static_cast<QWebSocketServer::SslMode>(secureMode), static_cast<QObject*>(parent));
 	}
 }
 
@@ -1210,9 +1210,9 @@ void QWebSocketServer_SetProxy(void* ptr, void* networkProxy)
 	static_cast<QWebSocketServer*>(ptr)->setProxy(*static_cast<QNetworkProxy*>(networkProxy));
 }
 
-void QWebSocketServer_SetServerName(void* ptr, char* serverName)
+void QWebSocketServer_SetServerName(void* ptr, struct QtWebSockets_PackedString serverName)
 {
-	static_cast<QWebSocketServer*>(ptr)->setServerName(QString(serverName));
+	static_cast<QWebSocketServer*>(ptr)->setServerName(QString::fromUtf8(serverName.data, serverName.len));
 }
 
 void QWebSocketServer_SetSslConfiguration(void* ptr, void* sslConfiguration)

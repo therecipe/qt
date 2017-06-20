@@ -90,9 +90,9 @@ void* QBluetoothAddress_NewQBluetoothAddress4(void* other)
 	return new QBluetoothAddress(*static_cast<QBluetoothAddress*>(other));
 }
 
-void* QBluetoothAddress_NewQBluetoothAddress3(char* address)
+void* QBluetoothAddress_NewQBluetoothAddress3(struct QtBluetooth_PackedString address)
 {
-	return new QBluetoothAddress(QString(address));
+	return new QBluetoothAddress(QString::fromUtf8(address.data, address.len));
 }
 
 void* QBluetoothAddress_NewQBluetoothAddress2(unsigned long long address)
@@ -522,9 +522,9 @@ void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo()
 	return new QBluetoothDeviceInfo();
 }
 
-void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo2(void* address, char* name, unsigned int classOfDevice)
+void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo2(void* address, struct QtBluetooth_PackedString name, unsigned int classOfDevice)
 {
-	return new QBluetoothDeviceInfo(*static_cast<QBluetoothAddress*>(address), QString(name), classOfDevice);
+	return new QBluetoothDeviceInfo(*static_cast<QBluetoothAddress*>(address), QString::fromUtf8(name.data, name.len), classOfDevice);
 }
 
 void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(void* other)
@@ -532,9 +532,9 @@ void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(void* other)
 	return new QBluetoothDeviceInfo(*static_cast<QBluetoothDeviceInfo*>(other));
 }
 
-void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo3(void* uuid, char* name, unsigned int classOfDevice)
+void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo3(void* uuid, struct QtBluetooth_PackedString name, unsigned int classOfDevice)
 {
-	return new QBluetoothDeviceInfo(*static_cast<QBluetoothUuid*>(uuid), QString(name), classOfDevice);
+	return new QBluetoothDeviceInfo(*static_cast<QBluetoothUuid*>(uuid), QString::fromUtf8(name.data, name.len), classOfDevice);
 }
 
 void QBluetoothDeviceInfo_SetCached(void* ptr, char cached)
@@ -669,9 +669,9 @@ void QBluetoothHostInfo_SetAddress(void* ptr, void* address)
 	static_cast<QBluetoothHostInfo*>(ptr)->setAddress(*static_cast<QBluetoothAddress*>(address));
 }
 
-void QBluetoothHostInfo_SetName(void* ptr, char* name)
+void QBluetoothHostInfo_SetName(void* ptr, struct QtBluetooth_PackedString name)
 {
-	static_cast<QBluetoothHostInfo*>(ptr)->setName(QString(name));
+	static_cast<QBluetoothHostInfo*>(ptr)->setName(QString::fromUtf8(name.data, name.len));
 }
 
 void QBluetoothHostInfo_DestroyQBluetoothHostInfo(void* ptr)
@@ -887,9 +887,9 @@ void QBluetoothLocalDevice_DisconnectPairingDisplayConfirmation(void* ptr)
 	QObject::disconnect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(const QBluetoothAddress &, QString)>(&QBluetoothLocalDevice::pairingDisplayConfirmation), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(const QBluetoothAddress &, QString)>(&MyQBluetoothLocalDevice::Signal_PairingDisplayConfirmation));
 }
 
-void QBluetoothLocalDevice_PairingDisplayConfirmation(void* ptr, void* address, char* pin)
+void QBluetoothLocalDevice_PairingDisplayConfirmation(void* ptr, void* address, struct QtBluetooth_PackedString pin)
 {
-	static_cast<QBluetoothLocalDevice*>(ptr)->pairingDisplayConfirmation(*static_cast<QBluetoothAddress*>(address), QString(pin));
+	static_cast<QBluetoothLocalDevice*>(ptr)->pairingDisplayConfirmation(*static_cast<QBluetoothAddress*>(address), QString::fromUtf8(pin.data, pin.len));
 }
 
 void QBluetoothLocalDevice_ConnectPairingDisplayPinCode(void* ptr)
@@ -902,9 +902,9 @@ void QBluetoothLocalDevice_DisconnectPairingDisplayPinCode(void* ptr)
 	QObject::disconnect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(const QBluetoothAddress &, QString)>(&QBluetoothLocalDevice::pairingDisplayPinCode), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(const QBluetoothAddress &, QString)>(&MyQBluetoothLocalDevice::Signal_PairingDisplayPinCode));
 }
 
-void QBluetoothLocalDevice_PairingDisplayPinCode(void* ptr, void* address, char* pin)
+void QBluetoothLocalDevice_PairingDisplayPinCode(void* ptr, void* address, struct QtBluetooth_PackedString pin)
 {
-	static_cast<QBluetoothLocalDevice*>(ptr)->pairingDisplayPinCode(*static_cast<QBluetoothAddress*>(address), QString(pin));
+	static_cast<QBluetoothLocalDevice*>(ptr)->pairingDisplayPinCode(*static_cast<QBluetoothAddress*>(address), QString::fromUtf8(pin.data, pin.len));
 }
 
 void QBluetoothLocalDevice_ConnectPairingFinished(void* ptr)
@@ -1229,9 +1229,9 @@ void QBluetoothServer_NewConnection(void* ptr)
 	static_cast<QBluetoothServer*>(ptr)->newConnection();
 }
 
-void* QBluetoothServer_Listen2(void* ptr, void* uuid, char* serviceName)
+void* QBluetoothServer_Listen2(void* ptr, void* uuid, struct QtBluetooth_PackedString serviceName)
 {
-	return new QBluetoothServiceInfo(static_cast<QBluetoothServer*>(ptr)->listen(*static_cast<QBluetoothUuid*>(uuid), QString(serviceName)));
+	return new QBluetoothServiceInfo(static_cast<QBluetoothServer*>(ptr)->listen(*static_cast<QBluetoothUuid*>(uuid), QString::fromUtf8(serviceName.data, serviceName.len)));
 }
 
 void* QBluetoothServer_NextPendingConnection(void* ptr)
@@ -1913,19 +1913,19 @@ void QBluetoothServiceInfo_SetServiceAvailability(void* ptr, char* availability)
 	static_cast<QBluetoothServiceInfo*>(ptr)->setServiceAvailability(*static_cast<quint8*>(static_cast<void*>(availability)));
 }
 
-void QBluetoothServiceInfo_SetServiceDescription(void* ptr, char* description)
+void QBluetoothServiceInfo_SetServiceDescription(void* ptr, struct QtBluetooth_PackedString description)
 {
-	static_cast<QBluetoothServiceInfo*>(ptr)->setServiceDescription(QString(description));
+	static_cast<QBluetoothServiceInfo*>(ptr)->setServiceDescription(QString::fromUtf8(description.data, description.len));
 }
 
-void QBluetoothServiceInfo_SetServiceName(void* ptr, char* name)
+void QBluetoothServiceInfo_SetServiceName(void* ptr, struct QtBluetooth_PackedString name)
 {
-	static_cast<QBluetoothServiceInfo*>(ptr)->setServiceName(QString(name));
+	static_cast<QBluetoothServiceInfo*>(ptr)->setServiceName(QString::fromUtf8(name.data, name.len));
 }
 
-void QBluetoothServiceInfo_SetServiceProvider(void* ptr, char* provider)
+void QBluetoothServiceInfo_SetServiceProvider(void* ptr, struct QtBluetooth_PackedString provider)
 {
-	static_cast<QBluetoothServiceInfo*>(ptr)->setServiceProvider(QString(provider));
+	static_cast<QBluetoothServiceInfo*>(ptr)->setServiceProvider(QString::fromUtf8(provider.data, provider.len));
 }
 
 void QBluetoothServiceInfo_SetServiceUuid(void* ptr, void* uuid)
@@ -2772,7 +2772,7 @@ public:
 	void Signal_Error2(QBluetoothTransferReply::TransferError errorType) { callbackQBluetoothTransferReply_Error2(this, errorType); };
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferReply_Finished(this, reply); };
 	void Signal_TransferProgress(qint64 bytesTransferred, qint64 bytesTotal) { callbackQBluetoothTransferReply_TransferProgress(this, bytesTransferred, bytesTotal); };
-	QString errorString() const { return QString(callbackQBluetoothTransferReply_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString errorString() const { return ({ QtBluetooth_PackedString tempVal = callbackQBluetoothTransferReply_ErrorString(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	TransferError error() const { return static_cast<QBluetoothTransferReply::TransferError>(callbackQBluetoothTransferReply_Error(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isFinished() const { return callbackQBluetoothTransferReply_IsFinished(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isRunning() const { return callbackQBluetoothTransferReply_IsRunning(const_cast<void*>(static_cast<const void*>(this))) != 0; };
@@ -3119,9 +3119,9 @@ void* QBluetoothUuid_NewQBluetoothUuid10(void* uuid)
 	return new QBluetoothUuid(*static_cast<QBluetoothUuid*>(uuid));
 }
 
-void* QBluetoothUuid_NewQBluetoothUuid9(char* uuid)
+void* QBluetoothUuid_NewQBluetoothUuid9(struct QtBluetooth_PackedString uuid)
 {
-	return new QBluetoothUuid(QString(uuid));
+	return new QBluetoothUuid(QString::fromUtf8(uuid.data, uuid.len));
 }
 
 void* QBluetoothUuid_NewQBluetoothUuid11(void* uuid)
@@ -3206,9 +3206,9 @@ void QLowEnergyAdvertisingData_SetIncludePowerLevel(void* ptr, char doInclude)
 	static_cast<QLowEnergyAdvertisingData*>(ptr)->setIncludePowerLevel(doInclude != 0);
 }
 
-void QLowEnergyAdvertisingData_SetLocalName(void* ptr, char* name)
+void QLowEnergyAdvertisingData_SetLocalName(void* ptr, struct QtBluetooth_PackedString name)
 {
-	static_cast<QLowEnergyAdvertisingData*>(ptr)->setLocalName(QString(name));
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->setLocalName(QString::fromUtf8(name.data, name.len));
 }
 
 void QLowEnergyAdvertisingData_SetManufacturerData(void* ptr, unsigned short id, void* data)

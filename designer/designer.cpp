@@ -97,36 +97,36 @@ public:
 	QObject * extension(QObject * object, const QString & iid) const { QByteArray t52efa9 = iid.toUtf8(); QtDesigner_PackedString iidPacked = { const_cast<char*>(t52efa9.prepend("WHITESPACE").constData()+10), t52efa9.size()-10 };return static_cast<QObject*>(callbackQAbstractExtensionManager_Extension(const_cast<void*>(static_cast<const void*>(this)), object, iidPacked)); };
 };
 
-void QAbstractExtensionManager_RegisterExtensions(void* ptr, void* factory, char* iid)
+void QAbstractExtensionManager_RegisterExtensions(void* ptr, void* factory, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-			static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+			static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		} else {
-			static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+			static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		}
 	} else {
 		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-			static_cast<QAbstractExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+			static_cast<QAbstractExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		} else {
-			static_cast<QAbstractExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+			static_cast<QAbstractExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		}
 	}
 }
 
-void QAbstractExtensionManager_UnregisterExtensions(void* ptr, void* factory, char* iid)
+void QAbstractExtensionManager_UnregisterExtensions(void* ptr, void* factory, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-			static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+			static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		} else {
-			static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+			static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		}
 	} else {
 		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-			static_cast<QAbstractExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+			static_cast<QAbstractExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		} else {
-			static_cast<QAbstractExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+			static_cast<QAbstractExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 		}
 	}
 }
@@ -142,23 +142,23 @@ void QAbstractExtensionManager_DestroyQAbstractExtensionManagerDefault(void* ptr
 
 }
 
-void* QAbstractExtensionManager_Extension(void* ptr, void* object, char* iid)
+void* QAbstractExtensionManager_Extension(void* ptr, void* object, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len));
 		} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len));
 		} else {
-			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len));
 		}
 	} else {
 		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len));
 		} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len));
 		} else {
-			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len));
 		}
 	}
 }
@@ -701,9 +701,9 @@ void QDesignerActionEditorInterface_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::setHidden(hidden != 0);
 }
 
-void QDesignerActionEditorInterface_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QDesignerActionEditorInterface_SetStyleSheetDefault(void* ptr, struct QtDesigner_PackedString styleSheet)
 {
-		static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::setStyleSheet(QString(styleSheet));
+		static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QDesignerActionEditorInterface_SetVisibleDefault(void* ptr, char visible)
@@ -716,9 +716,9 @@ void QDesignerActionEditorInterface_SetWindowModifiedDefault(void* ptr, char vbo
 		static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::setWindowModified(vbo != 0);
 }
 
-void QDesignerActionEditorInterface_SetWindowTitleDefault(void* ptr, char* vqs)
+void QDesignerActionEditorInterface_SetWindowTitleDefault(void* ptr, struct QtDesigner_PackedString vqs)
 {
-		static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::setWindowTitle(QString(vqs));
+		static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QDesignerActionEditorInterface_ShowDefault(void* ptr)
@@ -979,13 +979,13 @@ public:
 	void initialize(QDesignerFormEditorInterface * formEditor) { callbackQDesignerCustomWidgetInterface_Initialize(this, formEditor); };
 	 ~MyQDesignerCustomWidgetInterface() { callbackQDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(this); };
 	QIcon icon() const { return *static_cast<QIcon*>(callbackQDesignerCustomWidgetInterface_Icon(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString codeTemplate() const { return QString(callbackQDesignerCustomWidgetInterface_CodeTemplate(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString domXml() const { return QString(callbackQDesignerCustomWidgetInterface_DomXml(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString group() const { return QString(callbackQDesignerCustomWidgetInterface_Group(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString includeFile() const { return QString(callbackQDesignerCustomWidgetInterface_IncludeFile(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString name() const { return QString(callbackQDesignerCustomWidgetInterface_Name(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString toolTip() const { return QString(callbackQDesignerCustomWidgetInterface_ToolTip(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString whatsThis() const { return QString(callbackQDesignerCustomWidgetInterface_WhatsThis(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString codeTemplate() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_CodeTemplate(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString domXml() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_DomXml(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString group() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_Group(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString includeFile() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_IncludeFile(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString name() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString toolTip() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_ToolTip(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString whatsThis() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerCustomWidgetInterface_WhatsThis(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool isContainer() const { return callbackQDesignerCustomWidgetInterface_IsContainer(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isInitialized() const { return callbackQDesignerCustomWidgetInterface_IsInitialized(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 };
@@ -1097,9 +1097,9 @@ char QDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(void* ptr, int
 	return static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->removeDynamicProperty(index);
 }
 
-int QDesignerDynamicPropertySheetExtension_AddDynamicProperty(void* ptr, char* propertyName, void* value)
+int QDesignerDynamicPropertySheetExtension_AddDynamicProperty(void* ptr, struct QtDesigner_PackedString propertyName, void* value)
 {
-	return static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->addDynamicProperty(QString(propertyName), *static_cast<QVariant*>(value));
+	return static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->addDynamicProperty(QString::fromUtf8(propertyName.data, propertyName.len), *static_cast<QVariant*>(value));
 }
 
 void QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtension(void* ptr)
@@ -1113,9 +1113,9 @@ void QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheet
 
 }
 
-char QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(void* ptr, char* propertyName)
+char QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(void* ptr, struct QtDesigner_PackedString propertyName)
 {
-	return static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->canAddDynamicProperty(QString(propertyName));
+	return static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->canAddDynamicProperty(QString::fromUtf8(propertyName.data, propertyName.len));
 }
 
 char QDesignerDynamicPropertySheetExtension_DynamicPropertiesAllowed(void* ptr)
@@ -1470,9 +1470,9 @@ char QDesignerFormWindowCursorInterface_MovePosition(void* ptr, long long operat
 	return static_cast<QDesignerFormWindowCursorInterface*>(ptr)->movePosition(static_cast<QDesignerFormWindowCursorInterface::MoveOperation>(operation), static_cast<QDesignerFormWindowCursorInterface::MoveMode>(mode));
 }
 
-void QDesignerFormWindowCursorInterface_ResetWidgetProperty(void* ptr, void* widget, char* name)
+void QDesignerFormWindowCursorInterface_ResetWidgetProperty(void* ptr, void* widget, struct QtDesigner_PackedString name)
 {
-	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->resetWidgetProperty(static_cast<QWidget*>(widget), QString(name));
+	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->resetWidgetProperty(static_cast<QWidget*>(widget), QString::fromUtf8(name.data, name.len));
 }
 
 void QDesignerFormWindowCursorInterface_SetPosition(void* ptr, int position, long long mode)
@@ -1480,14 +1480,14 @@ void QDesignerFormWindowCursorInterface_SetPosition(void* ptr, int position, lon
 	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->setPosition(position, static_cast<QDesignerFormWindowCursorInterface::MoveMode>(mode));
 }
 
-void QDesignerFormWindowCursorInterface_SetProperty(void* ptr, char* name, void* value)
+void QDesignerFormWindowCursorInterface_SetProperty(void* ptr, struct QtDesigner_PackedString name, void* value)
 {
-	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->setProperty(QString(name), *static_cast<QVariant*>(value));
+	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->setProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value));
 }
 
-void QDesignerFormWindowCursorInterface_SetWidgetProperty(void* ptr, void* widget, char* name, void* value)
+void QDesignerFormWindowCursorInterface_SetWidgetProperty(void* ptr, void* widget, struct QtDesigner_PackedString name, void* value)
 {
-	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->setWidgetProperty(static_cast<QWidget*>(widget), QString(name), *static_cast<QVariant*>(value));
+	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->setWidgetProperty(static_cast<QWidget*>(widget), QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value));
 }
 
 void QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterface(void* ptr)
@@ -1593,15 +1593,15 @@ public:
 	QDesignerFormWindowCursorInterface * cursor() const { return static_cast<QDesignerFormWindowCursorInterface*>(callbackQDesignerFormWindowInterface_Cursor(const_cast<void*>(static_cast<const void*>(this)))); };
 	QDir absoluteDir() const { return *static_cast<QDir*>(callbackQDesignerFormWindowInterface_AbsoluteDir(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPoint grid() const { return *static_cast<QPoint*>(callbackQDesignerFormWindowInterface_Grid(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString author() const { return QString(callbackQDesignerFormWindowInterface_Author(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString comment() const { return QString(callbackQDesignerFormWindowInterface_Comment(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString contents() const { return QString(callbackQDesignerFormWindowInterface_Contents(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString exportMacro() const { return QString(callbackQDesignerFormWindowInterface_ExportMacro(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString fileName() const { return QString(callbackQDesignerFormWindowInterface_FileName(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString pixmapFunction() const { return QString(callbackQDesignerFormWindowInterface_PixmapFunction(const_cast<void*>(static_cast<const void*>(this)))); };
-	QStringList checkContents() const { return QString(callbackQDesignerFormWindowInterface_CheckContents(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
-	QStringList includeHints() const { return QString(callbackQDesignerFormWindowInterface_IncludeHints(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
-	QStringList resourceFiles() const { return QString(callbackQDesignerFormWindowInterface_ResourceFiles(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
+	QString author() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_Author(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString comment() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_Comment(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString contents() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_Contents(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString exportMacro() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_ExportMacro(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString fileName() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_FileName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString pixmapFunction() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_PixmapFunction(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QStringList checkContents() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_CheckContents(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList includeHints() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_IncludeHints(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList resourceFiles() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerFormWindowInterface_ResourceFiles(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QWidget * formContainer() const { return static_cast<QWidget*>(callbackQDesignerFormWindowInterface_FormContainer(const_cast<void*>(static_cast<const void*>(this)))); };
 	ResourceFileSaveMode resourceFileSaveMode() const { return static_cast<QDesignerFormWindowInterface::ResourceFileSaveMode>(callbackQDesignerFormWindowInterface_ResourceFileSaveMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool hasFeature(QDesignerFormWindowInterface::Feature feature) const { return callbackQDesignerFormWindowInterface_HasFeature(const_cast<void*>(static_cast<const void*>(this)), feature) != 0; };
@@ -1698,15 +1698,15 @@ void* QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(v
 	return QDesignerFormWindowInterface::findFormWindow(static_cast<QWidget*>(widget));
 }
 
-char QDesignerFormWindowInterface_SetContents(void* ptr, void* device, char* errorMessage)
+char QDesignerFormWindowInterface_SetContents(void* ptr, void* device, struct QtDesigner_PackedString errorMessage)
 {
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->setContents(static_cast<QIODevice*>(device), new QString(errorMessage));
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->setContents(static_cast<QIODevice*>(device), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)));
 }
 
-char QDesignerFormWindowInterface_SetContents2(void* ptr, char* contents)
+char QDesignerFormWindowInterface_SetContents2(void* ptr, struct QtDesigner_PackedString contents)
 {
 	bool returnArg;
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setContents", Q_RETURN_ARG(bool, returnArg), Q_ARG(QString, QString(contents)));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setContents", Q_RETURN_ARG(bool, returnArg), Q_ARG(QString, QString::fromUtf8(contents.data, contents.len)));
 	return returnArg;
 }
 
@@ -1725,14 +1725,14 @@ void QDesignerFormWindowInterface_AboutToUnmanageWidget(void* ptr, void* widget)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->aboutToUnmanageWidget(static_cast<QWidget*>(widget));
 }
 
-void QDesignerFormWindowInterface_ActivateResourceFilePaths(void* ptr, char* paths, int errorCount, char* errorMessages)
+void QDesignerFormWindowInterface_ActivateResourceFilePaths(void* ptr, struct QtDesigner_PackedString paths, int errorCount, struct QtDesigner_PackedString errorMessages)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "activateResourceFilePaths", Q_ARG(QStringList, QString(paths).split("|", QString::SkipEmptyParts)), Q_ARG(int*, &errorCount), Q_ARG(QString*, new QString(errorMessages)));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "activateResourceFilePaths", Q_ARG(QStringList, QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts)), Q_ARG(int*, &errorCount), Q_ARG(QString*, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len))));
 }
 
-void QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(void* ptr, char* paths, int errorCount, char* errorMessages)
+void QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(void* ptr, struct QtDesigner_PackedString paths, int errorCount, struct QtDesigner_PackedString errorMessages)
 {
-		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::activateResourceFilePaths(QString(paths).split("|", QString::SkipEmptyParts), &errorCount, new QString(errorMessages));
+		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::activateResourceFilePaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), &errorCount, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len)));
 }
 
 void QDesignerFormWindowInterface_ConnectActivated(void* ptr)
@@ -1750,9 +1750,9 @@ void QDesignerFormWindowInterface_Activated(void* ptr, void* widget)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->activated(static_cast<QWidget*>(widget));
 }
 
-void QDesignerFormWindowInterface_AddResourceFile(void* ptr, char* path)
+void QDesignerFormWindowInterface_AddResourceFile(void* ptr, struct QtDesigner_PackedString path)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->addResourceFile(QString(path));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->addResourceFile(QString::fromUtf8(path.data, path.len));
 }
 
 void QDesignerFormWindowInterface_ConnectChanged(void* ptr)
@@ -1805,9 +1805,9 @@ void QDesignerFormWindowInterface_DisconnectFileNameChanged(void* ptr)
 	QObject::disconnect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(const QString &)>(&QDesignerFormWindowInterface::fileNameChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(const QString &)>(&MyQDesignerFormWindowInterface::Signal_FileNameChanged));
 }
 
-void QDesignerFormWindowInterface_FileNameChanged(void* ptr, char* fileName)
+void QDesignerFormWindowInterface_FileNameChanged(void* ptr, struct QtDesigner_PackedString fileName)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->fileNameChanged(QString(fileName));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->fileNameChanged(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void QDesignerFormWindowInterface_ConnectGeometryChanged(void* ptr)
@@ -1830,9 +1830,9 @@ void QDesignerFormWindowInterface_LayoutDefault(void* ptr, int margin, int spaci
 	static_cast<QDesignerFormWindowInterface*>(ptr)->layoutDefault(&margin, &spacing);
 }
 
-void QDesignerFormWindowInterface_LayoutFunction(void* ptr, char* margin, char* spacing)
+void QDesignerFormWindowInterface_LayoutFunction(void* ptr, struct QtDesigner_PackedString margin, struct QtDesigner_PackedString spacing)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->layoutFunction(new QString(margin), new QString(spacing));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->layoutFunction(new QString(QString::fromUtf8(margin.data, margin.len)), new QString(QString::fromUtf8(spacing.data, spacing.len)));
 }
 
 void QDesignerFormWindowInterface_ConnectMainContainerChanged(void* ptr)
@@ -1876,9 +1876,9 @@ void QDesignerFormWindowInterface_ObjectRemoved(void* ptr, void* object)
 	}
 }
 
-void QDesignerFormWindowInterface_RemoveResourceFile(void* ptr, char* path)
+void QDesignerFormWindowInterface_RemoveResourceFile(void* ptr, struct QtDesigner_PackedString path)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->removeResourceFile(QString(path));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->removeResourceFile(QString::fromUtf8(path.data, path.len));
 }
 
 void QDesignerFormWindowInterface_ConnectResourceFilesChanged(void* ptr)
@@ -1916,14 +1916,14 @@ void QDesignerFormWindowInterface_SelectionChanged(void* ptr)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->selectionChanged();
 }
 
-void QDesignerFormWindowInterface_SetAuthor(void* ptr, char* author)
+void QDesignerFormWindowInterface_SetAuthor(void* ptr, struct QtDesigner_PackedString author)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->setAuthor(QString(author));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->setAuthor(QString::fromUtf8(author.data, author.len));
 }
 
-void QDesignerFormWindowInterface_SetComment(void* ptr, char* comment)
+void QDesignerFormWindowInterface_SetComment(void* ptr, struct QtDesigner_PackedString comment)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->setComment(QString(comment));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->setComment(QString::fromUtf8(comment.data, comment.len));
 }
 
 void QDesignerFormWindowInterface_SetDirty(void* ptr, char dirty)
@@ -1931,9 +1931,9 @@ void QDesignerFormWindowInterface_SetDirty(void* ptr, char dirty)
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setDirty", Q_ARG(bool, dirty != 0));
 }
 
-void QDesignerFormWindowInterface_SetExportMacro(void* ptr, char* exportMacro)
+void QDesignerFormWindowInterface_SetExportMacro(void* ptr, struct QtDesigner_PackedString exportMacro)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->setExportMacro(QString(exportMacro));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->setExportMacro(QString::fromUtf8(exportMacro.data, exportMacro.len));
 }
 
 void QDesignerFormWindowInterface_SetFeatures(void* ptr, long long features)
@@ -1941,9 +1941,9 @@ void QDesignerFormWindowInterface_SetFeatures(void* ptr, long long features)
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFeatures", Q_ARG(QDesignerFormWindowInterface::FeatureFlag, static_cast<QDesignerFormWindowInterface::FeatureFlag>(features)));
 }
 
-void QDesignerFormWindowInterface_SetFileName(void* ptr, char* fileName)
+void QDesignerFormWindowInterface_SetFileName(void* ptr, struct QtDesigner_PackedString fileName)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFileName", Q_ARG(QString, QString(fileName)));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFileName", Q_ARG(QString, QString::fromUtf8(fileName.data, fileName.len)));
 }
 
 void QDesignerFormWindowInterface_SetGrid(void* ptr, void* grid)
@@ -1951,9 +1951,9 @@ void QDesignerFormWindowInterface_SetGrid(void* ptr, void* grid)
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setGrid", Q_ARG(QPoint, *static_cast<QPoint*>(grid)));
 }
 
-void QDesignerFormWindowInterface_SetIncludeHints(void* ptr, char* includeHints)
+void QDesignerFormWindowInterface_SetIncludeHints(void* ptr, struct QtDesigner_PackedString includeHints)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->setIncludeHints(QString(includeHints).split("|", QString::SkipEmptyParts));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->setIncludeHints(QString::fromUtf8(includeHints.data, includeHints.len).split("|", QString::SkipEmptyParts));
 }
 
 void QDesignerFormWindowInterface_SetLayoutDefault(void* ptr, int margin, int spacing)
@@ -1961,9 +1961,9 @@ void QDesignerFormWindowInterface_SetLayoutDefault(void* ptr, int margin, int sp
 	static_cast<QDesignerFormWindowInterface*>(ptr)->setLayoutDefault(margin, spacing);
 }
 
-void QDesignerFormWindowInterface_SetLayoutFunction(void* ptr, char* margin, char* spacing)
+void QDesignerFormWindowInterface_SetLayoutFunction(void* ptr, struct QtDesigner_PackedString margin, struct QtDesigner_PackedString spacing)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->setLayoutFunction(QString(margin), QString(spacing));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->setLayoutFunction(QString::fromUtf8(margin.data, margin.len), QString::fromUtf8(spacing.data, spacing.len));
 }
 
 void QDesignerFormWindowInterface_SetMainContainer(void* ptr, void* mainContainer)
@@ -1971,9 +1971,9 @@ void QDesignerFormWindowInterface_SetMainContainer(void* ptr, void* mainContaine
 	static_cast<QDesignerFormWindowInterface*>(ptr)->setMainContainer(static_cast<QWidget*>(mainContainer));
 }
 
-void QDesignerFormWindowInterface_SetPixmapFunction(void* ptr, char* pixmapFunction)
+void QDesignerFormWindowInterface_SetPixmapFunction(void* ptr, struct QtDesigner_PackedString pixmapFunction)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->setPixmapFunction(QString(pixmapFunction));
+	static_cast<QDesignerFormWindowInterface*>(ptr)->setPixmapFunction(QString::fromUtf8(pixmapFunction.data, pixmapFunction.len));
 }
 
 void QDesignerFormWindowInterface_SetResourceFileSaveMode(void* ptr, long long behaviour)
@@ -2490,9 +2490,9 @@ void QDesignerFormWindowInterface_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::setHidden(hidden != 0);
 }
 
-void QDesignerFormWindowInterface_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QDesignerFormWindowInterface_SetStyleSheetDefault(void* ptr, struct QtDesigner_PackedString styleSheet)
 {
-		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::setStyleSheet(QString(styleSheet));
+		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QDesignerFormWindowInterface_SetVisibleDefault(void* ptr, char visible)
@@ -2505,9 +2505,9 @@ void QDesignerFormWindowInterface_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::setWindowModified(vbo != 0);
 }
 
-void QDesignerFormWindowInterface_SetWindowTitleDefault(void* ptr, char* vqs)
+void QDesignerFormWindowInterface_SetWindowTitleDefault(void* ptr, struct QtDesigner_PackedString vqs)
 {
-		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::setWindowTitle(QString(vqs));
+		static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QDesignerFormWindowInterface_ShowDefault(void* ptr)
@@ -2990,10 +2990,10 @@ public:
 	 ~MyQDesignerMemberSheetExtension() { callbackQDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(this); };
 	QList<QByteArray> parameterNames(int index) const { return *static_cast<QList<QByteArray>*>(callbackQDesignerMemberSheetExtension_ParameterNames(const_cast<void*>(static_cast<const void*>(this)), index)); };
 	QList<QByteArray> parameterTypes(int index) const { return *static_cast<QList<QByteArray>*>(callbackQDesignerMemberSheetExtension_ParameterTypes(const_cast<void*>(static_cast<const void*>(this)), index)); };
-	QString declaredInClass(int index) const { return QString(callbackQDesignerMemberSheetExtension_DeclaredInClass(const_cast<void*>(static_cast<const void*>(this)), index)); };
-	QString memberGroup(int index) const { return QString(callbackQDesignerMemberSheetExtension_MemberGroup(const_cast<void*>(static_cast<const void*>(this)), index)); };
-	QString memberName(int index) const { return QString(callbackQDesignerMemberSheetExtension_MemberName(const_cast<void*>(static_cast<const void*>(this)), index)); };
-	QString signature(int index) const { return QString(callbackQDesignerMemberSheetExtension_Signature(const_cast<void*>(static_cast<const void*>(this)), index)); };
+	QString declaredInClass(int index) const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerMemberSheetExtension_DeclaredInClass(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString memberGroup(int index) const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerMemberSheetExtension_MemberGroup(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString memberName(int index) const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerMemberSheetExtension_MemberName(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString signature(int index) const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerMemberSheetExtension_Signature(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool inheritedFromWidget(int index) const { return callbackQDesignerMemberSheetExtension_InheritedFromWidget(const_cast<void*>(static_cast<const void*>(this)), index) != 0; };
 	bool isSignal(int index) const { return callbackQDesignerMemberSheetExtension_IsSignal(const_cast<void*>(static_cast<const void*>(this)), index) != 0; };
 	bool isSlot(int index) const { return callbackQDesignerMemberSheetExtension_IsSlot(const_cast<void*>(static_cast<const void*>(this)), index) != 0; };
@@ -3002,9 +3002,9 @@ public:
 	int indexOf(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtDesigner_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQDesignerMemberSheetExtension_IndexOf(const_cast<void*>(static_cast<const void*>(this)), namePacked); };
 };
 
-void QDesignerMemberSheetExtension_SetMemberGroup(void* ptr, int index, char* group)
+void QDesignerMemberSheetExtension_SetMemberGroup(void* ptr, int index, struct QtDesigner_PackedString group)
 {
-	static_cast<QDesignerMemberSheetExtension*>(ptr)->setMemberGroup(index, QString(group));
+	static_cast<QDesignerMemberSheetExtension*>(ptr)->setMemberGroup(index, QString::fromUtf8(group.data, group.len));
 }
 
 void QDesignerMemberSheetExtension_SetVisible(void* ptr, int index, char visible)
@@ -3078,9 +3078,9 @@ int QDesignerMemberSheetExtension_Count(void* ptr)
 	return static_cast<QDesignerMemberSheetExtension*>(ptr)->count();
 }
 
-int QDesignerMemberSheetExtension_IndexOf(void* ptr, char* name)
+int QDesignerMemberSheetExtension_IndexOf(void* ptr, struct QtDesigner_PackedString name)
 {
-	return static_cast<QDesignerMemberSheetExtension*>(ptr)->indexOf(QString(name));
+	return static_cast<QDesignerMemberSheetExtension*>(ptr)->indexOf(QString::fromUtf8(name.data, name.len));
 }
 
 void* QDesignerMemberSheetExtension___parameterNames_atList(void* ptr, int i)
@@ -3555,9 +3555,9 @@ void QDesignerObjectInspectorInterface_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::setHidden(hidden != 0);
 }
 
-void QDesignerObjectInspectorInterface_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QDesignerObjectInspectorInterface_SetStyleSheetDefault(void* ptr, struct QtDesigner_PackedString styleSheet)
 {
-		static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::setStyleSheet(QString(styleSheet));
+		static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QDesignerObjectInspectorInterface_SetVisibleDefault(void* ptr, char visible)
@@ -3570,9 +3570,9 @@ void QDesignerObjectInspectorInterface_SetWindowModifiedDefault(void* ptr, char 
 		static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::setWindowModified(vbo != 0);
 }
 
-void QDesignerObjectInspectorInterface_SetWindowTitleDefault(void* ptr, char* vqs)
+void QDesignerObjectInspectorInterface_SetWindowTitleDefault(void* ptr, struct QtDesigner_PackedString vqs)
 {
-		static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::setWindowTitle(QString(vqs));
+		static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QDesignerObjectInspectorInterface_ShowDefault(void* ptr)
@@ -3717,7 +3717,7 @@ public:
 	 ~MyQDesignerPropertyEditorInterface() { callbackQDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterface(this); };
 	QDesignerFormEditorInterface * core() const { return static_cast<QDesignerFormEditorInterface*>(callbackQDesignerPropertyEditorInterface_Core(const_cast<void*>(static_cast<const void*>(this)))); };
 	QObject * object() const { return static_cast<QObject*>(callbackQDesignerPropertyEditorInterface_Object(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString currentPropertyName() const { return QString(callbackQDesignerPropertyEditorInterface_CurrentPropertyName(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString currentPropertyName() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerPropertyEditorInterface_CurrentPropertyName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool isReadOnly() const { return callbackQDesignerPropertyEditorInterface_IsReadOnly(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool close() { return callbackQDesignerPropertyEditorInterface_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQDesignerPropertyEditorInterface_Event(this, event) != 0; };
@@ -3809,9 +3809,9 @@ void QDesignerPropertyEditorInterface_DisconnectPropertyChanged(void* ptr)
 	QObject::disconnect(static_cast<QDesignerPropertyEditorInterface*>(ptr), static_cast<void (QDesignerPropertyEditorInterface::*)(const QString &, const QVariant &)>(&QDesignerPropertyEditorInterface::propertyChanged), static_cast<MyQDesignerPropertyEditorInterface*>(ptr), static_cast<void (MyQDesignerPropertyEditorInterface::*)(const QString &, const QVariant &)>(&MyQDesignerPropertyEditorInterface::Signal_PropertyChanged));
 }
 
-void QDesignerPropertyEditorInterface_PropertyChanged(void* ptr, char* name, void* value)
+void QDesignerPropertyEditorInterface_PropertyChanged(void* ptr, struct QtDesigner_PackedString name, void* value)
 {
-	static_cast<QDesignerPropertyEditorInterface*>(ptr)->propertyChanged(QString(name), *static_cast<QVariant*>(value));
+	static_cast<QDesignerPropertyEditorInterface*>(ptr)->propertyChanged(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value));
 }
 
 void QDesignerPropertyEditorInterface_SetObject(void* ptr, void* object)
@@ -3819,9 +3819,9 @@ void QDesignerPropertyEditorInterface_SetObject(void* ptr, void* object)
 		QMetaObject::invokeMethod(static_cast<QDesignerPropertyEditorInterface*>(ptr), "setObject", Q_ARG(QObject*, static_cast<QObject*>(object)));
 }
 
-void QDesignerPropertyEditorInterface_SetPropertyValue(void* ptr, char* name, void* value, char changed)
+void QDesignerPropertyEditorInterface_SetPropertyValue(void* ptr, struct QtDesigner_PackedString name, void* value, char changed)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerPropertyEditorInterface*>(ptr), "setPropertyValue", Q_ARG(QString, QString(name)), Q_ARG(QVariant, *static_cast<QVariant*>(value)), Q_ARG(bool, changed != 0));
+	QMetaObject::invokeMethod(static_cast<QDesignerPropertyEditorInterface*>(ptr), "setPropertyValue", Q_ARG(QString, QString::fromUtf8(name.data, name.len)), Q_ARG(QVariant, *static_cast<QVariant*>(value)), Q_ARG(bool, changed != 0));
 }
 
 void QDesignerPropertyEditorInterface_SetReadOnly(void* ptr, char readOnly)
@@ -4192,9 +4192,9 @@ void QDesignerPropertyEditorInterface_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::setHidden(hidden != 0);
 }
 
-void QDesignerPropertyEditorInterface_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QDesignerPropertyEditorInterface_SetStyleSheetDefault(void* ptr, struct QtDesigner_PackedString styleSheet)
 {
-		static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::setStyleSheet(QString(styleSheet));
+		static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QDesignerPropertyEditorInterface_SetVisibleDefault(void* ptr, char visible)
@@ -4207,9 +4207,9 @@ void QDesignerPropertyEditorInterface_SetWindowModifiedDefault(void* ptr, char v
 		static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::setWindowModified(vbo != 0);
 }
 
-void QDesignerPropertyEditorInterface_SetWindowTitleDefault(void* ptr, char* vqs)
+void QDesignerPropertyEditorInterface_SetWindowTitleDefault(void* ptr, struct QtDesigner_PackedString vqs)
 {
-		static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::setWindowTitle(QString(vqs));
+		static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QDesignerPropertyEditorInterface_ShowDefault(void* ptr)
@@ -4353,8 +4353,8 @@ public:
 	void setPropertyGroup(int index, const QString & group) { QByteArray t64292b = group.toUtf8(); QtDesigner_PackedString groupPacked = { const_cast<char*>(t64292b.prepend("WHITESPACE").constData()+10), t64292b.size()-10 };callbackQDesignerPropertySheetExtension_SetPropertyGroup(this, index, groupPacked); };
 	void setVisible(int index, bool visible) { callbackQDesignerPropertySheetExtension_SetVisible(this, index, visible); };
 	 ~MyQDesignerPropertySheetExtension() { callbackQDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(this); };
-	QString propertyGroup(int index) const { return QString(callbackQDesignerPropertySheetExtension_PropertyGroup(const_cast<void*>(static_cast<const void*>(this)), index)); };
-	QString propertyName(int index) const { return QString(callbackQDesignerPropertySheetExtension_PropertyName(const_cast<void*>(static_cast<const void*>(this)), index)); };
+	QString propertyGroup(int index) const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerPropertySheetExtension_PropertyGroup(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString propertyName(int index) const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerPropertySheetExtension_PropertyName(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QVariant property(int index) const { return *static_cast<QVariant*>(callbackQDesignerPropertySheetExtension_Property(const_cast<void*>(static_cast<const void*>(this)), index)); };
 	bool hasReset(int index) const { return callbackQDesignerPropertySheetExtension_HasReset(const_cast<void*>(static_cast<const void*>(this)), index) != 0; };
 	bool isAttribute(int index) const { return callbackQDesignerPropertySheetExtension_IsAttribute(const_cast<void*>(static_cast<const void*>(this)), index) != 0; };
@@ -4385,9 +4385,9 @@ void QDesignerPropertySheetExtension_SetProperty(void* ptr, int index, void* val
 	static_cast<QDesignerPropertySheetExtension*>(ptr)->setProperty(index, *static_cast<QVariant*>(value));
 }
 
-void QDesignerPropertySheetExtension_SetPropertyGroup(void* ptr, int index, char* group)
+void QDesignerPropertySheetExtension_SetPropertyGroup(void* ptr, int index, struct QtDesigner_PackedString group)
 {
-	static_cast<QDesignerPropertySheetExtension*>(ptr)->setPropertyGroup(index, QString(group));
+	static_cast<QDesignerPropertySheetExtension*>(ptr)->setPropertyGroup(index, QString::fromUtf8(group.data, group.len));
 }
 
 void QDesignerPropertySheetExtension_SetVisible(void* ptr, int index, char visible)
@@ -4456,9 +4456,9 @@ int QDesignerPropertySheetExtension_Count(void* ptr)
 	return static_cast<QDesignerPropertySheetExtension*>(ptr)->count();
 }
 
-int QDesignerPropertySheetExtension_IndexOf(void* ptr, char* name)
+int QDesignerPropertySheetExtension_IndexOf(void* ptr, struct QtDesigner_PackedString name)
 {
-	return static_cast<QDesignerPropertySheetExtension*>(ptr)->indexOf(QString(name));
+	return static_cast<QDesignerPropertySheetExtension*>(ptr)->indexOf(QString::fromUtf8(name.data, name.len));
 }
 
 class MyQDesignerTaskMenuExtension: public QDesignerTaskMenuExtension
@@ -4518,7 +4518,7 @@ public:
 	bool save() { return callbackQDesignerWidgetBoxInterface_Save(this) != 0; };
 	void setFileName(const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtDesigner_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQDesignerWidgetBoxInterface_SetFileName(this, fileNamePacked); };
 	 ~MyQDesignerWidgetBoxInterface() { callbackQDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(this); };
-	QString fileName() const { return QString(callbackQDesignerWidgetBoxInterface_FileName(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString fileName() const { return ({ QtDesigner_PackedString tempVal = callbackQDesignerWidgetBoxInterface_FileName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool close() { return callbackQDesignerWidgetBoxInterface_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQDesignerWidgetBoxInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerWidgetBoxInterface_FocusNextPrevChild(this, next) != 0; };
@@ -4604,9 +4604,9 @@ char QDesignerWidgetBoxInterface_Save(void* ptr)
 	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->save();
 }
 
-void QDesignerWidgetBoxInterface_SetFileName(void* ptr, char* fileName)
+void QDesignerWidgetBoxInterface_SetFileName(void* ptr, struct QtDesigner_PackedString fileName)
 {
-	static_cast<QDesignerWidgetBoxInterface*>(ptr)->setFileName(QString(fileName));
+	static_cast<QDesignerWidgetBoxInterface*>(ptr)->setFileName(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(void* ptr)
@@ -4958,9 +4958,9 @@ void QDesignerWidgetBoxInterface_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::setHidden(hidden != 0);
 }
 
-void QDesignerWidgetBoxInterface_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QDesignerWidgetBoxInterface_SetStyleSheetDefault(void* ptr, struct QtDesigner_PackedString styleSheet)
 {
-		static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::setStyleSheet(QString(styleSheet));
+		static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QDesignerWidgetBoxInterface_SetVisibleDefault(void* ptr, char visible)
@@ -4973,9 +4973,9 @@ void QDesignerWidgetBoxInterface_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::setWindowModified(vbo != 0);
 }
 
-void QDesignerWidgetBoxInterface_SetWindowTitleDefault(void* ptr, char* vqs)
+void QDesignerWidgetBoxInterface_SetWindowTitleDefault(void* ptr, struct QtDesigner_PackedString vqs)
 {
-		static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::setWindowTitle(QString(vqs));
+		static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QDesignerWidgetBoxInterface_ShowDefault(void* ptr)
@@ -5142,47 +5142,47 @@ void* QExtensionFactory_ExtensionManager(void* ptr)
 		return static_cast<QExtensionFactory*>(ptr)->extensionManager();
 }
 
-void* QExtensionFactory_CreateExtension(void* ptr, void* object, char* iid, void* parent)
+void* QExtensionFactory_CreateExtension(void* ptr, void* object, struct QtDesigner_PackedString iid, void* parent)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QExtensionFactory*>(object), QString(iid), static_cast<QObject*>(parent));
+		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QExtensionManager*>(object), QString(iid), static_cast<QObject*>(parent));
+		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len), static_cast<QObject*>(parent));
 	} else {
-		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QObject*>(object), QString(iid), static_cast<QObject*>(parent));
+		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len), static_cast<QObject*>(parent));
 	}
 }
 
-void* QExtensionFactory_CreateExtensionDefault(void* ptr, void* object, char* iid, void* parent)
+void* QExtensionFactory_CreateExtensionDefault(void* ptr, void* object, struct QtDesigner_PackedString iid, void* parent)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QExtensionFactory*>(object), QString(iid), static_cast<QObject*>(parent));
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QExtensionManager*>(object), QString(iid), static_cast<QObject*>(parent));
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len), static_cast<QObject*>(parent));
 	} else {
-		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QObject*>(object), QString(iid), static_cast<QObject*>(parent));
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len), static_cast<QObject*>(parent));
 	}
 }
 
-void* QExtensionFactory_Extension(void* ptr, void* object, char* iid)
+void* QExtensionFactory_Extension(void* ptr, void* object, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
-void* QExtensionFactory_ExtensionDefault(void* ptr, void* object, char* iid)
+void* QExtensionFactory_ExtensionDefault(void* ptr, void* object, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QExtensionManager*>(object), QString(iid));
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QObject*>(object), QString(iid));
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
@@ -5421,39 +5421,39 @@ void* QExtensionManager_NewQExtensionManager(void* parent)
 	return new MyQExtensionManager(static_cast<QObject*>(parent));
 }
 
-void QExtensionManager_RegisterExtensions(void* ptr, void* factory, char* iid)
+void QExtensionManager_RegisterExtensions(void* ptr, void* factory, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-		static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
-void QExtensionManager_RegisterExtensionsDefault(void* ptr, void* factory, char* iid)
+void QExtensionManager_RegisterExtensionsDefault(void* ptr, void* factory, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-		static_cast<QExtensionManager*>(ptr)->QExtensionManager::registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::registerExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		static_cast<QExtensionManager*>(ptr)->QExtensionManager::registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
-void QExtensionManager_UnregisterExtensions(void* ptr, void* factory, char* iid)
+void QExtensionManager_UnregisterExtensions(void* ptr, void* factory, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-		static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
-void QExtensionManager_UnregisterExtensionsDefault(void* ptr, void* factory, char* iid)
+void QExtensionManager_UnregisterExtensionsDefault(void* ptr, void* factory, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
-		static_cast<QExtensionManager*>(ptr)->QExtensionManager::unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		static_cast<QExtensionManager*>(ptr)->QExtensionManager::unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
@@ -5462,25 +5462,25 @@ void QExtensionManager_DestroyQExtensionManager(void* ptr)
 	static_cast<QExtensionManager*>(ptr)->~QExtensionManager();
 }
 
-void* QExtensionManager_Extension(void* ptr, void* object, char* iid)
+void* QExtensionManager_Extension(void* ptr, void* object, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
-void* QExtensionManager_ExtensionDefault(void* ptr, void* object, char* iid)
+void* QExtensionManager_ExtensionDefault(void* ptr, void* object, struct QtDesigner_PackedString iid)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QExtensionFactory*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
-		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QExtensionManager*>(object), QString(iid));
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QExtensionManager*>(object), QString::fromUtf8(iid.data, iid.len));
 	} else {
-		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QObject*>(object), QString(iid));
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QObject*>(object), QString::fromUtf8(iid.data, iid.len));
 	}
 }
 
@@ -5704,9 +5704,9 @@ void* QFormBuilder_NewQFormBuilder()
 	return new MyQFormBuilder();
 }
 
-void QFormBuilder_AddPluginPath(void* ptr, char* pluginPath)
+void QFormBuilder_AddPluginPath(void* ptr, struct QtDesigner_PackedString pluginPath)
 {
-	static_cast<QFormBuilder*>(ptr)->addPluginPath(QString(pluginPath));
+	static_cast<QFormBuilder*>(ptr)->addPluginPath(QString::fromUtf8(pluginPath.data, pluginPath.len));
 }
 
 void QFormBuilder_ClearPluginPaths(void* ptr)
@@ -5714,9 +5714,9 @@ void QFormBuilder_ClearPluginPaths(void* ptr)
 	static_cast<QFormBuilder*>(ptr)->clearPluginPaths();
 }
 
-void QFormBuilder_SetPluginPath(void* ptr, char* pluginPaths)
+void QFormBuilder_SetPluginPath(void* ptr, struct QtDesigner_PackedString pluginPaths)
 {
-	static_cast<QFormBuilder*>(ptr)->setPluginPath(QString(pluginPaths).split("|", QString::SkipEmptyParts));
+	static_cast<QFormBuilder*>(ptr)->setPluginPath(QString::fromUtf8(pluginPaths.data, pluginPaths.len).split("|", QString::SkipEmptyParts));
 }
 
 void QFormBuilder_DestroyQFormBuilder(void* ptr)

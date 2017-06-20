@@ -482,9 +482,9 @@ void QTestEventList_AddKeyClick2(void* ptr, char* ascii, long long modifiers, in
 	static_cast<QTestEventList*>(ptr)->addKeyClick(*ascii, static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddKeyClicks(void* ptr, char* keys, long long modifiers, int msecs)
+void QTestEventList_AddKeyClicks(void* ptr, struct QtTestLib_PackedString keys, long long modifiers, int msecs)
 {
-	static_cast<QTestEventList*>(ptr)->addKeyClicks(QString(keys), static_cast<Qt::KeyboardModifier>(modifiers), msecs);
+	static_cast<QTestEventList*>(ptr)->addKeyClicks(QString::fromUtf8(keys.data, keys.len), static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
 void QTestEventList_AddKeyPress(void* ptr, long long qtKey, long long modifiers, int msecs)

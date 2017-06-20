@@ -864,12 +864,13 @@ func (ptr *QAbstractXmlNodeModel) SourceLocation(index QXmlNodeModelIndex_ITF) *
 }
 
 //export callbackQAbstractXmlNodeModel_StringValue
-func callbackQAbstractXmlNodeModel_StringValue(ptr unsafe.Pointer, n unsafe.Pointer) *C.char {
+func callbackQAbstractXmlNodeModel_StringValue(ptr unsafe.Pointer, n unsafe.Pointer) C.struct_QtXmlPatterns_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "stringValue"); signal != nil {
-		return C.CString(signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(n)))
+		tempVal := signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(n))
+		return C.struct_QtXmlPatterns_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtXmlPatterns_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectStringValue(f func(n *QXmlNodeModelIndex) string) {
@@ -1604,7 +1605,7 @@ func (ptr *QAbstractXmlReceiver) Comment(value string) {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QAbstractXmlReceiver_Comment(ptr.Pointer(), valueC)
+		C.QAbstractXmlReceiver_Comment(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{valueC, C.longlong(len(value))})
 	}
 }
 
@@ -1784,7 +1785,7 @@ func (ptr *QAbstractXmlReceiver) ProcessingInstruction(target QXmlName_ITF, valu
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QAbstractXmlReceiver_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(target), valueC)
+		C.QAbstractXmlReceiver_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(target), C.struct_QtXmlPatterns_PackedString{valueC, C.longlong(len(value))})
 	}
 }
 
@@ -2116,12 +2117,13 @@ func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModelDefault() {
 }
 
 //export callbackQSimpleXmlNodeModel_StringValue
-func callbackQSimpleXmlNodeModel_StringValue(ptr unsafe.Pointer, node unsafe.Pointer) *C.char {
+func callbackQSimpleXmlNodeModel_StringValue(ptr unsafe.Pointer, node unsafe.Pointer) C.struct_QtXmlPatterns_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "stringValue"); signal != nil {
-		return C.CString(signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(node)))
+		tempVal := signal.(func(*QXmlNodeModelIndex) string)(NewQXmlNodeModelIndexFromPointer(node))
+		return C.struct_QtXmlPatterns_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString(NewQSimpleXmlNodeModelFromPointer(ptr).StringValueDefault(NewQXmlNodeModelIndexFromPointer(node)))
+	tempVal := NewQSimpleXmlNodeModelFromPointer(ptr).StringValueDefault(NewQXmlNodeModelIndexFromPointer(node))
+	return C.struct_QtXmlPatterns_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectStringValue(f func(node *QXmlNodeModelIndex) string) {
@@ -2917,7 +2919,7 @@ func QXmlName_FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlNa
 		clarkNameC = C.CString(clarkName)
 		defer C.free(unsafe.Pointer(clarkNameC))
 	}
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(C.struct_QtXmlPatterns_PackedString{clarkNameC, C.longlong(len(clarkName))}, PointerFromQXmlNamePool(namePool)))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
@@ -2928,7 +2930,7 @@ func (ptr *QXmlName) FromClarkName(clarkName string, namePool QXmlNamePool_ITF) 
 		clarkNameC = C.CString(clarkName)
 		defer C.free(unsafe.Pointer(clarkNameC))
 	}
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(C.struct_QtXmlPatterns_PackedString{clarkNameC, C.longlong(len(clarkName))}, PointerFromQXmlNamePool(namePool)))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
@@ -2955,7 +2957,7 @@ func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI stri
 		prefixC = C.CString(prefix)
 		defer C.free(unsafe.Pointer(prefixC))
 	}
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), localNameC, namespaceURIC, prefixC))
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), C.struct_QtXmlPatterns_PackedString{localNameC, C.longlong(len(localName))}, C.struct_QtXmlPatterns_PackedString{namespaceURIC, C.longlong(len(namespaceURI))}, C.struct_QtXmlPatterns_PackedString{prefixC, C.longlong(len(prefix))}))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
@@ -2966,7 +2968,7 @@ func QXmlName_IsNCName(candidate string) bool {
 		candidateC = C.CString(candidate)
 		defer C.free(unsafe.Pointer(candidateC))
 	}
-	return C.QXmlName_QXmlName_IsNCName(candidateC) != 0
+	return C.QXmlName_QXmlName_IsNCName(C.struct_QtXmlPatterns_PackedString{candidateC, C.longlong(len(candidate))}) != 0
 }
 
 func (ptr *QXmlName) IsNCName(candidate string) bool {
@@ -2975,7 +2977,7 @@ func (ptr *QXmlName) IsNCName(candidate string) bool {
 		candidateC = C.CString(candidate)
 		defer C.free(unsafe.Pointer(candidateC))
 	}
-	return C.QXmlName_QXmlName_IsNCName(candidateC) != 0
+	return C.QXmlName_QXmlName_IsNCName(C.struct_QtXmlPatterns_PackedString{candidateC, C.longlong(len(candidate))}) != 0
 }
 
 func (ptr *QXmlName) LocalName(namePool QXmlNamePool_ITF) string {
@@ -3294,7 +3296,7 @@ func (ptr *QXmlQuery) SetFocus4(focus string) bool {
 			focusC = C.CString(focus)
 			defer C.free(unsafe.Pointer(focusC))
 		}
-		return C.QXmlQuery_SetFocus4(ptr.Pointer(), focusC) != 0
+		return C.QXmlQuery_SetFocus4(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{focusC, C.longlong(len(focus))}) != 0
 	}
 	return false
 }
@@ -3313,7 +3315,7 @@ func (ptr *QXmlQuery) BindVariable4(localName string, device core.QIODevice_ITF)
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		C.QXmlQuery_BindVariable4(ptr.Pointer(), localNameC, core.PointerFromQIODevice(device))
+		C.QXmlQuery_BindVariable4(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{localNameC, C.longlong(len(localName))}, core.PointerFromQIODevice(device))
 	}
 }
 
@@ -3324,7 +3326,7 @@ func (ptr *QXmlQuery) BindVariable2(localName string, value QXmlItem_ITF) {
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		C.QXmlQuery_BindVariable2(ptr.Pointer(), localNameC, PointerFromQXmlItem(value))
+		C.QXmlQuery_BindVariable2(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{localNameC, C.longlong(len(localName))}, PointerFromQXmlItem(value))
 	}
 }
 
@@ -3335,7 +3337,7 @@ func (ptr *QXmlQuery) BindVariable6(localName string, query QXmlQuery_ITF) {
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		C.QXmlQuery_BindVariable6(ptr.Pointer(), localNameC, PointerFromQXmlQuery(query))
+		C.QXmlQuery_BindVariable6(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{localNameC, C.longlong(len(localName))}, PointerFromQXmlQuery(query))
 	}
 }
 
@@ -3370,7 +3372,7 @@ func (ptr *QXmlQuery) SetInitialTemplateName2(localName string) {
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		C.QXmlQuery_SetInitialTemplateName2(ptr.Pointer(), localNameC)
+		C.QXmlQuery_SetInitialTemplateName2(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{localNameC, C.longlong(len(localName))})
 	}
 }
 
@@ -3405,7 +3407,7 @@ func (ptr *QXmlQuery) SetQuery2(sourceCode string, documentURI core.QUrl_ITF) {
 			sourceCodeC = C.CString(sourceCode)
 			defer C.free(unsafe.Pointer(sourceCodeC))
 		}
-		C.QXmlQuery_SetQuery2(ptr.Pointer(), sourceCodeC, core.PointerFromQUrl(documentURI))
+		C.QXmlQuery_SetQuery2(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{sourceCodeC, C.longlong(len(sourceCode))}, core.PointerFromQUrl(documentURI))
 	}
 }
 
@@ -3497,7 +3499,7 @@ func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
 			outputC = C.CString(output)
 			defer C.free(unsafe.Pointer(outputC))
 		}
-		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), outputC) != 0
+		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{outputC, C.longlong(len(output))}) != 0
 	}
 	return false
 }
@@ -3506,7 +3508,7 @@ func (ptr *QXmlQuery) EvaluateTo3(target []string) bool {
 	if ptr.Pointer() != nil {
 		var targetC = C.CString(strings.Join(target, "|"))
 		defer C.free(unsafe.Pointer(targetC))
-		return C.QXmlQuery_EvaluateTo3(ptr.Pointer(), targetC) != 0
+		return C.QXmlQuery_EvaluateTo3(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{targetC, C.longlong(len(strings.Join(target, "|")))}) != 0
 	}
 	return false
 }
@@ -4169,7 +4171,7 @@ func (ptr *QXmlSerializer) Comment(value string) {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QXmlSerializer_Comment(ptr.Pointer(), valueC)
+		C.QXmlSerializer_Comment(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{valueC, C.longlong(len(value))})
 	}
 }
 
@@ -4180,7 +4182,7 @@ func (ptr *QXmlSerializer) CommentDefault(value string) {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QXmlSerializer_CommentDefault(ptr.Pointer(), valueC)
+		C.QXmlSerializer_CommentDefault(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{valueC, C.longlong(len(value))})
 	}
 }
 
@@ -4389,7 +4391,7 @@ func (ptr *QXmlSerializer) ProcessingInstruction(name QXmlName_ITF, value string
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QXmlSerializer_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(name), valueC)
+		C.QXmlSerializer_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(name), C.struct_QtXmlPatterns_PackedString{valueC, C.longlong(len(value))})
 	}
 }
 
@@ -4400,7 +4402,7 @@ func (ptr *QXmlSerializer) ProcessingInstructionDefault(name QXmlName_ITF, value
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QXmlSerializer_ProcessingInstructionDefault(ptr.Pointer(), PointerFromQXmlName(name), valueC)
+		C.QXmlSerializer_ProcessingInstructionDefault(ptr.Pointer(), PointerFromQXmlName(name), C.struct_QtXmlPatterns_PackedString{valueC, C.longlong(len(value))})
 	}
 }
 

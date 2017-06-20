@@ -428,7 +428,7 @@ class MyQAbstractXmlNodeModel: public QAbstractXmlNodeModel
 {
 public:
 	 ~MyQAbstractXmlNodeModel() { callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(this); };
-	QString stringValue(const QXmlNodeModelIndex & n) const { return QString(callbackQAbstractXmlNodeModel_StringValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); };
+	QString stringValue(const QXmlNodeModelIndex & n) const { return ({ QtXmlPatterns_PackedString tempVal = callbackQAbstractXmlNodeModel_StringValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QUrl baseUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_BaseUri(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_DocumentUri(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQAbstractXmlNodeModel_TypedValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
@@ -604,9 +604,9 @@ void QAbstractXmlReceiver_Characters(void* ptr, void* value)
 	static_cast<QAbstractXmlReceiver*>(ptr)->characters(*static_cast<QStringRef*>(value));
 }
 
-void QAbstractXmlReceiver_Comment(void* ptr, char* value)
+void QAbstractXmlReceiver_Comment(void* ptr, struct QtXmlPatterns_PackedString value)
 {
-	static_cast<QAbstractXmlReceiver*>(ptr)->comment(QString(value));
+	static_cast<QAbstractXmlReceiver*>(ptr)->comment(QString::fromUtf8(value.data, value.len));
 }
 
 void QAbstractXmlReceiver_EndDocument(void* ptr)
@@ -629,9 +629,9 @@ void QAbstractXmlReceiver_NamespaceBinding(void* ptr, void* name)
 	static_cast<QAbstractXmlReceiver*>(ptr)->namespaceBinding(*static_cast<QXmlName*>(name));
 }
 
-void QAbstractXmlReceiver_ProcessingInstruction(void* ptr, void* target, char* value)
+void QAbstractXmlReceiver_ProcessingInstruction(void* ptr, void* target, struct QtXmlPatterns_PackedString value)
 {
-	static_cast<QAbstractXmlReceiver*>(ptr)->processingInstruction(*static_cast<QXmlName*>(target), QString(value));
+	static_cast<QAbstractXmlReceiver*>(ptr)->processingInstruction(*static_cast<QXmlName*>(target), QString::fromUtf8(value.data, value.len));
 }
 
 void QAbstractXmlReceiver_StartDocument(void* ptr)
@@ -664,7 +664,7 @@ class MyQSimpleXmlNodeModel: public QSimpleXmlNodeModel
 {
 public:
 	 ~MyQSimpleXmlNodeModel() { callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(this); };
-	QString stringValue(const QXmlNodeModelIndex & node) const { return QString(callbackQSimpleXmlNodeModel_StringValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
+	QString stringValue(const QXmlNodeModelIndex & node) const { return ({ QtXmlPatterns_PackedString tempVal = callbackQSimpleXmlNodeModel_StringValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QUrl baseUri(const QXmlNodeModelIndex & node) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_BaseUri(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
 	QVector<QXmlName> namespaceBindings(const QXmlNodeModelIndex & node) const { return *static_cast<QVector<QXmlName>*>(callbackQSimpleXmlNodeModel_NamespaceBindings(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
 	QVector<QXmlNodeModelIndex> nodesByIdref(const QXmlName & idref) const { return *static_cast<QVector<QXmlNodeModelIndex>*>(callbackQSimpleXmlNodeModel_NodesByIdref(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlName*>(&idref))); };
@@ -968,9 +968,9 @@ char QXmlItem_IsNull(void* ptr)
 	return static_cast<QXmlItem*>(ptr)->isNull();
 }
 
-void* QXmlName_QXmlName_FromClarkName(char* clarkName, void* namePool)
+void* QXmlName_QXmlName_FromClarkName(struct QtXmlPatterns_PackedString clarkName, void* namePool)
 {
-	return new QXmlName(QXmlName::fromClarkName(QString(clarkName), *static_cast<QXmlNamePool*>(namePool)));
+	return new QXmlName(QXmlName::fromClarkName(QString::fromUtf8(clarkName.data, clarkName.len), *static_cast<QXmlNamePool*>(namePool)));
 }
 
 void* QXmlName_NewQXmlName()
@@ -978,14 +978,14 @@ void* QXmlName_NewQXmlName()
 	return new QXmlName();
 }
 
-void* QXmlName_NewQXmlName2(void* namePool, char* localName, char* namespaceURI, char* prefix)
+void* QXmlName_NewQXmlName2(void* namePool, struct QtXmlPatterns_PackedString localName, struct QtXmlPatterns_PackedString namespaceURI, struct QtXmlPatterns_PackedString prefix)
 {
-	return new QXmlName(*static_cast<QXmlNamePool*>(namePool), QString(localName), QString(namespaceURI), QString(prefix));
+	return new QXmlName(*static_cast<QXmlNamePool*>(namePool), QString::fromUtf8(localName.data, localName.len), QString::fromUtf8(namespaceURI.data, namespaceURI.len), QString::fromUtf8(prefix.data, prefix.len));
 }
 
-char QXmlName_QXmlName_IsNCName(char* candidate)
+char QXmlName_QXmlName_IsNCName(struct QtXmlPatterns_PackedString candidate)
 {
-	return QXmlName::isNCName(QString(candidate));
+	return QXmlName::isNCName(QString::fromUtf8(candidate.data, candidate.len));
 }
 
 struct QtXmlPatterns_PackedString QXmlName_LocalName(void* ptr, void* namePool)
@@ -1104,9 +1104,9 @@ char QXmlQuery_SetFocus3(void* ptr, void* document)
 	return static_cast<QXmlQuery*>(ptr)->setFocus(static_cast<QIODevice*>(document));
 }
 
-char QXmlQuery_SetFocus4(void* ptr, char* focus)
+char QXmlQuery_SetFocus4(void* ptr, struct QtXmlPatterns_PackedString focus)
 {
-	return static_cast<QXmlQuery*>(ptr)->setFocus(QString(focus));
+	return static_cast<QXmlQuery*>(ptr)->setFocus(QString::fromUtf8(focus.data, focus.len));
 }
 
 char QXmlQuery_SetFocus2(void* ptr, void* documentURI)
@@ -1114,19 +1114,19 @@ char QXmlQuery_SetFocus2(void* ptr, void* documentURI)
 	return static_cast<QXmlQuery*>(ptr)->setFocus(*static_cast<QUrl*>(documentURI));
 }
 
-void QXmlQuery_BindVariable4(void* ptr, char* localName, void* device)
+void QXmlQuery_BindVariable4(void* ptr, struct QtXmlPatterns_PackedString localName, void* device)
 {
-	static_cast<QXmlQuery*>(ptr)->bindVariable(QString(localName), static_cast<QIODevice*>(device));
+	static_cast<QXmlQuery*>(ptr)->bindVariable(QString::fromUtf8(localName.data, localName.len), static_cast<QIODevice*>(device));
 }
 
-void QXmlQuery_BindVariable2(void* ptr, char* localName, void* value)
+void QXmlQuery_BindVariable2(void* ptr, struct QtXmlPatterns_PackedString localName, void* value)
 {
-	static_cast<QXmlQuery*>(ptr)->bindVariable(QString(localName), *static_cast<QXmlItem*>(value));
+	static_cast<QXmlQuery*>(ptr)->bindVariable(QString::fromUtf8(localName.data, localName.len), *static_cast<QXmlItem*>(value));
 }
 
-void QXmlQuery_BindVariable6(void* ptr, char* localName, void* query)
+void QXmlQuery_BindVariable6(void* ptr, struct QtXmlPatterns_PackedString localName, void* query)
 {
-	static_cast<QXmlQuery*>(ptr)->bindVariable(QString(localName), *static_cast<QXmlQuery*>(query));
+	static_cast<QXmlQuery*>(ptr)->bindVariable(QString::fromUtf8(localName.data, localName.len), *static_cast<QXmlQuery*>(query));
 }
 
 void QXmlQuery_BindVariable3(void* ptr, void* name, void* device)
@@ -1149,9 +1149,9 @@ void QXmlQuery_SetFocus(void* ptr, void* item)
 	static_cast<QXmlQuery*>(ptr)->setFocus(*static_cast<QXmlItem*>(item));
 }
 
-void QXmlQuery_SetInitialTemplateName2(void* ptr, char* localName)
+void QXmlQuery_SetInitialTemplateName2(void* ptr, struct QtXmlPatterns_PackedString localName)
 {
-	static_cast<QXmlQuery*>(ptr)->setInitialTemplateName(QString(localName));
+	static_cast<QXmlQuery*>(ptr)->setInitialTemplateName(QString::fromUtf8(localName.data, localName.len));
 }
 
 void QXmlQuery_SetInitialTemplateName(void* ptr, void* name)
@@ -1174,9 +1174,9 @@ void QXmlQuery_SetQuery(void* ptr, void* sourceCode, void* documentURI)
 	static_cast<QXmlQuery*>(ptr)->setQuery(static_cast<QIODevice*>(sourceCode), *static_cast<QUrl*>(documentURI));
 }
 
-void QXmlQuery_SetQuery2(void* ptr, char* sourceCode, void* documentURI)
+void QXmlQuery_SetQuery2(void* ptr, struct QtXmlPatterns_PackedString sourceCode, void* documentURI)
 {
-	static_cast<QXmlQuery*>(ptr)->setQuery(QString(sourceCode), *static_cast<QUrl*>(documentURI));
+	static_cast<QXmlQuery*>(ptr)->setQuery(QString::fromUtf8(sourceCode.data, sourceCode.len), *static_cast<QUrl*>(documentURI));
 }
 
 void QXmlQuery_SetQuery3(void* ptr, void* queryURI, void* baseURI)
@@ -1229,14 +1229,14 @@ char QXmlQuery_EvaluateTo4(void* ptr, void* target)
 	return static_cast<QXmlQuery*>(ptr)->evaluateTo(static_cast<QIODevice*>(target));
 }
 
-char QXmlQuery_EvaluateTo5(void* ptr, char* output)
+char QXmlQuery_EvaluateTo5(void* ptr, struct QtXmlPatterns_PackedString output)
 {
-	return static_cast<QXmlQuery*>(ptr)->evaluateTo(new QString(output));
+	return static_cast<QXmlQuery*>(ptr)->evaluateTo(new QString(QString::fromUtf8(output.data, output.len)));
 }
 
-char QXmlQuery_EvaluateTo3(void* ptr, char* target)
+char QXmlQuery_EvaluateTo3(void* ptr, struct QtXmlPatterns_PackedString target)
 {
-	return static_cast<QXmlQuery*>(ptr)->evaluateTo(new QStringList(QString(target).split("|", QString::SkipEmptyParts)));
+	return static_cast<QXmlQuery*>(ptr)->evaluateTo(new QStringList(QString::fromUtf8(target.data, target.len).split("|", QString::SkipEmptyParts)));
 }
 
 char QXmlQuery_IsValid(void* ptr)
@@ -1507,17 +1507,17 @@ void QXmlSerializer_CharactersDefault(void* ptr, void* value)
 	}
 }
 
-void QXmlSerializer_Comment(void* ptr, char* value)
+void QXmlSerializer_Comment(void* ptr, struct QtXmlPatterns_PackedString value)
 {
-	static_cast<QXmlSerializer*>(ptr)->comment(QString(value));
+	static_cast<QXmlSerializer*>(ptr)->comment(QString::fromUtf8(value.data, value.len));
 }
 
-void QXmlSerializer_CommentDefault(void* ptr, char* value)
+void QXmlSerializer_CommentDefault(void* ptr, struct QtXmlPatterns_PackedString value)
 {
 	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
-		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::comment(QString(value));
+		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::comment(QString::fromUtf8(value.data, value.len));
 	} else {
-		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::comment(QString(value));
+		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::comment(QString::fromUtf8(value.data, value.len));
 	}
 }
 
@@ -1577,17 +1577,17 @@ void QXmlSerializer_NamespaceBindingDefault(void* ptr, void* nb)
 	}
 }
 
-void QXmlSerializer_ProcessingInstruction(void* ptr, void* name, char* value)
+void QXmlSerializer_ProcessingInstruction(void* ptr, void* name, struct QtXmlPatterns_PackedString value)
 {
-	static_cast<QXmlSerializer*>(ptr)->processingInstruction(*static_cast<QXmlName*>(name), QString(value));
+	static_cast<QXmlSerializer*>(ptr)->processingInstruction(*static_cast<QXmlName*>(name), QString::fromUtf8(value.data, value.len));
 }
 
-void QXmlSerializer_ProcessingInstructionDefault(void* ptr, void* name, char* value)
+void QXmlSerializer_ProcessingInstructionDefault(void* ptr, void* name, struct QtXmlPatterns_PackedString value)
 {
 	if (dynamic_cast<QXmlFormatter*>(static_cast<QXmlSerializer*>(ptr))) {
-		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::processingInstruction(*static_cast<QXmlName*>(name), QString(value));
+		static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::processingInstruction(*static_cast<QXmlName*>(name), QString::fromUtf8(value.data, value.len));
 	} else {
-		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::processingInstruction(*static_cast<QXmlName*>(name), QString(value));
+		static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::processingInstruction(*static_cast<QXmlName*>(name), QString::fromUtf8(value.data, value.len));
 	}
 }
 

@@ -83,9 +83,9 @@ void* QCanBus_QCanBus_Instance()
 	return QCanBus::instance();
 }
 
-void* QCanBus_CreateDevice(void* ptr, char* plugin, char* interfaceName, char* errorMessage)
+void* QCanBus_CreateDevice(void* ptr, struct QtSerialBus_PackedString plugin, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
 {
-	return static_cast<QCanBus*>(ptr)->createDevice(QString(plugin), QString(interfaceName), new QString(errorMessage));
+	return static_cast<QCanBus*>(ptr)->createDevice(QString::fromUtf8(plugin.data, plugin.len), QString::fromUtf8(interfaceName.data, interfaceName.len), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)));
 }
 
 struct QtSerialBus_PackedString QCanBus_Plugins(void* ptr)
@@ -222,7 +222,7 @@ class MyQCanBusDevice: public QCanBusDevice
 {
 public:
 	MyQCanBusDevice(QObject *parent = nullptr) : QCanBusDevice(parent) {QCanBusDevice_QCanBusDevice_QRegisterMetaType();};
-	QString interpretErrorFrame(const QCanBusFrame & frame) { return QString(callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&frame))); };
+	QString interpretErrorFrame(const QCanBusFrame & frame) { return ({ QtSerialBus_PackedString tempVal = callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&frame)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool open() { return callbackQCanBusDevice_Open(this) != 0; };
 	bool waitForFramesReceived(int msecs) { return callbackQCanBusDevice_WaitForFramesReceived(this, msecs) != 0; };
 	bool waitForFramesWritten(int msecs) { return callbackQCanBusDevice_WaitForFramesWritten(this, msecs) != 0; };
@@ -406,9 +406,9 @@ void QCanBusDevice_SetConfigurationParameterDefault(void* ptr, int key, void* va
 		static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::setConfigurationParameter(key, *static_cast<QVariant*>(value));
 }
 
-void QCanBusDevice_SetError(void* ptr, char* errorText, long long errorId)
+void QCanBusDevice_SetError(void* ptr, struct QtSerialBus_PackedString errorText, long long errorId)
 {
-	static_cast<QCanBusDevice*>(ptr)->setError(QString(errorText), static_cast<QCanBusDevice::CanBusError>(errorId));
+	static_cast<QCanBusDevice*>(ptr)->setError(QString::fromUtf8(errorText.data, errorText.len), static_cast<QCanBusDevice::CanBusError>(errorId));
 }
 
 void QCanBusDevice_SetState(void* ptr, long long newState)
@@ -629,9 +629,9 @@ public:
 	QCanBusDevice * createDevice(const QString & interfaceName, QString * errorMessage) const { QByteArray tf83f00 = interfaceName.toUtf8(); QtSerialBus_PackedString interfaceNamePacked = { const_cast<char*>(tf83f00.prepend("WHITESPACE").constData()+10), tf83f00.size()-10 };QByteArray t3f2abc = errorMessage->toUtf8(); QtSerialBus_PackedString errorMessagePacked = { const_cast<char*>(t3f2abc.prepend("WHITESPACE").constData()+10), t3f2abc.size()-10 };return static_cast<QCanBusDevice*>(callbackQCanBusFactory_CreateDevice(const_cast<void*>(static_cast<const void*>(this)), interfaceNamePacked, errorMessagePacked)); };
 };
 
-void* QCanBusFactory_CreateDevice(void* ptr, char* interfaceName, char* errorMessage)
+void* QCanBusFactory_CreateDevice(void* ptr, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
 {
-	return static_cast<QCanBusFactory*>(ptr)->createDevice(QString(interfaceName), new QString(errorMessage));
+	return static_cast<QCanBusFactory*>(ptr)->createDevice(QString::fromUtf8(interfaceName.data, interfaceName.len), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)));
 }
 
 int QCanBusFrame_TransmissionTimeoutError_Type()
@@ -1186,9 +1186,9 @@ void QModbusDevice_SetConnectionParameter(void* ptr, int parameter, void* value)
 	static_cast<QModbusDevice*>(ptr)->setConnectionParameter(parameter, *static_cast<QVariant*>(value));
 }
 
-void QModbusDevice_SetError(void* ptr, char* errorText, long long error)
+void QModbusDevice_SetError(void* ptr, struct QtSerialBus_PackedString errorText, long long error)
 {
-	static_cast<QModbusDevice*>(ptr)->setError(QString(errorText), static_cast<QModbusDevice::Error>(error));
+	static_cast<QModbusDevice*>(ptr)->setError(QString::fromUtf8(errorText.data, errorText.len), static_cast<QModbusDevice::Error>(error));
 }
 
 void QModbusDevice_SetState(void* ptr, long long newState)

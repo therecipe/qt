@@ -228,9 +228,9 @@ char QGraphicsWebView_EventDefault(void* ptr, void* event)
 		return static_cast<QGraphicsWebView*>(ptr)->QGraphicsWebView::event(static_cast<QEvent*>(event));
 }
 
-char QGraphicsWebView_FindText(void* ptr, char* subString, long long options)
+char QGraphicsWebView_FindText(void* ptr, struct QtWebKit_PackedString subString, long long options)
 {
-	return static_cast<QGraphicsWebView*>(ptr)->findText(QString(subString), static_cast<QWebPage::FindFlag>(options));
+	return static_cast<QGraphicsWebView*>(ptr)->findText(QString::fromUtf8(subString.data, subString.len), static_cast<QWebPage::FindFlag>(options));
 }
 
 char QGraphicsWebView_FocusNextPrevChildDefault(void* ptr, char next)
@@ -443,9 +443,9 @@ void QGraphicsWebView_ReloadDefault(void* ptr)
 		static_cast<QGraphicsWebView*>(ptr)->QGraphicsWebView::reload();
 }
 
-void QGraphicsWebView_SetContent(void* ptr, void* data, char* mimeType, void* baseUrl)
+void QGraphicsWebView_SetContent(void* ptr, void* data, struct QtWebKit_PackedString mimeType, void* baseUrl)
 {
-	static_cast<QGraphicsWebView*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString(mimeType), *static_cast<QUrl*>(baseUrl));
+	static_cast<QGraphicsWebView*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString::fromUtf8(mimeType.data, mimeType.len), *static_cast<QUrl*>(baseUrl));
 }
 
 void QGraphicsWebView_SetGeometryDefault(void* ptr, void* rect)
@@ -453,9 +453,9 @@ void QGraphicsWebView_SetGeometryDefault(void* ptr, void* rect)
 		static_cast<QGraphicsWebView*>(ptr)->QGraphicsWebView::setGeometry(*static_cast<QRectF*>(rect));
 }
 
-void QGraphicsWebView_SetHtml(void* ptr, char* html, void* baseUrl)
+void QGraphicsWebView_SetHtml(void* ptr, struct QtWebKit_PackedString html, void* baseUrl)
 {
-	static_cast<QGraphicsWebView*>(ptr)->setHtml(QString(html), *static_cast<QUrl*>(baseUrl));
+	static_cast<QGraphicsWebView*>(ptr)->setHtml(QString::fromUtf8(html.data, html.len), *static_cast<QUrl*>(baseUrl));
 }
 
 void QGraphicsWebView_SetPage(void* ptr, void* page)
@@ -503,9 +503,9 @@ void QGraphicsWebView_DisconnectStatusBarMessage(void* ptr)
 	QObject::disconnect(static_cast<QGraphicsWebView*>(ptr), static_cast<void (QGraphicsWebView::*)(const QString &)>(&QGraphicsWebView::statusBarMessage), static_cast<MyQGraphicsWebView*>(ptr), static_cast<void (MyQGraphicsWebView::*)(const QString &)>(&MyQGraphicsWebView::Signal_StatusBarMessage));
 }
 
-void QGraphicsWebView_StatusBarMessage(void* ptr, char* text)
+void QGraphicsWebView_StatusBarMessage(void* ptr, struct QtWebKit_PackedString text)
 {
-	static_cast<QGraphicsWebView*>(ptr)->statusBarMessage(QString(text));
+	static_cast<QGraphicsWebView*>(ptr)->statusBarMessage(QString::fromUtf8(text.data, text.len));
 }
 
 void QGraphicsWebView_Stop(void* ptr)
@@ -528,9 +528,9 @@ void QGraphicsWebView_DisconnectTitleChanged(void* ptr)
 	QObject::disconnect(static_cast<QGraphicsWebView*>(ptr), static_cast<void (QGraphicsWebView::*)(const QString &)>(&QGraphicsWebView::titleChanged), static_cast<MyQGraphicsWebView*>(ptr), static_cast<void (MyQGraphicsWebView::*)(const QString &)>(&MyQGraphicsWebView::Signal_TitleChanged));
 }
 
-void QGraphicsWebView_TitleChanged(void* ptr, char* vqs)
+void QGraphicsWebView_TitleChanged(void* ptr, struct QtWebKit_PackedString vqs)
 {
-	static_cast<QGraphicsWebView*>(ptr)->titleChanged(QString(vqs));
+	static_cast<QGraphicsWebView*>(ptr)->titleChanged(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QGraphicsWebView_TriggerPageAction(void* ptr, long long action, char checked)
@@ -1065,9 +1065,9 @@ long long QWebDatabase_Size(void* ptr)
 	return static_cast<QWebDatabase*>(ptr)->size();
 }
 
-void* QWebElement_EvaluateJavaScript(void* ptr, char* scriptSource)
+void* QWebElement_EvaluateJavaScript(void* ptr, struct QtWebKit_PackedString scriptSource)
 {
-	return new QVariant(static_cast<QWebElement*>(ptr)->evaluateJavaScript(QString(scriptSource)));
+	return new QVariant(static_cast<QWebElement*>(ptr)->evaluateJavaScript(QString::fromUtf8(scriptSource.data, scriptSource.len)));
 }
 
 void* QWebElement_TakeFromDocument(void* ptr)
@@ -1085,14 +1085,14 @@ void* QWebElement_NewQWebElement2(void* other)
 	return new QWebElement(*static_cast<QWebElement*>(other));
 }
 
-void QWebElement_AddClass(void* ptr, char* name)
+void QWebElement_AddClass(void* ptr, struct QtWebKit_PackedString name)
 {
-	static_cast<QWebElement*>(ptr)->addClass(QString(name));
+	static_cast<QWebElement*>(ptr)->addClass(QString::fromUtf8(name.data, name.len));
 }
 
-void QWebElement_AppendInside(void* ptr, char* markup)
+void QWebElement_AppendInside(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->appendInside(QString(markup));
+	static_cast<QWebElement*>(ptr)->appendInside(QString::fromUtf8(markup.data, markup.len));
 }
 
 void QWebElement_AppendInside2(void* ptr, void* element)
@@ -1100,9 +1100,9 @@ void QWebElement_AppendInside2(void* ptr, void* element)
 	static_cast<QWebElement*>(ptr)->appendInside(*static_cast<QWebElement*>(element));
 }
 
-void QWebElement_AppendOutside(void* ptr, char* markup)
+void QWebElement_AppendOutside(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->appendOutside(QString(markup));
+	static_cast<QWebElement*>(ptr)->appendOutside(QString::fromUtf8(markup.data, markup.len));
 }
 
 void QWebElement_AppendOutside2(void* ptr, void* element)
@@ -1110,9 +1110,9 @@ void QWebElement_AppendOutside2(void* ptr, void* element)
 	static_cast<QWebElement*>(ptr)->appendOutside(*static_cast<QWebElement*>(element));
 }
 
-void QWebElement_EncloseContentsWith2(void* ptr, char* markup)
+void QWebElement_EncloseContentsWith2(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->encloseContentsWith(QString(markup));
+	static_cast<QWebElement*>(ptr)->encloseContentsWith(QString::fromUtf8(markup.data, markup.len));
 }
 
 void QWebElement_EncloseContentsWith(void* ptr, void* element)
@@ -1120,9 +1120,9 @@ void QWebElement_EncloseContentsWith(void* ptr, void* element)
 	static_cast<QWebElement*>(ptr)->encloseContentsWith(*static_cast<QWebElement*>(element));
 }
 
-void QWebElement_EncloseWith(void* ptr, char* markup)
+void QWebElement_EncloseWith(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->encloseWith(QString(markup));
+	static_cast<QWebElement*>(ptr)->encloseWith(QString::fromUtf8(markup.data, markup.len));
 }
 
 void QWebElement_EncloseWith2(void* ptr, void* element)
@@ -1130,9 +1130,9 @@ void QWebElement_EncloseWith2(void* ptr, void* element)
 	static_cast<QWebElement*>(ptr)->encloseWith(*static_cast<QWebElement*>(element));
 }
 
-void QWebElement_PrependInside(void* ptr, char* markup)
+void QWebElement_PrependInside(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->prependInside(QString(markup));
+	static_cast<QWebElement*>(ptr)->prependInside(QString::fromUtf8(markup.data, markup.len));
 }
 
 void QWebElement_PrependInside2(void* ptr, void* element)
@@ -1140,9 +1140,9 @@ void QWebElement_PrependInside2(void* ptr, void* element)
 	static_cast<QWebElement*>(ptr)->prependInside(*static_cast<QWebElement*>(element));
 }
 
-void QWebElement_PrependOutside(void* ptr, char* markup)
+void QWebElement_PrependOutside(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->prependOutside(QString(markup));
+	static_cast<QWebElement*>(ptr)->prependOutside(QString::fromUtf8(markup.data, markup.len));
 }
 
 void QWebElement_PrependOutside2(void* ptr, void* element)
@@ -1155,19 +1155,19 @@ void QWebElement_RemoveAllChildren(void* ptr)
 	static_cast<QWebElement*>(ptr)->removeAllChildren();
 }
 
-void QWebElement_RemoveAttribute(void* ptr, char* name)
+void QWebElement_RemoveAttribute(void* ptr, struct QtWebKit_PackedString name)
 {
-	static_cast<QWebElement*>(ptr)->removeAttribute(QString(name));
+	static_cast<QWebElement*>(ptr)->removeAttribute(QString::fromUtf8(name.data, name.len));
 }
 
-void QWebElement_RemoveAttributeNS(void* ptr, char* namespaceUri, char* name)
+void QWebElement_RemoveAttributeNS(void* ptr, struct QtWebKit_PackedString namespaceUri, struct QtWebKit_PackedString name)
 {
-	static_cast<QWebElement*>(ptr)->removeAttributeNS(QString(namespaceUri), QString(name));
+	static_cast<QWebElement*>(ptr)->removeAttributeNS(QString::fromUtf8(namespaceUri.data, namespaceUri.len), QString::fromUtf8(name.data, name.len));
 }
 
-void QWebElement_RemoveClass(void* ptr, char* name)
+void QWebElement_RemoveClass(void* ptr, struct QtWebKit_PackedString name)
 {
-	static_cast<QWebElement*>(ptr)->removeClass(QString(name));
+	static_cast<QWebElement*>(ptr)->removeClass(QString::fromUtf8(name.data, name.len));
 }
 
 void QWebElement_RemoveFromDocument(void* ptr)
@@ -1185,9 +1185,9 @@ void QWebElement_Render2(void* ptr, void* painter, void* clip)
 	static_cast<QWebElement*>(ptr)->render(static_cast<QPainter*>(painter), *static_cast<QRect*>(clip));
 }
 
-void QWebElement_Replace(void* ptr, char* markup)
+void QWebElement_Replace(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->replace(QString(markup));
+	static_cast<QWebElement*>(ptr)->replace(QString::fromUtf8(markup.data, markup.len));
 }
 
 void QWebElement_Replace2(void* ptr, void* element)
@@ -1195,14 +1195,14 @@ void QWebElement_Replace2(void* ptr, void* element)
 	static_cast<QWebElement*>(ptr)->replace(*static_cast<QWebElement*>(element));
 }
 
-void QWebElement_SetAttribute(void* ptr, char* name, char* value)
+void QWebElement_SetAttribute(void* ptr, struct QtWebKit_PackedString name, struct QtWebKit_PackedString value)
 {
-	static_cast<QWebElement*>(ptr)->setAttribute(QString(name), QString(value));
+	static_cast<QWebElement*>(ptr)->setAttribute(QString::fromUtf8(name.data, name.len), QString::fromUtf8(value.data, value.len));
 }
 
-void QWebElement_SetAttributeNS(void* ptr, char* namespaceUri, char* name, char* value)
+void QWebElement_SetAttributeNS(void* ptr, struct QtWebKit_PackedString namespaceUri, struct QtWebKit_PackedString name, struct QtWebKit_PackedString value)
 {
-	static_cast<QWebElement*>(ptr)->setAttributeNS(QString(namespaceUri), QString(name), QString(value));
+	static_cast<QWebElement*>(ptr)->setAttributeNS(QString::fromUtf8(namespaceUri.data, namespaceUri.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(value.data, value.len));
 }
 
 void QWebElement_SetFocus(void* ptr)
@@ -1210,29 +1210,29 @@ void QWebElement_SetFocus(void* ptr)
 	static_cast<QWebElement*>(ptr)->setFocus();
 }
 
-void QWebElement_SetInnerXml(void* ptr, char* markup)
+void QWebElement_SetInnerXml(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->setInnerXml(QString(markup));
+	static_cast<QWebElement*>(ptr)->setInnerXml(QString::fromUtf8(markup.data, markup.len));
 }
 
-void QWebElement_SetOuterXml(void* ptr, char* markup)
+void QWebElement_SetOuterXml(void* ptr, struct QtWebKit_PackedString markup)
 {
-	static_cast<QWebElement*>(ptr)->setOuterXml(QString(markup));
+	static_cast<QWebElement*>(ptr)->setOuterXml(QString::fromUtf8(markup.data, markup.len));
 }
 
-void QWebElement_SetPlainText(void* ptr, char* text)
+void QWebElement_SetPlainText(void* ptr, struct QtWebKit_PackedString text)
 {
-	static_cast<QWebElement*>(ptr)->setPlainText(QString(text));
+	static_cast<QWebElement*>(ptr)->setPlainText(QString::fromUtf8(text.data, text.len));
 }
 
-void QWebElement_SetStyleProperty(void* ptr, char* name, char* value)
+void QWebElement_SetStyleProperty(void* ptr, struct QtWebKit_PackedString name, struct QtWebKit_PackedString value)
 {
-	static_cast<QWebElement*>(ptr)->setStyleProperty(QString(name), QString(value));
+	static_cast<QWebElement*>(ptr)->setStyleProperty(QString::fromUtf8(name.data, name.len), QString::fromUtf8(value.data, value.len));
 }
 
-void QWebElement_ToggleClass(void* ptr, char* name)
+void QWebElement_ToggleClass(void* ptr, struct QtWebKit_PackedString name)
 {
-	static_cast<QWebElement*>(ptr)->toggleClass(QString(name));
+	static_cast<QWebElement*>(ptr)->toggleClass(QString::fromUtf8(name.data, name.len));
 }
 
 void QWebElement_DestroyQWebElement(void* ptr)
@@ -1245,14 +1245,14 @@ void* QWebElement_Geometry(void* ptr)
 	return ({ QRect tmpValue = static_cast<QWebElement*>(ptr)->geometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-struct QtWebKit_PackedString QWebElement_Attribute(void* ptr, char* name, char* defaultValue)
+struct QtWebKit_PackedString QWebElement_Attribute(void* ptr, struct QtWebKit_PackedString name, struct QtWebKit_PackedString defaultValue)
 {
-	return ({ QByteArray tafeb6b = static_cast<QWebElement*>(ptr)->attribute(QString(name), QString(defaultValue)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(tafeb6b.prepend("WHITESPACE").constData()+10), tafeb6b.size()-10 }; });
+	return ({ QByteArray t91d24c = static_cast<QWebElement*>(ptr)->attribute(QString::fromUtf8(name.data, name.len), QString::fromUtf8(defaultValue.data, defaultValue.len)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t91d24c.prepend("WHITESPACE").constData()+10), t91d24c.size()-10 }; });
 }
 
-struct QtWebKit_PackedString QWebElement_AttributeNS(void* ptr, char* namespaceUri, char* name, char* defaultValue)
+struct QtWebKit_PackedString QWebElement_AttributeNS(void* ptr, struct QtWebKit_PackedString namespaceUri, struct QtWebKit_PackedString name, struct QtWebKit_PackedString defaultValue)
 {
-	return ({ QByteArray tf8a751 = static_cast<QWebElement*>(ptr)->attributeNS(QString(namespaceUri), QString(name), QString(defaultValue)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(tf8a751.prepend("WHITESPACE").constData()+10), tf8a751.size()-10 }; });
+	return ({ QByteArray te7d3da = static_cast<QWebElement*>(ptr)->attributeNS(QString::fromUtf8(namespaceUri.data, namespaceUri.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(defaultValue.data, defaultValue.len)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(te7d3da.prepend("WHITESPACE").constData()+10), te7d3da.size()-10 }; });
 }
 
 struct QtWebKit_PackedString QWebElement_LocalName(void* ptr)
@@ -1270,9 +1270,9 @@ struct QtWebKit_PackedString QWebElement_Prefix(void* ptr)
 	return ({ QByteArray t3b50c5 = static_cast<QWebElement*>(ptr)->prefix().toUtf8(); QtWebKit_PackedString { const_cast<char*>(t3b50c5.prepend("WHITESPACE").constData()+10), t3b50c5.size()-10 }; });
 }
 
-struct QtWebKit_PackedString QWebElement_StyleProperty(void* ptr, char* name, long long strategy)
+struct QtWebKit_PackedString QWebElement_StyleProperty(void* ptr, struct QtWebKit_PackedString name, long long strategy)
 {
-	return ({ QByteArray t7dc25b = static_cast<QWebElement*>(ptr)->styleProperty(QString(name), static_cast<QWebElement::StyleResolveStrategy>(strategy)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t7dc25b.prepend("WHITESPACE").constData()+10), t7dc25b.size()-10 }; });
+	return ({ QByteArray t787493 = static_cast<QWebElement*>(ptr)->styleProperty(QString::fromUtf8(name.data, name.len), static_cast<QWebElement::StyleResolveStrategy>(strategy)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t787493.prepend("WHITESPACE").constData()+10), t787493.size()-10 }; });
 }
 
 struct QtWebKit_PackedString QWebElement_TagName(void* ptr)
@@ -1295,9 +1295,9 @@ struct QtWebKit_PackedString QWebElement_ToPlainText(void* ptr)
 	return ({ QByteArray tf7c87e = static_cast<QWebElement*>(ptr)->toPlainText().toUtf8(); QtWebKit_PackedString { const_cast<char*>(tf7c87e.prepend("WHITESPACE").constData()+10), tf7c87e.size()-10 }; });
 }
 
-struct QtWebKit_PackedString QWebElement_AttributeNames(void* ptr, char* namespaceUri)
+struct QtWebKit_PackedString QWebElement_AttributeNames(void* ptr, struct QtWebKit_PackedString namespaceUri)
 {
-	return ({ QByteArray tcf234a = static_cast<QWebElement*>(ptr)->attributeNames(QString(namespaceUri)).join("|").toUtf8(); QtWebKit_PackedString { const_cast<char*>(tcf234a.prepend("WHITESPACE").constData()+10), tcf234a.size()-10 }; });
+	return ({ QByteArray t08a8f8 = static_cast<QWebElement*>(ptr)->attributeNames(QString::fromUtf8(namespaceUri.data, namespaceUri.len)).join("|").toUtf8(); QtWebKit_PackedString { const_cast<char*>(t08a8f8.prepend("WHITESPACE").constData()+10), t08a8f8.size()-10 }; });
 }
 
 struct QtWebKit_PackedString QWebElement_Classes(void* ptr)
@@ -1315,9 +1315,9 @@ void* QWebElement_Document(void* ptr)
 	return new QWebElement(static_cast<QWebElement*>(ptr)->document());
 }
 
-void* QWebElement_FindFirst(void* ptr, char* selectorQuery)
+void* QWebElement_FindFirst(void* ptr, struct QtWebKit_PackedString selectorQuery)
 {
-	return new QWebElement(static_cast<QWebElement*>(ptr)->findFirst(QString(selectorQuery)));
+	return new QWebElement(static_cast<QWebElement*>(ptr)->findFirst(QString::fromUtf8(selectorQuery.data, selectorQuery.len)));
 }
 
 void* QWebElement_FirstChild(void* ptr)
@@ -1345,9 +1345,9 @@ void* QWebElement_PreviousSibling(void* ptr)
 	return new QWebElement(static_cast<QWebElement*>(ptr)->previousSibling());
 }
 
-void* QWebElement_FindAll(void* ptr, char* selectorQuery)
+void* QWebElement_FindAll(void* ptr, struct QtWebKit_PackedString selectorQuery)
 {
-	return new QWebElementCollection(static_cast<QWebElement*>(ptr)->findAll(QString(selectorQuery)));
+	return new QWebElementCollection(static_cast<QWebElement*>(ptr)->findAll(QString::fromUtf8(selectorQuery.data, selectorQuery.len)));
 }
 
 void* QWebElement_WebFrame(void* ptr)
@@ -1355,14 +1355,14 @@ void* QWebElement_WebFrame(void* ptr)
 	return static_cast<QWebElement*>(ptr)->webFrame();
 }
 
-char QWebElement_HasAttribute(void* ptr, char* name)
+char QWebElement_HasAttribute(void* ptr, struct QtWebKit_PackedString name)
 {
-	return static_cast<QWebElement*>(ptr)->hasAttribute(QString(name));
+	return static_cast<QWebElement*>(ptr)->hasAttribute(QString::fromUtf8(name.data, name.len));
 }
 
-char QWebElement_HasAttributeNS(void* ptr, char* namespaceUri, char* name)
+char QWebElement_HasAttributeNS(void* ptr, struct QtWebKit_PackedString namespaceUri, struct QtWebKit_PackedString name)
 {
-	return static_cast<QWebElement*>(ptr)->hasAttributeNS(QString(namespaceUri), QString(name));
+	return static_cast<QWebElement*>(ptr)->hasAttributeNS(QString::fromUtf8(namespaceUri.data, namespaceUri.len), QString::fromUtf8(name.data, name.len));
 }
 
 char QWebElement_HasAttributes(void* ptr)
@@ -1370,9 +1370,9 @@ char QWebElement_HasAttributes(void* ptr)
 	return static_cast<QWebElement*>(ptr)->hasAttributes();
 }
 
-char QWebElement_HasClass(void* ptr, char* name)
+char QWebElement_HasClass(void* ptr, struct QtWebKit_PackedString name)
 {
-	return static_cast<QWebElement*>(ptr)->hasClass(QString(name));
+	return static_cast<QWebElement*>(ptr)->hasClass(QString::fromUtf8(name.data, name.len));
 }
 
 char QWebElement_HasFocus(void* ptr)
@@ -1390,9 +1390,9 @@ void* QWebElementCollection_NewQWebElementCollection()
 	return new QWebElementCollection();
 }
 
-void* QWebElementCollection_NewQWebElementCollection2(void* contextElement, char* query)
+void* QWebElementCollection_NewQWebElementCollection2(void* contextElement, struct QtWebKit_PackedString query)
 {
-	return new QWebElementCollection(*static_cast<QWebElement*>(contextElement), QString(query));
+	return new QWebElementCollection(*static_cast<QWebElement*>(contextElement), QString::fromUtf8(query.data, query.len));
 }
 
 void* QWebElementCollection_NewQWebElementCollection3(void* other)
@@ -1487,21 +1487,21 @@ char QWebFrame_EventDefault(void* ptr, void* e)
 		return static_cast<QWebFrame*>(ptr)->QWebFrame::event(static_cast<QEvent*>(e));
 }
 
-void QWebFrame_AddToJavaScriptWindowObject(void* ptr, char* name, void* object, long long own)
+void QWebFrame_AddToJavaScriptWindowObject(void* ptr, struct QtWebKit_PackedString name, void* object, long long own)
 {
-	static_cast<QWebFrame*>(ptr)->addToJavaScriptWindowObject(QString(name), static_cast<QObject*>(object), static_cast<QWebFrame::ValueOwnership>(own));
+	static_cast<QWebFrame*>(ptr)->addToJavaScriptWindowObject(QString::fromUtf8(name.data, name.len), static_cast<QObject*>(object), static_cast<QWebFrame::ValueOwnership>(own));
 }
 
-void* QWebFrame_EvaluateJavaScript(void* ptr, char* scriptSource)
+void* QWebFrame_EvaluateJavaScript(void* ptr, struct QtWebKit_PackedString scriptSource)
 {
 	QVariant returnArg;
-	QMetaObject::invokeMethod(static_cast<QWebFrame*>(ptr), "evaluateJavaScript", Q_RETURN_ARG(QVariant, returnArg), Q_ARG(QString, QString(scriptSource)));
+	QMetaObject::invokeMethod(static_cast<QWebFrame*>(ptr), "evaluateJavaScript", Q_RETURN_ARG(QVariant, returnArg), Q_ARG(QString, QString::fromUtf8(scriptSource.data, scriptSource.len)));
 	return new QVariant(returnArg);
 }
 
-void* QWebFrame_EvaluateJavaScriptDefault(void* ptr, char* scriptSource)
+void* QWebFrame_EvaluateJavaScriptDefault(void* ptr, struct QtWebKit_PackedString scriptSource)
 {
-		return new QVariant(static_cast<QWebFrame*>(ptr)->QWebFrame::evaluateJavaScript(QString(scriptSource)));
+		return new QVariant(static_cast<QWebFrame*>(ptr)->QWebFrame::evaluateJavaScript(QString::fromUtf8(scriptSource.data, scriptSource.len)));
 }
 
 void QWebFrame_ConnectContentsSizeChanged(void* ptr)
@@ -1634,14 +1634,14 @@ void QWebFrame_Scroll(void* ptr, int dx, int dy)
 	static_cast<QWebFrame*>(ptr)->scroll(dx, dy);
 }
 
-void QWebFrame_ScrollToAnchor(void* ptr, char* anchor)
+void QWebFrame_ScrollToAnchor(void* ptr, struct QtWebKit_PackedString anchor)
 {
-	static_cast<QWebFrame*>(ptr)->scrollToAnchor(QString(anchor));
+	static_cast<QWebFrame*>(ptr)->scrollToAnchor(QString::fromUtf8(anchor.data, anchor.len));
 }
 
-void QWebFrame_SetContent(void* ptr, void* data, char* mimeType, void* baseUrl)
+void QWebFrame_SetContent(void* ptr, void* data, struct QtWebKit_PackedString mimeType, void* baseUrl)
 {
-	static_cast<QWebFrame*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString(mimeType), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebFrame*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString::fromUtf8(mimeType.data, mimeType.len), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebFrame_SetFocus(void* ptr)
@@ -1649,9 +1649,9 @@ void QWebFrame_SetFocus(void* ptr)
 	static_cast<QWebFrame*>(ptr)->setFocus();
 }
 
-void QWebFrame_SetHtml(void* ptr, char* html, void* baseUrl)
+void QWebFrame_SetHtml(void* ptr, struct QtWebKit_PackedString html, void* baseUrl)
 {
-	static_cast<QWebFrame*>(ptr)->setHtml(QString(html), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebFrame*>(ptr)->setHtml(QString::fromUtf8(html.data, html.len), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebFrame_SetScrollBarPolicy(void* ptr, long long orientation, long long policy)
@@ -1694,9 +1694,9 @@ void QWebFrame_DisconnectTitleChanged(void* ptr)
 	QObject::disconnect(static_cast<QWebFrame*>(ptr), static_cast<void (QWebFrame::*)(const QString &)>(&QWebFrame::titleChanged), static_cast<MyQWebFrame*>(ptr), static_cast<void (MyQWebFrame::*)(const QString &)>(&MyQWebFrame::Signal_TitleChanged));
 }
 
-void QWebFrame_TitleChanged(void* ptr, char* title)
+void QWebFrame_TitleChanged(void* ptr, struct QtWebKit_PackedString title)
 {
-	static_cast<QWebFrame*>(ptr)->titleChanged(QString(title));
+	static_cast<QWebFrame*>(ptr)->titleChanged(QString::fromUtf8(title.data, title.len));
 }
 
 void QWebFrame_ConnectUrlChanged(void* ptr)
@@ -1794,9 +1794,9 @@ void* QWebFrame_DocumentElement(void* ptr)
 	return new QWebElement(static_cast<QWebFrame*>(ptr)->documentElement());
 }
 
-void* QWebFrame_FindFirstElement(void* ptr, char* selectorQuery)
+void* QWebFrame_FindFirstElement(void* ptr, struct QtWebKit_PackedString selectorQuery)
 {
-	return new QWebElement(static_cast<QWebFrame*>(ptr)->findFirstElement(QString(selectorQuery)));
+	return new QWebElement(static_cast<QWebFrame*>(ptr)->findFirstElement(QString::fromUtf8(selectorQuery.data, selectorQuery.len)));
 }
 
 void* QWebFrame_OwnerElement(void* ptr)
@@ -1804,9 +1804,9 @@ void* QWebFrame_OwnerElement(void* ptr)
 	return new QWebElement(static_cast<QWebFrame*>(ptr)->ownerElement());
 }
 
-void* QWebFrame_FindAllElements(void* ptr, char* selectorQuery)
+void* QWebFrame_FindAllElements(void* ptr, struct QtWebKit_PackedString selectorQuery)
 {
-	return new QWebElementCollection(static_cast<QWebFrame*>(ptr)->findAllElements(QString(selectorQuery)));
+	return new QWebElementCollection(static_cast<QWebFrame*>(ptr)->findAllElements(QString::fromUtf8(selectorQuery.data, selectorQuery.len)));
 }
 
 void* QWebFrame_ParentFrame(void* ptr)
@@ -1890,14 +1890,14 @@ void* QWebFrame___childFrames_newList(void* ptr)
 	return new QList<QWebFrame *>;
 }
 
-struct QtWebKit_PackedString QWebFrame___metaData_atList(void* ptr, char* i)
+struct QtWebKit_PackedString QWebFrame___metaData_atList(void* ptr, struct QtWebKit_PackedString i)
 {
-	return ({ QByteArray t425808 = static_cast<QMultiMap<QString, QString>*>(ptr)->value(QString(i)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t425808.prepend("WHITESPACE").constData()+10), t425808.size()-10 }; });
+	return ({ QByteArray t25b5fd = static_cast<QMultiMap<QString, QString>*>(ptr)->value(QString::fromUtf8(i.data, i.len)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t25b5fd.prepend("WHITESPACE").constData()+10), t25b5fd.size()-10 }; });
 }
 
-void QWebFrame___metaData_setList(void* ptr, char* key, char* i)
+void QWebFrame___metaData_setList(void* ptr, struct QtWebKit_PackedString key, struct QtWebKit_PackedString i)
 {
-	static_cast<QMultiMap<QString, QString>*>(ptr)->insert(QString(key), QString(i));
+	static_cast<QMultiMap<QString, QString>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebFrame___metaData_newList(void* ptr)
@@ -1916,9 +1916,9 @@ struct QtWebKit_PackedString QWebFrame_____metaData_keyList_atList(void* ptr, in
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QWebFrame_____metaData_keyList_setList(void* ptr, char* i)
+void QWebFrame_____metaData_keyList_setList(void* ptr, struct QtWebKit_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebFrame_____metaData_keyList_newList(void* ptr)
@@ -2137,14 +2137,14 @@ int QWebHistory_MaximumItemCount(void* ptr)
 	return static_cast<QWebHistory*>(ptr)->maximumItemCount();
 }
 
-void* QWebHistory___loadFromMap_map_atList(void* ptr, char* i)
+void* QWebHistory___loadFromMap_map_atList(void* ptr, struct QtWebKit_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QWebHistory___loadFromMap_map_setList(void* ptr, char* key, void* i)
+void QWebHistory___loadFromMap_map_setList(void* ptr, struct QtWebKit_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QWebHistory___loadFromMap_map_newList(void* ptr)
@@ -2206,14 +2206,14 @@ void* QWebHistory___items_newList(void* ptr)
 	return new QList<QWebHistoryItem>;
 }
 
-void* QWebHistory___toMap_atList(void* ptr, char* i)
+void* QWebHistory___toMap_atList(void* ptr, struct QtWebKit_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QWebHistory___toMap_setList(void* ptr, char* key, void* i)
+void QWebHistory___toMap_setList(void* ptr, struct QtWebKit_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QWebHistory___toMap_newList(void* ptr)
@@ -2232,9 +2232,9 @@ struct QtWebKit_PackedString QWebHistory_____loadFromMap_keyList_atList(void* pt
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QWebHistory_____loadFromMap_keyList_setList(void* ptr, char* i)
+void QWebHistory_____loadFromMap_keyList_setList(void* ptr, struct QtWebKit_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebHistory_____loadFromMap_keyList_newList(void* ptr)
@@ -2248,9 +2248,9 @@ struct QtWebKit_PackedString QWebHistory_____toMap_keyList_atList(void* ptr, int
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QWebHistory_____toMap_keyList_setList(void* ptr, char* i)
+void QWebHistory_____toMap_keyList_setList(void* ptr, struct QtWebKit_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebHistory_____toMap_keyList_newList(void* ptr)
@@ -2328,9 +2328,9 @@ void* QWebHistoryInterface_NewQWebHistoryInterface(void* parent)
 	}
 }
 
-void QWebHistoryInterface_AddHistoryEntry(void* ptr, char* url)
+void QWebHistoryInterface_AddHistoryEntry(void* ptr, struct QtWebKit_PackedString url)
 {
-	static_cast<QWebHistoryInterface*>(ptr)->addHistoryEntry(QString(url));
+	static_cast<QWebHistoryInterface*>(ptr)->addHistoryEntry(QString::fromUtf8(url.data, url.len));
 }
 
 void QWebHistoryInterface_QWebHistoryInterface_SetDefaultInterface(void* defaultInterface)
@@ -2343,9 +2343,9 @@ void QWebHistoryInterface_DestroyQWebHistoryInterface(void* ptr)
 	static_cast<QWebHistoryInterface*>(ptr)->~QWebHistoryInterface();
 }
 
-char QWebHistoryInterface_HistoryContains(void* ptr, char* url)
+char QWebHistoryInterface_HistoryContains(void* ptr, struct QtWebKit_PackedString url)
 {
-	return static_cast<QWebHistoryInterface*>(ptr)->historyContains(QString(url));
+	return static_cast<QWebHistoryInterface*>(ptr)->historyContains(QString::fromUtf8(url.data, url.len));
 }
 
 void* QWebHistoryInterface___dynamicPropertyNames_atList(void* ptr, int i)
@@ -2528,14 +2528,14 @@ char QWebHistoryItem_IsValid(void* ptr)
 	return static_cast<QWebHistoryItem*>(ptr)->isValid();
 }
 
-void* QWebHistoryItem___loadFromMap_map_atList(void* ptr, char* i)
+void* QWebHistoryItem___loadFromMap_map_atList(void* ptr, struct QtWebKit_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QWebHistoryItem___loadFromMap_map_setList(void* ptr, char* key, void* i)
+void QWebHistoryItem___loadFromMap_map_setList(void* ptr, struct QtWebKit_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QWebHistoryItem___loadFromMap_map_newList(void* ptr)
@@ -2549,14 +2549,14 @@ struct QtWebKit_PackedList QWebHistoryItem___loadFromMap_keyList(void* ptr)
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtWebKit_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QWebHistoryItem___toMap_atList(void* ptr, char* i)
+void* QWebHistoryItem___toMap_atList(void* ptr, struct QtWebKit_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QWebHistoryItem___toMap_setList(void* ptr, char* key, void* i)
+void QWebHistoryItem___toMap_setList(void* ptr, struct QtWebKit_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QWebHistoryItem___toMap_newList(void* ptr)
@@ -2575,9 +2575,9 @@ struct QtWebKit_PackedString QWebHistoryItem_____loadFromMap_keyList_atList(void
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QWebHistoryItem_____loadFromMap_keyList_setList(void* ptr, char* i)
+void QWebHistoryItem_____loadFromMap_keyList_setList(void* ptr, struct QtWebKit_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebHistoryItem_____loadFromMap_keyList_newList(void* ptr)
@@ -2591,9 +2591,9 @@ struct QtWebKit_PackedString QWebHistoryItem_____toMap_keyList_atList(void* ptr,
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QWebHistoryItem_____toMap_keyList_setList(void* ptr, char* i)
+void QWebHistoryItem_____toMap_keyList_setList(void* ptr, struct QtWebKit_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebHistoryItem_____toMap_keyList_newList(void* ptr)
@@ -3119,9 +3119,9 @@ void QWebInspector_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QWebInspector*>(ptr)->QWebInspector::setHidden(hidden != 0);
 }
 
-void QWebInspector_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QWebInspector_SetStyleSheetDefault(void* ptr, struct QtWebKit_PackedString styleSheet)
 {
-		static_cast<QWebInspector*>(ptr)->QWebInspector::setStyleSheet(QString(styleSheet));
+		static_cast<QWebInspector*>(ptr)->QWebInspector::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QWebInspector_SetVisibleDefault(void* ptr, char visible)
@@ -3134,9 +3134,9 @@ void QWebInspector_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QWebInspector*>(ptr)->QWebInspector::setWindowModified(vbo != 0);
 }
 
-void QWebInspector_SetWindowTitleDefault(void* ptr, char* vqs)
+void QWebInspector_SetWindowTitleDefault(void* ptr, struct QtWebKit_PackedString vqs)
 {
-		static_cast<QWebInspector*>(ptr)->QWebInspector::setWindowTitle(QString(vqs));
+		static_cast<QWebInspector*>(ptr)->QWebInspector::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QWebInspector_ShowDefault(void* ptr)
@@ -3259,7 +3259,7 @@ class MyQWebPage: public QWebPage
 public:
 	MyQWebPage(QObject *parent = Q_NULLPTR) : QWebPage(parent) {QWebPage_QWebPage_QRegisterMetaType();};
 	QObject * createPlugin(const QString & classid, const QUrl & url, const QStringList & paramNames, const QStringList & paramValues) { QByteArray tecec06 = classid.toUtf8(); QtWebKit_PackedString classidPacked = { const_cast<char*>(tecec06.prepend("WHITESPACE").constData()+10), tecec06.size()-10 };QByteArray te78583 = paramNames.join("|").toUtf8(); QtWebKit_PackedString paramNamesPacked = { const_cast<char*>(te78583.prepend("WHITESPACE").constData()+10), te78583.size()-10 };QByteArray t90393c = paramValues.join("|").toUtf8(); QtWebKit_PackedString paramValuesPacked = { const_cast<char*>(t90393c.prepend("WHITESPACE").constData()+10), t90393c.size()-10 };return static_cast<QObject*>(callbackQWebPage_CreatePlugin(this, classidPacked, const_cast<QUrl*>(&url), paramNamesPacked, paramValuesPacked)); };
-	QString chooseFile(QWebFrame * parentFrame, const QString & suggestedFile) { QByteArray tf87690 = suggestedFile.toUtf8(); QtWebKit_PackedString suggestedFilePacked = { const_cast<char*>(tf87690.prepend("WHITESPACE").constData()+10), tf87690.size()-10 };return QString(callbackQWebPage_ChooseFile(this, parentFrame, suggestedFilePacked)); };
+	QString chooseFile(QWebFrame * parentFrame, const QString & suggestedFile) { QByteArray tf87690 = suggestedFile.toUtf8(); QtWebKit_PackedString suggestedFilePacked = { const_cast<char*>(tf87690.prepend("WHITESPACE").constData()+10), tf87690.size()-10 };return ({ QtWebKit_PackedString tempVal = callbackQWebPage_ChooseFile(this, parentFrame, suggestedFilePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QWebPage * createWindow(QWebPage::WebWindowType ty) { return static_cast<QWebPage*>(callbackQWebPage_CreateWindow(this, ty)); };
 	bool acceptNavigationRequest(QWebFrame * frame, const QNetworkRequest & request, QWebPage::NavigationType ty) { return callbackQWebPage_AcceptNavigationRequest(this, frame, const_cast<QNetworkRequest*>(&request), ty) != 0; };
 	bool event(QEvent * ev) { return callbackQWebPage_Event(this, ev) != 0; };
@@ -3299,7 +3299,7 @@ public:
 	void Signal_UnsupportedContent(QNetworkReply * reply) { callbackQWebPage_UnsupportedContent(this, reply); };
 	void Signal_ViewportChangeRequested() { callbackQWebPage_ViewportChangeRequested(this); };
 	void Signal_WindowCloseRequested() { callbackQWebPage_WindowCloseRequested(this); };
-	QString userAgentForUrl(const QUrl & url) const { return QString(callbackQWebPage_UserAgentForUrl(const_cast<void*>(static_cast<const void*>(this)), const_cast<QUrl*>(&url))); };
+	QString userAgentForUrl(const QUrl & url) const { return ({ QtWebKit_PackedString tempVal = callbackQWebPage_UserAgentForUrl(const_cast<void*>(static_cast<const void*>(this)), const_cast<QUrl*>(&url)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool supportsExtension(QWebPage::Extension extension) const { return callbackQWebPage_SupportsExtension(const_cast<void*>(static_cast<const void*>(this)), extension) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebPage_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQWebPage_ChildEvent(this, event); };
@@ -3322,24 +3322,24 @@ void* QWebPage_CreateStandardContextMenu(void* ptr)
 	return static_cast<QWebPage*>(ptr)->createStandardContextMenu();
 }
 
-void* QWebPage_CreatePlugin(void* ptr, char* classid, void* url, char* paramNames, char* paramValues)
+void* QWebPage_CreatePlugin(void* ptr, struct QtWebKit_PackedString classid, void* url, struct QtWebKit_PackedString paramNames, struct QtWebKit_PackedString paramValues)
 {
-	return static_cast<QWebPage*>(ptr)->createPlugin(QString(classid), *static_cast<QUrl*>(url), QString(paramNames).split("|", QString::SkipEmptyParts), QString(paramValues).split("|", QString::SkipEmptyParts));
+	return static_cast<QWebPage*>(ptr)->createPlugin(QString::fromUtf8(classid.data, classid.len), *static_cast<QUrl*>(url), QString::fromUtf8(paramNames.data, paramNames.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(paramValues.data, paramValues.len).split("|", QString::SkipEmptyParts));
 }
 
-void* QWebPage_CreatePluginDefault(void* ptr, char* classid, void* url, char* paramNames, char* paramValues)
+void* QWebPage_CreatePluginDefault(void* ptr, struct QtWebKit_PackedString classid, void* url, struct QtWebKit_PackedString paramNames, struct QtWebKit_PackedString paramValues)
 {
-		return static_cast<QWebPage*>(ptr)->QWebPage::createPlugin(QString(classid), *static_cast<QUrl*>(url), QString(paramNames).split("|", QString::SkipEmptyParts), QString(paramValues).split("|", QString::SkipEmptyParts));
+		return static_cast<QWebPage*>(ptr)->QWebPage::createPlugin(QString::fromUtf8(classid.data, classid.len), *static_cast<QUrl*>(url), QString::fromUtf8(paramNames.data, paramNames.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(paramValues.data, paramValues.len).split("|", QString::SkipEmptyParts));
 }
 
-struct QtWebKit_PackedString QWebPage_ChooseFile(void* ptr, void* parentFrame, char* suggestedFile)
+struct QtWebKit_PackedString QWebPage_ChooseFile(void* ptr, void* parentFrame, struct QtWebKit_PackedString suggestedFile)
 {
-	return ({ QByteArray teee251 = static_cast<QWebPage*>(ptr)->chooseFile(static_cast<QWebFrame*>(parentFrame), QString(suggestedFile)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(teee251.prepend("WHITESPACE").constData()+10), teee251.size()-10 }; });
+	return ({ QByteArray t1a6e0e = static_cast<QWebPage*>(ptr)->chooseFile(static_cast<QWebFrame*>(parentFrame), QString::fromUtf8(suggestedFile.data, suggestedFile.len)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t1a6e0e.prepend("WHITESPACE").constData()+10), t1a6e0e.size()-10 }; });
 }
 
-struct QtWebKit_PackedString QWebPage_ChooseFileDefault(void* ptr, void* parentFrame, char* suggestedFile)
+struct QtWebKit_PackedString QWebPage_ChooseFileDefault(void* ptr, void* parentFrame, struct QtWebKit_PackedString suggestedFile)
 {
-		return ({ QByteArray t434bb4 = static_cast<QWebPage*>(ptr)->QWebPage::chooseFile(static_cast<QWebFrame*>(parentFrame), QString(suggestedFile)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t434bb4.prepend("WHITESPACE").constData()+10), t434bb4.size()-10 }; });
+		return ({ QByteArray t468d42 = static_cast<QWebPage*>(ptr)->QWebPage::chooseFile(static_cast<QWebFrame*>(parentFrame), QString::fromUtf8(suggestedFile.data, suggestedFile.len)).toUtf8(); QtWebKit_PackedString { const_cast<char*>(t468d42.prepend("WHITESPACE").constData()+10), t468d42.size()-10 }; });
 }
 
 void* QWebPage_CreateWindow(void* ptr, long long ty)
@@ -3408,9 +3408,9 @@ char QWebPage_EventDefault(void* ptr, void* ev)
 		return static_cast<QWebPage*>(ptr)->QWebPage::event(static_cast<QEvent*>(ev));
 }
 
-char QWebPage_FindText(void* ptr, char* subString, long long options)
+char QWebPage_FindText(void* ptr, struct QtWebKit_PackedString subString, long long options)
 {
-	return static_cast<QWebPage*>(ptr)->findText(QString(subString), static_cast<QWebPage::FindFlag>(options));
+	return static_cast<QWebPage*>(ptr)->findText(QString::fromUtf8(subString.data, subString.len), static_cast<QWebPage::FindFlag>(options));
 }
 
 char QWebPage_FocusNextPrevChild(void* ptr, char next)
@@ -3418,24 +3418,24 @@ char QWebPage_FocusNextPrevChild(void* ptr, char next)
 	return static_cast<QWebPage*>(ptr)->focusNextPrevChild(next != 0);
 }
 
-char QWebPage_JavaScriptConfirm(void* ptr, void* frame, char* msg)
+char QWebPage_JavaScriptConfirm(void* ptr, void* frame, struct QtWebKit_PackedString msg)
 {
-	return static_cast<QWebPage*>(ptr)->javaScriptConfirm(static_cast<QWebFrame*>(frame), QString(msg));
+	return static_cast<QWebPage*>(ptr)->javaScriptConfirm(static_cast<QWebFrame*>(frame), QString::fromUtf8(msg.data, msg.len));
 }
 
-char QWebPage_JavaScriptConfirmDefault(void* ptr, void* frame, char* msg)
+char QWebPage_JavaScriptConfirmDefault(void* ptr, void* frame, struct QtWebKit_PackedString msg)
 {
-		return static_cast<QWebPage*>(ptr)->QWebPage::javaScriptConfirm(static_cast<QWebFrame*>(frame), QString(msg));
+		return static_cast<QWebPage*>(ptr)->QWebPage::javaScriptConfirm(static_cast<QWebFrame*>(frame), QString::fromUtf8(msg.data, msg.len));
 }
 
-char QWebPage_JavaScriptPrompt(void* ptr, void* frame, char* msg, char* defaultValue, char* result)
+char QWebPage_JavaScriptPrompt(void* ptr, void* frame, struct QtWebKit_PackedString msg, struct QtWebKit_PackedString defaultValue, struct QtWebKit_PackedString result)
 {
-	return static_cast<QWebPage*>(ptr)->javaScriptPrompt(static_cast<QWebFrame*>(frame), QString(msg), QString(defaultValue), new QString(result));
+	return static_cast<QWebPage*>(ptr)->javaScriptPrompt(static_cast<QWebFrame*>(frame), QString::fromUtf8(msg.data, msg.len), QString::fromUtf8(defaultValue.data, defaultValue.len), new QString(QString::fromUtf8(result.data, result.len)));
 }
 
-char QWebPage_JavaScriptPromptDefault(void* ptr, void* frame, char* msg, char* defaultValue, char* result)
+char QWebPage_JavaScriptPromptDefault(void* ptr, void* frame, struct QtWebKit_PackedString msg, struct QtWebKit_PackedString defaultValue, struct QtWebKit_PackedString result)
 {
-		return static_cast<QWebPage*>(ptr)->QWebPage::javaScriptPrompt(static_cast<QWebFrame*>(frame), QString(msg), QString(defaultValue), new QString(result));
+		return static_cast<QWebPage*>(ptr)->QWebPage::javaScriptPrompt(static_cast<QWebFrame*>(frame), QString::fromUtf8(msg.data, msg.len), QString::fromUtf8(defaultValue.data, defaultValue.len), new QString(QString::fromUtf8(result.data, result.len)));
 }
 
 char QWebPage_ShouldInterruptJavaScript(void* ptr)
@@ -3478,9 +3478,9 @@ void QWebPage_DisconnectConsoleMessageReceived(void* ptr)
 	QObject::disconnect(static_cast<QWebPage*>(ptr), static_cast<void (QWebPage::*)(QWebPage::MessageSource, QWebPage::MessageLevel, const QString &, int, const QString &)>(&QWebPage::consoleMessageReceived), static_cast<MyQWebPage*>(ptr), static_cast<void (MyQWebPage::*)(QWebPage::MessageSource, QWebPage::MessageLevel, const QString &, int, const QString &)>(&MyQWebPage::Signal_ConsoleMessageReceived));
 }
 
-void QWebPage_ConsoleMessageReceived(void* ptr, long long source, long long level, char* message, int lineNumber, char* sourceID)
+void QWebPage_ConsoleMessageReceived(void* ptr, long long source, long long level, struct QtWebKit_PackedString message, int lineNumber, struct QtWebKit_PackedString sourceID)
 {
-	static_cast<QWebPage*>(ptr)->consoleMessageReceived(static_cast<QWebPage::MessageSource>(source), static_cast<QWebPage::MessageLevel>(level), QString(message), lineNumber, QString(sourceID));
+	static_cast<QWebPage*>(ptr)->consoleMessageReceived(static_cast<QWebPage::MessageSource>(source), static_cast<QWebPage::MessageLevel>(level), QString::fromUtf8(message.data, message.len), lineNumber, QString::fromUtf8(sourceID.data, sourceID.len));
 }
 
 void QWebPage_ConnectContentsChanged(void* ptr)
@@ -3508,9 +3508,9 @@ void QWebPage_DisconnectDatabaseQuotaExceeded(void* ptr)
 	QObject::disconnect(static_cast<QWebPage*>(ptr), static_cast<void (QWebPage::*)(QWebFrame *, QString)>(&QWebPage::databaseQuotaExceeded), static_cast<MyQWebPage*>(ptr), static_cast<void (MyQWebPage::*)(QWebFrame *, QString)>(&MyQWebPage::Signal_DatabaseQuotaExceeded));
 }
 
-void QWebPage_DatabaseQuotaExceeded(void* ptr, void* frame, char* databaseName)
+void QWebPage_DatabaseQuotaExceeded(void* ptr, void* frame, struct QtWebKit_PackedString databaseName)
 {
-	static_cast<QWebPage*>(ptr)->databaseQuotaExceeded(static_cast<QWebFrame*>(frame), QString(databaseName));
+	static_cast<QWebPage*>(ptr)->databaseQuotaExceeded(static_cast<QWebFrame*>(frame), QString::fromUtf8(databaseName.data, databaseName.len));
 }
 
 void QWebPage_ConnectDownloadRequested(void* ptr)
@@ -3603,24 +3603,24 @@ void QWebPage_GeometryChangeRequested(void* ptr, void* geom)
 	static_cast<QWebPage*>(ptr)->geometryChangeRequested(*static_cast<QRect*>(geom));
 }
 
-void QWebPage_JavaScriptAlert(void* ptr, void* frame, char* msg)
+void QWebPage_JavaScriptAlert(void* ptr, void* frame, struct QtWebKit_PackedString msg)
 {
-	static_cast<QWebPage*>(ptr)->javaScriptAlert(static_cast<QWebFrame*>(frame), QString(msg));
+	static_cast<QWebPage*>(ptr)->javaScriptAlert(static_cast<QWebFrame*>(frame), QString::fromUtf8(msg.data, msg.len));
 }
 
-void QWebPage_JavaScriptAlertDefault(void* ptr, void* frame, char* msg)
+void QWebPage_JavaScriptAlertDefault(void* ptr, void* frame, struct QtWebKit_PackedString msg)
 {
-		static_cast<QWebPage*>(ptr)->QWebPage::javaScriptAlert(static_cast<QWebFrame*>(frame), QString(msg));
+		static_cast<QWebPage*>(ptr)->QWebPage::javaScriptAlert(static_cast<QWebFrame*>(frame), QString::fromUtf8(msg.data, msg.len));
 }
 
-void QWebPage_JavaScriptConsoleMessage(void* ptr, char* message, int lineNumber, char* sourceID)
+void QWebPage_JavaScriptConsoleMessage(void* ptr, struct QtWebKit_PackedString message, int lineNumber, struct QtWebKit_PackedString sourceID)
 {
-	static_cast<QWebPage*>(ptr)->javaScriptConsoleMessage(QString(message), lineNumber, QString(sourceID));
+	static_cast<QWebPage*>(ptr)->javaScriptConsoleMessage(QString::fromUtf8(message.data, message.len), lineNumber, QString::fromUtf8(sourceID.data, sourceID.len));
 }
 
-void QWebPage_JavaScriptConsoleMessageDefault(void* ptr, char* message, int lineNumber, char* sourceID)
+void QWebPage_JavaScriptConsoleMessageDefault(void* ptr, struct QtWebKit_PackedString message, int lineNumber, struct QtWebKit_PackedString sourceID)
 {
-		static_cast<QWebPage*>(ptr)->QWebPage::javaScriptConsoleMessage(QString(message), lineNumber, QString(sourceID));
+		static_cast<QWebPage*>(ptr)->QWebPage::javaScriptConsoleMessage(QString::fromUtf8(message.data, message.len), lineNumber, QString::fromUtf8(sourceID.data, sourceID.len));
 }
 
 void QWebPage_ConnectLinkClicked(void* ptr)
@@ -3648,9 +3648,9 @@ void QWebPage_DisconnectLinkHovered(void* ptr)
 	QObject::disconnect(static_cast<QWebPage*>(ptr), static_cast<void (QWebPage::*)(const QString &, const QString &, const QString &)>(&QWebPage::linkHovered), static_cast<MyQWebPage*>(ptr), static_cast<void (MyQWebPage::*)(const QString &, const QString &, const QString &)>(&MyQWebPage::Signal_LinkHovered));
 }
 
-void QWebPage_LinkHovered(void* ptr, char* link, char* title, char* textContent)
+void QWebPage_LinkHovered(void* ptr, struct QtWebKit_PackedString link, struct QtWebKit_PackedString title, struct QtWebKit_PackedString textContent)
 {
-	static_cast<QWebPage*>(ptr)->linkHovered(QString(link), QString(title), QString(textContent));
+	static_cast<QWebPage*>(ptr)->linkHovered(QString::fromUtf8(link.data, link.len), QString::fromUtf8(title.data, title.len), QString::fromUtf8(textContent.data, textContent.len));
 }
 
 void QWebPage_ConnectLoadFinished(void* ptr)
@@ -3888,9 +3888,9 @@ void QWebPage_DisconnectStatusBarMessage(void* ptr)
 	QObject::disconnect(static_cast<QWebPage*>(ptr), static_cast<void (QWebPage::*)(const QString &)>(&QWebPage::statusBarMessage), static_cast<MyQWebPage*>(ptr), static_cast<void (MyQWebPage::*)(const QString &)>(&MyQWebPage::Signal_StatusBarMessage));
 }
 
-void QWebPage_StatusBarMessage(void* ptr, char* text)
+void QWebPage_StatusBarMessage(void* ptr, struct QtWebKit_PackedString text)
 {
-	static_cast<QWebPage*>(ptr)->statusBarMessage(QString(text));
+	static_cast<QWebPage*>(ptr)->statusBarMessage(QString::fromUtf8(text.data, text.len));
 }
 
 void QWebPage_ConnectStatusBarVisibilityChangeRequested(void* ptr)
@@ -4123,9 +4123,9 @@ char QWebPage_RecentlyAudible(void* ptr)
 	return static_cast<QWebPage*>(ptr)->recentlyAudible();
 }
 
-char QWebPage_SupportsContentType(void* ptr, char* mimeType)
+char QWebPage_SupportsContentType(void* ptr, struct QtWebKit_PackedString mimeType)
 {
-	return static_cast<QWebPage*>(ptr)->supportsContentType(QString(mimeType));
+	return static_cast<QWebPage*>(ptr)->supportsContentType(QString::fromUtf8(mimeType.data, mimeType.len));
 }
 
 char QWebPage_SupportsExtension(void* ptr, long long extension)
@@ -4327,9 +4327,9 @@ void QWebPluginFactory_DestroyQWebPluginFactoryDefault(void* ptr)
 
 }
 
-void* QWebPluginFactory_Create(void* ptr, char* mimeType, void* url, char* argumentNames, char* argumentValues)
+void* QWebPluginFactory_Create(void* ptr, struct QtWebKit_PackedString mimeType, void* url, struct QtWebKit_PackedString argumentNames, struct QtWebKit_PackedString argumentValues)
 {
-	return static_cast<QWebPluginFactory*>(ptr)->create(QString(mimeType), *static_cast<QUrl*>(url), QString(argumentNames).split("|", QString::SkipEmptyParts), QString(argumentValues).split("|", QString::SkipEmptyParts));
+	return static_cast<QWebPluginFactory*>(ptr)->create(QString::fromUtf8(mimeType.data, mimeType.len), *static_cast<QUrl*>(url), QString::fromUtf8(argumentNames.data, argumentNames.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(argumentValues.data, argumentValues.len).split("|", QString::SkipEmptyParts));
 }
 
 void* QWebPluginFactory___dynamicPropertyNames_atList(void* ptr, int i)
@@ -4477,24 +4477,24 @@ void* QWebSecurityOrigin_NewQWebSecurityOrigin2(void* other)
 	return new QWebSecurityOrigin(*static_cast<QWebSecurityOrigin*>(other));
 }
 
-void QWebSecurityOrigin_AddAccessWhitelistEntry(void* ptr, char* scheme, char* host, long long subdomainSetting)
+void QWebSecurityOrigin_AddAccessWhitelistEntry(void* ptr, struct QtWebKit_PackedString scheme, struct QtWebKit_PackedString host, long long subdomainSetting)
 {
-	static_cast<QWebSecurityOrigin*>(ptr)->addAccessWhitelistEntry(QString(scheme), QString(host), static_cast<QWebSecurityOrigin::SubdomainSetting>(subdomainSetting));
+	static_cast<QWebSecurityOrigin*>(ptr)->addAccessWhitelistEntry(QString::fromUtf8(scheme.data, scheme.len), QString::fromUtf8(host.data, host.len), static_cast<QWebSecurityOrigin::SubdomainSetting>(subdomainSetting));
 }
 
-void QWebSecurityOrigin_QWebSecurityOrigin_AddLocalScheme(char* scheme)
+void QWebSecurityOrigin_QWebSecurityOrigin_AddLocalScheme(struct QtWebKit_PackedString scheme)
 {
-	QWebSecurityOrigin::addLocalScheme(QString(scheme));
+	QWebSecurityOrigin::addLocalScheme(QString::fromUtf8(scheme.data, scheme.len));
 }
 
-void QWebSecurityOrigin_RemoveAccessWhitelistEntry(void* ptr, char* scheme, char* host, long long subdomainSetting)
+void QWebSecurityOrigin_RemoveAccessWhitelistEntry(void* ptr, struct QtWebKit_PackedString scheme, struct QtWebKit_PackedString host, long long subdomainSetting)
 {
-	static_cast<QWebSecurityOrigin*>(ptr)->removeAccessWhitelistEntry(QString(scheme), QString(host), static_cast<QWebSecurityOrigin::SubdomainSetting>(subdomainSetting));
+	static_cast<QWebSecurityOrigin*>(ptr)->removeAccessWhitelistEntry(QString::fromUtf8(scheme.data, scheme.len), QString::fromUtf8(host.data, host.len), static_cast<QWebSecurityOrigin::SubdomainSetting>(subdomainSetting));
 }
 
-void QWebSecurityOrigin_QWebSecurityOrigin_RemoveLocalScheme(char* scheme)
+void QWebSecurityOrigin_QWebSecurityOrigin_RemoveLocalScheme(struct QtWebKit_PackedString scheme)
 {
-	QWebSecurityOrigin::removeLocalScheme(QString(scheme));
+	QWebSecurityOrigin::removeLocalScheme(QString::fromUtf8(scheme.data, scheme.len));
 }
 
 void QWebSecurityOrigin_SetApplicationCacheQuota(void* ptr, long long quota)
@@ -4749,9 +4749,9 @@ void QWebSettings_QWebSettings_ClearMemoryCaches()
 	QWebSettings::clearMemoryCaches();
 }
 
-void QWebSettings_QWebSettings_EnablePersistentStorage(char* path)
+void QWebSettings_QWebSettings_EnablePersistentStorage(struct QtWebKit_PackedString path)
 {
-	QWebSettings::enablePersistentStorage(QString(path));
+	QWebSettings::enablePersistentStorage(QString::fromUtf8(path.data, path.len));
 }
 
 void QWebSettings_ResetAttribute(void* ptr, long long attribute)
@@ -4774,19 +4774,19 @@ void QWebSettings_SetAttribute(void* ptr, long long attribute, char on)
 	static_cast<QWebSettings*>(ptr)->setAttribute(static_cast<QWebSettings::WebAttribute>(attribute), on != 0);
 }
 
-void QWebSettings_SetCSSMediaType(void* ptr, char* ty)
+void QWebSettings_SetCSSMediaType(void* ptr, struct QtWebKit_PackedString ty)
 {
-	static_cast<QWebSettings*>(ptr)->setCSSMediaType(QString(ty));
+	static_cast<QWebSettings*>(ptr)->setCSSMediaType(QString::fromUtf8(ty.data, ty.len));
 }
 
-void QWebSettings_SetDefaultTextEncoding(void* ptr, char* encoding)
+void QWebSettings_SetDefaultTextEncoding(void* ptr, struct QtWebKit_PackedString encoding)
 {
-	static_cast<QWebSettings*>(ptr)->setDefaultTextEncoding(QString(encoding));
+	static_cast<QWebSettings*>(ptr)->setDefaultTextEncoding(QString::fromUtf8(encoding.data, encoding.len));
 }
 
-void QWebSettings_SetFontFamily(void* ptr, long long which, char* family)
+void QWebSettings_SetFontFamily(void* ptr, long long which, struct QtWebKit_PackedString family)
 {
-	static_cast<QWebSettings*>(ptr)->setFontFamily(static_cast<QWebSettings::FontFamily>(which), QString(family));
+	static_cast<QWebSettings*>(ptr)->setFontFamily(static_cast<QWebSettings::FontFamily>(which), QString::fromUtf8(family.data, family.len));
 }
 
 void QWebSettings_SetFontSize(void* ptr, long long ty, int size)
@@ -4794,14 +4794,14 @@ void QWebSettings_SetFontSize(void* ptr, long long ty, int size)
 	static_cast<QWebSettings*>(ptr)->setFontSize(static_cast<QWebSettings::FontSize>(ty), size);
 }
 
-void QWebSettings_QWebSettings_SetIconDatabasePath(char* path)
+void QWebSettings_QWebSettings_SetIconDatabasePath(struct QtWebKit_PackedString path)
 {
-	QWebSettings::setIconDatabasePath(QString(path));
+	QWebSettings::setIconDatabasePath(QString::fromUtf8(path.data, path.len));
 }
 
-void QWebSettings_SetLocalStoragePath(void* ptr, char* path)
+void QWebSettings_SetLocalStoragePath(void* ptr, struct QtWebKit_PackedString path)
 {
-	static_cast<QWebSettings*>(ptr)->setLocalStoragePath(QString(path));
+	static_cast<QWebSettings*>(ptr)->setLocalStoragePath(QString::fromUtf8(path.data, path.len));
 }
 
 void QWebSettings_QWebSettings_SetMaximumPagesInCache(int pages)
@@ -4819,14 +4819,14 @@ void QWebSettings_QWebSettings_SetOfflineStorageDefaultQuota(long long maximumSi
 	QWebSettings::setOfflineStorageDefaultQuota(maximumSize);
 }
 
-void QWebSettings_QWebSettings_SetOfflineStoragePath(char* path)
+void QWebSettings_QWebSettings_SetOfflineStoragePath(struct QtWebKit_PackedString path)
 {
-	QWebSettings::setOfflineStoragePath(QString(path));
+	QWebSettings::setOfflineStoragePath(QString::fromUtf8(path.data, path.len));
 }
 
-void QWebSettings_QWebSettings_SetOfflineWebApplicationCachePath(char* path)
+void QWebSettings_QWebSettings_SetOfflineWebApplicationCachePath(struct QtWebKit_PackedString path)
 {
-	QWebSettings::setOfflineWebApplicationCachePath(QString(path));
+	QWebSettings::setOfflineWebApplicationCachePath(QString::fromUtf8(path.data, path.len));
 }
 
 void QWebSettings_QWebSettings_SetOfflineWebApplicationCacheQuota(long long maximumSize)
@@ -4834,9 +4834,9 @@ void QWebSettings_QWebSettings_SetOfflineWebApplicationCacheQuota(long long maxi
 	QWebSettings::setOfflineWebApplicationCacheQuota(maximumSize);
 }
 
-void QWebSettings_QWebSettings_SetPluginSearchPaths(char* paths)
+void QWebSettings_QWebSettings_SetPluginSearchPaths(struct QtWebKit_PackedString paths)
 {
-	QWebSettings::setPluginSearchPaths(QString(paths).split("|", QString::SkipEmptyParts));
+	QWebSettings::setPluginSearchPaths(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
 }
 
 void QWebSettings_SetThirdPartyCookiePolicy(void* ptr, long long policy)
@@ -5008,9 +5008,9 @@ char QWebView_EventDefault(void* ptr, void* e)
 		return static_cast<QWebView*>(ptr)->QWebView::event(static_cast<QEvent*>(e));
 }
 
-char QWebView_FindText(void* ptr, char* subString, long long options)
+char QWebView_FindText(void* ptr, struct QtWebKit_PackedString subString, long long options)
 {
-	return static_cast<QWebView*>(ptr)->findText(QString(subString), static_cast<QWebPage::FindFlag>(options));
+	return static_cast<QWebView*>(ptr)->findText(QString::fromUtf8(subString.data, subString.len), static_cast<QWebPage::FindFlag>(options));
 }
 
 char QWebView_FocusNextPrevChildDefault(void* ptr, char next)
@@ -5233,14 +5233,14 @@ void QWebView_SelectionChanged(void* ptr)
 	static_cast<QWebView*>(ptr)->selectionChanged();
 }
 
-void QWebView_SetContent(void* ptr, void* data, char* mimeType, void* baseUrl)
+void QWebView_SetContent(void* ptr, void* data, struct QtWebKit_PackedString mimeType, void* baseUrl)
 {
-	static_cast<QWebView*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString(mimeType), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebView*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString::fromUtf8(mimeType.data, mimeType.len), *static_cast<QUrl*>(baseUrl));
 }
 
-void QWebView_SetHtml(void* ptr, char* html, void* baseUrl)
+void QWebView_SetHtml(void* ptr, struct QtWebKit_PackedString html, void* baseUrl)
 {
-	static_cast<QWebView*>(ptr)->setHtml(QString(html), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebView*>(ptr)->setHtml(QString::fromUtf8(html.data, html.len), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebView_SetPage(void* ptr, void* page)
@@ -5283,9 +5283,9 @@ void QWebView_DisconnectStatusBarMessage(void* ptr)
 	QObject::disconnect(static_cast<QWebView*>(ptr), static_cast<void (QWebView::*)(const QString &)>(&QWebView::statusBarMessage), static_cast<MyQWebView*>(ptr), static_cast<void (MyQWebView::*)(const QString &)>(&MyQWebView::Signal_StatusBarMessage));
 }
 
-void QWebView_StatusBarMessage(void* ptr, char* text)
+void QWebView_StatusBarMessage(void* ptr, struct QtWebKit_PackedString text)
 {
-	static_cast<QWebView*>(ptr)->statusBarMessage(QString(text));
+	static_cast<QWebView*>(ptr)->statusBarMessage(QString::fromUtf8(text.data, text.len));
 }
 
 void QWebView_Stop(void* ptr)
@@ -5308,9 +5308,9 @@ void QWebView_DisconnectTitleChanged(void* ptr)
 	QObject::disconnect(static_cast<QWebView*>(ptr), static_cast<void (QWebView::*)(const QString &)>(&QWebView::titleChanged), static_cast<MyQWebView*>(ptr), static_cast<void (MyQWebView::*)(const QString &)>(&MyQWebView::Signal_TitleChanged));
 }
 
-void QWebView_TitleChanged(void* ptr, char* title)
+void QWebView_TitleChanged(void* ptr, struct QtWebKit_PackedString title)
 {
-	static_cast<QWebView*>(ptr)->titleChanged(QString(title));
+	static_cast<QWebView*>(ptr)->titleChanged(QString::fromUtf8(title.data, title.len));
 }
 
 void QWebView_TriggerPageAction(void* ptr, long long action, char checked)
@@ -5641,9 +5641,9 @@ void QWebView_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QWebView*>(ptr)->QWebView::setHidden(hidden != 0);
 }
 
-void QWebView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QWebView_SetStyleSheetDefault(void* ptr, struct QtWebKit_PackedString styleSheet)
 {
-		static_cast<QWebView*>(ptr)->QWebView::setStyleSheet(QString(styleSheet));
+		static_cast<QWebView*>(ptr)->QWebView::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QWebView_SetVisibleDefault(void* ptr, char visible)
@@ -5656,9 +5656,9 @@ void QWebView_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QWebView*>(ptr)->QWebView::setWindowModified(vbo != 0);
 }
 
-void QWebView_SetWindowTitleDefault(void* ptr, char* vqs)
+void QWebView_SetWindowTitleDefault(void* ptr, struct QtWebKit_PackedString vqs)
 {
-		static_cast<QWebView*>(ptr)->QWebView::setWindowTitle(QString(vqs));
+		static_cast<QWebView*>(ptr)->QWebView::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QWebView_ShowDefault(void* ptr)

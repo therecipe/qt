@@ -187,6 +187,11 @@ func GoInput(name, value string, f *parser.Function) string {
 }
 
 func CppInput(name, value string, f *parser.Function) string {
+
+	if (f.SignalMode == parser.CALLBACK || strings.HasPrefix(name, "callback")) && (parser.CleanValue(value) == "QString" || parser.CleanValue(value) == "QStringList") {
+		return fmt.Sprintf("({ %v_PackedString tempVal = %v; %v ret = %v; free(tempVal.data); ret; })", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, parser.CleanValue(value), cppInput("tempVal", value, f))
+	}
+
 	return cppInput(name, value, f)
 }
 
@@ -228,14 +233,14 @@ func cppInput(name, value string, f *parser.Function) string {
 	case "QString":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("new QString(%v)", name)
+				return fmt.Sprintf("new QString(QString::fromUtf8(%[1]v.data, %[1]v.len))", name)
 			}
 
 			if strings.Contains(vOld, "&") && !strings.Contains(vOld, "const") {
 				return fmt.Sprintf("*(%v)", cppInput(name, "QString*", f))
 			}
 
-			return fmt.Sprintf("QString(%v)", name)
+			return fmt.Sprintf("QString::fromUtf8(%[1]v.data, %[1]v.len)", name)
 		}
 
 	case "QStringList":
@@ -248,7 +253,7 @@ func cppInput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("*(%v)", cppInput(name, "QStringList*", f))
 			}
 
-			return fmt.Sprintf("QString(%v).split(\"|\", QString::SkipEmptyParts)", name)
+			return fmt.Sprintf("QString::fromUtf8(%[1]v.data, %[1]v.len).split(\"|\", QString::SkipEmptyParts)", name)
 		}
 
 	case "void" /*, ""*/ :

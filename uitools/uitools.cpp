@@ -69,34 +69,34 @@ Q_DECLARE_METATYPE(MyQUiLoader*)
 
 int QUiLoader_QUiLoader_QRegisterMetaType(){return qRegisterMetaType<MyQUiLoader*>();}
 
-void* QUiLoader_CreateAction(void* ptr, void* parent, char* name)
+void* QUiLoader_CreateAction(void* ptr, void* parent, struct QtUiTools_PackedString name)
 {
-	return static_cast<QUiLoader*>(ptr)->createAction(static_cast<QObject*>(parent), QString(name));
+	return static_cast<QUiLoader*>(ptr)->createAction(static_cast<QObject*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
-void* QUiLoader_CreateActionDefault(void* ptr, void* parent, char* name)
+void* QUiLoader_CreateActionDefault(void* ptr, void* parent, struct QtUiTools_PackedString name)
 {
-		return static_cast<QUiLoader*>(ptr)->QUiLoader::createAction(static_cast<QObject*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createAction(static_cast<QObject*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
-void* QUiLoader_CreateActionGroup(void* ptr, void* parent, char* name)
+void* QUiLoader_CreateActionGroup(void* ptr, void* parent, struct QtUiTools_PackedString name)
 {
-	return static_cast<QUiLoader*>(ptr)->createActionGroup(static_cast<QObject*>(parent), QString(name));
+	return static_cast<QUiLoader*>(ptr)->createActionGroup(static_cast<QObject*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
-void* QUiLoader_CreateActionGroupDefault(void* ptr, void* parent, char* name)
+void* QUiLoader_CreateActionGroupDefault(void* ptr, void* parent, struct QtUiTools_PackedString name)
 {
-		return static_cast<QUiLoader*>(ptr)->QUiLoader::createActionGroup(static_cast<QObject*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createActionGroup(static_cast<QObject*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
-void* QUiLoader_CreateLayout(void* ptr, char* className, void* parent, char* name)
+void* QUiLoader_CreateLayout(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name)
 {
-	return static_cast<QUiLoader*>(ptr)->createLayout(QString(className), static_cast<QObject*>(parent), QString(name));
+	return static_cast<QUiLoader*>(ptr)->createLayout(QString::fromUtf8(className.data, className.len), static_cast<QObject*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
-void* QUiLoader_CreateLayoutDefault(void* ptr, char* className, void* parent, char* name)
+void* QUiLoader_CreateLayoutDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name)
 {
-		return static_cast<QUiLoader*>(ptr)->QUiLoader::createLayout(QString(className), static_cast<QObject*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createLayout(QString::fromUtf8(className.data, className.len), static_cast<QObject*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
 void* QUiLoader_NewQUiLoader(void* parent)
@@ -140,14 +140,14 @@ void* QUiLoader_NewQUiLoader(void* parent)
 	}
 }
 
-void* QUiLoader_CreateWidget(void* ptr, char* className, void* parent, char* name)
+void* QUiLoader_CreateWidget(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name)
 {
-	return static_cast<QUiLoader*>(ptr)->createWidget(QString(className), static_cast<QWidget*>(parent), QString(name));
+	return static_cast<QUiLoader*>(ptr)->createWidget(QString::fromUtf8(className.data, className.len), static_cast<QWidget*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
-void* QUiLoader_CreateWidgetDefault(void* ptr, char* className, void* parent, char* name)
+void* QUiLoader_CreateWidgetDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name)
 {
-		return static_cast<QUiLoader*>(ptr)->QUiLoader::createWidget(QString(className), static_cast<QWidget*>(parent), QString(name));
+		return static_cast<QUiLoader*>(ptr)->QUiLoader::createWidget(QString::fromUtf8(className.data, className.len), static_cast<QWidget*>(parent), QString::fromUtf8(name.data, name.len));
 }
 
 void* QUiLoader_Load(void* ptr, void* device, void* parentWidget)
@@ -155,9 +155,9 @@ void* QUiLoader_Load(void* ptr, void* device, void* parentWidget)
 	return static_cast<QUiLoader*>(ptr)->load(static_cast<QIODevice*>(device), static_cast<QWidget*>(parentWidget));
 }
 
-void QUiLoader_AddPluginPath(void* ptr, char* path)
+void QUiLoader_AddPluginPath(void* ptr, struct QtUiTools_PackedString path)
 {
-	static_cast<QUiLoader*>(ptr)->addPluginPath(QString(path));
+	static_cast<QUiLoader*>(ptr)->addPluginPath(QString::fromUtf8(path.data, path.len));
 }
 
 void QUiLoader_ClearPluginPaths(void* ptr)

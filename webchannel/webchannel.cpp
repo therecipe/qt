@@ -147,9 +147,9 @@ void QWebChannel_DisconnectFromDefault(void* ptr, void* transport)
 		static_cast<QWebChannel*>(ptr)->QWebChannel::disconnectFrom(static_cast<QWebChannelAbstractTransport*>(transport));
 }
 
-void QWebChannel_RegisterObject(void* ptr, char* id, void* object)
+void QWebChannel_RegisterObject(void* ptr, struct QtWebChannel_PackedString id, void* object)
 {
-	static_cast<QWebChannel*>(ptr)->registerObject(QString(id), static_cast<QObject*>(object));
+	static_cast<QWebChannel*>(ptr)->registerObject(QString::fromUtf8(id.data, id.len), static_cast<QObject*>(object));
 }
 
 void QWebChannel_RegisterObjects(void* ptr, void* objects)
@@ -177,14 +177,14 @@ char QWebChannel_BlockUpdates(void* ptr)
 	return static_cast<QWebChannel*>(ptr)->blockUpdates();
 }
 
-void* QWebChannel___registerObjects_objects_atList(void* ptr, char* i)
+void* QWebChannel___registerObjects_objects_atList(void* ptr, struct QtWebChannel_PackedString i)
 {
-	return const_cast<QObject*>(static_cast<QHash<QString, QObject *>*>(ptr)->value(QString(i)));
+	return const_cast<QObject*>(static_cast<QHash<QString, QObject *>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QWebChannel___registerObjects_objects_setList(void* ptr, char* key, void* i)
+void QWebChannel___registerObjects_objects_setList(void* ptr, struct QtWebChannel_PackedString key, void* i)
 {
-	static_cast<QHash<QString, QObject *>*>(ptr)->insert(QString(key), static_cast<QObject*>(i));
+	static_cast<QHash<QString, QObject *>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), static_cast<QObject*>(i));
 }
 
 void* QWebChannel___registerObjects_objects_newList(void* ptr)
@@ -198,14 +198,14 @@ struct QtWebChannel_PackedList QWebChannel___registerObjects_keyList(void* ptr)
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QWebChannel___registeredObjects_atList(void* ptr, char* i)
+void* QWebChannel___registeredObjects_atList(void* ptr, struct QtWebChannel_PackedString i)
 {
-	return const_cast<QObject*>(static_cast<QHash<QString, QObject *>*>(ptr)->value(QString(i)));
+	return const_cast<QObject*>(static_cast<QHash<QString, QObject *>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QWebChannel___registeredObjects_setList(void* ptr, char* key, void* i)
+void QWebChannel___registeredObjects_setList(void* ptr, struct QtWebChannel_PackedString key, void* i)
 {
-	static_cast<QHash<QString, QObject *>*>(ptr)->insert(QString(key), static_cast<QObject*>(i));
+	static_cast<QHash<QString, QObject *>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), static_cast<QObject*>(i));
 }
 
 void* QWebChannel___registeredObjects_newList(void* ptr)
@@ -224,9 +224,9 @@ struct QtWebChannel_PackedString QWebChannel_____registerObjects_keyList_atList(
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QWebChannel_____registerObjects_keyList_setList(void* ptr, char* i)
+void QWebChannel_____registerObjects_keyList_setList(void* ptr, struct QtWebChannel_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebChannel_____registerObjects_keyList_newList(void* ptr)
@@ -240,9 +240,9 @@ struct QtWebChannel_PackedString QWebChannel_____registeredObjects_keyList_atLis
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QWebChannel_____registeredObjects_keyList_setList(void* ptr, char* i)
+void QWebChannel_____registeredObjects_keyList_setList(void* ptr, struct QtWebChannel_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QWebChannel_____registeredObjects_keyList_newList(void* ptr)

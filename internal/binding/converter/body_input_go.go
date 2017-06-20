@@ -28,7 +28,20 @@ func GoInputParametersForC(function *parser.Function) string {
 			} else {
 				var alloc = GoInput(parameter.Name, parameter.Value, function)
 				if strings.Contains(alloc, "C.CString") {
-					input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
+					if parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList" {
+						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{ %vC, %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
+							func() string {
+								if function.AsError {
+									return "C.longlong(-1)"
+								}
+								if parser.CleanValue(parameter.Value) == "QStringList" {
+									return fmt.Sprintf("C.longlong(len(strings.Join(%v, \"|\")))", parser.CleanName(parameter.Name, parameter.Value))
+								}
+								return fmt.Sprintf("C.longlong(len(%v))", parser.CleanName(parameter.Name, parameter.Value))
+							}()))
+					} else {
+						input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
+					}
 				} else {
 					input = append(input, alloc)
 				}

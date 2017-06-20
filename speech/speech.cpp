@@ -125,44 +125,44 @@ void* QTextToSpeech_NewQTextToSpeech(void* parent)
 	}
 }
 
-void* QTextToSpeech_NewQTextToSpeech2(char* engine, void* parent)
+void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QCameraImageCapture*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QExtensionFactory*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QExtensionManager*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QGraphicsObject*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QGraphicsWidget*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QLayout*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QMediaPlaylist*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QMediaRecorder*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QOffscreenSurface*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QPdfWriter*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QQuickItem*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QRadioData*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QSignalSpy*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QWidget*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString(engine), static_cast<QWindow*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQTextToSpeech(QString(engine), static_cast<QObject*>(parent));
+		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -231,14 +231,14 @@ void QTextToSpeech_ResumeDefault(void* ptr)
 		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::resume();
 }
 
-void QTextToSpeech_Say(void* ptr, char* text)
+void QTextToSpeech_Say(void* ptr, struct QtSpeech_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "say", Q_ARG(QString, QString(text)));
+	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "say", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
 }
 
-void QTextToSpeech_SayDefault(void* ptr, char* text)
+void QTextToSpeech_SayDefault(void* ptr, struct QtSpeech_PackedString text)
 {
-		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::say(QString(text));
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::say(QString::fromUtf8(text.data, text.len));
 }
 
 void QTextToSpeech_SetLocale(void* ptr, void* locale)
@@ -515,14 +515,14 @@ void QTextToSpeechPlugin_DestroyQTextToSpeechPluginDefault(void* ptr)
 
 }
 
-void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(void* ptr, char* i)
+void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(void* ptr, struct QtSpeech_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(void* ptr, char* key, void* i)
+void QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(void* ptr, struct QtSpeech_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_newList(void* ptr)
@@ -541,9 +541,9 @@ struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_ke
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(void* ptr, char* i)
+void QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(void* ptr, struct QtSpeech_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(void* ptr)

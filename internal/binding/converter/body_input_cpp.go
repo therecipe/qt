@@ -14,7 +14,7 @@ func CppInputParameters(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		input[i] = cppInput(parameter.Name, parameter.Value, function)
+		input[i] = CppInput(parameter.Name, parameter.Value, function)
 	}
 
 	return strings.Join(input, ", ")
@@ -28,7 +28,7 @@ func CppInputParametersForSlotInvoke(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		input[i] = fmt.Sprintf("Q_ARG(%v, %v)", CppInputParametersForSlotArguments(function, parameter), cppInput(parameter.Name, parameter.Value, function))
+		input[i] = fmt.Sprintf("Q_ARG(%v, %v)", CppInputParametersForSlotArguments(function, parameter), CppInput(parameter.Name, parameter.Value, function))
 
 		if c, _ := function.Class(); c.Module == parser.MOC && parser.IsPackedMap(parameter.Value) && function.IsMocFunction {
 			var tHash = sha1.New()

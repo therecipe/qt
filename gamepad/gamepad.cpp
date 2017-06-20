@@ -497,9 +497,9 @@ void QGamepad_DisconnectNameChanged(void* ptr)
 	QObject::disconnect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(QString)>(&QGamepad::nameChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(QString)>(&MyQGamepad::Signal_NameChanged));
 }
 
-void QGamepad_NameChanged(void* ptr, char* value)
+void QGamepad_NameChanged(void* ptr, struct QtGamepad_PackedString value)
 {
-	static_cast<QGamepad*>(ptr)->nameChanged(QString(value));
+	static_cast<QGamepad*>(ptr)->nameChanged(QString::fromUtf8(value.data, value.len));
 }
 
 void QGamepad_SetDeviceId(void* ptr, int number)

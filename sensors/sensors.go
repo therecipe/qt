@@ -5436,7 +5436,7 @@ func (ptr *QSensorBackend) SetDescription(description string) {
 			descriptionC = C.CString(description)
 			defer C.free(unsafe.Pointer(descriptionC))
 		}
-		C.QSensorBackend_SetDescription(ptr.Pointer(), descriptionC)
+		C.QSensorBackend_SetDescription(ptr.Pointer(), C.struct_QtSensors_PackedString{descriptionC, C.longlong(len(description))})
 	}
 }
 
@@ -6182,7 +6182,7 @@ func NewQSensorGestureFromPointer(ptr unsafe.Pointer) *QSensorGesture {
 func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
 	var idsC = C.CString(strings.Join(ids, "|"))
 	defer C.free(unsafe.Pointer(idsC))
-	var tmpValue = NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(idsC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.struct_QtSensors_PackedString{idsC, C.longlong(len(strings.Join(ids, "|")))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -6236,7 +6236,7 @@ func (ptr *QSensorGesture) Detected(gestureId string) {
 			gestureIdC = C.CString(gestureId)
 			defer C.free(unsafe.Pointer(gestureIdC))
 		}
-		C.QSensorGesture_Detected(ptr.Pointer(), gestureIdC)
+		C.QSensorGesture_Detected(ptr.Pointer(), C.struct_QtSensors_PackedString{gestureIdC, C.longlong(len(gestureId))})
 	}
 }
 
@@ -6592,7 +6592,7 @@ func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRec
 		idC = C.CString(id)
 		defer C.free(unsafe.Pointer(idC))
 	}
-	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
+	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(C.struct_QtSensors_PackedString{idC, C.longlong(len(id))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -6605,7 +6605,7 @@ func (ptr *QSensorGestureManager) SensorGestureRecognizer(id string) *QSensorGes
 		idC = C.CString(id)
 		defer C.free(unsafe.Pointer(idC))
 	}
-	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
+	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(C.struct_QtSensors_PackedString{idC, C.longlong(len(id))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -6680,7 +6680,7 @@ func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
 			gestureIdC = C.CString(gestureId)
 			defer C.free(unsafe.Pointer(gestureIdC))
 		}
-		return strings.Split(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), gestureIdC)), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), C.struct_QtSensors_PackedString{gestureIdC, C.longlong(len(gestureId))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -7086,12 +7086,13 @@ func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterfaceDe
 }
 
 //export callbackQSensorGesturePluginInterface_Name
-func callbackQSensorGesturePluginInterface_Name(ptr unsafe.Pointer) *C.char {
+func callbackQSensorGesturePluginInterface_Name(ptr unsafe.Pointer) C.struct_QtSensors_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "name"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtSensors_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtSensors_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QSensorGesturePluginInterface) ConnectName(f func() string) {
@@ -7123,12 +7124,13 @@ func (ptr *QSensorGesturePluginInterface) Name() string {
 }
 
 //export callbackQSensorGesturePluginInterface_SupportedIds
-func callbackQSensorGesturePluginInterface_SupportedIds(ptr unsafe.Pointer) *C.char {
+func callbackQSensorGesturePluginInterface_SupportedIds(ptr unsafe.Pointer) C.struct_QtSensors_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "supportedIds"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtSensors_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtSensors_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QSensorGesturePluginInterface) ConnectSupportedIds(f func() []string) {
@@ -7418,7 +7420,7 @@ func (ptr *QSensorGestureRecognizer) Detected(gestureId string) {
 			gestureIdC = C.CString(gestureId)
 			defer C.free(unsafe.Pointer(gestureIdC))
 		}
-		C.QSensorGestureRecognizer_Detected(ptr.Pointer(), gestureIdC)
+		C.QSensorGestureRecognizer_Detected(ptr.Pointer(), C.struct_QtSensors_PackedString{gestureIdC, C.longlong(len(gestureId))})
 	}
 }
 
@@ -7481,12 +7483,13 @@ func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizerDefault() {
 }
 
 //export callbackQSensorGestureRecognizer_Id
-func callbackQSensorGestureRecognizer_Id(ptr unsafe.Pointer) *C.char {
+func callbackQSensorGestureRecognizer_Id(ptr unsafe.Pointer) C.struct_QtSensors_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "id"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtSensors_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtSensors_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectId(f func() string) {

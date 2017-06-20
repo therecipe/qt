@@ -459,7 +459,7 @@ func (ptr *QQuickWebEngineProfile) SetCachePath(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QQuickWebEngineProfile_SetCachePath(ptr.Pointer(), pathC)
+		C.QQuickWebEngineProfile_SetCachePath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{pathC, C.longlong(len(path))})
 	}
 }
 
@@ -470,7 +470,7 @@ func (ptr *QQuickWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage stri
 			httpAcceptLanguageC = C.CString(httpAcceptLanguage)
 			defer C.free(unsafe.Pointer(httpAcceptLanguageC))
 		}
-		C.QQuickWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), httpAcceptLanguageC)
+		C.QQuickWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), C.struct_QtWebEngine_PackedString{httpAcceptLanguageC, C.longlong(len(httpAcceptLanguage))})
 	}
 }
 
@@ -493,7 +493,7 @@ func (ptr *QQuickWebEngineProfile) SetHttpUserAgent(userAgent string) {
 			userAgentC = C.CString(userAgent)
 			defer C.free(unsafe.Pointer(userAgentC))
 		}
-		C.QQuickWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), userAgentC)
+		C.QQuickWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), C.struct_QtWebEngine_PackedString{userAgentC, C.longlong(len(userAgent))})
 	}
 }
 
@@ -516,7 +516,7 @@ func (ptr *QQuickWebEngineProfile) SetPersistentStoragePath(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QQuickWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), pathC)
+		C.QQuickWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{pathC, C.longlong(len(path))})
 	}
 }
 
@@ -536,7 +536,7 @@ func (ptr *QQuickWebEngineProfile) SetSpellCheckLanguages(languages []string) {
 	if ptr.Pointer() != nil {
 		var languagesC = C.CString(strings.Join(languages, "|"))
 		defer C.free(unsafe.Pointer(languagesC))
-		C.QQuickWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), languagesC)
+		C.QQuickWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), C.struct_QtWebEngine_PackedString{languagesC, C.longlong(len(strings.Join(languages, "|")))})
 	}
 }
 
@@ -547,7 +547,7 @@ func (ptr *QQuickWebEngineProfile) SetStorageName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QQuickWebEngineProfile_SetStorageName(ptr.Pointer(), nameC)
+		C.QQuickWebEngineProfile_SetStorageName(ptr.Pointer(), C.struct_QtWebEngine_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -1966,7 +1966,7 @@ func (ptr *QWebEngineDownloadItem) SetPath(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QWebEngineDownloadItem_SetPath(ptr.Pointer(), pathC)
+		C.QWebEngineDownloadItem_SetPath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{pathC, C.longlong(len(path))})
 	}
 }
 
@@ -2933,12 +2933,13 @@ func (ptr *QWebEnginePage) CreateStandardContextMenu() *widgets.QMenu {
 }
 
 //export callbackQWebEnginePage_ChooseFiles
-func callbackQWebEnginePage_ChooseFiles(ptr unsafe.Pointer, mode C.longlong, oldFiles C.struct_QtWebEngine_PackedString, acceptedMimeTypes C.struct_QtWebEngine_PackedString) *C.char {
+func callbackQWebEnginePage_ChooseFiles(ptr unsafe.Pointer, mode C.longlong, oldFiles C.struct_QtWebEngine_PackedString, acceptedMimeTypes C.struct_QtWebEngine_PackedString) C.struct_QtWebEngine_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "chooseFiles"); signal != nil {
-		return C.CString(strings.Join(signal.(func(QWebEnginePage__FileSelectionMode, []string, []string) []string)(QWebEnginePage__FileSelectionMode(mode), strings.Split(cGoUnpackString(oldFiles), "|"), strings.Split(cGoUnpackString(acceptedMimeTypes), "|")), "|"))
+		tempVal := signal.(func(QWebEnginePage__FileSelectionMode, []string, []string) []string)(QWebEnginePage__FileSelectionMode(mode), strings.Split(cGoUnpackString(oldFiles), "|"), strings.Split(cGoUnpackString(acceptedMimeTypes), "|"))
+		return C.struct_QtWebEngine_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(NewQWebEnginePageFromPointer(ptr).ChooseFilesDefault(QWebEnginePage__FileSelectionMode(mode), strings.Split(cGoUnpackString(oldFiles), "|"), strings.Split(cGoUnpackString(acceptedMimeTypes), "|")), "|"))
+	tempVal := NewQWebEnginePageFromPointer(ptr).ChooseFilesDefault(QWebEnginePage__FileSelectionMode(mode), strings.Split(cGoUnpackString(oldFiles), "|"), strings.Split(cGoUnpackString(acceptedMimeTypes), "|"))
+	return C.struct_QtWebEngine_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QWebEnginePage) ConnectChooseFiles(f func(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string) {
@@ -2968,7 +2969,7 @@ func (ptr *QWebEnginePage) ChooseFiles(mode QWebEnginePage__FileSelectionMode, o
 		defer C.free(unsafe.Pointer(oldFilesC))
 		var acceptedMimeTypesC = C.CString(strings.Join(acceptedMimeTypes, "|"))
 		defer C.free(unsafe.Pointer(acceptedMimeTypesC))
-		return strings.Split(cGoUnpackString(C.QWebEnginePage_ChooseFiles(ptr.Pointer(), C.longlong(mode), oldFilesC, acceptedMimeTypesC)), "|")
+		return strings.Split(cGoUnpackString(C.QWebEnginePage_ChooseFiles(ptr.Pointer(), C.longlong(mode), C.struct_QtWebEngine_PackedString{oldFilesC, C.longlong(len(strings.Join(oldFiles, "|")))}, C.struct_QtWebEngine_PackedString{acceptedMimeTypesC, C.longlong(len(strings.Join(acceptedMimeTypes, "|")))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -2979,7 +2980,7 @@ func (ptr *QWebEnginePage) ChooseFilesDefault(mode QWebEnginePage__FileSelection
 		defer C.free(unsafe.Pointer(oldFilesC))
 		var acceptedMimeTypesC = C.CString(strings.Join(acceptedMimeTypes, "|"))
 		defer C.free(unsafe.Pointer(acceptedMimeTypesC))
-		return strings.Split(cGoUnpackString(C.QWebEnginePage_ChooseFilesDefault(ptr.Pointer(), C.longlong(mode), oldFilesC, acceptedMimeTypesC)), "|")
+		return strings.Split(cGoUnpackString(C.QWebEnginePage_ChooseFilesDefault(ptr.Pointer(), C.longlong(mode), C.struct_QtWebEngine_PackedString{oldFilesC, C.longlong(len(strings.Join(oldFiles, "|")))}, C.struct_QtWebEngine_PackedString{acceptedMimeTypesC, C.longlong(len(strings.Join(acceptedMimeTypes, "|")))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -3193,7 +3194,7 @@ func (ptr *QWebEnginePage) JavaScriptConfirm(securityOrigin core.QUrl_ITF, msg s
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		return C.QWebEnginePage_JavaScriptConfirm(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC) != 0
+		return C.QWebEnginePage_JavaScriptConfirm(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{msgC, C.longlong(len(msg))}) != 0
 	}
 	return false
 }
@@ -3205,7 +3206,7 @@ func (ptr *QWebEnginePage) JavaScriptConfirmDefault(securityOrigin core.QUrl_ITF
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		return C.QWebEnginePage_JavaScriptConfirmDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC) != 0
+		return C.QWebEnginePage_JavaScriptConfirmDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{msgC, C.longlong(len(msg))}) != 0
 	}
 	return false
 }
@@ -3257,7 +3258,7 @@ func (ptr *QWebEnginePage) JavaScriptPrompt(securityOrigin core.QUrl_ITF, msg st
 			resultC = C.CString(result)
 			defer C.free(unsafe.Pointer(resultC))
 		}
-		return C.QWebEnginePage_JavaScriptPrompt(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC, defaultValueC, resultC) != 0
+		return C.QWebEnginePage_JavaScriptPrompt(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{msgC, C.longlong(len(msg))}, C.struct_QtWebEngine_PackedString{defaultValueC, C.longlong(len(defaultValue))}, C.struct_QtWebEngine_PackedString{resultC, C.longlong(len(result))}) != 0
 	}
 	return false
 }
@@ -3279,7 +3280,7 @@ func (ptr *QWebEnginePage) JavaScriptPromptDefault(securityOrigin core.QUrl_ITF,
 			resultC = C.CString(result)
 			defer C.free(unsafe.Pointer(resultC))
 		}
-		return C.QWebEnginePage_JavaScriptPromptDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC, defaultValueC, resultC) != 0
+		return C.QWebEnginePage_JavaScriptPromptDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{msgC, C.longlong(len(msg))}, C.struct_QtWebEngine_PackedString{defaultValueC, C.longlong(len(defaultValue))}, C.struct_QtWebEngine_PackedString{resultC, C.longlong(len(result))}) != 0
 	}
 	return false
 }
@@ -3486,7 +3487,7 @@ func (ptr *QWebEnginePage) FindText(subString string, options QWebEnginePage__Fi
 			subStringC = C.CString(subString)
 			defer C.free(unsafe.Pointer(subStringC))
 		}
-		C.QWebEnginePage_FindText(ptr.Pointer(), subStringC, C.longlong(options))
+		C.QWebEnginePage_FindText(ptr.Pointer(), C.struct_QtWebEngine_PackedString{subStringC, C.longlong(len(subString))}, C.longlong(options))
 	}
 }
 
@@ -3644,7 +3645,7 @@ func (ptr *QWebEnginePage) JavaScriptAlert(securityOrigin core.QUrl_ITF, msg str
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		C.QWebEnginePage_JavaScriptAlert(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC)
+		C.QWebEnginePage_JavaScriptAlert(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{msgC, C.longlong(len(msg))})
 	}
 }
 
@@ -3655,7 +3656,7 @@ func (ptr *QWebEnginePage) JavaScriptAlertDefault(securityOrigin core.QUrl_ITF, 
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		C.QWebEnginePage_JavaScriptAlertDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC)
+		C.QWebEnginePage_JavaScriptAlertDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{msgC, C.longlong(len(msg))})
 	}
 }
 
@@ -3701,7 +3702,7 @@ func (ptr *QWebEnginePage) JavaScriptConsoleMessage(level QWebEnginePage__JavaSc
 			sourceIDC = C.CString(sourceID)
 			defer C.free(unsafe.Pointer(sourceIDC))
 		}
-		C.QWebEnginePage_JavaScriptConsoleMessage(ptr.Pointer(), C.longlong(level), messageC, C.int(int32(lineNumber)), sourceIDC)
+		C.QWebEnginePage_JavaScriptConsoleMessage(ptr.Pointer(), C.longlong(level), C.struct_QtWebEngine_PackedString{messageC, C.longlong(len(message))}, C.int(int32(lineNumber)), C.struct_QtWebEngine_PackedString{sourceIDC, C.longlong(len(sourceID))})
 	}
 }
 
@@ -3717,7 +3718,7 @@ func (ptr *QWebEnginePage) JavaScriptConsoleMessageDefault(level QWebEnginePage_
 			sourceIDC = C.CString(sourceID)
 			defer C.free(unsafe.Pointer(sourceIDC))
 		}
-		C.QWebEnginePage_JavaScriptConsoleMessageDefault(ptr.Pointer(), C.longlong(level), messageC, C.int(int32(lineNumber)), sourceIDC)
+		C.QWebEnginePage_JavaScriptConsoleMessageDefault(ptr.Pointer(), C.longlong(level), C.struct_QtWebEngine_PackedString{messageC, C.longlong(len(message))}, C.int(int32(lineNumber)), C.struct_QtWebEngine_PackedString{sourceIDC, C.longlong(len(sourceID))})
 	}
 }
 
@@ -3761,7 +3762,7 @@ func (ptr *QWebEnginePage) LinkHovered(url string) {
 			urlC = C.CString(url)
 			defer C.free(unsafe.Pointer(urlC))
 		}
-		C.QWebEnginePage_LinkHovered(ptr.Pointer(), urlC)
+		C.QWebEnginePage_LinkHovered(ptr.Pointer(), C.struct_QtWebEngine_PackedString{urlC, C.longlong(len(url))})
 	}
 }
 
@@ -3895,7 +3896,7 @@ func (ptr *QWebEnginePage) PrintToPdf(filePath string, pageLayout gui.QPageLayou
 			filePathC = C.CString(filePath)
 			defer C.free(unsafe.Pointer(filePathC))
 		}
-		C.QWebEnginePage_PrintToPdf(ptr.Pointer(), filePathC, gui.PointerFromQPageLayout(pageLayout))
+		C.QWebEnginePage_PrintToPdf(ptr.Pointer(), C.struct_QtWebEngine_PackedString{filePathC, C.longlong(len(filePath))}, gui.PointerFromQPageLayout(pageLayout))
 	}
 }
 
@@ -3939,7 +3940,7 @@ func (ptr *QWebEnginePage) ProxyAuthenticationRequired(requestUrl core.QUrl_ITF,
 			proxyHostC = C.CString(proxyHost)
 			defer C.free(unsafe.Pointer(proxyHostC))
 		}
-		C.QWebEnginePage_ProxyAuthenticationRequired(ptr.Pointer(), core.PointerFromQUrl(requestUrl), network.PointerFromQAuthenticator(authenticator), proxyHostC)
+		C.QWebEnginePage_ProxyAuthenticationRequired(ptr.Pointer(), core.PointerFromQUrl(requestUrl), network.PointerFromQAuthenticator(authenticator), C.struct_QtWebEngine_PackedString{proxyHostC, C.longlong(len(proxyHost))})
 	}
 }
 
@@ -4028,7 +4029,7 @@ func (ptr *QWebEnginePage) ReplaceMisspelledWord(replacement string) {
 			replacementC = C.CString(replacement)
 			defer C.free(unsafe.Pointer(replacementC))
 		}
-		C.QWebEnginePage_ReplaceMisspelledWord(ptr.Pointer(), replacementC)
+		C.QWebEnginePage_ReplaceMisspelledWord(ptr.Pointer(), C.struct_QtWebEngine_PackedString{replacementC, C.longlong(len(replacement))})
 	}
 }
 
@@ -4039,7 +4040,7 @@ func (ptr *QWebEnginePage) RunJavaScript4(scriptSource string) {
 			scriptSourceC = C.CString(scriptSource)
 			defer C.free(unsafe.Pointer(scriptSourceC))
 		}
-		C.QWebEnginePage_RunJavaScript4(ptr.Pointer(), scriptSourceC)
+		C.QWebEnginePage_RunJavaScript4(ptr.Pointer(), C.struct_QtWebEngine_PackedString{scriptSourceC, C.longlong(len(scriptSource))})
 	}
 }
 
@@ -4050,7 +4051,7 @@ func (ptr *QWebEnginePage) RunJavaScript2(scriptSource string, worldId uint) {
 			scriptSourceC = C.CString(scriptSource)
 			defer C.free(unsafe.Pointer(scriptSourceC))
 		}
-		C.QWebEnginePage_RunJavaScript2(ptr.Pointer(), scriptSourceC, C.uint(uint32(worldId)))
+		C.QWebEnginePage_RunJavaScript2(ptr.Pointer(), C.struct_QtWebEngine_PackedString{scriptSourceC, C.longlong(len(scriptSource))}, C.uint(uint32(worldId)))
 	}
 }
 
@@ -4151,7 +4152,7 @@ func (ptr *QWebEnginePage) SetContent(data core.QByteArray_ITF, mimeType string,
 			mimeTypeC = C.CString(mimeType)
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
-		C.QWebEnginePage_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), mimeTypeC, core.PointerFromQUrl(baseUrl))
+		C.QWebEnginePage_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), C.struct_QtWebEngine_PackedString{mimeTypeC, C.longlong(len(mimeType))}, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -4168,7 +4169,7 @@ func (ptr *QWebEnginePage) SetHtml(html string, baseUrl core.QUrl_ITF) {
 			htmlC = C.CString(html)
 			defer C.free(unsafe.Pointer(htmlC))
 		}
-		C.QWebEnginePage_SetHtml(ptr.Pointer(), htmlC, core.PointerFromQUrl(baseUrl))
+		C.QWebEnginePage_SetHtml(ptr.Pointer(), C.struct_QtWebEngine_PackedString{htmlC, C.longlong(len(html))}, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -4242,7 +4243,7 @@ func (ptr *QWebEnginePage) TitleChanged(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QWebEnginePage_TitleChanged(ptr.Pointer(), titleC)
+		C.QWebEnginePage_TitleChanged(ptr.Pointer(), C.struct_QtWebEngine_PackedString{titleC, C.longlong(len(title))})
 	}
 }
 
@@ -4551,7 +4552,7 @@ func (ptr *QWebEnginePage) Save(filePath string, format QWebEngineDownloadItem__
 			filePathC = C.CString(filePath)
 			defer C.free(unsafe.Pointer(filePathC))
 		}
-		C.QWebEnginePage_Save(ptr.Pointer(), filePathC, C.longlong(format))
+		C.QWebEnginePage_Save(ptr.Pointer(), C.struct_QtWebEngine_PackedString{filePathC, C.longlong(len(filePath))}, C.longlong(format))
 	}
 }
 
@@ -4898,7 +4899,7 @@ func NewQWebEngineProfile2(storageName string, parent core.QObject_ITF) *QWebEng
 		storageNameC = C.CString(storageName)
 		defer C.free(unsafe.Pointer(storageNameC))
 	}
-	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(storageNameC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(C.struct_QtWebEngine_PackedString{storageNameC, C.longlong(len(storageName))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4999,7 +5000,7 @@ func (ptr *QWebEngineProfile) SetCachePath(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QWebEngineProfile_SetCachePath(ptr.Pointer(), pathC)
+		C.QWebEngineProfile_SetCachePath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{pathC, C.longlong(len(path))})
 	}
 }
 
@@ -5010,7 +5011,7 @@ func (ptr *QWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage string) {
 			httpAcceptLanguageC = C.CString(httpAcceptLanguage)
 			defer C.free(unsafe.Pointer(httpAcceptLanguageC))
 		}
-		C.QWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), httpAcceptLanguageC)
+		C.QWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), C.struct_QtWebEngine_PackedString{httpAcceptLanguageC, C.longlong(len(httpAcceptLanguage))})
 	}
 }
 
@@ -5033,7 +5034,7 @@ func (ptr *QWebEngineProfile) SetHttpUserAgent(userAgent string) {
 			userAgentC = C.CString(userAgent)
 			defer C.free(unsafe.Pointer(userAgentC))
 		}
-		C.QWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), userAgentC)
+		C.QWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), C.struct_QtWebEngine_PackedString{userAgentC, C.longlong(len(userAgent))})
 	}
 }
 
@@ -5050,7 +5051,7 @@ func (ptr *QWebEngineProfile) SetPersistentStoragePath(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), pathC)
+		C.QWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{pathC, C.longlong(len(path))})
 	}
 }
 
@@ -5070,7 +5071,7 @@ func (ptr *QWebEngineProfile) SetSpellCheckLanguages(languages []string) {
 	if ptr.Pointer() != nil {
 		var languagesC = C.CString(strings.Join(languages, "|"))
 		defer C.free(unsafe.Pointer(languagesC))
-		C.QWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), languagesC)
+		C.QWebEngineProfile_SetSpellCheckLanguages(ptr.Pointer(), C.struct_QtWebEngine_PackedString{languagesC, C.longlong(len(strings.Join(languages, "|")))})
 	}
 }
 
@@ -5544,7 +5545,7 @@ func (ptr *QWebEngineScript) SetName(scriptName string) {
 			scriptNameC = C.CString(scriptName)
 			defer C.free(unsafe.Pointer(scriptNameC))
 		}
-		C.QWebEngineScript_SetName(ptr.Pointer(), scriptNameC)
+		C.QWebEngineScript_SetName(ptr.Pointer(), C.struct_QtWebEngine_PackedString{scriptNameC, C.longlong(len(scriptName))})
 	}
 }
 
@@ -5561,7 +5562,7 @@ func (ptr *QWebEngineScript) SetSourceCode(scriptSource string) {
 			scriptSourceC = C.CString(scriptSource)
 			defer C.free(unsafe.Pointer(scriptSourceC))
 		}
-		C.QWebEngineScript_SetSourceCode(ptr.Pointer(), scriptSourceC)
+		C.QWebEngineScript_SetSourceCode(ptr.Pointer(), C.struct_QtWebEngine_PackedString{scriptSourceC, C.longlong(len(scriptSource))})
 	}
 }
 
@@ -5716,7 +5717,7 @@ func (ptr *QWebEngineScriptCollection) FindScripts(name string) []*QWebEngineScr
 				out[i] = NewQWebEngineScriptCollectionFromPointer(l.data).__findScripts_atList(i)
 			}
 			return out
-		}(C.QWebEngineScriptCollection_FindScripts(ptr.Pointer(), nameC))
+		}(C.QWebEngineScriptCollection_FindScripts(ptr.Pointer(), C.struct_QtWebEngine_PackedString{nameC, C.longlong(len(name))}))
 	}
 	return make([]*QWebEngineScript, 0)
 }
@@ -5741,7 +5742,7 @@ func (ptr *QWebEngineScriptCollection) FindScript(name string) *QWebEngineScript
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_FindScript(ptr.Pointer(), nameC))
+		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_FindScript(ptr.Pointer(), C.struct_QtWebEngine_PackedString{nameC, C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
 		return tmpValue
 	}
@@ -5981,7 +5982,7 @@ func (ptr *QWebEngineSettings) SetDefaultTextEncoding(encoding string) {
 			encodingC = C.CString(encoding)
 			defer C.free(unsafe.Pointer(encodingC))
 		}
-		C.QWebEngineSettings_SetDefaultTextEncoding(ptr.Pointer(), encodingC)
+		C.QWebEngineSettings_SetDefaultTextEncoding(ptr.Pointer(), C.struct_QtWebEngine_PackedString{encodingC, C.longlong(len(encoding))})
 	}
 }
 
@@ -5992,7 +5993,7 @@ func (ptr *QWebEngineSettings) SetFontFamily(which QWebEngineSettings__FontFamil
 			familyC = C.CString(family)
 			defer C.free(unsafe.Pointer(familyC))
 		}
-		C.QWebEngineSettings_SetFontFamily(ptr.Pointer(), C.longlong(which), familyC)
+		C.QWebEngineSettings_SetFontFamily(ptr.Pointer(), C.longlong(which), C.struct_QtWebEngine_PackedString{familyC, C.longlong(len(family))})
 	}
 }
 
@@ -7448,7 +7449,7 @@ func (ptr *QWebEngineView) FindText(subString string, options QWebEnginePage__Fi
 			subStringC = C.CString(subString)
 			defer C.free(unsafe.Pointer(subStringC))
 		}
-		C.QWebEngineView_FindText(ptr.Pointer(), subStringC, C.longlong(options))
+		C.QWebEngineView_FindText(ptr.Pointer(), C.struct_QtWebEngine_PackedString{subStringC, C.longlong(len(subString))}, C.longlong(options))
 	}
 }
 
@@ -7837,7 +7838,7 @@ func (ptr *QWebEngineView) SetContent(data core.QByteArray_ITF, mimeType string,
 			mimeTypeC = C.CString(mimeType)
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
-		C.QWebEngineView_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), mimeTypeC, core.PointerFromQUrl(baseUrl))
+		C.QWebEngineView_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), C.struct_QtWebEngine_PackedString{mimeTypeC, C.longlong(len(mimeType))}, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -7848,7 +7849,7 @@ func (ptr *QWebEngineView) SetHtml(html string, baseUrl core.QUrl_ITF) {
 			htmlC = C.CString(html)
 			defer C.free(unsafe.Pointer(htmlC))
 		}
-		C.QWebEngineView_SetHtml(ptr.Pointer(), htmlC, core.PointerFromQUrl(baseUrl))
+		C.QWebEngineView_SetHtml(ptr.Pointer(), C.struct_QtWebEngine_PackedString{htmlC, C.longlong(len(html))}, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -7967,7 +7968,7 @@ func (ptr *QWebEngineView) TitleChanged(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QWebEngineView_TitleChanged(ptr.Pointer(), titleC)
+		C.QWebEngineView_TitleChanged(ptr.Pointer(), C.struct_QtWebEngine_PackedString{titleC, C.longlong(len(title))})
 	}
 }
 
@@ -8784,7 +8785,7 @@ func (ptr *QWebEngineView) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QWebEngineView_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QWebEngineView_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtWebEngine_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -8834,7 +8835,7 @@ func (ptr *QWebEngineView) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWebEngineView_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QWebEngineView_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtWebEngine_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 

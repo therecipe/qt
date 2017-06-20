@@ -137,9 +137,9 @@ void* QJSEngine_NewQJSEngine2(void* parent)
 	}
 }
 
-void* QJSEngine_Evaluate(void* ptr, char* program, char* fileName, int lineNumber)
+void* QJSEngine_Evaluate(void* ptr, struct QtQml_PackedString program, struct QtQml_PackedString fileName, int lineNumber)
 {
-	return new QJSValue(static_cast<QJSEngine*>(ptr)->evaluate(QString(program), QString(fileName), lineNumber));
+	return new QJSValue(static_cast<QJSEngine*>(ptr)->evaluate(QString::fromUtf8(program.data, program.len), QString::fromUtf8(fileName.data, fileName.len), lineNumber));
 }
 
 void* QJSEngine_NewArray(void* ptr, unsigned int length)
@@ -407,9 +407,9 @@ void* QJSValue_NewQJSValue9(void* value)
 	return new QJSValue(*static_cast<QLatin1String*>(value));
 }
 
-void* QJSValue_NewQJSValue8(char* value)
+void* QJSValue_NewQJSValue8(struct QtQml_PackedString value)
 {
-	return new QJSValue(QString(value));
+	return new QJSValue(QString::fromUtf8(value.data, value.len));
 }
 
 void* QJSValue_NewQJSValue10(char* value)
@@ -432,14 +432,14 @@ void* QJSValue_NewQJSValue6(unsigned int value)
 	return new QJSValue(value);
 }
 
-char QJSValue_DeleteProperty(void* ptr, char* name)
+char QJSValue_DeleteProperty(void* ptr, struct QtQml_PackedString name)
 {
-	return static_cast<QJSValue*>(ptr)->deleteProperty(QString(name));
+	return static_cast<QJSValue*>(ptr)->deleteProperty(QString::fromUtf8(name.data, name.len));
 }
 
-void QJSValue_SetProperty(void* ptr, char* name, void* value)
+void QJSValue_SetProperty(void* ptr, struct QtQml_PackedString name, void* value)
 {
-	static_cast<QJSValue*>(ptr)->setProperty(QString(name), *static_cast<QJSValue*>(value));
+	static_cast<QJSValue*>(ptr)->setProperty(QString::fromUtf8(name.data, name.len), *static_cast<QJSValue*>(value));
 }
 
 void QJSValue_SetProperty2(void* ptr, unsigned int arrayIndex, void* value)
@@ -462,9 +462,9 @@ void* QJSValue_ToDateTime(void* ptr)
 	return new QDateTime(static_cast<QJSValue*>(ptr)->toDateTime());
 }
 
-void* QJSValue_Property(void* ptr, char* name)
+void* QJSValue_Property(void* ptr, struct QtQml_PackedString name)
 {
-	return new QJSValue(static_cast<QJSValue*>(ptr)->property(QString(name)));
+	return new QJSValue(static_cast<QJSValue*>(ptr)->property(QString::fromUtf8(name.data, name.len)));
 }
 
 void* QJSValue_Property2(void* ptr, unsigned int arrayIndex)
@@ -497,14 +497,14 @@ char QJSValue_Equals(void* ptr, void* other)
 	return static_cast<QJSValue*>(ptr)->equals(*static_cast<QJSValue*>(other));
 }
 
-char QJSValue_HasOwnProperty(void* ptr, char* name)
+char QJSValue_HasOwnProperty(void* ptr, struct QtQml_PackedString name)
 {
-	return static_cast<QJSValue*>(ptr)->hasOwnProperty(QString(name));
+	return static_cast<QJSValue*>(ptr)->hasOwnProperty(QString::fromUtf8(name.data, name.len));
 }
 
-char QJSValue_HasProperty(void* ptr, char* name)
+char QJSValue_HasProperty(void* ptr, struct QtQml_PackedString name)
 {
-	return static_cast<QJSValue*>(ptr)->hasProperty(QString(name));
+	return static_cast<QJSValue*>(ptr)->hasProperty(QString::fromUtf8(name.data, name.len));
 }
 
 char QJSValue_IsArray(void* ptr)
@@ -760,44 +760,44 @@ void* QQmlApplicationEngine_NewQQmlApplicationEngine(void* parent)
 	}
 }
 
-void* QQmlApplicationEngine_NewQQmlApplicationEngine3(char* filePath, void* parent)
+void* QQmlApplicationEngine_NewQQmlApplicationEngine3(struct QtQml_PackedString filePath, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QCameraImageCapture*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QExtensionFactory*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QExtensionManager*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QGraphicsObject*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QGraphicsWidget*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QLayout*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QMediaPlaylist*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QMediaRecorder*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QOffscreenSurface*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QPdfWriter*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QQuickItem*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QRadioData*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QSignalSpy*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QWidget*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QWindow*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQQmlApplicationEngine(QString(filePath), static_cast<QObject*>(parent));
+		return new MyQQmlApplicationEngine(QString::fromUtf8(filePath.data, filePath.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -842,14 +842,14 @@ void* QQmlApplicationEngine_NewQQmlApplicationEngine2(void* url, void* parent)
 	}
 }
 
-void QQmlApplicationEngine_Load2(void* ptr, char* filePath)
+void QQmlApplicationEngine_Load2(void* ptr, struct QtQml_PackedString filePath)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QString, QString(filePath)));
+	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QString, QString::fromUtf8(filePath.data, filePath.len)));
 }
 
-void QQmlApplicationEngine_Load2Default(void* ptr, char* filePath)
+void QQmlApplicationEngine_Load2Default(void* ptr, struct QtQml_PackedString filePath)
 {
-		static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::load(QString(filePath));
+		static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::load(QString::fromUtf8(filePath.data, filePath.len));
 }
 
 void QQmlApplicationEngine_Load(void* ptr, void* url)
@@ -1003,85 +1003,85 @@ void* QQmlComponent_NewQQmlComponent(void* engine, void* parent)
 	}
 }
 
-void* QQmlComponent_NewQQmlComponent4(void* engine, char* fileName, long long mode, void* parent)
+void* QQmlComponent_NewQQmlComponent4(void* engine, struct QtQml_PackedString fileName, long long mode, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QCameraImageCapture*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionFactory*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionManager*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsObject*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsWidget*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QLayout*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaPlaylist*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaRecorder*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QOffscreenSurface*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPdfWriter*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QQuickItem*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QRadioData*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QSignalSpy*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWidget*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWindow*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QObject*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQmlComponent::CompilationMode>(mode), static_cast<QObject*>(parent));
 	}
 }
 
-void* QQmlComponent_NewQQmlComponent3(void* engine, char* fileName, void* parent)
+void* QQmlComponent_NewQQmlComponent3(void* engine, struct QtQml_PackedString fileName, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QCameraImageCapture*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QExtensionFactory*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QExtensionManager*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QGraphicsObject*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QGraphicsWidget*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QLayout*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QMediaPlaylist*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QMediaRecorder*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QOffscreenSurface*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QPdfWriter*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QQuickItem*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QRadioData*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QSignalSpy*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QWidget*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QWindow*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString(fileName), static_cast<QObject*>(parent));
+		return new MyQQmlComponent(static_cast<QQmlEngine*>(engine), QString::fromUtf8(fileName.data, fileName.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -1559,14 +1559,14 @@ void QQmlContext_SetContextObject(void* ptr, void* object)
 	static_cast<QQmlContext*>(ptr)->setContextObject(static_cast<QObject*>(object));
 }
 
-void QQmlContext_SetContextProperty(void* ptr, char* name, void* value)
+void QQmlContext_SetContextProperty(void* ptr, struct QtQml_PackedString name, void* value)
 {
-	static_cast<QQmlContext*>(ptr)->setContextProperty(QString(name), static_cast<QObject*>(value));
+	static_cast<QQmlContext*>(ptr)->setContextProperty(QString::fromUtf8(name.data, name.len), static_cast<QObject*>(value));
 }
 
-void QQmlContext_SetContextProperty2(void* ptr, char* name, void* value)
+void QQmlContext_SetContextProperty2(void* ptr, struct QtQml_PackedString name, void* value)
 {
-	static_cast<QQmlContext*>(ptr)->setContextProperty(QString(name), *static_cast<QVariant*>(value));
+	static_cast<QQmlContext*>(ptr)->setContextProperty(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value));
 }
 
 void QQmlContext_DestroyQQmlContext(void* ptr)
@@ -1605,9 +1605,9 @@ void* QQmlContext_BaseUrl(void* ptr)
 	return new QUrl(static_cast<QQmlContext*>(ptr)->baseUrl());
 }
 
-void* QQmlContext_ContextProperty(void* ptr, char* name)
+void* QQmlContext_ContextProperty(void* ptr, struct QtQml_PackedString name)
 {
-	return new QVariant(static_cast<QQmlContext*>(ptr)->contextProperty(QString(name)));
+	return new QVariant(static_cast<QQmlContext*>(ptr)->contextProperty(QString::fromUtf8(name.data, name.len)));
 }
 
 char QQmlContext_IsValid(void* ptr)
@@ -1816,24 +1816,24 @@ void* QQmlEngine_NewQQmlEngine(void* parent)
 	}
 }
 
-char QQmlEngine_ImportPlugin(void* ptr, char* filePath, char* uri, void* errors)
+char QQmlEngine_ImportPlugin(void* ptr, struct QtQml_PackedString filePath, struct QtQml_PackedString uri, void* errors)
 {
-	return static_cast<QQmlEngine*>(ptr)->importPlugin(QString(filePath), QString(uri), static_cast<QList<QQmlError>*>(errors));
+	return static_cast<QQmlEngine*>(ptr)->importPlugin(QString::fromUtf8(filePath.data, filePath.len), QString::fromUtf8(uri.data, uri.len), static_cast<QList<QQmlError>*>(errors));
 }
 
-void QQmlEngine_AddImageProvider(void* ptr, char* providerId, void* provider)
+void QQmlEngine_AddImageProvider(void* ptr, struct QtQml_PackedString providerId, void* provider)
 {
-	static_cast<QQmlEngine*>(ptr)->addImageProvider(QString(providerId), static_cast<QQmlImageProviderBase*>(provider));
+	static_cast<QQmlEngine*>(ptr)->addImageProvider(QString::fromUtf8(providerId.data, providerId.len), static_cast<QQmlImageProviderBase*>(provider));
 }
 
-void QQmlEngine_AddImportPath(void* ptr, char* path)
+void QQmlEngine_AddImportPath(void* ptr, struct QtQml_PackedString path)
 {
-	static_cast<QQmlEngine*>(ptr)->addImportPath(QString(path));
+	static_cast<QQmlEngine*>(ptr)->addImportPath(QString::fromUtf8(path.data, path.len));
 }
 
-void QQmlEngine_AddPluginPath(void* ptr, char* path)
+void QQmlEngine_AddPluginPath(void* ptr, struct QtQml_PackedString path)
 {
-	static_cast<QQmlEngine*>(ptr)->addPluginPath(QString(path));
+	static_cast<QQmlEngine*>(ptr)->addPluginPath(QString::fromUtf8(path.data, path.len));
 }
 
 void QQmlEngine_ClearComponentCache(void* ptr)
@@ -1871,9 +1871,9 @@ void QQmlEngine_Quit(void* ptr)
 	static_cast<QQmlEngine*>(ptr)->quit();
 }
 
-void QQmlEngine_RemoveImageProvider(void* ptr, char* providerId)
+void QQmlEngine_RemoveImageProvider(void* ptr, struct QtQml_PackedString providerId)
 {
-	static_cast<QQmlEngine*>(ptr)->removeImageProvider(QString(providerId));
+	static_cast<QQmlEngine*>(ptr)->removeImageProvider(QString::fromUtf8(providerId.data, providerId.len));
 }
 
 void QQmlEngine_SetBaseUrl(void* ptr, void* url)
@@ -1886,9 +1886,9 @@ void QQmlEngine_QQmlEngine_SetContextForObject(void* object, void* context)
 	QQmlEngine::setContextForObject(static_cast<QObject*>(object), static_cast<QQmlContext*>(context));
 }
 
-void QQmlEngine_SetImportPathList(void* ptr, char* paths)
+void QQmlEngine_SetImportPathList(void* ptr, struct QtQml_PackedString paths)
 {
-	static_cast<QQmlEngine*>(ptr)->setImportPathList(QString(paths).split("|", QString::SkipEmptyParts));
+	static_cast<QQmlEngine*>(ptr)->setImportPathList(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
 }
 
 void QQmlEngine_SetIncubationController(void* ptr, void* controller)
@@ -1906,9 +1906,9 @@ void QQmlEngine_QQmlEngine_SetObjectOwnership(void* object, long long ownership)
 	QQmlEngine::setObjectOwnership(static_cast<QObject*>(object), static_cast<QQmlEngine::ObjectOwnership>(ownership));
 }
 
-void QQmlEngine_SetOfflineStoragePath(void* ptr, char* dir)
+void QQmlEngine_SetOfflineStoragePath(void* ptr, struct QtQml_PackedString dir)
 {
-	static_cast<QQmlEngine*>(ptr)->setOfflineStoragePath(QString(dir));
+	static_cast<QQmlEngine*>(ptr)->setOfflineStoragePath(QString::fromUtf8(dir.data, dir.len));
 }
 
 void QQmlEngine_SetOutputWarningsToStandardError(void* ptr, char enabled)
@@ -1916,9 +1916,9 @@ void QQmlEngine_SetOutputWarningsToStandardError(void* ptr, char enabled)
 	static_cast<QQmlEngine*>(ptr)->setOutputWarningsToStandardError(enabled != 0);
 }
 
-void QQmlEngine_SetPluginPathList(void* ptr, char* paths)
+void QQmlEngine_SetPluginPathList(void* ptr, struct QtQml_PackedString paths)
 {
-	static_cast<QQmlEngine*>(ptr)->setPluginPathList(QString(paths).split("|", QString::SkipEmptyParts));
+	static_cast<QQmlEngine*>(ptr)->setPluginPathList(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts));
 }
 
 void QQmlEngine_TrimComponentCache(void* ptr)
@@ -1962,9 +1962,9 @@ void* QQmlEngine_RootContext(void* ptr)
 	return static_cast<QQmlEngine*>(ptr)->rootContext();
 }
 
-void* QQmlEngine_ImageProvider(void* ptr, char* providerId)
+void* QQmlEngine_ImageProvider(void* ptr, struct QtQml_PackedString providerId)
 {
-	return static_cast<QQmlEngine*>(ptr)->imageProvider(QString(providerId));
+	return static_cast<QQmlEngine*>(ptr)->imageProvider(QString::fromUtf8(providerId.data, providerId.len));
 }
 
 void* QQmlEngine_IncubationController(void* ptr)
@@ -2059,9 +2059,9 @@ void QQmlError_SetColumn(void* ptr, int column)
 	static_cast<QQmlError*>(ptr)->setColumn(column);
 }
 
-void QQmlError_SetDescription(void* ptr, char* description)
+void QQmlError_SetDescription(void* ptr, struct QtQml_PackedString description)
 {
-	static_cast<QQmlError*>(ptr)->setDescription(QString(description));
+	static_cast<QQmlError*>(ptr)->setDescription(QString::fromUtf8(description.data, description.len));
 }
 
 void QQmlError_SetLine(void* ptr, int line)
@@ -2144,44 +2144,44 @@ void* QQmlExpression_NewQQmlExpression()
 	return new MyQQmlExpression();
 }
 
-void* QQmlExpression_NewQQmlExpression2(void* ctxt, void* scope, char* expression, void* parent)
+void* QQmlExpression_NewQQmlExpression2(void* ctxt, void* scope, struct QtQml_PackedString expression, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QCameraImageCapture*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QCameraImageCapture*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QDBusPendingCallWatcher*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QDBusPendingCallWatcher*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QExtensionFactory*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QExtensionFactory*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QExtensionManager*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QExtensionManager*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsObject*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsObject*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsWidget*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsWidget*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QLayout*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QLayout*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QMediaPlaylist*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QMediaPlaylist*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QMediaRecorder*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QMediaRecorder*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QOffscreenSurface*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QOffscreenSurface*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QPaintDeviceWindow*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QPaintDeviceWindow*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QPdfWriter*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QPdfWriter*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QQuickItem*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QQuickItem*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QRadioData*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QRadioData*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QSignalSpy*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QSignalSpy*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QWidget*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QWidget*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QWindow*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QWindow*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	} else {
-		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), QString(expression), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), QString::fromUtf8(expression.data, expression.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -2237,9 +2237,9 @@ void QQmlExpression_ClearError(void* ptr)
 	static_cast<QQmlExpression*>(ptr)->clearError();
 }
 
-void QQmlExpression_SetExpression(void* ptr, char* expression)
+void QQmlExpression_SetExpression(void* ptr, struct QtQml_PackedString expression)
 {
-	static_cast<QQmlExpression*>(ptr)->setExpression(QString(expression));
+	static_cast<QQmlExpression*>(ptr)->setExpression(QString::fromUtf8(expression.data, expression.len));
 }
 
 void QQmlExpression_SetNotifyOnValueChanged(void* ptr, char notifyOnChange)
@@ -2247,9 +2247,9 @@ void QQmlExpression_SetNotifyOnValueChanged(void* ptr, char notifyOnChange)
 	static_cast<QQmlExpression*>(ptr)->setNotifyOnValueChanged(notifyOnChange != 0);
 }
 
-void QQmlExpression_SetSourceLocation(void* ptr, char* url, int line, int column)
+void QQmlExpression_SetSourceLocation(void* ptr, struct QtQml_PackedString url, int line, int column)
 {
-	static_cast<QQmlExpression*>(ptr)->setSourceLocation(QString(url), line, column);
+	static_cast<QQmlExpression*>(ptr)->setSourceLocation(QString::fromUtf8(url.data, url.len), line, column);
 }
 
 void QQmlExpression_ConnectValueChanged(void* ptr)
@@ -2729,14 +2729,14 @@ void* QQmlFileSelector_NewQQmlFileSelector(void* engine, void* parent)
 	}
 }
 
-void QQmlFileSelector_SetExtraSelectors(void* ptr, char* strin)
+void QQmlFileSelector_SetExtraSelectors(void* ptr, struct QtQml_PackedString strin)
 {
-	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(*(new QStringList(QString(strin).split("|", QString::SkipEmptyParts))));
+	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(*(new QStringList(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts))));
 }
 
-void QQmlFileSelector_SetExtraSelectors2(void* ptr, char* strin)
+void QQmlFileSelector_SetExtraSelectors2(void* ptr, struct QtQml_PackedString strin)
 {
-	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString(strin).split("|", QString::SkipEmptyParts));
+	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString::fromUtf8(strin.data, strin.len).split("|", QString::SkipEmptyParts));
 }
 
 void QQmlFileSelector_SetSelector(void* ptr, void* selector)
@@ -3317,126 +3317,126 @@ void* QQmlProperty_NewQQmlProperty4(void* obj, void* engine)
 	}
 }
 
-void* QQmlProperty_NewQQmlProperty5(void* obj, char* name)
+void* QQmlProperty_NewQQmlProperty5(void* obj, struct QtQml_PackedString name)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QLayout*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QLayout*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QRadioData*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QRadioData*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QWidget*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QWidget*>(obj), QString::fromUtf8(name.data, name.len));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QWindow*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QWindow*>(obj), QString::fromUtf8(name.data, name.len));
 	} else {
-		return new QQmlProperty(static_cast<QObject*>(obj), QString(name));
+		return new QQmlProperty(static_cast<QObject*>(obj), QString::fromUtf8(name.data, name.len));
 	}
 }
 
-void* QQmlProperty_NewQQmlProperty6(void* obj, char* name, void* ctxt)
+void* QQmlProperty_NewQQmlProperty6(void* obj, struct QtQml_PackedString name, void* ctxt)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QLayout*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QLayout*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QRadioData*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QRadioData*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QWidget*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QWidget*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QWindow*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QWindow*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	} else {
-		return new QQmlProperty(static_cast<QObject*>(obj), QString(name), static_cast<QQmlContext*>(ctxt));
+		return new QQmlProperty(static_cast<QObject*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt));
 	}
 }
 
-void* QQmlProperty_NewQQmlProperty7(void* obj, char* name, void* engine)
+void* QQmlProperty_NewQQmlProperty7(void* obj, struct QtQml_PackedString name, void* engine)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QCameraImageCapture*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QDBusPendingCallWatcher*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QExtensionFactory*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QExtensionManager*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QGraphicsObject*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QGraphicsWidget*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QLayout*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QLayout*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QMediaPlaylist*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QMediaRecorder*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QOffscreenSurface*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QPaintDeviceWindow*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QPdfWriter*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QQuickItem*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QRadioData*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QRadioData*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QSignalSpy*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QWidget*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QWidget*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
-		return new QQmlProperty(static_cast<QWindow*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QWindow*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	} else {
-		return new QQmlProperty(static_cast<QObject*>(obj), QString(name), static_cast<QQmlEngine*>(engine));
+		return new QQmlProperty(static_cast<QObject*>(obj), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine));
 	}
 }
 
@@ -3445,34 +3445,34 @@ void* QQmlProperty_NewQQmlProperty8(void* other)
 	return new QQmlProperty(*static_cast<QQmlProperty*>(other));
 }
 
-void* QQmlProperty_QQmlProperty_Read2(void* object, char* name)
+void* QQmlProperty_QQmlProperty_Read2(void* object, struct QtQml_PackedString name)
 {
-	return new QVariant(QQmlProperty::read(static_cast<QObject*>(object), QString(name)));
+	return new QVariant(QQmlProperty::read(static_cast<QObject*>(object), QString::fromUtf8(name.data, name.len)));
 }
 
-void* QQmlProperty_QQmlProperty_Read3(void* object, char* name, void* ctxt)
+void* QQmlProperty_QQmlProperty_Read3(void* object, struct QtQml_PackedString name, void* ctxt)
 {
-	return new QVariant(QQmlProperty::read(static_cast<QObject*>(object), QString(name), static_cast<QQmlContext*>(ctxt)));
+	return new QVariant(QQmlProperty::read(static_cast<QObject*>(object), QString::fromUtf8(name.data, name.len), static_cast<QQmlContext*>(ctxt)));
 }
 
-void* QQmlProperty_QQmlProperty_Read4(void* object, char* name, void* engine)
+void* QQmlProperty_QQmlProperty_Read4(void* object, struct QtQml_PackedString name, void* engine)
 {
-	return new QVariant(QQmlProperty::read(static_cast<QObject*>(object), QString(name), static_cast<QQmlEngine*>(engine)));
+	return new QVariant(QQmlProperty::read(static_cast<QObject*>(object), QString::fromUtf8(name.data, name.len), static_cast<QQmlEngine*>(engine)));
 }
 
-char QQmlProperty_QQmlProperty_Write2(void* object, char* name, void* value)
+char QQmlProperty_QQmlProperty_Write2(void* object, struct QtQml_PackedString name, void* value)
 {
-	return QQmlProperty::write(static_cast<QObject*>(object), QString(name), *static_cast<QVariant*>(value));
+	return QQmlProperty::write(static_cast<QObject*>(object), QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value));
 }
 
-char QQmlProperty_QQmlProperty_Write3(void* object, char* name, void* value, void* ctxt)
+char QQmlProperty_QQmlProperty_Write3(void* object, struct QtQml_PackedString name, void* value, void* ctxt)
 {
-	return QQmlProperty::write(static_cast<QObject*>(object), QString(name), *static_cast<QVariant*>(value), static_cast<QQmlContext*>(ctxt));
+	return QQmlProperty::write(static_cast<QObject*>(object), QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), static_cast<QQmlContext*>(ctxt));
 }
 
-char QQmlProperty_QQmlProperty_Write4(void* object, char* name, void* value, void* engine)
+char QQmlProperty_QQmlProperty_Write4(void* object, struct QtQml_PackedString name, void* value, void* engine)
 {
-	return QQmlProperty::write(static_cast<QObject*>(object), QString(name), *static_cast<QVariant*>(value), static_cast<QQmlEngine*>(engine));
+	return QQmlProperty::write(static_cast<QObject*>(object), QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(value), static_cast<QQmlEngine*>(engine));
 }
 
 long long QQmlProperty_PropertyTypeCategory(void* ptr)
@@ -3645,24 +3645,24 @@ void* QQmlPropertyMap_NewQQmlPropertyMap(void* parent)
 	}
 }
 
-void* QQmlPropertyMap_UpdateValue(void* ptr, char* key, void* input)
+void* QQmlPropertyMap_UpdateValue(void* ptr, struct QtQml_PackedString key, void* input)
 {
-	return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->updateValue(QString(key), *static_cast<QVariant*>(input)));
+	return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->updateValue(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(input)));
 }
 
-void* QQmlPropertyMap_UpdateValueDefault(void* ptr, char* key, void* input)
+void* QQmlPropertyMap_UpdateValueDefault(void* ptr, struct QtQml_PackedString key, void* input)
 {
-		return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->QQmlPropertyMap::updateValue(QString(key), *static_cast<QVariant*>(input)));
+		return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->QQmlPropertyMap::updateValue(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(input)));
 }
 
-void QQmlPropertyMap_Clear(void* ptr, char* key)
+void QQmlPropertyMap_Clear(void* ptr, struct QtQml_PackedString key)
 {
-	static_cast<QQmlPropertyMap*>(ptr)->clear(QString(key));
+	static_cast<QQmlPropertyMap*>(ptr)->clear(QString::fromUtf8(key.data, key.len));
 }
 
-void QQmlPropertyMap_Insert(void* ptr, char* key, void* value)
+void QQmlPropertyMap_Insert(void* ptr, struct QtQml_PackedString key, void* value)
 {
-	static_cast<QQmlPropertyMap*>(ptr)->insert(QString(key), *static_cast<QVariant*>(value));
+	static_cast<QQmlPropertyMap*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(value));
 }
 
 void QQmlPropertyMap_ConnectValueChanged(void* ptr)
@@ -3675,9 +3675,9 @@ void QQmlPropertyMap_DisconnectValueChanged(void* ptr)
 	QObject::disconnect(static_cast<QQmlPropertyMap*>(ptr), static_cast<void (QQmlPropertyMap::*)(const QString &, const QVariant &)>(&QQmlPropertyMap::valueChanged), static_cast<MyQQmlPropertyMap*>(ptr), static_cast<void (MyQQmlPropertyMap::*)(const QString &, const QVariant &)>(&MyQQmlPropertyMap::Signal_ValueChanged));
 }
 
-void QQmlPropertyMap_ValueChanged(void* ptr, char* key, void* value)
+void QQmlPropertyMap_ValueChanged(void* ptr, struct QtQml_PackedString key, void* value)
 {
-	static_cast<QQmlPropertyMap*>(ptr)->valueChanged(QString(key), *static_cast<QVariant*>(value));
+	static_cast<QQmlPropertyMap*>(ptr)->valueChanged(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(value));
 }
 
 void QQmlPropertyMap_DestroyQQmlPropertyMap(void* ptr)
@@ -3696,14 +3696,14 @@ struct QtQml_PackedString QQmlPropertyMap_Keys(void* ptr)
 	return ({ QByteArray t4c814d = static_cast<QQmlPropertyMap*>(ptr)->keys().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t4c814d.prepend("WHITESPACE").constData()+10), t4c814d.size()-10 }; });
 }
 
-void* QQmlPropertyMap_Value(void* ptr, char* key)
+void* QQmlPropertyMap_Value(void* ptr, struct QtQml_PackedString key)
 {
-	return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->value(QString(key)));
+	return new QVariant(static_cast<QQmlPropertyMap*>(ptr)->value(QString::fromUtf8(key.data, key.len)));
 }
 
-char QQmlPropertyMap_Contains(void* ptr, char* key)
+char QQmlPropertyMap_Contains(void* ptr, struct QtQml_PackedString key)
 {
-	return static_cast<QQmlPropertyMap*>(ptr)->contains(QString(key));
+	return static_cast<QQmlPropertyMap*>(ptr)->contains(QString::fromUtf8(key.data, key.len));
 }
 
 char QQmlPropertyMap_IsEmpty(void* ptr)

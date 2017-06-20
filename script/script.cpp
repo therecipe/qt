@@ -68,7 +68,7 @@ public:
 	void setProperty(QScriptValue & object, const QScriptString & name, uint id, const QScriptValue & value) { callbackQScriptClass_SetProperty(this, static_cast<QScriptValue*>(&object), const_cast<QScriptString*>(&name), id, const_cast<QScriptValue*>(&value)); };
 	 ~MyQScriptClass() { callbackQScriptClass_DestroyQScriptClass(this); };
 	QScriptValue prototype() const { return *static_cast<QScriptValue*>(callbackQScriptClass_Prototype(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString name() const { return QString(callbackQScriptClass_Name(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString name() const { return ({ QtScript_PackedString tempVal = callbackQScriptClass_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool supportsExtension(QScriptClass::Extension extension) const { return callbackQScriptClass_SupportsExtension(const_cast<void*>(static_cast<const void*>(this)), extension) != 0; };
 };
 
@@ -183,14 +183,14 @@ char QScriptClass_SupportsExtensionDefault(void* ptr, long long extension)
 		return static_cast<QScriptClass*>(ptr)->QScriptClass::supportsExtension(static_cast<QScriptClass::Extension>(extension));
 }
 
-void* QScriptContext_ThrowError(void* ptr, long long error, char* text)
+void* QScriptContext_ThrowError(void* ptr, long long error, struct QtScript_PackedString text)
 {
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(static_cast<QScriptContext::Error>(error), QString(text)));
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(static_cast<QScriptContext::Error>(error), QString::fromUtf8(text.data, text.len)));
 }
 
-void* QScriptContext_ThrowError2(void* ptr, char* text)
+void* QScriptContext_ThrowError2(void* ptr, struct QtScript_PackedString text)
 {
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(QString(text)));
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(QString::fromUtf8(text.data, text.len)));
 }
 
 void* QScriptContext_ThrowValue(void* ptr, void* value)
@@ -418,14 +418,14 @@ void* QScriptEngine_NewQScriptEngine2(void* parent)
 	}
 }
 
-void* QScriptEngine_ToStringHandle(void* ptr, char* str)
+void* QScriptEngine_ToStringHandle(void* ptr, struct QtScript_PackedString str)
 {
-	return new QScriptString(static_cast<QScriptEngine*>(ptr)->toStringHandle(QString(str)));
+	return new QScriptString(static_cast<QScriptEngine*>(ptr)->toStringHandle(QString::fromUtf8(str.data, str.len)));
 }
 
-void* QScriptEngine_QScriptEngine_CheckSyntax(char* program)
+void* QScriptEngine_QScriptEngine_CheckSyntax(struct QtScript_PackedString program)
 {
-	return new QScriptSyntaxCheckResult(QScriptEngine::checkSyntax(QString(program)));
+	return new QScriptSyntaxCheckResult(QScriptEngine::checkSyntax(QString::fromUtf8(program.data, program.len)));
 }
 
 void* QScriptEngine_Evaluate2(void* ptr, void* program)
@@ -433,14 +433,14 @@ void* QScriptEngine_Evaluate2(void* ptr, void* program)
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->evaluate(*static_cast<QScriptProgram*>(program)));
 }
 
-void* QScriptEngine_Evaluate(void* ptr, char* program, char* fileName, int lineNumber)
+void* QScriptEngine_Evaluate(void* ptr, struct QtScript_PackedString program, struct QtScript_PackedString fileName, int lineNumber)
 {
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->evaluate(QString(program), QString(fileName), lineNumber));
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->evaluate(QString::fromUtf8(program.data, program.len), QString::fromUtf8(fileName.data, fileName.len), lineNumber));
 }
 
-void* QScriptEngine_ImportExtension(void* ptr, char* extension)
+void* QScriptEngine_ImportExtension(void* ptr, struct QtScript_PackedString extension)
 {
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->importExtension(QString(extension)));
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->importExtension(QString::fromUtf8(extension.data, extension.len)));
 }
 
 void* QScriptEngine_NewArray(void* ptr, unsigned int length)
@@ -483,9 +483,9 @@ void* QScriptEngine_NewRegExp(void* ptr, void* regexp)
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newRegExp(*static_cast<QRegExp*>(regexp)));
 }
 
-void* QScriptEngine_NewRegExp2(void* ptr, char* pattern, char* flags)
+void* QScriptEngine_NewRegExp2(void* ptr, struct QtScript_PackedString pattern, struct QtScript_PackedString flags)
 {
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newRegExp(QString(pattern), QString(flags)));
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newRegExp(QString::fromUtf8(pattern.data, pattern.len), QString::fromUtf8(flags.data, flags.len)));
 }
 
 void* QScriptEngine_NewVariant2(void* ptr, void* object, void* value)
@@ -877,14 +877,14 @@ void QScriptEngineAgent_PositionChangeDefault(void* ptr, long long scriptId, int
 		static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::positionChange(scriptId, lineNumber, columnNumber);
 }
 
-void QScriptEngineAgent_ScriptLoad(void* ptr, long long id, char* program, char* fileName, int baseLineNumber)
+void QScriptEngineAgent_ScriptLoad(void* ptr, long long id, struct QtScript_PackedString program, struct QtScript_PackedString fileName, int baseLineNumber)
 {
-	static_cast<QScriptEngineAgent*>(ptr)->scriptLoad(id, QString(program), QString(fileName), baseLineNumber);
+	static_cast<QScriptEngineAgent*>(ptr)->scriptLoad(id, QString::fromUtf8(program.data, program.len), QString::fromUtf8(fileName.data, fileName.len), baseLineNumber);
 }
 
-void QScriptEngineAgent_ScriptLoadDefault(void* ptr, long long id, char* program, char* fileName, int baseLineNumber)
+void QScriptEngineAgent_ScriptLoadDefault(void* ptr, long long id, struct QtScript_PackedString program, struct QtScript_PackedString fileName, int baseLineNumber)
 {
-		static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::scriptLoad(id, QString(program), QString(fileName), baseLineNumber);
+		static_cast<QScriptEngineAgent*>(ptr)->QScriptEngineAgent::scriptLoad(id, QString::fromUtf8(program.data, program.len), QString::fromUtf8(fileName.data, fileName.len), baseLineNumber);
 }
 
 void QScriptEngineAgent_ScriptUnload(void* ptr, long long id)
@@ -928,7 +928,7 @@ class MyQScriptExtensionPlugin: public QScriptExtensionPlugin
 public:
 	MyQScriptExtensionPlugin(QObject *parent = Q_NULLPTR) : QScriptExtensionPlugin(parent) {QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType();};
 	void initialize(const QString & key, QScriptEngine * engine) { QByteArray ta62f22 = key.toUtf8(); QtScript_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQScriptExtensionPlugin_Initialize(this, keyPacked, engine); };
-	QStringList keys() const { return QString(callbackQScriptExtensionPlugin_Keys(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
+	QStringList keys() const { return ({ QtScript_PackedString tempVal = callbackQScriptExtensionPlugin_Keys(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	bool event(QEvent * e) { return callbackQScriptExtensionPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptExtensionPlugin_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQScriptExtensionPlugin_ChildEvent(this, event); };
@@ -987,9 +987,9 @@ void* QScriptExtensionPlugin_NewQScriptExtensionPlugin(void* parent)
 	}
 }
 
-void QScriptExtensionPlugin_Initialize(void* ptr, char* key, void* engine)
+void QScriptExtensionPlugin_Initialize(void* ptr, struct QtScript_PackedString key, void* engine)
 {
-	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString(key), static_cast<QScriptEngine*>(engine));
+	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine));
 }
 
 void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr)
@@ -997,9 +997,9 @@ void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr)
 	static_cast<QScriptExtensionPlugin*>(ptr)->~QScriptExtensionPlugin();
 }
 
-void* QScriptExtensionPlugin_SetupPackage(void* ptr, char* key, void* engine)
+void* QScriptExtensionPlugin_SetupPackage(void* ptr, struct QtScript_PackedString key, void* engine)
 {
-	return new QScriptValue(static_cast<QScriptExtensionPlugin*>(ptr)->setupPackage(QString(key), static_cast<QScriptEngine*>(engine)));
+	return new QScriptValue(static_cast<QScriptExtensionPlugin*>(ptr)->setupPackage(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine)));
 }
 
 struct QtScript_PackedString QScriptExtensionPlugin_Keys(void* ptr)
@@ -1142,9 +1142,9 @@ void* QScriptProgram_NewQScriptProgram3(void* other)
 	return new QScriptProgram(*static_cast<QScriptProgram*>(other));
 }
 
-void* QScriptProgram_NewQScriptProgram2(char* sourceCode, char* fileName, int firstLineNumber)
+void* QScriptProgram_NewQScriptProgram2(struct QtScript_PackedString sourceCode, struct QtScript_PackedString fileName, int firstLineNumber)
 {
-	return new QScriptProgram(QString(sourceCode), QString(fileName), firstLineNumber);
+	return new QScriptProgram(QString::fromUtf8(sourceCode.data, sourceCode.len), QString::fromUtf8(fileName.data, fileName.len), firstLineNumber);
 }
 
 void QScriptProgram_DestroyQScriptProgram(void* ptr)
@@ -1268,9 +1268,9 @@ void* QScriptValue_NewQScriptValue2(void* other)
 	return new QScriptValue(*static_cast<QScriptValue*>(other));
 }
 
-void* QScriptValue_NewQScriptValue15(char* value)
+void* QScriptValue_NewQScriptValue15(struct QtScript_PackedString value)
 {
-	return new QScriptValue(QString(value));
+	return new QScriptValue(QString::fromUtf8(value.data, value.len));
 }
 
 void* QScriptValue_NewQScriptValue17(char* value)
@@ -1298,9 +1298,9 @@ void QScriptValue_SetProperty3(void* ptr, void* name, void* value, long long fla
 	static_cast<QScriptValue*>(ptr)->setProperty(*static_cast<QScriptString*>(name), *static_cast<QScriptValue*>(value), static_cast<QScriptValue::PropertyFlag>(flags));
 }
 
-void QScriptValue_SetProperty(void* ptr, char* name, void* value, long long flags)
+void QScriptValue_SetProperty(void* ptr, struct QtScript_PackedString name, void* value, long long flags)
 {
-	static_cast<QScriptValue*>(ptr)->setProperty(QString(name), *static_cast<QScriptValue*>(value), static_cast<QScriptValue::PropertyFlag>(flags));
+	static_cast<QScriptValue*>(ptr)->setProperty(QString::fromUtf8(name.data, name.len), *static_cast<QScriptValue*>(value), static_cast<QScriptValue::PropertyFlag>(flags));
 }
 
 void QScriptValue_SetProperty2(void* ptr, unsigned int arrayIndex, void* value, long long flags)
@@ -1358,9 +1358,9 @@ void* QScriptValue_Property3(void* ptr, void* name, long long mode)
 	return new QScriptValue(static_cast<QScriptValue*>(ptr)->property(*static_cast<QScriptString*>(name), static_cast<QScriptValue::ResolveFlag>(mode)));
 }
 
-void* QScriptValue_Property(void* ptr, char* name, long long mode)
+void* QScriptValue_Property(void* ptr, struct QtScript_PackedString name, long long mode)
 {
-	return new QScriptValue(static_cast<QScriptValue*>(ptr)->property(QString(name), static_cast<QScriptValue::ResolveFlag>(mode)));
+	return new QScriptValue(static_cast<QScriptValue*>(ptr)->property(QString::fromUtf8(name.data, name.len), static_cast<QScriptValue::ResolveFlag>(mode)));
 }
 
 void* QScriptValue_Property2(void* ptr, unsigned int arrayIndex, long long mode)
@@ -1378,9 +1378,9 @@ long long QScriptValue_PropertyFlags2(void* ptr, void* name, long long mode)
 	return static_cast<QScriptValue*>(ptr)->propertyFlags(*static_cast<QScriptString*>(name), static_cast<QScriptValue::ResolveFlag>(mode));
 }
 
-long long QScriptValue_PropertyFlags(void* ptr, char* name, long long mode)
+long long QScriptValue_PropertyFlags(void* ptr, struct QtScript_PackedString name, long long mode)
 {
-	return static_cast<QScriptValue*>(ptr)->propertyFlags(QString(name), static_cast<QScriptValue::ResolveFlag>(mode));
+	return static_cast<QScriptValue*>(ptr)->propertyFlags(QString::fromUtf8(name.data, name.len), static_cast<QScriptValue::ResolveFlag>(mode));
 }
 
 struct QtScript_PackedString QScriptValue_ToString(void* ptr)

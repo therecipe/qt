@@ -20,13 +20,6 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 	switch mode {
 	case "build", "test":
 
-		if !fast {
-			err := os.RemoveAll(depPath)
-			if err != nil {
-				utils.Log.WithError(err).Panic("failed to remove deploy folder")
-			}
-		}
-
 		if docker {
 			args := []string{"qtdeploy", "-debug"}
 			if fast {
@@ -35,6 +28,13 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			args = append(args, []string{"-ldflags=" + ldFlags, "-tags=" + tags, "build"}...)
 			cmd.Docker(args, target, path, false)
 			break
+		}
+
+		if !fast {
+			err := os.RemoveAll(depPath)
+			if err != nil {
+				utils.Log.WithError(err).Panic("failed to remove deploy folder")
+			}
 		}
 
 		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"))

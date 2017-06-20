@@ -217,7 +217,7 @@ func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string, errorMessa
 			errorMessageC = C.CString(errorMessage)
 			defer C.free(unsafe.Pointer(errorMessageC))
 		}
-		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBus_CreateDevice(ptr.Pointer(), pluginC, interfaceNameC, errorMessageC))
+		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBus_CreateDevice(ptr.Pointer(), C.struct_QtSerialBus_PackedString{pluginC, C.longlong(len(plugin))}, C.struct_QtSerialBus_PackedString{interfaceNameC, C.longlong(len(interfaceName))}, C.struct_QtSerialBus_PackedString{errorMessageC, C.longlong(len(errorMessage))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -578,12 +578,13 @@ func NewQCanBusDevice(parent core.QObject_ITF) *QCanBusDevice {
 }
 
 //export callbackQCanBusDevice_InterpretErrorFrame
-func callbackQCanBusDevice_InterpretErrorFrame(ptr unsafe.Pointer, frame unsafe.Pointer) *C.char {
+func callbackQCanBusDevice_InterpretErrorFrame(ptr unsafe.Pointer, frame unsafe.Pointer) C.struct_QtSerialBus_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "interpretErrorFrame"); signal != nil {
-		return C.CString(signal.(func(*QCanBusFrame) string)(NewQCanBusFrameFromPointer(frame)))
+		tempVal := signal.(func(*QCanBusFrame) string)(NewQCanBusFrameFromPointer(frame))
+		return C.struct_QtSerialBus_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtSerialBus_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QCanBusDevice) ConnectInterpretErrorFrame(f func(frame *QCanBusFrame) string) {
@@ -1008,7 +1009,7 @@ func (ptr *QCanBusDevice) SetError(errorText string, errorId QCanBusDevice__CanB
 			errorTextC = C.CString(errorText)
 			defer C.free(unsafe.Pointer(errorTextC))
 		}
-		C.QCanBusDevice_SetError(ptr.Pointer(), errorTextC, C.longlong(errorId))
+		C.QCanBusDevice_SetError(ptr.Pointer(), C.struct_QtSerialBus_PackedString{errorTextC, C.longlong(len(errorText))}, C.longlong(errorId))
 	}
 }
 
@@ -1496,7 +1497,7 @@ func (ptr *QCanBusFactory) CreateDevice(interfaceName string, errorMessage strin
 			errorMessageC = C.CString(errorMessage)
 			defer C.free(unsafe.Pointer(errorMessageC))
 		}
-		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusFactory_CreateDevice(ptr.Pointer(), interfaceNameC, errorMessageC))
+		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusFactory_CreateDevice(ptr.Pointer(), C.struct_QtSerialBus_PackedString{interfaceNameC, C.longlong(len(interfaceName))}, C.struct_QtSerialBus_PackedString{errorMessageC, C.longlong(len(errorMessage))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2424,7 +2425,7 @@ func (ptr *QModbusDevice) SetError(errorText string, error QModbusDevice__Error)
 			errorTextC = C.CString(errorText)
 			defer C.free(unsafe.Pointer(errorTextC))
 		}
-		C.QModbusDevice_SetError(ptr.Pointer(), errorTextC, C.longlong(error))
+		C.QModbusDevice_SetError(ptr.Pointer(), C.struct_QtSerialBus_PackedString{errorTextC, C.longlong(len(errorText))}, C.longlong(error))
 	}
 }
 

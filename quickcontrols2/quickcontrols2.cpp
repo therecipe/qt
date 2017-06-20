@@ -20,13 +20,13 @@ struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_Path()
 	return ({ QByteArray t432960 = QQuickStyle::path().toUtf8(); QtQuickControls2_PackedString { const_cast<char*>(t432960.prepend("WHITESPACE").constData()+10), t432960.size()-10 }; });
 }
 
-void QQuickStyle_QQuickStyle_SetFallbackStyle(char* style)
+void QQuickStyle_QQuickStyle_SetFallbackStyle(struct QtQuickControls2_PackedString style)
 {
-	QQuickStyle::setFallbackStyle(QString(style));
+	QQuickStyle::setFallbackStyle(QString::fromUtf8(style.data, style.len));
 }
 
-void QQuickStyle_QQuickStyle_SetStyle(char* style)
+void QQuickStyle_QQuickStyle_SetStyle(struct QtQuickControls2_PackedString style)
 {
-	QQuickStyle::setStyle(QString(style));
+	QQuickStyle::setStyle(QString::fromUtf8(style.data, style.len));
 }
 

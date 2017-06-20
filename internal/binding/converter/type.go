@@ -207,7 +207,7 @@ func goType(f *parser.Function, value string) string {
 
 func cgoTypeOutput(f *parser.Function, value string) string {
 	switch parser.CleanValue(value) {
-	case "char", "qint8", "uchar", "quint8", "QString", "QStringList":
+	case "char", "qint8", "uchar", "quint8":
 		{
 			return "*C.char"
 		}
@@ -327,7 +327,7 @@ func cgoType(f *parser.Function, value string) string {
 
 func cppTypeInput(f *parser.Function, value string) string {
 	switch parser.CleanValue(value) {
-	case "char", "qint8", "uchar", "quint8", "QString", "QStringList":
+	case "char", "qint8", "uchar", "quint8":
 		{
 			return "char*"
 		}

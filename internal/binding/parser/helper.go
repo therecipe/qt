@@ -109,7 +109,8 @@ func CleanName(name, value string) string {
 		"signal",
 		"ptr",
 		"register",
-		"forever":
+		"forever",
+		"len":
 		{
 			return name[:len(name)-2]
 		}

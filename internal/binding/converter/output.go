@@ -475,7 +475,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 				var fSizeVariable string
 				for _, p := range f.Parameters {
 					if strings.Contains(p.Value, "int") {
-						fSizeVariable = p.Name
+						fSizeVariable = parser.CleanName(p.Name, p.Value)
 						break
 					}
 				}

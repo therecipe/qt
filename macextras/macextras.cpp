@@ -49,18 +49,18 @@ class MyQMacPasteboardMime: public QMacPasteboardMime
 public:
 	MyQMacPasteboardMime(char t) : QMacPasteboardMime(t) {};
 	QList<QByteArray> convertFromMime(const QString & mime, QVariant data, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return *static_cast<QList<QByteArray>*>(callbackQMacPasteboardMime_ConvertFromMime(this, mimePacked, new QVariant(data), flavPacked)); };
-	QString convertorName() { return QString(callbackQMacPasteboardMime_ConvertorName(this)); };
-	QString flavorFor(const QString & mime) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };return QString(callbackQMacPasteboardMime_FlavorFor(this, mimePacked)); };
-	QString mimeFor(QString flav) { QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return QString(callbackQMacPasteboardMime_MimeFor(this, flavPacked)); };
+	QString convertorName() { return ({ QtMacExtras_PackedString tempVal = callbackQMacPasteboardMime_ConvertorName(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString flavorFor(const QString & mime) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };return ({ QtMacExtras_PackedString tempVal = callbackQMacPasteboardMime_FlavorFor(this, mimePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString mimeFor(QString flav) { QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return ({ QtMacExtras_PackedString tempVal = callbackQMacPasteboardMime_MimeFor(this, flavPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QVariant convertToMime(const QString & mime, QList<QByteArray> data, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return *static_cast<QVariant*>(callbackQMacPasteboardMime_ConvertToMime(this, mimePacked, ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(data); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; }), flavPacked)); };
 	bool canConvert(const QString & mime, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return callbackQMacPasteboardMime_CanConvert(this, mimePacked, flavPacked) != 0; };
 	int count(QMimeData * mimeData) { return callbackQMacPasteboardMime_Count(this, mimeData); };
 	 ~MyQMacPasteboardMime() { callbackQMacPasteboardMime_DestroyQMacPasteboardMime(this); };
 };
 
-struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, char* mime, void* data, char* flav)
+struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, struct QtMacExtras_PackedString mime, void* data, struct QtMacExtras_PackedString flav)
 {
-	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QMacPasteboardMime*>(ptr)->convertFromMime(QString(mime), *static_cast<QVariant*>(data), QString(flav))); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QMacPasteboardMime*>(ptr)->convertFromMime(QString::fromUtf8(mime.data, mime.len), *static_cast<QVariant*>(data), QString::fromUtf8(flav.data, flav.len))); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QMacPasteboardMime_NewQMacPasteboardMime(char* t)
@@ -73,24 +73,24 @@ struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr)
 	return ({ QByteArray t4ba9d6 = static_cast<QMacPasteboardMime*>(ptr)->convertorName().toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t4ba9d6.prepend("WHITESPACE").constData()+10), t4ba9d6.size()-10 }; });
 }
 
-struct QtMacExtras_PackedString QMacPasteboardMime_FlavorFor(void* ptr, char* mime)
+struct QtMacExtras_PackedString QMacPasteboardMime_FlavorFor(void* ptr, struct QtMacExtras_PackedString mime)
 {
-	return ({ QByteArray tef6455 = static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString(mime)).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(tef6455.prepend("WHITESPACE").constData()+10), tef6455.size()-10 }; });
+	return ({ QByteArray t7733db = static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString::fromUtf8(mime.data, mime.len)).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t7733db.prepend("WHITESPACE").constData()+10), t7733db.size()-10 }; });
 }
 
-struct QtMacExtras_PackedString QMacPasteboardMime_MimeFor(void* ptr, char* flav)
+struct QtMacExtras_PackedString QMacPasteboardMime_MimeFor(void* ptr, struct QtMacExtras_PackedString flav)
 {
-	return ({ QByteArray tc02f76 = static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString(flav)).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(tc02f76.prepend("WHITESPACE").constData()+10), tc02f76.size()-10 }; });
+	return ({ QByteArray t4660db = static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString::fromUtf8(flav.data, flav.len)).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t4660db.prepend("WHITESPACE").constData()+10), t4660db.size()-10 }; });
 }
 
-void* QMacPasteboardMime_ConvertToMime(void* ptr, char* mime, void* data, char* flav)
+void* QMacPasteboardMime_ConvertToMime(void* ptr, struct QtMacExtras_PackedString mime, void* data, struct QtMacExtras_PackedString flav)
 {
-	return new QVariant(static_cast<QMacPasteboardMime*>(ptr)->convertToMime(QString(mime), *static_cast<QList<QByteArray>*>(data), QString(flav)));
+	return new QVariant(static_cast<QMacPasteboardMime*>(ptr)->convertToMime(QString::fromUtf8(mime.data, mime.len), *static_cast<QList<QByteArray>*>(data), QString::fromUtf8(flav.data, flav.len)));
 }
 
-char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
+char QMacPasteboardMime_CanConvert(void* ptr, struct QtMacExtras_PackedString mime, struct QtMacExtras_PackedString flav)
 {
-	return static_cast<QMacPasteboardMime*>(ptr)->canConvert(QString(mime), QString(flav));
+	return static_cast<QMacPasteboardMime*>(ptr)->canConvert(QString::fromUtf8(mime.data, mime.len), QString::fromUtf8(flav.data, flav.len));
 }
 
 int QMacPasteboardMime_Count(void* ptr, void* mimeData)
@@ -219,55 +219,55 @@ void* QMacToolBar_NewQMacToolBar(void* parent)
 	}
 }
 
-void* QMacToolBar_NewQMacToolBar2(char* identifier, void* parent)
+void* QMacToolBar_NewQMacToolBar2(struct QtMacExtras_PackedString identifier, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QCameraImageCapture*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QExtensionFactory*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QExtensionManager*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QGraphicsObject*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QGraphicsWidget*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QLayout*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QMediaPlaylist*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QMediaRecorder*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QOffscreenSurface*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QPdfWriter*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QQuickItem*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QRadioData*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QSignalSpy*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QWidget*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString(identifier), static_cast<QWindow*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQMacToolBar(QString(identifier), static_cast<QObject*>(parent));
+		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QObject*>(parent));
 	}
 }
 
-void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, char* text)
+void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, struct QtMacExtras_PackedString text)
 {
-	return static_cast<QMacToolBar*>(ptr)->addAllowedItem(*static_cast<QIcon*>(icon), QString(text));
+	return static_cast<QMacToolBar*>(ptr)->addAllowedItem(*static_cast<QIcon*>(icon), QString::fromUtf8(text.data, text.len));
 }
 
-void* QMacToolBar_AddItem(void* ptr, void* icon, char* text)
+void* QMacToolBar_AddItem(void* ptr, void* icon, struct QtMacExtras_PackedString text)
 {
-	return static_cast<QMacToolBar*>(ptr)->addItem(*static_cast<QIcon*>(icon), QString(text));
+	return static_cast<QMacToolBar*>(ptr)->addItem(*static_cast<QIcon*>(icon), QString::fromUtf8(text.data, text.len));
 }
 
 void QMacToolBar_AddSeparator(void* ptr)
@@ -594,9 +594,9 @@ void QMacToolBarItem_SetStandardItem(void* ptr, long long standardItem)
 	static_cast<QMacToolBarItem*>(ptr)->setStandardItem(static_cast<QMacToolBarItem::StandardItem>(standardItem));
 }
 
-void QMacToolBarItem_SetText(void* ptr, char* text)
+void QMacToolBarItem_SetText(void* ptr, struct QtMacExtras_PackedString text)
 {
-	static_cast<QMacToolBarItem*>(ptr)->setText(QString(text));
+	static_cast<QMacToolBarItem*>(ptr)->setText(QString::fromUtf8(text.data, text.len));
 }
 
 void* QMacToolBarItem_Icon(void* ptr)

@@ -14,17 +14,17 @@ extern "C" {
 
 struct QtUiTools_PackedString { char* data; long long len; };
 struct QtUiTools_PackedList { void* data; long long len; };
-void* QUiLoader_CreateAction(void* ptr, void* parent, char* name);
-void* QUiLoader_CreateActionDefault(void* ptr, void* parent, char* name);
-void* QUiLoader_CreateActionGroup(void* ptr, void* parent, char* name);
-void* QUiLoader_CreateActionGroupDefault(void* ptr, void* parent, char* name);
-void* QUiLoader_CreateLayout(void* ptr, char* className, void* parent, char* name);
-void* QUiLoader_CreateLayoutDefault(void* ptr, char* className, void* parent, char* name);
+void* QUiLoader_CreateAction(void* ptr, void* parent, struct QtUiTools_PackedString name);
+void* QUiLoader_CreateActionDefault(void* ptr, void* parent, struct QtUiTools_PackedString name);
+void* QUiLoader_CreateActionGroup(void* ptr, void* parent, struct QtUiTools_PackedString name);
+void* QUiLoader_CreateActionGroupDefault(void* ptr, void* parent, struct QtUiTools_PackedString name);
+void* QUiLoader_CreateLayout(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
+void* QUiLoader_CreateLayoutDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
 void* QUiLoader_NewQUiLoader(void* parent);
-void* QUiLoader_CreateWidget(void* ptr, char* className, void* parent, char* name);
-void* QUiLoader_CreateWidgetDefault(void* ptr, char* className, void* parent, char* name);
+void* QUiLoader_CreateWidget(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
+void* QUiLoader_CreateWidgetDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
 void* QUiLoader_Load(void* ptr, void* device, void* parentWidget);
-void QUiLoader_AddPluginPath(void* ptr, char* path);
+void QUiLoader_AddPluginPath(void* ptr, struct QtUiTools_PackedString path);
 void QUiLoader_ClearPluginPaths(void* ptr);
 void QUiLoader_SetLanguageChangeEnabled(void* ptr, char enabled);
 void QUiLoader_SetWorkingDirectory(void* ptr, void* dir);

@@ -89,7 +89,7 @@ void QGamepad_DisconnectDeviceIdChanged(void* ptr);
 void QGamepad_DeviceIdChanged(void* ptr, int value);
 void QGamepad_ConnectNameChanged(void* ptr);
 void QGamepad_DisconnectNameChanged(void* ptr);
-void QGamepad_NameChanged(void* ptr, char* value);
+void QGamepad_NameChanged(void* ptr, struct QtGamepad_PackedString value);
 void QGamepad_SetDeviceId(void* ptr, int number);
 void QGamepad_SetDeviceIdDefault(void* ptr, int number);
 void QGamepad_DestroyQGamepad(void* ptr);

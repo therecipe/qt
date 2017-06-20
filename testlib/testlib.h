@@ -86,7 +86,7 @@ void* QTestEventList_NewQTestEventList2(void* other);
 void QTestEventList_AddDelay(void* ptr, int msecs);
 void QTestEventList_AddKeyClick(void* ptr, long long qtKey, long long modifiers, int msecs);
 void QTestEventList_AddKeyClick2(void* ptr, char* ascii, long long modifiers, int msecs);
-void QTestEventList_AddKeyClicks(void* ptr, char* keys, long long modifiers, int msecs);
+void QTestEventList_AddKeyClicks(void* ptr, struct QtTestLib_PackedString keys, long long modifiers, int msecs);
 void QTestEventList_AddKeyPress(void* ptr, long long qtKey, long long modifiers, int msecs);
 void QTestEventList_AddKeyPress2(void* ptr, char* ascii, long long modifiers, int msecs);
 void QTestEventList_AddKeyRelease(void* ptr, long long qtKey, long long modifiers, int msecs);

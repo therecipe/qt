@@ -182,44 +182,44 @@ void* QSerialPort_NewQSerialPort3(void* serialPortInfo, void* parent)
 	}
 }
 
-void* QSerialPort_NewQSerialPort2(char* name, void* parent)
+void* QSerialPort_NewQSerialPort2(struct QtSerialPort_PackedString name, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QCameraImageCapture*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QExtensionFactory*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QExtensionManager*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QGraphicsObject*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QGraphicsWidget*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QLayout*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QMediaPlaylist*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QMediaRecorder*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QOffscreenSurface*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QPdfWriter*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QQuickItem*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QRadioData*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QSignalSpy*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QWidget*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQSerialPort(QString(name), static_cast<QWindow*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQSerialPort(QString(name), static_cast<QObject*>(parent));
+		return new MyQSerialPort(QString::fromUtf8(name.data, name.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -458,9 +458,9 @@ void QSerialPort_SetPort(void* ptr, void* serialPortInfo)
 	static_cast<QSerialPort*>(ptr)->setPort(*static_cast<QSerialPortInfo*>(serialPortInfo));
 }
 
-void QSerialPort_SetPortName(void* ptr, char* name)
+void QSerialPort_SetPortName(void* ptr, struct QtSerialPort_PackedString name)
 {
-	static_cast<QSerialPort*>(ptr)->setPortName(QString(name));
+	static_cast<QSerialPort*>(ptr)->setPortName(QString::fromUtf8(name.data, name.len));
 }
 
 void QSerialPort_SetReadBufferSize(void* ptr, long long size)
@@ -734,9 +734,9 @@ void* QSerialPortInfo_NewQSerialPortInfo4(void* other)
 	return new QSerialPortInfo(*static_cast<QSerialPortInfo*>(other));
 }
 
-void* QSerialPortInfo_NewQSerialPortInfo3(char* name)
+void* QSerialPortInfo_NewQSerialPortInfo3(struct QtSerialPort_PackedString name)
 {
-	return new QSerialPortInfo(QString(name));
+	return new QSerialPortInfo(QString::fromUtf8(name.data, name.len));
 }
 
 void QSerialPortInfo_Swap(void* ptr, void* other)

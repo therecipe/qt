@@ -2067,7 +2067,7 @@ func QAudioDecoder_HasSupport(mimeType string, codecs []string) QMultimedia__Sup
 	}
 	var codecsC = C.CString(strings.Join(codecs, "|"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(mimeTypeC, codecsC))
+	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(C.struct_QtMultimedia_PackedString{mimeTypeC, C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{codecsC, C.longlong(len(strings.Join(codecs, "|")))}))
 }
 
 func (ptr *QAudioDecoder) HasSupport(mimeType string, codecs []string) QMultimedia__SupportEstimate {
@@ -2078,7 +2078,7 @@ func (ptr *QAudioDecoder) HasSupport(mimeType string, codecs []string) QMultimed
 	}
 	var codecsC = C.CString(strings.Join(codecs, "|"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(mimeTypeC, codecsC))
+	return QMultimedia__SupportEstimate(C.QAudioDecoder_QAudioDecoder_HasSupport(C.struct_QtMultimedia_PackedString{mimeTypeC, C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{codecsC, C.longlong(len(strings.Join(codecs, "|")))}))
 }
 
 //export callbackQAudioDecoder_BufferAvailableChanged
@@ -2373,7 +2373,7 @@ func (ptr *QAudioDecoder) SetSourceFilename(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QAudioDecoder_SetSourceFilename(ptr.Pointer(), fileNameC)
+		C.QAudioDecoder_SetSourceFilename(ptr.Pointer(), C.struct_QtMultimedia_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -2868,7 +2868,7 @@ func (ptr *QAudioDecoderControl) Error(error int, errorString string) {
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QAudioDecoderControl_Error(ptr.Pointer(), C.int(int32(error)), errorStringC)
+		C.QAudioDecoderControl_Error(ptr.Pointer(), C.int(int32(error)), C.struct_QtMultimedia_PackedString{errorStringC, C.longlong(len(errorString))})
 	}
 }
 
@@ -3095,7 +3095,7 @@ func (ptr *QAudioDecoderControl) SetSourceFilename(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QAudioDecoderControl_SetSourceFilename(ptr.Pointer(), fileNameC)
+		C.QAudioDecoderControl_SetSourceFilename(ptr.Pointer(), C.struct_QtMultimedia_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -3373,12 +3373,13 @@ func (ptr *QAudioDecoderControl) SourceDevice() *core.QIODevice {
 }
 
 //export callbackQAudioDecoderControl_SourceFilename
-func callbackQAudioDecoderControl_SourceFilename(ptr unsafe.Pointer) *C.char {
+func callbackQAudioDecoderControl_SourceFilename(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "sourceFilename"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioDecoderControl) ConnectSourceFilename(f func() string) {
@@ -3904,7 +3905,7 @@ func (ptr *QAudioEncoderSettings) SetCodec(codec string) {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		C.QAudioEncoderSettings_SetCodec(ptr.Pointer(), codecC)
+		C.QAudioEncoderSettings_SetCodec(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))})
 	}
 }
 
@@ -3921,7 +3922,7 @@ func (ptr *QAudioEncoderSettings) SetEncodingOption(option string, value core.QV
 			optionC = C.CString(option)
 			defer C.free(unsafe.Pointer(optionC))
 		}
-		C.QAudioEncoderSettings_SetEncodingOption(ptr.Pointer(), optionC, core.PointerFromQVariant(value))
+		C.QAudioEncoderSettings_SetEncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{optionC, C.longlong(len(option))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -3985,7 +3986,7 @@ func (ptr *QAudioEncoderSettings) EncodingOption(option string) *core.QVariant {
 			optionC = C.CString(option)
 			defer C.free(unsafe.Pointer(optionC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QAudioEncoderSettings_EncodingOption(ptr.Pointer(), optionC))
+		var tmpValue = core.NewQVariantFromPointer(C.QAudioEncoderSettings_EncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{optionC, C.longlong(len(option))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -4040,7 +4041,7 @@ func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_atList(i string) 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QAudioEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QAudioEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -4054,7 +4055,7 @@ func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_setList(key strin
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QAudioEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+		C.QAudioEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -4082,7 +4083,7 @@ func (ptr *QAudioEncoderSettings) __encodingOptions_atList(i string) *core.QVari
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QAudioEncoderSettings___encodingOptions_atList(ptr.Pointer(), iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QAudioEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -4096,7 +4097,7 @@ func (ptr *QAudioEncoderSettings) __encodingOptions_setList(key string, i core.Q
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QAudioEncoderSettings___encodingOptions_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+		C.QAudioEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -4131,7 +4132,7 @@ func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_setList(i strin
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QAudioEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), iC)
+		C.QAudioEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -4153,7 +4154,7 @@ func (ptr *QAudioEncoderSettings) ____encodingOptions_keyList_setList(i string) 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QAudioEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), iC)
+		C.QAudioEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -4383,12 +4384,13 @@ func (ptr *QAudioEncoderSettingsControl) SupportedSampleRates(settings QAudioEnc
 }
 
 //export callbackQAudioEncoderSettingsControl_CodecDescription
-func callbackQAudioEncoderSettingsControl_CodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) *C.char {
+func callbackQAudioEncoderSettingsControl_CodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "codecDescription"); signal != nil {
-		return C.CString(signal.(func(string) string)(cGoUnpackString(codec)))
+		tempVal := signal.(func(string) string)(cGoUnpackString(codec))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioEncoderSettingsControl) ConnectCodecDescription(f func(codec string) string) {
@@ -4419,18 +4421,19 @@ func (ptr *QAudioEncoderSettingsControl) CodecDescription(codec string) string {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		return cGoUnpackString(C.QAudioEncoderSettingsControl_CodecDescription(ptr.Pointer(), codecC))
+		return cGoUnpackString(C.QAudioEncoderSettingsControl_CodecDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))}))
 	}
 	return ""
 }
 
 //export callbackQAudioEncoderSettingsControl_SupportedAudioCodecs
-func callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(ptr unsafe.Pointer) *C.char {
+func callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "supportedAudioCodecs"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QAudioEncoderSettingsControl) ConnectSupportedAudioCodecs(f func() []string) {
@@ -4567,7 +4570,7 @@ func (ptr *QAudioFormat) SetCodec(codec string) {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		C.QAudioFormat_SetCodec(ptr.Pointer(), codecC)
+		C.QAudioFormat_SetCodec(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))})
 	}
 }
 
@@ -5265,7 +5268,7 @@ func (ptr *QAudioInputSelectorControl) ActiveInputChanged(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAudioInputSelectorControl_ActiveInputChanged(ptr.Pointer(), nameC)
+		C.QAudioInputSelectorControl_ActiveInputChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -5344,7 +5347,7 @@ func (ptr *QAudioInputSelectorControl) SetActiveInput(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAudioInputSelectorControl_SetActiveInput(ptr.Pointer(), nameC)
+		C.QAudioInputSelectorControl_SetActiveInput(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -5393,12 +5396,13 @@ func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControlDefault(
 }
 
 //export callbackQAudioInputSelectorControl_ActiveInput
-func callbackQAudioInputSelectorControl_ActiveInput(ptr unsafe.Pointer) *C.char {
+func callbackQAudioInputSelectorControl_ActiveInput(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "activeInput"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioInputSelectorControl) ConnectActiveInput(f func() string) {
@@ -5430,12 +5434,13 @@ func (ptr *QAudioInputSelectorControl) ActiveInput() string {
 }
 
 //export callbackQAudioInputSelectorControl_DefaultInput
-func callbackQAudioInputSelectorControl_DefaultInput(ptr unsafe.Pointer) *C.char {
+func callbackQAudioInputSelectorControl_DefaultInput(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "defaultInput"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioInputSelectorControl) ConnectDefaultInput(f func() string) {
@@ -5467,12 +5472,13 @@ func (ptr *QAudioInputSelectorControl) DefaultInput() string {
 }
 
 //export callbackQAudioInputSelectorControl_InputDescription
-func callbackQAudioInputSelectorControl_InputDescription(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) *C.char {
+func callbackQAudioInputSelectorControl_InputDescription(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "inputDescription"); signal != nil {
-		return C.CString(signal.(func(string) string)(cGoUnpackString(name)))
+		tempVal := signal.(func(string) string)(cGoUnpackString(name))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioInputSelectorControl) ConnectInputDescription(f func(name string) string) {
@@ -5503,7 +5509,7 @@ func (ptr *QAudioInputSelectorControl) InputDescription(name string) string {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return cGoUnpackString(C.QAudioInputSelectorControl_InputDescription(ptr.Pointer(), nameC))
+		return cGoUnpackString(C.QAudioInputSelectorControl_InputDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))}))
 	}
 	return ""
 }
@@ -5522,7 +5528,7 @@ func (ptr *QAudioInputSelectorControl) __availableInputs_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QAudioInputSelectorControl___availableInputs_setList(ptr.Pointer(), iC)
+		C.QAudioInputSelectorControl___availableInputs_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -5620,7 +5626,7 @@ func (ptr *QAudioOutput) SetCategory(category string) {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		C.QAudioOutput_SetCategory(ptr.Pointer(), categoryC)
+		C.QAudioOutput_SetCategory(ptr.Pointer(), C.struct_QtMultimedia_PackedString{categoryC, C.longlong(len(category))})
 	}
 }
 
@@ -6118,7 +6124,7 @@ func (ptr *QAudioOutputSelectorControl) ActiveOutputChanged(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAudioOutputSelectorControl_ActiveOutputChanged(ptr.Pointer(), nameC)
+		C.QAudioOutputSelectorControl_ActiveOutputChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -6197,7 +6203,7 @@ func (ptr *QAudioOutputSelectorControl) SetActiveOutput(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAudioOutputSelectorControl_SetActiveOutput(ptr.Pointer(), nameC)
+		C.QAudioOutputSelectorControl_SetActiveOutput(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -6246,12 +6252,13 @@ func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControlDefaul
 }
 
 //export callbackQAudioOutputSelectorControl_ActiveOutput
-func callbackQAudioOutputSelectorControl_ActiveOutput(ptr unsafe.Pointer) *C.char {
+func callbackQAudioOutputSelectorControl_ActiveOutput(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "activeOutput"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioOutputSelectorControl) ConnectActiveOutput(f func() string) {
@@ -6283,12 +6290,13 @@ func (ptr *QAudioOutputSelectorControl) ActiveOutput() string {
 }
 
 //export callbackQAudioOutputSelectorControl_DefaultOutput
-func callbackQAudioOutputSelectorControl_DefaultOutput(ptr unsafe.Pointer) *C.char {
+func callbackQAudioOutputSelectorControl_DefaultOutput(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "defaultOutput"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioOutputSelectorControl) ConnectDefaultOutput(f func() string) {
@@ -6320,12 +6328,13 @@ func (ptr *QAudioOutputSelectorControl) DefaultOutput() string {
 }
 
 //export callbackQAudioOutputSelectorControl_OutputDescription
-func callbackQAudioOutputSelectorControl_OutputDescription(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) *C.char {
+func callbackQAudioOutputSelectorControl_OutputDescription(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "outputDescription"); signal != nil {
-		return C.CString(signal.(func(string) string)(cGoUnpackString(name)))
+		tempVal := signal.(func(string) string)(cGoUnpackString(name))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QAudioOutputSelectorControl) ConnectOutputDescription(f func(name string) string) {
@@ -6356,7 +6365,7 @@ func (ptr *QAudioOutputSelectorControl) OutputDescription(name string) string {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return cGoUnpackString(C.QAudioOutputSelectorControl_OutputDescription(ptr.Pointer(), nameC))
+		return cGoUnpackString(C.QAudioOutputSelectorControl_OutputDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))}))
 	}
 	return ""
 }
@@ -6375,7 +6384,7 @@ func (ptr *QAudioOutputSelectorControl) __availableOutputs_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QAudioOutputSelectorControl___availableOutputs_setList(ptr.Pointer(), iC)
+		C.QAudioOutputSelectorControl___availableOutputs_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -6881,7 +6890,7 @@ func (ptr *QAudioRecorder) AudioInputChanged(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAudioRecorder_AudioInputChanged(ptr.Pointer(), nameC)
+		C.QAudioRecorder_AudioInputChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -6961,7 +6970,7 @@ func (ptr *QAudioRecorder) SetAudioInput(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAudioRecorder_SetAudioInput(ptr.Pointer(), nameC)
+		C.QAudioRecorder_SetAudioInput(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -6972,7 +6981,7 @@ func (ptr *QAudioRecorder) SetAudioInputDefault(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAudioRecorder_SetAudioInputDefault(ptr.Pointer(), nameC)
+		C.QAudioRecorder_SetAudioInputDefault(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -6998,7 +7007,7 @@ func (ptr *QAudioRecorder) AudioInputDescription(name string) string {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return cGoUnpackString(C.QAudioRecorder_AudioInputDescription(ptr.Pointer(), nameC))
+		return cGoUnpackString(C.QAudioRecorder_AudioInputDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))}))
 	}
 	return ""
 }
@@ -8974,7 +8983,7 @@ func (ptr *QCameraControl) Error(error int, errorString string) {
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QCameraControl_Error(ptr.Pointer(), C.int(int32(error)), errorStringC)
+		C.QCameraControl_Error(ptr.Pointer(), C.int(int32(error)), C.struct_QtMultimedia_PackedString{errorStringC, C.longlong(len(errorString))})
 	}
 }
 
@@ -11130,7 +11139,7 @@ func (ptr *QCameraFeedbackControl) SetEventFeedbackSound(event QCameraFeedbackCo
 			filePathC = C.CString(filePath)
 			defer C.free(unsafe.Pointer(filePathC))
 		}
-		return C.QCameraFeedbackControl_SetEventFeedbackSound(ptr.Pointer(), C.longlong(event), filePathC) != 0
+		return C.QCameraFeedbackControl_SetEventFeedbackSound(ptr.Pointer(), C.longlong(event), C.struct_QtMultimedia_PackedString{filePathC, C.longlong(len(filePath))}) != 0
 	}
 	return false
 }
@@ -12844,7 +12853,7 @@ func (ptr *QCameraImageCapture) Capture(file string) int {
 			fileC = C.CString(file)
 			defer C.free(unsafe.Pointer(fileC))
 		}
-		return int(int32(C.QCameraImageCapture_Capture(ptr.Pointer(), fileC)))
+		return int(int32(C.QCameraImageCapture_Capture(ptr.Pointer(), C.struct_QtMultimedia_PackedString{fileC, C.longlong(len(file))})))
 	}
 	return 0
 }
@@ -12856,7 +12865,7 @@ func (ptr *QCameraImageCapture) CaptureDefault(file string) int {
 			fileC = C.CString(file)
 			defer C.free(unsafe.Pointer(fileC))
 		}
-		return int(int32(C.QCameraImageCapture_CaptureDefault(ptr.Pointer(), fileC)))
+		return int(int32(C.QCameraImageCapture_CaptureDefault(ptr.Pointer(), C.struct_QtMultimedia_PackedString{fileC, C.longlong(len(file))})))
 	}
 	return 0
 }
@@ -13021,7 +13030,7 @@ func (ptr *QCameraImageCapture) Error2(id int, error QCameraImageCapture__Error,
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QCameraImageCapture_Error2(ptr.Pointer(), C.int(int32(id)), C.longlong(error), errorStringC)
+		C.QCameraImageCapture_Error2(ptr.Pointer(), C.int(int32(id)), C.longlong(error), C.struct_QtMultimedia_PackedString{errorStringC, C.longlong(len(errorString))})
 	}
 }
 
@@ -13182,7 +13191,7 @@ func (ptr *QCameraImageCapture) ImageMetadataAvailable(id int, key string, value
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QCameraImageCapture_ImageMetadataAvailable(ptr.Pointer(), C.int(int32(id)), keyC, core.PointerFromQVariant(value))
+		C.QCameraImageCapture_ImageMetadataAvailable(ptr.Pointer(), C.int(int32(id)), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -13226,7 +13235,7 @@ func (ptr *QCameraImageCapture) ImageSaved(id int, fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QCameraImageCapture_ImageSaved(ptr.Pointer(), C.int(int32(id)), fileNameC)
+		C.QCameraImageCapture_ImageSaved(ptr.Pointer(), C.int(int32(id)), C.struct_QtMultimedia_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -13417,7 +13426,7 @@ func (ptr *QCameraImageCapture) ImageCodecDescription(codec string) string {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		return cGoUnpackString(C.QCameraImageCapture_ImageCodecDescription(ptr.Pointer(), codecC))
+		return cGoUnpackString(C.QCameraImageCapture_ImageCodecDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))}))
 	}
 	return ""
 }
@@ -13894,7 +13903,7 @@ func (ptr *QCameraImageCaptureControl) Capture(fileName string) int {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		return int(int32(C.QCameraImageCaptureControl_Capture(ptr.Pointer(), fileNameC)))
+		return int(int32(C.QCameraImageCaptureControl_Capture(ptr.Pointer(), C.struct_QtMultimedia_PackedString{fileNameC, C.longlong(len(fileName))})))
 	}
 	return 0
 }
@@ -13974,7 +13983,7 @@ func (ptr *QCameraImageCaptureControl) Error(id int, error int, errorString stri
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QCameraImageCaptureControl_Error(ptr.Pointer(), C.int(int32(id)), C.int(int32(error)), errorStringC)
+		C.QCameraImageCaptureControl_Error(ptr.Pointer(), C.int(int32(id)), C.int(int32(error)), C.struct_QtMultimedia_PackedString{errorStringC, C.longlong(len(errorString))})
 	}
 }
 
@@ -14135,7 +14144,7 @@ func (ptr *QCameraImageCaptureControl) ImageMetadataAvailable(id int, key string
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QCameraImageCaptureControl_ImageMetadataAvailable(ptr.Pointer(), C.int(int32(id)), keyC, core.PointerFromQVariant(value))
+		C.QCameraImageCaptureControl_ImageMetadataAvailable(ptr.Pointer(), C.int(int32(id)), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -14179,7 +14188,7 @@ func (ptr *QCameraImageCaptureControl) ImageSaved(requestId int, fileName string
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QCameraImageCaptureControl_ImageSaved(ptr.Pointer(), C.int(int32(requestId)), fileNameC)
+		C.QCameraImageCaptureControl_ImageSaved(ptr.Pointer(), C.int(int32(requestId)), C.struct_QtMultimedia_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -15295,7 +15304,7 @@ func (ptr *QCameraInfoControl) CameraPosition(deviceName string) QCamera__Positi
 			deviceNameC = C.CString(deviceName)
 			defer C.free(unsafe.Pointer(deviceNameC))
 		}
-		return QCamera__Position(C.QCameraInfoControl_CameraPosition(ptr.Pointer(), deviceNameC))
+		return QCamera__Position(C.QCameraInfoControl_CameraPosition(ptr.Pointer(), C.struct_QtMultimedia_PackedString{deviceNameC, C.longlong(len(deviceName))}))
 	}
 	return 0
 }
@@ -15337,7 +15346,7 @@ func (ptr *QCameraInfoControl) CameraOrientation(deviceName string) int {
 			deviceNameC = C.CString(deviceName)
 			defer C.free(unsafe.Pointer(deviceNameC))
 		}
-		return int(int32(C.QCameraInfoControl_CameraOrientation(ptr.Pointer(), deviceNameC)))
+		return int(int32(C.QCameraInfoControl_CameraOrientation(ptr.Pointer(), C.struct_QtMultimedia_PackedString{deviceNameC, C.longlong(len(deviceName))})))
 	}
 	return 0
 }
@@ -18479,12 +18488,13 @@ func (ptr *QImageEncoderControl) SupportedResolutions(settings QImageEncoderSett
 }
 
 //export callbackQImageEncoderControl_ImageCodecDescription
-func callbackQImageEncoderControl_ImageCodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) *C.char {
+func callbackQImageEncoderControl_ImageCodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "imageCodecDescription"); signal != nil {
-		return C.CString(signal.(func(string) string)(cGoUnpackString(codec)))
+		tempVal := signal.(func(string) string)(cGoUnpackString(codec))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QImageEncoderControl) ConnectImageCodecDescription(f func(codec string) string) {
@@ -18515,18 +18525,19 @@ func (ptr *QImageEncoderControl) ImageCodecDescription(codec string) string {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		return cGoUnpackString(C.QImageEncoderControl_ImageCodecDescription(ptr.Pointer(), codecC))
+		return cGoUnpackString(C.QImageEncoderControl_ImageCodecDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))}))
 	}
 	return ""
 }
 
 //export callbackQImageEncoderControl_SupportedImageCodecs
-func callbackQImageEncoderControl_SupportedImageCodecs(ptr unsafe.Pointer) *C.char {
+func callbackQImageEncoderControl_SupportedImageCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "supportedImageCodecs"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QImageEncoderControl) ConnectSupportedImageCodecs(f func() []string) {
@@ -18632,7 +18643,7 @@ func (ptr *QImageEncoderSettings) SetCodec(codec string) {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		C.QImageEncoderSettings_SetCodec(ptr.Pointer(), codecC)
+		C.QImageEncoderSettings_SetCodec(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))})
 	}
 }
 
@@ -18643,7 +18654,7 @@ func (ptr *QImageEncoderSettings) SetEncodingOption(option string, value core.QV
 			optionC = C.CString(option)
 			defer C.free(unsafe.Pointer(optionC))
 		}
-		C.QImageEncoderSettings_SetEncodingOption(ptr.Pointer(), optionC, core.PointerFromQVariant(value))
+		C.QImageEncoderSettings_SetEncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{optionC, C.longlong(len(option))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -18715,7 +18726,7 @@ func (ptr *QImageEncoderSettings) EncodingOption(option string) *core.QVariant {
 			optionC = C.CString(option)
 			defer C.free(unsafe.Pointer(optionC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QImageEncoderSettings_EncodingOption(ptr.Pointer(), optionC))
+		var tmpValue = core.NewQVariantFromPointer(C.QImageEncoderSettings_EncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{optionC, C.longlong(len(option))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -18749,7 +18760,7 @@ func (ptr *QImageEncoderSettings) __setEncodingOptions_options_atList(i string) 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QImageEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QImageEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -18763,7 +18774,7 @@ func (ptr *QImageEncoderSettings) __setEncodingOptions_options_setList(key strin
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QImageEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+		C.QImageEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -18791,7 +18802,7 @@ func (ptr *QImageEncoderSettings) __encodingOptions_atList(i string) *core.QVari
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QImageEncoderSettings___encodingOptions_atList(ptr.Pointer(), iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QImageEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -18805,7 +18816,7 @@ func (ptr *QImageEncoderSettings) __encodingOptions_setList(key string, i core.Q
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QImageEncoderSettings___encodingOptions_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+		C.QImageEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -18840,7 +18851,7 @@ func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_setList(i strin
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QImageEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), iC)
+		C.QImageEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -18862,7 +18873,7 @@ func (ptr *QImageEncoderSettings) ____encodingOptions_keyList_setList(i string) 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QImageEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), iC)
+		C.QImageEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -19409,7 +19420,7 @@ func (ptr *QMediaContainerControl) SetContainerFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QMediaContainerControl_SetContainerFormat(ptr.Pointer(), formatC)
+		C.QMediaContainerControl_SetContainerFormat(ptr.Pointer(), C.struct_QtMultimedia_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -19458,12 +19469,13 @@ func (ptr *QMediaContainerControl) DestroyQMediaContainerControlDefault() {
 }
 
 //export callbackQMediaContainerControl_ContainerDescription
-func callbackQMediaContainerControl_ContainerDescription(ptr unsafe.Pointer, format C.struct_QtMultimedia_PackedString) *C.char {
+func callbackQMediaContainerControl_ContainerDescription(ptr unsafe.Pointer, format C.struct_QtMultimedia_PackedString) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "containerDescription"); signal != nil {
-		return C.CString(signal.(func(string) string)(cGoUnpackString(format)))
+		tempVal := signal.(func(string) string)(cGoUnpackString(format))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QMediaContainerControl) ConnectContainerDescription(f func(format string) string) {
@@ -19494,18 +19506,19 @@ func (ptr *QMediaContainerControl) ContainerDescription(format string) string {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return cGoUnpackString(C.QMediaContainerControl_ContainerDescription(ptr.Pointer(), formatC))
+		return cGoUnpackString(C.QMediaContainerControl_ContainerDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{formatC, C.longlong(len(format))}))
 	}
 	return ""
 }
 
 //export callbackQMediaContainerControl_ContainerFormat
-func callbackQMediaContainerControl_ContainerFormat(ptr unsafe.Pointer) *C.char {
+func callbackQMediaContainerControl_ContainerFormat(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "containerFormat"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QMediaContainerControl) ConnectContainerFormat(f func() string) {
@@ -19537,12 +19550,13 @@ func (ptr *QMediaContainerControl) ContainerFormat() string {
 }
 
 //export callbackQMediaContainerControl_SupportedContainers
-func callbackQMediaContainerControl_SupportedContainers(ptr unsafe.Pointer) *C.char {
+func callbackQMediaContainerControl_SupportedContainers(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "supportedContainers"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QMediaContainerControl) ConnectSupportedContainers(f func() []string) {
@@ -20988,7 +21002,7 @@ func (ptr *QMediaObject) MetaDataChanged2(key string, value core.QVariant_ITF) {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QMediaObject_MetaDataChanged2(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
+		C.QMediaObject_MetaDataChanged2(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -21203,7 +21217,7 @@ func (ptr *QMediaObject) MetaData(key string) *core.QVariant {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QMediaObject_MetaData(ptr.Pointer(), keyC))
+		var tmpValue = core.NewQVariantFromPointer(C.QMediaObject_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -21632,7 +21646,7 @@ func QMediaPlayer_HasSupport(mimeType string, codecs []string, flags QMediaPlaye
 	}
 	var codecsC = C.CString(strings.Join(codecs, "|"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(mimeTypeC, codecsC, C.longlong(flags)))
+	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(C.struct_QtMultimedia_PackedString{mimeTypeC, C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{codecsC, C.longlong(len(strings.Join(codecs, "|")))}, C.longlong(flags)))
 }
 
 func (ptr *QMediaPlayer) HasSupport(mimeType string, codecs []string, flags QMediaPlayer__Flag) QMultimedia__SupportEstimate {
@@ -21643,7 +21657,7 @@ func (ptr *QMediaPlayer) HasSupport(mimeType string, codecs []string, flags QMed
 	}
 	var codecsC = C.CString(strings.Join(codecs, "|"))
 	defer C.free(unsafe.Pointer(codecsC))
-	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(mimeTypeC, codecsC, C.longlong(flags)))
+	return QMultimedia__SupportEstimate(C.QMediaPlayer_QMediaPlayer_HasSupport(C.struct_QtMultimedia_PackedString{mimeTypeC, C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{codecsC, C.longlong(len(strings.Join(codecs, "|")))}, C.longlong(flags)))
 }
 
 //export callbackQMediaPlayer_AudioAvailableChanged
@@ -23184,7 +23198,7 @@ func (ptr *QMediaPlayerControl) Error(error int, errorString string) {
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QMediaPlayerControl_Error(ptr.Pointer(), C.int(int32(error)), errorStringC)
+		C.QMediaPlayerControl_Error(ptr.Pointer(), C.int(int32(error)), C.struct_QtMultimedia_PackedString{errorStringC, C.longlong(len(errorString))})
 	}
 }
 
@@ -26080,7 +26094,7 @@ func (ptr *QMediaRecorder) MetaDataChanged2(key string, value core.QVariant_ITF)
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QMediaRecorder_MetaDataChanged2(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
+		C.QMediaRecorder_MetaDataChanged2(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -26259,7 +26273,7 @@ func (ptr *QMediaRecorder) SetContainerFormat(container string) {
 			containerC = C.CString(container)
 			defer C.free(unsafe.Pointer(containerC))
 		}
-		C.QMediaRecorder_SetContainerFormat(ptr.Pointer(), containerC)
+		C.QMediaRecorder_SetContainerFormat(ptr.Pointer(), C.struct_QtMultimedia_PackedString{containerC, C.longlong(len(container))})
 	}
 }
 
@@ -26270,7 +26284,7 @@ func (ptr *QMediaRecorder) SetEncodingSettings(audio QAudioEncoderSettings_ITF, 
 			containerC = C.CString(container)
 			defer C.free(unsafe.Pointer(containerC))
 		}
-		C.QMediaRecorder_SetEncodingSettings(ptr.Pointer(), PointerFromQAudioEncoderSettings(audio), PointerFromQVideoEncoderSettings(video), containerC)
+		C.QMediaRecorder_SetEncodingSettings(ptr.Pointer(), PointerFromQAudioEncoderSettings(audio), PointerFromQVideoEncoderSettings(video), C.struct_QtMultimedia_PackedString{containerC, C.longlong(len(container))})
 	}
 }
 
@@ -26281,7 +26295,7 @@ func (ptr *QMediaRecorder) SetMetaData(key string, value core.QVariant_ITF) {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QMediaRecorder_SetMetaData(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
+		C.QMediaRecorder_SetMetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -26663,7 +26677,7 @@ func (ptr *QMediaRecorder) AudioCodecDescription(codec string) string {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		return cGoUnpackString(C.QMediaRecorder_AudioCodecDescription(ptr.Pointer(), codecC))
+		return cGoUnpackString(C.QMediaRecorder_AudioCodecDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))}))
 	}
 	return ""
 }
@@ -26675,7 +26689,7 @@ func (ptr *QMediaRecorder) ContainerDescription(format string) string {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return cGoUnpackString(C.QMediaRecorder_ContainerDescription(ptr.Pointer(), formatC))
+		return cGoUnpackString(C.QMediaRecorder_ContainerDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{formatC, C.longlong(len(format))}))
 	}
 	return ""
 }
@@ -26701,7 +26715,7 @@ func (ptr *QMediaRecorder) VideoCodecDescription(codec string) string {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		return cGoUnpackString(C.QMediaRecorder_VideoCodecDescription(ptr.Pointer(), codecC))
+		return cGoUnpackString(C.QMediaRecorder_VideoCodecDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))}))
 	}
 	return ""
 }
@@ -26759,7 +26773,7 @@ func (ptr *QMediaRecorder) MetaData(key string) *core.QVariant {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QMediaRecorder_MetaData(ptr.Pointer(), keyC))
+		var tmpValue = core.NewQVariantFromPointer(C.QMediaRecorder_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -27461,7 +27475,7 @@ func (ptr *QMediaRecorderControl) Error(error int, errorString string) {
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QMediaRecorderControl_Error(ptr.Pointer(), C.int(int32(error)), errorStringC)
+		C.QMediaRecorderControl_Error(ptr.Pointer(), C.int(int32(error)), C.struct_QtMultimedia_PackedString{errorStringC, C.longlong(len(errorString))})
 	}
 }
 
@@ -28051,7 +28065,7 @@ func NewQMediaResource3(request network.QNetworkRequest_ITF, mimeType string) *Q
 		mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
-	var tmpValue = NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource3(network.PointerFromQNetworkRequest(request), mimeTypeC))
+	var tmpValue = NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource3(network.PointerFromQNetworkRequest(request), C.struct_QtMultimedia_PackedString{mimeTypeC, C.longlong(len(mimeType))}))
 	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 	return tmpValue
 }
@@ -28062,7 +28076,7 @@ func NewQMediaResource2(url core.QUrl_ITF, mimeType string) *QMediaResource {
 		mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
 	}
-	var tmpValue = NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource2(core.PointerFromQUrl(url), mimeTypeC))
+	var tmpValue = NewQMediaResourceFromPointer(C.QMediaResource_NewQMediaResource2(core.PointerFromQUrl(url), C.struct_QtMultimedia_PackedString{mimeTypeC, C.longlong(len(mimeType))}))
 	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
 	return tmpValue
 }
@@ -28080,7 +28094,7 @@ func (ptr *QMediaResource) SetAudioCodec(codec string) {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		C.QMediaResource_SetAudioCodec(ptr.Pointer(), codecC)
+		C.QMediaResource_SetAudioCodec(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))})
 	}
 }
 
@@ -28103,7 +28117,7 @@ func (ptr *QMediaResource) SetLanguage(language string) {
 			languageC = C.CString(language)
 			defer C.free(unsafe.Pointer(languageC))
 		}
-		C.QMediaResource_SetLanguage(ptr.Pointer(), languageC)
+		C.QMediaResource_SetLanguage(ptr.Pointer(), C.struct_QtMultimedia_PackedString{languageC, C.longlong(len(language))})
 	}
 }
 
@@ -28138,7 +28152,7 @@ func (ptr *QMediaResource) SetVideoCodec(codec string) {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		C.QMediaResource_SetVideoCodec(ptr.Pointer(), codecC)
+		C.QMediaResource_SetVideoCodec(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))})
 	}
 }
 
@@ -29090,7 +29104,7 @@ func (ptr *QMediaServiceProviderPlugin) Create(key string) *QMediaService {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = NewQMediaServiceFromPointer(C.QMediaServiceProviderPlugin_Create(ptr.Pointer(), keyC))
+		var tmpValue = NewQMediaServiceFromPointer(C.QMediaServiceProviderPlugin_Create(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -29432,12 +29446,13 @@ func NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) *Q
 }
 
 //export callbackQMediaServiceSupportedDevicesInterface_DeviceDescription
-func callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(ptr unsafe.Pointer, service unsafe.Pointer, device unsafe.Pointer) *C.char {
+func callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(ptr unsafe.Pointer, service unsafe.Pointer, device unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "deviceDescription"); signal != nil {
-		return C.CString(signal.(func(*core.QByteArray, *core.QByteArray) string)(core.NewQByteArrayFromPointer(service), core.NewQByteArrayFromPointer(device)))
+		tempVal := signal.(func(*core.QByteArray, *core.QByteArray) string)(core.NewQByteArrayFromPointer(service), core.NewQByteArrayFromPointer(device))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDeviceDescription(f func(service *core.QByteArray, device *core.QByteArray) string) {
@@ -29709,18 +29724,19 @@ func (ptr *QMediaServiceSupportedFormatsInterface) HasSupport(mimeType string, c
 		}
 		var codecsC = C.CString(strings.Join(codecs, "|"))
 		defer C.free(unsafe.Pointer(codecsC))
-		return QMultimedia__SupportEstimate(C.QMediaServiceSupportedFormatsInterface_HasSupport(ptr.Pointer(), mimeTypeC, codecsC))
+		return QMultimedia__SupportEstimate(C.QMediaServiceSupportedFormatsInterface_HasSupport(ptr.Pointer(), C.struct_QtMultimedia_PackedString{mimeTypeC, C.longlong(len(mimeType))}, C.struct_QtMultimedia_PackedString{codecsC, C.longlong(len(strings.Join(codecs, "|")))}))
 	}
 	return 0
 }
 
 //export callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes
-func callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr unsafe.Pointer) *C.char {
+func callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "supportedMimeTypes"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) ConnectSupportedMimeTypes(f func() []string) {
@@ -29847,7 +29863,7 @@ func (ptr *QMediaStreamsControl) MetaData(stream int, key string) *core.QVariant
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QMediaStreamsControl_MetaData(ptr.Pointer(), C.int(int32(stream)), keyC))
+		var tmpValue = core.NewQVariantFromPointer(C.QMediaStreamsControl_MetaData(ptr.Pointer(), C.int(int32(stream)), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -30746,7 +30762,7 @@ func (ptr *QMetaDataReaderControl) MetaDataChanged2(key string, value core.QVari
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QMetaDataReaderControl_MetaDataChanged2(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
+		C.QMetaDataReaderControl_MetaDataChanged2(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -30759,12 +30775,13 @@ func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
 }
 
 //export callbackQMetaDataReaderControl_AvailableMetaData
-func callbackQMetaDataReaderControl_AvailableMetaData(ptr unsafe.Pointer) *C.char {
+func callbackQMetaDataReaderControl_AvailableMetaData(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "availableMetaData"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QMetaDataReaderControl) ConnectAvailableMetaData(f func() []string) {
@@ -30832,7 +30849,7 @@ func (ptr *QMetaDataReaderControl) MetaData(key string) *core.QVariant {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QMetaDataReaderControl_MetaData(ptr.Pointer(), keyC))
+		var tmpValue = core.NewQVariantFromPointer(C.QMetaDataReaderControl_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -31040,7 +31057,7 @@ func (ptr *QMetaDataWriterControl) MetaDataChanged2(key string, value core.QVari
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QMetaDataWriterControl_MetaDataChanged2(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
+		C.QMetaDataWriterControl_MetaDataChanged2(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -31080,7 +31097,7 @@ func (ptr *QMetaDataWriterControl) SetMetaData(key string, value core.QVariant_I
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QMetaDataWriterControl_SetMetaData(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
+		C.QMetaDataWriterControl_SetMetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -31132,12 +31149,13 @@ func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControl() {
 }
 
 //export callbackQMetaDataWriterControl_AvailableMetaData
-func callbackQMetaDataWriterControl_AvailableMetaData(ptr unsafe.Pointer) *C.char {
+func callbackQMetaDataWriterControl_AvailableMetaData(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "availableMetaData"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QMetaDataWriterControl) ConnectAvailableMetaData(f func() []string) {
@@ -31205,7 +31223,7 @@ func (ptr *QMetaDataWriterControl) MetaData(key string) *core.QVariant {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QMetaDataWriterControl_MetaData(ptr.Pointer(), keyC))
+		var tmpValue = core.NewQVariantFromPointer(C.QMetaDataWriterControl_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -31736,7 +31754,7 @@ func (ptr *QRadioData) ProgramTypeNameChanged(programTypeName string) {
 			programTypeNameC = C.CString(programTypeName)
 			defer C.free(unsafe.Pointer(programTypeNameC))
 		}
-		C.QRadioData_ProgramTypeNameChanged(ptr.Pointer(), programTypeNameC)
+		C.QRadioData_ProgramTypeNameChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{programTypeNameC, C.longlong(len(programTypeName))})
 	}
 }
 
@@ -31780,7 +31798,7 @@ func (ptr *QRadioData) RadioTextChanged(radioText string) {
 			radioTextC = C.CString(radioText)
 			defer C.free(unsafe.Pointer(radioTextC))
 		}
-		C.QRadioData_RadioTextChanged(ptr.Pointer(), radioTextC)
+		C.QRadioData_RadioTextChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{radioTextC, C.longlong(len(radioText))})
 	}
 }
 
@@ -31824,7 +31842,7 @@ func (ptr *QRadioData) StationIdChanged(stationId string) {
 			stationIdC = C.CString(stationId)
 			defer C.free(unsafe.Pointer(stationIdC))
 		}
-		C.QRadioData_StationIdChanged(ptr.Pointer(), stationIdC)
+		C.QRadioData_StationIdChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{stationIdC, C.longlong(len(stationId))})
 	}
 }
 
@@ -31868,7 +31886,7 @@ func (ptr *QRadioData) StationNameChanged(stationName string) {
 			stationNameC = C.CString(stationName)
 			defer C.free(unsafe.Pointer(stationNameC))
 		}
-		C.QRadioData_StationNameChanged(ptr.Pointer(), stationNameC)
+		C.QRadioData_StationNameChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{stationNameC, C.longlong(len(stationName))})
 	}
 }
 
@@ -32516,7 +32534,7 @@ func (ptr *QRadioDataControl) ProgramTypeNameChanged(programTypeName string) {
 			programTypeNameC = C.CString(programTypeName)
 			defer C.free(unsafe.Pointer(programTypeNameC))
 		}
-		C.QRadioDataControl_ProgramTypeNameChanged(ptr.Pointer(), programTypeNameC)
+		C.QRadioDataControl_ProgramTypeNameChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{programTypeNameC, C.longlong(len(programTypeName))})
 	}
 }
 
@@ -32560,7 +32578,7 @@ func (ptr *QRadioDataControl) RadioTextChanged(radioText string) {
 			radioTextC = C.CString(radioText)
 			defer C.free(unsafe.Pointer(radioTextC))
 		}
-		C.QRadioDataControl_RadioTextChanged(ptr.Pointer(), radioTextC)
+		C.QRadioDataControl_RadioTextChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{radioTextC, C.longlong(len(radioText))})
 	}
 }
 
@@ -32639,7 +32657,7 @@ func (ptr *QRadioDataControl) StationIdChanged(stationId string) {
 			stationIdC = C.CString(stationId)
 			defer C.free(unsafe.Pointer(stationIdC))
 		}
-		C.QRadioDataControl_StationIdChanged(ptr.Pointer(), stationIdC)
+		C.QRadioDataControl_StationIdChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{stationIdC, C.longlong(len(stationId))})
 	}
 }
 
@@ -32683,7 +32701,7 @@ func (ptr *QRadioDataControl) StationNameChanged(stationName string) {
 			stationNameC = C.CString(stationName)
 			defer C.free(unsafe.Pointer(stationNameC))
 		}
-		C.QRadioDataControl_StationNameChanged(ptr.Pointer(), stationNameC)
+		C.QRadioDataControl_StationNameChanged(ptr.Pointer(), C.struct_QtMultimedia_PackedString{stationNameC, C.longlong(len(stationName))})
 	}
 }
 
@@ -32770,12 +32788,13 @@ func (ptr *QRadioDataControl) ProgramType() QRadioData__ProgramType {
 }
 
 //export callbackQRadioDataControl_ErrorString
-func callbackQRadioDataControl_ErrorString(ptr unsafe.Pointer) *C.char {
+func callbackQRadioDataControl_ErrorString(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "errorString"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QRadioDataControl) ConnectErrorString(f func() string) {
@@ -32807,12 +32826,13 @@ func (ptr *QRadioDataControl) ErrorString() string {
 }
 
 //export callbackQRadioDataControl_ProgramTypeName
-func callbackQRadioDataControl_ProgramTypeName(ptr unsafe.Pointer) *C.char {
+func callbackQRadioDataControl_ProgramTypeName(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "programTypeName"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QRadioDataControl) ConnectProgramTypeName(f func() string) {
@@ -32844,12 +32864,13 @@ func (ptr *QRadioDataControl) ProgramTypeName() string {
 }
 
 //export callbackQRadioDataControl_RadioText
-func callbackQRadioDataControl_RadioText(ptr unsafe.Pointer) *C.char {
+func callbackQRadioDataControl_RadioText(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "radioText"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QRadioDataControl) ConnectRadioText(f func() string) {
@@ -32881,12 +32902,13 @@ func (ptr *QRadioDataControl) RadioText() string {
 }
 
 //export callbackQRadioDataControl_StationId
-func callbackQRadioDataControl_StationId(ptr unsafe.Pointer) *C.char {
+func callbackQRadioDataControl_StationId(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "stationId"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QRadioDataControl) ConnectStationId(f func() string) {
@@ -32918,12 +32940,13 @@ func (ptr *QRadioDataControl) StationId() string {
 }
 
 //export callbackQRadioDataControl_StationName
-func callbackQRadioDataControl_StationName(ptr unsafe.Pointer) *C.char {
+func callbackQRadioDataControl_StationName(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "stationName"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QRadioDataControl) ConnectStationName(f func() string) {
@@ -33825,7 +33848,7 @@ func (ptr *QRadioTuner) StationFound(frequency int, stationId string) {
 			stationIdC = C.CString(stationId)
 			defer C.free(unsafe.Pointer(stationIdC))
 		}
-		C.QRadioTuner_StationFound(ptr.Pointer(), C.int(int32(frequency)), stationIdC)
+		C.QRadioTuner_StationFound(ptr.Pointer(), C.int(int32(frequency)), C.struct_QtMultimedia_PackedString{stationIdC, C.longlong(len(stationId))})
 	}
 }
 
@@ -34807,7 +34830,7 @@ func (ptr *QRadioTunerControl) StationFound(frequency int, stationId string) {
 			stationIdC = C.CString(stationId)
 			defer C.free(unsafe.Pointer(stationIdC))
 		}
-		C.QRadioTunerControl_StationFound(ptr.Pointer(), C.int(int32(frequency)), stationIdC)
+		C.QRadioTunerControl_StationFound(ptr.Pointer(), C.int(int32(frequency)), C.struct_QtMultimedia_PackedString{stationIdC, C.longlong(len(stationId))})
 	}
 }
 
@@ -35081,12 +35104,13 @@ func (ptr *QRadioTunerControl) StereoMode() QRadioTuner__StereoMode {
 }
 
 //export callbackQRadioTunerControl_ErrorString
-func callbackQRadioTunerControl_ErrorString(ptr unsafe.Pointer) *C.char {
+func callbackQRadioTunerControl_ErrorString(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "errorString"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QRadioTunerControl) ConnectErrorString(f func() string) {
@@ -35558,7 +35582,7 @@ func NewQSound(filename string, parent core.QObject_ITF) *QSound {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	var tmpValue = NewQSoundFromPointer(C.QSound_NewQSound(filenameC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQSoundFromPointer(C.QSound_NewQSound(C.struct_QtMultimedia_PackedString{filenameC, C.longlong(len(filename))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -35571,7 +35595,7 @@ func QSound_Play(filename string) {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	C.QSound_QSound_Play(filenameC)
+	C.QSound_QSound_Play(C.struct_QtMultimedia_PackedString{filenameC, C.longlong(len(filename))})
 }
 
 func (ptr *QSound) Play(filename string) {
@@ -35580,7 +35604,7 @@ func (ptr *QSound) Play(filename string) {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	C.QSound_QSound_Play(filenameC)
+	C.QSound_QSound_Play(C.struct_QtMultimedia_PackedString{filenameC, C.longlong(len(filename))})
 }
 
 //export callbackQSound_Stop
@@ -36277,7 +36301,7 @@ func (ptr *QSoundEffect) SetCategory(category string) {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		C.QSoundEffect_SetCategory(ptr.Pointer(), categoryC)
+		C.QSoundEffect_SetCategory(ptr.Pointer(), C.struct_QtMultimedia_PackedString{categoryC, C.longlong(len(category))})
 	}
 }
 
@@ -36921,7 +36945,7 @@ func (ptr *QVideoDeviceSelectorControl) SelectedDeviceChanged2(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QVideoDeviceSelectorControl_SelectedDeviceChanged2(ptr.Pointer(), nameC)
+		C.QVideoDeviceSelectorControl_SelectedDeviceChanged2(ptr.Pointer(), C.struct_QtMultimedia_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -37046,12 +37070,13 @@ func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControlDefaul
 }
 
 //export callbackQVideoDeviceSelectorControl_DeviceDescription
-func callbackQVideoDeviceSelectorControl_DeviceDescription(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQVideoDeviceSelectorControl_DeviceDescription(ptr unsafe.Pointer, index C.int) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "deviceDescription"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QVideoDeviceSelectorControl) ConnectDeviceDescription(f func(index int) string) {
@@ -37083,12 +37108,13 @@ func (ptr *QVideoDeviceSelectorControl) DeviceDescription(index int) string {
 }
 
 //export callbackQVideoDeviceSelectorControl_DeviceName
-func callbackQVideoDeviceSelectorControl_DeviceName(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQVideoDeviceSelectorControl_DeviceName(ptr unsafe.Pointer, index C.int) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "deviceName"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QVideoDeviceSelectorControl) ConnectDeviceName(f func(index int) string) {
@@ -37292,7 +37318,7 @@ func (ptr *QVideoEncoderSettings) SetCodec(codec string) {
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		C.QVideoEncoderSettings_SetCodec(ptr.Pointer(), codecC)
+		C.QVideoEncoderSettings_SetCodec(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))})
 	}
 }
 
@@ -37309,7 +37335,7 @@ func (ptr *QVideoEncoderSettings) SetEncodingOption(option string, value core.QV
 			optionC = C.CString(option)
 			defer C.free(unsafe.Pointer(optionC))
 		}
-		C.QVideoEncoderSettings_SetEncodingOption(ptr.Pointer(), optionC, core.PointerFromQVariant(value))
+		C.QVideoEncoderSettings_SetEncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{optionC, C.longlong(len(option))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -37394,7 +37420,7 @@ func (ptr *QVideoEncoderSettings) EncodingOption(option string) *core.QVariant {
 			optionC = C.CString(option)
 			defer C.free(unsafe.Pointer(optionC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QVideoEncoderSettings_EncodingOption(ptr.Pointer(), optionC))
+		var tmpValue = core.NewQVariantFromPointer(C.QVideoEncoderSettings_EncodingOption(ptr.Pointer(), C.struct_QtMultimedia_PackedString{optionC, C.longlong(len(option))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -37442,7 +37468,7 @@ func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_atList(i string) 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QVideoEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QVideoEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -37456,7 +37482,7 @@ func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_setList(key strin
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QVideoEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+		C.QVideoEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -37484,7 +37510,7 @@ func (ptr *QVideoEncoderSettings) __encodingOptions_atList(i string) *core.QVari
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QVideoEncoderSettings___encodingOptions_atList(ptr.Pointer(), iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QVideoEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -37498,7 +37524,7 @@ func (ptr *QVideoEncoderSettings) __encodingOptions_setList(key string, i core.Q
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QVideoEncoderSettings___encodingOptions_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+		C.QVideoEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -37533,7 +37559,7 @@ func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_setList(i strin
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QVideoEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), iC)
+		C.QVideoEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -37555,7 +37581,7 @@ func (ptr *QVideoEncoderSettings) ____encodingOptions_keyList_setList(i string) 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QVideoEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), iC)
+		C.QVideoEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -37801,12 +37827,13 @@ func (ptr *QVideoEncoderSettingsControl) SupportedFrameRates(settings QVideoEnco
 }
 
 //export callbackQVideoEncoderSettingsControl_VideoCodecDescription
-func callbackQVideoEncoderSettingsControl_VideoCodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) *C.char {
+func callbackQVideoEncoderSettingsControl_VideoCodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "videoCodecDescription"); signal != nil {
-		return C.CString(signal.(func(string) string)(cGoUnpackString(codec)))
+		tempVal := signal.(func(string) string)(cGoUnpackString(codec))
+		return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QVideoEncoderSettingsControl) ConnectVideoCodecDescription(f func(codec string) string) {
@@ -37837,18 +37864,19 @@ func (ptr *QVideoEncoderSettingsControl) VideoCodecDescription(codec string) str
 			codecC = C.CString(codec)
 			defer C.free(unsafe.Pointer(codecC))
 		}
-		return cGoUnpackString(C.QVideoEncoderSettingsControl_VideoCodecDescription(ptr.Pointer(), codecC))
+		return cGoUnpackString(C.QVideoEncoderSettingsControl_VideoCodecDescription(ptr.Pointer(), C.struct_QtMultimedia_PackedString{codecC, C.longlong(len(codec))}))
 	}
 	return ""
 }
 
 //export callbackQVideoEncoderSettingsControl_SupportedVideoCodecs
-func callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(ptr unsafe.Pointer) *C.char {
+func callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "supportedVideoCodecs"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QVideoEncoderSettingsControl) ConnectSupportedVideoCodecs(f func() []string) {
@@ -38224,7 +38252,7 @@ func (ptr *QVideoFrame) SetMetaData(key string, value core.QVariant_ITF) {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QVideoFrame_SetMetaData(ptr.Pointer(), keyC, core.PointerFromQVariant(value))
+		C.QVideoFrame_SetMetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -38301,7 +38329,7 @@ func (ptr *QVideoFrame) MetaData(key string) *core.QVariant {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QVideoFrame_MetaData(ptr.Pointer(), keyC))
+		var tmpValue = core.NewQVariantFromPointer(C.QVideoFrame_MetaData(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -38426,7 +38454,7 @@ func (ptr *QVideoFrame) __availableMetaData_atList(i string) *core.QVariant {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QVideoFrame___availableMetaData_atList(ptr.Pointer(), iC))
+		var tmpValue = core.NewQVariantFromPointer(C.QVideoFrame___availableMetaData_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -38440,7 +38468,7 @@ func (ptr *QVideoFrame) __availableMetaData_setList(key string, i core.QVariant_
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QVideoFrame___availableMetaData_setList(ptr.Pointer(), keyC, core.PointerFromQVariant(i))
+		C.QVideoFrame___availableMetaData_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -38475,7 +38503,7 @@ func (ptr *QVideoFrame) ____availableMetaData_keyList_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QVideoFrame_____availableMetaData_keyList_setList(ptr.Pointer(), iC)
+		C.QVideoFrame_____availableMetaData_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{iC, C.longlong(len(i))})
 	}
 }
 
@@ -41034,7 +41062,7 @@ func (ptr *QVideoWidget) SetStyleSheet(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QVideoWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
+		C.QVideoWidget_SetStyleSheet(ptr.Pointer(), C.struct_QtMultimedia_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -41045,7 +41073,7 @@ func (ptr *QVideoWidget) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QVideoWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QVideoWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtMultimedia_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -41107,7 +41135,7 @@ func (ptr *QVideoWidget) SetWindowTitle(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QVideoWidget_SetWindowTitle(ptr.Pointer(), vqsC)
+		C.QVideoWidget_SetWindowTitle(ptr.Pointer(), C.struct_QtMultimedia_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 
@@ -41118,7 +41146,7 @@ func (ptr *QVideoWidget) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QVideoWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QVideoWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtMultimedia_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 

@@ -590,9 +590,9 @@ void QAbstractAxis_SetTitleFont(void* ptr, void* font)
 	static_cast<QAbstractAxis*>(ptr)->setTitleFont(*static_cast<QFont*>(font));
 }
 
-void QAbstractAxis_SetTitleText(void* ptr, char* title)
+void QAbstractAxis_SetTitleText(void* ptr, struct QtCharts_PackedString title)
 {
-	static_cast<QAbstractAxis*>(ptr)->setTitleText(QString(title));
+	static_cast<QAbstractAxis*>(ptr)->setTitleText(QString::fromUtf8(title.data, title.len));
 }
 
 void QAbstractAxis_SetTitleVisible(void* ptr, char visible)
@@ -725,9 +725,9 @@ void QAbstractAxis_DisconnectTitleTextChanged(void* ptr)
 	QObject::disconnect(static_cast<QAbstractAxis*>(ptr), static_cast<void (QAbstractAxis::*)(const QString &)>(&QAbstractAxis::titleTextChanged), static_cast<MyQAbstractAxis*>(ptr), static_cast<void (MyQAbstractAxis::*)(const QString &)>(&MyQAbstractAxis::Signal_TitleTextChanged));
 }
 
-void QAbstractAxis_TitleTextChanged(void* ptr, char* text)
+void QAbstractAxis_TitleTextChanged(void* ptr, struct QtCharts_PackedString text)
 {
-	static_cast<QAbstractAxis*>(ptr)->titleTextChanged(QString(text));
+	static_cast<QAbstractAxis*>(ptr)->titleTextChanged(QString::fromUtf8(text.data, text.len));
 }
 
 void QAbstractAxis_ConnectTitleVisibleChanged(void* ptr)
@@ -1063,9 +1063,9 @@ void QAbstractBarSeries_DisconnectLabelsFormatChanged(void* ptr)
 	QObject::disconnect(static_cast<QAbstractBarSeries*>(ptr), static_cast<void (QAbstractBarSeries::*)(const QString &)>(&QAbstractBarSeries::labelsFormatChanged), static_cast<MyQAbstractBarSeries*>(ptr), static_cast<void (MyQAbstractBarSeries::*)(const QString &)>(&MyQAbstractBarSeries::Signal_LabelsFormatChanged));
 }
 
-void QAbstractBarSeries_LabelsFormatChanged(void* ptr, char* format)
+void QAbstractBarSeries_LabelsFormatChanged(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QAbstractBarSeries*>(ptr)->labelsFormatChanged(QString(format));
+	static_cast<QAbstractBarSeries*>(ptr)->labelsFormatChanged(QString::fromUtf8(format.data, format.len));
 }
 
 void QAbstractBarSeries_ConnectLabelsPositionChanged(void* ptr)
@@ -1138,9 +1138,9 @@ void QAbstractBarSeries_SetLabelsAngle(void* ptr, double angle)
 	static_cast<QAbstractBarSeries*>(ptr)->setLabelsAngle(angle);
 }
 
-void QAbstractBarSeries_SetLabelsFormat(void* ptr, char* format)
+void QAbstractBarSeries_SetLabelsFormat(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QAbstractBarSeries*>(ptr)->setLabelsFormat(QString(format));
+	static_cast<QAbstractBarSeries*>(ptr)->setLabelsFormat(QString::fromUtf8(format.data, format.len));
 }
 
 void QAbstractBarSeries_SetLabelsPosition(void* ptr, long long position)
@@ -1347,9 +1347,9 @@ void QAbstractSeries_OpacityChanged(void* ptr)
 	static_cast<QAbstractSeries*>(ptr)->opacityChanged();
 }
 
-void QAbstractSeries_SetName(void* ptr, char* name)
+void QAbstractSeries_SetName(void* ptr, struct QtCharts_PackedString name)
 {
-	static_cast<QAbstractSeries*>(ptr)->setName(QString(name));
+	static_cast<QAbstractSeries*>(ptr)->setName(QString::fromUtf8(name.data, name.len));
 }
 
 void QAbstractSeries_SetOpacity(void* ptr, double opacity)
@@ -1700,9 +1700,9 @@ void QAreaSeries_DisconnectPointLabelsFormatChanged(void* ptr)
 	QObject::disconnect(static_cast<QAreaSeries*>(ptr), static_cast<void (QAreaSeries::*)(const QString &)>(&QAreaSeries::pointLabelsFormatChanged), static_cast<MyQAreaSeries*>(ptr), static_cast<void (MyQAreaSeries::*)(const QString &)>(&MyQAreaSeries::Signal_PointLabelsFormatChanged));
 }
 
-void QAreaSeries_PointLabelsFormatChanged(void* ptr, char* format)
+void QAreaSeries_PointLabelsFormatChanged(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QAreaSeries*>(ptr)->pointLabelsFormatChanged(QString(format));
+	static_cast<QAreaSeries*>(ptr)->pointLabelsFormatChanged(QString::fromUtf8(format.data, format.len));
 }
 
 void QAreaSeries_ConnectPointLabelsVisibilityChanged(void* ptr)
@@ -1790,9 +1790,9 @@ void QAreaSeries_SetPointLabelsFont(void* ptr, void* font)
 	static_cast<QAreaSeries*>(ptr)->setPointLabelsFont(*static_cast<QFont*>(font));
 }
 
-void QAreaSeries_SetPointLabelsFormat(void* ptr, char* format)
+void QAreaSeries_SetPointLabelsFormat(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QAreaSeries*>(ptr)->setPointLabelsFormat(QString(format));
+	static_cast<QAreaSeries*>(ptr)->setPointLabelsFormat(QString::fromUtf8(format.data, format.len));
 }
 
 void QAreaSeries_SetPointLabelsVisible(void* ptr, char visible)
@@ -1968,14 +1968,14 @@ struct QtCharts_PackedString QBarCategoryAxis_Categories(void* ptr)
 	return ({ QByteArray tcc0bf4 = static_cast<QBarCategoryAxis*>(ptr)->categories().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(tcc0bf4.prepend("WHITESPACE").constData()+10), tcc0bf4.size()-10 }; });
 }
 
-void QBarCategoryAxis_Append2(void* ptr, char* category)
+void QBarCategoryAxis_Append2(void* ptr, struct QtCharts_PackedString category)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->append(QString(category));
+	static_cast<QBarCategoryAxis*>(ptr)->append(QString::fromUtf8(category.data, category.len));
 }
 
-void QBarCategoryAxis_Append(void* ptr, char* categories)
+void QBarCategoryAxis_Append(void* ptr, struct QtCharts_PackedString categories)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->append(QString(categories).split("|", QString::SkipEmptyParts));
+	static_cast<QBarCategoryAxis*>(ptr)->append(QString::fromUtf8(categories.data, categories.len).split("|", QString::SkipEmptyParts));
 }
 
 void QBarCategoryAxis_ConnectCategoriesChanged(void* ptr)
@@ -2013,9 +2013,9 @@ void QBarCategoryAxis_CountChanged(void* ptr)
 	static_cast<QBarCategoryAxis*>(ptr)->countChanged();
 }
 
-void QBarCategoryAxis_Insert(void* ptr, int index, char* category)
+void QBarCategoryAxis_Insert(void* ptr, int index, struct QtCharts_PackedString category)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->insert(index, QString(category));
+	static_cast<QBarCategoryAxis*>(ptr)->insert(index, QString::fromUtf8(category.data, category.len));
 }
 
 void QBarCategoryAxis_ConnectMaxChanged(void* ptr)
@@ -2028,9 +2028,9 @@ void QBarCategoryAxis_DisconnectMaxChanged(void* ptr)
 	QObject::disconnect(static_cast<QBarCategoryAxis*>(ptr), static_cast<void (QBarCategoryAxis::*)(const QString &)>(&QBarCategoryAxis::maxChanged), static_cast<MyQBarCategoryAxis*>(ptr), static_cast<void (MyQBarCategoryAxis::*)(const QString &)>(&MyQBarCategoryAxis::Signal_MaxChanged));
 }
 
-void QBarCategoryAxis_MaxChanged(void* ptr, char* max)
+void QBarCategoryAxis_MaxChanged(void* ptr, struct QtCharts_PackedString max)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->maxChanged(QString(max));
+	static_cast<QBarCategoryAxis*>(ptr)->maxChanged(QString::fromUtf8(max.data, max.len));
 }
 
 void QBarCategoryAxis_ConnectMinChanged(void* ptr)
@@ -2043,9 +2043,9 @@ void QBarCategoryAxis_DisconnectMinChanged(void* ptr)
 	QObject::disconnect(static_cast<QBarCategoryAxis*>(ptr), static_cast<void (QBarCategoryAxis::*)(const QString &)>(&QBarCategoryAxis::minChanged), static_cast<MyQBarCategoryAxis*>(ptr), static_cast<void (MyQBarCategoryAxis::*)(const QString &)>(&MyQBarCategoryAxis::Signal_MinChanged));
 }
 
-void QBarCategoryAxis_MinChanged(void* ptr, char* min)
+void QBarCategoryAxis_MinChanged(void* ptr, struct QtCharts_PackedString min)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->minChanged(QString(min));
+	static_cast<QBarCategoryAxis*>(ptr)->minChanged(QString::fromUtf8(min.data, min.len));
 }
 
 void QBarCategoryAxis_ConnectRangeChanged(void* ptr)
@@ -2058,39 +2058,39 @@ void QBarCategoryAxis_DisconnectRangeChanged(void* ptr)
 	QObject::disconnect(static_cast<QBarCategoryAxis*>(ptr), static_cast<void (QBarCategoryAxis::*)(const QString &, const QString &)>(&QBarCategoryAxis::rangeChanged), static_cast<MyQBarCategoryAxis*>(ptr), static_cast<void (MyQBarCategoryAxis::*)(const QString &, const QString &)>(&MyQBarCategoryAxis::Signal_RangeChanged));
 }
 
-void QBarCategoryAxis_RangeChanged(void* ptr, char* min, char* max)
+void QBarCategoryAxis_RangeChanged(void* ptr, struct QtCharts_PackedString min, struct QtCharts_PackedString max)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->rangeChanged(QString(min), QString(max));
+	static_cast<QBarCategoryAxis*>(ptr)->rangeChanged(QString::fromUtf8(min.data, min.len), QString::fromUtf8(max.data, max.len));
 }
 
-void QBarCategoryAxis_Remove(void* ptr, char* category)
+void QBarCategoryAxis_Remove(void* ptr, struct QtCharts_PackedString category)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->remove(QString(category));
+	static_cast<QBarCategoryAxis*>(ptr)->remove(QString::fromUtf8(category.data, category.len));
 }
 
-void QBarCategoryAxis_Replace(void* ptr, char* oldCategory, char* newCategory)
+void QBarCategoryAxis_Replace(void* ptr, struct QtCharts_PackedString oldCategory, struct QtCharts_PackedString newCategory)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->replace(QString(oldCategory), QString(newCategory));
+	static_cast<QBarCategoryAxis*>(ptr)->replace(QString::fromUtf8(oldCategory.data, oldCategory.len), QString::fromUtf8(newCategory.data, newCategory.len));
 }
 
-void QBarCategoryAxis_SetCategories(void* ptr, char* categories)
+void QBarCategoryAxis_SetCategories(void* ptr, struct QtCharts_PackedString categories)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->setCategories(QString(categories).split("|", QString::SkipEmptyParts));
+	static_cast<QBarCategoryAxis*>(ptr)->setCategories(QString::fromUtf8(categories.data, categories.len).split("|", QString::SkipEmptyParts));
 }
 
-void QBarCategoryAxis_SetMax(void* ptr, char* max)
+void QBarCategoryAxis_SetMax(void* ptr, struct QtCharts_PackedString max)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->setMax(QString(max));
+	static_cast<QBarCategoryAxis*>(ptr)->setMax(QString::fromUtf8(max.data, max.len));
 }
 
-void QBarCategoryAxis_SetMin(void* ptr, char* min)
+void QBarCategoryAxis_SetMin(void* ptr, struct QtCharts_PackedString min)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->setMin(QString(min));
+	static_cast<QBarCategoryAxis*>(ptr)->setMin(QString::fromUtf8(min.data, min.len));
 }
 
-void QBarCategoryAxis_SetRange(void* ptr, char* minCategory, char* maxCategory)
+void QBarCategoryAxis_SetRange(void* ptr, struct QtCharts_PackedString minCategory, struct QtCharts_PackedString maxCategory)
 {
-	static_cast<QBarCategoryAxis*>(ptr)->setRange(QString(minCategory), QString(maxCategory));
+	static_cast<QBarCategoryAxis*>(ptr)->setRange(QString::fromUtf8(minCategory.data, minCategory.len), QString::fromUtf8(maxCategory.data, maxCategory.len));
 }
 
 void QBarCategoryAxis_DestroyQBarCategoryAxis(void* ptr)
@@ -2282,44 +2282,44 @@ public:
 	 ~MyQBarSet() { callbackQBarSet_DestroyQBarSet(this); };
 };
 
-void* QBarSet_NewQBarSet(char* label, void* parent)
+void* QBarSet_NewQBarSet(struct QtCharts_PackedString label, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QCameraImageCapture*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QExtensionFactory*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QExtensionManager*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QGraphicsObject*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QGraphicsWidget*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QLayout*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QMediaPlaylist*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QMediaRecorder*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QOffscreenSurface*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QPdfWriter*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QQuickItem*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QRadioData*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QSignalSpy*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QWidget*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQBarSet(QString(label), static_cast<QWindow*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQBarSet(QString(label), static_cast<QObject*>(parent));
+		return new MyQBarSet(QString::fromUtf8(label.data, label.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -2573,9 +2573,9 @@ void QBarSet_SetColor(void* ptr, void* color)
 	static_cast<QBarSet*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
 
-void QBarSet_SetLabel(void* ptr, char* label)
+void QBarSet_SetLabel(void* ptr, struct QtCharts_PackedString label)
 {
-	static_cast<QBarSet*>(ptr)->setLabel(QString(label));
+	static_cast<QBarSet*>(ptr)->setLabel(QString::fromUtf8(label.data, label.len));
 }
 
 void QBarSet_SetLabelBrush(void* ptr, void* brush)
@@ -3178,85 +3178,85 @@ public:
 	 ~MyQBoxSet() { callbackQBoxSet_DestroyQBoxSet(this); };
 };
 
-void* QBoxSet_NewQBoxSet(char* label, void* parent)
+void* QBoxSet_NewQBoxSet(struct QtCharts_PackedString label, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QCameraImageCapture*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QExtensionFactory*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QExtensionManager*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QGraphicsObject*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QGraphicsWidget*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QLayout*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QMediaPlaylist*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QMediaRecorder*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QOffscreenSurface*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QPdfWriter*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QQuickItem*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QRadioData*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QSignalSpy*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QWidget*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(QString(label), static_cast<QWindow*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQBoxSet(QString(label), static_cast<QObject*>(parent));
+		return new MyQBoxSet(QString::fromUtf8(label.data, label.len), static_cast<QObject*>(parent));
 	}
 }
 
-void* QBoxSet_NewQBoxSet2(double le, double lq, double m, double uq, double ue, char* label, void* parent)
+void* QBoxSet_NewQBoxSet2(double le, double lq, double m, double uq, double ue, struct QtCharts_PackedString label, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QCameraImageCapture*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QExtensionFactory*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QExtensionManager*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QGraphicsObject*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QGraphicsWidget*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QLayout*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QMediaPlaylist*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QMediaRecorder*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QOffscreenSurface*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QPdfWriter*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QQuickItem*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QRadioData*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QSignalSpy*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QWidget*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QWindow*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQBoxSet(le, lq, m, uq, ue, QString(label), static_cast<QObject*>(parent));
+		return new MyQBoxSet(le, lq, m, uq, ue, QString::fromUtf8(label.data, label.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -3400,9 +3400,9 @@ void QBoxSet_SetBrush(void* ptr, void* brush)
 	static_cast<QBoxSet*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
 }
 
-void QBoxSet_SetLabel(void* ptr, char* label)
+void QBoxSet_SetLabel(void* ptr, struct QtCharts_PackedString label)
 {
-	static_cast<QBoxSet*>(ptr)->setLabel(QString(label));
+	static_cast<QBoxSet*>(ptr)->setLabel(QString::fromUtf8(label.data, label.len));
 }
 
 void QBoxSet_SetPen(void* ptr, void* pen)
@@ -4943,9 +4943,9 @@ struct QtCharts_PackedString QCategoryAxis_CategoriesLabels(void* ptr)
 	return ({ QByteArray t6d5777 = static_cast<QCategoryAxis*>(ptr)->categoriesLabels().join("|").toUtf8(); QtCharts_PackedString { const_cast<char*>(t6d5777.prepend("WHITESPACE").constData()+10), t6d5777.size()-10 }; });
 }
 
-void QCategoryAxis_Append(void* ptr, char* categoryLabel, double categoryEndValue)
+void QCategoryAxis_Append(void* ptr, struct QtCharts_PackedString categoryLabel, double categoryEndValue)
 {
-	static_cast<QCategoryAxis*>(ptr)->append(QString(categoryLabel), categoryEndValue);
+	static_cast<QCategoryAxis*>(ptr)->append(QString::fromUtf8(categoryLabel.data, categoryLabel.len), categoryEndValue);
 }
 
 void QCategoryAxis_ConnectCategoriesChanged(void* ptr)
@@ -4978,14 +4978,14 @@ void QCategoryAxis_LabelsPositionChanged(void* ptr, long long position)
 	static_cast<QCategoryAxis*>(ptr)->labelsPositionChanged(static_cast<QCategoryAxis::AxisLabelsPosition>(position));
 }
 
-void QCategoryAxis_Remove(void* ptr, char* categoryLabel)
+void QCategoryAxis_Remove(void* ptr, struct QtCharts_PackedString categoryLabel)
 {
-	static_cast<QCategoryAxis*>(ptr)->remove(QString(categoryLabel));
+	static_cast<QCategoryAxis*>(ptr)->remove(QString::fromUtf8(categoryLabel.data, categoryLabel.len));
 }
 
-void QCategoryAxis_ReplaceLabel(void* ptr, char* oldLabel, char* newLabel)
+void QCategoryAxis_ReplaceLabel(void* ptr, struct QtCharts_PackedString oldLabel, struct QtCharts_PackedString newLabel)
 {
-	static_cast<QCategoryAxis*>(ptr)->replaceLabel(QString(oldLabel), QString(newLabel));
+	static_cast<QCategoryAxis*>(ptr)->replaceLabel(QString::fromUtf8(oldLabel.data, oldLabel.len), QString::fromUtf8(newLabel.data, newLabel.len));
 }
 
 void QCategoryAxis_SetLabelsPosition(void* ptr, long long position)
@@ -5013,14 +5013,14 @@ int QCategoryAxis_Count(void* ptr)
 	return static_cast<QCategoryAxis*>(ptr)->count();
 }
 
-double QCategoryAxis_EndValue(void* ptr, char* categoryLabel)
+double QCategoryAxis_EndValue(void* ptr, struct QtCharts_PackedString categoryLabel)
 {
-	return static_cast<QCategoryAxis*>(ptr)->endValue(QString(categoryLabel));
+	return static_cast<QCategoryAxis*>(ptr)->endValue(QString::fromUtf8(categoryLabel.data, categoryLabel.len));
 }
 
-double QCategoryAxis_StartValue(void* ptr, char* categoryLabel)
+double QCategoryAxis_StartValue(void* ptr, struct QtCharts_PackedString categoryLabel)
 {
-	return static_cast<QCategoryAxis*>(ptr)->startValue(QString(categoryLabel));
+	return static_cast<QCategoryAxis*>(ptr)->startValue(QString::fromUtf8(categoryLabel.data, categoryLabel.len));
 }
 
 class MyQChart: public QChart
@@ -5270,9 +5270,9 @@ void QChart_SetTheme(void* ptr, long long theme)
 	static_cast<QChart*>(ptr)->setTheme(static_cast<QChart::ChartTheme>(theme));
 }
 
-void QChart_SetTitle(void* ptr, char* title)
+void QChart_SetTitle(void* ptr, struct QtCharts_PackedString title)
 {
-	static_cast<QChart*>(ptr)->setTitle(QString(title));
+	static_cast<QChart*>(ptr)->setTitle(QString::fromUtf8(title.data, title.len));
 }
 
 void QChart_SetTitleBrush(void* ptr, void* brush)
@@ -6872,9 +6872,9 @@ void QChartView_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QChartView*>(ptr)->QChartView::setHidden(hidden != 0);
 }
 
-void QChartView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+void QChartView_SetStyleSheetDefault(void* ptr, struct QtCharts_PackedString styleSheet)
 {
-		static_cast<QChartView*>(ptr)->QChartView::setStyleSheet(QString(styleSheet));
+		static_cast<QChartView*>(ptr)->QChartView::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 }
 
 void QChartView_SetVisibleDefault(void* ptr, char visible)
@@ -6887,9 +6887,9 @@ void QChartView_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QChartView*>(ptr)->QChartView::setWindowModified(vbo != 0);
 }
 
-void QChartView_SetWindowTitleDefault(void* ptr, char* vqs)
+void QChartView_SetWindowTitleDefault(void* ptr, struct QtCharts_PackedString vqs)
 {
-		static_cast<QChartView*>(ptr)->QChartView::setWindowTitle(QString(vqs));
+		static_cast<QChartView*>(ptr)->QChartView::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QChartView_ShowDefault(void* ptr)
@@ -7080,9 +7080,9 @@ void QDateTimeAxis_DisconnectFormatChanged(void* ptr)
 	QObject::disconnect(static_cast<QDateTimeAxis*>(ptr), static_cast<void (QDateTimeAxis::*)(QString)>(&QDateTimeAxis::formatChanged), static_cast<MyQDateTimeAxis*>(ptr), static_cast<void (MyQDateTimeAxis::*)(QString)>(&MyQDateTimeAxis::Signal_FormatChanged));
 }
 
-void QDateTimeAxis_FormatChanged(void* ptr, char* format)
+void QDateTimeAxis_FormatChanged(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QDateTimeAxis*>(ptr)->formatChanged(QString(format));
+	static_cast<QDateTimeAxis*>(ptr)->formatChanged(QString::fromUtf8(format.data, format.len));
 }
 
 void QDateTimeAxis_ConnectMaxChanged(void* ptr)
@@ -7130,9 +7130,9 @@ void QDateTimeAxis_RangeChanged(void* ptr, void* min, void* max)
 	static_cast<QDateTimeAxis*>(ptr)->rangeChanged(*static_cast<QDateTime*>(min), *static_cast<QDateTime*>(max));
 }
 
-void QDateTimeAxis_SetFormat(void* ptr, char* format)
+void QDateTimeAxis_SetFormat(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QDateTimeAxis*>(ptr)->setFormat(QString(format));
+	static_cast<QDateTimeAxis*>(ptr)->setFormat(QString::fromUtf8(format.data, format.len));
 }
 
 void QDateTimeAxis_SetMax(void* ptr, void* max)
@@ -9776,9 +9776,9 @@ void QLegendMarker_SetFont(void* ptr, void* font)
 	static_cast<QLegendMarker*>(ptr)->setFont(*static_cast<QFont*>(font));
 }
 
-void QLegendMarker_SetLabel(void* ptr, char* label)
+void QLegendMarker_SetLabel(void* ptr, struct QtCharts_PackedString label)
 {
-	static_cast<QLegendMarker*>(ptr)->setLabel(QString(label));
+	static_cast<QLegendMarker*>(ptr)->setLabel(QString::fromUtf8(label.data, label.len));
 }
 
 void QLegendMarker_SetLabelBrush(void* ptr, void* brush)
@@ -10047,9 +10047,9 @@ void QLogValueAxis_DisconnectLabelFormatChanged(void* ptr)
 	QObject::disconnect(static_cast<QLogValueAxis*>(ptr), static_cast<void (QLogValueAxis::*)(const QString &)>(&QLogValueAxis::labelFormatChanged), static_cast<MyQLogValueAxis*>(ptr), static_cast<void (MyQLogValueAxis::*)(const QString &)>(&MyQLogValueAxis::Signal_LabelFormatChanged));
 }
 
-void QLogValueAxis_LabelFormatChanged(void* ptr, char* format)
+void QLogValueAxis_LabelFormatChanged(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QLogValueAxis*>(ptr)->labelFormatChanged(QString(format));
+	static_cast<QLogValueAxis*>(ptr)->labelFormatChanged(QString::fromUtf8(format.data, format.len));
 }
 
 void QLogValueAxis_ConnectMaxChanged(void* ptr)
@@ -10102,9 +10102,9 @@ void QLogValueAxis_SetBase(void* ptr, double base)
 	static_cast<QLogValueAxis*>(ptr)->setBase(base);
 }
 
-void QLogValueAxis_SetLabelFormat(void* ptr, char* format)
+void QLogValueAxis_SetLabelFormat(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QLogValueAxis*>(ptr)->setLabelFormat(QString(format));
+	static_cast<QLogValueAxis*>(ptr)->setLabelFormat(QString::fromUtf8(format.data, format.len));
 }
 
 void QLogValueAxis_SetMax(void* ptr, double max)
@@ -10350,9 +10350,9 @@ void* QPieSeries_NewQPieSeries(void* parent)
 	}
 }
 
-void* QPieSeries_Append3(void* ptr, char* label, double value)
+void* QPieSeries_Append3(void* ptr, struct QtCharts_PackedString label, double value)
 {
-	return static_cast<QPieSeries*>(ptr)->append(QString(label), value);
+	return static_cast<QPieSeries*>(ptr)->append(QString::fromUtf8(label.data, label.len), value);
 }
 
 char QPieSeries_Append2(void* ptr, void* slices)
@@ -10783,44 +10783,44 @@ void* QPieSlice_NewQPieSlice(void* parent)
 	}
 }
 
-void* QPieSlice_NewQPieSlice2(char* label, double value, void* parent)
+void* QPieSlice_NewQPieSlice2(struct QtCharts_PackedString label, double value, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QCameraImageCapture*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QExtensionFactory*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QExtensionManager*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QGraphicsObject*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QGraphicsWidget*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QLayout*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QMediaPlaylist*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QMediaRecorder*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QOffscreenSurface*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QPdfWriter*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QQuickItem*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QRadioData*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QSignalSpy*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QWidget*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQPieSlice(QString(label), value, static_cast<QWindow*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QWindow*>(parent));
 	} else {
-		return new MyQPieSlice(QString(label), value, static_cast<QObject*>(parent));
+		return new MyQPieSlice(QString::fromUtf8(label.data, label.len), value, static_cast<QObject*>(parent));
 	}
 }
 
@@ -11114,9 +11114,9 @@ void QPieSlice_SetExploded(void* ptr, char exploded)
 	static_cast<QPieSlice*>(ptr)->setExploded(exploded != 0);
 }
 
-void QPieSlice_SetLabel(void* ptr, char* label)
+void QPieSlice_SetLabel(void* ptr, struct QtCharts_PackedString label)
 {
-	static_cast<QPieSlice*>(ptr)->setLabel(QString(label));
+	static_cast<QPieSlice*>(ptr)->setLabel(QString::fromUtf8(label.data, label.len));
 }
 
 void QPieSlice_SetLabelArmLengthFactor(void* ptr, double factor)
@@ -13163,9 +13163,9 @@ void QValueAxis_DisconnectLabelFormatChanged(void* ptr)
 	QObject::disconnect(static_cast<QValueAxis*>(ptr), static_cast<void (QValueAxis::*)(const QString &)>(&QValueAxis::labelFormatChanged), static_cast<MyQValueAxis*>(ptr), static_cast<void (MyQValueAxis::*)(const QString &)>(&MyQValueAxis::Signal_LabelFormatChanged));
 }
 
-void QValueAxis_LabelFormatChanged(void* ptr, char* format)
+void QValueAxis_LabelFormatChanged(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QValueAxis*>(ptr)->labelFormatChanged(QString(format));
+	static_cast<QValueAxis*>(ptr)->labelFormatChanged(QString::fromUtf8(format.data, format.len));
 }
 
 void QValueAxis_ConnectMaxChanged(void* ptr)
@@ -13228,9 +13228,9 @@ void QValueAxis_RangeChanged(void* ptr, double min, double max)
 	static_cast<QValueAxis*>(ptr)->rangeChanged(min, max);
 }
 
-void QValueAxis_SetLabelFormat(void* ptr, char* format)
+void QValueAxis_SetLabelFormat(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QValueAxis*>(ptr)->setLabelFormat(QString(format));
+	static_cast<QValueAxis*>(ptr)->setLabelFormat(QString::fromUtf8(format.data, format.len));
 }
 
 void QValueAxis_SetMax(void* ptr, double max)
@@ -13565,9 +13565,9 @@ void QXYSeries_DisconnectPointLabelsFormatChanged(void* ptr)
 	QObject::disconnect(static_cast<QXYSeries*>(ptr), static_cast<void (QXYSeries::*)(const QString &)>(&QXYSeries::pointLabelsFormatChanged), static_cast<MyQXYSeries*>(ptr), static_cast<void (MyQXYSeries::*)(const QString &)>(&MyQXYSeries::Signal_PointLabelsFormatChanged));
 }
 
-void QXYSeries_PointLabelsFormatChanged(void* ptr, char* format)
+void QXYSeries_PointLabelsFormatChanged(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QXYSeries*>(ptr)->pointLabelsFormatChanged(QString(format));
+	static_cast<QXYSeries*>(ptr)->pointLabelsFormatChanged(QString::fromUtf8(format.data, format.len));
 }
 
 void QXYSeries_ConnectPointLabelsVisibilityChanged(void* ptr)
@@ -13794,9 +13794,9 @@ void QXYSeries_SetPointLabelsFont(void* ptr, void* font)
 	static_cast<QXYSeries*>(ptr)->setPointLabelsFont(*static_cast<QFont*>(font));
 }
 
-void QXYSeries_SetPointLabelsFormat(void* ptr, char* format)
+void QXYSeries_SetPointLabelsFormat(void* ptr, struct QtCharts_PackedString format)
 {
-	static_cast<QXYSeries*>(ptr)->setPointLabelsFormat(QString(format));
+	static_cast<QXYSeries*>(ptr)->setPointLabelsFormat(QString::fromUtf8(format.data, format.len));
 }
 
 void QXYSeries_SetPointLabelsVisible(void* ptr, char visible)

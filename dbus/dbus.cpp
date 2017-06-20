@@ -300,46 +300,46 @@ Q_DECLARE_METATYPE(MyQDBusAbstractInterface*)
 
 int QDBusAbstractInterface_QDBusAbstractInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusAbstractInterface*>();}
 
-void* QDBusAbstractInterface_Call2(void* ptr, long long mode, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
+void* QDBusAbstractInterface_Call2(void* ptr, long long mode, struct QtDBus_PackedString method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
-	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->call(static_cast<QDBus::CallMode>(mode), QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
+	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->call(static_cast<QDBus::CallMode>(mode), QString::fromUtf8(method.data, method.len), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
 }
 
-void* QDBusAbstractInterface_Call(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
+void* QDBusAbstractInterface_Call(void* ptr, struct QtDBus_PackedString method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
-	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->call(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
+	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->call(QString::fromUtf8(method.data, method.len), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
 }
 
-void* QDBusAbstractInterface_CallWithArgumentList(void* ptr, long long mode, char* method, void* args)
+void* QDBusAbstractInterface_CallWithArgumentList(void* ptr, long long mode, struct QtDBus_PackedString method, void* args)
 {
-	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->callWithArgumentList(static_cast<QDBus::CallMode>(mode), QString(method), *static_cast<QList<QVariant>*>(args)));
+	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->callWithArgumentList(static_cast<QDBus::CallMode>(mode), QString::fromUtf8(method.data, method.len), *static_cast<QList<QVariant>*>(args)));
 }
 
-void* QDBusAbstractInterface_AsyncCall(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
+void* QDBusAbstractInterface_AsyncCall(void* ptr, struct QtDBus_PackedString method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
-	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCall(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
+	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCall(QString::fromUtf8(method.data, method.len), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
 }
 
-void* QDBusAbstractInterface_AsyncCallWithArgumentList(void* ptr, char* method, void* args)
+void* QDBusAbstractInterface_AsyncCallWithArgumentList(void* ptr, struct QtDBus_PackedString method, void* args)
 {
-	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCallWithArgumentList(QString(method), *static_cast<QList<QVariant>*>(args)));
+	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCallWithArgumentList(QString::fromUtf8(method.data, method.len), *static_cast<QList<QVariant>*>(args)));
 }
 
-char QDBusAbstractInterface_CallWithCallback(void* ptr, char* method, void* args, void* receiver, char* returnMethod, char* errorMethod)
+char QDBusAbstractInterface_CallWithCallback(void* ptr, struct QtDBus_PackedString method, void* args, void* receiver, char* returnMethod, char* errorMethod)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString(method), *static_cast<QList<QVariant>*>(args), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(returnMethod), const_cast<const char*>(errorMethod));
+		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString::fromUtf8(method.data, method.len), *static_cast<QList<QVariant>*>(args), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(returnMethod), const_cast<const char*>(errorMethod));
 	} else {
-		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString(method), *static_cast<QList<QVariant>*>(args), static_cast<QObject*>(receiver), const_cast<const char*>(returnMethod), const_cast<const char*>(errorMethod));
+		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString::fromUtf8(method.data, method.len), *static_cast<QList<QVariant>*>(args), static_cast<QObject*>(receiver), const_cast<const char*>(returnMethod), const_cast<const char*>(errorMethod));
 	}
 }
 
-char QDBusAbstractInterface_CallWithCallback2(void* ptr, char* method, void* args, void* receiver, char* slot)
+char QDBusAbstractInterface_CallWithCallback2(void* ptr, struct QtDBus_PackedString method, void* args, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString(method), *static_cast<QList<QVariant>*>(args), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString::fromUtf8(method.data, method.len), *static_cast<QList<QVariant>*>(args), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString(method), *static_cast<QList<QVariant>*>(args), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusAbstractInterface*>(ptr)->callWithCallback(QString::fromUtf8(method.data, method.len), *static_cast<QList<QVariant>*>(args), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
@@ -801,9 +801,9 @@ void QDBusArgument_EndStructure2(void* ptr)
 	static_cast<QDBusArgument*>(ptr)->endStructure();
 }
 
-void* QDBusConnection_QDBusConnection_ConnectToPeer(char* address, char* name)
+void* QDBusConnection_QDBusConnection_ConnectToPeer(struct QtDBus_PackedString address, struct QtDBus_PackedString name)
 {
-	return new QDBusConnection(QDBusConnection::connectToPeer(QString(address), QString(name)));
+	return new QDBusConnection(QDBusConnection::connectToPeer(QString::fromUtf8(address.data, address.len), QString::fromUtf8(name.data, name.len)));
 }
 
 void* QDBusConnection_QDBusConnection_SessionBus()
@@ -821,14 +821,14 @@ void* QDBusConnection_QDBusConnection_LocalMachineId()
 	return new QByteArray(QDBusConnection::localMachineId());
 }
 
-void* QDBusConnection_QDBusConnection_ConnectToBus(long long ty, char* name)
+void* QDBusConnection_QDBusConnection_ConnectToBus(long long ty, struct QtDBus_PackedString name)
 {
-	return new QDBusConnection(QDBusConnection::connectToBus(static_cast<QDBusConnection::BusType>(ty), QString(name)));
+	return new QDBusConnection(QDBusConnection::connectToBus(static_cast<QDBusConnection::BusType>(ty), QString::fromUtf8(name.data, name.len)));
 }
 
-void* QDBusConnection_QDBusConnection_ConnectToBus2(char* address, char* name)
+void* QDBusConnection_QDBusConnection_ConnectToBus2(struct QtDBus_PackedString address, struct QtDBus_PackedString name)
 {
-	return new QDBusConnection(QDBusConnection::connectToBus(QString(address), QString(name)));
+	return new QDBusConnection(QDBusConnection::connectToBus(QString::fromUtf8(address.data, address.len), QString::fromUtf8(name.data, name.len)));
 }
 
 void* QDBusConnection_NewQDBusConnection3(void* other)
@@ -841,101 +841,101 @@ void* QDBusConnection_NewQDBusConnection2(void* other)
 	return new QDBusConnection(*static_cast<QDBusConnection*>(other));
 }
 
-void* QDBusConnection_NewQDBusConnection(char* name)
+void* QDBusConnection_NewQDBusConnection(struct QtDBus_PackedString name)
 {
-	return new QDBusConnection(QString(name));
+	return new QDBusConnection(QString::fromUtf8(name.data, name.len));
 }
 
-char QDBusConnection_Connect(void* ptr, char* service, char* path, char* interfa, char* name, void* receiver, char* slot)
+char QDBusConnection_Connect(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
-char QDBusConnection_Connect2(void* ptr, char* service, char* path, char* interfa, char* name, char* signature, void* receiver, char* slot)
+char QDBusConnection_Connect2(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, struct QtDBus_PackedString signature, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(signature), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
-char QDBusConnection_Connect3(void* ptr, char* service, char* path, char* interfa, char* name, char* argumentMatch, char* signature, void* receiver, char* slot)
+char QDBusConnection_Connect3(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, struct QtDBus_PackedString argumentMatch, struct QtDBus_PackedString signature, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split("|", QString::SkipEmptyParts), QString(signature), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split("|", QString::SkipEmptyParts), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->connect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
-char QDBusConnection_Disconnect(void* ptr, char* service, char* path, char* interfa, char* name, void* receiver, char* slot)
+char QDBusConnection_Disconnect(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString(service), QString(path), QString(interfa), QString(name), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString(service), QString(path), QString(interfa), QString(name), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
-char QDBusConnection_Disconnect2(void* ptr, char* service, char* path, char* interfa, char* name, char* signature, void* receiver, char* slot)
+char QDBusConnection_Disconnect2(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, struct QtDBus_PackedString signature, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString(service), QString(path), QString(interfa), QString(name), QString(signature), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString(service), QString(path), QString(interfa), QString(name), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
-char QDBusConnection_Disconnect3(void* ptr, char* service, char* path, char* interfa, char* name, char* argumentMatch, char* signature, void* receiver, char* slot)
+char QDBusConnection_Disconnect3(void* ptr, struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name, struct QtDBus_PackedString argumentMatch, struct QtDBus_PackedString signature, void* receiver, char* slot)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(receiver))) {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split("|", QString::SkipEmptyParts), QString(signature), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QDBusPendingCallWatcher*>(receiver), const_cast<const char*>(slot));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->disconnect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split("|", QString::SkipEmptyParts), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+		return static_cast<QDBusConnection*>(ptr)->disconnect(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len), QString::fromUtf8(argumentMatch.data, argumentMatch.len).split("|", QString::SkipEmptyParts), QString::fromUtf8(signature.data, signature.len), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
 	}
 }
 
-char QDBusConnection_RegisterObject(void* ptr, char* path, void* object, long long options)
+char QDBusConnection_RegisterObject(void* ptr, struct QtDBus_PackedString path, void* object, long long options)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(object))) {
-		return static_cast<QDBusConnection*>(ptr)->registerObject(QString(path), static_cast<QDBusPendingCallWatcher*>(object), static_cast<QDBusConnection::RegisterOption>(options));
+		return static_cast<QDBusConnection*>(ptr)->registerObject(QString::fromUtf8(path.data, path.len), static_cast<QDBusPendingCallWatcher*>(object), static_cast<QDBusConnection::RegisterOption>(options));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->registerObject(QString(path), static_cast<QObject*>(object), static_cast<QDBusConnection::RegisterOption>(options));
+		return static_cast<QDBusConnection*>(ptr)->registerObject(QString::fromUtf8(path.data, path.len), static_cast<QObject*>(object), static_cast<QDBusConnection::RegisterOption>(options));
 	}
 }
 
-char QDBusConnection_RegisterObject2(void* ptr, char* path, char* interfa, void* object, long long options)
+char QDBusConnection_RegisterObject2(void* ptr, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, void* object, long long options)
 {
 	if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(object))) {
-		return static_cast<QDBusConnection*>(ptr)->registerObject(QString(path), QString(interfa), static_cast<QDBusPendingCallWatcher*>(object), static_cast<QDBusConnection::RegisterOption>(options));
+		return static_cast<QDBusConnection*>(ptr)->registerObject(QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), static_cast<QDBusPendingCallWatcher*>(object), static_cast<QDBusConnection::RegisterOption>(options));
 	} else {
-		return static_cast<QDBusConnection*>(ptr)->registerObject(QString(path), QString(interfa), static_cast<QObject*>(object), static_cast<QDBusConnection::RegisterOption>(options));
+		return static_cast<QDBusConnection*>(ptr)->registerObject(QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), static_cast<QObject*>(object), static_cast<QDBusConnection::RegisterOption>(options));
 	}
 }
 
-char QDBusConnection_RegisterService(void* ptr, char* serviceName)
+char QDBusConnection_RegisterService(void* ptr, struct QtDBus_PackedString serviceName)
 {
-	return static_cast<QDBusConnection*>(ptr)->registerService(QString(serviceName));
+	return static_cast<QDBusConnection*>(ptr)->registerService(QString::fromUtf8(serviceName.data, serviceName.len));
 }
 
-char QDBusConnection_UnregisterService(void* ptr, char* serviceName)
+char QDBusConnection_UnregisterService(void* ptr, struct QtDBus_PackedString serviceName)
 {
-	return static_cast<QDBusConnection*>(ptr)->unregisterService(QString(serviceName));
+	return static_cast<QDBusConnection*>(ptr)->unregisterService(QString::fromUtf8(serviceName.data, serviceName.len));
 }
 
-void QDBusConnection_QDBusConnection_DisconnectFromBus(char* name)
+void QDBusConnection_QDBusConnection_DisconnectFromBus(struct QtDBus_PackedString name)
 {
-	QDBusConnection::disconnectFromBus(QString(name));
+	QDBusConnection::disconnectFromBus(QString::fromUtf8(name.data, name.len));
 }
 
-void QDBusConnection_QDBusConnection_DisconnectFromPeer(char* name)
+void QDBusConnection_QDBusConnection_DisconnectFromPeer(struct QtDBus_PackedString name)
 {
-	QDBusConnection::disconnectFromPeer(QString(name));
+	QDBusConnection::disconnectFromPeer(QString::fromUtf8(name.data, name.len));
 }
 
 void QDBusConnection_Swap(void* ptr, void* other)
@@ -943,9 +943,9 @@ void QDBusConnection_Swap(void* ptr, void* other)
 	static_cast<QDBusConnection*>(ptr)->swap(*static_cast<QDBusConnection*>(other));
 }
 
-void QDBusConnection_UnregisterObject(void* ptr, char* path, long long mode)
+void QDBusConnection_UnregisterObject(void* ptr, struct QtDBus_PackedString path, long long mode)
 {
-	static_cast<QDBusConnection*>(ptr)->unregisterObject(QString(path), static_cast<QDBusConnection::UnregisterMode>(mode));
+	static_cast<QDBusConnection*>(ptr)->unregisterObject(QString::fromUtf8(path.data, path.len), static_cast<QDBusConnection::UnregisterMode>(mode));
 }
 
 void QDBusConnection_DestroyQDBusConnection(void* ptr)
@@ -978,9 +978,9 @@ void* QDBusConnection_AsyncCall(void* ptr, void* message, int timeout)
 	return new QDBusPendingCall(static_cast<QDBusConnection*>(ptr)->asyncCall(*static_cast<QDBusMessage*>(message), timeout));
 }
 
-void* QDBusConnection_ObjectRegisteredAt(void* ptr, char* path)
+void* QDBusConnection_ObjectRegisteredAt(void* ptr, struct QtDBus_PackedString path)
 {
-	return static_cast<QDBusConnection*>(ptr)->objectRegisteredAt(QString(path));
+	return static_cast<QDBusConnection*>(ptr)->objectRegisteredAt(QString::fromUtf8(path.data, path.len));
 }
 
 struct QtDBus_PackedString QDBusConnection_BaseService(void* ptr)
@@ -1045,9 +1045,9 @@ void QDBusConnectionInterface_DisconnectServiceRegistered(void* ptr)
 	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceRegistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceRegistered));
 }
 
-void QDBusConnectionInterface_ServiceRegistered(void* ptr, char* serviceName)
+void QDBusConnectionInterface_ServiceRegistered(void* ptr, struct QtDBus_PackedString serviceName)
 {
-	static_cast<QDBusConnectionInterface*>(ptr)->serviceRegistered(QString(serviceName));
+	static_cast<QDBusConnectionInterface*>(ptr)->serviceRegistered(QString::fromUtf8(serviceName.data, serviceName.len));
 }
 
 void QDBusConnectionInterface_ConnectCallWithCallbackFailed(void* ptr)
@@ -1075,9 +1075,9 @@ void QDBusConnectionInterface_DisconnectServiceUnregistered(void* ptr)
 	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered));
 }
 
-void QDBusConnectionInterface_ServiceUnregistered(void* ptr, char* serviceName)
+void QDBusConnectionInterface_ServiceUnregistered(void* ptr, struct QtDBus_PackedString serviceName)
 {
-	static_cast<QDBusConnectionInterface*>(ptr)->serviceUnregistered(QString(serviceName));
+	static_cast<QDBusConnectionInterface*>(ptr)->serviceUnregistered(QString::fromUtf8(serviceName.data, serviceName.len));
 }
 
 void* QDBusContext_NewQDBusContext()
@@ -1110,14 +1110,14 @@ void* QDBusContext_Message(void* ptr)
 	return const_cast<QDBusMessage*>(&static_cast<QDBusContext*>(ptr)->message());
 }
 
-void QDBusContext_SendErrorReply2(void* ptr, long long ty, char* msg)
+void QDBusContext_SendErrorReply2(void* ptr, long long ty, struct QtDBus_PackedString msg)
 {
-	static_cast<QDBusContext*>(ptr)->sendErrorReply(static_cast<QDBusError::ErrorType>(ty), QString(msg));
+	static_cast<QDBusContext*>(ptr)->sendErrorReply(static_cast<QDBusError::ErrorType>(ty), QString::fromUtf8(msg.data, msg.len));
 }
 
-void QDBusContext_SendErrorReply(void* ptr, char* name, char* msg)
+void QDBusContext_SendErrorReply(void* ptr, struct QtDBus_PackedString name, struct QtDBus_PackedString msg)
 {
-	static_cast<QDBusContext*>(ptr)->sendErrorReply(QString(name), QString(msg));
+	static_cast<QDBusContext*>(ptr)->sendErrorReply(QString::fromUtf8(name.data, name.len), QString::fromUtf8(msg.data, msg.len));
 }
 
 void QDBusContext_SetDelayedReply(void* ptr, char enable)
@@ -1181,44 +1181,44 @@ Q_DECLARE_METATYPE(MyQDBusInterface*)
 
 int QDBusInterface_QDBusInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusInterface*>();}
 
-void* QDBusInterface_NewQDBusInterface(char* service, char* path, char* interfa, void* connection, void* parent)
+void* QDBusInterface_NewQDBusInterface(struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, void* connection, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QCameraImageCapture*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QExtensionFactory*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QExtensionManager*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QGraphicsObject*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QGraphicsWidget*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QLayout*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QMediaPlaylist*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QMediaRecorder*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QOffscreenSurface*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QPdfWriter*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QQuickItem*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QRadioData*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QSignalSpy*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QWidget*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QWindow*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQDBusInterface(QString(service), QString(path), QString(interfa), *static_cast<QDBusConnection*>(connection), static_cast<QObject*>(parent));
+		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QObject*>(parent));
 	}
 }
 
@@ -1227,9 +1227,9 @@ void QDBusInterface_DestroyQDBusInterface(void* ptr)
 	static_cast<QDBusInterface*>(ptr)->~QDBusInterface();
 }
 
-void* QDBusMessage_QDBusMessage_CreateError3(long long ty, char* msg)
+void* QDBusMessage_QDBusMessage_CreateError3(long long ty, struct QtDBus_PackedString msg)
 {
-	return new QDBusMessage(QDBusMessage::createError(static_cast<QDBusError::ErrorType>(ty), QString(msg)));
+	return new QDBusMessage(QDBusMessage::createError(static_cast<QDBusError::ErrorType>(ty), QString::fromUtf8(msg.data, msg.len)));
 }
 
 void* QDBusMessage_QDBusMessage_CreateError2(void* error)
@@ -1237,24 +1237,24 @@ void* QDBusMessage_QDBusMessage_CreateError2(void* error)
 	return new QDBusMessage(QDBusMessage::createError(*static_cast<QDBusError*>(error)));
 }
 
-void* QDBusMessage_QDBusMessage_CreateError(char* name, char* msg)
+void* QDBusMessage_QDBusMessage_CreateError(struct QtDBus_PackedString name, struct QtDBus_PackedString msg)
 {
-	return new QDBusMessage(QDBusMessage::createError(QString(name), QString(msg)));
+	return new QDBusMessage(QDBusMessage::createError(QString::fromUtf8(name.data, name.len), QString::fromUtf8(msg.data, msg.len)));
 }
 
-void* QDBusMessage_QDBusMessage_CreateMethodCall(char* service, char* path, char* interfa, char* method)
+void* QDBusMessage_QDBusMessage_CreateMethodCall(struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString method)
 {
-	return new QDBusMessage(QDBusMessage::createMethodCall(QString(service), QString(path), QString(interfa), QString(method)));
+	return new QDBusMessage(QDBusMessage::createMethodCall(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(method.data, method.len)));
 }
 
-void* QDBusMessage_QDBusMessage_CreateSignal(char* path, char* interfa, char* name)
+void* QDBusMessage_QDBusMessage_CreateSignal(struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name)
 {
-	return new QDBusMessage(QDBusMessage::createSignal(QString(path), QString(interfa), QString(name)));
+	return new QDBusMessage(QDBusMessage::createSignal(QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len)));
 }
 
-void* QDBusMessage_QDBusMessage_CreateTargetedSignal(char* service, char* path, char* interfa, char* name)
+void* QDBusMessage_QDBusMessage_CreateTargetedSignal(struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, struct QtDBus_PackedString name)
 {
-	return new QDBusMessage(QDBusMessage::createTargetedSignal(QString(service), QString(path), QString(interfa), QString(name)));
+	return new QDBusMessage(QDBusMessage::createTargetedSignal(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), QString::fromUtf8(name.data, name.len)));
 }
 
 void* QDBusMessage_NewQDBusMessage()
@@ -1292,9 +1292,9 @@ long long QDBusMessage_Type(void* ptr)
 	return static_cast<QDBusMessage*>(ptr)->type();
 }
 
-void* QDBusMessage_CreateErrorReply3(void* ptr, long long ty, char* msg)
+void* QDBusMessage_CreateErrorReply3(void* ptr, long long ty, struct QtDBus_PackedString msg)
 {
-	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(static_cast<QDBusError::ErrorType>(ty), QString(msg)));
+	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(static_cast<QDBusError::ErrorType>(ty), QString::fromUtf8(msg.data, msg.len)));
 }
 
 void* QDBusMessage_CreateErrorReply2(void* ptr, void* error)
@@ -1302,9 +1302,9 @@ void* QDBusMessage_CreateErrorReply2(void* ptr, void* error)
 	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(*static_cast<QDBusError*>(error)));
 }
 
-void* QDBusMessage_CreateErrorReply(void* ptr, char* name, char* msg)
+void* QDBusMessage_CreateErrorReply(void* ptr, struct QtDBus_PackedString name, struct QtDBus_PackedString msg)
 {
-	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(QString(name), QString(msg)));
+	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(QString::fromUtf8(name.data, name.len), QString::fromUtf8(msg.data, msg.len)));
 }
 
 void* QDBusMessage_CreateReply(void* ptr, void* arguments)
@@ -1435,14 +1435,14 @@ void* QDBusObjectPath_NewQDBusObjectPath3(void* path)
 	return new QDBusObjectPath(*static_cast<QLatin1String*>(path));
 }
 
-void* QDBusObjectPath_NewQDBusObjectPath5(char* p)
+void* QDBusObjectPath_NewQDBusObjectPath5(struct QtDBus_PackedString p)
 {
-	return new QDBusObjectPath(*(new QString(p)));
+	return new QDBusObjectPath(*(new QString(QString::fromUtf8(p.data, p.len))));
 }
 
-void* QDBusObjectPath_NewQDBusObjectPath4(char* path)
+void* QDBusObjectPath_NewQDBusObjectPath4(struct QtDBus_PackedString path)
 {
-	return new QDBusObjectPath(QString(path));
+	return new QDBusObjectPath(QString::fromUtf8(path.data, path.len));
 }
 
 void* QDBusObjectPath_NewQDBusObjectPath2(char* path)
@@ -1450,9 +1450,9 @@ void* QDBusObjectPath_NewQDBusObjectPath2(char* path)
 	return new QDBusObjectPath(const_cast<const char*>(path));
 }
 
-void QDBusObjectPath_SetPath(void* ptr, char* path)
+void QDBusObjectPath_SetPath(void* ptr, struct QtDBus_PackedString path)
 {
-	static_cast<QDBusObjectPath*>(ptr)->setPath(QString(path));
+	static_cast<QDBusObjectPath*>(ptr)->setPath(QString::fromUtf8(path.data, path.len));
 }
 
 void QDBusObjectPath_Swap(void* ptr, void* other)
@@ -1823,44 +1823,44 @@ void* QDBusServer_NewQDBusServer2(void* parent)
 	}
 }
 
-void* QDBusServer_NewQDBusServer(char* address, void* parent)
+void* QDBusServer_NewQDBusServer(struct QtDBus_PackedString address, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QCameraImageCapture*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QExtensionFactory*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QExtensionManager*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QGraphicsObject*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QGraphicsWidget*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QLayout*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QMediaPlaylist*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QMediaRecorder*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QOffscreenSurface*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QPdfWriter*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QQuickItem*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QRadioData*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QSignalSpy*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QWidget*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString(address), static_cast<QWindow*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQDBusServer(QString(address), static_cast<QObject*>(parent));
+		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QObject*>(parent));
 	}
 }
 
@@ -2095,9 +2095,9 @@ void QDBusServiceWatcher_DisconnectServiceRegistered(void* ptr)
 	QObject::disconnect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceRegistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceRegistered));
 }
 
-void QDBusServiceWatcher_ServiceRegistered(void* ptr, char* serviceName)
+void QDBusServiceWatcher_ServiceRegistered(void* ptr, struct QtDBus_PackedString serviceName)
 {
-	static_cast<QDBusServiceWatcher*>(ptr)->serviceRegistered(QString(serviceName));
+	static_cast<QDBusServiceWatcher*>(ptr)->serviceRegistered(QString::fromUtf8(serviceName.data, serviceName.len));
 }
 
 void QDBusServiceWatcher_SetConnection(void* ptr, void* connection)
@@ -2156,55 +2156,55 @@ void* QDBusServiceWatcher_NewQDBusServiceWatcher(void* parent)
 	}
 }
 
-void* QDBusServiceWatcher_NewQDBusServiceWatcher2(char* service, void* connection, long long watchMode, void* parent)
+void* QDBusServiceWatcher_NewQDBusServiceWatcher2(struct QtDBus_PackedString service, void* connection, long long watchMode, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QCameraImageCapture*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QExtensionFactory*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QExtensionManager*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QGraphicsObject*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QGraphicsWidget*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QLayout*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QMediaPlaylist*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QMediaRecorder*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QOffscreenSurface*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QPdfWriter*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QQuickItem*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QRadioData*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QSignalSpy*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QWidget*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QWindow*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQDBusServiceWatcher(QString(service), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QObject*>(parent));
+		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QObject*>(parent));
 	}
 }
 
-char QDBusServiceWatcher_RemoveWatchedService(void* ptr, char* service)
+char QDBusServiceWatcher_RemoveWatchedService(void* ptr, struct QtDBus_PackedString service)
 {
-	return static_cast<QDBusServiceWatcher*>(ptr)->removeWatchedService(QString(service));
+	return static_cast<QDBusServiceWatcher*>(ptr)->removeWatchedService(QString::fromUtf8(service.data, service.len));
 }
 
-void QDBusServiceWatcher_AddWatchedService(void* ptr, char* newService)
+void QDBusServiceWatcher_AddWatchedService(void* ptr, struct QtDBus_PackedString newService)
 {
-	static_cast<QDBusServiceWatcher*>(ptr)->addWatchedService(QString(newService));
+	static_cast<QDBusServiceWatcher*>(ptr)->addWatchedService(QString::fromUtf8(newService.data, newService.len));
 }
 
 void QDBusServiceWatcher_ConnectServiceOwnerChanged(void* ptr)
@@ -2217,9 +2217,9 @@ void QDBusServiceWatcher_DisconnectServiceOwnerChanged(void* ptr)
 	QObject::disconnect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&QDBusServiceWatcher::serviceOwnerChanged), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &, const QString &, const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceOwnerChanged));
 }
 
-void QDBusServiceWatcher_ServiceOwnerChanged(void* ptr, char* serviceName, char* oldOwner, char* newOwner)
+void QDBusServiceWatcher_ServiceOwnerChanged(void* ptr, struct QtDBus_PackedString serviceName, struct QtDBus_PackedString oldOwner, struct QtDBus_PackedString newOwner)
 {
-	static_cast<QDBusServiceWatcher*>(ptr)->serviceOwnerChanged(QString(serviceName), QString(oldOwner), QString(newOwner));
+	static_cast<QDBusServiceWatcher*>(ptr)->serviceOwnerChanged(QString::fromUtf8(serviceName.data, serviceName.len), QString::fromUtf8(oldOwner.data, oldOwner.len), QString::fromUtf8(newOwner.data, newOwner.len));
 }
 
 void QDBusServiceWatcher_ConnectServiceUnregistered(void* ptr)
@@ -2232,14 +2232,14 @@ void QDBusServiceWatcher_DisconnectServiceUnregistered(void* ptr)
 	QObject::disconnect(static_cast<QDBusServiceWatcher*>(ptr), static_cast<void (QDBusServiceWatcher::*)(const QString &)>(&QDBusServiceWatcher::serviceUnregistered), static_cast<MyQDBusServiceWatcher*>(ptr), static_cast<void (MyQDBusServiceWatcher::*)(const QString &)>(&MyQDBusServiceWatcher::Signal_ServiceUnregistered));
 }
 
-void QDBusServiceWatcher_ServiceUnregistered(void* ptr, char* serviceName)
+void QDBusServiceWatcher_ServiceUnregistered(void* ptr, struct QtDBus_PackedString serviceName)
 {
-	static_cast<QDBusServiceWatcher*>(ptr)->serviceUnregistered(QString(serviceName));
+	static_cast<QDBusServiceWatcher*>(ptr)->serviceUnregistered(QString::fromUtf8(serviceName.data, serviceName.len));
 }
 
-void QDBusServiceWatcher_SetWatchedServices(void* ptr, char* services)
+void QDBusServiceWatcher_SetWatchedServices(void* ptr, struct QtDBus_PackedString services)
 {
-	static_cast<QDBusServiceWatcher*>(ptr)->setWatchedServices(QString(services).split("|", QString::SkipEmptyParts));
+	static_cast<QDBusServiceWatcher*>(ptr)->setWatchedServices(QString::fromUtf8(services.data, services.len).split("|", QString::SkipEmptyParts));
 }
 
 void QDBusServiceWatcher_DestroyQDBusServiceWatcher(void* ptr)
@@ -2412,14 +2412,14 @@ void* QDBusSignature_NewQDBusSignature3(void* signature)
 	return new QDBusSignature(*static_cast<QLatin1String*>(signature));
 }
 
-void* QDBusSignature_NewQDBusSignature5(char* sig)
+void* QDBusSignature_NewQDBusSignature5(struct QtDBus_PackedString sig)
 {
-	return new QDBusSignature(*(new QString(sig)));
+	return new QDBusSignature(*(new QString(QString::fromUtf8(sig.data, sig.len))));
 }
 
-void* QDBusSignature_NewQDBusSignature4(char* signature)
+void* QDBusSignature_NewQDBusSignature4(struct QtDBus_PackedString signature)
 {
-	return new QDBusSignature(QString(signature));
+	return new QDBusSignature(QString::fromUtf8(signature.data, signature.len));
 }
 
 void* QDBusSignature_NewQDBusSignature2(char* signature)
@@ -2427,9 +2427,9 @@ void* QDBusSignature_NewQDBusSignature2(char* signature)
 	return new QDBusSignature(const_cast<const char*>(signature));
 }
 
-void QDBusSignature_SetSignature(void* ptr, char* signature)
+void QDBusSignature_SetSignature(void* ptr, struct QtDBus_PackedString signature)
 {
-	static_cast<QDBusSignature*>(ptr)->setSignature(QString(signature));
+	static_cast<QDBusSignature*>(ptr)->setSignature(QString::fromUtf8(signature.data, signature.len));
 }
 
 void QDBusSignature_Swap(void* ptr, void* other)
@@ -2523,7 +2523,7 @@ public:
 	MyQDBusVirtualObject(QObject *parent = Q_NULLPTR) : QDBusVirtualObject(parent) {QDBusVirtualObject_QDBusVirtualObject_QRegisterMetaType();};
 	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, const_cast<QDBusMessage*>(&message), const_cast<QDBusConnection*>(&connection)) != 0; };
 	 ~MyQDBusVirtualObject() { callbackQDBusVirtualObject_DestroyQDBusVirtualObject(this); };
-	QString introspect(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtDBus_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return QString(callbackQDBusVirtualObject_Introspect(const_cast<void*>(static_cast<const void*>(this)), pathPacked)); };
+	QString introspect(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtDBus_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return ({ QtDBus_PackedString tempVal = callbackQDBusVirtualObject_Introspect(const_cast<void*>(static_cast<const void*>(this)), pathPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool event(QEvent * e) { return callbackQDBusVirtualObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusVirtualObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQDBusVirtualObject_ChildEvent(this, event); };
@@ -2598,9 +2598,9 @@ void QDBusVirtualObject_DestroyQDBusVirtualObjectDefault(void* ptr)
 
 }
 
-struct QtDBus_PackedString QDBusVirtualObject_Introspect(void* ptr, char* path)
+struct QtDBus_PackedString QDBusVirtualObject_Introspect(void* ptr, struct QtDBus_PackedString path)
 {
-	return ({ QByteArray t027267 = static_cast<QDBusVirtualObject*>(ptr)->introspect(QString(path)).toUtf8(); QtDBus_PackedString { const_cast<char*>(t027267.prepend("WHITESPACE").constData()+10), t027267.size()-10 }; });
+	return ({ QByteArray tca3d80 = static_cast<QDBusVirtualObject*>(ptr)->introspect(QString::fromUtf8(path.data, path.len)).toUtf8(); QtDBus_PackedString { const_cast<char*>(tca3d80.prepend("WHITESPACE").constData()+10), tca3d80.size()-10 }; });
 }
 
 void* QDBusVirtualObject___dynamicPropertyNames_atList(void* ptr, int i)

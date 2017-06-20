@@ -73,24 +73,24 @@
 #include <QWidget>
 #include <QWindow>
 
-void* QSqlDatabase_QSqlDatabase_AddDatabase2(void* driver, char* connectionName)
+void* QSqlDatabase_QSqlDatabase_AddDatabase2(void* driver, struct QtSql_PackedString connectionName)
 {
-	return new QSqlDatabase(QSqlDatabase::addDatabase(static_cast<QSqlDriver*>(driver), QString(connectionName)));
+	return new QSqlDatabase(QSqlDatabase::addDatabase(static_cast<QSqlDriver*>(driver), QString::fromUtf8(connectionName.data, connectionName.len)));
 }
 
-void* QSqlDatabase_QSqlDatabase_AddDatabase(char* ty, char* connectionName)
+void* QSqlDatabase_QSqlDatabase_AddDatabase(struct QtSql_PackedString ty, struct QtSql_PackedString connectionName)
 {
-	return new QSqlDatabase(QSqlDatabase::addDatabase(QString(ty), QString(connectionName)));
+	return new QSqlDatabase(QSqlDatabase::addDatabase(QString::fromUtf8(ty.data, ty.len), QString::fromUtf8(connectionName.data, connectionName.len)));
 }
 
-void* QSqlDatabase_QSqlDatabase_CloneDatabase(void* other, char* connectionName)
+void* QSqlDatabase_QSqlDatabase_CloneDatabase(void* other, struct QtSql_PackedString connectionName)
 {
-	return new QSqlDatabase(QSqlDatabase::cloneDatabase(*static_cast<QSqlDatabase*>(other), QString(connectionName)));
+	return new QSqlDatabase(QSqlDatabase::cloneDatabase(*static_cast<QSqlDatabase*>(other), QString::fromUtf8(connectionName.data, connectionName.len)));
 }
 
-void* QSqlDatabase_QSqlDatabase_Database(char* connectionName, char open)
+void* QSqlDatabase_QSqlDatabase_Database(struct QtSql_PackedString connectionName, char open)
 {
-	return new QSqlDatabase(QSqlDatabase::database(QString(connectionName), open != 0));
+	return new QSqlDatabase(QSqlDatabase::database(QString::fromUtf8(connectionName.data, connectionName.len), open != 0));
 }
 
 void* QSqlDatabase_NewQSqlDatabase()
@@ -108,9 +108,9 @@ void* QSqlDatabase_NewQSqlDatabase2(void* other)
 	return new QSqlDatabase(*static_cast<QSqlDatabase*>(other));
 }
 
-void* QSqlDatabase_NewQSqlDatabase3(char* ty)
+void* QSqlDatabase_NewQSqlDatabase3(struct QtSql_PackedString ty)
 {
-	return new QSqlDatabase(QString(ty));
+	return new QSqlDatabase(QString::fromUtf8(ty.data, ty.len));
 }
 
 struct QtSql_PackedString QSqlDatabase_QSqlDatabase_ConnectionNames()
@@ -128,14 +128,14 @@ char QSqlDatabase_Commit(void* ptr)
 	return static_cast<QSqlDatabase*>(ptr)->commit();
 }
 
-char QSqlDatabase_QSqlDatabase_Contains(char* connectionName)
+char QSqlDatabase_QSqlDatabase_Contains(struct QtSql_PackedString connectionName)
 {
-	return QSqlDatabase::contains(QString(connectionName));
+	return QSqlDatabase::contains(QString::fromUtf8(connectionName.data, connectionName.len));
 }
 
-char QSqlDatabase_QSqlDatabase_IsDriverAvailable(char* name)
+char QSqlDatabase_QSqlDatabase_IsDriverAvailable(struct QtSql_PackedString name)
 {
-	return QSqlDatabase::isDriverAvailable(QString(name));
+	return QSqlDatabase::isDriverAvailable(QString::fromUtf8(name.data, name.len));
 }
 
 char QSqlDatabase_Open(void* ptr)
@@ -143,9 +143,9 @@ char QSqlDatabase_Open(void* ptr)
 	return static_cast<QSqlDatabase*>(ptr)->open();
 }
 
-char QSqlDatabase_Open2(void* ptr, char* user, char* password)
+char QSqlDatabase_Open2(void* ptr, struct QtSql_PackedString user, struct QtSql_PackedString password)
 {
-	return static_cast<QSqlDatabase*>(ptr)->open(QString(user), QString(password));
+	return static_cast<QSqlDatabase*>(ptr)->open(QString::fromUtf8(user.data, user.len), QString::fromUtf8(password.data, password.len));
 }
 
 char QSqlDatabase_Rollback(void* ptr)
@@ -163,29 +163,29 @@ void QSqlDatabase_Close(void* ptr)
 	static_cast<QSqlDatabase*>(ptr)->close();
 }
 
-void QSqlDatabase_QSqlDatabase_RegisterSqlDriver(char* name, void* creator)
+void QSqlDatabase_QSqlDatabase_RegisterSqlDriver(struct QtSql_PackedString name, void* creator)
 {
-	QSqlDatabase::registerSqlDriver(QString(name), static_cast<QSqlDriverCreatorBase*>(creator));
+	QSqlDatabase::registerSqlDriver(QString::fromUtf8(name.data, name.len), static_cast<QSqlDriverCreatorBase*>(creator));
 }
 
-void QSqlDatabase_QSqlDatabase_RemoveDatabase(char* connectionName)
+void QSqlDatabase_QSqlDatabase_RemoveDatabase(struct QtSql_PackedString connectionName)
 {
-	QSqlDatabase::removeDatabase(QString(connectionName));
+	QSqlDatabase::removeDatabase(QString::fromUtf8(connectionName.data, connectionName.len));
 }
 
-void QSqlDatabase_SetConnectOptions(void* ptr, char* options)
+void QSqlDatabase_SetConnectOptions(void* ptr, struct QtSql_PackedString options)
 {
-	static_cast<QSqlDatabase*>(ptr)->setConnectOptions(QString(options));
+	static_cast<QSqlDatabase*>(ptr)->setConnectOptions(QString::fromUtf8(options.data, options.len));
 }
 
-void QSqlDatabase_SetDatabaseName(void* ptr, char* name)
+void QSqlDatabase_SetDatabaseName(void* ptr, struct QtSql_PackedString name)
 {
-	static_cast<QSqlDatabase*>(ptr)->setDatabaseName(QString(name));
+	static_cast<QSqlDatabase*>(ptr)->setDatabaseName(QString::fromUtf8(name.data, name.len));
 }
 
-void QSqlDatabase_SetHostName(void* ptr, char* host)
+void QSqlDatabase_SetHostName(void* ptr, struct QtSql_PackedString host)
 {
-	static_cast<QSqlDatabase*>(ptr)->setHostName(QString(host));
+	static_cast<QSqlDatabase*>(ptr)->setHostName(QString::fromUtf8(host.data, host.len));
 }
 
 void QSqlDatabase_SetNumericalPrecisionPolicy(void* ptr, long long precisionPolicy)
@@ -193,9 +193,9 @@ void QSqlDatabase_SetNumericalPrecisionPolicy(void* ptr, long long precisionPoli
 	static_cast<QSqlDatabase*>(ptr)->setNumericalPrecisionPolicy(static_cast<QSql::NumericalPrecisionPolicy>(precisionPolicy));
 }
 
-void QSqlDatabase_SetPassword(void* ptr, char* password)
+void QSqlDatabase_SetPassword(void* ptr, struct QtSql_PackedString password)
 {
-	static_cast<QSqlDatabase*>(ptr)->setPassword(QString(password));
+	static_cast<QSqlDatabase*>(ptr)->setPassword(QString::fromUtf8(password.data, password.len));
 }
 
 void QSqlDatabase_SetPort(void* ptr, int port)
@@ -203,9 +203,9 @@ void QSqlDatabase_SetPort(void* ptr, int port)
 	static_cast<QSqlDatabase*>(ptr)->setPort(port);
 }
 
-void QSqlDatabase_SetUserName(void* ptr, char* name)
+void QSqlDatabase_SetUserName(void* ptr, struct QtSql_PackedString name)
 {
-	static_cast<QSqlDatabase*>(ptr)->setUserName(QString(name));
+	static_cast<QSqlDatabase*>(ptr)->setUserName(QString::fromUtf8(name.data, name.len));
 }
 
 void QSqlDatabase_DestroyQSqlDatabase(void* ptr)
@@ -228,19 +228,19 @@ void* QSqlDatabase_LastError(void* ptr)
 	return new QSqlError(static_cast<QSqlDatabase*>(ptr)->lastError());
 }
 
-void* QSqlDatabase_PrimaryIndex(void* ptr, char* tablename)
+void* QSqlDatabase_PrimaryIndex(void* ptr, struct QtSql_PackedString tablename)
 {
-	return new QSqlIndex(static_cast<QSqlDatabase*>(ptr)->primaryIndex(QString(tablename)));
+	return new QSqlIndex(static_cast<QSqlDatabase*>(ptr)->primaryIndex(QString::fromUtf8(tablename.data, tablename.len)));
 }
 
-void* QSqlDatabase_Exec(void* ptr, char* query)
+void* QSqlDatabase_Exec(void* ptr, struct QtSql_PackedString query)
 {
-	return new QSqlQuery(static_cast<QSqlDatabase*>(ptr)->exec(QString(query)));
+	return new QSqlQuery(static_cast<QSqlDatabase*>(ptr)->exec(QString::fromUtf8(query.data, query.len)));
 }
 
-void* QSqlDatabase_Record(void* ptr, char* tablename)
+void* QSqlDatabase_Record(void* ptr, struct QtSql_PackedString tablename)
 {
-	return new QSqlRecord(static_cast<QSqlDatabase*>(ptr)->record(QString(tablename)));
+	return new QSqlRecord(static_cast<QSqlDatabase*>(ptr)->record(QString::fromUtf8(tablename.data, tablename.len)));
 }
 
 struct QtSql_PackedString QSqlDatabase_ConnectOptions(void* ptr)
@@ -327,12 +327,12 @@ public:
 	QSqlIndex primaryIndex(const QString & tableName) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return *static_cast<QSqlIndex*>(callbackQSqlDriver_PrimaryIndex(const_cast<void*>(static_cast<const void*>(this)), tableNamePacked)); };
 	QSqlRecord record(const QString & tableName) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return *static_cast<QSqlRecord*>(callbackQSqlDriver_Record(const_cast<void*>(static_cast<const void*>(this)), tableNamePacked)); };
 	QSqlResult * createResult() const { return static_cast<QSqlResult*>(callbackQSqlDriver_CreateResult(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString escapeIdentifier(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return QString(callbackQSqlDriver_EscapeIdentifier(const_cast<void*>(static_cast<const void*>(this)), identifierPacked, ty)); };
-	QString formatValue(const QSqlField & field, bool trimStrings) const { return QString(callbackQSqlDriver_FormatValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSqlField*>(&field), trimStrings)); };
-	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return QString(callbackQSqlDriver_SqlStatement(const_cast<void*>(static_cast<const void*>(this)), ty, tableNamePacked, const_cast<QSqlRecord*>(&rec), preparedStatement)); };
-	QString stripDelimiters(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return QString(callbackQSqlDriver_StripDelimiters(const_cast<void*>(static_cast<const void*>(this)), identifierPacked, ty)); };
-	QStringList subscribedToNotifications() const { return QString(callbackQSqlDriver_SubscribedToNotifications(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
-	QStringList tables(QSql::TableType tableType) const { return QString(callbackQSqlDriver_Tables(const_cast<void*>(static_cast<const void*>(this)), tableType)).split("|", QString::SkipEmptyParts); };
+	QString escapeIdentifier(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return ({ QtSql_PackedString tempVal = callbackQSqlDriver_EscapeIdentifier(const_cast<void*>(static_cast<const void*>(this)), identifierPacked, ty); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString formatValue(const QSqlField & field, bool trimStrings) const { return ({ QtSql_PackedString tempVal = callbackQSqlDriver_FormatValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QSqlField*>(&field), trimStrings); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return ({ QtSql_PackedString tempVal = callbackQSqlDriver_SqlStatement(const_cast<void*>(static_cast<const void*>(this)), ty, tableNamePacked, const_cast<QSqlRecord*>(&rec), preparedStatement); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString stripDelimiters(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return ({ QtSql_PackedString tempVal = callbackQSqlDriver_StripDelimiters(const_cast<void*>(static_cast<const void*>(this)), identifierPacked, ty); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QStringList subscribedToNotifications() const { return ({ QtSql_PackedString tempVal = callbackQSqlDriver_SubscribedToNotifications(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QStringList tables(QSql::TableType tableType) const { return ({ QtSql_PackedString tempVal = callbackQSqlDriver_Tables(const_cast<void*>(static_cast<const void*>(this)), tableType); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQSqlDriver_Handle(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool hasFeature(QSqlDriver::DriverFeature feature) const { return callbackQSqlDriver_HasFeature(const_cast<void*>(static_cast<const void*>(this)), feature) != 0; };
 	bool isIdentifierEscaped(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return callbackQSqlDriver_IsIdentifierEscaped(const_cast<void*>(static_cast<const void*>(this)), identifierPacked, ty) != 0; };
@@ -415,9 +415,9 @@ char QSqlDriver_CommitTransactionDefault(void* ptr)
 		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::commitTransaction();
 }
 
-char QSqlDriver_Open(void* ptr, char* db, char* user, char* password, char* host, int port, char* options)
+char QSqlDriver_Open(void* ptr, struct QtSql_PackedString db, struct QtSql_PackedString user, struct QtSql_PackedString password, struct QtSql_PackedString host, int port, struct QtSql_PackedString options)
 {
-	return static_cast<QSqlDriver*>(ptr)->open(QString(db), QString(user), QString(password), QString(host), port, QString(options));
+	return static_cast<QSqlDriver*>(ptr)->open(QString::fromUtf8(db.data, db.len), QString::fromUtf8(user.data, user.len), QString::fromUtf8(password.data, password.len), QString::fromUtf8(host.data, host.len), port, QString::fromUtf8(options.data, options.len));
 }
 
 char QSqlDriver_RollbackTransaction(void* ptr)
@@ -430,24 +430,24 @@ char QSqlDriver_RollbackTransactionDefault(void* ptr)
 		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::rollbackTransaction();
 }
 
-char QSqlDriver_SubscribeToNotification(void* ptr, char* name)
+char QSqlDriver_SubscribeToNotification(void* ptr, struct QtSql_PackedString name)
 {
-	return static_cast<QSqlDriver*>(ptr)->subscribeToNotification(QString(name));
+	return static_cast<QSqlDriver*>(ptr)->subscribeToNotification(QString::fromUtf8(name.data, name.len));
 }
 
-char QSqlDriver_SubscribeToNotificationDefault(void* ptr, char* name)
+char QSqlDriver_SubscribeToNotificationDefault(void* ptr, struct QtSql_PackedString name)
 {
-		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::subscribeToNotification(QString(name));
+		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::subscribeToNotification(QString::fromUtf8(name.data, name.len));
 }
 
-char QSqlDriver_UnsubscribeFromNotification(void* ptr, char* name)
+char QSqlDriver_UnsubscribeFromNotification(void* ptr, struct QtSql_PackedString name)
 {
-	return static_cast<QSqlDriver*>(ptr)->unsubscribeFromNotification(QString(name));
+	return static_cast<QSqlDriver*>(ptr)->unsubscribeFromNotification(QString::fromUtf8(name.data, name.len));
 }
 
-char QSqlDriver_UnsubscribeFromNotificationDefault(void* ptr, char* name)
+char QSqlDriver_UnsubscribeFromNotificationDefault(void* ptr, struct QtSql_PackedString name)
 {
-		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::unsubscribeFromNotification(QString(name));
+		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::unsubscribeFromNotification(QString::fromUtf8(name.data, name.len));
 }
 
 void QSqlDriver_Close(void* ptr)
@@ -465,9 +465,9 @@ void QSqlDriver_DisconnectNotification(void* ptr)
 	QObject::disconnect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));
 }
 
-void QSqlDriver_Notification(void* ptr, char* name)
+void QSqlDriver_Notification(void* ptr, struct QtSql_PackedString name)
 {
-	static_cast<QSqlDriver*>(ptr)->notification(QString(name));
+	static_cast<QSqlDriver*>(ptr)->notification(QString::fromUtf8(name.data, name.len));
 }
 
 void QSqlDriver_ConnectNotification2(void* ptr)
@@ -480,9 +480,9 @@ void QSqlDriver_DisconnectNotification2(void* ptr)
 	QObject::disconnect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &, QSqlDriver::NotificationSource, const QVariant &)>(&MyQSqlDriver::Signal_Notification2));
 }
 
-void QSqlDriver_Notification2(void* ptr, char* name, long long source, void* payload)
+void QSqlDriver_Notification2(void* ptr, struct QtSql_PackedString name, long long source, void* payload)
 {
-	static_cast<QSqlDriver*>(ptr)->notification(QString(name), static_cast<QSqlDriver::NotificationSource>(source), *static_cast<QVariant*>(payload));
+	static_cast<QSqlDriver*>(ptr)->notification(QString::fromUtf8(name.data, name.len), static_cast<QSqlDriver::NotificationSource>(source), *static_cast<QVariant*>(payload));
 }
 
 void QSqlDriver_SetLastError(void* ptr, void* error)
@@ -540,24 +540,24 @@ void* QSqlDriver_LastError(void* ptr)
 	return new QSqlError(static_cast<QSqlDriver*>(ptr)->lastError());
 }
 
-void* QSqlDriver_PrimaryIndex(void* ptr, char* tableName)
+void* QSqlDriver_PrimaryIndex(void* ptr, struct QtSql_PackedString tableName)
 {
-	return new QSqlIndex(static_cast<QSqlDriver*>(ptr)->primaryIndex(QString(tableName)));
+	return new QSqlIndex(static_cast<QSqlDriver*>(ptr)->primaryIndex(QString::fromUtf8(tableName.data, tableName.len)));
 }
 
-void* QSqlDriver_PrimaryIndexDefault(void* ptr, char* tableName)
+void* QSqlDriver_PrimaryIndexDefault(void* ptr, struct QtSql_PackedString tableName)
 {
-		return new QSqlIndex(static_cast<QSqlDriver*>(ptr)->QSqlDriver::primaryIndex(QString(tableName)));
+		return new QSqlIndex(static_cast<QSqlDriver*>(ptr)->QSqlDriver::primaryIndex(QString::fromUtf8(tableName.data, tableName.len)));
 }
 
-void* QSqlDriver_Record(void* ptr, char* tableName)
+void* QSqlDriver_Record(void* ptr, struct QtSql_PackedString tableName)
 {
-	return new QSqlRecord(static_cast<QSqlDriver*>(ptr)->record(QString(tableName)));
+	return new QSqlRecord(static_cast<QSqlDriver*>(ptr)->record(QString::fromUtf8(tableName.data, tableName.len)));
 }
 
-void* QSqlDriver_RecordDefault(void* ptr, char* tableName)
+void* QSqlDriver_RecordDefault(void* ptr, struct QtSql_PackedString tableName)
 {
-		return new QSqlRecord(static_cast<QSqlDriver*>(ptr)->QSqlDriver::record(QString(tableName)));
+		return new QSqlRecord(static_cast<QSqlDriver*>(ptr)->QSqlDriver::record(QString::fromUtf8(tableName.data, tableName.len)));
 }
 
 void* QSqlDriver_CreateResult(void* ptr)
@@ -565,14 +565,14 @@ void* QSqlDriver_CreateResult(void* ptr)
 	return static_cast<QSqlDriver*>(ptr)->createResult();
 }
 
-struct QtSql_PackedString QSqlDriver_EscapeIdentifier(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_EscapeIdentifier(void* ptr, struct QtSql_PackedString identifier, long long ty)
 {
-	return ({ QByteArray t83477e = static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(t83477e.prepend("WHITESPACE").constData()+10), t83477e.size()-10 }; });
+	return ({ QByteArray t179a9d = static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(t179a9d.prepend("WHITESPACE").constData()+10), t179a9d.size()-10 }; });
 }
 
-struct QtSql_PackedString QSqlDriver_EscapeIdentifierDefault(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_EscapeIdentifierDefault(void* ptr, struct QtSql_PackedString identifier, long long ty)
 {
-		return ({ QByteArray t7908f7 = static_cast<QSqlDriver*>(ptr)->QSqlDriver::escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(t7908f7.prepend("WHITESPACE").constData()+10), t7908f7.size()-10 }; });
+		return ({ QByteArray t42081b = static_cast<QSqlDriver*>(ptr)->QSqlDriver::escapeIdentifier(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(t42081b.prepend("WHITESPACE").constData()+10), t42081b.size()-10 }; });
 }
 
 struct QtSql_PackedString QSqlDriver_FormatValue(void* ptr, void* field, char trimStrings)
@@ -585,24 +585,24 @@ struct QtSql_PackedString QSqlDriver_FormatValueDefault(void* ptr, void* field, 
 		return ({ QByteArray tcdc4d9 = static_cast<QSqlDriver*>(ptr)->QSqlDriver::formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(tcdc4d9.prepend("WHITESPACE").constData()+10), tcdc4d9.size()-10 }; });
 }
 
-struct QtSql_PackedString QSqlDriver_SqlStatement(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
+struct QtSql_PackedString QSqlDriver_SqlStatement(void* ptr, long long ty, struct QtSql_PackedString tableName, void* rec, char preparedStatement)
 {
-	return ({ QByteArray t1bee39 = static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(t1bee39.prepend("WHITESPACE").constData()+10), t1bee39.size()-10 }; });
+	return ({ QByteArray t404912 = static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString::fromUtf8(tableName.data, tableName.len), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(t404912.prepend("WHITESPACE").constData()+10), t404912.size()-10 }; });
 }
 
-struct QtSql_PackedString QSqlDriver_SqlStatementDefault(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
+struct QtSql_PackedString QSqlDriver_SqlStatementDefault(void* ptr, long long ty, struct QtSql_PackedString tableName, void* rec, char preparedStatement)
 {
-		return ({ QByteArray td11842 = static_cast<QSqlDriver*>(ptr)->QSqlDriver::sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(td11842.prepend("WHITESPACE").constData()+10), td11842.size()-10 }; });
+		return ({ QByteArray t50868f = static_cast<QSqlDriver*>(ptr)->QSqlDriver::sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString::fromUtf8(tableName.data, tableName.len), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(t50868f.prepend("WHITESPACE").constData()+10), t50868f.size()-10 }; });
 }
 
-struct QtSql_PackedString QSqlDriver_StripDelimiters(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_StripDelimiters(void* ptr, struct QtSql_PackedString identifier, long long ty)
 {
-	return ({ QByteArray td6b7fd = static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(td6b7fd.prepend("WHITESPACE").constData()+10), td6b7fd.size()-10 }; });
+	return ({ QByteArray t8be107 = static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(t8be107.prepend("WHITESPACE").constData()+10), t8be107.size()-10 }; });
 }
 
-struct QtSql_PackedString QSqlDriver_StripDelimitersDefault(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_StripDelimitersDefault(void* ptr, struct QtSql_PackedString identifier, long long ty)
 {
-		return ({ QByteArray tdbe1ce = static_cast<QSqlDriver*>(ptr)->QSqlDriver::stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(tdbe1ce.prepend("WHITESPACE").constData()+10), tdbe1ce.size()-10 }; });
+		return ({ QByteArray tb71792 = static_cast<QSqlDriver*>(ptr)->QSqlDriver::stripDelimiters(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(tb71792.prepend("WHITESPACE").constData()+10), tb71792.size()-10 }; });
 }
 
 struct QtSql_PackedString QSqlDriver_SubscribedToNotifications(void* ptr)
@@ -640,14 +640,14 @@ char QSqlDriver_HasFeature(void* ptr, long long feature)
 	return static_cast<QSqlDriver*>(ptr)->hasFeature(static_cast<QSqlDriver::DriverFeature>(feature));
 }
 
-char QSqlDriver_IsIdentifierEscaped(void* ptr, char* identifier, long long ty)
+char QSqlDriver_IsIdentifierEscaped(void* ptr, struct QtSql_PackedString identifier, long long ty)
 {
-	return static_cast<QSqlDriver*>(ptr)->isIdentifierEscaped(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty));
+	return static_cast<QSqlDriver*>(ptr)->isIdentifierEscaped(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSqlDriver::IdentifierType>(ty));
 }
 
-char QSqlDriver_IsIdentifierEscapedDefault(void* ptr, char* identifier, long long ty)
+char QSqlDriver_IsIdentifierEscapedDefault(void* ptr, struct QtSql_PackedString identifier, long long ty)
 {
-		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::isIdentifierEscaped(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty));
+		return static_cast<QSqlDriver*>(ptr)->QSqlDriver::isIdentifierEscaped(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSqlDriver::IdentifierType>(ty));
 }
 
 char QSqlDriver_IsOpen(void* ptr)
@@ -835,9 +835,9 @@ Q_DECLARE_METATYPE(MyQSqlDriverPlugin*)
 
 int QSqlDriverPlugin_QSqlDriverPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQSqlDriverPlugin*>();}
 
-void* QSqlDriverPlugin_Create(void* ptr, char* key)
+void* QSqlDriverPlugin_Create(void* ptr, struct QtSql_PackedString key)
 {
-	return static_cast<QSqlDriverPlugin*>(ptr)->create(QString(key));
+	return static_cast<QSqlDriverPlugin*>(ptr)->create(QString::fromUtf8(key.data, key.len));
 }
 
 void* QSqlDriverPlugin_NewQSqlDriverPlugin(void* parent)
@@ -1021,9 +1021,9 @@ void* QSqlError_NewQSqlError3(void* other)
 	return new QSqlError(*static_cast<QSqlError*>(other));
 }
 
-void* QSqlError_NewQSqlError(char* driverText, char* databaseText, long long ty, char* code)
+void* QSqlError_NewQSqlError(struct QtSql_PackedString driverText, struct QtSql_PackedString databaseText, long long ty, struct QtSql_PackedString code)
 {
-	return new QSqlError(QString(driverText), QString(databaseText), static_cast<QSqlError::ErrorType>(ty), QString(code));
+	return new QSqlError(QString::fromUtf8(driverText.data, driverText.len), QString::fromUtf8(databaseText.data, databaseText.len), static_cast<QSqlError::ErrorType>(ty), QString::fromUtf8(code.data, code.len));
 }
 
 void QSqlError_DestroyQSqlError(void* ptr)
@@ -1061,9 +1061,9 @@ void* QSqlField_NewQSqlField2(void* other)
 	return new QSqlField(*static_cast<QSqlField*>(other));
 }
 
-void* QSqlField_NewQSqlField(char* fieldName, long long ty)
+void* QSqlField_NewQSqlField(struct QtSql_PackedString fieldName, long long ty)
 {
-	return new QSqlField(QString(fieldName), static_cast<QVariant::Type>(ty));
+	return new QSqlField(QString::fromUtf8(fieldName.data, fieldName.len), static_cast<QVariant::Type>(ty));
 }
 
 void QSqlField_Clear(void* ptr)
@@ -1091,9 +1091,9 @@ void QSqlField_SetLength(void* ptr, int fieldLength)
 	static_cast<QSqlField*>(ptr)->setLength(fieldLength);
 }
 
-void QSqlField_SetName(void* ptr, char* name)
+void QSqlField_SetName(void* ptr, struct QtSql_PackedString name)
 {
-	static_cast<QSqlField*>(ptr)->setName(QString(name));
+	static_cast<QSqlField*>(ptr)->setName(QString::fromUtf8(name.data, name.len));
 }
 
 void QSqlField_SetPrecision(void* ptr, int precision)
@@ -1196,9 +1196,9 @@ void* QSqlIndex_NewQSqlIndex2(void* other)
 	return new QSqlIndex(*static_cast<QSqlIndex*>(other));
 }
 
-void* QSqlIndex_NewQSqlIndex(char* cursorname, char* name)
+void* QSqlIndex_NewQSqlIndex(struct QtSql_PackedString cursorname, struct QtSql_PackedString name)
 {
-	return new QSqlIndex(QString(cursorname), QString(name));
+	return new QSqlIndex(QString::fromUtf8(cursorname.data, cursorname.len), QString::fromUtf8(name.data, name.len));
 }
 
 void QSqlIndex_Append2(void* ptr, void* field, char desc)
@@ -1206,9 +1206,9 @@ void QSqlIndex_Append2(void* ptr, void* field, char desc)
 	static_cast<QSqlIndex*>(ptr)->append(*static_cast<QSqlField*>(field), desc != 0);
 }
 
-void QSqlIndex_SetCursorName(void* ptr, char* cursorName)
+void QSqlIndex_SetCursorName(void* ptr, struct QtSql_PackedString cursorName)
 {
-	static_cast<QSqlIndex*>(ptr)->setCursorName(QString(cursorName));
+	static_cast<QSqlIndex*>(ptr)->setCursorName(QString::fromUtf8(cursorName.data, cursorName.len));
 }
 
 void QSqlIndex_SetDescending(void* ptr, int i, char desc)
@@ -1216,9 +1216,9 @@ void QSqlIndex_SetDescending(void* ptr, int i, char desc)
 	static_cast<QSqlIndex*>(ptr)->setDescending(i, desc != 0);
 }
 
-void QSqlIndex_SetName(void* ptr, char* name)
+void QSqlIndex_SetName(void* ptr, struct QtSql_PackedString name)
 {
-	static_cast<QSqlIndex*>(ptr)->setName(QString(name));
+	static_cast<QSqlIndex*>(ptr)->setName(QString::fromUtf8(name.data, name.len));
 }
 
 void QSqlIndex_DestroyQSqlIndex(void* ptr)
@@ -1256,9 +1256,9 @@ void* QSqlQuery_NewQSqlQuery4(void* other)
 	return new QSqlQuery(*static_cast<QSqlQuery*>(other));
 }
 
-void* QSqlQuery_NewQSqlQuery2(char* query, void* db)
+void* QSqlQuery_NewQSqlQuery2(struct QtSql_PackedString query, void* db)
 {
-	return new QSqlQuery(QString(query), *static_cast<QSqlDatabase*>(db));
+	return new QSqlQuery(QString::fromUtf8(query.data, query.len), *static_cast<QSqlDatabase*>(db));
 }
 
 char QSqlQuery_Exec2(void* ptr)
@@ -1266,9 +1266,9 @@ char QSqlQuery_Exec2(void* ptr)
 	return static_cast<QSqlQuery*>(ptr)->exec();
 }
 
-char QSqlQuery_Exec(void* ptr, char* query)
+char QSqlQuery_Exec(void* ptr, struct QtSql_PackedString query)
 {
-	return static_cast<QSqlQuery*>(ptr)->exec(QString(query));
+	return static_cast<QSqlQuery*>(ptr)->exec(QString::fromUtf8(query.data, query.len));
 }
 
 char QSqlQuery_ExecBatch(void* ptr, long long mode)
@@ -1296,9 +1296,9 @@ char QSqlQuery_NextResult(void* ptr)
 	return static_cast<QSqlQuery*>(ptr)->nextResult();
 }
 
-char QSqlQuery_Prepare(void* ptr, char* query)
+char QSqlQuery_Prepare(void* ptr, struct QtSql_PackedString query)
 {
-	return static_cast<QSqlQuery*>(ptr)->prepare(QString(query));
+	return static_cast<QSqlQuery*>(ptr)->prepare(QString::fromUtf8(query.data, query.len));
 }
 
 char QSqlQuery_Previous(void* ptr)
@@ -1316,9 +1316,9 @@ void QSqlQuery_AddBindValue(void* ptr, void* val, long long paramType)
 	static_cast<QSqlQuery*>(ptr)->addBindValue(*static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
 }
 
-void QSqlQuery_BindValue(void* ptr, char* placeholder, void* val, long long paramType)
+void QSqlQuery_BindValue(void* ptr, struct QtSql_PackedString placeholder, void* val, long long paramType)
 {
-	static_cast<QSqlQuery*>(ptr)->bindValue(QString(placeholder), *static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
+	static_cast<QSqlQuery*>(ptr)->bindValue(QString::fromUtf8(placeholder.data, placeholder.len), *static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
 }
 
 void QSqlQuery_BindValue2(void* ptr, int pos, void* val, long long paramType)
@@ -1381,9 +1381,9 @@ struct QtSql_PackedString QSqlQuery_LastQuery(void* ptr)
 	return ({ QByteArray t0d33b2 = static_cast<QSqlQuery*>(ptr)->lastQuery().toUtf8(); QtSql_PackedString { const_cast<char*>(t0d33b2.prepend("WHITESPACE").constData()+10), t0d33b2.size()-10 }; });
 }
 
-void* QSqlQuery_BoundValue(void* ptr, char* placeholder)
+void* QSqlQuery_BoundValue(void* ptr, struct QtSql_PackedString placeholder)
 {
-	return new QVariant(static_cast<QSqlQuery*>(ptr)->boundValue(QString(placeholder)));
+	return new QVariant(static_cast<QSqlQuery*>(ptr)->boundValue(QString::fromUtf8(placeholder.data, placeholder.len)));
 }
 
 void* QSqlQuery_BoundValue2(void* ptr, int pos)
@@ -1396,9 +1396,9 @@ void* QSqlQuery_LastInsertId(void* ptr)
 	return new QVariant(static_cast<QSqlQuery*>(ptr)->lastInsertId());
 }
 
-void* QSqlQuery_Value2(void* ptr, char* name)
+void* QSqlQuery_Value2(void* ptr, struct QtSql_PackedString name)
 {
-	return new QVariant(static_cast<QSqlQuery*>(ptr)->value(QString(name)));
+	return new QVariant(static_cast<QSqlQuery*>(ptr)->value(QString::fromUtf8(name.data, name.len)));
 }
 
 void* QSqlQuery_Value(void* ptr, int index)
@@ -1416,9 +1416,9 @@ char QSqlQuery_IsForwardOnly(void* ptr)
 	return static_cast<QSqlQuery*>(ptr)->isForwardOnly();
 }
 
-char QSqlQuery_IsNull2(void* ptr, char* name)
+char QSqlQuery_IsNull2(void* ptr, struct QtSql_PackedString name)
 {
-	return static_cast<QSqlQuery*>(ptr)->isNull(QString(name));
+	return static_cast<QSqlQuery*>(ptr)->isNull(QString::fromUtf8(name.data, name.len));
 }
 
 char QSqlQuery_IsNull(void* ptr, int field)
@@ -1461,14 +1461,14 @@ int QSqlQuery_Size(void* ptr)
 	return static_cast<QSqlQuery*>(ptr)->size();
 }
 
-void* QSqlQuery___boundValues_atList(void* ptr, char* i)
+void* QSqlQuery___boundValues_atList(void* ptr, struct QtSql_PackedString i)
 {
-	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString(i)));
+	return new QVariant(static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(i.data, i.len)));
 }
 
-void QSqlQuery___boundValues_setList(void* ptr, char* key, void* i)
+void QSqlQuery___boundValues_setList(void* ptr, struct QtSql_PackedString key, void* i)
 {
-	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString(key), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QSqlQuery___boundValues_newList(void* ptr)
@@ -1487,9 +1487,9 @@ struct QtSql_PackedString QSqlQuery_____boundValues_keyList_atList(void* ptr, in
 	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtSql_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
-void QSqlQuery_____boundValues_keyList_setList(void* ptr, char* i)
+void QSqlQuery_____boundValues_keyList_setList(void* ptr, struct QtSql_PackedString i)
 {
-	static_cast<QList<QString>*>(ptr)->append(QString(i));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QSqlQuery_____boundValues_keyList_newList(void* ptr)
@@ -1554,7 +1554,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQSqlQueryModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlQueryModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return QString(callbackQSqlQueryModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
+	QStringList mimeTypes() const { return ({ QtSql_PackedString tempVal = callbackQSqlQueryModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlQueryModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -1703,9 +1703,9 @@ void QSqlQueryModel_SetQuery(void* ptr, void* query)
 	static_cast<QSqlQueryModel*>(ptr)->setQuery(*static_cast<QSqlQuery*>(query));
 }
 
-void QSqlQueryModel_SetQuery2(void* ptr, char* query, void* db)
+void QSqlQueryModel_SetQuery2(void* ptr, struct QtSql_PackedString query, void* db)
 {
-	static_cast<QSqlQueryModel*>(ptr)->setQuery(QString(query), *static_cast<QSqlDatabase*>(db));
+	static_cast<QSqlQueryModel*>(ptr)->setQuery(QString::fromUtf8(query.data, query.len), *static_cast<QSqlDatabase*>(db));
 }
 
 void QSqlQueryModel_DestroyQSqlQueryModel(void* ptr)
@@ -2601,9 +2601,9 @@ void QSqlRecord_Replace(void* ptr, int pos, void* field)
 	static_cast<QSqlRecord*>(ptr)->replace(pos, *static_cast<QSqlField*>(field));
 }
 
-void QSqlRecord_SetGenerated(void* ptr, char* name, char generated)
+void QSqlRecord_SetGenerated(void* ptr, struct QtSql_PackedString name, char generated)
 {
-	static_cast<QSqlRecord*>(ptr)->setGenerated(QString(name), generated != 0);
+	static_cast<QSqlRecord*>(ptr)->setGenerated(QString::fromUtf8(name.data, name.len), generated != 0);
 }
 
 void QSqlRecord_SetGenerated2(void* ptr, int index, char generated)
@@ -2611,9 +2611,9 @@ void QSqlRecord_SetGenerated2(void* ptr, int index, char generated)
 	static_cast<QSqlRecord*>(ptr)->setGenerated(index, generated != 0);
 }
 
-void QSqlRecord_SetNull2(void* ptr, char* name)
+void QSqlRecord_SetNull2(void* ptr, struct QtSql_PackedString name)
 {
-	static_cast<QSqlRecord*>(ptr)->setNull(QString(name));
+	static_cast<QSqlRecord*>(ptr)->setNull(QString::fromUtf8(name.data, name.len));
 }
 
 void QSqlRecord_SetNull(void* ptr, int index)
@@ -2621,9 +2621,9 @@ void QSqlRecord_SetNull(void* ptr, int index)
 	static_cast<QSqlRecord*>(ptr)->setNull(index);
 }
 
-void QSqlRecord_SetValue2(void* ptr, char* name, void* val)
+void QSqlRecord_SetValue2(void* ptr, struct QtSql_PackedString name, void* val)
 {
-	static_cast<QSqlRecord*>(ptr)->setValue(QString(name), *static_cast<QVariant*>(val));
+	static_cast<QSqlRecord*>(ptr)->setValue(QString::fromUtf8(name.data, name.len), *static_cast<QVariant*>(val));
 }
 
 void QSqlRecord_SetValue(void* ptr, int index, void* val)
@@ -2636,9 +2636,9 @@ void QSqlRecord_DestroyQSqlRecord(void* ptr)
 	static_cast<QSqlRecord*>(ptr)->~QSqlRecord();
 }
 
-void* QSqlRecord_Field2(void* ptr, char* name)
+void* QSqlRecord_Field2(void* ptr, struct QtSql_PackedString name)
 {
-	return new QSqlField(static_cast<QSqlRecord*>(ptr)->field(QString(name)));
+	return new QSqlField(static_cast<QSqlRecord*>(ptr)->field(QString::fromUtf8(name.data, name.len)));
 }
 
 void* QSqlRecord_Field(void* ptr, int index)
@@ -2656,9 +2656,9 @@ struct QtSql_PackedString QSqlRecord_FieldName(void* ptr, int index)
 	return ({ QByteArray te132cb = static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8(); QtSql_PackedString { const_cast<char*>(te132cb.prepend("WHITESPACE").constData()+10), te132cb.size()-10 }; });
 }
 
-void* QSqlRecord_Value2(void* ptr, char* name)
+void* QSqlRecord_Value2(void* ptr, struct QtSql_PackedString name)
 {
-	return new QVariant(static_cast<QSqlRecord*>(ptr)->value(QString(name)));
+	return new QVariant(static_cast<QSqlRecord*>(ptr)->value(QString::fromUtf8(name.data, name.len)));
 }
 
 void* QSqlRecord_Value(void* ptr, int index)
@@ -2666,9 +2666,9 @@ void* QSqlRecord_Value(void* ptr, int index)
 	return new QVariant(static_cast<QSqlRecord*>(ptr)->value(index));
 }
 
-char QSqlRecord_Contains(void* ptr, char* name)
+char QSqlRecord_Contains(void* ptr, struct QtSql_PackedString name)
 {
-	return static_cast<QSqlRecord*>(ptr)->contains(QString(name));
+	return static_cast<QSqlRecord*>(ptr)->contains(QString::fromUtf8(name.data, name.len));
 }
 
 char QSqlRecord_IsEmpty(void* ptr)
@@ -2676,9 +2676,9 @@ char QSqlRecord_IsEmpty(void* ptr)
 	return static_cast<QSqlRecord*>(ptr)->isEmpty();
 }
 
-char QSqlRecord_IsGenerated(void* ptr, char* name)
+char QSqlRecord_IsGenerated(void* ptr, struct QtSql_PackedString name)
 {
-	return static_cast<QSqlRecord*>(ptr)->isGenerated(QString(name));
+	return static_cast<QSqlRecord*>(ptr)->isGenerated(QString::fromUtf8(name.data, name.len));
 }
 
 char QSqlRecord_IsGenerated2(void* ptr, int index)
@@ -2686,9 +2686,9 @@ char QSqlRecord_IsGenerated2(void* ptr, int index)
 	return static_cast<QSqlRecord*>(ptr)->isGenerated(index);
 }
 
-char QSqlRecord_IsNull(void* ptr, char* name)
+char QSqlRecord_IsNull(void* ptr, struct QtSql_PackedString name)
 {
-	return static_cast<QSqlRecord*>(ptr)->isNull(QString(name));
+	return static_cast<QSqlRecord*>(ptr)->isNull(QString::fromUtf8(name.data, name.len));
 }
 
 char QSqlRecord_IsNull2(void* ptr, int index)
@@ -2701,9 +2701,9 @@ int QSqlRecord_Count(void* ptr)
 	return static_cast<QSqlRecord*>(ptr)->count();
 }
 
-int QSqlRecord_IndexOf(void* ptr, char* name)
+int QSqlRecord_IndexOf(void* ptr, struct QtSql_PackedString name)
 {
-	return static_cast<QSqlRecord*>(ptr)->indexOf(QString(name));
+	return static_cast<QSqlRecord*>(ptr)->indexOf(QString::fromUtf8(name.data, name.len));
 }
 
 void* QSqlRelation_NewQSqlRelation()
@@ -2711,9 +2711,9 @@ void* QSqlRelation_NewQSqlRelation()
 	return new QSqlRelation();
 }
 
-void* QSqlRelation_NewQSqlRelation2(char* tableName, char* indexColumn, char* displayColumn)
+void* QSqlRelation_NewQSqlRelation2(struct QtSql_PackedString tableName, struct QtSql_PackedString indexColumn, struct QtSql_PackedString displayColumn)
 {
-	return new QSqlRelation(QString(tableName), QString(indexColumn), QString(displayColumn));
+	return new QSqlRelation(QString::fromUtf8(tableName.data, tableName.len), QString::fromUtf8(indexColumn.data, indexColumn.len), QString::fromUtf8(displayColumn.data, displayColumn.len));
 }
 
 void QSqlRelation_Swap(void* ptr, void* other)
@@ -2939,9 +2939,9 @@ void QSqlRelationalDelegate_DrawDecorationDefault(void* ptr, void* painter, void
 		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
 }
 
-void QSqlRelationalDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, char* text)
+void QSqlRelationalDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, struct QtSql_PackedString text)
 {
-		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString::fromUtf8(text.data, text.len));
 }
 
 void QSqlRelationalDelegate_DrawFocusDefault(void* ptr, void* painter, void* option, void* rect)
@@ -3029,8 +3029,8 @@ public:
 	void setTable(const QString & table) { QByteArray tc3ee13 = table.toUtf8(); QtSql_PackedString tablePacked = { const_cast<char*>(tc3ee13.prepend("WHITESPACE").constData()+10), tc3ee13.size()-10 };callbackQSqlTableModel_SetTable(this, tablePacked); };
 	 ~MyQSqlRelationalTableModel() { callbackQSqlRelationalTableModel_DestroyQSqlRelationalTableModel(this); };
 	QSqlTableModel * relationModel(int column) const { return static_cast<QSqlTableModel*>(callbackQSqlRelationalTableModel_RelationModel(const_cast<void*>(static_cast<const void*>(this)), column)); };
-	QString orderByClause() const { return QString(callbackQSqlTableModel_OrderByClause(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString selectStatement() const { return QString(callbackQSqlTableModel_SelectStatement(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString orderByClause() const { return ({ QtSql_PackedString tempVal = callbackQSqlTableModel_OrderByClause(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString selectStatement() const { return ({ QtSql_PackedString tempVal = callbackQSqlTableModel_SelectStatement(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	bool deleteRowFromTable(int row) { return callbackQSqlTableModel_DeleteRowFromTable(this, row) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -3090,7 +3090,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQSqlQueryModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlQueryModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return QString(callbackQSqlQueryModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
+	QStringList mimeTypes() const { return ({ QtSql_PackedString tempVal = callbackQSqlQueryModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlQueryModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -3305,29 +3305,29 @@ char QSqlResult_IsNull(void* ptr, int index)
 	return static_cast<QSqlResult*>(ptr)->isNull(index);
 }
 
-char QSqlResult_Prepare(void* ptr, char* query)
+char QSqlResult_Prepare(void* ptr, struct QtSql_PackedString query)
 {
-	return static_cast<QSqlResult*>(ptr)->prepare(QString(query));
+	return static_cast<QSqlResult*>(ptr)->prepare(QString::fromUtf8(query.data, query.len));
 }
 
-char QSqlResult_PrepareDefault(void* ptr, char* query)
+char QSqlResult_PrepareDefault(void* ptr, struct QtSql_PackedString query)
 {
-		return static_cast<QSqlResult*>(ptr)->QSqlResult::prepare(QString(query));
+		return static_cast<QSqlResult*>(ptr)->QSqlResult::prepare(QString::fromUtf8(query.data, query.len));
 }
 
-char QSqlResult_Reset(void* ptr, char* query)
+char QSqlResult_Reset(void* ptr, struct QtSql_PackedString query)
 {
-	return static_cast<QSqlResult*>(ptr)->reset(QString(query));
+	return static_cast<QSqlResult*>(ptr)->reset(QString::fromUtf8(query.data, query.len));
 }
 
-char QSqlResult_SavePrepare(void* ptr, char* query)
+char QSqlResult_SavePrepare(void* ptr, struct QtSql_PackedString query)
 {
-	return static_cast<QSqlResult*>(ptr)->savePrepare(QString(query));
+	return static_cast<QSqlResult*>(ptr)->savePrepare(QString::fromUtf8(query.data, query.len));
 }
 
-char QSqlResult_SavePrepareDefault(void* ptr, char* query)
+char QSqlResult_SavePrepareDefault(void* ptr, struct QtSql_PackedString query)
 {
-		return static_cast<QSqlResult*>(ptr)->QSqlResult::savePrepare(QString(query));
+		return static_cast<QSqlResult*>(ptr)->QSqlResult::savePrepare(QString::fromUtf8(query.data, query.len));
 }
 
 int QSqlResult_NumRowsAffected(void* ptr)
@@ -3345,14 +3345,14 @@ void QSqlResult_AddBindValue(void* ptr, void* val, long long paramType)
 	static_cast<QSqlResult*>(ptr)->addBindValue(*static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
 }
 
-void QSqlResult_BindValue2(void* ptr, char* placeholder, void* val, long long paramType)
+void QSqlResult_BindValue2(void* ptr, struct QtSql_PackedString placeholder, void* val, long long paramType)
 {
-	static_cast<QSqlResult*>(ptr)->bindValue(QString(placeholder), *static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
+	static_cast<QSqlResult*>(ptr)->bindValue(QString::fromUtf8(placeholder.data, placeholder.len), *static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
 }
 
-void QSqlResult_BindValue2Default(void* ptr, char* placeholder, void* val, long long paramType)
+void QSqlResult_BindValue2Default(void* ptr, struct QtSql_PackedString placeholder, void* val, long long paramType)
 {
-		static_cast<QSqlResult*>(ptr)->QSqlResult::bindValue(QString(placeholder), *static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
+		static_cast<QSqlResult*>(ptr)->QSqlResult::bindValue(QString::fromUtf8(placeholder.data, placeholder.len), *static_cast<QVariant*>(val), static_cast<QSql::ParamTypeFlag>(paramType));
 }
 
 void QSqlResult_BindValue(void* ptr, int index, void* val, long long paramType)
@@ -3415,14 +3415,14 @@ void QSqlResult_SetLastErrorDefault(void* ptr, void* error)
 		static_cast<QSqlResult*>(ptr)->QSqlResult::setLastError(*static_cast<QSqlError*>(error));
 }
 
-void QSqlResult_SetQuery(void* ptr, char* query)
+void QSqlResult_SetQuery(void* ptr, struct QtSql_PackedString query)
 {
-	static_cast<QSqlResult*>(ptr)->setQuery(QString(query));
+	static_cast<QSqlResult*>(ptr)->setQuery(QString::fromUtf8(query.data, query.len));
 }
 
-void QSqlResult_SetQueryDefault(void* ptr, char* query)
+void QSqlResult_SetQueryDefault(void* ptr, struct QtSql_PackedString query)
 {
-		static_cast<QSqlResult*>(ptr)->QSqlResult::setQuery(QString(query));
+		static_cast<QSqlResult*>(ptr)->QSqlResult::setQuery(QString::fromUtf8(query.data, query.len));
 }
 
 void QSqlResult_SetSelect(void* ptr, char sele)
@@ -3451,9 +3451,9 @@ long long QSqlResult_BindingSyntax(void* ptr)
 	return static_cast<QSqlResult*>(ptr)->bindingSyntax();
 }
 
-long long QSqlResult_BindValueType2(void* ptr, char* placeholder)
+long long QSqlResult_BindValueType2(void* ptr, struct QtSql_PackedString placeholder)
 {
-	return static_cast<QSqlResult*>(ptr)->bindValueType(QString(placeholder));
+	return static_cast<QSqlResult*>(ptr)->bindValueType(QString::fromUtf8(placeholder.data, placeholder.len));
 }
 
 long long QSqlResult_BindValueType(void* ptr, int index)
@@ -3491,9 +3491,9 @@ struct QtSql_PackedString QSqlResult_LastQuery(void* ptr)
 	return ({ QByteArray t9bd7f1 = static_cast<QSqlResult*>(ptr)->lastQuery().toUtf8(); QtSql_PackedString { const_cast<char*>(t9bd7f1.prepend("WHITESPACE").constData()+10), t9bd7f1.size()-10 }; });
 }
 
-void* QSqlResult_BoundValue2(void* ptr, char* placeholder)
+void* QSqlResult_BoundValue2(void* ptr, struct QtSql_PackedString placeholder)
 {
-	return new QVariant(static_cast<QSqlResult*>(ptr)->boundValue(QString(placeholder)));
+	return new QVariant(static_cast<QSqlResult*>(ptr)->boundValue(QString::fromUtf8(placeholder.data, placeholder.len)));
 }
 
 void* QSqlResult_BoundValue(void* ptr, int index)
@@ -3610,8 +3610,8 @@ public:
 	void sort(int column, Qt::SortOrder order) { callbackQSqlQueryModel_Sort(this, column, order); };
 	 ~MyQSqlTableModel() { callbackQSqlTableModel_DestroyQSqlTableModel(this); };
 	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_IndexInQuery(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&item))); };
-	QString orderByClause() const { return QString(callbackQSqlTableModel_OrderByClause(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString selectStatement() const { return QString(callbackQSqlTableModel_SelectStatement(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString orderByClause() const { return ({ QtSql_PackedString tempVal = callbackQSqlTableModel_OrderByClause(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString selectStatement() const { return ({ QtSql_PackedString tempVal = callbackQSqlTableModel_SelectStatement(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSqlQueryModel_Flags(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
@@ -3656,7 +3656,7 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQSqlQueryModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlQueryModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QStringList mimeTypes() const { return QString(callbackQSqlQueryModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this)))).split("|", QString::SkipEmptyParts); };
+	QStringList mimeTypes() const { return ({ QtSql_PackedString tempVal = callbackQSqlQueryModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlQueryModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -3921,17 +3921,17 @@ void QSqlTableModel_SetEditStrategyDefault(void* ptr, long long strategy)
 	}
 }
 
-void QSqlTableModel_SetFilter(void* ptr, char* filter)
+void QSqlTableModel_SetFilter(void* ptr, struct QtSql_PackedString filter)
 {
-	static_cast<QSqlTableModel*>(ptr)->setFilter(QString(filter));
+	static_cast<QSqlTableModel*>(ptr)->setFilter(QString::fromUtf8(filter.data, filter.len));
 }
 
-void QSqlTableModel_SetFilterDefault(void* ptr, char* filter)
+void QSqlTableModel_SetFilterDefault(void* ptr, struct QtSql_PackedString filter)
 {
 	if (dynamic_cast<QSqlRelationalTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setFilter(QString(filter));
+		static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setFilter(QString::fromUtf8(filter.data, filter.len));
 	} else {
-		static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::setFilter(QString(filter));
+		static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::setFilter(QString::fromUtf8(filter.data, filter.len));
 	}
 }
 
@@ -3954,17 +3954,17 @@ void QSqlTableModel_SetSortDefault(void* ptr, int column, long long order)
 	}
 }
 
-void QSqlTableModel_SetTable(void* ptr, char* tableName)
+void QSqlTableModel_SetTable(void* ptr, struct QtSql_PackedString tableName)
 {
-	static_cast<QSqlTableModel*>(ptr)->setTable(QString(tableName));
+	static_cast<QSqlTableModel*>(ptr)->setTable(QString::fromUtf8(tableName.data, tableName.len));
 }
 
-void QSqlTableModel_SetTableDefault(void* ptr, char* tableName)
+void QSqlTableModel_SetTableDefault(void* ptr, struct QtSql_PackedString tableName)
 {
 	if (dynamic_cast<QSqlRelationalTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setTable(QString(tableName));
+		static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setTable(QString::fromUtf8(tableName.data, tableName.len));
 	} else {
-		static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::setTable(QString(tableName));
+		static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::setTable(QString::fromUtf8(tableName.data, tableName.len));
 	}
 }
 
@@ -4047,8 +4047,8 @@ char QSqlTableModel_IsDirty(void* ptr, void* index)
 	return static_cast<QSqlTableModel*>(ptr)->isDirty(*static_cast<QModelIndex*>(index));
 }
 
-int QSqlTableModel_FieldIndex(void* ptr, char* fieldName)
+int QSqlTableModel_FieldIndex(void* ptr, struct QtSql_PackedString fieldName)
 {
-	return static_cast<QSqlTableModel*>(ptr)->fieldIndex(QString(fieldName));
+	return static_cast<QSqlTableModel*>(ptr)->fieldIndex(QString::fromUtf8(fieldName.data, fieldName.len));
 }
 

@@ -309,14 +309,14 @@ void QInAppStore_DisconnectProductUnknown(void* ptr)
 	QObject::disconnect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&QInAppStore::productUnknown), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&MyQInAppStore::Signal_ProductUnknown));
 }
 
-void QInAppStore_ProductUnknown(void* ptr, long long productType, char* identifier)
+void QInAppStore_ProductUnknown(void* ptr, long long productType, struct QtPurchasing_PackedString identifier)
 {
-	static_cast<QInAppStore*>(ptr)->productUnknown(static_cast<QInAppProduct::ProductType>(productType), QString(identifier));
+	static_cast<QInAppStore*>(ptr)->productUnknown(static_cast<QInAppProduct::ProductType>(productType), QString::fromUtf8(identifier.data, identifier.len));
 }
 
-void QInAppStore_RegisterProduct(void* ptr, long long productType, char* identifier)
+void QInAppStore_RegisterProduct(void* ptr, long long productType, struct QtPurchasing_PackedString identifier)
 {
-	static_cast<QInAppStore*>(ptr)->registerProduct(static_cast<QInAppProduct::ProductType>(productType), QString(identifier));
+	static_cast<QInAppStore*>(ptr)->registerProduct(static_cast<QInAppProduct::ProductType>(productType), QString::fromUtf8(identifier.data, identifier.len));
 }
 
 void QInAppStore_RestorePurchases(void* ptr)
@@ -324,9 +324,9 @@ void QInAppStore_RestorePurchases(void* ptr)
 	static_cast<QInAppStore*>(ptr)->restorePurchases();
 }
 
-void QInAppStore_SetPlatformProperty(void* ptr, char* propertyName, char* value)
+void QInAppStore_SetPlatformProperty(void* ptr, struct QtPurchasing_PackedString propertyName, struct QtPurchasing_PackedString value)
 {
-	static_cast<QInAppStore*>(ptr)->setPlatformProperty(QString(propertyName), QString(value));
+	static_cast<QInAppStore*>(ptr)->setPlatformProperty(QString::fromUtf8(propertyName.data, propertyName.len), QString::fromUtf8(value.data, value.len));
 }
 
 void QInAppStore_ConnectTransactionReady(void* ptr)
@@ -349,9 +349,9 @@ void QInAppStore_DestroyQInAppStore(void* ptr)
 	static_cast<QInAppStore*>(ptr)->~QInAppStore();
 }
 
-void* QInAppStore_RegisteredProduct(void* ptr, char* identifier)
+void* QInAppStore_RegisteredProduct(void* ptr, struct QtPurchasing_PackedString identifier)
 {
-	return static_cast<QInAppStore*>(ptr)->registeredProduct(QString(identifier));
+	return static_cast<QInAppStore*>(ptr)->registeredProduct(QString::fromUtf8(identifier.data, identifier.len));
 }
 
 void* QInAppStore___dynamicPropertyNames_atList(void* ptr, int i)
@@ -482,12 +482,12 @@ void* QInAppStore_MetaObjectDefault(void* ptr)
 class MyQInAppTransaction: public QInAppTransaction
 {
 public:
-	QString errorString() const { return QString(callbackQInAppTransaction_ErrorString(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString orderId() const { return QString(callbackQInAppTransaction_OrderId(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString errorString() const { return ({ QtPurchasing_PackedString tempVal = callbackQInAppTransaction_ErrorString(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString orderId() const { return ({ QtPurchasing_PackedString tempVal = callbackQInAppTransaction_OrderId(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	void finalize() { callbackQInAppTransaction_Finalize(this); };
 	FailureReason failureReason() const { return static_cast<QInAppTransaction::FailureReason>(callbackQInAppTransaction_FailureReason(const_cast<void*>(static_cast<const void*>(this)))); };
 	QDateTime timestamp() const { return *static_cast<QDateTime*>(callbackQInAppTransaction_Timestamp(const_cast<void*>(static_cast<const void*>(this)))); };
-	QString platformProperty(const QString & propertyName) const { QByteArray tdeaeb2 = propertyName.toUtf8(); QtPurchasing_PackedString propertyNamePacked = { const_cast<char*>(tdeaeb2.prepend("WHITESPACE").constData()+10), tdeaeb2.size()-10 };return QString(callbackQInAppTransaction_PlatformProperty(const_cast<void*>(static_cast<const void*>(this)), propertyNamePacked)); };
+	QString platformProperty(const QString & propertyName) const { QByteArray tdeaeb2 = propertyName.toUtf8(); QtPurchasing_PackedString propertyNamePacked = { const_cast<char*>(tdeaeb2.prepend("WHITESPACE").constData()+10), tdeaeb2.size()-10 };return ({ QtPurchasing_PackedString tempVal = callbackQInAppTransaction_PlatformProperty(const_cast<void*>(static_cast<const void*>(this)), propertyNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool event(QEvent * e) { return callbackQInAppTransaction_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppTransaction_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQInAppTransaction_ChildEvent(this, event); };
@@ -555,14 +555,14 @@ void* QInAppTransaction_Product(void* ptr)
 	return static_cast<QInAppTransaction*>(ptr)->product();
 }
 
-struct QtPurchasing_PackedString QInAppTransaction_PlatformProperty(void* ptr, char* propertyName)
+struct QtPurchasing_PackedString QInAppTransaction_PlatformProperty(void* ptr, struct QtPurchasing_PackedString propertyName)
 {
-	return ({ QByteArray t620381 = static_cast<QInAppTransaction*>(ptr)->platformProperty(QString(propertyName)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t620381.prepend("WHITESPACE").constData()+10), t620381.size()-10 }; });
+	return ({ QByteArray t2b73cb = static_cast<QInAppTransaction*>(ptr)->platformProperty(QString::fromUtf8(propertyName.data, propertyName.len)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t2b73cb.prepend("WHITESPACE").constData()+10), t2b73cb.size()-10 }; });
 }
 
-struct QtPurchasing_PackedString QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName)
+struct QtPurchasing_PackedString QInAppTransaction_PlatformPropertyDefault(void* ptr, struct QtPurchasing_PackedString propertyName)
 {
-		return ({ QByteArray tce28f9 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tce28f9.prepend("WHITESPACE").constData()+10), tce28f9.size()-10 }; });
+		return ({ QByteArray t2cb180 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString::fromUtf8(propertyName.data, propertyName.len)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t2cb180.prepend("WHITESPACE").constData()+10), t2cb180.size()-10 }; });
 }
 
 long long QInAppTransaction_Status(void* ptr)

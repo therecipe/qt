@@ -525,7 +525,7 @@ func (ptr *QNdefNfcSmartPosterRecord) AddTitle2(text string, locale string, enco
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		return C.QNdefNfcSmartPosterRecord_AddTitle2(ptr.Pointer(), textC, localeC, C.longlong(encoding)) != 0
+		return C.QNdefNfcSmartPosterRecord_AddTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{textC, C.longlong(len(text))}, C.struct_QtNfc_PackedString{localeC, C.longlong(len(locale))}, C.longlong(encoding)) != 0
 	}
 	return false
 }
@@ -551,7 +551,7 @@ func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle2(locale string) bool {
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		return C.QNdefNfcSmartPosterRecord_RemoveTitle2(ptr.Pointer(), localeC) != 0
+		return C.QNdefNfcSmartPosterRecord_RemoveTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{localeC, C.longlong(len(locale))}) != 0
 	}
 	return false
 }
@@ -662,7 +662,7 @@ func (ptr *QNdefNfcSmartPosterRecord) Title(locale string) string {
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		return cGoUnpackString(C.QNdefNfcSmartPosterRecord_Title(ptr.Pointer(), localeC))
+		return cGoUnpackString(C.QNdefNfcSmartPosterRecord_Title(ptr.Pointer(), C.struct_QtNfc_PackedString{localeC, C.longlong(len(locale))}))
 	}
 	return ""
 }
@@ -704,7 +704,7 @@ func (ptr *QNdefNfcSmartPosterRecord) HasTitle(locale string) bool {
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		return C.QNdefNfcSmartPosterRecord_HasTitle(ptr.Pointer(), localeC) != 0
+		return C.QNdefNfcSmartPosterRecord_HasTitle(ptr.Pointer(), C.struct_QtNfc_PackedString{localeC, C.longlong(len(locale))}) != 0
 	}
 	return false
 }
@@ -864,7 +864,7 @@ func (ptr *QNdefNfcTextRecord) SetLocale(locale string) {
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		C.QNdefNfcTextRecord_SetLocale(ptr.Pointer(), localeC)
+		C.QNdefNfcTextRecord_SetLocale(ptr.Pointer(), C.struct_QtNfc_PackedString{localeC, C.longlong(len(locale))})
 	}
 }
 
@@ -875,7 +875,7 @@ func (ptr *QNdefNfcTextRecord) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QNdefNfcTextRecord_SetText(ptr.Pointer(), textC)
+		C.QNdefNfcTextRecord_SetText(ptr.Pointer(), C.struct_QtNfc_PackedString{textC, C.longlong(len(text))})
 	}
 }
 
@@ -3418,7 +3418,7 @@ func (ptr *QQmlNdefRecord) SetType(newtype string) {
 			newtypeC = C.CString(newtype)
 			defer C.free(unsafe.Pointer(newtypeC))
 		}
-		C.QQmlNdefRecord_SetType(ptr.Pointer(), newtypeC)
+		C.QQmlNdefRecord_SetType(ptr.Pointer(), C.struct_QtNfc_PackedString{newtypeC, C.longlong(len(newtype))})
 	}
 }
 

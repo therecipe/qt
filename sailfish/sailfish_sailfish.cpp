@@ -41,8 +41,8 @@ void* SailfishApp_SailfishApp_CreateView()
 	return SailfishApp::createView();
 }
 
-void* SailfishApp_SailfishApp_PathTo(char* filename)
+void* SailfishApp_SailfishApp_PathTo(struct QtSailfish_PackedString filename)
 {
-	return new QUrl(SailfishApp::pathTo(*(new QString(filename))));
+	return new QUrl(SailfishApp::pathTo(*(new QString(QString::fromUtf8(filename.data, filename.len)))));
 }
 

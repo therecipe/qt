@@ -524,7 +524,7 @@ func (ptr *QInAppStore) ProductUnknown(productType QInAppProduct__ProductType, i
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		C.QInAppStore_ProductUnknown(ptr.Pointer(), C.longlong(productType), identifierC)
+		C.QInAppStore_ProductUnknown(ptr.Pointer(), C.longlong(productType), C.struct_QtPurchasing_PackedString{identifierC, C.longlong(len(identifier))})
 	}
 }
 
@@ -535,7 +535,7 @@ func (ptr *QInAppStore) RegisterProduct(productType QInAppProduct__ProductType, 
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		C.QInAppStore_RegisterProduct(ptr.Pointer(), C.longlong(productType), identifierC)
+		C.QInAppStore_RegisterProduct(ptr.Pointer(), C.longlong(productType), C.struct_QtPurchasing_PackedString{identifierC, C.longlong(len(identifier))})
 	}
 }
 
@@ -557,7 +557,7 @@ func (ptr *QInAppStore) SetPlatformProperty(propertyName string, value string) {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QInAppStore_SetPlatformProperty(ptr.Pointer(), propertyNameC, valueC)
+		C.QInAppStore_SetPlatformProperty(ptr.Pointer(), C.struct_QtPurchasing_PackedString{propertyNameC, C.longlong(len(propertyName))}, C.struct_QtPurchasing_PackedString{valueC, C.longlong(len(value))})
 	}
 }
 
@@ -615,7 +615,7 @@ func (ptr *QInAppStore) RegisteredProduct(identifier string) *QInAppProduct {
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		var tmpValue = NewQInAppProductFromPointer(C.QInAppStore_RegisteredProduct(ptr.Pointer(), identifierC))
+		var tmpValue = NewQInAppProductFromPointer(C.QInAppStore_RegisteredProduct(ptr.Pointer(), C.struct_QtPurchasing_PackedString{identifierC, C.longlong(len(identifier))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -944,12 +944,13 @@ const (
 )
 
 //export callbackQInAppTransaction_ErrorString
-func callbackQInAppTransaction_ErrorString(ptr unsafe.Pointer) *C.char {
+func callbackQInAppTransaction_ErrorString(ptr unsafe.Pointer) C.struct_QtPurchasing_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "errorString"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtPurchasing_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString(NewQInAppTransactionFromPointer(ptr).ErrorStringDefault())
+	tempVal := NewQInAppTransactionFromPointer(ptr).ErrorStringDefault()
+	return C.struct_QtPurchasing_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QInAppTransaction) ConnectErrorString(f func() string) {
@@ -988,12 +989,13 @@ func (ptr *QInAppTransaction) ErrorStringDefault() string {
 }
 
 //export callbackQInAppTransaction_OrderId
-func callbackQInAppTransaction_OrderId(ptr unsafe.Pointer) *C.char {
+func callbackQInAppTransaction_OrderId(ptr unsafe.Pointer) C.struct_QtPurchasing_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "orderId"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtPurchasing_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString(NewQInAppTransactionFromPointer(ptr).OrderIdDefault())
+	tempVal := NewQInAppTransactionFromPointer(ptr).OrderIdDefault()
+	return C.struct_QtPurchasing_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QInAppTransaction) ConnectOrderId(f func() string) {
@@ -1170,12 +1172,13 @@ func (ptr *QInAppTransaction) Product() *QInAppProduct {
 }
 
 //export callbackQInAppTransaction_PlatformProperty
-func callbackQInAppTransaction_PlatformProperty(ptr unsafe.Pointer, propertyName C.struct_QtPurchasing_PackedString) *C.char {
+func callbackQInAppTransaction_PlatformProperty(ptr unsafe.Pointer, propertyName C.struct_QtPurchasing_PackedString) C.struct_QtPurchasing_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "platformProperty"); signal != nil {
-		return C.CString(signal.(func(string) string)(cGoUnpackString(propertyName)))
+		tempVal := signal.(func(string) string)(cGoUnpackString(propertyName))
+		return C.struct_QtPurchasing_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString(NewQInAppTransactionFromPointer(ptr).PlatformPropertyDefault(cGoUnpackString(propertyName)))
+	tempVal := NewQInAppTransactionFromPointer(ptr).PlatformPropertyDefault(cGoUnpackString(propertyName))
+	return C.struct_QtPurchasing_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QInAppTransaction) ConnectPlatformProperty(f func(propertyName string) string) {
@@ -1206,7 +1209,7 @@ func (ptr *QInAppTransaction) PlatformProperty(propertyName string) string {
 			propertyNameC = C.CString(propertyName)
 			defer C.free(unsafe.Pointer(propertyNameC))
 		}
-		return cGoUnpackString(C.QInAppTransaction_PlatformProperty(ptr.Pointer(), propertyNameC))
+		return cGoUnpackString(C.QInAppTransaction_PlatformProperty(ptr.Pointer(), C.struct_QtPurchasing_PackedString{propertyNameC, C.longlong(len(propertyName))}))
 	}
 	return ""
 }
@@ -1218,7 +1221,7 @@ func (ptr *QInAppTransaction) PlatformPropertyDefault(propertyName string) strin
 			propertyNameC = C.CString(propertyName)
 			defer C.free(unsafe.Pointer(propertyNameC))
 		}
-		return cGoUnpackString(C.QInAppTransaction_PlatformPropertyDefault(ptr.Pointer(), propertyNameC))
+		return cGoUnpackString(C.QInAppTransaction_PlatformPropertyDefault(ptr.Pointer(), C.struct_QtPurchasing_PackedString{propertyNameC, C.longlong(len(propertyName))}))
 	}
 	return ""
 }

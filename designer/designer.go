@@ -137,7 +137,7 @@ func (ptr *QAbstractExtensionManager) RegisterExtensions(factory QAbstractExtens
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		C.QAbstractExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
+		C.QAbstractExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))})
 	}
 }
 
@@ -177,7 +177,7 @@ func (ptr *QAbstractExtensionManager) UnregisterExtensions(factory QAbstractExte
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		C.QAbstractExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
+		C.QAbstractExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))})
 	}
 }
 
@@ -262,7 +262,7 @@ func (ptr *QAbstractExtensionManager) Extension(object core.QObject_ITF, iid str
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -1454,7 +1454,7 @@ func (ptr *QDesignerActionEditorInterface) SetStyleSheetDefault(styleSheet strin
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QDesignerActionEditorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QDesignerActionEditorInterface_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -1504,7 +1504,7 @@ func (ptr *QDesignerActionEditorInterface) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QDesignerActionEditorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QDesignerActionEditorInterface_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 
@@ -2718,12 +2718,13 @@ func (ptr *QDesignerCustomWidgetInterface) Icon() *gui.QIcon {
 }
 
 //export callbackQDesignerCustomWidgetInterface_CodeTemplate
-func callbackQDesignerCustomWidgetInterface_CodeTemplate(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerCustomWidgetInterface_CodeTemplate(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "codeTemplate"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString(NewQDesignerCustomWidgetInterfaceFromPointer(ptr).CodeTemplateDefault())
+	tempVal := NewQDesignerCustomWidgetInterfaceFromPointer(ptr).CodeTemplateDefault()
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectCodeTemplate(f func() string) {
@@ -2762,12 +2763,13 @@ func (ptr *QDesignerCustomWidgetInterface) CodeTemplateDefault() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_DomXml
-func callbackQDesignerCustomWidgetInterface_DomXml(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerCustomWidgetInterface_DomXml(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "domXml"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString(NewQDesignerCustomWidgetInterfaceFromPointer(ptr).DomXmlDefault())
+	tempVal := NewQDesignerCustomWidgetInterfaceFromPointer(ptr).DomXmlDefault()
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectDomXml(f func() string) {
@@ -2806,12 +2808,13 @@ func (ptr *QDesignerCustomWidgetInterface) DomXmlDefault() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_Group
-func callbackQDesignerCustomWidgetInterface_Group(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerCustomWidgetInterface_Group(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "group"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectGroup(f func() string) {
@@ -2843,12 +2846,13 @@ func (ptr *QDesignerCustomWidgetInterface) Group() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_IncludeFile
-func callbackQDesignerCustomWidgetInterface_IncludeFile(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerCustomWidgetInterface_IncludeFile(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "includeFile"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectIncludeFile(f func() string) {
@@ -2880,12 +2884,13 @@ func (ptr *QDesignerCustomWidgetInterface) IncludeFile() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_Name
-func callbackQDesignerCustomWidgetInterface_Name(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerCustomWidgetInterface_Name(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "name"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectName(f func() string) {
@@ -2917,12 +2922,13 @@ func (ptr *QDesignerCustomWidgetInterface) Name() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_ToolTip
-func callbackQDesignerCustomWidgetInterface_ToolTip(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerCustomWidgetInterface_ToolTip(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "toolTip"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectToolTip(f func() string) {
@@ -2954,12 +2960,13 @@ func (ptr *QDesignerCustomWidgetInterface) ToolTip() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_WhatsThis
-func callbackQDesignerCustomWidgetInterface_WhatsThis(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerCustomWidgetInterface_WhatsThis(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "whatsThis"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectWhatsThis(f func() string) {
@@ -3183,7 +3190,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) AddDynamicProperty(propertyNa
 			propertyNameC = C.CString(propertyName)
 			defer C.free(unsafe.Pointer(propertyNameC))
 		}
-		return int(int32(C.QDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr.Pointer(), propertyNameC, core.PointerFromQVariant(value))))
+		return int(int32(C.QDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr.Pointer(), C.struct_QtDesigner_PackedString{propertyNameC, C.longlong(len(propertyName))}, core.PointerFromQVariant(value))))
 	}
 	return 0
 }
@@ -3269,7 +3276,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) CanAddDynamicProperty(propert
 			propertyNameC = C.CString(propertyName)
 			defer C.free(unsafe.Pointer(propertyNameC))
 		}
-		return C.QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr.Pointer(), propertyNameC) != 0
+		return C.QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr.Pointer(), C.struct_QtDesigner_PackedString{propertyNameC, C.longlong(len(propertyName))}) != 0
 	}
 	return false
 }
@@ -3965,7 +3972,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ResetWidgetProperty(widget widget
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QDesignerFormWindowCursorInterface_ResetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), nameC)
+		C.QDesignerFormWindowCursorInterface_ResetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), C.struct_QtDesigner_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -4040,7 +4047,7 @@ func (ptr *QDesignerFormWindowCursorInterface) SetProperty(name string, value co
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QDesignerFormWindowCursorInterface_SetProperty(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
+		C.QDesignerFormWindowCursorInterface_SetProperty(ptr.Pointer(), C.struct_QtDesigner_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -4080,7 +4087,7 @@ func (ptr *QDesignerFormWindowCursorInterface) SetWidgetProperty(widget widgets.
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QDesignerFormWindowCursorInterface_SetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), nameC, core.PointerFromQVariant(value))
+		C.QDesignerFormWindowCursorInterface_SetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), C.struct_QtDesigner_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -4576,7 +4583,7 @@ func (ptr *QDesignerFormWindowInterface) SetContents(device core.QIODevice_ITF, 
 			errorMessageC = C.CString(errorMessage)
 			defer C.free(unsafe.Pointer(errorMessageC))
 		}
-		return C.QDesignerFormWindowInterface_SetContents(ptr.Pointer(), core.PointerFromQIODevice(device), errorMessageC) != 0
+		return C.QDesignerFormWindowInterface_SetContents(ptr.Pointer(), core.PointerFromQIODevice(device), C.struct_QtDesigner_PackedString{errorMessageC, C.longlong(len(errorMessage))}) != 0
 	}
 	return false
 }
@@ -4618,7 +4625,7 @@ func (ptr *QDesignerFormWindowInterface) SetContents2(contents string) bool {
 			contentsC = C.CString(contents)
 			defer C.free(unsafe.Pointer(contentsC))
 		}
-		return C.QDesignerFormWindowInterface_SetContents2(ptr.Pointer(), contentsC) != 0
+		return C.QDesignerFormWindowInterface_SetContents2(ptr.Pointer(), C.struct_QtDesigner_PackedString{contentsC, C.longlong(len(contents))}) != 0
 	}
 	return false
 }
@@ -4701,7 +4708,7 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []strin
 			errorMessagesC = C.CString(errorMessages)
 			defer C.free(unsafe.Pointer(errorMessagesC))
 		}
-		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), pathsC, C.int(int32(errorCount)), errorMessagesC)
+		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), C.struct_QtDesigner_PackedString{pathsC, C.longlong(len(strings.Join(paths, "|")))}, C.int(int32(errorCount)), C.struct_QtDesigner_PackedString{errorMessagesC, C.longlong(len(errorMessages))})
 	}
 }
 
@@ -4714,7 +4721,7 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePathsDefault(paths 
 			errorMessagesC = C.CString(errorMessages)
 			defer C.free(unsafe.Pointer(errorMessagesC))
 		}
-		C.QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(ptr.Pointer(), pathsC, C.int(int32(errorCount)), errorMessagesC)
+		C.QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{pathsC, C.longlong(len(strings.Join(paths, "|")))}, C.int(int32(errorCount)), C.struct_QtDesigner_PackedString{errorMessagesC, C.longlong(len(errorMessages))})
 	}
 }
 
@@ -4793,7 +4800,7 @@ func (ptr *QDesignerFormWindowInterface) AddResourceFile(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QDesignerFormWindowInterface_AddResourceFile(ptr.Pointer(), pathC)
+		C.QDesignerFormWindowInterface_AddResourceFile(ptr.Pointer(), C.struct_QtDesigner_PackedString{pathC, C.longlong(len(path))})
 	}
 }
 
@@ -4985,7 +4992,7 @@ func (ptr *QDesignerFormWindowInterface) FileNameChanged(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QDesignerFormWindowInterface_FileNameChanged(ptr.Pointer(), fileNameC)
+		C.QDesignerFormWindowInterface_FileNameChanged(ptr.Pointer(), C.struct_QtDesigner_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -5104,7 +5111,7 @@ func (ptr *QDesignerFormWindowInterface) LayoutFunction(margin string, spacing s
 			spacingC = C.CString(spacing)
 			defer C.free(unsafe.Pointer(spacingC))
 		}
-		C.QDesignerFormWindowInterface_LayoutFunction(ptr.Pointer(), marginC, spacingC)
+		C.QDesignerFormWindowInterface_LayoutFunction(ptr.Pointer(), C.struct_QtDesigner_PackedString{marginC, C.longlong(len(margin))}, C.struct_QtDesigner_PackedString{spacingC, C.longlong(len(spacing))})
 	}
 }
 
@@ -5257,7 +5264,7 @@ func (ptr *QDesignerFormWindowInterface) RemoveResourceFile(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QDesignerFormWindowInterface_RemoveResourceFile(ptr.Pointer(), pathC)
+		C.QDesignerFormWindowInterface_RemoveResourceFile(ptr.Pointer(), C.struct_QtDesigner_PackedString{pathC, C.longlong(len(path))})
 	}
 }
 
@@ -5410,7 +5417,7 @@ func (ptr *QDesignerFormWindowInterface) SetAuthor(author string) {
 			authorC = C.CString(author)
 			defer C.free(unsafe.Pointer(authorC))
 		}
-		C.QDesignerFormWindowInterface_SetAuthor(ptr.Pointer(), authorC)
+		C.QDesignerFormWindowInterface_SetAuthor(ptr.Pointer(), C.struct_QtDesigner_PackedString{authorC, C.longlong(len(author))})
 	}
 }
 
@@ -5450,7 +5457,7 @@ func (ptr *QDesignerFormWindowInterface) SetComment(comment string) {
 			commentC = C.CString(comment)
 			defer C.free(unsafe.Pointer(commentC))
 		}
-		C.QDesignerFormWindowInterface_SetComment(ptr.Pointer(), commentC)
+		C.QDesignerFormWindowInterface_SetComment(ptr.Pointer(), C.struct_QtDesigner_PackedString{commentC, C.longlong(len(comment))})
 	}
 }
 
@@ -5525,7 +5532,7 @@ func (ptr *QDesignerFormWindowInterface) SetExportMacro(exportMacro string) {
 			exportMacroC = C.CString(exportMacro)
 			defer C.free(unsafe.Pointer(exportMacroC))
 		}
-		C.QDesignerFormWindowInterface_SetExportMacro(ptr.Pointer(), exportMacroC)
+		C.QDesignerFormWindowInterface_SetExportMacro(ptr.Pointer(), C.struct_QtDesigner_PackedString{exportMacroC, C.longlong(len(exportMacro))})
 	}
 }
 
@@ -5600,7 +5607,7 @@ func (ptr *QDesignerFormWindowInterface) SetFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QDesignerFormWindowInterface_SetFileName(ptr.Pointer(), fileNameC)
+		C.QDesignerFormWindowInterface_SetFileName(ptr.Pointer(), C.struct_QtDesigner_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -5672,7 +5679,7 @@ func (ptr *QDesignerFormWindowInterface) SetIncludeHints(includeHints []string) 
 	if ptr.Pointer() != nil {
 		var includeHintsC = C.CString(strings.Join(includeHints, "|"))
 		defer C.free(unsafe.Pointer(includeHintsC))
-		C.QDesignerFormWindowInterface_SetIncludeHints(ptr.Pointer(), includeHintsC)
+		C.QDesignerFormWindowInterface_SetIncludeHints(ptr.Pointer(), C.struct_QtDesigner_PackedString{includeHintsC, C.longlong(len(strings.Join(includeHints, "|")))})
 	}
 }
 
@@ -5752,7 +5759,7 @@ func (ptr *QDesignerFormWindowInterface) SetLayoutFunction(margin string, spacin
 			spacingC = C.CString(spacing)
 			defer C.free(unsafe.Pointer(spacingC))
 		}
-		C.QDesignerFormWindowInterface_SetLayoutFunction(ptr.Pointer(), marginC, spacingC)
+		C.QDesignerFormWindowInterface_SetLayoutFunction(ptr.Pointer(), C.struct_QtDesigner_PackedString{marginC, C.longlong(len(margin))}, C.struct_QtDesigner_PackedString{spacingC, C.longlong(len(spacing))})
 	}
 }
 
@@ -5827,7 +5834,7 @@ func (ptr *QDesignerFormWindowInterface) SetPixmapFunction(pixmapFunction string
 			pixmapFunctionC = C.CString(pixmapFunction)
 			defer C.free(unsafe.Pointer(pixmapFunctionC))
 		}
-		C.QDesignerFormWindowInterface_SetPixmapFunction(ptr.Pointer(), pixmapFunctionC)
+		C.QDesignerFormWindowInterface_SetPixmapFunction(ptr.Pointer(), C.struct_QtDesigner_PackedString{pixmapFunctionC, C.longlong(len(pixmapFunction))})
 	}
 }
 
@@ -6269,12 +6276,13 @@ func (ptr *QDesignerFormWindowInterface) Grid() *core.QPoint {
 }
 
 //export callbackQDesignerFormWindowInterface_Author
-func callbackQDesignerFormWindowInterface_Author(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_Author(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "author"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectAuthor(f func() string) {
@@ -6306,12 +6314,13 @@ func (ptr *QDesignerFormWindowInterface) Author() string {
 }
 
 //export callbackQDesignerFormWindowInterface_Comment
-func callbackQDesignerFormWindowInterface_Comment(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_Comment(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "comment"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectComment(f func() string) {
@@ -6343,12 +6352,13 @@ func (ptr *QDesignerFormWindowInterface) Comment() string {
 }
 
 //export callbackQDesignerFormWindowInterface_Contents
-func callbackQDesignerFormWindowInterface_Contents(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_Contents(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "contents"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectContents(f func() string) {
@@ -6380,12 +6390,13 @@ func (ptr *QDesignerFormWindowInterface) Contents() string {
 }
 
 //export callbackQDesignerFormWindowInterface_ExportMacro
-func callbackQDesignerFormWindowInterface_ExportMacro(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_ExportMacro(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "exportMacro"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectExportMacro(f func() string) {
@@ -6417,12 +6428,13 @@ func (ptr *QDesignerFormWindowInterface) ExportMacro() string {
 }
 
 //export callbackQDesignerFormWindowInterface_FileName
-func callbackQDesignerFormWindowInterface_FileName(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_FileName(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "fileName"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectFileName(f func() string) {
@@ -6454,12 +6466,13 @@ func (ptr *QDesignerFormWindowInterface) FileName() string {
 }
 
 //export callbackQDesignerFormWindowInterface_PixmapFunction
-func callbackQDesignerFormWindowInterface_PixmapFunction(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_PixmapFunction(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "pixmapFunction"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectPixmapFunction(f func() string) {
@@ -6498,12 +6511,13 @@ func (ptr *QDesignerFormWindowInterface) ActiveResourceFilePaths() []string {
 }
 
 //export callbackQDesignerFormWindowInterface_CheckContents
-func callbackQDesignerFormWindowInterface_CheckContents(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_CheckContents(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "checkContents"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtDesigner_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtDesigner_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectCheckContents(f func() []string) {
@@ -6535,12 +6549,13 @@ func (ptr *QDesignerFormWindowInterface) CheckContents() []string {
 }
 
 //export callbackQDesignerFormWindowInterface_IncludeHints
-func callbackQDesignerFormWindowInterface_IncludeHints(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_IncludeHints(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "includeHints"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtDesigner_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtDesigner_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectIncludeHints(f func() []string) {
@@ -6572,12 +6587,13 @@ func (ptr *QDesignerFormWindowInterface) IncludeHints() []string {
 }
 
 //export callbackQDesignerFormWindowInterface_ResourceFiles
-func callbackQDesignerFormWindowInterface_ResourceFiles(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerFormWindowInterface_ResourceFiles(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "resourceFiles"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtDesigner_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtDesigner_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectResourceFiles(f func() []string) {
@@ -7537,7 +7553,7 @@ func (ptr *QDesignerFormWindowInterface) SetStyleSheetDefault(styleSheet string)
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QDesignerFormWindowInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QDesignerFormWindowInterface_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -7587,7 +7603,7 @@ func (ptr *QDesignerFormWindowInterface) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QDesignerFormWindowInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QDesignerFormWindowInterface_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 
@@ -9160,7 +9176,7 @@ func (ptr *QDesignerMemberSheetExtension) SetMemberGroup(index int, group string
 			groupC = C.CString(group)
 			defer C.free(unsafe.Pointer(groupC))
 		}
-		C.QDesignerMemberSheetExtension_SetMemberGroup(ptr.Pointer(), C.int(int32(index)), groupC)
+		C.QDesignerMemberSheetExtension_SetMemberGroup(ptr.Pointer(), C.int(int32(index)), C.struct_QtDesigner_PackedString{groupC, C.longlong(len(group))})
 	}
 }
 
@@ -9356,12 +9372,13 @@ func (ptr *QDesignerMemberSheetExtension) ParameterTypes(index int) []*core.QByt
 }
 
 //export callbackQDesignerMemberSheetExtension_DeclaredInClass
-func callbackQDesignerMemberSheetExtension_DeclaredInClass(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_DeclaredInClass(ptr unsafe.Pointer, index C.int) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "declaredInClass"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectDeclaredInClass(f func(index int) string) {
@@ -9393,12 +9410,13 @@ func (ptr *QDesignerMemberSheetExtension) DeclaredInClass(index int) string {
 }
 
 //export callbackQDesignerMemberSheetExtension_MemberGroup
-func callbackQDesignerMemberSheetExtension_MemberGroup(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_MemberGroup(ptr unsafe.Pointer, index C.int) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "memberGroup"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectMemberGroup(f func(index int) string) {
@@ -9430,12 +9448,13 @@ func (ptr *QDesignerMemberSheetExtension) MemberGroup(index int) string {
 }
 
 //export callbackQDesignerMemberSheetExtension_MemberName
-func callbackQDesignerMemberSheetExtension_MemberName(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_MemberName(ptr unsafe.Pointer, index C.int) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "memberName"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectMemberName(f func(index int) string) {
@@ -9467,12 +9486,13 @@ func (ptr *QDesignerMemberSheetExtension) MemberName(index int) string {
 }
 
 //export callbackQDesignerMemberSheetExtension_Signature
-func callbackQDesignerMemberSheetExtension_Signature(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_Signature(ptr unsafe.Pointer, index C.int) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "signature"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectSignature(f func(index int) string) {
@@ -9725,7 +9745,7 @@ func (ptr *QDesignerMemberSheetExtension) IndexOf(name string) int {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return int(int32(C.QDesignerMemberSheetExtension_IndexOf(ptr.Pointer(), nameC)))
+		return int(int32(C.QDesignerMemberSheetExtension_IndexOf(ptr.Pointer(), C.struct_QtDesigner_PackedString{nameC, C.longlong(len(name))})))
 	}
 	return 0
 }
@@ -10666,7 +10686,7 @@ func (ptr *QDesignerObjectInspectorInterface) SetStyleSheetDefault(styleSheet st
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QDesignerObjectInspectorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QDesignerObjectInspectorInterface_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -10716,7 +10736,7 @@ func (ptr *QDesignerObjectInspectorInterface) SetWindowTitleDefault(vqs string) 
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QDesignerObjectInspectorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QDesignerObjectInspectorInterface_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 
@@ -11230,7 +11250,7 @@ func (ptr *QDesignerPropertyEditorInterface) PropertyChanged(name string, value 
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QDesignerPropertyEditorInterface_PropertyChanged(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
+		C.QDesignerPropertyEditorInterface_PropertyChanged(ptr.Pointer(), C.struct_QtDesigner_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -11305,7 +11325,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetPropertyValue(name string, value
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QDesignerPropertyEditorInterface_SetPropertyValue(ptr.Pointer(), nameC, core.PointerFromQVariant(value), C.char(int8(qt.GoBoolToInt(changed))))
+		C.QDesignerPropertyEditorInterface_SetPropertyValue(ptr.Pointer(), C.struct_QtDesigner_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQVariant(value), C.char(int8(qt.GoBoolToInt(changed))))
 	}
 }
 
@@ -11484,12 +11504,13 @@ func (ptr *QDesignerPropertyEditorInterface) Object() *core.QObject {
 }
 
 //export callbackQDesignerPropertyEditorInterface_CurrentPropertyName
-func callbackQDesignerPropertyEditorInterface_CurrentPropertyName(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerPropertyEditorInterface_CurrentPropertyName(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "currentPropertyName"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectCurrentPropertyName(f func() string) {
@@ -12276,7 +12297,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetStyleSheetDefault(styleSheet str
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QDesignerPropertyEditorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QDesignerPropertyEditorInterface_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -12326,7 +12347,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QDesignerPropertyEditorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QDesignerPropertyEditorInterface_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 
@@ -12970,7 +12991,7 @@ func (ptr *QDesignerPropertySheetExtension) SetPropertyGroup(index int, group st
 			groupC = C.CString(group)
 			defer C.free(unsafe.Pointer(groupC))
 		}
-		C.QDesignerPropertySheetExtension_SetPropertyGroup(ptr.Pointer(), C.int(int32(index)), groupC)
+		C.QDesignerPropertySheetExtension_SetPropertyGroup(ptr.Pointer(), C.int(int32(index)), C.struct_QtDesigner_PackedString{groupC, C.longlong(len(group))})
 	}
 }
 
@@ -13056,12 +13077,13 @@ func (ptr *QDesignerPropertySheetExtension) DestroyQDesignerPropertySheetExtensi
 }
 
 //export callbackQDesignerPropertySheetExtension_PropertyGroup
-func callbackQDesignerPropertySheetExtension_PropertyGroup(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQDesignerPropertySheetExtension_PropertyGroup(ptr unsafe.Pointer, index C.int) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "propertyGroup"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectPropertyGroup(f func(index int) string) {
@@ -13093,12 +13115,13 @@ func (ptr *QDesignerPropertySheetExtension) PropertyGroup(index int) string {
 }
 
 //export callbackQDesignerPropertySheetExtension_PropertyName
-func callbackQDesignerPropertySheetExtension_PropertyName(ptr unsafe.Pointer, index C.int) *C.char {
+func callbackQDesignerPropertySheetExtension_PropertyName(ptr unsafe.Pointer, index C.int) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "propertyName"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(int32(index))))
+		tempVal := signal.(func(int) string)(int(int32(index)))
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectPropertyName(f func(index int) string) {
@@ -13434,7 +13457,7 @@ func (ptr *QDesignerPropertySheetExtension) IndexOf(name string) int {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return int(int32(C.QDesignerPropertySheetExtension_IndexOf(ptr.Pointer(), nameC)))
+		return int(int32(C.QDesignerPropertySheetExtension_IndexOf(ptr.Pointer(), C.struct_QtDesigner_PackedString{nameC, C.longlong(len(name))})))
 	}
 	return 0
 }
@@ -13798,7 +13821,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QDesignerWidgetBoxInterface_SetFileName(ptr.Pointer(), fileNameC)
+		C.QDesignerWidgetBoxInterface_SetFileName(ptr.Pointer(), C.struct_QtDesigner_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -13849,12 +13872,13 @@ func (ptr *QDesignerWidgetBoxInterface) DestroyQDesignerWidgetBoxInterfaceDefaul
 }
 
 //export callbackQDesignerWidgetBoxInterface_FileName
-func callbackQDesignerWidgetBoxInterface_FileName(ptr unsafe.Pointer) *C.char {
+func callbackQDesignerWidgetBoxInterface_FileName(ptr unsafe.Pointer) C.struct_QtDesigner_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "fileName"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString("")
+	tempVal := ""
+	return C.struct_QtDesigner_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectFileName(f func() string) {
@@ -14608,7 +14632,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetStyleSheetDefault(styleSheet string) 
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QDesignerWidgetBoxInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QDesignerWidgetBoxInterface_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -14658,7 +14682,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QDesignerWidgetBoxInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QDesignerWidgetBoxInterface_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtDesigner_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 
@@ -15183,7 +15207,7 @@ func (ptr *QExtensionFactory) CreateExtension(object core.QObject_ITF, iid strin
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
+		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))}, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15199,7 +15223,7 @@ func (ptr *QExtensionFactory) CreateExtensionDefault(object core.QObject_ITF, ii
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
+		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))}, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15245,7 +15269,7 @@ func (ptr *QExtensionFactory) Extension(object core.QObject_ITF, iid string) *co
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
+		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15261,7 +15285,7 @@ func (ptr *QExtensionFactory) ExtensionDefault(object core.QObject_ITF, iid stri
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
+		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15674,7 +15698,7 @@ func (ptr *QExtensionManager) RegisterExtensions(factory QAbstractExtensionFacto
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		C.QExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
+		C.QExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))})
 	}
 }
 
@@ -15685,7 +15709,7 @@ func (ptr *QExtensionManager) RegisterExtensionsDefault(factory QAbstractExtensi
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		C.QExtensionManager_RegisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
+		C.QExtensionManager_RegisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))})
 	}
 }
 
@@ -15726,7 +15750,7 @@ func (ptr *QExtensionManager) UnregisterExtensions(factory QAbstractExtensionFac
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		C.QExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
+		C.QExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))})
 	}
 }
 
@@ -15737,7 +15761,7 @@ func (ptr *QExtensionManager) UnregisterExtensionsDefault(factory QAbstractExten
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		C.QExtensionManager_UnregisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
+		C.QExtensionManager_UnregisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))})
 	}
 }
 
@@ -15786,7 +15810,7 @@ func (ptr *QExtensionManager) Extension(object core.QObject_ITF, iid string) *co
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
+		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15802,7 +15826,7 @@ func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid stri
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
+		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{iidC, C.longlong(len(iid))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -16178,7 +16202,7 @@ func (ptr *QFormBuilder) AddPluginPath(pluginPath string) {
 			pluginPathC = C.CString(pluginPath)
 			defer C.free(unsafe.Pointer(pluginPathC))
 		}
-		C.QFormBuilder_AddPluginPath(ptr.Pointer(), pluginPathC)
+		C.QFormBuilder_AddPluginPath(ptr.Pointer(), C.struct_QtDesigner_PackedString{pluginPathC, C.longlong(len(pluginPath))})
 	}
 }
 
@@ -16192,7 +16216,7 @@ func (ptr *QFormBuilder) SetPluginPath(pluginPaths []string) {
 	if ptr.Pointer() != nil {
 		var pluginPathsC = C.CString(strings.Join(pluginPaths, "|"))
 		defer C.free(unsafe.Pointer(pluginPathsC))
-		C.QFormBuilder_SetPluginPath(ptr.Pointer(), pluginPathsC)
+		C.QFormBuilder_SetPluginPath(ptr.Pointer(), C.struct_QtDesigner_PackedString{pluginPathsC, C.longlong(len(strings.Join(pluginPaths, "|")))})
 	}
 }
 

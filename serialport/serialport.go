@@ -203,7 +203,7 @@ func NewQSerialPort2(name string, parent core.QObject_ITF) *QSerialPort {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(nameC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(C.struct_QtSerialPort_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -828,7 +828,7 @@ func (ptr *QSerialPort) SetPortName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSerialPort_SetPortName(ptr.Pointer(), nameC)
+		C.QSerialPort_SetPortName(ptr.Pointer(), C.struct_QtSerialPort_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -1538,7 +1538,7 @@ func NewQSerialPortInfo3(name string) *QSerialPortInfo {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(nameC))
+	var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(C.struct_QtSerialPort_PackedString{nameC, C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }

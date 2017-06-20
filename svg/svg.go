@@ -76,7 +76,7 @@ func NewQGraphicsSvgItem2(fileName string, parent widgets.QGraphicsItem_ITF) *QG
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem2(fileNameC, widgets.PointerFromQGraphicsItem(parent)))
+	var tmpValue = NewQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem2(C.struct_QtSvg_PackedString{fileNameC, C.longlong(len(fileName))}, widgets.PointerFromQGraphicsItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -132,7 +132,7 @@ func (ptr *QGraphicsSvgItem) SetElementId(id string) {
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		C.QGraphicsSvgItem_SetElementId(ptr.Pointer(), idC)
+		C.QGraphicsSvgItem_SetElementId(ptr.Pointer(), C.struct_QtSvg_PackedString{idC, C.longlong(len(id))})
 	}
 }
 
@@ -1163,7 +1163,7 @@ func (ptr *QSvgGenerator) SetDescription(description string) {
 			descriptionC = C.CString(description)
 			defer C.free(unsafe.Pointer(descriptionC))
 		}
-		C.QSvgGenerator_SetDescription(ptr.Pointer(), descriptionC)
+		C.QSvgGenerator_SetDescription(ptr.Pointer(), C.struct_QtSvg_PackedString{descriptionC, C.longlong(len(description))})
 	}
 }
 
@@ -1174,7 +1174,7 @@ func (ptr *QSvgGenerator) SetFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QSvgGenerator_SetFileName(ptr.Pointer(), fileNameC)
+		C.QSvgGenerator_SetFileName(ptr.Pointer(), C.struct_QtSvg_PackedString{fileNameC, C.longlong(len(fileName))})
 	}
 }
 
@@ -1203,7 +1203,7 @@ func (ptr *QSvgGenerator) SetTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QSvgGenerator_SetTitle(ptr.Pointer(), titleC)
+		C.QSvgGenerator_SetTitle(ptr.Pointer(), C.struct_QtSvg_PackedString{titleC, C.longlong(len(title))})
 	}
 }
 
@@ -1405,7 +1405,7 @@ func NewQSvgRenderer2(filename string, parent core.QObject_ITF) *QSvgRenderer {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(filenameC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(C.struct_QtSvg_PackedString{filenameC, C.longlong(len(filename))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -1537,7 +1537,7 @@ func (ptr *QSvgRenderer) Load(filename string) bool {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		return C.QSvgRenderer_Load(ptr.Pointer(), filenameC) != 0
+		return C.QSvgRenderer_Load(ptr.Pointer(), C.struct_QtSvg_PackedString{filenameC, C.longlong(len(filename))}) != 0
 	}
 	return false
 }
@@ -1549,7 +1549,7 @@ func (ptr *QSvgRenderer) LoadDefault(filename string) bool {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		return C.QSvgRenderer_LoadDefault(ptr.Pointer(), filenameC) != 0
+		return C.QSvgRenderer_LoadDefault(ptr.Pointer(), C.struct_QtSvg_PackedString{filenameC, C.longlong(len(filename))}) != 0
 	}
 	return false
 }
@@ -1675,7 +1675,7 @@ func (ptr *QSvgRenderer) Render3(painter gui.QPainter_ITF, elementId string, bou
 			elementIdC = C.CString(elementId)
 			defer C.free(unsafe.Pointer(elementIdC))
 		}
-		C.QSvgRenderer_Render3(ptr.Pointer(), gui.PointerFromQPainter(painter), elementIdC, core.PointerFromQRectF(bounds))
+		C.QSvgRenderer_Render3(ptr.Pointer(), gui.PointerFromQPainter(painter), C.struct_QtSvg_PackedString{elementIdC, C.longlong(len(elementId))}, core.PointerFromQRectF(bounds))
 	}
 }
 
@@ -1686,7 +1686,7 @@ func (ptr *QSvgRenderer) Render3Default(painter gui.QPainter_ITF, elementId stri
 			elementIdC = C.CString(elementId)
 			defer C.free(unsafe.Pointer(elementIdC))
 		}
-		C.QSvgRenderer_Render3Default(ptr.Pointer(), gui.PointerFromQPainter(painter), elementIdC, core.PointerFromQRectF(bounds))
+		C.QSvgRenderer_Render3Default(ptr.Pointer(), gui.PointerFromQPainter(painter), C.struct_QtSvg_PackedString{elementIdC, C.longlong(len(elementId))}, core.PointerFromQRectF(bounds))
 	}
 }
 
@@ -1771,7 +1771,7 @@ func (ptr *QSvgRenderer) BoundsOnElement(id string) *core.QRectF {
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = core.NewQRectFFromPointer(C.QSvgRenderer_BoundsOnElement(ptr.Pointer(), idC))
+		var tmpValue = core.NewQRectFFromPointer(C.QSvgRenderer_BoundsOnElement(ptr.Pointer(), C.struct_QtSvg_PackedString{idC, C.longlong(len(id))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -1810,7 +1810,7 @@ func (ptr *QSvgRenderer) ElementExists(id string) bool {
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		return C.QSvgRenderer_ElementExists(ptr.Pointer(), idC) != 0
+		return C.QSvgRenderer_ElementExists(ptr.Pointer(), C.struct_QtSvg_PackedString{idC, C.longlong(len(id))}) != 0
 	}
 	return false
 }
@@ -2140,7 +2140,7 @@ func NewQSvgWidget2(file string, parent widgets.QWidget_ITF) *QSvgWidget {
 		fileC = C.CString(file)
 		defer C.free(unsafe.Pointer(fileC))
 	}
-	var tmpValue = NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(fileC, widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(C.struct_QtSvg_PackedString{fileC, C.longlong(len(file))}, widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -2226,7 +2226,7 @@ func (ptr *QSvgWidget) Load(file string) {
 			fileC = C.CString(file)
 			defer C.free(unsafe.Pointer(fileC))
 		}
-		C.QSvgWidget_Load(ptr.Pointer(), fileC)
+		C.QSvgWidget_Load(ptr.Pointer(), C.struct_QtSvg_PackedString{fileC, C.longlong(len(file))})
 	}
 }
 
@@ -2237,7 +2237,7 @@ func (ptr *QSvgWidget) LoadDefault(file string) {
 			fileC = C.CString(file)
 			defer C.free(unsafe.Pointer(fileC))
 		}
-		C.QSvgWidget_LoadDefault(ptr.Pointer(), fileC)
+		C.QSvgWidget_LoadDefault(ptr.Pointer(), C.struct_QtSvg_PackedString{fileC, C.longlong(len(file))})
 	}
 }
 
@@ -2997,7 +2997,7 @@ func (ptr *QSvgWidget) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QSvgWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QSvgWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtSvg_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -3047,7 +3047,7 @@ func (ptr *QSvgWidget) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QSvgWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QSvgWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtSvg_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 

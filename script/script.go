@@ -593,12 +593,13 @@ func (ptr *QScriptClass) PrototypeDefault() *QScriptValue {
 }
 
 //export callbackQScriptClass_Name
-func callbackQScriptClass_Name(ptr unsafe.Pointer) *C.char {
+func callbackQScriptClass_Name(ptr unsafe.Pointer) C.struct_QtScript_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "name"); signal != nil {
-		return C.CString(signal.(func() string)())
+		tempVal := signal.(func() string)()
+		return C.struct_QtScript_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 	}
-
-	return C.CString(NewQScriptClassFromPointer(ptr).NameDefault())
+	tempVal := NewQScriptClassFromPointer(ptr).NameDefault()
+	return C.struct_QtScript_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
 }
 
 func (ptr *QScriptClass) ConnectName(f func() string) {
@@ -785,7 +786,7 @@ func (ptr *QScriptContext) ThrowError(error QScriptContext__Error, text string) 
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThrowError(ptr.Pointer(), C.longlong(error), textC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThrowError(ptr.Pointer(), C.longlong(error), C.struct_QtScript_PackedString{textC, C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -799,7 +800,7 @@ func (ptr *QScriptContext) ThrowError2(text string) *QScriptValue {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThrowError2(ptr.Pointer(), textC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThrowError2(ptr.Pointer(), C.struct_QtScript_PackedString{textC, C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -1173,7 +1174,7 @@ func (ptr *QScriptEngine) ToStringHandle(str string) *QScriptString {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		var tmpValue = NewQScriptStringFromPointer(C.QScriptEngine_ToStringHandle(ptr.Pointer(), strC))
+		var tmpValue = NewQScriptStringFromPointer(C.QScriptEngine_ToStringHandle(ptr.Pointer(), C.struct_QtScript_PackedString{strC, C.longlong(len(str))}))
 		runtime.SetFinalizer(tmpValue, (*QScriptString).DestroyQScriptString)
 		return tmpValue
 	}
@@ -1186,7 +1187,7 @@ func QScriptEngine_CheckSyntax(program string) *QScriptSyntaxCheckResult {
 		programC = C.CString(program)
 		defer C.free(unsafe.Pointer(programC))
 	}
-	var tmpValue = NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(programC))
+	var tmpValue = NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(C.struct_QtScript_PackedString{programC, C.longlong(len(program))}))
 	runtime.SetFinalizer(tmpValue, (*QScriptSyntaxCheckResult).DestroyQScriptSyntaxCheckResult)
 	return tmpValue
 }
@@ -1197,7 +1198,7 @@ func (ptr *QScriptEngine) CheckSyntax(program string) *QScriptSyntaxCheckResult 
 		programC = C.CString(program)
 		defer C.free(unsafe.Pointer(programC))
 	}
-	var tmpValue = NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(programC))
+	var tmpValue = NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(C.struct_QtScript_PackedString{programC, C.longlong(len(program))}))
 	runtime.SetFinalizer(tmpValue, (*QScriptSyntaxCheckResult).DestroyQScriptSyntaxCheckResult)
 	return tmpValue
 }
@@ -1223,7 +1224,7 @@ func (ptr *QScriptEngine) Evaluate(program string, fileName string, lineNumber i
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_Evaluate(ptr.Pointer(), programC, fileNameC, C.int(int32(lineNumber))))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_Evaluate(ptr.Pointer(), C.struct_QtScript_PackedString{programC, C.longlong(len(program))}, C.struct_QtScript_PackedString{fileNameC, C.longlong(len(fileName))}, C.int(int32(lineNumber))))
 		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -1237,7 +1238,7 @@ func (ptr *QScriptEngine) ImportExtension(extension string) *QScriptValue {
 			extensionC = C.CString(extension)
 			defer C.free(unsafe.Pointer(extensionC))
 		}
-		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_ImportExtension(ptr.Pointer(), extensionC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_ImportExtension(ptr.Pointer(), C.struct_QtScript_PackedString{extensionC, C.longlong(len(extension))}))
 		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -1328,7 +1329,7 @@ func (ptr *QScriptEngine) NewRegExp2(pattern string, flags string) *QScriptValue
 			flagsC = C.CString(flags)
 			defer C.free(unsafe.Pointer(flagsC))
 		}
-		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp2(ptr.Pointer(), patternC, flagsC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp2(ptr.Pointer(), C.struct_QtScript_PackedString{patternC, C.longlong(len(pattern))}, C.struct_QtScript_PackedString{flagsC, C.longlong(len(flags))}))
 		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -2308,7 +2309,7 @@ func (ptr *QScriptEngineAgent) ScriptLoad(id int64, program string, fileName str
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QScriptEngineAgent_ScriptLoad(ptr.Pointer(), C.longlong(id), programC, fileNameC, C.int(int32(baseLineNumber)))
+		C.QScriptEngineAgent_ScriptLoad(ptr.Pointer(), C.longlong(id), C.struct_QtScript_PackedString{programC, C.longlong(len(program))}, C.struct_QtScript_PackedString{fileNameC, C.longlong(len(fileName))}, C.int(int32(baseLineNumber)))
 	}
 }
 
@@ -2324,7 +2325,7 @@ func (ptr *QScriptEngineAgent) ScriptLoadDefault(id int64, program string, fileN
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QScriptEngineAgent_ScriptLoadDefault(ptr.Pointer(), C.longlong(id), programC, fileNameC, C.int(int32(baseLineNumber)))
+		C.QScriptEngineAgent_ScriptLoadDefault(ptr.Pointer(), C.longlong(id), C.struct_QtScript_PackedString{programC, C.longlong(len(program))}, C.struct_QtScript_PackedString{fileNameC, C.longlong(len(fileName))}, C.int(int32(baseLineNumber)))
 	}
 }
 
@@ -2553,7 +2554,7 @@ func (ptr *QScriptExtensionPlugin) Initialize(key string, engine QScriptEngine_I
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QScriptExtensionPlugin_Initialize(ptr.Pointer(), keyC, PointerFromQScriptEngine(engine))
+		C.QScriptExtensionPlugin_Initialize(ptr.Pointer(), C.struct_QtScript_PackedString{keyC, C.longlong(len(key))}, PointerFromQScriptEngine(engine))
 	}
 }
 
@@ -2572,7 +2573,7 @@ func (ptr *QScriptExtensionPlugin) SetupPackage(key string, engine QScriptEngine
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = NewQScriptValueFromPointer(C.QScriptExtensionPlugin_SetupPackage(ptr.Pointer(), keyC, PointerFromQScriptEngine(engine)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptExtensionPlugin_SetupPackage(ptr.Pointer(), C.struct_QtScript_PackedString{keyC, C.longlong(len(key))}, PointerFromQScriptEngine(engine)))
 		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -2580,12 +2581,13 @@ func (ptr *QScriptExtensionPlugin) SetupPackage(key string, engine QScriptEngine
 }
 
 //export callbackQScriptExtensionPlugin_Keys
-func callbackQScriptExtensionPlugin_Keys(ptr unsafe.Pointer) *C.char {
+func callbackQScriptExtensionPlugin_Keys(ptr unsafe.Pointer) C.struct_QtScript_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "keys"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+		tempVal := signal.(func() []string)()
+		return C.struct_QtScript_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 	}
-
-	return C.CString(strings.Join(make([]string, 0), "|"))
+	tempVal := make([]string, 0)
+	return C.struct_QtScript_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QScriptExtensionPlugin) ConnectKeys(f func() []string) {
@@ -2935,7 +2937,7 @@ func NewQScriptProgram2(sourceCode string, fileName string, firstLineNumber int)
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram2(sourceCodeC, fileNameC, C.int(int32(firstLineNumber))))
+	var tmpValue = NewQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram2(C.struct_QtScript_PackedString{sourceCodeC, C.longlong(len(sourceCode))}, C.struct_QtScript_PackedString{fileNameC, C.longlong(len(fileName))}, C.int(int32(firstLineNumber))))
 	runtime.SetFinalizer(tmpValue, (*QScriptProgram).DestroyQScriptProgram)
 	return tmpValue
 }
@@ -3271,7 +3273,7 @@ func NewQScriptValue15(value string) *QScriptValue {
 		valueC = C.CString(value)
 		defer C.free(unsafe.Pointer(valueC))
 	}
-	var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue15(valueC))
+	var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_NewQScriptValue15(C.struct_QtScript_PackedString{valueC, C.longlong(len(value))}))
 	runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 	return tmpValue
 }
@@ -3318,7 +3320,7 @@ func (ptr *QScriptValue) SetProperty(name string, value QScriptValue_ITF, flags 
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QScriptValue_SetProperty(ptr.Pointer(), nameC, PointerFromQScriptValue(value), C.longlong(flags))
+		C.QScriptValue_SetProperty(ptr.Pointer(), C.struct_QtScript_PackedString{nameC, C.longlong(len(name))}, PointerFromQScriptValue(value), C.longlong(flags))
 	}
 }
 
@@ -3420,7 +3422,7 @@ func (ptr *QScriptValue) Property(name string, mode QScriptValue__ResolveFlag) *
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Property(ptr.Pointer(), nameC, C.longlong(mode)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Property(ptr.Pointer(), C.struct_QtScript_PackedString{nameC, C.longlong(len(name))}, C.longlong(mode)))
 		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
 		return tmpValue
 	}
@@ -3459,7 +3461,7 @@ func (ptr *QScriptValue) PropertyFlags(name string, mode QScriptValue__ResolveFl
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return QScriptValue__PropertyFlag(C.QScriptValue_PropertyFlags(ptr.Pointer(), nameC, C.longlong(mode)))
+		return QScriptValue__PropertyFlag(C.QScriptValue_PropertyFlags(ptr.Pointer(), C.struct_QtScript_PackedString{nameC, C.longlong(len(name))}, C.longlong(mode)))
 	}
 	return 0
 }

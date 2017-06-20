@@ -842,7 +842,7 @@ func (ptr *QAbstractAxis) SetTitleText(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QAbstractAxis_SetTitleText(ptr.Pointer(), titleC)
+		C.QAbstractAxis_SetTitleText(ptr.Pointer(), C.struct_QtCharts_PackedString{titleC, C.longlong(len(title))})
 	}
 }
 
@@ -1177,7 +1177,7 @@ func (ptr *QAbstractAxis) TitleTextChanged(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAbstractAxis_TitleTextChanged(ptr.Pointer(), textC)
+		C.QAbstractAxis_TitleTextChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{textC, C.longlong(len(text))})
 	}
 }
 
@@ -1939,7 +1939,7 @@ func (ptr *QAbstractBarSeries) LabelsFormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QAbstractBarSeries_LabelsFormatChanged(ptr.Pointer(), formatC)
+		C.QAbstractBarSeries_LabelsFormatChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -2118,7 +2118,7 @@ func (ptr *QAbstractBarSeries) SetLabelsFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QAbstractBarSeries_SetLabelsFormat(ptr.Pointer(), formatC)
+		C.QAbstractBarSeries_SetLabelsFormat(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -2500,7 +2500,7 @@ func (ptr *QAbstractSeries) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAbstractSeries_SetName(ptr.Pointer(), nameC)
+		C.QAbstractSeries_SetName(ptr.Pointer(), C.struct_QtCharts_PackedString{nameC, C.longlong(len(name))})
 	}
 }
 
@@ -3275,7 +3275,7 @@ func (ptr *QAreaSeries) PointLabelsFormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QAreaSeries_PointLabelsFormatChanged(ptr.Pointer(), formatC)
+		C.QAreaSeries_PointLabelsFormatChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -3451,7 +3451,7 @@ func (ptr *QAreaSeries) SetPointLabelsFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QAreaSeries_SetPointLabelsFormat(ptr.Pointer(), formatC)
+		C.QAreaSeries_SetPointLabelsFormat(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -3677,7 +3677,7 @@ func (ptr *QBarCategoryAxis) Append2(category string) {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		C.QBarCategoryAxis_Append2(ptr.Pointer(), categoryC)
+		C.QBarCategoryAxis_Append2(ptr.Pointer(), C.struct_QtCharts_PackedString{categoryC, C.longlong(len(category))})
 	}
 }
 
@@ -3685,7 +3685,7 @@ func (ptr *QBarCategoryAxis) Append(categories []string) {
 	if ptr.Pointer() != nil {
 		var categoriesC = C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QBarCategoryAxis_Append(ptr.Pointer(), categoriesC)
+		C.QBarCategoryAxis_Append(ptr.Pointer(), C.struct_QtCharts_PackedString{categoriesC, C.longlong(len(strings.Join(categories, "|")))})
 	}
 }
 
@@ -3780,7 +3780,7 @@ func (ptr *QBarCategoryAxis) Insert(index int, category string) {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		C.QBarCategoryAxis_Insert(ptr.Pointer(), C.int(int32(index)), categoryC)
+		C.QBarCategoryAxis_Insert(ptr.Pointer(), C.int(int32(index)), C.struct_QtCharts_PackedString{categoryC, C.longlong(len(category))})
 	}
 }
 
@@ -3824,7 +3824,7 @@ func (ptr *QBarCategoryAxis) MaxChanged(max string) {
 			maxC = C.CString(max)
 			defer C.free(unsafe.Pointer(maxC))
 		}
-		C.QBarCategoryAxis_MaxChanged(ptr.Pointer(), maxC)
+		C.QBarCategoryAxis_MaxChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{maxC, C.longlong(len(max))})
 	}
 }
 
@@ -3868,7 +3868,7 @@ func (ptr *QBarCategoryAxis) MinChanged(min string) {
 			minC = C.CString(min)
 			defer C.free(unsafe.Pointer(minC))
 		}
-		C.QBarCategoryAxis_MinChanged(ptr.Pointer(), minC)
+		C.QBarCategoryAxis_MinChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{minC, C.longlong(len(min))})
 	}
 }
 
@@ -3917,7 +3917,7 @@ func (ptr *QBarCategoryAxis) RangeChanged(min string, max string) {
 			maxC = C.CString(max)
 			defer C.free(unsafe.Pointer(maxC))
 		}
-		C.QBarCategoryAxis_RangeChanged(ptr.Pointer(), minC, maxC)
+		C.QBarCategoryAxis_RangeChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{minC, C.longlong(len(min))}, C.struct_QtCharts_PackedString{maxC, C.longlong(len(max))})
 	}
 }
 
@@ -3928,7 +3928,7 @@ func (ptr *QBarCategoryAxis) Remove(category string) {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		C.QBarCategoryAxis_Remove(ptr.Pointer(), categoryC)
+		C.QBarCategoryAxis_Remove(ptr.Pointer(), C.struct_QtCharts_PackedString{categoryC, C.longlong(len(category))})
 	}
 }
 
@@ -3944,7 +3944,7 @@ func (ptr *QBarCategoryAxis) Replace(oldCategory string, newCategory string) {
 			newCategoryC = C.CString(newCategory)
 			defer C.free(unsafe.Pointer(newCategoryC))
 		}
-		C.QBarCategoryAxis_Replace(ptr.Pointer(), oldCategoryC, newCategoryC)
+		C.QBarCategoryAxis_Replace(ptr.Pointer(), C.struct_QtCharts_PackedString{oldCategoryC, C.longlong(len(oldCategory))}, C.struct_QtCharts_PackedString{newCategoryC, C.longlong(len(newCategory))})
 	}
 }
 
@@ -3952,7 +3952,7 @@ func (ptr *QBarCategoryAxis) SetCategories(categories []string) {
 	if ptr.Pointer() != nil {
 		var categoriesC = C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QBarCategoryAxis_SetCategories(ptr.Pointer(), categoriesC)
+		C.QBarCategoryAxis_SetCategories(ptr.Pointer(), C.struct_QtCharts_PackedString{categoriesC, C.longlong(len(strings.Join(categories, "|")))})
 	}
 }
 
@@ -3963,7 +3963,7 @@ func (ptr *QBarCategoryAxis) SetMax(max string) {
 			maxC = C.CString(max)
 			defer C.free(unsafe.Pointer(maxC))
 		}
-		C.QBarCategoryAxis_SetMax(ptr.Pointer(), maxC)
+		C.QBarCategoryAxis_SetMax(ptr.Pointer(), C.struct_QtCharts_PackedString{maxC, C.longlong(len(max))})
 	}
 }
 
@@ -3974,7 +3974,7 @@ func (ptr *QBarCategoryAxis) SetMin(min string) {
 			minC = C.CString(min)
 			defer C.free(unsafe.Pointer(minC))
 		}
-		C.QBarCategoryAxis_SetMin(ptr.Pointer(), minC)
+		C.QBarCategoryAxis_SetMin(ptr.Pointer(), C.struct_QtCharts_PackedString{minC, C.longlong(len(min))})
 	}
 }
 
@@ -3990,7 +3990,7 @@ func (ptr *QBarCategoryAxis) SetRange(minCategory string, maxCategory string) {
 			maxCategoryC = C.CString(maxCategory)
 			defer C.free(unsafe.Pointer(maxCategoryC))
 		}
-		C.QBarCategoryAxis_SetRange(ptr.Pointer(), minCategoryC, maxCategoryC)
+		C.QBarCategoryAxis_SetRange(ptr.Pointer(), C.struct_QtCharts_PackedString{minCategoryC, C.longlong(len(minCategory))}, C.struct_QtCharts_PackedString{maxCategoryC, C.longlong(len(maxCategory))})
 	}
 }
 
@@ -4387,7 +4387,7 @@ func NewQBarSet(label string, parent core.QObject_ITF) *QBarSet {
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return NewQBarSetFromPointer(C.QBarSet_NewQBarSet(labelC, core.PointerFromQObject(parent)))
+	return NewQBarSetFromPointer(C.QBarSet_NewQBarSet(C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))}, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBarSet) BorderColor() *gui.QColor {
@@ -4985,7 +4985,7 @@ func (ptr *QBarSet) SetLabel(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QBarSet_SetLabel(ptr.Pointer(), labelC)
+		C.QBarSet_SetLabel(ptr.Pointer(), C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))})
 	}
 }
 
@@ -6261,7 +6261,7 @@ func NewQBoxSet(label string, parent core.QObject_ITF) *QBoxSet {
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return NewQBoxSetFromPointer(C.QBoxSet_NewQBoxSet(labelC, core.PointerFromQObject(parent)))
+	return NewQBoxSetFromPointer(C.QBoxSet_NewQBoxSet(C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))}, core.PointerFromQObject(parent)))
 }
 
 func NewQBoxSet2(le float64, lq float64, m float64, uq float64, ue float64, label string, parent core.QObject_ITF) *QBoxSet {
@@ -6270,7 +6270,7 @@ func NewQBoxSet2(le float64, lq float64, m float64, uq float64, ue float64, labe
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return NewQBoxSetFromPointer(C.QBoxSet_NewQBoxSet2(C.double(le), C.double(lq), C.double(m), C.double(uq), C.double(ue), labelC, core.PointerFromQObject(parent)))
+	return NewQBoxSetFromPointer(C.QBoxSet_NewQBoxSet2(C.double(le), C.double(lq), C.double(m), C.double(uq), C.double(ue), C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))}, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBoxSet) Append2(values []float64) {
@@ -6622,7 +6622,7 @@ func (ptr *QBoxSet) SetLabel(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QBoxSet_SetLabel(ptr.Pointer(), labelC)
+		C.QBoxSet_SetLabel(ptr.Pointer(), C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))})
 	}
 }
 
@@ -9373,7 +9373,7 @@ func (ptr *QCategoryAxis) Append(categoryLabel string, categoryEndValue float64)
 			categoryLabelC = C.CString(categoryLabel)
 			defer C.free(unsafe.Pointer(categoryLabelC))
 		}
-		C.QCategoryAxis_Append(ptr.Pointer(), categoryLabelC, C.double(categoryEndValue))
+		C.QCategoryAxis_Append(ptr.Pointer(), C.struct_QtCharts_PackedString{categoryLabelC, C.longlong(len(categoryLabel))}, C.double(categoryEndValue))
 	}
 }
 
@@ -9462,7 +9462,7 @@ func (ptr *QCategoryAxis) Remove(categoryLabel string) {
 			categoryLabelC = C.CString(categoryLabel)
 			defer C.free(unsafe.Pointer(categoryLabelC))
 		}
-		C.QCategoryAxis_Remove(ptr.Pointer(), categoryLabelC)
+		C.QCategoryAxis_Remove(ptr.Pointer(), C.struct_QtCharts_PackedString{categoryLabelC, C.longlong(len(categoryLabel))})
 	}
 }
 
@@ -9478,7 +9478,7 @@ func (ptr *QCategoryAxis) ReplaceLabel(oldLabel string, newLabel string) {
 			newLabelC = C.CString(newLabel)
 			defer C.free(unsafe.Pointer(newLabelC))
 		}
-		C.QCategoryAxis_ReplaceLabel(ptr.Pointer(), oldLabelC, newLabelC)
+		C.QCategoryAxis_ReplaceLabel(ptr.Pointer(), C.struct_QtCharts_PackedString{oldLabelC, C.longlong(len(oldLabel))}, C.struct_QtCharts_PackedString{newLabelC, C.longlong(len(newLabel))})
 	}
 }
 
@@ -9522,7 +9522,7 @@ func (ptr *QCategoryAxis) EndValue(categoryLabel string) float64 {
 			categoryLabelC = C.CString(categoryLabel)
 			defer C.free(unsafe.Pointer(categoryLabelC))
 		}
-		return float64(C.QCategoryAxis_EndValue(ptr.Pointer(), categoryLabelC))
+		return float64(C.QCategoryAxis_EndValue(ptr.Pointer(), C.struct_QtCharts_PackedString{categoryLabelC, C.longlong(len(categoryLabel))}))
 	}
 	return 0
 }
@@ -9534,7 +9534,7 @@ func (ptr *QCategoryAxis) StartValue(categoryLabel string) float64 {
 			categoryLabelC = C.CString(categoryLabel)
 			defer C.free(unsafe.Pointer(categoryLabelC))
 		}
-		return float64(C.QCategoryAxis_StartValue(ptr.Pointer(), categoryLabelC))
+		return float64(C.QCategoryAxis_StartValue(ptr.Pointer(), C.struct_QtCharts_PackedString{categoryLabelC, C.longlong(len(categoryLabel))}))
 	}
 	return 0
 }
@@ -9837,7 +9837,7 @@ func (ptr *QChart) SetTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QChart_SetTitle(ptr.Pointer(), titleC)
+		C.QChart_SetTitle(ptr.Pointer(), C.struct_QtCharts_PackedString{titleC, C.longlong(len(title))})
 	}
 }
 
@@ -12684,7 +12684,7 @@ func (ptr *QChartView) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QChartView_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
+		C.QChartView_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtCharts_PackedString{styleSheetC, C.longlong(len(styleSheet))})
 	}
 }
 
@@ -12734,7 +12734,7 @@ func (ptr *QChartView) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QChartView_SetWindowTitleDefault(ptr.Pointer(), vqsC)
+		C.QChartView_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtCharts_PackedString{vqsC, C.longlong(len(vqs))})
 	}
 }
 
@@ -13160,7 +13160,7 @@ func (ptr *QDateTimeAxis) FormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QDateTimeAxis_FormatChanged(ptr.Pointer(), formatC)
+		C.QDateTimeAxis_FormatChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -13288,7 +13288,7 @@ func (ptr *QDateTimeAxis) SetFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QDateTimeAxis_SetFormat(ptr.Pointer(), formatC)
+		C.QDateTimeAxis_SetFormat(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -18392,7 +18392,7 @@ func (ptr *QLegendMarker) SetLabel(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QLegendMarker_SetLabel(ptr.Pointer(), labelC)
+		C.QLegendMarker_SetLabel(ptr.Pointer(), C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))})
 	}
 }
 
@@ -18764,7 +18764,7 @@ func (ptr *QLogValueAxis) LabelFormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QLogValueAxis_LabelFormatChanged(ptr.Pointer(), formatC)
+		C.QLogValueAxis_LabelFormatChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -18898,7 +18898,7 @@ func (ptr *QLogValueAxis) SetLabelFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QLogValueAxis_SetLabelFormat(ptr.Pointer(), formatC)
+		C.QLogValueAxis_SetLabelFormat(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -19319,7 +19319,7 @@ func (ptr *QPieSeries) Append3(label string, value float64) *QPieSlice {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		return NewQPieSliceFromPointer(C.QPieSeries_Append3(ptr.Pointer(), labelC, C.double(value)))
+		return NewQPieSliceFromPointer(C.QPieSeries_Append3(ptr.Pointer(), C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))}, C.double(value)))
 	}
 	return nil
 }
@@ -20119,7 +20119,7 @@ func NewQPieSlice2(label string, value float64, parent core.QObject_ITF) *QPieSl
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return NewQPieSliceFromPointer(C.QPieSlice_NewQPieSlice2(labelC, C.double(value), core.PointerFromQObject(parent)))
+	return NewQPieSliceFromPointer(C.QPieSlice_NewQPieSlice2(C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))}, C.double(value), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QPieSlice) BorderWidth() int {
@@ -20835,7 +20835,7 @@ func (ptr *QPieSlice) SetLabel(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QPieSlice_SetLabel(ptr.Pointer(), labelC)
+		C.QPieSlice_SetLabel(ptr.Pointer(), C.struct_QtCharts_PackedString{labelC, C.longlong(len(label))})
 	}
 }
 
@@ -24167,7 +24167,7 @@ func (ptr *QValueAxis) LabelFormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QValueAxis_LabelFormatChanged(ptr.Pointer(), formatC)
+		C.QValueAxis_LabelFormatChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -24334,7 +24334,7 @@ func (ptr *QValueAxis) SetLabelFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QValueAxis_SetLabelFormat(ptr.Pointer(), formatC)
+		C.QValueAxis_SetLabelFormat(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -25129,7 +25129,7 @@ func (ptr *QXYSeries) PointLabelsFormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QXYSeries_PointLabelsFormatChanged(ptr.Pointer(), formatC)
+		C.QXYSeries_PointLabelsFormatChanged(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 
@@ -25629,7 +25629,7 @@ func (ptr *QXYSeries) SetPointLabelsFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QXYSeries_SetPointLabelsFormat(ptr.Pointer(), formatC)
+		C.QXYSeries_SetPointLabelsFormat(ptr.Pointer(), C.struct_QtCharts_PackedString{formatC, C.longlong(len(format))})
 	}
 }
 

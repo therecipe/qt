@@ -38,7 +38,7 @@ void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4Caught(void* cl
 void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4Caught(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void* QAndroidJniObject_QAndroidJniObject_FromLocalRef(void* localRef);
-void* QAndroidJniObject_QAndroidJniObject_FromString(char* stri);
+void* QAndroidJniObject_QAndroidJniObject_FromString(struct QtAndroidExtras_PackedString stri);
 void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectField(char* className, char* fieldName);
 void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectFieldCaught(char* className, char* fieldName);
 void* QAndroidJniObject_QAndroidJniObject_GetStaticFieldString(char* className, char* fieldName);

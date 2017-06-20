@@ -318,9 +318,9 @@ char QNdefNfcSmartPosterRecord_AddTitle(void* ptr, void* text)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addTitle(*static_cast<QNdefNfcTextRecord*>(text));
 }
 
-char QNdefNfcSmartPosterRecord_AddTitle2(void* ptr, char* text, char* locale, long long encoding)
+char QNdefNfcSmartPosterRecord_AddTitle2(void* ptr, struct QtNfc_PackedString text, struct QtNfc_PackedString locale, long long encoding)
 {
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addTitle(QString(text), QString(locale), static_cast<QNdefNfcTextRecord::Encoding>(encoding));
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addTitle(QString::fromUtf8(text.data, text.len), QString::fromUtf8(locale.data, locale.len), static_cast<QNdefNfcTextRecord::Encoding>(encoding));
 }
 
 char QNdefNfcSmartPosterRecord_RemoveIcon2(void* ptr, void* ty)
@@ -333,9 +333,9 @@ char QNdefNfcSmartPosterRecord_RemoveTitle(void* ptr, void* text)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeTitle(*static_cast<QNdefNfcTextRecord*>(text));
 }
 
-char QNdefNfcSmartPosterRecord_RemoveTitle2(void* ptr, char* locale)
+char QNdefNfcSmartPosterRecord_RemoveTitle2(void* ptr, struct QtNfc_PackedString locale)
 {
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeTitle(QString(locale));
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeTitle(QString::fromUtf8(locale.data, locale.len));
 }
 
 void QNdefNfcSmartPosterRecord_AddIcon2(void* ptr, void* ty, void* data)
@@ -403,9 +403,9 @@ void* QNdefNfcSmartPosterRecord_UriRecord(void* ptr)
 	return new QNdefNfcUriRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uriRecord());
 }
 
-struct QtNfc_PackedString QNdefNfcSmartPosterRecord_Title(void* ptr, char* locale)
+struct QtNfc_PackedString QNdefNfcSmartPosterRecord_Title(void* ptr, struct QtNfc_PackedString locale)
 {
-	return ({ QByteArray t827ac1 = static_cast<QNdefNfcSmartPosterRecord*>(ptr)->title(QString(locale)).toUtf8(); QtNfc_PackedString { const_cast<char*>(t827ac1.prepend("WHITESPACE").constData()+10), t827ac1.size()-10 }; });
+	return ({ QByteArray t928b42 = static_cast<QNdefNfcSmartPosterRecord*>(ptr)->title(QString::fromUtf8(locale.data, locale.len)).toUtf8(); QtNfc_PackedString { const_cast<char*>(t928b42.prepend("WHITESPACE").constData()+10), t928b42.size()-10 }; });
 }
 
 void* QNdefNfcSmartPosterRecord_Uri(void* ptr)
@@ -428,9 +428,9 @@ char QNdefNfcSmartPosterRecord_HasSize(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasSize();
 }
 
-char QNdefNfcSmartPosterRecord_HasTitle(void* ptr, char* locale)
+char QNdefNfcSmartPosterRecord_HasTitle(void* ptr, struct QtNfc_PackedString locale)
 {
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasTitle(QString(locale));
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasTitle(QString::fromUtf8(locale.data, locale.len));
 }
 
 char QNdefNfcSmartPosterRecord_HasTypeInfo(void* ptr)
@@ -512,14 +512,14 @@ void QNdefNfcTextRecord_SetEncoding(void* ptr, long long encoding)
 	static_cast<QNdefNfcTextRecord*>(ptr)->setEncoding(static_cast<QNdefNfcTextRecord::Encoding>(encoding));
 }
 
-void QNdefNfcTextRecord_SetLocale(void* ptr, char* locale)
+void QNdefNfcTextRecord_SetLocale(void* ptr, struct QtNfc_PackedString locale)
 {
-	static_cast<QNdefNfcTextRecord*>(ptr)->setLocale(QString(locale));
+	static_cast<QNdefNfcTextRecord*>(ptr)->setLocale(QString::fromUtf8(locale.data, locale.len));
 }
 
-void QNdefNfcTextRecord_SetText(void* ptr, char* text)
+void QNdefNfcTextRecord_SetText(void* ptr, struct QtNfc_PackedString text)
 {
-	static_cast<QNdefNfcTextRecord*>(ptr)->setText(QString(text));
+	static_cast<QNdefNfcTextRecord*>(ptr)->setText(QString::fromUtf8(text.data, text.len));
 }
 
 long long QNdefNfcTextRecord_Encoding(void* ptr)
@@ -1835,9 +1835,9 @@ void* QQmlNdefRecord_NewQQmlNdefRecord2(void* record, void* parent)
 	}
 }
 
-void QQmlNdefRecord_SetType(void* ptr, char* newtype)
+void QQmlNdefRecord_SetType(void* ptr, struct QtNfc_PackedString newtype)
 {
-	static_cast<QQmlNdefRecord*>(ptr)->setType(QString(newtype));
+	static_cast<QQmlNdefRecord*>(ptr)->setType(QString::fromUtf8(newtype.data, newtype.len));
 }
 
 void QQmlNdefRecord_SetTypeNameFormat(void* ptr, long long newTypeNameFormat)

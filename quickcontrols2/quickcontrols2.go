@@ -87,7 +87,7 @@ func QQuickStyle_SetFallbackStyle(style string) {
 		styleC = C.CString(style)
 		defer C.free(unsafe.Pointer(styleC))
 	}
-	C.QQuickStyle_QQuickStyle_SetFallbackStyle(styleC)
+	C.QQuickStyle_QQuickStyle_SetFallbackStyle(C.struct_QtQuickControls2_PackedString{styleC, C.longlong(len(style))})
 }
 
 func (ptr *QQuickStyle) SetFallbackStyle(style string) {
@@ -96,7 +96,7 @@ func (ptr *QQuickStyle) SetFallbackStyle(style string) {
 		styleC = C.CString(style)
 		defer C.free(unsafe.Pointer(styleC))
 	}
-	C.QQuickStyle_QQuickStyle_SetFallbackStyle(styleC)
+	C.QQuickStyle_QQuickStyle_SetFallbackStyle(C.struct_QtQuickControls2_PackedString{styleC, C.longlong(len(style))})
 }
 
 func QQuickStyle_SetStyle(style string) {
@@ -105,7 +105,7 @@ func QQuickStyle_SetStyle(style string) {
 		styleC = C.CString(style)
 		defer C.free(unsafe.Pointer(styleC))
 	}
-	C.QQuickStyle_QQuickStyle_SetStyle(styleC)
+	C.QQuickStyle_QQuickStyle_SetStyle(C.struct_QtQuickControls2_PackedString{styleC, C.longlong(len(style))})
 }
 
 func (ptr *QQuickStyle) SetStyle(style string) {
@@ -114,5 +114,5 @@ func (ptr *QQuickStyle) SetStyle(style string) {
 		styleC = C.CString(style)
 		defer C.free(unsafe.Pointer(styleC))
 	}
-	C.QQuickStyle_QQuickStyle_SetStyle(styleC)
+	C.QQuickStyle_QQuickStyle_SetStyle(C.struct_QtQuickControls2_PackedString{styleC, C.longlong(len(style))})
 }

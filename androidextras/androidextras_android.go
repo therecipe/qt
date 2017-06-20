@@ -849,7 +849,7 @@ func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
 		striC = C.CString(stri)
 		defer C.free(unsafe.Pointer(striC))
 	}
-	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(striC))
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(C.struct_QtAndroidExtras_PackedString{striC, C.longlong(len(stri))}))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
@@ -860,7 +860,7 @@ func (ptr *QAndroidJniObject) FromString(stri string) *QAndroidJniObject {
 		striC = C.CString(stri)
 		defer C.free(unsafe.Pointer(striC))
 	}
-	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(striC))
+	var tmpValue = NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromString(C.struct_QtAndroidExtras_PackedString{striC, C.longlong(len(stri))}))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }

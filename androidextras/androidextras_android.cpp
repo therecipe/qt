@@ -144,9 +144,9 @@ void* QAndroidJniObject_QAndroidJniObject_FromLocalRef(void* localRef)
 	return new QAndroidJniObject(QAndroidJniObject::fromLocalRef(static_cast<jobject>(localRef)).object());
 }
 
-void* QAndroidJniObject_QAndroidJniObject_FromString(char* stri)
+void* QAndroidJniObject_QAndroidJniObject_FromString(struct QtAndroidExtras_PackedString stri)
 {
-	return new QAndroidJniObject(QAndroidJniObject::fromString(QString(stri)).object());
+	return new QAndroidJniObject(QAndroidJniObject::fromString(QString::fromUtf8(stri.data, stri.len)).object());
 }
 
 void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectField(char* className, char* fieldName)
