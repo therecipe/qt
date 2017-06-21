@@ -451,7 +451,7 @@ func (ptr *QDBusAbstractInterface) Call2(mode QDBus__CallMode, method string, ar
 			methodC = C.CString(method)
 			defer C.free(unsafe.Pointer(methodC))
 		}
-		var tmpValue = NewQDBusMessageFromPointer(C.QDBusAbstractInterface_Call2(ptr.Pointer(), C.longlong(mode), C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusAbstractInterface_Call2(ptr.Pointer(), C.longlong(mode), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
 		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
@@ -465,7 +465,7 @@ func (ptr *QDBusAbstractInterface) Call(method string, arg1 core.QVariant_ITF, a
 			methodC = C.CString(method)
 			defer C.free(unsafe.Pointer(methodC))
 		}
-		var tmpValue = NewQDBusMessageFromPointer(C.QDBusAbstractInterface_Call(ptr.Pointer(), C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusAbstractInterface_Call(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
 		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
@@ -479,7 +479,7 @@ func (ptr *QDBusAbstractInterface) CallWithArgumentList(mode QDBus__CallMode, me
 			methodC = C.CString(method)
 			defer C.free(unsafe.Pointer(methodC))
 		}
-		var tmpValue = NewQDBusMessageFromPointer(C.QDBusAbstractInterface_CallWithArgumentList(ptr.Pointer(), C.longlong(mode), C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}, func() unsafe.Pointer {
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusAbstractInterface_CallWithArgumentList(ptr.Pointer(), C.longlong(mode), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
 			var tmpList = NewQDBusAbstractInterfaceFromPointer(NewQDBusAbstractInterfaceFromPointer(nil).__callWithArgumentList_args_newList())
 			for _, v := range args {
 				tmpList.__callWithArgumentList_args_setList(v)
@@ -499,7 +499,7 @@ func (ptr *QDBusAbstractInterface) AsyncCall(method string, arg1 core.QVariant_I
 			methodC = C.CString(method)
 			defer C.free(unsafe.Pointer(methodC))
 		}
-		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusAbstractInterface_AsyncCall(ptr.Pointer(), C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
+		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusAbstractInterface_AsyncCall(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
 		runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 		return tmpValue
 	}
@@ -513,7 +513,7 @@ func (ptr *QDBusAbstractInterface) AsyncCallWithArgumentList(method string, args
 			methodC = C.CString(method)
 			defer C.free(unsafe.Pointer(methodC))
 		}
-		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusAbstractInterface_AsyncCallWithArgumentList(ptr.Pointer(), C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}, func() unsafe.Pointer {
+		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusAbstractInterface_AsyncCallWithArgumentList(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
 			var tmpList = NewQDBusAbstractInterfaceFromPointer(NewQDBusAbstractInterfaceFromPointer(nil).__asyncCallWithArgumentList_args_newList())
 			for _, v := range args {
 				tmpList.__asyncCallWithArgumentList_args_setList(v)
@@ -543,7 +543,7 @@ func (ptr *QDBusAbstractInterface) CallWithCallback(method string, args []*core.
 			errorMethodC = C.CString(errorMethod)
 			defer C.free(unsafe.Pointer(errorMethodC))
 		}
-		return C.QDBusAbstractInterface_CallWithCallback(ptr.Pointer(), C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}, func() unsafe.Pointer {
+		return C.QDBusAbstractInterface_CallWithCallback(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
 			var tmpList = NewQDBusAbstractInterfaceFromPointer(NewQDBusAbstractInterfaceFromPointer(nil).__callWithCallback_args_newList())
 			for _, v := range args {
 				tmpList.__callWithCallback_args_setList(v)
@@ -566,7 +566,7 @@ func (ptr *QDBusAbstractInterface) CallWithCallback2(method string, args []*core
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusAbstractInterface_CallWithCallback2(ptr.Pointer(), C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}, func() unsafe.Pointer {
+		return C.QDBusAbstractInterface_CallWithCallback2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
 			var tmpList = NewQDBusAbstractInterfaceFromPointer(NewQDBusAbstractInterfaceFromPointer(nil).__callWithCallback_args_newList2())
 			for _, v := range args {
 				tmpList.__callWithCallback_args_setList2(v)
@@ -1339,7 +1339,7 @@ func QDBusConnection_ConnectToPeer(address string, name string) *QDBusConnection
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToPeer(C.struct_QtDBus_PackedString{addressC, C.longlong(len(address))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToPeer(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1355,7 +1355,7 @@ func (ptr *QDBusConnection) ConnectToPeer(address string, name string) *QDBusCon
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToPeer(C.struct_QtDBus_PackedString{addressC, C.longlong(len(address))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToPeer(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1402,7 +1402,7 @@ func QDBusConnection_ConnectToBus(ty QDBusConnection__BusType, name string) *QDB
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1413,7 +1413,7 @@ func (ptr *QDBusConnection) ConnectToBus(ty QDBusConnection__BusType, name strin
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1429,7 +1429,7 @@ func QDBusConnection_ConnectToBus2(address string, name string) *QDBusConnection
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.struct_QtDBus_PackedString{addressC, C.longlong(len(address))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1445,7 +1445,7 @@ func (ptr *QDBusConnection) ConnectToBus2(address string, name string) *QDBusCon
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.struct_QtDBus_PackedString{addressC, C.longlong(len(address))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1468,7 +1468,7 @@ func NewQDBusConnection(name string) *QDBusConnection {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1500,7 +1500,7 @@ func (ptr *QDBusConnection) Connect(service string, path string, interfa string,
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Connect(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC) != 0
+		return C.QDBusConnection_Connect(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC) != 0
 	}
 	return false
 }
@@ -1537,7 +1537,7 @@ func (ptr *QDBusConnection) Connect2(service string, path string, interfa string
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Connect2(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{signatureC, C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return C.QDBusConnection_Connect2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
 	}
 	return false
 }
@@ -1576,7 +1576,7 @@ func (ptr *QDBusConnection) Connect3(service string, path string, interfa string
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Connect3(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{argumentMatchC, C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{signatureC, C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return C.QDBusConnection_Connect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
 	}
 	return false
 }
@@ -1608,7 +1608,7 @@ func (ptr *QDBusConnection) Disconnect(service string, path string, interfa stri
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Disconnect(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC) != 0
+		return C.QDBusConnection_Disconnect(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC) != 0
 	}
 	return false
 }
@@ -1645,7 +1645,7 @@ func (ptr *QDBusConnection) Disconnect2(service string, path string, interfa str
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Disconnect2(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{signatureC, C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return C.QDBusConnection_Disconnect2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
 	}
 	return false
 }
@@ -1684,7 +1684,7 @@ func (ptr *QDBusConnection) Disconnect3(service string, path string, interfa str
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Disconnect3(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{argumentMatchC, C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{signatureC, C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return C.QDBusConnection_Disconnect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
 	}
 	return false
 }
@@ -1696,7 +1696,7 @@ func (ptr *QDBusConnection) RegisterObject(path string, object core.QObject_ITF,
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return C.QDBusConnection_RegisterObject(ptr.Pointer(), C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, core.PointerFromQObject(object), C.longlong(options)) != 0
+		return C.QDBusConnection_RegisterObject(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, core.PointerFromQObject(object), C.longlong(options)) != 0
 	}
 	return false
 }
@@ -1713,7 +1713,7 @@ func (ptr *QDBusConnection) RegisterObject2(path string, interfa string, object 
 			interfaC = C.CString(interfa)
 			defer C.free(unsafe.Pointer(interfaC))
 		}
-		return C.QDBusConnection_RegisterObject2(ptr.Pointer(), C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, core.PointerFromQObject(object), C.longlong(options)) != 0
+		return C.QDBusConnection_RegisterObject2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, core.PointerFromQObject(object), C.longlong(options)) != 0
 	}
 	return false
 }
@@ -1725,7 +1725,7 @@ func (ptr *QDBusConnection) RegisterService(serviceName string) bool {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		return C.QDBusConnection_RegisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceNameC, C.longlong(len(serviceName))}) != 0
+		return C.QDBusConnection_RegisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))}) != 0
 	}
 	return false
 }
@@ -1737,7 +1737,7 @@ func (ptr *QDBusConnection) UnregisterService(serviceName string) bool {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		return C.QDBusConnection_UnregisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceNameC, C.longlong(len(serviceName))}) != 0
+		return C.QDBusConnection_UnregisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))}) != 0
 	}
 	return false
 }
@@ -1748,7 +1748,7 @@ func QDBusConnection_DisconnectFromBus(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QDBusConnection_QDBusConnection_DisconnectFromBus(C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))})
+	C.QDBusConnection_QDBusConnection_DisconnectFromBus(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func (ptr *QDBusConnection) DisconnectFromBus(name string) {
@@ -1757,7 +1757,7 @@ func (ptr *QDBusConnection) DisconnectFromBus(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QDBusConnection_QDBusConnection_DisconnectFromBus(C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))})
+	C.QDBusConnection_QDBusConnection_DisconnectFromBus(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func QDBusConnection_DisconnectFromPeer(name string) {
@@ -1766,7 +1766,7 @@ func QDBusConnection_DisconnectFromPeer(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QDBusConnection_QDBusConnection_DisconnectFromPeer(C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))})
+	C.QDBusConnection_QDBusConnection_DisconnectFromPeer(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func (ptr *QDBusConnection) DisconnectFromPeer(name string) {
@@ -1775,7 +1775,7 @@ func (ptr *QDBusConnection) DisconnectFromPeer(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QDBusConnection_QDBusConnection_DisconnectFromPeer(C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))})
+	C.QDBusConnection_QDBusConnection_DisconnectFromPeer(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func (ptr *QDBusConnection) Swap(other QDBusConnection_ITF) {
@@ -1791,7 +1791,7 @@ func (ptr *QDBusConnection) UnregisterObject(path string, mode QDBusConnection__
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QDBusConnection_UnregisterObject(ptr.Pointer(), C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.longlong(mode))
+		C.QDBusConnection_UnregisterObject(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(mode))
 	}
 }
 
@@ -1855,7 +1855,7 @@ func (ptr *QDBusConnection) ObjectRegisteredAt(path string) *core.QObject {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QDBusConnection_ObjectRegisteredAt(ptr.Pointer(), C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}))
+		var tmpValue = core.NewQObjectFromPointer(C.QDBusConnection_ObjectRegisteredAt(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2017,7 +2017,7 @@ func (ptr *QDBusConnectionInterface) ServiceRegistered(serviceName string) {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		C.QDBusConnectionInterface_ServiceRegistered(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceNameC, C.longlong(len(serviceName))})
+		C.QDBusConnectionInterface_ServiceRegistered(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))})
 	}
 }
 
@@ -2100,7 +2100,7 @@ func (ptr *QDBusConnectionInterface) ServiceUnregistered(serviceName string) {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		C.QDBusConnectionInterface_ServiceUnregistered(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceNameC, C.longlong(len(serviceName))})
+		C.QDBusConnectionInterface_ServiceUnregistered(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))})
 	}
 }
 
@@ -2192,7 +2192,7 @@ func (ptr *QDBusContext) SendErrorReply2(ty QDBusError__ErrorType, msg string) {
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		C.QDBusContext_SendErrorReply2(ptr.Pointer(), C.longlong(ty), C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))})
+		C.QDBusContext_SendErrorReply2(ptr.Pointer(), C.longlong(ty), C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))})
 	}
 }
 
@@ -2208,7 +2208,7 @@ func (ptr *QDBusContext) SendErrorReply(name string, msg string) {
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		C.QDBusContext_SendErrorReply(ptr.Pointer(), C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))})
+		C.QDBusContext_SendErrorReply(ptr.Pointer(), C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))})
 	}
 }
 
@@ -2401,7 +2401,7 @@ func NewQDBusInterface(service string, path string, interfa string, connection Q
 		interfaC = C.CString(interfa)
 		defer C.free(unsafe.Pointer(interfaC))
 	}
-	var tmpValue = NewQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
+	var tmpValue = NewQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -2472,7 +2472,7 @@ func QDBusMessage_CreateError3(ty QDBusError__ErrorType, msg string) *QDBusMessa
 		msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2483,7 +2483,7 @@ func (ptr *QDBusMessage) CreateError3(ty QDBusError__ErrorType, msg string) *QDB
 		msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2511,7 +2511,7 @@ func QDBusMessage_CreateError(name string, msg string) *QDBusMessage {
 		msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError(C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2527,7 +2527,7 @@ func (ptr *QDBusMessage) CreateError(name string, msg string) *QDBusMessage {
 		msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError(C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError(C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2553,7 +2553,7 @@ func QDBusMessage_CreateMethodCall(service string, path string, interfa string, 
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateMethodCall(C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateMethodCall(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2579,7 +2579,7 @@ func (ptr *QDBusMessage) CreateMethodCall(service string, path string, interfa s
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateMethodCall(C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{methodC, C.longlong(len(method))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateMethodCall(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2600,7 +2600,7 @@ func QDBusMessage_CreateSignal(path string, interfa string, name string) *QDBusM
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateSignal(C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateSignal(C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2621,7 +2621,7 @@ func (ptr *QDBusMessage) CreateSignal(path string, interfa string, name string) 
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateSignal(C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateSignal(C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2647,7 +2647,7 @@ func QDBusMessage_CreateTargetedSignal(service string, path string, interfa stri
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2673,7 +2673,7 @@ func (ptr *QDBusMessage) CreateTargetedSignal(service string, path string, inter
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}, C.struct_QtDBus_PackedString{interfaC, C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -2736,7 +2736,7 @@ func (ptr *QDBusMessage) CreateErrorReply3(ty QDBusError__ErrorType, msg string)
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply3(ptr.Pointer(), C.longlong(ty), C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))}))
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply3(ptr.Pointer(), C.longlong(ty), C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
 		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
@@ -2764,7 +2764,7 @@ func (ptr *QDBusMessage) CreateErrorReply(name string, msg string) *QDBusMessage
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply(ptr.Pointer(), C.struct_QtDBus_PackedString{nameC, C.longlong(len(name))}, C.struct_QtDBus_PackedString{msgC, C.longlong(len(msg))}))
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply(ptr.Pointer(), C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: msgC, len: C.longlong(len(msg))}))
 		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
@@ -3005,7 +3005,7 @@ func NewQDBusObjectPath5(p string) *QDBusObjectPath {
 		pC = C.CString(p)
 		defer C.free(unsafe.Pointer(pC))
 	}
-	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath5(C.struct_QtDBus_PackedString{pC, C.longlong(len(p))}))
+	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath5(C.struct_QtDBus_PackedString{data: pC, len: C.longlong(len(p))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
 	return tmpValue
 }
@@ -3016,7 +3016,7 @@ func NewQDBusObjectPath4(path string) *QDBusObjectPath {
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}))
+	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
 	return tmpValue
 }
@@ -3039,7 +3039,7 @@ func (ptr *QDBusObjectPath) SetPath(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QDBusObjectPath_SetPath(ptr.Pointer(), C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))})
+		C.QDBusObjectPath_SetPath(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))})
 	}
 }
 
@@ -3763,7 +3763,7 @@ func NewQDBusServer(address string, parent core.QObject_ITF) *QDBusServer {
 		addressC = C.CString(address)
 		defer C.free(unsafe.Pointer(addressC))
 	}
-	var tmpValue = NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer(C.struct_QtDBus_PackedString{addressC, C.longlong(len(address))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer(C.struct_QtDBus_PackedString{data: addressC, len: C.longlong(len(address))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4239,7 +4239,7 @@ func (ptr *QDBusServiceWatcher) ServiceRegistered(serviceName string) {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		C.QDBusServiceWatcher_ServiceRegistered(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceNameC, C.longlong(len(serviceName))})
+		C.QDBusServiceWatcher_ServiceRegistered(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))})
 	}
 }
 
@@ -4276,7 +4276,7 @@ func NewQDBusServiceWatcher2(service string, connection QDBusConnection_ITF, wat
 		serviceC = C.CString(service)
 		defer C.free(unsafe.Pointer(serviceC))
 	}
-	var tmpValue = NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}, PointerFromQDBusConnection(connection), C.longlong(watchMode), core.PointerFromQObject(parent)))
+	var tmpValue = NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, PointerFromQDBusConnection(connection), C.longlong(watchMode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4290,7 +4290,7 @@ func (ptr *QDBusServiceWatcher) RemoveWatchedService(service string) bool {
 			serviceC = C.CString(service)
 			defer C.free(unsafe.Pointer(serviceC))
 		}
-		return C.QDBusServiceWatcher_RemoveWatchedService(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceC, C.longlong(len(service))}) != 0
+		return C.QDBusServiceWatcher_RemoveWatchedService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}) != 0
 	}
 	return false
 }
@@ -4302,7 +4302,7 @@ func (ptr *QDBusServiceWatcher) AddWatchedService(newService string) {
 			newServiceC = C.CString(newService)
 			defer C.free(unsafe.Pointer(newServiceC))
 		}
-		C.QDBusServiceWatcher_AddWatchedService(ptr.Pointer(), C.struct_QtDBus_PackedString{newServiceC, C.longlong(len(newService))})
+		C.QDBusServiceWatcher_AddWatchedService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: newServiceC, len: C.longlong(len(newService))})
 	}
 }
 
@@ -4356,7 +4356,7 @@ func (ptr *QDBusServiceWatcher) ServiceOwnerChanged(serviceName string, oldOwner
 			newOwnerC = C.CString(newOwner)
 			defer C.free(unsafe.Pointer(newOwnerC))
 		}
-		C.QDBusServiceWatcher_ServiceOwnerChanged(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceNameC, C.longlong(len(serviceName))}, C.struct_QtDBus_PackedString{oldOwnerC, C.longlong(len(oldOwner))}, C.struct_QtDBus_PackedString{newOwnerC, C.longlong(len(newOwner))})
+		C.QDBusServiceWatcher_ServiceOwnerChanged(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))}, C.struct_QtDBus_PackedString{data: oldOwnerC, len: C.longlong(len(oldOwner))}, C.struct_QtDBus_PackedString{data: newOwnerC, len: C.longlong(len(newOwner))})
 	}
 }
 
@@ -4400,7 +4400,7 @@ func (ptr *QDBusServiceWatcher) ServiceUnregistered(serviceName string) {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		C.QDBusServiceWatcher_ServiceUnregistered(ptr.Pointer(), C.struct_QtDBus_PackedString{serviceNameC, C.longlong(len(serviceName))})
+		C.QDBusServiceWatcher_ServiceUnregistered(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))})
 	}
 }
 
@@ -4408,7 +4408,7 @@ func (ptr *QDBusServiceWatcher) SetWatchedServices(services []string) {
 	if ptr.Pointer() != nil {
 		var servicesC = C.CString(strings.Join(services, "|"))
 		defer C.free(unsafe.Pointer(servicesC))
-		C.QDBusServiceWatcher_SetWatchedServices(ptr.Pointer(), C.struct_QtDBus_PackedString{servicesC, C.longlong(len(strings.Join(services, "|")))})
+		C.QDBusServiceWatcher_SetWatchedServices(ptr.Pointer(), C.struct_QtDBus_PackedString{data: servicesC, len: C.longlong(len(strings.Join(services, "|")))})
 	}
 }
 
@@ -4759,7 +4759,7 @@ func NewQDBusSignature5(sig string) *QDBusSignature {
 		sigC = C.CString(sig)
 		defer C.free(unsafe.Pointer(sigC))
 	}
-	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature5(C.struct_QtDBus_PackedString{sigC, C.longlong(len(sig))}))
+	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature5(C.struct_QtDBus_PackedString{data: sigC, len: C.longlong(len(sig))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
 	return tmpValue
 }
@@ -4770,7 +4770,7 @@ func NewQDBusSignature4(signature string) *QDBusSignature {
 		signatureC = C.CString(signature)
 		defer C.free(unsafe.Pointer(signatureC))
 	}
-	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(C.struct_QtDBus_PackedString{signatureC, C.longlong(len(signature))}))
+	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}))
 	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
 	return tmpValue
 }
@@ -4793,7 +4793,7 @@ func (ptr *QDBusSignature) SetSignature(signature string) {
 			signatureC = C.CString(signature)
 			defer C.free(unsafe.Pointer(signatureC))
 		}
-		C.QDBusSignature_SetSignature(ptr.Pointer(), C.struct_QtDBus_PackedString{signatureC, C.longlong(len(signature))})
+		C.QDBusSignature_SetSignature(ptr.Pointer(), C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))})
 	}
 }
 
@@ -5125,10 +5125,10 @@ func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObjectDefault() {
 func callbackQDBusVirtualObject_Introspect(ptr unsafe.Pointer, path C.struct_QtDBus_PackedString) C.struct_QtDBus_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "introspect"); signal != nil {
 		tempVal := signal.(func(string) string)(cGoUnpackString(path))
-		return C.struct_QtDBus_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtDBus_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
-	return C.struct_QtDBus_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtDBus_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QDBusVirtualObject) ConnectIntrospect(f func(path string) string) {
@@ -5159,7 +5159,7 @@ func (ptr *QDBusVirtualObject) Introspect(path string) string {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return cGoUnpackString(C.QDBusVirtualObject_Introspect(ptr.Pointer(), C.struct_QtDBus_PackedString{pathC, C.longlong(len(path))}))
+		return cGoUnpackString(C.QDBusVirtualObject_Introspect(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}))
 	}
 	return ""
 }

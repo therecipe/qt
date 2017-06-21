@@ -111,7 +111,9 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 		}
 
 		if tmpF.Output == "bool" {
-			tmpF.Name = fmt.Sprintf("is%v", strings.Title(tmpF.Name))
+			if !strings.HasPrefix(strings.ToLower(v.Name), "is") {
+				tmpF.Name = fmt.Sprintf("is%v", strings.Title(tmpF.Name))
+			}
 			tmpF.Fullname = fmt.Sprintf("%v::%v", tmpF.ClassName(), tmpF.Name)
 		}
 

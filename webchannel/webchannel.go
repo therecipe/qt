@@ -204,7 +204,7 @@ func (ptr *QWebChannel) RegisterObject(id string, object core.QObject_ITF) {
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		C.QWebChannel_RegisterObject(ptr.Pointer(), C.struct_QtWebChannel_PackedString{idC, C.longlong(len(id))}, core.PointerFromQObject(object))
+		C.QWebChannel_RegisterObject(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQObject(object))
 	}
 }
 
@@ -261,7 +261,7 @@ func (ptr *QWebChannel) __registerObjects_objects_atList(i string) *core.QObject
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QWebChannel___registerObjects_objects_atList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQObjectFromPointer(C.QWebChannel___registerObjects_objects_atList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: iC, len: C.longlong(len(i))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -277,7 +277,7 @@ func (ptr *QWebChannel) __registerObjects_objects_setList(key string, i core.QOb
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QWebChannel___registerObjects_objects_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQObject(i))
+		C.QWebChannel___registerObjects_objects_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQObject(i))
 	}
 }
 
@@ -305,7 +305,7 @@ func (ptr *QWebChannel) __registeredObjects_atList(i string) *core.QObject {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QWebChannel___registeredObjects_atList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQObjectFromPointer(C.QWebChannel___registeredObjects_atList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: iC, len: C.longlong(len(i))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -321,7 +321,7 @@ func (ptr *QWebChannel) __registeredObjects_setList(key string, i core.QObject_I
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QWebChannel___registeredObjects_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQObject(i))
+		C.QWebChannel___registeredObjects_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQObject(i))
 	}
 }
 
@@ -356,7 +356,7 @@ func (ptr *QWebChannel) ____registerObjects_keyList_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QWebChannel_____registerObjects_keyList_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{iC, C.longlong(len(i))})
+		C.QWebChannel_____registerObjects_keyList_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -378,7 +378,7 @@ func (ptr *QWebChannel) ____registeredObjects_keyList_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QWebChannel_____registeredObjects_keyList_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{iC, C.longlong(len(i))})
+		C.QWebChannel_____registeredObjects_keyList_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 

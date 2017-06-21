@@ -156,7 +156,7 @@ func QSqlDatabase_AddDatabase2(driver QSqlDriver_ITF, connectionName string) *QS
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -167,7 +167,7 @@ func (ptr *QSqlDatabase) AddDatabase2(driver QSqlDriver_ITF, connectionName stri
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase2(PointerFromQSqlDriver(driver), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -183,7 +183,7 @@ func QSqlDatabase_AddDatabase(ty string, connectionName string) *QSqlDatabase {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase(C.struct_QtSql_PackedString{tyC, C.longlong(len(ty))}, C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase(C.struct_QtSql_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -199,7 +199,7 @@ func (ptr *QSqlDatabase) AddDatabase(ty string, connectionName string) *QSqlData
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase(C.struct_QtSql_PackedString{tyC, C.longlong(len(ty))}, C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_AddDatabase(C.struct_QtSql_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -210,7 +210,7 @@ func QSqlDatabase_CloneDatabase(other QSqlDatabase_ITF, connectionName string) *
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase(PointerFromQSqlDatabase(other), C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase(PointerFromQSqlDatabase(other), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -221,7 +221,7 @@ func (ptr *QSqlDatabase) CloneDatabase(other QSqlDatabase_ITF, connectionName st
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase(PointerFromQSqlDatabase(other), C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_CloneDatabase(PointerFromQSqlDatabase(other), C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -232,7 +232,7 @@ func QSqlDatabase_Database(connectionName string, open bool) *QSqlDatabase {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_Database(C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}, C.char(int8(qt.GoBoolToInt(open)))))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_Database(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}, C.char(int8(qt.GoBoolToInt(open)))))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -243,7 +243,7 @@ func (ptr *QSqlDatabase) Database(connectionName string, open bool) *QSqlDatabas
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_Database(C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}, C.char(int8(qt.GoBoolToInt(open)))))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_QSqlDatabase_Database(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}, C.char(int8(qt.GoBoolToInt(open)))))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -272,7 +272,7 @@ func NewQSqlDatabase3(ty string) *QSqlDatabase {
 		tyC = C.CString(ty)
 		defer C.free(unsafe.Pointer(tyC))
 	}
-	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase3(C.struct_QtSql_PackedString{tyC, C.longlong(len(ty))}))
+	var tmpValue = NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase3(C.struct_QtSql_PackedString{data: tyC, len: C.longlong(len(ty))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlDatabase).DestroyQSqlDatabase)
 	return tmpValue
 }
@@ -306,7 +306,7 @@ func QSqlDatabase_Contains(connectionName string) bool {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}) != 0
+	return C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}) != 0
 }
 
 func (ptr *QSqlDatabase) Contains(connectionName string) bool {
@@ -315,7 +315,7 @@ func (ptr *QSqlDatabase) Contains(connectionName string) bool {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))}) != 0
+	return C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}) != 0
 }
 
 func QSqlDatabase_IsDriverAvailable(name string) bool {
@@ -324,7 +324,7 @@ func QSqlDatabase_IsDriverAvailable(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QSqlDatabase) IsDriverAvailable(name string) bool {
@@ -333,7 +333,7 @@ func (ptr *QSqlDatabase) IsDriverAvailable(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QSqlDatabase) Open() bool {
@@ -355,7 +355,7 @@ func (ptr *QSqlDatabase) Open2(user string, password string) bool {
 			passwordC = C.CString(password)
 			defer C.free(unsafe.Pointer(passwordC))
 		}
-		return C.QSqlDatabase_Open2(ptr.Pointer(), C.struct_QtSql_PackedString{userC, C.longlong(len(user))}, C.struct_QtSql_PackedString{passwordC, C.longlong(len(password))}) != 0
+		return C.QSqlDatabase_Open2(ptr.Pointer(), C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))}) != 0
 	}
 	return false
 }
@@ -386,7 +386,7 @@ func QSqlDatabase_RegisterSqlDriver(name string, creator QSqlDriverCreatorBase_I
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}, PointerFromQSqlDriverCreatorBase(creator))
+	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQSqlDriverCreatorBase(creator))
 }
 
 func (ptr *QSqlDatabase) RegisterSqlDriver(name string, creator QSqlDriverCreatorBase_ITF) {
@@ -395,7 +395,7 @@ func (ptr *QSqlDatabase) RegisterSqlDriver(name string, creator QSqlDriverCreato
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}, PointerFromQSqlDriverCreatorBase(creator))
+	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQSqlDriverCreatorBase(creator))
 }
 
 func QSqlDatabase_RemoveDatabase(connectionName string) {
@@ -404,7 +404,7 @@ func QSqlDatabase_RemoveDatabase(connectionName string) {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	C.QSqlDatabase_QSqlDatabase_RemoveDatabase(C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))})
+	C.QSqlDatabase_QSqlDatabase_RemoveDatabase(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})
 }
 
 func (ptr *QSqlDatabase) RemoveDatabase(connectionName string) {
@@ -413,7 +413,7 @@ func (ptr *QSqlDatabase) RemoveDatabase(connectionName string) {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	C.QSqlDatabase_QSqlDatabase_RemoveDatabase(C.struct_QtSql_PackedString{connectionNameC, C.longlong(len(connectionName))})
+	C.QSqlDatabase_QSqlDatabase_RemoveDatabase(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})
 }
 
 func (ptr *QSqlDatabase) SetConnectOptions(options string) {
@@ -423,7 +423,7 @@ func (ptr *QSqlDatabase) SetConnectOptions(options string) {
 			optionsC = C.CString(options)
 			defer C.free(unsafe.Pointer(optionsC))
 		}
-		C.QSqlDatabase_SetConnectOptions(ptr.Pointer(), C.struct_QtSql_PackedString{optionsC, C.longlong(len(options))})
+		C.QSqlDatabase_SetConnectOptions(ptr.Pointer(), C.struct_QtSql_PackedString{data: optionsC, len: C.longlong(len(options))})
 	}
 }
 
@@ -434,7 +434,7 @@ func (ptr *QSqlDatabase) SetDatabaseName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlDatabase_SetDatabaseName(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))})
+		C.QSqlDatabase_SetDatabaseName(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -445,7 +445,7 @@ func (ptr *QSqlDatabase) SetHostName(host string) {
 			hostC = C.CString(host)
 			defer C.free(unsafe.Pointer(hostC))
 		}
-		C.QSqlDatabase_SetHostName(ptr.Pointer(), C.struct_QtSql_PackedString{hostC, C.longlong(len(host))})
+		C.QSqlDatabase_SetHostName(ptr.Pointer(), C.struct_QtSql_PackedString{data: hostC, len: C.longlong(len(host))})
 	}
 }
 
@@ -462,7 +462,7 @@ func (ptr *QSqlDatabase) SetPassword(password string) {
 			passwordC = C.CString(password)
 			defer C.free(unsafe.Pointer(passwordC))
 		}
-		C.QSqlDatabase_SetPassword(ptr.Pointer(), C.struct_QtSql_PackedString{passwordC, C.longlong(len(password))})
+		C.QSqlDatabase_SetPassword(ptr.Pointer(), C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))})
 	}
 }
 
@@ -479,7 +479,7 @@ func (ptr *QSqlDatabase) SetUserName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlDatabase_SetUserName(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))})
+		C.QSqlDatabase_SetUserName(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -525,7 +525,7 @@ func (ptr *QSqlDatabase) PrimaryIndex(tablename string) *QSqlIndex {
 			tablenameC = C.CString(tablename)
 			defer C.free(unsafe.Pointer(tablenameC))
 		}
-		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDatabase_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{tablenameC, C.longlong(len(tablename))}))
+		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDatabase_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: tablenameC, len: C.longlong(len(tablename))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 		return tmpValue
 	}
@@ -539,7 +539,7 @@ func (ptr *QSqlDatabase) Exec(query string) *QSqlQuery {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		var tmpValue = NewQSqlQueryFromPointer(C.QSqlDatabase_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}))
+		var tmpValue = NewQSqlQueryFromPointer(C.QSqlDatabase_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
 		return tmpValue
 	}
@@ -553,7 +553,7 @@ func (ptr *QSqlDatabase) Record(tablename string) *QSqlRecord {
 			tablenameC = C.CString(tablename)
 			defer C.free(unsafe.Pointer(tablenameC))
 		}
-		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDatabase_Record(ptr.Pointer(), C.struct_QtSql_PackedString{tablenameC, C.longlong(len(tablename))}))
+		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDatabase_Record(ptr.Pointer(), C.struct_QtSql_PackedString{data: tablenameC, len: C.longlong(len(tablename))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
 		return tmpValue
 	}
@@ -913,7 +913,7 @@ func (ptr *QSqlDriver) Open(db string, user string, password string, host string
 			optionsC = C.CString(options)
 			defer C.free(unsafe.Pointer(optionsC))
 		}
-		return C.QSqlDriver_Open(ptr.Pointer(), C.struct_QtSql_PackedString{dbC, C.longlong(len(db))}, C.struct_QtSql_PackedString{userC, C.longlong(len(user))}, C.struct_QtSql_PackedString{passwordC, C.longlong(len(password))}, C.struct_QtSql_PackedString{hostC, C.longlong(len(host))}, C.int(int32(port)), C.struct_QtSql_PackedString{optionsC, C.longlong(len(options))}) != 0
+		return C.QSqlDriver_Open(ptr.Pointer(), C.struct_QtSql_PackedString{data: dbC, len: C.longlong(len(db))}, C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))}, C.struct_QtSql_PackedString{data: hostC, len: C.longlong(len(host))}, C.int(int32(port)), C.struct_QtSql_PackedString{data: optionsC, len: C.longlong(len(options))}) != 0
 	}
 	return false
 }
@@ -999,7 +999,7 @@ func (ptr *QSqlDriver) SubscribeToNotification(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -1011,7 +1011,7 @@ func (ptr *QSqlDriver) SubscribeToNotificationDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_SubscribeToNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlDriver_SubscribeToNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -1053,7 +1053,7 @@ func (ptr *QSqlDriver) UnsubscribeFromNotification(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -1065,7 +1065,7 @@ func (ptr *QSqlDriver) UnsubscribeFromNotificationDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_UnsubscribeFromNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlDriver_UnsubscribeFromNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -1145,7 +1145,7 @@ func (ptr *QSqlDriver) Notification(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlDriver_Notification(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))})
+		C.QSqlDriver_Notification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -1189,7 +1189,7 @@ func (ptr *QSqlDriver) Notification2(name string, source QSqlDriver__Notificatio
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlDriver_Notification2(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}, C.longlong(source), core.PointerFromQVariant(payload))
+		C.QSqlDriver_Notification2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(source), core.PointerFromQVariant(payload))
 	}
 }
 
@@ -1393,7 +1393,7 @@ func (ptr *QSqlDriver) PrimaryIndex(tableName string) *QSqlIndex {
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))}))
+		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 		return tmpValue
 	}
@@ -1407,7 +1407,7 @@ func (ptr *QSqlDriver) PrimaryIndexDefault(tableName string) *QSqlIndex {
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndexDefault(ptr.Pointer(), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))}))
+		var tmpValue = NewQSqlIndexFromPointer(C.QSqlDriver_PrimaryIndexDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 		return tmpValue
 	}
@@ -1451,7 +1451,7 @@ func (ptr *QSqlDriver) Record(tableName string) *QSqlRecord {
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDriver_Record(ptr.Pointer(), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))}))
+		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDriver_Record(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
 		return tmpValue
 	}
@@ -1465,7 +1465,7 @@ func (ptr *QSqlDriver) RecordDefault(tableName string) *QSqlRecord {
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDriver_RecordDefault(ptr.Pointer(), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))}))
+		var tmpValue = NewQSqlRecordFromPointer(C.QSqlDriver_RecordDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlRecord).DestroyQSqlRecord)
 		return tmpValue
 	}
@@ -1513,10 +1513,10 @@ func (ptr *QSqlDriver) CreateResult() *QSqlResult {
 func callbackQSqlDriver_EscapeIdentifier(ptr unsafe.Pointer, identifier C.struct_QtSql_PackedString, ty C.longlong) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "escapeIdentifier"); signal != nil {
 		tempVal := signal.(func(string, QSqlDriver__IdentifierType) string)(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
-		return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).EscapeIdentifierDefault(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
-	return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QSqlDriver) ConnectEscapeIdentifier(f func(identifier string, ty QSqlDriver__IdentifierType) string) {
@@ -1547,7 +1547,7 @@ func (ptr *QSqlDriver) EscapeIdentifier(identifier string, ty QSqlDriver__Identi
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return cGoUnpackString(C.QSqlDriver_EscapeIdentifier(ptr.Pointer(), C.struct_QtSql_PackedString{identifierC, C.longlong(len(identifier))}, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_EscapeIdentifier(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
 	}
 	return ""
 }
@@ -1559,7 +1559,7 @@ func (ptr *QSqlDriver) EscapeIdentifierDefault(identifier string, ty QSqlDriver_
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return cGoUnpackString(C.QSqlDriver_EscapeIdentifierDefault(ptr.Pointer(), C.struct_QtSql_PackedString{identifierC, C.longlong(len(identifier))}, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_EscapeIdentifierDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
 	}
 	return ""
 }
@@ -1568,10 +1568,10 @@ func (ptr *QSqlDriver) EscapeIdentifierDefault(identifier string, ty QSqlDriver_
 func callbackQSqlDriver_FormatValue(ptr unsafe.Pointer, field unsafe.Pointer, trimStrings C.char) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "formatValue"); signal != nil {
 		tempVal := signal.(func(*QSqlField, bool) string)(NewQSqlFieldFromPointer(field), int8(trimStrings) != 0)
-		return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).FormatValueDefault(NewQSqlFieldFromPointer(field), int8(trimStrings) != 0)
-	return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QSqlDriver) ConnectFormatValue(f func(field *QSqlField, trimStrings bool) string) {
@@ -1613,10 +1613,10 @@ func (ptr *QSqlDriver) FormatValueDefault(field QSqlField_ITF, trimStrings bool)
 func callbackQSqlDriver_SqlStatement(ptr unsafe.Pointer, ty C.longlong, tableName C.struct_QtSql_PackedString, rec unsafe.Pointer, preparedStatement C.char) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "sqlStatement"); signal != nil {
 		tempVal := signal.(func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0)
-		return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).SqlStatementDefault(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0)
-	return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QSqlDriver) ConnectSqlStatement(f func(ty QSqlDriver__StatementType, tableName string, rec *QSqlRecord, preparedStatement bool) string) {
@@ -1647,7 +1647,7 @@ func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName stri
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		return cGoUnpackString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
+		return cGoUnpackString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
 	}
 	return ""
 }
@@ -1659,7 +1659,7 @@ func (ptr *QSqlDriver) SqlStatementDefault(ty QSqlDriver__StatementType, tableNa
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		return cGoUnpackString(C.QSqlDriver_SqlStatementDefault(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
+		return cGoUnpackString(C.QSqlDriver_SqlStatementDefault(ptr.Pointer(), C.longlong(ty), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
 	}
 	return ""
 }
@@ -1668,10 +1668,10 @@ func (ptr *QSqlDriver) SqlStatementDefault(ty QSqlDriver__StatementType, tableNa
 func callbackQSqlDriver_StripDelimiters(ptr unsafe.Pointer, identifier C.struct_QtSql_PackedString, ty C.longlong) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "stripDelimiters"); signal != nil {
 		tempVal := signal.(func(string, QSqlDriver__IdentifierType) string)(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
-		return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).StripDelimitersDefault(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty))
-	return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QSqlDriver) ConnectStripDelimiters(f func(identifier string, ty QSqlDriver__IdentifierType) string) {
@@ -1702,7 +1702,7 @@ func (ptr *QSqlDriver) StripDelimiters(identifier string, ty QSqlDriver__Identif
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return cGoUnpackString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), C.struct_QtSql_PackedString{identifierC, C.longlong(len(identifier))}, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
 	}
 	return ""
 }
@@ -1714,7 +1714,7 @@ func (ptr *QSqlDriver) StripDelimitersDefault(identifier string, ty QSqlDriver__
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return cGoUnpackString(C.QSqlDriver_StripDelimitersDefault(ptr.Pointer(), C.struct_QtSql_PackedString{identifierC, C.longlong(len(identifier))}, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_StripDelimitersDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)))
 	}
 	return ""
 }
@@ -1723,10 +1723,10 @@ func (ptr *QSqlDriver) StripDelimitersDefault(identifier string, ty QSqlDriver__
 func callbackQSqlDriver_SubscribedToNotifications(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "subscribedToNotifications"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtSql_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).SubscribedToNotificationsDefault()
-	return C.struct_QtSql_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QSqlDriver) ConnectSubscribedToNotifications(f func() []string) {
@@ -1768,10 +1768,10 @@ func (ptr *QSqlDriver) SubscribedToNotificationsDefault() []string {
 func callbackQSqlDriver_Tables(ptr unsafe.Pointer, tableType C.longlong) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "tables"); signal != nil {
 		tempVal := signal.(func(QSql__TableType) []string)(QSql__TableType(tableType))
-		return C.struct_QtSql_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQSqlDriverFromPointer(ptr).TablesDefault(QSql__TableType(tableType))
-	return C.struct_QtSql_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QSqlDriver) ConnectTables(f func(tableType QSql__TableType) []string) {
@@ -1931,7 +1931,7 @@ func (ptr *QSqlDriver) IsIdentifierEscaped(identifier string, ty QSqlDriver__Ide
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return C.QSqlDriver_IsIdentifierEscaped(ptr.Pointer(), C.struct_QtSql_PackedString{identifierC, C.longlong(len(identifier))}, C.longlong(ty)) != 0
+		return C.QSqlDriver_IsIdentifierEscaped(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)) != 0
 	}
 	return false
 }
@@ -1943,7 +1943,7 @@ func (ptr *QSqlDriver) IsIdentifierEscapedDefault(identifier string, ty QSqlDriv
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return C.QSqlDriver_IsIdentifierEscapedDefault(ptr.Pointer(), C.struct_QtSql_PackedString{identifierC, C.longlong(len(identifier))}, C.longlong(ty)) != 0
+		return C.QSqlDriver_IsIdentifierEscapedDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)) != 0
 	}
 	return false
 }
@@ -2505,7 +2505,7 @@ func (ptr *QSqlDriverPlugin) Create(key string) *QSqlDriver {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = NewQSqlDriverFromPointer(C.QSqlDriverPlugin_Create(ptr.Pointer(), C.struct_QtSql_PackedString{keyC, C.longlong(len(key))}))
+		var tmpValue = NewQSqlDriverFromPointer(C.QSqlDriverPlugin_Create(ptr.Pointer(), C.struct_QtSql_PackedString{data: keyC, len: C.longlong(len(key))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2868,7 +2868,7 @@ func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorTyp
 		codeC = C.CString(code)
 		defer C.free(unsafe.Pointer(codeC))
 	}
-	var tmpValue = NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError(C.struct_QtSql_PackedString{driverTextC, C.longlong(len(driverText))}, C.struct_QtSql_PackedString{databaseTextC, C.longlong(len(databaseText))}, C.longlong(ty), C.struct_QtSql_PackedString{codeC, C.longlong(len(code))}))
+	var tmpValue = NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError(C.struct_QtSql_PackedString{data: driverTextC, len: C.longlong(len(driverText))}, C.struct_QtSql_PackedString{data: databaseTextC, len: C.longlong(len(databaseText))}, C.longlong(ty), C.struct_QtSql_PackedString{data: codeC, len: C.longlong(len(code))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
 	return tmpValue
 }
@@ -2976,7 +2976,7 @@ func NewQSqlField(fieldName string, ty core.QVariant__Type) *QSqlField {
 		fieldNameC = C.CString(fieldName)
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
-	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField(C.struct_QtSql_PackedString{fieldNameC, C.longlong(len(fieldName))}, C.longlong(ty)))
+	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField(C.struct_QtSql_PackedString{data: fieldNameC, len: C.longlong(len(fieldName))}, C.longlong(ty)))
 	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
 	return tmpValue
 }
@@ -3018,7 +3018,7 @@ func (ptr *QSqlField) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlField_SetName(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))})
+		C.QSqlField_SetName(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -3209,7 +3209,7 @@ func NewQSqlIndex(cursorname string, name string) *QSqlIndex {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex(C.struct_QtSql_PackedString{cursornameC, C.longlong(len(cursorname))}, C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex(C.struct_QtSql_PackedString{data: cursornameC, len: C.longlong(len(cursorname))}, C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlIndex).DestroyQSqlIndex)
 	return tmpValue
 }
@@ -3227,7 +3227,7 @@ func (ptr *QSqlIndex) SetCursorName(cursorName string) {
 			cursorNameC = C.CString(cursorName)
 			defer C.free(unsafe.Pointer(cursorNameC))
 		}
-		C.QSqlIndex_SetCursorName(ptr.Pointer(), C.struct_QtSql_PackedString{cursorNameC, C.longlong(len(cursorName))})
+		C.QSqlIndex_SetCursorName(ptr.Pointer(), C.struct_QtSql_PackedString{data: cursorNameC, len: C.longlong(len(cursorName))})
 	}
 }
 
@@ -3244,7 +3244,7 @@ func (ptr *QSqlIndex) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlIndex_SetName(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))})
+		C.QSqlIndex_SetName(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -3348,7 +3348,7 @@ func NewQSqlQuery2(query string, db QSqlDatabase_ITF) *QSqlQuery {
 		queryC = C.CString(query)
 		defer C.free(unsafe.Pointer(queryC))
 	}
-	var tmpValue = NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery2(C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}, PointerFromQSqlDatabase(db)))
+	var tmpValue = NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery2(C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}, PointerFromQSqlDatabase(db)))
 	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
 	return tmpValue
 }
@@ -3367,7 +3367,7 @@ func (ptr *QSqlQuery) Exec(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlQuery_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}) != 0
+		return C.QSqlQuery_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
 	}
 	return false
 }
@@ -3414,7 +3414,7 @@ func (ptr *QSqlQuery) Prepare(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlQuery_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}) != 0
+		return C.QSqlQuery_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
 	}
 	return false
 }
@@ -3446,7 +3446,7 @@ func (ptr *QSqlQuery) BindValue(placeholder string, val core.QVariant_ITF, param
 			placeholderC = C.CString(placeholder)
 			defer C.free(unsafe.Pointer(placeholderC))
 		}
-		C.QSqlQuery_BindValue(ptr.Pointer(), C.struct_QtSql_PackedString{placeholderC, C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
+		C.QSqlQuery_BindValue(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
 	}
 }
 
@@ -3547,7 +3547,7 @@ func (ptr *QSqlQuery) BoundValue(placeholder string) *core.QVariant {
 			placeholderC = C.CString(placeholder)
 			defer C.free(unsafe.Pointer(placeholderC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery_BoundValue(ptr.Pointer(), C.struct_QtSql_PackedString{placeholderC, C.longlong(len(placeholder))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery_BoundValue(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3579,7 +3579,7 @@ func (ptr *QSqlQuery) Value2(name string) *core.QVariant {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery_Value2(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery_Value2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3616,7 +3616,7 @@ func (ptr *QSqlQuery) IsNull2(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlQuery_IsNull2(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlQuery_IsNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -3688,7 +3688,7 @@ func (ptr *QSqlQuery) __boundValues_atList(i string) *core.QVariant {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery___boundValues_atList(ptr.Pointer(), C.struct_QtSql_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QSqlQuery___boundValues_atList(ptr.Pointer(), C.struct_QtSql_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3702,7 +3702,7 @@ func (ptr *QSqlQuery) __boundValues_setList(key string, i core.QVariant_ITF) {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QSqlQuery___boundValues_setList(ptr.Pointer(), C.struct_QtSql_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QSqlQuery___boundValues_setList(ptr.Pointer(), C.struct_QtSql_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -3737,7 +3737,7 @@ func (ptr *QSqlQuery) ____boundValues_keyList_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QSqlQuery_____boundValues_keyList_setList(ptr.Pointer(), C.struct_QtSql_PackedString{iC, C.longlong(len(i))})
+		C.QSqlQuery_____boundValues_keyList_setList(ptr.Pointer(), C.struct_QtSql_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -3957,7 +3957,7 @@ func (ptr *QSqlQueryModel) SetQuery2(query string, db QSqlDatabase_ITF) {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		C.QSqlQueryModel_SetQuery2(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}, PointerFromQSqlDatabase(db))
+		C.QSqlQueryModel_SetQuery2(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}, PointerFromQSqlDatabase(db))
 	}
 }
 
@@ -5298,10 +5298,10 @@ func (ptr *QSqlQueryModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 func callbackQSqlQueryModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "mimeTypes"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtSql_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQSqlQueryModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtSql_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtSql_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QSqlQueryModel) MimeTypesDefault() []string {
@@ -5623,7 +5623,7 @@ func (ptr *QSqlRecord) SetGenerated(name string, generated bool) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlRecord_SetGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(generated))))
+		C.QSqlRecord_SetGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(generated))))
 	}
 }
 
@@ -5640,7 +5640,7 @@ func (ptr *QSqlRecord) SetNull2(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlRecord_SetNull2(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))})
+		C.QSqlRecord_SetNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -5657,7 +5657,7 @@ func (ptr *QSqlRecord) SetValue2(name string, val core.QVariant_ITF) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QSqlRecord_SetValue2(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQVariant(val))
+		C.QSqlRecord_SetValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(val))
 	}
 }
 
@@ -5682,7 +5682,7 @@ func (ptr *QSqlRecord) Field2(name string) *QSqlField {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQSqlFieldFromPointer(C.QSqlRecord_Field2(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}))
+		var tmpValue = NewQSqlFieldFromPointer(C.QSqlRecord_Field2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
 		return tmpValue
 	}
@@ -5721,7 +5721,7 @@ func (ptr *QSqlRecord) Value2(name string) *core.QVariant {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QSqlRecord_Value2(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QSqlRecord_Value2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -5744,7 +5744,7 @@ func (ptr *QSqlRecord) Contains(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlRecord_Contains(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlRecord_Contains(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -5763,7 +5763,7 @@ func (ptr *QSqlRecord) IsGenerated(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlRecord_IsGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlRecord_IsGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -5782,7 +5782,7 @@ func (ptr *QSqlRecord) IsNull(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlRecord_IsNull(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QSqlRecord_IsNull(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -5808,7 +5808,7 @@ func (ptr *QSqlRecord) IndexOf(name string) int {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return int(int32(C.QSqlRecord_IndexOf(ptr.Pointer(), C.struct_QtSql_PackedString{nameC, C.longlong(len(name))})))
+		return int(int32(C.QSqlRecord_IndexOf(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})))
 	}
 	return 0
 }
@@ -5881,7 +5881,7 @@ func NewQSqlRelation2(tableName string, indexColumn string, displayColumn string
 		displayColumnC = C.CString(displayColumn)
 		defer C.free(unsafe.Pointer(displayColumnC))
 	}
-	var tmpValue = NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation2(C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))}, C.struct_QtSql_PackedString{indexColumnC, C.longlong(len(indexColumn))}, C.struct_QtSql_PackedString{displayColumnC, C.longlong(len(displayColumn))}))
+	var tmpValue = NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation2(C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))}, C.struct_QtSql_PackedString{data: indexColumnC, len: C.longlong(len(indexColumn))}, C.struct_QtSql_PackedString{data: displayColumnC, len: C.longlong(len(displayColumn))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlRelation).DestroyQSqlRelation)
 	return tmpValue
 }
@@ -6208,7 +6208,7 @@ func (ptr *QSqlRelationalDelegate) DrawDisplayDefault(painter gui.QPainter_ITF, 
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QSqlRelationalDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.struct_QtSql_PackedString{textC, C.longlong(len(text))})
+		C.QSqlRelationalDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.struct_QtSql_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -7171,7 +7171,7 @@ func (ptr *QSqlResult) Prepare(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}) != 0
+		return C.QSqlResult_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
 	}
 	return false
 }
@@ -7183,7 +7183,7 @@ func (ptr *QSqlResult) PrepareDefault(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_PrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}) != 0
+		return C.QSqlResult_PrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
 	}
 	return false
 }
@@ -7225,7 +7225,7 @@ func (ptr *QSqlResult) Reset(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_Reset(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}) != 0
+		return C.QSqlResult_Reset(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
 	}
 	return false
 }
@@ -7267,7 +7267,7 @@ func (ptr *QSqlResult) SavePrepare(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_SavePrepare(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}) != 0
+		return C.QSqlResult_SavePrepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
 	}
 	return false
 }
@@ -7279,7 +7279,7 @@ func (ptr *QSqlResult) SavePrepareDefault(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_SavePrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))}) != 0
+		return C.QSqlResult_SavePrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
 	}
 	return false
 }
@@ -7401,7 +7401,7 @@ func (ptr *QSqlResult) BindValue2(placeholder string, val core.QVariant_ITF, par
 			placeholderC = C.CString(placeholder)
 			defer C.free(unsafe.Pointer(placeholderC))
 		}
-		C.QSqlResult_BindValue2(ptr.Pointer(), C.struct_QtSql_PackedString{placeholderC, C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
+		C.QSqlResult_BindValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
 	}
 }
 
@@ -7412,7 +7412,7 @@ func (ptr *QSqlResult) BindValue2Default(placeholder string, val core.QVariant_I
 			placeholderC = C.CString(placeholder)
 			defer C.free(unsafe.Pointer(placeholderC))
 		}
-		C.QSqlResult_BindValue2Default(ptr.Pointer(), C.struct_QtSql_PackedString{placeholderC, C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
+		C.QSqlResult_BindValue2Default(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}, core.PointerFromQVariant(val), C.longlong(paramType))
 	}
 }
 
@@ -7675,7 +7675,7 @@ func (ptr *QSqlResult) SetQuery(query string) {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		C.QSqlResult_SetQuery(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))})
+		C.QSqlResult_SetQuery(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})
 	}
 }
 
@@ -7686,7 +7686,7 @@ func (ptr *QSqlResult) SetQueryDefault(query string) {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		C.QSqlResult_SetQueryDefault(ptr.Pointer(), C.struct_QtSql_PackedString{queryC, C.longlong(len(query))})
+		C.QSqlResult_SetQueryDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})
 	}
 }
 
@@ -7792,7 +7792,7 @@ func (ptr *QSqlResult) BindValueType2(placeholder string) QSql__ParamTypeFlag {
 			placeholderC = C.CString(placeholder)
 			defer C.free(unsafe.Pointer(placeholderC))
 		}
-		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType2(ptr.Pointer(), C.struct_QtSql_PackedString{placeholderC, C.longlong(len(placeholder))}))
+		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}))
 	}
 	return 0
 }
@@ -7889,7 +7889,7 @@ func (ptr *QSqlResult) BoundValue2(placeholder string) *core.QVariant {
 			placeholderC = C.CString(placeholder)
 			defer C.free(unsafe.Pointer(placeholderC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QSqlResult_BoundValue2(ptr.Pointer(), C.struct_QtSql_PackedString{placeholderC, C.longlong(len(placeholder))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QSqlResult_BoundValue2(ptr.Pointer(), C.struct_QtSql_PackedString{data: placeholderC, len: C.longlong(len(placeholder))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -8747,7 +8747,7 @@ func (ptr *QSqlTableModel) SetFilter(filter string) {
 			filterC = C.CString(filter)
 			defer C.free(unsafe.Pointer(filterC))
 		}
-		C.QSqlTableModel_SetFilter(ptr.Pointer(), C.struct_QtSql_PackedString{filterC, C.longlong(len(filter))})
+		C.QSqlTableModel_SetFilter(ptr.Pointer(), C.struct_QtSql_PackedString{data: filterC, len: C.longlong(len(filter))})
 	}
 }
 
@@ -8758,7 +8758,7 @@ func (ptr *QSqlTableModel) SetFilterDefault(filter string) {
 			filterC = C.CString(filter)
 			defer C.free(unsafe.Pointer(filterC))
 		}
-		C.QSqlTableModel_SetFilterDefault(ptr.Pointer(), C.struct_QtSql_PackedString{filterC, C.longlong(len(filter))})
+		C.QSqlTableModel_SetFilterDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: filterC, len: C.longlong(len(filter))})
 	}
 }
 
@@ -8847,7 +8847,7 @@ func (ptr *QSqlTableModel) SetTable(tableName string) {
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		C.QSqlTableModel_SetTable(ptr.Pointer(), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))})
+		C.QSqlTableModel_SetTable(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))})
 	}
 }
 
@@ -8858,7 +8858,7 @@ func (ptr *QSqlTableModel) SetTableDefault(tableName string) {
 			tableNameC = C.CString(tableName)
 			defer C.free(unsafe.Pointer(tableNameC))
 		}
-		C.QSqlTableModel_SetTableDefault(ptr.Pointer(), C.struct_QtSql_PackedString{tableNameC, C.longlong(len(tableName))})
+		C.QSqlTableModel_SetTableDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableNameC, len: C.longlong(len(tableName))})
 	}
 }
 
@@ -8953,10 +8953,10 @@ func (ptr *QSqlTableModel) Filter() string {
 func callbackQSqlTableModel_OrderByClause(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "orderByClause"); signal != nil {
 		tempVal := signal.(func() string)()
-		return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQSqlTableModelFromPointer(ptr).OrderByClauseDefault()
-	return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QSqlTableModel) ConnectOrderByClause(f func() string) {
@@ -8998,10 +8998,10 @@ func (ptr *QSqlTableModel) OrderByClauseDefault() string {
 func callbackQSqlTableModel_SelectStatement(ptr unsafe.Pointer) C.struct_QtSql_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "selectStatement"); signal != nil {
 		tempVal := signal.(func() string)()
-		return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQSqlTableModelFromPointer(ptr).SelectStatementDefault()
-	return C.struct_QtSql_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtSql_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QSqlTableModel) ConnectSelectStatement(f func() string) {
@@ -9067,7 +9067,7 @@ func (ptr *QSqlTableModel) FieldIndex(fieldName string) int {
 			fieldNameC = C.CString(fieldName)
 			defer C.free(unsafe.Pointer(fieldNameC))
 		}
-		return int(int32(C.QSqlTableModel_FieldIndex(ptr.Pointer(), C.struct_QtSql_PackedString{fieldNameC, C.longlong(len(fieldName))})))
+		return int(int32(C.QSqlTableModel_FieldIndex(ptr.Pointer(), C.struct_QtSql_PackedString{data: fieldNameC, len: C.longlong(len(fieldName))})))
 	}
 	return 0
 }

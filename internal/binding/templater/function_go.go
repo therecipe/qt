@@ -308,7 +308,7 @@ func goFunctionBody(function *parser.Function) string {
 					} else {
 						if parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList" {
 							fmt.Fprintf(bb, "tempVal := signal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
-							fmt.Fprintf(bb, "return C.struct_%v_PackedString{ %v, %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
+							fmt.Fprintf(bb, "return C.struct_%v_PackedString{ data: %v, len: %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
 								func() string {
 									if function.AsError {
 										return "C.longlong(-1)"
@@ -365,7 +365,7 @@ func goFunctionBody(function *parser.Function) string {
 						} else {
 							if parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList" {
 								fmt.Fprintf(bb, "tempVal := New%vFromPointer(ptr).%v%vDefault(%v)\n", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
-								fmt.Fprintf(bb, "return C.struct_%v_PackedString{ %v, %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
+								fmt.Fprintf(bb, "return C.struct_%v_PackedString{ data: %v, len: %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
 									func() string {
 										if function.AsError {
 											return "C.longlong(-1)"
@@ -422,7 +422,7 @@ func goFunctionBody(function *parser.Function) string {
 					} else {
 						if parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList" {
 							fmt.Fprintf(bb, "tempVal := %v\n", converter.GoOutputParametersFromCFailed(function))
-							fmt.Fprintf(bb, "return C.struct_%v_PackedString{ %v, %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
+							fmt.Fprintf(bb, "return C.struct_%v_PackedString{ data: %v, len: %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
 								func() string {
 									if function.AsError {
 										return "C.longlong(-1)"

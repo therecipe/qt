@@ -1537,7 +1537,7 @@ func (ptr *QAccessibleActionInterface) DoAction(actionName string) {
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		C.QAccessibleActionInterface_DoAction(ptr.Pointer(), C.struct_QtGui_PackedString{actionNameC, C.longlong(len(actionName))})
+		C.QAccessibleActionInterface_DoAction(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))})
 	}
 }
 
@@ -1589,10 +1589,10 @@ func (ptr *QAccessibleActionInterface) DestroyQAccessibleActionInterfaceDefault(
 func callbackQAccessibleActionInterface_LocalizedActionDescription(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "localizedActionDescription"); signal != nil {
 		tempVal := signal.(func(string) string)(cGoUnpackString(actionName))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleActionInterfaceFromPointer(ptr).LocalizedActionDescriptionDefault(cGoUnpackString(actionName))
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleActionInterface) ConnectLocalizedActionDescription(f func(actionName string) string) {
@@ -1623,7 +1623,7 @@ func (ptr *QAccessibleActionInterface) LocalizedActionDescription(actionName str
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionDescription(ptr.Pointer(), C.struct_QtGui_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionDescription(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -1635,7 +1635,7 @@ func (ptr *QAccessibleActionInterface) LocalizedActionDescriptionDefault(actionN
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionDescriptionDefault(ptr.Pointer(), C.struct_QtGui_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionDescriptionDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -1644,10 +1644,10 @@ func (ptr *QAccessibleActionInterface) LocalizedActionDescriptionDefault(actionN
 func callbackQAccessibleActionInterface_LocalizedActionName(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "localizedActionName"); signal != nil {
 		tempVal := signal.(func(string) string)(cGoUnpackString(actionName))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleActionInterfaceFromPointer(ptr).LocalizedActionNameDefault(cGoUnpackString(actionName))
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleActionInterface) ConnectLocalizedActionName(f func(actionName string) string) {
@@ -1678,7 +1678,7 @@ func (ptr *QAccessibleActionInterface) LocalizedActionName(actionName string) st
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionName(ptr.Pointer(), C.struct_QtGui_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionName(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -1690,7 +1690,7 @@ func (ptr *QAccessibleActionInterface) LocalizedActionNameDefault(actionName str
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionNameDefault(ptr.Pointer(), C.struct_QtGui_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionNameDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -1699,10 +1699,10 @@ func (ptr *QAccessibleActionInterface) LocalizedActionNameDefault(actionName str
 func callbackQAccessibleActionInterface_ActionNames(ptr unsafe.Pointer) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "actionNames"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtGui_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtGui_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QAccessibleActionInterface) ConnectActionNames(f func() []string) {
@@ -1737,10 +1737,10 @@ func (ptr *QAccessibleActionInterface) ActionNames() []string {
 func callbackQAccessibleActionInterface_KeyBindingsForAction(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "keyBindingsForAction"); signal != nil {
 		tempVal := signal.(func(string) []string)(cGoUnpackString(actionName))
-		return C.struct_QtGui_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := make([]string, 0)
-	return C.struct_QtGui_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QAccessibleActionInterface) ConnectKeyBindingsForAction(f func(actionName string) []string) {
@@ -1771,7 +1771,7 @@ func (ptr *QAccessibleActionInterface) KeyBindingsForAction(actionName string) [
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QAccessibleActionInterface_KeyBindingsForAction(ptr.Pointer(), C.struct_QtGui_PackedString{actionNameC, C.longlong(len(actionName))})), "|")
+		return strings.Split(cGoUnpackString(C.QAccessibleActionInterface_KeyBindingsForAction(ptr.Pointer(), C.struct_QtGui_PackedString{data: actionNameC, len: C.longlong(len(actionName))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -1885,7 +1885,7 @@ func (ptr *QAccessibleEditableTextInterface) InsertText(offset int, text string)
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAccessibleEditableTextInterface_InsertText(ptr.Pointer(), C.int(int32(offset)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QAccessibleEditableTextInterface_InsertText(ptr.Pointer(), C.int(int32(offset)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -1925,7 +1925,7 @@ func (ptr *QAccessibleEditableTextInterface) ReplaceText(startOffset int, endOff
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAccessibleEditableTextInterface_ReplaceText(ptr.Pointer(), C.int(int32(startOffset)), C.int(int32(endOffset)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QAccessibleEditableTextInterface_ReplaceText(ptr.Pointer(), C.int(int32(startOffset)), C.int(int32(endOffset)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -2319,7 +2319,7 @@ func (ptr *QAccessibleInterface) SetText(t QAccessible__Text, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAccessibleInterface_SetText(ptr.Pointer(), C.longlong(t), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QAccessibleInterface_SetText(ptr.Pointer(), C.longlong(t), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -2741,10 +2741,10 @@ func (ptr *QAccessibleInterface) Rect() *core.QRect {
 func callbackQAccessibleInterface_Text(ptr unsafe.Pointer, t C.longlong) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "text"); signal != nil {
 		tempVal := signal.(func(QAccessible__Text) string)(QAccessible__Text(t))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleInterface) ConnectText(f func(t QAccessible__Text) string) {
@@ -3014,7 +3014,7 @@ func (ptr *QAccessibleObject) SetText(t QAccessible__Text, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAccessibleObject_SetText(ptr.Pointer(), C.longlong(t), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QAccessibleObject_SetText(ptr.Pointer(), C.longlong(t), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -3025,7 +3025,7 @@ func (ptr *QAccessibleObject) SetTextDefault(t QAccessible__Text, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAccessibleObject_SetTextDefault(ptr.Pointer(), C.longlong(t), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QAccessibleObject_SetTextDefault(ptr.Pointer(), C.longlong(t), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -3336,10 +3336,10 @@ func (ptr *QAccessibleObject) ParentDefault() *QAccessibleInterface {
 func callbackQAccessibleObject_Text(ptr unsafe.Pointer, t C.longlong) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "text"); signal != nil {
 		tempVal := signal.(func(QAccessible__Text) string)(QAccessible__Text(t))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleObjectFromPointer(ptr).TextDefault(QAccessible__Text(t))
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleObject) Text(t QAccessible__Text) string {
@@ -3478,7 +3478,7 @@ func (ptr *QAccessiblePlugin) Create(key string, object core.QObject_ITF) *QAcce
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return NewQAccessibleInterfaceFromPointer(C.QAccessiblePlugin_Create(ptr.Pointer(), C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQObject(object)))
+		return NewQAccessibleInterfaceFromPointer(C.QAccessiblePlugin_Create(ptr.Pointer(), C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQObject(object)))
 	}
 	return nil
 }
@@ -4799,10 +4799,10 @@ func (ptr *QAccessibleTableInterface) SelectedRows() []int {
 func callbackQAccessibleTableInterface_ColumnDescription(ptr unsafe.Pointer, column C.int) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "columnDescription"); signal != nil {
 		tempVal := signal.(func(int) string)(int(int32(column)))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleTableInterface) ConnectColumnDescription(f func(column int) string) {
@@ -4837,10 +4837,10 @@ func (ptr *QAccessibleTableInterface) ColumnDescription(column int) string {
 func callbackQAccessibleTableInterface_RowDescription(ptr unsafe.Pointer, row C.int) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "rowDescription"); signal != nil {
 		tempVal := signal.(func(int) string)(int(int32(row)))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleTableInterface) ConnectRowDescription(f func(row int) string) {
@@ -5516,7 +5516,7 @@ func NewQAccessibleTextInsertEvent2(iface QAccessibleInterface_ITF, position int
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(PointerFromQAccessibleInterface(iface), C.int(int32(position)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(PointerFromQAccessibleInterface(iface), C.int(int32(position)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func NewQAccessibleTextInsertEvent(object core.QObject_ITF, position int, text string) *QAccessibleTextInsertEvent {
@@ -5525,7 +5525,7 @@ func NewQAccessibleTextInsertEvent(object core.QObject_ITF, position int, text s
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(core.PointerFromQObject(object), C.int(int32(position)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(core.PointerFromQObject(object), C.int(int32(position)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func (ptr *QAccessibleTextInsertEvent) TextInserted() string {
@@ -5569,7 +5569,7 @@ func (ptr *QAccessibleTextInsertEvent) SetM_text(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QAccessibleTextInsertEvent_SetM_text(ptr.Pointer(), C.struct_QtGui_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QAccessibleTextInsertEvent_SetM_text(ptr.Pointer(), C.struct_QtGui_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -5875,10 +5875,10 @@ func (ptr *QAccessibleTextInterface) CharacterRect(offset int) *core.QRect {
 func callbackQAccessibleTextInterface_Text(ptr unsafe.Pointer, startOffset C.int, endOffset C.int) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "text"); signal != nil {
 		tempVal := signal.(func(int, int) string)(int(int32(startOffset)), int(int32(endOffset)))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleTextInterface) ConnectText(f func(startOffset int, endOffset int) string) {
@@ -5913,10 +5913,10 @@ func (ptr *QAccessibleTextInterface) Text(startOffset int, endOffset int) string
 func callbackQAccessibleTextInterface_TextAfterOffset(ptr unsafe.Pointer, offset C.int, boundaryType C.longlong, startOffset C.int, endOffset C.int) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "textAfterOffset"); signal != nil {
 		tempVal := signal.(func(int, QAccessible__TextBoundaryType, int, int) string)(int(int32(offset)), QAccessible__TextBoundaryType(boundaryType), int(int32(startOffset)), int(int32(endOffset)))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleTextInterfaceFromPointer(ptr).TextAfterOffsetDefault(int(int32(offset)), QAccessible__TextBoundaryType(boundaryType), int(int32(startOffset)), int(int32(endOffset)))
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleTextInterface) ConnectTextAfterOffset(f func(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string) {
@@ -5958,10 +5958,10 @@ func (ptr *QAccessibleTextInterface) TextAfterOffsetDefault(offset int, boundary
 func callbackQAccessibleTextInterface_TextAtOffset(ptr unsafe.Pointer, offset C.int, boundaryType C.longlong, startOffset C.int, endOffset C.int) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "textAtOffset"); signal != nil {
 		tempVal := signal.(func(int, QAccessible__TextBoundaryType, int, int) string)(int(int32(offset)), QAccessible__TextBoundaryType(boundaryType), int(int32(startOffset)), int(int32(endOffset)))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleTextInterfaceFromPointer(ptr).TextAtOffsetDefault(int(int32(offset)), QAccessible__TextBoundaryType(boundaryType), int(int32(startOffset)), int(int32(endOffset)))
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleTextInterface) ConnectTextAtOffset(f func(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string) {
@@ -6003,10 +6003,10 @@ func (ptr *QAccessibleTextInterface) TextAtOffsetDefault(offset int, boundaryTyp
 func callbackQAccessibleTextInterface_TextBeforeOffset(ptr unsafe.Pointer, offset C.int, boundaryType C.longlong, startOffset C.int, endOffset C.int) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "textBeforeOffset"); signal != nil {
 		tempVal := signal.(func(int, QAccessible__TextBoundaryType, int, int) string)(int(int32(offset)), QAccessible__TextBoundaryType(boundaryType), int(int32(startOffset)), int(int32(endOffset)))
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleTextInterfaceFromPointer(ptr).TextBeforeOffsetDefault(int(int32(offset)), QAccessible__TextBoundaryType(boundaryType), int(int32(startOffset)), int(int32(endOffset)))
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleTextInterface) ConnectTextBeforeOffset(f func(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string) {
@@ -6281,7 +6281,7 @@ func NewQAccessibleTextRemoveEvent2(iface QAccessibleInterface_ITF, position int
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(PointerFromQAccessibleInterface(iface), C.int(int32(position)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(PointerFromQAccessibleInterface(iface), C.int(int32(position)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func NewQAccessibleTextRemoveEvent(object core.QObject_ITF, position int, text string) *QAccessibleTextRemoveEvent {
@@ -6290,7 +6290,7 @@ func NewQAccessibleTextRemoveEvent(object core.QObject_ITF, position int, text s
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(core.PointerFromQObject(object), C.int(int32(position)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQAccessibleTextRemoveEventFromPointer(C.QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(core.PointerFromQObject(object), C.int(int32(position)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func (ptr *QAccessibleTextRemoveEvent) TextRemoved() string {
@@ -6334,7 +6334,7 @@ func (ptr *QAccessibleTextRemoveEvent) SetM_text(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QAccessibleTextRemoveEvent_SetM_text(ptr.Pointer(), C.struct_QtGui_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QAccessibleTextRemoveEvent_SetM_text(ptr.Pointer(), C.struct_QtGui_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -6499,7 +6499,7 @@ func NewQAccessibleTextUpdateEvent2(iface QAccessibleInterface_ITF, position int
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(PointerFromQAccessibleInterface(iface), C.int(int32(position)), C.struct_QtGui_PackedString{oldTextC, C.longlong(len(oldText))}, C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(PointerFromQAccessibleInterface(iface), C.int(int32(position)), C.struct_QtGui_PackedString{data: oldTextC, len: C.longlong(len(oldText))}, C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func NewQAccessibleTextUpdateEvent(object core.QObject_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
@@ -6513,7 +6513,7 @@ func NewQAccessibleTextUpdateEvent(object core.QObject_ITF, position int, oldTex
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(core.PointerFromQObject(object), C.int(int32(position)), C.struct_QtGui_PackedString{oldTextC, C.longlong(len(oldText))}, C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(core.PointerFromQObject(object), C.int(int32(position)), C.struct_QtGui_PackedString{data: oldTextC, len: C.longlong(len(oldText))}, C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func (ptr *QAccessibleTextUpdateEvent) TextInserted() string {
@@ -6551,7 +6551,7 @@ func (ptr *QAccessibleTextUpdateEvent) SetM_oldText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QAccessibleTextUpdateEvent_SetM_oldText(ptr.Pointer(), C.struct_QtGui_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QAccessibleTextUpdateEvent_SetM_oldText(ptr.Pointer(), C.struct_QtGui_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -6582,7 +6582,7 @@ func (ptr *QAccessibleTextUpdateEvent) SetM_text(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QAccessibleTextUpdateEvent_SetM_text(ptr.Pointer(), C.struct_QtGui_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QAccessibleTextUpdateEvent_SetM_text(ptr.Pointer(), C.struct_QtGui_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -7247,7 +7247,7 @@ func NewQBitmap5(fileName string, format string) *QBitmap {
 		formatC = C.CString(format)
 		defer C.free(unsafe.Pointer(formatC))
 	}
-	return NewQBitmapFromPointer(C.QBitmap_NewQBitmap5(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC))
+	return NewQBitmapFromPointer(C.QBitmap_NewQBitmap5(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC))
 }
 
 func (ptr *QBitmap) Clear() {
@@ -7718,7 +7718,7 @@ func (ptr *QClipboard) SetText(text string, mode QClipboard__Mode) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QClipboard_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.longlong(mode))
+		C.QClipboard_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(mode))
 	}
 }
 
@@ -7754,7 +7754,7 @@ func (ptr *QClipboard) Text2(subtype string, mode QClipboard__Mode) string {
 			subtypeC = C.CString(subtype)
 			defer C.free(unsafe.Pointer(subtypeC))
 		}
-		return cGoUnpackString(C.QClipboard_Text2(ptr.Pointer(), C.struct_QtGui_PackedString{subtypeC, C.longlong(len(subtype))}, C.longlong(mode)))
+		return cGoUnpackString(C.QClipboard_Text2(ptr.Pointer(), C.struct_QtGui_PackedString{data: subtypeC, len: C.longlong(len(subtype))}, C.longlong(mode)))
 	}
 	return ""
 }
@@ -8360,7 +8360,7 @@ func NewQColor6(name string) *QColor {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQColorFromPointer(C.QColor_NewQColor6(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQColorFromPointer(C.QColor_NewQColor6(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QColor).DestroyQColor)
 	return tmpValue
 }
@@ -8404,7 +8404,7 @@ func QColor_IsValidColor(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QColor_QColor_IsValidColor(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QColor_QColor_IsValidColor(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QColor) IsValidColor(name string) bool {
@@ -8413,7 +8413,7 @@ func (ptr *QColor) IsValidColor(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QColor_QColor_IsValidColor(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QColor_QColor_IsValidColor(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QColor) GetCmyk(c int, m int, y int, k int, a int) {
@@ -8513,7 +8513,7 @@ func (ptr *QColor) SetNamedColor(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QColor_SetNamedColor(ptr.Pointer(), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+		C.QColor_SetNamedColor(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -9439,7 +9439,7 @@ func QDesktopServices_SetUrlHandler(scheme string, receiver core.QObject_ITF, me
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	C.QDesktopServices_QDesktopServices_SetUrlHandler(C.struct_QtGui_PackedString{schemeC, C.longlong(len(scheme))}, core.PointerFromQObject(receiver), methodC)
+	C.QDesktopServices_QDesktopServices_SetUrlHandler(C.struct_QtGui_PackedString{data: schemeC, len: C.longlong(len(scheme))}, core.PointerFromQObject(receiver), methodC)
 }
 
 func (ptr *QDesktopServices) SetUrlHandler(scheme string, receiver core.QObject_ITF, method string) {
@@ -9453,7 +9453,7 @@ func (ptr *QDesktopServices) SetUrlHandler(scheme string, receiver core.QObject_
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	C.QDesktopServices_QDesktopServices_SetUrlHandler(C.struct_QtGui_PackedString{schemeC, C.longlong(len(scheme))}, core.PointerFromQObject(receiver), methodC)
+	C.QDesktopServices_QDesktopServices_SetUrlHandler(C.struct_QtGui_PackedString{data: schemeC, len: C.longlong(len(scheme))}, core.PointerFromQObject(receiver), methodC)
 }
 
 func QDesktopServices_UnsetUrlHandler(scheme string) {
@@ -9462,7 +9462,7 @@ func QDesktopServices_UnsetUrlHandler(scheme string) {
 		schemeC = C.CString(scheme)
 		defer C.free(unsafe.Pointer(schemeC))
 	}
-	C.QDesktopServices_QDesktopServices_UnsetUrlHandler(C.struct_QtGui_PackedString{schemeC, C.longlong(len(scheme))})
+	C.QDesktopServices_QDesktopServices_UnsetUrlHandler(C.struct_QtGui_PackedString{data: schemeC, len: C.longlong(len(scheme))})
 }
 
 func (ptr *QDesktopServices) UnsetUrlHandler(scheme string) {
@@ -9471,7 +9471,7 @@ func (ptr *QDesktopServices) UnsetUrlHandler(scheme string) {
 		schemeC = C.CString(scheme)
 		defer C.free(unsafe.Pointer(schemeC))
 	}
-	C.QDesktopServices_QDesktopServices_UnsetUrlHandler(C.struct_QtGui_PackedString{schemeC, C.longlong(len(scheme))})
+	C.QDesktopServices_QDesktopServices_UnsetUrlHandler(C.struct_QtGui_PackedString{data: schemeC, len: C.longlong(len(scheme))})
 }
 
 type QDoubleValidator struct {
@@ -9655,7 +9655,7 @@ func (ptr *QDoubleValidator) Validate(input string, pos int) QValidator__State {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QDoubleValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QDoubleValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -9667,7 +9667,7 @@ func (ptr *QDoubleValidator) ValidateDefault(input string, pos int) QValidator__
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QDoubleValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QDoubleValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -11136,7 +11136,7 @@ func NewQFont2(family string, pointSize int, weight int, italic bool) *QFont {
 		familyC = C.CString(family)
 		defer C.free(unsafe.Pointer(familyC))
 	}
-	var tmpValue = NewQFontFromPointer(C.QFont_NewQFont2(C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.int(int32(pointSize)), C.int(int32(weight)), C.char(int8(qt.GoBoolToInt(italic)))))
+	var tmpValue = NewQFontFromPointer(C.QFont_NewQFont2(C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.int(int32(pointSize)), C.int(int32(weight)), C.char(int8(qt.GoBoolToInt(italic)))))
 	runtime.SetFinalizer(tmpValue, (*QFont).DestroyQFont)
 	return tmpValue
 }
@@ -11147,7 +11147,7 @@ func QFont_Substitute(familyName string) string {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	return cGoUnpackString(C.QFont_QFont_Substitute(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))}))
+	return cGoUnpackString(C.QFont_QFont_Substitute(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}))
 }
 
 func (ptr *QFont) Substitute(familyName string) string {
@@ -11156,7 +11156,7 @@ func (ptr *QFont) Substitute(familyName string) string {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	return cGoUnpackString(C.QFont_QFont_Substitute(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))}))
+	return cGoUnpackString(C.QFont_QFont_Substitute(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}))
 }
 
 func QFont_Substitutes(familyName string) []string {
@@ -11165,7 +11165,7 @@ func QFont_Substitutes(familyName string) []string {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))})), "|")
+	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})), "|")
 }
 
 func (ptr *QFont) Substitutes(familyName string) []string {
@@ -11174,7 +11174,7 @@ func (ptr *QFont) Substitutes(familyName string) []string {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))})), "|")
+	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})), "|")
 }
 
 func QFont_Substitutions() []string {
@@ -11192,7 +11192,7 @@ func (ptr *QFont) FromString(descrip string) bool {
 			descripC = C.CString(descrip)
 			defer C.free(unsafe.Pointer(descripC))
 		}
-		return C.QFont_FromString(ptr.Pointer(), C.struct_QtGui_PackedString{descripC, C.longlong(len(descrip))}) != 0
+		return C.QFont_FromString(ptr.Pointer(), C.struct_QtGui_PackedString{data: descripC, len: C.longlong(len(descrip))}) != 0
 	}
 	return false
 }
@@ -11208,7 +11208,7 @@ func QFont_InsertSubstitution(familyName string, substituteName string) {
 		substituteNameC = C.CString(substituteName)
 		defer C.free(unsafe.Pointer(substituteNameC))
 	}
-	C.QFont_QFont_InsertSubstitution(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))}, C.struct_QtGui_PackedString{substituteNameC, C.longlong(len(substituteName))})
+	C.QFont_QFont_InsertSubstitution(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNameC, len: C.longlong(len(substituteName))})
 }
 
 func (ptr *QFont) InsertSubstitution(familyName string, substituteName string) {
@@ -11222,7 +11222,7 @@ func (ptr *QFont) InsertSubstitution(familyName string, substituteName string) {
 		substituteNameC = C.CString(substituteName)
 		defer C.free(unsafe.Pointer(substituteNameC))
 	}
-	C.QFont_QFont_InsertSubstitution(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))}, C.struct_QtGui_PackedString{substituteNameC, C.longlong(len(substituteName))})
+	C.QFont_QFont_InsertSubstitution(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNameC, len: C.longlong(len(substituteName))})
 }
 
 func QFont_InsertSubstitutions(familyName string, substituteNames []string) {
@@ -11233,7 +11233,7 @@ func QFont_InsertSubstitutions(familyName string, substituteNames []string) {
 	}
 	var substituteNamesC = C.CString(strings.Join(substituteNames, "|"))
 	defer C.free(unsafe.Pointer(substituteNamesC))
-	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))}, C.struct_QtGui_PackedString{substituteNamesC, C.longlong(len(strings.Join(substituteNames, "|")))})
+	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNamesC, len: C.longlong(len(strings.Join(substituteNames, "|")))})
 }
 
 func (ptr *QFont) InsertSubstitutions(familyName string, substituteNames []string) {
@@ -11244,7 +11244,7 @@ func (ptr *QFont) InsertSubstitutions(familyName string, substituteNames []strin
 	}
 	var substituteNamesC = C.CString(strings.Join(substituteNames, "|"))
 	defer C.free(unsafe.Pointer(substituteNamesC))
-	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))}, C.struct_QtGui_PackedString{substituteNamesC, C.longlong(len(strings.Join(substituteNames, "|")))})
+	C.QFont_QFont_InsertSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))}, C.struct_QtGui_PackedString{data: substituteNamesC, len: C.longlong(len(strings.Join(substituteNames, "|")))})
 }
 
 func QFont_RemoveSubstitutions(familyName string) {
@@ -11253,7 +11253,7 @@ func QFont_RemoveSubstitutions(familyName string) {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	C.QFont_QFont_RemoveSubstitutions(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))})
+	C.QFont_QFont_RemoveSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})
 }
 
 func (ptr *QFont) RemoveSubstitutions(familyName string) {
@@ -11262,7 +11262,7 @@ func (ptr *QFont) RemoveSubstitutions(familyName string) {
 		familyNameC = C.CString(familyName)
 		defer C.free(unsafe.Pointer(familyNameC))
 	}
-	C.QFont_QFont_RemoveSubstitutions(C.struct_QtGui_PackedString{familyNameC, C.longlong(len(familyName))})
+	C.QFont_QFont_RemoveSubstitutions(C.struct_QtGui_PackedString{data: familyNameC, len: C.longlong(len(familyName))})
 }
 
 func (ptr *QFont) SetBold(enable bool) {
@@ -11284,7 +11284,7 @@ func (ptr *QFont) SetFamily(family string) {
 			familyC = C.CString(family)
 			defer C.free(unsafe.Pointer(familyC))
 		}
-		C.QFont_SetFamily(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))})
+		C.QFont_SetFamily(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))})
 	}
 }
 
@@ -11373,7 +11373,7 @@ func (ptr *QFont) SetStyleName(styleName string) {
 			styleNameC = C.CString(styleName)
 			defer C.free(unsafe.Pointer(styleNameC))
 		}
-		C.QFont_SetStyleName(ptr.Pointer(), C.struct_QtGui_PackedString{styleNameC, C.longlong(len(styleName))})
+		C.QFont_SetStyleName(ptr.Pointer(), C.struct_QtGui_PackedString{data: styleNameC, len: C.longlong(len(styleName))})
 	}
 }
 
@@ -11754,7 +11754,7 @@ func (ptr *QFontDatabase) PointSizes(family string, styleName string) []int {
 				out[i] = NewQFontDatabaseFromPointer(l.data).__pointSizes_atList(i)
 			}
 			return out
-		}(C.QFontDatabase_PointSizes(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleNameC, C.longlong(len(styleName))}))
+		}(C.QFontDatabase_PointSizes(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleNameC, len: C.longlong(len(styleName))}))
 	}
 	return make([]int, 0)
 }
@@ -11777,7 +11777,7 @@ func (ptr *QFontDatabase) SmoothSizes(family string, styleName string) []int {
 				out[i] = NewQFontDatabaseFromPointer(l.data).__smoothSizes_atList(i)
 			}
 			return out
-		}(C.QFontDatabase_SmoothSizes(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleNameC, C.longlong(len(styleName))}))
+		}(C.QFontDatabase_SmoothSizes(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleNameC, len: C.longlong(len(styleName))}))
 	}
 	return make([]int, 0)
 }
@@ -11864,7 +11864,7 @@ func QFontDatabase_AddApplicationFont(fileName string) int {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFont(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))})))
+	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFont(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))})))
 }
 
 func (ptr *QFontDatabase) AddApplicationFont(fileName string) int {
@@ -11873,7 +11873,7 @@ func (ptr *QFontDatabase) AddApplicationFont(fileName string) int {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFont(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))})))
+	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFont(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))})))
 }
 
 func QFontDatabase_AddApplicationFontFromData(fontData core.QByteArray_ITF) int {
@@ -11896,7 +11896,7 @@ func (ptr *QFontDatabase) Font(family string, style string, pointSize int) *QFon
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		var tmpValue = NewQFontFromPointer(C.QFontDatabase_Font(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))}, C.int(int32(pointSize))))
+		var tmpValue = NewQFontFromPointer(C.QFontDatabase_Font(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))}, C.int(int32(pointSize))))
 		runtime.SetFinalizer(tmpValue, (*QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -11917,7 +11917,7 @@ func (ptr *QFontDatabase) Styles(family string) []string {
 			familyC = C.CString(family)
 			defer C.free(unsafe.Pointer(familyC))
 		}
-		return strings.Split(cGoUnpackString(C.QFontDatabase_Styles(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))})), "|")
+		return strings.Split(cGoUnpackString(C.QFontDatabase_Styles(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -11934,7 +11934,7 @@ func (ptr *QFontDatabase) Bold(family string, style string) bool {
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		return C.QFontDatabase_Bold(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))}) != 0
+		return C.QFontDatabase_Bold(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))}) != 0
 	}
 	return false
 }
@@ -11951,7 +11951,7 @@ func (ptr *QFontDatabase) IsBitmapScalable(family string, style string) bool {
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		return C.QFontDatabase_IsBitmapScalable(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))}) != 0
+		return C.QFontDatabase_IsBitmapScalable(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))}) != 0
 	}
 	return false
 }
@@ -11968,7 +11968,7 @@ func (ptr *QFontDatabase) IsFixedPitch(family string, style string) bool {
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		return C.QFontDatabase_IsFixedPitch(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))}) != 0
+		return C.QFontDatabase_IsFixedPitch(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))}) != 0
 	}
 	return false
 }
@@ -11980,7 +11980,7 @@ func (ptr *QFontDatabase) IsPrivateFamily(family string) bool {
 			familyC = C.CString(family)
 			defer C.free(unsafe.Pointer(familyC))
 		}
-		return C.QFontDatabase_IsPrivateFamily(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}) != 0
+		return C.QFontDatabase_IsPrivateFamily(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}) != 0
 	}
 	return false
 }
@@ -11997,7 +11997,7 @@ func (ptr *QFontDatabase) IsScalable(family string, style string) bool {
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		return C.QFontDatabase_IsScalable(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))}) != 0
+		return C.QFontDatabase_IsScalable(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))}) != 0
 	}
 	return false
 }
@@ -12014,7 +12014,7 @@ func (ptr *QFontDatabase) IsSmoothlyScalable(family string, style string) bool {
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		return C.QFontDatabase_IsSmoothlyScalable(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))}) != 0
+		return C.QFontDatabase_IsSmoothlyScalable(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))}) != 0
 	}
 	return false
 }
@@ -12031,7 +12031,7 @@ func (ptr *QFontDatabase) Italic(family string, style string) bool {
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		return C.QFontDatabase_Italic(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))}) != 0
+		return C.QFontDatabase_Italic(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))}) != 0
 	}
 	return false
 }
@@ -12048,7 +12048,7 @@ func (ptr *QFontDatabase) Weight(family string, style string) int {
 			styleC = C.CString(style)
 			defer C.free(unsafe.Pointer(styleC))
 		}
-		return int(int32(C.QFontDatabase_Weight(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))}, C.struct_QtGui_PackedString{styleC, C.longlong(len(style))})))
+		return int(int32(C.QFontDatabase_Weight(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))}, C.struct_QtGui_PackedString{data: styleC, len: C.longlong(len(style))})))
 	}
 	return 0
 }
@@ -12336,7 +12336,7 @@ func (ptr *QFontMetrics) BoundingRect3(rect core.QRect_ITF, flags int, text stri
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_BoundingRect3(ptr.Pointer(), core.PointerFromQRect(rect), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
+		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_BoundingRect3(ptr.Pointer(), core.PointerFromQRect(rect), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -12350,7 +12350,7 @@ func (ptr *QFontMetrics) BoundingRect2(text string) *core.QRect {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_BoundingRect2(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_BoundingRect2(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -12364,7 +12364,7 @@ func (ptr *QFontMetrics) BoundingRect4(x int, y int, width int, height int, flag
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_BoundingRect4(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
+		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_BoundingRect4(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -12378,7 +12378,7 @@ func (ptr *QFontMetrics) TightBoundingRect(text string) *core.QRect {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_TightBoundingRect(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFromPointer(C.QFontMetrics_TightBoundingRect(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -12392,7 +12392,7 @@ func (ptr *QFontMetrics) Size(flags int, text string, tabStops int, tabArray int
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQSizeFromPointer(C.QFontMetrics_Size(ptr.Pointer(), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
+		var tmpValue = core.NewQSizeFromPointer(C.QFontMetrics_Size(ptr.Pointer(), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -12406,7 +12406,7 @@ func (ptr *QFontMetrics) ElidedText(text string, mode core.Qt__TextElideMode, wi
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return cGoUnpackString(C.QFontMetrics_ElidedText(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.longlong(mode), C.int(int32(width)), C.int(int32(flags))))
+		return cGoUnpackString(C.QFontMetrics_ElidedText(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(mode), C.int(int32(width)), C.int(int32(flags))))
 	}
 	return ""
 }
@@ -12551,7 +12551,7 @@ func (ptr *QFontMetrics) Width(text string, l int) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QFontMetrics_Width(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.int(int32(l)))))
+		return int(int32(C.QFontMetrics_Width(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(l)))))
 	}
 	return 0
 }
@@ -12654,7 +12654,7 @@ func (ptr *QFontMetricsF) BoundingRect3(rect core.QRectF_ITF, flags int, text st
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFFromPointer(C.QFontMetricsF_BoundingRect3(ptr.Pointer(), core.PointerFromQRectF(rect), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
+		var tmpValue = core.NewQRectFFromPointer(C.QFontMetricsF_BoundingRect3(ptr.Pointer(), core.PointerFromQRectF(rect), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -12668,7 +12668,7 @@ func (ptr *QFontMetricsF) BoundingRect(text string) *core.QRectF {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFFromPointer(C.QFontMetricsF_BoundingRect(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFFromPointer(C.QFontMetricsF_BoundingRect(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -12682,7 +12682,7 @@ func (ptr *QFontMetricsF) TightBoundingRect(text string) *core.QRectF {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFFromPointer(C.QFontMetricsF_TightBoundingRect(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFFromPointer(C.QFontMetricsF_TightBoundingRect(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -12696,7 +12696,7 @@ func (ptr *QFontMetricsF) Size(flags int, text string, tabStops int, tabArray in
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQSizeFFromPointer(C.QFontMetricsF_Size(ptr.Pointer(), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
+		var tmpValue = core.NewQSizeFFromPointer(C.QFontMetricsF_Size(ptr.Pointer(), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(tabStops)), C.int(int32(tabArray))))
 		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
@@ -12710,7 +12710,7 @@ func (ptr *QFontMetricsF) ElidedText(text string, mode core.Qt__TextElideMode, w
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return cGoUnpackString(C.QFontMetricsF_ElidedText(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.longlong(mode), C.double(width), C.int(int32(flags))))
+		return cGoUnpackString(C.QFontMetricsF_ElidedText(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(mode), C.double(width), C.int(int32(flags))))
 	}
 	return ""
 }
@@ -12855,7 +12855,7 @@ func (ptr *QFontMetricsF) Width(text string) float64 {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return float64(C.QFontMetricsF_Width(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		return float64(C.QFontMetricsF_Width(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	}
 	return 0
 }
@@ -13001,7 +13001,7 @@ func (ptr *QGenericPlugin) Create(key string, specification string) *core.QObjec
 			specificationC = C.CString(specification)
 			defer C.free(unsafe.Pointer(specificationC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QGenericPlugin_Create(ptr.Pointer(), C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, C.struct_QtGui_PackedString{specificationC, C.longlong(len(specification))}))
+		var tmpValue = core.NewQObjectFromPointer(C.QGenericPlugin_Create(ptr.Pointer(), C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, C.struct_QtGui_PackedString{data: specificationC, len: C.longlong(len(specification))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -13334,7 +13334,7 @@ func QGenericPluginFactory_Create(key string, specification string) *core.QObjec
 		specificationC = C.CString(specification)
 		defer C.free(unsafe.Pointer(specificationC))
 	}
-	var tmpValue = core.NewQObjectFromPointer(C.QGenericPluginFactory_QGenericPluginFactory_Create(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, C.struct_QtGui_PackedString{specificationC, C.longlong(len(specification))}))
+	var tmpValue = core.NewQObjectFromPointer(C.QGenericPluginFactory_QGenericPluginFactory_Create(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, C.struct_QtGui_PackedString{data: specificationC, len: C.longlong(len(specification))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -13352,7 +13352,7 @@ func (ptr *QGenericPluginFactory) Create(key string, specification string) *core
 		specificationC = C.CString(specification)
 		defer C.free(unsafe.Pointer(specificationC))
 	}
-	var tmpValue = core.NewQObjectFromPointer(C.QGenericPluginFactory_QGenericPluginFactory_Create(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, C.struct_QtGui_PackedString{specificationC, C.longlong(len(specification))}))
+	var tmpValue = core.NewQObjectFromPointer(C.QGenericPluginFactory_QGenericPluginFactory_Create(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, C.struct_QtGui_PackedString{data: specificationC, len: C.longlong(len(specification))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -14698,7 +14698,7 @@ func QGuiApplication_SetApplicationDisplayName(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QGuiApplication_QGuiApplication_SetApplicationDisplayName(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+	C.QGuiApplication_QGuiApplication_SetApplicationDisplayName(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func (ptr *QGuiApplication) SetApplicationDisplayName(name string) {
@@ -14707,7 +14707,7 @@ func (ptr *QGuiApplication) SetApplicationDisplayName(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QGuiApplication_QGuiApplication_SetApplicationDisplayName(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+	C.QGuiApplication_QGuiApplication_SetApplicationDisplayName(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func QGuiApplication_SetDesktopFileName(name string) {
@@ -14716,7 +14716,7 @@ func QGuiApplication_SetDesktopFileName(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QGuiApplication_QGuiApplication_SetDesktopFileName(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+	C.QGuiApplication_QGuiApplication_SetDesktopFileName(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func (ptr *QGuiApplication) SetDesktopFileName(name string) {
@@ -14725,7 +14725,7 @@ func (ptr *QGuiApplication) SetDesktopFileName(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QGuiApplication_QGuiApplication_SetDesktopFileName(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+	C.QGuiApplication_QGuiApplication_SetDesktopFileName(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func QGuiApplication_SetDesktopSettingsAware(on bool) {
@@ -15462,7 +15462,7 @@ func QIcon_FromTheme(name string) *QIcon {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QIcon).DestroyQIcon)
 	return tmpValue
 }
@@ -15473,7 +15473,7 @@ func (ptr *QIcon) FromTheme(name string) *QIcon {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QIcon).DestroyQIcon)
 	return tmpValue
 }
@@ -15484,7 +15484,7 @@ func QIcon_FromTheme2(name string, fallback QIcon_ITF) *QIcon {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme2(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}, PointerFromQIcon(fallback)))
+	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme2(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQIcon(fallback)))
 	runtime.SetFinalizer(tmpValue, (*QIcon).DestroyQIcon)
 	return tmpValue
 }
@@ -15495,7 +15495,7 @@ func (ptr *QIcon) FromTheme2(name string, fallback QIcon_ITF) *QIcon {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme2(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}, PointerFromQIcon(fallback)))
+	var tmpValue = NewQIconFromPointer(C.QIcon_QIcon_FromTheme2(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQIcon(fallback)))
 	runtime.SetFinalizer(tmpValue, (*QIcon).DestroyQIcon)
 	return tmpValue
 }
@@ -15536,7 +15536,7 @@ func NewQIcon5(fileName string) *QIcon {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQIconFromPointer(C.QIcon_NewQIcon5(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}))
+	var tmpValue = NewQIconFromPointer(C.QIcon_NewQIcon5(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
 	runtime.SetFinalizer(tmpValue, (*QIcon).DestroyQIcon)
 	return tmpValue
 }
@@ -15563,7 +15563,7 @@ func QIcon_HasThemeIcon(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QIcon_QIcon_HasThemeIcon(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QIcon_QIcon_HasThemeIcon(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QIcon) HasThemeIcon(name string) bool {
@@ -15572,7 +15572,7 @@ func (ptr *QIcon) HasThemeIcon(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QIcon_QIcon_HasThemeIcon(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QIcon_QIcon_HasThemeIcon(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QIcon) AddFile(fileName string, size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) {
@@ -15582,7 +15582,7 @@ func (ptr *QIcon) AddFile(fileName string, size core.QSize_ITF, mode QIcon__Mode
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QIcon_AddFile(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, core.PointerFromQSize(size), C.longlong(mode), C.longlong(state))
+		C.QIcon_AddFile(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQSize(size), C.longlong(mode), C.longlong(state))
 	}
 }
 
@@ -15604,7 +15604,7 @@ func QIcon_SetThemeName(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QIcon_QIcon_SetThemeName(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+	C.QIcon_QIcon_SetThemeName(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func (ptr *QIcon) SetThemeName(name string) {
@@ -15613,19 +15613,19 @@ func (ptr *QIcon) SetThemeName(name string) {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	C.QIcon_QIcon_SetThemeName(C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+	C.QIcon_QIcon_SetThemeName(C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 }
 
 func QIcon_SetThemeSearchPaths(paths []string) {
 	var pathsC = C.CString(strings.Join(paths, "|"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{pathsC, C.longlong(len(strings.Join(paths, "|")))})
+	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
 }
 
 func (ptr *QIcon) SetThemeSearchPaths(paths []string) {
 	var pathsC = C.CString(strings.Join(paths, "|"))
 	defer C.free(unsafe.Pointer(pathsC))
-	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{pathsC, C.longlong(len(strings.Join(paths, "|")))})
+	C.QIcon_QIcon_SetThemeSearchPaths(C.struct_QtGui_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
 }
 
 func (ptr *QIcon) Swap(other QIcon_ITF) {
@@ -16058,7 +16058,7 @@ func (ptr *QIconEngine) AddFile(fileName string, size core.QSize_ITF, mode QIcon
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QIconEngine_AddFile(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, core.PointerFromQSize(size), C.longlong(mode), C.longlong(state))
+		C.QIconEngine_AddFile(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQSize(size), C.longlong(mode), C.longlong(state))
 	}
 }
 
@@ -16069,7 +16069,7 @@ func (ptr *QIconEngine) AddFileDefault(fileName string, size core.QSize_ITF, mod
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QIconEngine_AddFileDefault(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, core.PointerFromQSize(size), C.longlong(mode), C.longlong(state))
+		C.QIconEngine_AddFileDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQSize(size), C.longlong(mode), C.longlong(state))
 	}
 }
 
@@ -16347,10 +16347,10 @@ func (ptr *QIconEngine) AvailableSizesDefault(mode QIcon__Mode, state QIcon__Sta
 func callbackQIconEngine_IconName(ptr unsafe.Pointer) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "iconName"); signal != nil {
 		tempVal := signal.(func() string)()
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQIconEngineFromPointer(ptr).IconNameDefault()
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QIconEngine) ConnectIconName(f func() string) {
@@ -16392,10 +16392,10 @@ func (ptr *QIconEngine) IconNameDefault() string {
 func callbackQIconEngine_Key(ptr unsafe.Pointer) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "key"); signal != nil {
 		tempVal := signal.(func() string)()
-		return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQIconEngineFromPointer(ptr).KeyDefault()
-	return C.struct_QtGui_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtGui_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QIconEngine) ConnectKey(f func() string) {
@@ -16579,7 +16579,7 @@ func (ptr *QIconEnginePlugin) Create(filename string) *QIconEngine {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		return NewQIconEngineFromPointer(C.QIconEnginePlugin_Create(ptr.Pointer(), C.struct_QtGui_PackedString{filenameC, C.longlong(len(filename))}))
+		return NewQIconEngineFromPointer(C.QIconEnginePlugin_Create(ptr.Pointer(), C.struct_QtGui_PackedString{data: filenameC, len: C.longlong(len(filename))}))
 	}
 	return nil
 }
@@ -17020,7 +17020,7 @@ func NewQImage9(fileName string, format string) *QImage {
 		formatC = C.CString(format)
 		defer C.free(unsafe.Pointer(formatC))
 	}
-	return NewQImageFromPointer(C.QImage_NewQImage9(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC))
+	return NewQImageFromPointer(C.QImage_NewQImage9(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC))
 }
 
 func NewQImage3(width int, height int, format QImage__Format) *QImage {
@@ -17083,7 +17083,7 @@ func (ptr *QImage) Load(fileName string, format string) bool {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QImage_Load(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC) != 0
+		return C.QImage_Load(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC) != 0
 	}
 	return false
 }
@@ -17221,7 +17221,7 @@ func (ptr *QImage) SetText(key string, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QImage_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QImage_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -17424,7 +17424,7 @@ func (ptr *QImage) Text(key string) string {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return cGoUnpackString(C.QImage_Text(ptr.Pointer(), C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}))
+		return cGoUnpackString(C.QImage_Text(ptr.Pointer(), C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}))
 	}
 	return ""
 }
@@ -17488,7 +17488,7 @@ func (ptr *QImage) Save(fileName string, format string, quality int) bool {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QImage_Save(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC, C.int(int32(quality))) != 0
+		return C.QImage_Save(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC, C.int(int32(quality))) != 0
 	}
 	return false
 }
@@ -18878,7 +18878,7 @@ func QImageReader_ImageFormat2(fileName string) *core.QByteArray {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat2(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}))
+	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat2(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
 	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 	return tmpValue
 }
@@ -18889,7 +18889,7 @@ func (ptr *QImageReader) ImageFormat2(fileName string) *core.QByteArray {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat2(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}))
+	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat2(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
 	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 	return tmpValue
 }
@@ -18921,7 +18921,7 @@ func NewQImageReader3(fileName string, format core.QByteArray_ITF) *QImageReader
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQImageReaderFromPointer(C.QImageReader_NewQImageReader3(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, core.PointerFromQByteArray(format)))
+	var tmpValue = NewQImageReaderFromPointer(C.QImageReader_NewQImageReader3(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QImageReader).DestroyQImageReader)
 	return tmpValue
 }
@@ -19030,7 +19030,7 @@ func (ptr *QImageReader) SetFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QImageReader_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))})
+		C.QImageReader_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
 	}
 }
 
@@ -19210,7 +19210,7 @@ func (ptr *QImageReader) Text(key string) string {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return cGoUnpackString(C.QImageReader_Text(ptr.Pointer(), C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}))
+		return cGoUnpackString(C.QImageReader_Text(ptr.Pointer(), C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}))
 	}
 	return ""
 }
@@ -19429,7 +19429,7 @@ func NewQImageWriter3(fileName string, format core.QByteArray_ITF) *QImageWriter
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, core.PointerFromQByteArray(format)))
+	var tmpValue = NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QImageWriter).DestroyQImageWriter)
 	return tmpValue
 }
@@ -19500,7 +19500,7 @@ func (ptr *QImageWriter) SetFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QImageWriter_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))})
+		C.QImageWriter_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
 	}
 }
 
@@ -19552,7 +19552,7 @@ func (ptr *QImageWriter) SetText(key string, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QImageWriter_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QImageWriter_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -20881,7 +20881,7 @@ func (ptr *QInputMethodEvent) SetCommitString(commitString string, replaceFrom i
 			commitStringC = C.CString(commitString)
 			defer C.free(unsafe.Pointer(commitStringC))
 		}
-		C.QInputMethodEvent_SetCommitString(ptr.Pointer(), C.struct_QtGui_PackedString{commitStringC, C.longlong(len(commitString))}, C.int(int32(replaceFrom)), C.int(int32(replaceLength)))
+		C.QInputMethodEvent_SetCommitString(ptr.Pointer(), C.struct_QtGui_PackedString{data: commitStringC, len: C.longlong(len(commitString))}, C.int(int32(replaceFrom)), C.int(int32(replaceLength)))
 	}
 }
 
@@ -21150,7 +21150,7 @@ func (ptr *QIntValidator) Validate(input string, pos int) QValidator__State {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QIntValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QIntValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -21162,7 +21162,7 @@ func (ptr *QIntValidator) ValidateDefault(input string, pos int) QValidator__Sta
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QIntValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QIntValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -21235,7 +21235,7 @@ func NewQKeyEvent(ty core.QEvent__Type, key int, modifiers core.Qt__KeyboardModi
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQKeyEventFromPointer(C.QKeyEvent_NewQKeyEvent(C.longlong(ty), C.int(int32(key)), C.longlong(modifiers), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(autorep))), C.ushort(count)))
+	return NewQKeyEventFromPointer(C.QKeyEvent_NewQKeyEvent(C.longlong(ty), C.int(int32(key)), C.longlong(modifiers), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(autorep))), C.ushort(count)))
 }
 
 func NewQKeyEvent2(ty core.QEvent__Type, key int, modifiers core.Qt__KeyboardModifier, nativeScanCode uint, nativeVirtualKey uint, nativeModifiers uint, text string, autorep bool, count uint16) *QKeyEvent {
@@ -21244,7 +21244,7 @@ func NewQKeyEvent2(ty core.QEvent__Type, key int, modifiers core.Qt__KeyboardMod
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQKeyEventFromPointer(C.QKeyEvent_NewQKeyEvent2(C.longlong(ty), C.int(int32(key)), C.longlong(modifiers), C.uint(uint32(nativeScanCode)), C.uint(uint32(nativeVirtualKey)), C.uint(uint32(nativeModifiers)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(autorep))), C.ushort(count)))
+	return NewQKeyEventFromPointer(C.QKeyEvent_NewQKeyEvent2(C.longlong(ty), C.int(int32(key)), C.longlong(modifiers), C.uint(uint32(nativeScanCode)), C.uint(uint32(nativeVirtualKey)), C.uint(uint32(nativeModifiers)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(autorep))), C.ushort(count)))
 }
 
 func (ptr *QKeyEvent) Text() string {
@@ -21382,7 +21382,7 @@ func (ptr *QKeyEvent) SetTxt(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QKeyEvent_SetTxt(ptr.Pointer(), C.struct_QtGui_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QKeyEvent_SetTxt(ptr.Pointer(), C.struct_QtGui_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -21527,7 +21527,7 @@ func QKeySequence_FromString(str string, format QKeySequence__SequenceFormat) *Q
 		strC = C.CString(str)
 		defer C.free(unsafe.Pointer(strC))
 	}
-	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_FromString(C.struct_QtGui_PackedString{strC, C.longlong(len(str))}, C.longlong(format)))
+	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_FromString(C.struct_QtGui_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
 	return tmpValue
 }
@@ -21538,7 +21538,7 @@ func (ptr *QKeySequence) FromString(str string, format QKeySequence__SequenceFor
 		strC = C.CString(str)
 		defer C.free(unsafe.Pointer(strC))
 	}
-	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_FromString(C.struct_QtGui_PackedString{strC, C.longlong(len(str))}, C.longlong(format)))
+	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_FromString(C.struct_QtGui_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
 	return tmpValue
 }
@@ -21549,7 +21549,7 @@ func QKeySequence_Mnemonic(text string) *QKeySequence {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_Mnemonic(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_Mnemonic(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
 	return tmpValue
 }
@@ -21560,7 +21560,7 @@ func (ptr *QKeySequence) Mnemonic(text string) *QKeySequence {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_Mnemonic(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_QKeySequence_Mnemonic(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
 	return tmpValue
 }
@@ -21589,7 +21589,7 @@ func NewQKeySequence2(key string, format QKeySequence__SequenceFormat) *QKeySequ
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence2(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, C.longlong(format)))
+	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence2(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, C.longlong(format)))
 	runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
 	return tmpValue
 }
@@ -21632,7 +21632,7 @@ func QKeySequence_ListFromString(str string, format QKeySequence__SequenceFormat
 			out[i] = NewQKeySequenceFromPointer(l.data).__listFromString_atList(i)
 		}
 		return out
-	}(C.QKeySequence_QKeySequence_ListFromString(C.struct_QtGui_PackedString{strC, C.longlong(len(str))}, C.longlong(format)))
+	}(C.QKeySequence_QKeySequence_ListFromString(C.struct_QtGui_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(format)))
 }
 
 func (ptr *QKeySequence) ListFromString(str string, format QKeySequence__SequenceFormat) []*QKeySequence {
@@ -21647,7 +21647,7 @@ func (ptr *QKeySequence) ListFromString(str string, format QKeySequence__Sequenc
 			out[i] = NewQKeySequenceFromPointer(l.data).__listFromString_atList(i)
 		}
 		return out
-	}(C.QKeySequence_QKeySequence_ListFromString(C.struct_QtGui_PackedString{strC, C.longlong(len(str))}, C.longlong(format)))
+	}(C.QKeySequence_QKeySequence_ListFromString(C.struct_QtGui_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(format)))
 }
 
 func QKeySequence_ListToString(list []*QKeySequence, format QKeySequence__SequenceFormat) string {
@@ -22628,7 +22628,7 @@ func NewQMovie3(fileName string, format core.QByteArray_ITF, parent core.QObject
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie3(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
+	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie3(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -22876,7 +22876,7 @@ func (ptr *QMovie) SetFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QMovie_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))})
+		C.QMovie_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
 	}
 }
 
@@ -27368,7 +27368,7 @@ func NewQPageSize3(pointSize core.QSize_ITF, name string, matchPolicy QPageSize_
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQPageSizeFromPointer(C.QPageSize_NewQPageSize3(core.PointerFromQSize(pointSize), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}, C.longlong(matchPolicy)))
+	var tmpValue = NewQPageSizeFromPointer(C.QPageSize_NewQPageSize3(core.PointerFromQSize(pointSize), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(matchPolicy)))
 	runtime.SetFinalizer(tmpValue, (*QPageSize).DestroyQPageSize)
 	return tmpValue
 }
@@ -27379,7 +27379,7 @@ func NewQPageSize4(size core.QSizeF_ITF, units QPageSize__Unit, name string, mat
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQPageSizeFromPointer(C.QPageSize_NewQPageSize4(core.PointerFromQSizeF(size), C.longlong(units), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}, C.longlong(matchPolicy)))
+	var tmpValue = NewQPageSizeFromPointer(C.QPageSize_NewQPageSize4(core.PointerFromQSizeF(size), C.longlong(units), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(matchPolicy)))
 	runtime.SetFinalizer(tmpValue, (*QPageSize).DestroyQPageSize)
 	return tmpValue
 }
@@ -29862,7 +29862,7 @@ func (ptr *QPainter) BoundingRect2(rectangle core.QRect_ITF, flags int, text str
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QPainter_BoundingRect2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFromPointer(C.QPainter_BoundingRect2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -29876,7 +29876,7 @@ func (ptr *QPainter) BoundingRect4(rectangle core.QRectF_ITF, text string, optio
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFFromPointer(C.QPainter_BoundingRect4(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, PointerFromQTextOption(option)))
+		var tmpValue = core.NewQRectFFromPointer(C.QPainter_BoundingRect4(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQTextOption(option)))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -29890,7 +29890,7 @@ func (ptr *QPainter) BoundingRect(rectangle core.QRectF_ITF, flags int, text str
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFFromPointer(C.QPainter_BoundingRect(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFFromPointer(C.QPainter_BoundingRect(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -29923,7 +29923,7 @@ func (ptr *QPainter) BoundingRect3(x int, y int, w int, h int, flags int, text s
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QPainter_BoundingRect3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(w)), C.int(int32(h)), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFromPointer(C.QPainter_BoundingRect3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(w)), C.int(int32(h)), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -30484,7 +30484,7 @@ func (ptr *QPainter) DrawText2(position core.QPoint_ITF, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainter_DrawText2(ptr.Pointer(), core.PointerFromQPoint(position), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QPainter_DrawText2(ptr.Pointer(), core.PointerFromQPoint(position), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -30495,7 +30495,7 @@ func (ptr *QPainter) DrawText(position core.QPointF_ITF, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainter_DrawText(ptr.Pointer(), core.PointerFromQPointF(position), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QPainter_DrawText(ptr.Pointer(), core.PointerFromQPointF(position), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -30506,7 +30506,7 @@ func (ptr *QPainter) DrawText6(rectangle core.QRect_ITF, flags int, text string,
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainter_DrawText6(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, core.PointerFromQRect(boundingRect))
+		C.QPainter_DrawText6(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQRect(boundingRect))
 	}
 }
 
@@ -30517,7 +30517,7 @@ func (ptr *QPainter) DrawText8(rectangle core.QRectF_ITF, text string, option QT
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainter_DrawText8(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, PointerFromQTextOption(option))
+		C.QPainter_DrawText8(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQTextOption(option))
 	}
 }
 
@@ -30528,7 +30528,7 @@ func (ptr *QPainter) DrawText5(rectangle core.QRectF_ITF, flags int, text string
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainter_DrawText5(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, core.PointerFromQRectF(boundingRect))
+		C.QPainter_DrawText5(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQRectF(boundingRect))
 	}
 }
 
@@ -30539,7 +30539,7 @@ func (ptr *QPainter) DrawText3(x int, y int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainter_DrawText3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QPainter_DrawText3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -30550,7 +30550,7 @@ func (ptr *QPainter) DrawText7(x int, y int, width int, height int, flags int, t
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainter_DrawText7(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(flags)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, core.PointerFromQRect(boundingRect))
+		C.QPainter_DrawText7(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(width)), C.int(int32(height)), C.int(int32(flags)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQRect(boundingRect))
 	}
 }
 
@@ -31384,7 +31384,7 @@ func (ptr *QPainterPath) AddText(point core.QPointF_ITF, font QFont_ITF, text st
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainterPath_AddText(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQFont(font), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QPainterPath_AddText(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQFont(font), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -31395,7 +31395,7 @@ func (ptr *QPainterPath) AddText2(x float64, y float64, font QFont_ITF, text str
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPainterPath_AddText2(ptr.Pointer(), C.double(x), C.double(y), PointerFromQFont(font), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QPainterPath_AddText2(ptr.Pointer(), C.double(x), C.double(y), PointerFromQFont(font), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -32515,7 +32515,7 @@ func NewQPdfWriter(filename string) *QPdfWriter {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	var tmpValue = NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter(C.struct_QtGui_PackedString{filenameC, C.longlong(len(filename))}))
+	var tmpValue = NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter(C.struct_QtGui_PackedString{data: filenameC, len: C.longlong(len(filename))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -32529,7 +32529,7 @@ func (ptr *QPdfWriter) SetCreator(creator string) {
 			creatorC = C.CString(creator)
 			defer C.free(unsafe.Pointer(creatorC))
 		}
-		C.QPdfWriter_SetCreator(ptr.Pointer(), C.struct_QtGui_PackedString{creatorC, C.longlong(len(creator))})
+		C.QPdfWriter_SetCreator(ptr.Pointer(), C.struct_QtGui_PackedString{data: creatorC, len: C.longlong(len(creator))})
 	}
 }
 
@@ -32546,7 +32546,7 @@ func (ptr *QPdfWriter) SetTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QPdfWriter_SetTitle(ptr.Pointer(), C.struct_QtGui_PackedString{titleC, C.longlong(len(title))})
+		C.QPdfWriter_SetTitle(ptr.Pointer(), C.struct_QtGui_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -33277,7 +33277,7 @@ func (ptr *QPicture) Load(fileName string, format string) bool {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QPicture_Load(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC) != 0
+		return C.QPicture_Load(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC) != 0
 	}
 	return false
 }
@@ -33313,7 +33313,7 @@ func (ptr *QPicture) Save(fileName string, format string) bool {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QPicture_Save(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC) != 0
+		return C.QPicture_Save(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC) != 0
 	}
 	return false
 }
@@ -33905,7 +33905,7 @@ func NewQPixmap5(fileName string, format string, flags core.Qt__ImageConversionF
 		formatC = C.CString(format)
 		defer C.free(unsafe.Pointer(formatC))
 	}
-	return NewQPixmapFromPointer(C.QPixmap_NewQPixmap5(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC, C.longlong(flags)))
+	return NewQPixmapFromPointer(C.QPixmap_NewQPixmap5(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC, C.longlong(flags)))
 }
 
 func NewQPixmap3(width int, height int) *QPixmap {
@@ -33943,7 +33943,7 @@ func (ptr *QPixmap) Load(fileName string, format string, flags core.Qt__ImageCon
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QPixmap_Load(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC, C.longlong(flags)) != 0
+		return C.QPixmap_Load(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC, C.longlong(flags)) != 0
 	}
 	return false
 }
@@ -34204,7 +34204,7 @@ func (ptr *QPixmap) Save(fileName string, format string, quality int) bool {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QPixmap_Save(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, formatC, C.int(int32(quality))) != 0
+		return C.QPixmap_Save(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, formatC, C.int(int32(quality))) != 0
 	}
 	return false
 }
@@ -34298,7 +34298,7 @@ func QPixmapCache_Find(key string, pixmap QPixmap_ITF) bool {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	return C.QPixmapCache_QPixmapCache_Find(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
+	return C.QPixmapCache_QPixmapCache_Find(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
 }
 
 func (ptr *QPixmapCache) Find(key string, pixmap QPixmap_ITF) bool {
@@ -34307,7 +34307,7 @@ func (ptr *QPixmapCache) Find(key string, pixmap QPixmap_ITF) bool {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	return C.QPixmapCache_QPixmapCache_Find(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
+	return C.QPixmapCache_QPixmapCache_Find(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
 }
 
 func QPixmapCache_Insert(key string, pixmap QPixmap_ITF) bool {
@@ -34316,7 +34316,7 @@ func QPixmapCache_Insert(key string, pixmap QPixmap_ITF) bool {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	return C.QPixmapCache_QPixmapCache_Insert(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
+	return C.QPixmapCache_QPixmapCache_Insert(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
 }
 
 func (ptr *QPixmapCache) Insert(key string, pixmap QPixmap_ITF) bool {
@@ -34325,7 +34325,7 @@ func (ptr *QPixmapCache) Insert(key string, pixmap QPixmap_ITF) bool {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	return C.QPixmapCache_QPixmapCache_Insert(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
+	return C.QPixmapCache_QPixmapCache_Insert(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQPixmap(pixmap)) != 0
 }
 
 func QPixmapCache_CacheLimit() int {
@@ -34350,7 +34350,7 @@ func QPixmapCache_Remove(key string) {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	C.QPixmapCache_QPixmapCache_Remove(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))})
+	C.QPixmapCache_QPixmapCache_Remove(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))})
 }
 
 func (ptr *QPixmapCache) Remove(key string) {
@@ -34359,7 +34359,7 @@ func (ptr *QPixmapCache) Remove(key string) {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	C.QPixmapCache_QPixmapCache_Remove(C.struct_QtGui_PackedString{keyC, C.longlong(len(key))})
+	C.QPixmapCache_QPixmapCache_Remove(C.struct_QtGui_PackedString{data: keyC, len: C.longlong(len(key))})
 }
 
 func QPixmapCache_SetCacheLimit(n int) {
@@ -36285,7 +36285,7 @@ func NewQRawFont2(fileName string, pixelSize float64, hintingPreference QFont__H
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQRawFontFromPointer(C.QRawFont_NewQRawFont2(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, C.double(pixelSize), C.longlong(hintingPreference)))
+	var tmpValue = NewQRawFontFromPointer(C.QRawFont_NewQRawFont2(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.double(pixelSize), C.longlong(hintingPreference)))
 	runtime.SetFinalizer(tmpValue, (*QRawFont).DestroyQRawFont)
 	return tmpValue
 }
@@ -36303,7 +36303,7 @@ func (ptr *QRawFont) LoadFromFile(fileName string, pixelSize float64, hintingPre
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QRawFont_LoadFromFile(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, C.double(pixelSize), C.longlong(hintingPreference))
+		C.QRawFont_LoadFromFile(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.double(pixelSize), C.longlong(hintingPreference))
 	}
 }
 
@@ -36460,7 +36460,7 @@ func (ptr *QRawFont) GlyphIndexesForString(text string) []uint {
 				out[i] = NewQRawFontFromPointer(l.data).__glyphIndexesForString_atList(i)
 			}
 			return out
-		}(C.QRawFont_GlyphIndexesForString(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+		}(C.QRawFont_GlyphIndexesForString(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	}
 	return make([]uint, 0)
 }
@@ -36801,7 +36801,7 @@ func (ptr *QRegExpValidator) Validate(input string, pos int) QValidator__State {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QRegExpValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QRegExpValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -36813,7 +36813,7 @@ func (ptr *QRegExpValidator) ValidateDefault(input string, pos int) QValidator__
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QRegExpValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QRegExpValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -37297,7 +37297,7 @@ func (ptr *QRegularExpressionValidator) Validate(input string, pos int) QValidat
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QRegularExpressionValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QRegularExpressionValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -37309,7 +37309,7 @@ func (ptr *QRegularExpressionValidator) ValidateDefault(input string, pos int) Q
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QRegularExpressionValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QRegularExpressionValidator_ValidateDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -38733,7 +38733,7 @@ func (ptr *QSessionManager) SetDiscardCommand(command []string) {
 	if ptr.Pointer() != nil {
 		var commandC = C.CString(strings.Join(command, "|"))
 		defer C.free(unsafe.Pointer(commandC))
-		C.QSessionManager_SetDiscardCommand(ptr.Pointer(), C.struct_QtGui_PackedString{commandC, C.longlong(len(strings.Join(command, "|")))})
+		C.QSessionManager_SetDiscardCommand(ptr.Pointer(), C.struct_QtGui_PackedString{data: commandC, len: C.longlong(len(strings.Join(command, "|")))})
 	}
 }
 
@@ -38749,7 +38749,7 @@ func (ptr *QSessionManager) SetManagerProperty2(name string, value string) {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QSessionManager_SetManagerProperty2(ptr.Pointer(), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}, C.struct_QtGui_PackedString{valueC, C.longlong(len(value))})
+		C.QSessionManager_SetManagerProperty2(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtGui_PackedString{data: valueC, len: C.longlong(len(value))})
 	}
 }
 
@@ -38762,7 +38762,7 @@ func (ptr *QSessionManager) SetManagerProperty(name string, value []string) {
 		}
 		var valueC = C.CString(strings.Join(value, "|"))
 		defer C.free(unsafe.Pointer(valueC))
-		C.QSessionManager_SetManagerProperty(ptr.Pointer(), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))}, C.struct_QtGui_PackedString{valueC, C.longlong(len(strings.Join(value, "|")))})
+		C.QSessionManager_SetManagerProperty(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtGui_PackedString{data: valueC, len: C.longlong(len(strings.Join(value, "|")))})
 	}
 }
 
@@ -38770,7 +38770,7 @@ func (ptr *QSessionManager) SetRestartCommand(command []string) {
 	if ptr.Pointer() != nil {
 		var commandC = C.CString(strings.Join(command, "|"))
 		defer C.free(unsafe.Pointer(commandC))
-		C.QSessionManager_SetRestartCommand(ptr.Pointer(), C.struct_QtGui_PackedString{commandC, C.longlong(len(strings.Join(command, "|")))})
+		C.QSessionManager_SetRestartCommand(ptr.Pointer(), C.struct_QtGui_PackedString{data: commandC, len: C.longlong(len(strings.Join(command, "|")))})
 	}
 }
 
@@ -39335,7 +39335,7 @@ func NewQStandardItem3(icon QIcon_ITF, text string) *QStandardItem {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem3(PointerFromQIcon(icon), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem3(PointerFromQIcon(icon), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func NewQStandardItem5(other QStandardItem_ITF) *QStandardItem {
@@ -39348,7 +39348,7 @@ func NewQStandardItem2(text string) *QStandardItem {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem2(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem2(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 }
 
 func NewQStandardItem4(rows int, columns int) *QStandardItem {
@@ -39530,7 +39530,7 @@ func (ptr *QStandardItem) SetAccessibleDescription(accessibleDescription string)
 			accessibleDescriptionC = C.CString(accessibleDescription)
 			defer C.free(unsafe.Pointer(accessibleDescriptionC))
 		}
-		C.QStandardItem_SetAccessibleDescription(ptr.Pointer(), C.struct_QtGui_PackedString{accessibleDescriptionC, C.longlong(len(accessibleDescription))})
+		C.QStandardItem_SetAccessibleDescription(ptr.Pointer(), C.struct_QtGui_PackedString{data: accessibleDescriptionC, len: C.longlong(len(accessibleDescription))})
 	}
 }
 
@@ -39541,7 +39541,7 @@ func (ptr *QStandardItem) SetAccessibleText(accessibleText string) {
 			accessibleTextC = C.CString(accessibleText)
 			defer C.free(unsafe.Pointer(accessibleTextC))
 		}
-		C.QStandardItem_SetAccessibleText(ptr.Pointer(), C.struct_QtGui_PackedString{accessibleTextC, C.longlong(len(accessibleText))})
+		C.QStandardItem_SetAccessibleText(ptr.Pointer(), C.struct_QtGui_PackedString{data: accessibleTextC, len: C.longlong(len(accessibleText))})
 	}
 }
 
@@ -39702,7 +39702,7 @@ func (ptr *QStandardItem) SetStatusTip(statusTip string) {
 			statusTipC = C.CString(statusTip)
 			defer C.free(unsafe.Pointer(statusTipC))
 		}
-		C.QStandardItem_SetStatusTip(ptr.Pointer(), C.struct_QtGui_PackedString{statusTipC, C.longlong(len(statusTip))})
+		C.QStandardItem_SetStatusTip(ptr.Pointer(), C.struct_QtGui_PackedString{data: statusTipC, len: C.longlong(len(statusTip))})
 	}
 }
 
@@ -39713,7 +39713,7 @@ func (ptr *QStandardItem) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QStandardItem_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QStandardItem_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -39730,7 +39730,7 @@ func (ptr *QStandardItem) SetToolTip(toolTip string) {
 			toolTipC = C.CString(toolTip)
 			defer C.free(unsafe.Pointer(toolTipC))
 		}
-		C.QStandardItem_SetToolTip(ptr.Pointer(), C.struct_QtGui_PackedString{toolTipC, C.longlong(len(toolTip))})
+		C.QStandardItem_SetToolTip(ptr.Pointer(), C.struct_QtGui_PackedString{data: toolTipC, len: C.longlong(len(toolTip))})
 	}
 }
 
@@ -39747,7 +39747,7 @@ func (ptr *QStandardItem) SetWhatsThis(whatsThis string) {
 			whatsThisC = C.CString(whatsThis)
 			defer C.free(unsafe.Pointer(whatsThisC))
 		}
-		C.QStandardItem_SetWhatsThis(ptr.Pointer(), C.struct_QtGui_PackedString{whatsThisC, C.longlong(len(whatsThis))})
+		C.QStandardItem_SetWhatsThis(ptr.Pointer(), C.struct_QtGui_PackedString{data: whatsThisC, len: C.longlong(len(whatsThis))})
 	}
 }
 
@@ -40718,7 +40718,7 @@ func (ptr *QStandardItemModel) SetHorizontalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QStandardItemModel_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QStandardItemModel_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -40774,7 +40774,7 @@ func (ptr *QStandardItemModel) SetVerticalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QStandardItemModel_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QStandardItemModel_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtGui_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -40814,7 +40814,7 @@ func (ptr *QStandardItemModel) FindItems(text string, flags core.Qt__MatchFlag, 
 				out[i] = NewQStandardItemModelFromPointer(l.data).__findItems_atList(i)
 			}
 			return out
-		}(C.QStandardItemModel_FindItems(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, C.longlong(flags), C.int(int32(column))))
+		}(C.QStandardItemModel_FindItems(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags), C.int(int32(column))))
 	}
 	return make([]*QStandardItem, 0)
 }
@@ -41053,10 +41053,10 @@ func (ptr *QStandardItemModel) VerticalHeaderItem(row int) *QStandardItem {
 func callbackQStandardItemModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtGui_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "mimeTypes"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtGui_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQStandardItemModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtGui_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtGui_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QStandardItemModel) MimeTypesDefault() []string {
@@ -42512,7 +42512,7 @@ func NewQStaticText2(text string) *QStaticText {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQStaticTextFromPointer(C.QStaticText_NewQStaticText2(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	var tmpValue = NewQStaticTextFromPointer(C.QStaticText_NewQStaticText2(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	runtime.SetFinalizer(tmpValue, (*QStaticText).DestroyQStaticText)
 	return tmpValue
 }
@@ -42536,7 +42536,7 @@ func (ptr *QStaticText) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QStaticText_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QStaticText_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -42672,7 +42672,7 @@ func NewQStatusTipEvent(tip string) *QStatusTipEvent {
 		tipC = C.CString(tip)
 		defer C.free(unsafe.Pointer(tipC))
 	}
-	return NewQStatusTipEventFromPointer(C.QStatusTipEvent_NewQStatusTipEvent(C.struct_QtGui_PackedString{tipC, C.longlong(len(tip))}))
+	return NewQStatusTipEventFromPointer(C.QStatusTipEvent_NewQStatusTipEvent(C.struct_QtGui_PackedString{data: tipC, len: C.longlong(len(tip))}))
 }
 
 func (ptr *QStatusTipEvent) Tip() string {
@@ -44147,7 +44147,7 @@ func (ptr *QSyntaxHighlighter) HighlightBlock(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QSyntaxHighlighter_HighlightBlock(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QSyntaxHighlighter_HighlightBlock(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -45766,7 +45766,7 @@ func (ptr *QTextCharFormat) SetAnchorHref(value string) {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QTextCharFormat_SetAnchorHref(ptr.Pointer(), C.struct_QtGui_PackedString{valueC, C.longlong(len(value))})
+		C.QTextCharFormat_SetAnchorHref(ptr.Pointer(), C.struct_QtGui_PackedString{data: valueC, len: C.longlong(len(value))})
 	}
 }
 
@@ -45774,7 +45774,7 @@ func (ptr *QTextCharFormat) SetAnchorNames(names []string) {
 	if ptr.Pointer() != nil {
 		var namesC = C.CString(strings.Join(names, "|"))
 		defer C.free(unsafe.Pointer(namesC))
-		C.QTextCharFormat_SetAnchorNames(ptr.Pointer(), C.struct_QtGui_PackedString{namesC, C.longlong(len(strings.Join(names, "|")))})
+		C.QTextCharFormat_SetAnchorNames(ptr.Pointer(), C.struct_QtGui_PackedString{data: namesC, len: C.longlong(len(strings.Join(names, "|")))})
 	}
 }
 
@@ -45803,7 +45803,7 @@ func (ptr *QTextCharFormat) SetFontFamily(family string) {
 			familyC = C.CString(family)
 			defer C.free(unsafe.Pointer(familyC))
 		}
-		C.QTextCharFormat_SetFontFamily(ptr.Pointer(), C.struct_QtGui_PackedString{familyC, C.longlong(len(family))})
+		C.QTextCharFormat_SetFontFamily(ptr.Pointer(), C.struct_QtGui_PackedString{data: familyC, len: C.longlong(len(family))})
 	}
 }
 
@@ -45910,7 +45910,7 @@ func (ptr *QTextCharFormat) SetToolTip(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextCharFormat_SetToolTip(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QTextCharFormat_SetToolTip(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -46365,7 +46365,7 @@ func (ptr *QTextCursor) InsertHtml(html string) {
 			htmlC = C.CString(html)
 			defer C.free(unsafe.Pointer(htmlC))
 		}
-		C.QTextCursor_InsertHtml(ptr.Pointer(), C.struct_QtGui_PackedString{htmlC, C.longlong(len(html))})
+		C.QTextCursor_InsertHtml(ptr.Pointer(), C.struct_QtGui_PackedString{data: htmlC, len: C.longlong(len(html))})
 	}
 }
 
@@ -46376,7 +46376,7 @@ func (ptr *QTextCursor) InsertImage4(image QImage_ITF, name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QTextCursor_InsertImage4(ptr.Pointer(), PointerFromQImage(image), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+		C.QTextCursor_InsertImage4(ptr.Pointer(), PointerFromQImage(image), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -46387,7 +46387,7 @@ func (ptr *QTextCursor) InsertImage3(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QTextCursor_InsertImage3(ptr.Pointer(), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+		C.QTextCursor_InsertImage3(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -46410,7 +46410,7 @@ func (ptr *QTextCursor) InsertText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextCursor_InsertText(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QTextCursor_InsertText(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -46421,7 +46421,7 @@ func (ptr *QTextCursor) InsertText2(text string, format QTextCharFormat_ITF) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextCursor_InsertText2(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, PointerFromQTextCharFormat(format))
+		C.QTextCursor_InsertText2(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQTextCharFormat(format))
 	}
 }
 
@@ -46830,7 +46830,7 @@ func NewQTextDocument2(text string, parent core.QObject_ITF) *QTextDocument {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument2(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument2(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -47402,7 +47402,7 @@ func (ptr *QTextDocument) SetDefaultStyleSheet(sheet string) {
 			sheetC = C.CString(sheet)
 			defer C.free(unsafe.Pointer(sheetC))
 		}
-		C.QTextDocument_SetDefaultStyleSheet(ptr.Pointer(), C.struct_QtGui_PackedString{sheetC, C.longlong(len(sheet))})
+		C.QTextDocument_SetDefaultStyleSheet(ptr.Pointer(), C.struct_QtGui_PackedString{data: sheetC, len: C.longlong(len(sheet))})
 	}
 }
 
@@ -47431,7 +47431,7 @@ func (ptr *QTextDocument) SetHtml(html string) {
 			htmlC = C.CString(html)
 			defer C.free(unsafe.Pointer(htmlC))
 		}
-		C.QTextDocument_SetHtml(ptr.Pointer(), C.struct_QtGui_PackedString{htmlC, C.longlong(len(html))})
+		C.QTextDocument_SetHtml(ptr.Pointer(), C.struct_QtGui_PackedString{data: htmlC, len: C.longlong(len(html))})
 	}
 }
 
@@ -47454,7 +47454,7 @@ func (ptr *QTextDocument) SetMetaInformation(info QTextDocument__MetaInformation
 			striC = C.CString(stri)
 			defer C.free(unsafe.Pointer(striC))
 		}
-		C.QTextDocument_SetMetaInformation(ptr.Pointer(), C.longlong(info), C.struct_QtGui_PackedString{striC, C.longlong(len(stri))})
+		C.QTextDocument_SetMetaInformation(ptr.Pointer(), C.longlong(info), C.struct_QtGui_PackedString{data: striC, len: C.longlong(len(stri))})
 	}
 }
 
@@ -47513,7 +47513,7 @@ func (ptr *QTextDocument) SetPlainText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextDocument_SetPlainText(ptr.Pointer(), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QTextDocument_SetPlainText(ptr.Pointer(), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -47850,7 +47850,7 @@ func (ptr *QTextDocument) Find(subString string, cursor QTextCursor_ITF, options
 			subStringC = C.CString(subString)
 			defer C.free(unsafe.Pointer(subStringC))
 		}
-		var tmpValue = NewQTextCursorFromPointer(C.QTextDocument_Find(ptr.Pointer(), C.struct_QtGui_PackedString{subStringC, C.longlong(len(subString))}, PointerFromQTextCursor(cursor), C.longlong(options)))
+		var tmpValue = NewQTextCursorFromPointer(C.QTextDocument_Find(ptr.Pointer(), C.struct_QtGui_PackedString{data: subStringC, len: C.longlong(len(subString))}, PointerFromQTextCursor(cursor), C.longlong(options)))
 		runtime.SetFinalizer(tmpValue, (*QTextCursor).DestroyQTextCursor)
 		return tmpValue
 	}
@@ -47864,7 +47864,7 @@ func (ptr *QTextDocument) Find2(subString string, position int, options QTextDoc
 			subStringC = C.CString(subString)
 			defer C.free(unsafe.Pointer(subStringC))
 		}
-		var tmpValue = NewQTextCursorFromPointer(C.QTextDocument_Find2(ptr.Pointer(), C.struct_QtGui_PackedString{subStringC, C.longlong(len(subString))}, C.int(int32(position)), C.longlong(options)))
+		var tmpValue = NewQTextCursorFromPointer(C.QTextDocument_Find2(ptr.Pointer(), C.struct_QtGui_PackedString{data: subStringC, len: C.longlong(len(subString))}, C.int(int32(position)), C.longlong(options)))
 		runtime.SetFinalizer(tmpValue, (*QTextCursor).DestroyQTextCursor)
 		return tmpValue
 	}
@@ -48415,7 +48415,7 @@ func QTextDocumentFragment_FromHtml(text string) *QTextDocumentFragment {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentFragment).DestroyQTextDocumentFragment)
 	return tmpValue
 }
@@ -48426,7 +48426,7 @@ func (ptr *QTextDocumentFragment) FromHtml(text string) *QTextDocumentFragment {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentFragment).DestroyQTextDocumentFragment)
 	return tmpValue
 }
@@ -48437,7 +48437,7 @@ func QTextDocumentFragment_FromHtml2(text string, resourceProvider QTextDocument
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml2(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, PointerFromQTextDocument(resourceProvider)))
+	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml2(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQTextDocument(resourceProvider)))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentFragment).DestroyQTextDocumentFragment)
 	return tmpValue
 }
@@ -48448,7 +48448,7 @@ func (ptr *QTextDocumentFragment) FromHtml2(text string, resourceProvider QTextD
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml2(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, PointerFromQTextDocument(resourceProvider)))
+	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromHtml2(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQTextDocument(resourceProvider)))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentFragment).DestroyQTextDocumentFragment)
 	return tmpValue
 }
@@ -48459,7 +48459,7 @@ func QTextDocumentFragment_FromPlainText(plainText string) *QTextDocumentFragmen
 		plainTextC = C.CString(plainText)
 		defer C.free(unsafe.Pointer(plainTextC))
 	}
-	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromPlainText(C.struct_QtGui_PackedString{plainTextC, C.longlong(len(plainText))}))
+	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromPlainText(C.struct_QtGui_PackedString{data: plainTextC, len: C.longlong(len(plainText))}))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentFragment).DestroyQTextDocumentFragment)
 	return tmpValue
 }
@@ -48470,7 +48470,7 @@ func (ptr *QTextDocumentFragment) FromPlainText(plainText string) *QTextDocument
 		plainTextC = C.CString(plainText)
 		defer C.free(unsafe.Pointer(plainTextC))
 	}
-	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromPlainText(C.struct_QtGui_PackedString{plainTextC, C.longlong(len(plainText))}))
+	var tmpValue = NewQTextDocumentFragmentFromPointer(C.QTextDocumentFragment_QTextDocumentFragment_FromPlainText(C.struct_QtGui_PackedString{data: plainTextC, len: C.longlong(len(plainText))}))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentFragment).DestroyQTextDocumentFragment)
 	return tmpValue
 }
@@ -48603,7 +48603,7 @@ func NewQTextDocumentWriter3(fileName string, format core.QByteArray_ITF) *QText
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	var tmpValue = NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))}, core.PointerFromQByteArray(format)))
+	var tmpValue = NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentWriter).DestroyQTextDocumentWriter)
 	return tmpValue
 }
@@ -48641,7 +48641,7 @@ func (ptr *QTextDocumentWriter) SetFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QTextDocumentWriter_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{fileNameC, C.longlong(len(fileName))})
+		C.QTextDocumentWriter_SetFileName(ptr.Pointer(), C.struct_QtGui_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
 	}
 }
 
@@ -49959,7 +49959,7 @@ func (ptr *QTextImageFormat) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QTextImageFormat_SetName(ptr.Pointer(), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+		C.QTextImageFormat_SetName(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -50289,7 +50289,7 @@ func NewQTextLayout2(text string) *QTextLayout {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout2(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}))
+	var tmpValue = NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout2(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}))
 	runtime.SetFinalizer(tmpValue, (*QTextLayout).DestroyQTextLayout)
 	return tmpValue
 }
@@ -50300,7 +50300,7 @@ func NewQTextLayout3(text string, font QFont_ITF, paintdevice QPaintDevice_ITF) 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout3(C.struct_QtGui_PackedString{textC, C.longlong(len(text))}, PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
+	var tmpValue = NewQTextLayoutFromPointer(C.QTextLayout_NewQTextLayout3(C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
 	runtime.SetFinalizer(tmpValue, (*QTextLayout).DestroyQTextLayout)
 	return tmpValue
 }
@@ -50369,7 +50369,7 @@ func (ptr *QTextLayout) SetPreeditArea(position int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextLayout_SetPreeditArea(ptr.Pointer(), C.int(int32(position)), C.struct_QtGui_PackedString{textC, C.longlong(len(text))})
+		C.QTextLayout_SetPreeditArea(ptr.Pointer(), C.int(int32(position)), C.struct_QtGui_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -50380,7 +50380,7 @@ func (ptr *QTextLayout) SetText(stri string) {
 			striC = C.CString(stri)
 			defer C.free(unsafe.Pointer(striC))
 		}
-		C.QTextLayout_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{striC, C.longlong(len(stri))})
+		C.QTextLayout_SetText(ptr.Pointer(), C.struct_QtGui_PackedString{data: striC, len: C.longlong(len(stri))})
 	}
 }
 
@@ -51135,7 +51135,7 @@ func (ptr *QTextListFormat) SetNumberPrefix(numberPrefix string) {
 			numberPrefixC = C.CString(numberPrefix)
 			defer C.free(unsafe.Pointer(numberPrefixC))
 		}
-		C.QTextListFormat_SetNumberPrefix(ptr.Pointer(), C.struct_QtGui_PackedString{numberPrefixC, C.longlong(len(numberPrefix))})
+		C.QTextListFormat_SetNumberPrefix(ptr.Pointer(), C.struct_QtGui_PackedString{data: numberPrefixC, len: C.longlong(len(numberPrefix))})
 	}
 }
 
@@ -51146,7 +51146,7 @@ func (ptr *QTextListFormat) SetNumberSuffix(numberSuffix string) {
 			numberSuffixC = C.CString(numberSuffix)
 			defer C.free(unsafe.Pointer(numberSuffixC))
 		}
-		C.QTextListFormat_SetNumberSuffix(ptr.Pointer(), C.struct_QtGui_PackedString{numberSuffixC, C.longlong(len(numberSuffix))})
+		C.QTextListFormat_SetNumberSuffix(ptr.Pointer(), C.struct_QtGui_PackedString{data: numberSuffixC, len: C.longlong(len(numberSuffix))})
 	}
 }
 
@@ -52621,7 +52621,7 @@ func (ptr *QTouchDevice) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QTouchDevice_SetName(ptr.Pointer(), C.struct_QtGui_PackedString{nameC, C.longlong(len(name))})
+		C.QTouchDevice_SetName(ptr.Pointer(), C.struct_QtGui_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -53435,7 +53435,7 @@ func (ptr *QValidator) Fixup(input string) {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		C.QValidator_Fixup(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))})
+		C.QValidator_Fixup(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))})
 	}
 }
 
@@ -53446,7 +53446,7 @@ func (ptr *QValidator) FixupDefault(input string) {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		C.QValidator_FixupDefault(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))})
+		C.QValidator_FixupDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))})
 	}
 }
 
@@ -53518,7 +53518,7 @@ func (ptr *QValidator) Validate(input string, pos int) QValidator__State {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return QValidator__State(C.QValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return QValidator__State(C.QValidator_Validate(ptr.Pointer(), C.struct_QtGui_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -54571,7 +54571,7 @@ func NewQWhatsThisClickedEvent(href string) *QWhatsThisClickedEvent {
 		hrefC = C.CString(href)
 		defer C.free(unsafe.Pointer(hrefC))
 	}
-	return NewQWhatsThisClickedEventFromPointer(C.QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(C.struct_QtGui_PackedString{hrefC, C.longlong(len(href))}))
+	return NewQWhatsThisClickedEventFromPointer(C.QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(C.struct_QtGui_PackedString{data: hrefC, len: C.longlong(len(href))}))
 }
 
 func (ptr *QWhatsThisClickedEvent) Href() string {
@@ -56334,7 +56334,7 @@ func (ptr *QWindow) SetFilePath(filePath string) {
 			filePathC = C.CString(filePath)
 			defer C.free(unsafe.Pointer(filePathC))
 		}
-		C.QWindow_SetFilePath(ptr.Pointer(), C.struct_QtGui_PackedString{filePathC, C.longlong(len(filePath))})
+		C.QWindow_SetFilePath(ptr.Pointer(), C.struct_QtGui_PackedString{data: filePathC, len: C.longlong(len(filePath))})
 	}
 }
 
@@ -56687,7 +56687,7 @@ func (ptr *QWindow) SetTitle(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWindow_SetTitle(ptr.Pointer(), C.struct_QtGui_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWindow_SetTitle(ptr.Pointer(), C.struct_QtGui_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -56698,7 +56698,7 @@ func (ptr *QWindow) SetTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWindow_SetTitleDefault(ptr.Pointer(), C.struct_QtGui_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWindow_SetTitleDefault(ptr.Pointer(), C.struct_QtGui_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -57468,7 +57468,7 @@ func (ptr *QWindow) WindowTitleChanged(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QWindow_WindowTitleChanged(ptr.Pointer(), C.struct_QtGui_PackedString{titleC, C.longlong(len(title))})
+		C.QWindow_WindowTitleChanged(ptr.Pointer(), C.struct_QtGui_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 

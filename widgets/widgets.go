@@ -529,7 +529,7 @@ func (ptr *QAbstractButton) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAbstractButton_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QAbstractButton_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -2570,7 +2570,7 @@ func (ptr *QAbstractItemView) KeyboardSearch(search string) {
 			searchC = C.CString(search)
 			defer C.free(unsafe.Pointer(searchC))
 		}
-		C.QAbstractItemView_KeyboardSearch(ptr.Pointer(), C.struct_QtWidgets_PackedString{searchC, C.longlong(len(search))})
+		C.QAbstractItemView_KeyboardSearch(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: searchC, len: C.longlong(len(search))})
 	}
 }
 
@@ -2581,7 +2581,7 @@ func (ptr *QAbstractItemView) KeyboardSearchDefault(search string) {
 			searchC = C.CString(search)
 			defer C.free(unsafe.Pointer(searchC))
 		}
-		C.QAbstractItemView_KeyboardSearchDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{searchC, C.longlong(len(search))})
+		C.QAbstractItemView_KeyboardSearchDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: searchC, len: C.longlong(len(search))})
 	}
 }
 
@@ -5560,7 +5560,7 @@ func (ptr *QAbstractSpinBox) SetSpecialValueText(txt string) {
 			txtC = C.CString(txt)
 			defer C.free(unsafe.Pointer(txtC))
 		}
-		C.QAbstractSpinBox_SetSpecialValueText(ptr.Pointer(), C.struct_QtWidgets_PackedString{txtC, C.longlong(len(txt))})
+		C.QAbstractSpinBox_SetSpecialValueText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: txtC, len: C.longlong(len(txt))})
 	}
 }
 
@@ -5780,7 +5780,7 @@ func (ptr *QAbstractSpinBox) Validate(input string, pos int) gui.QValidator__Sta
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return gui.QValidator__State(C.QAbstractSpinBox_Validate(ptr.Pointer(), C.struct_QtWidgets_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return gui.QValidator__State(C.QAbstractSpinBox_Validate(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -5792,7 +5792,7 @@ func (ptr *QAbstractSpinBox) ValidateDefault(input string, pos int) gui.QValidat
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		return gui.QValidator__State(C.QAbstractSpinBox_ValidateDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{inputC, C.longlong(len(input))}, C.int(int32(pos))))
+		return gui.QValidator__State(C.QAbstractSpinBox_ValidateDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: inputC, len: C.longlong(len(input))}, C.int(int32(pos))))
 	}
 	return 0
 }
@@ -5934,7 +5934,7 @@ func (ptr *QAbstractSpinBox) Fixup(input string) {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		C.QAbstractSpinBox_Fixup(ptr.Pointer(), C.struct_QtWidgets_PackedString{inputC, C.longlong(len(input))})
+		C.QAbstractSpinBox_Fixup(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: inputC, len: C.longlong(len(input))})
 	}
 }
 
@@ -5945,7 +5945,7 @@ func (ptr *QAbstractSpinBox) FixupDefault(input string) {
 			inputC = C.CString(input)
 			defer C.free(unsafe.Pointer(inputC))
 		}
-		C.QAbstractSpinBox_FixupDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{inputC, C.longlong(len(input))})
+		C.QAbstractSpinBox_FixupDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: inputC, len: C.longlong(len(input))})
 	}
 }
 
@@ -6048,7 +6048,7 @@ func (ptr *QAccessibleWidget) AddControllingSignal(sign string) {
 			signC = C.CString(sign)
 			defer C.free(unsafe.Pointer(signC))
 		}
-		C.QAccessibleWidget_AddControllingSignal(ptr.Pointer(), C.struct_QtWidgets_PackedString{signC, C.longlong(len(sign))})
+		C.QAccessibleWidget_AddControllingSignal(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: signC, len: C.longlong(len(sign))})
 	}
 }
 
@@ -6089,7 +6089,7 @@ func (ptr *QAccessibleWidget) DoAction(actionName string) {
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		C.QAccessibleWidget_DoAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))})
+		C.QAccessibleWidget_DoAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})
 	}
 }
 
@@ -6100,7 +6100,7 @@ func (ptr *QAccessibleWidget) DoActionDefault(actionName string) {
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		C.QAccessibleWidget_DoActionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))})
+		C.QAccessibleWidget_DoActionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})
 	}
 }
 
@@ -6447,10 +6447,10 @@ func (ptr *QAccessibleWidget) RectDefault() *core.QRect {
 func callbackQAccessibleWidget_Text(ptr unsafe.Pointer, t C.longlong) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "text"); signal != nil {
 		tempVal := signal.(func(gui.QAccessible__Text) string)(gui.QAccessible__Text(t))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleWidgetFromPointer(ptr).TextDefault(gui.QAccessible__Text(t))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleWidget) ConnectText(f func(t gui.QAccessible__Text) string) {
@@ -6492,10 +6492,10 @@ func (ptr *QAccessibleWidget) TextDefault(t gui.QAccessible__Text) string {
 func callbackQAccessibleWidget_ActionNames(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "actionNames"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQAccessibleWidgetFromPointer(ptr).ActionNamesDefault()
-	return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QAccessibleWidget) ConnectActionNames(f func() []string) {
@@ -6537,10 +6537,10 @@ func (ptr *QAccessibleWidget) ActionNamesDefault() []string {
 func callbackQAccessibleWidget_KeyBindingsForAction(ptr unsafe.Pointer, actionName C.struct_QtWidgets_PackedString) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "keyBindingsForAction"); signal != nil {
 		tempVal := signal.(func(string) []string)(cGoUnpackString(actionName))
-		return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQAccessibleWidgetFromPointer(ptr).KeyBindingsForActionDefault(cGoUnpackString(actionName))
-	return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QAccessibleWidget) ConnectKeyBindingsForAction(f func(actionName string) []string) {
@@ -6571,7 +6571,7 @@ func (ptr *QAccessibleWidget) KeyBindingsForAction(actionName string) []string {
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))})), "|")
+		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -6583,7 +6583,7 @@ func (ptr *QAccessibleWidget) KeyBindingsForActionDefault(actionName string) []s
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForActionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))})), "|")
+		return strings.Split(cGoUnpackString(C.QAccessibleWidget_KeyBindingsForActionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -6799,7 +6799,7 @@ func (ptr *QAccessibleWidget) SetText(t gui.QAccessible__Text, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAccessibleWidget_SetText(ptr.Pointer(), C.longlong(t), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QAccessibleWidget_SetText(ptr.Pointer(), C.longlong(t), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -6810,7 +6810,7 @@ func (ptr *QAccessibleWidget) SetTextDefault(t gui.QAccessible__Text, text strin
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAccessibleWidget_SetTextDefault(ptr.Pointer(), C.longlong(t), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QAccessibleWidget_SetTextDefault(ptr.Pointer(), C.longlong(t), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -6872,10 +6872,10 @@ func (ptr *QAccessibleWidget) ObjectDefault() *core.QObject {
 func callbackQAccessibleWidget_LocalizedActionDescription(ptr unsafe.Pointer, actionName C.struct_QtWidgets_PackedString) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "localizedActionDescription"); signal != nil {
 		tempVal := signal.(func(string) string)(cGoUnpackString(actionName))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleWidgetFromPointer(ptr).LocalizedActionDescriptionDefault(cGoUnpackString(actionName))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleWidget) LocalizedActionDescription(actionName string) string {
@@ -6885,7 +6885,7 @@ func (ptr *QAccessibleWidget) LocalizedActionDescription(actionName string) stri
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionDescription(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionDescription(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -6897,7 +6897,7 @@ func (ptr *QAccessibleWidget) LocalizedActionDescriptionDefault(actionName strin
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionDescriptionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionDescriptionDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -6906,10 +6906,10 @@ func (ptr *QAccessibleWidget) LocalizedActionDescriptionDefault(actionName strin
 func callbackQAccessibleWidget_LocalizedActionName(ptr unsafe.Pointer, actionName C.struct_QtWidgets_PackedString) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "localizedActionName"); signal != nil {
 		tempVal := signal.(func(string) string)(cGoUnpackString(actionName))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQAccessibleWidgetFromPointer(ptr).LocalizedActionNameDefault(cGoUnpackString(actionName))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QAccessibleWidget) LocalizedActionName(actionName string) string {
@@ -6919,7 +6919,7 @@ func (ptr *QAccessibleWidget) LocalizedActionName(actionName string) string {
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionName(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionName(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -6931,7 +6931,7 @@ func (ptr *QAccessibleWidget) LocalizedActionNameDefault(actionName string) stri
 			actionNameC = C.CString(actionName)
 			defer C.free(unsafe.Pointer(actionNameC))
 		}
-		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionNameDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{actionNameC, C.longlong(len(actionName))}))
+		return cGoUnpackString(C.QAccessibleWidget_LocalizedActionNameDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: actionNameC, len: C.longlong(len(actionName))}))
 	}
 	return ""
 }
@@ -7022,7 +7022,7 @@ func NewQAction3(icon gui.QIcon_ITF, text string, parent core.QObject_ITF) *QAct
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQActionFromPointer(C.QAction_NewQAction3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQActionFromPointer(C.QAction_NewQAction3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -7035,7 +7035,7 @@ func NewQAction2(text string, parent core.QObject_ITF) *QAction {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQActionFromPointer(C.QAction_NewQAction2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQActionFromPointer(C.QAction_NewQAction2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -7360,7 +7360,7 @@ func (ptr *QAction) SetIconText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAction_SetIconText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QAction_SetIconText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -7431,7 +7431,7 @@ func (ptr *QAction) SetStatusTip(statusTip string) {
 			statusTipC = C.CString(statusTip)
 			defer C.free(unsafe.Pointer(statusTipC))
 		}
-		C.QAction_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{statusTipC, C.longlong(len(statusTip))})
+		C.QAction_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: statusTipC, len: C.longlong(len(statusTip))})
 	}
 }
 
@@ -7442,7 +7442,7 @@ func (ptr *QAction) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QAction_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QAction_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -7453,7 +7453,7 @@ func (ptr *QAction) SetToolTip(tip string) {
 			tipC = C.CString(tip)
 			defer C.free(unsafe.Pointer(tipC))
 		}
-		C.QAction_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{tipC, C.longlong(len(tip))})
+		C.QAction_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: tipC, len: C.longlong(len(tip))})
 	}
 }
 
@@ -7506,7 +7506,7 @@ func (ptr *QAction) SetWhatsThis(what string) {
 			whatC = C.CString(what)
 			defer C.free(unsafe.Pointer(whatC))
 		}
-		C.QAction_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{whatC, C.longlong(len(what))})
+		C.QAction_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: whatC, len: C.longlong(len(what))})
 	}
 }
 
@@ -8272,7 +8272,7 @@ func (ptr *QActionGroup) AddAction3(icon gui.QIcon_ITF, text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QActionGroup_AddAction3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QActionGroup_AddAction3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8288,7 +8288,7 @@ func (ptr *QActionGroup) AddAction2(text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QActionGroup_AddAction2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QActionGroup_AddAction2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9076,7 +9076,7 @@ func QApplication_SetStyle2(style string) *QStyle {
 		styleC = C.CString(style)
 		defer C.free(unsafe.Pointer(styleC))
 	}
-	var tmpValue = NewQStyleFromPointer(C.QApplication_QApplication_SetStyle2(C.struct_QtWidgets_PackedString{styleC, C.longlong(len(style))}))
+	var tmpValue = NewQStyleFromPointer(C.QApplication_QApplication_SetStyle2(C.struct_QtWidgets_PackedString{data: styleC, len: C.longlong(len(style))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -9089,7 +9089,7 @@ func (ptr *QApplication) SetStyle2(style string) *QStyle {
 		styleC = C.CString(style)
 		defer C.free(unsafe.Pointer(styleC))
 	}
-	var tmpValue = NewQStyleFromPointer(C.QApplication_QApplication_SetStyle2(C.struct_QtWidgets_PackedString{styleC, C.longlong(len(style))}))
+	var tmpValue = NewQStyleFromPointer(C.QApplication_QApplication_SetStyle2(C.struct_QtWidgets_PackedString{data: styleC, len: C.longlong(len(style))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -9702,7 +9702,7 @@ func (ptr *QApplication) SetStyleSheet(sheet string) {
 			sheetC = C.CString(sheet)
 			defer C.free(unsafe.Pointer(sheetC))
 		}
-		C.QApplication_SetStyleSheet(ptr.Pointer(), C.struct_QtWidgets_PackedString{sheetC, C.longlong(len(sheet))})
+		C.QApplication_SetStyleSheet(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: sheetC, len: C.longlong(len(sheet))})
 	}
 }
 
@@ -9713,7 +9713,7 @@ func (ptr *QApplication) SetStyleSheetDefault(sheet string) {
 			sheetC = C.CString(sheet)
 			defer C.free(unsafe.Pointer(sheetC))
 		}
-		C.QApplication_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{sheetC, C.longlong(len(sheet))})
+		C.QApplication_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: sheetC, len: C.longlong(len(sheet))})
 	}
 }
 
@@ -12453,7 +12453,7 @@ func NewQCheckBox2(text string, parent QWidget_ITF) *QCheckBox {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQCheckBoxFromPointer(C.QCheckBox_NewQCheckBox2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQCheckBoxFromPointer(C.QCheckBox_NewQCheckBox2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -12648,7 +12648,7 @@ func QColorDialog_GetColor(initial gui.QColor_ITF, parent QWidget_ITF, title str
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.longlong(options)))
+	var tmpValue = gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
@@ -12659,7 +12659,7 @@ func (ptr *QColorDialog) GetColor(initial gui.QColor_ITF, parent QWidget_ITF, ti
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.longlong(options)))
+	var tmpValue = gui.NewQColorFromPointer(C.QColorDialog_QColorDialog_GetColor(gui.PointerFromQColor(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 	return tmpValue
 }
@@ -13977,7 +13977,7 @@ func (ptr *QComboBox) Activated2(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_Activated2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_Activated2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14027,7 +14027,7 @@ func (ptr *QComboBox) AddItem2(icon gui.QIcon_ITF, text string, userData core.QV
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_AddItem2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQVariant(userData))
+		C.QComboBox_AddItem2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQVariant(userData))
 	}
 }
 
@@ -14038,7 +14038,7 @@ func (ptr *QComboBox) AddItem(text string, userData core.QVariant_ITF) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_AddItem(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQVariant(userData))
+		C.QComboBox_AddItem(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQVariant(userData))
 	}
 }
 
@@ -14046,7 +14046,7 @@ func (ptr *QComboBox) AddItems(texts []string) {
 	if ptr.Pointer() != nil {
 		var textsC = C.CString(strings.Join(texts, "|"))
 		defer C.free(unsafe.Pointer(textsC))
-		C.QComboBox_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{textsC, C.longlong(len(strings.Join(texts, "|")))})
+		C.QComboBox_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textsC, len: C.longlong(len(strings.Join(texts, "|")))})
 	}
 }
 
@@ -14174,7 +14174,7 @@ func (ptr *QComboBox) CurrentIndexChanged2(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_CurrentIndexChanged2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_CurrentIndexChanged2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14257,7 +14257,7 @@ func (ptr *QComboBox) CurrentTextChanged(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_CurrentTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_CurrentTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14301,7 +14301,7 @@ func (ptr *QComboBox) EditTextChanged(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_EditTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_EditTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14387,7 +14387,7 @@ func (ptr *QComboBox) Highlighted2(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_Highlighted2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_Highlighted2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14437,7 +14437,7 @@ func (ptr *QComboBox) InsertItem2(index int, icon gui.QIcon_ITF, text string, us
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_InsertItem2(ptr.Pointer(), C.int(int32(index)), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQVariant(userData))
+		C.QComboBox_InsertItem2(ptr.Pointer(), C.int(int32(index)), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQVariant(userData))
 	}
 }
 
@@ -14448,7 +14448,7 @@ func (ptr *QComboBox) InsertItem(index int, text string, userData core.QVariant_
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_InsertItem(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQVariant(userData))
+		C.QComboBox_InsertItem(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQVariant(userData))
 	}
 }
 
@@ -14456,7 +14456,7 @@ func (ptr *QComboBox) InsertItems(index int, list []string) {
 	if ptr.Pointer() != nil {
 		var listC = C.CString(strings.Join(list, "|"))
 		defer C.free(unsafe.Pointer(listC))
-		C.QComboBox_InsertItems(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{listC, C.longlong(len(strings.Join(list, "|")))})
+		C.QComboBox_InsertItems(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))})
 	}
 }
 
@@ -14557,7 +14557,7 @@ func (ptr *QComboBox) SetCurrentText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_SetCurrentText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_SetCurrentText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14568,7 +14568,7 @@ func (ptr *QComboBox) SetCurrentTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_SetCurrentTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_SetCurrentTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14615,7 +14615,7 @@ func (ptr *QComboBox) SetEditText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_SetEditText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_SetEditText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14626,7 +14626,7 @@ func (ptr *QComboBox) SetEditTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_SetEditTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_SetEditTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14679,7 +14679,7 @@ func (ptr *QComboBox) SetItemText(index int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QComboBox_SetItemText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QComboBox_SetItemText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -14981,7 +14981,7 @@ func (ptr *QComboBox) FindText(text string, flags core.Qt__MatchFlag) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QComboBox_FindText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(flags))))
+		return int(int32(C.QComboBox_FindText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags))))
 	}
 	return 0
 }
@@ -15072,7 +15072,7 @@ func NewQCommandLinkButton2(text string, parent QWidget_ITF) *QCommandLinkButton
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -15090,7 +15090,7 @@ func NewQCommandLinkButton3(text string, description string, parent QWidget_ITF)
 		descriptionC = C.CString(description)
 		defer C.free(unsafe.Pointer(descriptionC))
 	}
-	var tmpValue = NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton3(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.struct_QtWidgets_PackedString{descriptionC, C.longlong(len(description))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton3(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.struct_QtWidgets_PackedString{data: descriptionC, len: C.longlong(len(description))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -15104,7 +15104,7 @@ func (ptr *QCommandLinkButton) SetDescription(description string) {
 			descriptionC = C.CString(description)
 			defer C.free(unsafe.Pointer(descriptionC))
 		}
-		C.QCommandLinkButton_SetDescription(ptr.Pointer(), C.struct_QtWidgets_PackedString{descriptionC, C.longlong(len(description))})
+		C.QCommandLinkButton_SetDescription(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: descriptionC, len: C.longlong(len(description))})
 	}
 }
 
@@ -15824,7 +15824,7 @@ func NewQCompleter(parent core.QObject_ITF) *QCompleter {
 func NewQCompleter3(list []string, parent core.QObject_ITF) *QCompleter {
 	var listC = C.CString(strings.Join(list, "|"))
 	defer C.free(unsafe.Pointer(listC))
-	var tmpValue = NewQCompleterFromPointer(C.QCompleter_NewQCompleter3(C.struct_QtWidgets_PackedString{listC, C.longlong(len(strings.Join(list, "|")))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQCompleterFromPointer(C.QCompleter_NewQCompleter3(C.struct_QtWidgets_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -15949,7 +15949,7 @@ func (ptr *QCompleter) Activated(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QCompleter_Activated(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QCompleter_Activated(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -16074,7 +16074,7 @@ func (ptr *QCompleter) Highlighted(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QCompleter_Highlighted(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QCompleter_Highlighted(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -16133,7 +16133,7 @@ func (ptr *QCompleter) SetCompletionPrefix(prefix string) {
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		C.QCompleter_SetCompletionPrefix(ptr.Pointer(), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))})
+		C.QCompleter_SetCompletionPrefix(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))})
 	}
 }
 
@@ -16144,7 +16144,7 @@ func (ptr *QCompleter) SetCompletionPrefixDefault(prefix string) {
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		C.QCompleter_SetCompletionPrefixDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))})
+		C.QCompleter_SetCompletionPrefixDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))})
 	}
 }
 
@@ -16314,10 +16314,10 @@ func (ptr *QCompleter) CurrentCompletion() string {
 func callbackQCompleter_PathFromIndex(ptr unsafe.Pointer, index unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "pathFromIndex"); signal != nil {
 		tempVal := signal.(func(*core.QModelIndex) string)(core.NewQModelIndexFromPointer(index))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQCompleterFromPointer(ptr).PathFromIndexDefault(core.NewQModelIndexFromPointer(index))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QCompleter) ConnectPathFromIndex(f func(index *core.QModelIndex) string) {
@@ -16359,10 +16359,10 @@ func (ptr *QCompleter) PathFromIndexDefault(index core.QModelIndex_ITF) string {
 func callbackQCompleter_SplitPath(ptr unsafe.Pointer, path C.struct_QtWidgets_PackedString) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "splitPath"); signal != nil {
 		tempVal := signal.(func(string) []string)(cGoUnpackString(path))
-		return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQCompleterFromPointer(ptr).SplitPathDefault(cGoUnpackString(path))
-	return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QCompleter) ConnectSplitPath(f func(path string) []string) {
@@ -16393,7 +16393,7 @@ func (ptr *QCompleter) SplitPath(path string) []string {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return strings.Split(cGoUnpackString(C.QCompleter_SplitPath(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathC, C.longlong(len(path))})), "|")
+		return strings.Split(cGoUnpackString(C.QCompleter_SplitPath(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -16405,7 +16405,7 @@ func (ptr *QCompleter) SplitPathDefault(path string) []string {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return strings.Split(cGoUnpackString(C.QCompleter_SplitPathDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathC, C.longlong(len(path))})), "|")
+		return strings.Split(cGoUnpackString(C.QCompleter_SplitPathDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})), "|")
 	}
 	return make([]string, 0)
 }
@@ -17970,7 +17970,7 @@ func (ptr *QDateTimeEdit) SetDisplayFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QDateTimeEdit_SetDisplayFormat(ptr.Pointer(), C.struct_QtWidgets_PackedString{formatC, C.longlong(len(format))})
+		C.QDateTimeEdit_SetDisplayFormat(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: formatC, len: C.longlong(len(format))})
 	}
 }
 
@@ -18201,7 +18201,7 @@ func (ptr *QDateTimeEdit) DateTimeFromText(text string) *core.QDateTime {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
@@ -18215,7 +18215,7 @@ func (ptr *QDateTimeEdit) DateTimeFromTextDefault(text string) *core.QDateTime {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTimeFromTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
@@ -18258,10 +18258,10 @@ func (ptr *QDateTimeEdit) SectionText(section QDateTimeEdit__Section) string {
 func callbackQDateTimeEdit_TextFromDateTime(ptr unsafe.Pointer, dateTime unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "textFromDateTime"); signal != nil {
 		tempVal := signal.(func(*core.QDateTime) string)(core.NewQDateTimeFromPointer(dateTime))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQDateTimeEditFromPointer(ptr).TextFromDateTimeDefault(core.NewQDateTimeFromPointer(dateTime))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QDateTimeEdit) ConnectTextFromDateTime(f func(dateTime *core.QDateTime) string) {
@@ -19505,7 +19505,7 @@ func (ptr *QDialogButtonBox) AddButton2(text string, role QDialogButtonBox__Butt
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQPushButtonFromPointer(C.QDialogButtonBox_AddButton2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(role)))
+		var tmpValue = NewQPushButtonFromPointer(C.QDialogButtonBox_AddButton2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(role)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -19861,7 +19861,7 @@ func NewQDockWidget(title string, parent QWidget_ITF, flags core.Qt__WindowType)
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = NewQDockWidgetFromPointer(C.QDockWidget_NewQDockWidget(C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, PointerFromQWidget(parent), C.longlong(flags)))
+	var tmpValue = NewQDockWidgetFromPointer(C.QDockWidget_NewQDockWidget(C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -20193,7 +20193,7 @@ func (ptr *QDoubleSpinBox) SetPrefix(prefix string) {
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		C.QDoubleSpinBox_SetPrefix(ptr.Pointer(), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))})
+		C.QDoubleSpinBox_SetPrefix(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))})
 	}
 }
 
@@ -20216,7 +20216,7 @@ func (ptr *QDoubleSpinBox) SetSuffix(suffix string) {
 			suffixC = C.CString(suffix)
 			defer C.free(unsafe.Pointer(suffixC))
 		}
-		C.QDoubleSpinBox_SetSuffix(ptr.Pointer(), C.struct_QtWidgets_PackedString{suffixC, C.longlong(len(suffix))})
+		C.QDoubleSpinBox_SetSuffix(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: suffixC, len: C.longlong(len(suffix))})
 	}
 }
 
@@ -20302,7 +20302,7 @@ func (ptr *QDoubleSpinBox) ValueChanged2(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QDoubleSpinBox_ValueChanged2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QDoubleSpinBox_ValueChanged2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -20377,10 +20377,10 @@ func (ptr *QDoubleSpinBox) Suffix() string {
 func callbackQDoubleSpinBox_TextFromValue(ptr unsafe.Pointer, value C.double) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "textFromValue"); signal != nil {
 		tempVal := signal.(func(float64) string)(float64(value))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQDoubleSpinBoxFromPointer(ptr).TextFromValueDefault(float64(value))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QDoubleSpinBox) ConnectTextFromValue(f func(value float64) string) {
@@ -20483,7 +20483,7 @@ func (ptr *QDoubleSpinBox) ValueFromText(text string) float64 {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return float64(C.QDoubleSpinBox_ValueFromText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		return float64(C.QDoubleSpinBox_ValueFromText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 	}
 	return 0
 }
@@ -20495,7 +20495,7 @@ func (ptr *QDoubleSpinBox) ValueFromTextDefault(text string) float64 {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return float64(C.QDoubleSpinBox_ValueFromTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		return float64(C.QDoubleSpinBox_ValueFromTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 	}
 	return 0
 }
@@ -20648,7 +20648,7 @@ func (ptr *QErrorMessage) ShowMessage(message string) {
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QErrorMessage_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))})
+		C.QErrorMessage_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
 }
 
@@ -20659,7 +20659,7 @@ func (ptr *QErrorMessage) ShowMessageDefault(message string) {
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QErrorMessage_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))})
+		C.QErrorMessage_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
 }
 
@@ -20705,7 +20705,7 @@ func (ptr *QErrorMessage) ShowMessage2(message string, ty string) {
 			tyC = C.CString(ty)
 			defer C.free(unsafe.Pointer(tyC))
 		}
-		C.QErrorMessage_ShowMessage2(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.struct_QtWidgets_PackedString{tyC, C.longlong(len(ty))})
+		C.QErrorMessage_ShowMessage2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.struct_QtWidgets_PackedString{data: tyC, len: C.longlong(len(ty))})
 	}
 }
 
@@ -20721,7 +20721,7 @@ func (ptr *QErrorMessage) ShowMessage2Default(message string, ty string) {
 			tyC = C.CString(ty)
 			defer C.free(unsafe.Pointer(tyC))
 		}
-		C.QErrorMessage_ShowMessage2Default(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.struct_QtWidgets_PackedString{tyC, C.longlong(len(ty))})
+		C.QErrorMessage_ShowMessage2Default(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.struct_QtWidgets_PackedString{data: tyC, len: C.longlong(len(ty))})
 	}
 }
 
@@ -20852,7 +20852,7 @@ func NewQFileDialog2(parent QWidget_ITF, caption string, directory string, filte
 		filterC = C.CString(filter)
 		defer C.free(unsafe.Pointer(filterC))
 	}
-	var tmpValue = NewQFileDialogFromPointer(C.QFileDialog_NewQFileDialog2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{directoryC, C.longlong(len(directory))}, C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}))
+	var tmpValue = NewQFileDialogFromPointer(C.QFileDialog_NewQFileDialog2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: directoryC, len: C.longlong(len(directory))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -20883,7 +20883,7 @@ func QFileDialog_GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QU
 			out[i] = NewQFileDialogFromPointer(l.data).__getOpenFileUrls_atList(i)
 		}
 		return out
-	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 }
 
 func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QUrl_ITF, filter string, selectedFilter string, options QFileDialog__Option, supportedSchemes []string) []*core.QUrl {
@@ -20910,7 +20910,7 @@ func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir 
 			out[i] = NewQFileDialogFromPointer(l.data).__getOpenFileUrls_atList(i)
 		}
 		return out
-	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 }
 
 func QFileDialog_GetExistingDirectory(parent QWidget_ITF, caption string, dir string, options QFileDialog__Option) string {
@@ -20924,7 +20924,7 @@ func QFileDialog_GetExistingDirectory(parent QWidget_ITF, caption string, dir st
 		dirC = C.CString(dir)
 		defer C.free(unsafe.Pointer(dirC))
 	}
-	return cGoUnpackString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.longlong(options)))
+	return cGoUnpackString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.longlong(options)))
 }
 
 func (ptr *QFileDialog) GetExistingDirectory(parent QWidget_ITF, caption string, dir string, options QFileDialog__Option) string {
@@ -20938,7 +20938,7 @@ func (ptr *QFileDialog) GetExistingDirectory(parent QWidget_ITF, caption string,
 		dirC = C.CString(dir)
 		defer C.free(unsafe.Pointer(dirC))
 	}
-	return cGoUnpackString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.longlong(options)))
+	return cGoUnpackString(C.QFileDialog_QFileDialog_GetExistingDirectory(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.longlong(options)))
 }
 
 func QFileDialog_GetOpenFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
@@ -20962,7 +20962,7 @@ func QFileDialog_GetOpenFileName(parent QWidget_ITF, caption string, dir string,
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options)))
+	return cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options)))
 }
 
 func (ptr *QFileDialog) GetOpenFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
@@ -20986,7 +20986,7 @@ func (ptr *QFileDialog) GetOpenFileName(parent QWidget_ITF, caption string, dir 
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options)))
+	return cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options)))
 }
 
 func QFileDialog_GetSaveFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
@@ -21010,7 +21010,7 @@ func QFileDialog_GetSaveFileName(parent QWidget_ITF, caption string, dir string,
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return cGoUnpackString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options)))
+	return cGoUnpackString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options)))
 }
 
 func (ptr *QFileDialog) GetSaveFileName(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) string {
@@ -21034,7 +21034,7 @@ func (ptr *QFileDialog) GetSaveFileName(parent QWidget_ITF, caption string, dir 
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return cGoUnpackString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options)))
+	return cGoUnpackString(C.QFileDialog_QFileDialog_GetSaveFileName(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options)))
 }
 
 func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
@@ -21058,7 +21058,7 @@ func QFileDialog_GetOpenFileNames(parent QWidget_ITF, caption string, dir string
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options))), "|")
+	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options))), "|")
 }
 
 func (ptr *QFileDialog) GetOpenFileNames(parent QWidget_ITF, caption string, dir string, filter string, selectedFilter string, options QFileDialog__Option) []string {
@@ -21082,7 +21082,7 @@ func (ptr *QFileDialog) GetOpenFileNames(parent QWidget_ITF, caption string, dir
 		selectedFilterC = C.CString(selectedFilter)
 		defer C.free(unsafe.Pointer(selectedFilterC))
 	}
-	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{dirC, C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options))), "|")
+	return strings.Split(cGoUnpackString(C.QFileDialog_QFileDialog_GetOpenFileNames(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, C.struct_QtWidgets_PackedString{data: dirC, len: C.longlong(len(dir))}, C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options))), "|")
 }
 
 func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir core.QUrl_ITF, options QFileDialog__Option, supportedSchemes []string) *core.QUrl {
@@ -21093,7 +21093,7 @@ func QFileDialog_GetExistingDirectoryUrl(parent QWidget_ITF, caption string, dir
 	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -21106,7 +21106,7 @@ func (ptr *QFileDialog) GetExistingDirectoryUrl(parent QWidget_ITF, caption stri
 	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetExistingDirectoryUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -21129,7 +21129,7 @@ func QFileDialog_GetOpenFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -21152,7 +21152,7 @@ func (ptr *QFileDialog) GetOpenFileUrl(parent QWidget_ITF, caption string, dir c
 	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetOpenFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -21175,7 +21175,7 @@ func QFileDialog_GetSaveFileUrl(parent QWidget_ITF, caption string, dir core.QUr
 	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -21198,7 +21198,7 @@ func (ptr *QFileDialog) GetSaveFileUrl(parent QWidget_ITF, caption string, dir c
 	}
 	var supportedSchemesC = C.CString(strings.Join(supportedSchemes, "|"))
 	defer C.free(unsafe.Pointer(supportedSchemesC))
-	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{captionC, C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{selectedFilterC, C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{supportedSchemesC, C.longlong(len(strings.Join(supportedSchemes, "|")))}))
+	var tmpValue = core.NewQUrlFromPointer(C.QFileDialog_QFileDialog_GetSaveFileUrl(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -21292,7 +21292,7 @@ func (ptr *QFileDialog) CurrentChanged(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QFileDialog_CurrentChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathC, C.longlong(len(path))})
+		C.QFileDialog_CurrentChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})
 	}
 }
 
@@ -21375,7 +21375,7 @@ func (ptr *QFileDialog) DirectoryEntered(directory string) {
 			directoryC = C.CString(directory)
 			defer C.free(unsafe.Pointer(directoryC))
 		}
-		C.QFileDialog_DirectoryEntered(ptr.Pointer(), C.struct_QtWidgets_PackedString{directoryC, C.longlong(len(directory))})
+		C.QFileDialog_DirectoryEntered(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: directoryC, len: C.longlong(len(directory))})
 	}
 }
 
@@ -21500,7 +21500,7 @@ func (ptr *QFileDialog) FileSelected(file string) {
 			fileC = C.CString(file)
 			defer C.free(unsafe.Pointer(fileC))
 		}
-		C.QFileDialog_FileSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{fileC, C.longlong(len(file))})
+		C.QFileDialog_FileSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: fileC, len: C.longlong(len(file))})
 	}
 }
 
@@ -21541,7 +21541,7 @@ func (ptr *QFileDialog) FilesSelected(selected []string) {
 	if ptr.Pointer() != nil {
 		var selectedC = C.CString(strings.Join(selected, "|"))
 		defer C.free(unsafe.Pointer(selectedC))
-		C.QFileDialog_FilesSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{selectedC, C.longlong(len(strings.Join(selected, "|")))})
+		C.QFileDialog_FilesSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: selectedC, len: C.longlong(len(strings.Join(selected, "|")))})
 	}
 }
 
@@ -21585,7 +21585,7 @@ func (ptr *QFileDialog) FilterSelected(filter string) {
 			filterC = C.CString(filter)
 			defer C.free(unsafe.Pointer(filterC))
 		}
-		C.QFileDialog_FilterSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))})
+		C.QFileDialog_FilterSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))})
 	}
 }
 
@@ -21607,7 +21607,7 @@ func (ptr *QFileDialog) SelectFile(filename string) {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		C.QFileDialog_SelectFile(ptr.Pointer(), C.struct_QtWidgets_PackedString{filenameC, C.longlong(len(filename))})
+		C.QFileDialog_SelectFile(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filenameC, len: C.longlong(len(filename))})
 	}
 }
 
@@ -21618,7 +21618,7 @@ func (ptr *QFileDialog) SelectMimeTypeFilter(filter string) {
 			filterC = C.CString(filter)
 			defer C.free(unsafe.Pointer(filterC))
 		}
-		C.QFileDialog_SelectMimeTypeFilter(ptr.Pointer(), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))})
+		C.QFileDialog_SelectMimeTypeFilter(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))})
 	}
 }
 
@@ -21629,7 +21629,7 @@ func (ptr *QFileDialog) SelectNameFilter(filter string) {
 			filterC = C.CString(filter)
 			defer C.free(unsafe.Pointer(filterC))
 		}
-		C.QFileDialog_SelectNameFilter(ptr.Pointer(), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))})
+		C.QFileDialog_SelectNameFilter(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))})
 	}
 }
 
@@ -21658,7 +21658,7 @@ func (ptr *QFileDialog) SetDefaultSuffix(suffix string) {
 			suffixC = C.CString(suffix)
 			defer C.free(unsafe.Pointer(suffixC))
 		}
-		C.QFileDialog_SetDefaultSuffix(ptr.Pointer(), C.struct_QtWidgets_PackedString{suffixC, C.longlong(len(suffix))})
+		C.QFileDialog_SetDefaultSuffix(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: suffixC, len: C.longlong(len(suffix))})
 	}
 }
 
@@ -21675,7 +21675,7 @@ func (ptr *QFileDialog) SetDirectory(directory string) {
 			directoryC = C.CString(directory)
 			defer C.free(unsafe.Pointer(directoryC))
 		}
-		C.QFileDialog_SetDirectory(ptr.Pointer(), C.struct_QtWidgets_PackedString{directoryC, C.longlong(len(directory))})
+		C.QFileDialog_SetDirectory(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: directoryC, len: C.longlong(len(directory))})
 	}
 }
 
@@ -21701,7 +21701,7 @@ func (ptr *QFileDialog) SetHistory(paths []string) {
 	if ptr.Pointer() != nil {
 		var pathsC = C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
-		C.QFileDialog_SetHistory(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathsC, C.longlong(len(strings.Join(paths, "|")))})
+		C.QFileDialog_SetHistory(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
 	}
 }
 
@@ -21724,7 +21724,7 @@ func (ptr *QFileDialog) SetLabelText(label QFileDialog__DialogLabel, text string
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QFileDialog_SetLabelText(ptr.Pointer(), C.longlong(label), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QFileDialog_SetLabelText(ptr.Pointer(), C.longlong(label), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -21732,7 +21732,7 @@ func (ptr *QFileDialog) SetMimeTypeFilters(filters []string) {
 	if ptr.Pointer() != nil {
 		var filtersC = C.CString(strings.Join(filters, "|"))
 		defer C.free(unsafe.Pointer(filtersC))
-		C.QFileDialog_SetMimeTypeFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{filtersC, C.longlong(len(strings.Join(filters, "|")))})
+		C.QFileDialog_SetMimeTypeFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
 	}
 }
 
@@ -21743,7 +21743,7 @@ func (ptr *QFileDialog) SetNameFilter(filter string) {
 			filterC = C.CString(filter)
 			defer C.free(unsafe.Pointer(filterC))
 		}
-		C.QFileDialog_SetNameFilter(ptr.Pointer(), C.struct_QtWidgets_PackedString{filterC, C.longlong(len(filter))})
+		C.QFileDialog_SetNameFilter(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))})
 	}
 }
 
@@ -21757,7 +21757,7 @@ func (ptr *QFileDialog) SetNameFilters(filters []string) {
 	if ptr.Pointer() != nil {
 		var filtersC = C.CString(strings.Join(filters, "|"))
 		defer C.free(unsafe.Pointer(filtersC))
-		C.QFileDialog_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{filtersC, C.longlong(len(strings.Join(filters, "|")))})
+		C.QFileDialog_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
 	}
 }
 
@@ -21807,7 +21807,7 @@ func (ptr *QFileDialog) SetSupportedSchemes(schemes []string) {
 	if ptr.Pointer() != nil {
 		var schemesC = C.CString(strings.Join(schemes, "|"))
 		defer C.free(unsafe.Pointer(schemesC))
-		C.QFileDialog_SetSupportedSchemes(ptr.Pointer(), C.struct_QtWidgets_PackedString{schemesC, C.longlong(len(strings.Join(schemes, "|")))})
+		C.QFileDialog_SetSupportedSchemes(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: schemesC, len: C.longlong(len(strings.Join(schemes, "|")))})
 	}
 }
 
@@ -22441,10 +22441,10 @@ func (ptr *QFileIconProvider) Icon2Default(info core.QFileInfo_ITF) *gui.QIcon {
 func callbackQFileIconProvider_Type(ptr unsafe.Pointer, info unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "type"); signal != nil {
 		tempVal := signal.(func(*core.QFileInfo) string)(core.NewQFileInfoFromPointer(info))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQFileIconProviderFromPointer(ptr).TypeDefault(core.NewQFileInfoFromPointer(info))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QFileIconProvider) ConnectType(f func(info *core.QFileInfo) string) {
@@ -22547,7 +22547,7 @@ func (ptr *QFileSystemModel) Mkdir(parent core.QModelIndex_ITF, name string) *co
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_Mkdir(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))}))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_Mkdir(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -22561,7 +22561,7 @@ func (ptr *QFileSystemModel) SetRootPath(newPath string) *core.QModelIndex {
 			newPathC = C.CString(newPath)
 			defer C.free(unsafe.Pointer(newPathC))
 		}
-		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_SetRootPath(ptr.Pointer(), C.struct_QtWidgets_PackedString{newPathC, C.longlong(len(newPath))}))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_SetRootPath(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: newPathC, len: C.longlong(len(newPath))}))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -22670,7 +22670,7 @@ func (ptr *QFileSystemModel) DirectoryLoaded(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QFileSystemModel_DirectoryLoaded(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathC, C.longlong(len(path))})
+		C.QFileSystemModel_DirectoryLoaded(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))})
 	}
 }
 
@@ -22739,7 +22739,7 @@ func (ptr *QFileSystemModel) FileRenamed(path string, oldName string, newName st
 			newNameC = C.CString(newName)
 			defer C.free(unsafe.Pointer(newNameC))
 		}
-		C.QFileSystemModel_FileRenamed(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathC, C.longlong(len(path))}, C.struct_QtWidgets_PackedString{oldNameC, C.longlong(len(oldName))}, C.struct_QtWidgets_PackedString{newNameC, C.longlong(len(newName))})
+		C.QFileSystemModel_FileRenamed(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtWidgets_PackedString{data: oldNameC, len: C.longlong(len(oldName))}, C.struct_QtWidgets_PackedString{data: newNameC, len: C.longlong(len(newName))})
 	}
 }
 
@@ -22783,7 +22783,7 @@ func (ptr *QFileSystemModel) RootPathChanged(newPath string) {
 			newPathC = C.CString(newPath)
 			defer C.free(unsafe.Pointer(newPathC))
 		}
-		C.QFileSystemModel_RootPathChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{newPathC, C.longlong(len(newPath))})
+		C.QFileSystemModel_RootPathChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: newPathC, len: C.longlong(len(newPath))})
 	}
 }
 
@@ -22809,7 +22809,7 @@ func (ptr *QFileSystemModel) SetNameFilters(filters []string) {
 	if ptr.Pointer() != nil {
 		var filtersC = C.CString(strings.Join(filters, "|"))
 		defer C.free(unsafe.Pointer(filtersC))
-		C.QFileSystemModel_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{filtersC, C.longlong(len(strings.Join(filters, "|")))})
+		C.QFileSystemModel_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
 	}
 }
 
@@ -22958,7 +22958,7 @@ func (ptr *QFileSystemModel) Index2(path string, column int) *core.QModelIndex {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_Index2(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathC, C.longlong(len(path))}, C.int(int32(column))))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QFileSystemModel_Index2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))}, C.int(int32(column))))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -23111,10 +23111,10 @@ func (ptr *QFileSystemModel) Type(index core.QModelIndex_ITF) string {
 func callbackQFileSystemModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "mimeTypes"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQFileSystemModelFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QFileSystemModel) MimeTypesDefault() []string {
@@ -24815,7 +24815,7 @@ func QFontDialog_GetFont(ok bool, initial gui.QFont_ITF, parent QWidget_ITF, tit
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.longlong(options)))
+	var tmpValue = gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
@@ -24826,7 +24826,7 @@ func (ptr *QFontDialog) GetFont(ok bool, initial gui.QFont_ITF, parent QWidget_I
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.longlong(options)))
+	var tmpValue = gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
@@ -25205,7 +25205,7 @@ func (ptr *QFormLayout) AddRow4(labelText string, field QLayout_ITF) {
 			labelTextC = C.CString(labelText)
 			defer C.free(unsafe.Pointer(labelTextC))
 		}
-		C.QFormLayout_AddRow4(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelTextC, C.longlong(len(labelText))}, PointerFromQLayout(field))
+		C.QFormLayout_AddRow4(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelTextC, len: C.longlong(len(labelText))}, PointerFromQLayout(field))
 	}
 }
 
@@ -25216,7 +25216,7 @@ func (ptr *QFormLayout) AddRow3(labelText string, field QWidget_ITF) {
 			labelTextC = C.CString(labelText)
 			defer C.free(unsafe.Pointer(labelTextC))
 		}
-		C.QFormLayout_AddRow3(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelTextC, C.longlong(len(labelText))}, PointerFromQWidget(field))
+		C.QFormLayout_AddRow3(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelTextC, len: C.longlong(len(labelText))}, PointerFromQWidget(field))
 	}
 }
 
@@ -25251,7 +25251,7 @@ func (ptr *QFormLayout) InsertRow4(row int, labelText string, field QLayout_ITF)
 			labelTextC = C.CString(labelText)
 			defer C.free(unsafe.Pointer(labelTextC))
 		}
-		C.QFormLayout_InsertRow4(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{labelTextC, C.longlong(len(labelText))}, PointerFromQLayout(field))
+		C.QFormLayout_InsertRow4(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{data: labelTextC, len: C.longlong(len(labelText))}, PointerFromQLayout(field))
 	}
 }
 
@@ -25262,7 +25262,7 @@ func (ptr *QFormLayout) InsertRow3(row int, labelText string, field QWidget_ITF)
 			labelTextC = C.CString(labelText)
 			defer C.free(unsafe.Pointer(labelTextC))
 		}
-		C.QFormLayout_InsertRow3(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{labelTextC, C.longlong(len(labelText))}, PointerFromQWidget(field))
+		C.QFormLayout_InsertRow3(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{data: labelTextC, len: C.longlong(len(labelText))}, PointerFromQWidget(field))
 	}
 }
 
@@ -30987,7 +30987,7 @@ func (ptr *QGraphicsItem) SetToolTip(toolTip string) {
 			toolTipC = C.CString(toolTip)
 			defer C.free(unsafe.Pointer(toolTipC))
 		}
-		C.QGraphicsItem_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{toolTipC, C.longlong(len(toolTip))})
+		C.QGraphicsItem_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: toolTipC, len: C.longlong(len(toolTip))})
 	}
 }
 
@@ -37041,7 +37041,7 @@ func (ptr *QGraphicsScene) AddSimpleText(text string, font gui.QFont_ITF) *QGrap
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return NewQGraphicsSimpleTextItemFromPointer(C.QGraphicsScene_AddSimpleText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, gui.PointerFromQFont(font)))
+		return NewQGraphicsSimpleTextItemFromPointer(C.QGraphicsScene_AddSimpleText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, gui.PointerFromQFont(font)))
 	}
 	return nil
 }
@@ -37053,7 +37053,7 @@ func (ptr *QGraphicsScene) AddText(text string, font gui.QFont_ITF) *QGraphicsTe
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQGraphicsTextItemFromPointer(C.QGraphicsScene_AddText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, gui.PointerFromQFont(font)))
+		var tmpValue = NewQGraphicsTextItemFromPointer(C.QGraphicsScene_AddText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, gui.PointerFromQFont(font)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -40163,7 +40163,7 @@ func NewQGraphicsSimpleTextItem2(text string, parent QGraphicsItem_ITF) *QGraphi
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQGraphicsSimpleTextItemFromPointer(C.QGraphicsSimpleTextItem_NewQGraphicsSimpleTextItem2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQGraphicsItem(parent)))
+	return NewQGraphicsSimpleTextItemFromPointer(C.QGraphicsSimpleTextItem_NewQGraphicsSimpleTextItem2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQGraphicsItem(parent)))
 }
 
 //export callbackQGraphicsSimpleTextItem_Paint
@@ -40221,7 +40221,7 @@ func (ptr *QGraphicsSimpleTextItem) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QGraphicsSimpleTextItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QGraphicsSimpleTextItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -40349,7 +40349,7 @@ func NewQGraphicsTextItem2(text string, parent QGraphicsItem_ITF) *QGraphicsText
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQGraphicsTextItemFromPointer(C.QGraphicsTextItem_NewQGraphicsTextItem2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQGraphicsItem(parent)))
+	var tmpValue = NewQGraphicsTextItemFromPointer(C.QGraphicsTextItem_NewQGraphicsTextItem2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQGraphicsItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -40402,7 +40402,7 @@ func (ptr *QGraphicsTextItem) LinkActivated(link string) {
 			linkC = C.CString(link)
 			defer C.free(unsafe.Pointer(linkC))
 		}
-		C.QGraphicsTextItem_LinkActivated(ptr.Pointer(), C.struct_QtWidgets_PackedString{linkC, C.longlong(len(link))})
+		C.QGraphicsTextItem_LinkActivated(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: linkC, len: C.longlong(len(link))})
 	}
 }
 
@@ -40446,7 +40446,7 @@ func (ptr *QGraphicsTextItem) LinkHovered(link string) {
 			linkC = C.CString(link)
 			defer C.free(unsafe.Pointer(linkC))
 		}
-		C.QGraphicsTextItem_LinkHovered(ptr.Pointer(), C.struct_QtWidgets_PackedString{linkC, C.longlong(len(link))})
+		C.QGraphicsTextItem_LinkHovered(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: linkC, len: C.longlong(len(link))})
 	}
 }
 
@@ -40517,7 +40517,7 @@ func (ptr *QGraphicsTextItem) SetHtml(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QGraphicsTextItem_SetHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QGraphicsTextItem_SetHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -40534,7 +40534,7 @@ func (ptr *QGraphicsTextItem) SetPlainText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QGraphicsTextItem_SetPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QGraphicsTextItem_SetPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -43033,7 +43033,7 @@ func (ptr *QGraphicsWidget) SetWindowTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QGraphicsWidget_SetWindowTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QGraphicsWidget_SetWindowTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -44100,7 +44100,7 @@ func NewQGroupBox2(title string, parent QWidget_ITF) *QGroupBox {
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = NewQGroupBoxFromPointer(C.QGroupBox_NewQGroupBox2(C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQGroupBoxFromPointer(C.QGroupBox_NewQGroupBox2(C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -44213,7 +44213,7 @@ func (ptr *QGroupBox) SetTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QGroupBox_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QGroupBox_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -46118,7 +46118,7 @@ func QInputDialog_GetItem(parent QWidget_ITF, title string, label string, items 
 	}
 	var itemsC = C.CString(strings.Join(items, "|"))
 	defer C.free(unsafe.Pointer(itemsC))
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.struct_QtWidgets_PackedString{itemsC, C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
@@ -46134,7 +46134,7 @@ func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string,
 	}
 	var itemsC = C.CString(strings.Join(items, "|"))
 	defer C.free(unsafe.Pointer(itemsC))
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.struct_QtWidgets_PackedString{itemsC, C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
@@ -46153,7 +46153,7 @@ func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label strin
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
@@ -46172,7 +46172,7 @@ func (ptr *QInputDialog) GetMultiLineText(parent QWidget_ITF, title string, labe
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func QInputDialog_GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
@@ -46191,7 +46191,7 @@ func QInputDialog_GetText(parent QWidget_ITF, title string, label string, mode Q
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func (ptr *QInputDialog) GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
@@ -46210,7 +46210,7 @@ func (ptr *QInputDialog) GetText(parent QWidget_ITF, title string, label string,
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
 func QInputDialog_GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType) float64 {
@@ -46224,7 +46224,7 @@ func QInputDialog_GetDouble(parent QWidget_ITF, title string, label string, valu
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
+	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
 }
 
 func (ptr *QInputDialog) GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType) float64 {
@@ -46238,7 +46238,7 @@ func (ptr *QInputDialog) GetDouble(parent QWidget_ITF, title string, label strin
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
+	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
 }
 
 func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
@@ -46252,7 +46252,7 @@ func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value i
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
+	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
 }
 
 func (ptr *QInputDialog) GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
@@ -46266,7 +46266,7 @@ func (ptr *QInputDialog) GetInt(parent QWidget_ITF, title string, label string, 
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
+	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
 }
 
 //export callbackQInputDialog_Done
@@ -46485,7 +46485,7 @@ func (ptr *QInputDialog) SetCancelButtonText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QInputDialog_SetCancelButtonText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QInputDialog_SetCancelButtonText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -46499,7 +46499,7 @@ func (ptr *QInputDialog) SetComboBoxItems(items []string) {
 	if ptr.Pointer() != nil {
 		var itemsC = C.CString(strings.Join(items, "|"))
 		defer C.free(unsafe.Pointer(itemsC))
-		C.QInputDialog_SetComboBoxItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{itemsC, C.longlong(len(strings.Join(items, "|")))})
+		C.QInputDialog_SetComboBoxItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))})
 	}
 }
 
@@ -46576,7 +46576,7 @@ func (ptr *QInputDialog) SetLabelText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QInputDialog_SetLabelText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QInputDialog_SetLabelText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -46587,7 +46587,7 @@ func (ptr *QInputDialog) SetOkButtonText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QInputDialog_SetOkButtonText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QInputDialog_SetOkButtonText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -46616,7 +46616,7 @@ func (ptr *QInputDialog) SetTextValue(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QInputDialog_SetTextValue(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QInputDialog_SetTextValue(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -46660,7 +46660,7 @@ func (ptr *QInputDialog) TextValueChanged(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QInputDialog_TextValueChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QInputDialog_TextValueChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -46704,7 +46704,7 @@ func (ptr *QInputDialog) TextValueSelected(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QInputDialog_TextValueSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QInputDialog_TextValueSelected(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -47097,7 +47097,7 @@ func (ptr *QItemDelegate) DrawDisplay(painter gui.QPainter_ITF, option QStyleOpt
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QItemDelegate_DrawDisplay(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QItemDelegate_DrawDisplay(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -47108,7 +47108,7 @@ func (ptr *QItemDelegate) DrawDisplayDefault(painter gui.QPainter_ITF, option QS
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QItemDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QItemDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -48428,7 +48428,7 @@ func (ptr *QLCDNumber) Display(s string) {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		C.QLCDNumber_Display(ptr.Pointer(), C.struct_QtWidgets_PackedString{sC, C.longlong(len(s))})
+		C.QLCDNumber_Display(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: sC, len: C.longlong(len(s))})
 	}
 }
 
@@ -48439,7 +48439,7 @@ func (ptr *QLCDNumber) DisplayDefault(s string) {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		C.QLCDNumber_DisplayDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{sC, C.longlong(len(s))})
+		C.QLCDNumber_DisplayDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: sC, len: C.longlong(len(s))})
 	}
 }
 
@@ -48910,7 +48910,7 @@ func NewQLabel2(text string, parent QWidget_ITF, fo core.Qt__WindowType) *QLabel
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQLabelFromPointer(C.QLabel_NewQLabel2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent), C.longlong(fo)))
+	var tmpValue = NewQLabelFromPointer(C.QLabel_NewQLabel2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent), C.longlong(fo)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -48999,7 +48999,7 @@ func (ptr *QLabel) LinkActivated(link string) {
 			linkC = C.CString(link)
 			defer C.free(unsafe.Pointer(linkC))
 		}
-		C.QLabel_LinkActivated(ptr.Pointer(), C.struct_QtWidgets_PackedString{linkC, C.longlong(len(link))})
+		C.QLabel_LinkActivated(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: linkC, len: C.longlong(len(link))})
 	}
 }
 
@@ -49043,7 +49043,7 @@ func (ptr *QLabel) LinkHovered(link string) {
 			linkC = C.CString(link)
 			defer C.free(unsafe.Pointer(linkC))
 		}
-		C.QLabel_LinkHovered(ptr.Pointer(), C.struct_QtWidgets_PackedString{linkC, C.longlong(len(link))})
+		C.QLabel_LinkHovered(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: linkC, len: C.longlong(len(link))})
 	}
 }
 
@@ -49336,7 +49336,7 @@ func (ptr *QLabel) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QLabel_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QLabel_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -49347,7 +49347,7 @@ func (ptr *QLabel) SetTextDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QLabel_SetTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QLabel_SetTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -51415,7 +51415,7 @@ func NewQLineEdit2(contents string, parent QWidget_ITF) *QLineEdit {
 		contentsC = C.CString(contents)
 		defer C.free(unsafe.Pointer(contentsC))
 	}
-	var tmpValue = NewQLineEditFromPointer(C.QLineEdit_NewQLineEdit2(C.struct_QtWidgets_PackedString{contentsC, C.longlong(len(contents))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQLineEditFromPointer(C.QLineEdit_NewQLineEdit2(C.struct_QtWidgets_PackedString{data: contentsC, len: C.longlong(len(contents))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -51669,7 +51669,7 @@ func (ptr *QLineEdit) Insert(newText string) {
 			newTextC = C.CString(newText)
 			defer C.free(unsafe.Pointer(newTextC))
 		}
-		C.QLineEdit_Insert(ptr.Pointer(), C.struct_QtWidgets_PackedString{newTextC, C.longlong(len(newText))})
+		C.QLineEdit_Insert(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: newTextC, len: C.longlong(len(newText))})
 	}
 }
 
@@ -51932,7 +51932,7 @@ func (ptr *QLineEdit) SetInputMask(inputMask string) {
 			inputMaskC = C.CString(inputMask)
 			defer C.free(unsafe.Pointer(inputMaskC))
 		}
-		C.QLineEdit_SetInputMask(ptr.Pointer(), C.struct_QtWidgets_PackedString{inputMaskC, C.longlong(len(inputMask))})
+		C.QLineEdit_SetInputMask(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: inputMaskC, len: C.longlong(len(inputMask))})
 	}
 }
 
@@ -51955,7 +51955,7 @@ func (ptr *QLineEdit) SetPlaceholderText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QLineEdit_SetPlaceholderText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QLineEdit_SetPlaceholderText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -52008,7 +52008,7 @@ func (ptr *QLineEdit) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QLineEdit_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QLineEdit_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -52019,7 +52019,7 @@ func (ptr *QLineEdit) SetTextDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QLineEdit_SetTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QLineEdit_SetTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -52081,7 +52081,7 @@ func (ptr *QLineEdit) TextChanged(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QLineEdit_TextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QLineEdit_TextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -52125,7 +52125,7 @@ func (ptr *QLineEdit) TextEdited(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QLineEdit_TextEdited(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QLineEdit_TextEdited(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -53532,7 +53532,7 @@ func (ptr *QListWidget) AddItem(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QListWidget_AddItem(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})
+		C.QListWidget_AddItem(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})
 	}
 }
 
@@ -53540,7 +53540,7 @@ func (ptr *QListWidget) AddItems(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QListWidget_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QListWidget_AddItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -53710,7 +53710,7 @@ func (ptr *QListWidget) CurrentTextChanged(currentText string) {
 			currentTextC = C.CString(currentText)
 			defer C.free(unsafe.Pointer(currentTextC))
 		}
-		C.QListWidget_CurrentTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{currentTextC, C.longlong(len(currentText))})
+		C.QListWidget_CurrentTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: currentTextC, len: C.longlong(len(currentText))})
 	}
 }
 
@@ -53733,7 +53733,7 @@ func (ptr *QListWidget) InsertItem2(row int, label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QListWidget_InsertItem2(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})
+		C.QListWidget_InsertItem2(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})
 	}
 }
 
@@ -53741,7 +53741,7 @@ func (ptr *QListWidget) InsertItems(row int, labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QListWidget_InsertItems(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QListWidget_InsertItems(ptr.Pointer(), C.int(int32(row)), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -54135,7 +54135,7 @@ func (ptr *QListWidget) FindItems(text string, flags core.Qt__MatchFlag) []*QLis
 				out[i] = NewQListWidgetFromPointer(l.data).__findItems_atList(i)
 			}
 			return out
-		}(C.QListWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(flags)))
+		}(C.QListWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags)))
 	}
 	return make([]*QListWidgetItem, 0)
 }
@@ -54299,10 +54299,10 @@ func (ptr *QListWidget) VisualItemRect(item QListWidgetItem_ITF) *core.QRect {
 func callbackQListWidget_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "mimeTypes"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQListWidgetFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QListWidget) ConnectMimeTypes(f func() []string) {
@@ -54548,7 +54548,7 @@ func NewQListWidgetItem3(icon gui.QIcon_ITF, text string, parent QListWidget_ITF
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQListWidget(parent), C.int(int32(ty))))
+	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQListWidget(parent), C.int(int32(ty))))
 }
 
 func NewQListWidgetItem2(text string, parent QListWidget_ITF, ty int) *QListWidgetItem {
@@ -54557,7 +54557,7 @@ func NewQListWidgetItem2(text string, parent QListWidget_ITF, ty int) *QListWidg
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQListWidget(parent), C.int(int32(ty))))
+	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQListWidget(parent), C.int(int32(ty))))
 }
 
 func (ptr *QListWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
@@ -54709,7 +54709,7 @@ func (ptr *QListWidgetItem) SetStatusTip(statusTip string) {
 			statusTipC = C.CString(statusTip)
 			defer C.free(unsafe.Pointer(statusTipC))
 		}
-		C.QListWidgetItem_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{statusTipC, C.longlong(len(statusTip))})
+		C.QListWidgetItem_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: statusTipC, len: C.longlong(len(statusTip))})
 	}
 }
 
@@ -54720,7 +54720,7 @@ func (ptr *QListWidgetItem) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QListWidgetItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QListWidgetItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -54737,7 +54737,7 @@ func (ptr *QListWidgetItem) SetToolTip(toolTip string) {
 			toolTipC = C.CString(toolTip)
 			defer C.free(unsafe.Pointer(toolTipC))
 		}
-		C.QListWidgetItem_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{toolTipC, C.longlong(len(toolTip))})
+		C.QListWidgetItem_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: toolTipC, len: C.longlong(len(toolTip))})
 	}
 }
 
@@ -54748,7 +54748,7 @@ func (ptr *QListWidgetItem) SetWhatsThis(whatsThis string) {
 			whatsThisC = C.CString(whatsThis)
 			defer C.free(unsafe.Pointer(whatsThisC))
 		}
-		C.QListWidgetItem_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{whatsThisC, C.longlong(len(whatsThis))})
+		C.QListWidgetItem_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: whatsThisC, len: C.longlong(len(whatsThis))})
 	}
 }
 
@@ -55306,7 +55306,7 @@ func (ptr *QMainWindow) AddToolBar3(title string) *QToolBar {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		var tmpValue = NewQToolBarFromPointer(C.QMainWindow_AddToolBar3(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}))
+		var tmpValue = NewQToolBarFromPointer(C.QMainWindow_AddToolBar3(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -56978,7 +56978,7 @@ func (ptr *QMenu) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -56999,7 +56999,7 @@ func (ptr *QMenu) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObj
 			memberC = C.CString(member)
 			defer C.free(unsafe.Pointer(memberC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC, gui.PointerFromQKeySequence(shortcut)))
+		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC, gui.PointerFromQKeySequence(shortcut)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57015,7 +57015,7 @@ func (ptr *QMenu) AddAction(text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57036,7 +57036,7 @@ func (ptr *QMenu) AddAction3(text string, receiver core.QObject_ITF, member stri
 			memberC = C.CString(member)
 			defer C.free(unsafe.Pointer(memberC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction3(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC, gui.PointerFromQKeySequence(shortcut)))
+		var tmpValue = NewQActionFromPointer(C.QMenu_AddAction3(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC, gui.PointerFromQKeySequence(shortcut)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57063,7 +57063,7 @@ func (ptr *QMenu) AddSection2(icon gui.QIcon_ITF, text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_AddSection2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QMenu_AddSection2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57079,7 +57079,7 @@ func (ptr *QMenu) AddSection(text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_AddSection(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QMenu_AddSection(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57167,7 +57167,7 @@ func (ptr *QMenu) InsertSection2(before QAction_ITF, icon gui.QIcon_ITF, text st
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_InsertSection2(ptr.Pointer(), PointerFromQAction(before), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QMenu_InsertSection2(ptr.Pointer(), PointerFromQAction(before), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57183,7 +57183,7 @@ func (ptr *QMenu) InsertSection(before QAction_ITF, text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenu_InsertSection(ptr.Pointer(), PointerFromQAction(before), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QMenu_InsertSection(ptr.Pointer(), PointerFromQAction(before), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57210,7 +57210,7 @@ func (ptr *QMenu) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		var tmpValue = NewQMenuFromPointer(C.QMenu_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}))
+		var tmpValue = NewQMenuFromPointer(C.QMenu_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57226,7 +57226,7 @@ func (ptr *QMenu) AddMenu2(title string) *QMenu {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		var tmpValue = NewQMenuFromPointer(C.QMenu_AddMenu2(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}))
+		var tmpValue = NewQMenuFromPointer(C.QMenu_AddMenu2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57249,7 +57249,7 @@ func NewQMenu2(title string, parent QWidget_ITF) *QMenu {
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = NewQMenuFromPointer(C.QMenu_NewQMenu2(C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQMenuFromPointer(C.QMenu_NewQMenu2(C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -57434,7 +57434,7 @@ func (ptr *QMenu) SetTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QMenu_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QMenu_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -57686,7 +57686,7 @@ func (ptr *QMenuBar) AddAction(text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenuBar_AddAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QMenuBar_AddAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57707,7 +57707,7 @@ func (ptr *QMenuBar) AddAction2(text string, receiver core.QObject_ITF, member s
 			memberC = C.CString(member)
 			defer C.free(unsafe.Pointer(memberC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QMenuBar_AddAction2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC))
+		var tmpValue = NewQActionFromPointer(C.QMenuBar_AddAction2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57767,7 +57767,7 @@ func (ptr *QMenuBar) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		var tmpValue = NewQMenuFromPointer(C.QMenuBar_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}))
+		var tmpValue = NewQMenuFromPointer(C.QMenuBar_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -57783,7 +57783,7 @@ func (ptr *QMenuBar) AddMenu2(title string) *QMenu {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		var tmpValue = NewQMenuFromPointer(C.QMenuBar_AddMenu2(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}))
+		var tmpValue = NewQMenuFromPointer(C.QMenuBar_AddMenu2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -58092,7 +58092,7 @@ func NewQMessageBox2(icon QMessageBox__Icon, title string, text string, buttons 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQMessageBoxFromPointer(C.QMessageBox_NewQMessageBox2(C.longlong(icon), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), PointerFromQWidget(parent), C.longlong(fo)))
+	var tmpValue = NewQMessageBoxFromPointer(C.QMessageBox_NewQMessageBox2(C.longlong(icon), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), PointerFromQWidget(parent), C.longlong(fo)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -58125,7 +58125,7 @@ func (ptr *QMessageBox) AddButton2(text string, role QMessageBox__ButtonRole) *Q
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQPushButtonFromPointer(C.QMessageBox_AddButton2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(role)))
+		var tmpValue = NewQPushButtonFromPointer(C.QMessageBox_AddButton2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(role)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -58145,7 +58145,7 @@ func QMessageBox_Critical(parent QWidget_ITF, title string, text string, buttons
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Critical(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Critical(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Critical(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
@@ -58159,7 +58159,7 @@ func (ptr *QMessageBox) Critical(parent QWidget_ITF, title string, text string, 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Critical(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Critical(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_Information(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
@@ -58173,7 +58173,7 @@ func QMessageBox_Information(parent QWidget_ITF, title string, text string, butt
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Information(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Information(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Information(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
@@ -58187,7 +58187,7 @@ func (ptr *QMessageBox) Information(parent QWidget_ITF, title string, text strin
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Information(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Information(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_Question(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
@@ -58201,7 +58201,7 @@ func QMessageBox_Question(parent QWidget_ITF, title string, text string, buttons
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Question(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Question(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Question(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
@@ -58215,7 +58215,7 @@ func (ptr *QMessageBox) Question(parent QWidget_ITF, title string, text string, 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Question(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Question(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_Warning(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
@@ -58229,7 +58229,7 @@ func QMessageBox_Warning(parent QWidget_ITF, title string, text string, buttons 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Warning(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Warning(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func (ptr *QMessageBox) Warning(parent QWidget_ITF, title string, text string, buttons QMessageBox__StandardButton, defaultButton QMessageBox__StandardButton) QMessageBox__StandardButton {
@@ -58243,7 +58243,7 @@ func (ptr *QMessageBox) Warning(parent QWidget_ITF, title string, text string, b
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Warning(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
+	return QMessageBox__StandardButton(C.QMessageBox_QMessageBox_Warning(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), C.longlong(defaultButton)))
 }
 
 func QMessageBox_About(parent QWidget_ITF, title string, text string) {
@@ -58257,7 +58257,7 @@ func QMessageBox_About(parent QWidget_ITF, title string, text string) {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QMessageBox_QMessageBox_About(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+	C.QMessageBox_QMessageBox_About(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 }
 
 func (ptr *QMessageBox) About(parent QWidget_ITF, title string, text string) {
@@ -58271,7 +58271,7 @@ func (ptr *QMessageBox) About(parent QWidget_ITF, title string, text string) {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QMessageBox_QMessageBox_About(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+	C.QMessageBox_QMessageBox_About(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 }
 
 func QMessageBox_AboutQt(parent QWidget_ITF, title string) {
@@ -58280,7 +58280,7 @@ func QMessageBox_AboutQt(parent QWidget_ITF, title string) {
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	C.QMessageBox_QMessageBox_AboutQt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+	C.QMessageBox_QMessageBox_AboutQt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 }
 
 func (ptr *QMessageBox) AboutQt(parent QWidget_ITF, title string) {
@@ -58289,7 +58289,7 @@ func (ptr *QMessageBox) AboutQt(parent QWidget_ITF, title string) {
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	C.QMessageBox_QMessageBox_AboutQt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+	C.QMessageBox_QMessageBox_AboutQt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 }
 
 func (ptr *QMessageBox) AddButton(button QAbstractButton_ITF, role QMessageBox__ButtonRole) {
@@ -58379,7 +58379,7 @@ func (ptr *QMessageBox) SetDetailedText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QMessageBox_SetDetailedText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QMessageBox_SetDetailedText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -58414,7 +58414,7 @@ func (ptr *QMessageBox) SetInformativeText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QMessageBox_SetInformativeText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QMessageBox_SetInformativeText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -58431,7 +58431,7 @@ func (ptr *QMessageBox) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QMessageBox_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QMessageBox_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -58512,7 +58512,7 @@ func (ptr *QMessageBox) SetWindowTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QMessageBox_SetWindowTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QMessageBox_SetWindowTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -60329,7 +60329,7 @@ func NewQPlainTextEdit2(text string, parent QWidget_ITF) *QPlainTextEdit {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQPlainTextEditFromPointer(C.QPlainTextEdit_NewQPlainTextEdit2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQPlainTextEditFromPointer(C.QPlainTextEdit_NewQPlainTextEdit2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -60343,7 +60343,7 @@ func (ptr *QPlainTextEdit) Find(exp string, options gui.QTextDocument__FindFlag)
 			expC = C.CString(exp)
 			defer C.free(unsafe.Pointer(expC))
 		}
-		return C.QPlainTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{expC, C.longlong(len(exp))}, C.longlong(options)) != 0
+		return C.QPlainTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: expC, len: C.longlong(len(exp))}, C.longlong(options)) != 0
 	}
 	return false
 }
@@ -60385,7 +60385,7 @@ func (ptr *QPlainTextEdit) AppendHtml(html string) {
 			htmlC = C.CString(html)
 			defer C.free(unsafe.Pointer(htmlC))
 		}
-		C.QPlainTextEdit_AppendHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{htmlC, C.longlong(len(html))})
+		C.QPlainTextEdit_AppendHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: htmlC, len: C.longlong(len(html))})
 	}
 }
 
@@ -60396,7 +60396,7 @@ func (ptr *QPlainTextEdit) AppendHtmlDefault(html string) {
 			htmlC = C.CString(html)
 			defer C.free(unsafe.Pointer(htmlC))
 		}
-		C.QPlainTextEdit_AppendHtmlDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{htmlC, C.longlong(len(html))})
+		C.QPlainTextEdit_AppendHtmlDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: htmlC, len: C.longlong(len(html))})
 	}
 }
 
@@ -60437,7 +60437,7 @@ func (ptr *QPlainTextEdit) AppendPlainText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPlainTextEdit_AppendPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QPlainTextEdit_AppendPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -60448,7 +60448,7 @@ func (ptr *QPlainTextEdit) AppendPlainTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPlainTextEdit_AppendPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QPlainTextEdit_AppendPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -60822,7 +60822,7 @@ func (ptr *QPlainTextEdit) InsertPlainText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPlainTextEdit_InsertPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QPlainTextEdit_InsertPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -60833,7 +60833,7 @@ func (ptr *QPlainTextEdit) InsertPlainTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPlainTextEdit_InsertPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QPlainTextEdit_InsertPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -61129,7 +61129,7 @@ func (ptr *QPlainTextEdit) SetDocumentTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QPlainTextEdit_SetDocumentTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QPlainTextEdit_SetDocumentTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -61158,7 +61158,7 @@ func (ptr *QPlainTextEdit) SetPlaceholderText(placeholderText string) {
 			placeholderTextC = C.CString(placeholderText)
 			defer C.free(unsafe.Pointer(placeholderTextC))
 		}
-		C.QPlainTextEdit_SetPlaceholderText(ptr.Pointer(), C.struct_QtWidgets_PackedString{placeholderTextC, C.longlong(len(placeholderText))})
+		C.QPlainTextEdit_SetPlaceholderText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: placeholderTextC, len: C.longlong(len(placeholderText))})
 	}
 }
 
@@ -61199,7 +61199,7 @@ func (ptr *QPlainTextEdit) SetPlainText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPlainTextEdit_SetPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QPlainTextEdit_SetPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -61210,7 +61210,7 @@ func (ptr *QPlainTextEdit) SetPlainTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QPlainTextEdit_SetPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QPlainTextEdit_SetPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -61982,7 +61982,7 @@ func (ptr *QProgressBar) SetFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QProgressBar_SetFormat(ptr.Pointer(), C.struct_QtWidgets_PackedString{formatC, C.longlong(len(format))})
+		C.QProgressBar_SetFormat(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: formatC, len: C.longlong(len(format))})
 	}
 }
 
@@ -62279,10 +62279,10 @@ func (ptr *QProgressBar) Format() string {
 func callbackQProgressBar_Text(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "text"); signal != nil {
 		tempVal := signal.(func() string)()
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQProgressBarFromPointer(ptr).TextDefault()
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QProgressBar) ConnectText(f func() string) {
@@ -62432,7 +62432,7 @@ func NewQProgressDialog2(labelText string, cancelButtonText string, minimum int,
 		cancelButtonTextC = C.CString(cancelButtonText)
 		defer C.free(unsafe.Pointer(cancelButtonTextC))
 	}
-	var tmpValue = NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog2(C.struct_QtWidgets_PackedString{labelTextC, C.longlong(len(labelText))}, C.struct_QtWidgets_PackedString{cancelButtonTextC, C.longlong(len(cancelButtonText))}, C.int(int32(minimum)), C.int(int32(maximum)), PointerFromQWidget(parent), C.longlong(fo)))
+	var tmpValue = NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog2(C.struct_QtWidgets_PackedString{data: labelTextC, len: C.longlong(len(labelText))}, C.struct_QtWidgets_PackedString{data: cancelButtonTextC, len: C.longlong(len(cancelButtonText))}, C.int(int32(minimum)), C.int(int32(maximum)), PointerFromQWidget(parent), C.longlong(fo)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -62676,7 +62676,7 @@ func (ptr *QProgressDialog) SetCancelButtonText(cancelButtonText string) {
 			cancelButtonTextC = C.CString(cancelButtonText)
 			defer C.free(unsafe.Pointer(cancelButtonTextC))
 		}
-		C.QProgressDialog_SetCancelButtonText(ptr.Pointer(), C.struct_QtWidgets_PackedString{cancelButtonTextC, C.longlong(len(cancelButtonText))})
+		C.QProgressDialog_SetCancelButtonText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: cancelButtonTextC, len: C.longlong(len(cancelButtonText))})
 	}
 }
 
@@ -62687,7 +62687,7 @@ func (ptr *QProgressDialog) SetCancelButtonTextDefault(cancelButtonText string) 
 			cancelButtonTextC = C.CString(cancelButtonText)
 			defer C.free(unsafe.Pointer(cancelButtonTextC))
 		}
-		C.QProgressDialog_SetCancelButtonTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{cancelButtonTextC, C.longlong(len(cancelButtonText))})
+		C.QProgressDialog_SetCancelButtonTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: cancelButtonTextC, len: C.longlong(len(cancelButtonText))})
 	}
 }
 
@@ -62734,7 +62734,7 @@ func (ptr *QProgressDialog) SetLabelText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QProgressDialog_SetLabelText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QProgressDialog_SetLabelText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -62745,7 +62745,7 @@ func (ptr *QProgressDialog) SetLabelTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QProgressDialog_SetLabelTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QProgressDialog_SetLabelTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -63075,7 +63075,7 @@ func NewQProxyStyle2(key string) *QProxyStyle {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	var tmpValue = NewQProxyStyleFromPointer(C.QProxyStyle_NewQProxyStyle2(C.struct_QtWidgets_PackedString{keyC, C.longlong(len(key))}))
+	var tmpValue = NewQProxyStyleFromPointer(C.QProxyStyle_NewQProxyStyle2(C.struct_QtWidgets_PackedString{data: keyC, len: C.longlong(len(key))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -63207,7 +63207,7 @@ func NewQPushButton3(icon gui.QIcon_ITF, text string, parent QWidget_ITF) *QPush
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQPushButtonFromPointer(C.QPushButton_NewQPushButton3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQPushButtonFromPointer(C.QPushButton_NewQPushButton3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -63220,7 +63220,7 @@ func NewQPushButton2(text string, parent QWidget_ITF) *QPushButton {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQPushButtonFromPointer(C.QPushButton_NewQPushButton2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQPushButtonFromPointer(C.QPushButton_NewQPushButton2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -63433,7 +63433,7 @@ func NewQRadioButton2(text string, parent QWidget_ITF) *QRadioButton {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQRadioButtonFromPointer(C.QRadioButton_NewQRadioButton2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQRadioButtonFromPointer(C.QRadioButton_NewQRadioButton2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -65007,7 +65007,7 @@ func (ptr *QShortcut) SetWhatsThis(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QShortcut_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QShortcut_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -66217,7 +66217,7 @@ func (ptr *QSpinBox) SetPrefix(prefix string) {
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		C.QSpinBox_SetPrefix(ptr.Pointer(), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))})
+		C.QSpinBox_SetPrefix(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))})
 	}
 }
 
@@ -66240,7 +66240,7 @@ func (ptr *QSpinBox) SetSuffix(suffix string) {
 			suffixC = C.CString(suffix)
 			defer C.free(unsafe.Pointer(suffixC))
 		}
-		C.QSpinBox_SetSuffix(ptr.Pointer(), C.struct_QtWidgets_PackedString{suffixC, C.longlong(len(suffix))})
+		C.QSpinBox_SetSuffix(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: suffixC, len: C.longlong(len(suffix))})
 	}
 }
 
@@ -66326,7 +66326,7 @@ func (ptr *QSpinBox) ValueChanged2(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QSpinBox_ValueChanged2(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QSpinBox_ValueChanged2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -66401,10 +66401,10 @@ func (ptr *QSpinBox) Suffix() string {
 func callbackQSpinBox_TextFromValue(ptr unsafe.Pointer, value C.int) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "textFromValue"); signal != nil {
 		tempVal := signal.(func(int) string)(int(int32(value)))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQSpinBoxFromPointer(ptr).TextFromValueDefault(int(int32(value)))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QSpinBox) ConnectTextFromValue(f func(value int) string) {
@@ -66514,7 +66514,7 @@ func (ptr *QSpinBox) ValueFromText(text string) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QSpinBox_ValueFromText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QSpinBox_ValueFromText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -66526,7 +66526,7 @@ func (ptr *QSpinBox) ValueFromTextDefault(text string) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QSpinBox_ValueFromTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QSpinBox_ValueFromTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -66715,7 +66715,7 @@ func (ptr *QSplashScreen) MessageChanged(message string) {
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QSplashScreen_MessageChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))})
+		C.QSplashScreen_MessageChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
 }
 
@@ -66768,7 +66768,7 @@ func (ptr *QSplashScreen) ShowMessage(message string, alignment int, color gui.Q
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QSplashScreen_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.int(int32(alignment)), gui.PointerFromQColor(color))
+		C.QSplashScreen_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.int(int32(alignment)), gui.PointerFromQColor(color))
 	}
 }
 
@@ -66779,7 +66779,7 @@ func (ptr *QSplashScreen) ShowMessageDefault(message string, alignment int, colo
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QSplashScreen_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.int(int32(alignment)), gui.PointerFromQColor(color))
+		C.QSplashScreen_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.int(int32(alignment)), gui.PointerFromQColor(color))
 	}
 }
 
@@ -68327,7 +68327,7 @@ func (ptr *QStatusBar) MessageChanged(message string) {
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QStatusBar_MessageChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))})
+		C.QStatusBar_MessageChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
 }
 
@@ -68386,7 +68386,7 @@ func (ptr *QStatusBar) ShowMessage(message string, timeout int) {
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QStatusBar_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.int(int32(timeout)))
+		C.QStatusBar_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.int(int32(timeout)))
 	}
 }
 
@@ -68397,7 +68397,7 @@ func (ptr *QStatusBar) ShowMessageDefault(message string, timeout int) {
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QStatusBar_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.int(int32(timeout)))
+		C.QStatusBar_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.int(int32(timeout)))
 	}
 }
 
@@ -69666,7 +69666,7 @@ func (ptr *QStyle) ItemTextRect(metrics gui.QFontMetrics_ITF, rectangle core.QRe
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QStyle_ItemTextRect(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFromPointer(C.QStyle_ItemTextRect(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -69680,7 +69680,7 @@ func (ptr *QStyle) ItemTextRectDefault(metrics gui.QFontMetrics_ITF, rectangle c
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = core.NewQRectFromPointer(C.QStyle_ItemTextRectDefault(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = core.NewQRectFromPointer(C.QStyle_ItemTextRectDefault(ptr.Pointer(), gui.PointerFromQFontMetrics(metrics), core.PointerFromQRect(rectangle), C.int(int32(alignment)), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -70119,7 +70119,7 @@ func (ptr *QStyle) DrawItemText(painter gui.QPainter_ITF, rectangle core.QRect_I
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QStyle_DrawItemText(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(textRole))
+		C.QStyle_DrawItemText(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(textRole))
 	}
 }
 
@@ -70130,7 +70130,7 @@ func (ptr *QStyle) DrawItemTextDefault(painter gui.QPainter_ITF, rectangle core.
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QStyle_DrawItemTextDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(textRole))
+		C.QStyle_DrawItemTextDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(int32(alignment)), gui.PointerFromQPalette(palette), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(textRole))
 	}
 }
 
@@ -70527,7 +70527,7 @@ func QStyleFactory_Create(key string) *QStyle {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	var tmpValue = NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(C.struct_QtWidgets_PackedString{keyC, C.longlong(len(key))}))
+	var tmpValue = NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(C.struct_QtWidgets_PackedString{data: keyC, len: C.longlong(len(key))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -70540,7 +70540,7 @@ func (ptr *QStyleFactory) Create(key string) *QStyle {
 		keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
 	}
-	var tmpValue = NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(C.struct_QtWidgets_PackedString{keyC, C.longlong(len(key))}))
+	var tmpValue = NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(C.struct_QtWidgets_PackedString{data: keyC, len: C.longlong(len(key))}))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -71191,7 +71191,7 @@ func (ptr *QStyleOptionButton) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionButton_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionButton_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -71299,7 +71299,7 @@ func (ptr *QStyleOptionComboBox) SetCurrentText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionComboBox_SetCurrentText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionComboBox_SetCurrentText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -71588,7 +71588,7 @@ func (ptr *QStyleOptionDockWidget) SetTitle(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionDockWidget_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionDockWidget_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -72058,7 +72058,7 @@ func (ptr *QStyleOptionGroupBox) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionGroupBox_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionGroupBox_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -72304,7 +72304,7 @@ func (ptr *QStyleOptionHeader) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionHeader_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionHeader_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -72558,7 +72558,7 @@ func (ptr *QStyleOptionMenuItem) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionMenuItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionMenuItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -72716,7 +72716,7 @@ func (ptr *QStyleOptionProgressBar) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionProgressBar_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionProgressBar_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -73560,7 +73560,7 @@ func (ptr *QStyleOptionTab) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionTab_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionTab_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -73988,7 +73988,7 @@ func (ptr *QStyleOptionTitleBar) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionTitleBar_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionTitleBar_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -74342,7 +74342,7 @@ func (ptr *QStyleOptionToolBox) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionToolBox_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionToolBox_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -74534,7 +74534,7 @@ func (ptr *QStyleOptionToolButton) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionToolButton_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionToolButton_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -74844,7 +74844,7 @@ func (ptr *QStyleOptionViewItem) SetText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QStyleOptionViewItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QStyleOptionViewItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -74989,7 +74989,7 @@ func (ptr *QStylePainter) DrawItemText(rect core.QRect_ITF, flags int, pal gui.Q
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QStylePainter_DrawItemText(ptr.Pointer(), core.PointerFromQRect(rect), C.int(int32(flags)), gui.PointerFromQPalette(pal), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(textRole))
+		C.QStylePainter_DrawItemText(ptr.Pointer(), core.PointerFromQRect(rect), C.int(int32(flags)), gui.PointerFromQPalette(pal), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(textRole))
 	}
 }
 
@@ -75200,7 +75200,7 @@ func (ptr *QStylePlugin) Create(key string) *QStyle {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = NewQStyleFromPointer(C.QStylePlugin_Create(ptr.Pointer(), C.struct_QtWidgets_PackedString{keyC, C.longlong(len(key))}))
+		var tmpValue = NewQStyleFromPointer(C.QStylePlugin_Create(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: keyC, len: C.longlong(len(key))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -75603,10 +75603,10 @@ func (ptr *QStyledItemDelegate) SizeHintDefault(option QStyleOptionViewItem_ITF,
 func callbackQStyledItemDelegate_DisplayText(ptr unsafe.Pointer, value unsafe.Pointer, locale unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "displayText"); signal != nil {
 		tempVal := signal.(func(*core.QVariant, *core.QLocale) string)(core.NewQVariantFromPointer(value), core.NewQLocaleFromPointer(locale))
-		return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQStyledItemDelegateFromPointer(ptr).DisplayTextDefault(core.NewQVariantFromPointer(value), core.NewQLocaleFromPointer(locale))
-	return C.struct_QtWidgets_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QStyledItemDelegate) ConnectDisplayText(f func(value *core.QVariant, locale *core.QLocale) string) {
@@ -76063,7 +76063,7 @@ func (ptr *QSystemTrayIcon) SetToolTip(tip string) {
 			tipC = C.CString(tip)
 			defer C.free(unsafe.Pointer(tipC))
 		}
-		C.QSystemTrayIcon_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{tipC, C.longlong(len(tip))})
+		C.QSystemTrayIcon_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: tipC, len: C.longlong(len(tip))})
 	}
 }
 
@@ -76193,7 +76193,7 @@ func (ptr *QSystemTrayIcon) ShowMessage(title string, message string, icon QSyst
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QSystemTrayIcon_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.longlong(icon), C.int(int32(millisecondsTimeoutHint)))
+		C.QSystemTrayIcon_ShowMessage(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.longlong(icon), C.int(int32(millisecondsTimeoutHint)))
 	}
 }
 
@@ -76209,7 +76209,7 @@ func (ptr *QSystemTrayIcon) ShowMessageDefault(title string, message string, ico
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QSystemTrayIcon_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, C.struct_QtWidgets_PackedString{messageC, C.longlong(len(message))}, C.longlong(icon), C.int(int32(millisecondsTimeoutHint)))
+		C.QSystemTrayIcon_ShowMessageDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, C.longlong(icon), C.int(int32(millisecondsTimeoutHint)))
 	}
 }
 
@@ -76595,7 +76595,7 @@ func (ptr *QTabBar) AddTab2(icon gui.QIcon_ITF, text string) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QTabBar_AddTab2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QTabBar_AddTab2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -76607,7 +76607,7 @@ func (ptr *QTabBar) AddTab(text string) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QTabBar_AddTab(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QTabBar_AddTab(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -76619,7 +76619,7 @@ func (ptr *QTabBar) InsertTab2(index int, icon gui.QIcon_ITF, text string) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QTabBar_InsertTab2(ptr.Pointer(), C.int(int32(index)), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QTabBar_InsertTab2(ptr.Pointer(), C.int(int32(index)), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -76631,7 +76631,7 @@ func (ptr *QTabBar) InsertTab(index int, text string) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QTabBar_InsertTab(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QTabBar_InsertTab(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -76694,7 +76694,7 @@ func (ptr *QTabBar) SetAccessibleTabName(index int, name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QTabBar_SetAccessibleTabName(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))})
+		C.QTabBar_SetAccessibleTabName(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -76843,7 +76843,7 @@ func (ptr *QTabBar) SetTabText(index int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTabBar_SetTabText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTabBar_SetTabText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -76860,7 +76860,7 @@ func (ptr *QTabBar) SetTabToolTip(index int, tip string) {
 			tipC = C.CString(tip)
 			defer C.free(unsafe.Pointer(tipC))
 		}
-		C.QTabBar_SetTabToolTip(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{tipC, C.longlong(len(tip))})
+		C.QTabBar_SetTabToolTip(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: tipC, len: C.longlong(len(tip))})
 	}
 }
 
@@ -76871,7 +76871,7 @@ func (ptr *QTabBar) SetTabWhatsThis(index int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTabBar_SetTabWhatsThis(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTabBar_SetTabWhatsThis(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -77522,7 +77522,7 @@ func (ptr *QTabWidget) AddTab2(page QWidget_ITF, icon gui.QIcon_ITF, label strin
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		return int(int32(C.QTabWidget_AddTab2(ptr.Pointer(), PointerFromQWidget(page), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})))
+		return int(int32(C.QTabWidget_AddTab2(ptr.Pointer(), PointerFromQWidget(page), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})))
 	}
 	return 0
 }
@@ -77534,7 +77534,7 @@ func (ptr *QTabWidget) InsertTab2(index int, page QWidget_ITF, icon gui.QIcon_IT
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		return int(int32(C.QTabWidget_InsertTab2(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(page), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})))
+		return int(int32(C.QTabWidget_InsertTab2(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(page), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})))
 	}
 	return 0
 }
@@ -77554,7 +77554,7 @@ func (ptr *QTabWidget) AddTab(page QWidget_ITF, label string) int {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		return int(int32(C.QTabWidget_AddTab(ptr.Pointer(), PointerFromQWidget(page), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})))
+		return int(int32(C.QTabWidget_AddTab(ptr.Pointer(), PointerFromQWidget(page), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})))
 	}
 	return 0
 }
@@ -77566,7 +77566,7 @@ func (ptr *QTabWidget) InsertTab(index int, page QWidget_ITF, label string) int 
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		return int(int32(C.QTabWidget_InsertTab(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(page), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})))
+		return int(int32(C.QTabWidget_InsertTab(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(page), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})))
 	}
 	return 0
 }
@@ -77779,7 +77779,7 @@ func (ptr *QTabWidget) SetTabText(index int, label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QTabWidget_SetTabText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})
+		C.QTabWidget_SetTabText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})
 	}
 }
 
@@ -77790,7 +77790,7 @@ func (ptr *QTabWidget) SetTabToolTip(index int, tip string) {
 			tipC = C.CString(tip)
 			defer C.free(unsafe.Pointer(tipC))
 		}
-		C.QTabWidget_SetTabToolTip(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{tipC, C.longlong(len(tip))})
+		C.QTabWidget_SetTabToolTip(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: tipC, len: C.longlong(len(tip))})
 	}
 }
 
@@ -77801,7 +77801,7 @@ func (ptr *QTabWidget) SetTabWhatsThis(index int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTabWidget_SetTabWhatsThis(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTabWidget_SetTabWhatsThis(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -80754,7 +80754,7 @@ func (ptr *QTableWidget) SetHorizontalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QTableWidget_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QTableWidget_SetHorizontalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -80792,7 +80792,7 @@ func (ptr *QTableWidget) SetVerticalHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QTableWidget_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QTableWidget_SetVerticalHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -80823,7 +80823,7 @@ func (ptr *QTableWidget) FindItems(text string, flags core.Qt__MatchFlag) []*QTa
 				out[i] = NewQTableWidgetFromPointer(l.data).__findItems_atList(i)
 			}
 			return out
-		}(C.QTableWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(flags)))
+		}(C.QTableWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags)))
 	}
 	return make([]*QTableWidgetItem, 0)
 }
@@ -80965,10 +80965,10 @@ func (ptr *QTableWidget) VisualItemRect(item QTableWidgetItem_ITF) *core.QRect {
 func callbackQTableWidget_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "mimeTypes"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQTableWidgetFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QTableWidget) ConnectMimeTypes(f func() []string) {
@@ -81319,7 +81319,7 @@ func NewQTableWidgetItem3(icon gui.QIcon_ITF, text string, ty int) *QTableWidget
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.int(int32(ty))))
+	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem3(gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(ty))))
 }
 
 func NewQTableWidgetItem2(text string, ty int) *QTableWidgetItem {
@@ -81328,7 +81328,7 @@ func NewQTableWidgetItem2(text string, ty int) *QTableWidgetItem {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.int(int32(ty))))
+	return NewQTableWidgetItemFromPointer(C.QTableWidgetItem_NewQTableWidgetItem2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.int(int32(ty))))
 }
 
 func NewQTableWidgetItem4(other QTableWidgetItem_ITF) *QTableWidgetItem {
@@ -81472,7 +81472,7 @@ func (ptr *QTableWidgetItem) SetStatusTip(statusTip string) {
 			statusTipC = C.CString(statusTip)
 			defer C.free(unsafe.Pointer(statusTipC))
 		}
-		C.QTableWidgetItem_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{statusTipC, C.longlong(len(statusTip))})
+		C.QTableWidgetItem_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: statusTipC, len: C.longlong(len(statusTip))})
 	}
 }
 
@@ -81483,7 +81483,7 @@ func (ptr *QTableWidgetItem) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTableWidgetItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTableWidgetItem_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -81500,7 +81500,7 @@ func (ptr *QTableWidgetItem) SetToolTip(toolTip string) {
 			toolTipC = C.CString(toolTip)
 			defer C.free(unsafe.Pointer(toolTipC))
 		}
-		C.QTableWidgetItem_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{toolTipC, C.longlong(len(toolTip))})
+		C.QTableWidgetItem_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: toolTipC, len: C.longlong(len(toolTip))})
 	}
 }
 
@@ -81511,7 +81511,7 @@ func (ptr *QTableWidgetItem) SetWhatsThis(whatsThis string) {
 			whatsThisC = C.CString(whatsThis)
 			defer C.free(unsafe.Pointer(whatsThisC))
 		}
-		C.QTableWidgetItem_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{whatsThisC, C.longlong(len(whatsThis))})
+		C.QTableWidgetItem_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: whatsThisC, len: C.longlong(len(whatsThis))})
 	}
 }
 
@@ -82364,7 +82364,7 @@ func (ptr *QTextBrowser) Highlighted2(link string) {
 			linkC = C.CString(link)
 			defer C.free(unsafe.Pointer(linkC))
 		}
-		C.QTextBrowser_Highlighted2(ptr.Pointer(), C.struct_QtWidgets_PackedString{linkC, C.longlong(len(link))})
+		C.QTextBrowser_Highlighted2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: linkC, len: C.longlong(len(link))})
 	}
 }
 
@@ -82546,7 +82546,7 @@ func (ptr *QTextBrowser) SetSearchPaths(paths []string) {
 	if ptr.Pointer() != nil {
 		var pathsC = C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
-		C.QTextBrowser_SetSearchPaths(ptr.Pointer(), C.struct_QtWidgets_PackedString{pathsC, C.longlong(len(strings.Join(paths, "|")))})
+		C.QTextBrowser_SetSearchPaths(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathsC, len: C.longlong(len(strings.Join(paths, "|")))})
 	}
 }
 
@@ -82827,7 +82827,7 @@ func NewQTextEdit2(text string, parent QWidget_ITF) *QTextEdit {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	var tmpValue = NewQTextEditFromPointer(C.QTextEdit_NewQTextEdit2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQTextEditFromPointer(C.QTextEdit_NewQTextEdit2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -82896,7 +82896,7 @@ func (ptr *QTextEdit) Find(exp string, options gui.QTextDocument__FindFlag) bool
 			expC = C.CString(exp)
 			defer C.free(unsafe.Pointer(expC))
 		}
-		return C.QTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{expC, C.longlong(len(exp))}, C.longlong(options)) != 0
+		return C.QTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: expC, len: C.longlong(len(exp))}, C.longlong(options)) != 0
 	}
 	return false
 }
@@ -82938,7 +82938,7 @@ func (ptr *QTextEdit) Append(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_Append(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_Append(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -82949,7 +82949,7 @@ func (ptr *QTextEdit) AppendDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_AppendDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_AppendDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -83281,7 +83281,7 @@ func (ptr *QTextEdit) InsertHtml(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_InsertHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_InsertHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -83292,7 +83292,7 @@ func (ptr *QTextEdit) InsertHtmlDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_InsertHtmlDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_InsertHtmlDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -83333,7 +83333,7 @@ func (ptr *QTextEdit) InsertPlainText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_InsertPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_InsertPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -83344,7 +83344,7 @@ func (ptr *QTextEdit) InsertPlainTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_InsertPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_InsertPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -83520,7 +83520,7 @@ func (ptr *QTextEdit) ScrollToAnchor(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QTextEdit_ScrollToAnchor(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))})
+		C.QTextEdit_ScrollToAnchor(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -83531,7 +83531,7 @@ func (ptr *QTextEdit) ScrollToAnchorDefault(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QTextEdit_ScrollToAnchorDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))})
+		C.QTextEdit_ScrollToAnchorDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -83737,7 +83737,7 @@ func (ptr *QTextEdit) SetDocumentTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QTextEdit_SetDocumentTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QTextEdit_SetDocumentTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -83778,7 +83778,7 @@ func (ptr *QTextEdit) SetFontFamily(fontFamily string) {
 			fontFamilyC = C.CString(fontFamily)
 			defer C.free(unsafe.Pointer(fontFamilyC))
 		}
-		C.QTextEdit_SetFontFamily(ptr.Pointer(), C.struct_QtWidgets_PackedString{fontFamilyC, C.longlong(len(fontFamily))})
+		C.QTextEdit_SetFontFamily(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: fontFamilyC, len: C.longlong(len(fontFamily))})
 	}
 }
 
@@ -83789,7 +83789,7 @@ func (ptr *QTextEdit) SetFontFamilyDefault(fontFamily string) {
 			fontFamilyC = C.CString(fontFamily)
 			defer C.free(unsafe.Pointer(fontFamilyC))
 		}
-		C.QTextEdit_SetFontFamilyDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{fontFamilyC, C.longlong(len(fontFamily))})
+		C.QTextEdit_SetFontFamilyDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: fontFamilyC, len: C.longlong(len(fontFamily))})
 	}
 }
 
@@ -83998,7 +83998,7 @@ func (ptr *QTextEdit) SetHtml(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_SetHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_SetHtml(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -84009,7 +84009,7 @@ func (ptr *QTextEdit) SetHtmlDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_SetHtmlDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_SetHtmlDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -84038,7 +84038,7 @@ func (ptr *QTextEdit) SetPlaceholderText(placeholderText string) {
 			placeholderTextC = C.CString(placeholderText)
 			defer C.free(unsafe.Pointer(placeholderTextC))
 		}
-		C.QTextEdit_SetPlaceholderText(ptr.Pointer(), C.struct_QtWidgets_PackedString{placeholderTextC, C.longlong(len(placeholderText))})
+		C.QTextEdit_SetPlaceholderText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: placeholderTextC, len: C.longlong(len(placeholderText))})
 	}
 }
 
@@ -84091,7 +84091,7 @@ func (ptr *QTextEdit) SetPlainText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_SetPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_SetPlainText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -84102,7 +84102,7 @@ func (ptr *QTextEdit) SetPlainTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_SetPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_SetPlainTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -84149,7 +84149,7 @@ func (ptr *QTextEdit) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -84160,7 +84160,7 @@ func (ptr *QTextEdit) SetTextDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextEdit_SetTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTextEdit_SetTextDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -85065,7 +85065,7 @@ func (ptr *QToolBar) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -85086,7 +85086,7 @@ func (ptr *QToolBar) AddAction4(icon gui.QIcon_ITF, text string, receiver core.Q
 			memberC = C.CString(member)
 			defer C.free(unsafe.Pointer(memberC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC))
+		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -85102,7 +85102,7 @@ func (ptr *QToolBar) AddAction(text string) *QAction {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}))
+		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -85123,7 +85123,7 @@ func (ptr *QToolBar) AddAction3(text string, receiver core.QObject_ITF, member s
 			memberC = C.CString(member)
 			defer C.free(unsafe.Pointer(memberC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction3(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC))
+		var tmpValue = NewQActionFromPointer(C.QToolBar_AddAction3(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, core.PointerFromQObject(receiver), memberC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -85190,7 +85190,7 @@ func NewQToolBar(title string, parent QWidget_ITF) *QToolBar {
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	var tmpValue = NewQToolBarFromPointer(C.QToolBar_NewQToolBar(C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))}, PointerFromQWidget(parent)))
+	var tmpValue = NewQToolBarFromPointer(C.QToolBar_NewQToolBar(C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -85786,7 +85786,7 @@ func (ptr *QToolBox) AddItem2(w QWidget_ITF, text string) int {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QToolBox_AddItem2(ptr.Pointer(), PointerFromQWidget(w), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QToolBox_AddItem2(ptr.Pointer(), PointerFromQWidget(w), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -85798,7 +85798,7 @@ func (ptr *QToolBox) AddItem(widget QWidget_ITF, iconSet gui.QIcon_ITF, text str
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QToolBox_AddItem(ptr.Pointer(), PointerFromQWidget(widget), gui.PointerFromQIcon(iconSet), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QToolBox_AddItem(ptr.Pointer(), PointerFromQWidget(widget), gui.PointerFromQIcon(iconSet), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -85810,7 +85810,7 @@ func (ptr *QToolBox) InsertItem(index int, widget QWidget_ITF, icon gui.QIcon_IT
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QToolBox_InsertItem(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(widget), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QToolBox_InsertItem(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(widget), gui.PointerFromQIcon(icon), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -85822,7 +85822,7 @@ func (ptr *QToolBox) InsertItem2(index int, widget QWidget_ITF, text string) int
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		return int(int32(C.QToolBox_InsertItem2(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(widget), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})))
+		return int(int32(C.QToolBox_InsertItem2(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(widget), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})))
 	}
 	return 0
 }
@@ -86059,7 +86059,7 @@ func (ptr *QToolBox) SetItemText(index int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QToolBox_SetItemText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QToolBox_SetItemText(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -86070,7 +86070,7 @@ func (ptr *QToolBox) SetItemToolTip(index int, toolTip string) {
 			toolTipC = C.CString(toolTip)
 			defer C.free(unsafe.Pointer(toolTipC))
 		}
-		C.QToolBox_SetItemToolTip(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{toolTipC, C.longlong(len(toolTip))})
+		C.QToolBox_SetItemToolTip(ptr.Pointer(), C.int(int32(index)), C.struct_QtWidgets_PackedString{data: toolTipC, len: C.longlong(len(toolTip))})
 	}
 }
 
@@ -86623,7 +86623,7 @@ func QToolTip_ShowText2(pos core.QPoint_ITF, text string, w QWidget_ITF) {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w))
+	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w))
 }
 
 func (ptr *QToolTip) ShowText2(pos core.QPoint_ITF, text string, w QWidget_ITF) {
@@ -86632,7 +86632,7 @@ func (ptr *QToolTip) ShowText2(pos core.QPoint_ITF, text string, w QWidget_ITF) 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w))
+	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w))
 }
 
 func QToolTip_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF) {
@@ -86641,7 +86641,7 @@ func QToolTip_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, rect cor
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect))
+	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect))
 }
 
 func (ptr *QToolTip) ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF) {
@@ -86650,7 +86650,7 @@ func (ptr *QToolTip) ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, r
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect))
+	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect))
 }
 
 func QToolTip_ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF, msecDisplayTime int) {
@@ -86659,7 +86659,7 @@ func QToolTip_ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF, rect co
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(int32(msecDisplayTime)))
+	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(int32(msecDisplayTime)))
 }
 
 func (ptr *QToolTip) ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF, msecDisplayTime int) {
@@ -86668,7 +86668,7 @@ func (ptr *QToolTip) ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF, 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(int32(msecDisplayTime)))
+	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(int32(msecDisplayTime)))
 }
 
 type QTreeView struct {
@@ -89262,7 +89262,7 @@ func (ptr *QTreeWidget) SetHeaderLabel(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QTreeWidget_SetHeaderLabel(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})
+		C.QTreeWidget_SetHeaderLabel(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})
 	}
 }
 
@@ -89270,7 +89270,7 @@ func (ptr *QTreeWidget) SetHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QTreeWidget_SetHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QTreeWidget_SetHeaderLabels(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -89307,7 +89307,7 @@ func (ptr *QTreeWidget) FindItems(text string, flags core.Qt__MatchFlag, column 
 				out[i] = NewQTreeWidgetFromPointer(l.data).__findItems_atList(i)
 			}
 			return out
-		}(C.QTreeWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, C.longlong(flags), C.int(int32(column))))
+		}(C.QTreeWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags), C.int(int32(column))))
 	}
 	return make([]*QTreeWidgetItem, 0)
 }
@@ -89423,10 +89423,10 @@ func (ptr *QTreeWidget) VisualItemRect(item QTreeWidgetItem_ITF) *core.QRect {
 func callbackQTreeWidget_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "mimeTypes"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQTreeWidgetFromPointer(ptr).MimeTypesDefault()
-	return C.struct_QtWidgets_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QTreeWidget) ConnectMimeTypes(f func() []string) {
@@ -89803,7 +89803,7 @@ func NewQTreeWidgetItem5(parent QTreeWidget_ITF, preceding QTreeWidgetItem_ITF, 
 func NewQTreeWidgetItem4(parent QTreeWidget_ITF, strin []string, ty int) *QTreeWidgetItem {
 	var strinC = C.CString(strings.Join(strin, "|"))
 	defer C.free(unsafe.Pointer(strinC))
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem4(PointerFromQTreeWidget(parent), C.struct_QtWidgets_PackedString{strinC, C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
+	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem4(PointerFromQTreeWidget(parent), C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
 }
 
 func NewQTreeWidgetItem3(parent QTreeWidget_ITF, ty int) *QTreeWidgetItem {
@@ -89824,7 +89824,7 @@ func (ptr *QTreeWidgetItem) TakeChild(index int) *QTreeWidgetItem {
 func NewQTreeWidgetItem7(parent QTreeWidgetItem_ITF, strin []string, ty int) *QTreeWidgetItem {
 	var strinC = C.CString(strings.Join(strin, "|"))
 	defer C.free(unsafe.Pointer(strinC))
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem7(PointerFromQTreeWidgetItem(parent), C.struct_QtWidgets_PackedString{strinC, C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
+	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem7(PointerFromQTreeWidgetItem(parent), C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
 }
 
 func NewQTreeWidgetItem6(parent QTreeWidgetItem_ITF, ty int) *QTreeWidgetItem {
@@ -89834,7 +89834,7 @@ func NewQTreeWidgetItem6(parent QTreeWidgetItem_ITF, ty int) *QTreeWidgetItem {
 func NewQTreeWidgetItem2(strin []string, ty int) *QTreeWidgetItem {
 	var strinC = C.CString(strings.Join(strin, "|"))
 	defer C.free(unsafe.Pointer(strinC))
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem2(C.struct_QtWidgets_PackedString{strinC, C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
+	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem_NewQTreeWidgetItem2(C.struct_QtWidgets_PackedString{data: strinC, len: C.longlong(len(strings.Join(strin, "|")))}, C.int(int32(ty))))
 }
 
 func NewQTreeWidgetItem9(other QTreeWidgetItem_ITF) *QTreeWidgetItem {
@@ -90062,7 +90062,7 @@ func (ptr *QTreeWidgetItem) SetStatusTip(column int, statusTip string) {
 			statusTipC = C.CString(statusTip)
 			defer C.free(unsafe.Pointer(statusTipC))
 		}
-		C.QTreeWidgetItem_SetStatusTip(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{statusTipC, C.longlong(len(statusTip))})
+		C.QTreeWidgetItem_SetStatusTip(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{data: statusTipC, len: C.longlong(len(statusTip))})
 	}
 }
 
@@ -90073,7 +90073,7 @@ func (ptr *QTreeWidgetItem) SetText(column int, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTreeWidgetItem_SetText(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QTreeWidgetItem_SetText(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -90090,7 +90090,7 @@ func (ptr *QTreeWidgetItem) SetToolTip(column int, toolTip string) {
 			toolTipC = C.CString(toolTip)
 			defer C.free(unsafe.Pointer(toolTipC))
 		}
-		C.QTreeWidgetItem_SetToolTip(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{toolTipC, C.longlong(len(toolTip))})
+		C.QTreeWidgetItem_SetToolTip(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{data: toolTipC, len: C.longlong(len(toolTip))})
 	}
 }
 
@@ -90101,7 +90101,7 @@ func (ptr *QTreeWidgetItem) SetWhatsThis(column int, whatsThis string) {
 			whatsThisC = C.CString(whatsThis)
 			defer C.free(unsafe.Pointer(whatsThisC))
 		}
-		C.QTreeWidgetItem_SetWhatsThis(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{whatsThisC, C.longlong(len(whatsThis))})
+		C.QTreeWidgetItem_SetWhatsThis(ptr.Pointer(), C.int(int32(column)), C.struct_QtWidgets_PackedString{data: whatsThisC, len: C.longlong(len(whatsThis))})
 	}
 }
 
@@ -90643,7 +90643,7 @@ func NewQUndoCommand2(text string, parent QUndoCommand_ITF) *QUndoCommand {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQUndoCommandFromPointer(C.QUndoCommand_NewQUndoCommand2(C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQUndoCommand(parent)))
+	return NewQUndoCommandFromPointer(C.QUndoCommand_NewQUndoCommand2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQUndoCommand(parent)))
 }
 
 //export callbackQUndoCommand_MergeWith
@@ -90739,7 +90739,7 @@ func (ptr *QUndoCommand) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QUndoCommand_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QUndoCommand_SetText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -91230,7 +91230,7 @@ func (ptr *QUndoGroup) RedoTextChanged(redoText string) {
 			redoTextC = C.CString(redoText)
 			defer C.free(unsafe.Pointer(redoTextC))
 		}
-		C.QUndoGroup_RedoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{redoTextC, C.longlong(len(redoText))})
+		C.QUndoGroup_RedoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: redoTextC, len: C.longlong(len(redoText))})
 	}
 }
 
@@ -91364,7 +91364,7 @@ func (ptr *QUndoGroup) UndoTextChanged(undoText string) {
 			undoTextC = C.CString(undoText)
 			defer C.free(unsafe.Pointer(undoTextC))
 		}
-		C.QUndoGroup_UndoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{undoTextC, C.longlong(len(undoText))})
+		C.QUndoGroup_UndoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: undoTextC, len: C.longlong(len(undoText))})
 	}
 }
 
@@ -91383,7 +91383,7 @@ func (ptr *QUndoGroup) CreateRedoAction(parent core.QObject_ITF, prefix string) 
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QUndoGroup_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))}))
+		var tmpValue = NewQActionFromPointer(C.QUndoGroup_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -91399,7 +91399,7 @@ func (ptr *QUndoGroup) CreateUndoAction(parent core.QObject_ITF, prefix string) 
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QUndoGroup_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))}))
+		var tmpValue = NewQActionFromPointer(C.QUndoGroup_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -91800,7 +91800,7 @@ func (ptr *QUndoStack) BeginMacro(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QUndoStack_BeginMacro(ptr.Pointer(), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QUndoStack_BeginMacro(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -92060,7 +92060,7 @@ func (ptr *QUndoStack) RedoTextChanged(redoText string) {
 			redoTextC = C.CString(redoText)
 			defer C.free(unsafe.Pointer(redoTextC))
 		}
-		C.QUndoStack_RedoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{redoTextC, C.longlong(len(redoText))})
+		C.QUndoStack_RedoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: redoTextC, len: C.longlong(len(redoText))})
 	}
 }
 
@@ -92320,7 +92320,7 @@ func (ptr *QUndoStack) UndoTextChanged(undoText string) {
 			undoTextC = C.CString(undoText)
 			defer C.free(unsafe.Pointer(undoTextC))
 		}
-		C.QUndoStack_UndoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{undoTextC, C.longlong(len(undoText))})
+		C.QUndoStack_UndoTextChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: undoTextC, len: C.longlong(len(undoText))})
 	}
 }
 
@@ -92339,7 +92339,7 @@ func (ptr *QUndoStack) CreateRedoAction(parent core.QObject_ITF, prefix string) 
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QUndoStack_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))}))
+		var tmpValue = NewQActionFromPointer(C.QUndoStack_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -92355,7 +92355,7 @@ func (ptr *QUndoStack) CreateUndoAction(parent core.QObject_ITF, prefix string) 
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		var tmpValue = NewQActionFromPointer(C.QUndoStack_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{prefixC, C.longlong(len(prefix))}))
+		var tmpValue = NewQActionFromPointer(C.QUndoStack_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtWidgets_PackedString{data: prefixC, len: C.longlong(len(prefix))}))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -92782,7 +92782,7 @@ func (ptr *QUndoView) SetEmptyLabel(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QUndoView_SetEmptyLabel(ptr.Pointer(), C.struct_QtWidgets_PackedString{labelC, C.longlong(len(label))})
+		C.QUndoView_SetEmptyLabel(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))})
 	}
 }
 
@@ -93078,7 +93078,7 @@ func QWhatsThis_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF) {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w))
+	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w))
 }
 
 func (ptr *QWhatsThis) ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF) {
@@ -93087,7 +93087,7 @@ func (ptr *QWhatsThis) ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF)
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))}, PointerFromQWidget(w))
+	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(w))
 }
 
 type QWidget struct {
@@ -94805,7 +94805,7 @@ func (ptr *QWidget) SetAccessibleDescription(description string) {
 			descriptionC = C.CString(description)
 			defer C.free(unsafe.Pointer(descriptionC))
 		}
-		C.QWidget_SetAccessibleDescription(ptr.Pointer(), C.struct_QtWidgets_PackedString{descriptionC, C.longlong(len(description))})
+		C.QWidget_SetAccessibleDescription(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: descriptionC, len: C.longlong(len(description))})
 	}
 }
 
@@ -94816,7 +94816,7 @@ func (ptr *QWidget) SetAccessibleName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QWidget_SetAccessibleName(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))})
+		C.QWidget_SetAccessibleName(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -95271,7 +95271,7 @@ func (ptr *QWidget) SetStatusTip(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWidget_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWidget_SetStatusTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -95318,7 +95318,7 @@ func (ptr *QWidget) SetStyleSheet(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QWidget_SetStyleSheet(ptr.Pointer(), C.struct_QtWidgets_PackedString{styleSheetC, C.longlong(len(styleSheet))})
+		C.QWidget_SetStyleSheet(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: styleSheetC, len: C.longlong(len(styleSheet))})
 	}
 }
 
@@ -95329,7 +95329,7 @@ func (ptr *QWidget) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{styleSheetC, C.longlong(len(styleSheet))})
+		C.QWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: styleSheetC, len: C.longlong(len(styleSheet))})
 	}
 }
 
@@ -95348,7 +95348,7 @@ func (ptr *QWidget) SetToolTip(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWidget_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWidget_SetToolTip(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -95413,7 +95413,7 @@ func (ptr *QWidget) SetWhatsThis(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWidget_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWidget_SetWhatsThis(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -95424,7 +95424,7 @@ func (ptr *QWidget) SetWindowFilePath(filePath string) {
 			filePathC = C.CString(filePath)
 			defer C.free(unsafe.Pointer(filePathC))
 		}
-		C.QWidget_SetWindowFilePath(ptr.Pointer(), C.struct_QtWidgets_PackedString{filePathC, C.longlong(len(filePath))})
+		C.QWidget_SetWindowFilePath(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filePathC, len: C.longlong(len(filePath))})
 	}
 }
 
@@ -95447,7 +95447,7 @@ func (ptr *QWidget) SetWindowIconText(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWidget_SetWindowIconText(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWidget_SetWindowIconText(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -95512,7 +95512,7 @@ func (ptr *QWidget) SetWindowRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QWidget_SetWindowRole(ptr.Pointer(), C.struct_QtWidgets_PackedString{roleC, C.longlong(len(role))})
+		C.QWidget_SetWindowRole(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -95559,7 +95559,7 @@ func (ptr *QWidget) SetWindowTitle(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWidget_SetWindowTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWidget_SetWindowTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -95570,7 +95570,7 @@ func (ptr *QWidget) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -96133,7 +96133,7 @@ func (ptr *QWidget) WindowTitleChanged(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QWidget_WindowTitleChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QWidget_WindowTitleChanged(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -98944,7 +98944,7 @@ func (ptr *QWizard) SetButtonText(which QWizard__WizardButton, text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QWizard_SetButtonText(ptr.Pointer(), C.longlong(which), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QWizard_SetButtonText(ptr.Pointer(), C.longlong(which), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -98976,7 +98976,7 @@ func (ptr *QWizard) SetField(name string, value core.QVariant_ITF) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QWizard_SetField(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQVariant(value))
+		C.QWizard_SetField(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -99102,7 +99102,7 @@ func (ptr *QWizard) Field(name string) *core.QVariant {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QWizard_Field(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QWizard_Field(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -99506,7 +99506,7 @@ func (ptr *QWizardPage) RegisterField(name string, widget QWidget_ITF, property 
 			changedSignalC = C.CString(changedSignal)
 			defer C.free(unsafe.Pointer(changedSignalC))
 		}
-		C.QWizardPage_RegisterField(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))}, PointerFromQWidget(widget), propertyC, changedSignalC)
+		C.QWizardPage_RegisterField(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQWidget(widget), propertyC, changedSignalC)
 	}
 }
 
@@ -99517,7 +99517,7 @@ func (ptr *QWizardPage) SetButtonText(which QWizard__WizardButton, text string) 
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QWizardPage_SetButtonText(ptr.Pointer(), C.longlong(which), C.struct_QtWidgets_PackedString{textC, C.longlong(len(text))})
+		C.QWizardPage_SetButtonText(ptr.Pointer(), C.longlong(which), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -99534,7 +99534,7 @@ func (ptr *QWizardPage) SetField(name string, value core.QVariant_ITF) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QWizardPage_SetField(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQVariant(value))
+		C.QWizardPage_SetField(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -99557,7 +99557,7 @@ func (ptr *QWizardPage) SetSubTitle(subTitle string) {
 			subTitleC = C.CString(subTitle)
 			defer C.free(unsafe.Pointer(subTitleC))
 		}
-		C.QWizardPage_SetSubTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{subTitleC, C.longlong(len(subTitle))})
+		C.QWizardPage_SetSubTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: subTitleC, len: C.longlong(len(subTitle))})
 	}
 }
 
@@ -99568,7 +99568,7 @@ func (ptr *QWizardPage) SetTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QWizardPage_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{titleC, C.longlong(len(title))})
+		C.QWizardPage_SetTitle(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -99617,7 +99617,7 @@ func (ptr *QWizardPage) Field(name string) *core.QVariant {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QWizardPage_Field(ptr.Pointer(), C.struct_QtWidgets_PackedString{nameC, C.longlong(len(name))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QWizardPage_Field(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}

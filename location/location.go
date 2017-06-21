@@ -243,7 +243,7 @@ func (ptr *QGeoManeuver) SetInstructionText(instructionText string) {
 			instructionTextC = C.CString(instructionText)
 			defer C.free(unsafe.Pointer(instructionTextC))
 		}
-		C.QGeoManeuver_SetInstructionText(ptr.Pointer(), C.struct_QtLocation_PackedString{instructionTextC, C.longlong(len(instructionText))})
+		C.QGeoManeuver_SetInstructionText(ptr.Pointer(), C.struct_QtLocation_PackedString{data: instructionTextC, len: C.longlong(len(instructionText))})
 	}
 }
 
@@ -418,7 +418,7 @@ func (ptr *QGeoRoute) SetRouteId(id string) {
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		C.QGeoRoute_SetRouteId(ptr.Pointer(), C.struct_QtLocation_PackedString{idC, C.longlong(len(id))})
+		C.QGeoRoute_SetRouteId(ptr.Pointer(), C.struct_QtLocation_PackedString{data: idC, len: C.longlong(len(id))})
 	}
 }
 
@@ -606,7 +606,7 @@ func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent c
 		errorStringC = C.CString(errorString)
 		defer C.free(unsafe.Pointer(errorStringC))
 	}
-	var tmpValue = NewQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.longlong(error), C.struct_QtLocation_PackedString{errorStringC, C.longlong(len(errorString))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.longlong(error), C.struct_QtLocation_PackedString{data: errorStringC, len: C.longlong(len(errorString))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -715,7 +715,7 @@ func (ptr *QGeoRouteReply) Error2(error QGeoRouteReply__Error, errorString strin
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QGeoRouteReply_Error2(ptr.Pointer(), C.longlong(error), C.struct_QtLocation_PackedString{errorStringC, C.longlong(len(errorString))})
+		C.QGeoRouteReply_Error2(ptr.Pointer(), C.longlong(error), C.struct_QtLocation_PackedString{data: errorStringC, len: C.longlong(len(errorString))})
 	}
 }
 
@@ -765,7 +765,7 @@ func (ptr *QGeoRouteReply) SetError(error QGeoRouteReply__Error, errorString str
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QGeoRouteReply_SetError(ptr.Pointer(), C.longlong(error), C.struct_QtLocation_PackedString{errorStringC, C.longlong(len(errorString))})
+		C.QGeoRouteReply_SetError(ptr.Pointer(), C.longlong(error), C.struct_QtLocation_PackedString{data: errorStringC, len: C.longlong(len(errorString))})
 	}
 }
 
@@ -1837,7 +1837,7 @@ func (ptr *QGeoRoutingManager) Error(reply QGeoRouteReply_ITF, error QGeoRouteRe
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QGeoRoutingManager_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.longlong(error), C.struct_QtLocation_PackedString{errorStringC, C.longlong(len(errorString))})
+		C.QGeoRoutingManager_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.longlong(error), C.struct_QtLocation_PackedString{data: errorStringC, len: C.longlong(len(errorString))})
 	}
 }
 
@@ -2417,7 +2417,7 @@ func (ptr *QGeoRoutingManagerEngine) Error(reply QGeoRouteReply_ITF, error QGeoR
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QGeoRoutingManagerEngine_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.longlong(error), C.struct_QtLocation_PackedString{errorStringC, C.longlong(len(errorString))})
+		C.QGeoRoutingManagerEngine_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.longlong(error), C.struct_QtLocation_PackedString{data: errorStringC, len: C.longlong(len(errorString))})
 	}
 }
 
@@ -2633,7 +2633,7 @@ func (ptr *QGeoRoutingManagerEngine) __QGeoRoutingManagerEngine_parameters_atLis
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2647,7 +2647,7 @@ func (ptr *QGeoRoutingManagerEngine) __QGeoRoutingManagerEngine_parameters_setLi
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -2682,7 +2682,7 @@ func (ptr *QGeoRoutingManagerEngine) ____QGeoRoutingManagerEngine_keyList_setLis
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))})
+		C.QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -3066,7 +3066,7 @@ func NewQGeoServiceProvider(providerName string, parameters map[string]*core.QVa
 		providerNameC = C.CString(providerName)
 		defer C.free(unsafe.Pointer(providerNameC))
 	}
-	var tmpValue = NewQGeoServiceProviderFromPointer(C.QGeoServiceProvider_NewQGeoServiceProvider(C.struct_QtLocation_PackedString{providerNameC, C.longlong(len(providerName))}, func() unsafe.Pointer {
+	var tmpValue = NewQGeoServiceProviderFromPointer(C.QGeoServiceProvider_NewQGeoServiceProvider(C.struct_QtLocation_PackedString{data: providerNameC, len: C.longlong(len(providerName))}, func() unsafe.Pointer {
 		var tmpList = NewQGeoServiceProviderFromPointer(NewQGeoServiceProviderFromPointer(nil).__QGeoServiceProvider_parameters_newList())
 		for k, v := range parameters {
 			tmpList.__QGeoServiceProvider_parameters_setList(k, v)
@@ -3201,7 +3201,7 @@ func (ptr *QGeoServiceProvider) __QGeoServiceProvider_parameters_atList(i string
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProvider___QGeoServiceProvider_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProvider___QGeoServiceProvider_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3215,7 +3215,7 @@ func (ptr *QGeoServiceProvider) __QGeoServiceProvider_parameters_setList(key str
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoServiceProvider___QGeoServiceProvider_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoServiceProvider___QGeoServiceProvider_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -3243,7 +3243,7 @@ func (ptr *QGeoServiceProvider) __setParameters_parameters_atList(i string) *cor
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProvider___setParameters_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProvider___setParameters_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3257,7 +3257,7 @@ func (ptr *QGeoServiceProvider) __setParameters_parameters_setList(key string, i
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoServiceProvider___setParameters_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoServiceProvider___setParameters_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -3292,7 +3292,7 @@ func (ptr *QGeoServiceProvider) ____QGeoServiceProvider_keyList_setList(i string
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoServiceProvider_____QGeoServiceProvider_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))})
+		C.QGeoServiceProvider_____QGeoServiceProvider_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -3314,7 +3314,7 @@ func (ptr *QGeoServiceProvider) ____setParameters_keyList_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoServiceProvider_____setParameters_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))})
+		C.QGeoServiceProvider_____setParameters_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -3672,7 +3672,7 @@ func (ptr *QGeoServiceProviderFactory) __createGeocodingManagerEngine_parameters
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3686,7 +3686,7 @@ func (ptr *QGeoServiceProviderFactory) __createGeocodingManagerEngine_parameters
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -3714,7 +3714,7 @@ func (ptr *QGeoServiceProviderFactory) __createMappingManagerEngine_parameters_a
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createMappingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createMappingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3728,7 +3728,7 @@ func (ptr *QGeoServiceProviderFactory) __createMappingManagerEngine_parameters_s
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoServiceProviderFactory___createMappingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoServiceProviderFactory___createMappingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -3756,7 +3756,7 @@ func (ptr *QGeoServiceProviderFactory) __createRoutingManagerEngine_parameters_a
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3770,7 +3770,7 @@ func (ptr *QGeoServiceProviderFactory) __createRoutingManagerEngine_parameters_s
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -3798,7 +3798,7 @@ func (ptr *QGeoServiceProviderFactory) __createPlaceManagerEngine_parameters_atL
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_atList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3812,7 +3812,7 @@ func (ptr *QGeoServiceProviderFactory) __createPlaceManagerEngine_parameters_set
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -3847,7 +3847,7 @@ func (ptr *QGeoServiceProviderFactory) ____createGeocodingManagerEngine_keyList_
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))})
+		C.QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -3869,7 +3869,7 @@ func (ptr *QGeoServiceProviderFactory) ____createMappingManagerEngine_keyList_se
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))})
+		C.QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -3891,7 +3891,7 @@ func (ptr *QGeoServiceProviderFactory) ____createRoutingManagerEngine_keyList_se
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))})
+		C.QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -3913,7 +3913,7 @@ func (ptr *QGeoServiceProviderFactory) ____createPlaceManagerEngine_keyList_setL
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoServiceProviderFactory_____createPlaceManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{iC, C.longlong(len(i))})
+		C.QGeoServiceProviderFactory_____createPlaceManagerEngine_keyList_setList(ptr.Pointer(), C.struct_QtLocation_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 

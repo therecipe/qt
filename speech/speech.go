@@ -95,7 +95,7 @@ func NewQTextToSpeech2(engine string, parent core.QObject_ITF) *QTextToSpeech {
 		engineC = C.CString(engine)
 		defer C.free(unsafe.Pointer(engineC))
 	}
-	var tmpValue = NewQTextToSpeechFromPointer(C.QTextToSpeech_NewQTextToSpeech2(C.struct_QtSpeech_PackedString{engineC, C.longlong(len(engine))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQTextToSpeechFromPointer(C.QTextToSpeech_NewQTextToSpeech2(C.struct_QtSpeech_PackedString{data: engineC, len: C.longlong(len(engine))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -340,7 +340,7 @@ func (ptr *QTextToSpeech) Say(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextToSpeech_Say(ptr.Pointer(), C.struct_QtSpeech_PackedString{textC, C.longlong(len(text))})
+		C.QTextToSpeech_Say(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -351,7 +351,7 @@ func (ptr *QTextToSpeech) SayDefault(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QTextToSpeech_SayDefault(ptr.Pointer(), C.struct_QtSpeech_PackedString{textC, C.longlong(len(text))})
+		C.QTextToSpeech_SayDefault(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -1066,7 +1066,7 @@ func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_atList(i s
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(ptr.Pointer(), C.struct_QtSpeech_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -1080,7 +1080,7 @@ func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_setList(ke
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(ptr.Pointer(), C.struct_QtSpeech_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -1115,7 +1115,7 @@ func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_setList(i s
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(ptr.Pointer(), C.struct_QtSpeech_PackedString{iC, C.longlong(len(i))})
+		C.QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 

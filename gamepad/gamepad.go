@@ -1044,7 +1044,7 @@ func (ptr *QGamepad) NameChanged(value string) {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		C.QGamepad_NameChanged(ptr.Pointer(), C.struct_QtGamepad_PackedString{valueC, C.longlong(len(value))})
+		C.QGamepad_NameChanged(ptr.Pointer(), C.struct_QtGamepad_PackedString{data: valueC, len: C.longlong(len(value))})
 	}
 }
 

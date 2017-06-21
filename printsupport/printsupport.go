@@ -1113,7 +1113,7 @@ func (ptr *QAbstractPrintDialog) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QAbstractPrintDialog_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{styleSheetC, C.longlong(len(styleSheet))})
+		C.QAbstractPrintDialog_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: styleSheetC, len: C.longlong(len(styleSheet))})
 	}
 }
 
@@ -1148,7 +1148,7 @@ func (ptr *QAbstractPrintDialog) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QAbstractPrintDialog_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QAbstractPrintDialog_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -2519,7 +2519,7 @@ func (ptr *QPageSetupDialog) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QPageSetupDialog_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{styleSheetC, C.longlong(len(styleSheet))})
+		C.QPageSetupDialog_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: styleSheetC, len: C.longlong(len(styleSheet))})
 	}
 }
 
@@ -2554,7 +2554,7 @@ func (ptr *QPageSetupDialog) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QPageSetupDialog_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QPageSetupDialog_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -4620,7 +4620,7 @@ func (ptr *QPrintPreviewDialog) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QPrintPreviewDialog_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{styleSheetC, C.longlong(len(styleSheet))})
+		C.QPrintPreviewDialog_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: styleSheetC, len: C.longlong(len(styleSheet))})
 	}
 }
 
@@ -4655,7 +4655,7 @@ func (ptr *QPrintPreviewDialog) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QPrintPreviewDialog_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QPrintPreviewDialog_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -6652,7 +6652,7 @@ func (ptr *QPrintPreviewWidget) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QPrintPreviewWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{styleSheetC, C.longlong(len(styleSheet))})
+		C.QPrintPreviewWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: styleSheetC, len: C.longlong(len(styleSheet))})
 	}
 }
 
@@ -6687,7 +6687,7 @@ func (ptr *QPrintPreviewWidget) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QPrintPreviewWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QPrintPreviewWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -7489,7 +7489,7 @@ func (ptr *QPrinter) SetCreator(creator string) {
 			creatorC = C.CString(creator)
 			defer C.free(unsafe.Pointer(creatorC))
 		}
-		C.QPrinter_SetCreator(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{creatorC, C.longlong(len(creator))})
+		C.QPrinter_SetCreator(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: creatorC, len: C.longlong(len(creator))})
 	}
 }
 
@@ -7500,7 +7500,7 @@ func (ptr *QPrinter) SetDocName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QPrinter_SetDocName(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{nameC, C.longlong(len(name))})
+		C.QPrinter_SetDocName(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -7541,7 +7541,7 @@ func (ptr *QPrinter) SetOutputFileName(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QPrinter_SetOutputFileName(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{fileNameC, C.longlong(len(fileName))})
+		C.QPrinter_SetOutputFileName(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
 	}
 }
 
@@ -7570,7 +7570,7 @@ func (ptr *QPrinter) SetPrintProgram(printProg string) {
 			printProgC = C.CString(printProg)
 			defer C.free(unsafe.Pointer(printProgC))
 		}
-		C.QPrinter_SetPrintProgram(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{printProgC, C.longlong(len(printProg))})
+		C.QPrinter_SetPrintProgram(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: printProgC, len: C.longlong(len(printProg))})
 	}
 }
 
@@ -7587,7 +7587,7 @@ func (ptr *QPrinter) SetPrinterName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QPrinter_SetPrinterName(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{nameC, C.longlong(len(name))})
+		C.QPrinter_SetPrinterName(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -7598,7 +7598,7 @@ func (ptr *QPrinter) SetPrinterSelectionOption(option string) {
 			optionC = C.CString(option)
 			defer C.free(unsafe.Pointer(optionC))
 		}
-		C.QPrinter_SetPrinterSelectionOption(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{optionC, C.longlong(len(option))})
+		C.QPrinter_SetPrinterSelectionOption(ptr.Pointer(), C.struct_QtPrintSupport_PackedString{data: optionC, len: C.longlong(len(option))})
 	}
 }
 
@@ -7990,7 +7990,7 @@ func QPrinterInfo_PrinterInfo(printerName string) *QPrinterInfo {
 		printerNameC = C.CString(printerName)
 		defer C.free(unsafe.Pointer(printerNameC))
 	}
-	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{printerNameC, C.longlong(len(printerName))}))
+	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{data: printerNameC, len: C.longlong(len(printerName))}))
 	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }
@@ -8001,7 +8001,7 @@ func (ptr *QPrinterInfo) PrinterInfo(printerName string) *QPrinterInfo {
 		printerNameC = C.CString(printerName)
 		defer C.free(unsafe.Pointer(printerNameC))
 	}
-	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{printerNameC, C.longlong(len(printerName))}))
+	var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_QPrinterInfo_PrinterInfo(C.struct_QtPrintSupport_PackedString{data: printerNameC, len: C.longlong(len(printerName))}))
 	runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
 	return tmpValue
 }

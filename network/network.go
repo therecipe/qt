@@ -1297,7 +1297,7 @@ func (ptr *QAbstractSocket) ConnectToHost(hostName string, port uint16, openMode
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QAbstractSocket_ConnectToHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}, C.ushort(port), C.longlong(openMode), C.longlong(protocol))
+		C.QAbstractSocket_ConnectToHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.longlong(openMode), C.longlong(protocol))
 	}
 }
 
@@ -1308,7 +1308,7 @@ func (ptr *QAbstractSocket) ConnectToHostDefault(hostName string, port uint16, o
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QAbstractSocket_ConnectToHostDefault(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}, C.ushort(port), C.longlong(openMode), C.longlong(protocol))
+		C.QAbstractSocket_ConnectToHostDefault(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.longlong(openMode), C.longlong(protocol))
 	}
 }
 
@@ -1622,7 +1622,7 @@ func (ptr *QAbstractSocket) SetPeerName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAbstractSocket_SetPeerName(ptr.Pointer(), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))})
+		C.QAbstractSocket_SetPeerName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -2432,7 +2432,7 @@ func (ptr *QAuthenticator) SetOption(opt string, value core.QVariant_ITF) {
 			optC = C.CString(opt)
 			defer C.free(unsafe.Pointer(optC))
 		}
-		C.QAuthenticator_SetOption(ptr.Pointer(), C.struct_QtNetwork_PackedString{optC, C.longlong(len(opt))}, core.PointerFromQVariant(value))
+		C.QAuthenticator_SetOption(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: optC, len: C.longlong(len(opt))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -2443,7 +2443,7 @@ func (ptr *QAuthenticator) SetPassword(password string) {
 			passwordC = C.CString(password)
 			defer C.free(unsafe.Pointer(passwordC))
 		}
-		C.QAuthenticator_SetPassword(ptr.Pointer(), C.struct_QtNetwork_PackedString{passwordC, C.longlong(len(password))})
+		C.QAuthenticator_SetPassword(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: passwordC, len: C.longlong(len(password))})
 	}
 }
 
@@ -2454,7 +2454,7 @@ func (ptr *QAuthenticator) SetUser(user string) {
 			userC = C.CString(user)
 			defer C.free(unsafe.Pointer(userC))
 		}
-		C.QAuthenticator_SetUser(ptr.Pointer(), C.struct_QtNetwork_PackedString{userC, C.longlong(len(user))})
+		C.QAuthenticator_SetUser(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: userC, len: C.longlong(len(user))})
 	}
 }
 
@@ -2494,7 +2494,7 @@ func (ptr *QAuthenticator) Option(opt string) *core.QVariant {
 			optC = C.CString(opt)
 			defer C.free(unsafe.Pointer(optC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QAuthenticator_Option(ptr.Pointer(), C.struct_QtNetwork_PackedString{optC, C.longlong(len(opt))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QAuthenticator_Option(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: optC, len: C.longlong(len(opt))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2528,7 +2528,7 @@ func (ptr *QAuthenticator) __options_atList(i string) *core.QVariant {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QAuthenticator___options_atList(ptr.Pointer(), C.struct_QtNetwork_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QAuthenticator___options_atList(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2542,7 +2542,7 @@ func (ptr *QAuthenticator) __options_setList(key string, i core.QVariant_ITF) {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QAuthenticator___options_setList(ptr.Pointer(), C.struct_QtNetwork_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QAuthenticator___options_setList(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -2577,7 +2577,7 @@ func (ptr *QAuthenticator) ____options_keyList_setList(i string) {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QAuthenticator_____options_keyList_setList(ptr.Pointer(), C.struct_QtNetwork_PackedString{iC, C.longlong(len(i))})
+		C.QAuthenticator_____options_keyList_setList(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -2839,7 +2839,7 @@ func NewQDnsLookup2(ty QDnsLookup__Type, name string, parent core.QObject_ITF) *
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.longlong(ty), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.longlong(ty), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -2852,7 +2852,7 @@ func NewQDnsLookup3(ty QDnsLookup__Type, name string, nameserver QHostAddress_IT
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.longlong(ty), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}, PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
+	var tmpValue = NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.longlong(ty), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -3022,7 +3022,7 @@ func (ptr *QDnsLookup) NameChanged(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QDnsLookup_NameChanged(ptr.Pointer(), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))})
+		C.QDnsLookup_NameChanged(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -3072,7 +3072,7 @@ func (ptr *QDnsLookup) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QDnsLookup_SetName(ptr.Pointer(), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))})
+		C.QDnsLookup_SetName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -4056,7 +4056,7 @@ func NewQHostAddress7(address string) *QHostAddress {
 		addressC = C.CString(address)
 		defer C.free(unsafe.Pointer(addressC))
 	}
-	var tmpValue = NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.struct_QtNetwork_PackedString{addressC, C.longlong(len(address))}))
+	var tmpValue = NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.struct_QtNetwork_PackedString{data: addressC, len: C.longlong(len(address))}))
 	runtime.SetFinalizer(tmpValue, (*QHostAddress).DestroyQHostAddress)
 	return tmpValue
 }
@@ -4096,7 +4096,7 @@ func (ptr *QHostAddress) SetAddress6(address string) bool {
 			addressC = C.CString(address)
 			defer C.free(unsafe.Pointer(addressC))
 		}
-		return C.QHostAddress_SetAddress6(ptr.Pointer(), C.struct_QtNetwork_PackedString{addressC, C.longlong(len(address))}) != 0
+		return C.QHostAddress_SetAddress6(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: addressC, len: C.longlong(len(address))}) != 0
 	}
 	return false
 }
@@ -4148,7 +4148,7 @@ func (ptr *QHostAddress) SetScopeId(id string) {
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		C.QHostAddress_SetScopeId(ptr.Pointer(), C.struct_QtNetwork_PackedString{idC, C.longlong(len(id))})
+		C.QHostAddress_SetScopeId(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: idC, len: C.longlong(len(id))})
 	}
 }
 
@@ -4290,7 +4290,7 @@ func QHostInfo_FromName(name string) *QHostInfo {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
 	return tmpValue
 }
@@ -4301,7 +4301,7 @@ func (ptr *QHostInfo) FromName(name string) *QHostInfo {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQHostInfoFromPointer(C.QHostInfo_QHostInfo_FromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QHostInfo).DestroyQHostInfo)
 	return tmpValue
 }
@@ -4345,7 +4345,7 @@ func QHostInfo_LookupHost(name string, receiver core.QObject_ITF, member string)
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return int(int32(C.QHostInfo_QHostInfo_LookupHost(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQObject(receiver), memberC)))
+	return int(int32(C.QHostInfo_QHostInfo_LookupHost(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), memberC)))
 }
 
 func (ptr *QHostInfo) LookupHost(name string, receiver core.QObject_ITF, member string) int {
@@ -4359,7 +4359,7 @@ func (ptr *QHostInfo) LookupHost(name string, receiver core.QObject_ITF, member 
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return int(int32(C.QHostInfo_QHostInfo_LookupHost(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}, core.PointerFromQObject(receiver), memberC)))
+	return int(int32(C.QHostInfo_QHostInfo_LookupHost(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), memberC)))
 }
 
 func QHostInfo_AbortHostLookup(id int) {
@@ -4395,7 +4395,7 @@ func (ptr *QHostInfo) SetErrorString(str string) {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		C.QHostInfo_SetErrorString(ptr.Pointer(), C.struct_QtNetwork_PackedString{strC, C.longlong(len(str))})
+		C.QHostInfo_SetErrorString(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: strC, len: C.longlong(len(str))})
 	}
 }
 
@@ -4406,7 +4406,7 @@ func (ptr *QHostInfo) SetHostName(hostName string) {
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QHostInfo_SetHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))})
+		C.QHostInfo_SetHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))})
 	}
 }
 
@@ -5068,7 +5068,7 @@ func (ptr *QLocalServer) Listen(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QLocalServer_Listen(ptr.Pointer(), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}) != 0
+		return C.QLocalServer_Listen(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
 }
@@ -5079,7 +5079,7 @@ func QLocalServer_RemoveServer(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QLocalServer) RemoveServer(name string) bool {
@@ -5088,7 +5088,7 @@ func (ptr *QLocalServer) RemoveServer(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}) != 0
+	return C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 }
 
 func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut bool) bool {
@@ -5855,7 +5855,7 @@ func (ptr *QLocalSocket) ConnectToServer2(name string, openMode core.QIODevice__
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QLocalSocket_ConnectToServer2(ptr.Pointer(), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}, C.longlong(openMode))
+		C.QLocalSocket_ConnectToServer2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(openMode))
 	}
 }
 
@@ -5995,7 +5995,7 @@ func (ptr *QLocalSocket) SetServerName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QLocalSocket_SetServerName(ptr.Pointer(), C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))})
+		C.QLocalSocket_SetServerName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -6867,7 +6867,7 @@ func (ptr *QNetworkAccessManager) ConnectToHost(hostName string, port uint16) {
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QNetworkAccessManager_ConnectToHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}, C.ushort(port))
+		C.QNetworkAccessManager_ConnectToHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port))
 	}
 }
 
@@ -6878,7 +6878,7 @@ func (ptr *QNetworkAccessManager) ConnectToHostEncrypted(hostName string, port u
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QNetworkAccessManager_ConnectToHostEncrypted(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}, C.ushort(port), PointerFromQSslConfiguration(sslConfiguration))
+		C.QNetworkAccessManager_ConnectToHostEncrypted(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), PointerFromQSslConfiguration(sslConfiguration))
 	}
 }
 
@@ -7246,10 +7246,10 @@ func (ptr *QNetworkAccessManager) SupportedSchemes() []string {
 func callbackQNetworkAccessManager_SupportedSchemesImplementation(ptr unsafe.Pointer) C.struct_QtNetwork_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "supportedSchemesImplementation"); signal != nil {
 		tempVal := signal.(func() []string)()
-		return C.struct_QtNetwork_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+		return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 	}
 	tempVal := NewQNetworkAccessManagerFromPointer(ptr).SupportedSchemesImplementationDefault()
-	return C.struct_QtNetwork_PackedString{C.CString(strings.Join(tempVal, "|")), C.longlong(len(strings.Join(tempVal, "|")))}
+	return C.struct_QtNetwork_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
 }
 
 func (ptr *QNetworkAccessManager) ConnectSupportedSchemesImplementation(f func() []string) {
@@ -8397,7 +8397,7 @@ func (ptr *QNetworkConfigurationManager) ConfigurationFromIdentifier(identifier 
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		var tmpValue = NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager_ConfigurationFromIdentifier(ptr.Pointer(), C.struct_QtNetwork_PackedString{identifierC, C.longlong(len(identifier))}))
+		var tmpValue = NewQNetworkConfigurationFromPointer(C.QNetworkConfigurationManager_ConfigurationFromIdentifier(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: identifierC, len: C.longlong(len(identifier))}))
 		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
 		return tmpValue
 	}
@@ -8797,7 +8797,7 @@ func (ptr *QNetworkCookie) SetDomain(domain string) {
 			domainC = C.CString(domain)
 			defer C.free(unsafe.Pointer(domainC))
 		}
-		C.QNetworkCookie_SetDomain(ptr.Pointer(), C.struct_QtNetwork_PackedString{domainC, C.longlong(len(domain))})
+		C.QNetworkCookie_SetDomain(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: domainC, len: C.longlong(len(domain))})
 	}
 }
 
@@ -8826,7 +8826,7 @@ func (ptr *QNetworkCookie) SetPath(path string) {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QNetworkCookie_SetPath(ptr.Pointer(), C.struct_QtNetwork_PackedString{pathC, C.longlong(len(path))})
+		C.QNetworkCookie_SetPath(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))})
 	}
 }
 
@@ -10284,7 +10284,7 @@ func (ptr *QNetworkDiskCache) SetCacheDirectory(cacheDir string) {
 			cacheDirC = C.CString(cacheDir)
 			defer C.free(unsafe.Pointer(cacheDirC))
 		}
-		C.QNetworkDiskCache_SetCacheDirectory(ptr.Pointer(), C.struct_QtNetwork_PackedString{cacheDirC, C.longlong(len(cacheDir))})
+		C.QNetworkDiskCache_SetCacheDirectory(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: cacheDirC, len: C.longlong(len(cacheDir))})
 	}
 }
 
@@ -10351,7 +10351,7 @@ func (ptr *QNetworkDiskCache) FileMetaData(fileName string) *QNetworkCacheMetaDa
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		var tmpValue = NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_FileMetaData(ptr.Pointer(), C.struct_QtNetwork_PackedString{fileNameC, C.longlong(len(fileName))}))
+		var tmpValue = NewQNetworkCacheMetaDataFromPointer(C.QNetworkDiskCache_FileMetaData(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
 		runtime.SetFinalizer(tmpValue, (*QNetworkCacheMetaData).DestroyQNetworkCacheMetaData)
 		return tmpValue
 	}
@@ -10525,7 +10525,7 @@ func QNetworkInterface_InterfaceFromName(name string) *QNetworkInterface {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
@@ -10536,7 +10536,7 @@ func (ptr *QNetworkInterface) InterfaceFromName(name string) *QNetworkInterface 
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QNetworkInterface).DestroyQNetworkInterface)
 	return tmpValue
 }
@@ -10567,7 +10567,7 @@ func QNetworkInterface_InterfaceIndexFromName(name string) int {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return int(int32(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))})))
+	return int(int32(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})))
 }
 
 func (ptr *QNetworkInterface) InterfaceIndexFromName(name string) int {
@@ -10576,7 +10576,7 @@ func (ptr *QNetworkInterface) InterfaceIndexFromName(name string) int {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return int(int32(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))})))
+	return int(int32(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})))
 }
 
 func (ptr *QNetworkInterface) Swap(other QNetworkInterface_ITF) {
@@ -10804,7 +10804,7 @@ func NewQNetworkProxy2(ty QNetworkProxy__ProxyType, hostName string, port uint16
 		passwordC = C.CString(password)
 		defer C.free(unsafe.Pointer(passwordC))
 	}
-	var tmpValue = NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy2(C.longlong(ty), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}, C.ushort(port), C.struct_QtNetwork_PackedString{userC, C.longlong(len(user))}, C.struct_QtNetwork_PackedString{passwordC, C.longlong(len(password))}))
+	var tmpValue = NewQNetworkProxyFromPointer(C.QNetworkProxy_NewQNetworkProxy2(C.longlong(ty), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.struct_QtNetwork_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtNetwork_PackedString{data: passwordC, len: C.longlong(len(password))}))
 	runtime.SetFinalizer(tmpValue, (*QNetworkProxy).DestroyQNetworkProxy)
 	return tmpValue
 }
@@ -10842,7 +10842,7 @@ func (ptr *QNetworkProxy) SetHostName(hostName string) {
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QNetworkProxy_SetHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))})
+		C.QNetworkProxy_SetHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))})
 	}
 }
 
@@ -10853,7 +10853,7 @@ func (ptr *QNetworkProxy) SetPassword(password string) {
 			passwordC = C.CString(password)
 			defer C.free(unsafe.Pointer(passwordC))
 		}
-		C.QNetworkProxy_SetPassword(ptr.Pointer(), C.struct_QtNetwork_PackedString{passwordC, C.longlong(len(password))})
+		C.QNetworkProxy_SetPassword(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: passwordC, len: C.longlong(len(password))})
 	}
 }
 
@@ -10882,7 +10882,7 @@ func (ptr *QNetworkProxy) SetUser(user string) {
 			userC = C.CString(user)
 			defer C.free(unsafe.Pointer(userC))
 		}
-		C.QNetworkProxy_SetUser(ptr.Pointer(), C.struct_QtNetwork_PackedString{userC, C.longlong(len(user))})
+		C.QNetworkProxy_SetUser(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: userC, len: C.longlong(len(user))})
 	}
 }
 
@@ -11344,7 +11344,7 @@ func NewQNetworkProxyQuery6(networkConfiguration QNetworkConfiguration_ITF, host
 		protocolTagC = C.CString(protocolTag)
 		defer C.free(unsafe.Pointer(protocolTagC))
 	}
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery6(PointerFromQNetworkConfiguration(networkConfiguration), C.struct_QtNetwork_PackedString{hostnameC, C.longlong(len(hostname))}, C.int(int32(port)), C.struct_QtNetwork_PackedString{protocolTagC, C.longlong(len(protocolTag))}, C.longlong(queryType)))
+	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery6(PointerFromQNetworkConfiguration(networkConfiguration), C.struct_QtNetwork_PackedString{data: hostnameC, len: C.longlong(len(hostname))}, C.int(int32(port)), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
 	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
@@ -11361,7 +11361,7 @@ func NewQNetworkProxyQuery7(networkConfiguration QNetworkConfiguration_ITF, bind
 		protocolTagC = C.CString(protocolTag)
 		defer C.free(unsafe.Pointer(protocolTagC))
 	}
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery7(PointerFromQNetworkConfiguration(networkConfiguration), C.ushort(bindPort), C.struct_QtNetwork_PackedString{protocolTagC, C.longlong(len(protocolTag))}, C.longlong(queryType)))
+	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery7(PointerFromQNetworkConfiguration(networkConfiguration), C.ushort(bindPort), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
 	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
@@ -11383,7 +11383,7 @@ func NewQNetworkProxyQuery3(hostname string, port int, protocolTag string, query
 		protocolTagC = C.CString(protocolTag)
 		defer C.free(unsafe.Pointer(protocolTagC))
 	}
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery3(C.struct_QtNetwork_PackedString{hostnameC, C.longlong(len(hostname))}, C.int(int32(port)), C.struct_QtNetwork_PackedString{protocolTagC, C.longlong(len(protocolTag))}, C.longlong(queryType)))
+	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery3(C.struct_QtNetwork_PackedString{data: hostnameC, len: C.longlong(len(hostname))}, C.int(int32(port)), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
 	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
@@ -11400,7 +11400,7 @@ func NewQNetworkProxyQuery4(bindPort uint16, protocolTag string, queryType QNetw
 		protocolTagC = C.CString(protocolTag)
 		defer C.free(unsafe.Pointer(protocolTagC))
 	}
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery4(C.ushort(bindPort), C.struct_QtNetwork_PackedString{protocolTagC, C.longlong(len(protocolTag))}, C.longlong(queryType)))
+	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery4(C.ushort(bindPort), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
 	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
@@ -11424,7 +11424,7 @@ func (ptr *QNetworkProxyQuery) SetPeerHostName(hostname string) {
 			hostnameC = C.CString(hostname)
 			defer C.free(unsafe.Pointer(hostnameC))
 		}
-		C.QNetworkProxyQuery_SetPeerHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostnameC, C.longlong(len(hostname))})
+		C.QNetworkProxyQuery_SetPeerHostName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostnameC, len: C.longlong(len(hostname))})
 	}
 }
 
@@ -11441,7 +11441,7 @@ func (ptr *QNetworkProxyQuery) SetProtocolTag(protocolTag string) {
 			protocolTagC = C.CString(protocolTag)
 			defer C.free(unsafe.Pointer(protocolTagC))
 		}
-		C.QNetworkProxyQuery_SetProtocolTag(ptr.Pointer(), C.struct_QtNetwork_PackedString{protocolTagC, C.longlong(len(protocolTag))})
+		C.QNetworkProxyQuery_SetProtocolTag(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))})
 	}
 }
 
@@ -12068,7 +12068,7 @@ func (ptr *QNetworkReply) SetError(errorCode QNetworkReply__NetworkError, errorS
 			errorStringC = C.CString(errorString)
 			defer C.free(unsafe.Pointer(errorStringC))
 		}
-		C.QNetworkReply_SetError(ptr.Pointer(), C.longlong(errorCode), C.struct_QtNetwork_PackedString{errorStringC, C.longlong(len(errorString))})
+		C.QNetworkReply_SetError(ptr.Pointer(), C.longlong(errorCode), C.struct_QtNetwork_PackedString{data: errorStringC, len: C.longlong(len(errorString))})
 	}
 }
 
@@ -13974,7 +13974,7 @@ func (ptr *QNetworkSession) SetSessionProperty(key string, value core.QVariant_I
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QNetworkSession_SetSessionProperty(ptr.Pointer(), C.struct_QtNetwork_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(value))
+		C.QNetworkSession_SetSessionProperty(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(value))
 	}
 }
 
@@ -14183,7 +14183,7 @@ func (ptr *QNetworkSession) SessionProperty(key string) *core.QVariant {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QNetworkSession_SessionProperty(ptr.Pointer(), C.struct_QtNetwork_PackedString{keyC, C.longlong(len(key))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QNetworkSession_SessionProperty(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: keyC, len: C.longlong(len(key))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -14794,7 +14794,7 @@ func QSslCertificate_FromPath(path string, format QSsl__EncodingFormat, syntax c
 			out[i] = NewQSslCertificateFromPointer(l.data).__fromPath_atList(i)
 		}
 		return out
-	}(C.QSslCertificate_QSslCertificate_FromPath(C.struct_QtNetwork_PackedString{pathC, C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)))
+	}(C.QSslCertificate_QSslCertificate_FromPath(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)))
 }
 
 func (ptr *QSslCertificate) FromPath(path string, format QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) []*QSslCertificate {
@@ -14809,7 +14809,7 @@ func (ptr *QSslCertificate) FromPath(path string, format QSsl__EncodingFormat, s
 			out[i] = NewQSslCertificateFromPointer(l.data).__fromPath_atList(i)
 		}
 		return out
-	}(C.QSslCertificate_QSslCertificate_FromPath(C.struct_QtNetwork_PackedString{pathC, C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)))
+	}(C.QSslCertificate_QSslCertificate_FromPath(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)))
 }
 
 func QSslCertificate_Verify(certificateChain []*QSslCertificate, hostName string) []*QSslError {
@@ -14830,7 +14830,7 @@ func QSslCertificate_Verify(certificateChain []*QSslCertificate, hostName string
 			tmpList.__verify_certificateChain_setList(v)
 		}
 		return tmpList.Pointer()
-	}(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}))
+	}(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}))
 }
 
 func (ptr *QSslCertificate) Verify(certificateChain []*QSslCertificate, hostName string) []*QSslError {
@@ -14851,7 +14851,7 @@ func (ptr *QSslCertificate) Verify(certificateChain []*QSslCertificate, hostName
 			tmpList.__verify_certificateChain_setList(v)
 		}
 		return tmpList.Pointer()
-	}(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}))
+	}(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}))
 }
 
 func NewQSslCertificate(device core.QIODevice_ITF, format QSsl__EncodingFormat) *QSslCertificate {
@@ -15277,7 +15277,7 @@ func (ptr *QSslCertificate) __subjectAlternativeNames_setList(key QSsl__Alternat
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QSslCertificate___subjectAlternativeNames_setList(ptr.Pointer(), C.longlong(key), C.struct_QtNetwork_PackedString{iC, C.longlong(len(i))})
+		C.QSslCertificate___subjectAlternativeNames_setList(ptr.Pointer(), C.longlong(key), C.struct_QtNetwork_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -15470,7 +15470,7 @@ func NewQSslCipher2(name string) *QSslCipher {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher2(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher2(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 	return tmpValue
 }
@@ -15481,7 +15481,7 @@ func NewQSslCipher3(name string, protocol QSsl__SslProtocol) *QSslCipher {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher3(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}, C.longlong(protocol)))
+	var tmpValue = NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher3(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}, C.longlong(protocol)))
 	runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
 	return tmpValue
 }
@@ -16475,7 +16475,7 @@ func QSslEllipticCurve_FromLongName(name string) *QSslEllipticCurve {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
@@ -16486,7 +16486,7 @@ func (ptr *QSslEllipticCurve) FromLongName(name string) *QSslEllipticCurve {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
@@ -16497,7 +16497,7 @@ func QSslEllipticCurve_FromShortName(name string) *QSslEllipticCurve {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
@@ -16508,7 +16508,7 @@ func (ptr *QSslEllipticCurve) FromShortName(name string) *QSslEllipticCurve {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 	return tmpValue
 }
@@ -17013,7 +17013,7 @@ func (ptr *QSslSocket) AddCaCertificates(path string, format QSsl__EncodingForma
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return C.QSslSocket_AddCaCertificates(ptr.Pointer(), C.struct_QtNetwork_PackedString{pathC, C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)) != 0
+		return C.QSslSocket_AddCaCertificates(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)) != 0
 	}
 	return false
 }
@@ -17024,7 +17024,7 @@ func QSslSocket_AddDefaultCaCertificates(path string, encoding QSsl__EncodingFor
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{pathC, C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax)) != 0
+	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax)) != 0
 }
 
 func (ptr *QSslSocket) AddDefaultCaCertificates(path string, encoding QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
@@ -17033,7 +17033,7 @@ func (ptr *QSslSocket) AddDefaultCaCertificates(path string, encoding QSsl__Enco
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{pathC, C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax)) != 0
+	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax)) != 0
 }
 
 func QSslSocket_SupportsSsl() bool {
@@ -17120,7 +17120,7 @@ func (ptr *QSslSocket) ConnectToHostEncrypted(hostName string, port uint16, mode
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QSslSocket_ConnectToHostEncrypted(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}, C.ushort(port), C.longlong(mode), C.longlong(protocol))
+		C.QSslSocket_ConnectToHostEncrypted(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.longlong(mode), C.longlong(protocol))
 	}
 }
 
@@ -17136,7 +17136,7 @@ func (ptr *QSslSocket) ConnectToHostEncrypted2(hostName string, port uint16, ssl
 			sslPeerNameC = C.CString(sslPeerName)
 			defer C.free(unsafe.Pointer(sslPeerNameC))
 		}
-		C.QSslSocket_ConnectToHostEncrypted2(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))}, C.ushort(port), C.struct_QtNetwork_PackedString{sslPeerNameC, C.longlong(len(sslPeerName))}, C.longlong(mode), C.longlong(protocol))
+		C.QSslSocket_ConnectToHostEncrypted2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))}, C.ushort(port), C.struct_QtNetwork_PackedString{data: sslPeerNameC, len: C.longlong(len(sslPeerName))}, C.longlong(mode), C.longlong(protocol))
 	}
 }
 
@@ -17402,7 +17402,7 @@ func (ptr *QSslSocket) SetLocalCertificate2(path string, format QSsl__EncodingFo
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		C.QSslSocket_SetLocalCertificate2(ptr.Pointer(), C.struct_QtNetwork_PackedString{pathC, C.longlong(len(path))}, C.longlong(format))
+		C.QSslSocket_SetLocalCertificate2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format))
 	}
 }
 
@@ -17437,7 +17437,7 @@ func (ptr *QSslSocket) SetPeerVerifyName(hostName string) {
 			hostNameC = C.CString(hostName)
 			defer C.free(unsafe.Pointer(hostNameC))
 		}
-		C.QSslSocket_SetPeerVerifyName(ptr.Pointer(), C.struct_QtNetwork_PackedString{hostNameC, C.longlong(len(hostName))})
+		C.QSslSocket_SetPeerVerifyName(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostNameC, len: C.longlong(len(hostName))})
 	}
 }
 
@@ -17454,7 +17454,7 @@ func (ptr *QSslSocket) SetPrivateKey2(fileName string, algorithm QSsl__KeyAlgori
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QSslSocket_SetPrivateKey2(ptr.Pointer(), C.struct_QtNetwork_PackedString{fileNameC, C.longlong(len(fileName))}, C.longlong(algorithm), C.longlong(format), core.PointerFromQByteArray(passPhrase))
+		C.QSslSocket_SetPrivateKey2(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(algorithm), C.longlong(format), core.PointerFromQByteArray(passPhrase))
 	}
 }
 

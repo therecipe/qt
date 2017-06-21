@@ -864,7 +864,7 @@ func (ptr *QTestEventList) AddKeyClicks(keys string, modifiers core.Qt__Keyboard
 			keysC = C.CString(keys)
 			defer C.free(unsafe.Pointer(keysC))
 		}
-		C.QTestEventList_AddKeyClicks(ptr.Pointer(), C.struct_QtTestLib_PackedString{keysC, C.longlong(len(keys))}, C.longlong(modifiers), C.int(int32(msecs)))
+		C.QTestEventList_AddKeyClicks(ptr.Pointer(), C.struct_QtTestLib_PackedString{data: keysC, len: C.longlong(len(keys))}, C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 

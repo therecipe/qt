@@ -105,7 +105,7 @@ func (ptr *QQuickAsyncImageProvider) RequestImageResponse(id string, requestedSi
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = NewQQuickImageResponseFromPointer(C.QQuickAsyncImageProvider_RequestImageResponse(ptr.Pointer(), C.struct_QtQuick_PackedString{idC, C.longlong(len(id))}, core.PointerFromQSize(requestedSize)))
+		var tmpValue = NewQQuickImageResponseFromPointer(C.QQuickAsyncImageProvider_RequestImageResponse(ptr.Pointer(), C.struct_QtQuick_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -377,7 +377,7 @@ func (ptr *QQuickImageProvider) RequestImage(id string, size core.QSize_ITF, req
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImage(ptr.Pointer(), C.struct_QtQuick_PackedString{idC, C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+		var tmpValue = gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImage(ptr.Pointer(), C.struct_QtQuick_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
@@ -391,7 +391,7 @@ func (ptr *QQuickImageProvider) RequestImageDefault(id string, size core.QSize_I
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImageDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{idC, C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+		var tmpValue = gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImageDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
@@ -435,7 +435,7 @@ func (ptr *QQuickImageProvider) RequestPixmap(id string, size core.QSize_ITF, re
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmap(ptr.Pointer(), C.struct_QtQuick_PackedString{idC, C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+		var tmpValue = gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmap(ptr.Pointer(), C.struct_QtQuick_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
@@ -449,7 +449,7 @@ func (ptr *QQuickImageProvider) RequestPixmapDefault(id string, size core.QSize_
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmapDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{idC, C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+		var tmpValue = gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmapDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
@@ -497,7 +497,7 @@ func (ptr *QQuickImageProvider) RequestTexture(id string, size core.QSize_ITF, r
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTexture(ptr.Pointer(), C.struct_QtQuick_PackedString{idC, C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTexture(ptr.Pointer(), C.struct_QtQuick_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -513,7 +513,7 @@ func (ptr *QQuickImageProvider) RequestTextureDefault(id string, size core.QSize
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTextureDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{idC, C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTextureDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{data: idC, len: C.longlong(len(id))}, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -874,10 +874,10 @@ func (ptr *QQuickImageResponse) TextureFactory() *QQuickTextureFactory {
 func callbackQQuickImageResponse_ErrorString(ptr unsafe.Pointer) C.struct_QtQuick_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "errorString"); signal != nil {
 		tempVal := signal.(func() string)()
-		return C.struct_QtQuick_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtQuick_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQQuickImageResponseFromPointer(ptr).ErrorStringDefault()
-	return C.struct_QtQuick_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtQuick_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QQuickImageResponse) ConnectErrorString(f func() string) {
@@ -2458,7 +2458,7 @@ func (ptr *QQuickItem) SetState(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QQuickItem_SetState(ptr.Pointer(), C.struct_QtQuick_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QQuickItem_SetState(ptr.Pointer(), C.struct_QtQuick_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -3775,7 +3775,7 @@ func (ptr *QQuickItemGrabResult) SaveToFile(fileName string) bool {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		return C.QQuickItemGrabResult_SaveToFile(ptr.Pointer(), C.struct_QtQuick_PackedString{fileNameC, C.longlong(len(fileName))}) != 0
+		return C.QQuickItemGrabResult_SaveToFile(ptr.Pointer(), C.struct_QtQuick_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
 	}
 	return false
 }
@@ -6348,7 +6348,7 @@ func (ptr *QQuickWidget) SceneGraphError(error QQuickWindow__SceneGraphError, me
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QQuickWidget_SceneGraphError(ptr.Pointer(), C.longlong(error), C.struct_QtQuick_PackedString{messageC, C.longlong(len(message))})
+		C.QQuickWidget_SceneGraphError(ptr.Pointer(), C.longlong(error), C.struct_QtQuick_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
 }
 
@@ -7342,7 +7342,7 @@ func (ptr *QQuickWidget) SetStyleSheetDefault(styleSheet string) {
 			styleSheetC = C.CString(styleSheet)
 			defer C.free(unsafe.Pointer(styleSheetC))
 		}
-		C.QQuickWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{styleSheetC, C.longlong(len(styleSheet))})
+		C.QQuickWidget_SetStyleSheetDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{data: styleSheetC, len: C.longlong(len(styleSheet))})
 	}
 }
 
@@ -7392,7 +7392,7 @@ func (ptr *QQuickWidget) SetWindowTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QQuickWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QQuickWidget_SetWindowTitleDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -8576,7 +8576,7 @@ func (ptr *QQuickWindow) SceneGraphError(error QQuickWindow__SceneGraphError, me
 			messageC = C.CString(message)
 			defer C.free(unsafe.Pointer(messageC))
 		}
-		C.QQuickWindow_SceneGraphError(ptr.Pointer(), C.longlong(error), C.struct_QtQuick_PackedString{messageC, C.longlong(len(message))})
+		C.QQuickWindow_SceneGraphError(ptr.Pointer(), C.longlong(error), C.struct_QtQuick_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
 }
 
@@ -8722,7 +8722,7 @@ func QQuickWindow_SetSceneGraphBackend2(backend string) {
 		backendC = C.CString(backend)
 		defer C.free(unsafe.Pointer(backendC))
 	}
-	C.QQuickWindow_QQuickWindow_SetSceneGraphBackend2(C.struct_QtQuick_PackedString{backendC, C.longlong(len(backend))})
+	C.QQuickWindow_QQuickWindow_SetSceneGraphBackend2(C.struct_QtQuick_PackedString{data: backendC, len: C.longlong(len(backend))})
 }
 
 func (ptr *QQuickWindow) SetSceneGraphBackend2(backend string) {
@@ -8731,7 +8731,7 @@ func (ptr *QQuickWindow) SetSceneGraphBackend2(backend string) {
 		backendC = C.CString(backend)
 		defer C.free(unsafe.Pointer(backendC))
 	}
-	C.QQuickWindow_QQuickWindow_SetSceneGraphBackend2(C.struct_QtQuick_PackedString{backendC, C.longlong(len(backend))})
+	C.QQuickWindow_QQuickWindow_SetSceneGraphBackend2(C.struct_QtQuick_PackedString{data: backendC, len: C.longlong(len(backend))})
 }
 
 //export callbackQQuickWindow_ShowEvent
@@ -9450,7 +9450,7 @@ func (ptr *QQuickWindow) SetTitleDefault(vqs string) {
 			vqsC = C.CString(vqs)
 			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QQuickWindow_SetTitleDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{vqsC, C.longlong(len(vqs))})
+		C.QQuickWindow_SetTitleDefault(ptr.Pointer(), C.struct_QtQuick_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -12757,7 +12757,7 @@ func (ptr *QSGMaterialShader) SetShaderSourceFile(ty gui.QOpenGLShader__ShaderTy
 			sourceFileC = C.CString(sourceFile)
 			defer C.free(unsafe.Pointer(sourceFileC))
 		}
-		C.QSGMaterialShader_SetShaderSourceFile(ptr.Pointer(), C.longlong(ty), C.struct_QtQuick_PackedString{sourceFileC, C.longlong(len(sourceFile))})
+		C.QSGMaterialShader_SetShaderSourceFile(ptr.Pointer(), C.longlong(ty), C.struct_QtQuick_PackedString{data: sourceFileC, len: C.longlong(len(sourceFile))})
 	}
 }
 
@@ -12765,7 +12765,7 @@ func (ptr *QSGMaterialShader) SetShaderSourceFiles(ty gui.QOpenGLShader__ShaderT
 	if ptr.Pointer() != nil {
 		var sourceFilesC = C.CString(strings.Join(sourceFiles, "|"))
 		defer C.free(unsafe.Pointer(sourceFilesC))
-		C.QSGMaterialShader_SetShaderSourceFiles(ptr.Pointer(), C.longlong(ty), C.struct_QtQuick_PackedString{sourceFilesC, C.longlong(len(strings.Join(sourceFiles, "|")))})
+		C.QSGMaterialShader_SetShaderSourceFiles(ptr.Pointer(), C.longlong(ty), C.struct_QtQuick_PackedString{data: sourceFilesC, len: C.longlong(len(strings.Join(sourceFiles, "|")))})
 	}
 }
 

@@ -5335,7 +5335,7 @@ func (ptr *QAbstract3DAxis) SetLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QAbstract3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QAbstract3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -5364,7 +5364,7 @@ func (ptr *QAbstract3DAxis) SetTitle(title string) {
 			titleC = C.CString(title)
 			defer C.free(unsafe.Pointer(titleC))
 		}
-		C.QAbstract3DAxis_SetTitle(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{titleC, C.longlong(len(title))})
+		C.QAbstract3DAxis_SetTitle(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: titleC, len: C.longlong(len(title))})
 	}
 }
 
@@ -5414,7 +5414,7 @@ func (ptr *QAbstract3DAxis) TitleChanged(newTitle string) {
 			newTitleC = C.CString(newTitle)
 			defer C.free(unsafe.Pointer(newTitleC))
 		}
-		C.QAbstract3DAxis_TitleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{newTitleC, C.longlong(len(newTitle))})
+		C.QAbstract3DAxis_TitleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: newTitleC, len: C.longlong(len(newTitle))})
 	}
 }
 
@@ -7721,7 +7721,7 @@ func (ptr *QAbstract3DSeries) ItemLabelChanged(label string) {
 			labelC = C.CString(label)
 			defer C.free(unsafe.Pointer(labelC))
 		}
-		C.QAbstract3DSeries_ItemLabelChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{labelC, C.longlong(len(label))})
+		C.QAbstract3DSeries_ItemLabelChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelC, len: C.longlong(len(label))})
 	}
 }
 
@@ -7765,7 +7765,7 @@ func (ptr *QAbstract3DSeries) ItemLabelFormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QAbstract3DSeries_ItemLabelFormatChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{formatC, C.longlong(len(format))})
+		C.QAbstract3DSeries_ItemLabelFormatChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: formatC, len: C.longlong(len(format))})
 	}
 }
 
@@ -8004,7 +8004,7 @@ func (ptr *QAbstract3DSeries) NameChanged(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAbstract3DSeries_NameChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{nameC, C.longlong(len(name))})
+		C.QAbstract3DSeries_NameChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -8033,7 +8033,7 @@ func (ptr *QAbstract3DSeries) SetItemLabelFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QAbstract3DSeries_SetItemLabelFormat(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{formatC, C.longlong(len(format))})
+		C.QAbstract3DSeries_SetItemLabelFormat(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: formatC, len: C.longlong(len(format))})
 	}
 }
 
@@ -8080,7 +8080,7 @@ func (ptr *QAbstract3DSeries) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QAbstract3DSeries_SetName(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{nameC, C.longlong(len(name))})
+		C.QAbstract3DSeries_SetName(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -8103,7 +8103,7 @@ func (ptr *QAbstract3DSeries) SetUserDefinedMesh(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QAbstract3DSeries_SetUserDefinedMesh(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{fileNameC, C.longlong(len(fileName))})
+		C.QAbstract3DSeries_SetUserDefinedMesh(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
 	}
 }
 
@@ -8231,7 +8231,7 @@ func (ptr *QAbstract3DSeries) UserDefinedMeshChanged(fileName string) {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		C.QAbstract3DSeries_UserDefinedMeshChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{fileNameC, C.longlong(len(fileName))})
+		C.QAbstract3DSeries_UserDefinedMeshChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: fileNameC, len: C.longlong(len(fileName))})
 	}
 }
 
@@ -9356,7 +9356,7 @@ func (ptr *QBarDataProxy) SetColumnLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QBarDataProxy_SetColumnLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QBarDataProxy_SetColumnLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -9376,7 +9376,7 @@ func (ptr *QBarDataProxy) SetRowLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QBarDataProxy_SetRowLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QBarDataProxy_SetRowLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -9550,7 +9550,7 @@ func (ptr *QCategory3DAxis) SetLabels(labels []string) {
 	if ptr.Pointer() != nil {
 		var labelsC = C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
-		C.QCategory3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{labelsC, C.longlong(len(strings.Join(labels, "|")))})
+		C.QCategory3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
 }
 
@@ -9652,7 +9652,7 @@ func NewQCustom3DItem2(meshFile string, position gui.QVector3D_ITF, scaling gui.
 		meshFileC = C.CString(meshFile)
 		defer C.free(unsafe.Pointer(meshFileC))
 	}
-	return NewQCustom3DItemFromPointer(C.QCustom3DItem_NewQCustom3DItem2(C.struct_QtDataVisualization_PackedString{meshFileC, C.longlong(len(meshFile))}, gui.PointerFromQVector3D(position), gui.PointerFromQVector3D(scaling), gui.PointerFromQQuaternion(rotation), gui.PointerFromQImage(texture), core.PointerFromQObject(parent)))
+	return NewQCustom3DItemFromPointer(C.QCustom3DItem_NewQCustom3DItem2(C.struct_QtDataVisualization_PackedString{data: meshFileC, len: C.longlong(len(meshFile))}, gui.PointerFromQVector3D(position), gui.PointerFromQVector3D(scaling), gui.PointerFromQQuaternion(rotation), gui.PointerFromQImage(texture), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QCustom3DItem) Rotation() *gui.QQuaternion {
@@ -9704,7 +9704,7 @@ func (ptr *QCustom3DItem) MeshFileChanged(meshFile string) {
 			meshFileC = C.CString(meshFile)
 			defer C.free(unsafe.Pointer(meshFileC))
 		}
-		C.QCustom3DItem_MeshFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{meshFileC, C.longlong(len(meshFile))})
+		C.QCustom3DItem_MeshFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: meshFileC, len: C.longlong(len(meshFile))})
 	}
 }
 
@@ -9910,7 +9910,7 @@ func (ptr *QCustom3DItem) SetMeshFile(meshFile string) {
 			meshFileC = C.CString(meshFile)
 			defer C.free(unsafe.Pointer(meshFileC))
 		}
-		C.QCustom3DItem_SetMeshFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{meshFileC, C.longlong(len(meshFile))})
+		C.QCustom3DItem_SetMeshFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: meshFileC, len: C.longlong(len(meshFile))})
 	}
 }
 
@@ -9963,7 +9963,7 @@ func (ptr *QCustom3DItem) SetTextureFile(textureFile string) {
 			textureFileC = C.CString(textureFile)
 			defer C.free(unsafe.Pointer(textureFileC))
 		}
-		C.QCustom3DItem_SetTextureFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{textureFileC, C.longlong(len(textureFile))})
+		C.QCustom3DItem_SetTextureFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: textureFileC, len: C.longlong(len(textureFile))})
 	}
 }
 
@@ -10058,7 +10058,7 @@ func (ptr *QCustom3DItem) TextureFileChanged(textureFile string) {
 			textureFileC = C.CString(textureFile)
 			defer C.free(unsafe.Pointer(textureFileC))
 		}
-		C.QCustom3DItem_TextureFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{textureFileC, C.longlong(len(textureFile))})
+		C.QCustom3DItem_TextureFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: textureFileC, len: C.longlong(len(textureFile))})
 	}
 }
 
@@ -10254,7 +10254,7 @@ func NewQCustom3DLabel2(text string, font gui.QFont_ITF, position gui.QVector3D_
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return NewQCustom3DLabelFromPointer(C.QCustom3DLabel_NewQCustom3DLabel2(C.struct_QtDataVisualization_PackedString{textC, C.longlong(len(text))}, gui.PointerFromQFont(font), gui.PointerFromQVector3D(position), gui.PointerFromQVector3D(scaling), gui.PointerFromQQuaternion(rotation), core.PointerFromQObject(parent)))
+	return NewQCustom3DLabelFromPointer(C.QCustom3DLabel_NewQCustom3DLabel2(C.struct_QtDataVisualization_PackedString{data: textC, len: C.longlong(len(text))}, gui.PointerFromQFont(font), gui.PointerFromQVector3D(position), gui.PointerFromQVector3D(scaling), gui.PointerFromQQuaternion(rotation), core.PointerFromQObject(parent)))
 }
 
 //export callbackQCustom3DLabel_BackgroundColorChanged
@@ -10489,7 +10489,7 @@ func (ptr *QCustom3DLabel) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QCustom3DLabel_SetText(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{textC, C.longlong(len(text))})
+		C.QCustom3DLabel_SetText(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -10539,7 +10539,7 @@ func (ptr *QCustom3DLabel) TextChanged(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QCustom3DLabel_TextChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{textC, C.longlong(len(text))})
+		C.QCustom3DLabel_TextChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -11750,7 +11750,7 @@ func NewQHeightMapSurfaceDataProxy3(filename string, parent core.QObject_ITF) *Q
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	return NewQHeightMapSurfaceDataProxyFromPointer(C.QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy3(C.struct_QtDataVisualization_PackedString{filenameC, C.longlong(len(filename))}, core.PointerFromQObject(parent)))
+	return NewQHeightMapSurfaceDataProxyFromPointer(C.QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy3(C.struct_QtDataVisualization_PackedString{data: filenameC, len: C.longlong(len(filename))}, core.PointerFromQObject(parent)))
 }
 
 //export callbackQHeightMapSurfaceDataProxy_HeightMapChanged
@@ -11832,7 +11832,7 @@ func (ptr *QHeightMapSurfaceDataProxy) HeightMapFileChanged(filename string) {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		C.QHeightMapSurfaceDataProxy_HeightMapFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{filenameC, C.longlong(len(filename))})
+		C.QHeightMapSurfaceDataProxy_HeightMapFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: filenameC, len: C.longlong(len(filename))})
 	}
 }
 
@@ -12005,7 +12005,7 @@ func (ptr *QHeightMapSurfaceDataProxy) SetHeightMapFile(filename string) {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		C.QHeightMapSurfaceDataProxy_SetHeightMapFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{filenameC, C.longlong(len(filename))})
+		C.QHeightMapSurfaceDataProxy_SetHeightMapFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: filenameC, len: C.longlong(len(filename))})
 	}
 }
 
@@ -12198,7 +12198,7 @@ func NewQItemModelBarDataProxy4(itemModel core.QAbstractItemModel_ITF, rowRole s
 		valueRoleC = C.CString(valueRole)
 		defer C.free(unsafe.Pointer(valueRoleC))
 	}
-	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy4(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{valueRoleC, C.longlong(len(valueRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy4(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy5(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, rotationRole string, parent core.QObject_ITF) *QItemModelBarDataProxy {
@@ -12222,7 +12222,7 @@ func NewQItemModelBarDataProxy5(itemModel core.QAbstractItemModel_ITF, rowRole s
 		rotationRoleC = C.CString(rotationRole)
 		defer C.free(unsafe.Pointer(rotationRoleC))
 	}
-	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy5(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{valueRoleC, C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{rotationRoleC, C.longlong(len(rotationRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy5(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, rotationRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelBarDataProxy {
@@ -12250,7 +12250,7 @@ func NewQItemModelBarDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole s
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{valueRoleC, C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{rotationRoleC, C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{rowCategoriesC, C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{columnCategoriesC, C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, valueRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelBarDataProxy {
@@ -12273,7 +12273,7 @@ func NewQItemModelBarDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole s
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{valueRoleC, C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{rowCategoriesC, C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{columnCategoriesC, C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy3(itemModel core.QAbstractItemModel_ITF, valueRole string, parent core.QObject_ITF) *QItemModelBarDataProxy {
@@ -12282,7 +12282,7 @@ func NewQItemModelBarDataProxy3(itemModel core.QAbstractItemModel_ITF, valueRole
 		valueRoleC = C.CString(valueRole)
 		defer C.free(unsafe.Pointer(valueRoleC))
 	}
-	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy3(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{valueRoleC, C.longlong(len(valueRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy3(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelBarDataProxy(parent core.QObject_ITF) *QItemModelBarDataProxy {
@@ -12296,7 +12296,7 @@ func (ptr *QItemModelBarDataProxy) ColumnCategoryIndex(category string) int {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		return int(int32(C.QItemModelBarDataProxy_ColumnCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoryC, C.longlong(len(category))})))
+		return int(int32(C.QItemModelBarDataProxy_ColumnCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoryC, len: C.longlong(len(category))})))
 	}
 	return 0
 }
@@ -12308,7 +12308,7 @@ func (ptr *QItemModelBarDataProxy) RowCategoryIndex(category string) int {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		return int(int32(C.QItemModelBarDataProxy_RowCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoryC, C.longlong(len(category))})))
+		return int(int32(C.QItemModelBarDataProxy_RowCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoryC, len: C.longlong(len(category))})))
 	}
 	return 0
 }
@@ -12470,7 +12470,7 @@ func (ptr *QItemModelBarDataProxy) ColumnRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_ColumnRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_ColumnRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -12553,7 +12553,7 @@ func (ptr *QItemModelBarDataProxy) ColumnRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_ColumnRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_ColumnRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -12661,7 +12661,7 @@ func (ptr *QItemModelBarDataProxy) Remap(rowRole string, columnRole string, valu
 		defer C.free(unsafe.Pointer(rowCategoriesC))
 		var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
 		defer C.free(unsafe.Pointer(columnCategoriesC))
-		C.QItemModelBarDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{valueRoleC, C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{rotationRoleC, C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{rowCategoriesC, C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{columnCategoriesC, C.longlong(len(strings.Join(columnCategories, "|")))})
+		C.QItemModelBarDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))})
 	}
 }
 
@@ -12705,7 +12705,7 @@ func (ptr *QItemModelBarDataProxy) RotationRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_RotationRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_RotationRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -12788,7 +12788,7 @@ func (ptr *QItemModelBarDataProxy) RotationRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_RotationRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_RotationRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -12871,7 +12871,7 @@ func (ptr *QItemModelBarDataProxy) RowRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_RowRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_RowRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -12954,7 +12954,7 @@ func (ptr *QItemModelBarDataProxy) RowRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_RowRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_RowRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -12974,7 +12974,7 @@ func (ptr *QItemModelBarDataProxy) SetColumnCategories(categories []string) {
 	if ptr.Pointer() != nil {
 		var categoriesC = C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelBarDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoriesC, C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelBarDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
 }
 
@@ -12985,7 +12985,7 @@ func (ptr *QItemModelBarDataProxy) SetColumnRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_SetColumnRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_SetColumnRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13002,7 +13002,7 @@ func (ptr *QItemModelBarDataProxy) SetColumnRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_SetColumnRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_SetColumnRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13025,7 +13025,7 @@ func (ptr *QItemModelBarDataProxy) SetRotationRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_SetRotationRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_SetRotationRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13042,7 +13042,7 @@ func (ptr *QItemModelBarDataProxy) SetRotationRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_SetRotationRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_SetRotationRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13050,7 +13050,7 @@ func (ptr *QItemModelBarDataProxy) SetRowCategories(categories []string) {
 	if ptr.Pointer() != nil {
 		var categoriesC = C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelBarDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoriesC, C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelBarDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
 }
 
@@ -13061,7 +13061,7 @@ func (ptr *QItemModelBarDataProxy) SetRowRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_SetRowRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_SetRowRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13078,7 +13078,7 @@ func (ptr *QItemModelBarDataProxy) SetRowRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_SetRowRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_SetRowRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13095,7 +13095,7 @@ func (ptr *QItemModelBarDataProxy) SetValueRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_SetValueRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_SetValueRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13112,7 +13112,7 @@ func (ptr *QItemModelBarDataProxy) SetValueRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_SetValueRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_SetValueRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13195,7 +13195,7 @@ func (ptr *QItemModelBarDataProxy) ValueRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelBarDataProxy_ValueRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelBarDataProxy_ValueRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13278,7 +13278,7 @@ func (ptr *QItemModelBarDataProxy) ValueRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelBarDataProxy_ValueRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelBarDataProxy_ValueRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13530,7 +13530,7 @@ func NewQItemModelScatterDataProxy3(itemModel core.QAbstractItemModel_ITF, xPosR
 		zPosRoleC = C.CString(zPosRole)
 		defer C.free(unsafe.Pointer(zPosRoleC))
 	}
-	return NewQItemModelScatterDataProxyFromPointer(C.QItemModelScatterDataProxy_NewQItemModelScatterDataProxy3(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{xPosRoleC, C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{zPosRoleC, C.longlong(len(zPosRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelScatterDataProxyFromPointer(C.QItemModelScatterDataProxy_NewQItemModelScatterDataProxy3(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelScatterDataProxy4(itemModel core.QAbstractItemModel_ITF, xPosRole string, yPosRole string, zPosRole string, rotationRole string, parent core.QObject_ITF) *QItemModelScatterDataProxy {
@@ -13554,7 +13554,7 @@ func NewQItemModelScatterDataProxy4(itemModel core.QAbstractItemModel_ITF, xPosR
 		rotationRoleC = C.CString(rotationRole)
 		defer C.free(unsafe.Pointer(rotationRoleC))
 	}
-	return NewQItemModelScatterDataProxyFromPointer(C.QItemModelScatterDataProxy_NewQItemModelScatterDataProxy4(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{xPosRoleC, C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{zPosRoleC, C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{rotationRoleC, C.longlong(len(rotationRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelScatterDataProxyFromPointer(C.QItemModelScatterDataProxy_NewQItemModelScatterDataProxy4(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelScatterDataProxy(parent core.QObject_ITF) *QItemModelScatterDataProxy {
@@ -13622,7 +13622,7 @@ func (ptr *QItemModelScatterDataProxy) Remap(xPosRole string, yPosRole string, z
 			rotationRoleC = C.CString(rotationRole)
 			defer C.free(unsafe.Pointer(rotationRoleC))
 		}
-		C.QItemModelScatterDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{xPosRoleC, C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{zPosRoleC, C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{rotationRoleC, C.longlong(len(rotationRole))})
+		C.QItemModelScatterDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))})
 	}
 }
 
@@ -13666,7 +13666,7 @@ func (ptr *QItemModelScatterDataProxy) RotationRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_RotationRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_RotationRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13749,7 +13749,7 @@ func (ptr *QItemModelScatterDataProxy) RotationRoleReplaceChanged(replace string
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_RotationRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_RotationRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13766,7 +13766,7 @@ func (ptr *QItemModelScatterDataProxy) SetRotationRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_SetRotationRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_SetRotationRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13783,7 +13783,7 @@ func (ptr *QItemModelScatterDataProxy) SetRotationRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_SetRotationRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_SetRotationRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13794,7 +13794,7 @@ func (ptr *QItemModelScatterDataProxy) SetXPosRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_SetXPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_SetXPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13811,7 +13811,7 @@ func (ptr *QItemModelScatterDataProxy) SetXPosRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_SetXPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_SetXPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13822,7 +13822,7 @@ func (ptr *QItemModelScatterDataProxy) SetYPosRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_SetYPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_SetYPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13839,7 +13839,7 @@ func (ptr *QItemModelScatterDataProxy) SetYPosRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_SetYPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_SetYPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13850,7 +13850,7 @@ func (ptr *QItemModelScatterDataProxy) SetZPosRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_SetZPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_SetZPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13867,7 +13867,7 @@ func (ptr *QItemModelScatterDataProxy) SetZPosRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_SetZPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_SetZPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -13911,7 +13911,7 @@ func (ptr *QItemModelScatterDataProxy) XPosRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_XPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_XPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -13994,7 +13994,7 @@ func (ptr *QItemModelScatterDataProxy) XPosRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_XPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_XPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -14038,7 +14038,7 @@ func (ptr *QItemModelScatterDataProxy) YPosRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_YPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_YPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -14121,7 +14121,7 @@ func (ptr *QItemModelScatterDataProxy) YPosRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_YPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_YPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -14165,7 +14165,7 @@ func (ptr *QItemModelScatterDataProxy) ZPosRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelScatterDataProxy_ZPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelScatterDataProxy_ZPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -14248,7 +14248,7 @@ func (ptr *QItemModelScatterDataProxy) ZPosRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelScatterDataProxy_ZPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelScatterDataProxy_ZPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -14480,7 +14480,7 @@ func NewQItemModelSurfaceDataProxy5(itemModel core.QAbstractItemModel_ITF, rowRo
 		zPosRoleC = C.CString(zPosRole)
 		defer C.free(unsafe.Pointer(zPosRoleC))
 	}
-	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy5(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{xPosRoleC, C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{zPosRoleC, C.longlong(len(zPosRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy5(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, xPosRole string, yPosRole string, zPosRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
@@ -14513,7 +14513,7 @@ func NewQItemModelSurfaceDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRo
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{xPosRoleC, C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{zPosRoleC, C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{rowCategoriesC, C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{columnCategoriesC, C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy4(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, yPosRole string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
@@ -14532,7 +14532,7 @@ func NewQItemModelSurfaceDataProxy4(itemModel core.QAbstractItemModel_ITF, rowRo
 		yPosRoleC = C.CString(yPosRole)
 		defer C.free(unsafe.Pointer(yPosRoleC))
 	}
-	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy4(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy4(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole string, columnRole string, yPosRole string, rowCategories []string, columnCategories []string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
@@ -14555,7 +14555,7 @@ func NewQItemModelSurfaceDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRo
 	defer C.free(unsafe.Pointer(rowCategoriesC))
 	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
-	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{rowCategoriesC, C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{columnCategoriesC, C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
+	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy3(itemModel core.QAbstractItemModel_ITF, yPosRole string, parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
@@ -14564,7 +14564,7 @@ func NewQItemModelSurfaceDataProxy3(itemModel core.QAbstractItemModel_ITF, yPosR
 		yPosRoleC = C.CString(yPosRole)
 		defer C.free(unsafe.Pointer(yPosRoleC))
 	}
-	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy3(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, core.PointerFromQObject(parent)))
+	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy3(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, core.PointerFromQObject(parent)))
 }
 
 func NewQItemModelSurfaceDataProxy(parent core.QObject_ITF) *QItemModelSurfaceDataProxy {
@@ -14578,7 +14578,7 @@ func (ptr *QItemModelSurfaceDataProxy) ColumnCategoryIndex(category string) int 
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		return int(int32(C.QItemModelSurfaceDataProxy_ColumnCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoryC, C.longlong(len(category))})))
+		return int(int32(C.QItemModelSurfaceDataProxy_ColumnCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoryC, len: C.longlong(len(category))})))
 	}
 	return 0
 }
@@ -14590,7 +14590,7 @@ func (ptr *QItemModelSurfaceDataProxy) RowCategoryIndex(category string) int {
 			categoryC = C.CString(category)
 			defer C.free(unsafe.Pointer(categoryC))
 		}
-		return int(int32(C.QItemModelSurfaceDataProxy_RowCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoryC, C.longlong(len(category))})))
+		return int(int32(C.QItemModelSurfaceDataProxy_RowCategoryIndex(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoryC, len: C.longlong(len(category))})))
 	}
 	return 0
 }
@@ -14752,7 +14752,7 @@ func (ptr *QItemModelSurfaceDataProxy) ColumnRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_ColumnRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_ColumnRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -14835,7 +14835,7 @@ func (ptr *QItemModelSurfaceDataProxy) ColumnRoleReplaceChanged(replace string) 
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_ColumnRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_ColumnRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -14948,7 +14948,7 @@ func (ptr *QItemModelSurfaceDataProxy) Remap(rowRole string, columnRole string, 
 		defer C.free(unsafe.Pointer(rowCategoriesC))
 		var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
 		defer C.free(unsafe.Pointer(columnCategoriesC))
-		C.QItemModelSurfaceDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{rowRoleC, C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{columnRoleC, C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{xPosRoleC, C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{yPosRoleC, C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{zPosRoleC, C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{rowCategoriesC, C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{columnCategoriesC, C.longlong(len(strings.Join(columnCategories, "|")))})
+		C.QItemModelSurfaceDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))})
 	}
 }
 
@@ -15031,7 +15031,7 @@ func (ptr *QItemModelSurfaceDataProxy) RowRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_RowRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_RowRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15114,7 +15114,7 @@ func (ptr *QItemModelSurfaceDataProxy) RowRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_RowRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_RowRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15134,7 +15134,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetColumnCategories(categories []string) 
 	if ptr.Pointer() != nil {
 		var categoriesC = C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelSurfaceDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoriesC, C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelSurfaceDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
 }
 
@@ -15145,7 +15145,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetColumnRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_SetColumnRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_SetColumnRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15162,7 +15162,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetColumnRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_SetColumnRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_SetColumnRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15182,7 +15182,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetRowCategories(categories []string) {
 	if ptr.Pointer() != nil {
 		var categoriesC = C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
-		C.QItemModelSurfaceDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{categoriesC, C.longlong(len(strings.Join(categories, "|")))})
+		C.QItemModelSurfaceDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
 }
 
@@ -15193,7 +15193,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetRowRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_SetRowRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_SetRowRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15210,7 +15210,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetRowRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_SetRowRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_SetRowRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15227,7 +15227,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetXPosRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_SetXPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_SetXPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15244,7 +15244,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetXPosRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_SetXPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_SetXPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15255,7 +15255,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetYPosRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_SetYPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_SetYPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15272,7 +15272,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetYPosRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_SetYPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_SetYPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15283,7 +15283,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetZPosRole(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_SetZPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_SetZPosRole(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15300,7 +15300,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetZPosRoleReplace(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_SetZPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_SetZPosRoleReplace(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15383,7 +15383,7 @@ func (ptr *QItemModelSurfaceDataProxy) XPosRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_XPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_XPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15466,7 +15466,7 @@ func (ptr *QItemModelSurfaceDataProxy) XPosRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_XPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_XPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15510,7 +15510,7 @@ func (ptr *QItemModelSurfaceDataProxy) YPosRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_YPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_YPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15593,7 +15593,7 @@ func (ptr *QItemModelSurfaceDataProxy) YPosRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_YPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_YPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -15637,7 +15637,7 @@ func (ptr *QItemModelSurfaceDataProxy) ZPosRoleChanged(role string) {
 			roleC = C.CString(role)
 			defer C.free(unsafe.Pointer(roleC))
 		}
-		C.QItemModelSurfaceDataProxy_ZPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{roleC, C.longlong(len(role))})
+		C.QItemModelSurfaceDataProxy_ZPosRoleChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: roleC, len: C.longlong(len(role))})
 	}
 }
 
@@ -15720,7 +15720,7 @@ func (ptr *QItemModelSurfaceDataProxy) ZPosRoleReplaceChanged(replace string) {
 			replaceC = C.CString(replace)
 			defer C.free(unsafe.Pointer(replaceC))
 		}
-		C.QItemModelSurfaceDataProxy_ZPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{replaceC, C.longlong(len(replace))})
+		C.QItemModelSurfaceDataProxy_ZPosRoleReplaceChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: replaceC, len: C.longlong(len(replace))})
 	}
 }
 
@@ -17274,7 +17274,7 @@ func (ptr *QSurface3DSeries) SetTextureFile(filename string) {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		C.QSurface3DSeries_SetTextureFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{filenameC, C.longlong(len(filename))})
+		C.QSurface3DSeries_SetTextureFile(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: filenameC, len: C.longlong(len(filename))})
 	}
 }
 
@@ -17357,7 +17357,7 @@ func (ptr *QSurface3DSeries) TextureFileChanged(filename string) {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		C.QSurface3DSeries_TextureFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{filenameC, C.longlong(len(filename))})
+		C.QSurface3DSeries_TextureFileChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: filenameC, len: C.longlong(len(filename))})
 	}
 }
 
@@ -18313,7 +18313,7 @@ func (ptr *QValue3DAxis) LabelFormatChanged(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QValue3DAxis_LabelFormatChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{formatC, C.longlong(len(format))})
+		C.QValue3DAxis_LabelFormatChanged(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: formatC, len: C.longlong(len(format))})
 	}
 }
 
@@ -18408,7 +18408,7 @@ func (ptr *QValue3DAxis) SetLabelFormat(format string) {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		C.QValue3DAxis_SetLabelFormat(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{formatC, C.longlong(len(format))})
+		C.QValue3DAxis_SetLabelFormat(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: formatC, len: C.longlong(len(format))})
 	}
 }
 
@@ -18714,10 +18714,10 @@ func (ptr *QValue3DAxisFormatter) Locale() *core.QLocale {
 func callbackQValue3DAxisFormatter_StringForValue(ptr unsafe.Pointer, value C.double, format C.struct_QtDataVisualization_PackedString) C.struct_QtDataVisualization_PackedString {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "stringForValue"); signal != nil {
 		tempVal := signal.(func(float64, string) string)(float64(value), cGoUnpackString(format))
-		return C.struct_QtDataVisualization_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+		return C.struct_QtDataVisualization_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := NewQValue3DAxisFormatterFromPointer(ptr).StringForValueDefault(float64(value), cGoUnpackString(format))
-	return C.struct_QtDataVisualization_PackedString{C.CString(tempVal), C.longlong(len(tempVal))}
+	return C.struct_QtDataVisualization_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
 func (ptr *QValue3DAxisFormatter) ConnectStringForValue(f func(value float64, format string) string) {
@@ -18748,7 +18748,7 @@ func (ptr *QValue3DAxisFormatter) StringForValue(value float64, format string) s
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return cGoUnpackString(C.QValue3DAxisFormatter_StringForValue(ptr.Pointer(), C.double(value), C.struct_QtDataVisualization_PackedString{formatC, C.longlong(len(format))}))
+		return cGoUnpackString(C.QValue3DAxisFormatter_StringForValue(ptr.Pointer(), C.double(value), C.struct_QtDataVisualization_PackedString{data: formatC, len: C.longlong(len(format))}))
 	}
 	return ""
 }
@@ -18760,7 +18760,7 @@ func (ptr *QValue3DAxisFormatter) StringForValueDefault(value float64, format st
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return cGoUnpackString(C.QValue3DAxisFormatter_StringForValueDefault(ptr.Pointer(), C.double(value), C.struct_QtDataVisualization_PackedString{formatC, C.longlong(len(format))}))
+		return cGoUnpackString(C.QValue3DAxisFormatter_StringForValueDefault(ptr.Pointer(), C.double(value), C.struct_QtDataVisualization_PackedString{data: formatC, len: C.longlong(len(format))}))
 	}
 	return ""
 }

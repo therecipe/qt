@@ -85,7 +85,7 @@ func (ptr *QGeoAddress) SetCity(city string) {
 			cityC = C.CString(city)
 			defer C.free(unsafe.Pointer(cityC))
 		}
-		C.QGeoAddress_SetCity(ptr.Pointer(), C.struct_QtPositioning_PackedString{cityC, C.longlong(len(city))})
+		C.QGeoAddress_SetCity(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: cityC, len: C.longlong(len(city))})
 	}
 }
 
@@ -96,7 +96,7 @@ func (ptr *QGeoAddress) SetCountry(country string) {
 			countryC = C.CString(country)
 			defer C.free(unsafe.Pointer(countryC))
 		}
-		C.QGeoAddress_SetCountry(ptr.Pointer(), C.struct_QtPositioning_PackedString{countryC, C.longlong(len(country))})
+		C.QGeoAddress_SetCountry(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: countryC, len: C.longlong(len(country))})
 	}
 }
 
@@ -107,7 +107,7 @@ func (ptr *QGeoAddress) SetCountryCode(countryCode string) {
 			countryCodeC = C.CString(countryCode)
 			defer C.free(unsafe.Pointer(countryCodeC))
 		}
-		C.QGeoAddress_SetCountryCode(ptr.Pointer(), C.struct_QtPositioning_PackedString{countryCodeC, C.longlong(len(countryCode))})
+		C.QGeoAddress_SetCountryCode(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: countryCodeC, len: C.longlong(len(countryCode))})
 	}
 }
 
@@ -118,7 +118,7 @@ func (ptr *QGeoAddress) SetCounty(county string) {
 			countyC = C.CString(county)
 			defer C.free(unsafe.Pointer(countyC))
 		}
-		C.QGeoAddress_SetCounty(ptr.Pointer(), C.struct_QtPositioning_PackedString{countyC, C.longlong(len(county))})
+		C.QGeoAddress_SetCounty(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: countyC, len: C.longlong(len(county))})
 	}
 }
 
@@ -129,7 +129,7 @@ func (ptr *QGeoAddress) SetDistrict(district string) {
 			districtC = C.CString(district)
 			defer C.free(unsafe.Pointer(districtC))
 		}
-		C.QGeoAddress_SetDistrict(ptr.Pointer(), C.struct_QtPositioning_PackedString{districtC, C.longlong(len(district))})
+		C.QGeoAddress_SetDistrict(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: districtC, len: C.longlong(len(district))})
 	}
 }
 
@@ -140,7 +140,7 @@ func (ptr *QGeoAddress) SetPostalCode(postalCode string) {
 			postalCodeC = C.CString(postalCode)
 			defer C.free(unsafe.Pointer(postalCodeC))
 		}
-		C.QGeoAddress_SetPostalCode(ptr.Pointer(), C.struct_QtPositioning_PackedString{postalCodeC, C.longlong(len(postalCode))})
+		C.QGeoAddress_SetPostalCode(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: postalCodeC, len: C.longlong(len(postalCode))})
 	}
 }
 
@@ -151,7 +151,7 @@ func (ptr *QGeoAddress) SetState(state string) {
 			stateC = C.CString(state)
 			defer C.free(unsafe.Pointer(stateC))
 		}
-		C.QGeoAddress_SetState(ptr.Pointer(), C.struct_QtPositioning_PackedString{stateC, C.longlong(len(state))})
+		C.QGeoAddress_SetState(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: stateC, len: C.longlong(len(state))})
 	}
 }
 
@@ -162,7 +162,7 @@ func (ptr *QGeoAddress) SetStreet(street string) {
 			streetC = C.CString(street)
 			defer C.free(unsafe.Pointer(streetC))
 		}
-		C.QGeoAddress_SetStreet(ptr.Pointer(), C.struct_QtPositioning_PackedString{streetC, C.longlong(len(street))})
+		C.QGeoAddress_SetStreet(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: streetC, len: C.longlong(len(street))})
 	}
 }
 
@@ -173,7 +173,7 @@ func (ptr *QGeoAddress) SetText(text string) {
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		C.QGeoAddress_SetText(ptr.Pointer(), C.struct_QtPositioning_PackedString{textC, C.longlong(len(text))})
+		C.QGeoAddress_SetText(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -311,7 +311,7 @@ func NewQGeoAreaMonitorInfo(name string) *QGeoAreaMonitorInfo {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(C.struct_QtPositioning_PackedString{nameC, C.longlong(len(name))}))
+	var tmpValue = NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorInfo_NewQGeoAreaMonitorInfo(C.struct_QtPositioning_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
 	return tmpValue
 }
@@ -335,7 +335,7 @@ func (ptr *QGeoAreaMonitorInfo) SetName(name string) {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		C.QGeoAreaMonitorInfo_SetName(ptr.Pointer(), C.struct_QtPositioning_PackedString{nameC, C.longlong(len(name))})
+		C.QGeoAreaMonitorInfo_SetName(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: nameC, len: C.longlong(len(name))})
 	}
 }
 
@@ -431,7 +431,7 @@ func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_atList(i 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_atList(ptr.Pointer(), C.struct_QtPositioning_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_atList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -445,7 +445,7 @@ func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_setList(k
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -473,7 +473,7 @@ func (ptr *QGeoAreaMonitorInfo) __notificationParameters_atList(i string) *core.
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___notificationParameters_atList(ptr.Pointer(), C.struct_QtPositioning_PackedString{iC, C.longlong(len(i))}))
+		var tmpValue = core.NewQVariantFromPointer(C.QGeoAreaMonitorInfo___notificationParameters_atList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: iC, len: C.longlong(len(i))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -487,7 +487,7 @@ func (ptr *QGeoAreaMonitorInfo) __notificationParameters_setList(key string, i c
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		C.QGeoAreaMonitorInfo___notificationParameters_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{keyC, C.longlong(len(key))}, core.PointerFromQVariant(i))
+		C.QGeoAreaMonitorInfo___notificationParameters_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
 }
 
@@ -522,7 +522,7 @@ func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_setList(i 
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{iC, C.longlong(len(i))})
+		C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -544,7 +544,7 @@ func (ptr *QGeoAreaMonitorInfo) ____notificationParameters_keyList_setList(i str
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoAreaMonitorInfo_____notificationParameters_keyList_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{iC, C.longlong(len(i))})
+		C.QGeoAreaMonitorInfo_____notificationParameters_keyList_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
@@ -633,7 +633,7 @@ func QGeoAreaMonitorSource_CreateSource(sourceName string, parent core.QObject_I
 		sourceNameC = C.CString(sourceName)
 		defer C.free(unsafe.Pointer(sourceNameC))
 	}
-	var tmpValue = NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(C.struct_QtPositioning_PackedString{sourceNameC, C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(C.struct_QtPositioning_PackedString{data: sourceNameC, len: C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -646,7 +646,7 @@ func (ptr *QGeoAreaMonitorSource) CreateSource(sourceName string, parent core.QO
 		sourceNameC = C.CString(sourceName)
 		defer C.free(unsafe.Pointer(sourceNameC))
 	}
-	var tmpValue = NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(C.struct_QtPositioning_PackedString{sourceNameC, C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(C.struct_QtPositioning_PackedString{data: sourceNameC, len: C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -2191,7 +2191,7 @@ func QGeoPositionInfoSource_CreateSource(sourceName string, parent core.QObject_
 		sourceNameC = C.CString(sourceName)
 		defer C.free(unsafe.Pointer(sourceNameC))
 	}
-	var tmpValue = NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(C.struct_QtPositioning_PackedString{sourceNameC, C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(C.struct_QtPositioning_PackedString{data: sourceNameC, len: C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -2204,7 +2204,7 @@ func (ptr *QGeoPositionInfoSource) CreateSource(sourceName string, parent core.Q
 		sourceNameC = C.CString(sourceName)
 		defer C.free(unsafe.Pointer(sourceNameC))
 	}
-	var tmpValue = NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(C.struct_QtPositioning_PackedString{sourceNameC, C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(C.struct_QtPositioning_PackedString{data: sourceNameC, len: C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -3584,7 +3584,7 @@ func QGeoSatelliteInfoSource_CreateSource(sourceName string, parent core.QObject
 		sourceNameC = C.CString(sourceName)
 		defer C.free(unsafe.Pointer(sourceNameC))
 	}
-	var tmpValue = NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(C.struct_QtPositioning_PackedString{sourceNameC, C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(C.struct_QtPositioning_PackedString{data: sourceNameC, len: C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -3597,7 +3597,7 @@ func (ptr *QGeoSatelliteInfoSource) CreateSource(sourceName string, parent core.
 		sourceNameC = C.CString(sourceName)
 		defer C.free(unsafe.Pointer(sourceNameC))
 	}
-	var tmpValue = NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(C.struct_QtPositioning_PackedString{sourceNameC, C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
+	var tmpValue = NewQGeoSatelliteInfoSourceFromPointer(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(C.struct_QtPositioning_PackedString{data: sourceNameC, len: C.longlong(len(sourceName))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}

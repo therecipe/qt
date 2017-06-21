@@ -29,7 +29,7 @@ func GoInputParametersForC(function *parser.Function) string {
 				var alloc = GoInput(parameter.Name, parameter.Value, function)
 				if strings.Contains(alloc, "C.CString") {
 					if parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList" {
-						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{ %vC, %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
+						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{ data: %vC, len: %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
 							func() string {
 								if function.AsError {
 									return "C.longlong(-1)"
