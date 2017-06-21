@@ -116,7 +116,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 								fmt.Fprintf(bb, "Q_PROPERTY(%v %v READ %v WRITE set%v NOTIFY %vChanged)\n", ty, p.Name,
 									func() string {
-										if p.Output == "bool" {
+										if p.Output == "bool" && !strings.HasPrefix(strings.ToLower(p.Name), "is") {
 											return "is" + strings.Title(p.Name)
 										}
 										return p.Name
@@ -248,7 +248,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						fmt.Fprintf(bb, "\t%v %v%v() { return _%v; };\n",
 							ty,
 							func() string {
-								if p.Output == "bool" {
+								if p.Output == "bool" && !strings.HasPrefix(strings.ToLower(p.Name), "is") {
 									return "is" + strings.Title(p.Name)
 								}
 								return p.Name
