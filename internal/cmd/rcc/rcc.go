@@ -3,6 +3,7 @@ package rcc
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -21,36 +22,32 @@ func Rcc(path, target, tagsCustom, output_dir string) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Rcc")
 
 	for i, path := range append([]string{path}, cmd.GetImports(path, target, tagsCustom, 0, true)...) {
-		fileList, err := ioutil.ReadDir(path)
-		if err != nil {
-			utils.Log.WithError(err).Error("failed to read dir")
-			continue
-		}
-
-		var hasQml bool
-		for _, file := range fileList {
-			if file.IsDir() && file.Name() == "qml" {
-				hasQml = true
-				break
-			}
-			ext := filepath.Ext(file.Name())
-			if ext == ".qrc" || ext == ".qml" {
-				hasQml = true
-				break
-			}
-		}
-		if !hasQml {
-			continue
-		}
-
 		if _, ok := done[path]; !ok && i > 0 {
 			done[path] = struct{}{}
 			Rcc(path, target, tagsCustom, path)
 		}
 	}
 
-	if dir := filepath.Join(path, "qml"); !utils.ExistsDir(dir) {
-		utils.MkdirAll(dir)
+	cfileList, err := ioutil.ReadDir(path)
+	if err != nil {
+		utils.Log.WithError(err).Error("failed to read dir")
+		return
+	}
+
+	var hasQml bool
+	for _, file := range cfileList {
+		if file.IsDir() && file.Name() == "qml" {
+			hasQml = true
+			break
+		}
+		ext := filepath.Ext(file.Name())
+		if ext == ".qrc" || ext == ".qml" {
+			hasQml = true
+			break
+		}
+	}
+	if !hasQml {
+		return
 	}
 
 	rccQrc := filepath.Join(path, "rcc.qrc")
@@ -116,5 +113,11 @@ func Rcc(path, target, tagsCustom, output_dir string) {
 
 	if utils.QT_DEBUG_QML() {
 		utils.Save("debug.pro", fmt.Sprintf("RESOURCES += %v", strings.Join(fileList, " ")))
+	}
+
+	if utils.QT_DOCKER() {
+		if idug, ok := os.LookupEnv("IDUG"); ok {
+			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+		}
 	}
 }

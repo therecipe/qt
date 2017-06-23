@@ -480,7 +480,7 @@ func bundle(mode, target, path, name, depPath string) {
 
 	if utils.QT_DOCKER() {
 		if idug, ok := os.LookupEnv("IDUG"); ok {
-			utils.RunCmd(exec.Command("chown", "-R", idug, filepath.Join(depPath, "..", "..")), "chown files to user")
+			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
 		}
 	}
 }

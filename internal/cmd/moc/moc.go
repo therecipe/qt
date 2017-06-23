@@ -7,6 +7,7 @@ import (
 	goparser "go/parser"
 	"go/token"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -245,6 +246,12 @@ func Moc(path, target, tags string, fast bool) {
 	if tags != "" {
 		utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
 	}
+
+	if utils.QT_DOCKER() {
+		if idug, ok := os.LookupEnv("IDUG"); ok {
+			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+		}
+	}
 }
 
 func parse(path string) ([]*parser.Class, string, error) {
@@ -436,18 +443,21 @@ func cppTypeFromGoType(f *parser.Function, t string) (string, string) {
 	tOld := t //TODO: also for differentiation of QVariant and *QVariant
 	//t = strings.TrimPrefix(t, "*")
 
-	if strings.Count(t, "[") == 1 {
+	if strings.Count(t, "[") == 1 || strings.HasSuffix(t, "][]string") {
 		//TODO: multidimensional array and nested maps
 		if strings.HasPrefix(t, "[]") && t != "[]string" {
-			o, _ := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"))
-			return fmt.Sprintf("QList<%v>", o), ""
+			o, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"))
+			if pureGoType == "" {
+				return fmt.Sprintf("QList<%v>", o), ""
+			}
 		}
 		if strings.HasPrefix(t, "map[") {
 			var head = fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
-
-			o1, _ := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
-			o2, _ := cppTypeFromGoType(f, strings.TrimPrefix(t, head))
-			return fmt.Sprintf("QHash<%v, %v>", o1, o2), ""
+			o1, pureGoType1 := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
+			o2, pureGoType2 := cppTypeFromGoType(f, strings.TrimPrefix(t, head))
+			if pureGoType1 == "" && pureGoType2 == "" {
+				return fmt.Sprintf("QHash<%v, %v>", o1, o2), ""
+			}
 		}
 	}
 

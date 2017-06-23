@@ -186,8 +186,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 								if mode != MOC {
 									return pre
 								}
-								//TODO registerMaps: return fmt.Sprintf("%v%[2]v_%[2]v_QRegisterMetaTypes();callback%[2]v_Constructor(this);", pre, className)
-								return fmt.Sprintf("%vcallback%[2]v_Constructor(this);", pre, className)
+								return fmt.Sprintf("qRegisterMetaType<quintptr>(\"quintptr\");%v%[2]v_%[2]v_QRegisterMetaTypes();callback%[2]v_Constructor(this);", pre, className)
 							}(),
 						)
 
@@ -329,16 +328,15 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
 					}
 				} else {
-					/* TODO registerMaps:
 					var typeMap = make(map[string]string)
 					for _, f := range class.Functions {
-						if parser.IsPackedMap(f.Output) || parser.IsPackedList(f.Output) {
+						if parser.IsPackedMap(f.Output) {
 							var tHash = sha1.New()
 							tHash.Write([]byte(f.Output))
 							typeMap[f.Output] = hex.EncodeToString(tHash.Sum(nil)[:3])
 						}
 						for _, p := range f.Parameters {
-							if parser.IsPackedMap(p.Value) || parser.IsPackedList(p.Value) {
+							if parser.IsPackedMap(p.Value) {
 								var tHash = sha1.New()
 								tHash.Write([]byte(p.Value))
 								typeMap[p.Value] = hex.EncodeToString(tHash.Sum(nil)[:3])
@@ -347,31 +345,25 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					}
 
 					for _, p := range class.Properties {
-						if parser.IsPackedMap(p.Output) || parser.IsPackedList(p.Output) {
+						if parser.IsPackedMap(p.Output) {
 							var tHash = sha1.New()
 							tHash.Write([]byte(p.Output))
 							typeMap[p.Output] = hex.EncodeToString(tHash.Sum(nil)[:3])
 						}
 					}
 
-					for typ, hash := range typeMap {
-						if strings.HasPrefix(typ, "QList") {
-							fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v)\n", typ)
-						} else {
-							fmt.Fprintf(bb, "Q_DECLARE_METATYPE(type%v)\n", hash)
+					for _, hash := range typeMap {
+						if hash == "30021d" || hash == "95ad14" {
+							continue
 						}
+						fmt.Fprintf(bb, "Q_DECLARE_METATYPE(type%v)\n", hash)
 					}
 
 					fmt.Fprintf(bb, "\nvoid %[1]v_%[1]v_QRegisterMetaTypes() {\n", class.Name)
-					for typ, hash := range typeMap {
-						if strings.HasPrefix(typ, "QList") {
-							fmt.Fprintf(bb, "\tqRegisterMetaType<%v>();\n", typ)
-						} else {
-							fmt.Fprintf(bb, "\tqRegisterMetaType<type%v>();\n", hash)
-						}
+					for _, hash := range typeMap {
+						fmt.Fprintf(bb, "\tqRegisterMetaType<type%v>(\"type%v\");\n", hash, hash)
 					}
 					fmt.Fprint(bb, "}\n\n")
-					*/
 				}
 			}
 		}

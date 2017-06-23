@@ -114,25 +114,14 @@ func goFunctionBody(function *parser.Function) string {
 			if function.IsMocFunction && function.SignalMode == "" {
 				for _, p := range function.Parameters {
 					if p.PureGoType != "" {
-						if !function.IsMocProperty {
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), %[2]v)\ndefer qt.UnregisterTemp(unsafe.Pointer(%[1]v%[2]v))\n",
-								func() string {
-									if !strings.HasPrefix(p.PureGoType, "*") {
-										return "&"
-									}
-									return ""
-								}(),
-								parser.CleanName(p.Name, p.Value))
-						} else {
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), %[2]v)\n",
-								func() string {
-									if !strings.HasPrefix(p.PureGoType, "*") {
-										return "&"
-									}
-									return ""
-								}(),
-								parser.CleanName(p.Name, p.Value))
-						}
+						fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), %[2]v)\n",
+							func() string {
+								if !strings.HasPrefix(p.PureGoType, "*") {
+									return "&"
+								}
+								return ""
+							}(),
+							parser.CleanName(p.Name, p.Value))
 					}
 				}
 
@@ -271,6 +260,9 @@ func goFunctionBody(function *parser.Function) string {
 					if p.PureGoType != "" {
 						fmt.Fprintf(bb, "var %vD %v\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
 						fmt.Fprintf(bb, "if  %[1]vI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(%[1]v))); ok {\n", parser.CleanName(p.Name, p.Value))
+						if !strings.HasSuffix(function.Name, "Changed") { //TODO: check if property instead
+							fmt.Fprintf(bb, "qt.UnregisterTemp(unsafe.Pointer(uintptr(%v)))\n", parser.CleanName(p.Name, p.Value))
+						}
 						fmt.Fprintf(bb, "%[1]vD = %[1]vI.(%v)\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
 						fmt.Fprint(bb, "}\n")
 					}

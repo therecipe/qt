@@ -1,6 +1,8 @@
 package templater
 
 import (
+	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -73,5 +75,11 @@ func GenModule(m, target string, mode int) {
 
 	if !UseStub(false, "Qt"+m, mode) {
 		CgoTemplate(m, "", target, mode, m, "")
+	}
+
+	if utils.QT_DOCKER() {
+		if idug, ok := os.LookupEnv("IDUG"); ok {
+			utils.RunCmd(exec.Command("chown", "-R", idug, utils.GoQtPkgPath(strings.ToLower(m))), "chown files to user")
+		}
 	}
 }
