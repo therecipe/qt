@@ -150,11 +150,28 @@ func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
 		n = new(%[2]v)
 		n.SetPointer(ptr)
 	} else {
-		n = gPtr.(*%[2]v)
+		switch deduced := gPtr.(type) {
+			case *%[2]v:
+				n = deduced
+
+			case *%[3]v:
+				n = &%[2]v{%[4]v: *deduced }
+
+			default:
+				n = new(%[2]v)
+				n.SetPointer(ptr)
+		}
 	}
 	return n
 }
-`, strings.Title(class.Name), class.Name)
+`, strings.Title(class.Name), class.Name,
+					func() string {
+						bc := class.GetBases()[0]
+						if class.Module == parser.State.ClassMap[bc].Module {
+							return bc
+						}
+						return fmt.Sprintf("%v.%v", strings.ToLower(strings.TrimPrefix(parser.State.ClassMap[bc].Module, "Qt")), bc)
+					}(), class.GetBases()[0])
 			} else {
 				fmt.Fprintf(bb, `
 func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
@@ -193,8 +210,21 @@ func (ptr *%[1]v) Destroy%[1]v() {
 func callback%[1]v_Constructor(ptr unsafe.Pointer) {
 `, class.Name)
 
+				fmt.Fprintf(bb, "gPtr := New%vFromPointer(ptr)\nqt.Register(ptr, gPtr)\n", strings.Title(class.Name))
+
+				var lastModule string
+				for _, bcn := range class.GetAllBases() {
+					if bc := parser.State.ClassMap[bcn]; bc.Module != class.Module {
+						if len(bc.Constructors) > 0 && lastModule != bc.Module {
+							if strings.ToLower(bc.Constructors[0])[0] != bc.Constructors[0][0] {
+								fmt.Fprintf(bb, "gPtr.%v.%v()\n", strings.Title(bc.Name), bc.Constructors[0])
+							}
+						}
+						lastModule = bc.Module
+					}
+				}
 				if len(class.Constructors) > 0 {
-					fmt.Fprintf(bb, "gPtr := New%vFromPointer(ptr)\nqt.Register(ptr, gPtr)\ngPtr.%v()\n", strings.Title(class.Name), class.Constructors[0])
+					fmt.Fprintf(bb, "gPtr.%v()\n", class.Constructors[0])
 				}
 
 				fmt.Fprint(bb, "}\n\n")

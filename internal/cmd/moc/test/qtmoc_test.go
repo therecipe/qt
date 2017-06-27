@@ -317,9 +317,15 @@ type subTestStruct struct {
 type subSubTestStruct struct {
 	sub.SubTestStruct
 
+	_ func() `constructor:"init"`
+
 	_ *sub.SubTestStruct                          `property:"StructPropertyTest"`
 	_ func(*sub.SubTestStruct) *sub.SubTestStruct `slot:"StructSlotTest"`
 	_ func(*sub.SubTestStruct)                    `signal:"StructSignalTest"`
+}
+
+func (s *subSubTestStruct) init() {
+	s.SubSubConstructorProperty++
 }
 
 type otherTestStruct struct {
@@ -502,7 +508,9 @@ func TestGeneral(t *testing.T) {
 		NewSubTestStruct(nil)
 		sub.NewSubTestStruct(nil)
 		subsub.NewSubSubTestStruct(nil)
-		NewSubSubTestStruct(nil)
+	}
+	if res := NewSubSubTestStruct(nil).SubSubConstructorProperty; res != 3 {
+		t.Fatal(res, "!=", 3)
 	}
 }
 

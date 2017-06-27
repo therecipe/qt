@@ -82,10 +82,9 @@ func Install(target string, docker bool) {
 	}
 
 	if l := len(failed); l > 0 {
-		utils.Log.Errorf("failed to install the following %v package(s):", l)
+		utils.Log.Warn("failed to install:")
 		for _, f := range failed {
-			utils.Log.Error(f)
+			utils.Log.Warn(f)
 		}
-		utils.Log.Errorf("you may want to run 'qtsetup install %v' if you depend on these %v package(s)", target, l)
 	}
 }
