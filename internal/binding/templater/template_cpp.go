@@ -353,7 +353,9 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					}
 
 					for _, hash := range typeMap {
-						if hash == "30021d" || hash == "95ad14" || hash == "d01680" {
+						if hash == "30021d" || //QHash<quintptr, quintptr>
+							hash == "95ad14" || //QHash<qint32, quintptr>
+							hash == "d01680" { //QHash<qint32, QByteArray>
 							continue
 						}
 						fmt.Fprintf(bb, "Q_DECLARE_METATYPE(type%v)\n", hash)
