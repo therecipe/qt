@@ -12,7 +12,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool) {
+func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string) {
 	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).WithField("ldFlags", ldFlags).WithField("fast", fast).Debug("running Deploy")
 	name := filepath.Base(path)
 	depPath := filepath.Join(path, "deploy", target)
@@ -54,6 +54,6 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 	}
 
 	if mode == "run" || mode == "test" {
-		run(target, name, depPath)
+		run(target, name, depPath, device)
 	}
 }

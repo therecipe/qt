@@ -11,7 +11,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func run(target, name, depPath string) {
+func run(target, name, depPath, device string) {
 	switch target {
 	case "android", "android-emulator":
 		if utils.ExistsFile(filepath.Join(depPath, "build-debug.apk")) {
@@ -21,9 +21,13 @@ func run(target, name, depPath string) {
 		}
 
 	case "ios-simulator":
-		out, _ := exec.Command("xcrun", "instruments", "-w", "").Output()
-		lines := strings.Split(string(out), "iPhone")
-		utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus ("+strings.Split(strings.Split(lines[len(lines)-1], "(")[1], ")")[0]+")#"), "start simulator")
+		if device == "" {
+			out, _ := exec.Command("xcrun", "instruments", "-w", "").Output()
+			lines := strings.Split(string(out), "iPhone")
+			device = strings.Split(strings.Split(string(out), "iPhone 7 Plus ("+strings.Split(strings.Split(lines[len(lines)-1], "(")[1], ")")[0]+") [")[1], "]")[0]
+		}
+		go utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-t", "Blank", "-w", device), "start simulator")
+		time.Sleep(1 * time.Second)
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "uninstall old app")
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "install new app")
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", name)), "start app")

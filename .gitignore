@@ -2,6 +2,7 @@
 *.pro
 *.pro.user
 *.qmlc
+*.trace
 */cgo_*
 */minimal_*
 */*-minimal.*
