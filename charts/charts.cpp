@@ -3566,7 +3566,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCandlestickModelMapper*)
 
-int QCandlestickModelMapper_QCandlestickModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQCandlestickModelMapper*>();}
+int QCandlestickModelMapper_QCandlestickModelMapper_QRegisterMetaType(){qRegisterMetaType<QCandlestickModelMapper*>(); return qRegisterMetaType<MyQCandlestickModelMapper*>();}
 
 void* QCandlestickModelMapper_NewQCandlestickModelMapper(void* parent)
 {
@@ -5107,7 +5107,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQChart*)
 
-int QChart_QChart_QRegisterMetaType(){return qRegisterMetaType<MyQChart*>();}
+int QChart_QChart_QRegisterMetaType(){qRegisterMetaType<QChart*>(); return qRegisterMetaType<MyQChart*>();}
 
 void QChart_SetAnimationEasingCurve(void* ptr, void* curve)
 {
@@ -6318,7 +6318,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQChartView*)
 
-int QChartView_QChartView_QRegisterMetaType(){return qRegisterMetaType<MyQChartView*>();}
+int QChartView_QChartView_QRegisterMetaType(){qRegisterMetaType<QChartView*>(); return qRegisterMetaType<MyQChartView*>();}
 
 void* QChartView_NewQChartView2(void* chart, void* parent)
 {
@@ -7230,7 +7230,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHBarModelMapper*)
 
-int QHBarModelMapper_QHBarModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQHBarModelMapper*>();}
+int QHBarModelMapper_QHBarModelMapper_QRegisterMetaType(){qRegisterMetaType<QHBarModelMapper*>(); return qRegisterMetaType<MyQHBarModelMapper*>();}
 
 void* QHBarModelMapper_NewQHBarModelMapper(void* parent)
 {
@@ -7573,7 +7573,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHBoxPlotModelMapper*)
 
-int QHBoxPlotModelMapper_QHBoxPlotModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQHBoxPlotModelMapper*>();}
+int QHBoxPlotModelMapper_QHBoxPlotModelMapper_QRegisterMetaType(){qRegisterMetaType<QHBoxPlotModelMapper*>(); return qRegisterMetaType<MyQHBoxPlotModelMapper*>();}
 
 void* QHBoxPlotModelMapper_NewQHBoxPlotModelMapper(void* parent)
 {
@@ -7920,7 +7920,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHCandlestickModelMapper*)
 
-int QHCandlestickModelMapper_QHCandlestickModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQHCandlestickModelMapper*>();}
+int QHCandlestickModelMapper_QHCandlestickModelMapper_QRegisterMetaType(){qRegisterMetaType<QHCandlestickModelMapper*>(); return qRegisterMetaType<MyQHCandlestickModelMapper*>();}
 
 void* QHCandlestickModelMapper_NewQHCandlestickModelMapper(void* parent)
 {
@@ -8880,7 +8880,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLegend*)
 
-int QLegend_QLegend_QRegisterMetaType(){return qRegisterMetaType<MyQLegend*>();}
+int QLegend_QLegend_QRegisterMetaType(){qRegisterMetaType<QLegend*>(); return qRegisterMetaType<MyQLegend*>();}
 
 void* QLegend_BorderColor(void* ptr)
 {
@@ -11354,7 +11354,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPolarChart*)
 
-int QPolarChart_QPolarChart_QRegisterMetaType(){return qRegisterMetaType<MyQPolarChart*>();}
+int QPolarChart_QPolarChart_QRegisterMetaType(){qRegisterMetaType<QPolarChart*>(); return qRegisterMetaType<MyQPolarChart*>();}
 
 long long QPolarChart_QPolarChart_AxisPolarOrientation(void* axis)
 {
@@ -11735,7 +11735,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVBarModelMapper*)
 
-int QVBarModelMapper_QVBarModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQVBarModelMapper*>();}
+int QVBarModelMapper_QVBarModelMapper_QRegisterMetaType(){qRegisterMetaType<QVBarModelMapper*>(); return qRegisterMetaType<MyQVBarModelMapper*>();}
 
 void* QVBarModelMapper_NewQVBarModelMapper(void* parent)
 {
@@ -12078,7 +12078,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVBoxPlotModelMapper*)
 
-int QVBoxPlotModelMapper_QVBoxPlotModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQVBoxPlotModelMapper*>();}
+int QVBoxPlotModelMapper_QVBoxPlotModelMapper_QRegisterMetaType(){qRegisterMetaType<QVBoxPlotModelMapper*>(); return qRegisterMetaType<MyQVBoxPlotModelMapper*>();}
 
 void* QVBoxPlotModelMapper_NewQVBoxPlotModelMapper(void* parent)
 {
@@ -12425,7 +12425,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVCandlestickModelMapper*)
 
-int QVCandlestickModelMapper_QVCandlestickModelMapper_QRegisterMetaType(){return qRegisterMetaType<MyQVCandlestickModelMapper*>();}
+int QVCandlestickModelMapper_QVCandlestickModelMapper_QRegisterMetaType(){qRegisterMetaType<QVCandlestickModelMapper*>(); return qRegisterMetaType<MyQVCandlestickModelMapper*>();}
 
 void* QVCandlestickModelMapper_NewQVCandlestickModelMapper(void* parent)
 {

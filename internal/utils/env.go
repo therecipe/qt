@@ -52,13 +52,16 @@ func CheckBuildTarget(buildTarget string) {
 		"ios", "ios-simulator",
 		"sailfish", "sailfish-emulator", "asteroid",
 		"rpi1", "rpi2", "rpi3",
-		"windows", "darwin", "linux":
+		"windows", "darwin", "linux",
+		"homebrew":
 
 	default:
-		Log.Panicf("failed to recognize build target %v", buildTarget)
+		if !strings.Contains(buildTarget, "_") {
+			Log.Panicf("failed to recognize build target %v", buildTarget)
+		}
 	}
 
-	if buildTarget != runtime.GOOS {
+	if buildTarget != runtime.GOOS && !strings.Contains(buildTarget, "_") {
 		switch {
 		case QT_MSYS2():
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
@@ -85,6 +88,10 @@ func QT_QMAKE_DIR() string {
 
 func QT_DOCKER() bool {
 	return strings.ToLower(os.Getenv("QT_DOCKER")) == "true"
+}
+
+func QT_VAGRANT() bool {
+	return strings.ToLower(os.Getenv("QT_VAGRANT")) == "true"
 }
 
 //TODO: use qmake props

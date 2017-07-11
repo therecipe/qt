@@ -205,7 +205,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsWebView*)
 
-int QGraphicsWebView_QGraphicsWebView_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsWebView*>();}
+int QGraphicsWebView_QGraphicsWebView_QRegisterMetaType(){qRegisterMetaType<QGraphicsWebView*>(); return qRegisterMetaType<MyQGraphicsWebView*>();}
 
 void* QGraphicsWebView_NewQGraphicsWebView(void* parent)
 {
@@ -1480,7 +1480,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebFrame*)
 
-int QWebFrame_QWebFrame_QRegisterMetaType(){return qRegisterMetaType<MyQWebFrame*>();}
+int QWebFrame_QWebFrame_QRegisterMetaType(){qRegisterMetaType<QWebFrame*>(); return qRegisterMetaType<MyQWebFrame*>();}
 
 char QWebFrame_EventDefault(void* ptr, void* e)
 {
@@ -2280,7 +2280,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebHistoryInterface*)
 
-int QWebHistoryInterface_QWebHistoryInterface_QRegisterMetaType(){return qRegisterMetaType<MyQWebHistoryInterface*>();}
+int QWebHistoryInterface_QWebHistoryInterface_QRegisterMetaType(){qRegisterMetaType<QWebHistoryInterface*>(); return qRegisterMetaType<MyQWebHistoryInterface*>();}
 
 void* QWebHistoryInterface_QWebHistoryInterface_DefaultInterface()
 {
@@ -2784,7 +2784,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebInspector*)
 
-int QWebInspector_QWebInspector_QRegisterMetaType(){return qRegisterMetaType<MyQWebInspector*>();}
+int QWebInspector_QWebInspector_QRegisterMetaType(){qRegisterMetaType<QWebInspector*>(); return qRegisterMetaType<MyQWebInspector*>();}
 
 void* QWebInspector_NewQWebInspector(void* parent)
 {
@@ -3315,7 +3315,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebPage*)
 
-int QWebPage_QWebPage_QRegisterMetaType(){return qRegisterMetaType<MyQWebPage*>();}
+int QWebPage_QWebPage_QRegisterMetaType(){qRegisterMetaType<QWebPage*>(); return qRegisterMetaType<MyQWebPage*>();}
 
 void* QWebPage_CreateStandardContextMenu(void* ptr)
 {
@@ -4304,7 +4304,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebPluginFactory*)
 
-int QWebPluginFactory_QWebPluginFactory_QRegisterMetaType(){return qRegisterMetaType<MyQWebPluginFactory*>();}
+int QWebPluginFactory_QWebPluginFactory_QRegisterMetaType(){qRegisterMetaType<QWebPluginFactory*>(); return qRegisterMetaType<MyQWebPluginFactory*>();}
 
 void QWebPluginFactory_RefreshPlugins(void* ptr)
 {
@@ -4986,7 +4986,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebView*)
 
-int QWebView_QWebView_QRegisterMetaType(){return qRegisterMetaType<MyQWebView*>();}
+int QWebView_QWebView_QRegisterMetaType(){qRegisterMetaType<QWebView*>(); return qRegisterMetaType<MyQWebView*>();}
 
 void* QWebView_CreateWindow(void* ptr, long long ty)
 {

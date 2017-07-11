@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
@@ -30,6 +31,9 @@ func main() {
 	var docker bool
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
+	var vagrant bool
+	flag.BoolVar(&vagrant, "vagrant", false, "run command inside vagrant vm")
+
 	var tags string
 	flag.StringVar(&tags, "tags", "", "a list of build tags to consider satisfied during the build")
 
@@ -54,6 +58,12 @@ func main() {
 		flag.Usage()
 	}
 
+	var vagrantsystem string
+	if vagrant && strings.Contains(target, "/") {
+		vagrantsystem = strings.Split(target, "/")[0]
+		target = strings.Split(target, "/")[1]
+	}
+
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
@@ -68,6 +78,8 @@ func main() {
 	utils.CheckBuildTarget(target)
 	if docker {
 		cmd.Docker([]string{"qtminimal", "-debug", "-tags=" + tags}, target, path, false)
+	} else if vagrant {
+		cmd.Vagrant([]string{"qtminimal", "-debug", "-tags=" + tags}, target, path, false, vagrantsystem)
 	} else {
 		minimal.Minimal(path, target, tags)
 	}

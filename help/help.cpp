@@ -207,7 +207,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpContentModel*)
 
-int QHelpContentModel_QHelpContentModel_QRegisterMetaType(){return qRegisterMetaType<MyQHelpContentModel*>();}
+int QHelpContentModel_QHelpContentModel_QRegisterMetaType(){qRegisterMetaType<QHelpContentModel*>(); return qRegisterMetaType<MyQHelpContentModel*>();}
 
 void QHelpContentModel_ConnectContentsCreated(void* ptr)
 {
@@ -993,7 +993,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpContentWidget*)
 
-int QHelpContentWidget_QHelpContentWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpContentWidget*>();}
+int QHelpContentWidget_QHelpContentWidget_QRegisterMetaType(){qRegisterMetaType<QHelpContentWidget*>(); return qRegisterMetaType<MyQHelpContentWidget*>();}
 
 void* QHelpContentWidget_IndexOf(void* ptr, void* link)
 {
@@ -1802,7 +1802,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpEngine*)
 
-int QHelpEngine_QHelpEngine_QRegisterMetaType(){return qRegisterMetaType<MyQHelpEngine*>();}
+int QHelpEngine_QHelpEngine_QRegisterMetaType(){qRegisterMetaType<QHelpEngine*>(); return qRegisterMetaType<MyQHelpEngine*>();}
 
 void* QHelpEngine_ContentWidget(void* ptr)
 {
@@ -1900,7 +1900,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpEngineCore*)
 
-int QHelpEngineCore_QHelpEngineCore_QRegisterMetaType(){return qRegisterMetaType<MyQHelpEngineCore*>();}
+int QHelpEngineCore_QHelpEngineCore_QRegisterMetaType(){qRegisterMetaType<QHelpEngineCore*>(); return qRegisterMetaType<MyQHelpEngineCore*>();}
 
 void* QHelpEngineCore_NewQHelpEngineCore(struct QtHelp_PackedString collectionFile, void* parent)
 {
@@ -2467,7 +2467,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpIndexModel*)
 
-int QHelpIndexModel_QHelpIndexModel_QRegisterMetaType(){return qRegisterMetaType<MyQHelpIndexModel*>();}
+int QHelpIndexModel_QHelpIndexModel_QRegisterMetaType(){qRegisterMetaType<QHelpIndexModel*>(); return qRegisterMetaType<MyQHelpIndexModel*>();}
 
 void* QHelpIndexModel_Filter(void* ptr, struct QtHelp_PackedString filter, struct QtHelp_PackedString wildcard)
 {
@@ -3252,7 +3252,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpIndexWidget*)
 
-int QHelpIndexWidget_QHelpIndexWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpIndexWidget*>();}
+int QHelpIndexWidget_QHelpIndexWidget_QRegisterMetaType(){qRegisterMetaType<QHelpIndexWidget*>(); return qRegisterMetaType<MyQHelpIndexWidget*>();}
 
 void QHelpIndexWidget_ActivateCurrentItem(void* ptr)
 {
@@ -4080,7 +4080,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpSearchEngine*)
 
-int QHelpSearchEngine_QHelpSearchEngine_QRegisterMetaType(){return qRegisterMetaType<MyQHelpSearchEngine*>();}
+int QHelpSearchEngine_QHelpSearchEngine_QRegisterMetaType(){qRegisterMetaType<QHelpSearchEngine*>(); return qRegisterMetaType<MyQHelpSearchEngine*>();}
 
 void* QHelpSearchEngine_NewQHelpSearchEngine(void* helpEngine, void* parent)
 {
@@ -4508,7 +4508,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpSearchQueryWidget*)
 
-int QHelpSearchQueryWidget_QHelpSearchQueryWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpSearchQueryWidget*>();}
+int QHelpSearchQueryWidget_QHelpSearchQueryWidget_QRegisterMetaType(){qRegisterMetaType<QHelpSearchQueryWidget*>(); return qRegisterMetaType<MyQHelpSearchQueryWidget*>();}
 
 void* QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(void* parent)
 {
@@ -5112,7 +5112,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHelpSearchResultWidget*)
 
-int QHelpSearchResultWidget_QHelpSearchResultWidget_QRegisterMetaType(){return qRegisterMetaType<MyQHelpSearchResultWidget*>();}
+int QHelpSearchResultWidget_QHelpSearchResultWidget_QRegisterMetaType(){qRegisterMetaType<QHelpSearchResultWidget*>(); return qRegisterMetaType<MyQHelpSearchResultWidget*>();}
 
 void* QHelpSearchResultWidget_LinkAt(void* ptr, void* point)
 {

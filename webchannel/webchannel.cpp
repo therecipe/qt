@@ -64,7 +64,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebChannel*)
 
-int QWebChannel_QWebChannel_QRegisterMetaType(){return qRegisterMetaType<MyQWebChannel*>();}
+int QWebChannel_QWebChannel_QRegisterMetaType(){qRegisterMetaType<QWebChannel*>(); return qRegisterMetaType<MyQWebChannel*>();}
 
 void* QWebChannel_NewQWebChannel(void* parent)
 {
@@ -398,7 +398,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebChannelAbstractTransport*)
 
-int QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType(){return qRegisterMetaType<MyQWebChannelAbstractTransport*>();}
+int QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType(){qRegisterMetaType<QWebChannelAbstractTransport*>(); return qRegisterMetaType<MyQWebChannelAbstractTransport*>();}
 
 void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent)
 {

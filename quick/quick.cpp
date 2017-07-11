@@ -212,7 +212,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickFramebufferObject*)
 
-int QQuickFramebufferObject_QQuickFramebufferObject_QRegisterMetaType(){return qRegisterMetaType<MyQQuickFramebufferObject*>();}
+int QQuickFramebufferObject_QQuickFramebufferObject_QRegisterMetaType(){qRegisterMetaType<QQuickFramebufferObject*>(); return qRegisterMetaType<MyQQuickFramebufferObject*>();}
 
 void QQuickFramebufferObject_ConnectMirrorVerticallyChanged(void* ptr)
 {
@@ -386,7 +386,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickImageResponse*)
 
-int QQuickImageResponse_QQuickImageResponse_QRegisterMetaType(){return qRegisterMetaType<MyQQuickImageResponse*>();}
+int QQuickImageResponse_QQuickImageResponse_QRegisterMetaType(){qRegisterMetaType<QQuickImageResponse*>(); return qRegisterMetaType<MyQQuickImageResponse*>();}
 
 void* QQuickImageResponse_NewQQuickImageResponse()
 {
@@ -641,7 +641,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickItem*)
 
-int QQuickItem_QQuickItem_QRegisterMetaType(){return qRegisterMetaType<MyQQuickItem*>();}
+int QQuickItem_QQuickItem_QRegisterMetaType(){qRegisterMetaType<QQuickItem*>(); return qRegisterMetaType<MyQQuickItem*>();}
 
 void* QQuickItem_NextItemInFocusChain(void* ptr, char forward)
 {
@@ -1947,7 +1947,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickItemGrabResult*)
 
-int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType(){return qRegisterMetaType<MyQQuickItemGrabResult*>();}
+int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType(){qRegisterMetaType<QQuickItemGrabResult*>(); return qRegisterMetaType<MyQQuickItemGrabResult*>();}
 
 char QQuickItemGrabResult_SaveToFile(void* ptr, struct QtQuick_PackedString fileName)
 {
@@ -2181,7 +2181,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickPaintedItem*)
 
-int QQuickPaintedItem_QQuickPaintedItem_QRegisterMetaType(){return qRegisterMetaType<MyQQuickPaintedItem*>();}
+int QQuickPaintedItem_QQuickPaintedItem_QRegisterMetaType(){qRegisterMetaType<QQuickPaintedItem*>(); return qRegisterMetaType<MyQQuickPaintedItem*>();}
 
 void* QQuickPaintedItem_NewQQuickPaintedItem(void* parent)
 {
@@ -2391,7 +2391,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickRenderControl*)
 
-int QQuickRenderControl_QQuickRenderControl_QRegisterMetaType(){return qRegisterMetaType<MyQQuickRenderControl*>();}
+int QQuickRenderControl_QQuickRenderControl_QRegisterMetaType(){qRegisterMetaType<QQuickRenderControl*>(); return qRegisterMetaType<MyQQuickRenderControl*>();}
 
 void* QQuickRenderControl_Grab(void* ptr)
 {
@@ -2683,7 +2683,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickTextDocument*)
 
-int QQuickTextDocument_QQuickTextDocument_QRegisterMetaType(){return qRegisterMetaType<MyQQuickTextDocument*>();}
+int QQuickTextDocument_QQuickTextDocument_QRegisterMetaType(){qRegisterMetaType<QQuickTextDocument*>(); return qRegisterMetaType<MyQQuickTextDocument*>();}
 
 void* QQuickTextDocument_NewQQuickTextDocument(void* parent)
 {
@@ -2864,7 +2864,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickTextureFactory*)
 
-int QQuickTextureFactory_QQuickTextureFactory_QRegisterMetaType(){return qRegisterMetaType<MyQQuickTextureFactory*>();}
+int QQuickTextureFactory_QQuickTextureFactory_QRegisterMetaType(){qRegisterMetaType<QQuickTextureFactory*>(); return qRegisterMetaType<MyQQuickTextureFactory*>();}
 
 void* QQuickTextureFactory_QQuickTextureFactory_TextureFactoryForImage(void* image)
 {
@@ -3152,7 +3152,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickView*)
 
-int QQuickView_QQuickView_QRegisterMetaType(){return qRegisterMetaType<MyQQuickView*>();}
+int QQuickView_QQuickView_QRegisterMetaType(){qRegisterMetaType<QQuickView*>(); return qRegisterMetaType<MyQQuickView*>();}
 
 void* QQuickView_NewQQuickView2(void* engine, void* parent)
 {
@@ -3198,6 +3198,7 @@ void QQuickView_SetSourceDefault(void* ptr, void* url)
 
 void QQuickView_ConnectStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QQuickView::Status>();
 	QObject::connect(static_cast<QQuickView*>(ptr), static_cast<void (QQuickView::*)(QQuickView::Status)>(&QQuickView::statusChanged), static_cast<MyQQuickView*>(ptr), static_cast<void (MyQQuickView::*)(QQuickView::Status)>(&MyQQuickView::Signal_StatusChanged));
 }
 
@@ -3361,7 +3362,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickWidget*)
 
-int QQuickWidget_QQuickWidget_QRegisterMetaType(){return qRegisterMetaType<MyQQuickWidget*>();}
+int QQuickWidget_QQuickWidget_QRegisterMetaType(){qRegisterMetaType<QQuickWidget*>(); return qRegisterMetaType<MyQQuickWidget*>();}
 
 void* QQuickWidget_NewQQuickWidget2(void* engine, void* parent)
 {
@@ -3380,6 +3381,7 @@ void* QQuickWidget_NewQQuickWidget3(void* source, void* parent)
 
 void QQuickWidget_ConnectSceneGraphError(void* ptr)
 {
+	qRegisterMetaType<QQuickWindow::SceneGraphError>();
 	QObject::connect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWidget::sceneGraphError), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWidget::Signal_SceneGraphError));
 }
 
@@ -3420,6 +3422,7 @@ void QQuickWidget_SetSourceDefault(void* ptr, void* url)
 
 void QQuickWidget_ConnectStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QQuickWidget::Status>();
 	QObject::connect(static_cast<QQuickWidget*>(ptr), static_cast<void (QQuickWidget::*)(QQuickWidget::Status)>(&QQuickWidget::statusChanged), static_cast<MyQQuickWidget*>(ptr), static_cast<void (MyQQuickWidget::*)(QQuickWidget::Status)>(&MyQQuickWidget::Signal_StatusChanged));
 }
 
@@ -4079,7 +4082,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickWindow*)
 
-int QQuickWindow_QQuickWindow_QRegisterMetaType(){return qRegisterMetaType<MyQQuickWindow*>();}
+int QQuickWindow_QQuickWindow_QRegisterMetaType(){qRegisterMetaType<QQuickWindow*>(); return qRegisterMetaType<MyQQuickWindow*>();}
 
 void* QQuickWindow_GrabWindow(void* ptr)
 {
@@ -4379,6 +4382,7 @@ void QQuickWindow_SceneGraphAboutToStop(void* ptr)
 
 void QQuickWindow_ConnectSceneGraphError(void* ptr)
 {
+	qRegisterMetaType<QQuickWindow::SceneGraphError>();
 	QObject::connect(static_cast<QQuickWindow*>(ptr), static_cast<void (QQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&QQuickWindow::sceneGraphError), static_cast<MyQQuickWindow*>(ptr), static_cast<void (MyQQuickWindow::*)(QQuickWindow::SceneGraphError, const QString &)>(&MyQQuickWindow::Signal_SceneGraphError));
 }
 
@@ -5085,7 +5089,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSGAbstractRenderer*)
 
-int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType(){return qRegisterMetaType<MyQSGAbstractRenderer*>();}
+int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType(){qRegisterMetaType<QSGAbstractRenderer*>(); return qRegisterMetaType<MyQSGAbstractRenderer*>();}
 
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr)
 {
@@ -5404,7 +5408,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSGDynamicTexture*)
 
-int QSGDynamicTexture_QSGDynamicTexture_QRegisterMetaType(){return qRegisterMetaType<MyQSGDynamicTexture*>();}
+int QSGDynamicTexture_QSGDynamicTexture_QRegisterMetaType(){qRegisterMetaType<QSGDynamicTexture*>(); return qRegisterMetaType<MyQSGDynamicTexture*>();}
 
 char QSGDynamicTexture_UpdateTexture(void* ptr)
 {
@@ -5485,7 +5489,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSGEngine*)
 
-int QSGEngine_QSGEngine_QRegisterMetaType(){return qRegisterMetaType<MyQSGEngine*>();}
+int QSGEngine_QSGEngine_QRegisterMetaType(){qRegisterMetaType<QSGEngine*>(); return qRegisterMetaType<MyQSGEngine*>();}
 
 void* QSGEngine_NewQSGEngine(void* parent)
 {
@@ -6719,7 +6723,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSGTexture*)
 
-int QSGTexture_QSGTexture_QRegisterMetaType(){return qRegisterMetaType<MyQSGTexture*>();}
+int QSGTexture_QSGTexture_QRegisterMetaType(){qRegisterMetaType<QSGTexture*>(); return qRegisterMetaType<MyQSGTexture*>();}
 
 void* QSGTexture_NewQSGTexture()
 {
@@ -7061,7 +7065,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSGTextureProvider*)
 
-int QSGTextureProvider_QSGTextureProvider_QRegisterMetaType(){return qRegisterMetaType<MyQSGTextureProvider*>();}
+int QSGTextureProvider_QSGTextureProvider_QRegisterMetaType(){qRegisterMetaType<QSGTextureProvider*>(); return qRegisterMetaType<MyQSGTextureProvider*>();}
 
 void QSGTextureProvider_ConnectTextureChanged(void* ptr)
 {

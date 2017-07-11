@@ -140,7 +140,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAccelerometer*)
 
-int QAccelerometer_QAccelerometer_QRegisterMetaType(){return qRegisterMetaType<MyQAccelerometer*>();}
+int QAccelerometer_QAccelerometer_QRegisterMetaType(){qRegisterMetaType<QAccelerometer*>(); return qRegisterMetaType<MyQAccelerometer*>();}
 
 void QAccelerometer_ConnectAccelerationModeChanged(void* ptr)
 {
@@ -258,7 +258,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAccelerometerReading*)
 
-int QAccelerometerReading_QAccelerometerReading_QRegisterMetaType(){return qRegisterMetaType<MyQAccelerometerReading*>();}
+int QAccelerometerReading_QAccelerometerReading_QRegisterMetaType(){qRegisterMetaType<QAccelerometerReading*>(); return qRegisterMetaType<MyQAccelerometerReading*>();}
 
 void QAccelerometerReading_SetX(void* ptr, double x)
 {
@@ -325,7 +325,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAltimeter*)
 
-int QAltimeter_QAltimeter_QRegisterMetaType(){return qRegisterMetaType<MyQAltimeter*>();}
+int QAltimeter_QAltimeter_QRegisterMetaType(){qRegisterMetaType<QAltimeter*>(); return qRegisterMetaType<MyQAltimeter*>();}
 
 void* QAltimeter_NewQAltimeter(void* parent)
 {
@@ -412,7 +412,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAltimeterReading*)
 
-int QAltimeterReading_QAltimeterReading_QRegisterMetaType(){return qRegisterMetaType<MyQAltimeterReading*>();}
+int QAltimeterReading_QAltimeterReading_QRegisterMetaType(){qRegisterMetaType<QAltimeterReading*>(); return qRegisterMetaType<MyQAltimeterReading*>();}
 
 void QAltimeterReading_SetAltitude(void* ptr, double altitude)
 {
@@ -453,7 +453,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAmbientLightReading*)
 
-int QAmbientLightReading_QAmbientLightReading_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientLightReading*>();}
+int QAmbientLightReading_QAmbientLightReading_QRegisterMetaType(){qRegisterMetaType<QAmbientLightReading*>(); return qRegisterMetaType<MyQAmbientLightReading*>();}
 
 void QAmbientLightReading_SetLightLevel(void* ptr, long long lightLevel)
 {
@@ -501,7 +501,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAmbientLightSensor*)
 
-int QAmbientLightSensor_QAmbientLightSensor_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientLightSensor*>();}
+int QAmbientLightSensor_QAmbientLightSensor_QRegisterMetaType(){qRegisterMetaType<QAmbientLightSensor*>(); return qRegisterMetaType<MyQAmbientLightSensor*>();}
 
 void* QAmbientLightSensor_NewQAmbientLightSensor(void* parent)
 {
@@ -594,7 +594,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAmbientTemperatureReading*)
 
-int QAmbientTemperatureReading_QAmbientTemperatureReading_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientTemperatureReading*>();}
+int QAmbientTemperatureReading_QAmbientTemperatureReading_QRegisterMetaType(){qRegisterMetaType<QAmbientTemperatureReading*>(); return qRegisterMetaType<MyQAmbientTemperatureReading*>();}
 
 void QAmbientTemperatureReading_SetTemperature(void* ptr, double temperature)
 {
@@ -641,7 +641,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAmbientTemperatureSensor*)
 
-int QAmbientTemperatureSensor_QAmbientTemperatureSensor_QRegisterMetaType(){return qRegisterMetaType<MyQAmbientTemperatureSensor*>();}
+int QAmbientTemperatureSensor_QAmbientTemperatureSensor_QRegisterMetaType(){qRegisterMetaType<QAmbientTemperatureSensor*>(); return qRegisterMetaType<MyQAmbientTemperatureSensor*>();}
 
 void* QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(void* parent)
 {
@@ -735,7 +735,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCompass*)
 
-int QCompass_QCompass_QRegisterMetaType(){return qRegisterMetaType<MyQCompass*>();}
+int QCompass_QCompass_QRegisterMetaType(){qRegisterMetaType<QCompass*>(); return qRegisterMetaType<MyQCompass*>();}
 
 void* QCompass_NewQCompass(void* parent)
 {
@@ -828,7 +828,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCompassReading*)
 
-int QCompassReading_QCompassReading_QRegisterMetaType(){return qRegisterMetaType<MyQCompassReading*>();}
+int QCompassReading_QCompassReading_QRegisterMetaType(){qRegisterMetaType<QCompassReading*>(); return qRegisterMetaType<MyQCompassReading*>();}
 
 void QCompassReading_SetAzimuth(void* ptr, double azimuth)
 {
@@ -879,7 +879,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDistanceReading*)
 
-int QDistanceReading_QDistanceReading_QRegisterMetaType(){return qRegisterMetaType<MyQDistanceReading*>();}
+int QDistanceReading_QDistanceReading_QRegisterMetaType(){qRegisterMetaType<QDistanceReading*>(); return qRegisterMetaType<MyQDistanceReading*>();}
 
 void QDistanceReading_SetDistance(void* ptr, double distance)
 {
@@ -926,7 +926,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDistanceSensor*)
 
-int QDistanceSensor_QDistanceSensor_QRegisterMetaType(){return qRegisterMetaType<MyQDistanceSensor*>();}
+int QDistanceSensor_QDistanceSensor_QRegisterMetaType(){qRegisterMetaType<QDistanceSensor*>(); return qRegisterMetaType<MyQDistanceSensor*>();}
 
 void* QDistanceSensor_NewQDistanceSensor(void* parent)
 {
@@ -1020,7 +1020,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGyroscope*)
 
-int QGyroscope_QGyroscope_QRegisterMetaType(){return qRegisterMetaType<MyQGyroscope*>();}
+int QGyroscope_QGyroscope_QRegisterMetaType(){qRegisterMetaType<QGyroscope*>(); return qRegisterMetaType<MyQGyroscope*>();}
 
 void* QGyroscope_NewQGyroscope(void* parent)
 {
@@ -1113,7 +1113,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGyroscopeReading*)
 
-int QGyroscopeReading_QGyroscopeReading_QRegisterMetaType(){return qRegisterMetaType<MyQGyroscopeReading*>();}
+int QGyroscopeReading_QGyroscopeReading_QRegisterMetaType(){qRegisterMetaType<QGyroscopeReading*>(); return qRegisterMetaType<MyQGyroscopeReading*>();}
 
 void QGyroscopeReading_SetX(void* ptr, double x)
 {
@@ -1174,7 +1174,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHolsterReading*)
 
-int QHolsterReading_QHolsterReading_QRegisterMetaType(){return qRegisterMetaType<MyQHolsterReading*>();}
+int QHolsterReading_QHolsterReading_QRegisterMetaType(){qRegisterMetaType<QHolsterReading*>(); return qRegisterMetaType<MyQHolsterReading*>();}
 
 void QHolsterReading_SetHolstered(void* ptr, char holstered)
 {
@@ -1221,7 +1221,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHolsterSensor*)
 
-int QHolsterSensor_QHolsterSensor_QRegisterMetaType(){return qRegisterMetaType<MyQHolsterSensor*>();}
+int QHolsterSensor_QHolsterSensor_QRegisterMetaType(){qRegisterMetaType<QHolsterSensor*>(); return qRegisterMetaType<MyQHolsterSensor*>();}
 
 void* QHolsterSensor_NewQHolsterSensor(void* parent)
 {
@@ -1308,7 +1308,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQIRProximityReading*)
 
-int QIRProximityReading_QIRProximityReading_QRegisterMetaType(){return qRegisterMetaType<MyQIRProximityReading*>();}
+int QIRProximityReading_QIRProximityReading_QRegisterMetaType(){qRegisterMetaType<QIRProximityReading*>(); return qRegisterMetaType<MyQIRProximityReading*>();}
 
 void QIRProximityReading_SetReflectance(void* ptr, double reflectance)
 {
@@ -1356,7 +1356,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQIRProximitySensor*)
 
-int QIRProximitySensor_QIRProximitySensor_QRegisterMetaType(){return qRegisterMetaType<MyQIRProximitySensor*>();}
+int QIRProximitySensor_QIRProximitySensor_QRegisterMetaType(){qRegisterMetaType<QIRProximitySensor*>(); return qRegisterMetaType<MyQIRProximitySensor*>();}
 
 void* QIRProximitySensor_NewQIRProximitySensor(void* parent)
 {
@@ -1449,7 +1449,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLightReading*)
 
-int QLightReading_QLightReading_QRegisterMetaType(){return qRegisterMetaType<MyQLightReading*>();}
+int QLightReading_QLightReading_QRegisterMetaType(){qRegisterMetaType<QLightReading*>(); return qRegisterMetaType<MyQLightReading*>();}
 
 void QLightReading_SetLux(void* ptr, double lux)
 {
@@ -1498,7 +1498,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLightSensor*)
 
-int QLightSensor_QLightSensor_QRegisterMetaType(){return qRegisterMetaType<MyQLightSensor*>();}
+int QLightSensor_QLightSensor_QRegisterMetaType(){qRegisterMetaType<QLightSensor*>(); return qRegisterMetaType<MyQLightSensor*>();}
 
 void* QLightSensor_NewQLightSensor(void* parent)
 {
@@ -1624,7 +1624,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMagnetometer*)
 
-int QMagnetometer_QMagnetometer_QRegisterMetaType(){return qRegisterMetaType<MyQMagnetometer*>();}
+int QMagnetometer_QMagnetometer_QRegisterMetaType(){qRegisterMetaType<QMagnetometer*>(); return qRegisterMetaType<MyQMagnetometer*>();}
 
 void* QMagnetometer_NewQMagnetometer(void* parent)
 {
@@ -1742,7 +1742,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMagnetometerReading*)
 
-int QMagnetometerReading_QMagnetometerReading_QRegisterMetaType(){return qRegisterMetaType<MyQMagnetometerReading*>();}
+int QMagnetometerReading_QMagnetometerReading_QRegisterMetaType(){qRegisterMetaType<QMagnetometerReading*>(); return qRegisterMetaType<MyQMagnetometerReading*>();}
 
 void QMagnetometerReading_SetCalibrationLevel(void* ptr, double calibrationLevel)
 {
@@ -1813,7 +1813,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQOrientationReading*)
 
-int QOrientationReading_QOrientationReading_QRegisterMetaType(){return qRegisterMetaType<MyQOrientationReading*>();}
+int QOrientationReading_QOrientationReading_QRegisterMetaType(){qRegisterMetaType<QOrientationReading*>(); return qRegisterMetaType<MyQOrientationReading*>();}
 
 void QOrientationReading_SetOrientation(void* ptr, long long orientation)
 {
@@ -1861,7 +1861,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQOrientationSensor*)
 
-int QOrientationSensor_QOrientationSensor_QRegisterMetaType(){return qRegisterMetaType<MyQOrientationSensor*>();}
+int QOrientationSensor_QOrientationSensor_QRegisterMetaType(){qRegisterMetaType<QOrientationSensor*>(); return qRegisterMetaType<MyQOrientationSensor*>();}
 
 void* QOrientationSensor_NewQOrientationSensor(void* parent)
 {
@@ -1954,7 +1954,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPressureReading*)
 
-int QPressureReading_QPressureReading_QRegisterMetaType(){return qRegisterMetaType<MyQPressureReading*>();}
+int QPressureReading_QPressureReading_QRegisterMetaType(){qRegisterMetaType<QPressureReading*>(); return qRegisterMetaType<MyQPressureReading*>();}
 
 void QPressureReading_SetPressure(void* ptr, double pressure)
 {
@@ -2011,7 +2011,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPressureSensor*)
 
-int QPressureSensor_QPressureSensor_QRegisterMetaType(){return qRegisterMetaType<MyQPressureSensor*>();}
+int QPressureSensor_QPressureSensor_QRegisterMetaType(){qRegisterMetaType<QPressureSensor*>(); return qRegisterMetaType<MyQPressureSensor*>();}
 
 void* QPressureSensor_NewQPressureSensor(void* parent)
 {
@@ -2098,7 +2098,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQProximityReading*)
 
-int QProximityReading_QProximityReading_QRegisterMetaType(){return qRegisterMetaType<MyQProximityReading*>();}
+int QProximityReading_QProximityReading_QRegisterMetaType(){qRegisterMetaType<QProximityReading*>(); return qRegisterMetaType<MyQProximityReading*>();}
 
 void QProximityReading_SetClose(void* ptr, char close)
 {
@@ -2146,7 +2146,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQProximitySensor*)
 
-int QProximitySensor_QProximitySensor_QRegisterMetaType(){return qRegisterMetaType<MyQProximitySensor*>();}
+int QProximitySensor_QProximitySensor_QRegisterMetaType(){qRegisterMetaType<QProximitySensor*>(); return qRegisterMetaType<MyQProximitySensor*>();}
 
 void* QProximitySensor_NewQProximitySensor(void* parent)
 {
@@ -2239,7 +2239,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRotationReading*)
 
-int QRotationReading_QRotationReading_QRegisterMetaType(){return qRegisterMetaType<MyQRotationReading*>();}
+int QRotationReading_QRotationReading_QRegisterMetaType(){qRegisterMetaType<QRotationReading*>(); return qRegisterMetaType<MyQRotationReading*>();}
 
 void QRotationReading_SetFromEuler(void* ptr, double x, double y, double z)
 {
@@ -2298,7 +2298,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRotationSensor*)
 
-int QRotationSensor_QRotationSensor_QRegisterMetaType(){return qRegisterMetaType<MyQRotationSensor*>();}
+int QRotationSensor_QRotationSensor_QRegisterMetaType(){qRegisterMetaType<QRotationSensor*>(); return qRegisterMetaType<MyQRotationSensor*>();}
 
 void* QRotationSensor_NewQRotationSensor(void* parent)
 {
@@ -2423,7 +2423,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSensor*)
 
-int QSensor_QSensor_QRegisterMetaType(){return qRegisterMetaType<MyQSensor*>();}
+int QSensor_QSensor_QRegisterMetaType(){qRegisterMetaType<QSensor*>(); return qRegisterMetaType<MyQSensor*>();}
 
 void* QSensor_QSensor_DefaultSensorForType(void* ty)
 {
@@ -3489,7 +3489,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSensorBackend*)
 
-int QSensorBackend_QSensorBackend_QRegisterMetaType(){return qRegisterMetaType<MyQSensorBackend*>();}
+int QSensorBackend_QSensorBackend_QRegisterMetaType(){qRegisterMetaType<QSensorBackend*>(); return qRegisterMetaType<MyQSensorBackend*>();}
 
 void QSensorBackend_AddDataRate(void* ptr, double min, double max)
 {
@@ -3763,7 +3763,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSensorGesture*)
 
-int QSensorGesture_QSensorGesture_QRegisterMetaType(){return qRegisterMetaType<MyQSensorGesture*>();}
+int QSensorGesture_QSensorGesture_QRegisterMetaType(){qRegisterMetaType<QSensorGesture*>(); return qRegisterMetaType<MyQSensorGesture*>();}
 
 void* QSensorGesture_NewQSensorGesture(struct QtSensors_PackedString ids, void* parent)
 {
@@ -4007,7 +4007,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSensorGestureManager*)
 
-int QSensorGestureManager_QSensorGestureManager_QRegisterMetaType(){return qRegisterMetaType<MyQSensorGestureManager*>();}
+int QSensorGestureManager_QSensorGestureManager_QRegisterMetaType(){qRegisterMetaType<QSensorGestureManager*>(); return qRegisterMetaType<MyQSensorGestureManager*>();}
 
 void* QSensorGestureManager_NewQSensorGestureManager(void* parent)
 {
@@ -4298,7 +4298,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSensorGestureRecognizer*)
 
-int QSensorGestureRecognizer_QSensorGestureRecognizer_QRegisterMetaType(){return qRegisterMetaType<MyQSensorGestureRecognizer*>();}
+int QSensorGestureRecognizer_QSensorGestureRecognizer_QRegisterMetaType(){qRegisterMetaType<QSensorGestureRecognizer*>(); return qRegisterMetaType<MyQSensorGestureRecognizer*>();}
 
 void* QSensorGestureRecognizer_NewQSensorGestureRecognizer(void* parent)
 {
@@ -4591,7 +4591,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSensorReading*)
 
-int QSensorReading_QSensorReading_QRegisterMetaType(){return qRegisterMetaType<MyQSensorReading*>();}
+int QSensorReading_QSensorReading_QRegisterMetaType(){qRegisterMetaType<QSensorReading*>(); return qRegisterMetaType<MyQSensorReading*>();}
 
 void QSensorReading_SetTimestamp(void* ptr, unsigned long long timestamp)
 {
@@ -5091,7 +5091,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTapReading*)
 
-int QTapReading_QTapReading_QRegisterMetaType(){return qRegisterMetaType<MyQTapReading*>();}
+int QTapReading_QTapReading_QRegisterMetaType(){qRegisterMetaType<QTapReading*>(); return qRegisterMetaType<MyQTapReading*>();}
 
 void QTapReading_SetDoubleTap(void* ptr, char doubleTap)
 {
@@ -5150,7 +5150,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTapSensor*)
 
-int QTapSensor_QTapSensor_QRegisterMetaType(){return qRegisterMetaType<MyQTapSensor*>();}
+int QTapSensor_QTapSensor_QRegisterMetaType(){qRegisterMetaType<QTapSensor*>(); return qRegisterMetaType<MyQTapSensor*>();}
 
 void* QTapSensor_NewQTapSensor(void* parent)
 {
@@ -5268,7 +5268,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTiltReading*)
 
-int QTiltReading_QTiltReading_QRegisterMetaType(){return qRegisterMetaType<MyQTiltReading*>();}
+int QTiltReading_QTiltReading_QRegisterMetaType(){qRegisterMetaType<QTiltReading*>(); return qRegisterMetaType<MyQTiltReading*>();}
 
 void QTiltReading_SetXRotation(void* ptr, double x)
 {
@@ -5325,7 +5325,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTiltSensor*)
 
-int QTiltSensor_QTiltSensor_QRegisterMetaType(){return qRegisterMetaType<MyQTiltSensor*>();}
+int QTiltSensor_QTiltSensor_QRegisterMetaType(){qRegisterMetaType<QTiltSensor*>(); return qRegisterMetaType<MyQTiltSensor*>();}
 
 void* QTiltSensor_NewQTiltSensor(void* parent)
 {

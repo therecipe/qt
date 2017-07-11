@@ -334,8 +334,18 @@ func bundle(mode, target, path, name, depPath string) {
 		}
 		utils.MkdirAll(libPath)
 
-		os.Rename(filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so"))
-		os.Rename(filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so"))
+		if utils.QT_VAGRANT() {
+			libPath = strings.Replace(libPath, "C:\\media\\sf_GOPATH", "C:\\media\\UNC\\vboxsrv\\media_sf_GOPATH", -1)
+			utils.RemoveAll(libPath)
+			utils.MkdirAll(libPath)
+			copy(filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so"))
+			copy(filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so"))
+			utils.RemoveAll(filepath.Join(depPath, "libgo.so"))
+			utils.RemoveAll(filepath.Join(depPath, "libgo_base.so"))
+		} else {
+			os.Rename(filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so"))
+			os.Rename(filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so"))
+		}
 
 		//trick androiddeployqt into checking dependencies from libgo_base.so
 		copy(filepath.Join(libPath, "libgo_base.so"), depPath)
@@ -376,10 +386,19 @@ func bundle(mode, target, path, name, depPath string) {
 			utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 		}
 
-		if utils.ExistsFile(filepath.Join(path, target, name+".keystore")) {
-			copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), depPath)
+		if utils.QT_VAGRANT() {
+			depPathUNC := strings.Replace(depPath, "C:\\media\\sf_GOPATH", "C:\\media\\UNC\\vboxsrv\\media_sf_GOPATH", -1)
+			if utils.ExistsFile(filepath.Join(path, target, name+".keystore")) {
+				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "build-release-signed.apk"), depPath)
+			} else {
+				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "build-debug.apk"), depPath)
+			}
 		} else {
-			copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), depPath)
+			if utils.ExistsFile(filepath.Join(path, target, name+".keystore")) {
+				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), depPath)
+			} else {
+				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), depPath)
+			}
 		}
 
 	case "ios", "ios-simulator":

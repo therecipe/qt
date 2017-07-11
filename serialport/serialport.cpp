@@ -93,7 +93,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSerialPort*)
 
-int QSerialPort_QSerialPort_QRegisterMetaType(){return qRegisterMetaType<MyQSerialPort*>();}
+int QSerialPort_QSerialPort_QRegisterMetaType(){qRegisterMetaType<QSerialPort*>(); return qRegisterMetaType<MyQSerialPort*>();}
 
 long long QSerialPort_PinoutSignals(void* ptr)
 {
@@ -365,6 +365,7 @@ void QSerialPort_CloseDefault(void* ptr)
 
 void QSerialPort_ConnectDataBitsChanged(void* ptr)
 {
+	qRegisterMetaType<QSerialPort::DataBits>();
 	QObject::connect(static_cast<QSerialPort*>(ptr), static_cast<void (QSerialPort::*)(QSerialPort::DataBits)>(&QSerialPort::dataBitsChanged), static_cast<MyQSerialPort*>(ptr), static_cast<void (MyQSerialPort::*)(QSerialPort::DataBits)>(&MyQSerialPort::Signal_DataBitsChanged));
 }
 
@@ -395,6 +396,7 @@ void QSerialPort_DataTerminalReadyChanged(void* ptr, char set)
 
 void QSerialPort_ConnectErrorOccurred(void* ptr)
 {
+	qRegisterMetaType<QSerialPort::SerialPortError>();
 	QObject::connect(static_cast<QSerialPort*>(ptr), static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::errorOccurred), static_cast<MyQSerialPort*>(ptr), static_cast<void (MyQSerialPort::*)(QSerialPort::SerialPortError)>(&MyQSerialPort::Signal_ErrorOccurred));
 }
 
@@ -410,6 +412,7 @@ void QSerialPort_ErrorOccurred(void* ptr, long long error)
 
 void QSerialPort_ConnectFlowControlChanged(void* ptr)
 {
+	qRegisterMetaType<QSerialPort::FlowControl>();
 	QObject::connect(static_cast<QSerialPort*>(ptr), static_cast<void (QSerialPort::*)(QSerialPort::FlowControl)>(&QSerialPort::flowControlChanged), static_cast<MyQSerialPort*>(ptr), static_cast<void (MyQSerialPort::*)(QSerialPort::FlowControl)>(&MyQSerialPort::Signal_FlowControlChanged));
 }
 
@@ -425,6 +428,7 @@ void QSerialPort_FlowControlChanged(void* ptr, long long flow)
 
 void QSerialPort_ConnectParityChanged(void* ptr)
 {
+	qRegisterMetaType<QSerialPort::Parity>();
 	QObject::connect(static_cast<QSerialPort*>(ptr), static_cast<void (QSerialPort::*)(QSerialPort::Parity)>(&QSerialPort::parityChanged), static_cast<MyQSerialPort*>(ptr), static_cast<void (MyQSerialPort::*)(QSerialPort::Parity)>(&MyQSerialPort::Signal_ParityChanged));
 }
 
@@ -470,6 +474,7 @@ void QSerialPort_SetReadBufferSize(void* ptr, long long size)
 
 void QSerialPort_ConnectStopBitsChanged(void* ptr)
 {
+	qRegisterMetaType<QSerialPort::StopBits>();
 	QObject::connect(static_cast<QSerialPort*>(ptr), static_cast<void (QSerialPort::*)(QSerialPort::StopBits)>(&QSerialPort::stopBitsChanged), static_cast<MyQSerialPort*>(ptr), static_cast<void (MyQSerialPort::*)(QSerialPort::StopBits)>(&MyQSerialPort::Signal_StopBitsChanged));
 }
 

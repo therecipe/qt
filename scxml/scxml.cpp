@@ -132,7 +132,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlCppDataModel*)
 
-int QScxmlCppDataModel_QScxmlCppDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlCppDataModel*>();}
+int QScxmlCppDataModel_QScxmlCppDataModel_QRegisterMetaType(){qRegisterMetaType<QScxmlCppDataModel*>(); return qRegisterMetaType<MyQScxmlCppDataModel*>();}
 
 char QScxmlCppDataModel_SetScxmlProperty(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
@@ -212,7 +212,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlDataModel*)
 
-int QScxmlDataModel_QScxmlDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlDataModel*>();}
+int QScxmlDataModel_QScxmlDataModel_QRegisterMetaType(){qRegisterMetaType<QScxmlDataModel*>(); return qRegisterMetaType<MyQScxmlDataModel*>();}
 
 char QScxmlDataModel_SetScxmlProperty(void* ptr, struct QtScxml_PackedString name, void* value, struct QtScxml_PackedString context)
 {
@@ -512,7 +512,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlDynamicScxmlServiceFactory*)
 
-int QScxmlDynamicScxmlServiceFactory_QScxmlDynamicScxmlServiceFactory_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlDynamicScxmlServiceFactory*>();}
+int QScxmlDynamicScxmlServiceFactory_QScxmlDynamicScxmlServiceFactory_QRegisterMetaType(){qRegisterMetaType<QScxmlDynamicScxmlServiceFactory*>(); return qRegisterMetaType<MyQScxmlDynamicScxmlServiceFactory*>();}
 
 void* QScxmlDynamicScxmlServiceFactory_Invoke(void* ptr, void* parentStateMachine)
 {
@@ -561,7 +561,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlEcmaScriptDataModel*)
 
-int QScxmlEcmaScriptDataModel_QScxmlEcmaScriptDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlEcmaScriptDataModel*>();}
+int QScxmlEcmaScriptDataModel_QScxmlEcmaScriptDataModel_QRegisterMetaType(){qRegisterMetaType<QScxmlEcmaScriptDataModel*>(); return qRegisterMetaType<MyQScxmlEcmaScriptDataModel*>();}
 
 void* QScxmlEcmaScriptDataModel_NewQScxmlEcmaScriptDataModel(void* parent)
 {
@@ -847,7 +847,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlInvokableService*)
 
-int QScxmlInvokableService_QScxmlInvokableService_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlInvokableService*>();}
+int QScxmlInvokableService_QScxmlInvokableService_QRegisterMetaType(){qRegisterMetaType<QScxmlInvokableService*>(); return qRegisterMetaType<MyQScxmlInvokableService*>();}
 
 void* QScxmlInvokableService_NewQScxmlInvokableService(void* parentStateMachine, void* parent)
 {
@@ -1023,7 +1023,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlInvokableServiceFactory*)
 
-int QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlInvokableServiceFactory*>();}
+int QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_QRegisterMetaType(){qRegisterMetaType<QScxmlInvokableServiceFactory*>(); return qRegisterMetaType<MyQScxmlInvokableServiceFactory*>();}
 
 void* QScxmlInvokableServiceFactory_Invoke(void* ptr, void* parentStateMachine)
 {
@@ -1258,7 +1258,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlNullDataModel*)
 
-int QScxmlNullDataModel_QScxmlNullDataModel_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlNullDataModel*>();}
+int QScxmlNullDataModel_QScxmlNullDataModel_QRegisterMetaType(){qRegisterMetaType<QScxmlNullDataModel*>(); return qRegisterMetaType<MyQScxmlNullDataModel*>();}
 
 void* QScxmlNullDataModel_NewQScxmlNullDataModel(void* parent)
 {
@@ -1386,7 +1386,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlStateMachine*)
 
-int QScxmlStateMachine_QScxmlStateMachine_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlStateMachine*>();}
+int QScxmlStateMachine_QScxmlStateMachine_QRegisterMetaType(){qRegisterMetaType<QScxmlStateMachine*>(); return qRegisterMetaType<MyQScxmlStateMachine*>();}
 
 void* QScxmlStateMachine_QScxmlStateMachine_FromData(void* data, struct QtScxml_PackedString fileName)
 {
@@ -2009,7 +2009,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScxmlStaticScxmlServiceFactory*)
 
-int QScxmlStaticScxmlServiceFactory_QScxmlStaticScxmlServiceFactory_QRegisterMetaType(){return qRegisterMetaType<MyQScxmlStaticScxmlServiceFactory*>();}
+int QScxmlStaticScxmlServiceFactory_QScxmlStaticScxmlServiceFactory_QRegisterMetaType(){qRegisterMetaType<QScxmlStaticScxmlServiceFactory*>(); return qRegisterMetaType<MyQScxmlStaticScxmlServiceFactory*>();}
 
 void* QScxmlStaticScxmlServiceFactory_Invoke(void* ptr, void* parentStateMachine)
 {

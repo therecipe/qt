@@ -51,33 +51,66 @@ func ParseFlags() bool {
 }
 
 func Docker(arg []string, target, path string, writeCacheToHost bool) {
+	virtual(arg, target, path, writeCacheToHost, true, "")
+}
+
+func Vagrant(arg []string, target, path string, writeCacheToHost bool, system string) {
+	virtual(arg, target, path, writeCacheToHost, false, system)
+}
+
+func virtual(arg []string, target, path string, writeCacheToHost bool, docker bool, system string) {
 	arg = append(arg, target)
+	if system == "" {
+		system = "linux"
+	}
 
 	var image string
 	switch target {
 	case "windows":
-		if utils.QT_MXE_ARCH() == "386" {
-			if utils.QT_MXE_STATIC() {
+		if utils.QT_MXE_ARCH() == "386" || utils.QT_MSYS2_ARCH() == "386" {
+			if utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC() {
 				image = "windows_32_static"
 			} else {
 				image = "windows_32_shared"
 			}
 		} else {
-			if utils.QT_MXE_STATIC() {
+			if utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC() {
 				image = "windows_64_static"
 			} else {
 				image = "windows_64_shared"
 			}
+		}
+		if !docker {
+			image = target
 		}
 
 	case "linux", "android", "rpi1", "rpi2", "rpi3":
 		image = target
 
 	default:
-		utils.Log.Fatalf("%v is currently not supported", target)
+		switch system {
+		case "darwin":
+		case "linux":
+			if strings.HasPrefix(target, "windows") && strings.Contains(target, "_") {
+				image = target
+			} else if docker && strings.Contains(target, "_") {
+				utils.Log.Fatalf("%v is currently not supported", target)
+			}
+		case "windows":
+		}
+	}
+	if image != "" {
+		target = image
 	}
 
-	args := []string{"run", "--rm"}
+	var args []string
+	if docker {
+		args = []string{"run", "--rm"}
+	} else {
+		if target == "pkg_config" {
+			args = []string{"source /home/vagrant/.profile"}
+		}
+	}
 	if runtime.GOOS == "linux" {
 		u, err := user.Current()
 		if err != nil {
@@ -95,16 +128,40 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 		}
 		gp = strings.Replace(gp, "\\", "/", -1)
 		gp = strings.Replace(gp, ":", "", -1)
-		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
-		paths = append(paths, fmt.Sprintf("/media/sf_GOPATH%v", i))
+
+		var pathprefix string
+		if docker {
+			args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
+		} else if system == "windows" {
+			pathprefix = "C:"
+		}
+		paths = append(paths, fmt.Sprintf(pathprefix+"/media/sf_GOPATH%v", i))
 	}
 
-	gpath := strings.Join(paths, ":")
+	var gpfs string
+	if docker {
+		gpfs = "/home/user/work"
+	} else {
+		switch system {
+		case "linux":
+			gpfs = "/home/vagrant/gopath"
+		case "darwin":
+			gpfs = "/Users/vagrant/gopath"
+		case "windows":
+			gpfs = "C:/gopath"
+		}
+	}
+
+	pathseperator := ":"
+	if system == "windows" {
+		pathseperator = ";"
+	}
+	gpath := strings.Join(paths, pathseperator)
 	if writeCacheToHost {
-		gpath += ":/home/user/work"
+		gpath += pathseperator + gpfs
 		args = append(args, []string{"-e", "QT_STUB=true"}...)
 	} else {
-		gpath = "/home/user/work:" + gpath
+		gpath = gpfs + pathseperator + gpath
 	}
 
 	if utils.QT_DEBUG() {
@@ -119,9 +176,36 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 		args = append(args, []string{"-e", "CI=true"}...)
 	}
 
-	args = append(args, []string{"-e", "GOPATH=" + gpath}...)
+	if docker {
+		args = append(args, []string{"-e", "GOPATH=" + gpath}...)
+	} else {
+		args = append(args, []string{"-e", "QT_VAGRANT=true"}...)
+		args = append(args, []string{"-e", "GOPATH='" + gpath + "'"}...)
+	}
 
-	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)
+	if docker {
+		args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", image)}...)
+	} else {
+		for i, a := range args {
+			if a == "-e" {
+				args[i] = "&&"
+				args[i+1] = "export " + args[i+1]
+			}
+		}
+		if args[0] == "&&" {
+			args = args[1:]
+		}
+		args = append(args, "&&")
+
+		if system == "windows" {
+			if strings.Contains(target, "_") {
+				args = append(args, []string{"C:/msys64/usr/bin/bash -l -c"}...)
+				arg[0] = "'C:/gopath/bin/" + arg[0]
+			} else {
+				args = append(args, []string{"C:/windows/system32/cmd /C"}...)
+			}
+		}
+	}
 
 	args = append(args, arg...)
 
@@ -129,7 +213,11 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
 		gp = filepath.Clean(gp)
 		if strings.HasPrefix(path, gp) {
-			args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
+			if !docker && system == "windows" && strings.Contains(target, "_") {
+				args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("C:/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
+			} else {
+				args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
+			}
 			found = true
 			break
 		}
@@ -139,7 +227,44 @@ func Docker(arg []string, target, path string, writeCacheToHost bool) {
 		utils.Log.Panicln("Project needs to be inside GOPATH", path, utils.GOPATH())
 	}
 
-	utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", target, runtime.GOOS))
+	if docker {
+		utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", target, runtime.GOOS))
+	} else {
+		switch target {
+		case "ios-simulator":
+			target = "ios"
+		case "android-emulator":
+			target = "android" //TODO:
+		}
+
+		upCmd := exec.Command("vagrant", "up", "--no-provision", target)
+		upCmd.Dir = utils.GoQtPkgPath("internal", "vagrant", system)
+		utils.RunCmd(upCmd, fmt.Sprintf("vagrant up for %v/%v on %v", system, target, runtime.GOOS))
+
+		command := strings.Join(args, " ")
+		command = strings.Replace(command, " pkg_config ", " linux ", -1)
+		command = strings.Replace(command, " homebrew ", " desktop ", -1)
+		for _, v := range []string{"windows_32_shared", "windows_32_static", "windows_64_shared", "windows_64_static"} {
+			command = strings.Replace(command, " "+v+" ", " windows ", -1)
+		}
+		if system == "windows" && strings.Contains(target, "_") {
+			command += "'"
+		}
+
+		var cmd *exec.Cmd
+		if system == "windows" {
+			cmd = exec.Command("vagrant", []string{"ssh", target, "--", command}...)
+		} else {
+			cmd = exec.Command("vagrant", []string{"ssh", "-c", command, target}...)
+		}
+
+		cmd.Dir = utils.GoQtPkgPath("internal", "vagrant", system)
+		utils.RunCmd(cmd, fmt.Sprintf("deploy binary for %v/%v on %v with vagrant", system, target, runtime.GOOS))
+
+		haltCmd := exec.Command("vagrant", "halt", target)
+		haltCmd.Dir = utils.GoQtPkgPath("internal", "vagrant", system)
+		utils.RunCmd(haltCmd, fmt.Sprintf("vagrant halt for %v/%v on %v", system, target, runtime.GOOS))
+	}
 }
 
 func BuildEnv(target, name, depPath string) (map[string]string, []string, []string, string) {

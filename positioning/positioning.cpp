@@ -358,7 +358,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGeoAreaMonitorSource*)
 
-int QGeoAreaMonitorSource_QGeoAreaMonitorSource_QRegisterMetaType(){return qRegisterMetaType<MyQGeoAreaMonitorSource*>();}
+int QGeoAreaMonitorSource_QGeoAreaMonitorSource_QRegisterMetaType(){qRegisterMetaType<QGeoAreaMonitorSource*>(); return qRegisterMetaType<MyQGeoAreaMonitorSource*>();}
 
 void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent)
 {
@@ -936,7 +936,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGeoPositionInfoSource*)
 
-int QGeoPositionInfoSource_QGeoPositionInfoSource_QRegisterMetaType(){return qRegisterMetaType<MyQGeoPositionInfoSource*>();}
+int QGeoPositionInfoSource_QGeoPositionInfoSource_QRegisterMetaType(){qRegisterMetaType<QGeoPositionInfoSource*>(); return qRegisterMetaType<MyQGeoPositionInfoSource*>();}
 
 void QGeoPositionInfoSource_ConnectPositionUpdated(void* ptr)
 {
@@ -1560,7 +1560,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGeoSatelliteInfoSource*)
 
-int QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_QRegisterMetaType(){return qRegisterMetaType<MyQGeoSatelliteInfoSource*>();}
+int QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_QRegisterMetaType(){qRegisterMetaType<QGeoSatelliteInfoSource*>(); return qRegisterMetaType<MyQGeoSatelliteInfoSource*>();}
 
 void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* parent)
 {
@@ -1973,7 +1973,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNmeaPositionInfoSource*)
 
-int QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType(){return qRegisterMetaType<MyQNmeaPositionInfoSource*>();}
+int QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType(){qRegisterMetaType<QNmeaPositionInfoSource*>(); return qRegisterMetaType<MyQNmeaPositionInfoSource*>();}
 
 void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(long long updateMode, void* parent)
 {

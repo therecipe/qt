@@ -67,7 +67,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQUiLoader*)
 
-int QUiLoader_QUiLoader_QRegisterMetaType(){return qRegisterMetaType<MyQUiLoader*>();}
+int QUiLoader_QUiLoader_QRegisterMetaType(){qRegisterMetaType<QUiLoader*>(); return qRegisterMetaType<MyQUiLoader*>();}
 
 void* QUiLoader_CreateAction(void* ptr, void* parent, struct QtUiTools_PackedString name)
 {

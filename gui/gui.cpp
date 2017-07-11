@@ -297,7 +297,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractTextDocumentLayout*)
 
-int QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractTextDocumentLayout*>();}
+int QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_QRegisterMetaType(){qRegisterMetaType<QAbstractTextDocumentLayout*>(); return qRegisterMetaType<MyQAbstractTextDocumentLayout*>();}
 
 void* QAbstractTextDocumentLayout_Format(void* ptr, int position)
 {
@@ -1371,7 +1371,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAccessiblePlugin*)
 
-int QAccessiblePlugin_QAccessiblePlugin_QRegisterMetaType(){return qRegisterMetaType<MyQAccessiblePlugin*>();}
+int QAccessiblePlugin_QAccessiblePlugin_QRegisterMetaType(){qRegisterMetaType<QAccessiblePlugin*>(); return qRegisterMetaType<MyQAccessiblePlugin*>();}
 
 void* QAccessiblePlugin_Create(void* ptr, struct QtGui_PackedString key, void* object)
 {
@@ -3066,7 +3066,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQClipboard*)
 
-int QClipboard_QClipboard_QRegisterMetaType(){return qRegisterMetaType<MyQClipboard*>();}
+int QClipboard_QClipboard_QRegisterMetaType(){qRegisterMetaType<QClipboard*>(); return qRegisterMetaType<MyQClipboard*>();}
 
 void QClipboard_ConnectChanged(void* ptr)
 {
@@ -4121,7 +4121,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDoubleValidator*)
 
-int QDoubleValidator_QDoubleValidator_QRegisterMetaType(){return qRegisterMetaType<MyQDoubleValidator*>();}
+int QDoubleValidator_QDoubleValidator_QRegisterMetaType(){qRegisterMetaType<QDoubleValidator*>(); return qRegisterMetaType<MyQDoubleValidator*>();}
 
 void* QDoubleValidator_NewQDoubleValidator(void* parent)
 {
@@ -4291,7 +4291,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDrag*)
 
-int QDrag_QDrag_QRegisterMetaType(){return qRegisterMetaType<MyQDrag*>();}
+int QDrag_QDrag_QRegisterMetaType(){qRegisterMetaType<QDrag*>(); return qRegisterMetaType<MyQDrag*>();}
 
 void* QDrag_NewQDrag(void* dragSource)
 {
@@ -4346,6 +4346,7 @@ long long QDrag_Exec2(void* ptr, long long supportedActions, long long defaultDr
 
 void QDrag_ConnectActionChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::DropAction>();
 	QObject::connect(static_cast<QDrag*>(ptr), static_cast<void (QDrag::*)(Qt::DropAction)>(&QDrag::actionChanged), static_cast<MyQDrag*>(ptr), static_cast<void (MyQDrag::*)(Qt::DropAction)>(&MyQDrag::Signal_ActionChanged));
 }
 
@@ -5953,7 +5954,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGenericPlugin*)
 
-int QGenericPlugin_QGenericPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQGenericPlugin*>();}
+int QGenericPlugin_QGenericPlugin_QRegisterMetaType(){qRegisterMetaType<QGenericPlugin*>(); return qRegisterMetaType<MyQGenericPlugin*>();}
 
 void* QGenericPlugin_NewQGenericPlugin(void* parent)
 {
@@ -6450,7 +6451,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGuiApplication*)
 
-int QGuiApplication_QGuiApplication_QRegisterMetaType(){return qRegisterMetaType<MyQGuiApplication*>();}
+int QGuiApplication_QGuiApplication_QRegisterMetaType(){qRegisterMetaType<QGuiApplication*>(); return qRegisterMetaType<MyQGuiApplication*>();}
 
 void* QGuiApplication_QGuiApplication_Clipboard()
 {
@@ -6621,6 +6622,7 @@ void QGuiApplication_ApplicationDisplayNameChanged(void* ptr)
 
 void QGuiApplication_ConnectApplicationStateChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::ApplicationState>();
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::ApplicationState)>(&QGuiApplication::applicationStateChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::ApplicationState)>(&MyQGuiApplication::Signal_ApplicationStateChanged));
 }
 
@@ -6730,6 +6732,7 @@ void QGuiApplication_LastWindowClosed(void* ptr)
 
 void QGuiApplication_ConnectLayoutDirectionChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::LayoutDirection>();
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::LayoutDirection)>(&QGuiApplication::layoutDirectionChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::LayoutDirection)>(&MyQGuiApplication::Signal_LayoutDirectionChanged));
 }
 
@@ -7569,7 +7572,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQIconEnginePlugin*)
 
-int QIconEnginePlugin_QIconEnginePlugin_QRegisterMetaType(){return qRegisterMetaType<MyQIconEnginePlugin*>();}
+int QIconEnginePlugin_QIconEnginePlugin_QRegisterMetaType(){qRegisterMetaType<QIconEnginePlugin*>(); return qRegisterMetaType<MyQIconEnginePlugin*>();}
 
 void* QIconEnginePlugin_Create(void* ptr, struct QtGui_PackedString filename)
 {
@@ -8426,7 +8429,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQImageIOPlugin*)
 
-int QImageIOPlugin_QImageIOPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQImageIOPlugin*>();}
+int QImageIOPlugin_QImageIOPlugin_QRegisterMetaType(){qRegisterMetaType<QImageIOPlugin*>(); return qRegisterMetaType<MyQImageIOPlugin*>();}
 
 void* QImageIOPlugin_NewQImageIOPlugin(void* parent)
 {
@@ -9258,7 +9261,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQInputMethod*)
 
-int QInputMethod_QInputMethod_QRegisterMetaType(){return qRegisterMetaType<MyQInputMethod*>();}
+int QInputMethod_QInputMethod_QRegisterMetaType(){qRegisterMetaType<QInputMethod*>(); return qRegisterMetaType<MyQInputMethod*>();}
 
 void* QInputMethod_QInputMethod_QueryFocusObject(long long query, void* argument)
 {
@@ -9332,6 +9335,7 @@ void QInputMethod_HideDefault(void* ptr)
 
 void QInputMethod_ConnectInputDirectionChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::LayoutDirection>();
 	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)(Qt::LayoutDirection)>(&QInputMethod::inputDirectionChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)(Qt::LayoutDirection)>(&MyQInputMethod::Signal_InputDirectionChanged));
 }
 
@@ -9362,6 +9366,7 @@ void QInputMethod_InputItemClipRectangleChanged(void* ptr)
 
 void QInputMethod_InvokeAction(void* ptr, long long a, int cursorPosition)
 {
+	qRegisterMetaType<QInputMethod::Action>();
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "invokeAction", Q_ARG(QInputMethod::Action, static_cast<QInputMethod::Action>(a)), Q_ARG(int, cursorPosition));
 }
 
@@ -9437,6 +9442,7 @@ void QInputMethod_ShowDefault(void* ptr)
 
 void QInputMethod_Update(void* ptr, long long queries)
 {
+	qRegisterMetaType<Qt::InputMethodQueries>();
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "update", Q_ARG(Qt::InputMethodQuery, static_cast<Qt::InputMethodQuery>(queries)));
 }
 
@@ -9782,7 +9788,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQIntValidator*)
 
-int QIntValidator_QIntValidator_QRegisterMetaType(){return qRegisterMetaType<MyQIntValidator*>();}
+int QIntValidator_QIntValidator_QRegisterMetaType(){qRegisterMetaType<QIntValidator*>(); return qRegisterMetaType<MyQIntValidator*>();}
 
 void* QIntValidator_NewQIntValidator(void* parent)
 {
@@ -10625,7 +10631,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMovie*)
 
-int QMovie_QMovie_QRegisterMetaType(){return qRegisterMetaType<MyQMovie*>();}
+int QMovie_QMovie_QRegisterMetaType(){qRegisterMetaType<QMovie*>(); return qRegisterMetaType<MyQMovie*>();}
 
 struct QtGui_PackedList QMovie_QMovie_SupportedFormats()
 {
@@ -10914,6 +10920,7 @@ void QMovie_Started(void* ptr)
 
 void QMovie_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QMovie::MovieState>();
 	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(QMovie::MovieState)>(&QMovie::stateChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(QMovie::MovieState)>(&MyQMovie::Signal_StateChanged));
 }
 
@@ -11363,7 +11370,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQOffscreenSurface*)
 
-int QOffscreenSurface_QOffscreenSurface_QRegisterMetaType(){return qRegisterMetaType<MyQOffscreenSurface*>();}
+int QOffscreenSurface_QOffscreenSurface_QRegisterMetaType(){qRegisterMetaType<QOffscreenSurface*>(); return qRegisterMetaType<MyQOffscreenSurface*>();}
 
 void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen)
 {
@@ -12500,7 +12507,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPaintDeviceWindow*)
 
-int QPaintDeviceWindow_QPaintDeviceWindow_QRegisterMetaType(){return qRegisterMetaType<MyQPaintDeviceWindow*>();}
+int QPaintDeviceWindow_QPaintDeviceWindow_QRegisterMetaType(){qRegisterMetaType<QPaintDeviceWindow*>(); return qRegisterMetaType<MyQPaintDeviceWindow*>();}
 
 void QPaintDeviceWindow_PaintEvent(void* ptr, void* event)
 {
@@ -14770,7 +14777,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPdfWriter*)
 
-int QPdfWriter_QPdfWriter_QRegisterMetaType(){return qRegisterMetaType<MyQPdfWriter*>();}
+int QPdfWriter_QPdfWriter_QRegisterMetaType(){qRegisterMetaType<QPdfWriter*>(); return qRegisterMetaType<MyQPdfWriter*>();}
 
 void* QPdfWriter_NewQPdfWriter2(void* device)
 {
@@ -16996,7 +17003,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRasterWindow*)
 
-int QRasterWindow_QRasterWindow_QRegisterMetaType(){return qRegisterMetaType<MyQRasterWindow*>();}
+int QRasterWindow_QRasterWindow_QRegisterMetaType(){qRegisterMetaType<QRasterWindow*>(); return qRegisterMetaType<MyQRasterWindow*>();}
 
 void* QRasterWindow_NewQRasterWindow(void* parent)
 {
@@ -17326,7 +17333,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRegExpValidator*)
 
-int QRegExpValidator_QRegExpValidator_QRegisterMetaType(){return qRegisterMetaType<MyQRegExpValidator*>();}
+int QRegExpValidator_QRegExpValidator_QRegisterMetaType(){qRegisterMetaType<QRegExpValidator*>(); return qRegisterMetaType<MyQRegExpValidator*>();}
 
 void* QRegExpValidator_NewQRegExpValidator(void* parent)
 {
@@ -17616,7 +17623,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRegularExpressionValidator*)
 
-int QRegularExpressionValidator_QRegularExpressionValidator_QRegisterMetaType(){return qRegisterMetaType<MyQRegularExpressionValidator*>();}
+int QRegularExpressionValidator_QRegularExpressionValidator_QRegisterMetaType(){qRegisterMetaType<QRegularExpressionValidator*>(); return qRegisterMetaType<MyQRegularExpressionValidator*>();}
 
 void* QRegularExpressionValidator_NewQRegularExpressionValidator(void* parent)
 {
@@ -17873,7 +17880,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScreen*)
 
-int QScreen_QScreen_QRegisterMetaType(){return qRegisterMetaType<MyQScreen*>();}
+int QScreen_QScreen_QRegisterMetaType(){qRegisterMetaType<QScreen*>(); return qRegisterMetaType<MyQScreen*>();}
 
 void* QScreen_GrabWindow(void* ptr, uintptr_t window, int x, int y, int width, int height)
 {
@@ -17927,6 +17934,7 @@ void QScreen_LogicalDotsPerInchChanged(void* ptr, double dpi)
 
 void QScreen_ConnectOrientationChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::ScreenOrientation>();
 	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::orientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_OrientationChanged));
 }
 
@@ -17972,6 +17980,7 @@ void QScreen_PhysicalSizeChanged(void* ptr, void* size)
 
 void QScreen_ConnectPrimaryOrientationChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::ScreenOrientation>();
 	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::primaryOrientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_PrimaryOrientationChanged));
 }
 
@@ -18461,7 +18470,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSessionManager*)
 
-int QSessionManager_QSessionManager_QRegisterMetaType(){return qRegisterMetaType<MyQSessionManager*>();}
+int QSessionManager_QSessionManager_QRegisterMetaType(){qRegisterMetaType<QSessionManager*>(); return qRegisterMetaType<MyQSessionManager*>();}
 
 char QSessionManager_AllowsErrorInteraction(void* ptr)
 {
@@ -19485,7 +19494,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStandardItemModel*)
 
-int QStandardItemModel_QStandardItemModel_QRegisterMetaType(){return qRegisterMetaType<MyQStandardItemModel*>();}
+int QStandardItemModel_QStandardItemModel_QRegisterMetaType(){qRegisterMetaType<QStandardItemModel*>(); return qRegisterMetaType<MyQStandardItemModel*>();}
 
 struct QtGui_PackedList QStandardItemModel_TakeColumn(void* ptr, int column)
 {
@@ -20671,7 +20680,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStyleHints*)
 
-int QStyleHints_QStyleHints_QRegisterMetaType(){return qRegisterMetaType<MyQStyleHints*>();}
+int QStyleHints_QStyleHints_QRegisterMetaType(){qRegisterMetaType<QStyleHints*>(); return qRegisterMetaType<MyQStyleHints*>();}
 
 void QStyleHints_ConnectCursorFlashTimeChanged(void* ptr)
 {
@@ -20770,6 +20779,7 @@ void QStyleHints_StartDragTimeChanged(void* ptr, int startDragTime)
 
 void QStyleHints_ConnectTabFocusBehaviorChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::TabFocusBehavior>();
 	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(Qt::TabFocusBehavior)>(&QStyleHints::tabFocusBehaviorChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(Qt::TabFocusBehavior)>(&MyQStyleHints::Signal_TabFocusBehaviorChanged));
 }
 
@@ -21398,7 +21408,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSyntaxHighlighter*)
 
-int QSyntaxHighlighter_QSyntaxHighlighter_QRegisterMetaType(){return qRegisterMetaType<MyQSyntaxHighlighter*>();}
+int QSyntaxHighlighter_QSyntaxHighlighter_QRegisterMetaType(){qRegisterMetaType<QSyntaxHighlighter*>(); return qRegisterMetaType<MyQSyntaxHighlighter*>();}
 
 void* QSyntaxHighlighter_NewQSyntaxHighlighter(void* parent)
 {
@@ -22148,7 +22158,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextBlockGroup*)
 
-int QTextBlockGroup_QTextBlockGroup_QRegisterMetaType(){return qRegisterMetaType<MyQTextBlockGroup*>();}
+int QTextBlockGroup_QTextBlockGroup_QRegisterMetaType(){qRegisterMetaType<QTextBlockGroup*>(); return qRegisterMetaType<MyQTextBlockGroup*>();}
 
 void* QTextBlockGroup_NewQTextBlockGroup(void* document)
 {
@@ -22911,7 +22921,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextDocument*)
 
-int QTextDocument_QTextDocument_QRegisterMetaType(){return qRegisterMetaType<MyQTextDocument*>();}
+int QTextDocument_QTextDocument_QRegisterMetaType(){qRegisterMetaType<QTextDocument*>(); return qRegisterMetaType<MyQTextDocument*>();}
 
 void* QTextDocument_NewQTextDocument2(struct QtGui_PackedString text, void* parent)
 {
@@ -24332,7 +24342,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextFrame*)
 
-int QTextFrame_QTextFrame_QRegisterMetaType(){return qRegisterMetaType<MyQTextFrame*>();}
+int QTextFrame_QTextFrame_QRegisterMetaType(){qRegisterMetaType<QTextFrame*>(); return qRegisterMetaType<MyQTextFrame*>();}
 
 void* QTextFrame_NewQTextFrame(void* document)
 {
@@ -25086,7 +25096,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextList*)
 
-int QTextList_QTextList_QRegisterMetaType(){return qRegisterMetaType<MyQTextList*>();}
+int QTextList_QTextList_QRegisterMetaType(){qRegisterMetaType<QTextList*>(); return qRegisterMetaType<MyQTextList*>();}
 
 void QTextList_Add(void* ptr, void* block)
 {
@@ -25197,7 +25207,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextObject*)
 
-int QTextObject_QTextObject_QRegisterMetaType(){return qRegisterMetaType<MyQTextObject*>();}
+int QTextObject_QTextObject_QRegisterMetaType(){qRegisterMetaType<QTextObject*>(); return qRegisterMetaType<MyQTextObject*>();}
 
 void* QTextObject_NewQTextObject(void* document)
 {
@@ -25708,7 +25718,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextTable*)
 
-int QTextTable_QTextTable_QRegisterMetaType(){return qRegisterMetaType<MyQTextTable*>();}
+int QTextTable_QTextTable_QRegisterMetaType(){qRegisterMetaType<QTextTable*>(); return qRegisterMetaType<MyQTextTable*>();}
 
 void QTextTable_AppendColumns(void* ptr, int count)
 {
@@ -26466,7 +26476,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQValidator*)
 
-int QValidator_QValidator_QRegisterMetaType(){return qRegisterMetaType<MyQValidator*>();}
+int QValidator_QValidator_QRegisterMetaType(){qRegisterMetaType<QValidator*>(); return qRegisterMetaType<MyQValidator*>();}
 
 void QValidator_ConnectChanged(void* ptr)
 {
@@ -27551,7 +27561,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWindow*)
 
-int QWindow_QWindow_QRegisterMetaType(){return qRegisterMetaType<MyQWindow*>();}
+int QWindow_QWindow_QRegisterMetaType(){qRegisterMetaType<QWindow*>(); return qRegisterMetaType<MyQWindow*>();}
 
 void* QWindow_QWindow_FromWinId(uintptr_t id)
 {
@@ -27691,6 +27701,7 @@ void QWindow_AlertDefault(void* ptr, int msec)
 
 void QWindow_ConnectContentOrientationChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::ScreenOrientation>();
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::ScreenOrientation)>(&QWindow::contentOrientationChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::ScreenOrientation)>(&MyQWindow::Signal_ContentOrientationChanged));
 }
 
@@ -28022,6 +28033,7 @@ void QWindow_MinimumWidthChanged(void* ptr, int arg)
 
 void QWindow_ConnectModalityChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::WindowModality>();
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowModality)>(&QWindow::modalityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowModality)>(&MyQWindow::Signal_ModalityChanged));
 }
 
@@ -28878,6 +28890,7 @@ void QWindow_UnsetCursor(void* ptr)
 
 void QWindow_ConnectVisibilityChanged(void* ptr)
 {
+	qRegisterMetaType<QWindow::Visibility>();
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(QWindow::Visibility)>(&QWindow::visibilityChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(QWindow::Visibility)>(&MyQWindow::Signal_VisibilityChanged));
 }
 
@@ -28955,6 +28968,7 @@ void QWindow_WidthChanged(void* ptr, int arg)
 
 void QWindow_ConnectWindowStateChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::WindowState>();
 	QObject::connect(static_cast<QWindow*>(ptr), static_cast<void (QWindow::*)(Qt::WindowState)>(&QWindow::windowStateChanged), static_cast<MyQWindow*>(ptr), static_cast<void (MyQWindow::*)(Qt::WindowState)>(&MyQWindow::Signal_WindowStateChanged));
 }
 

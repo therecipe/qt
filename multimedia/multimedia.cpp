@@ -333,7 +333,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractVideoFilter*)
 
-int QAbstractVideoFilter_QAbstractVideoFilter_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractVideoFilter*>();}
+int QAbstractVideoFilter_QAbstractVideoFilter_QRegisterMetaType(){qRegisterMetaType<QAbstractVideoFilter*>(); return qRegisterMetaType<MyQAbstractVideoFilter*>();}
 
 void* QAbstractVideoFilter_NewQAbstractVideoFilter(void* parent)
 {
@@ -630,7 +630,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractVideoSurface*)
 
-int QAbstractVideoSurface_QAbstractVideoSurface_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractVideoSurface*>();}
+int QAbstractVideoSurface_QAbstractVideoSurface_QRegisterMetaType(){qRegisterMetaType<QAbstractVideoSurface*>(); return qRegisterMetaType<MyQAbstractVideoSurface*>();}
 
 void QAbstractVideoSurface_Stop(void* ptr)
 {
@@ -1165,7 +1165,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioDecoder*)
 
-int QAudioDecoder_QAudioDecoder_QRegisterMetaType(){return qRegisterMetaType<MyQAudioDecoder*>();}
+int QAudioDecoder_QAudioDecoder_QRegisterMetaType(){qRegisterMetaType<QAudioDecoder*>(); return qRegisterMetaType<MyQAudioDecoder*>();}
 
 void* QAudioDecoder_NewQAudioDecoder(void* parent)
 {
@@ -1260,6 +1260,7 @@ void QAudioDecoder_DurationChanged(void* ptr, long long duration)
 
 void QAudioDecoder_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QAudioDecoder::Error>();
 	QObject::connect(static_cast<QAudioDecoder*>(ptr), static_cast<void (QAudioDecoder::*)(QAudioDecoder::Error)>(&QAudioDecoder::error), static_cast<MyQAudioDecoder*>(ptr), static_cast<void (MyQAudioDecoder::*)(QAudioDecoder::Error)>(&MyQAudioDecoder::Signal_Error2));
 }
 
@@ -1360,6 +1361,7 @@ void QAudioDecoder_StartDefault(void* ptr)
 
 void QAudioDecoder_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QAudioDecoder::State>();
 	QObject::connect(static_cast<QAudioDecoder*>(ptr), static_cast<void (QAudioDecoder::*)(QAudioDecoder::State)>(&QAudioDecoder::stateChanged), static_cast<MyQAudioDecoder*>(ptr), static_cast<void (MyQAudioDecoder::*)(QAudioDecoder::State)>(&MyQAudioDecoder::Signal_StateChanged));
 }
 
@@ -1479,7 +1481,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioDecoderControl*)
 
-int QAudioDecoderControl_QAudioDecoderControl_QRegisterMetaType(){return qRegisterMetaType<MyQAudioDecoderControl*>();}
+int QAudioDecoderControl_QAudioDecoderControl_QRegisterMetaType(){qRegisterMetaType<QAudioDecoderControl*>(); return qRegisterMetaType<MyQAudioDecoderControl*>();}
 
 void* QAudioDecoderControl_Read(void* ptr)
 {
@@ -1669,6 +1671,7 @@ void QAudioDecoderControl_Start(void* ptr)
 
 void QAudioDecoderControl_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QAudioDecoder::State>();
 	QObject::connect(static_cast<QAudioDecoderControl*>(ptr), static_cast<void (QAudioDecoderControl::*)(QAudioDecoder::State)>(&QAudioDecoderControl::stateChanged), static_cast<MyQAudioDecoderControl*>(ptr), static_cast<void (MyQAudioDecoderControl::*)(QAudioDecoder::State)>(&MyQAudioDecoderControl::Signal_StateChanged));
 }
 
@@ -2107,7 +2110,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioEncoderSettingsControl*)
 
-int QAudioEncoderSettingsControl_QAudioEncoderSettingsControl_QRegisterMetaType(){return qRegisterMetaType<MyQAudioEncoderSettingsControl*>();}
+int QAudioEncoderSettingsControl_QAudioEncoderSettingsControl_QRegisterMetaType(){qRegisterMetaType<QAudioEncoderSettingsControl*>(); return qRegisterMetaType<MyQAudioEncoderSettingsControl*>();}
 
 void* QAudioEncoderSettingsControl_NewQAudioEncoderSettingsControl(void* parent)
 {
@@ -2339,7 +2342,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioInput*)
 
-int QAudioInput_QAudioInput_QRegisterMetaType(){return qRegisterMetaType<MyQAudioInput*>();}
+int QAudioInput_QAudioInput_QRegisterMetaType(){qRegisterMetaType<QAudioInput*>(); return qRegisterMetaType<MyQAudioInput*>();}
 
 void* QAudioInput_NewQAudioInput2(void* audioDevice, void* format, void* parent)
 {
@@ -2460,6 +2463,7 @@ void QAudioInput_Start(void* ptr, void* device)
 
 void QAudioInput_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QAudio::State>();
 	QObject::connect(static_cast<QAudioInput*>(ptr), static_cast<void (QAudioInput::*)(QAudio::State)>(&QAudioInput::stateChanged), static_cast<MyQAudioInput*>(ptr), static_cast<void (MyQAudioInput::*)(QAudio::State)>(&MyQAudioInput::Signal_StateChanged));
 }
 
@@ -2758,7 +2762,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioInputSelectorControl*)
 
-int QAudioInputSelectorControl_QAudioInputSelectorControl_QRegisterMetaType(){return qRegisterMetaType<MyQAudioInputSelectorControl*>();}
+int QAudioInputSelectorControl_QAudioInputSelectorControl_QRegisterMetaType(){qRegisterMetaType<QAudioInputSelectorControl*>(); return qRegisterMetaType<MyQAudioInputSelectorControl*>();}
 
 void QAudioInputSelectorControl_ConnectActiveInputChanged(void* ptr)
 {
@@ -2858,7 +2862,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioOutput*)
 
-int QAudioOutput_QAudioOutput_QRegisterMetaType(){return qRegisterMetaType<MyQAudioOutput*>();}
+int QAudioOutput_QAudioOutput_QRegisterMetaType(){qRegisterMetaType<QAudioOutput*>(); return qRegisterMetaType<MyQAudioOutput*>();}
 
 void* QAudioOutput_NewQAudioOutput2(void* audioDevice, void* format, void* parent)
 {
@@ -2984,6 +2988,7 @@ void QAudioOutput_Start(void* ptr, void* device)
 
 void QAudioOutput_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QAudio::State>();
 	QObject::connect(static_cast<QAudioOutput*>(ptr), static_cast<void (QAudioOutput::*)(QAudio::State)>(&QAudioOutput::stateChanged), static_cast<MyQAudioOutput*>(ptr), static_cast<void (MyQAudioOutput::*)(QAudio::State)>(&MyQAudioOutput::Signal_StateChanged));
 }
 
@@ -3287,7 +3292,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioOutputSelectorControl*)
 
-int QAudioOutputSelectorControl_QAudioOutputSelectorControl_QRegisterMetaType(){return qRegisterMetaType<MyQAudioOutputSelectorControl*>();}
+int QAudioOutputSelectorControl_QAudioOutputSelectorControl_QRegisterMetaType(){qRegisterMetaType<QAudioOutputSelectorControl*>(); return qRegisterMetaType<MyQAudioOutputSelectorControl*>();}
 
 void QAudioOutputSelectorControl_ConnectActiveOutputChanged(void* ptr)
 {
@@ -3387,7 +3392,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioProbe*)
 
-int QAudioProbe_QAudioProbe_QRegisterMetaType(){return qRegisterMetaType<MyQAudioProbe*>();}
+int QAudioProbe_QAudioProbe_QRegisterMetaType(){qRegisterMetaType<QAudioProbe*>(); return qRegisterMetaType<MyQAudioProbe*>();}
 
 void* QAudioProbe_NewQAudioProbe(void* parent)
 {
@@ -3717,7 +3722,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioRecorder*)
 
-int QAudioRecorder_QAudioRecorder_QRegisterMetaType(){return qRegisterMetaType<MyQAudioRecorder*>();}
+int QAudioRecorder_QAudioRecorder_QRegisterMetaType(){qRegisterMetaType<QAudioRecorder*>(); return qRegisterMetaType<MyQAudioRecorder*>();}
 
 void* QAudioRecorder_NewQAudioRecorder(void* parent)
 {
@@ -3849,7 +3854,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAudioRoleControl*)
 
-int QAudioRoleControl_QAudioRoleControl_QRegisterMetaType(){return qRegisterMetaType<MyQAudioRoleControl*>();}
+int QAudioRoleControl_QAudioRoleControl_QRegisterMetaType(){qRegisterMetaType<QAudioRoleControl*>(); return qRegisterMetaType<MyQAudioRoleControl*>();}
 
 void* QAudioRoleControl_NewQAudioRoleControl(void* parent)
 {
@@ -3894,6 +3899,7 @@ void* QAudioRoleControl_NewQAudioRoleControl(void* parent)
 
 void QAudioRoleControl_ConnectAudioRoleChanged(void* ptr)
 {
+	qRegisterMetaType<QAudio::Role>();
 	QObject::connect(static_cast<QAudioRoleControl*>(ptr), static_cast<void (QAudioRoleControl::*)(QAudio::Role)>(&QAudioRoleControl::audioRoleChanged), static_cast<MyQAudioRoleControl*>(ptr), static_cast<void (MyQAudioRoleControl::*)(QAudio::Role)>(&MyQAudioRoleControl::Signal_AudioRoleChanged));
 }
 
@@ -3999,7 +4005,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCamera*)
 
-int QCamera_QCamera_QRegisterMetaType(){return qRegisterMetaType<MyQCamera*>();}
+int QCamera_QCamera_QRegisterMetaType(){qRegisterMetaType<QCamera*>(); return qRegisterMetaType<MyQCamera*>();}
 
 void* QCamera_NewQCamera4(long long position, void* parent)
 {
@@ -4167,6 +4173,7 @@ void* QCamera_NewQCamera3(void* cameraInfo, void* parent)
 
 void QCamera_ConnectCaptureModeChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::CaptureModes>();
 	QObject::connect(static_cast<QCamera*>(ptr), static_cast<void (QCamera::*)(QCamera::CaptureModes)>(&QCamera::captureModeChanged), static_cast<MyQCamera*>(ptr), static_cast<void (MyQCamera::*)(QCamera::CaptureModes)>(&MyQCamera::Signal_CaptureModeChanged));
 }
 
@@ -4182,6 +4189,7 @@ void QCamera_CaptureModeChanged(void* ptr, long long mode)
 
 void QCamera_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QCamera::Error>();
 	QObject::connect(static_cast<QCamera*>(ptr), static_cast<void (QCamera::*)(QCamera::Error)>(&QCamera::error), static_cast<MyQCamera*>(ptr), static_cast<void (MyQCamera::*)(QCamera::Error)>(&MyQCamera::Signal_Error2));
 }
 
@@ -4222,6 +4230,8 @@ void QCamera_LockFailed(void* ptr)
 
 void QCamera_ConnectLockStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::LockStatus>();
+	qRegisterMetaType<QCamera::LockChangeReason>();
 	QObject::connect(static_cast<QCamera*>(ptr), static_cast<void (QCamera::*)(QCamera::LockStatus, QCamera::LockChangeReason)>(&QCamera::lockStatusChanged), static_cast<MyQCamera*>(ptr), static_cast<void (MyQCamera::*)(QCamera::LockStatus, QCamera::LockChangeReason)>(&MyQCamera::Signal_LockStatusChanged));
 }
 
@@ -4237,6 +4247,9 @@ void QCamera_LockStatusChanged(void* ptr, long long status, long long reason)
 
 void QCamera_ConnectLockStatusChanged2(void* ptr)
 {
+	qRegisterMetaType<QCamera::LockType>();
+	qRegisterMetaType<QCamera::LockStatus>();
+	qRegisterMetaType<QCamera::LockChangeReason>();
 	QObject::connect(static_cast<QCamera*>(ptr), static_cast<void (QCamera::*)(QCamera::LockType, QCamera::LockStatus, QCamera::LockChangeReason)>(&QCamera::lockStatusChanged), static_cast<MyQCamera*>(ptr), static_cast<void (MyQCamera::*)(QCamera::LockType, QCamera::LockStatus, QCamera::LockChangeReason)>(&MyQCamera::Signal_LockStatusChanged2));
 }
 
@@ -4287,6 +4300,7 @@ void QCamera_SearchAndLock2Default(void* ptr, long long locks)
 
 void QCamera_SetCaptureMode(void* ptr, long long mode)
 {
+	qRegisterMetaType<QCamera::CaptureModes>();
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "setCaptureMode", Q_ARG(QCamera::CaptureMode, static_cast<QCamera::CaptureMode>(mode)));
 }
 
@@ -4327,6 +4341,7 @@ void QCamera_StartDefault(void* ptr)
 
 void QCamera_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::State>();
 	QObject::connect(static_cast<QCamera*>(ptr), static_cast<void (QCamera::*)(QCamera::State)>(&QCamera::stateChanged), static_cast<MyQCamera*>(ptr), static_cast<void (MyQCamera::*)(QCamera::State)>(&MyQCamera::Signal_StateChanged));
 }
 
@@ -4342,6 +4357,7 @@ void QCamera_StateChanged(void* ptr, long long state)
 
 void QCamera_ConnectStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::Status>();
 	QObject::connect(static_cast<QCamera*>(ptr), static_cast<void (QCamera::*)(QCamera::Status)>(&QCamera::statusChanged), static_cast<MyQCamera*>(ptr), static_cast<void (MyQCamera::*)(QCamera::Status)>(&MyQCamera::Signal_StatusChanged));
 }
 
@@ -4572,7 +4588,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraCaptureBufferFormatControl*)
 
-int QCameraCaptureBufferFormatControl_QCameraCaptureBufferFormatControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraCaptureBufferFormatControl*>();}
+int QCameraCaptureBufferFormatControl_QCameraCaptureBufferFormatControl_QRegisterMetaType(){qRegisterMetaType<QCameraCaptureBufferFormatControl*>(); return qRegisterMetaType<MyQCameraCaptureBufferFormatControl*>();}
 
 void* QCameraCaptureBufferFormatControl_NewQCameraCaptureBufferFormatControl(void* parent)
 {
@@ -4617,6 +4633,7 @@ void* QCameraCaptureBufferFormatControl_NewQCameraCaptureBufferFormatControl(voi
 
 void QCameraCaptureBufferFormatControl_ConnectBufferFormatChanged(void* ptr)
 {
+	qRegisterMetaType<QVideoFrame::PixelFormat>();
 	QObject::connect(static_cast<QCameraCaptureBufferFormatControl*>(ptr), static_cast<void (QCameraCaptureBufferFormatControl::*)(QVideoFrame::PixelFormat)>(&QCameraCaptureBufferFormatControl::bufferFormatChanged), static_cast<MyQCameraCaptureBufferFormatControl*>(ptr), static_cast<void (MyQCameraCaptureBufferFormatControl::*)(QVideoFrame::PixelFormat)>(&MyQCameraCaptureBufferFormatControl::Signal_BufferFormatChanged));
 }
 
@@ -4689,7 +4706,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraCaptureDestinationControl*)
 
-int QCameraCaptureDestinationControl_QCameraCaptureDestinationControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraCaptureDestinationControl*>();}
+int QCameraCaptureDestinationControl_QCameraCaptureDestinationControl_QRegisterMetaType(){qRegisterMetaType<QCameraCaptureDestinationControl*>(); return qRegisterMetaType<MyQCameraCaptureDestinationControl*>();}
 
 void* QCameraCaptureDestinationControl_NewQCameraCaptureDestinationControl(void* parent)
 {
@@ -4734,6 +4751,7 @@ void* QCameraCaptureDestinationControl_NewQCameraCaptureDestinationControl(void*
 
 void QCameraCaptureDestinationControl_ConnectCaptureDestinationChanged(void* ptr)
 {
+	qRegisterMetaType<QCameraImageCapture::CaptureDestinations>();
 	QObject::connect(static_cast<QCameraCaptureDestinationControl*>(ptr), static_cast<void (QCameraCaptureDestinationControl::*)(QCameraImageCapture::CaptureDestinations)>(&QCameraCaptureDestinationControl::captureDestinationChanged), static_cast<MyQCameraCaptureDestinationControl*>(ptr), static_cast<void (MyQCameraCaptureDestinationControl::*)(QCameraImageCapture::CaptureDestinations)>(&MyQCameraCaptureDestinationControl::Signal_CaptureDestinationChanged));
 }
 
@@ -4797,7 +4815,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraControl*)
 
-int QCameraControl_QCameraControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraControl*>();}
+int QCameraControl_QCameraControl_QRegisterMetaType(){qRegisterMetaType<QCameraControl*>(); return qRegisterMetaType<MyQCameraControl*>();}
 
 void* QCameraControl_NewQCameraControl(void* parent)
 {
@@ -4842,6 +4860,7 @@ void* QCameraControl_NewQCameraControl(void* parent)
 
 void QCameraControl_ConnectCaptureModeChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::CaptureModes>();
 	QObject::connect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::CaptureModes)>(&QCameraControl::captureModeChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::CaptureModes)>(&MyQCameraControl::Signal_CaptureModeChanged));
 }
 
@@ -4882,6 +4901,7 @@ void QCameraControl_SetState(void* ptr, long long state)
 
 void QCameraControl_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::State>();
 	QObject::connect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::State)>(&QCameraControl::stateChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::State)>(&MyQCameraControl::Signal_StateChanged));
 }
 
@@ -4897,6 +4917,7 @@ void QCameraControl_StateChanged(void* ptr, long long state)
 
 void QCameraControl_ConnectStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::Status>();
 	QObject::connect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::Status)>(&QCameraControl::statusChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::Status)>(&MyQCameraControl::Signal_StatusChanged));
 }
 
@@ -4975,7 +4996,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraExposure*)
 
-int QCameraExposure_QCameraExposure_QRegisterMetaType(){return qRegisterMetaType<MyQCameraExposure*>();}
+int QCameraExposure_QCameraExposure_QRegisterMetaType(){qRegisterMetaType<QCameraExposure*>(); return qRegisterMetaType<MyQCameraExposure*>();}
 
 void QCameraExposure_SetAutoAperture(void* ptr)
 {
@@ -5094,6 +5115,7 @@ void QCameraExposure_SetExposureCompensationDefault(void* ptr, double ev)
 
 void QCameraExposure_SetExposureMode(void* ptr, long long mode)
 {
+	qRegisterMetaType<QCameraExposure::ExposureMode>();
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setExposureMode", Q_ARG(QCameraExposure::ExposureMode, static_cast<QCameraExposure::ExposureMode>(mode)));
 }
 
@@ -5104,6 +5126,7 @@ void QCameraExposure_SetExposureModeDefault(void* ptr, long long mode)
 
 void QCameraExposure_SetFlashMode(void* ptr, long long mode)
 {
+	qRegisterMetaType<QCameraExposure::FlashModes>();
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setFlashMode", Q_ARG(QCameraExposure::FlashMode, static_cast<QCameraExposure::FlashMode>(mode)));
 }
 
@@ -5144,6 +5167,7 @@ void QCameraExposure_SetManualShutterSpeedDefault(void* ptr, double seconds)
 
 void QCameraExposure_SetMeteringMode(void* ptr, long long mode)
 {
+	qRegisterMetaType<QCameraExposure::MeteringMode>();
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setMeteringMode", Q_ARG(QCameraExposure::MeteringMode, static_cast<QCameraExposure::MeteringMode>(mode)));
 }
 
@@ -5555,7 +5579,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraExposureControl*)
 
-int QCameraExposureControl_QCameraExposureControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraExposureControl*>();}
+int QCameraExposureControl_QCameraExposureControl_QRegisterMetaType(){qRegisterMetaType<QCameraExposureControl*>(); return qRegisterMetaType<MyQCameraExposureControl*>();}
 
 void* QCameraExposureControl_NewQCameraExposureControl(void* parent)
 {
@@ -5714,7 +5738,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraFeedbackControl*)
 
-int QCameraFeedbackControl_QCameraFeedbackControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraFeedbackControl*>();}
+int QCameraFeedbackControl_QCameraFeedbackControl_QRegisterMetaType(){qRegisterMetaType<QCameraFeedbackControl*>(); return qRegisterMetaType<MyQCameraFeedbackControl*>();}
 
 void* QCameraFeedbackControl_NewQCameraFeedbackControl(void* parent)
 {
@@ -5811,7 +5835,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraFlashControl*)
 
-int QCameraFlashControl_QCameraFlashControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraFlashControl*>();}
+int QCameraFlashControl_QCameraFlashControl_QRegisterMetaType(){qRegisterMetaType<QCameraFlashControl*>(); return qRegisterMetaType<MyQCameraFlashControl*>();}
 
 void* QCameraFlashControl_NewQCameraFlashControl(void* parent)
 {
@@ -5917,7 +5941,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraFocus*)
 
-int QCameraFocus_QCameraFocus_QRegisterMetaType(){return qRegisterMetaType<MyQCameraFocus*>();}
+int QCameraFocus_QCameraFocus_QRegisterMetaType(){qRegisterMetaType<QCameraFocus*>(); return qRegisterMetaType<MyQCameraFocus*>();}
 
 void QCameraFocus_ConnectDigitalZoomChanged(void* ptr)
 {
@@ -6289,7 +6313,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraFocusControl*)
 
-int QCameraFocusControl_QCameraFocusControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraFocusControl*>();}
+int QCameraFocusControl_QCameraFocusControl_QRegisterMetaType(){qRegisterMetaType<QCameraFocusControl*>(); return qRegisterMetaType<MyQCameraFocusControl*>();}
 
 void QCameraFocusControl_ConnectCustomFocusPointChanged(void* ptr)
 {
@@ -6308,6 +6332,7 @@ void QCameraFocusControl_CustomFocusPointChanged(void* ptr, void* point)
 
 void QCameraFocusControl_ConnectFocusModeChanged(void* ptr)
 {
+	qRegisterMetaType<QCameraFocus::FocusModes>();
 	QObject::connect(static_cast<QCameraFocusControl*>(ptr), static_cast<void (QCameraFocusControl::*)(QCameraFocus::FocusModes)>(&QCameraFocusControl::focusModeChanged), static_cast<MyQCameraFocusControl*>(ptr), static_cast<void (MyQCameraFocusControl::*)(QCameraFocus::FocusModes)>(&MyQCameraFocusControl::Signal_FocusModeChanged));
 }
 
@@ -6323,6 +6348,7 @@ void QCameraFocusControl_FocusModeChanged(void* ptr, long long mode)
 
 void QCameraFocusControl_ConnectFocusPointModeChanged(void* ptr)
 {
+	qRegisterMetaType<QCameraFocus::FocusPointMode>();
 	QObject::connect(static_cast<QCameraFocusControl*>(ptr), static_cast<void (QCameraFocusControl::*)(QCameraFocus::FocusPointMode)>(&QCameraFocusControl::focusPointModeChanged), static_cast<MyQCameraFocusControl*>(ptr), static_cast<void (MyQCameraFocusControl::*)(QCameraFocus::FocusPointMode)>(&MyQCameraFocusControl::Signal_FocusPointModeChanged));
 }
 
@@ -6453,7 +6479,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraImageCapture*)
 
-int QCameraImageCapture_QCameraImageCapture_QRegisterMetaType(){return qRegisterMetaType<MyQCameraImageCapture*>();}
+int QCameraImageCapture_QCameraImageCapture_QRegisterMetaType(){qRegisterMetaType<QCameraImageCapture*>(); return qRegisterMetaType<MyQCameraImageCapture*>();}
 
 void* QCameraImageCapture_NewQCameraImageCapture(void* mediaObject, void* parent)
 {
@@ -6484,6 +6510,7 @@ int QCameraImageCapture_CaptureDefault(void* ptr, struct QtMultimedia_PackedStri
 
 void QCameraImageCapture_ConnectBufferFormatChanged(void* ptr)
 {
+	qRegisterMetaType<QVideoFrame::PixelFormat>();
 	QObject::connect(static_cast<QCameraImageCapture*>(ptr), static_cast<void (QCameraImageCapture::*)(QVideoFrame::PixelFormat)>(&QCameraImageCapture::bufferFormatChanged), static_cast<MyQCameraImageCapture*>(ptr), static_cast<void (MyQCameraImageCapture::*)(QVideoFrame::PixelFormat)>(&MyQCameraImageCapture::Signal_BufferFormatChanged));
 }
 
@@ -6509,6 +6536,7 @@ void QCameraImageCapture_CancelCaptureDefault(void* ptr)
 
 void QCameraImageCapture_ConnectCaptureDestinationChanged(void* ptr)
 {
+	qRegisterMetaType<QCameraImageCapture::CaptureDestinations>();
 	QObject::connect(static_cast<QCameraImageCapture*>(ptr), static_cast<void (QCameraImageCapture::*)(QCameraImageCapture::CaptureDestinations)>(&QCameraImageCapture::captureDestinationChanged), static_cast<MyQCameraImageCapture*>(ptr), static_cast<void (MyQCameraImageCapture::*)(QCameraImageCapture::CaptureDestinations)>(&MyQCameraImageCapture::Signal_CaptureDestinationChanged));
 }
 
@@ -6524,6 +6552,7 @@ void QCameraImageCapture_CaptureDestinationChanged(void* ptr, long long destinat
 
 void QCameraImageCapture_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QCameraImageCapture::Error>();
 	QObject::connect(static_cast<QCameraImageCapture*>(ptr), static_cast<void (QCameraImageCapture::*)(int, QCameraImageCapture::Error, const QString &)>(&QCameraImageCapture::error), static_cast<MyQCameraImageCapture*>(ptr), static_cast<void (MyQCameraImageCapture::*)(int, QCameraImageCapture::Error, const QString &)>(&MyQCameraImageCapture::Signal_Error2));
 }
 
@@ -7040,7 +7069,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraImageCaptureControl*)
 
-int QCameraImageCaptureControl_QCameraImageCaptureControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraImageCaptureControl*>();}
+int QCameraImageCaptureControl_QCameraImageCaptureControl_QRegisterMetaType(){qRegisterMetaType<QCameraImageCaptureControl*>(); return qRegisterMetaType<MyQCameraImageCaptureControl*>();}
 
 void* QCameraImageCaptureControl_NewQCameraImageCaptureControl(void* parent)
 {
@@ -7236,7 +7265,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraImageProcessing*)
 
-int QCameraImageProcessing_QCameraImageProcessing_QRegisterMetaType(){return qRegisterMetaType<MyQCameraImageProcessing*>();}
+int QCameraImageProcessing_QCameraImageProcessing_QRegisterMetaType(){qRegisterMetaType<QCameraImageProcessing*>(); return qRegisterMetaType<MyQCameraImageProcessing*>();}
 
 void QCameraImageProcessing_SetBrightness(void* ptr, double value)
 {
@@ -7551,7 +7580,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraImageProcessingControl*)
 
-int QCameraImageProcessingControl_QCameraImageProcessingControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraImageProcessingControl*>();}
+int QCameraImageProcessingControl_QCameraImageProcessingControl_QRegisterMetaType(){qRegisterMetaType<QCameraImageProcessingControl*>(); return qRegisterMetaType<MyQCameraImageProcessingControl*>();}
 
 void* QCameraImageProcessingControl_NewQCameraImageProcessingControl(void* parent)
 {
@@ -7712,7 +7741,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraInfoControl*)
 
-int QCameraInfoControl_QCameraInfoControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraInfoControl*>();}
+int QCameraInfoControl_QCameraInfoControl_QRegisterMetaType(){qRegisterMetaType<QCameraInfoControl*>(); return qRegisterMetaType<MyQCameraInfoControl*>();}
 
 void* QCameraInfoControl_NewQCameraInfoControl(void* parent)
 {
@@ -7800,7 +7829,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraLocksControl*)
 
-int QCameraLocksControl_QCameraLocksControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraLocksControl*>();}
+int QCameraLocksControl_QCameraLocksControl_QRegisterMetaType(){qRegisterMetaType<QCameraLocksControl*>(); return qRegisterMetaType<MyQCameraLocksControl*>();}
 
 void* QCameraLocksControl_NewQCameraLocksControl(void* parent)
 {
@@ -7845,6 +7874,9 @@ void* QCameraLocksControl_NewQCameraLocksControl(void* parent)
 
 void QCameraLocksControl_ConnectLockStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QCamera::LockType>();
+	qRegisterMetaType<QCamera::LockStatus>();
+	qRegisterMetaType<QCamera::LockChangeReason>();
 	QObject::connect(static_cast<QCameraLocksControl*>(ptr), static_cast<void (QCameraLocksControl::*)(QCamera::LockType, QCamera::LockStatus, QCamera::LockChangeReason)>(&QCameraLocksControl::lockStatusChanged), static_cast<MyQCameraLocksControl*>(ptr), static_cast<void (MyQCameraLocksControl::*)(QCamera::LockType, QCamera::LockStatus, QCamera::LockChangeReason)>(&MyQCameraLocksControl::Signal_LockStatusChanged));
 }
 
@@ -7973,7 +8005,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraViewfinder*)
 
-int QCameraViewfinder_QCameraViewfinder_QRegisterMetaType(){return qRegisterMetaType<MyQCameraViewfinder*>();}
+int QCameraViewfinder_QCameraViewfinder_QRegisterMetaType(){qRegisterMetaType<QCameraViewfinder*>(); return qRegisterMetaType<MyQCameraViewfinder*>();}
 
 void* QCameraViewfinder_NewQCameraViewfinder(void* parent)
 {
@@ -8102,7 +8134,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraViewfinderSettingsControl*)
 
-int QCameraViewfinderSettingsControl_QCameraViewfinderSettingsControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraViewfinderSettingsControl*>();}
+int QCameraViewfinderSettingsControl_QCameraViewfinderSettingsControl_QRegisterMetaType(){qRegisterMetaType<QCameraViewfinderSettingsControl*>(); return qRegisterMetaType<MyQCameraViewfinderSettingsControl*>();}
 
 void* QCameraViewfinderSettingsControl_NewQCameraViewfinderSettingsControl(void* parent)
 {
@@ -8188,7 +8220,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraViewfinderSettingsControl2*)
 
-int QCameraViewfinderSettingsControl2_QCameraViewfinderSettingsControl2_QRegisterMetaType(){return qRegisterMetaType<MyQCameraViewfinderSettingsControl2*>();}
+int QCameraViewfinderSettingsControl2_QCameraViewfinderSettingsControl2_QRegisterMetaType(){qRegisterMetaType<QCameraViewfinderSettingsControl2*>(); return qRegisterMetaType<MyQCameraViewfinderSettingsControl2*>();}
 
 void* QCameraViewfinderSettingsControl2_NewQCameraViewfinderSettingsControl2(void* parent)
 {
@@ -8305,7 +8337,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCameraZoomControl*)
 
-int QCameraZoomControl_QCameraZoomControl_QRegisterMetaType(){return qRegisterMetaType<MyQCameraZoomControl*>();}
+int QCameraZoomControl_QCameraZoomControl_QRegisterMetaType(){qRegisterMetaType<QCameraZoomControl*>(); return qRegisterMetaType<MyQCameraZoomControl*>();}
 
 void* QCameraZoomControl_NewQCameraZoomControl(void* parent)
 {
@@ -8542,7 +8574,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsVideoItem*)
 
-int QGraphicsVideoItem_QGraphicsVideoItem_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsVideoItem*>();}
+int QGraphicsVideoItem_QGraphicsVideoItem_QRegisterMetaType(){qRegisterMetaType<QGraphicsVideoItem*>(); return qRegisterMetaType<MyQGraphicsVideoItem*>();}
 
 void* QGraphicsVideoItem_NewQGraphicsVideoItem(void* parent)
 {
@@ -9343,7 +9375,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQImageEncoderControl*)
 
-int QImageEncoderControl_QImageEncoderControl_QRegisterMetaType(){return qRegisterMetaType<MyQImageEncoderControl*>();}
+int QImageEncoderControl_QImageEncoderControl_QRegisterMetaType(){qRegisterMetaType<QImageEncoderControl*>(); return qRegisterMetaType<MyQImageEncoderControl*>();}
 
 void* QImageEncoderControl_NewQImageEncoderControl(void* parent)
 {
@@ -9610,7 +9642,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaAudioProbeControl*)
 
-int QMediaAudioProbeControl_QMediaAudioProbeControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaAudioProbeControl*>();}
+int QMediaAudioProbeControl_QMediaAudioProbeControl_QRegisterMetaType(){qRegisterMetaType<QMediaAudioProbeControl*>(); return qRegisterMetaType<MyQMediaAudioProbeControl*>();}
 
 void* QMediaAudioProbeControl_NewQMediaAudioProbeControl(void* parent)
 {
@@ -9715,7 +9747,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaAvailabilityControl*)
 
-int QMediaAvailabilityControl_QMediaAvailabilityControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaAvailabilityControl*>();}
+int QMediaAvailabilityControl_QMediaAvailabilityControl_QRegisterMetaType(){qRegisterMetaType<QMediaAvailabilityControl*>(); return qRegisterMetaType<MyQMediaAvailabilityControl*>();}
 
 void* QMediaAvailabilityControl_NewQMediaAvailabilityControl(void* parent)
 {
@@ -9760,6 +9792,7 @@ void* QMediaAvailabilityControl_NewQMediaAvailabilityControl(void* parent)
 
 void QMediaAvailabilityControl_ConnectAvailabilityChanged(void* ptr)
 {
+	qRegisterMetaType<QMultimedia::AvailabilityStatus>();
 	QObject::connect(static_cast<QMediaAvailabilityControl*>(ptr), static_cast<void (QMediaAvailabilityControl::*)(QMultimedia::AvailabilityStatus)>(&QMediaAvailabilityControl::availabilityChanged), static_cast<MyQMediaAvailabilityControl*>(ptr), static_cast<void (MyQMediaAvailabilityControl::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaAvailabilityControl::Signal_AvailabilityChanged));
 }
 
@@ -9864,7 +9897,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaContainerControl*)
 
-int QMediaContainerControl_QMediaContainerControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaContainerControl*>();}
+int QMediaContainerControl_QMediaContainerControl_QRegisterMetaType(){qRegisterMetaType<QMediaContainerControl*>(); return qRegisterMetaType<MyQMediaContainerControl*>();}
 
 void* QMediaContainerControl_NewQMediaContainerControl(void* parent)
 {
@@ -10059,7 +10092,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaControl*)
 
-int QMediaControl_QMediaControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaControl*>();}
+int QMediaControl_QMediaControl_QRegisterMetaType(){qRegisterMetaType<QMediaControl*>(); return qRegisterMetaType<MyQMediaControl*>();}
 
 void* QMediaControl_NewQMediaControl(void* parent)
 {
@@ -11564,7 +11597,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaGaplessPlaybackControl*)
 
-int QMediaGaplessPlaybackControl_QMediaGaplessPlaybackControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaGaplessPlaybackControl*>();}
+int QMediaGaplessPlaybackControl_QMediaGaplessPlaybackControl_QRegisterMetaType(){qRegisterMetaType<QMediaGaplessPlaybackControl*>(); return qRegisterMetaType<MyQMediaGaplessPlaybackControl*>();}
 
 void* QMediaGaplessPlaybackControl_NewQMediaGaplessPlaybackControl(void* parent)
 {
@@ -11710,7 +11743,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaNetworkAccessControl*)
 
-int QMediaNetworkAccessControl_QMediaNetworkAccessControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaNetworkAccessControl*>();}
+int QMediaNetworkAccessControl_QMediaNetworkAccessControl_QRegisterMetaType(){qRegisterMetaType<QMediaNetworkAccessControl*>(); return qRegisterMetaType<MyQMediaNetworkAccessControl*>();}
 
 void QMediaNetworkAccessControl_ConnectConfigurationChanged(void* ptr)
 {
@@ -11794,7 +11827,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaObject*)
 
-int QMediaObject_QMediaObject_QRegisterMetaType(){return qRegisterMetaType<MyQMediaObject*>();}
+int QMediaObject_QMediaObject_QRegisterMetaType(){qRegisterMetaType<QMediaObject*>(); return qRegisterMetaType<MyQMediaObject*>();}
 
 void* QMediaObject_NewQMediaObject(void* parent, void* service)
 {
@@ -11948,6 +11981,7 @@ void QMediaObject_AddPropertyWatch(void* ptr, void* name)
 
 void QMediaObject_ConnectAvailabilityChanged2(void* ptr)
 {
+	qRegisterMetaType<QMultimedia::AvailabilityStatus>();
 	QObject::connect(static_cast<QMediaObject*>(ptr), static_cast<void (QMediaObject::*)(QMultimedia::AvailabilityStatus)>(&QMediaObject::availabilityChanged), static_cast<MyQMediaObject*>(ptr), static_cast<void (MyQMediaObject::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaObject::Signal_AvailabilityChanged2));
 }
 
@@ -12632,7 +12666,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaPlayer*)
 
-int QMediaPlayer_QMediaPlayer_QRegisterMetaType(){return qRegisterMetaType<MyQMediaPlayer*>();}
+int QMediaPlayer_QMediaPlayer_QRegisterMetaType(){qRegisterMetaType<QMediaPlayer*>(); return qRegisterMetaType<MyQMediaPlayer*>();}
 
 void* QMediaPlayer_NewQMediaPlayer(void* parent, long long flags)
 {
@@ -12697,6 +12731,7 @@ void QMediaPlayer_AudioAvailableChanged(void* ptr, char available)
 
 void QMediaPlayer_ConnectAudioRoleChanged(void* ptr)
 {
+	qRegisterMetaType<QAudio::Role>();
 	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(QAudio::Role)>(&QMediaPlayer::audioRoleChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(QAudio::Role)>(&MyQMediaPlayer::Signal_AudioRoleChanged));
 }
 
@@ -12757,6 +12792,7 @@ void QMediaPlayer_DurationChanged(void* ptr, long long duration)
 
 void QMediaPlayer_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QMediaPlayer::Error>();
 	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(QMediaPlayer::Error)>(&QMediaPlayer::error), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(QMediaPlayer::Error)>(&MyQMediaPlayer::Signal_Error2));
 }
 
@@ -12787,6 +12823,7 @@ void QMediaPlayer_MediaChanged(void* ptr, void* media)
 
 void QMediaPlayer_ConnectMediaStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaPlayer::MediaStatus>();
 	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(QMediaPlayer::MediaStatus)>(&QMediaPlayer::mediaStatusChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(QMediaPlayer::MediaStatus)>(&MyQMediaPlayer::Signal_MediaStatusChanged));
 }
 
@@ -12987,6 +13024,7 @@ void QMediaPlayer_SetVolumeDefault(void* ptr, int volume)
 
 void QMediaPlayer_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaPlayer::State>();
 	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(QMediaPlayer::State)>(&QMediaPlayer::stateChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(QMediaPlayer::State)>(&MyQMediaPlayer::Signal_StateChanged));
 }
 
@@ -13232,7 +13270,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaPlayerControl*)
 
-int QMediaPlayerControl_QMediaPlayerControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaPlayerControl*>();}
+int QMediaPlayerControl_QMediaPlayerControl_QRegisterMetaType(){qRegisterMetaType<QMediaPlayerControl*>(); return qRegisterMetaType<MyQMediaPlayerControl*>();}
 
 void* QMediaPlayerControl_NewQMediaPlayerControl(void* parent)
 {
@@ -13367,6 +13405,7 @@ void QMediaPlayerControl_MediaChanged(void* ptr, void* content)
 
 void QMediaPlayerControl_ConnectMediaStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaPlayer::MediaStatus>();
 	QObject::connect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(QMediaPlayer::MediaStatus)>(&QMediaPlayerControl::mediaStatusChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(QMediaPlayer::MediaStatus)>(&MyQMediaPlayerControl::Signal_MediaStatusChanged));
 }
 
@@ -13477,6 +13516,7 @@ void QMediaPlayerControl_SetVolume(void* ptr, int volume)
 
 void QMediaPlayerControl_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaPlayer::State>();
 	QObject::connect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(QMediaPlayer::State)>(&QMediaPlayerControl::stateChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(QMediaPlayer::State)>(&MyQMediaPlayerControl::Signal_StateChanged));
 }
 
@@ -13636,7 +13676,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaPlaylist*)
 
-int QMediaPlaylist_QMediaPlaylist_QRegisterMetaType(){return qRegisterMetaType<MyQMediaPlaylist*>();}
+int QMediaPlaylist_QMediaPlaylist_QRegisterMetaType(){qRegisterMetaType<QMediaPlaylist*>(); return qRegisterMetaType<MyQMediaPlaylist*>();}
 
 void* QMediaPlaylist_NewQMediaPlaylist(void* parent)
 {
@@ -13855,6 +13895,7 @@ void QMediaPlaylist_NextDefault(void* ptr)
 
 void QMediaPlaylist_ConnectPlaybackModeChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaPlaylist::PlaybackMode>();
 	QObject::connect(static_cast<QMediaPlaylist*>(ptr), static_cast<void (QMediaPlaylist::*)(QMediaPlaylist::PlaybackMode)>(&QMediaPlaylist::playbackModeChanged), static_cast<MyQMediaPlaylist*>(ptr), static_cast<void (MyQMediaPlaylist::*)(QMediaPlaylist::PlaybackMode)>(&MyQMediaPlaylist::Signal_PlaybackModeChanged));
 }
 
@@ -14314,7 +14355,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaRecorder*)
 
-int QMediaRecorder_QMediaRecorder_QRegisterMetaType(){return qRegisterMetaType<MyQMediaRecorder*>();}
+int QMediaRecorder_QMediaRecorder_QRegisterMetaType(){qRegisterMetaType<QMediaRecorder*>(); return qRegisterMetaType<MyQMediaRecorder*>();}
 
 void* QMediaRecorder_NewQMediaRecorder(void* mediaObject, void* parent)
 {
@@ -14343,6 +14384,7 @@ void QMediaRecorder_ActualLocationChanged(void* ptr, void* location)
 
 void QMediaRecorder_ConnectAvailabilityChanged2(void* ptr)
 {
+	qRegisterMetaType<QMultimedia::AvailabilityStatus>();
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMultimedia::AvailabilityStatus)>(&QMediaRecorder::availabilityChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMultimedia::AvailabilityStatus)>(&MyQMediaRecorder::Signal_AvailabilityChanged2));
 }
 
@@ -14388,6 +14430,7 @@ void QMediaRecorder_DurationChanged(void* ptr, long long duration)
 
 void QMediaRecorder_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QMediaRecorder::Error>();
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMediaRecorder::Error)>(&QMediaRecorder::error), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMediaRecorder::Error)>(&MyQMediaRecorder::Signal_Error2));
 }
 
@@ -14559,6 +14602,7 @@ void QMediaRecorder_SetVolumeDefault(void* ptr, double volume)
 
 void QMediaRecorder_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaRecorder::State>();
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMediaRecorder::State)>(&QMediaRecorder::stateChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMediaRecorder::State)>(&MyQMediaRecorder::Signal_StateChanged));
 }
 
@@ -14574,6 +14618,7 @@ void QMediaRecorder_StateChanged(void* ptr, long long state)
 
 void QMediaRecorder_ConnectStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaRecorder::Status>();
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMediaRecorder::Status)>(&QMediaRecorder::statusChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMediaRecorder::Status)>(&MyQMediaRecorder::Signal_StatusChanged));
 }
 
@@ -15177,7 +15222,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaRecorderControl*)
 
-int QMediaRecorderControl_QMediaRecorderControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaRecorderControl*>();}
+int QMediaRecorderControl_QMediaRecorderControl_QRegisterMetaType(){qRegisterMetaType<QMediaRecorderControl*>(); return qRegisterMetaType<MyQMediaRecorderControl*>();}
 
 void* QMediaRecorderControl_NewQMediaRecorderControl(void* parent)
 {
@@ -15297,6 +15342,7 @@ void QMediaRecorderControl_SetMuted(void* ptr, char muted)
 
 void QMediaRecorderControl_SetState(void* ptr, long long state)
 {
+	qRegisterMetaType<QMediaRecorder::State>();
 	QMetaObject::invokeMethod(static_cast<QMediaRecorderControl*>(ptr), "setState", Q_ARG(QMediaRecorder::State, static_cast<QMediaRecorder::State>(state)));
 }
 
@@ -15307,6 +15353,7 @@ void QMediaRecorderControl_SetVolume(void* ptr, double volume)
 
 void QMediaRecorderControl_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaRecorder::State>();
 	QObject::connect(static_cast<QMediaRecorderControl*>(ptr), static_cast<void (QMediaRecorderControl::*)(QMediaRecorder::State)>(&QMediaRecorderControl::stateChanged), static_cast<MyQMediaRecorderControl*>(ptr), static_cast<void (MyQMediaRecorderControl::*)(QMediaRecorder::State)>(&MyQMediaRecorderControl::Signal_StateChanged));
 }
 
@@ -15322,6 +15369,7 @@ void QMediaRecorderControl_StateChanged(void* ptr, long long state)
 
 void QMediaRecorderControl_ConnectStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QMediaRecorder::Status>();
 	QObject::connect(static_cast<QMediaRecorderControl*>(ptr), static_cast<void (QMediaRecorderControl::*)(QMediaRecorder::Status)>(&QMediaRecorderControl::statusChanged), static_cast<MyQMediaRecorderControl*>(ptr), static_cast<void (MyQMediaRecorderControl::*)(QMediaRecorder::Status)>(&MyQMediaRecorderControl::Signal_StatusChanged));
 }
 
@@ -15552,7 +15600,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaService*)
 
-int QMediaService_QMediaService_QRegisterMetaType(){return qRegisterMetaType<MyQMediaService*>();}
+int QMediaService_QMediaService_QRegisterMetaType(){qRegisterMetaType<QMediaService*>(); return qRegisterMetaType<MyQMediaService*>();}
 
 void* QMediaService_RequestControl(void* ptr, char* interfa)
 {
@@ -15899,7 +15947,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaServiceProviderPlugin*)
 
-int QMediaServiceProviderPlugin_QMediaServiceProviderPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQMediaServiceProviderPlugin*>();}
+int QMediaServiceProviderPlugin_QMediaServiceProviderPlugin_QRegisterMetaType(){qRegisterMetaType<QMediaServiceProviderPlugin*>(); return qRegisterMetaType<MyQMediaServiceProviderPlugin*>();}
 
 void* QMediaServiceProviderPlugin_Create(void* ptr, struct QtMultimedia_PackedString key)
 {
@@ -16207,7 +16255,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaStreamsControl*)
 
-int QMediaStreamsControl_QMediaStreamsControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaStreamsControl*>();}
+int QMediaStreamsControl_QMediaStreamsControl_QRegisterMetaType(){qRegisterMetaType<QMediaStreamsControl*>(); return qRegisterMetaType<MyQMediaStreamsControl*>();}
 
 void* QMediaStreamsControl_NewQMediaStreamsControl(void* parent)
 {
@@ -16489,7 +16537,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMediaVideoProbeControl*)
 
-int QMediaVideoProbeControl_QMediaVideoProbeControl_QRegisterMetaType(){return qRegisterMetaType<MyQMediaVideoProbeControl*>();}
+int QMediaVideoProbeControl_QMediaVideoProbeControl_QRegisterMetaType(){qRegisterMetaType<QMediaVideoProbeControl*>(); return qRegisterMetaType<MyQMediaVideoProbeControl*>();}
 
 void* QMediaVideoProbeControl_NewQMediaVideoProbeControl(void* parent)
 {
@@ -16598,7 +16646,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMetaDataReaderControl*)
 
-int QMetaDataReaderControl_QMetaDataReaderControl_QRegisterMetaType(){return qRegisterMetaType<MyQMetaDataReaderControl*>();}
+int QMetaDataReaderControl_QMetaDataReaderControl_QRegisterMetaType(){qRegisterMetaType<QMetaDataReaderControl*>(); return qRegisterMetaType<MyQMetaDataReaderControl*>();}
 
 void* QMetaDataReaderControl_NewQMetaDataReaderControl(void* parent)
 {
@@ -16734,7 +16782,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMetaDataWriterControl*)
 
-int QMetaDataWriterControl_QMetaDataWriterControl_QRegisterMetaType(){return qRegisterMetaType<MyQMetaDataWriterControl*>();}
+int QMetaDataWriterControl_QMetaDataWriterControl_QRegisterMetaType(){qRegisterMetaType<QMetaDataWriterControl*>(); return qRegisterMetaType<MyQMetaDataWriterControl*>();}
 
 void* QMetaDataWriterControl_NewQMetaDataWriterControl(void* parent)
 {
@@ -16896,7 +16944,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRadioData*)
 
-int QRadioData_QRadioData_QRegisterMetaType(){return qRegisterMetaType<MyQRadioData*>();}
+int QRadioData_QRadioData_QRegisterMetaType(){qRegisterMetaType<QRadioData*>(); return qRegisterMetaType<MyQRadioData*>();}
 
 void QRadioData_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
 {
@@ -16940,6 +16988,7 @@ void QRadioData_AlternativeFrequenciesEnabledChanged(void* ptr, char enabled)
 
 void QRadioData_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QRadioData::Error>();
 	QObject::connect(static_cast<QRadioData*>(ptr), static_cast<void (QRadioData::*)(QRadioData::Error)>(&QRadioData::error), static_cast<MyQRadioData*>(ptr), static_cast<void (MyQRadioData::*)(QRadioData::Error)>(&MyQRadioData::Signal_Error2));
 }
 
@@ -16955,6 +17004,7 @@ void QRadioData_Error2(void* ptr, long long error)
 
 void QRadioData_ConnectProgramTypeChanged(void* ptr)
 {
+	qRegisterMetaType<QRadioData::ProgramType>();
 	QObject::connect(static_cast<QRadioData*>(ptr), static_cast<void (QRadioData::*)(QRadioData::ProgramType)>(&QRadioData::programTypeChanged), static_cast<MyQRadioData*>(ptr), static_cast<void (MyQRadioData::*)(QRadioData::ProgramType)>(&MyQRadioData::Signal_ProgramTypeChanged));
 }
 
@@ -17377,7 +17427,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRadioDataControl*)
 
-int QRadioDataControl_QRadioDataControl_QRegisterMetaType(){return qRegisterMetaType<MyQRadioDataControl*>();}
+int QRadioDataControl_QRadioDataControl_QRegisterMetaType(){qRegisterMetaType<QRadioDataControl*>(); return qRegisterMetaType<MyQRadioDataControl*>();}
 
 void* QRadioDataControl_NewQRadioDataControl(void* parent)
 {
@@ -17437,6 +17487,7 @@ void QRadioDataControl_AlternativeFrequenciesEnabledChanged(void* ptr, char enab
 
 void QRadioDataControl_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QRadioData::Error>();
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QRadioData::Error)>(&QRadioDataControl::error), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QRadioData::Error)>(&MyQRadioDataControl::Signal_Error2));
 }
 
@@ -17452,6 +17503,7 @@ void QRadioDataControl_Error2(void* ptr, long long error)
 
 void QRadioDataControl_ConnectProgramTypeChanged(void* ptr)
 {
+	qRegisterMetaType<QRadioData::ProgramType>();
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QRadioData::ProgramType)>(&QRadioDataControl::programTypeChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QRadioData::ProgramType)>(&MyQRadioDataControl::Signal_ProgramTypeChanged));
 }
 
@@ -17626,7 +17678,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRadioTuner*)
 
-int QRadioTuner_QRadioTuner_QRegisterMetaType(){return qRegisterMetaType<MyQRadioTuner*>();}
+int QRadioTuner_QRadioTuner_QRegisterMetaType(){qRegisterMetaType<QRadioTuner*>(); return qRegisterMetaType<MyQRadioTuner*>();}
 
 void* QRadioTuner_NewQRadioTuner(void* parent)
 {
@@ -17686,6 +17738,7 @@ void QRadioTuner_AntennaConnectedChanged(void* ptr, char connectionStatus)
 
 void QRadioTuner_ConnectBandChanged(void* ptr)
 {
+	qRegisterMetaType<QRadioTuner::Band>();
 	QObject::connect(static_cast<QRadioTuner*>(ptr), static_cast<void (QRadioTuner::*)(QRadioTuner::Band)>(&QRadioTuner::bandChanged), static_cast<MyQRadioTuner*>(ptr), static_cast<void (MyQRadioTuner::*)(QRadioTuner::Band)>(&MyQRadioTuner::Signal_BandChanged));
 }
 
@@ -17711,6 +17764,7 @@ void QRadioTuner_CancelSearchDefault(void* ptr)
 
 void QRadioTuner_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QRadioTuner::Error>();
 	QObject::connect(static_cast<QRadioTuner*>(ptr), static_cast<void (QRadioTuner::*)(QRadioTuner::Error)>(&QRadioTuner::error), static_cast<MyQRadioTuner*>(ptr), static_cast<void (MyQRadioTuner::*)(QRadioTuner::Error)>(&MyQRadioTuner::Signal_Error2));
 }
 
@@ -17756,6 +17810,7 @@ void QRadioTuner_MutedChanged(void* ptr, char muted)
 
 void QRadioTuner_SearchAllStations(void* ptr, long long searchMode)
 {
+	qRegisterMetaType<QRadioTuner::SearchMode>();
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "searchAllStations", Q_ARG(QRadioTuner::SearchMode, static_cast<QRadioTuner::SearchMode>(searchMode)));
 }
 
@@ -17801,6 +17856,7 @@ void QRadioTuner_SearchingChanged(void* ptr, char searching)
 
 void QRadioTuner_SetBand(void* ptr, long long band)
 {
+	qRegisterMetaType<QRadioTuner::Band>();
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "setBand", Q_ARG(QRadioTuner::Band, static_cast<QRadioTuner::Band>(band)));
 }
 
@@ -17871,6 +17927,7 @@ void QRadioTuner_StartDefault(void* ptr)
 
 void QRadioTuner_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QRadioTuner::State>();
 	QObject::connect(static_cast<QRadioTuner*>(ptr), static_cast<void (QRadioTuner::*)(QRadioTuner::State)>(&QRadioTuner::stateChanged), static_cast<MyQRadioTuner*>(ptr), static_cast<void (MyQRadioTuner::*)(QRadioTuner::State)>(&MyQRadioTuner::Signal_StateChanged));
 }
 
@@ -18073,7 +18130,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRadioTunerControl*)
 
-int QRadioTunerControl_QRadioTunerControl_QRegisterMetaType(){return qRegisterMetaType<MyQRadioTunerControl*>();}
+int QRadioTunerControl_QRadioTunerControl_QRegisterMetaType(){qRegisterMetaType<QRadioTunerControl*>(); return qRegisterMetaType<MyQRadioTunerControl*>();}
 
 void QRadioTunerControl_ConnectAntennaConnectedChanged(void* ptr)
 {
@@ -18092,6 +18149,7 @@ void QRadioTunerControl_AntennaConnectedChanged(void* ptr, char connectionStatus
 
 void QRadioTunerControl_ConnectBandChanged(void* ptr)
 {
+	qRegisterMetaType<QRadioTuner::Band>();
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(QRadioTuner::Band)>(&QRadioTunerControl::bandChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(QRadioTuner::Band)>(&MyQRadioTunerControl::Signal_BandChanged));
 }
 
@@ -18112,6 +18170,7 @@ void QRadioTunerControl_CancelSearch(void* ptr)
 
 void QRadioTunerControl_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QRadioTuner::Error>();
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(QRadioTuner::Error)>(&QRadioTunerControl::error), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(QRadioTuner::Error)>(&MyQRadioTunerControl::Signal_Error2));
 }
 
@@ -18232,6 +18291,7 @@ void QRadioTunerControl_Start(void* ptr)
 
 void QRadioTunerControl_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QRadioTuner::State>();
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(QRadioTuner::State)>(&QRadioTunerControl::stateChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(QRadioTuner::State)>(&MyQRadioTunerControl::Signal_StateChanged));
 }
 
@@ -18396,7 +18456,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSound*)
 
-int QSound_QSound_QRegisterMetaType(){return qRegisterMetaType<MyQSound*>();}
+int QSound_QSound_QRegisterMetaType(){qRegisterMetaType<QSound*>(); return qRegisterMetaType<MyQSound*>();}
 
 void QSound_Play2(void* ptr)
 {
@@ -18719,7 +18779,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSoundEffect*)
 
-int QSoundEffect_QSoundEffect_QRegisterMetaType(){return qRegisterMetaType<MyQSoundEffect*>();}
+int QSoundEffect_QSoundEffect_QRegisterMetaType(){qRegisterMetaType<QSoundEffect*>(); return qRegisterMetaType<MyQSoundEffect*>();}
 
 void* QSoundEffect_NewQSoundEffect(void* parent)
 {
@@ -19221,7 +19281,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVideoDeviceSelectorControl*)
 
-int QVideoDeviceSelectorControl_QVideoDeviceSelectorControl_QRegisterMetaType(){return qRegisterMetaType<MyQVideoDeviceSelectorControl*>();}
+int QVideoDeviceSelectorControl_QVideoDeviceSelectorControl_QRegisterMetaType(){qRegisterMetaType<QVideoDeviceSelectorControl*>(); return qRegisterMetaType<MyQVideoDeviceSelectorControl*>();}
 
 void* QVideoDeviceSelectorControl_NewQVideoDeviceSelectorControl(void* parent)
 {
@@ -19555,7 +19615,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVideoEncoderSettingsControl*)
 
-int QVideoEncoderSettingsControl_QVideoEncoderSettingsControl_QRegisterMetaType(){return qRegisterMetaType<MyQVideoEncoderSettingsControl*>();}
+int QVideoEncoderSettingsControl_QVideoEncoderSettingsControl_QRegisterMetaType(){qRegisterMetaType<QVideoEncoderSettingsControl*>(); return qRegisterMetaType<MyQVideoEncoderSettingsControl*>();}
 
 void* QVideoEncoderSettingsControl_NewQVideoEncoderSettingsControl(void* parent)
 {
@@ -19932,7 +19992,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVideoProbe*)
 
-int QVideoProbe_QVideoProbe_QRegisterMetaType(){return qRegisterMetaType<MyQVideoProbe*>();}
+int QVideoProbe_QVideoProbe_QRegisterMetaType(){qRegisterMetaType<QVideoProbe*>(); return qRegisterMetaType<MyQVideoProbe*>();}
 
 void* QVideoProbe_NewQVideoProbe(void* parent)
 {
@@ -20241,7 +20301,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVideoRendererControl*)
 
-int QVideoRendererControl_QVideoRendererControl_QRegisterMetaType(){return qRegisterMetaType<MyQVideoRendererControl*>();}
+int QVideoRendererControl_QVideoRendererControl_QRegisterMetaType(){qRegisterMetaType<QVideoRendererControl*>(); return qRegisterMetaType<MyQVideoRendererControl*>();}
 
 void* QVideoRendererControl_NewQVideoRendererControl(void* parent)
 {
@@ -20540,7 +20600,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVideoWidget*)
 
-int QVideoWidget_QVideoWidget_QRegisterMetaType(){return qRegisterMetaType<MyQVideoWidget*>();}
+int QVideoWidget_QVideoWidget_QRegisterMetaType(){qRegisterMetaType<QVideoWidget*>(); return qRegisterMetaType<MyQVideoWidget*>();}
 
 void* QVideoWidget_NewQVideoWidget(void* parent)
 {
@@ -20694,7 +20754,8 @@ void QVideoWidget_SaturationChanged(void* ptr, int saturation)
 
 void QVideoWidget_SetAspectRatioMode(void* ptr, long long mode)
 {
-		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setAspectRatioMode", Q_ARG(Qt::AspectRatioMode, static_cast<Qt::AspectRatioMode>(mode)));
+		qRegisterMetaType<Qt::AspectRatioMode>();
+	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setAspectRatioMode", Q_ARG(Qt::AspectRatioMode, static_cast<Qt::AspectRatioMode>(mode)));
 }
 
 void QVideoWidget_SetAspectRatioModeDefault(void* ptr, long long mode)
@@ -21931,7 +21992,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVideoWidgetControl*)
 
-int QVideoWidgetControl_QVideoWidgetControl_QRegisterMetaType(){return qRegisterMetaType<MyQVideoWidgetControl*>();}
+int QVideoWidgetControl_QVideoWidgetControl_QRegisterMetaType(){qRegisterMetaType<QVideoWidgetControl*>(); return qRegisterMetaType<MyQVideoWidgetControl*>();}
 
 void* QVideoWidgetControl_NewQVideoWidgetControl(void* parent)
 {
@@ -22168,7 +22229,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVideoWindowControl*)
 
-int QVideoWindowControl_QVideoWindowControl_QRegisterMetaType(){return qRegisterMetaType<MyQVideoWindowControl*>();}
+int QVideoWindowControl_QVideoWindowControl_QRegisterMetaType(){qRegisterMetaType<QVideoWindowControl*>(); return qRegisterMetaType<MyQVideoWindowControl*>();}
 
 void* QVideoWindowControl_NewQVideoWindowControl(void* parent)
 {

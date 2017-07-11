@@ -396,6 +396,10 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 			)
 			defer bb.Reset()
 
+			if reg := converter.CppRegisterMetaType(function); reg != "" {
+				bb.WriteString(reg + "\n")
+			}
+
 			fmt.Fprint(bb, "\t")
 
 			if converter.CppHeaderOutput(function) != parser.VOID {
@@ -576,20 +580,31 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 
 	case parser.SIGNAL:
 		{
+			var bb = new(bytes.Buffer)
+			defer bb.Reset()
+
+			if function.SignalMode == parser.CONNECT {
+				if reg := converter.CppRegisterMetaType(function); reg != "" {
+					bb.WriteString(reg + "\n")
+				}
+			}
+
 			var my string
 			var c, _ = function.Class()
 			if c.Module != parser.MOC {
 				my = "My"
 			}
 			if converter.IsPrivateSignal(function) {
-				return fmt.Sprintf("\tQObject::%v(static_cast<%v*>(ptr), &%v::%v, static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));", strings.ToLower(function.SignalMode), function.ClassName(), function.ClassName(), function.Name, my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
+				fmt.Fprintf(bb, "\tQObject::%v(static_cast<%v*>(ptr), &%v::%v, static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));", strings.ToLower(function.SignalMode), function.ClassName(), function.ClassName(), function.Name, my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
+			} else {
+				fmt.Fprintf(bb, "\tQObject::%v(static_cast<%v*>(ptr), static_cast<%v (%v::*)(%v)>(&%v::%v), static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));",
+					strings.ToLower(function.SignalMode),
+
+					function.ClassName(), function.Output, function.ClassName(), converter.CppInputParametersForSignalConnect(function), function.ClassName(), function.Name,
+
+					my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
 			}
-			return fmt.Sprintf("\tQObject::%v(static_cast<%v*>(ptr), static_cast<%v (%v::*)(%v)>(&%v::%v), static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));",
-				strings.ToLower(function.SignalMode),
-
-				function.ClassName(), function.Output, function.ClassName(), converter.CppInputParametersForSignalConnect(function), function.ClassName(), function.Name,
-
-				my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
+			return bb.String()
 		}
 	}
 

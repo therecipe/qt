@@ -126,7 +126,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQuickWebEngineProfile*)
 
-int QQuickWebEngineProfile_QQuickWebEngineProfile_QRegisterMetaType(){return qRegisterMetaType<MyQQuickWebEngineProfile*>();}
+int QQuickWebEngineProfile_QQuickWebEngineProfile_QRegisterMetaType(){qRegisterMetaType<QQuickWebEngineProfile*>(); return qRegisterMetaType<MyQQuickWebEngineProfile*>();}
 
 void* QQuickWebEngineProfile_QQuickWebEngineProfile_DefaultProfile()
 {
@@ -720,7 +720,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEngineCookieStore*)
 
-int QWebEngineCookieStore_QWebEngineCookieStore_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineCookieStore*>();}
+int QWebEngineCookieStore_QWebEngineCookieStore_QRegisterMetaType(){qRegisterMetaType<QWebEngineCookieStore*>(); return qRegisterMetaType<MyQWebEngineCookieStore*>();}
 
 void QWebEngineCookieStore_ConnectCookieAdded(void* ptr)
 {
@@ -936,7 +936,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEngineDownloadItem*)
 
-int QWebEngineDownloadItem_QWebEngineDownloadItem_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineDownloadItem*>();}
+int QWebEngineDownloadItem_QWebEngineDownloadItem_QRegisterMetaType(){qRegisterMetaType<QWebEngineDownloadItem*>(); return qRegisterMetaType<MyQWebEngineDownloadItem*>();}
 
 void QWebEngineDownloadItem_Accept(void* ptr)
 {
@@ -1000,6 +1000,7 @@ void QWebEngineDownloadItem_SetSavePageFormat(void* ptr, long long format)
 
 void QWebEngineDownloadItem_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QWebEngineDownloadItem::DownloadState>();
 	QObject::connect(static_cast<QWebEngineDownloadItem*>(ptr), static_cast<void (QWebEngineDownloadItem::*)(QWebEngineDownloadItem::DownloadState)>(&QWebEngineDownloadItem::stateChanged), static_cast<MyQWebEngineDownloadItem*>(ptr), static_cast<void (MyQWebEngineDownloadItem::*)(QWebEngineDownloadItem::DownloadState)>(&MyQWebEngineDownloadItem::Signal_StateChanged));
 }
 
@@ -1425,7 +1426,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEnginePage*)
 
-int QWebEnginePage_QWebEnginePage_QRegisterMetaType(){return qRegisterMetaType<MyQWebEnginePage*>();}
+int QWebEnginePage_QWebEnginePage_QRegisterMetaType(){qRegisterMetaType<QWebEnginePage*>(); return qRegisterMetaType<MyQWebEnginePage*>();}
 
 void* QWebEnginePage_CreateStandardContextMenu(void* ptr)
 {
@@ -2240,7 +2241,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEngineProfile*)
 
-int QWebEngineProfile_QWebEngineProfile_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineProfile*>();}
+int QWebEngineProfile_QWebEngineProfile_QRegisterMetaType(){qRegisterMetaType<QWebEngineProfile*>(); return qRegisterMetaType<MyQWebEngineProfile*>();}
 
 void* QWebEngineProfile_CookieStore(void* ptr)
 {
@@ -2958,7 +2959,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEngineUrlRequestInterceptor*)
 
-int QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineUrlRequestInterceptor*>();}
+int QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_QRegisterMetaType(){qRegisterMetaType<QWebEngineUrlRequestInterceptor*>(); return qRegisterMetaType<MyQWebEngineUrlRequestInterceptor*>();}
 
 void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(void* p)
 {
@@ -3149,7 +3150,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEngineUrlRequestJob*)
 
-int QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineUrlRequestJob*>();}
+int QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_QRegisterMetaType(){qRegisterMetaType<QWebEngineUrlRequestJob*>(); return qRegisterMetaType<MyQWebEngineUrlRequestJob*>();}
 
 void QWebEngineUrlRequestJob_Fail(void* ptr, long long r)
 {
@@ -3321,7 +3322,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEngineUrlSchemeHandler*)
 
-int QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineUrlSchemeHandler*>();}
+int QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_QRegisterMetaType(){qRegisterMetaType<QWebEngineUrlSchemeHandler*>(); return qRegisterMetaType<MyQWebEngineUrlSchemeHandler*>();}
 
 void* QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(void* parent)
 {
@@ -3591,7 +3592,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebEngineView*)
 
-int QWebEngineView_QWebEngineView_QRegisterMetaType(){return qRegisterMetaType<MyQWebEngineView*>();}
+int QWebEngineView_QWebEngineView_QRegisterMetaType(){qRegisterMetaType<QWebEngineView*>(); return qRegisterMetaType<MyQWebEngineView*>();}
 
 void* QWebEngineView_CreateWindow(void* ptr, long long ty)
 {

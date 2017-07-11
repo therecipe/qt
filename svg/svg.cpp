@@ -148,7 +148,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsSvgItem*)
 
-int QGraphicsSvgItem_QGraphicsSvgItem_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsSvgItem*>();}
+int QGraphicsSvgItem_QGraphicsSvgItem_QRegisterMetaType(){qRegisterMetaType<QGraphicsSvgItem*>(); return qRegisterMetaType<MyQGraphicsSvgItem*>();}
 
 void* QGraphicsSvgItem_NewQGraphicsSvgItem(void* parent)
 {
@@ -705,7 +705,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSvgRenderer*)
 
-int QSvgRenderer_QSvgRenderer_QRegisterMetaType(){return qRegisterMetaType<MyQSvgRenderer*>();}
+int QSvgRenderer_QSvgRenderer_QRegisterMetaType(){qRegisterMetaType<QSvgRenderer*>(); return qRegisterMetaType<MyQSvgRenderer*>();}
 
 void* QSvgRenderer_NewQSvgRenderer(void* parent)
 {
@@ -1217,7 +1217,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSvgWidget*)
 
-int QSvgWidget_QSvgWidget_QRegisterMetaType(){return qRegisterMetaType<MyQSvgWidget*>();}
+int QSvgWidget_QSvgWidget_QRegisterMetaType(){qRegisterMetaType<QSvgWidget*>(); return qRegisterMetaType<MyQSvgWidget*>();}
 
 void* QSvgWidget_NewQSvgWidget(void* parent)
 {

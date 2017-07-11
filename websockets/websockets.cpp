@@ -73,7 +73,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMaskGenerator*)
 
-int QMaskGenerator_QMaskGenerator_QRegisterMetaType(){return qRegisterMetaType<MyQMaskGenerator*>();}
+int QMaskGenerator_QMaskGenerator_QRegisterMetaType(){qRegisterMetaType<QMaskGenerator*>(); return qRegisterMetaType<MyQMaskGenerator*>();}
 
 void* QMaskGenerator_NewQMaskGenerator(void* parent)
 {
@@ -302,7 +302,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebSocket*)
 
-int QWebSocket_QWebSocket_QRegisterMetaType(){return qRegisterMetaType<MyQWebSocket*>();}
+int QWebSocket_QWebSocket_QRegisterMetaType(){qRegisterMetaType<QWebSocket*>(); return qRegisterMetaType<MyQWebSocket*>();}
 
 void* QWebSocket_NewQWebSocket(struct QtWebSockets_PackedString origin, long long version, void* parent)
 {
@@ -467,6 +467,7 @@ void QWebSocket_Disconnected(void* ptr)
 
 void QWebSocket_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QAbstractSocket::SocketError>();
 	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketError)>(&MyQWebSocket::Signal_Error2));
 }
 
@@ -632,6 +633,7 @@ void QWebSocket_SslErrors(void* ptr, void* errors)
 
 void QWebSocket_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QAbstractSocket::SocketState>();
 	QObject::connect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(QAbstractSocket::SocketState)>(&QWebSocket::stateChanged), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(QAbstractSocket::SocketState)>(&MyQWebSocket::Signal_StateChanged));
 }
 
@@ -1017,7 +1019,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWebSocketServer*)
 
-int QWebSocketServer_QWebSocketServer_QRegisterMetaType(){return qRegisterMetaType<MyQWebSocketServer*>();}
+int QWebSocketServer_QWebSocketServer_QRegisterMetaType(){qRegisterMetaType<QWebSocketServer*>(); return qRegisterMetaType<MyQWebSocketServer*>();}
 
 void* QWebSocketServer_NextPendingConnection(void* ptr)
 {
@@ -1082,6 +1084,7 @@ char QWebSocketServer_SetSocketDescriptor(void* ptr, int socketDescriptor)
 
 void QWebSocketServer_ConnectAcceptError(void* ptr)
 {
+	qRegisterMetaType<QAbstractSocket::SocketError>();
 	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QAbstractSocket::SocketError)>(&QWebSocketServer::acceptError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QAbstractSocket::SocketError)>(&MyQWebSocketServer::Signal_AcceptError));
 }
 

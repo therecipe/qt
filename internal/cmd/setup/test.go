@@ -15,13 +15,13 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Test(target string, docker bool) {
+func Test(target string, docker, vagrant bool, vagrantsystem string) {
 	if docker && target == "darwin" {
 		utils.Log.Warn("darwin is currently not supported as a deploy target with docker; testing the linux deployment instead")
 		target = "linux"
 	}
 
-	utils.Log.Infof("running: 'qtsetup test %v' [docker=%v]", target, docker)
+	utils.Log.Infof("running: 'qtsetup test %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 
 	if utils.CI() && target == runtime.GOOS && runtime.GOOS != "windows" { //TODO: split test for windows ?
 		utils.Log.Infof("running setup/test %v CI", target)
@@ -126,6 +126,10 @@ func Test(target string, docker bool) {
 		}
 	}
 
+	if utils.QT_VAGRANT() && target == "ios-simulator" {
+		mode = "build"
+	}
+
 	for cat, list := range examples {
 		for _, example := range list {
 			if target != runtime.GOOS && example == "textedit" {
@@ -143,6 +147,8 @@ func Test(target string, docker bool) {
 				"",
 				false,
 				"",
+				vagrant,
+				vagrantsystem,
 			)
 		}
 	}

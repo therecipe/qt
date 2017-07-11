@@ -93,9 +93,15 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 
 			switch target {
 			case "darwin", "linux", "windows":
-				//TODO msys pkg-config mxe brew
-				return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR()) ||
-					strings.Contains(file, utils.QT_MSYS2_DIR()) || strings.Contains(file, utils.QT_MXE_TRIPLET())
+				//TODO: msys pkg-config mxe brew
+				switch {
+				case utils.QT_HOMEBREW():
+					return strings.Contains(file, utils.QT_DARWIN_DIR())
+				case utils.QT_MSYS2():
+					return strings.Contains(file, utils.QT_MSYS2_DIR())
+				default:
+					return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_MXE_TRIPLET())
+				}
 			case "android", "android-emulator":
 				return strings.Contains(file, utils.QT_DIR()) && strings.Contains(file, utils.ANDROID_NDK_DIR())
 			case "ios", "ios-simulator":

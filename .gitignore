@@ -3,6 +3,8 @@
 *.pro.user
 *.qmlc
 *.trace
+*.vagrant
+*.log
 */cgo_*
 */minimal_*
 */*-minimal.*

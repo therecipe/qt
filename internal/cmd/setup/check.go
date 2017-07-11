@@ -11,8 +11,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Check(target string, docker bool) {
-	utils.Log.Infof("running: 'qtsetup check %v' [docker=%v]", target, docker)
+func Check(target string, docker, vagrant bool) {
+	utils.Log.Infof("running: 'qtsetup check %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 	if docker {
 		if _, err := exec.LookPath("docker"); err != nil {
 			utils.Log.WithError(err).Fatal("failed to find docker, did you install docker?")

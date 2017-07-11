@@ -14,6 +14,7 @@ then
   brew update
   brew install qt5
   brew outdated qt5 || brew upgrade qt5
+  ln -s /usr/local/Cellar/qt/5.9.1 $HOME/Desktop/Qt5.9.1
 else
   #download and install qt
   if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
@@ -27,6 +28,7 @@ else
   /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
   diskutil unmountDisk disk1
   rm -f /tmp/$QT.dmg
+  ln -s $HOME/Qt5.8.0 $HOME/Desktop
 fi
 
 if [ "$ANDROID" == "true" ]
@@ -36,6 +38,7 @@ then
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/repository/$SDK
   unzip -qq /tmp/$SDK -d $HOME/android-sdk-macosx/
   rm -f /tmp/$SDK
+  ln -s $HOME/android-sdk-macosx $HOME/Desktop
 
   #install deps for android sdk
   $HOME/android-sdk-macosx/tools/android list sdk
@@ -47,6 +50,7 @@ then
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
   unzip -qq /tmp/$NDK -d $HOME
   rm -f /tmp/$NDK
+  ln -s $HOME/android-ndk-r14b $HOME/Desktop
 fi
 
 #prepare env
@@ -59,3 +63,5 @@ diskutil list
 
 ls $HOME/*
 du -sh $HOME/*
+
+exit 0

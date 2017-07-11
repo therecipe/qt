@@ -76,7 +76,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusAbstractAdaptor*)
 
-int QDBusAbstractAdaptor_QDBusAbstractAdaptor_QRegisterMetaType(){return qRegisterMetaType<MyQDBusAbstractAdaptor*>();}
+int QDBusAbstractAdaptor_QDBusAbstractAdaptor_QRegisterMetaType(){qRegisterMetaType<QDBusAbstractAdaptor*>(); return qRegisterMetaType<MyQDBusAbstractAdaptor*>();}
 
 void* QDBusAbstractAdaptor_NewQDBusAbstractAdaptor(void* obj)
 {
@@ -298,7 +298,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusAbstractInterface*)
 
-int QDBusAbstractInterface_QDBusAbstractInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusAbstractInterface*>();}
+int QDBusAbstractInterface_QDBusAbstractInterface_QRegisterMetaType(){qRegisterMetaType<QDBusAbstractInterface*>(); return qRegisterMetaType<MyQDBusAbstractInterface*>();}
 
 void* QDBusAbstractInterface_Call2(void* ptr, long long mode, struct QtDBus_PackedString method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
@@ -1033,7 +1033,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusConnectionInterface*)
 
-int QDBusConnectionInterface_QDBusConnectionInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusConnectionInterface*>();}
+int QDBusConnectionInterface_QDBusConnectionInterface_QRegisterMetaType(){qRegisterMetaType<QDBusConnectionInterface*>(); return qRegisterMetaType<MyQDBusConnectionInterface*>();}
 
 void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr)
 {
@@ -1179,7 +1179,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusInterface*)
 
-int QDBusInterface_QDBusInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDBusInterface*>();}
+int QDBusInterface_QDBusInterface_QRegisterMetaType(){qRegisterMetaType<QDBusInterface*>(); return qRegisterMetaType<MyQDBusInterface*>();}
 
 void* QDBusInterface_NewQDBusInterface(struct QtDBus_PackedString service, struct QtDBus_PackedString path, struct QtDBus_PackedString interfa, void* connection, void* parent)
 {
@@ -1522,7 +1522,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusPendingCallWatcher*)
 
-int QDBusPendingCallWatcher_QDBusPendingCallWatcher_QRegisterMetaType(){return qRegisterMetaType<MyQDBusPendingCallWatcher*>();}
+int QDBusPendingCallWatcher_QDBusPendingCallWatcher_QRegisterMetaType(){qRegisterMetaType<QDBusPendingCallWatcher*>(); return qRegisterMetaType<MyQDBusPendingCallWatcher*>();}
 
 void* QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(void* call, void* parent)
 {
@@ -1780,7 +1780,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusServer*)
 
-int QDBusServer_QDBusServer_QRegisterMetaType(){return qRegisterMetaType<MyQDBusServer*>();}
+int QDBusServer_QDBusServer_QRegisterMetaType(){qRegisterMetaType<QDBusServer*>(); return qRegisterMetaType<MyQDBusServer*>();}
 
 void* QDBusServer_NewQDBusServer2(void* parent)
 {
@@ -2083,7 +2083,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusServiceWatcher*)
 
-int QDBusServiceWatcher_QDBusServiceWatcher_QRegisterMetaType(){return qRegisterMetaType<MyQDBusServiceWatcher*>();}
+int QDBusServiceWatcher_QDBusServiceWatcher_QRegisterMetaType(){qRegisterMetaType<QDBusServiceWatcher*>(); return qRegisterMetaType<MyQDBusServiceWatcher*>();}
 
 void QDBusServiceWatcher_ConnectServiceRegistered(void* ptr)
 {
@@ -2539,7 +2539,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDBusVirtualObject*)
 
-int QDBusVirtualObject_QDBusVirtualObject_QRegisterMetaType(){return qRegisterMetaType<MyQDBusVirtualObject*>();}
+int QDBusVirtualObject_QDBusVirtualObject_QRegisterMetaType(){qRegisterMetaType<QDBusVirtualObject*>(); return qRegisterMetaType<MyQDBusVirtualObject*>();}
 
 void* QDBusVirtualObject_NewQDBusVirtualObject(void* parent)
 {

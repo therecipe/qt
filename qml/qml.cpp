@@ -89,7 +89,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQJSEngine*)
 
-int QJSEngine_QJSEngine_QRegisterMetaType(){return qRegisterMetaType<MyQJSEngine*>();}
+int QJSEngine_QJSEngine_QRegisterMetaType(){qRegisterMetaType<QJSEngine*>(); return qRegisterMetaType<MyQJSEngine*>();}
 
 void* QJSEngine_NewQJSEngine()
 {
@@ -712,7 +712,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlApplicationEngine*)
 
-int QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType(){return qRegisterMetaType<MyQQmlApplicationEngine*>();}
+int QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType(){qRegisterMetaType<QQmlApplicationEngine*>(); return qRegisterMetaType<MyQQmlApplicationEngine*>();}
 
 struct QtQml_PackedList QQmlApplicationEngine_RootObjects(void* ptr)
 {
@@ -940,7 +940,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlComponent*)
 
-int QQmlComponent_QQmlComponent_QRegisterMetaType(){return qRegisterMetaType<MyQQmlComponent*>();}
+int QQmlComponent_QQmlComponent_QRegisterMetaType(){qRegisterMetaType<QQmlComponent*>(); return qRegisterMetaType<MyQQmlComponent*>();}
 
 void* QQmlComponent_BeginCreate(void* ptr, void* publicContext)
 {
@@ -1194,6 +1194,7 @@ void QQmlComponent_LoadUrlDefault(void* ptr, void* url)
 
 void QQmlComponent_LoadUrl2(void* ptr, void* url, long long mode)
 {
+	qRegisterMetaType<QQmlComponent::CompilationMode>();
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(QUrl, *static_cast<QUrl*>(url)), Q_ARG(QQmlComponent::CompilationMode, static_cast<QQmlComponent::CompilationMode>(mode)));
 }
 
@@ -1229,6 +1230,7 @@ void QQmlComponent_SetDataDefault(void* ptr, void* data, void* url)
 
 void QQmlComponent_ConnectStatusChanged(void* ptr)
 {
+	qRegisterMetaType<QQmlComponent::Status>();
 	QObject::connect(static_cast<QQmlComponent*>(ptr), static_cast<void (QQmlComponent::*)(QQmlComponent::Status)>(&QQmlComponent::statusChanged), static_cast<MyQQmlComponent*>(ptr), static_cast<void (MyQQmlComponent::*)(QQmlComponent::Status)>(&MyQQmlComponent::Signal_StatusChanged));
 }
 
@@ -1460,7 +1462,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlContext*)
 
-int QQmlContext_QQmlContext_QRegisterMetaType(){return qRegisterMetaType<MyQQmlContext*>();}
+int QQmlContext_QQmlContext_QRegisterMetaType(){qRegisterMetaType<QQmlContext*>(); return qRegisterMetaType<MyQQmlContext*>();}
 
 void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent)
 {
@@ -1763,7 +1765,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlEngine*)
 
-int QQmlEngine_QQmlEngine_QRegisterMetaType(){return qRegisterMetaType<MyQQmlEngine*>();}
+int QQmlEngine_QQmlEngine_QRegisterMetaType(){qRegisterMetaType<QQmlEngine*>(); return qRegisterMetaType<MyQQmlEngine*>();}
 
 long long QQmlEngine_QQmlEngine_ObjectOwnership(void* object)
 {
@@ -2137,7 +2139,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlExpression*)
 
-int QQmlExpression_QQmlExpression_QRegisterMetaType(){return qRegisterMetaType<MyQQmlExpression*>();}
+int QQmlExpression_QQmlExpression_QRegisterMetaType(){qRegisterMetaType<QQmlExpression*>(); return qRegisterMetaType<MyQQmlExpression*>();}
 
 void* QQmlExpression_NewQQmlExpression()
 {
@@ -2474,7 +2476,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlExtensionPlugin*)
 
-int QQmlExtensionPlugin_QQmlExtensionPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQQmlExtensionPlugin*>();}
+int QQmlExtensionPlugin_QQmlExtensionPlugin_QRegisterMetaType(){qRegisterMetaType<QQmlExtensionPlugin*>(); return qRegisterMetaType<MyQQmlExtensionPlugin*>();}
 
 void* QQmlExtensionPlugin_NewQQmlExtensionPlugin(void* parent)
 {
@@ -2681,7 +2683,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlFileSelector*)
 
-int QQmlFileSelector_QQmlFileSelector_QRegisterMetaType(){return qRegisterMetaType<MyQQmlFileSelector*>();}
+int QQmlFileSelector_QQmlFileSelector_QRegisterMetaType(){qRegisterMetaType<QQmlFileSelector*>(); return qRegisterMetaType<MyQQmlFileSelector*>();}
 
 void* QQmlFileSelector_QQmlFileSelector_Get(void* engine)
 {
@@ -3602,7 +3604,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlPropertyMap*)
 
-int QQmlPropertyMap_QQmlPropertyMap_QRegisterMetaType(){return qRegisterMetaType<MyQQmlPropertyMap*>();}
+int QQmlPropertyMap_QQmlPropertyMap_QRegisterMetaType(){qRegisterMetaType<QQmlPropertyMap*>(); return qRegisterMetaType<MyQQmlPropertyMap*>();}
 
 void* QQmlPropertyMap_NewQQmlPropertyMap(void* parent)
 {

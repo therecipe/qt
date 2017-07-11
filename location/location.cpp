@@ -283,7 +283,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGeoRouteReply*)
 
-int QGeoRouteReply_QGeoRouteReply_QRegisterMetaType(){return qRegisterMetaType<MyQGeoRouteReply*>();}
+int QGeoRouteReply_QGeoRouteReply_QRegisterMetaType(){qRegisterMetaType<QGeoRouteReply*>(); return qRegisterMetaType<MyQGeoRouteReply*>();}
 
 void* QGeoRouteReply_NewQGeoRouteReply(long long error, struct QtLocation_PackedString errorString, void* parent)
 {
@@ -938,7 +938,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGeoRoutingManager*)
 
-int QGeoRoutingManager_QGeoRoutingManager_QRegisterMetaType(){return qRegisterMetaType<MyQGeoRoutingManager*>();}
+int QGeoRoutingManager_QGeoRoutingManager_QRegisterMetaType(){qRegisterMetaType<QGeoRoutingManager*>(); return qRegisterMetaType<MyQGeoRoutingManager*>();}
 
 void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request)
 {
@@ -1194,7 +1194,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGeoRoutingManagerEngine*)
 
-int QGeoRoutingManagerEngine_QGeoRoutingManagerEngine_QRegisterMetaType(){return qRegisterMetaType<MyQGeoRoutingManagerEngine*>();}
+int QGeoRoutingManagerEngine_QGeoRoutingManagerEngine_QRegisterMetaType(){qRegisterMetaType<QGeoRoutingManagerEngine*>(); return qRegisterMetaType<MyQGeoRoutingManagerEngine*>();}
 
 void* QGeoRoutingManagerEngine_CalculateRoute(void* ptr, void* request)
 {
@@ -1564,7 +1564,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGeoServiceProvider*)
 
-int QGeoServiceProvider_QGeoServiceProvider_QRegisterMetaType(){return qRegisterMetaType<MyQGeoServiceProvider*>();}
+int QGeoServiceProvider_QGeoServiceProvider_QRegisterMetaType(){qRegisterMetaType<QGeoServiceProvider*>(); return qRegisterMetaType<MyQGeoServiceProvider*>();}
 
 int QGeoServiceProvider_OnlineGeocodingFeature_Type()
 {

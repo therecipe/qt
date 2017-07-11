@@ -352,7 +352,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSqlDriver*)
 
-int QSqlDriver_QSqlDriver_QRegisterMetaType(){return qRegisterMetaType<MyQSqlDriver*>();}
+int QSqlDriver_QSqlDriver_QRegisterMetaType(){qRegisterMetaType<QSqlDriver*>(); return qRegisterMetaType<MyQSqlDriver*>();}
 
 void* QSqlDriver_NewQSqlDriver(void* parent)
 {
@@ -833,7 +833,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSqlDriverPlugin*)
 
-int QSqlDriverPlugin_QSqlDriverPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQSqlDriverPlugin*>();}
+int QSqlDriverPlugin_QSqlDriverPlugin_QRegisterMetaType(){qRegisterMetaType<QSqlDriverPlugin*>(); return qRegisterMetaType<MyQSqlDriverPlugin*>();}
 
 void* QSqlDriverPlugin_Create(void* ptr, struct QtSql_PackedString key)
 {
@@ -1574,7 +1574,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSqlQueryModel*)
 
-int QSqlQueryModel_QSqlQueryModel_QRegisterMetaType(){return qRegisterMetaType<MyQSqlQueryModel*>();}
+int QSqlQueryModel_QSqlQueryModel_QRegisterMetaType(){qRegisterMetaType<QSqlQueryModel*>(); return qRegisterMetaType<MyQSqlQueryModel*>();}
 
 void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 {
@@ -2776,7 +2776,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSqlRelationalDelegate*)
 
-int QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType(){return qRegisterMetaType<MyQSqlRelationalDelegate*>();}
+int QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType(){qRegisterMetaType<QSqlRelationalDelegate*>(); return qRegisterMetaType<MyQSqlRelationalDelegate*>();}
 
 void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
 {
@@ -3110,7 +3110,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSqlRelationalTableModel*)
 
-int QSqlRelationalTableModel_QSqlRelationalTableModel_QRegisterMetaType(){return qRegisterMetaType<MyQSqlRelationalTableModel*>();}
+int QSqlRelationalTableModel_QSqlRelationalTableModel_QRegisterMetaType(){qRegisterMetaType<QSqlRelationalTableModel*>(); return qRegisterMetaType<MyQSqlRelationalTableModel*>();}
 
 void* QSqlRelationalTableModel_NewQSqlRelationalTableModel(void* parent, void* db)
 {
@@ -3676,7 +3676,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSqlTableModel*)
 
-int QSqlTableModel_QSqlTableModel_QRegisterMetaType(){return qRegisterMetaType<MyQSqlTableModel*>();}
+int QSqlTableModel_QSqlTableModel_QRegisterMetaType(){qRegisterMetaType<QSqlTableModel*>(); return qRegisterMetaType<MyQSqlTableModel*>();}
 
 void* QSqlTableModel_NewQSqlTableModel(void* parent, void* db)
 {

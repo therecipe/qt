@@ -42,7 +42,7 @@ func gopath() (goPath string, err error) {
 		return
 	}
 
-	return strings.TrimSpace(RunCmd(exec.Command("go", "list", "-f", "{{.Root}}", "github.com/therecipe/qt"), "get list gopath")), nil
+	return strings.TrimSpace(RunCmd(exec.Command(filepath.Join(runtime.GOROOT(), "bin", "go"), "list", "-f", "{{.Root}}", "github.com/therecipe/qt"), "get list gopath")), nil
 }
 
 func GOPATH() string {

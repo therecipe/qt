@@ -234,7 +234,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractAnimation*)
 
-int QAbstractAnimation_QAbstractAnimation_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractAnimation*>();}
+int QAbstractAnimation_QAbstractAnimation_QRegisterMetaType(){qRegisterMetaType<QAbstractAnimation*>(); return qRegisterMetaType<MyQAbstractAnimation*>();}
 
 void QAbstractAnimation_SetDirection(void* ptr, long long direction)
 {
@@ -343,6 +343,7 @@ void QAbstractAnimation_CurrentLoopChanged(void* ptr, int currentLoop)
 
 void QAbstractAnimation_ConnectDirectionChanged(void* ptr)
 {
+	qRegisterMetaType<QAbstractAnimation::Direction>();
 	QObject::connect(static_cast<QAbstractAnimation*>(ptr), static_cast<void (QAbstractAnimation::*)(QAbstractAnimation::Direction)>(&QAbstractAnimation::directionChanged), static_cast<MyQAbstractAnimation*>(ptr), static_cast<void (MyQAbstractAnimation::*)(QAbstractAnimation::Direction)>(&MyQAbstractAnimation::Signal_DirectionChanged));
 }
 
@@ -454,6 +455,8 @@ void QAbstractAnimation_StartDefault(void* ptr, long long policy)
 
 void QAbstractAnimation_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QAbstractAnimation::State>();
+	qRegisterMetaType<QAbstractAnimation::State>();
 	QObject::connect(static_cast<QAbstractAnimation*>(ptr), static_cast<void (QAbstractAnimation::*)(QAbstractAnimation::State, QAbstractAnimation::State)>(&QAbstractAnimation::stateChanged), static_cast<MyQAbstractAnimation*>(ptr), static_cast<void (MyQAbstractAnimation::*)(QAbstractAnimation::State, QAbstractAnimation::State)>(&MyQAbstractAnimation::Signal_StateChanged));
 }
 
@@ -636,7 +639,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractEventDispatcher*)
 
-int QAbstractEventDispatcher_QAbstractEventDispatcher_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractEventDispatcher*>();}
+int QAbstractEventDispatcher_QAbstractEventDispatcher_QRegisterMetaType(){qRegisterMetaType<QAbstractEventDispatcher*>(); return qRegisterMetaType<MyQAbstractEventDispatcher*>();}
 
 void* QAbstractEventDispatcher_QAbstractEventDispatcher_Instance(void* thread)
 {
@@ -837,7 +840,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractItemModel*)
 
-int QAbstractItemModel_QAbstractItemModel_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractItemModel*>();}
+int QAbstractItemModel_QAbstractItemModel_QRegisterMetaType(){qRegisterMetaType<QAbstractItemModel*>(); return qRegisterMetaType<MyQAbstractItemModel*>();}
 
 void* QAbstractItemModel_NewQAbstractItemModel(void* parent)
 {
@@ -1357,6 +1360,7 @@ void QAbstractItemModel_FetchMoreDefault(void* ptr, void* parent)
 
 void QAbstractItemModel_ConnectHeaderDataChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::Orientation>();
 	QObject::connect(static_cast<QAbstractItemModel*>(ptr), static_cast<void (QAbstractItemModel::*)(Qt::Orientation, int, int)>(&QAbstractItemModel::headerDataChanged), static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(Qt::Orientation, int, int)>(&MyQAbstractItemModel::Signal_HeaderDataChanged));
 }
 
@@ -1372,6 +1376,7 @@ void QAbstractItemModel_HeaderDataChanged(void* ptr, long long orientation, int 
 
 void QAbstractItemModel_ConnectLayoutAboutToBeChanged(void* ptr)
 {
+	qRegisterMetaType<QAbstractItemModel::LayoutChangeHint>();
 	QObject::connect(static_cast<QAbstractItemModel*>(ptr), static_cast<void (QAbstractItemModel::*)(const QList<QPersistentModelIndex> &, QAbstractItemModel::LayoutChangeHint)>(&QAbstractItemModel::layoutAboutToBeChanged), static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QList<QPersistentModelIndex> &, QAbstractItemModel::LayoutChangeHint)>(&MyQAbstractItemModel::Signal_LayoutAboutToBeChanged));
 }
 
@@ -1387,6 +1392,7 @@ void QAbstractItemModel_LayoutAboutToBeChanged(void* ptr, void* parents, long lo
 
 void QAbstractItemModel_ConnectLayoutChanged(void* ptr)
 {
+	qRegisterMetaType<QAbstractItemModel::LayoutChangeHint>();
 	QObject::connect(static_cast<QAbstractItemModel*>(ptr), static_cast<void (QAbstractItemModel::*)(const QList<QPersistentModelIndex> &, QAbstractItemModel::LayoutChangeHint)>(&QAbstractItemModel::layoutChanged), static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QList<QPersistentModelIndex> &, QAbstractItemModel::LayoutChangeHint)>(&MyQAbstractItemModel::Signal_LayoutChanged));
 }
 
@@ -2369,7 +2375,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractListModel*)
 
-int QAbstractListModel_QAbstractListModel_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractListModel*>();}
+int QAbstractListModel_QAbstractListModel_QRegisterMetaType(){qRegisterMetaType<QAbstractListModel*>(); return qRegisterMetaType<MyQAbstractListModel*>();}
 
 void* QAbstractListModel_NewQAbstractListModel(void* parent)
 {
@@ -2594,7 +2600,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractProxyModel*)
 
-int QAbstractProxyModel_QAbstractProxyModel_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractProxyModel*>();}
+int QAbstractProxyModel_QAbstractProxyModel_QRegisterMetaType(){qRegisterMetaType<QAbstractProxyModel*>(); return qRegisterMetaType<MyQAbstractProxyModel*>();}
 
 void* QAbstractProxyModel_NewQAbstractProxyModel(void* parent)
 {
@@ -2851,7 +2857,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractState*)
 
-int QAbstractState_QAbstractState_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractState*>();}
+int QAbstractState_QAbstractState_QRegisterMetaType(){qRegisterMetaType<QAbstractState*>(); return qRegisterMetaType<MyQAbstractState*>();}
 
 void* QAbstractState_NewQAbstractState(void* parent)
 {
@@ -2995,7 +3001,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractTableModel*)
 
-int QAbstractTableModel_QAbstractTableModel_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractTableModel*>();}
+int QAbstractTableModel_QAbstractTableModel_QRegisterMetaType(){qRegisterMetaType<QAbstractTableModel*>(); return qRegisterMetaType<MyQAbstractTableModel*>();}
 
 void* QAbstractTableModel_NewQAbstractTableModel(void* parent)
 {
@@ -3125,7 +3131,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractTransition*)
 
-int QAbstractTransition_QAbstractTransition_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractTransition*>();}
+int QAbstractTransition_QAbstractTransition_QRegisterMetaType(){qRegisterMetaType<QAbstractTransition*>(); return qRegisterMetaType<MyQAbstractTransition*>();}
 
 void* QAbstractTransition_NewQAbstractTransition(void* sourceState)
 {
@@ -3319,7 +3325,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAnimationGroup*)
 
-int QAnimationGroup_QAnimationGroup_QRegisterMetaType(){return qRegisterMetaType<MyQAnimationGroup*>();}
+int QAnimationGroup_QAnimationGroup_QRegisterMetaType(){qRegisterMetaType<QAnimationGroup*>(); return qRegisterMetaType<MyQAnimationGroup*>();}
 
 void* QAnimationGroup_TakeAnimation(void* ptr, int index)
 {
@@ -3631,7 +3637,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBuffer*)
 
-int QBuffer_QBuffer_QRegisterMetaType(){return qRegisterMetaType<MyQBuffer*>();}
+int QBuffer_QBuffer_QRegisterMetaType(){qRegisterMetaType<QBuffer*>(); return qRegisterMetaType<MyQBuffer*>();}
 
 void* QBuffer_NewQBuffer2(void* byteArray, void* parent)
 {
@@ -5345,7 +5351,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCoreApplication*)
 
-int QCoreApplication_QCoreApplication_QRegisterMetaType(){return qRegisterMetaType<MyQCoreApplication*>();}
+int QCoreApplication_QCoreApplication_QRegisterMetaType(){qRegisterMetaType<QCoreApplication*>(); return qRegisterMetaType<MyQCoreApplication*>();}
 
 struct QtCore_PackedString QCoreApplication_QCoreApplication_OrganizationDomain()
 {
@@ -6993,7 +6999,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQEventLoop*)
 
-int QEventLoop_QEventLoop_QRegisterMetaType(){return qRegisterMetaType<MyQEventLoop*>();}
+int QEventLoop_QEventLoop_QRegisterMetaType(){qRegisterMetaType<QEventLoop*>(); return qRegisterMetaType<MyQEventLoop*>();}
 
 void* QEventLoop_NewQEventLoop(void* parent)
 {
@@ -7126,7 +7132,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQEventTransition*)
 
-int QEventTransition_QEventTransition_QRegisterMetaType(){return qRegisterMetaType<MyQEventTransition*>();}
+int QEventTransition_QEventTransition_QRegisterMetaType(){qRegisterMetaType<QEventTransition*>(); return qRegisterMetaType<MyQEventTransition*>();}
 
 void* QEventTransition_NewQEventTransition2(void* object, long long ty, void* sourceState)
 {
@@ -7267,7 +7273,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFile*)
 
-int QFile_QFile_QRegisterMetaType(){return qRegisterMetaType<MyQFile*>();}
+int QFile_QFile_QRegisterMetaType(){qRegisterMetaType<QFile*>(); return qRegisterMetaType<MyQFile*>();}
 
 long long QFile_QFile_Permissions2(struct QtCore_PackedString fileName)
 {
@@ -7510,7 +7516,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFileDevice*)
 
-int QFileDevice_QFileDevice_QRegisterMetaType(){return qRegisterMetaType<MyQFileDevice*>();}
+int QFileDevice_QFileDevice_QRegisterMetaType(){qRegisterMetaType<QFileDevice*>(); return qRegisterMetaType<MyQFileDevice*>();}
 
 char QFileDevice_Flush(void* ptr)
 {
@@ -7929,7 +7935,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFileSelector*)
 
-int QFileSelector_QFileSelector_QRegisterMetaType(){return qRegisterMetaType<MyQFileSelector*>();}
+int QFileSelector_QFileSelector_QRegisterMetaType(){qRegisterMetaType<QFileSelector*>(); return qRegisterMetaType<MyQFileSelector*>();}
 
 void* QFileSelector_NewQFileSelector(void* parent)
 {
@@ -8024,7 +8030,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFileSystemWatcher*)
 
-int QFileSystemWatcher_QFileSystemWatcher_QRegisterMetaType(){return qRegisterMetaType<MyQFileSystemWatcher*>();}
+int QFileSystemWatcher_QFileSystemWatcher_QRegisterMetaType(){qRegisterMetaType<QFileSystemWatcher*>(); return qRegisterMetaType<MyQFileSystemWatcher*>();}
 
 void* QFileSystemWatcher_NewQFileSystemWatcher(void* parent)
 {
@@ -8187,7 +8193,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFinalState*)
 
-int QFinalState_QFinalState_QRegisterMetaType(){return qRegisterMetaType<MyQFinalState*>();}
+int QFinalState_QFinalState_QRegisterMetaType(){qRegisterMetaType<QFinalState*>(); return qRegisterMetaType<MyQFinalState*>();}
 
 void* QFinalState_NewQFinalState(void* parent)
 {
@@ -8287,7 +8293,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHistoryState*)
 
-int QHistoryState_QHistoryState_QRegisterMetaType(){return qRegisterMetaType<MyQHistoryState*>();}
+int QHistoryState_QHistoryState_QRegisterMetaType(){qRegisterMetaType<QHistoryState*>(); return qRegisterMetaType<MyQHistoryState*>();}
 
 void* QHistoryState_NewQHistoryState2(long long ty, void* parent)
 {
@@ -8427,7 +8433,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQIODevice*)
 
-int QIODevice_QIODevice_QRegisterMetaType(){return qRegisterMetaType<MyQIODevice*>();}
+int QIODevice_QIODevice_QRegisterMetaType(){qRegisterMetaType<QIODevice*>(); return qRegisterMetaType<MyQIODevice*>();}
 
 void* QIODevice_Read2(void* ptr, long long maxSize)
 {
@@ -9132,7 +9138,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQIdentityProxyModel*)
 
-int QIdentityProxyModel_QIdentityProxyModel_QRegisterMetaType(){return qRegisterMetaType<MyQIdentityProxyModel*>();}
+int QIdentityProxyModel_QIdentityProxyModel_QRegisterMetaType(){qRegisterMetaType<QIdentityProxyModel*>(); return qRegisterMetaType<MyQIdentityProxyModel*>();}
 
 void* QIdentityProxyModel_NewQIdentityProxyModel(void* parent)
 {
@@ -9324,7 +9330,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQItemSelectionModel*)
 
-int QItemSelectionModel_QItemSelectionModel_QRegisterMetaType(){return qRegisterMetaType<MyQItemSelectionModel*>();}
+int QItemSelectionModel_QItemSelectionModel_QRegisterMetaType(){qRegisterMetaType<QItemSelectionModel*>(); return qRegisterMetaType<MyQItemSelectionModel*>();}
 
 void* QItemSelectionModel_Model2(void* ptr)
 {
@@ -9484,6 +9490,7 @@ void QItemSelectionModel_ResetDefault(void* ptr)
 
 void QItemSelectionModel_Select2(void* ptr, void* selection, long long command)
 {
+	qRegisterMetaType<QItemSelectionModel::SelectionFlags>();
 	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(QItemSelection, *static_cast<QItemSelection*>(selection)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
 }
 
@@ -9494,6 +9501,7 @@ void QItemSelectionModel_Select2Default(void* ptr, void* selection, long long co
 
 void QItemSelectionModel_Select(void* ptr, void* index, long long command)
 {
+	qRegisterMetaType<QItemSelectionModel::SelectionFlags>();
 	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
 }
 
@@ -9519,6 +9527,7 @@ void QItemSelectionModel_SelectionChanged(void* ptr, void* selected, void* desel
 
 void QItemSelectionModel_SetCurrentIndex(void* ptr, void* index, long long command)
 {
+	qRegisterMetaType<QItemSelectionModel::SelectionFlags>();
 	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
 }
 
@@ -10538,7 +10547,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLibrary*)
 
-int QLibrary_QLibrary_QRegisterMetaType(){return qRegisterMetaType<MyQLibrary*>();}
+int QLibrary_QLibrary_QRegisterMetaType(){qRegisterMetaType<QLibrary*>(); return qRegisterMetaType<MyQLibrary*>();}
 
 void* QLibrary_NewQLibrary(void* parent)
 {
@@ -12587,7 +12596,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMimeData*)
 
-int QMimeData_QMimeData_QRegisterMetaType(){return qRegisterMetaType<MyQMimeData*>();}
+int QMimeData_QMimeData_QRegisterMetaType(){qRegisterMetaType<QMimeData*>(); return qRegisterMetaType<MyQMimeData*>();}
 
 void* QMimeData_NewQMimeData()
 {
@@ -13063,7 +13072,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQObject*)
 
-int QObject_QObject_QRegisterMetaType(){return qRegisterMetaType<MyQObject*>();}
+int QObject_QObject_QRegisterMetaType(){qRegisterMetaType<QObject*>(); return qRegisterMetaType<MyQObject*>();}
 
 void* QObject_NewQObject(void* parent)
 {
@@ -14334,7 +14343,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQObjectCleanupHandler*)
 
-int QObjectCleanupHandler_QObjectCleanupHandler_QRegisterMetaType(){return qRegisterMetaType<MyQObjectCleanupHandler*>();}
+int QObjectCleanupHandler_QObjectCleanupHandler_QRegisterMetaType(){qRegisterMetaType<QObjectCleanupHandler*>(); return qRegisterMetaType<MyQObjectCleanupHandler*>();}
 
 void* QObjectCleanupHandler_Add(void* ptr, void* object)
 {
@@ -14399,7 +14408,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQParallelAnimationGroup*)
 
-int QParallelAnimationGroup_QParallelAnimationGroup_QRegisterMetaType(){return qRegisterMetaType<MyQParallelAnimationGroup*>();}
+int QParallelAnimationGroup_QParallelAnimationGroup_QRegisterMetaType(){qRegisterMetaType<QParallelAnimationGroup*>(); return qRegisterMetaType<MyQParallelAnimationGroup*>();}
 
 void* QParallelAnimationGroup_NewQParallelAnimationGroup(void* parent)
 {
@@ -14501,7 +14510,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPauseAnimation*)
 
-int QPauseAnimation_QPauseAnimation_QRegisterMetaType(){return qRegisterMetaType<MyQPauseAnimation*>();}
+int QPauseAnimation_QPauseAnimation_QRegisterMetaType(){qRegisterMetaType<QPauseAnimation*>(); return qRegisterMetaType<MyQPauseAnimation*>();}
 
 void* QPauseAnimation_NewQPauseAnimation(void* parent)
 {
@@ -14695,7 +14704,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPluginLoader*)
 
-int QPluginLoader_QPluginLoader_QRegisterMetaType(){return qRegisterMetaType<MyQPluginLoader*>();}
+int QPluginLoader_QPluginLoader_QRegisterMetaType(){qRegisterMetaType<QPluginLoader*>(); return qRegisterMetaType<MyQPluginLoader*>();}
 
 void* QPluginLoader_Instance(void* ptr)
 {
@@ -15023,7 +15032,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPropertyAnimation*)
 
-int QPropertyAnimation_QPropertyAnimation_QRegisterMetaType(){return qRegisterMetaType<MyQPropertyAnimation*>();}
+int QPropertyAnimation_QPropertyAnimation_QRegisterMetaType(){qRegisterMetaType<QPropertyAnimation*>(); return qRegisterMetaType<MyQPropertyAnimation*>();}
 
 void* QPropertyAnimation_NewQPropertyAnimation(void* parent)
 {
@@ -16388,7 +16397,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSaveFile*)
 
-int QSaveFile_QSaveFile_QRegisterMetaType(){return qRegisterMetaType<MyQSaveFile*>();}
+int QSaveFile_QSaveFile_QRegisterMetaType(){qRegisterMetaType<QSaveFile*>(); return qRegisterMetaType<MyQSaveFile*>();}
 
 void* QSaveFile_NewQSaveFile2(void* parent)
 {
@@ -16576,7 +16585,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSequentialAnimationGroup*)
 
-int QSequentialAnimationGroup_QSequentialAnimationGroup_QRegisterMetaType(){return qRegisterMetaType<MyQSequentialAnimationGroup*>();}
+int QSequentialAnimationGroup_QSequentialAnimationGroup_QRegisterMetaType(){qRegisterMetaType<QSequentialAnimationGroup*>(); return qRegisterMetaType<MyQSequentialAnimationGroup*>();}
 
 void* QSequentialAnimationGroup_AddPause(void* ptr, int msecs)
 {
@@ -16712,7 +16721,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSettings*)
 
-int QSettings_QSettings_QRegisterMetaType(){return qRegisterMetaType<MyQSettings*>();}
+int QSettings_QSettings_QRegisterMetaType(){qRegisterMetaType<QSettings*>(); return qRegisterMetaType<MyQSettings*>();}
 
 long long QSettings_QSettings_DefaultFormat()
 {
@@ -17109,7 +17118,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSharedMemory*)
 
-int QSharedMemory_QSharedMemory_QRegisterMetaType(){return qRegisterMetaType<MyQSharedMemory*>();}
+int QSharedMemory_QSharedMemory_QRegisterMetaType(){qRegisterMetaType<QSharedMemory*>(); return qRegisterMetaType<MyQSharedMemory*>();}
 
 void* QSharedMemory_NewQSharedMemory2(void* parent)
 {
@@ -17400,7 +17409,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSignalMapper*)
 
-int QSignalMapper_QSignalMapper_QRegisterMetaType(){return qRegisterMetaType<MyQSignalMapper*>();}
+int QSignalMapper_QSignalMapper_QRegisterMetaType(){qRegisterMetaType<QSignalMapper*>(); return qRegisterMetaType<MyQSignalMapper*>();}
 
 void* QSignalMapper_NewQSignalMapper(void* parent)
 {
@@ -17600,7 +17609,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSignalTransition*)
 
-int QSignalTransition_QSignalTransition_QRegisterMetaType(){return qRegisterMetaType<MyQSignalTransition*>();}
+int QSignalTransition_QSignalTransition_QRegisterMetaType(){qRegisterMetaType<QSignalTransition*>(); return qRegisterMetaType<MyQSignalTransition*>();}
 
 void* QSignalTransition_NewQSignalTransition(void* sourceState)
 {
@@ -17933,7 +17942,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSocketNotifier*)
 
-int QSocketNotifier_QSocketNotifier_QRegisterMetaType(){return qRegisterMetaType<MyQSocketNotifier*>();}
+int QSocketNotifier_QSocketNotifier_QRegisterMetaType(){qRegisterMetaType<QSocketNotifier*>(); return qRegisterMetaType<MyQSocketNotifier*>();}
 
 void QSocketNotifier_ConnectActivated(void* ptr)
 {
@@ -18055,7 +18064,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSortFilterProxyModel*)
 
-int QSortFilterProxyModel_QSortFilterProxyModel_QRegisterMetaType(){return qRegisterMetaType<MyQSortFilterProxyModel*>();}
+int QSortFilterProxyModel_QSortFilterProxyModel_QRegisterMetaType(){qRegisterMetaType<QSortFilterProxyModel*>(); return qRegisterMetaType<MyQSortFilterProxyModel*>();}
 
 void* QSortFilterProxyModel_NewQSortFilterProxyModel(void* parent)
 {
@@ -18393,7 +18402,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQState*)
 
-int QState_QState_QRegisterMetaType(){return qRegisterMetaType<MyQState*>();}
+int QState_QState_QRegisterMetaType(){qRegisterMetaType<QState*>(); return qRegisterMetaType<MyQState*>();}
 
 void* QState_AddTransition4(void* ptr, void* target)
 {
@@ -18600,7 +18609,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStateMachine*)
 
-int QStateMachine_QStateMachine_QRegisterMetaType(){return qRegisterMetaType<MyQStateMachine*>();}
+int QStateMachine_QStateMachine_QRegisterMetaType(){qRegisterMetaType<QStateMachine*>(); return qRegisterMetaType<MyQStateMachine*>();}
 
 void* QStateMachine_NewQStateMachine(void* parent)
 {
@@ -19069,7 +19078,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStringListModel*)
 
-int QStringListModel_QStringListModel_QRegisterMetaType(){return qRegisterMetaType<MyQStringListModel*>();}
+int QStringListModel_QStringListModel_QRegisterMetaType(){qRegisterMetaType<QStringListModel*>(); return qRegisterMetaType<MyQStringListModel*>();}
 
 void* QStringListModel_NewQStringListModel(void* parent)
 {
@@ -20251,7 +20260,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTemporaryFile*)
 
-int QTemporaryFile_QTemporaryFile_QRegisterMetaType(){return qRegisterMetaType<MyQTemporaryFile*>();}
+int QTemporaryFile_QTemporaryFile_QRegisterMetaType(){qRegisterMetaType<QTemporaryFile*>(); return qRegisterMetaType<MyQTemporaryFile*>();}
 
 void* QTemporaryFile_QTemporaryFile_CreateNativeFile(void* file)
 {
@@ -20966,7 +20975,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQThread*)
 
-int QThread_QThread_QRegisterMetaType(){return qRegisterMetaType<MyQThread*>();}
+int QThread_QThread_QRegisterMetaType(){qRegisterMetaType<QThread*>(); return qRegisterMetaType<MyQThread*>();}
 
 char QThread_Wait(void* ptr, unsigned long time)
 {
@@ -21198,7 +21207,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQThreadPool*)
 
-int QThreadPool_QThreadPool_QRegisterMetaType(){return qRegisterMetaType<MyQThreadPool*>();}
+int QThreadPool_QThreadPool_QRegisterMetaType(){qRegisterMetaType<QThreadPool*>(); return qRegisterMetaType<MyQThreadPool*>();}
 
 void* QThreadPool_QThreadPool_GlobalInstance()
 {
@@ -21462,7 +21471,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTimeLine*)
 
-int QTimeLine_QTimeLine_QRegisterMetaType(){return qRegisterMetaType<MyQTimeLine*>();}
+int QTimeLine_QTimeLine_QRegisterMetaType(){qRegisterMetaType<QTimeLine*>(); return qRegisterMetaType<MyQTimeLine*>();}
 
 void QTimeLine_SetCurrentTime(void* ptr, int msec)
 {
@@ -21999,7 +22008,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTimer*)
 
-int QTimer_QTimer_QRegisterMetaType(){return qRegisterMetaType<MyQTimer*>();}
+int QTimer_QTimer_QRegisterMetaType(){qRegisterMetaType<QTimer*>(); return qRegisterMetaType<MyQTimer*>();}
 
 void* QTimer_NewQTimer(void* parent)
 {
@@ -22189,7 +22198,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTranslator*)
 
-int QTranslator_QTranslator_QRegisterMetaType(){return qRegisterMetaType<MyQTranslator*>();}
+int QTranslator_QTranslator_QRegisterMetaType(){qRegisterMetaType<QTranslator*>(); return qRegisterMetaType<MyQTranslator*>();}
 
 void* QTranslator_NewQTranslator(void* parent)
 {
@@ -23568,7 +23577,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVariantAnimation*)
 
-int QVariantAnimation_QVariantAnimation_QRegisterMetaType(){return qRegisterMetaType<MyQVariantAnimation*>();}
+int QVariantAnimation_QVariantAnimation_QRegisterMetaType(){qRegisterMetaType<QVariantAnimation*>(); return qRegisterMetaType<MyQVariantAnimation*>();}
 
 void QVariantAnimation_SetEndValue(void* ptr, void* value)
 {

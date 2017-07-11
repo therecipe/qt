@@ -414,7 +414,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractButton*)
 
-int QAbstractButton_QAbstractButton_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractButton*>();}
+int QAbstractButton_QAbstractButton_QRegisterMetaType(){qRegisterMetaType<QAbstractButton*>(); return qRegisterMetaType<MyQAbstractButton*>();}
 
 void* QAbstractButton_NewQAbstractButton(void* parent)
 {
@@ -922,7 +922,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractItemDelegate*)
 
-int QAbstractItemDelegate_QAbstractItemDelegate_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractItemDelegate*>();}
+int QAbstractItemDelegate_QAbstractItemDelegate_QRegisterMetaType(){qRegisterMetaType<QAbstractItemDelegate*>(); return qRegisterMetaType<MyQAbstractItemDelegate*>();}
 
 void* QAbstractItemDelegate_NewQAbstractItemDelegate(void* parent)
 {
@@ -1530,7 +1530,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractItemView*)
 
-int QAbstractItemView_QAbstractItemView_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractItemView*>();}
+int QAbstractItemView_QAbstractItemView_QRegisterMetaType(){qRegisterMetaType<QAbstractItemView*>(); return qRegisterMetaType<MyQAbstractItemView*>();}
 
 void* QAbstractItemView_NewQAbstractItemView(void* parent)
 {
@@ -3034,7 +3034,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractScrollArea*)
 
-int QAbstractScrollArea_QAbstractScrollArea_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractScrollArea*>();}
+int QAbstractScrollArea_QAbstractScrollArea_QRegisterMetaType(){qRegisterMetaType<QAbstractScrollArea*>(); return qRegisterMetaType<MyQAbstractScrollArea*>();}
 
 void* QAbstractScrollArea_NewQAbstractScrollArea(void* parent)
 {
@@ -3423,7 +3423,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractSlider*)
 
-int QAbstractSlider_QAbstractSlider_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractSlider*>();}
+int QAbstractSlider_QAbstractSlider_QRegisterMetaType(){qRegisterMetaType<QAbstractSlider*>(); return qRegisterMetaType<MyQAbstractSlider*>();}
 
 void* QAbstractSlider_NewQAbstractSlider(void* parent)
 {
@@ -3482,6 +3482,7 @@ void QAbstractSlider_SetMinimum(void* ptr, int vin)
 
 void QAbstractSlider_SetOrientation(void* ptr, long long vqt)
 {
+	qRegisterMetaType<Qt::Orientation>();
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setOrientation", Q_ARG(Qt::Orientation, static_cast<Qt::Orientation>(vqt)));
 }
 
@@ -3796,7 +3797,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractSpinBox*)
 
-int QAbstractSpinBox_QAbstractSpinBox_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractSpinBox*>();}
+int QAbstractSpinBox_QAbstractSpinBox_QRegisterMetaType(){qRegisterMetaType<QAbstractSpinBox*>(); return qRegisterMetaType<MyQAbstractSpinBox*>();}
 
 void* QAbstractSpinBox_NewQAbstractSpinBox(void* parent)
 {
@@ -4425,7 +4426,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAction*)
 
-int QAction_QAction_QRegisterMetaType(){return qRegisterMetaType<MyQAction*>();}
+int QAction_QAction_QRegisterMetaType(){qRegisterMetaType<QAction*>(); return qRegisterMetaType<MyQAction*>();}
 
 void* QAction_NewQAction(void* parent)
 {
@@ -5258,7 +5259,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQActionGroup*)
 
-int QActionGroup_QActionGroup_QRegisterMetaType(){return qRegisterMetaType<MyQActionGroup*>();}
+int QActionGroup_QActionGroup_QRegisterMetaType(){qRegisterMetaType<QActionGroup*>(); return qRegisterMetaType<MyQActionGroup*>();}
 
 void* QActionGroup_AddAction(void* ptr, void* action)
 {
@@ -5653,7 +5654,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQApplication*)
 
-int QApplication_QApplication_QRegisterMetaType(){return qRegisterMetaType<MyQApplication*>();}
+int QApplication_QApplication_QRegisterMetaType(){qRegisterMetaType<QApplication*>(); return qRegisterMetaType<MyQApplication*>();}
 
 void* QApplication_NewQApplication(int argc, char* argv)
 {
@@ -6253,7 +6254,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBoxLayout*)
 
-int QBoxLayout_QBoxLayout_QRegisterMetaType(){return qRegisterMetaType<MyQBoxLayout*>();}
+int QBoxLayout_QBoxLayout_QRegisterMetaType(){qRegisterMetaType<QBoxLayout*>(); return qRegisterMetaType<MyQBoxLayout*>();}
 
 void* QBoxLayout_NewQBoxLayout(long long dir, void* parent)
 {
@@ -6482,7 +6483,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQButtonGroup*)
 
-int QButtonGroup_QButtonGroup_QRegisterMetaType(){return qRegisterMetaType<MyQButtonGroup*>();}
+int QButtonGroup_QButtonGroup_QRegisterMetaType(){qRegisterMetaType<QButtonGroup*>(); return qRegisterMetaType<MyQButtonGroup*>();}
 
 void* QButtonGroup_NewQButtonGroup(void* parent)
 {
@@ -6982,7 +6983,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCalendarWidget*)
 
-int QCalendarWidget_QCalendarWidget_QRegisterMetaType(){return qRegisterMetaType<MyQCalendarWidget*>();}
+int QCalendarWidget_QCalendarWidget_QRegisterMetaType(){qRegisterMetaType<QCalendarWidget*>(); return qRegisterMetaType<MyQCalendarWidget*>();}
 
 void* QCalendarWidget_NewQCalendarWidget(void* parent)
 {
@@ -7450,7 +7451,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCheckBox*)
 
-int QCheckBox_QCheckBox_QRegisterMetaType(){return qRegisterMetaType<MyQCheckBox*>();}
+int QCheckBox_QCheckBox_QRegisterMetaType(){qRegisterMetaType<QCheckBox*>(); return qRegisterMetaType<MyQCheckBox*>();}
 
 void* QCheckBox_NewQCheckBox(void* parent)
 {
@@ -7603,7 +7604,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQColorDialog*)
 
-int QColorDialog_QColorDialog_QRegisterMetaType(){return qRegisterMetaType<MyQColorDialog*>();}
+int QColorDialog_QColorDialog_QRegisterMetaType(){qRegisterMetaType<QColorDialog*>(); return qRegisterMetaType<MyQColorDialog*>();}
 
 void* QColorDialog_QColorDialog_CustomColor(int index)
 {
@@ -7925,7 +7926,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQColumnView*)
 
-int QColumnView_QColumnView_QRegisterMetaType(){return qRegisterMetaType<MyQColumnView*>();}
+int QColumnView_QColumnView_QRegisterMetaType(){qRegisterMetaType<QColumnView*>(); return qRegisterMetaType<MyQColumnView*>();}
 
 void* QColumnView_CreateColumn(void* ptr, void* index)
 {
@@ -8250,7 +8251,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQComboBox*)
 
-int QComboBox_QComboBox_QRegisterMetaType(){return qRegisterMetaType<MyQComboBox*>();}
+int QComboBox_QComboBox_QRegisterMetaType(){qRegisterMetaType<QComboBox*>(); return qRegisterMetaType<MyQComboBox*>();}
 
 void* QComboBox_NewQComboBox(void* parent)
 {
@@ -8845,7 +8846,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCommandLinkButton*)
 
-int QCommandLinkButton_QCommandLinkButton_QRegisterMetaType(){return qRegisterMetaType<MyQCommandLinkButton*>();}
+int QCommandLinkButton_QCommandLinkButton_QRegisterMetaType(){qRegisterMetaType<QCommandLinkButton*>(); return qRegisterMetaType<MyQCommandLinkButton*>();}
 
 void* QCommandLinkButton_NewQCommandLinkButton(void* parent)
 {
@@ -8919,7 +8920,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCommonStyle*)
 
-int QCommonStyle_QCommonStyle_QRegisterMetaType(){return qRegisterMetaType<MyQCommonStyle*>();}
+int QCommonStyle_QCommonStyle_QRegisterMetaType(){qRegisterMetaType<QCommonStyle*>(); return qRegisterMetaType<MyQCommonStyle*>();}
 
 void* QCommonStyle_NewQCommonStyle()
 {
@@ -9143,7 +9144,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCompleter*)
 
-int QCompleter_QCompleter_QRegisterMetaType(){return qRegisterMetaType<MyQCompleter*>();}
+int QCompleter_QCompleter_QRegisterMetaType(){qRegisterMetaType<QCompleter*>(); return qRegisterMetaType<MyQCompleter*>();}
 
 void* QCompleter_NewQCompleter2(void* model, void* parent)
 {
@@ -9726,7 +9727,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDataWidgetMapper*)
 
-int QDataWidgetMapper_QDataWidgetMapper_QRegisterMetaType(){return qRegisterMetaType<MyQDataWidgetMapper*>();}
+int QDataWidgetMapper_QDataWidgetMapper_QRegisterMetaType(){qRegisterMetaType<QDataWidgetMapper*>(); return qRegisterMetaType<MyQDataWidgetMapper*>();}
 
 void QDataWidgetMapper_SetCurrentIndex(void* ptr, int index)
 {
@@ -10229,7 +10230,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDateEdit*)
 
-int QDateEdit_QDateEdit_QRegisterMetaType(){return qRegisterMetaType<MyQDateEdit*>();}
+int QDateEdit_QDateEdit_QRegisterMetaType(){qRegisterMetaType<QDateEdit*>(); return qRegisterMetaType<MyQDateEdit*>();}
 
 void* QDateEdit_NewQDateEdit(void* parent)
 {
@@ -10341,7 +10342,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDateTimeEdit*)
 
-int QDateTimeEdit_QDateTimeEdit_QRegisterMetaType(){return qRegisterMetaType<MyQDateTimeEdit*>();}
+int QDateTimeEdit_QDateTimeEdit_QRegisterMetaType(){qRegisterMetaType<QDateTimeEdit*>(); return qRegisterMetaType<MyQDateTimeEdit*>();}
 
 void* QDateTimeEdit_NewQDateTimeEdit(void* parent)
 {
@@ -10794,7 +10795,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesktopWidget*)
 
-int QDesktopWidget_QDesktopWidget_QRegisterMetaType(){return qRegisterMetaType<MyQDesktopWidget*>();}
+int QDesktopWidget_QDesktopWidget_QRegisterMetaType(){qRegisterMetaType<QDesktopWidget*>(); return qRegisterMetaType<MyQDesktopWidget*>();}
 
 void* QDesktopWidget_Screen(void* ptr, int screen)
 {
@@ -11003,7 +11004,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDial*)
 
-int QDial_QDial_QRegisterMetaType(){return qRegisterMetaType<MyQDial*>();}
+int QDial_QDial_QRegisterMetaType(){qRegisterMetaType<QDial*>(); return qRegisterMetaType<MyQDial*>();}
 
 void* QDial_NewQDial(void* parent)
 {
@@ -11149,7 +11150,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDialog*)
 
-int QDialog_QDialog_QRegisterMetaType(){return qRegisterMetaType<MyQDialog*>();}
+int QDialog_QDialog_QRegisterMetaType(){qRegisterMetaType<QDialog*>(); return qRegisterMetaType<MyQDialog*>();}
 
 void QDialog_SetModal(void* ptr, char modal)
 {
@@ -11484,7 +11485,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDialogButtonBox*)
 
-int QDialogButtonBox_QDialogButtonBox_QRegisterMetaType(){return qRegisterMetaType<MyQDialogButtonBox*>();}
+int QDialogButtonBox_QDialogButtonBox_QRegisterMetaType(){qRegisterMetaType<QDialogButtonBox*>(); return qRegisterMetaType<MyQDialogButtonBox*>();}
 
 void QDialogButtonBox_ConnectAccepted(void* ptr)
 {
@@ -11744,7 +11745,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDockWidget*)
 
-int QDockWidget_QDockWidget_QRegisterMetaType(){return qRegisterMetaType<MyQDockWidget*>();}
+int QDockWidget_QDockWidget_QRegisterMetaType(){qRegisterMetaType<QDockWidget*>(); return qRegisterMetaType<MyQDockWidget*>();}
 
 void QDockWidget_ConnectFeaturesChanged(void* ptr)
 {
@@ -11778,6 +11779,7 @@ void* QDockWidget_NewQDockWidget(struct QtWidgets_PackedString title, void* pare
 
 void QDockWidget_ConnectAllowedAreasChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::DockWidgetAreas>();
 	QObject::connect(static_cast<QDockWidget*>(ptr), static_cast<void (QDockWidget::*)(Qt::DockWidgetAreas)>(&QDockWidget::allowedAreasChanged), static_cast<MyQDockWidget*>(ptr), static_cast<void (MyQDockWidget::*)(Qt::DockWidgetAreas)>(&MyQDockWidget::Signal_AllowedAreasChanged));
 }
 
@@ -11793,6 +11795,7 @@ void QDockWidget_AllowedAreasChanged(void* ptr, long long allowedAreas)
 
 void QDockWidget_ConnectDockLocationChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::DockWidgetArea>();
 	QObject::connect(static_cast<QDockWidget*>(ptr), static_cast<void (QDockWidget::*)(Qt::DockWidgetArea)>(&QDockWidget::dockLocationChanged), static_cast<MyQDockWidget*>(ptr), static_cast<void (MyQDockWidget::*)(Qt::DockWidgetArea)>(&MyQDockWidget::Signal_DockLocationChanged));
 }
 
@@ -11990,7 +11993,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDoubleSpinBox*)
 
-int QDoubleSpinBox_QDoubleSpinBox_QRegisterMetaType(){return qRegisterMetaType<MyQDoubleSpinBox*>();}
+int QDoubleSpinBox_QDoubleSpinBox_QRegisterMetaType(){qRegisterMetaType<QDoubleSpinBox*>(); return qRegisterMetaType<MyQDoubleSpinBox*>();}
 
 void* QDoubleSpinBox_NewQDoubleSpinBox(void* parent)
 {
@@ -12223,7 +12226,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQErrorMessage*)
 
-int QErrorMessage_QErrorMessage_QRegisterMetaType(){return qRegisterMetaType<MyQErrorMessage*>();}
+int QErrorMessage_QErrorMessage_QRegisterMetaType(){qRegisterMetaType<QErrorMessage*>(); return qRegisterMetaType<MyQErrorMessage*>();}
 
 void* QErrorMessage_QErrorMessage_QtHandler()
 {
@@ -12363,7 +12366,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFileDialog*)
 
-int QFileDialog_QFileDialog_QRegisterMetaType(){return qRegisterMetaType<MyQFileDialog*>();}
+int QFileDialog_QFileDialog_QRegisterMetaType(){qRegisterMetaType<QFileDialog*>(); return qRegisterMetaType<MyQFileDialog*>();}
 
 void* QFileDialog_NewQFileDialog(void* parent, long long flags)
 {
@@ -13086,7 +13089,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFileSystemModel*)
 
-int QFileSystemModel_QFileSystemModel_QRegisterMetaType(){return qRegisterMetaType<MyQFileSystemModel*>();}
+int QFileSystemModel_QFileSystemModel_QRegisterMetaType(){qRegisterMetaType<QFileSystemModel*>(); return qRegisterMetaType<MyQFileSystemModel*>();}
 
 int QFileSystemModel_FilePathRole_Type()
 {
@@ -14055,7 +14058,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFocusFrame*)
 
-int QFocusFrame_QFocusFrame_QRegisterMetaType(){return qRegisterMetaType<MyQFocusFrame*>();}
+int QFocusFrame_QFocusFrame_QRegisterMetaType(){qRegisterMetaType<QFocusFrame*>(); return qRegisterMetaType<MyQFocusFrame*>();}
 
 void* QFocusFrame_NewQFocusFrame(void* parent)
 {
@@ -14175,7 +14178,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFontComboBox*)
 
-int QFontComboBox_QFontComboBox_QRegisterMetaType(){return qRegisterMetaType<MyQFontComboBox*>();}
+int QFontComboBox_QFontComboBox_QRegisterMetaType(){qRegisterMetaType<QFontComboBox*>(); return qRegisterMetaType<MyQFontComboBox*>();}
 
 void QFontComboBox_ConnectCurrentFontChanged(void* ptr)
 {
@@ -14318,7 +14321,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFontDialog*)
 
-int QFontDialog_QFontDialog_QRegisterMetaType(){return qRegisterMetaType<MyQFontDialog*>();}
+int QFontDialog_QFontDialog_QRegisterMetaType(){qRegisterMetaType<QFontDialog*>(); return qRegisterMetaType<MyQFontDialog*>();}
 
 void QFontDialog_Open(void* ptr, void* receiver, char* member)
 {
@@ -14471,7 +14474,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFormLayout*)
 
-int QFormLayout_QFormLayout_QRegisterMetaType(){return qRegisterMetaType<MyQFormLayout*>();}
+int QFormLayout_QFormLayout_QRegisterMetaType(){qRegisterMetaType<QFormLayout*>(); return qRegisterMetaType<MyQFormLayout*>();}
 
 void* QFormLayout_NewQFormLayout(void* parent)
 {
@@ -14780,7 +14783,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQFrame*)
 
-int QFrame_QFrame_QRegisterMetaType(){return qRegisterMetaType<MyQFrame*>();}
+int QFrame_QFrame_QRegisterMetaType(){qRegisterMetaType<QFrame*>(); return qRegisterMetaType<MyQFrame*>();}
 
 void* QFrame_NewQFrame(void* parent, long long fo)
 {
@@ -14881,7 +14884,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGesture*)
 
-int QGesture_QGesture_QRegisterMetaType(){return qRegisterMetaType<MyQGesture*>();}
+int QGesture_QGesture_QRegisterMetaType(){qRegisterMetaType<QGesture*>(); return qRegisterMetaType<MyQGesture*>();}
 
 void* QGesture_NewQGesture(void* parent)
 {
@@ -15561,7 +15564,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsAnchor*)
 
-int QGraphicsAnchor_QGraphicsAnchor_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsAnchor*>();}
+int QGraphicsAnchor_QGraphicsAnchor_QRegisterMetaType(){qRegisterMetaType<QGraphicsAnchor*>(); return qRegisterMetaType<MyQGraphicsAnchor*>();}
 
 void QGraphicsAnchor_SetSizePolicy(void* ptr, long long policy)
 {
@@ -15934,7 +15937,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsBlurEffect*)
 
-int QGraphicsBlurEffect_QGraphicsBlurEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsBlurEffect*>();}
+int QGraphicsBlurEffect_QGraphicsBlurEffect_QRegisterMetaType(){qRegisterMetaType<QGraphicsBlurEffect*>(); return qRegisterMetaType<MyQGraphicsBlurEffect*>();}
 
 void QGraphicsBlurEffect_ConnectBlurHintsChanged(void* ptr)
 {
@@ -16081,7 +16084,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsColorizeEffect*)
 
-int QGraphicsColorizeEffect_QGraphicsColorizeEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsColorizeEffect*>();}
+int QGraphicsColorizeEffect_QGraphicsColorizeEffect_QRegisterMetaType(){qRegisterMetaType<QGraphicsColorizeEffect*>(); return qRegisterMetaType<MyQGraphicsColorizeEffect*>();}
 
 void* QGraphicsColorizeEffect_NewQGraphicsColorizeEffect(void* parent)
 {
@@ -16234,7 +16237,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsDropShadowEffect*)
 
-int QGraphicsDropShadowEffect_QGraphicsDropShadowEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsDropShadowEffect*>();}
+int QGraphicsDropShadowEffect_QGraphicsDropShadowEffect_QRegisterMetaType(){qRegisterMetaType<QGraphicsDropShadowEffect*>(); return qRegisterMetaType<MyQGraphicsDropShadowEffect*>();}
 
 void* QGraphicsDropShadowEffect_NewQGraphicsDropShadowEffect(void* parent)
 {
@@ -16458,7 +16461,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsEffect*)
 
-int QGraphicsEffect_QGraphicsEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsEffect*>();}
+int QGraphicsEffect_QGraphicsEffect_QRegisterMetaType(){qRegisterMetaType<QGraphicsEffect*>(); return qRegisterMetaType<MyQGraphicsEffect*>();}
 
 void QGraphicsEffect_ConnectEnabledChanged(void* ptr)
 {
@@ -22606,7 +22609,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsObject*)
 
-int QGraphicsObject_QGraphicsObject_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsObject*>();}
+int QGraphicsObject_QGraphicsObject_QRegisterMetaType(){qRegisterMetaType<QGraphicsObject*>(); return qRegisterMetaType<MyQGraphicsObject*>();}
 
 void* QGraphicsObject_NewQGraphicsObject(void* parent)
 {
@@ -23599,7 +23602,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsOpacityEffect*)
 
-int QGraphicsOpacityEffect_QGraphicsOpacityEffect_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsOpacityEffect*>();}
+int QGraphicsOpacityEffect_QGraphicsOpacityEffect_QRegisterMetaType(){qRegisterMetaType<QGraphicsOpacityEffect*>(); return qRegisterMetaType<MyQGraphicsOpacityEffect*>();}
 
 void* QGraphicsOpacityEffect_NewQGraphicsOpacityEffect(void* parent)
 {
@@ -24134,7 +24137,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsProxyWidget*)
 
-int QGraphicsProxyWidget_QGraphicsProxyWidget_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsProxyWidget*>();}
+int QGraphicsProxyWidget_QGraphicsProxyWidget_QRegisterMetaType(){qRegisterMetaType<QGraphicsProxyWidget*>(); return qRegisterMetaType<MyQGraphicsProxyWidget*>();}
 
 void* QGraphicsProxyWidget_CreateProxyForChildWidget(void* ptr, void* child)
 {
@@ -24321,7 +24324,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsRotation*)
 
-int QGraphicsRotation_QGraphicsRotation_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsRotation*>();}
+int QGraphicsRotation_QGraphicsRotation_QRegisterMetaType(){qRegisterMetaType<QGraphicsRotation*>(); return qRegisterMetaType<MyQGraphicsRotation*>();}
 
 void* QGraphicsRotation_NewQGraphicsRotation(void* parent)
 {
@@ -24485,7 +24488,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsScale*)
 
-int QGraphicsScale_QGraphicsScale_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsScale*>();}
+int QGraphicsScale_QGraphicsScale_QRegisterMetaType(){qRegisterMetaType<QGraphicsScale*>(); return qRegisterMetaType<MyQGraphicsScale*>();}
 
 void* QGraphicsScale_NewQGraphicsScale(void* parent)
 {
@@ -24709,7 +24712,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsScene*)
 
-int QGraphicsScene_QGraphicsScene_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsScene*>();}
+int QGraphicsScene_QGraphicsScene_QRegisterMetaType(){qRegisterMetaType<QGraphicsScene*>(); return qRegisterMetaType<MyQGraphicsScene*>();}
 
 void* QGraphicsScene_AddEllipse(void* ptr, void* rect, void* pen, void* brush)
 {
@@ -25090,6 +25093,7 @@ void QGraphicsScene_FocusInEventDefault(void* ptr, void* focusEvent)
 
 void QGraphicsScene_ConnectFocusItemChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::FocusReason>();
 	QObject::connect(static_cast<QGraphicsScene*>(ptr), static_cast<void (QGraphicsScene::*)(QGraphicsItem *, QGraphicsItem *, Qt::FocusReason)>(&QGraphicsScene::focusItemChanged), static_cast<MyQGraphicsScene*>(ptr), static_cast<void (MyQGraphicsScene::*)(QGraphicsItem *, QGraphicsItem *, Qt::FocusReason)>(&MyQGraphicsScene::Signal_FocusItemChanged));
 }
 
@@ -26496,7 +26500,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsTextItem*)
 
-int QGraphicsTextItem_QGraphicsTextItem_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsTextItem*>();}
+int QGraphicsTextItem_QGraphicsTextItem_QRegisterMetaType(){qRegisterMetaType<QGraphicsTextItem*>(); return qRegisterMetaType<MyQGraphicsTextItem*>();}
 
 void* QGraphicsTextItem_NewQGraphicsTextItem(void* parent)
 {
@@ -26701,7 +26705,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsTransform*)
 
-int QGraphicsTransform_QGraphicsTransform_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsTransform*>();}
+int QGraphicsTransform_QGraphicsTransform_QRegisterMetaType(){qRegisterMetaType<QGraphicsTransform*>(); return qRegisterMetaType<MyQGraphicsTransform*>();}
 
 void* QGraphicsTransform_NewQGraphicsTransform(void* parent)
 {
@@ -27106,7 +27110,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsView*)
 
-int QGraphicsView_QGraphicsView_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsView*>();}
+int QGraphicsView_QGraphicsView_QRegisterMetaType(){qRegisterMetaType<QGraphicsView*>(); return qRegisterMetaType<MyQGraphicsView*>();}
 
 void* QGraphicsView_NewQGraphicsView2(void* scene, void* parent)
 {
@@ -27839,7 +27843,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGraphicsWidget*)
 
-int QGraphicsWidget_QGraphicsWidget_QRegisterMetaType(){return qRegisterMetaType<MyQGraphicsWidget*>();}
+int QGraphicsWidget_QGraphicsWidget_QRegisterMetaType(){qRegisterMetaType<QGraphicsWidget*>(); return qRegisterMetaType<MyQGraphicsWidget*>();}
 
 void* QGraphicsWidget_NewQGraphicsWidget(void* parent, long long wFlags)
 {
@@ -28516,7 +28520,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGridLayout*)
 
-int QGridLayout_QGridLayout_QRegisterMetaType(){return qRegisterMetaType<MyQGridLayout*>();}
+int QGridLayout_QGridLayout_QRegisterMetaType(){qRegisterMetaType<QGridLayout*>(); return qRegisterMetaType<MyQGridLayout*>();}
 
 void* QGridLayout_NewQGridLayout2()
 {
@@ -28771,7 +28775,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGroupBox*)
 
-int QGroupBox_QGroupBox_QRegisterMetaType(){return qRegisterMetaType<MyQGroupBox*>();}
+int QGroupBox_QGroupBox_QRegisterMetaType(){qRegisterMetaType<QGroupBox*>(); return qRegisterMetaType<MyQGroupBox*>();}
 
 void* QGroupBox_NewQGroupBox(void* parent)
 {
@@ -28918,7 +28922,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHBoxLayout*)
 
-int QHBoxLayout_QHBoxLayout_QRegisterMetaType(){return qRegisterMetaType<MyQHBoxLayout*>();}
+int QHBoxLayout_QHBoxLayout_QRegisterMetaType(){qRegisterMetaType<QHBoxLayout*>(); return qRegisterMetaType<MyQHBoxLayout*>();}
 
 void* QHBoxLayout_NewQHBoxLayout()
 {
@@ -29077,7 +29081,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHeaderView*)
 
-int QHeaderView_QHeaderView_QRegisterMetaType(){return qRegisterMetaType<MyQHeaderView*>();}
+int QHeaderView_QHeaderView_QRegisterMetaType(){qRegisterMetaType<QHeaderView*>(); return qRegisterMetaType<MyQHeaderView*>();}
 
 void* QHeaderView_NewQHeaderView(long long orientation, void* parent)
 {
@@ -29116,6 +29120,7 @@ void QHeaderView_GeometriesChanged(void* ptr)
 
 void QHeaderView_HeaderDataChanged(void* ptr, long long orientation, int logicalFirst, int logicalLast)
 {
+	qRegisterMetaType<Qt::Orientation>();
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "headerDataChanged", Q_ARG(Qt::Orientation, static_cast<Qt::Orientation>(orientation)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
 }
 
@@ -29441,6 +29446,7 @@ void QHeaderView_ShowSection(void* ptr, int logicalIndex)
 
 void QHeaderView_ConnectSortIndicatorChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::SortOrder>();
 	QObject::connect(static_cast<QHeaderView*>(ptr), static_cast<void (QHeaderView::*)(int, Qt::SortOrder)>(&QHeaderView::sortIndicatorChanged), static_cast<MyQHeaderView*>(ptr), static_cast<void (MyQHeaderView::*)(int, Qt::SortOrder)>(&MyQHeaderView::Signal_SortIndicatorChanged));
 }
 
@@ -29834,7 +29840,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQInputDialog*)
 
-int QInputDialog_QInputDialog_QRegisterMetaType(){return qRegisterMetaType<MyQInputDialog*>();}
+int QInputDialog_QInputDialog_QRegisterMetaType(){qRegisterMetaType<QInputDialog*>(); return qRegisterMetaType<MyQInputDialog*>();}
 
 void* QInputDialog_NewQInputDialog(void* parent, long long flags)
 {
@@ -30216,7 +30222,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQItemDelegate*)
 
-int QItemDelegate_QItemDelegate_QRegisterMetaType(){return qRegisterMetaType<MyQItemDelegate*>();}
+int QItemDelegate_QItemDelegate_QRegisterMetaType(){qRegisterMetaType<QItemDelegate*>(); return qRegisterMetaType<MyQItemDelegate*>();}
 
 void* QItemDelegate_NewQItemDelegate(void* parent)
 {
@@ -30463,7 +30469,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQKeyEventTransition*)
 
-int QKeyEventTransition_QKeyEventTransition_QRegisterMetaType(){return qRegisterMetaType<MyQKeyEventTransition*>();}
+int QKeyEventTransition_QKeyEventTransition_QRegisterMetaType(){qRegisterMetaType<QKeyEventTransition*>(); return qRegisterMetaType<MyQKeyEventTransition*>();}
 
 void* QKeyEventTransition_NewQKeyEventTransition2(void* object, long long ty, int key, void* sourceState)
 {
@@ -30849,7 +30855,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQKeySequenceEdit*)
 
-int QKeySequenceEdit_QKeySequenceEdit_QRegisterMetaType(){return qRegisterMetaType<MyQKeySequenceEdit*>();}
+int QKeySequenceEdit_QKeySequenceEdit_QRegisterMetaType(){qRegisterMetaType<QKeySequenceEdit*>(); return qRegisterMetaType<MyQKeySequenceEdit*>();}
 
 void* QKeySequenceEdit_NewQKeySequenceEdit(void* parent)
 {
@@ -31007,7 +31013,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLCDNumber*)
 
-int QLCDNumber_QLCDNumber_QRegisterMetaType(){return qRegisterMetaType<MyQLCDNumber*>();}
+int QLCDNumber_QLCDNumber_QRegisterMetaType(){qRegisterMetaType<QLCDNumber*>(); return qRegisterMetaType<MyQLCDNumber*>();}
 
 void* QLCDNumber_NewQLCDNumber(void* parent)
 {
@@ -31260,7 +31266,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLabel*)
 
-int QLabel_QLabel_QRegisterMetaType(){return qRegisterMetaType<MyQLabel*>();}
+int QLabel_QLabel_QRegisterMetaType(){qRegisterMetaType<QLabel*>(); return qRegisterMetaType<MyQLabel*>();}
 
 void* QLabel_NewQLabel(void* parent, long long fo)
 {
@@ -31547,7 +31553,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLayout*)
 
-int QLayout_QLayout_QRegisterMetaType(){return qRegisterMetaType<MyQLayout*>();}
+int QLayout_QLayout_QRegisterMetaType(){qRegisterMetaType<QLayout*>(); return qRegisterMetaType<MyQLayout*>();}
 
 void* QLayout_NewQLayout2()
 {
@@ -32826,7 +32832,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLineEdit*)
 
-int QLineEdit_QLineEdit_QRegisterMetaType(){return qRegisterMetaType<MyQLineEdit*>();}
+int QLineEdit_QLineEdit_QRegisterMetaType(){qRegisterMetaType<QLineEdit*>(); return qRegisterMetaType<MyQLineEdit*>();}
 
 void* QLineEdit_AddAction2(void* ptr, void* icon, long long position)
 {
@@ -33420,7 +33426,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQListView*)
 
-int QListView_QListView_QRegisterMetaType(){return qRegisterMetaType<MyQListView*>();}
+int QListView_QListView_QRegisterMetaType(){qRegisterMetaType<QListView*>(); return qRegisterMetaType<MyQListView*>();}
 
 void* QListView_NewQListView(void* parent)
 {
@@ -33981,7 +33987,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQListWidget*)
 
-int QListWidget_QListWidget_QRegisterMetaType(){return qRegisterMetaType<MyQListWidget*>();}
+int QListWidget_QListWidget_QRegisterMetaType(){qRegisterMetaType<QListWidget*>(); return qRegisterMetaType<MyQListWidget*>();}
 
 void* QListWidget_NewQListWidget(void* parent)
 {
@@ -34215,6 +34221,7 @@ void QListWidget_RemoveItemWidget(void* ptr, void* item)
 
 void QListWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
+	qRegisterMetaType<QAbstractItemView::ScrollHint>();
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToItem", Q_ARG(QListWidgetItem*, static_cast<QListWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
@@ -34757,7 +34764,7 @@ Q_DECLARE_METATYPE(MyQMacCocoaViewContainer*)
 
 int QMacCocoaViewContainer_QMacCocoaViewContainer_QRegisterMetaType(){
 	#ifdef Q_OS_OSX
-		return qRegisterMetaType<MyQMacCocoaViewContainer*>();
+		qRegisterMetaType<QMacCocoaViewContainer*>(); return qRegisterMetaType<MyQMacCocoaViewContainer*>();
 	#else
 		return 0;
 	#endif
@@ -34853,7 +34860,7 @@ Q_DECLARE_METATYPE(MyQMacNativeWidget*)
 
 int QMacNativeWidget_QMacNativeWidget_QRegisterMetaType(){
 	#ifdef Q_OS_OSX
-		return qRegisterMetaType<MyQMacNativeWidget*>();
+		qRegisterMetaType<QMacNativeWidget*>(); return qRegisterMetaType<MyQMacNativeWidget*>();
 	#else
 		return 0;
 	#endif
@@ -34947,7 +34954,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMainWindow*)
 
-int QMainWindow_QMainWindow_QRegisterMetaType(){return qRegisterMetaType<MyQMainWindow*>();}
+int QMainWindow_QMainWindow_QRegisterMetaType(){qRegisterMetaType<QMainWindow*>(); return qRegisterMetaType<MyQMainWindow*>();}
 
 void* QMainWindow_NewQMainWindow(void* parent, long long flags)
 {
@@ -35166,6 +35173,7 @@ void QMainWindow_TabifyDockWidget(void* ptr, void* first, void* second)
 
 void QMainWindow_ConnectToolButtonStyleChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::ToolButtonStyle>();
 	QObject::connect(static_cast<QMainWindow*>(ptr), static_cast<void (QMainWindow::*)(Qt::ToolButtonStyle)>(&QMainWindow::toolButtonStyleChanged), static_cast<MyQMainWindow*>(ptr), static_cast<void (MyQMainWindow::*)(Qt::ToolButtonStyle)>(&MyQMainWindow::Signal_ToolButtonStyleChanged));
 }
 
@@ -35412,7 +35420,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMdiArea*)
 
-int QMdiArea_QMdiArea_QRegisterMetaType(){return qRegisterMetaType<MyQMdiArea*>();}
+int QMdiArea_QMdiArea_QRegisterMetaType(){qRegisterMetaType<QMdiArea*>(); return qRegisterMetaType<MyQMdiArea*>();}
 
 void* QMdiArea_NewQMdiArea(void* parent)
 {
@@ -35727,7 +35735,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMdiSubWindow*)
 
-int QMdiSubWindow_QMdiSubWindow_QRegisterMetaType(){return qRegisterMetaType<MyQMdiSubWindow*>();}
+int QMdiSubWindow_QMdiSubWindow_QRegisterMetaType(){qRegisterMetaType<QMdiSubWindow*>(); return qRegisterMetaType<MyQMdiSubWindow*>();}
 
 void* QMdiSubWindow_NewQMdiSubWindow(void* parent, long long flags)
 {
@@ -35796,6 +35804,8 @@ void QMdiSubWindow_ShowSystemMenuDefault(void* ptr)
 
 void QMdiSubWindow_ConnectWindowStateChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::WindowStates>();
+	qRegisterMetaType<Qt::WindowStates>();
 	QObject::connect(static_cast<QMdiSubWindow*>(ptr), static_cast<void (QMdiSubWindow::*)(Qt::WindowStates, Qt::WindowStates)>(&QMdiSubWindow::windowStateChanged), static_cast<MyQMdiSubWindow*>(ptr), static_cast<void (MyQMdiSubWindow::*)(Qt::WindowStates, Qt::WindowStates)>(&MyQMdiSubWindow::Signal_WindowStateChanged));
 }
 
@@ -35929,7 +35939,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMenu*)
 
-int QMenu_QMenu_QRegisterMetaType(){return qRegisterMetaType<MyQMenu*>();}
+int QMenu_QMenu_QRegisterMetaType(){qRegisterMetaType<QMenu*>(); return qRegisterMetaType<MyQMenu*>();}
 
 void* QMenu_AddAction2(void* ptr, void* icon, struct QtWidgets_PackedString text)
 {
@@ -36340,7 +36350,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMenuBar*)
 
-int QMenuBar_QMenuBar_QRegisterMetaType(){return qRegisterMetaType<MyQMenuBar*>();}
+int QMenuBar_QMenuBar_QRegisterMetaType(){qRegisterMetaType<QMenuBar*>(); return qRegisterMetaType<MyQMenuBar*>();}
 
 void* QMenuBar_AddAction(void* ptr, struct QtWidgets_PackedString text)
 {
@@ -36575,7 +36585,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMessageBox*)
 
-int QMessageBox_QMessageBox_QRegisterMetaType(){return qRegisterMetaType<MyQMessageBox*>();}
+int QMessageBox_QMessageBox_QRegisterMetaType(){qRegisterMetaType<QMessageBox*>(); return qRegisterMetaType<MyQMessageBox*>();}
 
 int QMessageBox_ButtonMask_Type()
 {
@@ -36868,7 +36878,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMouseEventTransition*)
 
-int QMouseEventTransition_QMouseEventTransition_QRegisterMetaType(){return qRegisterMetaType<MyQMouseEventTransition*>();}
+int QMouseEventTransition_QMouseEventTransition_QRegisterMetaType(){qRegisterMetaType<QMouseEventTransition*>(); return qRegisterMetaType<MyQMouseEventTransition*>();}
 
 void* QMouseEventTransition_NewQMouseEventTransition2(void* object, long long ty, long long button, void* sourceState)
 {
@@ -37202,7 +37212,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPanGesture*)
 
-int QPanGesture_QPanGesture_QRegisterMetaType(){return qRegisterMetaType<MyQPanGesture*>();}
+int QPanGesture_QPanGesture_QRegisterMetaType(){qRegisterMetaType<QPanGesture*>(); return qRegisterMetaType<MyQPanGesture*>();}
 
 void QPanGesture_SetAcceleration(void* ptr, double value)
 {
@@ -37262,7 +37272,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPinchGesture*)
 
-int QPinchGesture_QPinchGesture_QRegisterMetaType(){return qRegisterMetaType<MyQPinchGesture*>();}
+int QPinchGesture_QPinchGesture_QRegisterMetaType(){qRegisterMetaType<QPinchGesture*>(); return qRegisterMetaType<MyQPinchGesture*>();}
 
 void QPinchGesture_SetCenterPoint(void* ptr, void* value)
 {
@@ -37412,7 +37422,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPlainTextDocumentLayout*)
 
-int QPlainTextDocumentLayout_QPlainTextDocumentLayout_QRegisterMetaType(){return qRegisterMetaType<MyQPlainTextDocumentLayout*>();}
+int QPlainTextDocumentLayout_QPlainTextDocumentLayout_QRegisterMetaType(){qRegisterMetaType<QPlainTextDocumentLayout*>(); return qRegisterMetaType<MyQPlainTextDocumentLayout*>();}
 
 void* QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(void* document)
 {
@@ -37813,7 +37823,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPlainTextEdit*)
 
-int QPlainTextEdit_QPlainTextEdit_QRegisterMetaType(){return qRegisterMetaType<MyQPlainTextEdit*>();}
+int QPlainTextEdit_QPlainTextEdit_QRegisterMetaType(){qRegisterMetaType<QPlainTextEdit*>(); return qRegisterMetaType<MyQPlainTextEdit*>();}
 
 void* QPlainTextEdit_CreateStandardContextMenu(void* ptr)
 {
@@ -38502,7 +38512,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQProgressBar*)
 
-int QProgressBar_QProgressBar_QRegisterMetaType(){return qRegisterMetaType<MyQProgressBar*>();}
+int QProgressBar_QProgressBar_QRegisterMetaType(){qRegisterMetaType<QProgressBar*>(); return qRegisterMetaType<MyQProgressBar*>();}
 
 void* QProgressBar_NewQProgressBar(void* parent)
 {
@@ -38561,6 +38571,7 @@ void QProgressBar_SetMinimumDefault(void* ptr, int minimum)
 
 void QProgressBar_SetOrientation(void* ptr, long long vqt)
 {
+	qRegisterMetaType<Qt::Orientation>();
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setOrientation", Q_ARG(Qt::Orientation, static_cast<Qt::Orientation>(vqt)));
 }
 
@@ -38774,7 +38785,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQProgressDialog*)
 
-int QProgressDialog_QProgressDialog_QRegisterMetaType(){return qRegisterMetaType<MyQProgressDialog*>();}
+int QProgressDialog_QProgressDialog_QRegisterMetaType(){qRegisterMetaType<QProgressDialog*>(); return qRegisterMetaType<MyQProgressDialog*>();}
 
 void* QProgressDialog_NewQProgressDialog(void* parent, long long fo)
 {
@@ -39028,7 +39039,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQProxyStyle*)
 
-int QProxyStyle_QProxyStyle_QRegisterMetaType(){return qRegisterMetaType<MyQProxyStyle*>();}
+int QProxyStyle_QProxyStyle_QRegisterMetaType(){qRegisterMetaType<QProxyStyle*>(); return qRegisterMetaType<MyQProxyStyle*>();}
 
 void* QProxyStyle_NewQProxyStyle(void* style)
 {
@@ -39155,7 +39166,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPushButton*)
 
-int QPushButton_QPushButton_QRegisterMetaType(){return qRegisterMetaType<MyQPushButton*>();}
+int QPushButton_QPushButton_QRegisterMetaType(){qRegisterMetaType<QPushButton*>(); return qRegisterMetaType<MyQPushButton*>();}
 
 void* QPushButton_NewQPushButton(void* parent)
 {
@@ -39338,7 +39349,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRadioButton*)
 
-int QRadioButton_QRadioButton_QRegisterMetaType(){return qRegisterMetaType<MyQRadioButton*>();}
+int QRadioButton_QRadioButton_QRegisterMetaType(){qRegisterMetaType<QRadioButton*>(); return qRegisterMetaType<MyQRadioButton*>();}
 
 void* QRadioButton_NewQRadioButton(void* parent)
 {
@@ -39446,7 +39457,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQRubberBand*)
 
-int QRubberBand_QRubberBand_QRegisterMetaType(){return qRegisterMetaType<MyQRubberBand*>();}
+int QRubberBand_QRubberBand_QRegisterMetaType(){qRegisterMetaType<QRubberBand*>(); return qRegisterMetaType<MyQRubberBand*>();}
 
 void* QRubberBand_NewQRubberBand(long long s, void* p)
 {
@@ -39547,7 +39558,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScrollArea*)
 
-int QScrollArea_QScrollArea_QRegisterMetaType(){return qRegisterMetaType<MyQScrollArea*>();}
+int QScrollArea_QScrollArea_QRegisterMetaType(){qRegisterMetaType<QScrollArea*>(); return qRegisterMetaType<MyQScrollArea*>();}
 
 void* QScrollArea_NewQScrollArea(void* parent)
 {
@@ -39690,7 +39701,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScrollBar*)
 
-int QScrollBar_QScrollBar_QRegisterMetaType(){return qRegisterMetaType<MyQScrollBar*>();}
+int QScrollBar_QScrollBar_QRegisterMetaType(){qRegisterMetaType<QScrollBar*>(); return qRegisterMetaType<MyQScrollBar*>();}
 
 void* QScrollBar_NewQScrollBar(void* parent)
 {
@@ -39738,7 +39749,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScroller*)
 
-int QScroller_QScroller_QRegisterMetaType(){return qRegisterMetaType<MyQScroller*>();}
+int QScroller_QScroller_QRegisterMetaType(){qRegisterMetaType<QScroller*>(); return qRegisterMetaType<MyQScroller*>();}
 
 struct QtWidgets_PackedList QScroller_QScroller_ActiveScrollers()
 {
@@ -39922,6 +39933,7 @@ void QScroller_SetSnapPositionsY2(void* ptr, double first, double interval)
 
 void QScroller_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QScroller::State>();
 	QObject::connect(static_cast<QScroller*>(ptr), static_cast<void (QScroller::*)(QScroller::State)>(&QScroller::stateChanged), static_cast<MyQScroller*>(ptr), static_cast<void (MyQScroller::*)(QScroller::State)>(&MyQScroller::Signal_StateChanged));
 }
 
@@ -40279,7 +40291,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQShortcut*)
 
-int QShortcut_QShortcut_QRegisterMetaType(){return qRegisterMetaType<MyQShortcut*>();}
+int QShortcut_QShortcut_QRegisterMetaType(){qRegisterMetaType<QShortcut*>(); return qRegisterMetaType<MyQShortcut*>();}
 
 void* QShortcut_NewQShortcut(void* parent)
 {
@@ -40636,7 +40648,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSizeGrip*)
 
-int QSizeGrip_QSizeGrip_QRegisterMetaType(){return qRegisterMetaType<MyQSizeGrip*>();}
+int QSizeGrip_QSizeGrip_QRegisterMetaType(){qRegisterMetaType<QSizeGrip*>(); return qRegisterMetaType<MyQSizeGrip*>();}
 
 void* QSizeGrip_NewQSizeGrip(void* parent)
 {
@@ -40844,7 +40856,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSlider*)
 
-int QSlider_QSlider_QRegisterMetaType(){return qRegisterMetaType<MyQSlider*>();}
+int QSlider_QSlider_QRegisterMetaType(){qRegisterMetaType<QSlider*>(); return qRegisterMetaType<MyQSlider*>();}
 
 void QSlider_SetTickInterval(void* ptr, int ti)
 {
@@ -41086,7 +41098,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSpinBox*)
 
-int QSpinBox_QSpinBox_QRegisterMetaType(){return qRegisterMetaType<MyQSpinBox*>();}
+int QSpinBox_QSpinBox_QRegisterMetaType(){qRegisterMetaType<QSpinBox*>(); return qRegisterMetaType<MyQSpinBox*>();}
 
 void* QSpinBox_NewQSpinBox(void* parent)
 {
@@ -41314,7 +41326,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSplashScreen*)
 
-int QSplashScreen_QSplashScreen_QRegisterMetaType(){return qRegisterMetaType<MyQSplashScreen*>();}
+int QSplashScreen_QSplashScreen_QRegisterMetaType(){qRegisterMetaType<QSplashScreen*>(); return qRegisterMetaType<MyQSplashScreen*>();}
 
 void* QSplashScreen_NewQSplashScreen2(void* parent, void* pixmap, long long fo)
 {
@@ -41485,7 +41497,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSplitter*)
 
-int QSplitter_QSplitter_QRegisterMetaType(){return qRegisterMetaType<MyQSplitter*>();}
+int QSplitter_QSplitter_QRegisterMetaType(){qRegisterMetaType<QSplitter*>(); return qRegisterMetaType<MyQSplitter*>();}
 
 void* QSplitter_NewQSplitter(void* parent)
 {
@@ -41765,7 +41777,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSplitterHandle*)
 
-int QSplitterHandle_QSplitterHandle_QRegisterMetaType(){return qRegisterMetaType<MyQSplitterHandle*>();}
+int QSplitterHandle_QSplitterHandle_QRegisterMetaType(){qRegisterMetaType<QSplitterHandle*>(); return qRegisterMetaType<MyQSplitterHandle*>();}
 
 void* QSplitterHandle_NewQSplitterHandle(long long orientation, void* parent)
 {
@@ -41851,7 +41863,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStackedLayout*)
 
-int QStackedLayout_QStackedLayout_QRegisterMetaType(){return qRegisterMetaType<MyQStackedLayout*>();}
+int QStackedLayout_QStackedLayout_QRegisterMetaType(){qRegisterMetaType<QStackedLayout*>(); return qRegisterMetaType<MyQStackedLayout*>();}
 
 void* QStackedLayout_TakeAt(void* ptr, int index)
 {
@@ -42096,7 +42108,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStackedWidget*)
 
-int QStackedWidget_QStackedWidget_QRegisterMetaType(){return qRegisterMetaType<MyQStackedWidget*>();}
+int QStackedWidget_QStackedWidget_QRegisterMetaType(){qRegisterMetaType<QStackedWidget*>(); return qRegisterMetaType<MyQStackedWidget*>();}
 
 void* QStackedWidget_NewQStackedWidget(void* parent)
 {
@@ -42278,7 +42290,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStatusBar*)
 
-int QStatusBar_QStatusBar_QRegisterMetaType(){return qRegisterMetaType<MyQStatusBar*>();}
+int QStatusBar_QStatusBar_QRegisterMetaType(){qRegisterMetaType<QStatusBar*>(); return qRegisterMetaType<MyQStatusBar*>();}
 
 void* QStatusBar_NewQStatusBar(void* parent)
 {
@@ -42424,7 +42436,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStyle*)
 
-int QStyle_QStyle_QRegisterMetaType(){return qRegisterMetaType<MyQStyle*>();}
+int QStyle_QStyle_QRegisterMetaType(){qRegisterMetaType<QStyle*>(); return qRegisterMetaType<MyQStyle*>();}
 
 int QStyle_PM_MdiSubWindowMinimizedWidth_Type()
 {
@@ -46856,7 +46868,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStylePlugin*)
 
-int QStylePlugin_QStylePlugin_QRegisterMetaType(){return qRegisterMetaType<MyQStylePlugin*>();}
+int QStylePlugin_QStylePlugin_QRegisterMetaType(){qRegisterMetaType<QStylePlugin*>(); return qRegisterMetaType<MyQStylePlugin*>();}
 
 void* QStylePlugin_Create(void* ptr, struct QtWidgets_PackedString key)
 {
@@ -47117,7 +47129,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQStyledItemDelegate*)
 
-int QStyledItemDelegate_QStyledItemDelegate_QRegisterMetaType(){return qRegisterMetaType<MyQStyledItemDelegate*>();}
+int QStyledItemDelegate_QStyledItemDelegate_QRegisterMetaType(){qRegisterMetaType<QStyledItemDelegate*>(); return qRegisterMetaType<MyQStyledItemDelegate*>();}
 
 void* QStyledItemDelegate_NewQStyledItemDelegate(void* parent)
 {
@@ -47233,7 +47245,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSwipeGesture*)
 
-int QSwipeGesture_QSwipeGesture_QRegisterMetaType(){return qRegisterMetaType<MyQSwipeGesture*>();}
+int QSwipeGesture_QSwipeGesture_QRegisterMetaType(){qRegisterMetaType<QSwipeGesture*>(); return qRegisterMetaType<MyQSwipeGesture*>();}
 
 void QSwipeGesture_SetSwipeAngle(void* ptr, double value)
 {
@@ -47286,7 +47298,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSystemTrayIcon*)
 
-int QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType(){return qRegisterMetaType<MyQSystemTrayIcon*>();}
+int QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType(){qRegisterMetaType<QSystemTrayIcon*>(); return qRegisterMetaType<MyQSystemTrayIcon*>();}
 
 void* QSystemTrayIcon_NewQSystemTrayIcon(void* parent)
 {
@@ -47756,7 +47768,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTabBar*)
 
-int QTabBar_QTabBar_QRegisterMetaType(){return qRegisterMetaType<MyQTabBar*>();}
+int QTabBar_QTabBar_QRegisterMetaType(){qRegisterMetaType<QTabBar*>(); return qRegisterMetaType<MyQTabBar*>();}
 
 void* QTabBar_NewQTabBar(void* parent)
 {
@@ -48252,7 +48264,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTabWidget*)
 
-int QTabWidget_QTabWidget_QRegisterMetaType(){return qRegisterMetaType<MyQTabWidget*>();}
+int QTabWidget_QTabWidget_QRegisterMetaType(){qRegisterMetaType<QTabWidget*>(); return qRegisterMetaType<MyQTabWidget*>();}
 
 int QTabWidget_AddTab2(void* ptr, void* page, void* icon, struct QtWidgets_PackedString label)
 {
@@ -48723,7 +48735,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTableView*)
 
-int QTableView_QTableView_QRegisterMetaType(){return qRegisterMetaType<MyQTableView*>();}
+int QTableView_QTableView_QRegisterMetaType(){qRegisterMetaType<QTableView*>(); return qRegisterMetaType<MyQTableView*>();}
 
 void* QTableView_MoveCursor(void* ptr, long long cursorAction, long long modifiers)
 {
@@ -49471,7 +49483,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTableWidget*)
 
-int QTableWidget_QTableWidget_QRegisterMetaType(){return qRegisterMetaType<MyQTableWidget*>();}
+int QTableWidget_QTableWidget_QRegisterMetaType(){qRegisterMetaType<QTableWidget*>(); return qRegisterMetaType<MyQTableWidget*>();}
 
 void* QTableWidget_NewQTableWidget(void* parent)
 {
@@ -49815,6 +49827,7 @@ void QTableWidget_RemoveRowDefault(void* ptr, int row)
 
 void QTableWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
+	qRegisterMetaType<QAbstractItemView::ScrollHint>();
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToItem", Q_ARG(QTableWidgetItem*, static_cast<QTableWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
@@ -50442,7 +50455,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTapAndHoldGesture*)
 
-int QTapAndHoldGesture_QTapAndHoldGesture_QRegisterMetaType(){return qRegisterMetaType<MyQTapAndHoldGesture*>();}
+int QTapAndHoldGesture_QTapAndHoldGesture_QRegisterMetaType(){qRegisterMetaType<QTapAndHoldGesture*>(); return qRegisterMetaType<MyQTapAndHoldGesture*>();}
 
 int QTapAndHoldGesture_QTapAndHoldGesture_Timeout()
 {
@@ -50487,7 +50500,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTapGesture*)
 
-int QTapGesture_QTapGesture_QRegisterMetaType(){return qRegisterMetaType<MyQTapGesture*>();}
+int QTapGesture_QTapGesture_QRegisterMetaType(){qRegisterMetaType<QTapGesture*>(); return qRegisterMetaType<MyQTapGesture*>();}
 
 void QTapGesture_SetPosition(void* ptr, void* pos)
 {
@@ -50633,7 +50646,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextBrowser*)
 
-int QTextBrowser_QTextBrowser_QRegisterMetaType(){return qRegisterMetaType<MyQTextBrowser*>();}
+int QTextBrowser_QTextBrowser_QRegisterMetaType(){qRegisterMetaType<QTextBrowser*>(); return qRegisterMetaType<MyQTextBrowser*>();}
 
 void* QTextBrowser_NewQTextBrowser(void* parent)
 {
@@ -51003,7 +51016,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextEdit*)
 
-int QTextEdit_QTextEdit_QRegisterMetaType(){return qRegisterMetaType<MyQTextEdit*>();}
+int QTextEdit_QTextEdit_QRegisterMetaType(){qRegisterMetaType<QTextEdit*>(); return qRegisterMetaType<MyQTextEdit*>();}
 
 void* QTextEdit_CreateStandardContextMenu(void* ptr)
 {
@@ -51300,6 +51313,7 @@ void QTextEdit_SetAcceptRichText(void* ptr, char accept)
 
 void QTextEdit_SetAlignment(void* ptr, long long a)
 {
+	qRegisterMetaType<Qt::Alignment>();
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setAlignment", Q_ARG(Qt::Alignment, static_cast<Qt::Alignment>(static_cast<Qt::AlignmentFlag>(a))));
 }
 
@@ -51952,7 +51966,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTimeEdit*)
 
-int QTimeEdit_QTimeEdit_QRegisterMetaType(){return qRegisterMetaType<MyQTimeEdit*>();}
+int QTimeEdit_QTimeEdit_QRegisterMetaType(){qRegisterMetaType<QTimeEdit*>(); return qRegisterMetaType<MyQTimeEdit*>();}
 
 void* QTimeEdit_NewQTimeEdit(void* parent)
 {
@@ -52056,7 +52070,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQToolBar*)
 
-int QToolBar_QToolBar_QRegisterMetaType(){return qRegisterMetaType<MyQToolBar*>();}
+int QToolBar_QToolBar_QRegisterMetaType(){qRegisterMetaType<QToolBar*>(); return qRegisterMetaType<MyQToolBar*>();}
 
 void* QToolBar_AddAction2(void* ptr, void* icon, struct QtWidgets_PackedString text)
 {
@@ -52145,6 +52159,7 @@ void QToolBar_ActionTriggered(void* ptr, void* action)
 
 void QToolBar_ConnectAllowedAreasChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::ToolBarAreas>();
 	QObject::connect(static_cast<QToolBar*>(ptr), static_cast<void (QToolBar::*)(Qt::ToolBarAreas)>(&QToolBar::allowedAreasChanged), static_cast<MyQToolBar*>(ptr), static_cast<void (MyQToolBar::*)(Qt::ToolBarAreas)>(&MyQToolBar::Signal_AllowedAreasChanged));
 }
 
@@ -52195,6 +52210,7 @@ void QToolBar_MovableChanged(void* ptr, char movable)
 
 void QToolBar_ConnectOrientationChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::Orientation>();
 	QObject::connect(static_cast<QToolBar*>(ptr), static_cast<void (QToolBar::*)(Qt::Orientation)>(&QToolBar::orientationChanged), static_cast<MyQToolBar*>(ptr), static_cast<void (MyQToolBar::*)(Qt::Orientation)>(&MyQToolBar::Signal_OrientationChanged));
 }
 
@@ -52240,6 +52256,7 @@ void QToolBar_SetOrientation(void* ptr, long long orientation)
 
 void QToolBar_SetToolButtonStyle(void* ptr, long long toolButtonStyle)
 {
+	qRegisterMetaType<Qt::ToolButtonStyle>();
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setToolButtonStyle", Q_ARG(Qt::ToolButtonStyle, static_cast<Qt::ToolButtonStyle>(toolButtonStyle)));
 }
 
@@ -52250,6 +52267,7 @@ void QToolBar_SetToolButtonStyleDefault(void* ptr, long long toolButtonStyle)
 
 void QToolBar_ConnectToolButtonStyleChanged(void* ptr)
 {
+	qRegisterMetaType<Qt::ToolButtonStyle>();
 	QObject::connect(static_cast<QToolBar*>(ptr), static_cast<void (QToolBar::*)(Qt::ToolButtonStyle)>(&QToolBar::toolButtonStyleChanged), static_cast<MyQToolBar*>(ptr), static_cast<void (MyQToolBar::*)(Qt::ToolButtonStyle)>(&MyQToolBar::Signal_ToolButtonStyleChanged));
 }
 
@@ -52439,7 +52457,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQToolBox*)
 
-int QToolBox_QToolBox_QRegisterMetaType(){return qRegisterMetaType<MyQToolBox*>();}
+int QToolBox_QToolBox_QRegisterMetaType(){qRegisterMetaType<QToolBox*>(); return qRegisterMetaType<MyQToolBox*>();}
 
 void* QToolBox_NewQToolBox(void* parent, long long fo)
 {
@@ -52687,7 +52705,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQToolButton*)
 
-int QToolButton_QToolButton_QRegisterMetaType(){return qRegisterMetaType<MyQToolButton*>();}
+int QToolButton_QToolButton_QRegisterMetaType(){qRegisterMetaType<QToolButton*>(); return qRegisterMetaType<MyQToolButton*>();}
 
 void QToolButton_PaintEvent(void* ptr, void* event)
 {
@@ -52736,6 +52754,7 @@ void QToolButton_SetPopupMode(void* ptr, long long mode)
 
 void QToolButton_SetToolButtonStyle(void* ptr, long long style)
 {
+	qRegisterMetaType<Qt::ToolButtonStyle>();
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setToolButtonStyle", Q_ARG(Qt::ToolButtonStyle, static_cast<Qt::ToolButtonStyle>(style)));
 }
 
@@ -52997,7 +53016,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTreeView*)
 
-int QTreeView_QTreeView_QRegisterMetaType(){return qRegisterMetaType<MyQTreeView*>();}
+int QTreeView_QTreeView_QRegisterMetaType(){qRegisterMetaType<QTreeView*>(); return qRegisterMetaType<MyQTreeView*>();}
 
 void* QTreeView_MoveCursor(void* ptr, long long cursorAction, long long modifiers)
 {
@@ -53868,7 +53887,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTreeWidget*)
 
-int QTreeWidget_QTreeWidget_QRegisterMetaType(){return qRegisterMetaType<MyQTreeWidget*>();}
+int QTreeWidget_QTreeWidget_QRegisterMetaType(){qRegisterMetaType<QTreeWidget*>(); return qRegisterMetaType<MyQTreeWidget*>();}
 
 void* QTreeWidget_NewQTreeWidget(void* parent)
 {
@@ -54112,6 +54131,7 @@ void QTreeWidget_RemoveItemWidget(void* ptr, void* item, int column)
 
 void QTreeWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
+	qRegisterMetaType<QAbstractItemView::ScrollHint>();
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
@@ -54962,7 +54982,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQUndoGroup*)
 
-int QUndoGroup_QUndoGroup_QRegisterMetaType(){return qRegisterMetaType<MyQUndoGroup*>();}
+int QUndoGroup_QUndoGroup_QRegisterMetaType(){qRegisterMetaType<QUndoGroup*>(); return qRegisterMetaType<MyQUndoGroup*>();}
 
 void* QUndoGroup_NewQUndoGroup(void* parent)
 {
@@ -55442,7 +55462,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQUndoStack*)
 
-int QUndoStack_QUndoStack_QRegisterMetaType(){return qRegisterMetaType<MyQUndoStack*>();}
+int QUndoStack_QUndoStack_QRegisterMetaType(){qRegisterMetaType<QUndoStack*>(); return qRegisterMetaType<MyQUndoStack*>();}
 
 void* QUndoStack_NewQUndoStack(void* parent)
 {
@@ -56056,7 +56076,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQUndoView*)
 
-int QUndoView_QUndoView_QRegisterMetaType(){return qRegisterMetaType<MyQUndoView*>();}
+int QUndoView_QUndoView_QRegisterMetaType(){qRegisterMetaType<QUndoView*>(); return qRegisterMetaType<MyQUndoView*>();}
 
 void* QUndoView_NewQUndoView3(void* group, void* parent)
 {
@@ -56168,7 +56188,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQVBoxLayout*)
 
-int QVBoxLayout_QVBoxLayout_QRegisterMetaType(){return qRegisterMetaType<MyQVBoxLayout*>();}
+int QVBoxLayout_QVBoxLayout_QRegisterMetaType(){qRegisterMetaType<QVBoxLayout*>(); return qRegisterMetaType<MyQVBoxLayout*>();}
 
 void* QVBoxLayout_NewQVBoxLayout()
 {
@@ -56302,7 +56322,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWidget*)
 
-int QWidget_QWidget_QRegisterMetaType(){return qRegisterMetaType<MyQWidget*>();}
+int QWidget_QWidget_QRegisterMetaType(){qRegisterMetaType<QWidget*>(); return qRegisterMetaType<MyQWidget*>();}
 
 void* QWidget_Grab(void* ptr, void* rectangle)
 {
@@ -69553,7 +69573,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWidgetAction*)
 
-int QWidgetAction_QWidgetAction_QRegisterMetaType(){return qRegisterMetaType<MyQWidgetAction*>();}
+int QWidgetAction_QWidgetAction_QRegisterMetaType(){qRegisterMetaType<QWidgetAction*>(); return qRegisterMetaType<MyQWidgetAction*>();}
 
 void* QWidgetAction_CreateWidget(void* ptr, void* parent)
 {
@@ -69875,7 +69895,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWizard*)
 
-int QWizard_QWizard_QRegisterMetaType(){return qRegisterMetaType<MyQWizard*>();}
+int QWizard_QWizard_QRegisterMetaType(){qRegisterMetaType<QWizard*>(); return qRegisterMetaType<MyQWizard*>();}
 
 void* QWizard_NewQWizard(void* parent, long long flags)
 {
@@ -70317,7 +70337,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQWizardPage*)
 
-int QWizardPage_QWizardPage_QRegisterMetaType(){return qRegisterMetaType<MyQWizardPage*>();}
+int QWizardPage_QWizardPage_QRegisterMetaType(){qRegisterMetaType<QWizardPage*>(); return qRegisterMetaType<MyQWizardPage*>();}
 
 void* QWizardPage_NewQWizardPage(void* parent)
 {

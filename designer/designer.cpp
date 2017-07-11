@@ -331,7 +331,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesignerActionEditorInterface*)
 
-int QDesignerActionEditorInterface_QDesignerActionEditorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerActionEditorInterface*>();}
+int QDesignerActionEditorInterface_QDesignerActionEditorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerActionEditorInterface*>(); return qRegisterMetaType<MyQDesignerActionEditorInterface*>();}
 
 void* QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(void* parent, long long flags)
 {
@@ -1148,7 +1148,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesignerFormEditorInterface*)
 
-int QDesignerFormEditorInterface_QDesignerFormEditorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerFormEditorInterface*>();}
+int QDesignerFormEditorInterface_QDesignerFormEditorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormEditorInterface*>(); return qRegisterMetaType<MyQDesignerFormEditorInterface*>();}
 
 void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 {
@@ -1680,7 +1680,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesignerFormWindowInterface*)
 
-int QDesignerFormWindowInterface_QDesignerFormWindowInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerFormWindowInterface*>();}
+int QDesignerFormWindowInterface_QDesignerFormWindowInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormWindowInterface*>(); return qRegisterMetaType<MyQDesignerFormWindowInterface*>();}
 
 void* QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(void* object)
 {
@@ -1782,6 +1782,7 @@ void QDesignerFormWindowInterface_EmitSelectionChanged(void* ptr)
 
 void QDesignerFormWindowInterface_ConnectFeatureChanged(void* ptr)
 {
+	qRegisterMetaType<QDesignerFormWindowInterface::Feature>();
 	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&QDesignerFormWindowInterface::featureChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&MyQDesignerFormWindowInterface::Signal_FeatureChanged));
 }
 
@@ -1938,6 +1939,7 @@ void QDesignerFormWindowInterface_SetExportMacro(void* ptr, struct QtDesigner_Pa
 
 void QDesignerFormWindowInterface_SetFeatures(void* ptr, long long features)
 {
+	qRegisterMetaType<QDesignerFormWindowInterface::Feature>();
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFeatures", Q_ARG(QDesignerFormWindowInterface::FeatureFlag, static_cast<QDesignerFormWindowInterface::FeatureFlag>(features)));
 }
 
@@ -2678,7 +2680,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesignerFormWindowManagerInterface*)
 
-int QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerFormWindowManagerInterface*>();}
+int QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerFormWindowManagerInterface*>(); return qRegisterMetaType<MyQDesignerFormWindowManagerInterface*>();}
 
 void* QDesignerFormWindowManagerInterface_CreateFormWindow(void* ptr, void* parent, long long flags)
 {
@@ -3195,7 +3197,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesignerObjectInspectorInterface*)
 
-int QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerObjectInspectorInterface*>();}
+int QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerObjectInspectorInterface*>(); return qRegisterMetaType<MyQDesignerObjectInspectorInterface*>();}
 
 void* QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(void* parent, long long flags)
 {
@@ -3792,7 +3794,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesignerPropertyEditorInterface*)
 
-int QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerPropertyEditorInterface*>();}
+int QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerPropertyEditorInterface*>(); return qRegisterMetaType<MyQDesignerPropertyEditorInterface*>();}
 
 void* QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(void* parent, long long flags)
 {
@@ -4592,7 +4594,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDesignerWidgetBoxInterface*)
 
-int QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_QRegisterMetaType(){return qRegisterMetaType<MyQDesignerWidgetBoxInterface*>();}
+int QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_QRegisterMetaType(){qRegisterMetaType<QDesignerWidgetBoxInterface*>(); return qRegisterMetaType<MyQDesignerWidgetBoxInterface*>();}
 
 char QDesignerWidgetBoxInterface_Load(void* ptr)
 {
@@ -5130,7 +5132,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQExtensionFactory*)
 
-int QExtensionFactory_QExtensionFactory_QRegisterMetaType(){return qRegisterMetaType<MyQExtensionFactory*>();}
+int QExtensionFactory_QExtensionFactory_QRegisterMetaType(){qRegisterMetaType<QExtensionFactory*>(); return qRegisterMetaType<MyQExtensionFactory*>();}
 
 void* QExtensionFactory_NewQExtensionFactory(void* parent)
 {
@@ -5414,7 +5416,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQExtensionManager*)
 
-int QExtensionManager_QExtensionManager_QRegisterMetaType(){return qRegisterMetaType<MyQExtensionManager*>();}
+int QExtensionManager_QExtensionManager_QRegisterMetaType(){qRegisterMetaType<QExtensionManager*>(); return qRegisterMetaType<MyQExtensionManager*>();}
 
 void* QExtensionManager_NewQExtensionManager(void* parent)
 {

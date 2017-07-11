@@ -109,11 +109,6 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 									ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
 								}
 
-								sp, ok := parser.State.ClassMap[parser.CleanValue(p.Output)]
-								if ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
-									ty = "QObject*"
-								}
-
 								fmt.Fprintf(bb, "Q_PROPERTY(%v %v READ %v WRITE set%v NOTIFY %vChanged)\n", ty, p.Name,
 									func() string {
 										if p.Output == "bool" && !strings.HasPrefix(strings.ToLower(p.Name), "is") {
@@ -239,11 +234,6 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
 						}
 
-						sp, ok := parser.State.ClassMap[parser.CleanValue(p.Output)]
-						if ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
-							ty = "QObject*"
-						}
-
 						fmt.Fprintf(bb, "\t%v %v%v() { return _%v; };\n",
 							ty,
 							func() string {
@@ -301,11 +291,6 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
 						}
 
-						sp, ok := parser.State.ClassMap[parser.CleanValue(p.Output)]
-						if ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
-							ty = "QObject*"
-						}
-
 						fmt.Fprintf(bb, "\t%v _%v;\n", ty, p.Name)
 					}
 				}
@@ -323,9 +308,9 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 				if mode != MOC {
 					if strings.HasPrefix(class.Name, "QMac") && !strings.HasPrefix(parser.State.ClassMap[class.Name].Module, "QtMac") {
-						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){\n\t#ifdef Q_OS_OSX\n\t\treturn qRegisterMetaType<My%[1]v*>();\n\t#else\n\t\treturn 0;\n\t#endif\n}\n\n", class.Name)
+						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){\n\t#ifdef Q_OS_OSX\n\t\tqRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();\n\t#else\n\t\treturn 0;\n\t#endif\n}\n\n", class.Name)
 					} else {
-						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
+						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
 					}
 				} else {
 					var typeMap = make(map[string]string)

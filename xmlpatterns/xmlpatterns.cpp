@@ -81,7 +81,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractMessageHandler*)
 
-int QAbstractMessageHandler_QAbstractMessageHandler_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractMessageHandler*>();}
+int QAbstractMessageHandler_QAbstractMessageHandler_QRegisterMetaType(){qRegisterMetaType<QAbstractMessageHandler*>(); return qRegisterMetaType<MyQAbstractMessageHandler*>();}
 
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr)
 {
@@ -240,7 +240,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractUriResolver*)
 
-int QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractUriResolver*>();}
+int QAbstractUriResolver_QAbstractUriResolver_QRegisterMetaType(){qRegisterMetaType<QAbstractUriResolver*>(); return qRegisterMetaType<MyQAbstractUriResolver*>();}
 
 void* QAbstractUriResolver_NewQAbstractUriResolver(void* parent)
 {

@@ -44,6 +44,9 @@ func main() {
 	var docker bool
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
+	var vagrant bool
+	flag.BoolVar(&vagrant, "vagrant", false, "run command inside vagrant vm")
+
 	var ldFlags string
 	flag.StringVar(&ldFlags, "ldflags", "", "arguments to pass on each go tool link invocation")
 
@@ -86,6 +89,12 @@ func main() {
 		flag.Usage()
 	}
 
+	var vagrantsystem string
+	if vagrant && strings.Contains(target, "/") {
+		vagrantsystem = strings.Split(target, "/")[0]
+		target = strings.Split(target, "/")[1]
+	}
+
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
@@ -105,5 +114,5 @@ func main() {
 	case "android", "android-emulator", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
 		fast = false
 	}
-	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !docker, device)
+	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !docker, device, vagrant, vagrantsystem)
 }

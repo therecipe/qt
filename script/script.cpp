@@ -365,7 +365,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScriptEngine*)
 
-int QScriptEngine_QScriptEngine_QRegisterMetaType(){return qRegisterMetaType<MyQScriptEngine*>();}
+int QScriptEngine_QScriptEngine_QRegisterMetaType(){qRegisterMetaType<QScriptEngine*>(); return qRegisterMetaType<MyQScriptEngine*>();}
 
 void* QScriptEngine_PushContext(void* ptr)
 {
@@ -944,7 +944,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScriptExtensionPlugin*)
 
-int QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType(){return qRegisterMetaType<MyQScriptExtensionPlugin*>();}
+int QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType(){qRegisterMetaType<QScriptExtensionPlugin*>(); return qRegisterMetaType<MyQScriptExtensionPlugin*>();}
 
 void* QScriptExtensionPlugin_NewQScriptExtensionPlugin(void* parent)
 {

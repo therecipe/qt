@@ -61,7 +61,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQScriptEngineDebugger*)
 
-int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType(){return qRegisterMetaType<MyQScriptEngineDebugger*>();}
+int QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType(){qRegisterMetaType<QScriptEngineDebugger*>(); return qRegisterMetaType<MyQScriptEngineDebugger*>();}
 
 void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent)
 {

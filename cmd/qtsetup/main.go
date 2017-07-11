@@ -48,6 +48,9 @@ func main() {
 	var docker bool
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
 
+	var vagrant bool
+	flag.BoolVar(&vagrant, "vagrant", false, "run command inside vagrant vm")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -66,6 +69,12 @@ func main() {
 		flag.Usage()
 	}
 
+	var vagrantsystem string
+	if vagrant && strings.Contains(target, "/") {
+		vagrantsystem = strings.Split(target, "/")[0]
+		target = strings.Split(target, "/")[1]
+	}
+
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
@@ -75,20 +84,20 @@ func main() {
 	switch mode {
 	case "full":
 		setup.Prep()
-		setup.Check(target, docker)
-		setup.Generate(target, docker)
-		setup.Install(target, docker)
-		setup.Test(target, docker)
+		setup.Check(target, docker, vagrant)
+		setup.Generate(target, docker, vagrant)
+		setup.Install(target, docker, vagrant)
+		setup.Test(target, docker, vagrant, vagrantsystem)
 	case "prep":
 		setup.Prep()
 	case "check":
-		setup.Check(target, docker)
+		setup.Check(target, docker, vagrant)
 	case "generate":
-		setup.Generate(target, docker)
+		setup.Generate(target, docker, vagrant)
 	case "install":
-		setup.Install(target, docker)
+		setup.Install(target, docker, vagrant)
 	case "test":
-		setup.Test(target, docker)
+		setup.Test(target, docker, vagrant, vagrantsystem)
 	case "update":
 		setup.Update()
 	case "upgrade":

@@ -84,7 +84,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQGamepad*)
 
-int QGamepad_QGamepad_QRegisterMetaType(){return qRegisterMetaType<MyQGamepad*>();}
+int QGamepad_QGamepad_QRegisterMetaType(){qRegisterMetaType<QGamepad*>(); return qRegisterMetaType<MyQGamepad*>();}
 
 void* QGamepad_NewQGamepad(int deviceId, void* parent)
 {

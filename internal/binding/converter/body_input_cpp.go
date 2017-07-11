@@ -73,12 +73,7 @@ func CppInputParametersForSignalConnect(function *parser.Function) string {
 		if isEnum(function.ClassName(), parameter.Value) {
 			input[i] = cppEnum(function, parameter.Value, true)
 		} else {
-			sp, ok := parser.State.ClassMap[parser.CleanValue(parameter.Value)]
-			if function.IsMocFunction && ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
-				input[i] = "QObject*"
-			} else {
-				input[i] = parameter.Value
-			}
+			input[i] = parameter.Value
 		}
 	}
 
@@ -102,12 +97,7 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 				if parser.IsPackedList(parameter.Value) || parser.IsPackedMap(parameter.Value) {
 					input[i] = fmt.Sprintf("%v %v", function.OgParameters[i].Value, parser.CleanName(parameter.Name, parameter.Value))
 				} else {
-					sp, ok := parser.State.ClassMap[parser.CleanValue(parameter.Value)]
-					if function.IsMocFunction && ok && !(sp.Module == parser.MOC || sp.Pkg != "") && sp.IsSubClassOfQObject() {
-						input[i] = fmt.Sprintf("%v %v", "QObject*", parser.CleanName(parameter.Name, parameter.Value))
-					} else {
-						input[i] = fmt.Sprintf("%v %v", parameter.Value, parser.CleanName(parameter.Name, parameter.Value))
-					}
+					input[i] = fmt.Sprintf("%v %v", parameter.Value, parser.CleanName(parameter.Name, parameter.Value))
 				}
 			}
 		}
@@ -142,4 +132,44 @@ func CppInputParametersForCallbackBodyPrePack(function *parser.Function) string 
 	}
 
 	return strings.Join(input, "")
+}
+
+func CppRegisterMetaType(function *parser.Function) string {
+	var out = make([]string, 0)
+
+	for _, p := range function.Parameters {
+		if isEnum(function.ClassName(), p.Value) {
+			out = append(out, cppEnum(function, p.Value, true))
+		}
+	}
+
+	if isEnum(function.ClassName(), function.Output) {
+		out = append(out, cppEnum(function, function.Output, true))
+	}
+
+	//TODO: these should ideally be registered with Q_DECLARE_METATYPE instead; also relocate use into registerTypes function
+	for i := len(out) - 1; i >= 0; i-- {
+		switch out[i] {
+		case "QAbstractAnimation::DeletionPolicy", "QTimeLine::State", "QClipboard::Mode",
+			"QImageReader::ImageReaderError", "QLocalSocket::LocalSocketError", "QSslSocket::SslMode", "QNearFieldShareManager::ShareModes",
+			"QAccelerometer::AccelerationMode", "QSensor::AxesOrientationMode", "QGeoAreaMonitorSource::Error", "QGeoPositionInfoSource::Error",
+			"QGeoSatelliteInfoSource::Error", "QSystemTrayIcon::MessageIcon", "QLocalSocket::LocalSocketState", "QGraphicsScene::SceneLayers",
+			"QSystemTrayIcon::ActivationReason", "QGraphicsBlurEffect::BlurHints", "QAbstractItemDelegate::EndEditHint", "QDockWidget::DockWidgetFeatures",
+			"QAbstract3DSeries::Mesh", "QAbstract3DInputHandler::InputView", "QAbstract3DGraph::ShadowQuality",
+			"QAbstract3DGraph::SelectionFlags", "QWebSocketProtocol::CloseCode", "QSqlDriver::NotificationSource", "QCamera::LockTypes",
+			"QGeoRouteReply::Error", "QWebEnginePage::Feature", "QWebEnginePage::RenderProcessTerminationStatus", "QSerialPort::Directions",
+			"QPrinter::Orientation", "QPrintPreviewWidget::ViewMode", "QPrintPreviewWidget::ZoomMode", "QInAppProduct::ProductType",
+			"Q3DCamera::CameraPreset", "Q3DTheme::ColorStyle", "Q3DTheme::Theme", "QAbstract3DAxis::AxisOrientation", "QAbstract3DGraph::OptimizationHints",
+			"QAbstract3DGraph::ElementType", "QImage::Format", "QItemModelBarDataProxy::MultiMatchBehavior", "QSurface3DSeries::DrawFlags",
+			"QAbstractBarSeries::LabelsPosition", "QScatterSeries::MarkerShape", "QWebPage::MessageSource", "QWebPage::MessageLevel",
+			"QWebPage::Feature", "QItemModelSurfaceDataProxy::MultiMatchBehavior", "QCategoryAxis::AxisLabelsPosition":
+			out = append(out[:i], out[i+1:]...)
+		}
+	}
+
+	for i := range out {
+		out[i] = fmt.Sprintf("\tqRegisterMetaType<%v>();", out[i])
+	}
+
+	return strings.Join(out, "\n")
 }

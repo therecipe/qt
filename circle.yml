@@ -3,7 +3,7 @@ machine:
     OS: linux
     DESKTOP: true
     ANDROID: true
-    QT_WINDOWS_CC: false
+    QT_MXE: false
     GOROOT: /usr/local/go
     GOPATH: /home/ubuntu/.go_project
     JDK_DIR: /usr/lib/jvm/java-8-openjdk-amd64
@@ -18,5 +18,5 @@ test:
   override:
     - if [[ "$DESKTOP" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup full desktop; fi
     - if [[ "$ANDROID" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup full android; fi
-    - if [[ "$QT_WINDOWS_CC" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup full windows; fi
+    - if [[ "$QT_MXE" == "true" ]]; then /home/ubuntu/.go_project/bin/qtsetup full windows; fi
   post:

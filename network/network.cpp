@@ -121,7 +121,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractNetworkCache*)
 
-int QAbstractNetworkCache_QAbstractNetworkCache_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractNetworkCache*>();}
+int QAbstractNetworkCache_QAbstractNetworkCache_QRegisterMetaType(){qRegisterMetaType<QAbstractNetworkCache*>(); return qRegisterMetaType<MyQAbstractNetworkCache*>();}
 
 void* QAbstractNetworkCache_NewQAbstractNetworkCache(void* parent)
 {
@@ -433,7 +433,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractSocket*)
 
-int QAbstractSocket_QAbstractSocket_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractSocket*>();}
+int QAbstractSocket_QAbstractSocket_QRegisterMetaType(){qRegisterMetaType<QAbstractSocket*>(); return qRegisterMetaType<MyQAbstractSocket*>();}
 
 void* QAbstractSocket_NewQAbstractSocket(long long socketType, void* parent)
 {
@@ -724,6 +724,7 @@ void QAbstractSocket_Disconnected(void* ptr)
 
 void QAbstractSocket_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QAbstractSocket::SocketError>();
 	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketError)>(&MyQAbstractSocket::Signal_Error2));
 }
 
@@ -868,6 +869,7 @@ void QAbstractSocket_SetSocketState(void* ptr, long long state)
 
 void QAbstractSocket_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QAbstractSocket::SocketState>();
 	QObject::connect(static_cast<QAbstractSocket*>(ptr), static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketState)>(&QAbstractSocket::stateChanged), static_cast<MyQAbstractSocket*>(ptr), static_cast<void (MyQAbstractSocket::*)(QAbstractSocket::SocketState)>(&MyQAbstractSocket::Signal_StateChanged));
 }
 
@@ -1473,7 +1475,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQDnsLookup*)
 
-int QDnsLookup_QDnsLookup_QRegisterMetaType(){return qRegisterMetaType<MyQDnsLookup*>();}
+int QDnsLookup_QDnsLookup_QRegisterMetaType(){qRegisterMetaType<QDnsLookup*>(); return qRegisterMetaType<MyQDnsLookup*>();}
 
 void* QDnsLookup_NewQDnsLookup(void* parent)
 {
@@ -1680,6 +1682,7 @@ void QDnsLookup_SetType(void* ptr, long long vqd)
 
 void QDnsLookup_ConnectTypeChanged(void* ptr)
 {
+	qRegisterMetaType<QDnsLookup::Type>();
 	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(QDnsLookup::Type)>(&QDnsLookup::typeChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(QDnsLookup::Type)>(&MyQDnsLookup::Signal_TypeChanged));
 }
 
@@ -2414,7 +2417,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQHttpMultiPart*)
 
-int QHttpMultiPart_QHttpMultiPart_QRegisterMetaType(){return qRegisterMetaType<MyQHttpMultiPart*>();}
+int QHttpMultiPart_QHttpMultiPart_QRegisterMetaType(){qRegisterMetaType<QHttpMultiPart*>(); return qRegisterMetaType<MyQHttpMultiPart*>();}
 
 void* QHttpMultiPart_NewQHttpMultiPart2(long long contentType, void* parent)
 {
@@ -2711,7 +2714,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLocalServer*)
 
-int QLocalServer_QLocalServer_QRegisterMetaType(){return qRegisterMetaType<MyQLocalServer*>();}
+int QLocalServer_QLocalServer_QRegisterMetaType(){qRegisterMetaType<QLocalServer*>(); return qRegisterMetaType<MyQLocalServer*>();}
 
 void* QLocalServer_NewQLocalServer(void* parent)
 {
@@ -3040,7 +3043,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLocalSocket*)
 
-int QLocalSocket_QLocalSocket_QRegisterMetaType(){return qRegisterMetaType<MyQLocalSocket*>();}
+int QLocalSocket_QLocalSocket_QRegisterMetaType(){qRegisterMetaType<QLocalSocket*>(); return qRegisterMetaType<MyQLocalSocket*>();}
 
 char QLocalSocket_OpenDefault(void* ptr, long long openMode)
 {
@@ -3466,7 +3469,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNetworkAccessManager*)
 
-int QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkAccessManager*>();}
+int QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType(){qRegisterMetaType<QNetworkAccessManager*>(); return qRegisterMetaType<MyQNetworkAccessManager*>();}
 
 void* QNetworkAccessManager_NewQNetworkAccessManager(void* parent)
 {
@@ -3641,6 +3644,7 @@ void QNetworkAccessManager_Finished(void* ptr, void* reply)
 
 void QNetworkAccessManager_ConnectNetworkAccessibleChanged(void* ptr)
 {
+	qRegisterMetaType<QNetworkAccessManager::NetworkAccessibility>();
 	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkAccessManager::NetworkAccessibility)>(&QNetworkAccessManager::networkAccessibleChanged), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkAccessManager::NetworkAccessibility)>(&MyQNetworkAccessManager::Signal_NetworkAccessibleChanged));
 }
 
@@ -4169,7 +4173,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNetworkConfigurationManager*)
 
-int QNetworkConfigurationManager_QNetworkConfigurationManager_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkConfigurationManager*>();}
+int QNetworkConfigurationManager_QNetworkConfigurationManager_QRegisterMetaType(){qRegisterMetaType<QNetworkConfigurationManager*>(); return qRegisterMetaType<MyQNetworkConfigurationManager*>();}
 
 void* QNetworkConfigurationManager_NewQNetworkConfigurationManager(void* parent)
 {
@@ -4631,7 +4635,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNetworkCookieJar*)
 
-int QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkCookieJar*>();}
+int QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType(){qRegisterMetaType<QNetworkCookieJar*>(); return qRegisterMetaType<MyQNetworkCookieJar*>();}
 
 void* QNetworkCookieJar_NewQNetworkCookieJar(void* parent)
 {
@@ -5082,7 +5086,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNetworkDiskCache*)
 
-int QNetworkDiskCache_QNetworkDiskCache_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkDiskCache*>();}
+int QNetworkDiskCache_QNetworkDiskCache_QRegisterMetaType(){qRegisterMetaType<QNetworkDiskCache*>(); return qRegisterMetaType<MyQNetworkDiskCache*>();}
 
 void* QNetworkDiskCache_Data(void* ptr, void* url)
 {
@@ -5807,7 +5811,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNetworkReply*)
 
-int QNetworkReply_QNetworkReply_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkReply*>();}
+int QNetworkReply_QNetworkReply_QRegisterMetaType(){qRegisterMetaType<QNetworkReply*>(); return qRegisterMetaType<MyQNetworkReply*>();}
 
 void* QNetworkReply_NewQNetworkReply(void* parent)
 {
@@ -5892,6 +5896,7 @@ void QNetworkReply_Encrypted(void* ptr)
 
 void QNetworkReply_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QNetworkReply::NetworkError>();
 	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(QNetworkReply::NetworkError)>(&MyQNetworkReply::Signal_Error2));
 }
 
@@ -6607,7 +6612,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNetworkSession*)
 
-int QNetworkSession_QNetworkSession_QRegisterMetaType(){return qRegisterMetaType<MyQNetworkSession*>();}
+int QNetworkSession_QNetworkSession_QRegisterMetaType(){qRegisterMetaType<QNetworkSession*>(); return qRegisterMetaType<MyQNetworkSession*>();}
 
 void* QNetworkSession_NewQNetworkSession(void* connectionConfig, void* parent)
 {
@@ -6692,6 +6697,7 @@ void QNetworkSession_Closed(void* ptr)
 
 void QNetworkSession_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QNetworkSession::SessionError>();
 	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::SessionError)>(&QNetworkSession::error), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::SessionError)>(&MyQNetworkSession::Signal_Error2));
 }
 
@@ -6797,6 +6803,7 @@ void QNetworkSession_SetSessionProperty(void* ptr, struct QtNetwork_PackedString
 
 void QNetworkSession_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QNetworkSession::State>();
 	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::State)>(&QNetworkSession::stateChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::State)>(&MyQNetworkSession::Signal_StateChanged));
 }
 
@@ -6822,6 +6829,7 @@ void QNetworkSession_StopDefault(void* ptr)
 
 void QNetworkSession_ConnectUsagePoliciesChanged(void* ptr)
 {
+	qRegisterMetaType<QNetworkSession::UsagePolicies>();
 	QObject::connect(static_cast<QNetworkSession*>(ptr), static_cast<void (QNetworkSession::*)(QNetworkSession::UsagePolicies)>(&QNetworkSession::usagePoliciesChanged), static_cast<MyQNetworkSession*>(ptr), static_cast<void (MyQNetworkSession::*)(QNetworkSession::UsagePolicies)>(&MyQNetworkSession::Signal_UsagePoliciesChanged));
 }
 
@@ -8311,7 +8319,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSslSocket*)
 
-int QSslSocket_QSslSocket_QRegisterMetaType(){return qRegisterMetaType<MyQSslSocket*>();}
+int QSslSocket_QSslSocket_QRegisterMetaType(){qRegisterMetaType<QSslSocket*>(); return qRegisterMetaType<MyQSslSocket*>();}
 
 void* QSslSocket_NewQSslSocket(void* parent)
 {
@@ -9001,7 +9009,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTcpServer*)
 
-int QTcpServer_QTcpServer_QRegisterMetaType(){return qRegisterMetaType<MyQTcpServer*>();}
+int QTcpServer_QTcpServer_QRegisterMetaType(){qRegisterMetaType<QTcpServer*>(); return qRegisterMetaType<MyQTcpServer*>();}
 
 void* QTcpServer_NewQTcpServer(void* parent)
 {
@@ -9067,6 +9075,7 @@ char QTcpServer_WaitForNewConnection(void* ptr, int msec, char timedOut)
 
 void QTcpServer_ConnectAcceptError(void* ptr)
 {
+	qRegisterMetaType<QAbstractSocket::SocketError>();
 	QObject::connect(static_cast<QTcpServer*>(ptr), static_cast<void (QTcpServer::*)(QAbstractSocket::SocketError)>(&QTcpServer::acceptError), static_cast<MyQTcpServer*>(ptr), static_cast<void (MyQTcpServer::*)(QAbstractSocket::SocketError)>(&MyQTcpServer::Signal_AcceptError));
 }
 
@@ -9363,7 +9372,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTcpSocket*)
 
-int QTcpSocket_QTcpSocket_QRegisterMetaType(){return qRegisterMetaType<MyQTcpSocket*>();}
+int QTcpSocket_QTcpSocket_QRegisterMetaType(){qRegisterMetaType<QTcpSocket*>(); return qRegisterMetaType<MyQTcpSocket*>();}
 
 void* QTcpSocket_NewQTcpSocket(void* parent)
 {
@@ -9474,7 +9483,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQUdpSocket*)
 
-int QUdpSocket_QUdpSocket_QRegisterMetaType(){return qRegisterMetaType<MyQUdpSocket*>();}
+int QUdpSocket_QUdpSocket_QRegisterMetaType(){qRegisterMetaType<QUdpSocket*>(); return qRegisterMetaType<MyQUdpSocket*>();}
 
 void* QUdpSocket_ReceiveDatagram(void* ptr, long long maxSize)
 {

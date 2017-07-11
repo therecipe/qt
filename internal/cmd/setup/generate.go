@@ -12,8 +12,8 @@ import (
 	"github.com/therecipe/qt/internal/cmd"
 )
 
-func Generate(target string, docker bool) {
-	utils.Log.Infof("running: 'qtsetup generate %v' [docker=%v]", target, docker)
+func Generate(target string, docker, vagrant bool) {
+	utils.Log.Infof("running: 'qtsetup generate %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 	if docker {
 		cmd.Docker([]string{"/home/user/work/bin/qtsetup", "-debug", "generate"}, "linux", "", true)
 		return

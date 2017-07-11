@@ -14,7 +14,7 @@ install:
 
     %TMP%\%QT% --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
 
-    DEL %TMP%\%QT% /Q
+    del %TMP%\%QT% /Q
 
 
     set SDK=tools_r25.2.5-windows.zip
@@ -23,7 +23,7 @@ install:
 
     7z x %TMP%\%SDK% -oC:\android-sdk-windows\
 
-    DEL %TMP%\%SDK% /Q
+    del %TMP%\%SDK% /Q
 
 
     C:\android-sdk-windows\tools\android.bat list sdk
@@ -38,7 +38,7 @@ install:
 
     7z x %TMP%\%NDK% -oC:\
 
-    DEL %TMP%\%NDK% /Q
+    del %TMP%\%NDK% /Q
 build_script:
 - cmd: >-
     go get -v github.com/therecipe/qt/cmd/...

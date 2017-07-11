@@ -166,7 +166,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMacToolBar*)
 
-int QMacToolBar_QMacToolBar_QRegisterMetaType(){return qRegisterMetaType<MyQMacToolBar*>();}
+int QMacToolBar_QMacToolBar_QRegisterMetaType(){qRegisterMetaType<QMacToolBar*>(); return qRegisterMetaType<MyQMacToolBar*>();}
 
 struct QtMacExtras_PackedList QMacToolBar_AllowedItems(void* ptr)
 {
@@ -510,7 +510,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQMacToolBarItem*)
 
-int QMacToolBarItem_QMacToolBarItem_QRegisterMetaType(){return qRegisterMetaType<MyQMacToolBarItem*>();}
+int QMacToolBarItem_QMacToolBarItem_QRegisterMetaType(){qRegisterMetaType<QMacToolBarItem*>(); return qRegisterMetaType<MyQMacToolBarItem*>();}
 
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
 {

@@ -77,7 +77,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQTextToSpeech*)
 
-int QTextToSpeech_QTextToSpeech_QRegisterMetaType(){return qRegisterMetaType<MyQTextToSpeech*>();}
+int QTextToSpeech_QTextToSpeech_QRegisterMetaType(){qRegisterMetaType<QTextToSpeech*>(); return qRegisterMetaType<MyQTextToSpeech*>();}
 
 struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_AvailableEngines()
 {
@@ -283,6 +283,7 @@ void QTextToSpeech_SetVolumeDefault(void* ptr, double volume)
 
 void QTextToSpeech_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QTextToSpeech::State>();
 	QObject::connect(static_cast<QTextToSpeech*>(ptr), static_cast<void (QTextToSpeech::*)(QTextToSpeech::State)>(&QTextToSpeech::stateChanged), static_cast<MyQTextToSpeech*>(ptr), static_cast<void (MyQTextToSpeech::*)(QTextToSpeech::State)>(&MyQTextToSpeech::Signal_StateChanged));
 }
 

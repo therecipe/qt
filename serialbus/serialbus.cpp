@@ -76,7 +76,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCanBus*)
 
-int QCanBus_QCanBus_QRegisterMetaType(){return qRegisterMetaType<MyQCanBus*>();}
+int QCanBus_QCanBus_QRegisterMetaType(){qRegisterMetaType<QCanBus*>(); return qRegisterMetaType<MyQCanBus*>();}
 
 void* QCanBus_QCanBus_Instance()
 {
@@ -248,7 +248,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQCanBusDevice*)
 
-int QCanBusDevice_QCanBusDevice_QRegisterMetaType(){return qRegisterMetaType<MyQCanBusDevice*>();}
+int QCanBusDevice_QCanBusDevice_QRegisterMetaType(){qRegisterMetaType<QCanBusDevice*>(); return qRegisterMetaType<MyQCanBusDevice*>();}
 
 void* QCanBusDevice_NewQCanBusDevice(void* parent)
 {
@@ -353,6 +353,7 @@ void QCanBusDevice_EnqueueReceivedFrames(void* ptr, void* newFrames)
 
 void QCanBusDevice_ConnectErrorOccurred(void* ptr)
 {
+	qRegisterMetaType<QCanBusDevice::CanBusError>();
 	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusError)>(&QCanBusDevice::errorOccurred), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusError)>(&MyQCanBusDevice::Signal_ErrorOccurred));
 }
 
@@ -418,6 +419,7 @@ void QCanBusDevice_SetState(void* ptr, long long newState)
 
 void QCanBusDevice_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QCanBusDevice::CanBusDeviceState>();
 	QObject::connect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&QCanBusDevice::stateChanged), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&MyQCanBusDevice::Signal_StateChanged));
 }
 
@@ -795,7 +797,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusClient*)
 
-int QModbusClient_QModbusClient_QRegisterMetaType(){return qRegisterMetaType<MyQModbusClient*>();}
+int QModbusClient_QModbusClient_QRegisterMetaType(){qRegisterMetaType<QModbusClient*>(); return qRegisterMetaType<MyQModbusClient*>();}
 
 void* QModbusClient_NewQModbusClient(void* parent)
 {
@@ -1103,7 +1105,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusDevice*)
 
-int QModbusDevice_QModbusDevice_QRegisterMetaType(){return qRegisterMetaType<MyQModbusDevice*>();}
+int QModbusDevice_QModbusDevice_QRegisterMetaType(){qRegisterMetaType<QModbusDevice*>(); return qRegisterMetaType<MyQModbusDevice*>();}
 
 void* QModbusDevice_NewQModbusDevice(void* parent)
 {
@@ -1168,6 +1170,7 @@ void QModbusDevice_DisconnectDevice(void* ptr)
 
 void QModbusDevice_ConnectErrorOccurred(void* ptr)
 {
+	qRegisterMetaType<QModbusDevice::Error>();
 	QObject::connect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::Error)>(&QModbusDevice::errorOccurred), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::Error)>(&MyQModbusDevice::Signal_ErrorOccurred));
 }
 
@@ -1198,6 +1201,7 @@ void QModbusDevice_SetState(void* ptr, long long newState)
 
 void QModbusDevice_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QModbusDevice::State>();
 	QObject::connect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::State)>(&QModbusDevice::stateChanged), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::State)>(&MyQModbusDevice::Signal_StateChanged));
 }
 
@@ -1713,7 +1717,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusReply*)
 
-int QModbusReply_QModbusReply_QRegisterMetaType(){return qRegisterMetaType<MyQModbusReply*>();}
+int QModbusReply_QModbusReply_QRegisterMetaType(){qRegisterMetaType<QModbusReply*>(); return qRegisterMetaType<MyQModbusReply*>();}
 
 void* QModbusReply_NewQModbusReply(long long ty, int serverAddress, void* parent)
 {
@@ -1758,6 +1762,7 @@ void* QModbusReply_NewQModbusReply(long long ty, int serverAddress, void* parent
 
 void QModbusReply_ConnectErrorOccurred(void* ptr)
 {
+	qRegisterMetaType<QModbusDevice::Error>();
 	QObject::connect(static_cast<QModbusReply*>(ptr), static_cast<void (QModbusReply::*)(QModbusDevice::Error)>(&QModbusReply::errorOccurred), static_cast<MyQModbusReply*>(ptr), static_cast<void (MyQModbusReply::*)(QModbusDevice::Error)>(&MyQModbusReply::Signal_ErrorOccurred));
 }
 
@@ -2040,7 +2045,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusRtuSerialMaster*)
 
-int QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType(){return qRegisterMetaType<MyQModbusRtuSerialMaster*>();}
+int QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType(){qRegisterMetaType<QModbusRtuSerialMaster*>(); return qRegisterMetaType<MyQModbusRtuSerialMaster*>();}
 
 void* QModbusRtuSerialMaster_NewQModbusRtuSerialMaster(void* parent)
 {
@@ -2125,7 +2130,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusRtuSerialSlave*)
 
-int QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType(){return qRegisterMetaType<MyQModbusRtuSerialSlave*>();}
+int QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType(){qRegisterMetaType<QModbusRtuSerialSlave*>(); return qRegisterMetaType<MyQModbusRtuSerialSlave*>();}
 
 void* QModbusRtuSerialSlave_NewQModbusRtuSerialSlave(void* parent)
 {
@@ -2204,7 +2209,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusServer*)
 
-int QModbusServer_QModbusServer_QRegisterMetaType(){return qRegisterMetaType<MyQModbusServer*>();}
+int QModbusServer_QModbusServer_QRegisterMetaType(){qRegisterMetaType<QModbusServer*>(); return qRegisterMetaType<MyQModbusServer*>();}
 
 void* QModbusServer_ProcessPrivateRequest(void* ptr, void* request)
 {
@@ -2323,6 +2328,7 @@ char QModbusServer_WriteDataDefault(void* ptr, void* newData)
 
 void QModbusServer_ConnectDataWritten(void* ptr)
 {
+	qRegisterMetaType<QModbusDataUnit::RegisterType>();
 	QObject::connect(static_cast<QModbusServer*>(ptr), static_cast<void (QModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&QModbusServer::dataWritten), static_cast<MyQModbusServer*>(ptr), static_cast<void (MyQModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&MyQModbusServer::Signal_DataWritten));
 }
 
@@ -2462,7 +2468,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusTcpClient*)
 
-int QModbusTcpClient_QModbusTcpClient_QRegisterMetaType(){return qRegisterMetaType<MyQModbusTcpClient*>();}
+int QModbusTcpClient_QModbusTcpClient_QRegisterMetaType(){qRegisterMetaType<QModbusTcpClient*>(); return qRegisterMetaType<MyQModbusTcpClient*>();}
 
 void* QModbusTcpClient_NewQModbusTcpClient(void* parent)
 {
@@ -2541,7 +2547,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQModbusTcpServer*)
 
-int QModbusTcpServer_QModbusTcpServer_QRegisterMetaType(){return qRegisterMetaType<MyQModbusTcpServer*>();}
+int QModbusTcpServer_QModbusTcpServer_QRegisterMetaType(){qRegisterMetaType<QModbusTcpServer*>(); return qRegisterMetaType<MyQModbusTcpServer*>();}
 
 void* QModbusTcpServer_NewQModbusTcpServer(void* parent)
 {

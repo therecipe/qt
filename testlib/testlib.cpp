@@ -41,7 +41,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQSignalSpy*)
 
-int QSignalSpy_QSignalSpy_QRegisterMetaType(){return qRegisterMetaType<MyQSignalSpy*>();}
+int QSignalSpy_QSignalSpy_QRegisterMetaType(){qRegisterMetaType<QSignalSpy*>(); return qRegisterMetaType<MyQSignalSpy*>();}
 
 void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 {

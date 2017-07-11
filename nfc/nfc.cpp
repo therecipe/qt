@@ -638,7 +638,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNearFieldManager*)
 
-int QNearFieldManager_QNearFieldManager_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldManager*>();}
+int QNearFieldManager_QNearFieldManager_QRegisterMetaType(){qRegisterMetaType<QNearFieldManager*>(); return qRegisterMetaType<MyQNearFieldManager*>();}
 
 char QNearFieldManager_StartTargetDetection(void* ptr)
 {
@@ -908,7 +908,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNearFieldShareManager*)
 
-int QNearFieldShareManager_QNearFieldShareManager_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldShareManager*>();}
+int QNearFieldShareManager_QNearFieldShareManager_QRegisterMetaType(){qRegisterMetaType<QNearFieldShareManager*>(); return qRegisterMetaType<MyQNearFieldShareManager*>();}
 
 void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent)
 {
@@ -958,6 +958,7 @@ long long QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes()
 
 void QNearFieldShareManager_ConnectError(void* ptr)
 {
+	qRegisterMetaType<QNearFieldShareManager::ShareError>();
 	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareManager::error), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareManager::Signal_Error));
 }
 
@@ -1166,7 +1167,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNearFieldShareTarget*)
 
-int QNearFieldShareTarget_QNearFieldShareTarget_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldShareTarget*>();}
+int QNearFieldShareTarget_QNearFieldShareTarget_QRegisterMetaType(){qRegisterMetaType<QNearFieldShareTarget*>(); return qRegisterMetaType<MyQNearFieldShareTarget*>();}
 
 char QNearFieldShareTarget_Share2(void* ptr, void* files)
 {
@@ -1185,6 +1186,7 @@ void QNearFieldShareTarget_Cancel(void* ptr)
 
 void QNearFieldShareTarget_ConnectError(void* ptr)
 {
+	qRegisterMetaType<QNearFieldShareManager::ShareError>();
 	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));
 }
 
@@ -1402,7 +1404,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQNearFieldTarget*)
 
-int QNearFieldTarget_QNearFieldTarget_QRegisterMetaType(){return qRegisterMetaType<MyQNearFieldTarget*>();}
+int QNearFieldTarget_QNearFieldTarget_QRegisterMetaType(){qRegisterMetaType<QNearFieldTarget*>(); return qRegisterMetaType<MyQNearFieldTarget*>();}
 
 void* QNearFieldTarget_NewQNearFieldTarget(void* parent)
 {
@@ -1721,7 +1723,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQQmlNdefRecord*)
 
-int QQmlNdefRecord_QQmlNdefRecord_QRegisterMetaType(){return qRegisterMetaType<MyQQmlNdefRecord*>();}
+int QQmlNdefRecord_QQmlNdefRecord_QRegisterMetaType(){qRegisterMetaType<QQmlNdefRecord*>(); return qRegisterMetaType<MyQQmlNdefRecord*>();}
 
 void QQmlNdefRecord_ConnectRecordChanged(void* ptr)
 {

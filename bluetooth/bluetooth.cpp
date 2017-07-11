@@ -152,7 +152,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBluetoothDeviceDiscoveryAgent*)
 
-int QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothDeviceDiscoveryAgent*>();}
+int QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType(){qRegisterMetaType<QBluetoothDeviceDiscoveryAgent*>(); return qRegisterMetaType<MyQBluetoothDeviceDiscoveryAgent*>();}
 
 long long QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_SupportedDiscoveryMethods()
 {
@@ -273,6 +273,7 @@ void QBluetoothDeviceDiscoveryAgent_DeviceDiscovered(void* ptr, void* info)
 
 void QBluetoothDeviceDiscoveryAgent_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QBluetoothDeviceDiscoveryAgent::Error>();
 	QObject::connect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)(QBluetoothDeviceDiscoveryAgent::Error)>(&QBluetoothDeviceDiscoveryAgent::error), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)(QBluetoothDeviceDiscoveryAgent::Error)>(&MyQBluetoothDeviceDiscoveryAgent::Signal_Error2));
 }
 
@@ -323,6 +324,7 @@ void QBluetoothDeviceDiscoveryAgent_StartDefault(void* ptr)
 
 void QBluetoothDeviceDiscoveryAgent_Start2(void* ptr, long long methods)
 {
+	qRegisterMetaType<QBluetoothDeviceDiscoveryAgent::DiscoveryMethods>();
 	QMetaObject::invokeMethod(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), "start", Q_ARG(QBluetoothDeviceDiscoveryAgent::DiscoveryMethod, static_cast<QBluetoothDeviceDiscoveryAgent::DiscoveryMethod>(methods)));
 }
 
@@ -718,7 +720,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBluetoothLocalDevice*)
 
-int QBluetoothLocalDevice_QBluetoothLocalDevice_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothLocalDevice*>();}
+int QBluetoothLocalDevice_QBluetoothLocalDevice_QRegisterMetaType(){qRegisterMetaType<QBluetoothLocalDevice*>(); return qRegisterMetaType<MyQBluetoothLocalDevice*>();}
 
 void* QBluetoothLocalDevice_NewQBluetoothLocalDevice(void* parent)
 {
@@ -839,6 +841,7 @@ void QBluetoothLocalDevice_DeviceDisconnected(void* ptr, void* address)
 
 void QBluetoothLocalDevice_ConnectError(void* ptr)
 {
+	qRegisterMetaType<QBluetoothLocalDevice::Error>();
 	QObject::connect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(QBluetoothLocalDevice::Error)>(&QBluetoothLocalDevice::error), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(QBluetoothLocalDevice::Error)>(&MyQBluetoothLocalDevice::Signal_Error));
 }
 
@@ -854,6 +857,7 @@ void QBluetoothLocalDevice_Error(void* ptr, long long error)
 
 void QBluetoothLocalDevice_ConnectHostModeStateChanged(void* ptr)
 {
+	qRegisterMetaType<QBluetoothLocalDevice::HostMode>();
 	QObject::connect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(QBluetoothLocalDevice::HostMode)>(&QBluetoothLocalDevice::hostModeStateChanged), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(QBluetoothLocalDevice::HostMode)>(&MyQBluetoothLocalDevice::Signal_HostModeStateChanged));
 }
 
@@ -909,6 +913,7 @@ void QBluetoothLocalDevice_PairingDisplayPinCode(void* ptr, void* address, struc
 
 void QBluetoothLocalDevice_ConnectPairingFinished(void* ptr)
 {
+	qRegisterMetaType<QBluetoothLocalDevice::Pairing>();
 	QObject::connect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(const QBluetoothAddress &, QBluetoothLocalDevice::Pairing)>(&QBluetoothLocalDevice::pairingFinished), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(const QBluetoothAddress &, QBluetoothLocalDevice::Pairing)>(&MyQBluetoothLocalDevice::Signal_PairingFinished));
 }
 
@@ -1156,7 +1161,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBluetoothServer*)
 
-int QBluetoothServer_QBluetoothServer_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothServer*>();}
+int QBluetoothServer_QBluetoothServer_QRegisterMetaType(){qRegisterMetaType<QBluetoothServer*>(); return qRegisterMetaType<MyQBluetoothServer*>();}
 
 void* QBluetoothServer_NewQBluetoothServer(long long serverType, void* parent)
 {
@@ -1201,6 +1206,7 @@ void* QBluetoothServer_NewQBluetoothServer(long long serverType, void* parent)
 
 void QBluetoothServer_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QBluetoothServer::Error>();
 	QObject::connect(static_cast<QBluetoothServer*>(ptr), static_cast<void (QBluetoothServer::*)(QBluetoothServer::Error)>(&QBluetoothServer::error), static_cast<MyQBluetoothServer*>(ptr), static_cast<void (MyQBluetoothServer::*)(QBluetoothServer::Error)>(&MyQBluetoothServer::Signal_Error2));
 }
 
@@ -1456,7 +1462,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBluetoothServiceDiscoveryAgent*)
 
-int QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothServiceDiscoveryAgent*>();}
+int QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_QRegisterMetaType(){qRegisterMetaType<QBluetoothServiceDiscoveryAgent*>(); return qRegisterMetaType<MyQBluetoothServiceDiscoveryAgent*>();}
 
 void* QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(void* parent)
 {
@@ -1572,6 +1578,7 @@ void QBluetoothServiceDiscoveryAgent_ClearDefault(void* ptr)
 
 void QBluetoothServiceDiscoveryAgent_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QBluetoothServiceDiscoveryAgent::Error>();
 	QObject::connect(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothServiceDiscoveryAgent::*)(QBluetoothServiceDiscoveryAgent::Error)>(&QBluetoothServiceDiscoveryAgent::error), static_cast<MyQBluetoothServiceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothServiceDiscoveryAgent::*)(QBluetoothServiceDiscoveryAgent::Error)>(&MyQBluetoothServiceDiscoveryAgent::Signal_Error2));
 }
 
@@ -1627,6 +1634,7 @@ void QBluetoothServiceDiscoveryAgent_SetUuidFilter(void* ptr, void* uuids)
 
 void QBluetoothServiceDiscoveryAgent_Start(void* ptr, long long mode)
 {
+	qRegisterMetaType<QBluetoothServiceDiscoveryAgent::DiscoveryMode>();
 	QMetaObject::invokeMethod(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), "start", Q_ARG(QBluetoothServiceDiscoveryAgent::DiscoveryMode, static_cast<QBluetoothServiceDiscoveryAgent::DiscoveryMode>(mode)));
 }
 
@@ -2076,7 +2084,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBluetoothSocket*)
 
-int QBluetoothSocket_QBluetoothSocket_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothSocket*>();}
+int QBluetoothSocket_QBluetoothSocket_QRegisterMetaType(){qRegisterMetaType<QBluetoothSocket*>(); return qRegisterMetaType<MyQBluetoothSocket*>();}
 
 void QBluetoothSocket_ConnectConnected(void* ptr)
 {
@@ -2110,6 +2118,7 @@ void QBluetoothSocket_Disconnected(void* ptr)
 
 void QBluetoothSocket_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QBluetoothSocket::SocketError>();
 	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&QBluetoothSocket::error), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&MyQBluetoothSocket::Signal_Error2));
 }
 
@@ -2125,6 +2134,7 @@ void QBluetoothSocket_Error2(void* ptr, long long error)
 
 void QBluetoothSocket_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QBluetoothSocket::SocketState>();
 	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));
 }
 
@@ -2571,7 +2581,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBluetoothTransferManager*)
 
-int QBluetoothTransferManager_QBluetoothTransferManager_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothTransferManager*>();}
+int QBluetoothTransferManager_QBluetoothTransferManager_QRegisterMetaType(){qRegisterMetaType<QBluetoothTransferManager*>(); return qRegisterMetaType<MyQBluetoothTransferManager*>();}
 
 void* QBluetoothTransferManager_NewQBluetoothTransferManager(void* parent)
 {
@@ -2791,7 +2801,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQBluetoothTransferReply*)
 
-int QBluetoothTransferReply_QBluetoothTransferReply_QRegisterMetaType(){return qRegisterMetaType<MyQBluetoothTransferReply*>();}
+int QBluetoothTransferReply_QBluetoothTransferReply_QRegisterMetaType(){qRegisterMetaType<QBluetoothTransferReply*>(); return qRegisterMetaType<MyQBluetoothTransferReply*>();}
 
 void* QBluetoothTransferReply_NewQBluetoothTransferReply(void* parent)
 {
@@ -2846,6 +2856,7 @@ void QBluetoothTransferReply_AbortDefault(void* ptr)
 
 void QBluetoothTransferReply_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QBluetoothTransferReply::TransferError>();
 	QObject::connect(static_cast<QBluetoothTransferReply*>(ptr), static_cast<void (QBluetoothTransferReply::*)(QBluetoothTransferReply::TransferError)>(&QBluetoothTransferReply::error), static_cast<MyQBluetoothTransferReply*>(ptr), static_cast<void (MyQBluetoothTransferReply::*)(QBluetoothTransferReply::TransferError)>(&MyQBluetoothTransferReply::Signal_Error2));
 }
 
@@ -3636,7 +3647,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLowEnergyController*)
 
-int QLowEnergyController_QLowEnergyController_QRegisterMetaType(){return qRegisterMetaType<MyQLowEnergyController*>();}
+int QLowEnergyController_QLowEnergyController_QRegisterMetaType(){qRegisterMetaType<QLowEnergyController*>(); return qRegisterMetaType<MyQLowEnergyController*>();}
 
 void* QLowEnergyController_QLowEnergyController_CreateCentral(void* remoteDevice, void* parent)
 {
@@ -3735,6 +3746,7 @@ void QLowEnergyController_DiscoveryFinished(void* ptr)
 
 void QLowEnergyController_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QLowEnergyController::Error>();
 	QObject::connect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(QLowEnergyController::Error)>(&QLowEnergyController::error), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(QLowEnergyController::Error)>(&MyQLowEnergyController::Signal_Error2));
 }
 
@@ -3780,6 +3792,7 @@ void QLowEnergyController_StartAdvertising(void* ptr, void* parameters, void* ad
 
 void QLowEnergyController_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QLowEnergyController::ControllerState>();
 	QObject::connect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(QLowEnergyController::ControllerState)>(&QLowEnergyController::stateChanged), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(QLowEnergyController::ControllerState)>(&MyQLowEnergyController::Signal_StateChanged));
 }
 
@@ -4139,7 +4152,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQLowEnergyService*)
 
-int QLowEnergyService_QLowEnergyService_QRegisterMetaType(){return qRegisterMetaType<MyQLowEnergyService*>();}
+int QLowEnergyService_QLowEnergyService_QRegisterMetaType(){qRegisterMetaType<QLowEnergyService*>(); return qRegisterMetaType<MyQLowEnergyService*>();}
 
 void QLowEnergyService_ConnectCharacteristicChanged(void* ptr)
 {
@@ -4223,6 +4236,7 @@ void QLowEnergyService_DiscoverDetails(void* ptr)
 
 void QLowEnergyService_ConnectError2(void* ptr)
 {
+	qRegisterMetaType<QLowEnergyService::ServiceError>();
 	QObject::connect(static_cast<QLowEnergyService*>(ptr), static_cast<void (QLowEnergyService::*)(QLowEnergyService::ServiceError)>(&QLowEnergyService::error), static_cast<MyQLowEnergyService*>(ptr), static_cast<void (MyQLowEnergyService::*)(QLowEnergyService::ServiceError)>(&MyQLowEnergyService::Signal_Error2));
 }
 
@@ -4248,6 +4262,7 @@ void QLowEnergyService_ReadDescriptor(void* ptr, void* descriptor)
 
 void QLowEnergyService_ConnectStateChanged(void* ptr)
 {
+	qRegisterMetaType<QLowEnergyService::ServiceState>();
 	QObject::connect(static_cast<QLowEnergyService*>(ptr), static_cast<void (QLowEnergyService::*)(QLowEnergyService::ServiceState)>(&QLowEnergyService::stateChanged), static_cast<MyQLowEnergyService*>(ptr), static_cast<void (MyQLowEnergyService::*)(QLowEnergyService::ServiceState)>(&MyQLowEnergyService::Signal_StateChanged));
 }
 

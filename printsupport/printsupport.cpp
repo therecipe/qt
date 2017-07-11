@@ -143,7 +143,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQAbstractPrintDialog*)
 
-int QAbstractPrintDialog_QAbstractPrintDialog_QRegisterMetaType(){return qRegisterMetaType<MyQAbstractPrintDialog*>();}
+int QAbstractPrintDialog_QAbstractPrintDialog_QRegisterMetaType(){qRegisterMetaType<QAbstractPrintDialog*>(); return qRegisterMetaType<MyQAbstractPrintDialog*>();}
 
 void* QAbstractPrintDialog_NewQAbstractPrintDialog(void* printer, void* parent)
 {
@@ -1046,7 +1046,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPageSetupDialog*)
 
-int QPageSetupDialog_QPageSetupDialog_QRegisterMetaType(){return qRegisterMetaType<MyQPageSetupDialog*>();}
+int QPageSetupDialog_QPageSetupDialog_QRegisterMetaType(){qRegisterMetaType<QPageSetupDialog*>(); return qRegisterMetaType<MyQPageSetupDialog*>();}
 
 void* QPageSetupDialog_NewQPageSetupDialog(void* printer, void* parent)
 {
@@ -1632,7 +1632,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPrintDialog*)
 
-int QPrintDialog_QPrintDialog_QRegisterMetaType(){return qRegisterMetaType<MyQPrintDialog*>();}
+int QPrintDialog_QPrintDialog_QRegisterMetaType(){qRegisterMetaType<QPrintDialog*>(); return qRegisterMetaType<MyQPrintDialog*>();}
 
 void QPrintDialog_Done(void* ptr, int result)
 {
@@ -1848,7 +1848,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPrintPreviewDialog*)
 
-int QPrintPreviewDialog_QPrintPreviewDialog_QRegisterMetaType(){return qRegisterMetaType<MyQPrintPreviewDialog*>();}
+int QPrintPreviewDialog_QPrintPreviewDialog_QRegisterMetaType(){qRegisterMetaType<QPrintPreviewDialog*>(); return qRegisterMetaType<MyQPrintPreviewDialog*>();}
 
 void* QPrintPreviewDialog_NewQPrintPreviewDialog(void* printer, void* parent, long long flags)
 {
@@ -2456,7 +2456,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQPrintPreviewWidget*)
 
-int QPrintPreviewWidget_QPrintPreviewWidget_QRegisterMetaType(){return qRegisterMetaType<MyQPrintPreviewWidget*>();}
+int QPrintPreviewWidget_QPrintPreviewWidget_QRegisterMetaType(){qRegisterMetaType<QPrintPreviewWidget*>(); return qRegisterMetaType<MyQPrintPreviewWidget*>();}
 
 void* QPrintPreviewWidget_NewQPrintPreviewWidget(void* printer, void* parent, long long flags)
 {

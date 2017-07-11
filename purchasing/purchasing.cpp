@@ -62,7 +62,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQInAppProduct*)
 
-int QInAppProduct_QInAppProduct_QRegisterMetaType(){return qRegisterMetaType<MyQInAppProduct*>();}
+int QInAppProduct_QInAppProduct_QRegisterMetaType(){qRegisterMetaType<QInAppProduct*>(); return qRegisterMetaType<MyQInAppProduct*>();}
 
 void QInAppProduct_Purchase(void* ptr)
 {
@@ -241,7 +241,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQInAppStore*)
 
-int QInAppStore_QInAppStore_QRegisterMetaType(){return qRegisterMetaType<MyQInAppStore*>();}
+int QInAppStore_QInAppStore_QRegisterMetaType(){qRegisterMetaType<QInAppStore*>(); return qRegisterMetaType<MyQInAppStore*>();}
 
 void* QInAppStore_NewQInAppStore(void* parent)
 {
@@ -503,7 +503,7 @@ public:
 
 Q_DECLARE_METATYPE(MyQInAppTransaction*)
 
-int QInAppTransaction_QInAppTransaction_QRegisterMetaType(){return qRegisterMetaType<MyQInAppTransaction*>();}
+int QInAppTransaction_QInAppTransaction_QRegisterMetaType(){qRegisterMetaType<QInAppTransaction*>(); return qRegisterMetaType<MyQInAppTransaction*>();}
 
 struct QtPurchasing_PackedString QInAppTransaction_ErrorString(void* ptr)
 {

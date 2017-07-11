@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/moc"
@@ -29,6 +30,9 @@ func main() {
 
 	var docker bool
 	flag.BoolVar(&docker, "docker", false, "run command inside docker container")
+
+	var vagrant bool
+	flag.BoolVar(&vagrant, "vagrant", false, "run command inside vagrant vm")
 
 	var fast bool
 	flag.BoolVar(&fast, "fast", false, "don't run qtmoc for dependencies")
@@ -57,6 +61,12 @@ func main() {
 		flag.Usage()
 	}
 
+	var vagrantsystem string
+	if vagrant && strings.Contains(target, "/") {
+		vagrantsystem = strings.Split(target, "/")[0]
+		target = strings.Split(target, "/")[1]
+	}
+
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
@@ -71,6 +81,8 @@ func main() {
 	utils.CheckBuildTarget(target)
 	if docker {
 		cmd.Docker([]string{"qtmoc", "-debug", "-tags=" + tags}, target, path, false)
+	} else if vagrant {
+		cmd.Vagrant([]string{"qtmoc", "-debug", "-tags=" + tags}, target, path, false, vagrantsystem)
 	} else {
 		moc.Moc(path, target, tags, fast)
 	}
