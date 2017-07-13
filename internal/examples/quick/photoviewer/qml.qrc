@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>PhotoViewerCore/AlbumDelegate.qml</file>
+        <file>PhotoViewerCore/BusyIndicator.qml</file>
+        <file>PhotoViewerCore/Button.qml</file>
+        <file>PhotoViewerCore/EditableButton.qml</file>
+        <file>PhotoViewerCore/PhotoDelegate.qml</file>
+        <file>PhotoViewerCore/ProgressBar.qml</file>
+        <file>PhotoViewerCore/RssModel.qml</file>
+        <file>PhotoViewerCore/Tag.qml</file>
+        <file>PhotoViewerCore/images/box-shadow.png</file>
+        <file>PhotoViewerCore/images/busy.png</file>
+        <file>PhotoViewerCore/images/cardboard.png</file>
+        <file>PhotoViewerCore/script/script.js</file>
+        <file>i18n/qml_fr.qm</file>
+        <file>i18n/qml_de.qm</file>
+    </qresource>
+</RCC>

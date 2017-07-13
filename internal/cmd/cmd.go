@@ -143,7 +143,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		gpfs = "/home/user/work"
 	} else {
 		switch system {
-		case "linux":
+		case "linux", "docker":
 			gpfs = "/home/vagrant/gopath"
 		case "darwin":
 			gpfs = "/Users/vagrant/gopath"
@@ -174,6 +174,10 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if utils.CI() {
 		args = append(args, []string{"-e", "CI=true"}...)
+	}
+
+	if utils.QT_WEBKIT() {
+		args = append(args, []string{"-e", "QT_WEBKIT=true"}...)
 	}
 
 	if docker {

@@ -5,6 +5,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 )
 
@@ -20,7 +21,20 @@ func QT_VERSION() string {
 	return "5.8.0"
 }
 
+func QT_VERSION_NUM() int {
+	vmaj, _ := strconv.Atoi(string(QT_VERSION()[0]))
+	vmaj *= 1000
+	vmin, _ := strconv.Atoi(strings.Replace(QT_VERSION()[1:], ".", "", -1))
+	return vmaj + vmin
+}
+
 func QT_VERSION_MAJOR() string {
+	if version := os.Getenv("QT_VERSION_MAJOR"); version != "" {
+		return version
+	}
+	if QT_VERSION_NUM() >= 5091 {
+		return QT_VERSION()
+	}
 	return strings.Join(strings.Split(QT_VERSION(), ".")[:2], ".")
 }
 
@@ -34,8 +48,12 @@ func QT_DIR() string {
 	return filepath.Join(os.Getenv("HOME"), "Qt"+QT_VERSION())
 }
 
+func QT_FAT() bool {
+	return strings.ToLower(os.Getenv("QT_FAT")) == "true"
+}
+
 func QT_STUB() bool {
-	return strings.ToLower(os.Getenv("QT_STUB")) == "true" || QT_MSYS2()
+	return (strings.ToLower(os.Getenv("QT_STUB")) == "true" || QT_MSYS2()) && !QT_FAT()
 }
 
 func QT_DEBUG() bool {

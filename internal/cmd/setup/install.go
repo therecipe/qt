@@ -44,7 +44,7 @@ func Install(target string, docker, vagrant bool) {
 		}
 	}
 
-	if target != runtime.GOOS {
+	if target != runtime.GOOS && !utils.QT_FAT() {
 		utils.Log.Debugf("target is %v; skipping installation of modules", target)
 		return
 	}

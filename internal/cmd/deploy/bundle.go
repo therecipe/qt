@@ -239,11 +239,20 @@ func bundle(mode, target, path, name, depPath string) {
 			for lib, deps := range parser.LibDeps {
 				if strings.Contains(output, lib) && lib != parser.MOC {
 					for _, lib := range append(deps, lib) {
-						utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+						if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib))) {
+							utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+						}
 					}
 				}
 			}
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, "Qt5OpenGL.dll"), depPath), fmt.Sprintf("copy OpenGL for %v on %v", target, runtime.GOOS))
+
+			deps := []string{"Qt5OpenGL"}
+			if utils.QT_WEBKIT() {
+				deps = append(deps, []string{"libjpeg-8", "libsqlite3-0", "libwebp-7", "libxml2-2", "liblzma-5", "libxslt-1"}...)
+			}
+			for _, lib := range deps {
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+			}
 
 			var walkFn = func(path string, info os.FileInfo, err error) error {
 				if strings.HasSuffix(info.Name(), "d.dll") {
@@ -278,13 +287,10 @@ func bundle(mode, target, path, name, depPath string) {
 						}
 					}
 				}
-				copy(filepath.Join(libraryPath, "icudt57.dll"), depPath)
-				copy(filepath.Join(libraryPath, "icuin57.dll"), depPath)
-				copy(filepath.Join(libraryPath, "icuuc57.dll"), depPath)
-				copy(filepath.Join(libraryPath, "libxml2-2.dll"), depPath)
-				copy(filepath.Join(libraryPath, "libxslt-1.dll"), depPath)
-				copy(filepath.Join(libraryPath, "Qt5MultimediaWidgets.dll"), depPath)
-				copy(filepath.Join(libraryPath, "Qt5OpenGL.dll"), depPath)
+
+				for _, lib := range []string{"icudt57", "icuin57", "icuuc57", "libxml2-2", "libxslt-1", "Qt5MultimediaWidgets", "Qt5OpenGL", "Qt5PrintSupport"} {
+					copy(filepath.Join(libraryPath, lib+".dll"), depPath)
+				}
 			}
 
 			dep := exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "windeployqt"))

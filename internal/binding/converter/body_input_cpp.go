@@ -162,7 +162,8 @@ func CppRegisterMetaType(function *parser.Function) string {
 			"Q3DCamera::CameraPreset", "Q3DTheme::ColorStyle", "Q3DTheme::Theme", "QAbstract3DAxis::AxisOrientation", "QAbstract3DGraph::OptimizationHints",
 			"QAbstract3DGraph::ElementType", "QImage::Format", "QItemModelBarDataProxy::MultiMatchBehavior", "QSurface3DSeries::DrawFlags",
 			"QAbstractBarSeries::LabelsPosition", "QScatterSeries::MarkerShape", "QWebPage::MessageSource", "QWebPage::MessageLevel",
-			"QWebPage::Feature", "QItemModelSurfaceDataProxy::MultiMatchBehavior", "QCategoryAxis::AxisLabelsPosition":
+			"QWebPage::Feature", "QItemModelSurfaceDataProxy::MultiMatchBehavior", "QCategoryAxis::AxisLabelsPosition",
+			"QLegend::MarkerShape", "QDesignerFormWindowInterface::Feature":
 			out = append(out[:i], out[i+1:]...)
 		}
 	}

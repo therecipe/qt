@@ -1782,7 +1782,6 @@ void QDesignerFormWindowInterface_EmitSelectionChanged(void* ptr)
 
 void QDesignerFormWindowInterface_ConnectFeatureChanged(void* ptr)
 {
-	qRegisterMetaType<QDesignerFormWindowInterface::Feature>();
 	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&QDesignerFormWindowInterface::featureChanged), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QDesignerFormWindowInterface::Feature)>(&MyQDesignerFormWindowInterface::Signal_FeatureChanged));
 }
 
@@ -1939,7 +1938,6 @@ void QDesignerFormWindowInterface_SetExportMacro(void* ptr, struct QtDesigner_Pa
 
 void QDesignerFormWindowInterface_SetFeatures(void* ptr, long long features)
 {
-	qRegisterMetaType<QDesignerFormWindowInterface::Feature>();
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFeatures", Q_ARG(QDesignerFormWindowInterface::FeatureFlag, static_cast<QDesignerFormWindowInterface::FeatureFlag>(features)));
 }
 

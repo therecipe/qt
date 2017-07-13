@@ -37,7 +37,7 @@ func Generate(target string, docker, vagrant bool) {
 		}
 		utils.Log.Infof("generating %v qt/%v", mode, strings.ToLower(module))
 
-		if target == runtime.GOOS {
+		if target == runtime.GOOS || utils.QT_FAT() {
 			templater.GenModule(module, target, templater.NONE)
 		} else {
 			templater.CgoTemplate(module, "", target, templater.MINIMAL, "", "") //TODO: collect errors

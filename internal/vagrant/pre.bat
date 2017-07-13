@@ -88,12 +88,14 @@ if "%QT_MSYS2%" == "true" (
       C:\msys64\usr\bin\bash -l -c "pacman -S --noconfirm --needed --noprogress mingw-w64-i686-qt-creator mingw-w64-i686-qt5-static"
     ) else (
       C:\msys64\usr\bin\bash -l -c "pacman -S --noconfirm --needed --noprogress mingw-w64-i686-qt-creator mingw-w64-i686-qt5"
+      C:\msys64\usr\bin\bash -l -c "pacman -S --noconfirm --needed --noprogress mingw-w64-i686-qtwebkit"
     )
   ) else (
     if "%QT_MSYS2_STATIC%" == "true" (
       C:\msys64\usr\bin\bash -l -c "pacman -S --noconfirm --needed --noprogress mingw-w64-x86_64-qt-creator mingw-w64-x86_64-qt5-static"
     ) else (
       C:\msys64\usr\bin\bash -l -c "pacman -S --noconfirm --needed --noprogress mingw-w64-x86_64-qt-creator mingw-w64-x86_64-qt5"
+      C:\msys64\usr\bin\bash -l -c "pacman -S --noconfirm --needed --noprogress mingw-w64-x86-qtwebkit"
     )
   )
 

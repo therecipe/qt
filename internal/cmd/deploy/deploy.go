@@ -25,6 +25,9 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			if fast {
 				args = append(args, "-fast")
 			}
+			if vagrantsystem == "docker" {
+				args = append(args, "-docker")
+			}
 			args = append(args, []string{"-ldflags=" + ldFlags, "-tags=" + tags, "build"}...)
 
 			if docker {
@@ -47,7 +50,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			moc.Moc(path, target, tags, false)
 		}
 
-		if !fast || utils.QT_STUB() {
+		if (!fast || utils.QT_STUB()) && !utils.QT_FAT() {
 			minimal.Minimal(path, target, tags)
 		}
 

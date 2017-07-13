@@ -9,13 +9,16 @@ else if [[ "$OS" == "linux" ]]; then
   export GO=go1.8.3.linux-amd64.tar.gz
 
   sudo apt-get -qq update && sudo apt-get -y -qq install curl git software-properties-common libgl1-mesa-dev fontconfig unzip && sudo apt-get -qq clean
-  sudo apt-get -qq update && sudo apt-get -y -qq install bison build-essential gperf flex ruby python libasound2-dev libbz2-dev libcap-dev libcups2-dev libdrm-dev libegl1-mesa-dev libgcrypt11-dev libnss3-dev libpci-dev libpulse-dev libudev-dev libxtst-dev gyp ninja-build && sudo apt-get -qq clean
-  sudo apt-get -qq update && sudo apt-get -y -qq install libssl-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libfontconfig1-dev libxss-dev libsrtp0-dev libwebp-dev libjsoncpp-dev libopus-dev libavutil-dev libavformat-dev libavcodec-dev libevent-dev libxslt1-dev && sudo apt-get -qq clean
 
-  sudo apt-get -qq update && sudo apt-get -y -qq install lxde xinit && sudo apt-get -qq clean
-  sudo /usr/share/debconf/fix_db.pl #or sudo apt-get -y -qq remove miscfiles dictionaries-common
-  echo "exec startlxde" >> $HOME/.xinitrc
-  sudo startx &
+  if [[ "$DOCKER" != "true" ]]; then
+    sudo apt-get -qq update && sudo apt-get -y -qq install bison build-essential gperf flex ruby python libasound2-dev libbz2-dev libcap-dev libcups2-dev libdrm-dev libegl1-mesa-dev libgcrypt11-dev libnss3-dev libpci-dev libpulse-dev libudev-dev libxtst-dev gyp ninja-build && sudo apt-get -qq clean
+    sudo apt-get -qq update && sudo apt-get -y -qq install libssl-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libfontconfig1-dev libxss-dev libsrtp0-dev libwebp-dev libjsoncpp-dev libopus-dev libavutil-dev libavformat-dev libavcodec-dev libevent-dev libxslt1-dev && sudo apt-get -qq clean
+
+    sudo apt-get -qq update && sudo apt-get -y -qq install lxde xinit && sudo apt-get -qq clean
+    sudo /usr/share/debconf/fix_db.pl #or sudo apt-get -y -qq remove miscfiles dictionaries-common
+    echo "exec startlxde" >> $HOME/.xinitrc
+    sudo startx &
+  fi
 fi; fi
 
 #darwin
@@ -52,8 +55,10 @@ if [[ "$OS" == "darwin" ]]; then
   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
   if [[ "$ANDROID" == "true" ]]; then brew update; brew cask install java; fi
 else if [[ "$OS" == "linux" ]]; then
-  sudo rm -R $HOME/.config
-  sudo rm -R $HOME/.cache
+  sudo rm -f -R $HOME/.config
+  sudo rm -f -R $HOME/.cache
 fi; fi
+
+if [[ "$DOCKER" != "true" ]]; then $GOPATH/bin/qtsetup prep; fi
 
 exit 0
