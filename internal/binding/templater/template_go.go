@@ -197,7 +197,7 @@ func (ptr *%[1]v) Destroy%[1]v() {
 
 `, class.Name, func() string {
 						if class.HasCallbackFunctions() {
-							return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), \"\")"
+							return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
 						}
 						return ""
 					}())

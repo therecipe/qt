@@ -9,7 +9,6 @@ package androidextras
 import "C"
 import (
 	"errors"
-	"fmt"
 	"github.com/therecipe/qt"
 	"runtime"
 	"unsafe"
@@ -78,7 +77,7 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()), "")
+		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -86,7 +85,7 @@ func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver
 
 //export callbackQAndroidActivityResultReceiver_HandleActivityResult
 func callbackQAndroidActivityResultReceiver_HandleActivityResult(ptr unsafe.Pointer, receiverRequestCode C.int, resultCode C.int, data unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "handleActivityResult"); signal != nil {
+	if signal := qt.GetSignal(ptr, "handleActivityResult"); signal != nil {
 		signal.(func(int, int, *QAndroidJniObject))(int(int32(receiverRequestCode)), int(int32(resultCode)), NewQAndroidJniObjectFromPointer(data))
 	}
 
@@ -95,13 +94,13 @@ func callbackQAndroidActivityResultReceiver_HandleActivityResult(ptr unsafe.Poin
 func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(receiverRequestCode int, resultCode int, data *QAndroidJniObject)) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult", func(receiverRequestCode int, resultCode int, data *QAndroidJniObject) {
+		if signal := qt.LendSignal(ptr.Pointer(), "handleActivityResult"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "handleActivityResult", func(receiverRequestCode int, resultCode int, data *QAndroidJniObject) {
 				signal.(func(int, int, *QAndroidJniObject))(receiverRequestCode, resultCode, data)
 				f(receiverRequestCode, resultCode, data)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult", f)
+			qt.ConnectSignal(ptr.Pointer(), "handleActivityResult", f)
 		}
 	}
 }
@@ -109,7 +108,7 @@ func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(re
 func (ptr *QAndroidActivityResultReceiver) DisconnectHandleActivityResult() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "handleActivityResult")
+		qt.DisconnectSignal(ptr.Pointer(), "handleActivityResult")
 	}
 }
 

@@ -8,7 +8,6 @@ package nfc
 //#include "nfc.h"
 import "C"
 import (
-	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -231,7 +230,7 @@ func (ptr *QNdefMessage) __QNdefMessage_records_newList4() unsafe.Pointer {
 func (ptr *QNdefMessage) __QList_other_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___QList_other_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -252,7 +251,7 @@ func (ptr *QNdefMessage) __QList_other_newList3() unsafe.Pointer {
 func (ptr *QNdefMessage) __QList_other_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___QList_other_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -273,7 +272,7 @@ func (ptr *QNdefMessage) __QList_other_newList2() unsafe.Pointer {
 func (ptr *QNdefMessage) __fromSet_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___fromSet_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -294,7 +293,7 @@ func (ptr *QNdefMessage) __fromSet_newList() unsafe.Pointer {
 func (ptr *QNdefMessage) __fromStdList_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___fromStdList_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -315,7 +314,7 @@ func (ptr *QNdefMessage) __fromStdList_newList() unsafe.Pointer {
 func (ptr *QNdefMessage) __fromVector_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___fromVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -336,7 +335,7 @@ func (ptr *QNdefMessage) __fromVector_newList() unsafe.Pointer {
 func (ptr *QNdefMessage) __fromVector_vector_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___fromVector_vector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -357,7 +356,7 @@ func (ptr *QNdefMessage) __fromVector_vector_newList() unsafe.Pointer {
 func (ptr *QNdefMessage) __append_value_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___append_value_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -378,7 +377,7 @@ func (ptr *QNdefMessage) __append_value_newList2() unsafe.Pointer {
 func (ptr *QNdefMessage) __swap_other_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___swap_other_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -399,7 +398,7 @@ func (ptr *QNdefMessage) __swap_other_newList() unsafe.Pointer {
 func (ptr *QNdefMessage) __mid_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___mid_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -420,7 +419,7 @@ func (ptr *QNdefMessage) __mid_newList() unsafe.Pointer {
 func (ptr *QNdefMessage) __toVector_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNdefMessage___toVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1169,7 +1168,7 @@ func (ptr *QNearFieldManager) StartTargetDetection() bool {
 
 func NewQNearFieldManager(parent core.QObject_ITF) *QNearFieldManager {
 	var tmpValue = NewQNearFieldManagerFromPointer(C.QNearFieldManager_NewQNearFieldManager(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -1232,7 +1231,7 @@ func (ptr *QNearFieldManager) StopTargetDetection() {
 
 //export callbackQNearFieldManager_TargetDetected
 func callbackQNearFieldManager_TargetDetected(ptr unsafe.Pointer, target unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "targetDetected"); signal != nil {
+	if signal := qt.GetSignal(ptr, "targetDetected"); signal != nil {
 		signal.(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 	}
 
@@ -1241,17 +1240,17 @@ func callbackQNearFieldManager_TargetDetected(ptr unsafe.Pointer, target unsafe.
 func (ptr *QNearFieldManager) ConnectTargetDetected(f func(target *QNearFieldTarget)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "targetDetected") {
+		if !qt.ExistsSignal(ptr.Pointer(), "targetDetected") {
 			C.QNearFieldManager_ConnectTargetDetected(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "targetDetected"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", func(target *QNearFieldTarget) {
+		if signal := qt.LendSignal(ptr.Pointer(), "targetDetected"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "targetDetected", func(target *QNearFieldTarget) {
 				signal.(func(*QNearFieldTarget))(target)
 				f(target)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", f)
+			qt.ConnectSignal(ptr.Pointer(), "targetDetected", f)
 		}
 	}
 }
@@ -1259,7 +1258,7 @@ func (ptr *QNearFieldManager) ConnectTargetDetected(f func(target *QNearFieldTar
 func (ptr *QNearFieldManager) DisconnectTargetDetected() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DisconnectTargetDetected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected")
+		qt.DisconnectSignal(ptr.Pointer(), "targetDetected")
 	}
 }
 
@@ -1271,7 +1270,7 @@ func (ptr *QNearFieldManager) TargetDetected(target QNearFieldTarget_ITF) {
 
 //export callbackQNearFieldManager_TargetLost
 func callbackQNearFieldManager_TargetLost(ptr unsafe.Pointer, target unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "targetLost"); signal != nil {
+	if signal := qt.GetSignal(ptr, "targetLost"); signal != nil {
 		signal.(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 	}
 
@@ -1280,17 +1279,17 @@ func callbackQNearFieldManager_TargetLost(ptr unsafe.Pointer, target unsafe.Poin
 func (ptr *QNearFieldManager) ConnectTargetLost(f func(target *QNearFieldTarget)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "targetLost") {
+		if !qt.ExistsSignal(ptr.Pointer(), "targetLost") {
 			C.QNearFieldManager_ConnectTargetLost(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "targetLost"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetLost", func(target *QNearFieldTarget) {
+		if signal := qt.LendSignal(ptr.Pointer(), "targetLost"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "targetLost", func(target *QNearFieldTarget) {
 				signal.(func(*QNearFieldTarget))(target)
 				f(target)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetLost", f)
+			qt.ConnectSignal(ptr.Pointer(), "targetLost", f)
 		}
 	}
 }
@@ -1298,7 +1297,7 @@ func (ptr *QNearFieldManager) ConnectTargetLost(f func(target *QNearFieldTarget)
 func (ptr *QNearFieldManager) DisconnectTargetLost() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DisconnectTargetLost(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "targetLost")
+		qt.DisconnectSignal(ptr.Pointer(), "targetLost")
 	}
 }
 
@@ -1352,7 +1351,7 @@ func (ptr *QNearFieldManager) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QNearFieldManager) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1373,7 +1372,7 @@ func (ptr *QNearFieldManager) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QNearFieldManager) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1394,7 +1393,7 @@ func (ptr *QNearFieldManager) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QNearFieldManager) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1415,7 +1414,7 @@ func (ptr *QNearFieldManager) __findChildren_newList() unsafe.Pointer {
 func (ptr *QNearFieldManager) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldManager___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1435,7 +1434,7 @@ func (ptr *QNearFieldManager) __children_newList() unsafe.Pointer {
 
 //export callbackQNearFieldManager_Event
 func callbackQNearFieldManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -1451,7 +1450,7 @@ func (ptr *QNearFieldManager) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQNearFieldManager_EventFilter
 func callbackQNearFieldManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -1467,7 +1466,7 @@ func (ptr *QNearFieldManager) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQNearFieldManager_ChildEvent
 func callbackQNearFieldManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNearFieldManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -1482,7 +1481,7 @@ func (ptr *QNearFieldManager) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQNearFieldManager_ConnectNotify
 func callbackQNearFieldManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -1497,7 +1496,7 @@ func (ptr *QNearFieldManager) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQNearFieldManager_CustomEvent
 func callbackQNearFieldManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNearFieldManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -1512,7 +1511,7 @@ func (ptr *QNearFieldManager) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQNearFieldManager_DeleteLater
 func callbackQNearFieldManager_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNearFieldManagerFromPointer(ptr).DeleteLaterDefault()
@@ -1529,7 +1528,7 @@ func (ptr *QNearFieldManager) DeleteLaterDefault() {
 
 //export callbackQNearFieldManager_Destroyed
 func callbackQNearFieldManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "destroyed"); signal != nil {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
 	}
 
@@ -1537,7 +1536,7 @@ func callbackQNearFieldManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer)
 
 //export callbackQNearFieldManager_DisconnectNotify
 func callbackQNearFieldManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -1552,7 +1551,7 @@ func (ptr *QNearFieldManager) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQNearFieldManager_ObjectNameChanged
 func callbackQNearFieldManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "objectNameChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
@@ -1560,7 +1559,7 @@ func callbackQNearFieldManager_ObjectNameChanged(ptr unsafe.Pointer, objectName 
 
 //export callbackQNearFieldManager_TimerEvent
 func callbackQNearFieldManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNearFieldManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -1575,7 +1574,7 @@ func (ptr *QNearFieldManager) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQNearFieldManager_MetaObject
 func callbackQNearFieldManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -1656,7 +1655,7 @@ const (
 
 func NewQNearFieldShareManager(parent core.QObject_ITF) *QNearFieldShareManager {
 	var tmpValue = NewQNearFieldShareManagerFromPointer(C.QNearFieldShareManager_NewQNearFieldShareManager(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -1672,7 +1671,7 @@ func (ptr *QNearFieldShareManager) SupportedShareModes() QNearFieldShareManager_
 
 //export callbackQNearFieldShareManager_Error
 func callbackQNearFieldShareManager_Error(ptr unsafe.Pointer, error C.longlong) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "error"); signal != nil {
+	if signal := qt.GetSignal(ptr, "error"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareError))(QNearFieldShareManager__ShareError(error))
 	}
 
@@ -1681,17 +1680,17 @@ func callbackQNearFieldShareManager_Error(ptr unsafe.Pointer, error C.longlong) 
 func (ptr *QNearFieldShareManager) ConnectError(f func(error QNearFieldShareManager__ShareError)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error") {
+		if !qt.ExistsSignal(ptr.Pointer(), "error") {
 			C.QNearFieldShareManager_ConnectError(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func(error QNearFieldShareManager__ShareError) {
+		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "error", func(error QNearFieldShareManager__ShareError) {
 				signal.(func(QNearFieldShareManager__ShareError))(error)
 				f(error)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+			qt.ConnectSignal(ptr.Pointer(), "error", f)
 		}
 	}
 }
@@ -1699,7 +1698,7 @@ func (ptr *QNearFieldShareManager) ConnectError(f func(error QNearFieldShareMana
 func (ptr *QNearFieldShareManager) DisconnectError() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DisconnectError(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "error")
+		qt.DisconnectSignal(ptr.Pointer(), "error")
 	}
 }
 
@@ -1717,7 +1716,7 @@ func (ptr *QNearFieldShareManager) SetShareModes(mode QNearFieldShareManager__Sh
 
 //export callbackQNearFieldShareManager_ShareModesChanged
 func callbackQNearFieldShareManager_ShareModesChanged(ptr unsafe.Pointer, modes C.longlong) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "shareModesChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "shareModesChanged"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareMode))(QNearFieldShareManager__ShareMode(modes))
 	}
 
@@ -1726,17 +1725,17 @@ func callbackQNearFieldShareManager_ShareModesChanged(ptr unsafe.Pointer, modes 
 func (ptr *QNearFieldShareManager) ConnectShareModesChanged(f func(modes QNearFieldShareManager__ShareMode)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged") {
+		if !qt.ExistsSignal(ptr.Pointer(), "shareModesChanged") {
 			C.QNearFieldShareManager_ConnectShareModesChanged(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged", func(modes QNearFieldShareManager__ShareMode) {
+		if signal := qt.LendSignal(ptr.Pointer(), "shareModesChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "shareModesChanged", func(modes QNearFieldShareManager__ShareMode) {
 				signal.(func(QNearFieldShareManager__ShareMode))(modes)
 				f(modes)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "shareModesChanged", f)
 		}
 	}
 }
@@ -1744,7 +1743,7 @@ func (ptr *QNearFieldShareManager) ConnectShareModesChanged(f func(modes QNearFi
 func (ptr *QNearFieldShareManager) DisconnectShareModesChanged() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DisconnectShareModesChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "shareModesChanged")
+		qt.DisconnectSignal(ptr.Pointer(), "shareModesChanged")
 	}
 }
 
@@ -1756,7 +1755,7 @@ func (ptr *QNearFieldShareManager) ShareModesChanged(modes QNearFieldShareManage
 
 //export callbackQNearFieldShareManager_TargetDetected
 func callbackQNearFieldShareManager_TargetDetected(ptr unsafe.Pointer, shareTarget unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "targetDetected"); signal != nil {
+	if signal := qt.GetSignal(ptr, "targetDetected"); signal != nil {
 		signal.(func(*QNearFieldShareTarget))(NewQNearFieldShareTargetFromPointer(shareTarget))
 	}
 
@@ -1765,17 +1764,17 @@ func callbackQNearFieldShareManager_TargetDetected(ptr unsafe.Pointer, shareTarg
 func (ptr *QNearFieldShareManager) ConnectTargetDetected(f func(shareTarget *QNearFieldShareTarget)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "targetDetected") {
+		if !qt.ExistsSignal(ptr.Pointer(), "targetDetected") {
 			C.QNearFieldShareManager_ConnectTargetDetected(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "targetDetected"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", func(shareTarget *QNearFieldShareTarget) {
+		if signal := qt.LendSignal(ptr.Pointer(), "targetDetected"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "targetDetected", func(shareTarget *QNearFieldShareTarget) {
 				signal.(func(*QNearFieldShareTarget))(shareTarget)
 				f(shareTarget)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected", f)
+			qt.ConnectSignal(ptr.Pointer(), "targetDetected", f)
 		}
 	}
 }
@@ -1783,7 +1782,7 @@ func (ptr *QNearFieldShareManager) ConnectTargetDetected(f func(shareTarget *QNe
 func (ptr *QNearFieldShareManager) DisconnectTargetDetected() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareManager_DisconnectTargetDetected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "targetDetected")
+		qt.DisconnectSignal(ptr.Pointer(), "targetDetected")
 	}
 }
 
@@ -1837,7 +1836,7 @@ func (ptr *QNearFieldShareManager) __dynamicPropertyNames_newList() unsafe.Point
 func (ptr *QNearFieldShareManager) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1858,7 +1857,7 @@ func (ptr *QNearFieldShareManager) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QNearFieldShareManager) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1879,7 +1878,7 @@ func (ptr *QNearFieldShareManager) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QNearFieldShareManager) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1900,7 +1899,7 @@ func (ptr *QNearFieldShareManager) __findChildren_newList() unsafe.Pointer {
 func (ptr *QNearFieldShareManager) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareManager___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -1920,7 +1919,7 @@ func (ptr *QNearFieldShareManager) __children_newList() unsafe.Pointer {
 
 //export callbackQNearFieldShareManager_Event
 func callbackQNearFieldShareManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -1936,7 +1935,7 @@ func (ptr *QNearFieldShareManager) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQNearFieldShareManager_EventFilter
 func callbackQNearFieldShareManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -1952,7 +1951,7 @@ func (ptr *QNearFieldShareManager) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQNearFieldShareManager_ChildEvent
 func callbackQNearFieldShareManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNearFieldShareManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -1967,7 +1966,7 @@ func (ptr *QNearFieldShareManager) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQNearFieldShareManager_ConnectNotify
 func callbackQNearFieldShareManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldShareManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -1982,7 +1981,7 @@ func (ptr *QNearFieldShareManager) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQNearFieldShareManager_CustomEvent
 func callbackQNearFieldShareManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNearFieldShareManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -1997,7 +1996,7 @@ func (ptr *QNearFieldShareManager) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQNearFieldShareManager_DeleteLater
 func callbackQNearFieldShareManager_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNearFieldShareManagerFromPointer(ptr).DeleteLaterDefault()
@@ -2014,7 +2013,7 @@ func (ptr *QNearFieldShareManager) DeleteLaterDefault() {
 
 //export callbackQNearFieldShareManager_Destroyed
 func callbackQNearFieldShareManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "destroyed"); signal != nil {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
 	}
 
@@ -2022,7 +2021,7 @@ func callbackQNearFieldShareManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Poi
 
 //export callbackQNearFieldShareManager_DisconnectNotify
 func callbackQNearFieldShareManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldShareManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2037,7 +2036,7 @@ func (ptr *QNearFieldShareManager) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQNearFieldShareManager_ObjectNameChanged
 func callbackQNearFieldShareManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "objectNameChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
@@ -2045,7 +2044,7 @@ func callbackQNearFieldShareManager_ObjectNameChanged(ptr unsafe.Pointer, object
 
 //export callbackQNearFieldShareManager_TimerEvent
 func callbackQNearFieldShareManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNearFieldShareManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2060,7 +2059,7 @@ func (ptr *QNearFieldShareManager) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQNearFieldShareManager_MetaObject
 func callbackQNearFieldShareManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -2140,7 +2139,7 @@ func (ptr *QNearFieldShareTarget) Cancel() {
 
 //export callbackQNearFieldShareTarget_Error
 func callbackQNearFieldShareTarget_Error(ptr unsafe.Pointer, error C.longlong) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "error"); signal != nil {
+	if signal := qt.GetSignal(ptr, "error"); signal != nil {
 		signal.(func(QNearFieldShareManager__ShareError))(QNearFieldShareManager__ShareError(error))
 	}
 
@@ -2149,17 +2148,17 @@ func callbackQNearFieldShareTarget_Error(ptr unsafe.Pointer, error C.longlong) {
 func (ptr *QNearFieldShareTarget) ConnectError(f func(error QNearFieldShareManager__ShareError)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "error") {
+		if !qt.ExistsSignal(ptr.Pointer(), "error") {
 			C.QNearFieldShareTarget_ConnectError(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "error"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", func(error QNearFieldShareManager__ShareError) {
+		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "error", func(error QNearFieldShareManager__ShareError) {
 				signal.(func(QNearFieldShareManager__ShareError))(error)
 				f(error)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "error", f)
+			qt.ConnectSignal(ptr.Pointer(), "error", f)
 		}
 	}
 }
@@ -2167,7 +2166,7 @@ func (ptr *QNearFieldShareTarget) ConnectError(f func(error QNearFieldShareManag
 func (ptr *QNearFieldShareTarget) DisconnectError() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DisconnectError(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "error")
+		qt.DisconnectSignal(ptr.Pointer(), "error")
 	}
 }
 
@@ -2179,7 +2178,7 @@ func (ptr *QNearFieldShareTarget) Error(error QNearFieldShareManager__ShareError
 
 //export callbackQNearFieldShareTarget_ShareFinished
 func callbackQNearFieldShareTarget_ShareFinished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "shareFinished"); signal != nil {
+	if signal := qt.GetSignal(ptr, "shareFinished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -2188,17 +2187,17 @@ func callbackQNearFieldShareTarget_ShareFinished(ptr unsafe.Pointer) {
 func (ptr *QNearFieldShareTarget) ConnectShareFinished(f func()) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "shareFinished") {
+		if !qt.ExistsSignal(ptr.Pointer(), "shareFinished") {
 			C.QNearFieldShareTarget_ConnectShareFinished(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "shareFinished"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareFinished", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "shareFinished"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "shareFinished", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "shareFinished", f)
+			qt.ConnectSignal(ptr.Pointer(), "shareFinished", f)
 		}
 	}
 }
@@ -2206,7 +2205,7 @@ func (ptr *QNearFieldShareTarget) ConnectShareFinished(f func()) {
 func (ptr *QNearFieldShareTarget) DisconnectShareFinished() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DisconnectShareFinished(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "shareFinished")
+		qt.DisconnectSignal(ptr.Pointer(), "shareFinished")
 	}
 }
 
@@ -2286,7 +2285,7 @@ func (ptr *QNearFieldShareTarget) __dynamicPropertyNames_newList() unsafe.Pointe
 func (ptr *QNearFieldShareTarget) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -2307,7 +2306,7 @@ func (ptr *QNearFieldShareTarget) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QNearFieldShareTarget) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -2328,7 +2327,7 @@ func (ptr *QNearFieldShareTarget) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QNearFieldShareTarget) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareTarget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -2349,7 +2348,7 @@ func (ptr *QNearFieldShareTarget) __findChildren_newList() unsafe.Pointer {
 func (ptr *QNearFieldShareTarget) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldShareTarget___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -2369,7 +2368,7 @@ func (ptr *QNearFieldShareTarget) __children_newList() unsafe.Pointer {
 
 //export callbackQNearFieldShareTarget_Event
 func callbackQNearFieldShareTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -2385,7 +2384,7 @@ func (ptr *QNearFieldShareTarget) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQNearFieldShareTarget_EventFilter
 func callbackQNearFieldShareTarget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -2401,7 +2400,7 @@ func (ptr *QNearFieldShareTarget) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQNearFieldShareTarget_ChildEvent
 func callbackQNearFieldShareTarget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNearFieldShareTargetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -2416,7 +2415,7 @@ func (ptr *QNearFieldShareTarget) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQNearFieldShareTarget_ConnectNotify
 func callbackQNearFieldShareTarget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldShareTargetFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2431,7 +2430,7 @@ func (ptr *QNearFieldShareTarget) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQNearFieldShareTarget_CustomEvent
 func callbackQNearFieldShareTarget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNearFieldShareTargetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -2446,7 +2445,7 @@ func (ptr *QNearFieldShareTarget) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQNearFieldShareTarget_DeleteLater
 func callbackQNearFieldShareTarget_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNearFieldShareTargetFromPointer(ptr).DeleteLaterDefault()
@@ -2463,7 +2462,7 @@ func (ptr *QNearFieldShareTarget) DeleteLaterDefault() {
 
 //export callbackQNearFieldShareTarget_Destroyed
 func callbackQNearFieldShareTarget_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "destroyed"); signal != nil {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
 	}
 
@@ -2471,7 +2470,7 @@ func callbackQNearFieldShareTarget_Destroyed(ptr unsafe.Pointer, obj unsafe.Poin
 
 //export callbackQNearFieldShareTarget_DisconnectNotify
 func callbackQNearFieldShareTarget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldShareTargetFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2486,7 +2485,7 @@ func (ptr *QNearFieldShareTarget) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQNearFieldShareTarget_ObjectNameChanged
 func callbackQNearFieldShareTarget_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "objectNameChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
@@ -2494,7 +2493,7 @@ func callbackQNearFieldShareTarget_ObjectNameChanged(ptr unsafe.Pointer, objectN
 
 //export callbackQNearFieldShareTarget_TimerEvent
 func callbackQNearFieldShareTarget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNearFieldShareTargetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2509,7 +2508,7 @@ func (ptr *QNearFieldShareTarget) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQNearFieldShareTarget_MetaObject
 func callbackQNearFieldShareTarget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -2604,7 +2603,7 @@ const (
 
 func NewQNearFieldTarget(parent core.QObject_ITF) *QNearFieldTarget {
 	var tmpValue = NewQNearFieldTargetFromPointer(C.QNearFieldTarget_NewQNearFieldTarget(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -2612,7 +2611,7 @@ func NewQNearFieldTarget(parent core.QObject_ITF) *QNearFieldTarget {
 
 //export callbackQNearFieldTarget_HasNdefMessage
 func callbackQNearFieldTarget_HasNdefMessage(ptr unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "hasNdefMessage"); signal != nil {
+	if signal := qt.GetSignal(ptr, "hasNdefMessage"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -2622,13 +2621,13 @@ func callbackQNearFieldTarget_HasNdefMessage(ptr unsafe.Pointer) C.char {
 func (ptr *QNearFieldTarget) ConnectHasNdefMessage(f func() bool) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage", func() bool {
+		if signal := qt.LendSignal(ptr.Pointer(), "hasNdefMessage"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "hasNdefMessage", func() bool {
 				signal.(func() bool)()
 				return f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage", f)
+			qt.ConnectSignal(ptr.Pointer(), "hasNdefMessage", f)
 		}
 	}
 }
@@ -2636,7 +2635,7 @@ func (ptr *QNearFieldTarget) ConnectHasNdefMessage(f func() bool) {
 func (ptr *QNearFieldTarget) DisconnectHasNdefMessage() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "hasNdefMessage")
+		qt.DisconnectSignal(ptr.Pointer(), "hasNdefMessage")
 	}
 }
 
@@ -2656,7 +2655,7 @@ func (ptr *QNearFieldTarget) HasNdefMessageDefault() bool {
 
 //export callbackQNearFieldTarget_Disconnected
 func callbackQNearFieldTarget_Disconnected(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "disconnected"); signal != nil {
+	if signal := qt.GetSignal(ptr, "disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -2665,17 +2664,17 @@ func callbackQNearFieldTarget_Disconnected(ptr unsafe.Pointer) {
 func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "disconnected") {
+		if !qt.ExistsSignal(ptr.Pointer(), "disconnected") {
 			C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "disconnected"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected", f)
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", f)
 		}
 	}
 }
@@ -2683,7 +2682,7 @@ func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
 func (ptr *QNearFieldTarget) DisconnectDisconnected() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DisconnectDisconnected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "disconnected")
+		qt.DisconnectSignal(ptr.Pointer(), "disconnected")
 	}
 }
 
@@ -2695,7 +2694,7 @@ func (ptr *QNearFieldTarget) Disconnected() {
 
 //export callbackQNearFieldTarget_NdefMessageRead
 func callbackQNearFieldTarget_NdefMessageRead(ptr unsafe.Pointer, message unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "ndefMessageRead"); signal != nil {
+	if signal := qt.GetSignal(ptr, "ndefMessageRead"); signal != nil {
 		signal.(func(*QNdefMessage))(NewQNdefMessageFromPointer(message))
 	}
 
@@ -2704,17 +2703,17 @@ func callbackQNearFieldTarget_NdefMessageRead(ptr unsafe.Pointer, message unsafe
 func (ptr *QNearFieldTarget) ConnectNdefMessageRead(f func(message *QNdefMessage)) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead") {
+		if !qt.ExistsSignal(ptr.Pointer(), "ndefMessageRead") {
 			C.QNearFieldTarget_ConnectNdefMessageRead(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead", func(message *QNdefMessage) {
+		if signal := qt.LendSignal(ptr.Pointer(), "ndefMessageRead"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "ndefMessageRead", func(message *QNdefMessage) {
 				signal.(func(*QNdefMessage))(message)
 				f(message)
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead", f)
+			qt.ConnectSignal(ptr.Pointer(), "ndefMessageRead", f)
 		}
 	}
 }
@@ -2722,7 +2721,7 @@ func (ptr *QNearFieldTarget) ConnectNdefMessageRead(f func(message *QNdefMessage
 func (ptr *QNearFieldTarget) DisconnectNdefMessageRead() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DisconnectNdefMessageRead(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessageRead")
+		qt.DisconnectSignal(ptr.Pointer(), "ndefMessageRead")
 	}
 }
 
@@ -2734,7 +2733,7 @@ func (ptr *QNearFieldTarget) NdefMessageRead(message QNdefMessage_ITF) {
 
 //export callbackQNearFieldTarget_NdefMessagesWritten
 func callbackQNearFieldTarget_NdefMessagesWritten(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "ndefMessagesWritten"); signal != nil {
+	if signal := qt.GetSignal(ptr, "ndefMessagesWritten"); signal != nil {
 		signal.(func())()
 	}
 
@@ -2743,17 +2742,17 @@ func callbackQNearFieldTarget_NdefMessagesWritten(ptr unsafe.Pointer) {
 func (ptr *QNearFieldTarget) ConnectNdefMessagesWritten(f func()) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten") {
+		if !qt.ExistsSignal(ptr.Pointer(), "ndefMessagesWritten") {
 			C.QNearFieldTarget_ConnectNdefMessagesWritten(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "ndefMessagesWritten"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "ndefMessagesWritten", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten", f)
+			qt.ConnectSignal(ptr.Pointer(), "ndefMessagesWritten", f)
 		}
 	}
 }
@@ -2761,7 +2760,7 @@ func (ptr *QNearFieldTarget) ConnectNdefMessagesWritten(f func()) {
 func (ptr *QNearFieldTarget) DisconnectNdefMessagesWritten() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DisconnectNdefMessagesWritten(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "ndefMessagesWritten")
+		qt.DisconnectSignal(ptr.Pointer(), "ndefMessagesWritten")
 	}
 }
 
@@ -2773,7 +2772,7 @@ func (ptr *QNearFieldTarget) NdefMessagesWritten() {
 
 //export callbackQNearFieldTarget_DestroyQNearFieldTarget
 func callbackQNearFieldTarget_DestroyQNearFieldTarget(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "~QNearFieldTarget"); signal != nil {
+	if signal := qt.GetSignal(ptr, "~QNearFieldTarget"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNearFieldTargetFromPointer(ptr).DestroyQNearFieldTargetDefault()
@@ -2783,13 +2782,13 @@ func callbackQNearFieldTarget_DestroyQNearFieldTarget(ptr unsafe.Pointer) {
 func (ptr *QNearFieldTarget) ConnectDestroyQNearFieldTarget(f func()) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "~QNearFieldTarget"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QNearFieldTarget", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QNearFieldTarget", f)
 		}
 	}
 }
@@ -2797,7 +2796,7 @@ func (ptr *QNearFieldTarget) ConnectDestroyQNearFieldTarget(f func()) {
 func (ptr *QNearFieldTarget) DisconnectDestroyQNearFieldTarget() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "~QNearFieldTarget")
+		qt.DisconnectSignal(ptr.Pointer(), "~QNearFieldTarget")
 	}
 }
 
@@ -2819,7 +2818,7 @@ func (ptr *QNearFieldTarget) DestroyQNearFieldTargetDefault() {
 
 //export callbackQNearFieldTarget_AccessMethods
 func callbackQNearFieldTarget_AccessMethods(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "accessMethods"); signal != nil {
+	if signal := qt.GetSignal(ptr, "accessMethods"); signal != nil {
 		return C.longlong(signal.(func() QNearFieldTarget__AccessMethod)())
 	}
 
@@ -2829,13 +2828,13 @@ func callbackQNearFieldTarget_AccessMethods(ptr unsafe.Pointer) C.longlong {
 func (ptr *QNearFieldTarget) ConnectAccessMethods(f func() QNearFieldTarget__AccessMethod) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "accessMethods"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accessMethods", func() QNearFieldTarget__AccessMethod {
+		if signal := qt.LendSignal(ptr.Pointer(), "accessMethods"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "accessMethods", func() QNearFieldTarget__AccessMethod {
 				signal.(func() QNearFieldTarget__AccessMethod)()
 				return f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "accessMethods", f)
+			qt.ConnectSignal(ptr.Pointer(), "accessMethods", f)
 		}
 	}
 }
@@ -2843,7 +2842,7 @@ func (ptr *QNearFieldTarget) ConnectAccessMethods(f func() QNearFieldTarget__Acc
 func (ptr *QNearFieldTarget) DisconnectAccessMethods() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "accessMethods")
+		qt.DisconnectSignal(ptr.Pointer(), "accessMethods")
 	}
 }
 
@@ -2856,7 +2855,7 @@ func (ptr *QNearFieldTarget) AccessMethods() QNearFieldTarget__AccessMethod {
 
 //export callbackQNearFieldTarget_Uid
 func callbackQNearFieldTarget_Uid(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "uid"); signal != nil {
+	if signal := qt.GetSignal(ptr, "uid"); signal != nil {
 		return core.PointerFromQByteArray(signal.(func() *core.QByteArray)())
 	}
 
@@ -2866,13 +2865,13 @@ func callbackQNearFieldTarget_Uid(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QNearFieldTarget) ConnectUid(f func() *core.QByteArray) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "uid"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uid", func() *core.QByteArray {
+		if signal := qt.LendSignal(ptr.Pointer(), "uid"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "uid", func() *core.QByteArray {
 				signal.(func() *core.QByteArray)()
 				return f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "uid", f)
+			qt.ConnectSignal(ptr.Pointer(), "uid", f)
 		}
 	}
 }
@@ -2880,7 +2879,7 @@ func (ptr *QNearFieldTarget) ConnectUid(f func() *core.QByteArray) {
 func (ptr *QNearFieldTarget) DisconnectUid() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "uid")
+		qt.DisconnectSignal(ptr.Pointer(), "uid")
 	}
 }
 
@@ -2895,7 +2894,7 @@ func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
 
 //export callbackQNearFieldTarget_Url
 func callbackQNearFieldTarget_Url(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "url"); signal != nil {
+	if signal := qt.GetSignal(ptr, "url"); signal != nil {
 		return core.PointerFromQUrl(signal.(func() *core.QUrl)())
 	}
 
@@ -2905,13 +2904,13 @@ func callbackQNearFieldTarget_Url(ptr unsafe.Pointer) unsafe.Pointer {
 func (ptr *QNearFieldTarget) ConnectUrl(f func() *core.QUrl) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "url"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "url", func() *core.QUrl {
+		if signal := qt.LendSignal(ptr.Pointer(), "url"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "url", func() *core.QUrl {
 				signal.(func() *core.QUrl)()
 				return f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "url", f)
+			qt.ConnectSignal(ptr.Pointer(), "url", f)
 		}
 	}
 }
@@ -2919,7 +2918,7 @@ func (ptr *QNearFieldTarget) ConnectUrl(f func() *core.QUrl) {
 func (ptr *QNearFieldTarget) DisconnectUrl() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "url")
+		qt.DisconnectSignal(ptr.Pointer(), "url")
 	}
 }
 
@@ -2943,7 +2942,7 @@ func (ptr *QNearFieldTarget) UrlDefault() *core.QUrl {
 
 //export callbackQNearFieldTarget_Type
 func callbackQNearFieldTarget_Type(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "type"); signal != nil {
+	if signal := qt.GetSignal(ptr, "type"); signal != nil {
 		return C.longlong(signal.(func() QNearFieldTarget__Type)())
 	}
 
@@ -2953,13 +2952,13 @@ func callbackQNearFieldTarget_Type(ptr unsafe.Pointer) C.longlong {
 func (ptr *QNearFieldTarget) ConnectType(f func() QNearFieldTarget__Type) {
 	if ptr.Pointer() != nil {
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "type"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", func() QNearFieldTarget__Type {
+		if signal := qt.LendSignal(ptr.Pointer(), "type"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "type", func() QNearFieldTarget__Type {
 				signal.(func() QNearFieldTarget__Type)()
 				return f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "type", f)
+			qt.ConnectSignal(ptr.Pointer(), "type", f)
 		}
 	}
 }
@@ -2967,7 +2966,7 @@ func (ptr *QNearFieldTarget) ConnectType(f func() QNearFieldTarget__Type) {
 func (ptr *QNearFieldTarget) DisconnectType() {
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "type")
+		qt.DisconnectSignal(ptr.Pointer(), "type")
 	}
 }
 
@@ -3045,7 +3044,7 @@ func (ptr *QNearFieldTarget) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QNearFieldTarget) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldTarget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3066,7 +3065,7 @@ func (ptr *QNearFieldTarget) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QNearFieldTarget) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldTarget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3087,7 +3086,7 @@ func (ptr *QNearFieldTarget) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QNearFieldTarget) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldTarget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3108,7 +3107,7 @@ func (ptr *QNearFieldTarget) __findChildren_newList() unsafe.Pointer {
 func (ptr *QNearFieldTarget) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QNearFieldTarget___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3128,7 +3127,7 @@ func (ptr *QNearFieldTarget) __children_newList() unsafe.Pointer {
 
 //export callbackQNearFieldTarget_Event
 func callbackQNearFieldTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -3144,7 +3143,7 @@ func (ptr *QNearFieldTarget) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQNearFieldTarget_EventFilter
 func callbackQNearFieldTarget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -3160,7 +3159,7 @@ func (ptr *QNearFieldTarget) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQNearFieldTarget_ChildEvent
 func callbackQNearFieldTarget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNearFieldTargetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -3175,7 +3174,7 @@ func (ptr *QNearFieldTarget) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQNearFieldTarget_ConnectNotify
 func callbackQNearFieldTarget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldTargetFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3190,7 +3189,7 @@ func (ptr *QNearFieldTarget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQNearFieldTarget_CustomEvent
 func callbackQNearFieldTarget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNearFieldTargetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -3205,7 +3204,7 @@ func (ptr *QNearFieldTarget) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQNearFieldTarget_DeleteLater
 func callbackQNearFieldTarget_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNearFieldTargetFromPointer(ptr).DeleteLaterDefault()
@@ -3222,7 +3221,7 @@ func (ptr *QNearFieldTarget) DeleteLaterDefault() {
 
 //export callbackQNearFieldTarget_Destroyed
 func callbackQNearFieldTarget_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "destroyed"); signal != nil {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
 	}
 
@@ -3230,7 +3229,7 @@ func callbackQNearFieldTarget_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) 
 
 //export callbackQNearFieldTarget_DisconnectNotify
 func callbackQNearFieldTarget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNearFieldTargetFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3245,7 +3244,7 @@ func (ptr *QNearFieldTarget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQNearFieldTarget_ObjectNameChanged
 func callbackQNearFieldTarget_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "objectNameChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
@@ -3253,7 +3252,7 @@ func callbackQNearFieldTarget_ObjectNameChanged(ptr unsafe.Pointer, objectName C
 
 //export callbackQNearFieldTarget_TimerEvent
 func callbackQNearFieldTarget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNearFieldTargetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -3268,7 +3267,7 @@ func (ptr *QNearFieldTarget) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQNearFieldTarget_MetaObject
 func callbackQNearFieldTarget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -3336,7 +3335,7 @@ const (
 
 //export callbackQQmlNdefRecord_RecordChanged
 func callbackQQmlNdefRecord_RecordChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "recordChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "recordChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -3345,17 +3344,17 @@ func callbackQQmlNdefRecord_RecordChanged(ptr unsafe.Pointer) {
 func (ptr *QQmlNdefRecord) ConnectRecordChanged(f func()) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "recordChanged") {
+		if !qt.ExistsSignal(ptr.Pointer(), "recordChanged") {
 			C.QQmlNdefRecord_ConnectRecordChanged(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "recordChanged"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "recordChanged", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "recordChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "recordChanged", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "recordChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "recordChanged", f)
 		}
 	}
 }
@@ -3363,7 +3362,7 @@ func (ptr *QQmlNdefRecord) ConnectRecordChanged(f func()) {
 func (ptr *QQmlNdefRecord) DisconnectRecordChanged() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DisconnectRecordChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "recordChanged")
+		qt.DisconnectSignal(ptr.Pointer(), "recordChanged")
 	}
 }
 
@@ -3397,7 +3396,7 @@ func (ptr *QQmlNdefRecord) TypeNameFormat() QQmlNdefRecord__TypeNameFormat {
 
 func NewQQmlNdefRecord(parent core.QObject_ITF) *QQmlNdefRecord {
 	var tmpValue = NewQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -3405,7 +3404,7 @@ func NewQQmlNdefRecord(parent core.QObject_ITF) *QQmlNdefRecord {
 
 func NewQQmlNdefRecord2(record QNdefRecord_ITF, parent core.QObject_ITF) *QQmlNdefRecord {
 	var tmpValue = NewQQmlNdefRecordFromPointer(C.QQmlNdefRecord_NewQQmlNdefRecord2(PointerFromQNdefRecord(record), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
@@ -3430,7 +3429,7 @@ func (ptr *QQmlNdefRecord) SetTypeNameFormat(newTypeNameFormat QQmlNdefRecord__T
 
 //export callbackQQmlNdefRecord_TypeChanged
 func callbackQQmlNdefRecord_TypeChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "typeChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "typeChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -3439,17 +3438,17 @@ func callbackQQmlNdefRecord_TypeChanged(ptr unsafe.Pointer) {
 func (ptr *QQmlNdefRecord) ConnectTypeChanged(f func()) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "typeChanged") {
+		if !qt.ExistsSignal(ptr.Pointer(), "typeChanged") {
 			C.QQmlNdefRecord_ConnectTypeChanged(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "typeChanged"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "typeChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "typeChanged", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "typeChanged", f)
 		}
 	}
 }
@@ -3457,7 +3456,7 @@ func (ptr *QQmlNdefRecord) ConnectTypeChanged(f func()) {
 func (ptr *QQmlNdefRecord) DisconnectTypeChanged() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DisconnectTypeChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "typeChanged")
+		qt.DisconnectSignal(ptr.Pointer(), "typeChanged")
 	}
 }
 
@@ -3469,7 +3468,7 @@ func (ptr *QQmlNdefRecord) TypeChanged() {
 
 //export callbackQQmlNdefRecord_TypeNameFormatChanged
 func callbackQQmlNdefRecord_TypeNameFormatChanged(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "typeNameFormatChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "typeNameFormatChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -3478,17 +3477,17 @@ func callbackQQmlNdefRecord_TypeNameFormatChanged(ptr unsafe.Pointer) {
 func (ptr *QQmlNdefRecord) ConnectTypeNameFormatChanged(f func()) {
 	if ptr.Pointer() != nil {
 
-		if !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged") {
+		if !qt.ExistsSignal(ptr.Pointer(), "typeNameFormatChanged") {
 			C.QQmlNdefRecord_ConnectTypeNameFormatChanged(ptr.Pointer())
 		}
 
-		if signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged"); signal != nil {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged", func() {
+		if signal := qt.LendSignal(ptr.Pointer(), "typeNameFormatChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "typeNameFormatChanged", func() {
 				signal.(func())()
 				f()
 			})
 		} else {
-			qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "typeNameFormatChanged", f)
 		}
 	}
 }
@@ -3496,7 +3495,7 @@ func (ptr *QQmlNdefRecord) ConnectTypeNameFormatChanged(f func()) {
 func (ptr *QQmlNdefRecord) DisconnectTypeNameFormatChanged() {
 	if ptr.Pointer() != nil {
 		C.QQmlNdefRecord_DisconnectTypeNameFormatChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "typeNameFormatChanged")
+		qt.DisconnectSignal(ptr.Pointer(), "typeNameFormatChanged")
 	}
 }
 
@@ -3543,7 +3542,7 @@ func (ptr *QQmlNdefRecord) __dynamicPropertyNames_newList() unsafe.Pointer {
 func (ptr *QQmlNdefRecord) __findChildren_atList2(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlNdefRecord___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3564,7 +3563,7 @@ func (ptr *QQmlNdefRecord) __findChildren_newList2() unsafe.Pointer {
 func (ptr *QQmlNdefRecord) __findChildren_atList3(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlNdefRecord___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3585,7 +3584,7 @@ func (ptr *QQmlNdefRecord) __findChildren_newList3() unsafe.Pointer {
 func (ptr *QQmlNdefRecord) __findChildren_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlNdefRecord___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3606,7 +3605,7 @@ func (ptr *QQmlNdefRecord) __findChildren_newList() unsafe.Pointer {
 func (ptr *QQmlNdefRecord) __children_atList(i int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlNdefRecord___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "destroyed") {
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
@@ -3626,7 +3625,7 @@ func (ptr *QQmlNdefRecord) __children_newList() unsafe.Pointer {
 
 //export callbackQQmlNdefRecord_Event
 func callbackQQmlNdefRecord_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -3642,7 +3641,7 @@ func (ptr *QQmlNdefRecord) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlNdefRecord_EventFilter
 func callbackQQmlNdefRecord_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -3658,7 +3657,7 @@ func (ptr *QQmlNdefRecord) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQQmlNdefRecord_ChildEvent
 func callbackQQmlNdefRecord_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQQmlNdefRecordFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -3673,7 +3672,7 @@ func (ptr *QQmlNdefRecord) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlNdefRecord_ConnectNotify
 func callbackQQmlNdefRecord_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQQmlNdefRecordFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3688,7 +3687,7 @@ func (ptr *QQmlNdefRecord) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlNdefRecord_CustomEvent
 func callbackQQmlNdefRecord_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQQmlNdefRecordFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -3703,7 +3702,7 @@ func (ptr *QQmlNdefRecord) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlNdefRecord_DeleteLater
 func callbackQQmlNdefRecord_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQQmlNdefRecordFromPointer(ptr).DeleteLaterDefault()
@@ -3720,7 +3719,7 @@ func (ptr *QQmlNdefRecord) DeleteLaterDefault() {
 
 //export callbackQQmlNdefRecord_Destroyed
 func callbackQQmlNdefRecord_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "destroyed"); signal != nil {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
 	}
 
@@ -3728,7 +3727,7 @@ func callbackQQmlNdefRecord_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 
 //export callbackQQmlNdefRecord_DisconnectNotify
 func callbackQQmlNdefRecord_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQQmlNdefRecordFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3743,7 +3742,7 @@ func (ptr *QQmlNdefRecord) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlNdefRecord_ObjectNameChanged
 func callbackQQmlNdefRecord_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtNfc_PackedString) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "objectNameChanged"); signal != nil {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
 
@@ -3751,7 +3750,7 @@ func callbackQQmlNdefRecord_ObjectNameChanged(ptr unsafe.Pointer, objectName C.s
 
 //export callbackQQmlNdefRecord_TimerEvent
 func callbackQQmlNdefRecord_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQQmlNdefRecordFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -3766,7 +3765,7 @@ func (ptr *QQmlNdefRecord) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlNdefRecord_MetaObject
 func callbackQQmlNdefRecord_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 

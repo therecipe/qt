@@ -103,7 +103,7 @@ func goFunctionBody(function *parser.Function) string {
 
 		//TODO: -->
 		if function.SignalMode == parser.CONNECT {
-			fmt.Fprintf(bb, "\nif !qt.ExistsSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\") {\n",
+			fmt.Fprintf(bb, "\nif !qt.ExistsSignal(ptr.Pointer(), \"%v%v\") {\n",
 				function.Name,
 				function.OverloadNumber,
 			)
@@ -201,7 +201,7 @@ func goFunctionBody(function *parser.Function) string {
 
 					fmt.Fprintf(bb, "var tmpValue = %v\n", body)
 
-					fmt.Fprintf(bb, "if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
+					fmt.Fprintf(bb, "if !qt.ExistsSignal(tmpValue.Pointer(), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
 						func() string {
 							if class.Module == "QtCore" {
 								return "*QObject"
@@ -269,7 +269,7 @@ func goFunctionBody(function *parser.Function) string {
 				}
 			}
 
-			fmt.Fprintf(bb, "if signal := qt.GetSignal(fmt.Sprint(ptr), \"%v%v\"); signal != nil {\n",
+			fmt.Fprintf(bb, "if signal := qt.GetSignal(ptr, \"%v%v\"); signal != nil {\n",
 				function.Name,
 				function.OverloadNumber,
 			)
@@ -446,12 +446,12 @@ func goFunctionBody(function *parser.Function) string {
 
 	case parser.CONNECT:
 		{
-			fmt.Fprintf(bb, "\nif signal := qt.LendSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\"); signal != nil {\n",
+			fmt.Fprintf(bb, "\nif signal := qt.LendSignal(ptr.Pointer(), \"%v%v\"); signal != nil {\n",
 				function.Name,
 				function.OverloadNumber,
 			)
 
-			fmt.Fprintf(bb, "\tqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\", %v)",
+			fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\", %v)",
 				function.SignalMode,
 				function.Name,
 				function.OverloadNumber,
@@ -484,7 +484,7 @@ func goFunctionBody(function *parser.Function) string {
 				}())
 
 			fmt.Fprintf(bb, "} else {\n")
-			fmt.Fprintf(bb, "\tqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\"%v)",
+			fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\"%v)",
 				function.SignalMode,
 				function.Name,
 				function.OverloadNumber,
@@ -501,7 +501,7 @@ func goFunctionBody(function *parser.Function) string {
 
 	case parser.DISCONNECT:
 		{
-			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v%v\"%v)",
+			fmt.Fprintf(bb, "\nqt.%vSignal(ptr.Pointer(), \"%v%v\"%v)",
 				function.SignalMode,
 				function.Name,
 				function.OverloadNumber,
