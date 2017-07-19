@@ -174,3 +174,19 @@ func CppRegisterMetaType(function *parser.Function) string {
 
 	return strings.Join(out, "\n")
 }
+
+func CppRegisterMetaTypeProp(p *parser.Variable) string {
+
+	if isClass(parser.CleanValue(p.Output)) {
+		pc, _ := p.Class()
+		if pc.Module != parser.State.ClassMap[parser.CleanValue(p.Output)].Module {
+			return p.Output
+		}
+	}
+
+	if isEnum(p.ClassName(), parser.CleanValue(p.Output)) {
+		return cppEnum(&parser.Function{Fullname: p.Fullname}, parser.CleanValue(p.Output), true)
+	}
+
+	return ""
+}

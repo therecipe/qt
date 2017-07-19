@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -329,11 +330,15 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						}
 					}
 
+					propTypes := make(map[string]struct{})
 					for _, p := range class.Properties {
 						if parser.IsPackedMap(p.Output) {
 							var tHash = sha1.New()
 							tHash.Write([]byte(p.Output))
 							typeMap[p.Output] = hex.EncodeToString(tHash.Sum(nil)[:3])
+						}
+						if o := converter.CppRegisterMetaTypeProp(p); o != "" {
+							propTypes[o] = struct{}{}
 						}
 					}
 
@@ -349,6 +354,9 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					fmt.Fprintf(bb, "\nvoid %[1]v_%[1]v_QRegisterMetaTypes() {\n", class.Name)
 					for _, hash := range typeMap {
 						fmt.Fprintf(bb, "\tqRegisterMetaType<type%v>(\"type%v\");\n", hash, hash)
+					}
+					for t := range propTypes {
+						fmt.Fprintf(bb, "\tqRegisterMetaType<%v>();\n", t)
 					}
 					fmt.Fprint(bb, "}\n\n")
 				}
