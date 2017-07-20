@@ -94,6 +94,7 @@ func bundle(mode, target, path, name, depPath string) {
 				lddExtra      string
 				lddOutput     string
 				usesWebEngine bool
+				usesQml       bool
 			)
 
 			if strings.HasPrefix(target, "rpi") {
@@ -126,10 +127,17 @@ func bundle(mode, target, path, name, depPath string) {
 					if strings.Contains(dep, "WebEngine") {
 						usesWebEngine = true
 					}
+					if strings.Contains(dep, "Quick") || strings.Contains(dep, "Qml") {
+						usesQml = true
+					}
 				}
 			}
 
-			for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent", "Svg"} {
+			libs := []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent", "Svg"}
+			if usesQml {
+				libs = append(libs, []string{"3DCore", "3DExtras", "3DInput", "3DLogic", "3DQuick", "3DQuickExtras", "3DQuickInput", "3DQuickRender", "3DRender", "Gamepad"}...)
+			}
+			for _, libName := range libs {
 				if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
 					utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, "lib", fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
 				}
