@@ -79,7 +79,7 @@ func goFunctionBody(function *parser.Function) string {
 	if class.Name == "QAndroidJniObject" {
 
 		if strings.HasPrefix(function.Name, parser.TILDE) {
-			fmt.Fprint(bb, "qt.DisconnectAllSignals(ptr.ToString(), \"\")\n")
+			fmt.Fprint(bb, "qt.DisconnectAllSignals(ptr.Pointer(), \"\")\n")
 		}
 
 		for _, parameter := range function.Parameters {

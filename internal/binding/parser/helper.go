@@ -207,6 +207,7 @@ func ShouldBuildForTarget(module, target string) bool {
 		if strings.HasSuffix(module, "Extras") && module != "WinExtras" {
 			return false
 		}
+
 	case "android", "android-emulator":
 		switch module {
 		case "DBus", "WebEngine", "Designer", "PrintSupport": //TODO: PrintSupport
@@ -215,6 +216,7 @@ func ShouldBuildForTarget(module, target string) bool {
 		if strings.HasSuffix(module, "Extras") && module != "AndroidExtras" {
 			return false
 		}
+
 	case "ios", "ios-simulator":
 		switch module {
 		case "DBus", "WebEngine", "SerialPort", "SerialBus", "Designer", "PrintSupport": //TODO: PrintSupport
@@ -223,10 +225,12 @@ func ShouldBuildForTarget(module, target string) bool {
 		if strings.HasSuffix(module, "Extras") {
 			return false
 		}
+
 	case "sailfish", "sailfish-emulator", "asteroid":
 		if !IsWhiteListedSailfishLib(module) {
 			return false
 		}
+
 	case "rpi1", "rpi2", "rpi3":
 		switch module {
 		case "WebEngine", "Designer":
@@ -243,14 +247,10 @@ func ShouldBuildForTarget(module, target string) bool {
 func IsWhiteListedSailfishLib(name string) bool {
 	switch name {
 	case "Sailfish", "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
-		{
-			return true
-		}
+		return true
 
 	default:
-		{
-			return false
-		}
+		return false
 	}
 }
 
@@ -325,6 +325,9 @@ func GetLibs() []string {
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case !utils.QT_WEBKIT() && libs[i] == "WebKit":
+			libs = append(libs[:i], libs[i+1:]...)
+
+		case (utils.QT_MSYS2() || utils.QT_PKG_CONFIG()) && libs[i] == "Purchasing":
 			libs = append(libs[:i], libs[i+1:]...)
 		}
 	}

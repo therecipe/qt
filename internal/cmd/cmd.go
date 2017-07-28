@@ -67,17 +67,17 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	var image string
 	switch target {
 	case "windows":
-		if utils.QT_MXE_ARCH() == "386" || utils.QT_MSYS2_ARCH() == "386" {
-			if utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC() {
-				image = "windows_32_static"
-			} else {
-				image = "windows_32_shared"
-			}
-		} else {
+		if utils.QT_MXE_ARCH() == "amd64" || utils.QT_MSYS2_ARCH() == "amd64" {
 			if utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC() {
 				image = "windows_64_static"
 			} else {
 				image = "windows_64_shared"
+			}
+		} else {
+			if utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC() {
+				image = "windows_32_static"
+			} else {
+				image = "windows_32_shared"
 			}
 		}
 		if !docker {
@@ -232,6 +232,12 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	}
 
 	if docker {
+		for i := range args {
+			if strings.HasPrefix(args[i], "windows_") {
+				args[i] = "windows"
+			}
+		}
+
 		utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", target, runtime.GOOS))
 	} else {
 		switch target {

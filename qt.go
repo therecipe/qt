@@ -112,8 +112,8 @@ func DisconnectAllSignals(cPtr unsafe.Pointer, signal string) {
 func DumpSignals() {
 	Debug("##############################\tSIGNALSTABLE_START\t##############################")
 	signalsMutex.Lock()
-	for entry := range signals {
-		Debug(entry)
+	for cPtr, entry := range signals {
+		Debug(cPtr, entry)
 	}
 	signalsMutex.Unlock()
 	Debug("##############################\tSIGNALSTABLE_END\t##############################")

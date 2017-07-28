@@ -2409,7 +2409,7 @@ func (ptr *QAndroidJniObject) SetStaticField3(clazz unsafe.Pointer, fieldName st
 
 func (ptr *QAndroidJniObject) DestroyQAndroidJniObject() {
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ToString(), "")
+		qt.DisconnectAllSignals(ptr.Pointer(), "")
 		C.QAndroidJniObject_DestroyQAndroidJniObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
