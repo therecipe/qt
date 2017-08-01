@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 
 	"github.com/therecipe/qt/internal/binding/templater"
 
@@ -16,37 +17,44 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var done = make(map[string]struct{})
-
 func Rcc(path, target, tagsCustom, output_dir string) {
+	rcc(path, target, tagsCustom, output_dir, true)
+}
+
+func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Rcc")
 
-	for i, path := range append([]string{path}, cmd.GetImports(path, target, tagsCustom, 0, true)...) {
-		if _, ok := done[path]; !ok && i > 0 {
-			done[path] = struct{}{}
-			Rcc(path, target, tagsCustom, path)
+	if root {
+		wg := new(sync.WaitGroup)
+		defer wg.Wait()
+		allImports := cmd.GetImports(path, target, tagsCustom, 0, false)
+		wg.Add(len(allImports))
+		for _, path := range allImports {
+			go func(path string) {
+				rcc(path, target, tagsCustom, path, false)
+				wg.Done()
+			}(path)
 		}
 	}
 
-	cfileList, err := ioutil.ReadDir(path)
+	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		utils.Log.WithError(err).Error("failed to read dir")
 		return
 	}
-
-	var hasQml bool
-	for _, file := range cfileList {
+	var hasQMLFiles bool
+	for _, file := range files {
 		if file.IsDir() && file.Name() == "qml" {
-			hasQml = true
+			hasQMLFiles = true
 			break
 		}
 		ext := filepath.Ext(file.Name())
 		if ext == ".qrc" || ext == ".qml" {
-			hasQml = true
+			hasQMLFiles = true
 			break
 		}
 	}
-	if !hasQml {
+	if !hasQMLFiles {
 		return
 	}
 
@@ -89,15 +97,15 @@ func Rcc(path, target, tagsCustom, output_dir string) {
 		utils.Save(rccQrc, content)
 	}
 
-	files, err := ioutil.ReadDir(path)
+	files, err = ioutil.ReadDir(path)
 	if err != nil {
 		utils.Log.WithError(err).Fatal("failed to read dir")
 	}
 	var fileList []string
-	for _, f := range files {
-		if !f.IsDir() && filepath.Ext(f.Name()) == ".qrc" {
+	for _, file := range files {
+		if !file.IsDir() && filepath.Ext(file.Name()) == ".qrc" {
 			//TODO: check for buildTags
-			fileList = append(fileList, filepath.Join(path, f.Name()))
+			fileList = append(fileList, filepath.Join(path, file.Name()))
 		}
 	}
 

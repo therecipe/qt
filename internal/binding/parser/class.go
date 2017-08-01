@@ -3,6 +3,7 @@ package parser
 import (
 	"fmt"
 	"strings"
+	"sync"
 )
 
 type Class struct {
@@ -30,6 +31,8 @@ type Class struct {
 
 	Constructors []string
 	Derivations  []string
+
+	sync.Mutex
 }
 
 func (c *Class) register(m *Module) {

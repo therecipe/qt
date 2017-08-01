@@ -16,24 +16,14 @@ func GenModule(m, target string, mode int) {
 	}
 	utils.Log.WithField("module", m).Debug("generating")
 
-	var suffix = func() string {
-		switch m {
-		case "AndroidExtras":
-			{
-				return "_android"
-			}
+	var suffix string
+	switch m {
+	case "AndroidExtras":
+		suffix = "_android"
 
-		case "Sailfish":
-			{
-				return "_sailfish"
-			}
-
-		default:
-			{
-				return ""
-			}
-		}
-	}()
+	case "Sailfish":
+		suffix = "_sailfish"
+	}
 
 	if mode == NONE {
 		utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(m)))

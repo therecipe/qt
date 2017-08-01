@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"sort"
 	"strings"
+	"sync"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -334,6 +335,11 @@ func GetLibs() []string {
 	return libs
 }
 
+var (
+	getCustomLibsCache      = make(map[string]string)
+	getCustomLibsCacheMutex = new(sync.Mutex)
+)
+
 func GetCustomLibs(target, tags string) map[string]string {
 
 	/*TODO: cycle dep of cmd.BuildEnv
@@ -343,22 +349,46 @@ func GetCustomLibs(target, tags string) map[string]string {
 	}
 	*/
 
+	wg := new(sync.WaitGroup)
 	out := make(map[string]string)
+	outMutex := new(sync.Mutex)
+
 	for _, c := range State.ClassMap {
 		if c.Pkg == "" || !c.IsSubClassOfQObject() {
 			continue
 		}
 
-		cmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
-		cmd.Dir = c.Pkg
-		/*TODO: cycle dep of cmd.BuildEnv
-		for k, v := range env {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
-		}
-		*/
+		wg.Add(1)
+		go func(c *Class) {
+			getCustomLibsCacheMutex.Lock()
+			path, ok := getCustomLibsCache[c.Pkg]
+			getCustomLibsCacheMutex.Unlock()
 
-		out[c.Module] = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
+			if !ok {
+				cmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
+				cmd.Dir = c.Pkg
+
+				/*TODO: cycle dep of cmd.BuildEnv
+				for k, v := range env {
+					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+				}
+				*/
+
+				path = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
+				getCustomLibsCacheMutex.Lock()
+				getCustomLibsCache[c.Pkg] = path
+				getCustomLibsCacheMutex.Unlock()
+			}
+
+			outMutex.Lock()
+			out[c.Module] = path
+			outMutex.Unlock()
+
+			wg.Done()
+		}(c)
 	}
+
+	wg.Wait()
 
 	return out
 }

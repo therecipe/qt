@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"strings"
+	"sync"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/therecipe/qt/internal/utils"
@@ -22,12 +23,32 @@ var State = &struct {
 }
 
 func LoadModules() {
-	for _, m := range GetLibs() {
-		_ = LoadModule(m)
+	libs := GetLibs()
+	modules := make([]*Module, len(libs))
+	modulesMutex := new(sync.Mutex)
+	wg := new(sync.WaitGroup)
+
+	wg.Add(len(GetLibs()))
+	for i, m := range libs {
+		go func(i int, m string) {
+			mod := LoadModule(m)
+
+			modulesMutex.Lock()
+			modules[i] = mod
+			modulesMutex.Unlock()
+			wg.Done()
+		}(i, m)
+	}
+	wg.Wait()
+
+	for _, m := range modules {
+		if m != nil {
+			m.Prepare()
+		}
 	}
 }
 
-func LoadModule(m string) error {
+func LoadModule(m string) *Module {
 	var (
 		logName   = "parser.LoadModule"
 		logFields = logrus.Fields{"module": m}
@@ -35,7 +56,7 @@ func LoadModule(m string) error {
 	utils.Log.WithFields(logFields).Debug(logName)
 
 	if m == "Sailfish" {
-		return sailfishModule().Prepare()
+		return sailfishModule()
 	}
 
 	module := new(Module)
@@ -66,8 +87,8 @@ func LoadModule(m string) error {
 		} else {
 			utils.Log.WithFields(logFields).WithError(err).Debug(logName)
 		}
-		return err
+		return nil
 	}
 
-	return module.Prepare()
+	return module
 }
