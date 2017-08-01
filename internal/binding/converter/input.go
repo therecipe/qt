@@ -1,5 +1,7 @@
 package converter
 
+//TODO: GLchar, GLbyte
+
 import (
 	"fmt"
 	"strings"
@@ -27,7 +29,7 @@ func GoInput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.CString(%v)", name)
 		}
 
-	case "uchar", "quint8", "QString":
+	case "uchar", "quint8", "GLubyte", "QString":
 		{
 			return fmt.Sprintf("C.CString(%v)", func() string {
 				if f.AsError {
@@ -42,34 +44,34 @@ func GoInput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 		}
 
-	case "void" /*, ""*/ :
+	case "void", "GLvoid" /*, ""*/ :
 		{
 			if strings.Contains(vOld, "*") {
 				return name
 			}
 		}
 
-	case "bool":
+	case "bool", "GLboolean":
 		{
 			return fmt.Sprintf("C.char(int8(qt.GoBoolToInt(%v)))", name)
 		}
 
-	case "short", "qint16":
+	case "short", "qint16", "GLshort":
 		{
 			return fmt.Sprintf("C.short(%v)", name)
 		}
 
-	case "ushort", "unsigned short", "quint16":
+	case "ushort", "unsigned short", "quint16", "GLushort":
 		{
 			return fmt.Sprintf("C.ushort(%v)", name)
 		}
 
-	case "int", "qint32":
+	case "int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx":
 		{
 			return fmt.Sprintf("C.int(int32(%v))", name)
 		}
 
-	case "uint", "unsigned int", "quint32":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
 		{
 			return fmt.Sprintf("C.uint(uint32(%v))", name)
 		}
@@ -94,7 +96,7 @@ func GoInput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.ulonglong(%v)", name)
 		}
 
-	case "float":
+	case "float", "GLfloat", "GLclampf":
 		{
 			return fmt.Sprintf("C.float(%v)", name)
 		}
@@ -218,7 +220,7 @@ func cppInput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("*%v", name)
 		}
 
-	case "uchar", "quint8":
+	case "uchar", "quint8", "GLubyte":
 		{
 			if strings.Contains(vOld, "*") {
 				if strings.Contains(vOld, "const") {
@@ -256,14 +258,20 @@ func cppInput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("QString::fromUtf8(%[1]v.data, %[1]v.len).split(\"|\", QString::SkipEmptyParts)", name)
 		}
 
-	case "void" /*, ""*/ :
+	case "void", "GLvoid" /*, ""*/ :
 		{
+			if strings.Count(vOld, "*") == 2 && !strings.Contains(vOld, "**") {
+				break
+			}
+			if strings.Contains(vOld, "**") {
+				return fmt.Sprintf("&%v", name)
+			}
 			if strings.Contains(vOld, "*") {
 				return name
 			}
 		}
 
-	case "bool":
+	case "bool", "GLboolean":
 		{
 			if strings.Contains(vOld, "*") {
 				return "NULL"
@@ -273,11 +281,11 @@ func cppInput(name, value string, f *parser.Function) string {
 		}
 
 	case
-		"short", "qint16",
-		"ushort", "unsigned short", "quint16",
+		"short", "qint16", "GLshort",
+		"ushort", "unsigned short", "quint16", "GLushort",
 
-		"int", "qint32",
-		"uint", "unsigned int", "quint32",
+		"int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx",
+		"uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint",
 
 		"long",
 		"ulong", "unsigned long",
@@ -285,7 +293,7 @@ func cppInput(name, value string, f *parser.Function) string {
 		"longlong", "long long", "qlonglong", "qint64",
 		"ulonglong", "unsigned long long", "qulonglong", "quint64",
 
-		"float",
+		"float", "GLfloat", "GLclampf",
 		"double", "qreal",
 
 		"uintptr_t", "uintptr", "quintptr", "WId":

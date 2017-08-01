@@ -747,6 +747,7 @@ void QQuickWindow_DeleteLaterDefault(void* ptr);
 void QQuickWindow_DisconnectNotifyDefault(void* ptr, void* sign);
 void QQuickWindow_TimerEventDefault(void* ptr, void* event);
 void* QQuickWindow_MetaObjectDefault(void* ptr);
+void QSGAbstractRenderer_RenderScene(void* ptr, unsigned int fboId);
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr);
 void QSGAbstractRenderer_DisconnectSceneGraphChanged(void* ptr);
 void QSGAbstractRenderer_SceneGraphChanged(void* ptr);

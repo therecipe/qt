@@ -1699,7 +1699,7 @@ void* QModbusPdu___encode_vector_newList2(void* ptr)
 class MyQModbusReply: public QModbusReply
 {
 public:
-	MyQModbusReply(ReplyType type, int serverAddress, QObject *parent = nullptr) : QModbusReply(type, serverAddress, parent) {QModbusReply_QModbusReply_QRegisterMetaType();};
+	MyQModbusReply(ReplyType ty, int serverAddress, QObject *parent = nullptr) : QModbusReply(ty, serverAddress, parent) {QModbusReply_QModbusReply_QRegisterMetaType();};
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusReply_ErrorOccurred(this, error); };
 	void Signal_Finished() { callbackQModbusReply_Finished(this); };
 	bool event(QEvent * e) { return callbackQModbusReply_Event(this, e) != 0; };

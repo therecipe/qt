@@ -59154,6 +59154,378 @@ const (
 	QOpenGLWidget__PartialUpdate   QOpenGLWidget__UpdateBehavior = QOpenGLWidget__UpdateBehavior(1)
 )
 
+func (ptr *QOpenGLWidget) GrabFramebuffer() *gui.QImage {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQImageFromPointer(C.QOpenGLWidget_GrabFramebuffer(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
+		return tmpValue
+	}
+	return nil
+}
+
+func NewQOpenGLWidget(parent QWidget_ITF, fo core.Qt__WindowType) *QOpenGLWidget {
+	var tmpValue = NewQOpenGLWidgetFromPointer(C.QOpenGLWidget_NewQOpenGLWidget(PointerFromQWidget(parent), C.longlong(fo)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackQOpenGLWidget_AboutToCompose
+func callbackQOpenGLWidget_AboutToCompose(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "aboutToCompose"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QOpenGLWidget) ConnectAboutToCompose(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "aboutToCompose") {
+			C.QOpenGLWidget_ConnectAboutToCompose(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "aboutToCompose"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "aboutToCompose", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "aboutToCompose", f)
+		}
+	}
+}
+
+func (ptr *QOpenGLWidget) DisconnectAboutToCompose() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_DisconnectAboutToCompose(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "aboutToCompose")
+	}
+}
+
+func (ptr *QOpenGLWidget) AboutToCompose() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_AboutToCompose(ptr.Pointer())
+	}
+}
+
+//export callbackQOpenGLWidget_AboutToResize
+func callbackQOpenGLWidget_AboutToResize(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "aboutToResize"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QOpenGLWidget) ConnectAboutToResize(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "aboutToResize") {
+			C.QOpenGLWidget_ConnectAboutToResize(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "aboutToResize"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "aboutToResize", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "aboutToResize", f)
+		}
+	}
+}
+
+func (ptr *QOpenGLWidget) DisconnectAboutToResize() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_DisconnectAboutToResize(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "aboutToResize")
+	}
+}
+
+func (ptr *QOpenGLWidget) AboutToResize() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_AboutToResize(ptr.Pointer())
+	}
+}
+
+func (ptr *QOpenGLWidget) DoneCurrent() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_DoneCurrent(ptr.Pointer())
+	}
+}
+
+//export callbackQOpenGLWidget_FrameSwapped
+func callbackQOpenGLWidget_FrameSwapped(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "frameSwapped"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QOpenGLWidget) ConnectFrameSwapped(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "frameSwapped") {
+			C.QOpenGLWidget_ConnectFrameSwapped(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "frameSwapped"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "frameSwapped", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "frameSwapped", f)
+		}
+	}
+}
+
+func (ptr *QOpenGLWidget) DisconnectFrameSwapped() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_DisconnectFrameSwapped(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "frameSwapped")
+	}
+}
+
+func (ptr *QOpenGLWidget) FrameSwapped() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_FrameSwapped(ptr.Pointer())
+	}
+}
+
+//export callbackQOpenGLWidget_InitializeGL
+func callbackQOpenGLWidget_InitializeGL(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initializeGL"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQOpenGLWidgetFromPointer(ptr).InitializeGLDefault()
+	}
+}
+
+func (ptr *QOpenGLWidget) ConnectInitializeGL(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "initializeGL"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "initializeGL", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "initializeGL", f)
+		}
+	}
+}
+
+func (ptr *QOpenGLWidget) DisconnectInitializeGL() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "initializeGL")
+	}
+}
+
+func (ptr *QOpenGLWidget) InitializeGL() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_InitializeGL(ptr.Pointer())
+	}
+}
+
+func (ptr *QOpenGLWidget) InitializeGLDefault() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_InitializeGLDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QOpenGLWidget) MakeCurrent() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_MakeCurrent(ptr.Pointer())
+	}
+}
+
+//export callbackQOpenGLWidget_PaintGL
+func callbackQOpenGLWidget_PaintGL(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "paintGL"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQOpenGLWidgetFromPointer(ptr).PaintGLDefault()
+	}
+}
+
+func (ptr *QOpenGLWidget) ConnectPaintGL(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "paintGL"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "paintGL", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "paintGL", f)
+		}
+	}
+}
+
+func (ptr *QOpenGLWidget) DisconnectPaintGL() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "paintGL")
+	}
+}
+
+func (ptr *QOpenGLWidget) PaintGL() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_PaintGL(ptr.Pointer())
+	}
+}
+
+func (ptr *QOpenGLWidget) PaintGLDefault() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_PaintGLDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQOpenGLWidget_ResizeGL
+func callbackQOpenGLWidget_ResizeGL(ptr unsafe.Pointer, w C.int, h C.int) {
+	if signal := qt.GetSignal(ptr, "resizeGL"); signal != nil {
+		signal.(func(int, int))(int(int32(w)), int(int32(h)))
+	} else {
+		NewQOpenGLWidgetFromPointer(ptr).ResizeGLDefault(int(int32(w)), int(int32(h)))
+	}
+}
+
+func (ptr *QOpenGLWidget) ConnectResizeGL(f func(w int, h int)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "resizeGL"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "resizeGL", func(w int, h int) {
+				signal.(func(int, int))(w, h)
+				f(w, h)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "resizeGL", f)
+		}
+	}
+}
+
+func (ptr *QOpenGLWidget) DisconnectResizeGL() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "resizeGL")
+	}
+}
+
+func (ptr *QOpenGLWidget) ResizeGL(w int, h int) {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_ResizeGL(ptr.Pointer(), C.int(int32(w)), C.int(int32(h)))
+	}
+}
+
+func (ptr *QOpenGLWidget) ResizeGLDefault(w int, h int) {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_ResizeGLDefault(ptr.Pointer(), C.int(int32(w)), C.int(int32(h)))
+	}
+}
+
+//export callbackQOpenGLWidget_Resized
+func callbackQOpenGLWidget_Resized(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resized"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QOpenGLWidget) ConnectResized(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "resized") {
+			C.QOpenGLWidget_ConnectResized(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "resized"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "resized", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "resized", f)
+		}
+	}
+}
+
+func (ptr *QOpenGLWidget) DisconnectResized() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_DisconnectResized(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "resized")
+	}
+}
+
+func (ptr *QOpenGLWidget) Resized() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_Resized(ptr.Pointer())
+	}
+}
+
+func (ptr *QOpenGLWidget) SetFormat(format gui.QSurfaceFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_SetFormat(ptr.Pointer(), gui.PointerFromQSurfaceFormat(format))
+	}
+}
+
+func (ptr *QOpenGLWidget) SetUpdateBehavior(updateBehavior QOpenGLWidget__UpdateBehavior) {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_SetUpdateBehavior(ptr.Pointer(), C.longlong(updateBehavior))
+	}
+}
+
+func (ptr *QOpenGLWidget) DestroyQOpenGLWidget() {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_DestroyQOpenGLWidget(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QOpenGLWidget) DefaultFramebufferObject() uint {
+	if ptr.Pointer() != nil {
+		return uint(uint32(C.QOpenGLWidget_DefaultFramebufferObject(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QOpenGLWidget) Context() *gui.QOpenGLContext {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQOpenGLContextFromPointer(C.QOpenGLWidget_Context(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QOpenGLWidget) Format() *gui.QSurfaceFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQSurfaceFormatFromPointer(C.QOpenGLWidget_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QSurfaceFormat).DestroyQSurfaceFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QOpenGLWidget) UpdateBehavior() QOpenGLWidget__UpdateBehavior {
+	if ptr.Pointer() != nil {
+		return QOpenGLWidget__UpdateBehavior(C.QOpenGLWidget_UpdateBehavior(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QOpenGLWidget) IsValid() bool {
+	if ptr.Pointer() != nil {
+		return C.QOpenGLWidget_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 type QPanGesture struct {
 	QGesture
 }

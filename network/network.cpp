@@ -1452,8 +1452,8 @@ class MyQDnsLookup: public QDnsLookup
 {
 public:
 	MyQDnsLookup(QObject *parent = Q_NULLPTR) : QDnsLookup(parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
-	MyQDnsLookup(Type type, const QString &name, QObject *parent = Q_NULLPTR) : QDnsLookup(type, name, parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
-	MyQDnsLookup(Type type, const QString &name, const QHostAddress &nameserver, QObject *parent = Q_NULLPTR) : QDnsLookup(type, name, nameserver, parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
+	MyQDnsLookup(Type ty, const QString &name, QObject *parent = Q_NULLPTR) : QDnsLookup(ty, name, parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
+	MyQDnsLookup(Type ty, const QString &name, const QHostAddress &nameserver, QObject *parent = Q_NULLPTR) : QDnsLookup(ty, name, nameserver, parent) {QDnsLookup_QDnsLookup_QRegisterMetaType();};
 	void abort() { callbackQDnsLookup_Abort(this); };
 	void Signal_Finished() { callbackQDnsLookup_Finished(this); };
 	void lookup() { callbackQDnsLookup_Lookup(this); };

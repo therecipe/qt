@@ -265,7 +265,7 @@ func (c *Class) IsSupported() bool {
 
 	switch {
 	case
-		strings.HasPrefix(c.Name, "QOpenGL"), strings.HasPrefix(c.Name, "QPlace"), //file not found or QPA API
+		c.Name == "QOpenGLFunctions_ES2", strings.HasPrefix(c.Name, "QPlace"), //file not found or QPA API
 
 		strings.HasPrefix(c.Name, "QAtomic"), //other
 

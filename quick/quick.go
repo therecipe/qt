@@ -9935,6 +9935,41 @@ const (
 	QSGAbstractRenderer__ClearStencilBuffer QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0004)
 )
 
+//export callbackQSGAbstractRenderer_RenderScene
+func callbackQSGAbstractRenderer_RenderScene(ptr unsafe.Pointer, fboId C.uint) {
+	if signal := qt.GetSignal(ptr, "renderScene"); signal != nil {
+		signal.(func(uint))(uint(uint32(fboId)))
+	}
+
+}
+
+func (ptr *QSGAbstractRenderer) ConnectRenderScene(f func(fboId uint)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "renderScene"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "renderScene", func(fboId uint) {
+				signal.(func(uint))(fboId)
+				f(fboId)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "renderScene", f)
+		}
+	}
+}
+
+func (ptr *QSGAbstractRenderer) DisconnectRenderScene() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "renderScene")
+	}
+}
+
+func (ptr *QSGAbstractRenderer) RenderScene(fboId uint) {
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_RenderScene(ptr.Pointer(), C.uint(uint32(fboId)))
+	}
+}
+
 //export callbackQSGAbstractRenderer_SceneGraphChanged
 func callbackQSGAbstractRenderer_SceneGraphChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "sceneGraphChanged"); signal != nil {

@@ -1,3 +1,5 @@
+//source: http://doc.qt.io/qt-5/qtquick-demos-photoviewer-example.html
+
 package main
 
 import (

@@ -73,7 +73,9 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			//"grpc": []string{"hello_world","hello_world2"},
 
-			//"gui": []string{"analogclock", "rasterwindow"},
+			//"gui": []string{"analogclock", "openglwindow", "rasterwindow"},
+
+			//opengl: []string{"2dpainting"},
 
 			"qml": []string{"adding", "application", "drawer_nav_x",
 				filepath.Join("extending", "chapter1-basics"),

@@ -130,11 +130,6 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							continue
 						}
 
-						var input = make([]string, len(function.Parameters))
-						for i, p := range function.Parameters {
-							input[i] = p.Name
-						}
-
 						var out = fmt.Sprintf("\t%v%v(%v) : %v(%v) {%v};\n",
 							func() string {
 								if mode == MOC {
@@ -148,17 +143,18 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							func() string {
 								var input []string
 								for _, p := range function.OgParameters {
+									name := parser.CleanName(p.Name, p.Value)
 									if p.Default != "" {
 										if strings.HasSuffix(p.Value, "*") || strings.HasSuffix(p.Value, "&") {
-											input = append(input, p.Value+p.Name+" = "+p.Default)
+											input = append(input, p.Value+name+" = "+p.Default)
 										} else {
-											input = append(input, p.Value+" "+p.Name+" = "+p.Default)
+											input = append(input, p.Value+" "+name+" = "+p.Default)
 										}
 									} else {
 										if strings.HasSuffix(p.Value, "*") || strings.HasSuffix(p.Value, "&") {
-											input = append(input, p.Value+p.Name)
+											input = append(input, p.Value+name)
 										} else {
-											input = append(input, p.Value+" "+p.Name)
+											input = append(input, p.Value+" "+name)
 										}
 									}
 								}
@@ -172,7 +168,13 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 								return function.ClassName()
 							}(),
 
-							strings.Join(input, ", "),
+							func() string {
+								input := make([]string, len(function.Parameters))
+								for i, p := range function.Parameters {
+									input[i] = parser.CleanName(p.Name, p.Value)
+								}
+								return strings.Join(input, ", ")
+							}(),
 
 							func() string {
 								var pre string

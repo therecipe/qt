@@ -2390,7 +2390,7 @@ struct QtSensors_PackedString QRotationSensor_QRotationSensor_Type()
 class MyQSensor: public QSensor
 {
 public:
-	MyQSensor(const QByteArray &type, QObject *parent = Q_NULLPTR) : QSensor(type, parent) {QSensor_QSensor_QRegisterMetaType();};
+	MyQSensor(const QByteArray &ty, QObject *parent = Q_NULLPTR) : QSensor(ty, parent) {QSensor_QSensor_QRegisterMetaType();};
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };

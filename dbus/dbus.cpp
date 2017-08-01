@@ -1163,7 +1163,7 @@ char QDBusError_IsValid(void* ptr)
 class MyQDBusInterface: public QDBusInterface
 {
 public:
-	MyQDBusInterface(const QString &service, const QString &path, const QString &interface = QString(), const QDBusConnection &connection = QDBusConnection::sessionBus(), QObject *parent = Q_NULLPTR) : QDBusInterface(service, path, interface, connection, parent) {QDBusInterface_QDBusInterface_QRegisterMetaType();};
+	MyQDBusInterface(const QString &service, const QString &path, const QString &interfa = QString(), const QDBusConnection &connection = QDBusConnection::sessionBus(), QObject *parent = Q_NULLPTR) : QDBusInterface(service, path, interfa, connection, parent) {QDBusInterface_QDBusInterface_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQDBusAbstractInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusAbstractInterface_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterface_ChildEvent(this, event); };

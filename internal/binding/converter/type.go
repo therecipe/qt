@@ -1,5 +1,7 @@
 package converter
 
+//TODO: GLchar, GLbyte
+
 import (
 	"fmt"
 	"strings"
@@ -13,7 +15,7 @@ func goType(f *parser.Function, value string) string {
 	value = parser.CleanValue(value)
 
 	switch value {
-	case "char", "qint8", "uchar", "quint8", "QString", "QStringList":
+	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
 		{
 			if strings.Contains(vOld, "**") || value == "QStringList" {
 				return "[]string"
@@ -30,7 +32,7 @@ func goType(f *parser.Function, value string) string {
 			return "string"
 		}
 
-	case "void", "":
+	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
 				return "unsafe.Pointer"
@@ -39,27 +41,27 @@ func goType(f *parser.Function, value string) string {
 			return ""
 		}
 
-	case "bool":
+	case "bool", "GLboolean":
 		{
 			return "bool"
 		}
 
-	case "short", "qint16":
+	case "short", "qint16", "GLshort":
 		{
 			return "int16"
 		}
 
-	case "ushort", "unsigned short", "quint16":
+	case "ushort", "unsigned short", "quint16", "GLushort":
 		{
 			return "uint16"
 		}
 
-	case "int", "qint32":
+	case "int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx":
 		{
 			return "int"
 		}
 
-	case "uint", "unsigned int", "quint32":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
 		{
 			return "uint"
 		}
@@ -84,7 +86,7 @@ func goType(f *parser.Function, value string) string {
 			return "uint64"
 		}
 
-	case "float":
+	case "float", "GLfloat", "GLclampf":
 		{
 			return "float32"
 		}
@@ -207,7 +209,7 @@ func goType(f *parser.Function, value string) string {
 
 func cgoTypeOutput(f *parser.Function, value string) string {
 	switch parser.CleanValue(value) {
-	case "char", "qint8", "uchar", "quint8":
+	case "char", "qint8", "uchar", "quint8", "GLubyte":
 		{
 			return "*C.char"
 		}
@@ -229,12 +231,12 @@ func cgoType(f *parser.Function, value string) string {
 	value = parser.CleanValue(value)
 
 	switch value {
-	case "char", "qint8", "uchar", "quint8", "QString", "QStringList":
+	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
 		{
 			return fmt.Sprintf("C.struct_%v_PackedString", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 		}
 
-	case "void", "":
+	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
 				return "unsafe.Pointer"
@@ -243,27 +245,27 @@ func cgoType(f *parser.Function, value string) string {
 			return ""
 		}
 
-	case "bool":
+	case "bool", "GLboolean":
 		{
 			return "C.char"
 		}
 
-	case "short", "qint16":
+	case "short", "qint16", "GLshort":
 		{
 			return "C.short"
 		}
 
-	case "ushort", "unsigned short", "quint16":
+	case "ushort", "unsigned short", "quint16", "GLushort":
 		{
 			return "C.ushort"
 		}
 
-	case "int", "qint32":
+	case "int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx":
 		{
 			return "C.int"
 		}
 
-	case "uint", "unsigned int", "quint32":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
 		{
 			return "C.uint"
 		}
@@ -288,7 +290,7 @@ func cgoType(f *parser.Function, value string) string {
 			return "C.ulonglong"
 		}
 
-	case "float":
+	case "float", "GLfloat", "GLclampf":
 		{
 			return "C.float"
 		}
@@ -327,7 +329,7 @@ func cgoType(f *parser.Function, value string) string {
 
 func cppTypeInput(f *parser.Function, value string) string {
 	switch parser.CleanValue(value) {
-	case "char", "qint8", "uchar", "quint8":
+	case "char", "qint8", "uchar", "quint8", "GLubyte":
 		{
 			return "char*"
 		}
@@ -348,12 +350,12 @@ func cppType(f *parser.Function, value string) string {
 	value = parser.CleanValue(value)
 
 	switch value {
-	case "char", "qint8", "uchar", "quint8", "QString", "QStringList":
+	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
 		{
 			return fmt.Sprintf("struct %v_PackedString", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 		}
 
-	case "void", "":
+	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
 				return "void*"
@@ -362,27 +364,27 @@ func cppType(f *parser.Function, value string) string {
 			return "void"
 		}
 
-	case "bool":
+	case "bool", "GLboolean":
 		{
 			return "char"
 		}
 
-	case "short", "qint16":
+	case "short", "qint16", "GLshort":
 		{
 			return "short"
 		}
 
-	case "ushort", "unsigned short", "quint16":
+	case "ushort", "unsigned short", "quint16", "GLushort":
 		{
 			return "unsigned short"
 		}
 
-	case "int", "qint32":
+	case "int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx":
 		{
 			return "int"
 		}
 
-	case "uint", "unsigned int", "quint32":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
 		{
 			return "unsigned int"
 		}
@@ -407,7 +409,7 @@ func cppType(f *parser.Function, value string) string {
 			return "unsigned long long"
 		}
 
-	case "float":
+	case "float", "GLfloat", "GLclampf":
 		{
 			return "float"
 		}

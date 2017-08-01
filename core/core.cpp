@@ -4910,7 +4910,7 @@ unsigned short QChar_Unicode(void* ptr)
 class MyQChildEvent: public QChildEvent
 {
 public:
-	MyQChildEvent(Type type, QObject *child) : QChildEvent(type, child) {};
+	MyQChildEvent(Type ty, QObject *child) : QChildEvent(ty, child) {};
 };
 
 void* QChildEvent_NewQChildEvent(long long ty, void* child)
@@ -6914,7 +6914,7 @@ long long QElapsedTimer_SecsTo(void* ptr, void* other)
 class MyQEvent: public QEvent
 {
 public:
-	MyQEvent(Type type) : QEvent(type) {};
+	MyQEvent(Type ty) : QEvent(ty) {};
 	 ~MyQEvent() { callbackQEvent_DestroyQEvent(this); };
 };
 
@@ -7110,7 +7110,7 @@ void QEventLoopLocker_DestroyQEventLoopLocker(void* ptr)
 class MyQEventTransition: public QEventTransition
 {
 public:
-	MyQEventTransition(QObject *object, QEvent::Type type, QState *sourceState = Q_NULLPTR) : QEventTransition(object, type, sourceState) {QEventTransition_QEventTransition_QRegisterMetaType();};
+	MyQEventTransition(QObject *object, QEvent::Type ty, QState *sourceState = Q_NULLPTR) : QEventTransition(object, ty, sourceState) {QEventTransition_QEventTransition_QRegisterMetaType();};
 	MyQEventTransition(QState *sourceState = Q_NULLPTR) : QEventTransition(sourceState) {QEventTransition_QEventTransition_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventTest(QEvent * event) { return callbackQEventTransition_EventTest(this, event) != 0; };
@@ -8268,7 +8268,7 @@ void* QGenericReturnArgument_NewQGenericReturnArgument(char* name, void* data)
 class MyQHistoryState: public QHistoryState
 {
 public:
-	MyQHistoryState(HistoryType type, QState *parent = Q_NULLPTR) : QHistoryState(type, parent) {QHistoryState_QHistoryState_QRegisterMetaType();};
+	MyQHistoryState(HistoryType ty, QState *parent = Q_NULLPTR) : QHistoryState(ty, parent) {QHistoryState_QHistoryState_QRegisterMetaType();};
 	MyQHistoryState(QState *parent = Q_NULLPTR) : QHistoryState(parent) {QHistoryState_QHistoryState_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	void Signal_DefaultStateChanged() { callbackQHistoryState_DefaultStateChanged(this); };
@@ -17586,7 +17586,7 @@ class MyQSignalTransition: public QSignalTransition
 {
 public:
 	MyQSignalTransition(QState *sourceState = Q_NULLPTR) : QSignalTransition(sourceState) {QSignalTransition_QSignalTransition_QRegisterMetaType();};
-	MyQSignalTransition(const QObject *sender, const char *signal, QState *sourceState = Q_NULLPTR) : QSignalTransition(sender, signal, sourceState) {QSignalTransition_QSignalTransition_QRegisterMetaType();};
+	MyQSignalTransition(const QObject *sender, const char *sign, QState *sourceState = Q_NULLPTR) : QSignalTransition(sender, sign, sourceState) {QSignalTransition_QSignalTransition_QRegisterMetaType();};
 	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
 	bool eventTest(QEvent * event) { return callbackQSignalTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQSignalTransition_OnTransition(this, event); };
@@ -19009,7 +19009,7 @@ class MyQStringListModel: public QStringListModel
 {
 public:
 	MyQStringListModel(QObject *parent = Q_NULLPTR) : QStringListModel(parent) {QStringListModel_QStringListModel_QRegisterMetaType();};
-	MyQStringListModel(const QStringList &strings, QObject *parent = Q_NULLPTR) : QStringListModel(strings, parent) {QStringListModel_QStringListModel_QRegisterMetaType();};
+	MyQStringListModel(const QStringList &strin, QObject *parent = Q_NULLPTR) : QStringListModel(strin, parent) {QStringListModel_QStringListModel_QRegisterMetaType();};
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractItemModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
@@ -20709,7 +20709,7 @@ public:
 	MyQTextStream() : QTextStream() {};
 	MyQTextStream(QByteArray *array, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(array, openMode) {};
 	MyQTextStream(QIODevice *device) : QTextStream(device) {};
-	MyQTextStream(QString *string, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(string, openMode) {};
+	MyQTextStream(QString *stri, QIODevice::OpenMode openMode = QIODevice::ReadWrite) : QTextStream(stri, openMode) {};
 	MyQTextStream(const QByteArray &array, QIODevice::OpenMode openMode = QIODevice::ReadOnly) : QTextStream(array, openMode) {};
 	 ~MyQTextStream() { callbackQTextStream_DestroyQTextStream(this); };
 };

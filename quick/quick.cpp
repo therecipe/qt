@@ -267,7 +267,7 @@ char QQuickFramebufferObject_TextureFollowsItemSize(void* ptr)
 class MyQQuickImageProvider: public QQuickImageProvider
 {
 public:
-	MyQQuickImageProvider(ImageType type, Flags flags = Flags()) : QQuickImageProvider(type, flags) {};
+	MyQQuickImageProvider(ImageType ty, Flags flags = Flags()) : QQuickImageProvider(ty, flags) {};
 	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
 	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { QByteArray t87ea5d = id.toUtf8(); QtQuick_PackedString idPacked = { const_cast<char*>(t87ea5d.prepend("WHITESPACE").constData()+10), t87ea5d.size()-10 };return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, idPacked, size, const_cast<QSize*>(&requestedSize))); };
@@ -5073,6 +5073,7 @@ void* QQuickWindow_MetaObjectDefault(void* ptr)
 class MyQSGAbstractRenderer: public QSGAbstractRenderer
 {
 public:
+	void renderScene(GLuint fboId) { callbackQSGAbstractRenderer_RenderScene(this, fboId); };
 	void Signal_SceneGraphChanged() { callbackQSGAbstractRenderer_SceneGraphChanged(this); };
 	bool event(QEvent * e) { return callbackQSGAbstractRenderer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSGAbstractRenderer_EventFilter(this, watched, event) != 0; };
@@ -5090,6 +5091,11 @@ public:
 Q_DECLARE_METATYPE(MyQSGAbstractRenderer*)
 
 int QSGAbstractRenderer_QSGAbstractRenderer_QRegisterMetaType(){qRegisterMetaType<QSGAbstractRenderer*>(); return qRegisterMetaType<MyQSGAbstractRenderer*>();}
+
+void QSGAbstractRenderer_RenderScene(void* ptr, unsigned int fboId)
+{
+	static_cast<QSGAbstractRenderer*>(ptr)->renderScene(fboId);
+}
 
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr)
 {

@@ -229,7 +229,7 @@ long long QAbstractPlanarVideoBuffer_MapModeDefault(void* ptr)
 class MyQAbstractVideoBuffer: public QAbstractVideoBuffer
 {
 public:
-	MyQAbstractVideoBuffer(HandleType type) : QAbstractVideoBuffer(type) {};
+	MyQAbstractVideoBuffer(HandleType ty) : QAbstractVideoBuffer(ty) {};
 	uchar * map(QAbstractVideoBuffer::MapMode mode, int * numBytes, int * bytesPerLine) { return static_cast<uchar*>(static_cast<void*>(callbackQAbstractVideoBuffer_Map(this, mode, *numBytes, *bytesPerLine))); };
 	void release() { callbackQAbstractVideoBuffer_Release(this); };
 	void unmap() { callbackQAbstractVideoBuffer_Unmap(this); };
