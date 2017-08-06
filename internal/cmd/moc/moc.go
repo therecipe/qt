@@ -43,6 +43,7 @@ func moc(path, target, tags string, fast, root bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
 	if root {
+		defer rootWg.Wait()
 		wg := new(sync.WaitGroup)
 		wc := make(chan bool, 50)
 		allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
@@ -272,6 +273,7 @@ func moc(path, target, tags string, fast, root bool) {
 
 	rootWg.Add(1)
 	go func() {
+		defer rootWg.Done()
 		var err error
 		for i := 0; i < 5; i++ {
 			fix, err = imports.Process(filepath.Join(path, "moc.go"), fix, nil)
@@ -283,7 +285,6 @@ func moc(path, target, tags string, fast, root bool) {
 		if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
 			return
 		}
-		rootWg.Done()
 	}()
 
 	rootWg.Add(1)
@@ -315,10 +316,6 @@ func moc(path, target, tags string, fast, root bool) {
 		}
 		rootWg.Done()
 	}()
-
-	if root {
-		rootWg.Wait()
-	}
 }
 
 func parse(path string) ([]*parser.Class, string, error) {
