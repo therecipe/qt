@@ -25,7 +25,7 @@ func CppInputParametersForSlotInvoke(function *parser.Function) string {
 		return ""
 	}
 
-	var input = make([]string, len(function.Parameters))
+	input := make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
 		input[i] = fmt.Sprintf("Q_ARG(%v, %v)", CppInputParametersForSlotArguments(function, parameter), CppInput(parameter.Name, parameter.Value, function))
@@ -41,27 +41,26 @@ func CppInputParametersForSlotInvoke(function *parser.Function) string {
 }
 
 func CppInputParametersForSlotArguments(function *parser.Function, parameter *parser.Parameter) string {
+	var con string
+	if strings.Contains(parameter.Value, "const ") {
+		con = "const "
+	}
+
 	switch {
 	case strings.Contains(parameter.Value, "*"):
-		{
-			if parser.IsPackedList(parameter.Value) || parser.IsPackedMap(parameter.Value) {
-				return fmt.Sprintf("%v", parser.CleanValue(parameter.Value))
-			}
-			return fmt.Sprintf("%v*", parser.CleanValue(parameter.Value))
+		if parser.IsPackedList(parameter.Value) || parser.IsPackedMap(parameter.Value) {
+			return fmt.Sprintf("%v%v", con, parser.CleanValue(parameter.Value))
 		}
+		return fmt.Sprintf("%v%v*", con, parser.CleanValue(parameter.Value))
 
 	case isEnum(function.ClassName(), parameter.Value):
-		{
-			if function.Meta == parser.SLOT && function.SignalMode == "" && parser.CleanValue(parameter.Value) == "Qt::Alignment" {
-				return parser.CleanValue(parameter.Value)
-			}
-			return cppEnum(function, parameter.Value, false)
-		}
-
-	default:
-		{
+		if function.Meta == parser.SLOT && function.SignalMode == "" && parser.CleanValue(parameter.Value) == "Qt::Alignment" {
 			return parser.CleanValue(parameter.Value)
 		}
+		return fmt.Sprintf("%v%v", con, cppEnum(function, parameter.Value, true))
+
+	default:
+		return fmt.Sprintf("%v%v", con, parser.CleanValue(parameter.Value))
 	}
 }
 

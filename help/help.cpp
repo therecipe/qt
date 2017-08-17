@@ -3266,7 +3266,7 @@ void QHelpIndexWidget_ActivateCurrentItemDefault(void* ptr)
 
 void QHelpIndexWidget_FilterIndices(void* ptr, struct QtHelp_PackedString filter, struct QtHelp_PackedString wildcard)
 {
-	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "filterIndices", Q_ARG(QString, QString::fromUtf8(filter.data, filter.len)), Q_ARG(QString, QString::fromUtf8(wildcard.data, wildcard.len)));
+	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "filterIndices", Q_ARG(const QString, QString::fromUtf8(filter.data, filter.len)), Q_ARG(const QString, QString::fromUtf8(wildcard.data, wildcard.len)));
 }
 
 void QHelpIndexWidget_FilterIndicesDefault(void* ptr, struct QtHelp_PackedString filter, struct QtHelp_PackedString wildcard)
@@ -4195,7 +4195,7 @@ void QHelpSearchEngine_ReindexDocumentationDefault(void* ptr)
 
 void QHelpSearchEngine_Search(void* ptr, void* queryList)
 {
-	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "search", Q_ARG(QList<QHelpSearchQuery>, *static_cast<QList<QHelpSearchQuery>*>(queryList)));
+	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "search", Q_ARG(const QList<QHelpSearchQuery>, *static_cast<QList<QHelpSearchQuery>*>(queryList)));
 }
 
 void QHelpSearchEngine_SearchDefault(void* ptr, void* queryList)

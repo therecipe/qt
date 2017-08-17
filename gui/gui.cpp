@@ -9489,7 +9489,7 @@ void QInputMethod_ShowDefault(void* ptr)
 void QInputMethod_Update(void* ptr, long long queries)
 {
 	qRegisterMetaType<Qt::InputMethodQueries>();
-	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "update", Q_ARG(Qt::InputMethodQuery, static_cast<Qt::InputMethodQuery>(queries)));
+	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "update", Q_ARG(Qt::InputMethodQueries, static_cast<Qt::InputMethodQuery>(queries)));
 }
 
 void QInputMethod_UpdateDefault(void* ptr, long long queries)
@@ -12577,7 +12577,7 @@ void QOpenGLDebugLogger_EnableMessages2(void* ptr, void* ids, long long sources,
 
 void QOpenGLDebugLogger_LogMessage(void* ptr, void* debugMessage)
 {
-	QMetaObject::invokeMethod(static_cast<QOpenGLDebugLogger*>(ptr), "logMessage", Q_ARG(QOpenGLDebugMessage, *static_cast<QOpenGLDebugMessage*>(debugMessage)));
+	QMetaObject::invokeMethod(static_cast<QOpenGLDebugLogger*>(ptr), "logMessage", Q_ARG(const QOpenGLDebugMessage, *static_cast<QOpenGLDebugMessage*>(debugMessage)));
 }
 
 void QOpenGLDebugLogger_LogMessageDefault(void* ptr, void* debugMessage)
@@ -85293,7 +85293,7 @@ void QRegularExpressionValidator_RegularExpressionChanged(void* ptr, void* re)
 
 void QRegularExpressionValidator_SetRegularExpression(void* ptr, void* re)
 {
-	QMetaObject::invokeMethod(static_cast<QRegularExpressionValidator*>(ptr), "setRegularExpression", Q_ARG(QRegularExpression, *static_cast<QRegularExpression*>(re)));
+	QMetaObject::invokeMethod(static_cast<QRegularExpressionValidator*>(ptr), "setRegularExpression", Q_ARG(const QRegularExpression, *static_cast<QRegularExpression*>(re)));
 }
 
 void QRegularExpressionValidator_SetRegularExpressionDefault(void* ptr, void* re)
@@ -89042,7 +89042,7 @@ void QSyntaxHighlighter_RehighlightDefault(void* ptr)
 
 void QSyntaxHighlighter_RehighlightBlock(void* ptr, void* block)
 {
-	QMetaObject::invokeMethod(static_cast<QSyntaxHighlighter*>(ptr), "rehighlightBlock", Q_ARG(QTextBlock, *static_cast<QTextBlock*>(block)));
+	QMetaObject::invokeMethod(static_cast<QSyntaxHighlighter*>(ptr), "rehighlightBlock", Q_ARG(const QTextBlock, *static_cast<QTextBlock*>(block)));
 }
 
 void QSyntaxHighlighter_RehighlightBlockDefault(void* ptr, void* block)
@@ -96208,9 +96208,9 @@ void QWindow_SetSurfaceType(void* ptr, long long surfaceType)
 void QWindow_SetTitle(void* ptr, struct QtGui_PackedString vqs)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setTitle", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setTitle", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 	} else {
-		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setTitle", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setTitle", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 	}
 }
 

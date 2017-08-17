@@ -622,7 +622,7 @@ void QAbstractButton_SetIcon(void* ptr, void* icon)
 
 void QAbstractButton_SetIconSize(void* ptr, void* size)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(size)));
+	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setIconSize", Q_ARG(const QSize, *static_cast<QSize*>(size)));
 }
 
 void QAbstractButton_SetIconSizeDefault(void* ptr, void* size)
@@ -1703,7 +1703,7 @@ void QAbstractItemView_CommitDataDefault(void* ptr, void* editor)
 
 void QAbstractItemView_CurrentChanged(void* ptr, void* current, void* previous)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "currentChanged", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QAbstractItemView_CurrentChangedDefault(void* ptr, void* current, void* previous)
@@ -1733,7 +1733,7 @@ void QAbstractItemView_CurrentChangedDefault(void* ptr, void* current, void* pre
 
 void QAbstractItemView_DataChanged(void* ptr, void* topLeft, void* bottomRight, void* roles)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "dataChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(topLeft)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(bottomRight)), Q_ARG(QVector<int>, *static_cast<QVector<int>*>(roles)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "dataChanged", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(topLeft)), Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(bottomRight)), Q_ARG(const QVector<int>, *static_cast<QVector<int>*>(roles)));
 }
 
 void QAbstractItemView_DataChangedDefault(void* ptr, void* topLeft, void* bottomRight, void* roles)
@@ -1778,7 +1778,7 @@ void QAbstractItemView_DoubleClicked(void* ptr, void* index)
 
 void QAbstractItemView_Edit(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "edit", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_EditDefault(void* ptr, void* index)
@@ -2063,7 +2063,7 @@ void QAbstractItemView_ResetVerticalScrollMode(void* ptr)
 
 void QAbstractItemView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QAbstractItemView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end)
@@ -2093,7 +2093,7 @@ void QAbstractItemView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int 
 
 void QAbstractItemView_RowsInserted(void* ptr, void* parent, int start, int end)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsInserted", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QAbstractItemView_RowsInsertedDefault(void* ptr, void* parent, int start, int end)
@@ -2228,7 +2228,7 @@ void QAbstractItemView_SelectAllDefault(void* ptr)
 
 void QAbstractItemView_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "selectionChanged", Q_ARG(QItemSelection, *static_cast<QItemSelection*>(selected)), Q_ARG(QItemSelection, *static_cast<QItemSelection*>(deselected)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "selectionChanged", Q_ARG(const QItemSelection, *static_cast<QItemSelection*>(selected)), Q_ARG(const QItemSelection, *static_cast<QItemSelection*>(deselected)));
 }
 
 void QAbstractItemView_SelectionChangedDefault(void* ptr, void* selected, void* deselected)
@@ -2273,7 +2273,7 @@ void QAbstractItemView_SetAutoScrollMargin(void* ptr, int margin)
 
 void QAbstractItemView_SetCurrentIndex(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setCurrentIndex", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_SetCurrentIndexDefault(void* ptr, void* index)
@@ -2398,7 +2398,7 @@ void QAbstractItemView_SetModelDefault(void* ptr, void* model)
 
 void QAbstractItemView_SetRootIndex(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setRootIndex", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_SetRootIndexDefault(void* ptr, void* index)
@@ -2523,7 +2523,7 @@ void QAbstractItemView_StartDragDefault(void* ptr, long long supportedActions)
 
 void QAbstractItemView_Update(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "update", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_UpdateDefault(void* ptr, void* index)
@@ -5883,7 +5883,7 @@ void QApplication_QApplication_SetActiveWindow(void* active)
 
 void QApplication_SetAutoSipEnabled(void* ptr, char enabled)
 {
-	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setAutoSipEnabled", Q_ARG(bool, enabled != 0));
+	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setAutoSipEnabled", Q_ARG(const bool, enabled != 0));
 }
 
 void QApplication_SetAutoSipEnabledDefault(void* ptr, char enabled)
@@ -5950,7 +5950,7 @@ void QApplication_QApplication_SetStyle(void* style)
 
 void QApplication_SetStyleSheet(void* ptr, struct QtWidgets_PackedString sheet)
 {
-	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setStyleSheet", Q_ARG(QString, QString::fromUtf8(sheet.data, sheet.len)));
+	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setStyleSheet", Q_ARG(const QString, QString::fromUtf8(sheet.data, sheet.len)));
 }
 
 void QApplication_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString sheet)
@@ -7076,7 +7076,7 @@ void QCalendarWidget_SetDateEditEnabled(void* ptr, char enable)
 
 void QCalendarWidget_SetDateRange(void* ptr, void* min, void* max)
 {
-	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setDateRange", Q_ARG(QDate, *static_cast<QDate*>(min)), Q_ARG(QDate, *static_cast<QDate*>(max)));
+	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setDateRange", Q_ARG(const QDate, *static_cast<QDate*>(min)), Q_ARG(const QDate, *static_cast<QDate*>(max)));
 }
 
 void QCalendarWidget_SetDateRangeDefault(void* ptr, void* min, void* max)
@@ -7136,7 +7136,7 @@ void QCalendarWidget_SetNavigationBarVisibleDefault(void* ptr, char visible)
 
 void QCalendarWidget_SetSelectedDate(void* ptr, void* date)
 {
-	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setSelectedDate", Q_ARG(QDate, *static_cast<QDate*>(date)));
+	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setSelectedDate", Q_ARG(const QDate, *static_cast<QDate*>(date)));
 }
 
 void QCalendarWidget_SetSelectedDateDefault(void* ptr, void* date)
@@ -8485,7 +8485,7 @@ void QComboBox_SetCurrentIndexDefault(void* ptr, int index)
 
 void QComboBox_SetCurrentText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setCurrentText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setCurrentText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QComboBox_SetCurrentTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -8504,7 +8504,7 @@ void QComboBox_SetDuplicatesEnabled(void* ptr, char enable)
 
 void QComboBox_SetEditText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setEditText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setEditText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QComboBox_SetEditTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -9330,7 +9330,7 @@ void QCompleter_Activated(void* ptr, struct QtWidgets_PackedString text)
 
 void QCompleter_Complete(void* ptr, void* rect)
 {
-	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "complete", Q_ARG(QRect, *static_cast<QRect*>(rect)));
+	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "complete", Q_ARG(const QRect, *static_cast<QRect*>(rect)));
 }
 
 void QCompleter_CompleteDefault(void* ptr, void* rect)
@@ -9385,7 +9385,7 @@ void QCompleter_SetCompletionMode(void* ptr, long long mode)
 
 void QCompleter_SetCompletionPrefix(void* ptr, struct QtWidgets_PackedString prefix)
 {
-	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "setCompletionPrefix", Q_ARG(QString, QString::fromUtf8(prefix.data, prefix.len)));
+	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "setCompletionPrefix", Q_ARG(const QString, QString::fromUtf8(prefix.data, prefix.len)));
 }
 
 void QCompleter_SetCompletionPrefixDefault(void* ptr, struct QtWidgets_PackedString prefix)
@@ -9848,7 +9848,7 @@ void QDataWidgetMapper_RevertDefault(void* ptr)
 
 void QDataWidgetMapper_SetCurrentModelIndex(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QDataWidgetMapper*>(ptr), "setCurrentModelIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QDataWidgetMapper*>(ptr), "setCurrentModelIndex", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QDataWidgetMapper_SetCurrentModelIndexDefault(void* ptr, void* index)
@@ -10466,7 +10466,7 @@ void QDateTimeEdit_SetCurrentSectionIndex(void* ptr, int index)
 
 void QDateTimeEdit_SetDate(void* ptr, void* date)
 {
-	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDate", Q_ARG(QDate, *static_cast<QDate*>(date)));
+	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDate", Q_ARG(const QDate, *static_cast<QDate*>(date)));
 }
 
 void QDateTimeEdit_SetDateDefault(void* ptr, void* date)
@@ -10487,7 +10487,7 @@ void QDateTimeEdit_SetDateRange(void* ptr, void* min, void* max)
 
 void QDateTimeEdit_SetDateTime(void* ptr, void* dateTime)
 {
-	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDateTime", Q_ARG(QDateTime, *static_cast<QDateTime*>(dateTime)));
+	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDateTime", Q_ARG(const QDateTime, *static_cast<QDateTime*>(dateTime)));
 }
 
 void QDateTimeEdit_SetDateTimeDefault(void* ptr, void* dateTime)
@@ -10548,7 +10548,7 @@ void QDateTimeEdit_SetSelectedSection(void* ptr, long long section)
 
 void QDateTimeEdit_SetTime(void* ptr, void* time)
 {
-	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setTime", Q_ARG(QTime, *static_cast<QTime*>(time)));
+	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setTime", Q_ARG(const QTime, *static_cast<QTime*>(time)));
 }
 
 void QDateTimeEdit_SetTimeDefault(void* ptr, void* time)
@@ -12254,7 +12254,7 @@ void QErrorMessage_DoneDefault(void* ptr, int a)
 
 void QErrorMessage_ShowMessage(void* ptr, struct QtWidgets_PackedString message)
 {
-	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)));
+	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)));
 }
 
 void QErrorMessage_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString message)
@@ -12264,7 +12264,7 @@ void QErrorMessage_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString m
 
 void QErrorMessage_ShowMessage2(void* ptr, struct QtWidgets_PackedString message, struct QtWidgets_PackedString ty)
 {
-	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(QString, QString::fromUtf8(ty.data, ty.len)));
+	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(const QString, QString::fromUtf8(ty.data, ty.len)));
 }
 
 void QErrorMessage_ShowMessage2Default(void* ptr, struct QtWidgets_PackedString message, struct QtWidgets_PackedString ty)
@@ -14201,7 +14201,7 @@ void QFontComboBox_CurrentFontChanged(void* ptr, void* font)
 
 void QFontComboBox_SetCurrentFont(void* ptr, void* fo)
 {
-	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(fo)));
+	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentFont", Q_ARG(const QFont, *static_cast<QFont*>(fo)));
 }
 
 void QFontComboBox_SetCurrentFontDefault(void* ptr, void* fo)
@@ -15975,7 +15975,7 @@ void QGraphicsBlurEffect_BlurRadiusChanged(void* ptr, double radius)
 
 void QGraphicsBlurEffect_SetBlurHints(void* ptr, long long hints)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "setBlurHints", Q_ARG(QGraphicsBlurEffect::BlurHint, static_cast<QGraphicsBlurEffect::BlurHint>(hints)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "setBlurHints", Q_ARG(QGraphicsBlurEffect::BlurHints, static_cast<QGraphicsBlurEffect::BlurHint>(hints)));
 }
 
 void QGraphicsBlurEffect_SetBlurHintsDefault(void* ptr, long long hints)
@@ -16158,7 +16158,7 @@ void QGraphicsColorizeEffect_DrawDefault(void* ptr, void* painter)
 
 void QGraphicsColorizeEffect_SetColor(void* ptr, void* c)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "setColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "setColor", Q_ARG(const QColor, *static_cast<QColor*>(c)));
 }
 
 void QGraphicsColorizeEffect_SetColorDefault(void* ptr, void* c)
@@ -16351,7 +16351,7 @@ void QGraphicsDropShadowEffect_SetBlurRadiusDefault(void* ptr, double blurRadius
 
 void QGraphicsDropShadowEffect_SetColor(void* ptr, void* color)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setColor", Q_ARG(QColor, *static_cast<QColor*>(color)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setColor", Q_ARG(const QColor, *static_cast<QColor*>(color)));
 }
 
 void QGraphicsDropShadowEffect_SetColorDefault(void* ptr, void* color)
@@ -16361,7 +16361,7 @@ void QGraphicsDropShadowEffect_SetColorDefault(void* ptr, void* color)
 
 void QGraphicsDropShadowEffect_SetOffset(void* ptr, void* ofs)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(QPointF, *static_cast<QPointF*>(ofs)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(const QPointF, *static_cast<QPointF*>(ofs)));
 }
 
 void QGraphicsDropShadowEffect_SetOffsetDefault(void* ptr, void* ofs)
@@ -23701,7 +23701,7 @@ void QGraphicsOpacityEffect_SetOpacityDefault(void* ptr, double opacity)
 
 void QGraphicsOpacityEffect_SetOpacityMask(void* ptr, void* mask)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "setOpacityMask", Q_ARG(QBrush, *static_cast<QBrush*>(mask)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "setOpacityMask", Q_ARG(const QBrush, *static_cast<QBrush*>(mask)));
 }
 
 void QGraphicsOpacityEffect_SetOpacityMaskDefault(void* ptr, void* mask)
@@ -24151,7 +24151,7 @@ void* QGraphicsProxyWidget_CreateProxyForChildWidget(void* ptr, void* child)
 void* QGraphicsProxyWidget_NewProxyWidget(void* ptr, void* child)
 {
 		QGraphicsProxyWidget* returnArg;
-	QMetaObject::invokeMethod(static_cast<QGraphicsProxyWidget*>(ptr), "newProxyWidget", Q_RETURN_ARG(QGraphicsProxyWidget*, returnArg), Q_ARG(QWidget*, static_cast<QWidget*>(child)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsProxyWidget*>(ptr), "newProxyWidget", Q_RETURN_ARG(QGraphicsProxyWidget*, returnArg), Q_ARG(const QWidget*, static_cast<QWidget*>(child)));
 	return returnArg;
 }
 
@@ -25149,7 +25149,7 @@ void QGraphicsScene_InputMethodEventDefault(void* ptr, void* event)
 
 void QGraphicsScene_Invalidate(void* ptr, void* rect, long long layers)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "invalidate", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayer, static_cast<QGraphicsScene::SceneLayer>(layers)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "invalidate", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayers, static_cast<QGraphicsScene::SceneLayer>(layers)));
 }
 
 void QGraphicsScene_InvalidateDefault(void* ptr, void* rect, long long layers)
@@ -25377,7 +25377,7 @@ void QGraphicsScene_SetStyle(void* ptr, void* style)
 
 void QGraphicsScene_Update(void* ptr, void* rect)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "update", Q_ARG(QRectF, *static_cast<QRectF*>(rect)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "update", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)));
 }
 
 void QGraphicsScene_UpdateDefault(void* ptr, void* rect)
@@ -27211,7 +27211,7 @@ void QGraphicsView_FitInView2(void* ptr, double x, double y, double w, double h,
 
 void QGraphicsView_InvalidateScene(void* ptr, void* rect, long long layers)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "invalidateScene", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayer, static_cast<QGraphicsScene::SceneLayer>(layers)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "invalidateScene", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayers, static_cast<QGraphicsScene::SceneLayer>(layers)));
 }
 
 void QGraphicsView_InvalidateSceneDefault(void* ptr, void* rect, long long layers)
@@ -27376,7 +27376,7 @@ void QGraphicsView_Translate(void* ptr, double dx, double dy)
 
 void QGraphicsView_UpdateScene(void* ptr, void* rects)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateScene", Q_ARG(QList<QRectF>, *static_cast<QList<QRectF>*>(rects)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateScene", Q_ARG(const QList<QRectF>, *static_cast<QList<QRectF>*>(rects)));
 }
 
 void QGraphicsView_UpdateSceneDefault(void* ptr, void* rects)
@@ -27386,7 +27386,7 @@ void QGraphicsView_UpdateSceneDefault(void* ptr, void* rects)
 
 void QGraphicsView_UpdateSceneRect(void* ptr, void* rect)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateSceneRect", Q_ARG(QRectF, *static_cast<QRectF*>(rect)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateSceneRect", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)));
 }
 
 void QGraphicsView_UpdateSceneRectDefault(void* ptr, void* rect)
@@ -29300,7 +29300,7 @@ void QHeaderView_SectionResized(void* ptr, int logicalIndex, int oldSize, int ne
 
 void QHeaderView_SectionsAboutToBeRemoved(void* ptr, void* parent, int logicalFirst, int logicalLast)
 {
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
+	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsAboutToBeRemoved", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
 }
 
 void QHeaderView_SectionsAboutToBeRemovedDefault(void* ptr, void* parent, int logicalFirst, int logicalLast)
@@ -29310,7 +29310,7 @@ void QHeaderView_SectionsAboutToBeRemovedDefault(void* ptr, void* parent, int lo
 
 void QHeaderView_SectionsInserted(void* ptr, void* parent, int logicalFirst, int logicalLast)
 {
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
+	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsInserted", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
 }
 
 void QHeaderView_SectionsInsertedDefault(void* ptr, void* parent, int logicalFirst, int logicalLast)
@@ -30913,7 +30913,7 @@ void QKeySequenceEdit_KeySequenceChanged(void* ptr, void* keySequence)
 
 void QKeySequenceEdit_SetKeySequence(void* ptr, void* keySequence)
 {
-	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setKeySequence", Q_ARG(QKeySequence, *static_cast<QKeySequence*>(keySequence)));
+	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setKeySequence", Q_ARG(const QKeySequence, *static_cast<QKeySequence*>(keySequence)));
 }
 
 void QKeySequenceEdit_SetKeySequenceDefault(void* ptr, void* keySequence)
@@ -31031,7 +31031,7 @@ void* QLCDNumber_NewQLCDNumber2(unsigned int numDigits, void* parent)
 
 void QLCDNumber_Display(void* ptr, struct QtWidgets_PackedString s)
 {
-	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "display", Q_ARG(QString, QString::fromUtf8(s.data, s.len)));
+	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "display", Q_ARG(const QString, QString::fromUtf8(s.data, s.len)));
 }
 
 void QLCDNumber_DisplayDefault(void* ptr, struct QtWidgets_PackedString s)
@@ -31379,7 +31379,7 @@ void QLabel_SetOpenExternalLinks(void* ptr, char open)
 
 void QLabel_SetPicture(void* ptr, void* picture)
 {
-	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPicture", Q_ARG(QPicture, *static_cast<QPicture*>(picture)));
+	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPicture", Q_ARG(const QPicture, *static_cast<QPicture*>(picture)));
 }
 
 void QLabel_SetPictureDefault(void* ptr, void* picture)
@@ -31389,7 +31389,7 @@ void QLabel_SetPictureDefault(void* ptr, void* picture)
 
 void QLabel_SetPixmap(void* ptr, void* vqp)
 {
-	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPixmap", Q_ARG(QPixmap, *static_cast<QPixmap*>(vqp)));
+	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPixmap", Q_ARG(const QPixmap, *static_cast<QPixmap*>(vqp)));
 }
 
 void QLabel_SetPixmapDefault(void* ptr, void* vqp)
@@ -31409,7 +31409,7 @@ void QLabel_SetSelection(void* ptr, int start, int length)
 
 void QLabel_SetText(void* ptr, struct QtWidgets_PackedString vqs)
 {
-	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setText", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setText", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 }
 
 void QLabel_SetTextDefault(void* ptr, struct QtWidgets_PackedString vqs)
@@ -33100,7 +33100,7 @@ void QLineEdit_SetSelection(void* ptr, int start, int length)
 
 void QLineEdit_SetText(void* ptr, struct QtWidgets_PackedString vqs)
 {
-	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setText", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setText", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 }
 
 void QLineEdit_SetTextDefault(void* ptr, struct QtWidgets_PackedString vqs)
@@ -34226,7 +34226,7 @@ void QListWidget_RemoveItemWidget(void* ptr, void* item)
 void QListWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	qRegisterMetaType<QAbstractItemView::ScrollHint>();
-	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToItem", Q_ARG(QListWidgetItem*, static_cast<QListWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToItem", Q_ARG(const QListWidgetItem*, static_cast<QListWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
 void QListWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
@@ -38107,7 +38107,7 @@ char QPlainTextEdit_Find(void* ptr, struct QtWidgets_PackedString exp, long long
 
 void QPlainTextEdit_AppendHtml(void* ptr, struct QtWidgets_PackedString html)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendHtml", Q_ARG(QString, QString::fromUtf8(html.data, html.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendHtml", Q_ARG(const QString, QString::fromUtf8(html.data, html.len)));
 }
 
 void QPlainTextEdit_AppendHtmlDefault(void* ptr, struct QtWidgets_PackedString html)
@@ -38117,7 +38117,7 @@ void QPlainTextEdit_AppendHtmlDefault(void* ptr, struct QtWidgets_PackedString h
 
 void QPlainTextEdit_AppendPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QPlainTextEdit_AppendPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -38227,7 +38227,7 @@ void QPlainTextEdit_InsertFromMimeDataDefault(void* ptr, void* source)
 
 void QPlainTextEdit_InsertPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "insertPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "insertPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QPlainTextEdit_InsertPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -38372,7 +38372,7 @@ void QPlainTextEdit_SetPlaceholderText(void* ptr, struct QtWidgets_PackedString 
 
 void QPlainTextEdit_SetPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QPlainTextEdit_SetPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -39119,7 +39119,7 @@ void QProgressDialog_SetCancelButton(void* ptr, void* cancelButton)
 
 void QProgressDialog_SetCancelButtonText(void* ptr, struct QtWidgets_PackedString cancelButtonText)
 {
-	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setCancelButtonText", Q_ARG(QString, QString::fromUtf8(cancelButtonText.data, cancelButtonText.len)));
+	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setCancelButtonText", Q_ARG(const QString, QString::fromUtf8(cancelButtonText.data, cancelButtonText.len)));
 }
 
 void QProgressDialog_SetCancelButtonTextDefault(void* ptr, struct QtWidgets_PackedString cancelButtonText)
@@ -39134,7 +39134,7 @@ void QProgressDialog_SetLabel(void* ptr, void* label)
 
 void QProgressDialog_SetLabelText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setLabelText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setLabelText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QProgressDialog_SetLabelTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -40078,7 +40078,7 @@ void* QScroller_QScroller_Scroller2(void* target)
 
 void QScroller_EnsureVisible(void* ptr, void* rect, double xmargin, double ymargin)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin));
 }
 
 void QScroller_EnsureVisibleDefault(void* ptr, void* rect, double xmargin, double ymargin)
@@ -40088,7 +40088,7 @@ void QScroller_EnsureVisibleDefault(void* ptr, void* rect, double xmargin, doubl
 
 void QScroller_EnsureVisible2(void* ptr, void* rect, double xmargin, double ymargin, int scrollTime)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin), Q_ARG(int, scrollTime));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin), Q_ARG(int, scrollTime));
 }
 
 void QScroller_EnsureVisible2Default(void* ptr, void* rect, double xmargin, double ymargin, int scrollTime)
@@ -40108,7 +40108,7 @@ void QScroller_ResendPrepareEventDefault(void* ptr)
 
 void QScroller_ScrollTo(void* ptr, void* pos)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(QPointF, *static_cast<QPointF*>(pos)));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(const QPointF, *static_cast<QPointF*>(pos)));
 }
 
 void QScroller_ScrollToDefault(void* ptr, void* pos)
@@ -40118,7 +40118,7 @@ void QScroller_ScrollToDefault(void* ptr, void* pos)
 
 void QScroller_ScrollTo2(void* ptr, void* pos, int scrollTime)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(QPointF, *static_cast<QPointF*>(pos)), Q_ARG(int, scrollTime));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(const QPointF, *static_cast<QPointF*>(pos)), Q_ARG(int, scrollTime));
 }
 
 void QScroller_ScrollTo2Default(void* ptr, void* pos, int scrollTime)
@@ -40143,7 +40143,7 @@ void QScroller_ScrollerPropertiesChanged(void* ptr, void* newProperties)
 
 void QScroller_SetScrollerProperties(void* ptr, void* prop)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "setScrollerProperties", Q_ARG(QScrollerProperties, *static_cast<QScrollerProperties*>(prop)));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "setScrollerProperties", Q_ARG(const QScrollerProperties, *static_cast<QScrollerProperties*>(prop)));
 }
 
 void QScroller_SetScrollerPropertiesDefault(void* ptr, void* prop)
@@ -41630,7 +41630,7 @@ void QSplashScreen_SetPixmap(void* ptr, void* pixmap)
 
 void QSplashScreen_ShowMessage(void* ptr, struct QtWidgets_PackedString message, int alignment, void* color)
 {
-	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, alignment), Q_ARG(QColor, *static_cast<QColor*>(color)));
+	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, alignment), Q_ARG(const QColor, *static_cast<QColor*>(color)));
 }
 
 void QSplashScreen_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString message, int alignment, void* color)
@@ -42604,7 +42604,7 @@ void QStatusBar_SetSizeGripEnabled(void* ptr, char vbo)
 
 void QStatusBar_ShowMessage(void* ptr, struct QtWidgets_PackedString message, int timeout)
 {
-	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, timeout));
+	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, timeout));
 }
 
 void QStatusBar_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString message, int timeout)
@@ -47714,7 +47714,7 @@ void QSystemTrayIcon_ShowDefault(void* ptr)
 
 void QSystemTrayIcon_ShowMessage(void* ptr, struct QtWidgets_PackedString title, struct QtWidgets_PackedString message, long long icon, int millisecondsTimeoutHint)
 {
-	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(title.data, title.len)), Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(QSystemTrayIcon::MessageIcon, static_cast<QSystemTrayIcon::MessageIcon>(icon)), Q_ARG(int, millisecondsTimeoutHint));
+	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(title.data, title.len)), Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(QSystemTrayIcon::MessageIcon, static_cast<QSystemTrayIcon::MessageIcon>(icon)), Q_ARG(int, millisecondsTimeoutHint));
 }
 
 void QSystemTrayIcon_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString title, struct QtWidgets_PackedString message, long long icon, int millisecondsTimeoutHint)
@@ -50068,7 +50068,7 @@ void QTableWidget_RemoveRowDefault(void* ptr, int row)
 void QTableWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	qRegisterMetaType<QAbstractItemView::ScrollHint>();
-	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToItem", Q_ARG(QTableWidgetItem*, static_cast<QTableWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToItem", Q_ARG(const QTableWidgetItem*, static_cast<QTableWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
 void QTableWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
@@ -51045,7 +51045,7 @@ void QTextBrowser_SetSearchPaths(void* ptr, struct QtWidgets_PackedString paths)
 
 void QTextBrowser_SetSource(void* ptr, void* name)
 {
-	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(name)));
+	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setSource", Q_ARG(const QUrl, *static_cast<QUrl*>(name)));
 }
 
 void QTextBrowser_SetSourceDefault(void* ptr, void* name)
@@ -51304,7 +51304,7 @@ char QTextEdit_Find(void* ptr, struct QtWidgets_PackedString exp, long long opti
 
 void QTextEdit_Append(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "append", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "append", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_AppendDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51424,7 +51424,7 @@ void QTextEdit_InsertFromMimeDataDefault(void* ptr, void* source)
 
 void QTextEdit_InsertHtml(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertHtml", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertHtml", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_InsertHtmlDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51438,7 +51438,7 @@ void QTextEdit_InsertHtmlDefault(void* ptr, struct QtWidgets_PackedString text)
 
 void QTextEdit_InsertPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_InsertPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51505,7 +51505,7 @@ void QTextEdit_RedoAvailable(void* ptr, char available)
 
 void QTextEdit_ScrollToAnchor(void* ptr, struct QtWidgets_PackedString name)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "scrollToAnchor", Q_ARG(QString, QString::fromUtf8(name.data, name.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "scrollToAnchor", Q_ARG(const QString, QString::fromUtf8(name.data, name.len)));
 }
 
 void QTextEdit_ScrollToAnchorDefault(void* ptr, struct QtWidgets_PackedString name)
@@ -51578,7 +51578,7 @@ void QTextEdit_SetCurrentCharFormat(void* ptr, void* format)
 
 void QTextEdit_SetCurrentFont(void* ptr, void* fo)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(fo)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setCurrentFont", Q_ARG(const QFont, *static_cast<QFont*>(fo)));
 }
 
 void QTextEdit_SetCurrentFontDefault(void* ptr, void* fo)
@@ -51607,7 +51607,7 @@ void QTextEdit_SetDocumentTitle(void* ptr, struct QtWidgets_PackedString title)
 
 void QTextEdit_SetFontFamily(void* ptr, struct QtWidgets_PackedString fontFamily)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setFontFamily", Q_ARG(QString, QString::fromUtf8(fontFamily.data, fontFamily.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setFontFamily", Q_ARG(const QString, QString::fromUtf8(fontFamily.data, fontFamily.len)));
 }
 
 void QTextEdit_SetFontFamilyDefault(void* ptr, struct QtWidgets_PackedString fontFamily)
@@ -51677,7 +51677,7 @@ void QTextEdit_SetFontWeightDefault(void* ptr, int weight)
 
 void QTextEdit_SetHtml(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setHtml", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setHtml", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_SetHtmlDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51721,7 +51721,7 @@ void QTextEdit_SetTabStopWidth(void* ptr, int width)
 
 void QTextEdit_SetPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_SetPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51740,7 +51740,7 @@ void QTextEdit_SetReadOnly(void* ptr, char ro)
 
 void QTextEdit_SetText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_SetTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51754,7 +51754,7 @@ void QTextEdit_SetTextDefault(void* ptr, struct QtWidgets_PackedString text)
 
 void QTextEdit_SetTextBackgroundColor(void* ptr, void* c)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextBackgroundColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextBackgroundColor", Q_ARG(const QColor, *static_cast<QColor*>(c)));
 }
 
 void QTextEdit_SetTextBackgroundColorDefault(void* ptr, void* c)
@@ -51768,7 +51768,7 @@ void QTextEdit_SetTextBackgroundColorDefault(void* ptr, void* c)
 
 void QTextEdit_SetTextColor(void* ptr, void* c)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextColor", Q_ARG(const QColor, *static_cast<QColor*>(c)));
 }
 
 void QTextEdit_SetTextColorDefault(void* ptr, void* c)
@@ -52476,7 +52476,7 @@ void QToolBar_SetFloatable(void* ptr, char floatable)
 
 void QToolBar_SetIconSize(void* ptr, void* iconSize)
 {
-	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(iconSize)));
+	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setIconSize", Q_ARG(const QSize, *static_cast<QSize*>(iconSize)));
 }
 
 void QToolBar_SetIconSizeDefault(void* ptr, void* iconSize)
@@ -53279,7 +53279,7 @@ void* QTreeView_NewQTreeView(void* parent)
 
 void QTreeView_Collapse(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "collapse", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "collapse", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeView_CollapseDefault(void* ptr, void* index)
@@ -53392,7 +53392,7 @@ void QTreeView_DataChangedDefault(void* ptr, void* topLeft, void* bottomRight, v
 
 void QTreeView_Expand(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "expand", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "expand", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeView_ExpandDefault(void* ptr, void* index)
@@ -53524,7 +53524,7 @@ void QTreeView_RowsInsertedDefault(void* ptr, void* parent, int start, int end)
 
 void QTreeView_RowsRemoved(void* ptr, void* parent, int start, int end)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsRemoved", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeView_RowsRemovedDefault(void* ptr, void* parent, int start, int end)
@@ -54176,7 +54176,7 @@ void QTreeWidget_ClosePersistentEditor(void* ptr, void* item, int column)
 
 void QTreeWidget_CollapseItem(void* ptr, void* item)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "collapseItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "collapseItem", Q_ARG(const QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
 }
 
 void QTreeWidget_CollapseItemDefault(void* ptr, void* item)
@@ -54206,7 +54206,7 @@ void QTreeWidget_EditItem(void* ptr, void* item, int column)
 
 void QTreeWidget_ExpandItem(void* ptr, void* item)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expandItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expandItem", Q_ARG(const QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
 }
 
 void QTreeWidget_ExpandItemDefault(void* ptr, void* item)
@@ -54372,7 +54372,7 @@ void QTreeWidget_RemoveItemWidget(void* ptr, void* item, int column)
 void QTreeWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	qRegisterMetaType<QAbstractItemView::ScrollHint>();
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToItem", Q_ARG(const QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
 void QTreeWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
@@ -63202,7 +63202,7 @@ void QWidget_SetStyle(void* ptr, void* style)
 
 void QWidget_SetStyleSheet(void* ptr, struct QtWidgets_PackedString styleSheet)
 {
-		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString::fromUtf8(styleSheet.data, styleSheet.len)));
+		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setStyleSheet", Q_ARG(const QString, QString::fromUtf8(styleSheet.data, styleSheet.len)));
 }
 
 void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString styleSheet)
@@ -63795,7 +63795,7 @@ void QWidget_SetWindowState(void* ptr, long long windowState)
 
 void QWidget_SetWindowTitle(void* ptr, struct QtWidgets_PackedString vqs)
 {
-		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setWindowTitle", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 }
 
 void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)

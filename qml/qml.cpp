@@ -844,7 +844,7 @@ void* QQmlApplicationEngine_NewQQmlApplicationEngine2(void* url, void* parent)
 
 void QQmlApplicationEngine_Load2(void* ptr, struct QtQml_PackedString filePath)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QString, QString::fromUtf8(filePath.data, filePath.len)));
+	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(const QString, QString::fromUtf8(filePath.data, filePath.len)));
 }
 
 void QQmlApplicationEngine_Load2Default(void* ptr, struct QtQml_PackedString filePath)
@@ -854,7 +854,7 @@ void QQmlApplicationEngine_Load2Default(void* ptr, struct QtQml_PackedString fil
 
 void QQmlApplicationEngine_Load(void* ptr, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(const QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlApplicationEngine_LoadDefault(void* ptr, void* url)
@@ -864,7 +864,7 @@ void QQmlApplicationEngine_LoadDefault(void* ptr, void* url)
 
 void QQmlApplicationEngine_LoadData(void* ptr, void* data, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(const QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(const QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlApplicationEngine_LoadDataDefault(void* ptr, void* data, void* url)
@@ -1184,7 +1184,7 @@ void QQmlComponent_Create2(void* ptr, void* incubator, void* context, void* forC
 
 void QQmlComponent_LoadUrl(void* ptr, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(const QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlComponent_LoadUrlDefault(void* ptr, void* url)
@@ -1195,7 +1195,7 @@ void QQmlComponent_LoadUrlDefault(void* ptr, void* url)
 void QQmlComponent_LoadUrl2(void* ptr, void* url, long long mode)
 {
 	qRegisterMetaType<QQmlComponent::CompilationMode>();
-	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(QUrl, *static_cast<QUrl*>(url)), Q_ARG(QQmlComponent::CompilationMode, static_cast<QQmlComponent::CompilationMode>(mode)));
+	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(const QUrl, *static_cast<QUrl*>(url)), Q_ARG(QQmlComponent::CompilationMode, static_cast<QQmlComponent::CompilationMode>(mode)));
 }
 
 void QQmlComponent_LoadUrl2Default(void* ptr, void* url, long long mode)
@@ -1220,7 +1220,7 @@ void QQmlComponent_ProgressChanged(void* ptr, double progress)
 
 void QQmlComponent_SetData(void* ptr, void* data, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(const QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(const QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlComponent_SetDataDefault(void* ptr, void* data, void* url)

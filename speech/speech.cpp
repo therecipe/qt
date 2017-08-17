@@ -233,7 +233,7 @@ void QTextToSpeech_ResumeDefault(void* ptr)
 
 void QTextToSpeech_Say(void* ptr, struct QtSpeech_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "say", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "say", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextToSpeech_SayDefault(void* ptr, struct QtSpeech_PackedString text)
@@ -243,7 +243,7 @@ void QTextToSpeech_SayDefault(void* ptr, struct QtSpeech_PackedString text)
 
 void QTextToSpeech_SetLocale(void* ptr, void* locale)
 {
-	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "setLocale", Q_ARG(QLocale, *static_cast<QLocale*>(locale)));
+	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "setLocale", Q_ARG(const QLocale, *static_cast<QLocale*>(locale)));
 }
 
 void QTextToSpeech_SetLocaleDefault(void* ptr, void* locale)

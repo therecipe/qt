@@ -458,7 +458,7 @@ void QWebChannelAbstractTransport_MessageReceived(void* ptr, void* message, void
 
 void QWebChannelAbstractTransport_SendMessage(void* ptr, void* message)
 {
-	QMetaObject::invokeMethod(static_cast<QWebChannelAbstractTransport*>(ptr), "sendMessage", Q_ARG(QJsonObject, *static_cast<QJsonObject*>(message)));
+	QMetaObject::invokeMethod(static_cast<QWebChannelAbstractTransport*>(ptr), "sendMessage", Q_ARG(const QJsonObject, *static_cast<QJsonObject*>(message)));
 }
 
 void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(void* ptr)

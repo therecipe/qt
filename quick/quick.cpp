@@ -3188,7 +3188,7 @@ void QQuickView_SetResizeMode(void* ptr, long long vre)
 
 void QQuickView_SetSource(void* ptr, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setSource", Q_ARG(const QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQuickView_SetSourceDefault(void* ptr, void* url)
@@ -3412,7 +3412,7 @@ void QQuickWidget_SetResizeMode(void* ptr, long long vre)
 
 void QQuickWidget_SetSource(void* ptr, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setSource", Q_ARG(const QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQuickWidget_SetSourceDefault(void* ptr, void* url)

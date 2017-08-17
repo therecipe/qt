@@ -2796,7 +2796,7 @@ void QAudioInputSelectorControl_AvailableInputsChanged(void* ptr)
 
 void QAudioInputSelectorControl_SetActiveInput(void* ptr, struct QtMultimedia_PackedString name)
 {
-	QMetaObject::invokeMethod(static_cast<QAudioInputSelectorControl*>(ptr), "setActiveInput", Q_ARG(QString, QString::fromUtf8(name.data, name.len)));
+	QMetaObject::invokeMethod(static_cast<QAudioInputSelectorControl*>(ptr), "setActiveInput", Q_ARG(const QString, QString::fromUtf8(name.data, name.len)));
 }
 
 void QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(void* ptr)
@@ -3326,7 +3326,7 @@ void QAudioOutputSelectorControl_AvailableOutputsChanged(void* ptr)
 
 void QAudioOutputSelectorControl_SetActiveOutput(void* ptr, struct QtMultimedia_PackedString name)
 {
-	QMetaObject::invokeMethod(static_cast<QAudioOutputSelectorControl*>(ptr), "setActiveOutput", Q_ARG(QString, QString::fromUtf8(name.data, name.len)));
+	QMetaObject::invokeMethod(static_cast<QAudioOutputSelectorControl*>(ptr), "setActiveOutput", Q_ARG(const QString, QString::fromUtf8(name.data, name.len)));
 }
 
 void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(void* ptr)
@@ -3797,7 +3797,7 @@ void QAudioRecorder_AvailableAudioInputsChanged(void* ptr)
 
 void QAudioRecorder_SetAudioInput(void* ptr, struct QtMultimedia_PackedString name)
 {
-	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "setAudioInput", Q_ARG(QString, QString::fromUtf8(name.data, name.len)));
+	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "setAudioInput", Q_ARG(const QString, QString::fromUtf8(name.data, name.len)));
 }
 
 void QAudioRecorder_SetAudioInputDefault(void* ptr, struct QtMultimedia_PackedString name)
@@ -4290,7 +4290,7 @@ void QCamera_SearchAndLockDefault(void* ptr)
 
 void QCamera_SearchAndLock2(void* ptr, long long locks)
 {
-	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "searchAndLock", Q_ARG(QCamera::LockType, static_cast<QCamera::LockType>(locks)));
+	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "searchAndLock", Q_ARG(QCamera::LockTypes, static_cast<QCamera::LockType>(locks)));
 }
 
 void QCamera_SearchAndLock2Default(void* ptr, long long locks)
@@ -4301,7 +4301,7 @@ void QCamera_SearchAndLock2Default(void* ptr, long long locks)
 void QCamera_SetCaptureMode(void* ptr, long long mode)
 {
 	qRegisterMetaType<QCamera::CaptureModes>();
-	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "setCaptureMode", Q_ARG(QCamera::CaptureMode, static_cast<QCamera::CaptureMode>(mode)));
+	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "setCaptureMode", Q_ARG(QCamera::CaptureModes, static_cast<QCamera::CaptureMode>(mode)));
 }
 
 void QCamera_SetCaptureModeDefault(void* ptr, long long mode)
@@ -4403,7 +4403,7 @@ void QCamera_UnlockDefault(void* ptr)
 
 void QCamera_Unlock2(void* ptr, long long locks)
 {
-	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "unlock", Q_ARG(QCamera::LockType, static_cast<QCamera::LockType>(locks)));
+	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "unlock", Q_ARG(QCamera::LockTypes, static_cast<QCamera::LockType>(locks)));
 }
 
 void QCamera_Unlock2Default(void* ptr, long long locks)
@@ -5127,7 +5127,7 @@ void QCameraExposure_SetExposureModeDefault(void* ptr, long long mode)
 void QCameraExposure_SetFlashMode(void* ptr, long long mode)
 {
 	qRegisterMetaType<QCameraExposure::FlashModes>();
-	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setFlashMode", Q_ARG(QCameraExposure::FlashMode, static_cast<QCameraExposure::FlashMode>(mode)));
+	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setFlashMode", Q_ARG(QCameraExposure::FlashModes, static_cast<QCameraExposure::FlashMode>(mode)));
 }
 
 void QCameraExposure_SetFlashModeDefault(void* ptr, long long mode)
@@ -6499,7 +6499,7 @@ char QCameraImageCapture_SetMediaObjectDefault(void* ptr, void* mediaObject)
 int QCameraImageCapture_Capture(void* ptr, struct QtMultimedia_PackedString file)
 {
 		int returnArg;
-	QMetaObject::invokeMethod(static_cast<QCameraImageCapture*>(ptr), "capture", Q_RETURN_ARG(int, returnArg), Q_ARG(QString, QString::fromUtf8(file.data, file.len)));
+	QMetaObject::invokeMethod(static_cast<QCameraImageCapture*>(ptr), "capture", Q_RETURN_ARG(int, returnArg), Q_ARG(const QString, QString::fromUtf8(file.data, file.len)));
 	return returnArg;
 }
 
@@ -12939,7 +12939,7 @@ void QMediaPlayer_SetAudioRole(void* ptr, long long audioRole)
 
 void QMediaPlayer_SetMedia(void* ptr, void* media, void* stream)
 {
-	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setMedia", Q_ARG(QMediaContent, *static_cast<QMediaContent*>(media)), Q_ARG(QIODevice*, static_cast<QIODevice*>(stream)));
+	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setMedia", Q_ARG(const QMediaContent, *static_cast<QMediaContent*>(media)), Q_ARG(QIODevice*, static_cast<QIODevice*>(stream)));
 }
 
 void QMediaPlayer_SetMediaDefault(void* ptr, void* media, void* stream)
@@ -12959,7 +12959,7 @@ void QMediaPlayer_SetMutedDefault(void* ptr, char muted)
 
 void QMediaPlayer_SetNetworkConfigurations(void* ptr, void* configurations)
 {
-	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setNetworkConfigurations", Q_ARG(QList<QNetworkConfiguration>, *static_cast<QList<QNetworkConfiguration>*>(configurations)));
+	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setNetworkConfigurations", Q_ARG(const QList<QNetworkConfiguration>, *static_cast<QList<QNetworkConfiguration>*>(configurations)));
 }
 
 void QMediaPlayer_SetNetworkConfigurationsDefault(void* ptr, void* configurations)
@@ -21522,7 +21522,7 @@ void QVideoWidget_SetHiddenDefault(void* ptr, char hidden)
 
 void QVideoWidget_SetStyleSheet(void* ptr, struct QtMultimedia_PackedString styleSheet)
 {
-		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString::fromUtf8(styleSheet.data, styleSheet.len)));
+		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setStyleSheet", Q_ARG(const QString, QString::fromUtf8(styleSheet.data, styleSheet.len)));
 }
 
 void QVideoWidget_SetStyleSheetDefault(void* ptr, struct QtMultimedia_PackedString styleSheet)
@@ -21564,7 +21564,7 @@ void QVideoWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 
 void QVideoWidget_SetWindowTitle(void* ptr, struct QtMultimedia_PackedString vqs)
 {
-		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setWindowTitle", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 }
 
 void QVideoWidget_SetWindowTitleDefault(void* ptr, struct QtMultimedia_PackedString vqs)

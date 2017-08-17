@@ -9491,7 +9491,7 @@ void QItemSelectionModel_ResetDefault(void* ptr)
 void QItemSelectionModel_Select2(void* ptr, void* selection, long long command)
 {
 	qRegisterMetaType<QItemSelectionModel::SelectionFlags>();
-	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(QItemSelection, *static_cast<QItemSelection*>(selection)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
+	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(const QItemSelection, *static_cast<QItemSelection*>(selection)), Q_ARG(QItemSelectionModel::SelectionFlags, static_cast<QItemSelectionModel::SelectionFlag>(command)));
 }
 
 void QItemSelectionModel_Select2Default(void* ptr, void* selection, long long command)
@@ -9502,7 +9502,7 @@ void QItemSelectionModel_Select2Default(void* ptr, void* selection, long long co
 void QItemSelectionModel_Select(void* ptr, void* index, long long command)
 {
 	qRegisterMetaType<QItemSelectionModel::SelectionFlags>();
-	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
+	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlags, static_cast<QItemSelectionModel::SelectionFlag>(command)));
 }
 
 void QItemSelectionModel_SelectDefault(void* ptr, void* index, long long command)
@@ -9528,7 +9528,7 @@ void QItemSelectionModel_SelectionChanged(void* ptr, void* selected, void* desel
 void QItemSelectionModel_SetCurrentIndex(void* ptr, void* index, long long command)
 {
 	qRegisterMetaType<QItemSelectionModel::SelectionFlags>();
-	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
+	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "setCurrentIndex", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlags, static_cast<QItemSelectionModel::SelectionFlag>(command)));
 }
 
 void QItemSelectionModel_SetCurrentIndexDefault(void* ptr, void* index, long long command)
@@ -18134,7 +18134,7 @@ void QSortFilterProxyModel_SetFilterCaseSensitivity(void* ptr, long long cs)
 
 void QSortFilterProxyModel_SetFilterFixedString(void* ptr, struct QtCore_PackedString pattern)
 {
-	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterFixedString", Q_ARG(QString, QString::fromUtf8(pattern.data, pattern.len)));
+	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterFixedString", Q_ARG(const QString, QString::fromUtf8(pattern.data, pattern.len)));
 }
 
 void QSortFilterProxyModel_SetFilterFixedStringDefault(void* ptr, struct QtCore_PackedString pattern)
@@ -18154,7 +18154,7 @@ void QSortFilterProxyModel_SetFilterRegExp(void* ptr, void* regExp)
 
 void QSortFilterProxyModel_SetFilterRegExp2(void* ptr, struct QtCore_PackedString pattern)
 {
-	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterRegExp", Q_ARG(QString, QString::fromUtf8(pattern.data, pattern.len)));
+	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterRegExp", Q_ARG(const QString, QString::fromUtf8(pattern.data, pattern.len)));
 }
 
 void QSortFilterProxyModel_SetFilterRegExp2Default(void* ptr, struct QtCore_PackedString pattern)
@@ -18169,7 +18169,7 @@ void QSortFilterProxyModel_SetFilterRole(void* ptr, int role)
 
 void QSortFilterProxyModel_SetFilterWildcard(void* ptr, struct QtCore_PackedString pattern)
 {
-	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterWildcard", Q_ARG(QString, QString::fromUtf8(pattern.data, pattern.len)));
+	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterWildcard", Q_ARG(const QString, QString::fromUtf8(pattern.data, pattern.len)));
 }
 
 void QSortFilterProxyModel_SetFilterWildcardDefault(void* ptr, struct QtCore_PackedString pattern)
