@@ -34,8 +34,6 @@ The following targets are currently supported for deployment :
 Resources
 ---
 
-All documentation for this binding is available in [wiki](https://github.com/therecipe/qt/wiki). There are some important sections in wiki that we recommend you to check before you start developing your own GUI application :
-
 - [Gallery](https://github.com/therecipe/qt/wiki/Gallery), which contains example of GUI applications that created using this binding.
 - [Frequently asked questions](https://github.com/therecipe/qt/wiki/FAQ), especially the [licensing](https://github.com/therecipe/qt/wiki/FAQ#licensing-1) section, because LGPLv3 license that used in this binding might be not suitable for your projects.
 - [Installation](https://github.com/therecipe/qt/wiki/Installation), which shows you how to install this binding on Windows, Linux and macOS.

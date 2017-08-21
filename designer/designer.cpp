@@ -1706,7 +1706,7 @@ char QDesignerFormWindowInterface_SetContents(void* ptr, void* device, struct Qt
 char QDesignerFormWindowInterface_SetContents2(void* ptr, struct QtDesigner_PackedString contents)
 {
 	bool returnArg;
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setContents", Q_RETURN_ARG(bool, returnArg), Q_ARG(QString, QString::fromUtf8(contents.data, contents.len)));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setContents", Q_RETURN_ARG(bool, returnArg), Q_ARG(const QString, QString::fromUtf8(contents.data, contents.len)));
 	return returnArg;
 }
 
@@ -1727,7 +1727,7 @@ void QDesignerFormWindowInterface_AboutToUnmanageWidget(void* ptr, void* widget)
 
 void QDesignerFormWindowInterface_ActivateResourceFilePaths(void* ptr, struct QtDesigner_PackedString paths, int errorCount, struct QtDesigner_PackedString errorMessages)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "activateResourceFilePaths", Q_ARG(QStringList, QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts)), Q_ARG(int*, &errorCount), Q_ARG(QString*, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len))));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "activateResourceFilePaths", Q_ARG(const QStringList, QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts)), Q_ARG(int*, &errorCount), Q_ARG(QString*, new QString(QString::fromUtf8(errorMessages.data, errorMessages.len))));
 }
 
 void QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(void* ptr, struct QtDesigner_PackedString paths, int errorCount, struct QtDesigner_PackedString errorMessages)
@@ -1938,17 +1938,17 @@ void QDesignerFormWindowInterface_SetExportMacro(void* ptr, struct QtDesigner_Pa
 
 void QDesignerFormWindowInterface_SetFeatures(void* ptr, long long features)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFeatures", Q_ARG(QDesignerFormWindowInterface::FeatureFlag, static_cast<QDesignerFormWindowInterface::FeatureFlag>(features)));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFeatures", Q_ARG(QDesignerFormWindowInterface::Feature, static_cast<QDesignerFormWindowInterface::FeatureFlag>(features)));
 }
 
 void QDesignerFormWindowInterface_SetFileName(void* ptr, struct QtDesigner_PackedString fileName)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFileName", Q_ARG(QString, QString::fromUtf8(fileName.data, fileName.len)));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setFileName", Q_ARG(const QString, QString::fromUtf8(fileName.data, fileName.len)));
 }
 
 void QDesignerFormWindowInterface_SetGrid(void* ptr, void* grid)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setGrid", Q_ARG(QPoint, *static_cast<QPoint*>(grid)));
+	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "setGrid", Q_ARG(const QPoint, *static_cast<QPoint*>(grid)));
 }
 
 void QDesignerFormWindowInterface_SetIncludeHints(void* ptr, struct QtDesigner_PackedString includeHints)
@@ -3821,7 +3821,7 @@ void QDesignerPropertyEditorInterface_SetObject(void* ptr, void* object)
 
 void QDesignerPropertyEditorInterface_SetPropertyValue(void* ptr, struct QtDesigner_PackedString name, void* value, char changed)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerPropertyEditorInterface*>(ptr), "setPropertyValue", Q_ARG(QString, QString::fromUtf8(name.data, name.len)), Q_ARG(QVariant, *static_cast<QVariant*>(value)), Q_ARG(bool, changed != 0));
+	QMetaObject::invokeMethod(static_cast<QDesignerPropertyEditorInterface*>(ptr), "setPropertyValue", Q_ARG(const QString, QString::fromUtf8(name.data, name.len)), Q_ARG(const QVariant, *static_cast<QVariant*>(value)), Q_ARG(bool, changed != 0));
 }
 
 void QDesignerPropertyEditorInterface_SetReadOnly(void* ptr, char readOnly)

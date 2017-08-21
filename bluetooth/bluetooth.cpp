@@ -325,7 +325,7 @@ void QBluetoothDeviceDiscoveryAgent_StartDefault(void* ptr)
 void QBluetoothDeviceDiscoveryAgent_Start2(void* ptr, long long methods)
 {
 	qRegisterMetaType<QBluetoothDeviceDiscoveryAgent::DiscoveryMethods>();
-	QMetaObject::invokeMethod(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), "start", Q_ARG(QBluetoothDeviceDiscoveryAgent::DiscoveryMethod, static_cast<QBluetoothDeviceDiscoveryAgent::DiscoveryMethod>(methods)));
+	QMetaObject::invokeMethod(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), "start", Q_ARG(QBluetoothDeviceDiscoveryAgent::DiscoveryMethods, static_cast<QBluetoothDeviceDiscoveryAgent::DiscoveryMethod>(methods)));
 }
 
 void QBluetoothDeviceDiscoveryAgent_Start2Default(void* ptr, long long methods)

@@ -22,6 +22,14 @@ const (
 )
 
 func CgoTemplate(module, path, target string, mode int, ipkg, tags string) (o string) {
+	return cgoTemplate(module, path, target, mode, ipkg, tags, parser.LibDeps[module])
+}
+
+func CgoTemplateSafe(module, path, target string, mode int, ipkg, tags string, libs []string) (o string) {
+	return cgoTemplate(module, path, target, mode, ipkg, tags, libs)
+}
+
+func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs []string) (o string) {
 	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg)
 
 	switch module {
@@ -42,7 +50,7 @@ func CgoTemplate(module, path, target string, mode int, ipkg, tags string) (o st
 	//TODO:
 	if !(target == "sailfish" || target == "sailfish-emulator") {
 		if !parser.ShouldBuildForTarget(module, target) ||
-			isAlreadyCached(module, path, target, mode) {
+			isAlreadyCached(module, path, target, mode, libs) {
 			utils.Log.Debugf("skipping cgo generation")
 			return
 		}
@@ -54,7 +62,7 @@ func CgoTemplate(module, path, target string, mode int, ipkg, tags string) (o st
 	case "asteroid":
 		cgoAsteroid(module, path, mode, ipkg) //TODO:
 	default:
-		createProject(module, path, target, mode)
+		createProject(module, path, target, mode, libs)
 		createMakefile(module, path, target, mode)
 		createCgo(module, path, target, mode, ipkg, tags)
 	}
@@ -66,13 +74,13 @@ func CgoTemplate(module, path, target string, mode int, ipkg, tags string) (o st
 }
 
 //TODO: use qmake props ?
-func isAlreadyCached(module, path, target string, mode int) bool {
+func isAlreadyCached(module, path, target string, mode int, libs []string) bool {
 	for _, file := range cgoFileNames(module, path, target, mode) {
 		file = filepath.Join(path, file)
 		if utils.ExistsFile(file) {
 			file = utils.Load(file)
 
-			for _, dep := range parser.LibDeps[module] {
+			for _, dep := range libs {
 				if !strings.Contains(strings.ToLower(file), strings.ToLower(dep)) {
 					utils.Log.Debugln("cgo does not contain:", strings.ToLower(dep))
 					return false
@@ -115,16 +123,16 @@ func isAlreadyCached(module, path, target string, mode int) bool {
 	return false
 }
 
-func createProject(module, path, target string, mode int) {
+func createProject(module, path, target string, mode int, libs []string) {
 	var out []string
 
 	switch {
 	case mode == RCC:
 		out = []string{"Core"}
 	case mode == MOC, module == "build_ios":
-		out = parser.LibDeps[module]
+		out = libs
 	case mode == MINIMAL, mode == NONE:
-		out = append([]string{module}, parser.LibDeps[module]...)
+		out = append([]string{module}, libs...)
 	}
 
 	if strings.HasPrefix(target, "rpi") && module == "Core" {
@@ -138,11 +146,11 @@ func createProject(module, path, target string, mode int) {
 		out[i] = strings.ToLower(out[i])
 	}
 
-	utils.Save(filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))), fmt.Sprintf("QT += %v", strings.Join(out, " ")))
+	utils.Save(filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))), fmt.Sprintf("QT += %v", strings.Join(out, " ")))
 }
 
 func createMakefile(module, path, target string, mode int) {
-	cmd := exec.Command(utils.ToolPath("qmake", target), filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))))
+	cmd := exec.Command(utils.ToolPath("qmake", target), filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))))
 	cmd.Dir = path
 	switch target {
 	case "darwin":
@@ -198,13 +206,13 @@ func createMakefile(module, path, target string, mode int) {
 		utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
 	}
 
-	utils.RemoveAll(filepath.Join(path, "..", fmt.Sprintf("%v.pro", strings.ToLower(module))))
+	utils.RemoveAll(filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))))
 	utils.RemoveAll(filepath.Join(path, ".qmake.stash"))
 	switch target {
 	case "darwin":
 	case "windows":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
-			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
+			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
 			if (utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build windows") {
 					utils.Save(pPath, "// +build windows\n"+content)
@@ -220,7 +228,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "linux":
 	case "ios", "ios-simulator":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
-			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", strings.ToLower(module), suf))
+			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
 			/* TODO:
 			if utils.QT_VERSION_MAJOR() == "5.9" && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build ios,!darwin") {
@@ -235,9 +243,9 @@ func createMakefile(module, path, target string, mode int) {
 		for _, n := range []string{"Info.plist", "qt.conf"} {
 			utils.RemoveAll(filepath.Join(path, n))
 		}
-		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("%v.xcodeproj", strings.ToLower(module))))
+		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("%v.xcodeproj", filepath.Base(path))))
 	case "android", "android-emulator":
-		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("android-lib%v.so-deployment-settings.json", strings.ToLower(module))))
+		utils.RemoveAll(filepath.Join(path, fmt.Sprintf("android-lib%v.so-deployment-settings.json", filepath.Base(path))))
 	case "sailfish", "sailfish-emulator":
 	case "asteroid":
 	case "rpi1", "rpi2", "rpi3":
@@ -360,7 +368,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_LFLAGS)", "", -1)
 	case "android", "android-emulator":
-		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", strings.ToLower(module)), "", -1)
+		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", filepath.Base(path)), "", -1)
 		tmp = strings.Replace(tmp, "-shared", "", -1)
 	}
 

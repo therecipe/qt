@@ -5,22 +5,29 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"sync"
 
 	iparser "github.com/therecipe/qt/internal/binding/parser"
 
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var std []string
+var (
+	std      []string
+	stdMutex = new(sync.Mutex)
 
-var imported = make(map[string]string)
+	imported      = make(map[string]string)
+	importedMutex = new(sync.Mutex)
+)
 
 func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("get imports")
 
+	stdMutex.Lock()
 	if std == nil {
 		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
 	}
+	stdMutex.Unlock()
 
 	env, tags, _, _ := BuildEnv(target, "", "")
 	if tagsCustom != "" {
@@ -51,7 +58,10 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 			continue
 		}
 
-		if dep, ok := imported[libs[i]]; ok {
+		importedMutex.Lock()
+		dep, ok := imported[libs[i]]
+		importedMutex.Unlock()
+		if ok {
 			importMap[dep] = struct{}{}
 			libs = append(libs[:i], libs[i+1:]...)
 			continue
@@ -65,28 +75,45 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []s
 		}
 	}
 
+	libDepsMutex := new(sync.Mutex)
+	wg := new(sync.WaitGroup)
+	wc := make(chan bool, 50)
+	wg.Add(len(libs))
 	for _, l := range libs {
-		cmd = exec.Command("go", "list", "-e", "-f", "{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")), l)
-		for k, v := range env {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
-		}
+		wc <- true
+		go func(l string) {
+			defer func() {
+				<-wc
+				wg.Done()
+			}()
 
-		dep := strings.TrimSpace(utils.RunCmd(cmd, "go list dir"))
-		if dep == "" {
-			continue
-		}
+			cmd := exec.Command("go", "list", "-e", "-f", "{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")), l)
+			for k, v := range env {
+				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+			}
 
-		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {
-			continue
-		}
+			dep := strings.TrimSpace(utils.RunCmd(cmd, "go list dir"))
+			if dep == "" {
+				return
+			}
 
-		if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt", "q")) {
-			iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
-		}
+			if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {
+				return
+			}
 
-		importMap[dep] = struct{}{}
-		imported[l] = dep
+			if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt", "q")) {
+				libDepsMutex.Lock()
+				iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
+				libDepsMutex.Unlock()
+			}
+
+			importedMutex.Lock()
+			importMap[dep] = struct{}{}
+			imported[l] = dep
+			importedMutex.Unlock()
+		}(l)
 	}
+	wg.Wait()
 
 	var imports []string
 	for k := range importMap {

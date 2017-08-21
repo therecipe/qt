@@ -427,7 +427,7 @@ void QWebSocket_BytesWritten(void* ptr, long long bytes)
 
 void QWebSocket_Close(void* ptr, long long closeCode, struct QtWebSockets_PackedString reason)
 {
-	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "close", Q_ARG(QWebSocketProtocol::CloseCode, static_cast<QWebSocketProtocol::CloseCode>(closeCode)), Q_ARG(QString, QString::fromUtf8(reason.data, reason.len)));
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "close", Q_ARG(QWebSocketProtocol::CloseCode, static_cast<QWebSocketProtocol::CloseCode>(closeCode)), Q_ARG(const QString, QString::fromUtf8(reason.data, reason.len)));
 }
 
 void QWebSocket_CloseDefault(void* ptr, long long closeCode, struct QtWebSockets_PackedString reason)
@@ -498,7 +498,7 @@ void QWebSocket_IgnoreSslErrors2(void* ptr, void* errors)
 
 void QWebSocket_Open2(void* ptr, void* request)
 {
-	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(QNetworkRequest, *static_cast<QNetworkRequest*>(request)));
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(const QNetworkRequest, *static_cast<QNetworkRequest*>(request)));
 }
 
 void QWebSocket_Open2Default(void* ptr, void* request)
@@ -508,7 +508,7 @@ void QWebSocket_Open2Default(void* ptr, void* request)
 
 void QWebSocket_Open(void* ptr, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(const QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QWebSocket_OpenDefault(void* ptr, void* url)
@@ -518,7 +518,7 @@ void QWebSocket_OpenDefault(void* ptr, void* url)
 
 void QWebSocket_Ping(void* ptr, void* payload)
 {
-	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ping", Q_ARG(QByteArray, *static_cast<QByteArray*>(payload)));
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ping", Q_ARG(const QByteArray, *static_cast<QByteArray*>(payload)));
 }
 
 void QWebSocket_PingDefault(void* ptr, void* payload)

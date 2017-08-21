@@ -325,6 +325,8 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QtROClientFactory::registerType", f.Fullname == "QtROServerFactory::registerType",
 		f.Name == "QtROClientFactory", f.Name == "QtROServerFactory",
 
+		f.Name == "glShaderSource", //OpenGL
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {

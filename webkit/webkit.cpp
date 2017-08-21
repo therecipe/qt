@@ -1495,7 +1495,7 @@ void QWebFrame_AddToJavaScriptWindowObject(void* ptr, struct QtWebKit_PackedStri
 void* QWebFrame_EvaluateJavaScript(void* ptr, struct QtWebKit_PackedString scriptSource)
 {
 	QVariant returnArg;
-	QMetaObject::invokeMethod(static_cast<QWebFrame*>(ptr), "evaluateJavaScript", Q_RETURN_ARG(QVariant, returnArg), Q_ARG(QString, QString::fromUtf8(scriptSource.data, scriptSource.len)));
+	QMetaObject::invokeMethod(static_cast<QWebFrame*>(ptr), "evaluateJavaScript", Q_RETURN_ARG(QVariant, returnArg), Q_ARG(const QString, QString::fromUtf8(scriptSource.data, scriptSource.len)));
 	return new QVariant(returnArg);
 }
 

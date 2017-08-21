@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 
 	"golang.org/x/tools/imports"
 
@@ -19,24 +20,70 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd"
+
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var done = make(map[string]struct{})
+var (
+	done   = make(map[string]struct{})
+	rootWg = new(sync.WaitGroup)
+
+	goFilesCache      = make(map[string][]string)
+	goFilesCacheMutex = new(sync.Mutex)
+
+	goImportsCache      = make(map[string][]string)
+	goImportsCacheMutex = new(sync.Mutex)
+)
 
 func Moc(path, target, tags string, fast bool) {
+	moc(path, target, tags, fast, true)
+}
+
+func moc(path, target, tags string, fast, root bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
+
+	if root {
+		defer rootWg.Wait()
+		wg := new(sync.WaitGroup)
+		wc := make(chan bool, 50)
+		allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
+
+		wg.Add(len(allImports) * 2)
+		for _, path := range allImports {
+			wc <- true
+			go func(path string) {
+				files := cmd.GetGoFiles(path, target, tags)
+				goFilesCacheMutex.Lock()
+				goFilesCache[path] = files
+				goFilesCacheMutex.Unlock()
+				<-wc
+				wg.Done()
+			}(path)
+
+			wc <- true
+			go func(path string) {
+				imports := cmd.GetImports(path, target, tags, 0, true)
+				goImportsCacheMutex.Lock()
+				goImportsCache[path] = imports
+				goImportsCacheMutex.Unlock()
+				<-wc
+				wg.Done()
+			}(path)
+		}
+		wg.Wait()
+	}
 
 	var classes []*parser.Class
 	var otherclasses []*parser.Class
 	var pkg string
-	for i, path := range append([]string{path}, cmd.GetImports(path, target, tags, 0, true)...) {
+
+	for i, path := range append([]string{path}, goImportsCache[path]...) {
 		if _, ok := done[path]; !ok && i > 0 && !fast {
 			done[path] = struct{}{}
-			Moc(path, target, tags, false)
+			moc(path, target, tags, false, false)
 		}
 
-		for _, fpath := range cmd.GetGoFiles(path, target, tags) {
+		for _, fpath := range goFilesCache[path] {
 			cls, ipkg, err := parse(fpath)
 			if pkg == "" {
 				pkg = ipkg
@@ -207,7 +254,10 @@ func Moc(path, target, tags string, fast bool) {
 	}
 	utils.Log.Debug("done copy structors")
 
-	for _, fpath := range cmd.GetGoFiles(path, target, tags) {
+	goFilesCacheMutex.Lock()
+	files := goFilesCache[path]
+	goFilesCacheMutex.Unlock()
+	for _, fpath := range files {
 		if filepath.Base(fpath) != "moc.go" {
 			parseNonMocDeps(fpath)
 		}
@@ -220,18 +270,28 @@ func Moc(path, target, tags string, fast bool) {
 		return
 	}
 	fix := templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)
-	var err error
-	for i := 0; i < 5; i++ {
-		fix, err = imports.Process(filepath.Join(path, "moc.go"), fix, nil)
-		if err != nil {
-			utils.Log.WithError(err).Fatal("failed to fix go imports")
+
+	rootWg.Add(1)
+	go func() {
+		defer rootWg.Done()
+		var err error
+		for i := 0; i < 5; i++ {
+			fix, err = imports.Process(filepath.Join(path, "moc.go"), fix, nil)
+			if err != nil {
+				utils.Log.WithError(err).Fatal("failed to fix go imports")
+				return
+			}
+		}
+		if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
 			return
 		}
-	}
-	if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
-		return
-	}
-	templater.CgoTemplate(parser.MOC, path, target, templater.MOC, pkg, tags)
+	}()
+
+	rootWg.Add(1)
+	go func(libs []string) {
+		templater.CgoTemplateSafe(parser.MOC, path, target, templater.MOC, pkg, tags, libs)
+		rootWg.Done()
+	}(parser.LibDeps[parser.MOC])
 
 	//TODO: cleanup state -->
 	for _, c := range parser.State.ClassMap {
@@ -242,16 +302,20 @@ func Moc(path, target, tags string, fast bool) {
 	parser.LibDeps[parser.MOC] = make([]string, 0)
 	//<--
 
-	utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
-	if tags != "" {
-		utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
-	}
-
-	if utils.QT_DOCKER() {
-		if idug, ok := os.LookupEnv("IDUG"); ok {
-			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+	rootWg.Add(1)
+	go func() {
+		utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
+		if tags != "" {
+			utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
 		}
-	}
+
+		if utils.QT_DOCKER() {
+			if idug, ok := os.LookupEnv("IDUG"); ok {
+				utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+			}
+		}
+		rootWg.Done()
+	}()
 }
 
 func parse(path string) ([]*parser.Class, string, error) {

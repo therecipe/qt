@@ -134,6 +134,7 @@
 #include <QHelpEvent>
 #include <QHideEvent>
 #include <QIcon>
+#include <QImage>
 #include <QInputDialog>
 #include <QInputMethod>
 #include <QInputMethodEvent>
@@ -182,6 +183,7 @@
 #include <QMovie>
 #include <QObject>
 #include <QOffscreenSurface>
+#include <QOpenGLWidget>
 #include <QPagedPaintDevice>
 #include <QPaintDevice>
 #include <QPaintDeviceWindow>
@@ -274,6 +276,8 @@
 #include <QStylePainter>
 #include <QStylePlugin>
 #include <QStyledItemDelegate>
+#include <QSurface>
+#include <QSurfaceFormat>
 #include <QSwipeGesture>
 #include <QSystemTrayIcon>
 #include <QTabBar>
@@ -618,7 +622,7 @@ void QAbstractButton_SetIcon(void* ptr, void* icon)
 
 void QAbstractButton_SetIconSize(void* ptr, void* size)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(size)));
+	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setIconSize", Q_ARG(const QSize, *static_cast<QSize*>(size)));
 }
 
 void QAbstractButton_SetIconSizeDefault(void* ptr, void* size)
@@ -1699,7 +1703,7 @@ void QAbstractItemView_CommitDataDefault(void* ptr, void* editor)
 
 void QAbstractItemView_CurrentChanged(void* ptr, void* current, void* previous)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "currentChanged", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(previous)));
 }
 
 void QAbstractItemView_CurrentChangedDefault(void* ptr, void* current, void* previous)
@@ -1729,7 +1733,7 @@ void QAbstractItemView_CurrentChangedDefault(void* ptr, void* current, void* pre
 
 void QAbstractItemView_DataChanged(void* ptr, void* topLeft, void* bottomRight, void* roles)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "dataChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(topLeft)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(bottomRight)), Q_ARG(QVector<int>, *static_cast<QVector<int>*>(roles)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "dataChanged", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(topLeft)), Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(bottomRight)), Q_ARG(const QVector<int>, *static_cast<QVector<int>*>(roles)));
 }
 
 void QAbstractItemView_DataChangedDefault(void* ptr, void* topLeft, void* bottomRight, void* roles)
@@ -1774,7 +1778,7 @@ void QAbstractItemView_DoubleClicked(void* ptr, void* index)
 
 void QAbstractItemView_Edit(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "edit", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_EditDefault(void* ptr, void* index)
@@ -2059,7 +2063,7 @@ void QAbstractItemView_ResetVerticalScrollMode(void* ptr)
 
 void QAbstractItemView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QAbstractItemView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end)
@@ -2089,7 +2093,7 @@ void QAbstractItemView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int 
 
 void QAbstractItemView_RowsInserted(void* ptr, void* parent, int start, int end)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsInserted", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QAbstractItemView_RowsInsertedDefault(void* ptr, void* parent, int start, int end)
@@ -2224,7 +2228,7 @@ void QAbstractItemView_SelectAllDefault(void* ptr)
 
 void QAbstractItemView_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "selectionChanged", Q_ARG(QItemSelection, *static_cast<QItemSelection*>(selected)), Q_ARG(QItemSelection, *static_cast<QItemSelection*>(deselected)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "selectionChanged", Q_ARG(const QItemSelection, *static_cast<QItemSelection*>(selected)), Q_ARG(const QItemSelection, *static_cast<QItemSelection*>(deselected)));
 }
 
 void QAbstractItemView_SelectionChangedDefault(void* ptr, void* selected, void* deselected)
@@ -2269,7 +2273,7 @@ void QAbstractItemView_SetAutoScrollMargin(void* ptr, int margin)
 
 void QAbstractItemView_SetCurrentIndex(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setCurrentIndex", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_SetCurrentIndexDefault(void* ptr, void* index)
@@ -2394,7 +2398,7 @@ void QAbstractItemView_SetModelDefault(void* ptr, void* model)
 
 void QAbstractItemView_SetRootIndex(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setRootIndex", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_SetRootIndexDefault(void* ptr, void* index)
@@ -2519,7 +2523,7 @@ void QAbstractItemView_StartDragDefault(void* ptr, long long supportedActions)
 
 void QAbstractItemView_Update(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "update", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QAbstractItemView_UpdateDefault(void* ptr, void* index)
@@ -5879,7 +5883,7 @@ void QApplication_QApplication_SetActiveWindow(void* active)
 
 void QApplication_SetAutoSipEnabled(void* ptr, char enabled)
 {
-	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setAutoSipEnabled", Q_ARG(bool, enabled != 0));
+	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setAutoSipEnabled", Q_ARG(const bool, enabled != 0));
 }
 
 void QApplication_SetAutoSipEnabledDefault(void* ptr, char enabled)
@@ -5946,7 +5950,7 @@ void QApplication_QApplication_SetStyle(void* style)
 
 void QApplication_SetStyleSheet(void* ptr, struct QtWidgets_PackedString sheet)
 {
-	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setStyleSheet", Q_ARG(QString, QString::fromUtf8(sheet.data, sheet.len)));
+	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "setStyleSheet", Q_ARG(const QString, QString::fromUtf8(sheet.data, sheet.len)));
 }
 
 void QApplication_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString sheet)
@@ -7072,7 +7076,7 @@ void QCalendarWidget_SetDateEditEnabled(void* ptr, char enable)
 
 void QCalendarWidget_SetDateRange(void* ptr, void* min, void* max)
 {
-	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setDateRange", Q_ARG(QDate, *static_cast<QDate*>(min)), Q_ARG(QDate, *static_cast<QDate*>(max)));
+	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setDateRange", Q_ARG(const QDate, *static_cast<QDate*>(min)), Q_ARG(const QDate, *static_cast<QDate*>(max)));
 }
 
 void QCalendarWidget_SetDateRangeDefault(void* ptr, void* min, void* max)
@@ -7132,7 +7136,7 @@ void QCalendarWidget_SetNavigationBarVisibleDefault(void* ptr, char visible)
 
 void QCalendarWidget_SetSelectedDate(void* ptr, void* date)
 {
-	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setSelectedDate", Q_ARG(QDate, *static_cast<QDate*>(date)));
+	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setSelectedDate", Q_ARG(const QDate, *static_cast<QDate*>(date)));
 }
 
 void QCalendarWidget_SetSelectedDateDefault(void* ptr, void* date)
@@ -8481,7 +8485,7 @@ void QComboBox_SetCurrentIndexDefault(void* ptr, int index)
 
 void QComboBox_SetCurrentText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setCurrentText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setCurrentText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QComboBox_SetCurrentTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -8500,7 +8504,7 @@ void QComboBox_SetDuplicatesEnabled(void* ptr, char enable)
 
 void QComboBox_SetEditText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setEditText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setEditText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QComboBox_SetEditTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -9326,7 +9330,7 @@ void QCompleter_Activated(void* ptr, struct QtWidgets_PackedString text)
 
 void QCompleter_Complete(void* ptr, void* rect)
 {
-	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "complete", Q_ARG(QRect, *static_cast<QRect*>(rect)));
+	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "complete", Q_ARG(const QRect, *static_cast<QRect*>(rect)));
 }
 
 void QCompleter_CompleteDefault(void* ptr, void* rect)
@@ -9381,7 +9385,7 @@ void QCompleter_SetCompletionMode(void* ptr, long long mode)
 
 void QCompleter_SetCompletionPrefix(void* ptr, struct QtWidgets_PackedString prefix)
 {
-	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "setCompletionPrefix", Q_ARG(QString, QString::fromUtf8(prefix.data, prefix.len)));
+	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "setCompletionPrefix", Q_ARG(const QString, QString::fromUtf8(prefix.data, prefix.len)));
 }
 
 void QCompleter_SetCompletionPrefixDefault(void* ptr, struct QtWidgets_PackedString prefix)
@@ -9844,7 +9848,7 @@ void QDataWidgetMapper_RevertDefault(void* ptr)
 
 void QDataWidgetMapper_SetCurrentModelIndex(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QDataWidgetMapper*>(ptr), "setCurrentModelIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QDataWidgetMapper*>(ptr), "setCurrentModelIndex", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QDataWidgetMapper_SetCurrentModelIndexDefault(void* ptr, void* index)
@@ -10462,7 +10466,7 @@ void QDateTimeEdit_SetCurrentSectionIndex(void* ptr, int index)
 
 void QDateTimeEdit_SetDate(void* ptr, void* date)
 {
-	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDate", Q_ARG(QDate, *static_cast<QDate*>(date)));
+	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDate", Q_ARG(const QDate, *static_cast<QDate*>(date)));
 }
 
 void QDateTimeEdit_SetDateDefault(void* ptr, void* date)
@@ -10483,7 +10487,7 @@ void QDateTimeEdit_SetDateRange(void* ptr, void* min, void* max)
 
 void QDateTimeEdit_SetDateTime(void* ptr, void* dateTime)
 {
-	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDateTime", Q_ARG(QDateTime, *static_cast<QDateTime*>(dateTime)));
+	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDateTime", Q_ARG(const QDateTime, *static_cast<QDateTime*>(dateTime)));
 }
 
 void QDateTimeEdit_SetDateTimeDefault(void* ptr, void* dateTime)
@@ -10544,7 +10548,7 @@ void QDateTimeEdit_SetSelectedSection(void* ptr, long long section)
 
 void QDateTimeEdit_SetTime(void* ptr, void* time)
 {
-	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setTime", Q_ARG(QTime, *static_cast<QTime*>(time)));
+	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setTime", Q_ARG(const QTime, *static_cast<QTime*>(time)));
 }
 
 void QDateTimeEdit_SetTimeDefault(void* ptr, void* time)
@@ -11069,7 +11073,7 @@ void QDial_InitStyleOption(void* ptr, void* option)
 class MyQDialog: public QDialog
 {
 public:
-	MyQDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QDialog(parent, f) {QDialog_QDialog_QRegisterMetaType();};
+	MyQDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QDialog(parent, fo) {QDialog_QDialog_QRegisterMetaType();};
 	int exec() { return callbackQDialog_Exec(this); };
 	void accept() { callbackQDialog_Accept(this); };
 	void Signal_Accepted() { callbackQDialog_Accepted(this); };
@@ -12250,7 +12254,7 @@ void QErrorMessage_DoneDefault(void* ptr, int a)
 
 void QErrorMessage_ShowMessage(void* ptr, struct QtWidgets_PackedString message)
 {
-	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)));
+	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)));
 }
 
 void QErrorMessage_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString message)
@@ -12260,7 +12264,7 @@ void QErrorMessage_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString m
 
 void QErrorMessage_ShowMessage2(void* ptr, struct QtWidgets_PackedString message, struct QtWidgets_PackedString ty)
 {
-	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(QString, QString::fromUtf8(ty.data, ty.len)));
+	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(const QString, QString::fromUtf8(ty.data, ty.len)));
 }
 
 void QErrorMessage_ShowMessage2Default(void* ptr, struct QtWidgets_PackedString message, struct QtWidgets_PackedString ty)
@@ -14197,7 +14201,7 @@ void QFontComboBox_CurrentFontChanged(void* ptr, void* font)
 
 void QFontComboBox_SetCurrentFont(void* ptr, void* fo)
 {
-	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(fo)));
+	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentFont", Q_ARG(const QFont, *static_cast<QFont*>(fo)));
 }
 
 void QFontComboBox_SetCurrentFontDefault(void* ptr, void* fo)
@@ -14710,7 +14714,7 @@ int QFormLayout_VerticalSpacing(void* ptr)
 class MyQFrame: public QFrame
 {
 public:
-	MyQFrame(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QFrame(parent, f) {QFrame_QFrame_QRegisterMetaType();};
+	MyQFrame(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QFrame(parent, fo) {QFrame_QFrame_QRegisterMetaType();};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void paintEvent(QPaintEvent * vqp) { callbackQWidget_PaintEvent(this, vqp); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -15971,7 +15975,7 @@ void QGraphicsBlurEffect_BlurRadiusChanged(void* ptr, double radius)
 
 void QGraphicsBlurEffect_SetBlurHints(void* ptr, long long hints)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "setBlurHints", Q_ARG(QGraphicsBlurEffect::BlurHint, static_cast<QGraphicsBlurEffect::BlurHint>(hints)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "setBlurHints", Q_ARG(QGraphicsBlurEffect::BlurHints, static_cast<QGraphicsBlurEffect::BlurHint>(hints)));
 }
 
 void QGraphicsBlurEffect_SetBlurHintsDefault(void* ptr, long long hints)
@@ -16154,7 +16158,7 @@ void QGraphicsColorizeEffect_DrawDefault(void* ptr, void* painter)
 
 void QGraphicsColorizeEffect_SetColor(void* ptr, void* c)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "setColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "setColor", Q_ARG(const QColor, *static_cast<QColor*>(c)));
 }
 
 void QGraphicsColorizeEffect_SetColorDefault(void* ptr, void* c)
@@ -16347,7 +16351,7 @@ void QGraphicsDropShadowEffect_SetBlurRadiusDefault(void* ptr, double blurRadius
 
 void QGraphicsDropShadowEffect_SetColor(void* ptr, void* color)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setColor", Q_ARG(QColor, *static_cast<QColor*>(color)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setColor", Q_ARG(const QColor, *static_cast<QColor*>(color)));
 }
 
 void QGraphicsDropShadowEffect_SetColorDefault(void* ptr, void* color)
@@ -16357,7 +16361,7 @@ void QGraphicsDropShadowEffect_SetColorDefault(void* ptr, void* color)
 
 void QGraphicsDropShadowEffect_SetOffset(void* ptr, void* ofs)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(QPointF, *static_cast<QPointF*>(ofs)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setOffset", Q_ARG(const QPointF, *static_cast<QPointF*>(ofs)));
 }
 
 void QGraphicsDropShadowEffect_SetOffsetDefault(void* ptr, void* ofs)
@@ -23697,7 +23701,7 @@ void QGraphicsOpacityEffect_SetOpacityDefault(void* ptr, double opacity)
 
 void QGraphicsOpacityEffect_SetOpacityMask(void* ptr, void* mask)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "setOpacityMask", Q_ARG(QBrush, *static_cast<QBrush*>(mask)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "setOpacityMask", Q_ARG(const QBrush, *static_cast<QBrush*>(mask)));
 }
 
 void QGraphicsOpacityEffect_SetOpacityMaskDefault(void* ptr, void* mask)
@@ -24147,7 +24151,7 @@ void* QGraphicsProxyWidget_CreateProxyForChildWidget(void* ptr, void* child)
 void* QGraphicsProxyWidget_NewProxyWidget(void* ptr, void* child)
 {
 		QGraphicsProxyWidget* returnArg;
-	QMetaObject::invokeMethod(static_cast<QGraphicsProxyWidget*>(ptr), "newProxyWidget", Q_RETURN_ARG(QGraphicsProxyWidget*, returnArg), Q_ARG(QWidget*, static_cast<QWidget*>(child)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsProxyWidget*>(ptr), "newProxyWidget", Q_RETURN_ARG(QGraphicsProxyWidget*, returnArg), Q_ARG(const QWidget*, static_cast<QWidget*>(child)));
 	return returnArg;
 }
 
@@ -25145,7 +25149,7 @@ void QGraphicsScene_InputMethodEventDefault(void* ptr, void* event)
 
 void QGraphicsScene_Invalidate(void* ptr, void* rect, long long layers)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "invalidate", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayer, static_cast<QGraphicsScene::SceneLayer>(layers)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "invalidate", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayers, static_cast<QGraphicsScene::SceneLayer>(layers)));
 }
 
 void QGraphicsScene_InvalidateDefault(void* ptr, void* rect, long long layers)
@@ -25373,7 +25377,7 @@ void QGraphicsScene_SetStyle(void* ptr, void* style)
 
 void QGraphicsScene_Update(void* ptr, void* rect)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "update", Q_ARG(QRectF, *static_cast<QRectF*>(rect)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "update", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)));
 }
 
 void QGraphicsScene_UpdateDefault(void* ptr, void* rect)
@@ -27207,7 +27211,7 @@ void QGraphicsView_FitInView2(void* ptr, double x, double y, double w, double h,
 
 void QGraphicsView_InvalidateScene(void* ptr, void* rect, long long layers)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "invalidateScene", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayer, static_cast<QGraphicsScene::SceneLayer>(layers)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "invalidateScene", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(QGraphicsScene::SceneLayers, static_cast<QGraphicsScene::SceneLayer>(layers)));
 }
 
 void QGraphicsView_InvalidateSceneDefault(void* ptr, void* rect, long long layers)
@@ -27372,7 +27376,7 @@ void QGraphicsView_Translate(void* ptr, double dx, double dy)
 
 void QGraphicsView_UpdateScene(void* ptr, void* rects)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateScene", Q_ARG(QList<QRectF>, *static_cast<QList<QRectF>*>(rects)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateScene", Q_ARG(const QList<QRectF>, *static_cast<QList<QRectF>*>(rects)));
 }
 
 void QGraphicsView_UpdateSceneDefault(void* ptr, void* rects)
@@ -27382,7 +27386,7 @@ void QGraphicsView_UpdateSceneDefault(void* ptr, void* rects)
 
 void QGraphicsView_UpdateSceneRect(void* ptr, void* rect)
 {
-	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateSceneRect", Q_ARG(QRectF, *static_cast<QRectF*>(rect)));
+	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateSceneRect", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)));
 }
 
 void QGraphicsView_UpdateSceneRectDefault(void* ptr, void* rect)
@@ -29296,7 +29300,7 @@ void QHeaderView_SectionResized(void* ptr, int logicalIndex, int oldSize, int ne
 
 void QHeaderView_SectionsAboutToBeRemoved(void* ptr, void* parent, int logicalFirst, int logicalLast)
 {
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
+	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsAboutToBeRemoved", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
 }
 
 void QHeaderView_SectionsAboutToBeRemovedDefault(void* ptr, void* parent, int logicalFirst, int logicalLast)
@@ -29306,7 +29310,7 @@ void QHeaderView_SectionsAboutToBeRemovedDefault(void* ptr, void* parent, int lo
 
 void QHeaderView_SectionsInserted(void* ptr, void* parent, int logicalFirst, int logicalLast)
 {
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
+	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "sectionsInserted", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, logicalFirst), Q_ARG(int, logicalLast));
 }
 
 void QHeaderView_SectionsInsertedDefault(void* ptr, void* parent, int logicalFirst, int logicalLast)
@@ -30447,7 +30451,7 @@ void* QItemEditorFactory_CreateEditorDefault(void* ptr, int userType, void* pare
 class MyQKeyEventTransition: public QKeyEventTransition
 {
 public:
-	MyQKeyEventTransition(QObject *object, QEvent::Type type, int key, QState *sourceState = Q_NULLPTR) : QKeyEventTransition(object, type, key, sourceState) {QKeyEventTransition_QKeyEventTransition_QRegisterMetaType();};
+	MyQKeyEventTransition(QObject *object, QEvent::Type ty, int key, QState *sourceState = Q_NULLPTR) : QKeyEventTransition(object, ty, key, sourceState) {QKeyEventTransition_QKeyEventTransition_QRegisterMetaType();};
 	MyQKeyEventTransition(QState *sourceState = Q_NULLPTR) : QKeyEventTransition(sourceState) {QKeyEventTransition_QKeyEventTransition_QRegisterMetaType();};
 	bool eventTest(QEvent * event) { return callbackQKeyEventTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQKeyEventTransition_OnTransition(this, event); };
@@ -30909,7 +30913,7 @@ void QKeySequenceEdit_KeySequenceChanged(void* ptr, void* keySequence)
 
 void QKeySequenceEdit_SetKeySequence(void* ptr, void* keySequence)
 {
-	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setKeySequence", Q_ARG(QKeySequence, *static_cast<QKeySequence*>(keySequence)));
+	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setKeySequence", Q_ARG(const QKeySequence, *static_cast<QKeySequence*>(keySequence)));
 }
 
 void QKeySequenceEdit_SetKeySequenceDefault(void* ptr, void* keySequence)
@@ -31027,7 +31031,7 @@ void* QLCDNumber_NewQLCDNumber2(unsigned int numDigits, void* parent)
 
 void QLCDNumber_Display(void* ptr, struct QtWidgets_PackedString s)
 {
-	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "display", Q_ARG(QString, QString::fromUtf8(s.data, s.len)));
+	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "display", Q_ARG(const QString, QString::fromUtf8(s.data, s.len)));
 }
 
 void QLCDNumber_DisplayDefault(void* ptr, struct QtWidgets_PackedString s)
@@ -31183,8 +31187,8 @@ int QLCDNumber_IntValue(void* ptr)
 class MyQLabel: public QLabel
 {
 public:
-	MyQLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(parent, f) {QLabel_QLabel_QRegisterMetaType();};
-	MyQLabel(const QString &text, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QLabel(text, parent, f) {QLabel_QLabel_QRegisterMetaType();};
+	MyQLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QLabel(parent, fo) {QLabel_QLabel_QRegisterMetaType();};
+	MyQLabel(const QString &text, QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QLabel(text, parent, fo) {QLabel_QLabel_QRegisterMetaType();};
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void clear() { callbackQLabel_Clear(this); };
@@ -31375,7 +31379,7 @@ void QLabel_SetOpenExternalLinks(void* ptr, char open)
 
 void QLabel_SetPicture(void* ptr, void* picture)
 {
-	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPicture", Q_ARG(QPicture, *static_cast<QPicture*>(picture)));
+	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPicture", Q_ARG(const QPicture, *static_cast<QPicture*>(picture)));
 }
 
 void QLabel_SetPictureDefault(void* ptr, void* picture)
@@ -31385,7 +31389,7 @@ void QLabel_SetPictureDefault(void* ptr, void* picture)
 
 void QLabel_SetPixmap(void* ptr, void* vqp)
 {
-	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPixmap", Q_ARG(QPixmap, *static_cast<QPixmap*>(vqp)));
+	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setPixmap", Q_ARG(const QPixmap, *static_cast<QPixmap*>(vqp)));
 }
 
 void QLabel_SetPixmapDefault(void* ptr, void* vqp)
@@ -31405,7 +31409,7 @@ void QLabel_SetSelection(void* ptr, int start, int length)
 
 void QLabel_SetText(void* ptr, struct QtWidgets_PackedString vqs)
 {
-	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setText", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setText", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 }
 
 void QLabel_SetTextDefault(void* ptr, struct QtWidgets_PackedString vqs)
@@ -33096,7 +33100,7 @@ void QLineEdit_SetSelection(void* ptr, int start, int length)
 
 void QLineEdit_SetText(void* ptr, struct QtWidgets_PackedString vqs)
 {
-	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setText", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setText", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 }
 
 void QLineEdit_SetTextDefault(void* ptr, struct QtWidgets_PackedString vqs)
@@ -34222,7 +34226,7 @@ void QListWidget_RemoveItemWidget(void* ptr, void* item)
 void QListWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	qRegisterMetaType<QAbstractItemView::ScrollHint>();
-	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToItem", Q_ARG(QListWidgetItem*, static_cast<QListWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToItem", Q_ARG(const QListWidgetItem*, static_cast<QListWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
 void QListWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
@@ -34442,9 +34446,9 @@ void* QListWidget___mimeData_items_newList(void* ptr)
 class MyQListWidgetItem: public QListWidgetItem
 {
 public:
-	MyQListWidgetItem(QListWidget *parent = Q_NULLPTR, int type = Type) : QListWidgetItem(parent, type) {};
-	MyQListWidgetItem(const QIcon &icon, const QString &text, QListWidget *parent = Q_NULLPTR, int type = Type) : QListWidgetItem(icon, text, parent, type) {};
-	MyQListWidgetItem(const QString &text, QListWidget *parent = Q_NULLPTR, int type = Type) : QListWidgetItem(text, parent, type) {};
+	MyQListWidgetItem(QListWidget *parent = Q_NULLPTR, int ty = Type) : QListWidgetItem(parent, ty) {};
+	MyQListWidgetItem(const QIcon &icon, const QString &text, QListWidget *parent = Q_NULLPTR, int ty = Type) : QListWidgetItem(icon, text, parent, ty) {};
+	MyQListWidgetItem(const QString &text, QListWidget *parent = Q_NULLPTR, int ty = Type) : QListWidgetItem(text, parent, ty) {};
 	MyQListWidgetItem(const QListWidgetItem &other) : QListWidgetItem(other) {};
 	void read(QDataStream & in) { callbackQListWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int role, const QVariant & value) { callbackQListWidgetItem_SetData(this, role, const_cast<QVariant*>(&value)); };
@@ -36505,7 +36509,7 @@ void QMenuBar_InitStyleOption(void* ptr, void* option, void* action)
 class MyQMessageBox: public QMessageBox
 {
 public:
-	MyQMessageBox(Icon icon, const QString &title, const QString &text, StandardButtons buttons = NoButton, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint) : QMessageBox(icon, title, text, buttons, parent, f) {QMessageBox_QMessageBox_QRegisterMetaType();};
+	MyQMessageBox(Icon icon, const QString &title, const QString &text, StandardButtons buttons = NoButton, QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint) : QMessageBox(icon, title, text, buttons, parent, fo) {QMessageBox_QMessageBox_QRegisterMetaType();};
 	MyQMessageBox(QWidget *parent = Q_NULLPTR) : QMessageBox(parent) {QMessageBox_QMessageBox_QRegisterMetaType();};
 	int exec() { return callbackQDialog_Exec(this); };
 	void Signal_ButtonClicked(QAbstractButton * button) { callbackQMessageBox_ButtonClicked(this, button); };
@@ -36856,7 +36860,7 @@ void* QMessageBox___buttons_newList(void* ptr)
 class MyQMouseEventTransition: public QMouseEventTransition
 {
 public:
-	MyQMouseEventTransition(QObject *object, QEvent::Type type, Qt::MouseButton button, QState *sourceState = Q_NULLPTR) : QMouseEventTransition(object, type, button, sourceState) {QMouseEventTransition_QMouseEventTransition_QRegisterMetaType();};
+	MyQMouseEventTransition(QObject *object, QEvent::Type ty, Qt::MouseButton button, QState *sourceState = Q_NULLPTR) : QMouseEventTransition(object, ty, button, sourceState) {QMouseEventTransition_QMouseEventTransition_QRegisterMetaType();};
 	MyQMouseEventTransition(QState *sourceState = Q_NULLPTR) : QMouseEventTransition(sourceState) {QMouseEventTransition_QMouseEventTransition_QRegisterMetaType();};
 	bool eventTest(QEvent * event) { return callbackQMouseEventTransition_EventTest(this, event) != 0; };
 	void onTransition(QEvent * event) { callbackQMouseEventTransition_OnTransition(this, event); };
@@ -37192,6 +37196,242 @@ void QMouseEventTransition_TimerEventDefault(void* ptr, void* event)
 void* QMouseEventTransition_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QMouseEventTransition*>(ptr)->QMouseEventTransition::metaObject());
+}
+
+class MyQOpenGLWidget: public QOpenGLWidget
+{
+public:
+	MyQOpenGLWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QOpenGLWidget(parent, fo) {QOpenGLWidget_QOpenGLWidget_QRegisterMetaType();};
+	void Signal_AboutToCompose() { callbackQOpenGLWidget_AboutToCompose(this); };
+	void Signal_AboutToResize() { callbackQOpenGLWidget_AboutToResize(this); };
+	void Signal_FrameSwapped() { callbackQOpenGLWidget_FrameSwapped(this); };
+	void initializeGL() { callbackQOpenGLWidget_InitializeGL(this); };
+	void paintEvent(QPaintEvent * e) { callbackQWidget_PaintEvent(this, e); };
+	void paintGL() { callbackQOpenGLWidget_PaintGL(this); };
+	void resizeEvent(QResizeEvent * e) { callbackQWidget_ResizeEvent(this, e); };
+	void resizeGL(int w, int h) { callbackQOpenGLWidget_ResizeGL(this, w, h); };
+	void Signal_Resized() { callbackQOpenGLWidget_Resized(this); };
+	bool close() { return callbackQWidget_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
+	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
+	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
+	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
+	void closeEvent(QCloseEvent * event) { callbackQWidget_CloseEvent(this, event); };
+	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
+	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
+	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
+	void dropEvent(QDropEvent * event) { callbackQWidget_DropEvent(this, event); };
+	void enterEvent(QEvent * event) { callbackQWidget_EnterEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackQWidget_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQWidget_FocusOutEvent(this, event); };
+	void hide() { callbackQWidget_Hide(this); };
+	void hideEvent(QHideEvent * event) { callbackQWidget_HideEvent(this, event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQWidget_InputMethodEvent(this, event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQWidget_KeyPressEvent(this, event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQWidget_KeyReleaseEvent(this, event); };
+	void leaveEvent(QEvent * event) { callbackQWidget_LeaveEvent(this, event); };
+	void lower() { callbackQWidget_Lower(this); };
+	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQWidget_MouseDoubleClickEvent(this, event); };
+	void mouseMoveEvent(QMouseEvent * event) { callbackQWidget_MouseMoveEvent(this, event); };
+	void mousePressEvent(QMouseEvent * event) { callbackQWidget_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QMouseEvent * event) { callbackQWidget_MouseReleaseEvent(this, event); };
+	void moveEvent(QMoveEvent * event) { callbackQWidget_MoveEvent(this, event); };
+	void raise() { callbackQWidget_Raise(this); };
+	void repaint() { callbackQWidget_Repaint(this); };
+	void setDisabled(bool disable) { callbackQWidget_SetDisabled(this, disable); };
+	void setEnabled(bool vbo) { callbackQWidget_SetEnabled(this, vbo); };
+	void setFocus() { callbackQWidget_SetFocus2(this); };
+	void setHidden(bool hidden) { callbackQWidget_SetHidden(this, hidden); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWidget_SetStyleSheet(this, styleSheetPacked); };
+	void setVisible(bool visible) { callbackQWidget_SetVisible(this, visible); };
+	void setWindowModified(bool vbo) { callbackQWidget_SetWindowModified(this, vbo); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQWidget_SetWindowTitle(this, vqsPacked); };
+	void show() { callbackQWidget_Show(this); };
+	void showEvent(QShowEvent * event) { callbackQWidget_ShowEvent(this, event); };
+	void showFullScreen() { callbackQWidget_ShowFullScreen(this); };
+	void showMaximized() { callbackQWidget_ShowMaximized(this); };
+	void showMinimized() { callbackQWidget_ShowMinimized(this); };
+	void showNormal() { callbackQWidget_ShowNormal(this); };
+	void tabletEvent(QTabletEvent * event) { callbackQWidget_TabletEvent(this, event); };
+	void update() { callbackQWidget_Update(this); };
+	void updateMicroFocus() { callbackQWidget_UpdateMicroFocus(this); };
+	void wheelEvent(QWheelEvent * event) { callbackQWidget_WheelEvent(this, event); };
+	void Signal_WindowIconChanged(const QIcon & icon) { callbackQWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtWidgets_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQWidget_WindowTitleChanged(this, titlePacked); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWidget_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
+	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQWidget_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
+	bool hasHeightForWidth() const { return callbackQWidget_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	int heightForWidth(int w) const { return callbackQWidget_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQWidget_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWidget_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQWidget_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQWidget_CustomEvent(this, event); };
+	void deleteLater() { callbackQWidget_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQWidget_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQOpenGLWidget*)
+
+int QOpenGLWidget_QOpenGLWidget_QRegisterMetaType(){qRegisterMetaType<QOpenGLWidget*>(); return qRegisterMetaType<MyQOpenGLWidget*>();}
+
+void* QOpenGLWidget_GrabFramebuffer(void* ptr)
+{
+	return new QImage(static_cast<QOpenGLWidget*>(ptr)->grabFramebuffer());
+}
+
+void* QOpenGLWidget_NewQOpenGLWidget(void* parent, long long fo)
+{
+		return new MyQOpenGLWidget(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(fo));
+}
+
+void QOpenGLWidget_ConnectAboutToCompose(void* ptr)
+{
+	QObject::connect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::aboutToCompose), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_AboutToCompose));
+}
+
+void QOpenGLWidget_DisconnectAboutToCompose(void* ptr)
+{
+	QObject::disconnect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::aboutToCompose), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_AboutToCompose));
+}
+
+void QOpenGLWidget_AboutToCompose(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->aboutToCompose();
+}
+
+void QOpenGLWidget_ConnectAboutToResize(void* ptr)
+{
+	QObject::connect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::aboutToResize), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_AboutToResize));
+}
+
+void QOpenGLWidget_DisconnectAboutToResize(void* ptr)
+{
+	QObject::disconnect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::aboutToResize), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_AboutToResize));
+}
+
+void QOpenGLWidget_AboutToResize(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->aboutToResize();
+}
+
+void QOpenGLWidget_DoneCurrent(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->doneCurrent();
+}
+
+void QOpenGLWidget_ConnectFrameSwapped(void* ptr)
+{
+	QObject::connect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::frameSwapped), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_FrameSwapped));
+}
+
+void QOpenGLWidget_DisconnectFrameSwapped(void* ptr)
+{
+	QObject::disconnect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::frameSwapped), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_FrameSwapped));
+}
+
+void QOpenGLWidget_FrameSwapped(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->frameSwapped();
+}
+
+void QOpenGLWidget_InitializeGL(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->initializeGL();
+}
+
+void QOpenGLWidget_InitializeGLDefault(void* ptr)
+{
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::initializeGL();
+}
+
+void QOpenGLWidget_MakeCurrent(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->makeCurrent();
+}
+
+void QOpenGLWidget_PaintGL(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->paintGL();
+}
+
+void QOpenGLWidget_PaintGLDefault(void* ptr)
+{
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::paintGL();
+}
+
+void QOpenGLWidget_ResizeGL(void* ptr, int w, int h)
+{
+	static_cast<QOpenGLWidget*>(ptr)->resizeGL(w, h);
+}
+
+void QOpenGLWidget_ResizeGLDefault(void* ptr, int w, int h)
+{
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::resizeGL(w, h);
+}
+
+void QOpenGLWidget_ConnectResized(void* ptr)
+{
+	QObject::connect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::resized), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_Resized));
+}
+
+void QOpenGLWidget_DisconnectResized(void* ptr)
+{
+	QObject::disconnect(static_cast<QOpenGLWidget*>(ptr), static_cast<void (QOpenGLWidget::*)()>(&QOpenGLWidget::resized), static_cast<MyQOpenGLWidget*>(ptr), static_cast<void (MyQOpenGLWidget::*)()>(&MyQOpenGLWidget::Signal_Resized));
+}
+
+void QOpenGLWidget_Resized(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->resized();
+}
+
+void QOpenGLWidget_SetFormat(void* ptr, void* format)
+{
+	static_cast<QOpenGLWidget*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
+}
+
+void QOpenGLWidget_SetUpdateBehavior(void* ptr, long long updateBehavior)
+{
+	static_cast<QOpenGLWidget*>(ptr)->setUpdateBehavior(static_cast<QOpenGLWidget::UpdateBehavior>(updateBehavior));
+}
+
+void QOpenGLWidget_DestroyQOpenGLWidget(void* ptr)
+{
+	static_cast<QOpenGLWidget*>(ptr)->~QOpenGLWidget();
+}
+
+unsigned int QOpenGLWidget_DefaultFramebufferObject(void* ptr)
+{
+	return static_cast<QOpenGLWidget*>(ptr)->defaultFramebufferObject();
+}
+
+void* QOpenGLWidget_Context(void* ptr)
+{
+	return static_cast<QOpenGLWidget*>(ptr)->context();
+}
+
+void* QOpenGLWidget_Format(void* ptr)
+{
+	return new QSurfaceFormat(static_cast<QOpenGLWidget*>(ptr)->format());
+}
+
+long long QOpenGLWidget_UpdateBehavior(void* ptr)
+{
+	return static_cast<QOpenGLWidget*>(ptr)->updateBehavior();
+}
+
+char QOpenGLWidget_IsValid(void* ptr)
+{
+	return static_cast<QOpenGLWidget*>(ptr)->isValid();
 }
 
 class MyQPanGesture: public QPanGesture
@@ -37867,7 +38107,7 @@ char QPlainTextEdit_Find(void* ptr, struct QtWidgets_PackedString exp, long long
 
 void QPlainTextEdit_AppendHtml(void* ptr, struct QtWidgets_PackedString html)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendHtml", Q_ARG(QString, QString::fromUtf8(html.data, html.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendHtml", Q_ARG(const QString, QString::fromUtf8(html.data, html.len)));
 }
 
 void QPlainTextEdit_AppendHtmlDefault(void* ptr, struct QtWidgets_PackedString html)
@@ -37877,7 +38117,7 @@ void QPlainTextEdit_AppendHtmlDefault(void* ptr, struct QtWidgets_PackedString h
 
 void QPlainTextEdit_AppendPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "appendPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QPlainTextEdit_AppendPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -37987,7 +38227,7 @@ void QPlainTextEdit_InsertFromMimeDataDefault(void* ptr, void* source)
 
 void QPlainTextEdit_InsertPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "insertPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "insertPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QPlainTextEdit_InsertPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -38132,7 +38372,7 @@ void QPlainTextEdit_SetPlaceholderText(void* ptr, struct QtWidgets_PackedString 
 
 void QPlainTextEdit_SetPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QPlainTextEdit_SetPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -38693,8 +38933,8 @@ void QProgressBar_InitStyleOption(void* ptr, void* option)
 class MyQProgressDialog: public QProgressDialog
 {
 public:
-	MyQProgressDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(parent, f) {QProgressDialog_QProgressDialog_QRegisterMetaType();};
-	MyQProgressDialog(const QString &labelText, const QString &cancelButtonText, int minimum, int maximum, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, f) {QProgressDialog_QProgressDialog_QRegisterMetaType();};
+	MyQProgressDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QProgressDialog(parent, fo) {QProgressDialog_QProgressDialog_QRegisterMetaType();};
+	MyQProgressDialog(const QString &labelText, const QString &cancelButtonText, int minimum, int maximum, QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, fo) {QProgressDialog_QProgressDialog_QRegisterMetaType();};
 	void cancel() { callbackQProgressDialog_Cancel(this); };
 	void Signal_Canceled() { callbackQProgressDialog_Canceled(this); };
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
@@ -38879,7 +39119,7 @@ void QProgressDialog_SetCancelButton(void* ptr, void* cancelButton)
 
 void QProgressDialog_SetCancelButtonText(void* ptr, struct QtWidgets_PackedString cancelButtonText)
 {
-	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setCancelButtonText", Q_ARG(QString, QString::fromUtf8(cancelButtonText.data, cancelButtonText.len)));
+	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setCancelButtonText", Q_ARG(const QString, QString::fromUtf8(cancelButtonText.data, cancelButtonText.len)));
 }
 
 void QProgressDialog_SetCancelButtonTextDefault(void* ptr, struct QtWidgets_PackedString cancelButtonText)
@@ -38894,7 +39134,7 @@ void QProgressDialog_SetLabel(void* ptr, void* label)
 
 void QProgressDialog_SetLabelText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setLabelText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setLabelText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QProgressDialog_SetLabelTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -39838,7 +40078,7 @@ void* QScroller_QScroller_Scroller2(void* target)
 
 void QScroller_EnsureVisible(void* ptr, void* rect, double xmargin, double ymargin)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin));
 }
 
 void QScroller_EnsureVisibleDefault(void* ptr, void* rect, double xmargin, double ymargin)
@@ -39848,7 +40088,7 @@ void QScroller_EnsureVisibleDefault(void* ptr, void* rect, double xmargin, doubl
 
 void QScroller_EnsureVisible2(void* ptr, void* rect, double xmargin, double ymargin, int scrollTime)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin), Q_ARG(int, scrollTime));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(const QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin), Q_ARG(int, scrollTime));
 }
 
 void QScroller_EnsureVisible2Default(void* ptr, void* rect, double xmargin, double ymargin, int scrollTime)
@@ -39868,7 +40108,7 @@ void QScroller_ResendPrepareEventDefault(void* ptr)
 
 void QScroller_ScrollTo(void* ptr, void* pos)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(QPointF, *static_cast<QPointF*>(pos)));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(const QPointF, *static_cast<QPointF*>(pos)));
 }
 
 void QScroller_ScrollToDefault(void* ptr, void* pos)
@@ -39878,7 +40118,7 @@ void QScroller_ScrollToDefault(void* ptr, void* pos)
 
 void QScroller_ScrollTo2(void* ptr, void* pos, int scrollTime)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(QPointF, *static_cast<QPointF*>(pos)), Q_ARG(int, scrollTime));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "scrollTo", Q_ARG(const QPointF, *static_cast<QPointF*>(pos)), Q_ARG(int, scrollTime));
 }
 
 void QScroller_ScrollTo2Default(void* ptr, void* pos, int scrollTime)
@@ -39903,7 +40143,7 @@ void QScroller_ScrollerPropertiesChanged(void* ptr, void* newProperties)
 
 void QScroller_SetScrollerProperties(void* ptr, void* prop)
 {
-	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "setScrollerProperties", Q_ARG(QScrollerProperties, *static_cast<QScrollerProperties*>(prop)));
+	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "setScrollerProperties", Q_ARG(const QScrollerProperties, *static_cast<QScrollerProperties*>(prop)));
 }
 
 void QScroller_SetScrollerPropertiesDefault(void* ptr, void* prop)
@@ -41248,8 +41488,8 @@ int QSpinBox_ValueFromTextDefault(void* ptr, struct QtWidgets_PackedString text)
 class MyQSplashScreen: public QSplashScreen
 {
 public:
-	MyQSplashScreen(QWidget *parent, const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(parent, pixmap, f) {QSplashScreen_QSplashScreen_QRegisterMetaType();};
-	MyQSplashScreen(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = Qt::WindowFlags()) : QSplashScreen(pixmap, f) {QSplashScreen_QSplashScreen_QRegisterMetaType();};
+	MyQSplashScreen(QWidget *parent, const QPixmap &pixmap = QPixmap(), Qt::WindowFlags fo = Qt::WindowFlags()) : QSplashScreen(parent, pixmap, fo) {QSplashScreen_QSplashScreen_QRegisterMetaType();};
+	MyQSplashScreen(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags fo = Qt::WindowFlags()) : QSplashScreen(pixmap, fo) {QSplashScreen_QSplashScreen_QRegisterMetaType();};
 	void clearMessage() { callbackQSplashScreen_ClearMessage(this); };
 	void drawContents(QPainter * painter) { callbackQSplashScreen_DrawContents(this, painter); };
 	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_MessageChanged(this, messagePacked); };
@@ -41390,7 +41630,7 @@ void QSplashScreen_SetPixmap(void* ptr, void* pixmap)
 
 void QSplashScreen_ShowMessage(void* ptr, struct QtWidgets_PackedString message, int alignment, void* color)
 {
-	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, alignment), Q_ARG(QColor, *static_cast<QColor*>(color)));
+	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, alignment), Q_ARG(const QColor, *static_cast<QColor*>(color)));
 }
 
 void QSplashScreen_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString message, int alignment, void* color)
@@ -42364,7 +42604,7 @@ void QStatusBar_SetSizeGripEnabled(void* ptr, char vbo)
 
 void QStatusBar_ShowMessage(void* ptr, struct QtWidgets_PackedString message, int timeout)
 {
-	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, timeout));
+	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(int, timeout));
 }
 
 void QStatusBar_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString message, int timeout)
@@ -47474,7 +47714,7 @@ void QSystemTrayIcon_ShowDefault(void* ptr)
 
 void QSystemTrayIcon_ShowMessage(void* ptr, struct QtWidgets_PackedString title, struct QtWidgets_PackedString message, long long icon, int millisecondsTimeoutHint)
 {
-	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "showMessage", Q_ARG(QString, QString::fromUtf8(title.data, title.len)), Q_ARG(QString, QString::fromUtf8(message.data, message.len)), Q_ARG(QSystemTrayIcon::MessageIcon, static_cast<QSystemTrayIcon::MessageIcon>(icon)), Q_ARG(int, millisecondsTimeoutHint));
+	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(title.data, title.len)), Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(QSystemTrayIcon::MessageIcon, static_cast<QSystemTrayIcon::MessageIcon>(icon)), Q_ARG(int, millisecondsTimeoutHint));
 }
 
 void QSystemTrayIcon_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString title, struct QtWidgets_PackedString message, long long icon, int millisecondsTimeoutHint)
@@ -49828,7 +50068,7 @@ void QTableWidget_RemoveRowDefault(void* ptr, int row)
 void QTableWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	qRegisterMetaType<QAbstractItemView::ScrollHint>();
-	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToItem", Q_ARG(QTableWidgetItem*, static_cast<QTableWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToItem", Q_ARG(const QTableWidgetItem*, static_cast<QTableWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
 void QTableWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
@@ -50144,10 +50384,10 @@ void* QTableWidget___mimeData_items_newList(void* ptr)
 class MyQTableWidgetItem: public QTableWidgetItem
 {
 public:
-	MyQTableWidgetItem(const QIcon &icon, const QString &text, int type = Type) : QTableWidgetItem(icon, text, type) {};
-	MyQTableWidgetItem(const QString &text, int type = Type) : QTableWidgetItem(text, type) {};
+	MyQTableWidgetItem(const QIcon &icon, const QString &text, int ty = Type) : QTableWidgetItem(icon, text, ty) {};
+	MyQTableWidgetItem(const QString &text, int ty = Type) : QTableWidgetItem(text, ty) {};
 	MyQTableWidgetItem(const QTableWidgetItem &other) : QTableWidgetItem(other) {};
-	MyQTableWidgetItem(int type = Type) : QTableWidgetItem(type) {};
+	MyQTableWidgetItem(int ty = Type) : QTableWidgetItem(ty) {};
 	void read(QDataStream & in) { callbackQTableWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int role, const QVariant & value) { callbackQTableWidgetItem_SetData(this, role, const_cast<QVariant*>(&value)); };
 	 ~MyQTableWidgetItem() { callbackQTableWidgetItem_DestroyQTableWidgetItem(this); };
@@ -50805,7 +51045,7 @@ void QTextBrowser_SetSearchPaths(void* ptr, struct QtWidgets_PackedString paths)
 
 void QTextBrowser_SetSource(void* ptr, void* name)
 {
-	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(name)));
+	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setSource", Q_ARG(const QUrl, *static_cast<QUrl*>(name)));
 }
 
 void QTextBrowser_SetSourceDefault(void* ptr, void* name)
@@ -51064,7 +51304,7 @@ char QTextEdit_Find(void* ptr, struct QtWidgets_PackedString exp, long long opti
 
 void QTextEdit_Append(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "append", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "append", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_AppendDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51184,7 +51424,7 @@ void QTextEdit_InsertFromMimeDataDefault(void* ptr, void* source)
 
 void QTextEdit_InsertHtml(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertHtml", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertHtml", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_InsertHtmlDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51198,7 +51438,7 @@ void QTextEdit_InsertHtmlDefault(void* ptr, struct QtWidgets_PackedString text)
 
 void QTextEdit_InsertPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "insertPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_InsertPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51265,7 +51505,7 @@ void QTextEdit_RedoAvailable(void* ptr, char available)
 
 void QTextEdit_ScrollToAnchor(void* ptr, struct QtWidgets_PackedString name)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "scrollToAnchor", Q_ARG(QString, QString::fromUtf8(name.data, name.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "scrollToAnchor", Q_ARG(const QString, QString::fromUtf8(name.data, name.len)));
 }
 
 void QTextEdit_ScrollToAnchorDefault(void* ptr, struct QtWidgets_PackedString name)
@@ -51338,7 +51578,7 @@ void QTextEdit_SetCurrentCharFormat(void* ptr, void* format)
 
 void QTextEdit_SetCurrentFont(void* ptr, void* fo)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(fo)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setCurrentFont", Q_ARG(const QFont, *static_cast<QFont*>(fo)));
 }
 
 void QTextEdit_SetCurrentFontDefault(void* ptr, void* fo)
@@ -51367,7 +51607,7 @@ void QTextEdit_SetDocumentTitle(void* ptr, struct QtWidgets_PackedString title)
 
 void QTextEdit_SetFontFamily(void* ptr, struct QtWidgets_PackedString fontFamily)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setFontFamily", Q_ARG(QString, QString::fromUtf8(fontFamily.data, fontFamily.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setFontFamily", Q_ARG(const QString, QString::fromUtf8(fontFamily.data, fontFamily.len)));
 }
 
 void QTextEdit_SetFontFamilyDefault(void* ptr, struct QtWidgets_PackedString fontFamily)
@@ -51437,7 +51677,7 @@ void QTextEdit_SetFontWeightDefault(void* ptr, int weight)
 
 void QTextEdit_SetHtml(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setHtml", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setHtml", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_SetHtmlDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51481,7 +51721,7 @@ void QTextEdit_SetTabStopWidth(void* ptr, int width)
 
 void QTextEdit_SetPlainText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setPlainText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setPlainText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_SetPlainTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51500,7 +51740,7 @@ void QTextEdit_SetReadOnly(void* ptr, char ro)
 
 void QTextEdit_SetText(void* ptr, struct QtWidgets_PackedString text)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setText", Q_ARG(QString, QString::fromUtf8(text.data, text.len)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setText", Q_ARG(const QString, QString::fromUtf8(text.data, text.len)));
 }
 
 void QTextEdit_SetTextDefault(void* ptr, struct QtWidgets_PackedString text)
@@ -51514,7 +51754,7 @@ void QTextEdit_SetTextDefault(void* ptr, struct QtWidgets_PackedString text)
 
 void QTextEdit_SetTextBackgroundColor(void* ptr, void* c)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextBackgroundColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextBackgroundColor", Q_ARG(const QColor, *static_cast<QColor*>(c)));
 }
 
 void QTextEdit_SetTextBackgroundColorDefault(void* ptr, void* c)
@@ -51528,7 +51768,7 @@ void QTextEdit_SetTextBackgroundColorDefault(void* ptr, void* c)
 
 void QTextEdit_SetTextColor(void* ptr, void* c)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setTextColor", Q_ARG(const QColor, *static_cast<QColor*>(c)));
 }
 
 void QTextEdit_SetTextColorDefault(void* ptr, void* c)
@@ -52236,7 +52476,7 @@ void QToolBar_SetFloatable(void* ptr, char floatable)
 
 void QToolBar_SetIconSize(void* ptr, void* iconSize)
 {
-	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(iconSize)));
+	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setIconSize", Q_ARG(const QSize, *static_cast<QSize*>(iconSize)));
 }
 
 void QToolBar_SetIconSizeDefault(void* ptr, void* iconSize)
@@ -52379,7 +52619,7 @@ char QToolBar_IsMovable(void* ptr)
 class MyQToolBox: public QToolBox
 {
 public:
-	MyQToolBox(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QToolBox(parent, f) {QToolBox_QToolBox_QRegisterMetaType();};
+	MyQToolBox(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QToolBox(parent, fo) {QToolBox_QToolBox_QRegisterMetaType();};
 	void changeEvent(QEvent * ev) { callbackQWidget_ChangeEvent(this, ev); };
 	void Signal_CurrentChanged(int index) { callbackQToolBox_CurrentChanged(this, index); };
 	void itemInserted(int index) { callbackQToolBox_ItemInserted(this, index); };
@@ -53039,7 +53279,7 @@ void* QTreeView_NewQTreeView(void* parent)
 
 void QTreeView_Collapse(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "collapse", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "collapse", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeView_CollapseDefault(void* ptr, void* index)
@@ -53152,7 +53392,7 @@ void QTreeView_DataChangedDefault(void* ptr, void* topLeft, void* bottomRight, v
 
 void QTreeView_Expand(void* ptr, void* index)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "expand", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "expand", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeView_ExpandDefault(void* ptr, void* index)
@@ -53284,7 +53524,7 @@ void QTreeView_RowsInsertedDefault(void* ptr, void* parent, int start, int end)
 
 void QTreeView_RowsRemoved(void* ptr, void* parent, int start, int end)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
+	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsRemoved", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTreeView_RowsRemovedDefault(void* ptr, void* parent, int start, int end)
@@ -53936,7 +54176,7 @@ void QTreeWidget_ClosePersistentEditor(void* ptr, void* item, int column)
 
 void QTreeWidget_CollapseItem(void* ptr, void* item)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "collapseItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "collapseItem", Q_ARG(const QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
 }
 
 void QTreeWidget_CollapseItemDefault(void* ptr, void* item)
@@ -53966,7 +54206,7 @@ void QTreeWidget_EditItem(void* ptr, void* item, int column)
 
 void QTreeWidget_ExpandItem(void* ptr, void* item)
 {
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expandItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expandItem", Q_ARG(const QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
 }
 
 void QTreeWidget_ExpandItemDefault(void* ptr, void* item)
@@ -54132,7 +54372,7 @@ void QTreeWidget_RemoveItemWidget(void* ptr, void* item, int column)
 void QTreeWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	qRegisterMetaType<QAbstractItemView::ScrollHint>();
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToItem", Q_ARG(const QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
 void QTreeWidget_ScrollToItemDefault(void* ptr, void* item, long long hint)
@@ -54424,15 +54664,15 @@ void* QTreeWidget___mimeData_items_newList(void* ptr)
 class MyQTreeWidgetItem: public QTreeWidgetItem
 {
 public:
-	MyQTreeWidgetItem(QTreeWidget *parent, QTreeWidgetItem *preceding, int type = Type) : QTreeWidgetItem(parent, preceding, type) {};
-	MyQTreeWidgetItem(QTreeWidget *parent, const QStringList &strings, int type = Type) : QTreeWidgetItem(parent, strings, type) {};
-	MyQTreeWidgetItem(QTreeWidget *parent, int type = Type) : QTreeWidgetItem(parent, type) {};
-	MyQTreeWidgetItem(QTreeWidgetItem *parent, QTreeWidgetItem *preceding, int type = Type) : QTreeWidgetItem(parent, preceding, type) {};
-	MyQTreeWidgetItem(QTreeWidgetItem *parent, const QStringList &strings, int type = Type) : QTreeWidgetItem(parent, strings, type) {};
-	MyQTreeWidgetItem(QTreeWidgetItem *parent, int type = Type) : QTreeWidgetItem(parent, type) {};
-	MyQTreeWidgetItem(const QStringList &strings, int type = Type) : QTreeWidgetItem(strings, type) {};
+	MyQTreeWidgetItem(QTreeWidget *parent, QTreeWidgetItem *preceding, int ty = Type) : QTreeWidgetItem(parent, preceding, ty) {};
+	MyQTreeWidgetItem(QTreeWidget *parent, const QStringList &strin, int ty = Type) : QTreeWidgetItem(parent, strin, ty) {};
+	MyQTreeWidgetItem(QTreeWidget *parent, int ty = Type) : QTreeWidgetItem(parent, ty) {};
+	MyQTreeWidgetItem(QTreeWidgetItem *parent, QTreeWidgetItem *preceding, int ty = Type) : QTreeWidgetItem(parent, preceding, ty) {};
+	MyQTreeWidgetItem(QTreeWidgetItem *parent, const QStringList &strin, int ty = Type) : QTreeWidgetItem(parent, strin, ty) {};
+	MyQTreeWidgetItem(QTreeWidgetItem *parent, int ty = Type) : QTreeWidgetItem(parent, ty) {};
+	MyQTreeWidgetItem(const QStringList &strin, int ty = Type) : QTreeWidgetItem(strin, ty) {};
 	MyQTreeWidgetItem(const QTreeWidgetItem &other) : QTreeWidgetItem(other) {};
-	MyQTreeWidgetItem(int type = Type) : QTreeWidgetItem(type) {};
+	MyQTreeWidgetItem(int ty = Type) : QTreeWidgetItem(ty) {};
 	void read(QDataStream & in) { callbackQTreeWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int column, int role, const QVariant & value) { callbackQTreeWidgetItem_SetData(this, column, role, const_cast<QVariant*>(&value)); };
 	 ~MyQTreeWidgetItem() { callbackQTreeWidgetItem_DestroyQTreeWidgetItem(this); };
@@ -56248,7 +56488,7 @@ void QWhatsThis_QWhatsThis_ShowText(void* pos, struct QtWidgets_PackedString tex
 class MyQWidget: public QWidget
 {
 public:
-	MyQWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()) : QWidget(parent, f) {QWidget_QWidget_QRegisterMetaType();};
+	MyQWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags fo = Qt::WindowFlags()) : QWidget(parent, fo) {QWidget_QWidget_QRegisterMetaType();};
 	bool close() { return callbackQWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
@@ -56503,6 +56743,8 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::close();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::close();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::close();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::close();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -56677,6 +56919,8 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -56856,6 +57100,8 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -57035,6 +57281,8 @@ char QWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long 
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -57219,6 +57467,8 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -57413,6 +57663,8 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -57597,6 +57849,8 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -57771,6 +58025,8 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -57970,6 +58226,8 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -58144,6 +58402,8 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -58318,6 +58578,8 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -58492,6 +58754,8 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -58666,6 +58930,8 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -58840,6 +59106,8 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -59014,6 +59282,8 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -59208,6 +59478,8 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::hide();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::hide();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hide();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hide();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -59382,6 +59654,8 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -59556,6 +59830,8 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -59740,6 +60016,8 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -59914,6 +60192,8 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -60088,6 +60368,8 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -60262,6 +60544,8 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::lower();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::lower();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::lower();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::lower();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -60436,6 +60720,8 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -60610,6 +60896,8 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -60784,6 +61072,8 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -60958,6 +61248,8 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -61142,6 +61434,8 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -61319,6 +61613,8 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QPushButton*>(ptr)->QPushButton::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QCheckBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCheckBox*>(ptr)->QCheckBox::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -61493,6 +61789,8 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::raise();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::raise();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::raise();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::raise();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -61701,6 +61999,8 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::repaint();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::repaint();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::repaint();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::repaint();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -61900,6 +62200,8 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -62144,6 +62446,8 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setDisabled(disable != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setDisabled(disable != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setDisabled(disable != 0);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setDisabled(disable != 0);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -62325,6 +62629,8 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -62519,6 +62825,8 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setFocus();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setFocus();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setFocus();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setFocus();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -62733,6 +63041,8 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setHidden(hidden != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setHidden(hidden != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setHidden(hidden != 0);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setHidden(hidden != 0);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -62892,7 +63202,7 @@ void QWidget_SetStyle(void* ptr, void* style)
 
 void QWidget_SetStyleSheet(void* ptr, struct QtWidgets_PackedString styleSheet)
 {
-		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString::fromUtf8(styleSheet.data, styleSheet.len)));
+		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setStyleSheet", Q_ARG(const QString, QString::fromUtf8(styleSheet.data, styleSheet.len)));
 }
 
 void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString styleSheet)
@@ -63037,6 +63347,8 @@ void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString style
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -63231,6 +63543,8 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setVisible(visible != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setVisible(visible != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setVisible(visible != 0);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setVisible(visible != 0);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -63435,6 +63749,8 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -63479,7 +63795,7 @@ void QWidget_SetWindowState(void* ptr, long long windowState)
 
 void QWidget_SetWindowTitle(void* ptr, struct QtWidgets_PackedString vqs)
 {
-		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString::fromUtf8(vqs.data, vqs.len)));
+		QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "setWindowTitle", Q_ARG(const QString, QString::fromUtf8(vqs.data, vqs.len)));
 }
 
 void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
@@ -63624,6 +63940,8 @@ void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -63805,6 +64123,8 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::show();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::show();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::show();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::show();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -63979,6 +64299,8 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -64153,6 +64475,8 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showFullScreen();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showFullScreen();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showFullScreen();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showFullScreen();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -64327,6 +64651,8 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showMaximized();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showMaximized();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showMaximized();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMaximized();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -64501,6 +64827,8 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showMinimized();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showMinimized();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showMinimized();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMinimized();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -64675,6 +65003,8 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showNormal();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showNormal();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showNormal();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showNormal();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -64854,6 +65184,8 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -65048,6 +65380,8 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::update();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::update();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::update();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::update();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -65242,6 +65576,8 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::updateMicroFocus();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::updateMicroFocus();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::updateMicroFocus();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::updateMicroFocus();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -65416,6 +65752,8 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -65685,6 +66023,8 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::paintEngine();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::paintEngine();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::paintEngine();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::paintEngine();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -65964,6 +66304,8 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QCheckBox*>(ptr)->QCheckBox::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractButton*>(ptr)->QAbstractButton::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -66143,6 +66485,8 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QCheckBox*>(ptr)->QCheckBox::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractButton*>(ptr)->QAbstractButton::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -66382,6 +66726,8 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QCheckBox*>(ptr)->QCheckBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QAbstractButton*>(ptr)->QAbstractButton::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -66680,6 +67026,8 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::hasHeightForWidth();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::hasHeightForWidth();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hasHeightForWidth();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hasHeightForWidth();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -66959,6 +67307,8 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::heightForWidth(w);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::heightForWidth(w);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::heightForWidth(w);
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::heightForWidth(w);
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -67143,6 +67493,8 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -68175,6 +68527,18 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 		} else {
 			return static_cast<QAbstractButton*>(ptr)->QAbstractButton::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
@@ -68469,6 +68833,8 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -68643,6 +69009,8 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -68817,6 +69185,8 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -68991,6 +69361,8 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::deleteLater();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::deleteLater();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::deleteLater();
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::deleteLater();
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -69165,6 +69537,8 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -69339,6 +69713,8 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
@@ -69513,6 +69889,8 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QCheckBox*>(ptr)->QCheckBox::metaObject());
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QAbstractButton*>(ptr)->QAbstractButton::metaObject());
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::metaObject());
 	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metaObject());
 	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {

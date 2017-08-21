@@ -3,6 +3,7 @@ package parser
 import (
 	"fmt"
 	"strings"
+	"sync"
 )
 
 type Class struct {
@@ -30,6 +31,8 @@ type Class struct {
 
 	Constructors []string
 	Derivations  []string
+
+	sync.Mutex
 }
 
 func (c *Class) register(m *Module) {
@@ -262,7 +265,7 @@ func (c *Class) IsSupported() bool {
 
 	switch {
 	case
-		strings.HasPrefix(c.Name, "QOpenGL"), strings.HasPrefix(c.Name, "QPlace"), //file not found or QPA API
+		c.Name == "QOpenGLFunctions_ES2", strings.HasPrefix(c.Name, "QPlace"), //file not found or QPA API
 
 		strings.HasPrefix(c.Name, "QAtomic"), //other
 

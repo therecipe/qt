@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -26,21 +27,37 @@ func Minimal(path, target, tags string) {
 	parser.LibDeps[parser.MOC] = make([]string, 0)
 	//<--
 
+	wg := new(sync.WaitGroup)
+	wc := make(chan bool, 50)
+
 	var files []string
-	for _, path := range append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...) {
-		for _, path := range cmd.GetGoFiles(path, target, tags) {
-			utils.Log.WithField("path", path).Debug("analyse for minimal")
-			files = append(files, utils.Load(path))
-		}
+	fileMutex := new(sync.Mutex)
+
+	allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
+	wg.Add(len(allImports))
+	for _, path := range allImports {
+		wc <- true
+		go func(path string) {
+			for _, path := range cmd.GetGoFiles(path, target, tags) {
+				utils.Log.WithField("path", path).Debug("analyse for minimal")
+				file := utils.Load(path)
+				fileMutex.Lock()
+				files = append(files, file)
+				fileMutex.Unlock()
+			}
+			<-wc
+			wg.Done()
+		}(path)
 	}
+	wg.Wait()
 
 	c := len(files)
-	utils.Log.Debugln("found", c, "files to analyse")
+	utils.Log.Debugln("found", c, "files to analyze")
 	if c == 0 {
 		return
 	}
 
-	if len(parser.State.ClassMap) == 0 {
+	if _, ok := parser.State.ClassMap["QObject"]; !ok {
 		parser.LoadModules()
 	} else {
 		utils.Log.Debug("modules already cached")
@@ -115,20 +132,47 @@ func Minimal(path, target, tags string) {
 		}
 	}
 
+	wg.Add(len(files))
 	for _, f := range files {
-		for _, c := range parser.State.ClassMap {
-			if strings.Contains(f, c.Name) &&
-				strings.Contains(f, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(strings.TrimPrefix(c.Module, "Qt")))) {
-				exportClass(c, files)
+		go func(f string) {
+			for _, c := range parser.State.ClassMap {
+				if strings.Contains(f, c.Name) &&
+					strings.Contains(f, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(strings.TrimPrefix(c.Module, "Qt")))) {
+					exportClass(c, files)
+				}
 			}
-		}
+			wg.Done()
+		}(f)
 	}
+	wg.Wait()
 
 	//TODO: cleanup state
 	parser.State.Minimal = true
 	for _, m := range parser.GetLibs() {
-		templater.GenModule(m, target, templater.MINIMAL)
+		if !parser.ShouldBuildForTarget(m, target) ||
+			m == "AndroidExtras" || m == "Sailfish" {
+			continue
+		}
+
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), templater.CppTemplate(m, templater.MINIMAL, target, ""))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), templater.HTemplate(m, templater.MINIMAL, ""))
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), templater.GoTemplate(m, false, templater.MINIMAL, m, target, ""))
 	}
+
+	for _, m := range parser.GetLibs() {
+		if !parser.ShouldBuildForTarget(m, target) ||
+			m == "AndroidExtras" || m == "Sailfish" {
+			continue
+		}
+
+		wg.Add(1)
+		go func(m string, libs []string) {
+			templater.CgoTemplateSafe(m, "", target, templater.MINIMAL, m, "", libs)
+			wg.Done()
+		}(m, parser.LibDeps[m])
+	}
+	wg.Wait()
+
 	parser.State.Minimal = false
 	for _, c := range parser.State.ClassMap {
 		c.Export = false
@@ -139,10 +183,15 @@ func Minimal(path, target, tags string) {
 }
 
 func exportClass(c *parser.Class, files []string) {
-	if c.Export {
+	c.Lock()
+	exp := c.Export
+	c.Unlock()
+	if exp {
 		return
 	}
+	c.Lock()
 	c.Export = true
+	c.Unlock()
 
 	for _, file := range files {
 		for _, f := range c.Functions {
