@@ -11,17 +11,17 @@ import (
 )
 
 func ExistsFile(name string) bool {
-	var _, err = ioutil.ReadFile(name)
+	_, err := ioutil.ReadFile(name)
 	return err == nil
 }
 
 func ExistsDir(name string) bool {
-	var _, err = ioutil.ReadDir(name)
+	_, err := ioutil.ReadDir(name)
 	return err == nil
 }
 
 func MkdirAll(dir string) error {
-	var err = os.MkdirAll(dir, 0755)
+	err := os.MkdirAll(dir, 0755)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to create dir %v", dir)
 	}
@@ -29,7 +29,7 @@ func MkdirAll(dir string) error {
 }
 
 func RemoveAll(name string) error {
-	var err = os.RemoveAll(name)
+	err := os.RemoveAll(name)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to remove %v", name)
 	}
@@ -37,7 +37,7 @@ func RemoveAll(name string) error {
 }
 
 func Save(name, data string) error {
-	var err = ioutil.WriteFile(name, []byte(data), 0644)
+	err := ioutil.WriteFile(name, []byte(data), 0644)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to save %v", name)
 	} else {
@@ -47,7 +47,7 @@ func Save(name, data string) error {
 }
 
 func SaveExec(name, data string) error {
-	var err = ioutil.WriteFile(name, []byte(data), 0755)
+	err := ioutil.WriteFile(name, []byte(data), 0755)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to save %v", name)
 	} else {
@@ -57,7 +57,7 @@ func SaveExec(name, data string) error {
 }
 
 func SaveBytes(name string, data []byte) error {
-	var err = ioutil.WriteFile(name, data, 0644)
+	err := ioutil.WriteFile(name, data, 0644)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to save %v", name)
 	}
@@ -66,7 +66,7 @@ func SaveBytes(name string, data []byte) error {
 
 //TODO: export error
 func Load(name string) string {
-	var out, err = ioutil.ReadFile(name)
+	out, err := ioutil.ReadFile(name)
 	if err != nil {
 		Log.WithError(err).Errorf("failed to load %v", name)
 	}
@@ -75,7 +75,7 @@ func Load(name string) string {
 
 //TODO: export error
 func LoadOptional(name string) string {
-	var out, err = ioutil.ReadFile(name)
+	out, err := ioutil.ReadFile(name)
 	if err != nil {
 		Log.WithError(err).Debugf("failed to load (optional) %v", name)
 	}
@@ -90,7 +90,7 @@ func GoQtPkgPath(s ...string) string {
 func RunCmd(cmd *exec.Cmd, name string) string {
 	fields := logrus.Fields{"func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
 	Log.WithFields(fields).Debug("Execute")
-	var out, err = cmd.CombinedOutput()
+	out, err := cmd.CombinedOutput()
 	if err != nil {
 		Log.WithError(err).WithFields(fields).Error("failed to run command")
 		println(string(out))
@@ -103,7 +103,7 @@ func RunCmd(cmd *exec.Cmd, name string) string {
 func RunCmdOptional(cmd *exec.Cmd, name string) string {
 	fields := logrus.Fields{"func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
 	Log.WithFields(fields).Debug("Execute")
-	var out, err = cmd.CombinedOutput()
+	out, err := cmd.CombinedOutput()
 	if err != nil {
 		Log.WithError(err).WithFields(fields).Error("failed to run command")
 		println(string(out))
@@ -114,7 +114,7 @@ func RunCmdOptional(cmd *exec.Cmd, name string) string {
 func RunCmdOptionalError(cmd *exec.Cmd, name string) (string, error) {
 	fields := logrus.Fields{"func": "RunCmdOptionalError", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
 	Log.WithFields(fields).Debug("Execute")
-	var out, err = cmd.CombinedOutput()
+	out, err := cmd.CombinedOutput()
 	if err != nil {
 		Log.WithError(err).WithFields(fields).Error("failed to run command")
 		println(string(out))

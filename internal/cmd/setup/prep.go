@@ -22,7 +22,7 @@ func Prep() {
 		}
 
 		if runtime.GOOS == "windows" {
-			sPath := filepath.Join(utils.MustGoBin(), fmt.Sprintf("%v.exe", app))
+			sPath := filepath.Join(utils.GOBIN(), fmt.Sprintf("%v.exe", app))
 			dPath := filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("%v.exe", app))
 			if utils.QT_MSYS2() {
 				if app == "go" {
@@ -39,7 +39,7 @@ func Prep() {
 			continue
 		} else {
 			var suc bool
-			sPath := filepath.Join(utils.MustGoBin(), app)
+			sPath := filepath.Join(utils.GOBIN(), app)
 			var dPath string
 			for _, pdPath := range filepath.SplitList("/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:" + filepath.Join(filepath.Join(runtime.GOROOT(), "bin"))) {
 				dPath = filepath.Join(pdPath, app)

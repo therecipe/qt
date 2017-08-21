@@ -9,27 +9,30 @@ import (
 	"strings"
 )
 
+var qT_VERSION_CACHE string
+
 func QT_VERSION() string {
-	if version := os.Getenv("QT_VERSION"); version != "" {
+	if version, ok := os.LookupEnv("QT_VERSION"); ok {
 		return version
 	}
-
 	if QT_PKG_CONFIG() {
-		return strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--modversion", "Qt5Core"), "cgo.LinuxPkgConfig_modVersion"))
+		if qT_VERSION_CACHE == "" {
+			qT_VERSION_CACHE = strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--modversion", "Qt5Core"), "cgo.LinuxPkgConfig_modVersion"))
+		}
+		return qT_VERSION_CACHE
 	}
-
 	return "5.8.0"
 }
 
 func QT_VERSION_NUM() int {
-	vmaj, _ := strconv.Atoi(string(QT_VERSION()[0]))
-	vmaj *= 1000
-	vmin, _ := strconv.Atoi(strings.Replace(QT_VERSION()[1:], ".", "", -1))
-	return vmaj + vmin
+	version := QT_VERSION()
+	vmaj, _ := strconv.Atoi(string(version[0]))
+	vmin, _ := strconv.Atoi(strings.Replace(version[1:], ".", "", -1))
+	return vmaj*1e3 + vmin
 }
 
 func QT_VERSION_MAJOR() string {
-	if version := os.Getenv("QT_VERSION_MAJOR"); version != "" {
+	if version, ok := os.LookupEnv("QT_VERSION_MAJOR"); ok {
 		return version
 	}
 	if QT_VERSION_NUM() >= 5091 {
@@ -39,7 +42,7 @@ func QT_VERSION_MAJOR() string {
 }
 
 func QT_DIR() string {
-	if dir := os.Getenv("QT_DIR"); dir != "" {
+	if dir, ok := os.LookupEnv("QT_DIR"); ok {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {
@@ -49,19 +52,19 @@ func QT_DIR() string {
 }
 
 func QT_FAT() bool {
-	return strings.ToLower(os.Getenv("QT_FAT")) == "true"
+	return os.Getenv("QT_FAT") == "true"
 }
 
 func QT_STUB() bool {
-	return (strings.ToLower(os.Getenv("QT_STUB")) == "true" || QT_MSYS2()) && !QT_FAT()
+	return (os.Getenv("QT_STUB") == "true" || QT_MSYS2()) && !QT_FAT()
 }
 
 func QT_DEBUG() bool {
-	return strings.ToLower(os.Getenv("QT_DEBUG")) == "true"
+	return os.Getenv("QT_DEBUG") == "true"
 }
 
 func QT_DEBUG_QML() bool {
-	return strings.ToLower(os.Getenv("QT_DEBUG_QML")) == "true"
+	return os.Getenv("QT_DEBUG_QML") == "true"
 }
 
 func CheckBuildTarget(buildTarget string) {
@@ -72,21 +75,17 @@ func CheckBuildTarget(buildTarget string) {
 		"rpi1", "rpi2", "rpi3",
 		"windows", "darwin", "linux",
 		"homebrew":
-
 	default:
 		if !strings.Contains(buildTarget, "_") {
 			Log.Panicf("failed to recognize build target %v", buildTarget)
 		}
 	}
-
 	if buildTarget != runtime.GOOS && !strings.Contains(buildTarget, "_") {
 		switch {
 		case QT_MSYS2():
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-
 		case QT_HOMEBREW():
 			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-
 		case QT_PKG_CONFIG():
 			Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		}
@@ -94,32 +93,32 @@ func CheckBuildTarget(buildTarget string) {
 }
 
 func CI() bool {
-	return strings.ToLower(os.Getenv("CI")) == "true"
+	return os.Getenv("CI") == "true"
 }
 
 func QT_QMAKE_DIR() string {
-	if dir := os.Getenv("QT_QMAKE_DIR"); dir != "" {
+	if dir, ok := os.LookupEnv("QT_QMAKE_DIR"); ok {
 		return filepath.Clean(dir)
 	}
 	return ""
 }
 
 func QT_DOCKER() bool {
-	return strings.ToLower(os.Getenv("QT_DOCKER")) == "true"
+	return os.Getenv("QT_DOCKER") == "true"
 }
 
 func QT_VAGRANT() bool {
-	return strings.ToLower(os.Getenv("QT_VAGRANT")) == "true"
+	return os.Getenv("QT_VAGRANT") == "true"
 }
 
 //TODO: use qmake props
 func ToolPath(tool, target string) string {
-	if target == "sailfish" || target == "sailfish-emulator" {
-		target = runtime.GOOS
-	}
-
 	if dir := QT_QMAKE_DIR(); dir != "" {
 		return filepath.Join(dir, tool)
+	}
+
+	if target == "sailfish" || target == "sailfish-emulator" {
+		target = runtime.GOOS
 	}
 
 	switch target {
@@ -147,13 +146,12 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
 	case "android-emulator":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_x86", "bin", tool)
-		/*
-			case "sailfish":
-				return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)
-			case "sailfish-emulator":
-				return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
-		*/
+	case "sailfish":
+		//TODO: return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)
+	case "sailfish-emulator":
+		//TODO: return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
 	case "asteroid":
+		//TODO:
 	case "rp1", "rpi2", "rpi3":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), target, "bin", tool)
 	}
@@ -161,5 +159,5 @@ func ToolPath(tool, target string) string {
 }
 
 func QT_WEBKIT() bool {
-	return strings.ToLower(os.Getenv("QT_WEBKIT")) == "true"
+	return os.Getenv("QT_WEBKIT") == "true"
 }

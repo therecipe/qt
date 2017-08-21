@@ -10,65 +10,46 @@ import (
 )
 
 func JDK_DIR() string {
-	if dir := os.Getenv("JDK_DIR"); dir != "" {
+	if dir, ok := os.LookupEnv("JDK_DIR"); ok {
 		return filepath.Clean(dir)
 	}
-	if dir := os.Getenv("JAVA_HOME"); dir != "" {
+	if dir, ok := os.LookupEnv("JAVA_HOME"); ok {
 		return filepath.Clean(dir)
 	}
-
 	switch runtime.GOOS {
 	case "windows":
-		{
-			return fmt.Sprintf("C:\\Program Files\\Java\\jdk%v", strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1])
-		}
-
+		return fmt.Sprintf("C:\\Program Files\\Java\\jdk%v", strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1])
 	case "darwin":
-		{
-			return fmt.Sprintf("/Library/Java/JavaVirtualMachines/jdk%v.jdk/Contents/Home", strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1])
-		}
-
+		return fmt.Sprintf("/Library/Java/JavaVirtualMachines/jdk%v.jdk/Contents/Home", strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1])
 	default:
-		{
-			return filepath.Join(os.Getenv("HOME"), "jdk")
-		}
+		return filepath.Join(os.Getenv("HOME"), "jdk")
 	}
 }
 
 func ANDROID_SDK_DIR() string {
-	if dir := os.Getenv("ANDROID_SDK_DIR"); dir != "" {
+	if dir, ok := os.LookupEnv("ANDROID_SDK_DIR"); ok {
 		return filepath.Clean(dir)
 	}
-	if dir := os.Getenv("ANDROID_SDK_ROOT"); dir != "" {
+	if dir, ok := os.LookupEnv("ANDROID_SDK_ROOT"); ok {
 		return filepath.Clean(dir)
 	}
-
 	switch runtime.GOOS {
 	case "windows":
-		{
-			return "C:\\android-sdk-windows"
-		}
-
+		return "C:\\android-sdk-windows"
 	case "darwin":
-		{
-			return filepath.Join(os.Getenv("HOME"), "android-sdk-macosx")
-		}
-
+		return filepath.Join(os.Getenv("HOME"), "android-sdk-macosx")
 	default:
-		{
-			return filepath.Join(os.Getenv("HOME"), "android-sdk-linux")
-		}
+		return filepath.Join(os.Getenv("HOME"), "android-sdk-linux")
 	}
 }
 
 func ANDROID_NDK_DIR() string {
-	if dir := os.Getenv("ANDROID_NDK_DIR"); dir != "" {
+	if dir, ok := os.LookupEnv("ANDROID_NDK_DIR"); ok {
 		return filepath.Clean(dir)
 	}
-	if dir := os.Getenv("ANDROID_NDK_ROOT"); dir != "" {
+	if dir, ok := os.LookupEnv("ANDROID_NDK_ROOT"); ok {
 		return filepath.Clean(dir)
 	}
-
 	if runtime.GOOS == "windows" {
 		return "C:\\android-ndk-r14b"
 	}

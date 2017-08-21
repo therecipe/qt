@@ -33,7 +33,7 @@ func Check(target string, docker, vagrant bool) {
 		{"GOVERSION", runtime.Version()},
 		{"GOROOT", runtime.GOROOT()},
 		{"GOPATH", utils.MustGoPath()},
-		{"GOBIN", utils.MustGoBin()},
+		{"GOBIN", utils.GOBIN()},
 		{"QT_HASH", hash},
 		{"QT_VERSION", utils.QT_VERSION()},
 		{"QT_VERSION_MAJOR", utils.QT_VERSION_MAJOR()},

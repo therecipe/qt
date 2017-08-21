@@ -143,6 +143,8 @@ func (c *Class) fixLinkage() {
 	}
 }
 
+var pkgConfigIncludeDir string
+
 func (c *Class) fixBases() {
 	if c.Module == MOC || c.Pkg != "" {
 		return
@@ -200,7 +202,10 @@ func (c *Class) fixBases() {
 	case "linux":
 		{
 			if utils.QT_PKG_CONFIG() {
-				prefixPath = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
+				if pkgConfigIncludeDir == "" {
+					pkgConfigIncludeDir = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
+				}
+				prefixPath = pkgConfigIncludeDir
 			} else {
 				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64")
 			}

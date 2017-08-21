@@ -8,13 +8,13 @@ import (
 )
 
 func VIRTUALBOX_DIR() string {
-	if dir := os.Getenv("VIRTUALBOX_DIR"); dir != "" {
+	if dir, ok := os.LookupEnv("VIRTUALBOX_DIR"); ok {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {
 		return "C:\\Program Files\\Oracle\\VirtualBox"
 	}
-	var path, err = exec.LookPath("vboxmanage")
+	path, err := exec.LookPath("vboxmanage")
 	if err != nil {
 		Log.WithError(err).Error("failed to find vboxmanage in your PATH")
 	}
@@ -29,7 +29,7 @@ func VIRTUALBOX_DIR() string {
 }
 
 func SAILFISH_DIR() string {
-	if dir := os.Getenv("SAILFISH_DIR"); dir != "" {
+	if dir, ok := os.LookupEnv("SAILFISH_DIR"); ok {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {

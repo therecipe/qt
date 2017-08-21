@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/back.png</file>
+        <file>icons/forward.png</file>
+        <file>icons/reload.png</file>
+        <file>icons/loading.gif</file>
+        <file>icons/stop.png</file>
+        <file>icons/home.png</file>
+    </qresource>
+</RCC>
