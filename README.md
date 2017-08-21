@@ -120,7 +120,7 @@ If you want to build applications for macOS or iOS, then you need to take the re
 
 -	Install Docker: https://store.docker.com/search?type=edition&offering=community
 
--	Pull the linux image: `docker pull therecipe/qt:linux`
+-	Pull the Linux image: `docker pull therecipe/qt:linux`
 
 -	Share your **GOPATH** with docker if needed (for example on macOS)
 
@@ -128,7 +128,7 @@ If you want to build applications for macOS or iOS, then you need to take the re
 
 -	Run the docker setup: `$GOPATH/bin/qtsetup -docker`
 
--	Pull additional images if you want to deploy to another target then linux
+-	Pull additional images if you want to deploy to targets other than Linux
 
 -	Read the [usage instructions](#tools) and build the [example](#hello-world)
 
